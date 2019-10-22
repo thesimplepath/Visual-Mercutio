@@ -36,7 +36,7 @@ const int g_AnyFileTreeItem      = 3;
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_WorkspaceTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_WorkspaceTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_WorkspaceTreeCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
@@ -91,6 +91,7 @@ PSS_WorkspaceTreeCtrl::IData::~IData()
 // PSS_WorkspaceTreeCtrl
 //---------------------------------------------------------------------------
 PSS_WorkspaceTreeCtrl::PSS_WorkspaceTreeCtrl(const CString& rootName, PSS_WorkspaceEnv* pWorkspaceEnv) :
+    PSS_TreeCtrl(),
     m_hRootWorkspaceEnv(NULL),
     m_pWorkspaceEnv(pWorkspaceEnv),
     m_RootName(rootName)
@@ -516,7 +517,7 @@ BOOL PSS_WorkspaceTreeCtrl::DestroyWindow()
 //---------------------------------------------------------------------------
 int PSS_WorkspaceTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
+    if (PSS_TreeCtrl::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     VERIFY(m_SubMenu.LoadMenu(IDR_WORKSPACE_SUBMENUS));

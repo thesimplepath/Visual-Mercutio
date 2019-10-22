@@ -4,7 +4,7 @@
 #include "ZCProcessModelTreeView.h"
 
 #include "zBaseLib\PSS_DropView.h"
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "ZBSymbol.h"
 #include "ZBLinkSymbol.h"
 
@@ -72,10 +72,10 @@ void ZCProcessModelTreeView::Initialize( const CString        ModelName,
     m_EnableMenuItems    = EnableMenuItems;
 
     // Enable drag and drop
-    ( (ZITreeCtrl*)&GetTreeCtrl() )->DisableDragDrop( false );
+    ( (PSS_TreeCtrl*)&GetTreeCtrl() )->DisableDragDrop( false );
 
     // Initialize the worker class
-    m_ModelTree.Initialize( (ZITreeCtrl*)&GetTreeCtrl(), ModelName, m_pModelSet, nIDImageRes, pSet );
+    m_ModelTree.Initialize( (PSS_TreeCtrl*)&GetTreeCtrl(), ModelName, m_pModelSet, nIDImageRes, pSet );
 }
 
 void ZCProcessModelTreeView::Refresh()
@@ -138,7 +138,7 @@ int ZCProcessModelTreeView::HasContextMenu( CWnd* pWnd, CPoint point )
     CPoint pt( point );
     ScreenToClient( &pt );
 
-    HTREEITEM hItem = ( (ZITreeCtrl*)&GetTreeCtrl() )->HitTest( pt, &Flags );
+    HTREEITEM hItem = ( (PSS_TreeCtrl*)&GetTreeCtrl() )->HitTest( pt, &Flags );
 
     if ( ( hItem != NULL ) && ( TVHT_ONITEM & Flags ) )
     {
@@ -177,11 +177,11 @@ void ZCProcessModelTreeView::DisplayContextMenu( CWnd* pWnd, CPoint point )
     UINT uFlags;
     CPoint pt( point );
     ScreenToClient( &pt );
-    HTREEITEM hItem = ( (ZITreeCtrl*)&GetTreeCtrl() )->HitTest( pt, &uFlags );
+    HTREEITEM hItem = ( (PSS_TreeCtrl*)&GetTreeCtrl() )->HitTest( pt, &uFlags );
 
     if ( ( hItem != NULL ) && ( TVHT_ONITEM & uFlags ) )
     {
-        ( (ZITreeCtrl*)&GetTreeCtrl() )->Select( hItem, TVGN_CARET );
+        ( (PSS_TreeCtrl*)&GetTreeCtrl() )->Select( hItem, TVGN_CARET );
 
         // Test if local or referenced symbol
         bool Local = true;
@@ -341,12 +341,12 @@ void ZCProcessModelTreeView::OnDeleteModelPage()
 
 void ZCProcessModelTreeView::OnCollapseBranch()
 {
-    CollapseBranch( ( (ZITreeCtrl*)&GetTreeCtrl() )->GetSelectedItem(), TRUE );
+    CollapseBranch( ( (PSS_TreeCtrl*)&GetTreeCtrl() )->GetSelectedItem(), TRUE );
 }
 
 void ZCProcessModelTreeView::OnExpandBranch()
 {
-    ExpandBranch( ( (ZITreeCtrl*)&GetTreeCtrl() )->GetSelectedItem(), TRUE );
+    ExpandBranch( ( (PSS_TreeCtrl*)&GetTreeCtrl() )->GetSelectedItem(), TRUE );
 }
 
 /////////////////////////////////////////////////////////////////////////////

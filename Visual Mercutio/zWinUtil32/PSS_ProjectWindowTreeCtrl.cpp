@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ProjectWindowTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_ProjectWindowTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_ProjectWindowTreeCtrl)
     ON_MESSAGE(UM_FILELISTHASCHANGED, OnFileListChanged)
     //}}AFX_MSG_MAP
@@ -37,7 +37,7 @@ END_MESSAGE_MAP()
 // PSS_ProjectWindowTreeCtrl
 //---------------------------------------------------------------------------
 PSS_ProjectWindowTreeCtrl::PSS_ProjectWindowTreeCtrl(PSS_Document* pDoc, BOOL visibleOnly) :
-    ZITreeCtrl(),
+    PSS_TreeCtrl(),
     m_pDoc(pDoc),
     m_VisibleOnly(visibleOnly)
 {}

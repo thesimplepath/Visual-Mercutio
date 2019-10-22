@@ -30,7 +30,7 @@ class ZBLinkSymbol;
 class ZDProcessGraphModelMdl;
 class PSS_AutomationMachine;
 class PSS_StateMachineCollection;
-class ZILog;
+class PSS_Log;
 
 #ifdef _ZWKFEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -55,7 +55,7 @@ class PSS_MainAutomationRunnerThread : public PSS_ThinThread
         *@param timeout - timeout time, -1 for infinite
         *@param pLog - logger, can be NULL
         */
-        PSS_MainAutomationRunnerThread(PSS_AutomationMachine* pAutomationMachine, int timeout = -1, ZILog* pLog = NULL);
+        PSS_MainAutomationRunnerThread(PSS_AutomationMachine* pAutomationMachine, int timeout = -1, PSS_Log* pLog = NULL);
 
         virtual ~PSS_MainAutomationRunnerThread();
 
@@ -69,7 +69,7 @@ class PSS_MainAutomationRunnerThread : public PSS_ThinThread
         * Sets the logger to use
         *@param pLog - logger
         */
-        virtual inline void SetLog(ZILog* pLog);
+        virtual inline void SetLog(PSS_Log* pLog);
 
         /**
         * Gets the loop counter
@@ -128,7 +128,7 @@ class PSS_MainAutomationRunnerThread : public PSS_ThinThread
     private:
         PSS_AutomationMachine*    m_pAutomationMachine;
         PSS_StateMachineHandleSet m_MachineHandleSet;
-        ZILog*                    m_pLog;
+        PSS_Log*                  m_pLog;
         int                       m_Timeout;
         int                       m_LoopCounter;
         int                       m_WaitingCounter;
@@ -138,7 +138,7 @@ class PSS_MainAutomationRunnerThread : public PSS_ThinThread
 //---------------------------------------------------------------------------
 // PSS_MainAutomationRunnerThread
 //---------------------------------------------------------------------------
-void PSS_MainAutomationRunnerThread::SetLog(ZILog* pLog)
+void PSS_MainAutomationRunnerThread::SetLog(PSS_Log* pLog)
 {
     m_pLog = pLog;
 }

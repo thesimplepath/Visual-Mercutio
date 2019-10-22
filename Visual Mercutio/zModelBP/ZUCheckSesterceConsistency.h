@@ -28,7 +28,7 @@
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
 
 // Forward declaration
-class ZILog;
+class PSS_Log;
 class ZBSymbol;
 class ZBLinkSymbol;
 class ZBBPDoorSymbol;
@@ -46,7 +46,7 @@ class ZUCheckSesterceConsistency : public ZIBasicSymbolVisitor
 {
 public:
 
-    ZUCheckSesterceConsistency( ZDProcessGraphModelMdl* pModel = NULL, ZILog* pLog = NULL );
+    ZUCheckSesterceConsistency(ZDProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
     virtual ~ZUCheckSesterceConsistency();
 
     bool CheckModel();
@@ -62,30 +62,30 @@ public:
     };
 
     /* Each concrete derived ZIBasicSymbolVisitor class
-       must implement Visit to implement the appropriate 
-       algorithm 
+       must implement Visit to implement the appropriate
+       algorithm
        In this concrete class the Visit will check the
        BasicSymbol passes as an argument */
-    virtual bool Visit( CODComponent& Symbol );
+    virtual bool Visit(CODComponent& Symbol);
 
 private:
 
-    bool CheckDoorSymbol            ( ZBBPDoorSymbol* pSymbol );
-    bool CheckPageSymbol            ( ZBBPPageSymbol* pSymbol );
-    bool CheckProcedureSymbol        ( ZBBPProcedureSymbol* pSymbol );
-    bool CheckProcessSymbol            ( ZBBPProcessSymbol* pSymbol );
-    bool CheckStartSymbol            ( ZBBPStartSymbol* pSymbol );
-    bool CheckStopSymbol            ( ZBBPStopSymbol* pSymbol );
-    bool CheckDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol* pSymbol );
-    bool CheckSymbol                ( ZBSymbol* pSymbol );
-    bool CheckLink                    ( ZBLinkSymbol* pLink );
+    bool CheckDoorSymbol(ZBBPDoorSymbol* pSymbol);
+    bool CheckPageSymbol(ZBBPPageSymbol* pSymbol);
+    bool CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    bool CheckProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    bool CheckStartSymbol(ZBBPStartSymbol* pSymbol);
+    bool CheckStopSymbol(ZBBPStopSymbol* pSymbol);
+    bool CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
+    bool CheckSymbol(ZBSymbol* pSymbol);
+    bool CheckLink(ZBLinkSymbol* pLink);
 
 private:
 
-    ZILog*                    m_pLog;
+    PSS_Log*                m_pLog;
     ZDProcessGraphModelMdl* m_pModel;
-    size_t                    m_ErrorCounter;
-    size_t                    m_WarningCounter;
+    size_t                  m_ErrorCounter;
+    size_t                  m_WarningCounter;
 };
 
-#endif // !defined(AFX_ZUCheckSesterceConsistency_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

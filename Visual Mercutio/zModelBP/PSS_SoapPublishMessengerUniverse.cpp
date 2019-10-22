@@ -10,7 +10,7 @@
 #include "PSS_SoapPublishMessengerUniverse.h"
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------
 // PSS_SoapPublishMessengerUniverse
 //---------------------------------------------------------------------------
-PSS_SoapPublishMessengerUniverse::PSS_SoapPublishMessengerUniverse(ZBPublishMessengerModelInformation* pInfo, ZILog* pLog) :
+PSS_SoapPublishMessengerUniverse::PSS_SoapPublishMessengerUniverse(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog) :
     m_pInfo(pInfo),
     m_pLog(pLog)
 {}

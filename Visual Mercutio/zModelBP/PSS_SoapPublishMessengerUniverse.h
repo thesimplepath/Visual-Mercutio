@@ -26,7 +26,7 @@
 
 // forward class declaration
 class ZBPublishMessengerModelInformation;
-class ZILog;
+class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -50,7 +50,7 @@ class AFX_EXT_CLASS PSS_SoapPublishMessengerUniverse
         *@param pInfo - info to publish
         *@param pLog - logger, can be NULL
         */
-        PSS_SoapPublishMessengerUniverse(ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL);
+        PSS_SoapPublishMessengerUniverse(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
 
         virtual ~PSS_SoapPublishMessengerUniverse();
 
@@ -63,7 +63,7 @@ class AFX_EXT_CLASS PSS_SoapPublishMessengerUniverse
     private:
         ZBPublishMessengerModelInformation* m_pInfo;
         PSS_SoapPublisher_MessengerUniverse m_PubMngUni;
-        ZILog*                              m_pLog;
+        PSS_Log*                            m_pLog;
 };
 
 #endif

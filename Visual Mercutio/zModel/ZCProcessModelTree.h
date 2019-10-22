@@ -15,7 +15,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "ModelTreei.h"
 
 #ifdef _ZMODELEXPORT
@@ -33,7 +33,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCProcessModelTree view
 
-class AFX_EXT_CLASS ZCProcessModelTree : public ZITreeCtrl
+class AFX_EXT_CLASS ZCProcessModelTree : public PSS_TreeCtrl
 {
     DECLARE_DYNCREATE( ZCProcessModelTree )
 

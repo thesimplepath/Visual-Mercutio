@@ -26,8 +26,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -35,12 +34,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "ZUProcessNavigation.h"
 
-
 #ifdef _ZMODELBPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -49,19 +47,7 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZUProcessClearDurationFigures
-//
-
-
-
-
-
-class AFX_EXT_CLASS ZUProcessClearDurationFigures : public ZUProcessNavigation  
+class AFX_EXT_CLASS ZUProcessClearDurationFigures : public ZUProcessNavigation
 {
 public:
     ZUProcessClearDurationFigures(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
@@ -70,11 +56,8 @@ public:
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
-    virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol );
-
-private:
-
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
 };
 
-#endif // !defined(AFX_ZUProcessClearDurationFigures_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

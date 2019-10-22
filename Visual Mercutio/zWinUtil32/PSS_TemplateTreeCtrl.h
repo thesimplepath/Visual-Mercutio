@@ -21,7 +21,7 @@
 #include "Mfc.h"
 
 // processsoft
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "zBaseLib\PSS_TemplateManager.h"
 #include "PSS_TemplateTree.h"
 
@@ -39,7 +39,7 @@
 * Template tree control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public ZITreeCtrl
+class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public PSS_TreeCtrl
 {
     DECLARE_DYNCREATE(PSS_TemplateTreeCtrl)
 

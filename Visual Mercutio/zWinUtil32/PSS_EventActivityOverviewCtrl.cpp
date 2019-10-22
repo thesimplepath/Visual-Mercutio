@@ -27,7 +27,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventActivityOverviewCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_EventActivityOverviewCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_EventActivityOverviewCtrl)
     ON_WM_DESTROY()
     //}}AFX_MSG_MAP
@@ -54,7 +54,7 @@ PSS_EventActivityOverviewCtrl::IElementType::~IElementType()
 // PSS_EventActivityOverviewCtrl
 //---------------------------------------------------------------------------
 PSS_EventActivityOverviewCtrl::PSS_EventActivityOverviewCtrl(ZBEventManager* pEventManager) :
-    ZITreeCtrl(),
+    PSS_TreeCtrl(),
     m_pEventManager(pEventManager)
 {}
 //---------------------------------------------------------------------------
@@ -249,7 +249,7 @@ void PSS_EventActivityOverviewCtrl::Refresh()
 {
     DeleteAllItems();
 
-    ZITreeCtrl::DeleteAllItems(TRUE);
+    PSS_TreeCtrl::DeleteAllItems(TRUE);
 
     Initialize();
 }
@@ -258,7 +258,7 @@ void PSS_EventActivityOverviewCtrl::OnDestroy()
 {
     DeleteAllItems();
 
-    ZITreeCtrl::OnDestroy();
+    PSS_TreeCtrl::OnDestroy();
 }
 //---------------------------------------------------------------------------
 HTREEITEM PSS_EventActivityOverviewCtrl::AddUserItem(IElementType* pElement, int iconIndex)

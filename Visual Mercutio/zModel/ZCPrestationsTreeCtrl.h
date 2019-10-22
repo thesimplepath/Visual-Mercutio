@@ -24,7 +24,7 @@
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 
 // Forward class declaration
 class ZBLogicalPrestationsEntity;
@@ -66,7 +66,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // ZCPrestationsTreeCtrl window
 
-class AFX_EXT_CLASS ZCPrestationsTreeCtrl : public ZITreeCtrl,
+class AFX_EXT_CLASS ZCPrestationsTreeCtrl : public PSS_TreeCtrl,
                                             public PSS_Subject,
                                             public PSS_Observer
 {

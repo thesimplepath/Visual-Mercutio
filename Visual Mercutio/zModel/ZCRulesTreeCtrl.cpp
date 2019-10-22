@@ -69,7 +69,7 @@ _ZInternalRulesTreeData::~_ZInternalRulesTreeData()
 /////////////////////////////////////////////////////////////////////////////
 // ZCRulesTreeCtrl
 
-BEGIN_MESSAGE_MAP(ZCRulesTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(ZCRulesTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(ZCRulesTreeCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
@@ -82,8 +82,9 @@ BEGIN_MESSAGE_MAP(ZCRulesTreeCtrl, ZITreeCtrl)
 END_MESSAGE_MAP()
 
 ZCRulesTreeCtrl::ZCRulesTreeCtrl(const CString            RootName            /*= _T( "" )*/,
-                                 ZBLogicalRulesEntity*    pLogicalRuleRoot    /*= NULL*/)
-    : m_RootName(RootName),
+                                 ZBLogicalRulesEntity*    pLogicalRuleRoot    /*= NULL*/) :
+    PSS_TreeCtrl(),
+    m_RootName(RootName),
     m_pLogicalRuleRoot(pLogicalRuleRoot),
     m_hUserGroupRoot(NULL),
     m_HasBeenInitialized(false)
@@ -152,10 +153,8 @@ void ZCRulesTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 
 int ZCRulesTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
-    {
+    if (PSS_TreeCtrl::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
 
     LoadTree();
 

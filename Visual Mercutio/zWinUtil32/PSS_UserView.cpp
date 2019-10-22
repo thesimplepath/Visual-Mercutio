@@ -48,9 +48,9 @@ void PSS_UserView::Initialize(PSS_UserManager* pUserManager)
     m_pUserManager = pUserManager;
 
     // enable drag and drop
-    ((ZITreeCtrl*)&GetTreeCtrl())->DisableDragDrop(false);
+    ((PSS_TreeCtrl*)&GetTreeCtrl())->DisableDragDrop(false);
 
-    m_UserTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), m_pUserManager);
+    m_UserTree.Initialize((PSS_TreeCtrl*)&GetTreeCtrl(), m_pUserManager);
 }
 //---------------------------------------------------------------------------
 void PSS_UserView::ReInitialize(PSS_UserManager* pUserManager)

@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "PSS_ProjectTree.h"
 
 // class name mapping
@@ -43,7 +43,7 @@ class PSS_DocumentData;
 * Project window tree control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ProjectWindowTreeCtrl : public ZITreeCtrl
+class AFX_EXT_CLASS PSS_ProjectWindowTreeCtrl : public PSS_TreeCtrl
 {
     public:
         /**

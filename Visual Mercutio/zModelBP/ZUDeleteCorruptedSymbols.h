@@ -12,9 +12,9 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -36,18 +36,18 @@
 
 #include "ProcGraphModelMdlBP.h"
 
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 class ZUDeleteCorruptedSymbols
@@ -57,24 +57,23 @@ public:
     ZUDeleteCorruptedSymbols();
     ~ZUDeleteCorruptedSymbols();
 
-    void CheckModel( ZDProcessGraphModelMdlBP* m_StartRootModel );
+    void CheckModel(ZDProcessGraphModelMdlBP* m_StartRootModel);
 
     CODComponentSet* GetCorruptedSymbolList();
 
 private:
 
-    BOOL IsCorrupted( ZBBPProcessSymbol* m_Symbol );
-    BOOL IsCorrupted( ZBBPProcedureSymbol* m_Symbol );
-    BOOL IsCorrupted( ZBBPStartSymbol* m_Symbol );
-    BOOL IsCorrupted( ZBBPStopSymbol* m_Symbol );
-    BOOL IsCorrupted( ZBBPDoorSymbol* m_Symbol );
-    BOOL IsCorrupted( ZBBPPageSymbol* m_Symbol );
-    BOOL IsCorrupted( ZBBPPackageSymbol* m_Symbol );
-    BOOL IsCorrupted( ZBDeliverableLinkSymbol* m_Symbol );
+    BOOL IsCorrupted(ZBBPProcessSymbol* m_Symbol);
+    BOOL IsCorrupted(ZBBPProcedureSymbol* m_Symbol);
+    BOOL IsCorrupted(ZBBPStartSymbol* m_Symbol);
+    BOOL IsCorrupted(ZBBPStopSymbol* m_Symbol);
+    BOOL IsCorrupted(ZBBPDoorSymbol* m_Symbol);
+    BOOL IsCorrupted(ZBBPPageSymbol* m_Symbol);
+    BOOL IsCorrupted(ZBBPPackageSymbol* m_Symbol);
+    BOOL IsCorrupted(ZBDeliverableLinkSymbol* m_Symbol);
 
 private:
-
     CODComponentSet CorruptedSymbols;
 };
 
-#endif // !defined(AFX_ZUDeleteCorruptedSymbols_H__78F947C3_2DC6_4808_A357_392EF1C0512F__INCLUDED_)
+#endif

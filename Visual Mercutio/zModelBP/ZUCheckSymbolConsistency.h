@@ -11,7 +11,7 @@
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
 
 // Forward declaration
-class ZILog;
+class PSS_Log;
 class ZIBasicSymbol;
 class ZBSymbol;
 class ZBLinkSymbol;
@@ -34,13 +34,13 @@ class ZUCheckSymbolConsistency : public ZIBasicSymbolVisitor
 {
 public:
 
-    ZUCheckSymbolConsistency( ZDProcessGraphModelMdl*    pModel    = NULL,
-                              ZILog*                    pLog    = NULL );
+    ZUCheckSymbolConsistency(ZDProcessGraphModelMdl*    pModel = NULL,
+                             PSS_Log*                    pLog = NULL);
 
     virtual ~ZUCheckSymbolConsistency();
 
     // JMR-MODIF - Le 5 novembre 2006 - Ajout du paramètre ModelIsClean.
-    bool CheckSymbol( CODComponent& Symbol, BOOL ModelIsClean );
+    bool CheckSymbol(CODComponent& Symbol, BOOL ModelIsClean);
 
     // Logging functions
     void StartLogging()
@@ -58,43 +58,43 @@ public:
         return m_IsLogging;
     };
 
-    // Returns the ZILog pointer on the log used for checking the symbol
-    ZILog* GetLog()
+    // Returns the PSS_Log pointer on the log used for checking the symbol
+    PSS_Log* GetLog()
     {
         return m_pLog;
     };
 
     /* Each concrete derived ZIBasicSymbolVisitor class
-       must implement Visit to implement the appropriate 
-       algorithm 
+       must implement Visit to implement the appropriate
+       algorithm
        In this concrete class the Visit will check the
        BasicSymbol passes as an argument */
-    virtual bool Visit( CODComponent& Symbol );
+    virtual bool Visit(CODComponent& Symbol);
 
 private:
 
-    bool CheckDoorSymbol                ( ZBBPDoorSymbol* pSymbol );
-    bool CheckPageSymbol                ( ZBBPPageSymbol* pSymbol );
-    bool CheckProcedureSymbol            ( ZBBPProcedureSymbol* pSymbol );
-    bool CheckProcessSymbol                ( ZBBPProcessSymbol* pSymbol );
-    bool CheckStartSymbol                ( ZBBPStartSymbol* pSymbol );
-    bool CheckStopSymbol                ( ZBBPStopSymbol* pSymbol );
-    bool CheckDeliverableLinkSymbol        ( ZBDeliverableLinkSymbol* pSymbol );
-    bool CheckSymbol                    ( ZBSymbol* pSymbol );
-    bool CheckLink                        ( ZBLinkSymbol* pLink );
+    bool CheckDoorSymbol(ZBBPDoorSymbol* pSymbol);
+    bool CheckPageSymbol(ZBBPPageSymbol* pSymbol);
+    bool CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    bool CheckProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    bool CheckStartSymbol(ZBBPStartSymbol* pSymbol);
+    bool CheckStopSymbol(ZBBPStopSymbol* pSymbol);
+    bool CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
+    bool CheckSymbol(ZBSymbol* pSymbol);
+    bool CheckLink(ZBLinkSymbol* pLink);
 
-    bool CheckInvalidCharInSymbolName    ( ZIBasicSymbol* pSymbol, CString Path );
-    bool CheckUniqueRef                    ( ZIBasicSymbol* pSymbol );
-    bool RefExist                        ( int ref );
+    bool CheckInvalidCharInSymbolName(ZIBasicSymbol* pSymbol, CString Path);
+    bool CheckUniqueRef(ZIBasicSymbol* pSymbol);
+    bool RefExist(int ref);
 
-    void DeleteCorruptedSymbol            ( ZBSymbol*                    m_Symbol,
-                                          ZDProcessGraphModelMdlBP*    m_StartRootModel    = NULL );
+    void DeleteCorruptedSymbol(ZBSymbol*                    m_Symbol,
+                               ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL);
 
 private:
 
     bool                    m_IsLogging;
 
-    ZILog*                    m_pLog;
+    PSS_Log*                    m_pLog;
 
     int*                    m_pIDArray;
     int                        m_RefIDSize;
@@ -105,4 +105,4 @@ private:
     size_t                    m_WarningCounter;
 };
 
-#endif // !defined(AFX_ZUCHECKSYMBOLCONSISTENCY_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

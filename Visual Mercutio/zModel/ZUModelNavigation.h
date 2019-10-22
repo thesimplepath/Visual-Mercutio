@@ -40,7 +40,7 @@
 class ZBSymbol;
 class ZBLinkSymbol;
 class ZDProcessGraphModelMdl;
-class ZILog;
+class PSS_Log;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -58,11 +58,11 @@ class AFX_EXT_CLASS ZUModelNavigation : public ZIBasicSymbolVisitor
 {
 public:
 
-    ZUModelNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUModelNavigation(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUModelNavigation();
 
-    bool Navigate( ZDProcessGraphModelMdl* pModel, void* pClass );
-    bool Navigate( ZDProcessGraphModelMdl* pModel );
+    bool Navigate(ZDProcessGraphModelMdl* pModel, void* pClass);
+    bool Navigate(ZDProcessGraphModelMdl* pModel);
     bool Navigate();
 
     // Call-back methods
@@ -76,17 +76,17 @@ public:
         return true;
     };
 
-    virtual bool OnSymbol( ZBSymbol* pSymbol )
+    virtual bool OnSymbol(ZBSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnLink( ZBLinkSymbol* pLink )
+    virtual bool OnLink(ZBLinkSymbol* pLink)
     {
         return true;
     };
 
-    void SetLog( ZILog* pLog )
+    void SetLog(PSS_Log* pLog)
     {
         m_pLog = pLog;
     };
@@ -95,13 +95,13 @@ public:
        must implement Visit to implement the appropriate algorithm
        In this concrete class the Visit will On the
        BasicSymbol passes as an argument */
-    virtual bool Visit( CODComponent& Symbol );
+    virtual bool Visit(CODComponent& Symbol);
 
 protected:
 
-    ZDProcessGraphModelMdl*    m_pModel;
-    void*                    m_pClass;
-    ZILog*                    m_pLog;
+    ZDProcessGraphModelMdl* m_pModel;
+    void*                   m_pClass;
+    PSS_Log*                m_pLog;
 };
 
-#endif // !defined(AFX_ZUModelNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

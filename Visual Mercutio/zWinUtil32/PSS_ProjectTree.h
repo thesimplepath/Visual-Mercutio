@@ -27,7 +27,7 @@
 // forward class declaration
 class PSS_Document;
 class PSS_DocumentData;
-class ZITreeCtrl;
+class PSS_TreeCtrl;
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -52,7 +52,7 @@ class AFX_EXT_CLASS PSS_ProjectTree
         *@param pDoc - document, can be NULL
         *@param visibleOnly - visible only
         */
-        PSS_ProjectTree(ZITreeCtrl* pTreeCtrl = NULL, PSS_Document* pDoc = NULL, BOOL visibleOnly = TRUE);
+        PSS_ProjectTree(PSS_TreeCtrl* pTreeCtrl = NULL, PSS_Document* pDoc = NULL, BOOL visibleOnly = TRUE);
 
         virtual ~PSS_ProjectTree();
 
@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_ProjectTree
         *@param pDoc - document, can be NULL
         *@param visibleOnly - visible only
         */
-        void Initialize(ZITreeCtrl* pTreeCtrl, PSS_Document* pDoc, BOOL OnlyVisible = TRUE);
+        void Initialize(PSS_TreeCtrl* pTreeCtrl, PSS_Document* pDoc, BOOL OnlyVisible = TRUE);
 
         /**
         * Empties the tree
@@ -93,7 +93,7 @@ class AFX_EXT_CLASS PSS_ProjectTree
 
     protected:
         PSS_Document* m_pDoc;
-        ZITreeCtrl*   m_pTreeCtrl;
+        PSS_TreeCtrl* m_pTreeCtrl;
         CString       m_InternalDocumentType;
         CString       m_ExternalDocumentType;
         BOOL          m_VisibleOnly;

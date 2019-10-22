@@ -26,22 +26,13 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZIErrorLine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zilistctrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZILog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIntelliListBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIntelliMultiLineBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zitreectl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZITreeView.cpp">
@@ -75,9 +66,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZUSystemOption.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVDocumentPageSetupDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVOutputView.cpp">
@@ -602,6 +590,18 @@
     <ClCompile Include="PSS_HtmlView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_TreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ErrorLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DocumentPageSetupDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,22 +718,13 @@
     <ClInclude Include="zBaseLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZIErrorLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="zilistctrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZILog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIntelliListBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIntelliMultiLineBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zitreectl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZITreeView.h">
@@ -767,9 +758,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUSystemOption.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVDocumentPageSetupDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVOutputView.h">
@@ -1295,6 +1283,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_HtmlView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ErrorLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DocumentPageSetupDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

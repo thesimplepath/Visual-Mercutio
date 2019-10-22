@@ -135,7 +135,7 @@ void PSS_DocumentPageSetup::OnUserDefinePageFormat()
     m_PaperSize    = m_PageSetupDlg.GetPaperSize();
     m_StandardSize = m_PageSetupDlg.GetStandardSize();
     m_Orientation  = m_PageSetupDlg.GetOrientation();
-    m_BkGndName    = m_PageSetupDlg.GetBackGroundFilename();
+    m_BkGndName    = m_PageSetupDlg.GetBackgroundFileName();
 
     if (printerExists)
         ChangePrinterSettings(m_StandardSize, m_Orientation);

@@ -22,7 +22,7 @@
 
 // processsoft
 #include "Define.h"
-#include "ZVDocumentPageSetupDlg.h"
+#include "PSS_DocumentPageSetupDlg.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -129,15 +129,15 @@ class AFX_EXT_CLASS PSS_DocumentPageSetup
         virtual BOOL CanPrint();
 
     private:
-        ZVDocumentPageSetupDlg m_PageSetupDlg;
-        CSize                  m_PaperSize;
-        CString                m_BkGndName;
-        short                  m_StandardSize;
-        short                  m_Orientation;
-        BOOL                   m_IsFormatDefined;
-        BOOL                   m_IsCancelled;
-        BOOL                   m_CanPrint;
-        BOOL                   m_IsChecked;
+        PSS_DocumentPageSetupDlg m_PageSetupDlg;
+        CSize                    m_PaperSize;
+        CString                  m_BkGndName;
+        short                    m_StandardSize;
+        short                    m_Orientation;
+        BOOL                     m_IsFormatDefined;
+        BOOL                     m_IsCancelled;
+        BOOL                     m_CanPrint;
+        BOOL                     m_IsChecked;
 
         /**
         * Gets the printer page size

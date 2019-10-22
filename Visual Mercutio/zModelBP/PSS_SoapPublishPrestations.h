@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBLogicalPrestationsEntity.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
@@ -32,7 +32,6 @@
 // forward class declaration
 class ZBLogicalPrestationsEntity;
 class ZBPublishMessengerModelInformation;
-class ZILog;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -56,7 +55,7 @@ class AFX_EXT_CLASS PSS_SoapPublishPrestations
         *@param pInfo - info to publish
         *@param pLog - logger, can be NULL
         */
-        PSS_SoapPublishPrestations(ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL);
+        PSS_SoapPublishPrestations(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
 
         virtual ~PSS_SoapPublishPrestations();
 
@@ -69,7 +68,7 @@ class AFX_EXT_CLASS PSS_SoapPublishPrestations
     private:
         ZBPublishMessengerModelInformation* m_pInfo;
         pPublishPrestations                 m_Prestations;
-        ZILog*                              m_pLog;
+        PSS_Log*                            m_pLog;
 
         /**
         * Publishes the prestations and check their validity

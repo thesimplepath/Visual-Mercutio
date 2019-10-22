@@ -26,7 +26,7 @@
 // Forward class declaration
 class ZDProcessGraphModelDoc;
 class ZBPublishMessengerModelInformation;
-class ZILog;
+class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -46,9 +46,9 @@ class AFX_EXT_CLASS ZVPublishToMessengerWizard
 {
 public:
 
-    ZVPublishToMessengerWizard( ZDProcessGraphModelDoc* pModelDoc,
-                                ZILog*                    pLog        = NULL,
-                                const CString            IniFile        = _T( "" ) );
+    ZVPublishToMessengerWizard(ZDProcessGraphModelDoc* pModelDoc,
+                               PSS_Log*                    pLog = NULL,
+                               const CString            IniFile = _T(""));
 
     virtual ~ZVPublishToMessengerWizard();
 
@@ -57,7 +57,7 @@ public:
 private:
 
     ZDProcessGraphModelDoc* m_pModelDoc;
-    ZILog*                    m_pLog;
+    PSS_Log*                    m_pLog;
     CString                    m_IniFile;
 };
 
@@ -71,7 +71,7 @@ class ZVPublishToMessengerStart : public PSS_WizardDialog
 public:
 
     // Standard constructor
-    ZVPublishToMessengerStart( const CString IniFile = _T( "" ), CWnd* pParent = NULL );
+    ZVPublishToMessengerStart(const CString IniFile = _T(""), CWnd* pParent = NULL);
 
     BOOL GetIncludeModel() const
     {
@@ -108,7 +108,10 @@ public:
 private:
     // Dialog Data
     //{{AFX_DATA(ZVPublishToMessengerStart)
-    enum { IDD = IDD_WZ_PUBLISHTOMESSENGER_START };
+    enum
+    {
+        IDD = IDD_WZ_PUBLISHTOMESSENGER_START
+    };
     PSS_IntelliEdit m_MessengerAddressEdit;
     PSS_IntelliEdit m_MessengerAliasEdit;
     BOOL            m_IncludeModel;
@@ -120,7 +123,7 @@ private:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVPublishToMessengerStart)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -156,7 +159,7 @@ class ZVPublishToMessengerLogon : public PSS_WizardDialog
 public:
 
     // Standard constructor
-    ZVPublishToMessengerLogon( ZBPublishMessengerModelInformation* pInfo, CWnd* pParent = NULL );
+    ZVPublishToMessengerLogon(ZBPublishMessengerModelInformation* pInfo, CWnd* pParent = NULL);
 
     // JMR-MODIF - Le 19 juin 2006 - Ajout de la fonction GetBeginDate.
     CString GetBeginDate()
@@ -174,7 +177,10 @@ private:
 
     // Dialog Data
     //{{AFX_DATA(ZVPublishToMessengerLogon)
-    enum { IDD = IDD_WZ_PUBLISHTOMESSENGER_AUTH };
+    enum
+    {
+        IDD = IDD_WZ_PUBLISHTOMESSENGER_AUTH
+    };
     CString    m_Password;
     CString    m_Username;
     //}}AFX_DATA
@@ -182,7 +188,7 @@ private:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVPublishToMessengerLogon)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -201,8 +207,7 @@ private:
     // JMR-MODIF - Le 19 juin 2006 - Ajout des variables m_Date_Begin et m_Date_End.
     CString                                m_Date_Begin;
     CString                                m_Date_End;
-
     ZBPublishMessengerModelInformation*    m_pInfo;
 };
 
-#endif // !defined(AFX_ZVPublishToMessengerWizard_H__5DA4C599_18FB_4411_B32C_FA6E5C4462DB__INCLUDED_)
+#endif

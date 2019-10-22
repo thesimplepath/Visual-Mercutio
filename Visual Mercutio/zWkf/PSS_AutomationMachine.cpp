@@ -9,7 +9,7 @@
 #include "PSS_AutomationMachine.h"
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -26,7 +26,7 @@
 // PSS_AutomationMachine
 //---------------------------------------------------------------------------
 PSS_AutomationMachine::PSS_AutomationMachine(ZDProcessGraphModelMdl* pModel,
-                                             ZILog*                  pLog,
+                                             PSS_Log*                pLog,
                                              int                     maxLoop,
                                              int                     maxPaused,
                                              int                     maxWaitingForOtherLinks,
@@ -48,7 +48,7 @@ PSS_AutomationMachine::PSS_AutomationMachine(ZDProcessGraphModelMdl* pModel,
 //---------------------------------------------------------------------------
 PSS_AutomationMachine::PSS_AutomationMachine(ZBSymbol*               pSymbol,
                                              ZDProcessGraphModelMdl* pModel,
-                                             ZILog*                  pLog,
+                                             PSS_Log*                pLog,
                                              int                     maxLoop,
                                              int                     maxPaused,
                                              int                     maxWaitingForOtherLinks,
@@ -145,109 +145,109 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomationMachine::RequestMove
                                                                                         PSS_StateMachine*  pStateMachine,
                                                                                         PSS_SymbolSet&     symbolSet,
                                                                                         PSS_StateLinksSet& stateLinkSet,
-                                                                                        ZILog*             pLog)
+                                                                                        PSS_Log*           pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return IE_AS_Error;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnStart(ZILog* pLog)
+bool PSS_AutomationMachine::OnStart(PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnStop(ZILog* pLog)
+bool PSS_AutomationMachine::OnStop(PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnPause(ZILog* pLog)
+bool PSS_AutomationMachine::OnPause(PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnResume(ZILog* pLog)
+bool PSS_AutomationMachine::OnResume(PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectIsWaitingForOtherLinks(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectIsWaitingForOtherLinks(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnReachMaxLoopCounter(ZILog* pLog)
+bool PSS_AutomationMachine::OnReachMaxLoopCounter(PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnReachMaxWaitingForOtherLinksCounter(ZILog* pLog)
+bool PSS_AutomationMachine::OnReachMaxWaitingForOtherLinksCounter(PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnReachMaxInPauseCounter(ZILog* pLog)
+bool PSS_AutomationMachine::OnReachMaxInPauseCounter(PSS_Log* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;

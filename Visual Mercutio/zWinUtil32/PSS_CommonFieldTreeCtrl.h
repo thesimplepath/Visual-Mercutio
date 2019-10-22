@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "zBaseLib\PSS_FieldRepository.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -30,7 +30,7 @@
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public ZITreeCtrl
+class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public PSS_TreeCtrl
 {
     public:
         /**

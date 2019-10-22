@@ -42,7 +42,7 @@ PSS_ProjectView::~PSS_ProjectView()
 void PSS_ProjectView::Initialize(BOOL visibleOnly)
 {
     m_VisibleOnly = visibleOnly;
-    m_ProjectTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), NULL, m_VisibleOnly);
+    m_ProjectTree.Initialize((PSS_TreeCtrl*)&GetTreeCtrl(), NULL, m_VisibleOnly);
 }
 //---------------------------------------------------------------------------
 void PSS_ProjectView::OnDraw(CDC* pDC)
@@ -98,7 +98,7 @@ afx_msg LRESULT PSS_ProjectView::OnDocumentHasBeenSelected(WPARAM wParam, LPARAM
     PSS_Document* pDoc = (PSS_Document*)lParam;
 
     if (pDoc)
-        m_ProjectTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), pDoc, m_VisibleOnly);
+        m_ProjectTree.Initialize((PSS_TreeCtrl*)&GetTreeCtrl(), pDoc, m_VisibleOnly);
     else
         m_ProjectTree.Empty();
 

@@ -20,7 +20,7 @@
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "zProperty\ZIProperties.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // ZCSymbolAttributesTreeCtrl window
 
-class AFX_EXT_CLASS ZCSymbolAttributesTreeCtrl : public ZITreeCtrl,
+class AFX_EXT_CLASS ZCSymbolAttributesTreeCtrl : public PSS_TreeCtrl,
                                                  public PSS_Subject,
                                                  public PSS_Observer
 {

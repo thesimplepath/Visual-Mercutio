@@ -15,9 +15,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVOutputWorkflowLogView
 
-IMPLEMENT_DYNAMIC( ZVOutputWorkflowLogView, ZVOutputView )
+IMPLEMENT_DYNAMIC(ZVOutputWorkflowLogView, ZVOutputView)
 
-BEGIN_MESSAGE_MAP( ZVOutputWorkflowLogView, ZVOutputView )
+BEGIN_MESSAGE_MAP(ZVOutputWorkflowLogView, ZVOutputView)
     //{{AFX_MSG_MAP(ZVOutputWorkflowLogView)
         // NOTE - the ClassWizard will add and remove mapping macros here.
     //}}AFX_MSG_MAP
@@ -25,12 +25,11 @@ END_MESSAGE_MAP()
 
 ZVOutputWorkflowLogView::ZVOutputWorkflowLogView()
 {
-    SetSelectLast( true );
+    SetSelectLast(true);
 }
 
 ZVOutputWorkflowLogView::~ZVOutputWorkflowLogView()
-{
-}
+{}
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVOutputWorkflowLogView message handlers
@@ -44,12 +43,12 @@ void ZVOutputWorkflowLogView::OnDoubleClick()
 {
     CString s;
 
-    if ( GetCurrentItem( s ) != -1 )
+    if (GetCurrentItem(s) != -1)
     {
         ZBGenericSymbolErrorLine ErrorLine;
-        (ZIErrorLine&)ErrorLine = s;
-        ZBSymbolLogObserverMsg msg( ErrorLine );    
+        (PSS_ErrorLine&)ErrorLine = s;
+        ZBSymbolLogObserverMsg msg(ErrorLine);
 
-        NotifyAllObservers( &msg );
+        NotifyAllObservers(&msg);
     }
 }

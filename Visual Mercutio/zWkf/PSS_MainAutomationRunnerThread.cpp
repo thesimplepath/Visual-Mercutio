@@ -9,7 +9,7 @@
 #include "PSS_MainAutomationRunnerThread.h"
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -38,7 +38,7 @@ PSS_MainAutomationRunnerThread::PSS_MainAutomationRunnerThread() :
 //---------------------------------------------------------------------------
 PSS_MainAutomationRunnerThread::PSS_MainAutomationRunnerThread(PSS_AutomationMachine* pAutomationMachine,
                                                                int                    timeout,
-                                                               ZILog*                 pLog) :
+                                                               PSS_Log*               pLog) :
     PSS_ThinThread(),
     m_pAutomationMachine(pAutomationMachine),
     m_pLog(pLog),

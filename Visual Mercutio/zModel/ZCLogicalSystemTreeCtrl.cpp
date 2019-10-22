@@ -68,7 +68,7 @@ _ZInternalLogicalSystemTreeData::~_ZInternalLogicalSystemTreeData()
 /////////////////////////////////////////////////////////////////////////////
 // ZCLogicalSystemTreeCtrl
 
-BEGIN_MESSAGE_MAP(ZCLogicalSystemTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(ZCLogicalSystemTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(ZCLogicalSystemTreeCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
@@ -81,8 +81,9 @@ BEGIN_MESSAGE_MAP(ZCLogicalSystemTreeCtrl, ZITreeCtrl)
 END_MESSAGE_MAP()
 
 ZCLogicalSystemTreeCtrl::ZCLogicalSystemTreeCtrl(const CString                RootName            /*= _T( "" )*/,
-                                                 ZBLogicalSystemEntity*    pLogicalSystemRoot    /*= NULL*/)
-    : m_RootName(RootName),
+                                                 ZBLogicalSystemEntity*    pLogicalSystemRoot    /*= NULL*/) :
+    PSS_TreeCtrl(),
+    m_RootName(RootName),
     m_pLogicalSystemRoot(pLogicalSystemRoot),
     m_hUserGroupRoot(NULL),
     m_HasBeenInitialized(false)
@@ -152,10 +153,8 @@ void ZCLogicalSystemTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* p
 
 int ZCLogicalSystemTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
-    {
+    if (PSS_TreeCtrl::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
 
     LoadTree();
 

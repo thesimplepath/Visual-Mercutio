@@ -9,7 +9,7 @@
 #include "PSS_ProjectTree.h"
 
 // processsoft
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "zBaseLib\PSS_Document.h"
 #include "zBaseLib\PSS_DocumentData.h"
 #include "zBaseLib\PSS_File.h"
@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------
 // PSS_ProjectTree
 //---------------------------------------------------------------------------
-PSS_ProjectTree::PSS_ProjectTree(ZITreeCtrl* pTreeCtrl, PSS_Document* pDoc, BOOL visibleOnly) :
+PSS_ProjectTree::PSS_ProjectTree(PSS_TreeCtrl* pTreeCtrl, PSS_Document* pDoc, BOOL visibleOnly) :
     m_pDoc(pDoc),
     m_pTreeCtrl(pTreeCtrl),
     m_VisibleOnly(visibleOnly),
@@ -51,7 +51,7 @@ const PSS_ProjectTree& PSS_ProjectTree::operator = (const PSS_ProjectTree& other
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_ProjectTree::Initialize (ZITreeCtrl* pTreeCtrl, PSS_Document* pDoc, BOOL OnlyVisible)
+void PSS_ProjectTree::Initialize(PSS_TreeCtrl* pTreeCtrl, PSS_Document* pDoc, BOOL OnlyVisible)
 {
     m_pDoc        = pDoc;
     m_pTreeCtrl   = pTreeCtrl;

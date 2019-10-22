@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZILog.h"
+#include "PSS_Log.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -37,7 +37,7 @@
 * Error log
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ErrorLog : public ZILog
+class AFX_EXT_CLASS PSS_ErrorLog : public PSS_Log
 {
     public:
         PSS_ErrorLog();

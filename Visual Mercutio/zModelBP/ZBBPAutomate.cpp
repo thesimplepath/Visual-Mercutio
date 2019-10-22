@@ -29,14 +29,14 @@
 #include "zModel\ZUODSymbolManipulator.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -46,31 +46,28 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBBPAutomate::ZBBPAutomate( ZDProcessGraphModelMdl* pModel /*= NULL*/, ZILog* pLog /*= NULL*/ )
-    : PSS_AutomationMachine( pModel, pLog )
-{
-}
+ZBBPAutomate::ZBBPAutomate(ZDProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
+    : PSS_AutomationMachine(pModel, pLog)
+{}
 
-ZBBPAutomate::ZBBPAutomate( ZBSymbol* pSymbol, ZDProcessGraphModelMdl* pModel /*= NULL*/, ZILog* pLog /*= NULL*/ )
-    : PSS_AutomationMachine( pSymbol, pModel, pLog )
-{
-}
+ZBBPAutomate::ZBBPAutomate(ZBSymbol* pSymbol, ZDProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
+    : PSS_AutomationMachine(pSymbol, pModel, pLog)
+{}
 
 ZBBPAutomate::~ZBBPAutomate()
-{
-}
+{}
 
-bool ZBBPAutomate::OnStart( ZILog* pLog )
+bool ZBBPAutomate::OnStart(PSS_Log* pLog)
 {
     // If log required
-    if ( pLog && pLog->InitializeLog() )
+    if (pLog && pLog->InitializeLog())
     {
         pLog->ClearLog();
 
         CString message;
-        message.Format( IDS_AL_START, m_pModel->GetModelName() );
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        message.Format(IDS_AL_START, m_pModel->GetModelName());
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     // Reset the error and warning counter
@@ -80,37 +77,37 @@ bool ZBBPAutomate::OnStart( ZILog* pLog )
     return true;
 }
 
-bool ZBBPAutomate::OnStop( ZILog* pLog )
+bool ZBBPAutomate::OnStop(PSS_Log* pLog)
 {
     // If log required
-    if ( pLog )
+    if (pLog)
     {
         CString message;
 
-        if ( GetErrorCounter() > 0 || GetWarningCounter() > 0 )
+        if (GetErrorCounter() > 0 || GetWarningCounter() > 0)
         {
-            message.Format( IDS_AL_STOP2, GetErrorCounter(), GetWarningCounter() );
+            message.Format(IDS_AL_STOP2, GetErrorCounter(), GetWarningCounter());
         }
         else
         {
-            message.LoadString( IDS_AL_STOP );
+            message.LoadString(IDS_AL_STOP);
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnPause( ZILog* pLog )
+bool ZBBPAutomate::OnPause(PSS_Log* pLog)
 {
     // Does nothing in the base class
     // Might be implemented in the derived class
     return true;
 }
 
-bool ZBBPAutomate::OnResume( ZILog* pLog )
+bool ZBBPAutomate::OnResume(PSS_Log* pLog)
 {
     // Does nothing in the base class
     // Might be implemented in the derived class
@@ -119,47 +116,47 @@ bool ZBBPAutomate::OnResume( ZILog* pLog )
 
 //////////////////////////////////////////////////////////////////////
 // Call-back workflow operations
-bool ZBBPAutomate::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_ISFINISHED_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_ISFINISHED_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_ISFINISHED_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_ISFINISHED_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_ISPAUSED_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_ISPAUSED_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_ISPAUSED_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_ISPAUSED_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
@@ -167,163 +164,163 @@ bool ZBBPAutomate::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* p
 
 bool ZBBPAutomate::OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
                                                   PSS_StateMachine* pStateMachine,
-                                                  ZILog*            pLog )
+                                                  PSS_Log*          pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_ISWAITINGONOTHER_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_ISWAITINGONOTHER_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_ISWAITINGONOTHER_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_ISWAITINGONOTHER_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_REQUESTMOVE_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_REQUESTMOVE_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_REQUESTMOVE_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_REQUESTMOVE_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_REACHED_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_REACHED_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_REACHED_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_REACHED_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_BEFOREMOVE_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_BEFOREMOVE_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_BEFOREMOVE_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_BEFOREMOVE_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_AFTERMOVE_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_AFTERMOVE_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_AFTERMOVE_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_AFTERMOVE_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     return true;
 }
 
-bool ZBBPAutomate::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     return true;
 }
 
-bool ZBBPAutomate::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool ZBBPAutomate::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // If log and debug mode is required
-    if ( pLog && pLog->IsInDebugMode() )
+    if (pLog && pLog->IsInDebugMode())
     {
         CString message;
 
-        if ( pState->GetSymbol() )
+        if (pState->GetSymbol())
         {
-            message.Format( IDS_AL_SYMB_ISINERROR_DBG, pState->GetSymbol()->GetSymbolName() );
+            message.Format(IDS_AL_SYMB_ISINERROR_DBG, pState->GetSymbol()->GetSymbolName());
         }
         else
         {
-            message.Format( IDS_AL_SYMB_ISINERROR_DBG, _T( "error!!!" ) );
+            message.Format(IDS_AL_SYMB_ISINERROR_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     return true;
 }
 
-bool ZBBPAutomate::OnReachMaximumLoopCounter( ZILog* pLog )
+bool ZBBPAutomate::OnReachMaximumLoopCounter(PSS_Log* pLog)
 {
     // If log required
-    if ( pLog )
+    if (pLog)
     {
         CString message;
-        message.LoadString( IDS_AL_MAXIMUMLOOP_REACHED );
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        message.LoadString(IDS_AL_MAXIMUMLOOP_REACHED);
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
 
         // Increment the error counter
         IncrementErrorCounter();
@@ -332,15 +329,15 @@ bool ZBBPAutomate::OnReachMaximumLoopCounter( ZILog* pLog )
     return true;
 }
 
-bool ZBBPAutomate::OnReachMaximumWaitingForOtherLinksCounter( ZILog* pLog )
+bool ZBBPAutomate::OnReachMaximumWaitingForOtherLinksCounter(PSS_Log* pLog)
 {
     // If log required
-    if ( pLog )
+    if (pLog)
     {
         CString message;
-        message.LoadString( IDS_AL_WAITINGFOROTHER_REACHED );
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        message.LoadString(IDS_AL_WAITINGFOROTHER_REACHED);
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
 
         // Increment the error counter
         IncrementErrorCounter();
@@ -349,15 +346,15 @@ bool ZBBPAutomate::OnReachMaximumWaitingForOtherLinksCounter( ZILog* pLog )
     return true;
 }
 
-bool ZBBPAutomate::OnReachMaximumInPauseCounter( ZILog* pLog )
+bool ZBBPAutomate::OnReachMaximumInPauseCounter(PSS_Log* pLog)
 {
     // If log required
-    if ( pLog )
+    if (pLog)
     {
         CString message;
-        message.LoadString( IDS_AL_INPAUSECOUNTER_REACHED );
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        message.LoadString(IDS_AL_INPAUSECOUNTER_REACHED);
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
 
         // Increment the error counter
         IncrementErrorCounter();
@@ -372,27 +369,27 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForward(P
                                                                                PSS_StateMachine*  pStateMachine,
                                                                                PSS_SymbolSet&     SymbolSet,
                                                                                PSS_StateLinksSet& StateLinkSet,
-                                                                               ZILog*             pLog )
+                                                                               PSS_Log*           pLog)
 {
-    if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPStartSymbol ) )
+    if (pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPStartSymbol))
     {
-        return RequestMoveForwardStartSymbol( pState, SymbolSet, StateLinkSet, pLog );
+        return RequestMoveForwardStartSymbol(pState, SymbolSet, StateLinkSet, pLog);
     }
-    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPProcedureSymbol ) )
+    else if (pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPProcedureSymbol))
     {
-        return RequestMoveForwardProcedureSymbol( pState, SymbolSet, StateLinkSet, pLog );
+        return RequestMoveForwardProcedureSymbol(pState, SymbolSet, StateLinkSet, pLog);
     }
-    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPDoorSymbol ) )
+    else if (pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPDoorSymbol))
     {
-        return RequestMoveForwardDoorSymbol( pState, SymbolSet, StateLinkSet, pLog );
+        return RequestMoveForwardDoorSymbol(pState, SymbolSet, StateLinkSet, pLog);
     }
-    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPPageSymbol ) )
+    else if (pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPPageSymbol))
     {
-        return RequestMoveForwardPageSymbol( pState, SymbolSet, StateLinkSet, pLog );
+        return RequestMoveForwardPageSymbol(pState, SymbolSet, StateLinkSet, pLog);
     }
-    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPStopSymbol ) )
+    else if (pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPStopSymbol))
     {
-        return RequestMoveForwardStopSymbol( pState, SymbolSet, StateLinkSet, pLog );
+        return RequestMoveForwardStopSymbol(pState, SymbolSet, StateLinkSet, pLog);
     }
 
     // Increment the error counter
@@ -406,25 +403,25 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForward(P
 PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol(PSS_StateObject*   pState,
                                                                                           PSS_SymbolSet&     SymbolSet,
                                                                                           PSS_StateLinksSet& StateLinkSet,
-                                                                                          ZILog*             pLog )
+                                                                                          PSS_Log*           pLog)
 {
-    ZBBPStartSymbol* pStart = dynamic_cast<ZBBPStartSymbol*>( pState->GetSymbol() );
+    ZBBPStartSymbol* pStart = dynamic_cast<ZBBPStartSymbol*>(pState->GetSymbol());
 
     // Retreiving following nodes
     CODNodeArray FollowingNodes;
-    size_t FollowingSymbolCount = pStart->GetFollowingSymbols( FollowingNodes );
+    size_t FollowingSymbolCount = pStart->GetFollowingSymbols(FollowingNodes);
 
-    if ( FollowingSymbolCount > 0 )
+    if (FollowingSymbolCount > 0)
     {
-        CopyNodeArrayToSymbolSet( FollowingNodes, SymbolSet );
+        CopyNodeArrayToSymbolSet(FollowingNodes, SymbolSet);
     }
     else
     {
         // Error, no following symbol attached to this start symbol
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath() );
-            pLog->AddLine( e );
+            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath());
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -434,19 +431,19 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardSt
 
     // Retreiving leaving links
     CODEdgeArray LeavingEdges;
-    size_t LeavingLinkCount = pStart->GetEdgesLeaving( LeavingEdges );
+    size_t LeavingLinkCount = pStart->GetEdgesLeaving(LeavingEdges);
 
-    if ( LeavingLinkCount > 0 )
+    if (LeavingLinkCount > 0)
     {
         CopyEdgeArrayToStateLinksSet(LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet);
     }
     else
     {
         // Error, no following symbol attached to this start symbol
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath() );
-            pLog->AddLine( e );
+            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath());
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -465,21 +462,21 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardSt
 PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol(PSS_StateObject*   pState,
                                                                                               PSS_SymbolSet&     SymbolSet,
                                                                                               PSS_StateLinksSet& StateLinkSet,
-                                                                                              ZILog*             pLog )
+                                                                                              PSS_Log*           pLog)
 {
-    ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetSymbol() );
-    ASSERT( pProcedure );
+    ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pState->GetSymbol());
+    ASSERT(pProcedure);
 
-    bool EnteringUpEdgesCompleted        = false;
-    bool EnteringRightEdgesCompleted    = false;
-    bool EnteringLeftEdgesCompleted        = false;
+    bool EnteringUpEdgesCompleted = false;
+    bool EnteringRightEdgesCompleted = false;
+    bool EnteringLeftEdgesCompleted = false;
 
     // Retreiving entering up links
     CODEdgeArray EnteringUpEdges;
-    size_t EnteringUpCount = pProcedure->GetEdgesEntering_Up( EnteringUpEdges );
+    size_t EnteringUpCount = pProcedure->GetEdgesEntering_Up(EnteringUpEdges);
 
     // Now the first check, is to know if we already received all entering up links
-    if ( pState->EdgesExist( EnteringUpEdges ) == EnteringUpCount )
+    if (pState->EdgesExist(EnteringUpEdges) == EnteringUpCount)
     {
         EnteringUpEdgesCompleted = true;
     }
@@ -487,7 +484,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
     {
         // After undred iteration and the allow uncomplet path is set
         // then reset the waiting counter and set the EnteringUpEdgesCompleted to true
-        if ( AllowUncompletePath() && GetWaitingCounter() > 100 )
+        if (AllowUncompletePath() && GetWaitingCounter() > 100)
         {
             EnteringUpEdgesCompleted = true;
             ResetWaitingCounter();
@@ -501,21 +498,21 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
 
     // Retreiving entering right links
     CODEdgeArray EnteringRightEdges;
-    size_t EnteringRightCount = pProcedure->GetEdgesEntering_Right( EnteringRightEdges );
+    size_t EnteringRightCount = pProcedure->GetEdgesEntering_Right(EnteringRightEdges);
 
     // Retreiving entering left links
     CODEdgeArray EnteringLeftEdges;
-    size_t EnteringLeftCount = pProcedure->GetEdgesEntering_Left( EnteringLeftEdges );
+    size_t EnteringLeftCount = pProcedure->GetEdgesEntering_Left(EnteringLeftEdges);
 
     // Check if we are supposed to wait for lateral links
-    if ( EnteringRightCount > 0 || EnteringLeftCount > 0 )
+    if (EnteringRightCount > 0 || EnteringLeftCount > 0)
     {
-        size_t ExistingEnteringRightCount    = 0;
-        size_t ExistingEnteringLeftCount    = 0;
+        size_t ExistingEnteringRightCount = 0;
+        size_t ExistingEnteringLeftCount = 0;
 
-        if ( EnteringRightCount > 0 )
+        if (EnteringRightCount > 0)
         {
-            if ( ( ExistingEnteringRightCount = pState->EdgesExist( EnteringRightEdges ) ) == EnteringRightCount )
+            if ((ExistingEnteringRightCount = pState->EdgesExist(EnteringRightEdges)) == EnteringRightCount)
             {
                 EnteringRightEdgesCompleted = true;
             }
@@ -523,27 +520,27 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
             {
                 // Now we need to determine if we can continue on the right
                 // or we need to wait on other links
-                if ( ExistingEnteringRightCount == 0 && EnteringUpEdgesCompleted == true )
+                if (ExistingEnteringRightCount == 0 && EnteringUpEdgesCompleted == true)
                 {
                     // We need to start to the right
                     // then we need to retreive the following right nodes and links
                     CODNodeArray FollowingRightNodes;
-                    size_t FollowingRightSymbolCount = pProcedure->GetFollowingSymbols_Right( FollowingRightNodes );
+                    size_t FollowingRightSymbolCount = pProcedure->GetFollowingSymbols_Right(FollowingRightNodes);
 
-                    if ( FollowingRightSymbolCount > 0 )
+                    if (FollowingRightSymbolCount > 0)
                     {
-                        CopyNodeArrayToSymbolSet( FollowingRightNodes, SymbolSet );
+                        CopyNodeArrayToSymbolSet(FollowingRightNodes, SymbolSet);
                     }
                     else
                     {
                         // Log error message
-                        if ( pLog )
+                        if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_8,
-                                                        pProcedure->GetSymbolName(),
-                                                        pProcedure->GetAbsolutePath() );
+                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_8,
+                                                       pProcedure->GetSymbolName(),
+                                                       pProcedure->GetAbsolutePath());
 
-                            pLog->AddLine( e );
+                            pLog->AddLine(e);
                         }
 
                         // Increment the error counter
@@ -552,24 +549,24 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
                     }
 
                     CODEdgeArray LeavingRightEdges;
-                    size_t LeavingRightLinkCount = pProcedure->GetEdgesLeaving_Right( LeavingRightEdges );
+                    size_t LeavingRightLinkCount = pProcedure->GetEdgesLeaving_Right(LeavingRightEdges);
 
-                    if ( LeavingRightLinkCount > 0 )
+                    if (LeavingRightLinkCount > 0)
                     {
                         CopyEdgeArrayToStateLinksSet(LeavingRightEdges,
                                                      PSS_StateLink::IE_LD_EnteringRight,
-                                                     StateLinkSet );
+                                                     StateLinkSet);
                     }
                     else
                     {
                         // Log error message
-                        if ( pLog )
+                        if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_8,
-                                                        pProcedure->GetSymbolName(),
-                                                        pProcedure->GetAbsolutePath() );
+                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_8,
+                                                       pProcedure->GetSymbolName(),
+                                                       pProcedure->GetAbsolutePath());
 
-                            pLog->AddLine( e );
+                            pLog->AddLine(e);
                         }
 
                         // Increment the error counter
@@ -583,9 +580,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
         }
 
         // Check if we are supposed to wait for lateral links
-        if ( EnteringLeftCount > 0 )
+        if (EnteringLeftCount > 0)
         {
-            if ( ( ExistingEnteringLeftCount = pState->EdgesExist( EnteringLeftEdges ) ) == EnteringLeftCount )
+            if ((ExistingEnteringLeftCount = pState->EdgesExist(EnteringLeftEdges)) == EnteringLeftCount)
             {
                 EnteringLeftEdgesCompleted = true;
             }
@@ -593,26 +590,26 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
             {
                 // Now we need to determine if we can continue on the right
                 // or we need to wait on other links
-                if ( ExistingEnteringLeftCount == 0 && EnteringUpEdgesCompleted == true )
+                if (ExistingEnteringLeftCount == 0 && EnteringUpEdgesCompleted == true)
                 {
                     // We need to start to the right
                     // then we need to retreive the following right nodes and links
                     CODNodeArray FollowingLeftNodes;
-                    size_t FollowingLeftSymbolCount = pProcedure->GetFollowingSymbols_Left( FollowingLeftNodes );
+                    size_t FollowingLeftSymbolCount = pProcedure->GetFollowingSymbols_Left(FollowingLeftNodes);
 
-                    if ( FollowingLeftSymbolCount > 0 )
+                    if (FollowingLeftSymbolCount > 0)
                     {
-                        CopyNodeArrayToSymbolSet( FollowingLeftNodes, SymbolSet );
+                        CopyNodeArrayToSymbolSet(FollowingLeftNodes, SymbolSet);
                     }
                     else
                     {
                         // Log error message
-                        if ( pLog )
+                        if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_9,
-                                                        pProcedure->GetSymbolName(),
-                                                        pProcedure->GetAbsolutePath() );
-                            pLog->AddLine( e );
+                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_9,
+                                                       pProcedure->GetSymbolName(),
+                                                       pProcedure->GetAbsolutePath());
+                            pLog->AddLine(e);
                         }
 
                         // Increment the error counter
@@ -621,24 +618,24 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
                     }
 
                     CODEdgeArray LeavingLeftEdges;
-                    size_t LeavingLeftLinkCount = pProcedure->GetEdgesLeaving_Left( LeavingLeftEdges );
+                    size_t LeavingLeftLinkCount = pProcedure->GetEdgesLeaving_Left(LeavingLeftEdges);
 
-                    if ( LeavingLeftLinkCount > 0 )
+                    if (LeavingLeftLinkCount > 0)
                     {
                         CopyEdgeArrayToStateLinksSet(LeavingLeftEdges,
                                                      PSS_StateLink::IE_LD_EnteringLeft,
-                                                     StateLinkSet );
+                                                     StateLinkSet);
                     }
                     else
                     {
                         // Log error message
-                        if ( pLog )
+                        if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_9,
-                                                        pProcedure->GetSymbolName(),
-                                                        pProcedure->GetAbsolutePath() );
+                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_9,
+                                                       pProcedure->GetSymbolName(),
+                                                       pProcedure->GetAbsolutePath());
 
-                            pLog->AddLine( e );
+                            pLog->AddLine(e);
                         }
 
                         // Increment the error counter
@@ -651,18 +648,18 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
 
         // We already have entering links and the up is completed,
         // then we need to wait on all links
-        if ( EnteringUpEdgesCompleted == true &&
-             ( ( EnteringRightCount > 0 && EnteringRightEdgesCompleted == false ) ||
-             ( EnteringLeftCount > 0 && EnteringLeftEdgesCompleted == false ) ) )
+        if (EnteringUpEdgesCompleted == true &&
+            ((EnteringRightCount > 0 && EnteringRightEdgesCompleted == false) ||
+            (EnteringLeftCount > 0 && EnteringLeftEdgesCompleted == false)))
         {
-            if ( ExistingEnteringRightCount > 0 && EnteringRightEdgesCompleted == false )
+            if (ExistingEnteringRightCount > 0 && EnteringRightEdgesCompleted == false)
             {
                 return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
             }
 
             // We already have entering links and the up is completed,
             // then we need to wait on all links
-            if ( ExistingEnteringLeftCount > 0 && EnteringLeftEdgesCompleted == false )
+            if (ExistingEnteringLeftCount > 0 && EnteringLeftEdgesCompleted == false)
             {
                 return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
             }
@@ -672,30 +669,30 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
         }
     }
 
-    if ( (EnteringRightCount == 0 ||
-          EnteringRightEdgesCompleted == true ) &&
-          ( EnteringLeftCount == 0 ||
-          EnteringLeftEdgesCompleted == true ) )
+    if ((EnteringRightCount == 0 ||
+         EnteringRightEdgesCompleted == true) &&
+         (EnteringLeftCount == 0 ||
+          EnteringLeftEdgesCompleted == true))
     {
         // Now we need to retreive following down nodes and links
         // and we can return continue
         CODNodeArray FollowingDownNodes;
-        size_t FollowingDownSymbolCount = pProcedure->GetFollowingSymbols_Down( FollowingDownNodes );
+        size_t FollowingDownSymbolCount = pProcedure->GetFollowingSymbols_Down(FollowingDownNodes);
 
-        if ( FollowingDownSymbolCount > 0 )
+        if (FollowingDownSymbolCount > 0)
         {
-            CopyNodeArrayToSymbolSet( FollowingDownNodes, SymbolSet );
+            CopyNodeArrayToSymbolSet(FollowingDownNodes, SymbolSet);
         }
         else
         {
             // Log error message
-            if ( pLog )
+            if (pLog)
             {
-                ZBGenericSymbolErrorLine e( IDS_EL_PROCEDURE_INC_5,
-                                            pProcedure->GetSymbolName(),
-                                            pProcedure->GetAbsolutePath() );
+                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
+                                           pProcedure->GetSymbolName(),
+                                           pProcedure->GetAbsolutePath());
 
-                pLog->AddLine( e );
+                pLog->AddLine(e);
             }
 
             // Increment the error counter
@@ -704,22 +701,22 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
         }
 
         CODEdgeArray LeavingDownEdges;
-        size_t LeavingDownLinkCount = pProcedure->GetEdgesLeaving_Down( LeavingDownEdges );
+        size_t LeavingDownLinkCount = pProcedure->GetEdgesLeaving_Down(LeavingDownEdges);
 
-        if ( LeavingDownLinkCount > 0 )
+        if (LeavingDownLinkCount > 0)
         {
-            CopyEdgeArrayToStateLinksSet( LeavingDownEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet );
+            CopyEdgeArrayToStateLinksSet(LeavingDownEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet);
         }
         else
         {
             // Log error message
-            if ( pLog )
+            if (pLog)
             {
-                ZBGenericSymbolErrorLine e( IDS_EL_PROCEDURE_INC_5,
-                                            pProcedure->GetSymbolName(),
-                                            pProcedure->GetAbsolutePath() );
+                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
+                                           pProcedure->GetSymbolName(),
+                                           pProcedure->GetAbsolutePath());
 
-                pLog->AddLine( e );
+                pLog->AddLine(e);
             }
 
             // Increment the error counter
@@ -738,23 +735,23 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
 PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol(PSS_StateObject*   pState,
                                                                                          PSS_SymbolSet&     SymbolSet,
                                                                                          PSS_StateLinksSet& StateLinkSet,
-                                                                                         ZILog*             pLog )
+                                                                                         PSS_Log*           pLog)
 {
-    ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>( pState->GetSymbol() );
-    ASSERT( pDoor );
+    ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>(pState->GetSymbol());
+    ASSERT(pDoor);
 
     ZBBPDoorSymbol* pTwinDoor = pDoor->GetTwinDoorSymbol();
 
-    if ( !pTwinDoor )
+    if (!pTwinDoor)
     {
         // Log error message
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_EL_DOOR_INC_IN_3,
-                                        pDoor->GetSymbolName(),
-                                        pDoor->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_3,
+                                       pDoor->GetSymbolName(),
+                                       pDoor->GetAbsolutePath());
 
-            pLog->AddLine( e );
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -765,22 +762,22 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
     // Now take the next symbol attached to the twin
     // Retreiving following nodes
     CODNodeArray FollowingNodes;
-    size_t FollowingSymbolCount = pTwinDoor->GetFollowingSymbols( FollowingNodes );
+    size_t FollowingSymbolCount = pTwinDoor->GetFollowingSymbols(FollowingNodes);
 
-    if ( FollowingSymbolCount > 0 )
+    if (FollowingSymbolCount > 0)
     {
-        CopyNodeArrayToSymbolSet( FollowingNodes, SymbolSet );
+        CopyNodeArrayToSymbolSet(FollowingNodes, SymbolSet);
     }
     else
     {
         // Error, no following symbol attached to this start symbol
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_EL_DOOR_INC_OUT_1,
-                                        pTwinDoor->GetSymbolName(),
-                                        pTwinDoor->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
+                                       pTwinDoor->GetSymbolName(),
+                                       pTwinDoor->GetAbsolutePath());
 
-            pLog->AddLine( e );
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -790,22 +787,22 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
 
     // Retreiving leaving links
     CODEdgeArray LeavingEdges;
-    size_t LeavingLinkCount = pTwinDoor->GetEdgesLeaving( LeavingEdges );
+    size_t LeavingLinkCount = pTwinDoor->GetEdgesLeaving(LeavingEdges);
 
-    if ( LeavingLinkCount > 0 )
+    if (LeavingLinkCount > 0)
     {
-        CopyEdgeArrayToStateLinksSet( LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet );
+        CopyEdgeArrayToStateLinksSet(LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet);
     }
     else
     {
         // Error, no following symbol attached to this start symbol
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_EL_DOOR_INC_OUT_1,
-                                        pTwinDoor->GetSymbolName(),
-                                        pTwinDoor->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
+                                       pTwinDoor->GetSymbolName(),
+                                       pTwinDoor->GetAbsolutePath());
 
-            pLog->AddLine( e );
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -820,23 +817,23 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
 PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol(PSS_StateObject*   pState,
                                                                                          PSS_SymbolSet&     SymbolSet,
                                                                                          PSS_StateLinksSet& StateLinkSet,
-                                                                                         ZILog*             pLog )
+                                                                                         PSS_Log*           pLog)
 {
-    ZBBPPageSymbol* pPage = dynamic_cast<ZBBPPageSymbol*>( pState->GetSymbol() );
-    ASSERT( pPage );
+    ZBBPPageSymbol* pPage = dynamic_cast<ZBBPPageSymbol*>(pState->GetSymbol());
+    ASSERT(pPage);
 
     ZBBPPageSymbol* pTwinPage = pPage->GetTwinPageSymbol();
 
-    if ( !pTwinPage )
+    if (!pTwinPage)
     {
         // Log error message
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_EL_PAGE_INC_IN_3,
-                                        pPage->GetSymbolName(),
-                                        pPage->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_3,
+                                       pPage->GetSymbolName(),
+                                       pPage->GetAbsolutePath());
 
-            pLog->AddLine( e );
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -847,22 +844,22 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
     // Now take the next symbol attached to the twin
     // Retreiving following nodes
     CODNodeArray FollowingNodes;
-    size_t FollowingSymbolCount = pTwinPage->GetFollowingSymbols_Down( FollowingNodes );
+    size_t FollowingSymbolCount = pTwinPage->GetFollowingSymbols_Down(FollowingNodes);
 
-    if ( FollowingSymbolCount > 0 )
+    if (FollowingSymbolCount > 0)
     {
-        CopyNodeArrayToSymbolSet( FollowingNodes, SymbolSet );
+        CopyNodeArrayToSymbolSet(FollowingNodes, SymbolSet);
     }
     else
     {
         // Error, no following symbol attached to this page symbol
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_EL_PAGE_INC_OUT_1,
-                                        pTwinPage->GetSymbolName(),
-                                        pTwinPage->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
+                                       pTwinPage->GetSymbolName(),
+                                       pTwinPage->GetAbsolutePath());
 
-            pLog->AddLine( e );
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -872,22 +869,22 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
 
     // Retreiving leaving links
     CODEdgeArray LeavingEdges;
-    size_t LeavingLinkCount = pTwinPage->GetEdgesLeaving_Down( LeavingEdges );
+    size_t LeavingLinkCount = pTwinPage->GetEdgesLeaving_Down(LeavingEdges);
 
-    if ( LeavingLinkCount > 0 )
+    if (LeavingLinkCount > 0)
     {
-        CopyEdgeArrayToStateLinksSet( LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet );
+        CopyEdgeArrayToStateLinksSet(LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet);
     }
     else
     {
         // Error, no following symbol attached to this page symbol
-        if ( pLog )
+        if (pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_EL_PAGE_INC_OUT_1,
-                                        pTwinPage->GetSymbolName(),
-                                        pTwinPage->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
+                                       pTwinPage->GetSymbolName(),
+                                       pTwinPage->GetAbsolutePath());
 
-            pLog->AddLine( e );
+            pLog->AddLine(e);
         }
 
         // Increment the error counter
@@ -902,9 +899,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
 PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol(PSS_StateObject*   pState,
                                                                                          PSS_SymbolSet&     SymbolSet,
                                                                                          PSS_StateLinksSet& StateLinkSet,
-                                                                                         ZILog*             pLog )
+                                                                                         PSS_Log*           pLog)
 {
-    ZBBPStopSymbol* pStop = dynamic_cast<ZBBPStopSymbol*>( pState->GetSymbol() );
+    ZBBPStopSymbol* pStop = dynamic_cast<ZBBPStopSymbol*>(pState->GetSymbol());
 
     // It is finished when we reached a stop symbol
     return PSS_AutomationMachine::IE_AS_IsFinished;

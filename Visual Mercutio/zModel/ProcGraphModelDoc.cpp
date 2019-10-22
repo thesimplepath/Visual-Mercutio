@@ -8,7 +8,7 @@
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zBaseLib\PSS_GUID.h"
 #include "zBaseLib\PSS_MsgBox.h"
@@ -97,13 +97,13 @@ ZDProcessGraphModelDoc::~ZDProcessGraphModelDoc()
     }
 }
 
-void ZDProcessGraphModelDoc::Initialize(ZILog*                pOutputLog,
-                                        ZILog*                pAnalyzerLog,
-                                        ZILog*                pSearchLog,
-                                        ZILog*                pWorflowLog,
-                                        ZUUserManager*        pUserManager,
+void ZDProcessGraphModelDoc::Initialize(PSS_Log*           pOutputLog,
+                                        PSS_Log*           pAnalyzerLog,
+                                        PSS_Log*           pSearchLog,
+                                        PSS_Log*           pWorflowLog,
+                                        ZUUserManager*     pUserManager,
                                         ZUMail*            pMail,
-                                        ZDTemplateManager*    pTemplateManager)
+                                        ZDTemplateManager* pTemplateManager)
 {
     m_pOutputLog = pOutputLog;
     m_pAnalyzerLog = pAnalyzerLog;
@@ -493,7 +493,7 @@ bool ZDProcessGraphModelDoc::AssignCurrentUserDefGUID()
     return false;
 }
 
-void ZDProcessGraphModelDoc::ReassignUnit(ZILog* pLog /*= NULL*/)
+void ZDProcessGraphModelDoc::ReassignUnit(PSS_Log* pLog /*= NULL*/)
 {
     ASSERT(GetModel());
 
@@ -572,7 +572,7 @@ bool ZDProcessGraphModelDoc::AssignCurrentSystemDefGUID()
     return false;
 }
 
-void ZDProcessGraphModelDoc::ReassignSystem(ZILog* pLog /*= NULL*/)
+void ZDProcessGraphModelDoc::ReassignSystem(PSS_Log* pLog /*= NULL*/)
 {
     ASSERT(GetModel());
 
@@ -654,7 +654,7 @@ bool ZDProcessGraphModelDoc::AssignCurrentPrestationsDefGUID()
 }
 
 // JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction ReassignPrestations.
-void ZDProcessGraphModelDoc::ReassignPrestations(ZILog* pLog /*= NULL*/)
+void ZDProcessGraphModelDoc::ReassignPrestations(PSS_Log* pLog /*= NULL*/)
 {
     ASSERT(GetModel());
 
@@ -735,7 +735,7 @@ bool ZDProcessGraphModelDoc::AssignCurrentRulesDefGUID()
 }
 
 // JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction ReassignRules.
-void ZDProcessGraphModelDoc::ReassignRules(ZILog* pLog /*= NULL*/)
+void ZDProcessGraphModelDoc::ReassignRules(PSS_Log* pLog /*= NULL*/)
 {
     ASSERT(GetModel());
 

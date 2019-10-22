@@ -50,7 +50,7 @@ void PSS_FieldView::Initialize(PSS_Document* pDoc, PSS_FieldRepository* pFieldRe
 {
     m_pDoc             = pDoc;
     m_pFieldRepository = pFieldRepository;
-    m_FieldTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), m_pDoc, m_pFieldRepository);
+    m_FieldTree.Initialize((PSS_TreeCtrl*)&GetTreeCtrl(), m_pDoc, m_pFieldRepository);
 }
 //---------------------------------------------------------------------------
 void PSS_FieldView::OnDraw(CDC* pDC)
@@ -107,7 +107,7 @@ afx_msg LRESULT PSS_FieldView::OnDocumentHasBeenSelected(WPARAM wParam, LPARAM l
     m_pDoc = (PSS_Document*)lParam;
 
     if (m_pDoc)
-        m_FieldTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), m_pDoc, m_pFieldRepository);
+        m_FieldTree.Initialize((PSS_TreeCtrl*)&GetTreeCtrl(), m_pDoc, m_pFieldRepository);
     else
         m_FieldTree.Empty();
 

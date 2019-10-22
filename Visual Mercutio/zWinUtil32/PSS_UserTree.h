@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_UserManager.h"
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PSS_UserTree
         *@param pTreeCtrl - tree control, can be NULL
         *@param pUserManager - user manager, can be NULL
         */
-        PSS_UserTree(ZITreeCtrl* pTreeCtrl = NULL, PSS_UserManager* pUserManager = NULL);
+        PSS_UserTree(PSS_TreeCtrl* pTreeCtrl = NULL, PSS_UserManager* pUserManager = NULL);
 
         virtual ~PSS_UserTree();
 
@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_UserTree
         *@param pTreeCtrl - tree control
         *@param pUserManager - user manager
         */
-        virtual void Initialize(ZITreeCtrl* pTreeCtrl, PSS_UserManager* pUserManager);
+        virtual void Initialize(PSS_TreeCtrl* pTreeCtrl, PSS_UserManager* pUserManager);
 
         /**
         * Re-initializes the user tree
@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_UserTree
         virtual void OnUserListChanged();
 
     private:
-        ZITreeCtrl*      m_pTreeCtrl;
+        PSS_TreeCtrl*    m_pTreeCtrl;
         PSS_UserManager* m_pUserManager;
         CStringArray     m_DepartementArray;
         bool             m_Invalid;

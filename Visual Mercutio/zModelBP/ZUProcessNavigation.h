@@ -37,7 +37,7 @@
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
 
 // Forward declaration
-class ZILog;
+class PSS_Log;
 class ZBSymbol;
 class ZBLinkSymbol;
 class ZBBPDoorSymbol;
@@ -48,7 +48,7 @@ class ZBBPStartSymbol;
 class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
 class ZDProcessGraphModelMdl;
-class ZILog;
+class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -66,11 +66,11 @@ class AFX_EXT_CLASS ZUProcessNavigation : public ZIBasicSymbolVisitor
 {
 public:
 
-    ZUProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUProcessNavigation(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUProcessNavigation();
 
-    bool Navigate( ZDProcessGraphModelMdl* pModel, void* pClass );
-    bool Navigate( ZDProcessGraphModelMdl* pModel );
+    bool Navigate(ZDProcessGraphModelMdl* pModel, void* pClass);
+    bool Navigate(ZDProcessGraphModelMdl* pModel);
     bool Navigate();
 
     // Call-back methods
@@ -84,62 +84,62 @@ public:
         return true;
     };
 
-    virtual bool OnDoorSymbol( ZBBPDoorSymbol* pSymbol )
+    virtual bool OnDoorSymbol(ZBBPDoorSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnPageSymbol( ZBBPPageSymbol* pSymbol )
+    virtual bool OnPageSymbol(ZBBPPageSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
+    virtual bool OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnStartSymbol( ZBBPStartSymbol* pSymbol )
+    virtual bool OnStartSymbol(ZBBPStartSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnStopSymbol( ZBBPStopSymbol* pSymbol )
+    virtual bool OnStopSymbol(ZBBPStopSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol )
+    virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnSymbol( ZBSymbol* pSymbol )
+    virtual bool OnSymbol(ZBSymbol* pSymbol)
     {
         return true;
     };
 
-    virtual bool OnLink( ZBLinkSymbol* pLink )
+    virtual bool OnLink(ZBLinkSymbol* pLink)
     {
         return true;
     };
 
-    void SetLog( ZILog* pLog )
+    void SetLog(PSS_Log* pLog)
     {
         m_pLog = pLog;
     };
 
     /* Each concrete derived ZIBasicSymbolVisitor class
-       must implement Visit to implement the appropriate 
-       algorithm 
+       must implement Visit to implement the appropriate
+       algorithm
        In this concrete class the Visit will On the
        BasicSymbol passes as an argument */
-    virtual bool Visit( CODComponent& Symbol );
+    virtual bool Visit(CODComponent& Symbol);
 
     size_t GetErrorCounter() const
     {
@@ -155,10 +155,10 @@ protected:
 
     ZDProcessGraphModelMdl*    m_pModel;
     void*                    m_pClass;
-    ZILog*                    m_pLog;
+    PSS_Log*                    m_pLog;
 
     size_t                    m_ErrorCounter;
     size_t                    m_WarningCounter;
 };
 
-#endif // !defined(AFX_ZUProcessNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

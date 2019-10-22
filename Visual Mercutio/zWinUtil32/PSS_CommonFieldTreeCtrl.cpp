@@ -26,7 +26,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_CommonFieldTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_CommonFieldTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_CommonFieldTreeCtrl)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -34,6 +34,7 @@ END_MESSAGE_MAP()
 // PSS_CommonFieldTreeCtrl
 //---------------------------------------------------------------------------
 PSS_CommonFieldTreeCtrl::PSS_CommonFieldTreeCtrl(PSS_FieldRepository* pFieldRepository) :
+    PSS_TreeCtrl(),
     m_pFieldRepository(pFieldRepository)
 {
     m_FieldDescriptionKey.LoadString(IDS_DESCFIELD_DESCRIPTION);

@@ -18,11 +18,11 @@
 #include "ZBBPProcessSymbol.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -32,28 +32,26 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractProcessName::ZUExtractProcessName( ZDProcessGraphModelMdl* pModel /*= NULL*/, ZILog* pLog /*= NULL*/ )
-    : m_pModel    ( pModel ),
-      m_pLog    ( pLog ),
-      m_pArray    ( NULL )
-{
-}
+ZUExtractProcessName::ZUExtractProcessName(ZDProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
+    : m_pModel(pModel),
+    m_pLog(pLog),
+    m_pArray(NULL)
+{}
 
 ZUExtractProcessName::~ZUExtractProcessName()
-{
-}
+{}
 
 // JMR-MODIF - Le 29 mars 2006 - Ajout du paramètre FirstElementToSort.
-bool ZUExtractProcessName::FillProcessNameArray( CStringArray* pArray, int FirstElementToSort /*= 0*/ )
+bool ZUExtractProcessName::FillProcessNameArray(CStringArray* pArray, int FirstElementToSort /*= 0*/)
 {
     m_pArray = pArray;
 
-    if ( m_pModel && m_pArray )
+    if (m_pModel && m_pArray)
     {
-        m_pModel->AcceptVisitor( *this );
+        m_pModel->AcceptVisitor(*this);
 
         // JMR-MODIF - Le 8 mars 2006 - Trie la liste par ordre alphabétique croissant avant de rendre la main.
-        Sort( FirstElementToSort );
+        Sort(FirstElementToSort);
 
         return true;
     }
@@ -61,39 +59,39 @@ bool ZUExtractProcessName::FillProcessNameArray( CStringArray* pArray, int First
     return false;
 }
 
-bool ZUExtractProcessName::Visit( CODComponent& Symbol )
+bool ZUExtractProcessName::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if ( ISA( pSymbol, ZBBPProcessSymbol ) )
+    if (ISA(pSymbol, ZBBPProcessSymbol))
     {
-        return AddProcessSymbol( dynamic_cast<ZBBPProcessSymbol*>( &Symbol ) );
+        return AddProcessSymbol(dynamic_cast<ZBBPProcessSymbol*>(&Symbol));
     }
 
     // Nothing to do
     return true;
 }
 
-bool ZUExtractProcessName::AddProcessSymbol( ZBBPProcessSymbol* pSymbol )
+bool ZUExtractProcessName::AddProcessSymbol(ZBBPProcessSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
-    ASSERT( m_pArray );
+    ASSERT(pSymbol);
+    ASSERT(m_pArray);
 
-    if ( !Exist( *m_pArray, pSymbol->GetSymbolName() ) )
+    if (!Exist(*m_pArray, pSymbol->GetSymbolName()))
     {
-        m_pArray->Add( pSymbol->GetSymbolName() );
+        m_pArray->Add(pSymbol->GetSymbolName());
     }
 
     return true;
 }
 
-bool ZUExtractProcessName::Exist( CStringArray& Array, const CString ProcessName )
+bool ZUExtractProcessName::Exist(CStringArray& Array, const CString ProcessName)
 {
     size_t Counter = Array.GetSize();
 
-    for ( size_t i = 0; i < Counter; ++i )
+    for (size_t i = 0; i < Counter; ++i)
     {
-        if ( Array.GetAt( i ) == ProcessName )
+        if (Array.GetAt(i) == ProcessName)
         {
             return true;
         }
@@ -104,33 +102,33 @@ bool ZUExtractProcessName::Exist( CStringArray& Array, const CString ProcessName
 
 // JMR-MODIF - Le 8 mars 2006 - Fonction de Tri de la liste de noms, par ordre alphabétique croissant.
 // JMR-MODIF - Le 29 mars 2006 - Ajout du paramètre First.
-void ZUExtractProcessName::Sort( int First /*= 0*/ )
+void ZUExtractProcessName::Sort(int First /*= 0*/)
 {
-    if ( First >= m_pArray->GetUpperBound() )
+    if (First >= m_pArray->GetUpperBound())
     {
         return;
     }
 
-    size_t CurPos    = First;
-    size_t NextPos    = First;
+    size_t CurPos = First;
+    size_t NextPos = First;
 
-    while ( CurPos <= m_pArray->GetUpperBound() )
+    while (CurPos <= m_pArray->GetUpperBound())
     {
         NextPos = CurPos + 1;
 
-        if ( NextPos <= m_pArray->GetUpperBound() )
+        if (NextPos <= m_pArray->GetUpperBound())
         {
-            CString m_CurStr    = m_pArray->GetAt( CurPos );
-            CString m_NextStr    = m_pArray->GetAt( NextPos );
+            CString m_CurStr = m_pArray->GetAt(CurPos);
+            CString m_NextStr = m_pArray->GetAt(NextPos);
 
-            if ( m_CurStr != _T( "" ) && m_NextStr != _T( "" ) )
+            if (m_CurStr != _T("") && m_NextStr != _T(""))
             {
-                if ( m_CurStr.Compare( m_NextStr ) > 0 )
+                if (m_CurStr.Compare(m_NextStr) > 0)
                 {
-                    m_pArray->SetAt( CurPos, m_NextStr );
-                    m_pArray->SetAt( NextPos, m_CurStr );
+                    m_pArray->SetAt(CurPos, m_NextStr);
+                    m_pArray->SetAt(NextPos, m_CurStr);
 
-                    Sort( First );
+                    Sort(First);
                     return;
                 }
             }

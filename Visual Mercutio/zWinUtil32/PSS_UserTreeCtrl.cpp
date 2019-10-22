@@ -26,7 +26,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_UserTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_UserTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_UserTreeCtrl)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -34,6 +34,7 @@ END_MESSAGE_MAP()
 // PSS_UserTreeCtrl
 //---------------------------------------------------------------------------
 PSS_UserTreeCtrl::PSS_UserTreeCtrl(PSS_UserManager* pUserManager) :
+    PSS_TreeCtrl(),
     m_pUserManager(pUserManager),
     m_Invalid(false)
 {

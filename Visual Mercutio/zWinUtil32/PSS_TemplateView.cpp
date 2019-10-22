@@ -51,9 +51,9 @@ void PSS_TemplateView::Initialize(PSS_TemplateManager* pTemplateManager, BOOL in
     m_IncludeFiles     = includeFiles;
 
     // enable drag and drop
-    ((ZITreeCtrl*)&GetTreeCtrl())->DisableDragDrop(false);
+    ((PSS_TreeCtrl*)&GetTreeCtrl())->DisableDragDrop(false);
 
-    m_TemplateTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), m_pTemplateManager, m_IncludeFiles);
+    m_TemplateTree.Initialize((PSS_TreeCtrl*)&GetTreeCtrl(), m_pTemplateManager, m_IncludeFiles);
 }
 //---------------------------------------------------------------------------
 void PSS_TemplateView::ReInitialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles)

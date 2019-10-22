@@ -27,14 +27,14 @@
 #include "zModel\ZUODSymbolManipulator.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -44,115 +44,113 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUCheckSesterceConsistency::ZUCheckSesterceConsistency( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
-                                                        ZILog*                    pLog    /*= NULL*/ )
-    : m_pModel    ( pModel ),
-      m_pLog    ( pLog )
-{
-}
+ZUCheckSesterceConsistency::ZUCheckSesterceConsistency(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                       PSS_Log*                    pLog    /*= NULL*/)
+    : m_pModel(pModel),
+    m_pLog(pLog)
+{}
 
 ZUCheckSesterceConsistency::~ZUCheckSesterceConsistency()
-{
-}
+{}
 
 bool ZUCheckSesterceConsistency::CheckModel()
 {
     // Initialize internal counters
-    m_ErrorCounter        = 0;
-    m_WarningCounter    = 0;
+    m_ErrorCounter = 0;
+    m_WarningCounter = 0;
 
-    if ( m_pModel )
+    if (m_pModel)
     {
-        m_pModel->AcceptVisitor( *this );
+        m_pModel->AcceptVisitor(*this);
         return true;
     }
 
     return false;
 }
 
-bool ZUCheckSesterceConsistency::Visit( CODComponent& Symbol )
+bool ZUCheckSesterceConsistency::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if ( ISA( pSymbol, ZBBPProcedureSymbol ) )
+    if (ISA(pSymbol, ZBBPProcedureSymbol))
     {
-        return CheckProcedureSymbol( dynamic_cast<ZBBPProcedureSymbol*>( &Symbol ) );
+        return CheckProcedureSymbol(dynamic_cast<ZBBPProcedureSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBDeliverableLinkSymbol ) )
+    else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
     {
-        return CheckDeliverableLinkSymbol( dynamic_cast<ZBDeliverableLinkSymbol*>( &Symbol ) );
+        return CheckDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBBPDoorSymbol ) )
+    else if (ISA(pSymbol, ZBBPDoorSymbol))
     {
-        return CheckDoorSymbol( dynamic_cast<ZBBPDoorSymbol*>( &Symbol ) );
+        return CheckDoorSymbol(dynamic_cast<ZBBPDoorSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBBPPageSymbol ) )
+    else if (ISA(pSymbol, ZBBPPageSymbol))
     {
-        return CheckPageSymbol( dynamic_cast<ZBBPPageSymbol*>( &Symbol ) );
+        return CheckPageSymbol(dynamic_cast<ZBBPPageSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBBPProcessSymbol ) )
+    else if (ISA(pSymbol, ZBBPProcessSymbol))
     {
-        return CheckProcessSymbol( dynamic_cast<ZBBPProcessSymbol*>( &Symbol ) );
+        return CheckProcessSymbol(dynamic_cast<ZBBPProcessSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBBPStartSymbol ) )
+    else if (ISA(pSymbol, ZBBPStartSymbol))
     {
-        return CheckStartSymbol( dynamic_cast<ZBBPStartSymbol*>( &Symbol ) );
+        return CheckStartSymbol(dynamic_cast<ZBBPStartSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBBPStopSymbol ) )
+    else if (ISA(pSymbol, ZBBPStopSymbol))
     {
-        return CheckStopSymbol( dynamic_cast<ZBBPStopSymbol*>( &Symbol ) );
+        return CheckStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBSymbol ) )
+    else if (ISA(pSymbol, ZBSymbol))
     {
-        return CheckSymbol( dynamic_cast<ZBSymbol*>( &Symbol ) );
+        return CheckSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBLinkSymbol ) )
+    else if (ISA(pSymbol, ZBLinkSymbol))
     {
-        return CheckLink( dynamic_cast<ZBLinkSymbol*>( &Symbol ) );
+        return CheckLink(dynamic_cast<ZBLinkSymbol*>(&Symbol));
     }
 
     // Not a right symbol or not necessary to visit
     return false;
 }
 
-bool ZUCheckSesterceConsistency::CheckDoorSymbol( ZBBPDoorSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckDoorSymbol(ZBBPDoorSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckPageSymbol( ZBBPPageSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckPageSymbol(ZBBPPageSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
 
     // Test if it is a local symbol
-    if ( !pSymbol->IsLocal() )
+    if (!pSymbol->IsLocal())
     {
         // Locate the local symbol
         CODComponent* pComp = pSymbol->GetLocalSymbol();
 
-        if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+        if (pComp && ISA(pComp, ZBBPProcedureSymbol))
         {
-            pSymbol = dynamic_cast<ZBBPProcedureSymbol*>( pComp );
+            pSymbol = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
         }
     }
 
     // Check if unit defined for procedure
-    if ( pSymbol->GetUnitName().IsEmpty() )
+    if (pSymbol->GetUnitName().IsEmpty())
     {
-        if ( m_pLog )
+        if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_10,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_10,
+                                       pSymbol->GetSymbolName(),
+                                       pSymbol->GetAbsolutePath());
 
-            m_pLog->AddLine( e );
+            m_pLog->AddLine(e);
         }
 
         // Increment warning counter
@@ -160,15 +158,15 @@ bool ZUCheckSesterceConsistency::CheckProcedureSymbol( ZBBPProcedureSymbol* pSym
     }
     else
     {
-        if ( pSymbol->GetUnitCost() == 0 )
+        if (pSymbol->GetUnitCost() == 0)
         {
-            if ( m_pLog )
+            if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_11,
-                                            pSymbol->GetSymbolName(),
-                                            pSymbol->GetAbsolutePath() );
+                ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_11,
+                                           pSymbol->GetSymbolName(),
+                                           pSymbol->GetAbsolutePath());
 
-                m_pLog->AddLine( e );
+                m_pLog->AddLine(e);
             }
 
             // Increment warning counter
@@ -177,15 +175,15 @@ bool ZUCheckSesterceConsistency::CheckProcedureSymbol( ZBBPProcedureSymbol* pSym
     }
 
     // Check the multiplier
-    if ( pSymbol->GetMultiplier() == 0 )
+    if (pSymbol->GetMultiplier() == 0)
     {
-        if ( m_pLog )
+        if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_12,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_12,
+                                       pSymbol->GetSymbolName(),
+                                       pSymbol->GetAbsolutePath());
 
-            m_pLog->AddLine( e );
+            m_pLog->AddLine(e);
         }
 
         // Increment warning counter
@@ -213,16 +211,16 @@ bool ZUCheckSesterceConsistency::CheckProcedureSymbol( ZBBPProcedureSymbol* pSym
     // Now check if a master has been defined for each combination
     int Count = pSymbol->GetCombinationCount();
 
-    for ( int i = 0; i < Count; ++i )
+    for (int i = 0; i < Count; ++i)
     {
-        if ( pSymbol->GetCombinationMaster( i ).IsEmpty() )
+        if (pSymbol->GetCombinationMaster(i).IsEmpty())
         {
-            if ( m_pLog )
+            if (m_pLog)
             {
                 CString s;
-                s.Format( IDS_AL_PROCEDURE_INC_14, pSymbol->GetCombinationName( i ) );
-                ZBGenericSymbolErrorLine e( s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1 );
-                m_pLog->AddLine( e );
+                s.Format(IDS_AL_PROCEDURE_INC_14, pSymbol->GetCombinationName(i));
+                ZBGenericSymbolErrorLine e(s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1);
+                m_pLog->AddLine(e);
             }
 
             // Increment error counter
@@ -233,25 +231,25 @@ bool ZUCheckSesterceConsistency::CheckProcedureSymbol( ZBBPProcedureSymbol* pSym
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckProcessSymbol( ZBBPProcessSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
 
     // ************************************************************************************************************
     // JMR-MODIF - Le 17 mars 2006 - Ajout du code de contrôle des livraisons.
 
     int Count = pSymbol->GetDeliveriesCount();
 
-    for ( int i = 0; i < Count; ++i )
+    for (int i = 0; i < Count; ++i)
     {
-        if ( pSymbol->GetDeliveryMain( i ).IsEmpty() )
+        if (pSymbol->GetDeliveryMain(i).IsEmpty())
         {
-            if ( m_pLog )
+            if (m_pLog)
             {
                 CString s;
-                s.Format( IDS_AL_PROCESS_INC_1, pSymbol->GetDeliveryName( i ) );
-                ZBGenericSymbolErrorLine e( s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1 );
-                m_pLog->AddLine( e );
+                s.Format(IDS_AL_PROCESS_INC_1, pSymbol->GetDeliveryName(i));
+                ZBGenericSymbolErrorLine e(s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1);
+                m_pLog->AddLine(e);
             }
 
             // Increment error counter
@@ -263,20 +261,20 @@ bool ZUCheckSesterceConsistency::CheckProcessSymbol( ZBBPProcessSymbol* pSymbol 
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckStartSymbol( ZBBPStartSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckStartSymbol(ZBBPStartSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
 
     // Check if unit defined for procedure
-    if ( pSymbol->GetUnitName().IsEmpty() )
+    if (pSymbol->GetUnitName().IsEmpty())
     {
-        if ( m_pLog )
+        if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_START_INC_10,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_AL_START_INC_10,
+                                       pSymbol->GetSymbolName(),
+                                       pSymbol->GetAbsolutePath());
 
-            m_pLog->AddLine( e );
+            m_pLog->AddLine(e);
         }
 
         // Increment warning counter
@@ -284,15 +282,15 @@ bool ZUCheckSesterceConsistency::CheckStartSymbol( ZBBPStartSymbol* pSymbol )
     }
     else
     {
-        if ( pSymbol->GetUnitCost() == 0 )
+        if (pSymbol->GetUnitCost() == 0)
         {
-            if ( m_pLog )
+            if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e( IDS_AL_START_INC_11,
-                                            pSymbol->GetSymbolName(),
-                                            pSymbol->GetAbsolutePath() );
+                ZBGenericSymbolErrorLine e(IDS_AL_START_INC_11,
+                                           pSymbol->GetSymbolName(),
+                                           pSymbol->GetAbsolutePath());
 
-                m_pLog->AddLine( e );
+                m_pLog->AddLine(e);
             }
 
             // Increment warning counter
@@ -303,20 +301,20 @@ bool ZUCheckSesterceConsistency::CheckStartSymbol( ZBBPStartSymbol* pSymbol )
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckStopSymbol( ZBBPStopSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
 
     // Check if unit defined for procedure
-    if ( pSymbol->GetUnitName().IsEmpty() )
+    if (pSymbol->GetUnitName().IsEmpty())
     {
-        if ( m_pLog )
+        if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_STOP_INC_10,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_AL_STOP_INC_10,
+                                       pSymbol->GetSymbolName(),
+                                       pSymbol->GetAbsolutePath());
 
-            m_pLog->AddLine( e );
+            m_pLog->AddLine(e);
         }
 
         // Increment warning counter
@@ -324,15 +322,15 @@ bool ZUCheckSesterceConsistency::CheckStopSymbol( ZBBPStopSymbol* pSymbol )
     }
     else
     {
-        if ( pSymbol->GetUnitCost() == 0 )
+        if (pSymbol->GetUnitCost() == 0)
         {
-            if ( m_pLog )
+            if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e( IDS_AL_STOP_INC_11,
-                                            pSymbol->GetSymbolName(),
-                                            pSymbol->GetAbsolutePath() );
+                ZBGenericSymbolErrorLine e(IDS_AL_STOP_INC_11,
+                                           pSymbol->GetSymbolName(),
+                                           pSymbol->GetAbsolutePath());
 
-                m_pLog->AddLine( e );
+                m_pLog->AddLine(e);
             }
 
             // Increment warning counter
@@ -343,32 +341,32 @@ bool ZUCheckSesterceConsistency::CheckStopSymbol( ZBBPStopSymbol* pSymbol )
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
 
     // Test if it is a local symbol
-    if ( !pSymbol->IsLocal() )
+    if (!pSymbol->IsLocal())
     {
         // Locate the local symbol
         CODComponent* pComp = pSymbol->GetLocalSymbol();
 
-        if ( pComp && ISA( pComp, ZBDeliverableLinkSymbol ) )
+        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
         {
-            pSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>( pComp );
+            pSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
         }
     }
 
     // Check the quantity
-    if ( pSymbol->GetQuantityYear() <= 0 )
+    if (pSymbol->GetQuantityYear() <= 0)
     {
-        if ( m_pLog )
+        if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_DELIVERABLE_INC_1,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_AL_DELIVERABLE_INC_1,
+                                       pSymbol->GetSymbolName(),
+                                       pSymbol->GetAbsolutePath());
 
-            m_pLog->AddLine( e );
+            m_pLog->AddLine(e);
         }
 
         // Increment warning counter
@@ -409,30 +407,30 @@ bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol( ZBDeliverableLinkSy
     */
 
     // Check the percentage out
-    if ( pSymbol->GetOutWorkloadPercent() <= 0 )
+    if (pSymbol->GetOutWorkloadPercent() <= 0)
     {
-        if ( m_pLog )
+        if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_DELIVERABLE_INC_4,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_AL_DELIVERABLE_INC_4,
+                                       pSymbol->GetSymbolName(),
+                                       pSymbol->GetAbsolutePath());
 
-            m_pLog->AddLine( e );
+            m_pLog->AddLine(e);
         }
 
         // Increment warning counter
         ++m_WarningCounter;
     }
 
-    if ( pSymbol->GetOutWorkloadPercent() > 1 )
+    if (pSymbol->GetOutWorkloadPercent() > 1)
     {
-        if ( m_pLog )
+        if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_DELIVERABLE_INC_5,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath() );
+            ZBGenericSymbolErrorLine e(IDS_AL_DELIVERABLE_INC_5,
+                                       pSymbol->GetSymbolName(),
+                                       pSymbol->GetAbsolutePath());
 
-            m_pLog->AddLine( e );
+            m_pLog->AddLine(e);
         }
 
         // Increment warning counter
@@ -442,14 +440,14 @@ bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol( ZBDeliverableLinkSy
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckSymbol( ZBSymbol* pSymbol )
+bool ZUCheckSesterceConsistency::CheckSymbol(ZBSymbol* pSymbol)
 {
-    ASSERT( pSymbol );
+    ASSERT(pSymbol);
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckLink( ZBLinkSymbol* pLink )
+bool ZUCheckSesterceConsistency::CheckLink(ZBLinkSymbol* pLink)
 {
-    ASSERT( pLink );
+    ASSERT(pLink);
     return true;
 }

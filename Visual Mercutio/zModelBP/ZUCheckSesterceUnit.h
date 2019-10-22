@@ -64,7 +64,7 @@ class ZBUserGroupEntity;
 // ZUCheckSesterceUnit
 //
 
-class AFX_EXT_CLASS ZUCheckSesterceUnit : public ZUProcessNavigation  
+class AFX_EXT_CLASS ZUCheckSesterceUnit : public ZUProcessNavigation
 {
 public:
     ZUCheckSesterceUnit(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
@@ -73,12 +73,9 @@ public:
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
-    virtual bool OnStartSymbol( ZBBPStartSymbol* pSymbol );
-    virtual bool OnStopSymbol( ZBBPStopSymbol* pSymbol );
-
-
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    virtual bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
+    virtual bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
 };
 
-#endif // !defined(AFX_ZUCheckSesterceUnit_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
-
+#endif

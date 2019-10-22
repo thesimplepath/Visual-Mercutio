@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\PSS_Server.h"
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zConversion\PSS_StringTools.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
@@ -191,9 +191,9 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
 
             // publish the file name
             if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
-                                                    1,
-                                                    (const char*)m_TargetDirectory,
-                                                    (const char*)file.GetFileName())))
+                                                 1,
+                                                 (const char*)m_TargetDirectory,
+                                                 (const char*)file.GetFileName())))
                 TRACE1(_T("Problem publishing the file %s\n"), (const char*)imageFileName);
         }
         else

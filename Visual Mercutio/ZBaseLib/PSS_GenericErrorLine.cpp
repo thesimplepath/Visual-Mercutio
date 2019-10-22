@@ -21,11 +21,11 @@ static char THIS_FILE[] = __FILE__;
 // PSS_GenericErrorLine
 //---------------------------------------------------------------------------
 PSS_GenericErrorLine::PSS_GenericErrorLine(const CString& message, int line, int error, int type) :
-    ZIErrorLine(message, line, error, type)
+    PSS_ErrorLine(message, line, error, type)
 {}
 //---------------------------------------------------------------------------
 PSS_GenericErrorLine::PSS_GenericErrorLine(const PSS_GenericErrorLine& other) :
-    ZIErrorLine()
+    PSS_ErrorLine()
 {
     *this = other;
 }
@@ -36,7 +36,7 @@ PSS_GenericErrorLine::~PSS_GenericErrorLine()
 PSS_GenericErrorLine& PSS_GenericErrorLine::operator = (const PSS_GenericErrorLine& other)
 {
     // call the base class assignement operator
-    ZIErrorLine::operator = ((const ZIErrorLine&)other);
+    PSS_ErrorLine::operator = ((const PSS_ErrorLine&)other);
     return *this;
 }
 //---------------------------------------------------------------------------

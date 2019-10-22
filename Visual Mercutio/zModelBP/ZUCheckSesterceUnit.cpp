@@ -3,7 +3,6 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-//#include "zModel\ProcGraphModelMdl.h"
 #include "ZUCheckSesterceUnit.h"
 
 #include "zModel\ZBSymbol.h"
@@ -15,14 +14,14 @@
 #include "zModel\ZBUserGroupEntity.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -31,9 +30,8 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUCheckSesterceUnit::ZUCheckSesterceUnit(ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
-: ZUProcessNavigation(pModel,pClass)
-{
-}
+    : ZUProcessNavigation(pModel, pClass)
+{}
 
 ZUCheckSesterceUnit::~ZUCheckSesterceUnit()
 {
@@ -50,7 +48,7 @@ bool ZUCheckSesterceUnit::OnFinish()
     return true;
 }
 
-bool ZUCheckSesterceUnit::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
+bool ZUCheckSesterceUnit::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
 {
     // Test if it is a local symbol
     if (!pSymbol || !pSymbol->IsLocal())
@@ -60,16 +58,16 @@ bool ZUCheckSesterceUnit::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
     {
         bool Error;
         // Retreive the price defined and copy it to the symbol
-        float UnitCost = pSymbol->RetreiveUnitCost( pSymbol->GetUnitGUID(), Error );
+        float UnitCost = pSymbol->RetreiveUnitCost(pSymbol->GetUnitGUID(), Error);
         if (!Error)
-            pSymbol->SetUnitCost( UnitCost );
+            pSymbol->SetUnitCost(UnitCost);
         else
         {
             // Display warning message
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_15, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath() );
-                m_pLog->AddLine( e );
+                ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_15, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
+                m_pLog->AddLine(e);
             }
             // Increment warning counter
             ++m_WarningCounter;
@@ -77,7 +75,7 @@ bool ZUCheckSesterceUnit::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
     }
     return true;
 }
-bool ZUCheckSesterceUnit::OnStartSymbol( ZBBPStartSymbol* pSymbol )
+bool ZUCheckSesterceUnit::OnStartSymbol(ZBBPStartSymbol* pSymbol)
 {
     // Test if it is a local symbol
     if (!pSymbol || !pSymbol->IsLocal())
@@ -87,16 +85,16 @@ bool ZUCheckSesterceUnit::OnStartSymbol( ZBBPStartSymbol* pSymbol )
     {
         bool Error;
         // Retreive the price defined and copy it to the symbol
-        float UnitCost = pSymbol->RetreiveUnitCost( pSymbol->GetUnitGUID(), Error );
+        float UnitCost = pSymbol->RetreiveUnitCost(pSymbol->GetUnitGUID(), Error);
         if (!Error)
-            pSymbol->SetUnitCost( UnitCost );
+            pSymbol->SetUnitCost(UnitCost);
         else
         {
             // Display warning message
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_AL_START_INC_12, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath() );
-                m_pLog->AddLine( e );
+                ZBGenericSymbolErrorLine e(IDS_AL_START_INC_12, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
+                m_pLog->AddLine(e);
             }
             // Increment warning counter
             ++m_WarningCounter;
@@ -104,7 +102,7 @@ bool ZUCheckSesterceUnit::OnStartSymbol( ZBBPStartSymbol* pSymbol )
     }
     return true;
 }
-bool ZUCheckSesterceUnit::OnStopSymbol( ZBBPStopSymbol* pSymbol )
+bool ZUCheckSesterceUnit::OnStopSymbol(ZBBPStopSymbol* pSymbol)
 {
     // Test if it is a local symbol
     if (!pSymbol || !pSymbol->IsLocal())
@@ -114,16 +112,16 @@ bool ZUCheckSesterceUnit::OnStopSymbol( ZBBPStopSymbol* pSymbol )
     {
         bool Error;
         // Retreive the price defined and copy it to the symbol
-        float UnitCost = pSymbol->RetreiveUnitCost( pSymbol->GetUnitGUID(), Error );
+        float UnitCost = pSymbol->RetreiveUnitCost(pSymbol->GetUnitGUID(), Error);
         if (!Error)
-            pSymbol->SetUnitCost( UnitCost );
+            pSymbol->SetUnitCost(UnitCost);
         else
         {
             // Display warning message
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_AL_STOP_INC_5, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath() );
-                m_pLog->AddLine( e );
+                ZBGenericSymbolErrorLine e(IDS_AL_STOP_INC_5, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
+                m_pLog->AddLine(e);
             }
             // Increment warning counter
             ++m_WarningCounter;
@@ -131,4 +129,3 @@ bool ZUCheckSesterceUnit::OnStopSymbol( ZBBPStopSymbol* pSymbol )
     }
     return true;
 }
-

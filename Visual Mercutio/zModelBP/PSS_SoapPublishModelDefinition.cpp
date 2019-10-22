@@ -10,10 +10,12 @@
 #include "PSS_SoapPublishModelDefinition.h"
 
 // processsoft
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
 #include "zModel\ZUODSymbolManipulator.h"
+#include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "ProcGraphModelMdlBP.h"
@@ -27,8 +29,6 @@
 #include "ZBDeliverableLinkSymbol.h"
 #include "ZBInputAttributes.h"
 #include "ZBDistributionAttributes.h"
-#include "zBaseLib\ZILog.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -153,10 +153,10 @@ bool PSS_SoapPublishModelDefinition::OnStart()
         return false;
 
     // publish the model definition
-    m_PubMdl.SetModel(PSS_SoapData_Model(PSS_String16(m_pModel->GetModelName()), // model name
-                                         PSS_String16(m_pDoc->GetGUID()),        // model ref GUID
-                                         PSS_String16(pInfo->m_BeginDate),       // start date
-                                         PSS_String16(pInfo->m_EndDate)));       // end date
+    m_PubMdl.SetModel(PSS_SoapData_Model(PSS_String16(m_pModel->GetModelName()),
+                                         PSS_String16(m_pDoc->GetGUID()),
+                                         PSS_String16(pInfo->m_BeginDate),
+                                         PSS_String16(pInfo->m_EndDate)));
 
     return true;
 }
@@ -199,11 +199,11 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
             }
 
             // publish the attribute
-            m_PubMdl.Add(PSS_SoapData_Input(pInputAttrib->GetSymbolRef(),                  //  object ID (proc or deliv) or -1 for global
-                                            key,                                           //  attrib def ID
-                                            PSS_String16(pInputAttrib->GetDefaultValue()), //  default value
-                                            pInputAttrib->GetFlag(),                       //  flag
-                                           -1));                                           // -1 (reserved for future use)
+            m_PubMdl.Add(PSS_SoapData_Input(pInputAttrib->GetSymbolRef(),
+                                            key,
+                                            PSS_String16(pInputAttrib->GetDefaultValue()),
+                                            pInputAttrib->GetFlag(),
+                                           -1));
         }
     }
 
@@ -248,10 +248,10 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
                         }
 
                         // publish the attribute role
-                        m_PubMdl.Add(PSS_SoapData_Distribution(PSS_String16(pRole->GetRoleGUID()),       // wkGrpClsID
-                                                               key,                                      // attrib def ID
-                                                               pDistribRule->GetOperator(),              // operator ID
-                                                               PSS_String16(pDistribRule->GetValue()))); // data
+                        m_PubMdl.Add(PSS_SoapData_Distribution(PSS_String16(pRole->GetRoleGUID()),
+                                                               key,
+                                                               pDistribRule->GetOperator(),
+                                                               PSS_String16(pDistribRule->GetValue())));
 
                         // log the newly added attribute content
                         if (m_pLog && m_pLog->IsInDebugMode())
@@ -267,10 +267,10 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
                         }
 
                         // publish the attribute
-                        m_PubMdl.Add(PSS_SoapData_DistributionMap(pAttrib->GetSymbolRef(),                // object ID
-                                                                  key,                                    // attrib def ID
-                                                                  PSS_String16(pDistribRule->GetValue()), // data
-                                                                  pDistribRule->GetLogicalOperator()));   // logical operator (0 = AND, 1 = OR)
+                        m_PubMdl.Add(PSS_SoapData_DistributionMap(pAttrib->GetSymbolRef(),
+                                                                  key,
+                                                                  PSS_String16(pDistribRule->GetValue()),
+                                                                  pDistribRule->GetLogicalOperator()));
                     }
                 }
             }
@@ -297,11 +297,11 @@ bool PSS_SoapPublishModelDefinition::OnProcedureSymbol(ZBBPProcedureSymbol* pSym
         return false;
 
     // publish the symbol
-    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),    // object ID (unique between proc/deliv)
-                                      PSS_String16(pSymbol->GetUnitGUID()),   // workgroup clsID
-                                      2,                                      // 2 = procedure symbol
-                                      pSymbol->GetUnitDoubleValidationType(), // double sign
-                                      GetParentSymbolReference(pSymbol)));    // parent process
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),
+                                      PSS_String16(pSymbol->GetUnitGUID()),
+                                      2,
+                                      pSymbol->GetUnitDoubleValidationType(),
+                                      GetParentSymbolReference(pSymbol)));
 
     ZBPropertySet propSet;
 
@@ -328,11 +328,11 @@ bool PSS_SoapPublishModelDefinition::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
         return false;
 
     // publish the process
-    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(), // object ID (Unique between proc/deliv)
-                                      _T(""),                              // no published GUID for processes
-                                      4,                                   // 4 = process symbol
-                                      0,                                   // double sign
-                                      0));                                 // parent process
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),
+                                      _T(""),
+                                      4,
+                                      0,
+                                      0));
 
     ZBPropertySet propSet;
 
@@ -359,11 +359,11 @@ bool PSS_SoapPublishModelDefinition::OnStartSymbol(ZBBPStartSymbol* pSymbol)
         return false;
 
     // publish the start symbol
-    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),  // object ID (unique between proc/deliv)
-                                      PSS_String16(pSymbol->GetUnitGUID()), // workgroup ClsID
-                                      0,                                    // 0 = start symbol
-                                      0,                                    // double sign
-                                      GetParentSymbolReference(pSymbol)));  // parent process
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),
+                                      PSS_String16(pSymbol->GetUnitGUID()),
+                                      0,
+                                      0,
+                                      GetParentSymbolReference(pSymbol)));
 
     ZBPropertySet propSet;
 
@@ -390,11 +390,11 @@ bool PSS_SoapPublishModelDefinition::OnStopSymbol(ZBBPStopSymbol* pSymbol)
         return false;
 
     // publish the stop symbol
-    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),  // object ID (unique between proc/deliv)
-                                      PSS_String16(pSymbol->GetUnitGUID()), // workgroup clsID
-                                      1,                                    // 1 = stop symbol
-                                      0,                                    // double sign
-                                      GetParentSymbolReference(pSymbol)));  // parent process
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),
+                                      PSS_String16(pSymbol->GetUnitGUID()),
+                                      1,
+                                      0,
+                                      GetParentSymbolReference(pSymbol)));
 
     ZBPropertySet propSet;
 
@@ -586,13 +586,13 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         }
 
     // publish the deliverable link symbol
-    m_PubMdl.Add(PSS_SoapData_Deliverable(pSymbol->GetSymbolReferenceNumber(),                       // object ID (unique between proc/deliv)
-                                          dynamic_cast<ZBSymbol*>(pSrc)->GetSymbolReferenceNumber(), // src proc
-                                          dynamic_cast<ZBSymbol*>(pDst)->GetSymbolReferenceNumber(), // trg proc
-                                          PSS_String16(pSymbol->GetSymbolName()),                    // deliv name
-                                          lateral ? 1 : 0,                                           // lateral direction: 0 = normal, 1 = lateral starts here
-                                          lateralDirection,                                          // 0 = top, 1 = right, 2 = bottom, 3 = left
-                                          pSymbol->GetUnitDoubleValidationType()));                  // double sign
+    m_PubMdl.Add(PSS_SoapData_Deliverable(pSymbol->GetSymbolReferenceNumber(),
+                                          dynamic_cast<ZBSymbol*>(pSrc)->GetSymbolReferenceNumber(),
+                                          dynamic_cast<ZBSymbol*>(pDst)->GetSymbolReferenceNumber(),
+                                          PSS_String16(pSymbol->GetSymbolName()),
+                                          lateral ? 1 : 0,
+                                          lateralDirection,
+                                          pSymbol->GetUnitDoubleValidationType()));
 
     ZBPropertySet propSet;
 
@@ -637,12 +637,12 @@ void PSS_SoapPublishModelDefinition::Publish(int ref, ZBProperty* pProp)
     // search for the property value type
     switch (pProp->GetPTValueType())
     {
-        case ZBProperty::PT_DOUBLE:   s.Format(_T("%g"), pProp->GetValueDouble());                 break;
-        case ZBProperty::PT_FLOAT:    s.Format(_T("%f"), pProp->GetValueFloat());                  break;
+        case ZBProperty::PT_DOUBLE:   s.Format(_T("%g"), pProp->GetValueDouble());                  break;
+        case ZBProperty::PT_FLOAT:    s.Format(_T("%f"), pProp->GetValueFloat());                   break;
         case ZBProperty::PT_DATE:     s = pProp->GetValueDate().GetStandardFormattedDate();         break;
         case ZBProperty::PT_TIMESPAN: s = pProp->GetValueTimeSpan().GetStandardFormattedTimeSpan(); break;
-        case ZBProperty::PT_DURATION: s.Format(_T("%f"), double(pProp->GetValueDuration()));       break;
-        default:                      s = pProp->GetValueString();                                 break;
+        case ZBProperty::PT_DURATION: s.Format(_T("%f"), double(pProp->GetValueDuration()));        break;
+        default:                      s = pProp->GetValueString();                                  break;
     }
 
     // log property content

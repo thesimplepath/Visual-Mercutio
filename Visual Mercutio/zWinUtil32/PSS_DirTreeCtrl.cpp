@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_DirTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_DirTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_DirTreeCtrl)
     ON_NOTIFY_REFLECT_EX(TVN_SELCHANGED, OnSelchangedTree)
     ON_NOTIFY_REFLECT_EX(TVN_ITEMEXPANDING, OnItemexpandingTree)
@@ -43,6 +43,7 @@ END_MESSAGE_MAP()
 // PSS_DirTreeCtrl
 //---------------------------------------------------------------------------
 PSS_DirTreeCtrl::PSS_DirTreeCtrl(bool includeFile) :
+    PSS_TreeCtrl(),
     m_IsValid(false),
     m_IncludeFile(includeFile),
     m_HasBeenInitialized(false)
@@ -159,7 +160,7 @@ void PSS_DirTreeCtrl::Refresh()
 //---------------------------------------------------------------------------
 int PSS_DirTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
+    if (PSS_TreeCtrl::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     Initialize();
@@ -173,7 +174,7 @@ void PSS_DirTreeCtrl::OnDestroy()
 
     ClearNetRessources();
 
-    ZITreeCtrl::OnDestroy();
+    PSS_TreeCtrl::OnDestroy();
 
     TRACE(_T("ZIDirTreeCtrl::OnDestroy terminating.\n"));
 }

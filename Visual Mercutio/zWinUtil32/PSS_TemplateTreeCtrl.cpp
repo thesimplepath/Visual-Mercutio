@@ -25,11 +25,11 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_TemplateTreeCtrl, ZITreeCtrl)
+IMPLEMENT_DYNCREATE(PSS_TemplateTreeCtrl, PSS_TreeCtrl)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_TemplateTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_TemplateTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_TemplateTreeCtrl)
     ON_MESSAGE(UM_INITIALIZE_TEMPLATEMANAGER, OnInitializeTemplateManager)
     ON_MESSAGE(UM_INITIALIZE_PROCESSTEMPLATEMANAGER, OnInitializeTemplateManager)
@@ -46,6 +46,7 @@ END_MESSAGE_MAP()
 // PSS_TemplateTreeCtrl
 //---------------------------------------------------------------------------
 PSS_TemplateTreeCtrl::PSS_TemplateTreeCtrl(PSS_TemplateManager* pTemplateManager, BOOL includeFiles) :
+    PSS_TreeCtrl(),
     m_pTemplateManager(pTemplateManager),
     m_IncludeFiles(includeFiles)
 {}

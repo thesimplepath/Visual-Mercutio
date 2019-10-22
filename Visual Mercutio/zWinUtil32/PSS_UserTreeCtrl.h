@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "PSS_UserTree.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -34,7 +34,7 @@
 * User tree control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UserTreeCtrl : public ZITreeCtrl
+class AFX_EXT_CLASS PSS_UserTreeCtrl : public PSS_TreeCtrl
 {
     public:
         /**

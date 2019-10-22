@@ -10,7 +10,7 @@
 #include "PSS_SoapPublishUserGroup.h"
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
@@ -30,7 +30,7 @@
 //---------------------------------------------------------------------------
 // PSS_SoapPublishUserGroup
 //---------------------------------------------------------------------------
-PSS_SoapPublishUserGroup::PSS_SoapPublishUserGroup(ZBPublishMessengerModelInformation* pInfo, ZILog* pLog) :
+PSS_SoapPublishUserGroup::PSS_SoapPublishUserGroup(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog) :
     m_pInfo(pInfo),
     m_pLog(pLog)
 {}
@@ -69,11 +69,11 @@ void PSS_SoapPublishUserGroup::PublishUserGroup(ZBUserGroupEntity* pGroup)
     dayCost.Format(_T("%.2f"), pGroup->GetEntityCost());
 
     // publish the user groups and their alias
-    m_PubWorkgroup.Add(PSS_SoapData_Workgroup(PSS_String16(pGroup->GetGUID()),                                             // workgroup GUID
-                                              PSS_String16(pGroup->GetParent() ? pGroup->GetParent()->GetGUID() : _T("")), // parent GUID
-                                              PSS_String16(pGroup->GetEntityName()),                                       // workgroup name
-                                              PSS_String16(pGroup->GetEntityDescription()),                                // mission
-                                              PSS_String16(dayCost)));                                                     // day cost
+    m_PubWorkgroup.Add(PSS_SoapData_Workgroup(PSS_String16(pGroup->GetGUID()),
+                                              PSS_String16(pGroup->GetParent() ? pGroup->GetParent()->GetGUID() : _T("")),
+                                              PSS_String16(pGroup->GetEntityName()),
+                                              PSS_String16(pGroup->GetEntityDescription()),
+                                              PSS_String16(dayCost)));
     m_PubWorkgroup.AddAlias(m_pInfo->m_MessengerAlias);
 
     #ifdef _DEBUG

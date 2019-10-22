@@ -10,7 +10,7 @@
 #include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\PSS_BaseMDIPage.h"
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zBaseLib\PSS_WorkspaceEnvDocument.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceWizardTemplateManager.h"

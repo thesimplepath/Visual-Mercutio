@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-
 #include "ZUCheckMessengerValidUnit.h"
+
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -15,7 +15,7 @@
 #include "zModel\ZBUserGroupEntity.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"

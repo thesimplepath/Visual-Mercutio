@@ -24,7 +24,7 @@
 //---------------------------------------------------------------------------
 // PSS_SoapPublishPrestations
 //---------------------------------------------------------------------------
-PSS_SoapPublishPrestations::PSS_SoapPublishPrestations(ZBPublishMessengerModelInformation* pInfo, ZILog* pLog) :
+PSS_SoapPublishPrestations::PSS_SoapPublishPrestations(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog) :
     m_pInfo(pInfo),
     m_pLog(pLog)
 {}

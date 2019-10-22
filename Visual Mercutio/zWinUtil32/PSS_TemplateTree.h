@@ -20,7 +20,7 @@
 #include "Mfc.h"
 
 // processsoft
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "zBaseLib\PSS_TemplateManager.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -46,7 +46,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param pTemplateManager - template manager, can be NULL
         *@param includeFiles - if TRUE, files will be included
         */
-        PSS_TemplateTree(ZITreeCtrl* pTreeCtrl = NULL, PSS_TemplateManager* pTemplateManager = NULL, BOOL includeFiles = FALSE);
+        PSS_TemplateTree(PSS_TreeCtrl* pTreeCtrl = NULL, PSS_TemplateManager* pTemplateManager = NULL, BOOL includeFiles = FALSE);
 
         virtual ~PSS_TemplateTree();
 
@@ -56,7 +56,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param pTemplateManager - template manager, can be NULL
         *@param includeFiles - if TRUE, files will be included
         */
-        void Initialize(ZITreeCtrl* pTreeCtrl, PSS_TemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
+        void Initialize(PSS_TreeCtrl* pTreeCtrl, PSS_TemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
 
         /**
         * Re-initializes the template tree
@@ -133,7 +133,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
 
     private:
         PSS_TemplateManager* m_pTemplateManager;
-        ZITreeCtrl*          m_pTreeCtrl;
+        PSS_TreeCtrl*        m_pTreeCtrl;
         BOOL                 m_IncludeFiles;
         bool                 m_Invalid;
 

@@ -26,7 +26,7 @@
 //---------------------------------------------------------------------------
 // PSS_UserTree
 //---------------------------------------------------------------------------
-PSS_UserTree::PSS_UserTree(ZITreeCtrl* pTreeCtrl, PSS_UserManager* pUserManager) :
+PSS_UserTree::PSS_UserTree(PSS_TreeCtrl* pTreeCtrl, PSS_UserManager* pUserManager) :
     m_pTreeCtrl(pTreeCtrl), 
     m_pUserManager(pUserManager),
     m_Invalid(false)
@@ -45,7 +45,7 @@ const PSS_UserTree& PSS_UserTree::operator = (const PSS_UserTree& other)
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_UserTree::Initialize(ZITreeCtrl* pTreeCtrl, PSS_UserManager* pUserManager)
+void PSS_UserTree::Initialize(PSS_TreeCtrl* pTreeCtrl, PSS_UserManager* pUserManager)
 {
     m_pTreeCtrl    = pTreeCtrl;
     m_pUserManager = pUserManager;

@@ -23,7 +23,7 @@
 // processsoft
 #include "PSS_Subject.h"
 #include "PSS_Observer.h"
-#include "ZITreeCtl.h"
+#include "PSS_TreeCtrl.h"
 
 // class name mapping
 #ifndef PSS_WorkspaceEnv
@@ -59,7 +59,7 @@ class PSS_WorkspaceGroupEntity;
 * Workspace tree controller
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_WorkspaceTreeCtrl : public ZITreeCtrl,
+class AFX_EXT_CLASS PSS_WorkspaceTreeCtrl : public PSS_TreeCtrl,
                                             public PSS_Subject,
                                             public PSS_Observer
 {

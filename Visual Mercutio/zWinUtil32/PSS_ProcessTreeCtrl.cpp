@@ -24,7 +24,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ProcessTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_ProcessTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(PSS_ProcessTreeCtrl)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -32,7 +32,7 @@ END_MESSAGE_MAP()
 // PSS_ProcessTreeCtrl
 //---------------------------------------------------------------------------
 PSS_ProcessTreeCtrl::PSS_ProcessTreeCtrl(ZProcess* pProcess) :
-    ZITreeCtrl(),
+    PSS_TreeCtrl(),
     m_pProcess(pProcess)
 {}
 //---------------------------------------------------------------------------

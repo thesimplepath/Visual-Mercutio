@@ -10,7 +10,7 @@
 #include "PSS_SoapPublishModelAttributes.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBSymbol.h"

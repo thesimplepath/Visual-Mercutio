@@ -26,14 +26,14 @@
 #include "zModel\ZUODSymbolManipulator.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -43,152 +43,150 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBSesterceRecalculationAutomate::ZBSesterceRecalculationAutomate( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
-                                                                  ZILog*                    pLog    /*= NULL*/)
-    : ZBBPAutomate( pModel, pLog )
-{
-}
+ZBSesterceRecalculationAutomate::ZBSesterceRecalculationAutomate(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                                 PSS_Log*                    pLog    /*= NULL*/)
+    : ZBBPAutomate(pModel, pLog)
+{}
 
 ZBSesterceRecalculationAutomate::~ZBSesterceRecalculationAutomate()
-{
-}
+{}
 
-bool ZBSesterceRecalculationAutomate::OnStart( ZILog* pLog )
+bool ZBSesterceRecalculationAutomate::OnStart(PSS_Log* pLog)
 {
-    bool RetValue = ZBBPAutomate::OnStart( pLog );
+    bool RetValue = ZBBPAutomate::OnStart(pLog);
 
     // If log
-    if ( pLog )
+    if (pLog)
     {
         CString message;
-        message.LoadString( IDS_AL_START_SESTERCESCALCULATION );
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        message.LoadString(IDS_AL_START_SESTERCESCALCULATION);
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     // Do an deep check before lauching the calculation of the model
-    ZUCheckSesterceConsistency Check( m_pModel, pLog );
+    ZUCheckSesterceConsistency Check(m_pModel, pLog);
     Check.CheckModel();
 
     // Assigns the error counter and the warning counter
-    SetErrorCounter( Check.GetErrorCounter() );
-    SetWarningCounter( Check.GetWarningCounter() );
+    SetErrorCounter(Check.GetErrorCounter());
+    SetWarningCounter(Check.GetWarningCounter());
 
-    if ( m_pModel && ISA( m_pModel, ZDProcessGraphModelMdl ) &&
-         dynamic_cast<ZDProcessGraphModelMdl*>( m_pModel )->MainUserGroupIsValid() )
+    if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl) &&
+        dynamic_cast<ZDProcessGraphModelMdl*>(m_pModel)->MainUserGroupIsValid())
     {
         // Do a unit check and assignement before lauching the calculation of the model
-        ZUCheckSesterceUnit CheckUnit( m_pModel );
-        CheckUnit.SetLog( pLog );
+        ZUCheckSesterceUnit CheckUnit(m_pModel);
+        CheckUnit.SetLog(pLog);
         CheckUnit.Navigate();
 
         // Assigns the error counter and the warning counter
-        SetErrorCounter( GetErrorCounter() + CheckUnit.GetErrorCounter() );
-        SetWarningCounter( GetWarningCounter() + CheckUnit.GetWarningCounter() );
+        SetErrorCounter(GetErrorCounter() + CheckUnit.GetErrorCounter());
+        SetWarningCounter(GetWarningCounter() + CheckUnit.GetWarningCounter());
     }
     else
     {
         // If log
-        if ( pLog )
+        if (pLog)
         {
             CString message;
-            message.LoadString( IDS_AL_USERGROUP_NOTINLINE );
-            ZBGenericSymbolErrorLine e( message );
-            pLog->AddLine( e );
+            message.LoadString(IDS_AL_USERGROUP_NOTINLINE);
+            ZBGenericSymbolErrorLine e(message);
+            pLog->AddLine(e);
         }
     }
 
     // Don't continue if we encounter error.
-    if ( Check.GetErrorCounter() > 0 )
+    if (Check.GetErrorCounter() > 0)
     {
         return false;
     }
 
     return RetValue;
 }
-bool ZBSesterceRecalculationAutomate::OnStop( ZILog* pLog )
+bool ZBSesterceRecalculationAutomate::OnStop(PSS_Log* pLog)
 {
     // If log
-    if ( pLog )
+    if (pLog)
     {
         CString message;
-        message.Format( IDS_AL_START_PROCESSCALCULATION, m_pModel->GetModelName() );
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        message.Format(IDS_AL_START_PROCESSCALCULATION, m_pModel->GetModelName());
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
     // At the end of the model calculation,
     // calculates process forecast values.
-    ZUProcessCalculateTotals ProcessCalculateTotals( m_pModel, NULL );
+    ZUProcessCalculateTotals ProcessCalculateTotals(m_pModel, NULL);
 
     ProcessCalculateTotals.Navigate();
 
     // If log
-    if ( pLog )
+    if (pLog)
     {
         CString message;
-        message.LoadString( IDS_AL_STOP_PROCESSCALCULATION );
-        ZBGenericSymbolErrorLine e( message );
-        pLog->AddLine( e );
+        message.LoadString(IDS_AL_STOP_PROCESSCALCULATION);
+        ZBGenericSymbolErrorLine e(message);
+        pLog->AddLine(e);
     }
 
-    return ZBBPAutomate::OnStop( pLog );
+    return ZBBPAutomate::OnStop(pLog);
 }
 
-bool ZBSesterceRecalculationAutomate::OnPause( ZILog* pLog )
+bool ZBSesterceRecalculationAutomate::OnPause(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnPause( pLog );
+    return ZBBPAutomate::OnPause(pLog);
 }
 
-bool ZBSesterceRecalculationAutomate::OnResume( ZILog* pLog )
+bool ZBSesterceRecalculationAutomate::OnResume(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnResume( pLog );
+    return ZBBPAutomate::OnResume(pLog);
 }
 
 //////////////////////////////////////////////////////////////////////
 // Call-back workflow operations
 bool ZBSesterceRecalculationAutomate::OnObjectIsFinished(PSS_StateObject*  pState,
                                                          PSS_StateMachine* pStateMachine,
-                                                         ZILog*            pLog )
+                                                         PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectIsFinished( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnObjectIsFinished(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnObjectIsPaused(PSS_StateObject*  pState,
                                                        PSS_StateMachine* pStateMachine,
-                                                       ZILog*            pLog )
+                                                       PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectIsPaused( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnObjectIsPaused(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
                                                                      PSS_StateMachine* pStateMachine,
-                                                                     ZILog*            pLog )
+                                                                     PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectIsWaitingForOtherLinks( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnObjectIsWaitingForOtherLinks(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnBeforeRequestMoveForward(PSS_StateObject*  pState,
                                                                  PSS_StateMachine* pStateMachine,
-                                                                 ZILog*            pLog )
+                                                                 PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnBeforeRequestMoveForward( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnBeforeRequestMoveForward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject*  pState,
                                                                    PSS_StateMachine* pStateMachine,
-                                                                   ZILog*            pLog )
+                                                                   PSS_Log*            pLog)
 {
-    if ( !ZBBPAutomate::OnNextSymbolAfterMoveForward( pState, pStateMachine, pLog ) )
+    if (!ZBBPAutomate::OnNextSymbolAfterMoveForward(pState, pStateMachine, pLog))
     {
         return false;
     }
 
 #ifdef _DEBUG
-    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBSymbol ) )
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBSymbol))
     {
-        TRACE1( _T( "OnNextSymbolAfterMoveForward: symbol in the stack is %s\n" ),
-                    dynamic_cast<ZBSymbol*>( pState->GetSymbol() )->GetSymbolName() );
+        TRACE1(_T("OnNextSymbolAfterMoveForward: symbol in the stack is %s\n"),
+               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
     }
 #endif
 
@@ -203,17 +201,17 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     // 5. the procedure cost
     // 6. the procedure forecast cost
     // 7. the procedure cost per activity
-    if ( pState && pState->GetSymbol()                        &&
-         ( ISA( pState->GetSymbol(), ZBBPProcedureSymbol )    ||
-           ISA( pState->GetSymbol(), ZBBPPageSymbol )        ||
-           ISA( pState->GetSymbol(), ZBBPDoorSymbol )        ||
-           ISA( pState->GetSymbol(), ZBBPStopSymbol ) ) )
+    if (pState && pState->GetSymbol() &&
+        (ISA(pState->GetSymbol(), ZBBPProcedureSymbol) ||
+         ISA(pState->GetSymbol(), ZBBPPageSymbol) ||
+         ISA(pState->GetSymbol(), ZBBPDoorSymbol) ||
+         ISA(pState->GetSymbol(), ZBBPStopSymbol)))
     {
-        TRACE1( _T( "OnNextSymbolAfterMoveForward: current symbol is %s\n" ),
-                    dynamic_cast<ZBSymbol*>( pState->GetSymbol() )->GetSymbolName() );
+        TRACE1(_T("OnNextSymbolAfterMoveForward: current symbol is %s\n"),
+               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
 
         // Normally we should have at least one link only
-        if ( pState->GetStateLinkCount() == 0 )
+        if (pState->GetStateLinkCount() == 0)
         {
             // Log the error
             return false;
@@ -223,36 +221,36 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
         // One object before the current
         PSS_StateObject* pStateObjectBefore = pStateMachine->PopStateObjectNoRemove(1);
 
-        if ( !pStateObjectBefore )
+        if (!pStateObjectBefore)
         {
             // Log the error
             return false;
         }
 
-        if ( !pStateObjectBefore->GetSymbol() )
+        if (!pStateObjectBefore->GetSymbol())
         {
             // Not necessarily an error, then return true
-            TRACE( _T( "OnNextSymbolAfterMoveForward: no object before\n" ) );
+            TRACE(_T("OnNextSymbolAfterMoveForward: no object before\n"));
             return true;
         }
 
         // Now check the object before
-        if ( ISA( pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol ) )
+        if (ISA(pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol))
         {
             ZBBPProcedureSymbol* pProcedureBefore =
-                dynamic_cast<ZBBPProcedureSymbol*>( pStateObjectBefore->GetSymbol() );
+                dynamic_cast<ZBBPProcedureSymbol*>(pStateObjectBefore->GetSymbol());
 
             ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
 
             // Test if it is a local symbol
-            if ( !pProcedureBefore->IsLocal() )
+            if (!pProcedureBefore->IsLocal())
             {
                 // Locate the local symbol
                 CODComponent* pComp = pProcedureBefore->GetLocalSymbol();
 
-                if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+                if (pComp && ISA(pComp, ZBBPProcedureSymbol))
                 {
-                    pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>( pComp );
+                    pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
                 }
                 else
                 {
@@ -260,42 +258,42 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                     return false;
                 }
 
-                TRACE1( _T( "OnNextSymbolAfterMoveForward: retrieve local procedure %s\n" ),
-                        pLocalProcedureBefore->GetSymbolName() );
+                TRACE1(_T("OnNextSymbolAfterMoveForward: retrieve local procedure %s\n"),
+                       pLocalProcedureBefore->GetSymbolName());
             }
 
-            TRACE1( _T( "OnNextSymbolAfterMoveForward: procedure before is %s\n" ),
-                    pProcedureBefore->GetSymbolName() );
+            TRACE1(_T("OnNextSymbolAfterMoveForward: procedure before is %s\n"),
+                   pProcedureBefore->GetSymbolName());
 
             // Now rung through all links and calculate their quantities
-            for ( size_t Index = 0; Index < pState->GetStateLinkCount(); ++Index )
+            for (size_t Index = 0; Index < pState->GetStateLinkCount(); ++Index)
             {
-                PSS_StateLink* pStateLink = pState->GetStateLinkAt( Index );
+                PSS_StateLink* pStateLink = pState->GetStateLinkAt(Index);
 
-                if ( !pStateLink || !pStateLink->GetLinkSymbol() )
+                if (!pStateLink || !pStateLink->GetLinkSymbol())
                 {
                     // Log the error
                     return false;
                 }
 
                 // Check if we have a deliverable
-                if ( ISA( pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol ) )
+                if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
                 {
                     ZBDeliverableLinkSymbol* pDeliverable =
-                        dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetLinkSymbol() );
+                        dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
 
-                    TRACE1( _T( "OnNextSymbolAfterMoveForward: deliverable in the stack%s\n" ),
-                            pDeliverable->GetSymbolName() );
+                    TRACE1(_T("OnNextSymbolAfterMoveForward: deliverable in the stack%s\n"),
+                           pDeliverable->GetSymbolName());
 
                     // Test if it is a local symbol
-                    if ( !pDeliverable->IsLocal() )
+                    if (!pDeliverable->IsLocal())
                     {
                         // Locate the local symbol
                         CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-                        if ( pComp && ISA( pComp, ZBDeliverableLinkSymbol ) )
+                        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
                         {
-                            pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>( pComp );
+                            pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
                         }
                         else
                         {
@@ -303,25 +301,25 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                             return false;
                         }
 
-                        TRACE1( _T( "OnNextSymbolAfterMoveForward: retrieve local deliverable %s\n" ),
-                                pDeliverable->GetSymbolName() );
+                        TRACE1(_T("OnNextSymbolAfterMoveForward: retrieve local deliverable %s\n"),
+                               pDeliverable->GetSymbolName());
                     }
 
                     ZBBPAnnualNumberProperties qValue;
 
                     // If the quantity is not locked
-                    if ( pDeliverable->GetLockQuantityYear() == false )
+                    if (pDeliverable->GetLockQuantityYear() == false)
                     {
                         // Now calculate
-                        if ( pLocalProcedureBefore )
+                        if (pLocalProcedureBefore)
                         {
                             qValue = pLocalProcedureBefore->GetProcedureActivation() *
-                                                                (double)pLocalProcedureBefore->GetMultiplier();
+                                (double)pLocalProcedureBefore->GetMultiplier();
                         }
                         else
                         {
                             qValue = pProcedureBefore->GetProcedureActivation() *
-                                                                (double)pProcedureBefore->GetMultiplier();
+                                (double)pProcedureBefore->GetMultiplier();
                         }
 
                         qValue *= (double)pDeliverable->GetOutWorkloadPercent();
@@ -331,13 +329,13 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                         qValue = pDeliverable->GetQuantity();
 
                         // If log 
-                        if ( pLog )
+                        if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e( IDS_AL_DELIV_QUANTITY_LOCKED,
-                                                        pDeliverable->GetSymbolName(),
-                                                        pDeliverable->GetAbsolutePath() );
+                            ZBGenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_LOCKED,
+                                                       pDeliverable->GetSymbolName(),
+                                                       pDeliverable->GetAbsolutePath());
 
-                            pLog->AddLine( e );
+                            pLog->AddLine(e);
                         }
 
                         // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -345,18 +343,18 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                     }
 
                     // Check if the force equalizer is set
-                    if ( pDeliverable->GetForceEqualizer() )
+                    if (pDeliverable->GetForceEqualizer())
                     {
-                        pDeliverable->SetQuantityUsingOriginalEqualizer( qValue );
+                        pDeliverable->SetQuantityUsingOriginalEqualizer(qValue);
 
                         // If log, advise about forcing the equalizer
-                        if ( pLog )
+                        if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e( IDS_AL_DELIV_QUANTITY_FORCED,
-                                                        pDeliverable->GetSymbolName(),
-                                                        pDeliverable->GetAbsolutePath() );
+                            ZBGenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_FORCED,
+                                                       pDeliverable->GetSymbolName(),
+                                                       pDeliverable->GetAbsolutePath());
 
-                            pLog->AddLine( e );
+                            pLog->AddLine(e);
                         }
 
                         // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -365,19 +363,19 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                     else
                     {
                         // If not necessary to force
-                        pDeliverable->SetQuantity( qValue );
+                        pDeliverable->SetQuantity(qValue);
                     }
 
                     // If log and debug mode is required
-                    if ( pLog && pLog->IsInDebugMode() )
+                    if (pLog && pLog->IsInDebugMode())
                     {
                         CString message;
-                        message.Format( IDS_AL_DELIV_QUANTITY_SUM,
-                                        pDeliverable->GetSymbolName(),
-                                        (double)pDeliverable->GetQuantity() );
+                        message.Format(IDS_AL_DELIV_QUANTITY_SUM,
+                                       pDeliverable->GetSymbolName(),
+                                       (double)pDeliverable->GetQuantity());
 
-                        ZBGenericSymbolErrorLine e( message );
-                        pLog->AddLine( e );
+                        ZBGenericSymbolErrorLine e(message);
+                        pLog->AddLine(e);
 
                         // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
                         IncrementWarningCounter();
@@ -385,18 +383,18 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
 
                     // Now calculate the workload forecast
                     qValue = pDeliverable->GetQuantity() * pDeliverable->GetProcessingTime();
-                    pDeliverable->SetWorkloadForecast( qValue );
+                    pDeliverable->SetWorkloadForecast(qValue);
 
                     // If log and debug mode is required
-                    if ( pLog && pLog->IsInDebugMode() )
+                    if (pLog && pLog->IsInDebugMode())
                     {
                         CString message;
-                        message.Format( IDS_AL_DELIV_WORKLOAD,
-                                        pDeliverable->GetSymbolName(),
-                                        (double)pDeliverable->GetWorkloadForecast() );
+                        message.Format(IDS_AL_DELIV_WORKLOAD,
+                                       pDeliverable->GetSymbolName(),
+                                       (double)pDeliverable->GetWorkloadForecast());
 
-                        ZBGenericSymbolErrorLine e( message );
-                        pLog->AddLine( e );
+                        ZBGenericSymbolErrorLine e(message);
+                        pLog->AddLine(e);
 
                         // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
                         IncrementWarningCounter();
@@ -407,31 +405,31 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
 
         // We can calculate the cost for each deliverables
         // Now rung through all links
-        for ( size_t Index = 0; Index < pState->GetStateLinkCount(); ++Index )
+        for (size_t Index = 0; Index < pState->GetStateLinkCount(); ++Index)
         {
-            PSS_StateLink* pStateLink = pState->GetStateLinkAt( Index );
+            PSS_StateLink* pStateLink = pState->GetStateLinkAt(Index);
 
-            if ( !pStateLink || !pStateLink->GetLinkSymbol() )
+            if (!pStateLink || !pStateLink->GetLinkSymbol())
             {
                 // Log the error
                 return false;
             }
 
             // Check if we have a deliverable
-            if ( ISA( pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol ) )
+            if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
             {
                 ZBDeliverableLinkSymbol* pDeliverable =
-                    dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetLinkSymbol() );
+                    dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
 
                 // Test if it is a local symbol
-                if ( !pDeliverable->IsLocal() )
+                if (!pDeliverable->IsLocal())
                 {
                     // Locate the local symbol
                     CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-                    if ( pComp && ISA( pComp, ZBDeliverableLinkSymbol ) )
+                    if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
                     {
-                        pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>( pComp );
+                        pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
                     }
                     else
                     {
@@ -444,18 +442,18 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 ZBBPAnnualNumberProperties qValue =
                     pDeliverable->GetQuantity() * (double)pDeliverable->GetUnitaryCost();
 
-                pDeliverable->SetCost( qValue );
+                pDeliverable->SetCost(qValue);
 
                 // If log and debug mode is required
-                if ( pLog && pLog->IsInDebugMode() )
+                if (pLog && pLog->IsInDebugMode())
                 {
                     CString message;
-                    message.Format( IDS_AL_DELIV_COST,
-                                    pDeliverable->GetSymbolName(),
-                                    (double)pDeliverable->GetCost() );
+                    message.Format(IDS_AL_DELIV_COST,
+                                   pDeliverable->GetSymbolName(),
+                                   (double)pDeliverable->GetCost());
 
-                    ZBGenericSymbolErrorLine e( message );
-                    pLog->AddLine( e );
+                    ZBGenericSymbolErrorLine e(message);
+                    pLog->AddLine(e);
 
                     // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
                     IncrementWarningCounter();
@@ -465,22 +463,22 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
 
         // Prepare the procedure cost calculation
         // and after the forecast cost and the cost per activation
-        if ( ISA( pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol ) )
+        if (ISA(pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol))
         {
             ZBBPProcedureSymbol* pProcedureBefore =
-                dynamic_cast<ZBBPProcedureSymbol*>( pStateObjectBefore->GetSymbol() );
+                dynamic_cast<ZBBPProcedureSymbol*>(pStateObjectBefore->GetSymbol());
 
             ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
 
             // Test if it is a local symbol
-            if ( !pProcedureBefore->IsLocal() )
+            if (!pProcedureBefore->IsLocal())
             {
                 // Locate the local symbol
                 CODComponent* pComp = pProcedureBefore->GetLocalSymbol();
 
-                if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+                if (pComp && ISA(pComp, ZBBPProcedureSymbol))
                 {
-                    pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>( pComp );
+                    pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
                 }
                 else
                 {
@@ -488,56 +486,56 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                     return false;
                 }
 
-                TRACE1( _T( "OnNextSymbolAfterMoveForward: retrieve local procedure %s\n" ),
-                        pLocalProcedureBefore->GetSymbolName() );
+                TRACE1(_T("OnNextSymbolAfterMoveForward: retrieve local procedure %s\n"),
+                       pLocalProcedureBefore->GetSymbolName());
             }
 
             ZBBPAnnualNumberProperties qValue;
 
-            if ( pLocalProcedureBefore )
+            if (pLocalProcedureBefore)
             {
                 qValue = pLocalProcedureBefore->GetProcedureActivation() *
-                         ( (double)pLocalProcedureBefore->GetUnitaryCost() );
+                    ((double)pLocalProcedureBefore->GetUnitaryCost());
             }
             else
             {
                 qValue = pProcedureBefore->GetProcedureActivation() *
-                         ( (double)pProcedureBefore->GetUnitaryCost() );
+                    ((double)pProcedureBefore->GetUnitaryCost());
             }
 
             // Take all leaving down and right deliverables
             CODEdgeArray LeavingRightEdges;
-            size_t LeavingRightLinkCount = pProcedureBefore->GetEdgesLeaving_Right( LeavingRightEdges );
+            size_t LeavingRightLinkCount = pProcedureBefore->GetEdgesLeaving_Right(LeavingRightEdges);
 
-            if ( LeavingRightLinkCount > 0 )
+            if (LeavingRightLinkCount > 0)
             {
-                for ( size_t nEdgeIdx = 0; nEdgeIdx < LeavingRightLinkCount; ++nEdgeIdx )
+                for (size_t nEdgeIdx = 0; nEdgeIdx < LeavingRightLinkCount; ++nEdgeIdx)
                 {
-                    IODEdge* pIEdge = LeavingRightEdges.GetAt( nEdgeIdx );
+                    IODEdge* pIEdge = LeavingRightEdges.GetAt(nEdgeIdx);
 
                     // Check if a ZBLinkSymbol
-                    if ( !static_cast<CODLinkComponent*>( pIEdge ) ||
-                         !ISA( static_cast<CODLinkComponent*>( pIEdge ), ZBDeliverableLinkSymbol ) )
+                    if (!static_cast<CODLinkComponent*>(pIEdge) ||
+                        !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                     {
                         continue;
                     }
 
-                    ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
+                    ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
 
-                    if ( !pLink )
+                    if (!pLink)
                     {
                         continue;
                     }
 
                     // Test if it is a local symbol
-                    if ( !pLink->IsLocal() )
+                    if (!pLink->IsLocal())
                     {
                         // Locate the local symbol
                         CODComponent* pComp = pLink->GetLocalSymbol();
 
-                        if ( pComp && ISA( pComp, ZBDeliverableLinkSymbol ) )
+                        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
                         {
-                            pLink = dynamic_cast<ZBDeliverableLinkSymbol*>( pComp );
+                            pLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
                         }
                         else
                         {
@@ -552,37 +550,37 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
             }
 
             CODEdgeArray LeavingDownEdges;
-            size_t LeavingDownLinkCount = pProcedureBefore->GetEdgesLeaving_Down( LeavingDownEdges );
+            size_t LeavingDownLinkCount = pProcedureBefore->GetEdgesLeaving_Down(LeavingDownEdges);
 
-            if ( LeavingDownLinkCount > 0 )
+            if (LeavingDownLinkCount > 0)
             {
-                for ( size_t nEdgeIdx = 0; nEdgeIdx < LeavingDownLinkCount; ++nEdgeIdx )
+                for (size_t nEdgeIdx = 0; nEdgeIdx < LeavingDownLinkCount; ++nEdgeIdx)
                 {
-                    IODEdge* pIEdge = LeavingDownEdges.GetAt( nEdgeIdx );
+                    IODEdge* pIEdge = LeavingDownEdges.GetAt(nEdgeIdx);
 
                     // Check if a ZBLinkSymbol
-                    if ( !static_cast<CODLinkComponent*>( pIEdge ) ||
-                         !ISA(static_cast<CODLinkComponent*>( pIEdge ), ZBDeliverableLinkSymbol ) )
+                    if (!static_cast<CODLinkComponent*>(pIEdge) ||
+                        !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                     {
                         continue;
                     }
 
-                    ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
+                    ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
 
-                    if ( !pLink )
+                    if (!pLink)
                     {
                         continue;
                     }
 
                     // Test if it is a local symbol
-                    if ( !pLink->IsLocal() )
+                    if (!pLink->IsLocal())
                     {
                         // Locate the local symbol
                         CODComponent* pComp = pLink->GetLocalSymbol();
 
-                        if ( pComp && ISA( pComp, ZBDeliverableLinkSymbol ) )
+                        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
                         {
-                            pLink = dynamic_cast<ZBDeliverableLinkSymbol*>( pComp );
+                            pLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
                         }
                         else
                         {
@@ -596,76 +594,76 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 }
             }
 
-            if ( pLocalProcedureBefore )
+            if (pLocalProcedureBefore)
             {
-                pLocalProcedureBefore->SetProcedureCost( qValue );
+                pLocalProcedureBefore->SetProcedureCost(qValue);
             }
             else
             {
-                pProcedureBefore->SetProcedureCost( qValue );
+                pProcedureBefore->SetProcedureCost(qValue);
             }
 
             // If log and debug mode is required
-            if ( pLog && pLog->IsInDebugMode() )
+            if (pLog && pLog->IsInDebugMode())
             {
                 CString message;
 
-                if ( pLocalProcedureBefore )
+                if (pLocalProcedureBefore)
                 {
-                    message.Format( IDS_AL_PROCESS_COST_OUTOFTIME,
-                                    pLocalProcedureBefore->GetSymbolName(),
-                                    (double)pLocalProcedureBefore->GetProcedureCost() );
+                    message.Format(IDS_AL_PROCESS_COST_OUTOFTIME,
+                                   pLocalProcedureBefore->GetSymbolName(),
+                                   (double)pLocalProcedureBefore->GetProcedureCost());
                 }
                 else
                 {
-                    message.Format( IDS_AL_PROCESS_COST_OUTOFTIME,
-                                    pProcedureBefore->GetSymbolName(),
-                                    (double)pProcedureBefore->GetProcedureCost() );
+                    message.Format(IDS_AL_PROCESS_COST_OUTOFTIME,
+                                   pProcedureBefore->GetSymbolName(),
+                                   (double)pProcedureBefore->GetProcedureCost());
                 }
 
-                ZBGenericSymbolErrorLine e( message );
-                pLog->AddLine( e );
+                ZBGenericSymbolErrorLine e(message);
+                pLog->AddLine(e);
 
                 // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
                 IncrementWarningCounter();
             }
 
             // Calculate the procedure cost forecast
-            if ( pLocalProcedureBefore )
+            if (pLocalProcedureBefore)
             {
                 qValue = pLocalProcedureBefore->GetProcedureWorkloadForecast() *
-                         (double)pLocalProcedureBefore->GetUnitCost();
+                    (double)pLocalProcedureBefore->GetUnitCost();
                 qValue += pLocalProcedureBefore->GetProcedureCost();
-                pLocalProcedureBefore->SetProcedureCostForecast( qValue );
+                pLocalProcedureBefore->SetProcedureCostForecast(qValue);
             }
             else
             {
                 qValue = pProcedureBefore->GetProcedureWorkloadForecast() *
-                         (double)pProcedureBefore->GetUnitCost();
+                    (double)pProcedureBefore->GetUnitCost();
                 qValue += pProcedureBefore->GetProcedureCost();
-                pProcedureBefore->SetProcedureCostForecast( qValue );
+                pProcedureBefore->SetProcedureCostForecast(qValue);
             }
 
             // If log and debug mode is required
-            if ( pLog && pLog->IsInDebugMode() )
+            if (pLog && pLog->IsInDebugMode())
             {
                 CString message;
 
-                if ( pLocalProcedureBefore )
+                if (pLocalProcedureBefore)
                 {
-                    message.Format( IDS_AL_PROCESS_COST_PREV,
-                                    pLocalProcedureBefore->GetSymbolName(),
-                                    (double)pLocalProcedureBefore->GetProcedureCostForecast() );
+                    message.Format(IDS_AL_PROCESS_COST_PREV,
+                                   pLocalProcedureBefore->GetSymbolName(),
+                                   (double)pLocalProcedureBefore->GetProcedureCostForecast());
                 }
                 else
                 {
-                    message.Format( IDS_AL_PROCESS_COST_PREV,
-                                    pProcedureBefore->GetSymbolName(),
-                                    (double)pProcedureBefore->GetProcedureCostForecast() );
+                    message.Format(IDS_AL_PROCESS_COST_PREV,
+                                   pProcedureBefore->GetSymbolName(),
+                                   (double)pProcedureBefore->GetProcedureCostForecast());
                 }
 
-                ZBGenericSymbolErrorLine e( message );
-                pLog->AddLine( e );
+                ZBGenericSymbolErrorLine e(message);
+                pLog->AddLine(e);
 
                 // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
                 IncrementWarningCounter();
@@ -674,37 +672,37 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
             // Calculate the procedure cost per activation
             double value = 0;
 
-            if ( pLocalProcedureBefore )
+            if (pLocalProcedureBefore)
             {
-                if ( pLocalProcedureBefore->GetProcedureActivation() != 0 )
+                if (pLocalProcedureBefore->GetProcedureActivation() != 0)
                 {
                     value = (double)pLocalProcedureBefore->GetProcedureCostForecast() /
-                            (double)pLocalProcedureBefore->GetProcedureActivation();
+                        (double)pLocalProcedureBefore->GetProcedureActivation();
                 }
 
-                pLocalProcedureBefore->SetProcedureCostPerActivity( value );
+                pLocalProcedureBefore->SetProcedureCostPerActivity(value);
             }
             else
             {
-                if ( pProcedureBefore->GetProcedureActivation() != 0 )
+                if (pProcedureBefore->GetProcedureActivation() != 0)
                 {
                     value = (double)pProcedureBefore->GetProcedureCostForecast() /
-                            (double)pProcedureBefore->GetProcedureActivation();
+                        (double)pProcedureBefore->GetProcedureActivation();
                 }
 
-                pProcedureBefore->SetProcedureCostPerActivity( value );
+                pProcedureBefore->SetProcedureCostPerActivity(value);
             }
 
             // If log and debug mode is required
-            if ( pLog && pLog->IsInDebugMode() )
+            if (pLog && pLog->IsInDebugMode())
             {
                 CString message;
-                message.Format( IDS_AL_PROCESS_COST_BYPROC,
-                                pProcedureBefore->GetSymbolName(),
-                                value );
+                message.Format(IDS_AL_PROCESS_COST_BYPROC,
+                               pProcedureBefore->GetSymbolName(),
+                               value);
 
-                ZBGenericSymbolErrorLine e( message );
-                pLog->AddLine( e );
+                ZBGenericSymbolErrorLine e(message);
+                pLog->AddLine(e);
 
                 // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
                 IncrementWarningCounter();
@@ -717,35 +715,35 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
 
 bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pState,
                                                           PSS_StateMachine* pStateMachine,
-                                                          ZILog*            pLog )
+                                                          PSS_Log*            pLog)
 {
     if (!ZBBPAutomate::OnBeforeMoveForward(pState, pStateMachine, pLog))
         return false;
 
 #ifdef _DEBUG
-    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBSymbol ) )
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBSymbol))
     {
-        TRACE1( _T( "OnBeforeMoveForward: symbol in the stack is %s\n" ),
-                dynamic_cast<ZBSymbol*>( pState->GetSymbol() )->GetSymbolName() );
+        TRACE1(_T("OnBeforeMoveForward: symbol in the stack is %s\n"),
+               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
     }
 #endif
 
     // Now check if we are a procedure
     // If we are, calculate the procedure activation
-    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPProcedureSymbol ) )
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPProcedureSymbol))
     {
-        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetSymbol() );
+        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pState->GetSymbol());
         ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
 
         // Test if it is a local symbol
-        if ( !pProcedure->IsLocal() )
+        if (!pProcedure->IsLocal())
         {
             // Locate the local symbol
             CODComponent* pComp = pProcedure->GetLocalSymbol();
 
-            if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+            if (pComp && ISA(pComp, ZBBPProcedureSymbol))
             {
-                pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>( pComp );
+                pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
             }
             else
             {
@@ -753,16 +751,16 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                 return false;
             }
 
-            TRACE1( _T( "OnNextSymbolAfterMoveForward: retrieve local procedure %s\n" ),
-                    pLocalProcedureBefore->GetSymbolName() );
+            TRACE1(_T("OnNextSymbolAfterMoveForward: retrieve local procedure %s\n"),
+                   pLocalProcedureBefore->GetSymbolName());
         }
 
-        TRACE1( _T( "OnBeforeMoveForward: procedure in the stack is %s\n" ),
-                    pProcedure->GetSymbolName() );
+        TRACE1(_T("OnBeforeMoveForward: procedure in the stack is %s\n"),
+               pProcedure->GetSymbolName());
 
-        if ( pLocalProcedureBefore )
+        if (pLocalProcedureBefore)
         {
-            pLocalProcedureBefore->SetProcedureActivation( pLocalProcedureBefore->CalculateProcedureActivation() );
+            pLocalProcedureBefore->SetProcedureActivation(pLocalProcedureBefore->CalculateProcedureActivation());
         }
         else
         {
@@ -773,25 +771,25 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
         }
 
         // If log and debug mode is required
-        if ( pLog && pLog->IsInDebugMode() )
+        if (pLog && pLog->IsInDebugMode())
         {
             CString message;
 
-            if ( pLocalProcedureBefore )
+            if (pLocalProcedureBefore)
             {
-                message.Format( IDS_AL_PROCESS_CALC_ACTIV,
-                                pLocalProcedureBefore->GetSymbolName(),
-                                (double)pLocalProcedureBefore->GetProcedureActivation() );
+                message.Format(IDS_AL_PROCESS_CALC_ACTIV,
+                               pLocalProcedureBefore->GetSymbolName(),
+                               (double)pLocalProcedureBefore->GetProcedureActivation());
             }
             else
             {
-                message.Format( IDS_AL_PROCESS_CALC_ACTIV,
-                                pProcedure->GetSymbolName(),
-                                (double)pProcedure->GetProcedureActivation() );
+                message.Format(IDS_AL_PROCESS_CALC_ACTIV,
+                               pProcedure->GetSymbolName(),
+                               (double)pProcedure->GetProcedureActivation());
             }
 
-            ZBGenericSymbolErrorLine e( message );
-            pLog->AddLine( e );
+            ZBGenericSymbolErrorLine e(message);
+            pLog->AddLine(e);
 
             // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
             IncrementWarningCounter();
@@ -801,61 +799,61 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
         // Take all leaving down, right and left deliverables
         double dValue = 0;    // Reset the value
         CODEdgeArray LeavingRightEdges;
-        size_t LeavingRightLinkCount = pProcedure->GetEdgesLeaving_Right( LeavingRightEdges );
+        size_t LeavingRightLinkCount = pProcedure->GetEdgesLeaving_Right(LeavingRightEdges);
 
-        if ( LeavingRightLinkCount > 0 )
+        if (LeavingRightLinkCount > 0)
         {
-            dValue += CalculateSumOfOutDeliverables( LeavingRightEdges,
-                                                     LeavingRightLinkCount,
-                                                     pProcedure,
-                                                     pLocalProcedureBefore );
+            dValue += CalculateSumOfOutDeliverables(LeavingRightEdges,
+                                                    LeavingRightLinkCount,
+                                                    pProcedure,
+                                                    pLocalProcedureBefore);
         }
 
         CODEdgeArray LeavingDownEdges;
-        size_t LeavingDownLinkCount = pProcedure->GetEdgesLeaving_Down( LeavingDownEdges );
+        size_t LeavingDownLinkCount = pProcedure->GetEdgesLeaving_Down(LeavingDownEdges);
 
-        if ( LeavingDownLinkCount > 0 )
-            dValue += CalculateSumOfOutDeliverables( LeavingDownEdges,
-                                                     LeavingDownLinkCount,
-                                                     pProcedure,
-                                                     pLocalProcedureBefore );
+        if (LeavingDownLinkCount > 0)
+            dValue += CalculateSumOfOutDeliverables(LeavingDownEdges,
+                                                    LeavingDownLinkCount,
+                                                    pProcedure,
+                                                    pLocalProcedureBefore);
 
         CODEdgeArray LeavingLeftEdges;
-        size_t LeavingLeftLinkCount = pProcedure->GetEdgesLeaving_Left( LeavingLeftEdges );
+        size_t LeavingLeftLinkCount = pProcedure->GetEdgesLeaving_Left(LeavingLeftEdges);
 
-        if ( LeavingLeftLinkCount > 0 )
+        if (LeavingLeftLinkCount > 0)
         {
-            dValue += CalculateSumOfOutDeliverables( LeavingLeftEdges,
-                                                     LeavingLeftLinkCount,
-                                                     pProcedure,
-                                                     pLocalProcedureBefore );
+            dValue += CalculateSumOfOutDeliverables(LeavingLeftEdges,
+                                                    LeavingLeftLinkCount,
+                                                    pProcedure,
+                                                    pLocalProcedureBefore);
         }
 
-        if ( pLocalProcedureBefore )
+        if (pLocalProcedureBefore)
         {
             // Uses the multiplier
             dValue *= (double)pLocalProcedureBefore->GetMultiplier();
             dValue += pLocalProcedureBefore->GetProcessingTime();
-            pLocalProcedureBefore->SetProcedureWorkloadPerActivity( dValue );
+            pLocalProcedureBefore->SetProcedureWorkloadPerActivity(dValue);
         }
         else
         {
             dValue *= (double)pProcedure->GetMultiplier();
             dValue += pProcedure->GetProcessingTime();
-            pProcedure->SetProcedureWorkloadPerActivity( dValue );
+            pProcedure->SetProcedureWorkloadPerActivity(dValue);
         }
 
         // Now take the procedure processing time and add it to the value
         // If log and debug mode is required
-        if ( pLog && pLog->IsInDebugMode() )
+        if (pLog && pLog->IsInDebugMode())
         {
             CString message;
-            message.Format( IDS_AL_PROCESS_LOADBYACTIV,
-                            pProcedure->GetSymbolName(),
-                            dValue );
+            message.Format(IDS_AL_PROCESS_LOADBYACTIV,
+                           pProcedure->GetSymbolName(),
+                           dValue);
 
-            ZBGenericSymbolErrorLine e( message );
-            pLog->AddLine( e );
+            ZBGenericSymbolErrorLine e(message);
+            pLog->AddLine(e);
 
             // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
             IncrementWarningCounter();
@@ -864,39 +862,39 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
         // Now calculate the workload forecast
         ZBBPAnnualNumberProperties qValue;
 
-        if ( pLocalProcedureBefore )
+        if (pLocalProcedureBefore)
         {
             qValue = pLocalProcedureBefore->GetProcedureActivation() *
-                                                pLocalProcedureBefore->GetProcedureWorkloadPerActivity();
-            pLocalProcedureBefore->SetProcedureWorkloadForecast( qValue );
+                pLocalProcedureBefore->GetProcedureWorkloadPerActivity();
+            pLocalProcedureBefore->SetProcedureWorkloadForecast(qValue);
         }
         else
         {
             qValue = pProcedure->GetProcedureActivation() *
-                                                pProcedure->GetProcedureWorkloadPerActivity();
-            pProcedure->SetProcedureWorkloadForecast( qValue );
+                pProcedure->GetProcedureWorkloadPerActivity();
+            pProcedure->SetProcedureWorkloadForecast(qValue);
         }
 
         // If log and debug mode is required
-        if ( pLog && pLog->IsInDebugMode() )
+        if (pLog && pLog->IsInDebugMode())
         {
             CString message;
 
-            if ( pLocalProcedureBefore )
+            if (pLocalProcedureBefore)
             {
-                message.Format( IDS_AL_PROCESS_WORKLOAD,
-                                pLocalProcedureBefore->GetSymbolName(),
-                                (double)pLocalProcedureBefore->GetProcedureWorkloadForecast() );
+                message.Format(IDS_AL_PROCESS_WORKLOAD,
+                               pLocalProcedureBefore->GetSymbolName(),
+                               (double)pLocalProcedureBefore->GetProcedureWorkloadForecast());
             }
             else
             {
-                message.Format( IDS_AL_PROCESS_WORKLOAD,
-                                pProcedure->GetSymbolName(),
-                                (double)pProcedure->GetProcedureWorkloadForecast() );
+                message.Format(IDS_AL_PROCESS_WORKLOAD,
+                               pProcedure->GetSymbolName(),
+                               (double)pProcedure->GetProcedureWorkloadForecast());
             }
 
-            ZBGenericSymbolErrorLine e( message );
-            pLog->AddLine( e );
+            ZBGenericSymbolErrorLine e(message);
+            pLog->AddLine(e);
 
             // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
             IncrementWarningCounter();
@@ -908,82 +906,82 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
 bool ZBSesterceRecalculationAutomate::OnAfterMoveForward(PSS_StateObject*  pState,
                                                          PSS_StateMachine* pStateMachine,
-                                                         ZILog*            pLog )
+                                                         PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnAfterMoveForward( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnAfterMoveForward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnBeforeMoveBackward(PSS_StateObject*  pState,
                                                            PSS_StateMachine* pStateMachine,
-                                                           ZILog*            pLog )
+                                                           PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnBeforeMoveBackward( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnBeforeMoveBackward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnAfterMoveBackward(PSS_StateObject*  pState,
                                                           PSS_StateMachine* pStateMachine,
-                                                          ZILog*            pLog )
+                                                          PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnAfterMoveBackward( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnAfterMoveBackward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnObjectError(PSS_StateObject*  pState,
                                                     PSS_StateMachine* pStateMachine,
-                                                    ZILog*            pLog)
+                                                    PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectError( pState, pStateMachine, pLog );
+    return ZBBPAutomate::OnObjectError(pState, pStateMachine, pLog);
 }
 
-bool ZBSesterceRecalculationAutomate::OnReachMaximumLoopCounter( ZILog* pLog )
+bool ZBSesterceRecalculationAutomate::OnReachMaximumLoopCounter(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnReachMaximumLoopCounter( pLog );
+    return ZBBPAutomate::OnReachMaximumLoopCounter(pLog);
 }
 
-bool ZBSesterceRecalculationAutomate::OnReachMaximumWaitingForOtherLinksCounter( ZILog* pLog )
+bool ZBSesterceRecalculationAutomate::OnReachMaximumWaitingForOtherLinksCounter(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnReachMaximumWaitingForOtherLinksCounter( pLog );
+    return ZBBPAutomate::OnReachMaximumWaitingForOtherLinksCounter(pLog);
 }
 
-bool ZBSesterceRecalculationAutomate::OnReachMaximumInPauseCounter( ZILog* pLog )
+bool ZBSesterceRecalculationAutomate::OnReachMaximumInPauseCounter(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnReachMaximumInPauseCounter( pLog );
+    return ZBBPAutomate::OnReachMaximumInPauseCounter(pLog);
 }
 
-double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables( CODEdgeArray&        LeavingEdges,
-                                                                       size_t                LeavingLinkCount,
-                                                                       ZBBPProcedureSymbol*    pProcedure,
-                                                                       ZBBPProcedureSymbol*    pLocalProcedureBefore )
+double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables(CODEdgeArray&        LeavingEdges,
+                                                                      size_t                LeavingLinkCount,
+                                                                      ZBBPProcedureSymbol*    pProcedure,
+                                                                      ZBBPProcedureSymbol*    pLocalProcedureBefore)
 {
     double dValue = 0;
     double dPercentOut;
 
-    for ( size_t nEdgeIdx = 0; nEdgeIdx < LeavingLinkCount; ++nEdgeIdx )
+    for (size_t nEdgeIdx = 0; nEdgeIdx < LeavingLinkCount; ++nEdgeIdx)
     {
-        IODEdge* pIEdge = LeavingEdges.GetAt( nEdgeIdx );
+        IODEdge* pIEdge = LeavingEdges.GetAt(nEdgeIdx);
 
         // Check if a ZBLinkSymbol
-        if ( !static_cast<CODLinkComponent*>( pIEdge ) ||
-             !ISA( static_cast<CODLinkComponent*>( pIEdge ), ZBDeliverableLinkSymbol ) )
+        if (!static_cast<CODLinkComponent*>(pIEdge) ||
+            !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
         {
             continue;
         }
 
-        ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
+        ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
 
-        if ( !pLink )
+        if (!pLink)
         {
             continue;
         }
 
         // Test if it is a local symbol
-        if ( !pLink->IsLocal() )
+        if (!pLink->IsLocal())
         {
             // Locate the local symbol
             CODComponent* pComp = pLink->GetLocalSymbol();
 
-            if ( pComp && ISA( pComp, ZBDeliverableLinkSymbol ) )
+            if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
             {
-                pLink = dynamic_cast<ZBDeliverableLinkSymbol*>( pComp );
+                pLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
             }
             else
             {
@@ -993,29 +991,29 @@ double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables( CODEdgeAr
         }
 
         // If the quantity is not locked
-        if ( pLink->GetLockQuantityYear() == false )
+        if (pLink->GetLockQuantityYear() == false)
         {
             dPercentOut = (double)pLink->GetOutWorkloadPercent();
         }
         else
         {
             // Quantity / Activation * Multiplier
-            if ( pLocalProcedureBefore )
+            if (pLocalProcedureBefore)
             {
                 dPercentOut = pLink->GetQuantityYear() /
-                              ( (double)pLocalProcedureBefore->GetProcedureActivation() *
-                              pLocalProcedureBefore->GetMultiplier() );
+                    ((double)pLocalProcedureBefore->GetProcedureActivation() *
+                     pLocalProcedureBefore->GetMultiplier());
             }
             else
             {
                 dPercentOut = pLink->GetQuantityYear() /
-                              ( (double)pProcedure->GetProcedureActivation() *
-                              pProcedure->GetMultiplier() );
+                    ((double)pProcedure->GetProcedureActivation() *
+                     pProcedure->GetMultiplier());
             }
         }
 
         // Add the value
-        dValue += ( dPercentOut * pLink->GetProcessingTime() );
+        dValue += (dPercentOut * pLink->GetProcessingTime());
     }
 
     return dValue;

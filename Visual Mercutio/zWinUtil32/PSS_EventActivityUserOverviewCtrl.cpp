@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventActivityUserOverviewCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(PSS_EventActivityUserOverviewCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(ZCEventActivityUserOverview)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -33,6 +33,7 @@ END_MESSAGE_MAP()
 // PSS_EventActivityUserOverviewCtrl
 //---------------------------------------------------------------------------
 PSS_EventActivityUserOverviewCtrl::PSS_EventActivityUserOverviewCtrl(ZBEventManager* pEventManager) :
+    PSS_TreeCtrl(),
     m_pEventManager(pEventManager)
 {}
 //---------------------------------------------------------------------------

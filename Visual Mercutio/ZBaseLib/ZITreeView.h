@@ -200,9 +200,4 @@ inline CObject* ZITreeView::GetDragObject( HTREEITEM DragItem )
     return (CObject*)GetTreeCtrl().GetItemData( DragItem );
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZITreeView_H__BF391ECD_8805_4220_A368_C992B623A66E__INCLUDED_)
+#endif

@@ -37,7 +37,7 @@
 #include "zBaseLib\PSS_DocumentPageSetup.h"
 
 // Forward declaration
-class ZILog;
+class PSS_Log;
 class ZIProcessGraphModelView;
 class ZUUserManager;
 class ZUMail;
@@ -71,13 +71,13 @@ public:
 
     virtual void PreCloseFrame(CFrameWnd* pFrame);
 
-    virtual void Initialize(ZILog*                pOutputLog,
-                            ZILog*                pAnalyzerLog,
-                            ZILog*                pSearchLog,
-                            ZILog*                pWorflowLog,
-                            ZUUserManager*        pUserManager,
+    virtual void Initialize(PSS_Log*           pOutputLog,
+                            PSS_Log*           pAnalyzerLog,
+                            PSS_Log*           pSearchLog,
+                            PSS_Log*           pWorflowLog,
+                            ZUUserManager*     pUserManager,
                             ZUMail*            pMail,
-                            ZDTemplateManager*    pTemplateManager);
+                            ZDTemplateManager* pTemplateManager);
 
     // JMR-MODIF - Le 29 septembre 2005 - Ajout de la fonction IsClosing.
     BOOL IsClosing();
@@ -112,7 +112,7 @@ public:
     CString    GetUserDefGUID() const;
     void    AssignUserDefGUID(const CString value);
     bool    AssignCurrentUserDefGUID();
-    void    ReassignUnit(ZILog* pLog = NULL);
+    void    ReassignUnit(PSS_Log* pLog = NULL);
 
     // System def guid management methods
     bool HasSystemDefAssigned() const
@@ -123,7 +123,7 @@ public:
     CString    GetSystemDefGUID() const;
     void    AssignSystemDefGUID(const CString value);
     bool    AssignCurrentSystemDefGUID();
-    void    ReassignSystem(ZILog* pLog = NULL);
+    void    ReassignSystem(PSS_Log* pLog = NULL);
 
     // ********************************************************************************
     // JMR-MODIF - Le 26 janvier 2006 - Ajout de l'infrastructure pour les prestations.
@@ -135,7 +135,7 @@ public:
     CString    GetPrestationsDefGUID() const;
     void    AssignPrestationsDefGUID(const CString value);
     bool    AssignCurrentPrestationsDefGUID();
-    void    ReassignPrestations(ZILog* pLog = NULL);
+    void    ReassignPrestations(PSS_Log* pLog = NULL);
     // ********************************************************************************
 
     // ********************************************************************************
@@ -148,7 +148,7 @@ public:
     CString    GetRulesDefGUID() const;
     void    AssignRulesDefGUID(const CString value);
     bool    AssignCurrentRulesDefGUID();
-    void    ReassignRules(ZILog* pLog = NULL);
+    void    ReassignRules(PSS_Log* pLog = NULL);
     // ********************************************************************************
 
     // Page unit functions
@@ -163,7 +163,7 @@ public:
     // Unit functions
     bool    InsertUnit(const CString Filename);
     bool    LoadAllUnits();
-    bool    LoadUnit(const CString Filename, ZDProcessGraphModelMdl& Model);
+    //REM bool    LoadUnit(const CString Filename, ZDProcessGraphModelMdl& Model);
 
     bool IsUnit()
     {
@@ -285,22 +285,22 @@ public:
     }
     // ****************************************************************************
 
-    ZILog* GetModelOutputLog()
+    PSS_Log* GetModelOutputLog()
     {
         return m_pOutputLog;
     }
 
-    ZILog* GetAnalyzerOutputLog()
+    PSS_Log* GetAnalyzerOutputLog()
     {
         return m_pAnalyzerLog;
     }
 
-    ZILog* GetSearchOutputLog()
+    PSS_Log* GetSearchOutputLog()
     {
         return m_pSearchLog;
     }
 
-    ZILog* GetWorkflowOutputLog()
+    PSS_Log* GetWorkflowOutputLog()
     {
         return m_pWorflowLog;
     }
@@ -512,10 +512,10 @@ private:
 
     ZBWorkflowDefinition*        m_pWorkflowDefinition;
 
-    ZILog*                        m_pOutputLog;
-    ZILog*                        m_pAnalyzerLog;
-    ZILog*                        m_pSearchLog;
-    ZILog*                        m_pWorflowLog;
+    PSS_Log*                        m_pOutputLog;
+    PSS_Log*                        m_pAnalyzerLog;
+    PSS_Log*                        m_pSearchLog;
+    PSS_Log*                        m_pWorflowLog;
 };
 
 inline CString ZDProcessGraphModelDoc::GetUserDefGUID() const

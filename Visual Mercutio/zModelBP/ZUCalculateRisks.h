@@ -16,7 +16,7 @@
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
 
 // Forward declaration
-class ZILog;
+class PSS_Log;
 class ZIBasicSymbol;
 class ZBSymbol;
 class ZBLinkSymbol;
@@ -35,48 +35,48 @@ class ZUCalculateRisks : public ZIBasicSymbolVisitor
 {
 public:
 
-    ZUCalculateRisks( int                        OrangeSeverity,
-                      int                        RedSeverity,
-                      float                        OrangeUE,
-                      float                        RedUE,
-                      float                        OrangePOA,
-                      float                        RedPOA,
-                      BOOL                        OrangeAction,
-                      BOOL                        OrangeNoAction,
-                      BOOL                        RedAction,
-                      BOOL                        RedNoAction,
-                      BOOL                        DefaultColors,
-                      ZDProcessGraphModelMdl*    pModel            = NULL,
-                      ZILog*                    pLog            = NULL );
+    ZUCalculateRisks(int                        OrangeSeverity,
+                     int                        RedSeverity,
+                     float                        OrangeUE,
+                     float                        RedUE,
+                     float                        OrangePOA,
+                     float                        RedPOA,
+                     BOOL                        OrangeAction,
+                     BOOL                        OrangeNoAction,
+                     BOOL                        RedAction,
+                     BOOL                        RedNoAction,
+                     BOOL                        DefaultColors,
+                     ZDProcessGraphModelMdl*    pModel = NULL,
+                     PSS_Log*                    pLog = NULL);
 
     virtual ~ZUCalculateRisks();
 
-    bool Calculate( CODComponent& Symbol );
+    bool Calculate(CODComponent& Symbol);
 
-    // Returns the ZILog pointer on the log used for checking the symbol
-    ZILog* GetLog()
+    // Returns the PSS_Log pointer on the log used for checking the symbol
+    PSS_Log* GetLog()
     {
         return m_pLog;
     };
 
     /* Each concrete derived ZIBasicSymbolVisitor class
-       must implement Visit to implement the appropriate 
-       algorithm 
+       must implement Visit to implement the appropriate
+       algorithm
        In this concrete class the Visit will check the
        BasicSymbol passes as an argument */
-    virtual bool Visit( CODComponent& Symbol );
+    virtual bool Visit(CODComponent& Symbol);
 
 private:
 
-    bool CheckDoorSymbol                ( ZBBPDoorSymbol* pSymbol );
-    bool CheckPageSymbol                ( ZBBPPageSymbol* pSymbol );
-    bool CheckProcedureSymbol            ( ZBBPProcedureSymbol* pSymbol );
-    bool CheckProcessSymbol                ( ZBBPProcessSymbol* pSymbol );
-    bool CheckStartSymbol                ( ZBBPStartSymbol* pSymbol );
-    bool CheckStopSymbol                ( ZBBPStopSymbol* pSymbol );
-    bool CheckDeliverableLinkSymbol        ( ZBDeliverableLinkSymbol* pSymbol );
-    bool CheckSymbol                    ( ZBSymbol* pSymbol );
-    bool CheckLink                        ( ZBLinkSymbol* pLink );
+    bool CheckDoorSymbol(ZBBPDoorSymbol* pSymbol);
+    bool CheckPageSymbol(ZBBPPageSymbol* pSymbol);
+    bool CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    bool CheckProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    bool CheckStartSymbol(ZBBPStartSymbol* pSymbol);
+    bool CheckStopSymbol(ZBBPStopSymbol* pSymbol);
+    bool CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
+    bool CheckSymbol(ZBSymbol* pSymbol);
+    bool CheckLink(ZBLinkSymbol* pLink);
 
 private:
 
@@ -94,7 +94,7 @@ private:
     BOOL                    m_RedNoAction;
     BOOL                    m_DefaultColors;
 
-    ZILog*                    m_pLog;
+    PSS_Log*                    m_pLog;
 
     ZDProcessGraphModelMdl*    m_pModel;
 
@@ -102,4 +102,4 @@ private:
     size_t                    m_RedCounter;
 };
 
-#endif // !defined(AFX_ZUCALCULATERISKS_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

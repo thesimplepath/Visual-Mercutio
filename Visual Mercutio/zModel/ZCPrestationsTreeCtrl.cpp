@@ -70,7 +70,7 @@ _ZInternalPrestationsTreeData::~_ZInternalPrestationsTreeData()
 /////////////////////////////////////////////////////////////////////////////
 // ZCPrestationsTreeCtrl
 
-BEGIN_MESSAGE_MAP(ZCPrestationsTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(ZCPrestationsTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(ZCPrestationsTreeCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
@@ -83,8 +83,9 @@ BEGIN_MESSAGE_MAP(ZCPrestationsTreeCtrl, ZITreeCtrl)
 END_MESSAGE_MAP()
 
 ZCPrestationsTreeCtrl::ZCPrestationsTreeCtrl(const CString                    RootName                /*= _T( "" )*/,
-                                             ZBLogicalPrestationsEntity*    pLogicalPrestationRoot    /*= NULL*/)
-    : m_RootName(RootName),
+                                             ZBLogicalPrestationsEntity*    pLogicalPrestationRoot    /*= NULL*/) :
+    PSS_TreeCtrl(),
+    m_RootName(RootName),
     m_pLogicalPrestationRoot(pLogicalPrestationRoot),
     m_hUserGroupRoot(NULL),
     m_HasBeenInitialized(false)
@@ -153,10 +154,8 @@ void ZCPrestationsTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
 
 int ZCPrestationsTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
-    {
+    if (PSS_TreeCtrl::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
 
     LoadTree();
 

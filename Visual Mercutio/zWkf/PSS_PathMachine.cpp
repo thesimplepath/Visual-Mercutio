@@ -9,7 +9,7 @@
 #include "PSS_PathMachine.h"
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -27,7 +27,7 @@
 //---------------------------------------------------------------------------
 PSS_PathMachine::PSS_PathMachine(ZDProcessGraphModelMdl* pModel,
                                  ZBSymbol*               pSymbol,
-                                 ZILog*                  pLog,
+                                 PSS_Log*                pLog,
                                  int                     maxLoop,
                                  int                     maxPaused,
                                  int                     maxWaitingForOtherLinks) :
@@ -85,109 +85,109 @@ PSS_PathMachine::IEPathMoveStatus PSS_PathMachine::RequestMoveForward(PSS_StateO
                                                                       PSS_StateMachine*  pStateMachine,
                                                                       PSS_SymbolSet&     symbolSet,
                                                                       PSS_StateLinksSet& stateLinkSet,
-                                                                      ZILog*             pLog)
+                                                                      PSS_Log*           pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return IE_PS_Error;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnStart(ZILog* pLog)
+bool PSS_PathMachine::OnStart(PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 };
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnStop(ZILog* pLog)
+bool PSS_PathMachine::OnStop(PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnPause(ZILog* pLog)
+bool PSS_PathMachine::OnPause(PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnResume(ZILog* pLog)
+bool PSS_PathMachine::OnResume(PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnObjectIsWaitingForOtherLinks(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnObjectIsWaitingForOtherLinks(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
+bool PSS_PathMachine::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnReachMaxLoopCounter(ZILog* pLog)
+bool PSS_PathMachine::OnReachMaxLoopCounter(PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 };
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnReachMaxWaitingForOtherLinksCounter(ZILog* pLog)
+bool PSS_PathMachine::OnReachMaxWaitingForOtherLinksCounter(PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;
 };
 //---------------------------------------------------------------------------
-bool PSS_PathMachine::OnReachMaxInPauseCounter(ZILog* pLog)
+bool PSS_PathMachine::OnReachMaxInPauseCounter(PSS_Log* pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return true;

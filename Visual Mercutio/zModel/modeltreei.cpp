@@ -5,7 +5,7 @@
 #include "ModelTreei.h"
 #include "ProcGraphModelMdl.h"
 
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "ZBModelSet.h"
 #include "ZBSymbol.h"
 #include "ZBLinkSymbol.h"
@@ -26,7 +26,7 @@ const int _ModelPageTreeItem        = 2;
 
 // Class ZIModelTree 
 
-ZIModelTree::ZIModelTree( ZITreeCtrl*            pTreeCtrl,
+ZIModelTree::ZIModelTree(PSS_TreeCtrl*            pTreeCtrl,
                           const CString            RootName,
                           ZBModelSet*            pModelSet,
                           UINT                    nIDImageRes,
@@ -84,7 +84,7 @@ void ZIModelTree::Empty()
     EmptyDataSet();
 }
 
-void ZIModelTree::Initialize( ZITreeCtrl*            pTreeCtrl,
+void ZIModelTree::Initialize(PSS_TreeCtrl*            pTreeCtrl,
                               const CString            RootName,
                               ZBModelSet*            pModelSet,
                               UINT                    nIDImageRes,

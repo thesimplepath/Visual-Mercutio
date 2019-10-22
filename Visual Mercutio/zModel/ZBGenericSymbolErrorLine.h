@@ -8,7 +8,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -16,10 +16,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZIErrorLine.h"
+// processsoft
+#include "zBaseLib\PSS_ErrorLine.h"
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -30,7 +31,7 @@
 
 // JMR-MODIF - Le 22 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBGenericSymbolErrorLine : public ZIErrorLine
+class AFX_EXT_CLASS ZBGenericSymbolErrorLine : public PSS_ErrorLine
 {
 public:
 
@@ -83,9 +84,8 @@ protected:
     virtual void Parse();
 
 private:
-
     CString m_SymbolName;
     CString m_SymbolPath;
 };
 
-#endif // !defined(AFX_ZBGenericSymbolErrorLine_H__74469948_01E4_477F_AE8E_F83A38064EE6__INCLUDED_)
+#endif

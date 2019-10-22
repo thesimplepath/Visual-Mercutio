@@ -25,8 +25,9 @@ const int _AttributeTreeItem = 1;
 // ZCSymbolAttributesTreeCtrl
 
 ZCSymbolAttributesTreeCtrl::ZCSymbolAttributesTreeCtrl(ZBPropertyAttributes* pPropAttributes /*= NULL*/,
-                                                       ZBPropertySet* pPropSet /*= NULL*/)
-    : m_pPropAttributes(pPropAttributes),
+                                                       ZBPropertySet* pPropSet /*= NULL*/) :
+    PSS_TreeCtrl(),
+    m_pPropAttributes(pPropAttributes),
     m_pPropSet(pPropSet),
     m_HasBeenInitialized(false)
 {}
@@ -58,7 +59,7 @@ void ZCSymbolAttributesTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg
 {}
 
 
-BEGIN_MESSAGE_MAP(ZCSymbolAttributesTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(ZCSymbolAttributesTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(ZCSymbolAttributesTreeCtrl)
     ON_WM_CREATE()
     ON_NOTIFY_REFLECT(TVN_ITEMEXPANDED, OnItemExpanded)
@@ -72,7 +73,7 @@ END_MESSAGE_MAP()
 
 int ZCSymbolAttributesTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
+    if (PSS_TreeCtrl::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     LoadTree();
@@ -443,7 +444,7 @@ _ZInternalPropertyTreeData* ZCSymbolAttributesTreeCtrl::AddDataToSet(_ZBProperty
 void ZCSymbolAttributesTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 {
 
-    ZITreeCtrl::OnLButtonUp(nFlags, point);
+    PSS_TreeCtrl::OnLButtonUp(nFlags, point);
 
     UINT Flags;
 

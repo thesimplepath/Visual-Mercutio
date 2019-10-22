@@ -10,7 +10,7 @@
 #include "PSS_SoapPublishLogicalSystem.h"
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBLogicalSystemEntity.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
@@ -29,7 +29,7 @@
 //---------------------------------------------------------------------------
 // PSS_SoapPublishLogicalSystem
 //---------------------------------------------------------------------------
-PSS_SoapPublishLogicalSystem::PSS_SoapPublishLogicalSystem(ZBPublishMessengerModelInformation* pInfo, ZILog* pLog) :
+PSS_SoapPublishLogicalSystem::PSS_SoapPublishLogicalSystem(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog) :
     m_pInfo(pInfo),
     m_pLog(pLog)
 {}

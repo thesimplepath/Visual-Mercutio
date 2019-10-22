@@ -58,8 +58,9 @@ BEGIN_MESSAGE_MAP(ZVOutputView, CWnd)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVOutputView::ZVOutputView()
-    : m_IsInDebugMode(false),
+ZVOutputView::ZVOutputView() :
+    CWnd(),
+    m_IsInDebugMode(false),
     m_SelectLast(false),
     m_List(NULL)
 {

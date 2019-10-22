@@ -1,8 +1,8 @@
 // ProcGraphModelMdl.cpp : implementation of the ZDProcessGraphModelMdl class
 
 #include "stdafx.h"
-
 #include "ProcGraphModelMdl.h"
+
 #include "ProcGraphModelCtlr.h"
 #include "ProcGraphModelDoc.h"
 #include "ProcGraphModelVp.h"
@@ -25,7 +25,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 
 // Include files for log
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zModel\ZBSearchSymbolLogLine.h"
 
@@ -2463,7 +2463,7 @@ CODComponentSet* ZDProcessGraphModelMdl::FindSymbolPartialName(const CString    
 }
 
 size_t ZDProcessGraphModelMdl::Find(const CString            What,
-                                    ZILog*                    pLog,
+                                    PSS_Log*                    pLog,
                                     ZBPropertyAttributes*    pPropAttributes    /*= NULL*/,
                                     bool                    InSubModel        /*= true*/,
                                     bool                    CaseSensitive    /*=false*/,
@@ -2546,7 +2546,7 @@ bool ZDProcessGraphModelMdl::SubModelExist(const CString ModelName, bool CaseSen
 }
 
 void ZDProcessGraphModelMdl::_Find(const CString            What,
-                                   ZILog*                    pLog,
+                                   PSS_Log*                    pLog,
                                    ZBPropertyAttributes*    pPropAttributes    /*= NULL*/,
                                    bool                    InSubModel        /*= true*/,
                                    bool                    CaseSensitive    /*=false*/,

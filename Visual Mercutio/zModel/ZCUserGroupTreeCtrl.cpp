@@ -33,7 +33,7 @@ const int _UserRoleTreeItem = 3;
 /////////////////////////////////////////////////////////////////////////////
 // ZCUserGroupTreeCtrl
 
-BEGIN_MESSAGE_MAP(ZCUserGroupTreeCtrl, ZITreeCtrl)
+BEGIN_MESSAGE_MAP(ZCUserGroupTreeCtrl, PSS_TreeCtrl)
     //{{AFX_MSG_MAP(ZCUserGroupTreeCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
@@ -45,8 +45,9 @@ BEGIN_MESSAGE_MAP(ZCUserGroupTreeCtrl, ZITreeCtrl)
 END_MESSAGE_MAP()
 
 ZCUserGroupTreeCtrl::ZCUserGroupTreeCtrl(const CString            RootName /*= _T( "" )*/,
-                                         ZBUserGroupEntity*    pUserGroupRoot /*= NULL*/)
-    : m_RootName(RootName),
+                                         ZBUserGroupEntity*    pUserGroupRoot /*= NULL*/) :
+    PSS_TreeCtrl(),
+    m_RootName(RootName),
     m_pUserGroupRoot(pUserGroupRoot),
     m_hUserGroupRoot(NULL),
     m_HasBeenInitialized(false)
@@ -97,10 +98,8 @@ BOOL ZCUserGroupTreeCtrl::DestroyWindow()
 
 int ZCUserGroupTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
-    {
+    if (PSS_TreeCtrl::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
 
     LoadTree();
 

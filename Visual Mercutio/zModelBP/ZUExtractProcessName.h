@@ -25,7 +25,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -35,14 +35,13 @@
 
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward declaration
-class ZILog;
+// forward class declarations
 class ZBBPProcessSymbol;
 class ZDProcessGraphModelMdl;
+class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -57,33 +56,33 @@ class AFX_EXT_CLASS ZUExtractProcessName : public ZIBasicSymbolVisitor
 {
 public:
 
-    ZUExtractProcessName( ZDProcessGraphModelMdl* pModel = NULL, ZILog* pLog = NULL );
+    ZUExtractProcessName(ZDProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
     virtual ~ZUExtractProcessName();
 
     // JMR-MODIF - Le 29 mars 2006 - Ajout du paramètre FirstElementToSort.
-    bool FillProcessNameArray( CStringArray* pArray, int FirstElementToSort = 0 );
+    bool FillProcessNameArray(CStringArray* pArray, int FirstElementToSort = 0);
 
     /* Each concrete derived ZIBasicSymbolVisitor class
-       must implement Visit to implement the appropriate 
-       algorithm 
+       must implement Visit to implement the appropriate
+       algorithm
        In this concrete class the Visit will check the
        BasicSymbol passes as an argument */
-    virtual bool Visit( CODComponent& Symbol );
+    virtual bool Visit(CODComponent& Symbol);
 
 private:
 
-    bool AddProcessSymbol( ZBBPProcessSymbol* pSymbol );
-    bool Exist( CStringArray& Array, const CString ProcessName );
+    bool AddProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    bool Exist(CStringArray& Array, const CString ProcessName);
 
     // JMR-MODIF - Le 8 mars 2006 - Ajout de la fonction Sort.
     // JMR-MODIF - Le 29 mars 2006 - Ajout du paramètre First.
-    void Sort( int First = 0 );
+    void Sort(int First = 0);
 
 private:
 
-    ZILog*                    m_pLog;
+    PSS_Log*                m_pLog;
     ZDProcessGraphModelMdl* m_pModel;
-    CStringArray*            m_pArray;
+    CStringArray*           m_pArray;
 };
 
-#endif // !defined(AFX_ZUExtractProcessName_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

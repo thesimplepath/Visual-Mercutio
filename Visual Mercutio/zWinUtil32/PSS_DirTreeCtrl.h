@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_NetResourceWrapper.h"
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -38,7 +38,7 @@
 * Directory tree control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_DirTreeCtrl : public ZITreeCtrl
+class AFX_EXT_CLASS PSS_DirTreeCtrl : public PSS_TreeCtrl
 {
     public:
         /**

@@ -15,7 +15,7 @@
 
 // Forward declaration
 class ZDProcessGraphPage;
-class ZITreeCtrl;
+class PSS_TreeCtrl;
 class ZBModelSet;
 class ZBSymbol;
 class ZBLinkSymbol;
@@ -78,7 +78,7 @@ class AFX_EXT_CLASS ZIModelTree
 {
 public:
 
-    ZIModelTree( ZITreeCtrl*        pTreeCtrl    = NULL,
+    ZIModelTree(PSS_TreeCtrl*        pTreeCtrl    = NULL,
                  const CString        RootName    = _T( "" ),
                  ZBModelSet*        pModelSet    = NULL,
                  UINT                nIDImageRes    = -1,
@@ -86,7 +86,7 @@ public:
 
     virtual ~ZIModelTree();
 
-    void Initialize( ZITreeCtrl*        pTreeCtrl,
+    void Initialize(PSS_TreeCtrl*        pTreeCtrl,
                      const CString        RootName    = _T( "" ),
                      ZBModelSet*        pModelSet    = NULL,
                      UINT                nIDImageRes    = -1,
@@ -191,7 +191,7 @@ protected:
     HTREEITEM                    m_hRootDocument;
     ZBModelSet*                    m_pModelSet;
     BOOL                        m_HasBeenInitialized;
-    ZITreeCtrl*                    m_pTreeCtrl;
+    PSS_TreeCtrl*                  m_pTreeCtrl;
     CString                        m_RootName;
     UINT                        m_nIDImageRes;
 

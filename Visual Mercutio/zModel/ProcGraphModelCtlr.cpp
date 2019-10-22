@@ -4853,7 +4853,7 @@ void ZDProcessGraphModelController::OnFindSymbol()
         // to change the cursor back to the wait cursor.
         wait.Restore();
 
-        ZILog* pLog = NULL;
+        PSS_Log* pLog = NULL;
 
         if (pModel->GetDocument() && ISA(pModel->GetDocument(), ZDProcessGraphModelDoc))
         {

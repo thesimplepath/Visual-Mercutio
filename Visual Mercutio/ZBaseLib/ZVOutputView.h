@@ -17,7 +17,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 #endif
 
-#include "ZILog.h"
+// processsoft
+#include "PSS_Log.h"
 #include "PSS_Subject.h"
 #include "PSS_Observer.h"
 
@@ -84,7 +85,7 @@ protected:
 // ZVOutputView view
 
 class AFX_EXT_CLASS ZVOutputView : public CWnd,
-                                   public ZILog,
+                                   public PSS_Log,
                                    public PSS_Subject,
                                    public PSS_Observer
 {
@@ -121,7 +122,7 @@ public:
         UpdateWindow();
     }
 
-    virtual void AddLine(const CString Line)
+    virtual void AddLine(const CString& line)
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
         if (m_List == NULL)
@@ -129,11 +130,11 @@ public:
             return;
         }
 
-        m_List->AddString(Line);
+        m_List->AddString(line);
 
         if (m_SelectLast)
         {
-            m_List->SelectString(-1, Line);
+            m_List->SelectString(-1, line);
         }
 
         // Immediate update

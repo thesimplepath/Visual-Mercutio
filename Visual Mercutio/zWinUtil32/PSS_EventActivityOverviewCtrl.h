@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZITreeCtl.h"
+#include "zBaseLib\PSS_TreeCtrl.h"
 #include "zEvent\EventManager.h"
 #include "zEvent\ActEvent.h"
 
@@ -35,7 +35,7 @@
 * Event activity overview control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public ZITreeCtrl
+class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
 {
     public:
         /**

@@ -5,7 +5,7 @@
 #include "ZVPublishToMessengerWizard.h"
 
 // processsoft
-#include "zBaseLib\ZILog.h"
+#include "zBaseLib\PSS_Log.h"
 #include "zBaseLib\ZUSystemOption.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Global.h"
@@ -56,7 +56,7 @@ const CString gPublishMessengerAliasName = _T("Alias");
 //////////////////////////////////////////////////////////////////////
 
 ZVPublishToMessengerWizard::ZVPublishToMessengerWizard(ZDProcessGraphModelDoc*    pModelDoc,
-                                                       ZILog*                    pLog            /*= NULL*/,
+                                                       PSS_Log*                    pLog            /*= NULL*/,
                                                        const                    CString IniFile    /*= ""*/)
     : m_pModelDoc(pModelDoc),
     m_pLog(pLog),
