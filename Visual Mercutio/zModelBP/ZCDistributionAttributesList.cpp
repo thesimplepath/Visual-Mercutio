@@ -73,12 +73,12 @@ void    ZCDistributionAttributesList::BuildColumns()
     if (m_ColumnsBuilt)
         return;
     // Load images
-    ZIListCtrl::LoadImageList(IDB_IL_DISTRIBUTIONATTRIBUTELIST, 17, 1, RGB(255, 255, 255));
+    PSS_ListCtrl::LoadImageList(IDB_IL_DISTRIBUTIONATTRIBUTELIST, 17, 1, RGB(255, 255, 255));
     SetImageList(m_pImageList, LVSIL_SMALL);    /* set extended stlyes*/
 
-    ZIListCtrl::BuildColumns(4, _gDistributionAttributesColSize, _gDistributionAttributesColText);
-    ZIListCtrl::SetFullRowSelect(TRUE);
-    ZIListCtrl::EnableSort(TRUE);
+    PSS_ListCtrl::BuildColumns(4, _gDistributionAttributesColSize, _gDistributionAttributesColText);
+    PSS_ListCtrl::SetFullRowSelect(TRUE);
+    PSS_ListCtrl::EnableSort(TRUE);
 
     m_ColumnsBuilt = TRUE;
 }

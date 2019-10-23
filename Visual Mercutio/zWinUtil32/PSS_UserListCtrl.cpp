@@ -54,7 +54,7 @@
 // Message map
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    BEGIN_MESSAGE_MAP(PSS_UserListCtrl, ZIListCtrl)
+    BEGIN_MESSAGE_MAP(PSS_UserListCtrl, PSS_ListCtrl)
 #else
     BEGIN_MESSAGE_MAP(PSS_UserListCtrl, CListBox)
 #endif
@@ -65,6 +65,7 @@ END_MESSAGE_MAP()
 // PSS_UserListCtrl
 //---------------------------------------------------------------------------
 PSS_UserListCtrl::PSS_UserListCtrl(PSS_UserManager* pUserManager, const CString& departement) :
+    PSS_ListCtrl(),
     m_pUserManager(pUserManager),
     m_Departement(departement),
     m_AdminOnly(FALSE),
@@ -227,7 +228,7 @@ void PSS_UserListCtrl::BuildColumns()
     LoadImageListMasked(IDB_USERDEPT, IDB_ADMIN);
 
     #ifdef _WIN32
-        ZIListCtrl::BuildColumns(8, g_UserColSize, g_UserColText);
+        PSS_ListCtrl::BuildColumns(8, g_UserColSize, g_UserColText);
     #endif
 
     SetFullRowSelect(TRUE);

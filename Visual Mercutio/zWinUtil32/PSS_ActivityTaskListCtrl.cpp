@@ -55,7 +55,7 @@
 // Message map
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    BEGIN_MESSAGE_MAP(PSS_ActivityTaskListCtrl, CListCtrl)
+    BEGIN_MESSAGE_MAP(PSS_ActivityTaskListCtrl, PSS_ListCtrl)
 #else
     BEGIN_MESSAGE_MAP(PSS_ActivityTaskListCtrl, CListBox)
 #endif
@@ -70,7 +70,7 @@ END_MESSAGE_MAP()
 PSS_ActivityTaskListCtrl::PSS_ActivityTaskListCtrl(ZProcess* pProcess) :
     #ifdef _WIN32
         // 32 bit version
-        ZIListCtrl(),
+        PSS_ListCtrl(),
     #else
         // 16 bit version
         CListBox(),
@@ -340,10 +340,9 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
     {
         // load images
         LoadImageListMasked(IDB_MESSAGEITEM0_ACTEVT, IDB_MESSAGEITEM16_ACTEVT);
-        ZIListCtrl::SetEnableOver(TRUE);
-        ZIListCtrl::SetFullRowSelect(TRUE);
-
-        ZIListCtrl::BuildColumns(7, g_TaskActivityColSize, g_TaskActivityColText);
+        PSS_ListCtrl::SetEnableOver(TRUE);
+        PSS_ListCtrl::SetFullRowSelect(TRUE);
+        PSS_ListCtrl::BuildColumns(7, g_TaskActivityColSize, g_TaskActivityColText);
         m_HasBuiltColumns = TRUE;
     }
 #endif

@@ -42,7 +42,7 @@ static int g_ColSize[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_FolderInfoCtrl, ZIListCtrl)
+BEGIN_MESSAGE_MAP(PSS_FolderInfoCtrl, PSS_ListCtrl)
     //{{AFX_MSG_MAP(PSS_FolderInfoCtrl)
     ON_NOTIFY_REFLECT_EX(NM_DBLCLK, OnDoubleClick)
     //}}AFX_MSG_MAP
@@ -51,6 +51,7 @@ END_MESSAGE_MAP()
 // PSS_FolderInfoCtrl
 //---------------------------------------------------------------------------
 PSS_FolderInfoCtrl::PSS_FolderInfoCtrl(PSS_FolderStamp* pFolderStamp, BOOL canModify) :
+    PSS_ListCtrl(),
     m_pFolderStamp(pFolderStamp),
     m_IsColumnBuilt(FALSE),
     m_CanModify(canModify)

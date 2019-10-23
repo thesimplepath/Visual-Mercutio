@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 #include "zEvent\EventManager.h"
 #include "zEvent\ActEvent.h"
 
@@ -35,7 +35,7 @@
 * Event activity logger control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventActivityLogCtrl : public ZIListCtrl
+class AFX_EXT_CLASS PSS_EventActivityLogCtrl : public PSS_ListCtrl
 {
     public:
         /**

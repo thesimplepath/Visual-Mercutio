@@ -53,7 +53,7 @@ static int g_EventReminderColSize[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventActivityViewerReminderCtrl, ZIListCtrl)
+BEGIN_MESSAGE_MAP(PSS_EventActivityViewerReminderCtrl, PSS_ListCtrl)
     //{{AFX_MSG_MAP(PSS_EventActivityViewerReminderCtrl)
     ON_MESSAGE(UM_NEWACTIVITYREMINDEREVENT, OnNewActivityEvent)
     //}}AFX_MSG_MAP
@@ -62,6 +62,7 @@ END_MESSAGE_MAP()
 // PSS_EventActivityViewerReminderCtrl
 //---------------------------------------------------------------------------
 PSS_EventActivityViewerReminderCtrl::PSS_EventActivityViewerReminderCtrl(ZBActivityEventReminderManager* pReminderManager) :
+    PSS_ListCtrl(),
     m_pReminderManager(pReminderManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
@@ -166,10 +167,10 @@ BOOL PSS_EventActivityViewerReminderCtrl::BuildColumns()
     // load images
     LoadImageListMasked(IDB_MESSAGEITEM0_ACTEVT, IDB_MESSAGEITEM11_ACTEVT);
 
-    ZIListCtrl::SetEnableOver(TRUE);
-    ZIListCtrl::SetFullRowSelect(TRUE);
-    ZIListCtrl::EnableSort(TRUE);
-    ZIListCtrl::BuildColumns(8, g_EventReminderColSize, g_EventReminderColText);
+    PSS_ListCtrl::SetEnableOver(TRUE);
+    PSS_ListCtrl::SetFullRowSelect(TRUE);
+    PSS_ListCtrl::EnableSort(TRUE);
+    PSS_ListCtrl::BuildColumns(8, g_EventReminderColSize, g_EventReminderColText);
 
     m_ColumnsHasBeenBuilt = TRUE;
 

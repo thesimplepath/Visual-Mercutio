@@ -23,7 +23,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_WorkspaceWizardTemplateItem.h"
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 
 // forward class declaration
 class PSS_WorkspaceWizardTemplateManager;
@@ -42,7 +42,7 @@ class PSS_WorkspaceWizardTemplateManager;
 * Workspace template list control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_WorkspaceTemplateListCtrl : public ZIListCtrl
+class AFX_EXT_CLASS PSS_WorkspaceTemplateListCtrl : public PSS_ListCtrl
 {
     public:
         /**

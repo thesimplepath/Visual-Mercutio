@@ -42,7 +42,7 @@
 // Message map
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    BEGIN_MESSAGE_MAP(PSS_UserPropertyCtrl, ZIListCtrl)
+    BEGIN_MESSAGE_MAP(PSS_UserPropertyCtrl, PSS_ListCtrl)
 #else
     BEGIN_MESSAGE_MAP(PSS_UserPropertyCtrl, CListBox)
 #endif
@@ -53,6 +53,7 @@ END_MESSAGE_MAP()
 // PSS_UserPropertyCtrl
 //---------------------------------------------------------------------------
 PSS_UserPropertyCtrl::PSS_UserPropertyCtrl(ZUser* pUser, BOOL enableModify) :
+    PSS_ListCtrl(),
     m_pUser(pUser),
     m_EnableModify(enableModify),
     m_ColumnsBuilt(FALSE),
@@ -142,7 +143,7 @@ void PSS_UserPropertyCtrl::BuildColumns()
         return;
 
     #ifdef _WIN32
-        ZIListCtrl::BuildColumns(2, g_UserPropertyColSize, g_UserPropertyColText);
+        PSS_ListCtrl::BuildColumns(2, g_UserPropertyColSize, g_UserPropertyColText);
     #endif
 
     SetFullRowSelect(TRUE);

@@ -19,7 +19,7 @@
 // processsoft
 #include "zEvent\EventManager.h"
 #include "zEvent\ZBEventServer.h"
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -35,7 +35,7 @@
 * Event log control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventLogCtrl : public ZIListCtrl
+class AFX_EXT_CLASS PSS_EventLogCtrl : public PSS_ListCtrl
 {
     public:
         /**

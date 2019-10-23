@@ -40,7 +40,7 @@ static int g_MessageColSize[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventLogCtrl, CListCtrl)
+BEGIN_MESSAGE_MAP(PSS_EventLogCtrl, PSS_ListCtrl)
     //{{AFX_MSG_MAP(PSS_EventLogCtrl)
     ON_MESSAGE(UM_NEWEVENT, OnNewEvent)
     //}}AFX_MSG_MAP
@@ -49,6 +49,7 @@ END_MESSAGE_MAP()
 // PSS_EventLogCtrl
 //---------------------------------------------------------------------------
 PSS_EventLogCtrl::PSS_EventLogCtrl(ZBEventManager* pEventManager) :
+    PSS_ListCtrl(),
     m_pEventManager(pEventManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
@@ -109,7 +110,7 @@ LRESULT PSS_EventLogCtrl::OnNewEvent(WPARAM wParam, LPARAM lParam)
 //---------------------------------------------------------------------------
 BOOL PSS_EventLogCtrl::BuildColumns()
 {
-    ZIListCtrl::BuildColumns(3, g_MessageColSize, g_MessageColText);
+    PSS_ListCtrl::BuildColumns(3, g_MessageColSize, g_MessageColText);
     m_ColumnsHasBeenBuilt = TRUE;
     return TRUE;
 }

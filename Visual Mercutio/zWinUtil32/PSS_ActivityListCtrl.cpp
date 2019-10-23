@@ -44,7 +44,7 @@
 // Message map
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    BEGIN_MESSAGE_MAP(PSS_ActivityListCtrl, CListCtrl)
+    BEGIN_MESSAGE_MAP(PSS_ActivityListCtrl, PSS_ListCtrl)
 #else
     BEGIN_MESSAGE_MAP(PSS_ActivityListCtrl, CListBox)
 #endif
@@ -61,7 +61,7 @@ PSS_ActivityListCtrl::PSS_ActivityListCtrl(ZProcess*      pProcess,
                                            BOOL           attributedActivityOnly) :
     #ifdef _WIN32
         // 32 bit version
-        ZIListCtrl(),
+        PSS_ListCtrl(),
     #else
         // 16 bit version
         CListBox(),
@@ -101,8 +101,8 @@ int PSS_ActivityListCtrl::Initialize(ZProcess*     pProcess,
 
     // load images
     LoadImageListMasked(IDB_PROCESSITEM, IDB_PROCESSCHOOSEITEM);
-    ZIListCtrl::SetEnableOver(TRUE);
-    ZIListCtrl::SetFullRowSelect(TRUE);
+    PSS_ListCtrl::SetEnableOver(TRUE);
+    PSS_ListCtrl::SetFullRowSelect(TRUE);
 
     return Refresh();
 }

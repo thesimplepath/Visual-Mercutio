@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC(ZCInputAttributesList, CListCtrl)
 
 
-BEGIN_MESSAGE_MAP(ZCInputAttributesList, ZIListCtrl)
+BEGIN_MESSAGE_MAP(ZCInputAttributesList, PSS_ListCtrl)
     //{{AFX_MSG_MAP(ZCInputAttributesList)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -76,12 +76,12 @@ void    ZCInputAttributesList::BuildColumns()
     if (m_ColumnsBuilt)
         return;
     // Load images
-    ZIListCtrl::LoadImageList(IDB_IL_INPUTATTRIBUTELIST, 17, 1, RGB(255, 255, 255));
+    PSS_ListCtrl::LoadImageList(IDB_IL_INPUTATTRIBUTELIST, 17, 1, RGB(255, 255, 255));
     SetImageList(m_pImageList, LVSIL_SMALL);    /* set extended stlyes*/
 
-    ZIListCtrl::BuildColumns(5, _gInputAttributesColSize, _gInputAttributesColText);
-    ZIListCtrl::SetFullRowSelect(TRUE);
-    ZIListCtrl::EnableSort(TRUE);
+    PSS_ListCtrl::BuildColumns(5, _gInputAttributesColSize, _gInputAttributesColText);
+    PSS_ListCtrl::SetFullRowSelect(TRUE);
+    PSS_ListCtrl::EnableSort(TRUE);
 
     m_ColumnsBuilt = TRUE;
 }

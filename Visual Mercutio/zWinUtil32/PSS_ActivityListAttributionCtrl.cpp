@@ -42,7 +42,7 @@
 // Message map
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    BEGIN_MESSAGE_MAP(PSS_ActivityListAttributionCtrl, CListCtrl)
+    BEGIN_MESSAGE_MAP(PSS_ActivityListAttributionCtrl, PSS_ListCtrl)
 #else
     BEGIN_MESSAGE_MAP(PSS_ActivityListAttributionCtrl, CListBox)
 #endif
@@ -59,7 +59,7 @@ PSS_ActivityListAttributionCtrl::PSS_ActivityListAttributionCtrl(ZProcess*      
                                                                  BOOL           attributedActivityOnly) :
     #ifdef _WIN32
         // 32 bit version
-        ZIListCtrl(),
+        PSS_ListCtrl(),
     #else
         // 16 bit version
         CListBox(),

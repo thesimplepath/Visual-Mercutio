@@ -18,7 +18,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 #include "zBaseLib\PSS_Date.h"
 
 const    int    EVT_UNDEFINED = 0;
@@ -68,7 +68,7 @@ public:
 
     BOOL            ParseDateTime(COleDateTime& Date, CString& value);
 #ifdef _WIN32
-    AFX_EXT_API    friend    ZBEvent&    operator>>( ZBEvent& left, ZIListCtrl& listCtrl );
+    AFX_EXT_API    friend    ZBEvent&    operator>>( ZBEvent& left, PSS_ListCtrl& listCtrl );
 #endif
 
 protected:

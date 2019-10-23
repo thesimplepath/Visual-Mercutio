@@ -118,7 +118,7 @@ BOOL    ZBEvent::ParseDateTime(COleDateTime& Date, CString& value)
     return (Date.SetDateTime( Year, Month, Day, Hour, Min, Sec ) == 0) ? TRUE: FALSE;
 }
 
-ZBEvent&    operator>>( ZBEvent& left, ZIListCtrl& listCtrl )
+ZBEvent&    operator>>( ZBEvent& left, PSS_ListCtrl& listCtrl )
 {
     int    Index = listCtrl.GetItemCount();
     // Add the event Date

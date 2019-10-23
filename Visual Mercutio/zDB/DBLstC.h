@@ -17,9 +17,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zBaseLib\ZIListCtrl.h"
-
+// processsoft
+#include "zBaseLib\PSS_ListCtrl.h"
 
 #ifdef _ZDBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -34,7 +33,7 @@
 //#undef  AFX_DATA
 //#define AFX_DATA AFX_EXT_CLASS
 
-class AFX_EXT_CLASS ZCDatabaseListCtrl : public ZIListCtrl
+class AFX_EXT_CLASS ZCDatabaseListCtrl : public PSS_ListCtrl
 {
 // Attributes
 public:

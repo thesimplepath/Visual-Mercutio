@@ -33,7 +33,7 @@
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -56,7 +56,7 @@ class ZDProcessGraphModelDoc;
 
 
 
-class AFX_EXT_CLASS ZCInputAttributesList : public ZIListCtrl,
+class AFX_EXT_CLASS ZCInputAttributesList : public PSS_ListCtrl,
                                             public PSS_Subject,
                                             public PSS_Observer
 {

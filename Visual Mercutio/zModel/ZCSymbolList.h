@@ -15,7 +15,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 
 
 #ifdef _ZMODELEXPORT
@@ -32,7 +32,7 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZCSymbolList : public ZIListCtrl  
+class AFX_EXT_CLASS ZCSymbolList : public PSS_ListCtrl
 {
 
     DECLARE_DYNAMIC(ZCSymbolList)

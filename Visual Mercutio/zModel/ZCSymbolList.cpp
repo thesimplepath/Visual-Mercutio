@@ -21,7 +21,7 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC(ZCSymbolList, CListCtrl)
 
 
-BEGIN_MESSAGE_MAP(ZCSymbolList, ZIListCtrl)
+BEGIN_MESSAGE_MAP(ZCSymbolList, PSS_ListCtrl)
     //{{AFX_MSG_MAP(ZCSymbolList)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -59,14 +59,14 @@ void    ZCSymbolList::BuildColumns(UINT nIDRes)
     if (m_ColumnsBuilt)
         return;
     // Load images
-    ZIListCtrl::LoadImageList( nIDRes, 17, 1, RGB( 255, 255, 255 ) );
+    PSS_ListCtrl::LoadImageList( nIDRes, 17, 1, RGB( 255, 255, 255 ) );
 //    m_pImageList = new CImageList();
 //    m_pImageList->Create(nIDRes, 17, 1, RGB( 255, 255, 255 ));
     SetImageList(m_pImageList, LVSIL_SMALL);    /* set extended stlyes*/
 
-    ZIListCtrl::BuildColumns(5, _gWkfSymbolColSize, _gWkfSymbolColText );
-    ZIListCtrl::SetFullRowSelect( TRUE );
-    ZIListCtrl::EnableSort( TRUE );
+    PSS_ListCtrl::BuildColumns(5, _gWkfSymbolColSize, _gWkfSymbolColText );
+    PSS_ListCtrl::SetFullRowSelect( TRUE );
+    PSS_ListCtrl::EnableSort( TRUE );
 
     m_ColumnsBuilt = TRUE;
 }

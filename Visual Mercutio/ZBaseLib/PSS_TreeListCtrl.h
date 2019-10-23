@@ -23,7 +23,7 @@
 #include <vector>
 
 // processsoft
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -39,7 +39,7 @@
 * Tree list controller
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_TreeListCtrl : public ZIListCtrl
+class AFX_EXT_CLASS PSS_TreeListCtrl : public PSS_ListCtrl
 {
     public:
         /**

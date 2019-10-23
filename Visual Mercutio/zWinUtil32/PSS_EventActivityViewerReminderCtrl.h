@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 #include "zEvent\EventManager.h"
 #include "zEvent\ActEvtReminderManager.h"
 
@@ -35,7 +35,7 @@
 * Event activity viewer reminder control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventActivityViewerReminderCtrl : public ZIListCtrl
+class AFX_EXT_CLASS PSS_EventActivityViewerReminderCtrl : public PSS_ListCtrl
 {
     public:
         /**

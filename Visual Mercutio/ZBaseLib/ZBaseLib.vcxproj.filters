@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="zilistctrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZIntelliListBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +599,9 @@
     <ClCompile Include="PSS_DocumentPageSetupDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ListCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -716,9 +716,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zBaseLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zilistctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIntelliListBox.h">
@@ -1295,6 +1292,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DocumentPageSetupDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ListCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

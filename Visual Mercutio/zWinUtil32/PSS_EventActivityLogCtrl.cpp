@@ -73,7 +73,7 @@ static int g_EventActivityColSize[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventActivityLogCtrl, ZIListCtrl)
+BEGIN_MESSAGE_MAP(PSS_EventActivityLogCtrl, PSS_ListCtrl)
     //{{AFX_MSG_MAP(PSS_EventActivityLogCtrl)
     ON_MESSAGE(UM_NEWACTIVITYEVENT, OnNewActivityEvent)
     //}}AFX_MSG_MAP
@@ -82,7 +82,7 @@ END_MESSAGE_MAP()
 // PSS_EventActivityLogCtrl
 //---------------------------------------------------------------------------
 PSS_EventActivityLogCtrl::PSS_EventActivityLogCtrl(ZBEventManager* pEventManager) :
-    ZIListCtrl(),
+    PSS_ListCtrl(),
     m_pEventManager(pEventManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
@@ -254,10 +254,10 @@ BOOL PSS_EventActivityLogCtrl::BuildColumns()
     // load images
     LoadImageListMasked(IDB_MESSAGEITEM0_ACTEVT, IDB_MESSAGEITEM13_ACTEVT);
 
-    ZIListCtrl::SetEnableOver(TRUE);
-    ZIListCtrl::SetFullRowSelect(TRUE);
-    ZIListCtrl::EnableSort(TRUE);
-    ZIListCtrl::BuildColumns(17, g_EventActivityColSize, g_EventActivityColText);
+    PSS_ListCtrl::SetEnableOver(TRUE);
+    PSS_ListCtrl::SetFullRowSelect(TRUE);
+    PSS_ListCtrl::EnableSort(TRUE);
+    PSS_ListCtrl::BuildColumns(17, g_EventActivityColSize, g_EventActivityColText);
 
     m_ColumnsHasBeenBuilt = TRUE;
 

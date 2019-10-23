@@ -37,7 +37,7 @@ static int g_WorkspaceTemplateListColSize[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_WorkspaceTemplateListCtrl, ZIListCtrl)
+BEGIN_MESSAGE_MAP(PSS_WorkspaceTemplateListCtrl, PSS_ListCtrl)
     //{{AFX_MSG_MAP(PSS_WorkspaceTemplateListCtrl)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -45,6 +45,7 @@ END_MESSAGE_MAP()
 // PSS_WorkspaceTemplateListCtrl
 //---------------------------------------------------------------------------
 PSS_WorkspaceTemplateListCtrl::PSS_WorkspaceTemplateListCtrl(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager) :
+    PSS_ListCtrl(),
     m_pWorkspaceTemplateManager(pWorkspaceTemplateManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
@@ -120,7 +121,7 @@ BOOL PSS_WorkspaceTemplateListCtrl::BuildColumns()
     SetFullRowSelect(TRUE);
     EnableSort(TRUE);
 
-    ZIListCtrl::BuildColumns(2, g_WorkspaceTemplateListColSize, g_WorkspaceTemplateListColText);
+    PSS_ListCtrl::BuildColumns(2, g_WorkspaceTemplateListColSize, g_WorkspaceTemplateListColText);
 
     m_ColumnsHasBeenBuilt = TRUE;
 

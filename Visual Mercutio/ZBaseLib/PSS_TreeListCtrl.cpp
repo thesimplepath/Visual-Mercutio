@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_TreeListCtrl, ZIListCtrl)
+BEGIN_MESSAGE_MAP(PSS_TreeListCtrl, PSS_ListCtrl)
     //{{AFX_MSG_MAP(PSS_TreeListCtrl)
     ON_NOTIFY_REFLECT(NM_CLICK, OnClick)
     ON_WM_KEYDOWN()
@@ -44,7 +44,7 @@ PSS_TreeListCtrl::IInfo::~IInfo()
 // PSS_TreeListCtrl
 //---------------------------------------------------------------------------
 PSS_TreeListCtrl::PSS_TreeListCtrl() :
-    ZIListCtrl()
+    PSS_ListCtrl()
 {}
 //---------------------------------------------------------------------------
 PSS_TreeListCtrl::~PSS_TreeListCtrl()
@@ -52,7 +52,7 @@ PSS_TreeListCtrl::~PSS_TreeListCtrl()
 //---------------------------------------------------------------------------
 BOOL PSS_TreeListCtrl::Create(DWORD style, const RECT& rect, CWnd* pParentWnd, UINT id)
 {
-    if (!ZIListCtrl::Create(style, rect, pParentWnd, id))
+    if (!PSS_ListCtrl::Create(style, rect, pParentWnd, id))
         return FALSE;
 
     SetExtendedStyle(LVS_EX_FULLROWSELECT);
@@ -90,7 +90,7 @@ int PSS_TreeListCtrl::AddItem(LPCTSTR pItem, int imageIndex, int level, LPARAM l
     item.lParam    = info.m_Item;
 
     if (!info.m_Level)
-        ZIListCtrl::InsertItem(&item);
+        PSS_ListCtrl::InsertItem(&item);
 
     return info.m_Item;
 }
@@ -104,7 +104,7 @@ BOOL PSS_TreeListCtrl::SetItemText(int itemIndex, int subItemIndex, LPCTSTR pTex
 
     info.m_Columns[subItemIndex] = pText;
 
-    return ZIListCtrl::SetItemText(itemIndex, subItemIndex, pText);
+    return PSS_ListCtrl::SetItemText(itemIndex, subItemIndex, pText);
 }
 //---------------------------------------------------------------------------
 LPARAM PSS_TreeListCtrl::GetParam(int itemIndex)
@@ -121,7 +121,7 @@ LPARAM PSS_TreeListCtrl::GetParam(int itemIndex)
 BOOL PSS_TreeListCtrl::DeleteAllItems(BOOL deleteImageList)
 {
     m_TreeCtrl.clear();
-    return ZIListCtrl::DeleteAllItems(deleteImageList);
+    return PSS_ListCtrl::DeleteAllItems(deleteImageList);
 }
 //---------------------------------------------------------------------------
 void PSS_TreeListCtrl::PreSubclassWindow()
@@ -133,7 +133,7 @@ void PSS_TreeListCtrl::PreSubclassWindow()
 
     SetImageList(&m_ILState, LVSIL_STATE);
 
-    ZIListCtrl::PreSubclassWindow();
+    PSS_ListCtrl::PreSubclassWindow();
 }
 //---------------------------------------------------------------------------
 void PSS_TreeListCtrl::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
@@ -178,7 +178,7 @@ void PSS_TreeListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
     if (itemIndex == -1)
     {
-        ZIListCtrl::OnKeyDown(nChar, nRepCnt, nFlags);
+        PSS_ListCtrl::OnKeyDown(nChar, nRepCnt, nFlags);
         return;
     }
 
@@ -263,7 +263,7 @@ void PSS_TreeListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
             break;
 
         default:
-            ZIListCtrl::OnKeyDown(nChar, nRepCnt, nFlags);
+            PSS_ListCtrl::OnKeyDown(nChar, nRepCnt, nFlags);
             break;
     }
 }
@@ -294,7 +294,7 @@ void PSS_TreeListCtrl::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
         }
     }
 
-    ZIListCtrl::OnChar(nChar, nRepCnt, nFlags);
+    PSS_ListCtrl::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 int PSS_TreeListCtrl::InsertItem(int itemIndex, int posArray, IInfo& info)
@@ -310,11 +310,11 @@ int PSS_TreeListCtrl::InsertItem(int itemIndex, int posArray, IInfo& info)
     item.stateMask = LVIS_STATEIMAGEMASK;
     item.lParam    = posArray;
 
-    const int itemRes = ZIListCtrl::InsertItem(&item);
+    const int itemRes = PSS_ListCtrl::InsertItem(&item);
     const int count   = info.m_Columns.size();
 
     for (int i = 1; i < count; ++i)
-        ZIListCtrl::SetItemText(itemRes, i, info.m_Columns[i]);
+        PSS_ListCtrl::SetItemText(itemRes, i, info.m_Columns[i]);
 
     return itemRes;
 }

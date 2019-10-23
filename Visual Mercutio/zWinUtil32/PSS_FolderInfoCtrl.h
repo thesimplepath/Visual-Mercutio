@@ -21,7 +21,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_FolderStamp.h"
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -37,7 +37,7 @@
 * Folder info control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FolderInfoCtrl : public ZIListCtrl
+class AFX_EXT_CLASS PSS_FolderInfoCtrl : public PSS_ListCtrl
 {
     public:
         /**

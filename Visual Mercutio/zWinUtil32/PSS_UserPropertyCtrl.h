@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\ZUser.h"
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -36,7 +36,7 @@
 */
 #ifdef _WIN32
     // 32 bit version
-    class AFX_EXT_CLASS PSS_UserPropertyCtrl : public ZIListCtrl
+    class AFX_EXT_CLASS PSS_UserPropertyCtrl : public PSS_ListCtrl
 #else
     // 16 bit version
     class AFX_EXT_CLASS PSS_UserPropertyCtrl : public CListBox

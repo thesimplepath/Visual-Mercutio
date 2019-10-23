@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIListCtrl.h"
+#include "zBaseLib\PSS_ListCtrl.h"
 #include "zEvent\ZProcess.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -36,7 +36,7 @@
 */
 #ifdef _WIN32
     // 32 bit version
-    class AFX_EXT_CLASS PSS_ActivityListCtrl : public ZIListCtrl
+    class AFX_EXT_CLASS PSS_ActivityListCtrl : public PSS_ListCtrl
 #else
     // 16 bit version
     class AFX_EXT_CLASS PSS_ActivityListCtrl : public CListBox
