@@ -16,22 +16,17 @@
 
 //## begin module%3675498E00B8.includes preserve=yes
 #include <StdAfx.h>
-//## end module%3675498E00B8.includes
-
-// ZProcess
 #include "ZProcess.h"
-//## begin module%3675498E00B8.declarations preserve=no
-//## end module%3675498E00B8.declarations
 
-//## begin module%3675498E00B8.additionalDeclarations preserve=yes
-#include "ActEvent.h"
-#include "zRes32\ZRes.h"
-
+// processsoft
 #include "zBaseLib\PSS_Tokenizer.h"
-
-#include "zBaseLib\ZMessage.h"
-#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_BaseDocument.h"
+#include "zBaseLib\PSS_MsgBox.h"
+#include "zBaseLib\PSS_MessageDlg.h"
+#include "ActEvent.h"
+
+// resources
+#include "zRes32\ZRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -39,20 +34,6 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 IMPLEMENT_SERIAL(ZProcess, ZBaseActivity, g_DefVersion)
-//## end module%3675498E00B8.additionalDeclarations
-
-
-// Class ZProcess 
-
-
-
-
-
-
-
-
-
-
 
 ZProcess::ZProcess (ProcessStatus ProcessStatus, CString ConnectedUser)
   //## begin ZProcess::ZProcess%915870188.hasinit preserve=no

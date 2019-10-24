@@ -1,14 +1,18 @@
 /****************************************************************************
- * ==> PSS_TreeCtrl --------------------------------------------------------*
+ * ==> PSS_TreeView --------------------------------------------------------*
  ****************************************************************************
- * Description : Provides a generic tree controller                         *
+ * Description : Provides a generic tree view                               *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_TreeCtrlH
-#define PSS_TreeCtrlH
+#ifndef PSS_TreeViewH
+#define PSS_TreeViewH
 
- // change the definition of AFX_EXT... to make it import
+#if _MSC_VER > 1000
+    #pragma once
+#endif
+
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -27,17 +31,14 @@
 #endif
 
 /**
-* Generic tree controller
+* Generic tree view
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
+class AFX_EXT_CLASS PSS_TreeView : public CTreeView
 {
-    DECLARE_DYNAMIC(PSS_TreeCtrl)
+    DECLARE_DYNCREATE(PSS_TreeView)
 
     public:
-        PSS_TreeCtrl();
-        virtual ~PSS_TreeCtrl();
-
         /**
         * Enables or disables the drag&drop support
         *@param value - if true, the drag&drop support will be enabled
@@ -121,16 +122,10 @@ class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
         * Loads the masked image list
         *@param startID - index containing the the first image to load from resources
         *@param endID - index containing the the last image to load from resources
-        *@param flags - flags
         *@param cx - image width
         *@param cy - image height
-        *@param maskColor - the mask color
         */
-        virtual void LoadImageListMasked(UINT     startID,
-                                         UINT     endID     = 0,
-                                         int      cx        = 16,
-                                         int      cy        = 16,
-                                         COLORREF maskColor = RGB(255, 255, 255));
+        virtual void LoadImageListMasked(UINT startID, UINT endID = 0, int cx = 16, int cy = 16);
 
         /**
         * Expands the root item
@@ -143,7 +138,7 @@ class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
         *@param hTreeItem - tree item to expand
         *@param deep - if TRUE, the root item children will also be expanded
         */
-        virtual void ExpandBranch(HTREEITEM hTreeItem, BOOL Deep = FALSE);
+        virtual void ExpandBranch(HTREEITEM hTreeItem, BOOL deep = FALSE);
 
         /**
         * Collapses the root item
@@ -211,16 +206,6 @@ class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
         virtual void DeleteAllItems(BOOL deleteImageList = FALSE);
 
         /**
-        * Saves the current collapsed state
-        */
-        virtual void SaveCollapsedState();
-
-        /**
-        * Restores the previously saved collapsed state
-        */
-        virtual void RestoreCollapsedStateToTreeCtrl();
-
-        /**
         * Sets the new style
         *@param flags - flags to remove from style
         *@param setBits - if TRUE, the flags will be added instead of removed
@@ -241,7 +226,7 @@ class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
         *@param hItemSuspectedParent - parent item to search from
         *@return TRUE if the item is a child of the suspected parent, otherwise FALSE
         */
-        virtual BOOL IsChildNodeOf(HTREEITEM hItemChild, HTREEITEM hitemSuspectedParent);
+        virtual BOOL IsChildNodeOf(HTREEITEM hItemChild, HTREEITEM hItemSuspectedParent);
 
         /**
         * Gets the previous item
@@ -275,9 +260,9 @@ class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
         */
         virtual HTREEITEM FindItem(const CString& str,
                                    BOOL           caseSensitive = FALSE,
-                                   BOOL           downDir       = TRUE,
-                                   BOOL           wholeWord     = FALSE,
-                                   HTREEITEM      hItem         = NULL);
+                                   BOOL           downDir = TRUE,
+                                   BOOL           wholeWord = FALSE,
+                                   HTREEITEM      hItem = NULL);
 
         /**
         * Finds an item
@@ -296,67 +281,39 @@ class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
         virtual HTREEITEM FindItemData(void* pData, HTREEITEM hStartItem = NULL);
 
     protected:
-        /**
-        * Tree data
-        */
-        class IData : public CObject
-        {
-            public:
-                CString m_Str;
-                bool    m_Collapsed;
-
-                IData();
-
-                /**
-                * Constructor
-                *@param str - item text
-                */
-                IData(const CString& str);
-
-                virtual ~IData();
-
-                /**
-                * Checks if item is collapsed
-                *@return true if item is collapsed, otherwise false
-                */
-                virtual inline bool IsCollapsed() const;
-
-                /**
-                * Sets if item is collapsed
-                *@param value - if true, the item is collapsed
-                */
-                virtual inline void SetCollapsed(bool value = true);
-        };
-
+        CWnd*       m_pDropWnd;
+        CObject*    m_pDragObj;
         HTREEITEM   m_hItemDrag;
         HTREEITEM   m_hItemDrop;
         HTREEITEM   m_hDragItem;
-        CWnd*       m_pDropWnd;
-        CObject*    m_pDragObj;
         CImageList* m_pImageList;
         CImageList* m_pDragImage;
         int         m_DragImageIndex;
 
         /// ClassWizard generated virtual function overrides
-        //{{AFX_VIRTUAL(ZITreeCtrl)
+        //{{AFX_VIRTUAL(PSS_TreeView)
+        virtual void OnDraw(CDC* pDC);
         //}}AFX_VIRTUAL
 
         /// Generated message map functions
-        //{{AFX_MSG(ZITreeCtrl)
-        afx_msg void OnEndLabelEdit(LPNMHDR pnmhdr, LRESULT *pLResult);
-        afx_msg void OnBeginDrag(LPNMHDR pnmhdr, LRESULT *pLResult);
-        afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-        afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+        //{{AFX_MSG(PSS_TreeView)
+        afx_msg void OnBeginDrag(NMHDR* pnmhdr, LRESULT* pResult);
+        afx_msg void OnEndLabelEdit(LPNMHDR pnmhdr, LRESULT* pLResult);
         afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
+        afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+        afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnDestroy();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
+
+        PSS_TreeView();
+        virtual ~PSS_TreeView();
 
         /**
         * Called when the mouse button is up
         *@param point - mouse position
         */
-        virtual void OnButtonUp(const CPoint& point);
+        void OnButtonUp(const CPoint& point);
 
         /**
         * Checks if find item is valid
@@ -376,127 +333,88 @@ class AFX_EXT_CLASS PSS_TreeCtrl : public CTreeCtrl
         *@param hDragItem - drag item from which the object should be get
         *@return the drag object, NULL if not found or on error
         */
-        virtual inline CObject* GetDragObject(HTREEITEM hDragItem);
+        virtual inline CObject* GetDragObject(HTREEITEM DragItem);
+
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
+
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
 
     private:
-        typedef sfl::CCArray_T <IData*, IData*> IDataSet;
-        typedef sfl::Iterator_T<IData*>         IDataIterator;
-
-        IDataSet m_DataSet;
-        BOOL     m_Dragging;
-
-        /**
-        * Saves the current collapsed state
-        *@param hTreeItem - item for which the collapsed state should be saved
-        */
-        void SaveCollapsedState(HTREEITEM hTreeItem);
-
-        /**
-        * Restores the previously saved collapsed state
-        *@param hTreeItem - item for which the collapsed state should be restored
-        */
-        void RestoreCollapsedStateToTreeCtrl(HTREEITEM hTreeItem);
-
-        /**
-        * Saves dataset state and empties it
-        */
-        void EmptySaveStateDataSet();
-
-        /**
-        * Adds a save state data to the dataset
-        *@param str - save state data
-        *@return the newly added element, NULL on error
-        */
-        IData* AddSaveStateDataToSet(const CString& str);
-
-        /**
-        * Deletes a save state data from the dataset
-        *@param str - save state data
-        *@return true on success, otherwise false
-        */
-        bool DeleteElementFromSaveStateDataSet(const CString& str);
-
-        /**
-        * Finds the element to save in the dataset
-        *@param str - save state data
-        *@return the element to save in the dataset, NULL if not found or on error
-        */
-        IData* FindElementFromSaveStateDataSet(const CString& str);
+        BOOL m_Dragging;
 };
 
 //---------------------------------------------------------------------------
-// PSS_TreeCtrl::IData
+// PSS_TreeView
 //---------------------------------------------------------------------------
-bool PSS_TreeCtrl::IData::IsCollapsed() const
-{
-    return m_Collapsed;
-}
-//---------------------------------------------------------------------------
-void PSS_TreeCtrl::IData::SetCollapsed(bool value)
-{
-    m_Collapsed = value;
-}
-//---------------------------------------------------------------------------
-// PSS_TreeCtrl
-//---------------------------------------------------------------------------
-void PSS_TreeCtrl::DisableDragDrop(bool value)
+void PSS_TreeView::DisableDragDrop(bool value)
 {
     SetNewStyle(TVS_DISABLEDRAGDROP, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::EditLabels(bool value)
+void PSS_TreeView::EditLabels(bool value)
 {
     SetNewStyle(TVS_EDITLABELS, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::HasButtons(bool value)
+void PSS_TreeView::HasButtons(bool value)
 {
     SetNewStyle(TVS_HASBUTTONS, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::HasLines(bool value)
+void PSS_TreeView::HasLines(bool value)
 {
     SetNewStyle(TVS_HASLINES, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::LinesAtRoot(bool value)
+void PSS_TreeView::LinesAtRoot(bool value)
 {
     SetNewStyle(TVS_LINESATROOT, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::ShowSelectionAlways(bool value)
+void PSS_TreeView::ShowSelectionAlways(bool value)
 {
     SetNewStyle(TVS_SHOWSELALWAYS, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::ShowCheckBoxes(bool value)
+void PSS_TreeView::ShowCheckBoxes(bool value)
 {
     SetNewStyle(TVS_CHECKBOXES, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::TrackSelect(bool value)
+void PSS_TreeView::TrackSelect(bool value)
 {
     SetNewStyle(TVS_TRACKSELECT, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::FullRowSelect(bool value)
+void PSS_TreeView::FullRowSelect(bool value)
 {
     SetNewStyle(TVS_FULLROWSELECT, value);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::SingleExpand(bool value)
+void PSS_TreeView::SingleExpand(bool value)
 {
     SetNewStyle(TVS_SINGLEEXPAND, value);
 }
 //---------------------------------------------------------------------------
-int PSS_TreeCtrl::GetIndexOfNoDropImage() const
+int PSS_TreeView::GetIndexOfNoDropImage() const
 {
     return -1;
 }
 //---------------------------------------------------------------------------
-CObject* PSS_TreeCtrl::GetDragObject(HTREEITEM hDragItem)
+CObject* PSS_TreeView::GetDragObject(HTREEITEM dragItem)
 {
-    return (CObject*)GetItemData(hDragItem);
+    return (CObject*)GetTreeCtrl().GetItemData(dragItem);
 }
 //---------------------------------------------------------------------------
 

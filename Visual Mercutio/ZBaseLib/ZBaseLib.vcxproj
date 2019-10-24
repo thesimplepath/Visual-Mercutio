@@ -1127,7 +1127,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZITreeView.cpp">
+    <ClCompile Include="PSS_TreeView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1157,7 +1157,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZMessage.cpp">
+    <ClCompile Include="PSS_MessageDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1510,12 +1510,12 @@
     <ClInclude Include="PSS_Subject.h" />
     <ClInclude Include="PSS_ToolTip.h" />
     <ClInclude Include="PSS_TreeCtrl.h" />
-    <ClInclude Include="ZITreeView.h" />
+    <ClInclude Include="PSS_TreeView.h" />
     <ClInclude Include="ZIView.h" />
     <ClInclude Include="ZIViewCd.h" />
     <ClInclude Include="PSS_ListViewCombo.h" />
     <ClInclude Include="ZLVEdit.h" />
-    <ClInclude Include="ZMessage.h" />
+    <ClInclude Include="PSS_MessageDlg.h" />
     <ClInclude Include="PSS_NetResource.h" />
     <ClInclude Include="PSS_NetResourceManager.h" />
     <ClInclude Include="PSS_NetResourceWrapper.h" />

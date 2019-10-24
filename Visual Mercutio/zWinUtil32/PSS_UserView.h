@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZITreeView.h"
+#include "zBaseLib\PSS_TreeView.h"
 #include "PSS_UserTree.h"
 
 // resources
@@ -45,7 +45,7 @@
 * User view
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UserView : public ZITreeView
+class AFX_EXT_CLASS PSS_UserView : public PSS_TreeView
 {
     DECLARE_DYNCREATE(PSS_UserView)
 

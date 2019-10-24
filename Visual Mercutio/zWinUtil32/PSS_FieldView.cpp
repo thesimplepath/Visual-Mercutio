@@ -17,11 +17,11 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_FieldView, ZITreeView)
+IMPLEMENT_DYNCREATE(PSS_FieldView, PSS_TreeView)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_FieldView, ZITreeView)
+BEGIN_MESSAGE_MAP(PSS_FieldView, PSS_TreeView)
     //{{AFX_MSG_MAP(PSS_FieldView)
     ON_MESSAGE(UM_DOCUMENTHASBEENSELECTED, OnDocumentHasBeenSelected)
     ON_MESSAGE(UM_INITIALIZE_FIELDREPOSITORY, OnInitializeFieldRepository)
@@ -38,7 +38,7 @@ END_MESSAGE_MAP()
 // PSS_FieldView
 //---------------------------------------------------------------------------
 PSS_FieldView::PSS_FieldView() :
-    ZITreeView(),
+    PSS_TreeView(),
     m_pDoc(NULL),
     m_pFieldRepository(NULL)
 {}

@@ -15,10 +15,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zBaseLib\ZITreeView.h"
+// processsoft
+#include "zBaseLib\PSS_TreeView.h"
 #include "ModelTreei.h"
-
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -30,14 +29,10 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
 /////////////////////////////////////////////////////////////////////////////
 // ZCProcessModelTreeView view
 
-class AFX_EXT_CLASS ZCProcessModelTreeView : public ZITreeView
+class AFX_EXT_CLASS ZCProcessModelTreeView : public PSS_TreeView
 {
 public:
     ZCProcessModelTreeView();           // protected constructor used by dynamic creation

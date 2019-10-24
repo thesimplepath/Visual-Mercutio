@@ -39,7 +39,7 @@
 #include "zBaseLib\PSS_UserLoader.h"
 
 #include "zWinUtil32\PSS_SelectServerWizard.h"
-#include "zBaseLib\ZMessage.h"
+#include "zBaseLib\PSS_MessageDlg.h"
 
 // this was previoulsy necessary because Visual Mercutio was a commercial product before being open source, but now...
 // uncomment the libe below to re-enable the product key protection
@@ -370,8 +370,8 @@ BOOL ZAMainApp::InitInstance()
         }
     #endif
 
-        ZIMessage Message;
-        Message.DisplayMessage(IDS_APPINFO_MISSING, IDS_APPINFO_MISSING_TITLE);
+        PSS_MessageDlg message;
+        message.ShowMessage(IDS_APPINFO_MISSING, IDS_APPINFO_MISSING_TITLE);
 
         return FALSE;
     }
@@ -419,8 +419,8 @@ BOOL ZAMainApp::InitInstance()
         }
     #endif
 
-        ZIMessage Message;
-        Message.DisplayMessage(IDS_APPINFO_WRONGKEY, IDS_APPINFO_WRONGKEY_TITLE);
+        PSS_MessageDlg message;
+        message.ShowMessage(IDS_APPINFO_WRONGKEY, IDS_APPINFO_WRONGKEY_TITLE);
 
         return FALSE;
     }
@@ -459,8 +459,8 @@ BOOL ZAMainApp::InitInstance()
         // then asks the server to create an initial environement
         if (serverIniFile.IsEmpty())
         {
-            ZIMessage Message;
-            Message.DisplayMessage(IDS_ONFIRSTUSE_FAIL, IDS_ONFIRSTUSE_FAIL_TITLE);
+            PSS_MessageDlg message;
+            message.ShowMessage(IDS_ONFIRSTUSE_FAIL, IDS_ONFIRSTUSE_FAIL_TITLE);
 
             return FALSE;
         }
@@ -474,16 +474,16 @@ BOOL ZAMainApp::InitInstance()
 
         if (mBox.Show(IDS_NOSERVERDEFINED, MB_YESNO) == IDNO)
         {
-            ZIMessage Message;
-            Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
+            PSS_MessageDlg message;
+            message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
             return FALSE;
         }
 
         if (!ChooseServer())
         {
-            ZIMessage Message;
-            Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
+            PSS_MessageDlg message;
+            message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
             return FALSE;
         }
@@ -525,8 +525,8 @@ BOOL ZAMainApp::InitInstance()
         {
             if (!LoadAllUsers())
             {
-                ZIMessage Message;
-                Message.DisplayMessage(IDS_LOADUSERSFAIL_T, IDS_LOADUSERSFAIL_WT);
+                PSS_MessageDlg message;
+                message.ShowMessage(IDS_LOADUSERSFAIL_T, IDS_LOADUSERSFAIL_WT);
                 return FALSE;
             }
 
@@ -538,8 +538,8 @@ BOOL ZAMainApp::InitInstance()
                 // Not a registered user
                 if (PSS_Global::GetConnectedUser() == NULL)
                 {
-                    ZIMessage Message;
-                    Message.DisplayMessage(IDS_USERNOTREGISTERED_T, IDS_USERNOTREGISTERED_WT);
+                    PSS_MessageDlg message;
+                    message.ShowMessage(IDS_USERNOTREGISTERED_T, IDS_USERNOTREGISTERED_WT);
 
                     return FALSE;
                 }
@@ -750,8 +750,8 @@ BOOL ZAMainApp::InitInstance()
         AfxGetApp()->WriteProfileString(ApplicationConfigSectionName, szFirstUseEntry, _T("0"));
         AfxGetApp()->WriteProfileString(ApplicationConfigSectionName, szSubDirectoryNameEntry, _T(""));
 
-        ZIMessage Message;
-        Message.DisplayMessage(IDS_ONFIRSTUSE_SUCCESS, IDS_ONFIRSTUSE_SUCCESS_TITLE);
+        PSS_MessageDlg message;
+        message.ShowMessage(IDS_ONFIRSTUSE_SUCCESS, IDS_ONFIRSTUSE_SUCCESS_TITLE);
 
         // Saves all new modifed parameters
         GetApplicationOptions().SaveOption();
@@ -1989,8 +1989,8 @@ BOOL ZAMainApp::ChooseServer()
         if (!OpenServerSession())
         {
             // the server cannot be reached
-            ZIMessage Message;
-            Message.DisplayMessage(IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE);
+            PSS_MessageDlg message;
+            message.ShowMessage(IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE);
 
             return FALSE;
         }
@@ -2005,8 +2005,8 @@ BOOL ZAMainApp::ChooseServer()
         CString title;
         title.LoadString(IDS_NF_SELECTSERVER_TITLE);
 
-        ZIMessage message;
-        message.DisplayMessage(prompt, title);
+        PSS_MessageDlg message;
+        message.ShowMessage(prompt, title);
 
         // save the new parameters
         GetApplicationOptions().SaveOption();
@@ -2043,16 +2043,16 @@ BOOL ZAMainApp::OpenServerSession()
 
             if (mBox.Show(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
             {
-                ZIMessage Message;
-                Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
+                PSS_MessageDlg message;
+                message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                 return FALSE;
             }
 
             if (!ChooseServer())
             {
-                ZIMessage Message;
-                Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
+                PSS_MessageDlg message;
+                message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                 return FALSE;
             }
@@ -2080,8 +2080,8 @@ BOOL ZAMainApp::OpenServerSession()
 
                 if (mBox.Show(IDS_SERVERISEMPTYORMOVED_INIT, MB_YESNO) == IDNO)
                 {
-                    ZIMessage Message;
-                    Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
+                    PSS_MessageDlg message;
+                    message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                     return FALSE;
                 }
@@ -2094,8 +2094,8 @@ BOOL ZAMainApp::OpenServerSession()
             // Then asks the server to create an initial environement
             if (ServerIniFile.IsEmpty())
             {
-                ZIMessage Message;
-                Message.DisplayMessage(IDS_ONSERVEREMPTYINIT_FAIL, IDS_ONSERVEREMPTYINIT_FAIL_TITLE);
+                PSS_MessageDlg message;
+                message.ShowMessage(IDS_ONSERVEREMPTYINIT_FAIL, IDS_ONSERVEREMPTYINIT_FAIL_TITLE);
 
                 return FALSE;
             }
@@ -2104,23 +2104,23 @@ BOOL ZAMainApp::OpenServerSession()
             if (GetServer().OpenSession(GetServerIniFile()) != M_Srv_Success)
             {
                 // The server cannot be reached
-                ZIMessage Message;
-                Message.DisplayMessage(IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE);
+                PSS_MessageDlg message;
+                message.ShowMessage(IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE);
 
                 PSS_MsgBox mBox;
 
                 if (mBox.Show(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
                 {
-                    ZIMessage Message;
-                    Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
+                    PSS_MessageDlg message;
+                    message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                     return FALSE;
                 }
 
                 if (!ChooseServer())
                 {
-                    ZIMessage Message;
-                    Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
+                    PSS_MessageDlg message;
+                    message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                     return FALSE;
                 }

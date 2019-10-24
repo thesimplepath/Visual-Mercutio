@@ -27,7 +27,7 @@
 #include "zBaseLib\PSS_BaseDocument.h"
 #include "zRes32\ZRes.h"
 
-#include "zBaseLib\ZMessage.h"
+#include "zBaseLib\PSS_MessageDlg.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
 #include "zBaseLib\PSS_Tokenizer.h"

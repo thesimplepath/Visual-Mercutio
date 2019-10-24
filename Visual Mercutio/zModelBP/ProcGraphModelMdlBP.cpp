@@ -30,7 +30,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
-#include "zBaseLib\ZMessage.h"
+#include "zBaseLib\PSS_MessageDlg.h"
 
 #include "zModel\zModelRes.h"
 #include "zModelBPRes.h"
@@ -236,9 +236,9 @@ void ZDProcessGraphModelMdlBP::OnPostOpenDocument(long DocumentVersion)
         // only for migrating beta 1 file to Beta 2
         MigrateUnitGUID();
 
-        // Display a warning
-        ZIMessage    Message;
-        Message.DisplayMessage(IDS_FILEBETA1_CONVERTED, IDS_FILEBETA1_CONVERTED_TITLE);
+        // show a warning message
+        PSS_MessageDlg message;
+        message.ShowMessage(IDS_FILEBETA1_CONVERTED, IDS_FILEBETA1_CONVERTED_TITLE);
 
         // Sets the modified flag to true for the document
         SetModifiedFlag(TRUE);
@@ -249,9 +249,9 @@ void ZDProcessGraphModelMdlBP::OnPostOpenDocument(long DocumentVersion)
         // Convert deliverables
         ConvertDeliverables();
 
-        // Display a warning
-        ZIMessage    Message;
-        Message.DisplayMessage(IDS_FILEBETA2_CONVERTED, IDS_FILEBETA2_CONVERTED_TITLE);
+        // show a warning message
+        PSS_MessageDlg message;
+        message.ShowMessage(IDS_FILEBETA2_CONVERTED, IDS_FILEBETA2_CONVERTED_TITLE);
 
         // Sets the modified flag to true for the document
         SetModifiedFlag(TRUE);

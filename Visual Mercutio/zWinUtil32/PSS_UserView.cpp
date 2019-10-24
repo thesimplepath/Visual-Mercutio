@@ -17,11 +17,11 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_UserView, ZITreeView)
+IMPLEMENT_DYNCREATE(PSS_UserView, PSS_TreeView)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_UserView, ZITreeView)
+BEGIN_MESSAGE_MAP(PSS_UserView, PSS_TreeView)
     //{{AFX_MSG_MAP(PSS_UserView)
     ON_MESSAGE(UM_INITIALIZE_USERMANAGER, OnInitializeUserManager)
     ON_MESSAGE(UM_RELOAD_USERMANAGER, OnReloadUserManager)
@@ -37,6 +37,7 @@ END_MESSAGE_MAP()
 // PSS_UserView
 //---------------------------------------------------------------------------
 PSS_UserView::PSS_UserView() :
+    PSS_TreeView(),
     m_pUserManager(NULL)
 {}
 //---------------------------------------------------------------------------

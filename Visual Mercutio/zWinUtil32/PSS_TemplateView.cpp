@@ -17,11 +17,11 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_TemplateView, ZITreeView)
+IMPLEMENT_DYNCREATE(PSS_TemplateView, PSS_TreeView)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_TemplateView, ZITreeView)
+BEGIN_MESSAGE_MAP(PSS_TemplateView, PSS_TreeView)
     //{{AFX_MSG_MAP(PSS_TemplateView)
     ON_MESSAGE(UM_INITIALIZE_TEMPLATEMANAGER, OnInitializeTemplateManager)
     ON_MESSAGE(UM_INITIALIZE_PROCESSTEMPLATEMANAGER, OnInitializeTemplateManager)
@@ -38,6 +38,7 @@ END_MESSAGE_MAP()
 // PSS_TemplateView
 //---------------------------------------------------------------------------
 PSS_TemplateView::PSS_TemplateView() :
+    PSS_TreeView(),
     m_pTemplateManager(NULL),
     m_IncludeFiles(TRUE)
 {}

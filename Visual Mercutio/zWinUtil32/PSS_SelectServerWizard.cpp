@@ -9,10 +9,12 @@
 #include "PSS_SelectServerWizard.h"
 
 // processsoft
-#include "zRes32\ZRes.h"
-#include "zBaseLib\ZMessage.h"
+#include "zBaseLib\PSS_MessageDlg.h"
 #include "PSS_SelectServerWelcomeDialog.h"
 #include "PSS_SelectServerDialog.h"
+
+// resources
+#include "zRes32\ZRes.h"
 
 //---------------------------------------------------------------------------
 // Static variables
@@ -88,8 +90,8 @@ BOOL PSS_SelectServerWizard::ProcessSelection()
 
     if (!CFile::GetStatus(completeFile, status))
     {
-        ZIMessage message;
-        message.DisplayMessage(IDS_NF_SELECTSERVER, IDS_NF_SELECTSERVER_TITLE);
+        PSS_MessageDlg message;
+        message.ShowMessage(IDS_NF_SELECTSERVER, IDS_NF_SELECTSERVER_TITLE);
 
         return FALSE;
     }

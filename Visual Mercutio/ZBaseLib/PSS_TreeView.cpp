@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_TreeCtrl --------------------------------------------------------*
+ * ==> PSS_TreeView --------------------------------------------------------*
  ****************************************************************************
- * Description : Provides a generic tree controller                         *
+ * Description : Provides a generic tree view                               *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include <StdAfx.h>
-#include "PSS_TreeCtrl.h"
+#include "stdafx.h"
+#include "PSS_TreeView.h"
 
 // processsoft
 #include "PSS_DropView.h"
@@ -21,82 +21,49 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_TreeCtrl, CTreeCtrl)
+IMPLEMENT_DYNCREATE(PSS_TreeView, CTreeView)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_TreeCtrl, CTreeCtrl)
-    //{{AFX_MSG_MAP(PSS_TreeCtrl)
-    ON_NOTIFY_REFLECT(TVN_ENDLABELEDIT, OnEndLabelEdit)
+BEGIN_MESSAGE_MAP(PSS_TreeView, CTreeView)
+    //{{AFX_MSG_MAP(PSS_TreeView)
     ON_NOTIFY_REFLECT(TVN_BEGINDRAG, OnBeginDrag)
-    ON_WM_MOUSEMOVE()
-    ON_WM_LBUTTONUP()
+    ON_NOTIFY_REFLECT(TVN_ENDLABELEDIT, OnEndLabelEdit)
     ON_WM_RBUTTONUP()
+    ON_WM_LBUTTONUP()
+    ON_WM_MOUSEMOVE()
     ON_WM_DESTROY()
+    ON_NOTIFY_REFLECT(TVN_BEGINDRAG, OnBeginDrag)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_TreeCtrl::IData
+// PSS_TreeView
 //---------------------------------------------------------------------------
-PSS_TreeCtrl::IData::IData(const CString& str) :
-    CObject(),
-    m_Str(str),
-    m_Collapsed(false)
-{}
-//---------------------------------------------------------------------------
-PSS_TreeCtrl::IData::~IData()
-{
-    // reset all values
-    m_Str.Empty();
-    m_Collapsed = false;
-}
-//---------------------------------------------------------------------------
-// PSS_TreeCtrl
-//---------------------------------------------------------------------------
-PSS_TreeCtrl::PSS_TreeCtrl() :
-    CTreeCtrl(),
+PSS_TreeView::PSS_TreeView() :
+    m_pDropWnd(NULL),
+    m_pDragObj(NULL),
     m_hItemDrag(NULL),
     m_hItemDrop(NULL),
     m_hDragItem(NULL),
-    m_pDropWnd(NULL),
-    m_pDragObj(NULL),
     m_pImageList(NULL),
     m_pDragImage(NULL),
-    m_DragImageIndex(-1),
+    m_DragImageIndex(0),
     m_Dragging(FALSE)
 {}
 //---------------------------------------------------------------------------
-PSS_TreeCtrl::~PSS_TreeCtrl()
-{
-    if (m_pImageList)
-    {
-        m_pImageList->DeleteImageList();
-        delete m_pImageList;
-    }
-
-    // NOTE use fully qualified name to ensure to never call a pure virtual function during the destruction
-    PSS_TreeCtrl::EmptySaveStateDataSet();
-}
+PSS_TreeView::~PSS_TreeView()
+{}
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::LoadImageList(UINT id, int size, int grow, COLORREF maskColor)
+void PSS_TreeView::LoadImageList(UINT id, int size, int grow, COLORREF maskColor)
 {
-    if (m_pImageList)
-    {
-        m_pImageList->DeleteImageList();
-        delete m_pImageList;
-        m_pImageList = NULL;
-    }
-
     m_pImageList = new CImageList();
     m_pImageList->Create(id, size, grow, maskColor);
 
-    SetImageList(m_pImageList, TVSIL_NORMAL);
+    GetTreeCtrl().SetImageList(m_pImageList, TVSIL_NORMAL);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::LoadImageList(UINT startID, UINT endID, UINT flags, int cx, int cy)
+void PSS_TreeView::LoadImageList(UINT startID, UINT endID, UINT flags, int cx, int cy)
 {
-    CBitmap bitmap;
-
     m_pImageList = new CImageList();
     m_pImageList->Create(cx, cy, flags, 2, 2);
 
@@ -107,18 +74,17 @@ void PSS_TreeCtrl::LoadImageList(UINT startID, UINT endID, UINT flags, int cx, i
     // load bitmaps
     for (UINT id = startID; id <= endID; ++id)
     {
+        CBitmap bitmap;
         bitmap.LoadBitmap(id);
         m_pImageList->Add(&bitmap, static_cast<COLORREF>(NULL));
         bitmap.DeleteObject();
     }
 
-    SetImageList(m_pImageList, TVSIL_NORMAL);
+    GetTreeCtrl().SetImageList(m_pImageList, TVSIL_NORMAL);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::LoadImageListMasked(UINT startID, UINT endID, int cx, int cy, COLORREF maskColor)
+void PSS_TreeView::LoadImageListMasked(UINT startID, UINT endID, int cx, int cy)
 {
-    CBitmap bitmap;
-
     m_pImageList = new CImageList();
     m_pImageList->Create(cx, cy, ILC_MASK, 2, 2);
 
@@ -129,103 +95,109 @@ void PSS_TreeCtrl::LoadImageListMasked(UINT startID, UINT endID, int cx, int cy,
     // load bitmaps
     for (UINT id = startID; id <= endID; ++id)
     {
+        CBitmap bitmap;
         bitmap.LoadBitmap(id);
-        m_pImageList->Add(&bitmap, maskColor);
+        m_pImageList->Add(&bitmap, static_cast<COLORREF>(0xFFFFFF));
         bitmap.DeleteObject();
     }
 
-    SetImageList(m_pImageList, TVSIL_NORMAL);
+    GetTreeCtrl().SetImageList(m_pImageList, TVSIL_NORMAL);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::ExpandRoot(BOOL deep)
+void PSS_TreeView::ExpandRoot(BOOL deep)
 {
-    ExpandBranch(GetRootItem(), deep);
+    ExpandBranch(GetTreeCtrl().GetRootItem(), deep);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::ExpandBranch(HTREEITEM hTreeItem, BOOL deep)
+void PSS_TreeView::ExpandBranch(HTREEITEM hTreeItem, BOOL deep)
 {
-    if (hTreeItem && ItemHasChildren(hTreeItem))
+    if (hTreeItem && GetTreeCtrl().ItemHasChildren(hTreeItem))
     {
-        Expand(hTreeItem, TVE_EXPAND);
+        GetTreeCtrl().Expand(hTreeItem, TVE_EXPAND);
 
         if (deep)
         {
-            hTreeItem = GetChildItem(hTreeItem);
+            hTreeItem = GetTreeCtrl().GetChildItem(hTreeItem);
 
             do
             {
                 ExpandBranch(hTreeItem, deep);
             }
-            while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
+            while ((hTreeItem = GetTreeCtrl().GetNextSiblingItem(hTreeItem)) != NULL);
         }
     }
 
-    EnsureVisible(GetSelectedItem());
+    GetTreeCtrl().EnsureVisible(GetTreeCtrl().GetSelectedItem());
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::CollapseRoot(BOOL deep)
+void PSS_TreeView::CollapseRoot(BOOL deep)
 {
-    CollapseBranch(GetRootItem(), deep);
+    CollapseBranch(GetTreeCtrl().GetRootItem(), deep);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::CollapseBranch(HTREEITEM hTreeItem, BOOL deep)
+void PSS_TreeView::CollapseBranch(HTREEITEM hTreeItem, BOOL deep)
 {
-    if (hTreeItem && ItemHasChildren(hTreeItem))
+    if (hTreeItem && GetTreeCtrl().ItemHasChildren(hTreeItem))
     {
-        Expand(hTreeItem, TVE_COLLAPSE);
+        GetTreeCtrl().Expand(hTreeItem, TVE_COLLAPSE);
 
         if (deep)
         {
-            hTreeItem = GetChildItem(hTreeItem);
+            hTreeItem = GetTreeCtrl().GetChildItem(hTreeItem);
 
             do
             {
                 CollapseBranch(hTreeItem, deep);
             }
-            while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
+            while ((hTreeItem = GetTreeCtrl().GetNextSiblingItem(hTreeItem)) != NULL);
         }
     }
+
+    GetTreeCtrl().EnsureVisible(GetTreeCtrl().GetSelectedItem());
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::SelectItemName(const CString& name)
+BOOL PSS_TreeView::SelectItemName(const CString& name)
 {
-    HTREEITEM hItemToSelect = FindItem(name, HTREEITEM(NULL));
+    HTREEITEM hItemToSelect = FindItem(name, NULL);
 
     if (hItemToSelect)
-        return SelectItem(hItemToSelect);
+        return GetTreeCtrl().SelectItem(hItemToSelect);
 
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::IsRootItemName(const CString& name)
+BOOL PSS_TreeView::IsRootItemName(const CString& name)
 {
-    HTREEITEM hRoot = GetRootItem();
+    HTREEITEM hRoot = GetTreeCtrl().GetRootItem();
 
-    return (hRoot && GetItemText(hRoot) == name);
+    if (hRoot && GetTreeCtrl().GetItemText(hRoot) == name)
+        return TRUE;
+
+    return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::IsLastItemName(const CString& name)
+BOOL PSS_TreeView::IsLastItemName(const CString& name)
 {
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::IsSelectedItemRootItem()
+BOOL PSS_TreeView::IsSelectedItemRootItem()
 {
-    HTREEITEM hSelected = GetSelectedItem();
-    return (hSelected && hSelected == GetRootItem());
+    HTREEITEM hSelected = GetTreeCtrl().GetSelectedItem();
+    return hSelected && hSelected == GetTreeCtrl().GetRootItem();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::ItemNameExist(const CString& name)
+BOOL PSS_TreeView::ItemNameExist(const CString& name)
 {
-    return FindItem(name, NULL) != NULL;
+    return (FindItem(name, NULL) != NULL);
 }
 //---------------------------------------------------------------------------
-int PSS_TreeCtrl::GetSelectItemPosition(HTREEITEM hParentItem) const
+int PSS_TreeView::GetSelectItemPosition(HTREEITEM hParentItem) const
 {
-    HTREEITEM hSelected = GetSelectedItem();
+    HTREEITEM hSelected = GetTreeCtrl().GetSelectedItem();
 
     if (!hParentItem)
-        hParentItem = GetRootItem();
+        hParentItem = GetTreeCtrl().GetRootItem();
 
     if (hSelected)
     {
@@ -233,7 +205,7 @@ int PSS_TreeCtrl::GetSelectItemPosition(HTREEITEM hParentItem) const
 
         if (hParentItem)
         {
-            hPos      = GetChildItem(hParentItem);
+            hPos      = GetTreeCtrl().GetChildItem(hParentItem);
             int index = 0;
 
             while (hPos)
@@ -242,7 +214,7 @@ int PSS_TreeCtrl::GetSelectItemPosition(HTREEITEM hParentItem) const
                     return index;
 
                 ++index;
-                hPos = CTreeCtrl::GetNextItem(hPos, TVGN_NEXT);
+                hPos = GetTreeCtrl().GetNextItem(hPos, TVGN_NEXT);
             }
         }
     }
@@ -250,44 +222,38 @@ int PSS_TreeCtrl::GetSelectItemPosition(HTREEITEM hParentItem) const
     return -1;
 }
 //---------------------------------------------------------------------------
-CString PSS_TreeCtrl::GetNameSelectedItem() const
+CString PSS_TreeView::GetNameSelectedItem() const
 {
-    HTREEITEM hSelected = GetSelectedItem();
+    HTREEITEM hSelected = GetTreeCtrl().GetSelectedItem();
 
     if (hSelected)
-        return GetItemText(hSelected);
+        return GetTreeCtrl().GetItemText(hSelected);
 
-    return _T("");
+    return "";
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::DeleteAllItems(BOOL deleteImageList)
+void PSS_TreeView::DeleteAllItems(BOOL deleteImageList)
 {
     if (deleteImageList)
-        if (m_pImageList)
+    {
+        CImageList* pImagelist = GetTreeCtrl().GetImageList(TVSIL_NORMAL);
+
+        if (pImagelist)
         {
-            m_pImageList->DeleteImageList();
-            delete m_pImageList;
-            m_pImageList = NULL;
+            pImagelist->DeleteImageList();
+            delete pImagelist;
         }
+    }
 
     // call the base class function
-    CTreeCtrl::DeleteAllItems();
+    GetTreeCtrl().DeleteAllItems();
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::SaveCollapsedState()
+void PSS_TreeView::SetNewStyle(long flags, BOOL setBits)
 {
-    EmptySaveStateDataSet();
-    SaveCollapsedState(GetRootItem());
-}
-//---------------------------------------------------------------------------
-void PSS_TreeCtrl::RestoreCollapsedStateToTreeCtrl()
-{
-    RestoreCollapsedStateToTreeCtrl(GetRootItem());
-}
-//---------------------------------------------------------------------------
-void PSS_TreeCtrl::SetNewStyle(long flags, BOOL setBits)
-{
-    long styleFlags = ::GetWindowLong(m_hWnd, GWL_STYLE) & ~flags;
+    long styleFlags;
+
+    styleFlags = GetWindowLong(m_hWnd, GWL_STYLE) & ~flags;
 
     if (setBits)
         styleFlags |= flags;
@@ -296,109 +262,108 @@ void PSS_TreeCtrl::SetNewStyle(long flags, BOOL setBits)
     SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::TransferItem(HTREEITEM hItemDrag, HTREEITEM hItemDrop)
+BOOL PSS_TreeView::TransferItem(HTREEITEM hItem, HTREEITEM hNewParent)
 {
-    TCHAR buffer[50];
+    TV_INSERTSTRUCT     tvstruct;
+    TCHAR               sztBuffer[50];
+    HTREEITEM           hNewItem, hFirstChild;
 
     // to avoid an infinite recursion
-    TV_INSERTSTRUCT tvstruct;
-    tvstruct.item.hItem      = hItemDrag;
+    tvstruct.item.hItem      = hItem;
     tvstruct.item.cchTextMax = 49;
-    tvstruct.item.pszText    = buffer;
+    tvstruct.item.pszText    = sztBuffer;
     tvstruct.item.mask       = TVIF_CHILDREN | TVIF_HANDLE | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT;
 
     // get information about the dragged element
-    GetItem(&tvstruct.item);
+    GetTreeCtrl().GetItem(&tvstruct.item);
 
-    tvstruct.hParent      = hItemDrop;
+    tvstruct.hParent      = hNewParent;
     tvstruct.hInsertAfter = TVI_SORT;
     tvstruct.item.mask    = TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT;
-    
-    HTREEITEM hFirstChild;
-    HTREEITEM hNewItem = InsertItem(&tvstruct);
+    hNewItem              = GetTreeCtrl().InsertItem(&tvstruct);
 
-    while ((hFirstChild = GetChildItem(hItemDrag)) != NULL)
+    while ((hFirstChild = GetTreeCtrl().GetChildItem(hItem)) != NULL)
     {
         // recursively transfer all the items, then delete the first child and all its children
         TransferItem(hFirstChild, hNewItem);
-        DeleteItem(hFirstChild);
+        GetTreeCtrl().DeleteItem(hFirstChild);
     }
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::IsChildNodeOf(HTREEITEM hItemChild, HTREEITEM hItemSuspectedParent)
+BOOL PSS_TreeView::IsChildNodeOf(HTREEITEM hItemChild, HTREEITEM hItemSuspectedParent)
 {
     do
     {
         if (hItemChild == hItemSuspectedParent)
             break;
     }
-    while ((hItemChild = GetParentItem(hItemChild)) != NULL);
+    while ((hItemChild = GetTreeCtrl().GetParentItem(hItemChild)) != NULL);
 
     return (hItemChild != NULL);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TreeCtrl::GetPrevItem(HTREEITEM hItem)
+HTREEITEM PSS_TreeView::GetPrevItem(HTREEITEM hItem)
 {
-    HTREEITEM hTreeItem = CTreeCtrl::GetPrevSiblingItem(hItem);
+    HTREEITEM hTreeItem = GetTreeCtrl().GetPrevSiblingItem(hItem);
 
     if (!hTreeItem)
-        hTreeItem = CTreeCtrl::GetParentItem(hItem);
+        hTreeItem = GetTreeCtrl().GetParentItem(hItem);
     else
         hTreeItem = GetLastItem(hTreeItem);
 
     return hTreeItem;
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TreeCtrl::GetNextItem(HTREEITEM hItem)
+HTREEITEM PSS_TreeView::GetNextItem(HTREEITEM hItem)
 {
     HTREEITEM hTreeItem;
 
-    if (CTreeCtrl::ItemHasChildren(hItem))
+    if (GetTreeCtrl().ItemHasChildren(hItem))
         // return first child
-        return CTreeCtrl::GetChildItem(hItem);
+        return GetTreeCtrl().GetChildItem(hItem);
 
     // return next sibling item. Move up in the tree to find a parent's sibling if needed
-    while ((hTreeItem = CTreeCtrl::GetNextSiblingItem(hItem)) == NULL)
-        if ((hItem = CTreeCtrl::GetParentItem(hItem)) == NULL)
+    while ((hTreeItem = GetTreeCtrl().GetNextSiblingItem(hItem)) == NULL)
+        if ((hItem = GetTreeCtrl().GetParentItem(hItem)) == NULL)
             return NULL;
 
     return hTreeItem;
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TreeCtrl::GetLastItem(HTREEITEM hItem)
+HTREEITEM PSS_TreeView::GetLastItem(HTREEITEM hItem)
 {
     // last child of the last child of the last child ...
     HTREEITEM hNext;
 
-    if (!hItem)
+    if (hItem == NULL)
     {
         // get the last item at the top level
-        hNext = CTreeCtrl::GetRootItem();
+        hNext = GetTreeCtrl().GetRootItem();
 
         while (hNext)
         {
             hItem = hNext;
-            hNext = CTreeCtrl::GetNextSiblingItem(hNext);
+            hNext = GetTreeCtrl().GetNextSiblingItem(hNext);
         }
     }
 
-    while (CTreeCtrl::ItemHasChildren(hItem))
+    while (GetTreeCtrl().ItemHasChildren(hItem))
     {
-        hNext = CTreeCtrl::GetChildItem(hItem);
+        hNext = GetTreeCtrl().GetChildItem(hItem);
 
         while (hNext)
         {
             hItem = hNext;
-            hNext = CTreeCtrl::GetNextSiblingItem(hNext);
+            hNext = GetTreeCtrl().GetNextSiblingItem(hNext);
         }
     }
 
     return hItem;
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TreeCtrl::FindItem(const CString& str,
+HTREEITEM PSS_TreeView::FindItem(const CString& str,
                                  BOOL           caseSensitive,
                                  BOOL           downDir,
                                  BOOL           wholeWord,
@@ -409,23 +374,23 @@ HTREEITEM PSS_TreeCtrl::FindItem(const CString& str,
     if (!lenSearchStr)
         return NULL;
 
-    HTREEITEM hSelItem = hItem   ? hItem                 : CTreeCtrl::GetSelectedItem();
+    HTREEITEM hSelItem = hItem   ? hItem                 : GetTreeCtrl().GetSelectedItem();
     HTREEITEM hCurItem = downDir ? GetNextItem(hSelItem) : GetPrevItem(hSelItem);
+
+    CString search = str;
 
     if (!hCurItem)
         if (downDir)
-            hCurItem = CTreeCtrl::GetRootItem();
+            hCurItem = GetTreeCtrl().GetRootItem();
         else
             hCurItem = GetLastItem(NULL);
-
-    CString search = str;
 
     if (!caseSensitive)
         search.MakeLower();
 
     while (hCurItem && hCurItem != hSelItem)
     {
-        CString itemText = CTreeCtrl::GetItemText(hCurItem);
+        CString itemText = GetTreeCtrl().GetItemText(hCurItem);
 
         if (!caseSensitive)
             itemText.MakeLower();
@@ -439,14 +404,16 @@ HTREEITEM PSS_TreeCtrl::FindItem(const CString& str,
             {
                 // check preceding char
                 if (n != 0)
+                {
                     if (isalpha(itemText[n - 1]) || itemText[n - 1] == '_')
                     {
                         // not whole word
                         itemText = itemText.Right(itemText.GetLength() - n - lenSearchStr);
                         continue;
                     }
+                }
 
-                // check succeeding char
+                // check following char
                 if (itemText.GetLength() > n + lenSearchStr &&
                    (isalpha(itemText[n + lenSearchStr]) || itemText[n + lenSearchStr] == '_'))
                 {
@@ -462,11 +429,12 @@ HTREEITEM PSS_TreeCtrl::FindItem(const CString& str,
             break;
         }
 
+
         hCurItem = downDir ? GetNextItem(hCurItem) : GetPrevItem(hCurItem);
 
         if (!hCurItem)
             if (downDir)
-                hCurItem = CTreeCtrl::GetRootItem();
+                hCurItem = GetTreeCtrl().GetRootItem();
             else
                 hCurItem = GetLastItem(NULL);
     }
@@ -474,9 +442,9 @@ HTREEITEM PSS_TreeCtrl::FindItem(const CString& str,
     return NULL;
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TreeCtrl::FindItem(const CString& label, HTREEITEM hStartItem)
+HTREEITEM PSS_TreeView::FindItem(const CString& label, HTREEITEM hStartItem)
 {
-    // if item is NULL, start search from root item
+    // if start item is NULL, start the search from the root item
     if (!hStartItem)
         hStartItem = HTREEITEM(SendMessage(TVM_GETNEXTITEM, TVGN_ROOT, 0));
 
@@ -515,9 +483,9 @@ HTREEITEM PSS_TreeCtrl::FindItem(const CString& label, HTREEITEM hStartItem)
     return NULL;
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TreeCtrl::FindItemData(void* pData, HTREEITEM hStartItem)
+HTREEITEM PSS_TreeView::FindItemData(void* pData, HTREEITEM hStartItem)
 {
-    // if item is NULL, start search from root item
+    // if start item is NULL, start the search from the root item
     if (!hStartItem)
         hStartItem = HTREEITEM(SendMessage(TVM_GETNEXTITEM, TVGN_ROOT, 0));
 
@@ -530,7 +498,7 @@ HTREEITEM PSS_TreeCtrl::FindItemData(void* pData, HTREEITEM hStartItem)
         item.mask       = TVIF_TEXT | TVIF_PARAM | TVIF_CHILDREN;
         item.pszText    = buffer;
         item.cchTextMax = _MAX_FNAME;
-        GetItem(&item);
+        GetTreeCtrl().GetItem(&item);
 
         // found it?
         if ((void*)item.lParam == pData)
@@ -556,37 +524,29 @@ HTREEITEM PSS_TreeCtrl::FindItemData(void* pData, HTREEITEM hStartItem)
     return NULL;
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::OnEndLabelEdit(LPNMHDR pnmhdr, LRESULT* pLResult)
+void PSS_TreeView::OnDraw(CDC* pDC)
 {
-    TV_DISPINFO* ptvinfo = (TV_DISPINFO*)pnmhdr;
-
-    if (ptvinfo->item.pszText)
-    {
-        ptvinfo->item.mask = TVIF_TEXT;
-        SetItem(&ptvinfo->item);
-    }
-
-    *pLResult = TRUE;
+    CDocument* pDoc = GetDocument();
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::OnBeginDrag(LPNMHDR pnmhdr, LRESULT* pLResult)
+void PSS_TreeView::OnBeginDrag(LPNMHDR pnmhdr, LRESULT* pLResult)
 {
     m_hDragItem = ((NM_TREEVIEW *)pnmhdr)->itemNew.hItem;
 
     int selectedImage;
-    GetItemImage(m_hDragItem, m_DragImageIndex, selectedImage);
+    GetTreeCtrl().GetItemImage(m_hDragItem, m_DragImageIndex, selectedImage);
 
     // create a drag image
-    m_pDragImage = GetImageList(LVSIL_NORMAL);
+    m_pDragImage = GetTreeCtrl().GetImageList(LVSIL_NORMAL);
 
     if (!m_pDragImage)
-        m_pDragImage = GetImageList(LVSIL_SMALL);
+        m_pDragImage = GetTreeCtrl().GetImageList(LVSIL_SMALL);
 
     ASSERT(m_pDragImage);
 
     // change the cursor to the drag image (DragMove() is still required in OnMouseMove())
     VERIFY(m_pDragImage->BeginDrag(m_DragImageIndex, CPoint(0, 0)));
-    VERIFY(m_pDragImage->DragEnter(GetDesktopWindow(), ((NM_TREEVIEW*)pnmhdr)->ptDrag));
+    VERIFY(m_pDragImage->DragEnter(GetDesktopWindow(), ((NM_TREEVIEW *)pnmhdr)->ptDrag));
 
     // set dragging flag
     m_Dragging = TRUE;
@@ -602,7 +562,32 @@ void PSS_TreeCtrl::OnBeginDrag(LPNMHDR pnmhdr, LRESULT* pLResult)
     SetCapture();
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::OnMouseMove(UINT nFlags, CPoint point)
+void PSS_TreeView::OnEndLabelEdit(LPNMHDR pnmhdr, LRESULT* pLResult)
+{
+    TV_DISPINFO* ptvinfo = (TV_DISPINFO *)pnmhdr;
+
+    if (ptvinfo->item.pszText)
+    {
+        ptvinfo->item.mask = TVIF_TEXT;
+        GetTreeCtrl().SetItem(&ptvinfo->item);
+    }
+
+    *pLResult = TRUE;
+}
+//---------------------------------------------------------------------------
+void PSS_TreeView::OnRButtonUp(UINT nFlags, CPoint point)
+{
+    OnButtonUp(point);
+    CTreeView::OnRButtonUp(nFlags, point);
+}
+//---------------------------------------------------------------------------
+void PSS_TreeView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+    OnButtonUp(point);
+    CTreeView::OnLButtonUp(nFlags, point);
+}
+//---------------------------------------------------------------------------
+void PSS_TreeView::OnMouseMove(UINT nFlags, CPoint point)
 {
     if (m_Dragging)
     {
@@ -619,53 +604,44 @@ void PSS_TreeCtrl::OnMouseMove(UINT nFlags, CPoint point)
         CWnd* pDropWnd = WindowFromPoint(pt);
         ASSERT(pDropWnd);
 
-        // save current window pointer
+        // save current window
         m_pDropWnd = pDropWnd;
 
         // convert from screen coordinates to drop target client coordinates
         pDropWnd->ScreenToClient(&pt);
 
-        PSS_DropView*       pDropView       = dynamic_cast<PSS_DropView*>(pDropWnd);
-        PSS_DropScrollView* pDropScrollView = dynamic_cast<PSS_DropScrollView*>(pDropWnd);
-
-        // if window accepts symbols drop
-        if ((pDropView && pDropView->AcceptDrop()) || (pDropScrollView && pDropScrollView->AcceptDrop()))
+        // if window accepts drop of symbol
+        if ((ISA(pDropWnd, PSS_DropView) && ((PSS_DropView*)pDropWnd)->AcceptDrop()) ||
+            (ISA(pDropWnd, PSS_DropScrollView) && ((PSS_DropScrollView*)pDropWnd)->AcceptDrop()))
             if (m_pDragObj)
+            {
+                PSS_DropView*       pDropView       = dynamic_cast<PSS_DropView*>(pDropWnd);
+                PSS_DropScrollView* pDropScrollView = dynamic_cast<PSS_DropScrollView*>(pDropWnd);
+
                 // if do accept drop
                 if ((pDropView       && pDropView->AcceptDropItem(m_pDragObj, pt)) ||
                     (pDropScrollView && pDropScrollView->AcceptDropItem(m_pDragObj, pt)))
                     // change the drag image
-                    m_pDragImage->SetDragCursorImage(m_DragImageIndex, CPoint(0, 0));
+                    VERIFY(m_pDragImage->SetDragCursorImage(m_DragImageIndex, CPoint(0, 0)));
                 else
-                    // change the drag image to no-drop
-                    m_pDragImage->SetDragCursorImage(GetIndexOfNoDropImage(), CPoint(0, 0));
+                    // change the drag image to impossible
+                    VERIFY(m_pDragImage->SetDragCursorImage(GetIndexOfNoDropImage(), CPoint(0, 0)));
+            }
 
         // lock window updates
         VERIFY(m_pDragImage->DragShowNolock(TRUE));
     }
 
-    CTreeCtrl::OnMouseMove(nFlags, point);
+    CTreeView::OnMouseMove(nFlags, point);
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
-{
-    OnButtonUp(point);
-    CTreeCtrl::OnLButtonUp(nFlags, point);
-}
-//---------------------------------------------------------------------------
-void PSS_TreeCtrl::OnRButtonUp(UINT nFlags, CPoint point)
-{
-    OnButtonUp(point);
-    CTreeCtrl::OnRButtonUp(nFlags, point);
-}
-//---------------------------------------------------------------------------
-void PSS_TreeCtrl::OnDestroy()
+void PSS_TreeView::OnDestroy()
 {
     DeleteAllItems(TRUE);
-    CTreeCtrl::OnDestroy();
+    CTreeView::OnDestroy();
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::OnButtonUp(const CPoint& point)
+void PSS_TreeView::OnButtonUp(const CPoint& point)
 {
     if (m_Dragging)
     {
@@ -676,8 +652,9 @@ void PSS_TreeCtrl::OnButtonUp(const CPoint& point)
         // show the cursor again
         ShowCursor(TRUE);
 
-        // stop capturing all mouse messages
+        // stop intercepting all mouse messages
         VERIFY(::ReleaseCapture());
+
         m_Dragging = FALSE;
 
         CPoint pt(point);
@@ -690,7 +667,7 @@ void PSS_TreeCtrl::OnButtonUp(const CPoint& point)
         PSS_DropView*       pDropView       = dynamic_cast<PSS_DropView*>(pDropWnd);
         PSS_DropScrollView* pDropScrollView = dynamic_cast<PSS_DropScrollView*>(pDropWnd);
 
-        // if window accepts symbols drop
+        // if window accepts drop of symbol
         if ((pDropView && pDropView->AcceptDrop()) || (pDropScrollView && pDropScrollView->AcceptDrop()))
         {
             // convert from screen coordinates to drop target client coordinates
@@ -706,97 +683,22 @@ void PSS_TreeCtrl::OnButtonUp(const CPoint& point)
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TreeCtrl::IsFindValid(HTREEITEM hItem)
+BOOL PSS_TreeView::IsFindValid(HTREEITEM hItem)
 {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::SaveCollapsedState(HTREEITEM hTreeItem)
-{
-    if (hTreeItem && ItemHasChildren(hTreeItem))
+#ifdef _DEBUG
+    void PSS_TreeView::AssertValid() const
     {
-        // get the item text
-        const CString itemText = CTreeCtrl::GetItemText(hTreeItem);
-        IData*        pObj     = AddSaveStateDataToSet(itemText);
-
-        // if exists, set the collapsed state
-        if (pObj)
-            pObj->SetCollapsed((GetItemState(hTreeItem, TVIS_EXPANDED) & TVIS_EXPANDED) ? false : true);
-
-        hTreeItem = GetChildItem(hTreeItem);
-
-        do
-        {
-            SaveCollapsedState(hTreeItem);
-        }
-        while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
+        CTreeView::AssertValid();
     }
-}
+#endif
 //---------------------------------------------------------------------------
-void PSS_TreeCtrl::RestoreCollapsedStateToTreeCtrl(HTREEITEM hTreeItem)
-{
-    if (hTreeItem && ItemHasChildren(hTreeItem))
+#ifdef _DEBUG
+    void PSS_TreeView::Dump(CDumpContext& dc) const
     {
-        // get the item text
-        const CString itemText = CTreeCtrl::GetItemText(hTreeItem);
-
-        // get the data object
-        IData* pObj = FindElementFromSaveStateDataSet(itemText);
-
-        // if exists, set the previously saved state
-        if (pObj)
-            Expand(hTreeItem, pObj->IsCollapsed() ? TVE_COLLAPSE : TVE_EXPAND);
-
-        hTreeItem = GetChildItem(hTreeItem);
-
-        do
-        {
-            RestoreCollapsedStateToTreeCtrl(hTreeItem);
-        }
-        while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
+        CTreeView::Dump(dc);
     }
-}
-//---------------------------------------------------------------------------
-void PSS_TreeCtrl::EmptySaveStateDataSet()
-{
-    IDataIterator i(&m_DataSet);
-
-    for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        delete pElement;
-
-    m_DataSet.RemoveAll();
-}
-//---------------------------------------------------------------------------
-PSS_TreeCtrl::IData* PSS_TreeCtrl::AddSaveStateDataToSet(const CString& str)
-{
-    std::unique_ptr<IData> pData(new IData(str));
-    m_DataSet.Add(pData.get());
-    return pData.release();
-}
-//---------------------------------------------------------------------------
-bool PSS_TreeCtrl::DeleteElementFromSaveStateDataSet(const CString& str)
-{
-    IDataIterator i(&m_DataSet);
-
-    for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Str == str)
-        {
-            delete pElement;
-            i.Remove();
-            return true;
-        }
-
-    return false;
-}
-//---------------------------------------------------------------------------
-PSS_TreeCtrl::IData* PSS_TreeCtrl::FindElementFromSaveStateDataSet(const CString& str)
-{
-    IDataIterator i(&m_DataSet);
-
-    for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Str == str)
-            return pElement;
-
-    return NULL;
-}
+#endif
 //---------------------------------------------------------------------------

@@ -26,9 +26,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZCProcessModelTreeView
 
-IMPLEMENT_DYNCREATE( ZCProcessModelTreeView, ZITreeView )
+IMPLEMENT_DYNCREATE(ZCProcessModelTreeView, PSS_TreeView)
 
-BEGIN_MESSAGE_MAP( ZCProcessModelTreeView, ZITreeView )
+BEGIN_MESSAGE_MAP(ZCProcessModelTreeView, PSS_TreeView)
     //{{AFX_MSG_MAP(ZCProcessModelTreeView)
     ON_WM_LBUTTONDBLCLK()
     ON_WM_RBUTTONDBLCLK()
@@ -52,30 +52,29 @@ BEGIN_MESSAGE_MAP( ZCProcessModelTreeView, ZITreeView )
 END_MESSAGE_MAP()
 
 ZCProcessModelTreeView::ZCProcessModelTreeView()
-    : m_pModelSet        ( NULL ),
-      m_pPopupSubMenu    ( NULL ),
-      m_EnableMenuItems    ( false )
-{
-}
+    : PSS_TreeView(),
+    m_pModelSet(NULL),
+    m_pPopupSubMenu(NULL),
+    m_EnableMenuItems(false)
+{}
 
 ZCProcessModelTreeView::~ZCProcessModelTreeView()
-{
-}
+{}
 
-void ZCProcessModelTreeView::Initialize( const CString        ModelName,
-                                         ZBModelSet*        pModelSet,
-                                         UINT                nIDImageRes,
-                                         ZBRuntimeClassSet*    pSet            /*= NULL*/,
-                                         bool                EnableMenuItems    /*= true*/ )
+void ZCProcessModelTreeView::Initialize(const CString        ModelName,
+                                        ZBModelSet*        pModelSet,
+                                        UINT                nIDImageRes,
+                                        ZBRuntimeClassSet*    pSet            /*= NULL*/,
+                                        bool                EnableMenuItems    /*= true*/)
 {
-    m_pModelSet            = pModelSet;
-    m_EnableMenuItems    = EnableMenuItems;
+    m_pModelSet = pModelSet;
+    m_EnableMenuItems = EnableMenuItems;
 
     // Enable drag and drop
-    ( (PSS_TreeCtrl*)&GetTreeCtrl() )->DisableDragDrop( false );
+    ((PSS_TreeCtrl*)&GetTreeCtrl())->DisableDragDrop(false);
 
     // Initialize the worker class
-    m_ModelTree.Initialize( (PSS_TreeCtrl*)&GetTreeCtrl(), ModelName, m_pModelSet, nIDImageRes, pSet );
+    m_ModelTree.Initialize((PSS_TreeCtrl*)&GetTreeCtrl(), ModelName, m_pModelSet, nIDImageRes, pSet);
 }
 
 void ZCProcessModelTreeView::Refresh()
@@ -88,41 +87,41 @@ void ZCProcessModelTreeView::Empty()
     m_ModelTree.Empty();
 }
 
-void ZCProcessModelTreeView::AddModel( ZDProcessGraphModelMdl* pModel )
+void ZCProcessModelTreeView::AddModel(ZDProcessGraphModelMdl* pModel)
 {
-    m_ModelTree.AddModel( pModel );
+    m_ModelTree.AddModel(pModel);
 }
 
-void ZCProcessModelTreeView::RemoveModel( ZDProcessGraphModelMdl* pModel )
+void ZCProcessModelTreeView::RemoveModel(ZDProcessGraphModelMdl* pModel)
 {
-    m_ModelTree.RemoveModel( pModel );
+    m_ModelTree.RemoveModel(pModel);
 }
 
-void ZCProcessModelTreeView::AddModelSet( ZBModelSet* pModelSet )
+void ZCProcessModelTreeView::AddModelSet(ZBModelSet* pModelSet)
 {
-    m_ModelTree.AddModelSet( pModelSet );
+    m_ModelTree.AddModelSet(pModelSet);
 }
 
-void ZCProcessModelTreeView::RemoveModelSet( ZBModelSet* pModelSet )
+void ZCProcessModelTreeView::RemoveModelSet(ZBModelSet* pModelSet)
 {
-    m_ModelTree.RemoveModelSet( pModelSet );
+    m_ModelTree.RemoveModelSet(pModelSet);
 }
 
-void ZCProcessModelTreeView::AddSymbol( CODSymbolComponent*        pSymbol,
-                                        ZDProcessGraphModelMdl*    pModel,
-                                        bool                    CheckUnique )
+void ZCProcessModelTreeView::AddSymbol(CODSymbolComponent*        pSymbol,
+                                       ZDProcessGraphModelMdl*    pModel,
+                                       bool                    CheckUnique)
 {
-    m_ModelTree.AddSymbol( pSymbol, pModel, CheckUnique );
+    m_ModelTree.AddSymbol(pSymbol, pModel, CheckUnique);
 }
 
-void ZCProcessModelTreeView::RemoveSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel )
+void ZCProcessModelTreeView::RemoveSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel)
 {
-    m_ModelTree.RemoveSymbol( pSymbol, pModel );
+    m_ModelTree.RemoveSymbol(pSymbol, pModel);
 }
 
-void ZCProcessModelTreeView::ModifySymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel )
+void ZCProcessModelTreeView::ModifySymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel)
 {
-    m_ModelTree.ModifySymbol( pSymbol, pModel );
+    m_ModelTree.ModifySymbol(pSymbol, pModel);
 }
 
 void ZCProcessModelTreeView::OnDoubleClick()
@@ -130,32 +129,32 @@ void ZCProcessModelTreeView::OnDoubleClick()
     m_ModelTree.OnDoubleClick();
 }
 
-int ZCProcessModelTreeView::HasContextMenu( CWnd* pWnd, CPoint point )
+int ZCProcessModelTreeView::HasContextMenu(CWnd* pWnd, CPoint point)
 {
     // Now display the right sub-menu
     int IdMenu = -1;
     UINT Flags;
-    CPoint pt( point );
-    ScreenToClient( &pt );
+    CPoint pt(point);
+    ScreenToClient(&pt);
 
-    HTREEITEM hItem = ( (PSS_TreeCtrl*)&GetTreeCtrl() )->HitTest( pt, &Flags );
+    HTREEITEM hItem = ((PSS_TreeCtrl*)&GetTreeCtrl())->HitTest(pt, &Flags);
 
-    if ( ( hItem != NULL ) && ( TVHT_ONITEM & Flags ) )
+    if ((hItem != NULL) && (TVHT_ONITEM & Flags))
     {
-        CODSymbolComponent* pComp = m_ModelTree.GetSymbol( hItem );
+        CODSymbolComponent* pComp = m_ModelTree.GetSymbol(hItem);
 
-        if ( pComp && ( ISA( pComp, ZBSymbol ) || ISA( pComp, ZBLinkSymbol ) ) )
+        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol)))
         {
-            if ( ISA( pComp, ZBSymbol ) )
+            if (ISA(pComp, ZBSymbol))
             {
-                IdMenu = dynamic_cast<ZBSymbol*>( pComp )->GetRightSubMenu();
+                IdMenu = dynamic_cast<ZBSymbol*>(pComp)->GetRightSubMenu();
             }
-            else if ( ISA( pComp, ZBLinkSymbol ) )
+            else if (ISA(pComp, ZBLinkSymbol))
             {
-                IdMenu = dynamic_cast<ZBLinkSymbol*>( pComp )->GetRightSubMenu();
+                IdMenu = dynamic_cast<ZBLinkSymbol*>(pComp)->GetRightSubMenu();
             }
         }
-        else if ( m_ModelTree.GetPage( hItem ) )
+        else if (m_ModelTree.GetPage(hItem))
         {
             IdMenu = 0;
         }
@@ -164,110 +163,109 @@ int ZCProcessModelTreeView::HasContextMenu( CWnd* pWnd, CPoint point )
     return IdMenu;
 }
 
-void ZCProcessModelTreeView::DisplayContextMenu( CWnd* pWnd, CPoint point )
+void ZCProcessModelTreeView::DisplayContextMenu(CWnd* pWnd, CPoint point)
 {
-    int IdMenu = HasContextMenu( pWnd, point );
+    int IdMenu = HasContextMenu(pWnd, point);
 
-    if ( IdMenu == -1 )
+    if (IdMenu == -1)
     {
         return;
     }
 
     // And test the hit. 
     UINT uFlags;
-    CPoint pt( point );
-    ScreenToClient( &pt );
-    HTREEITEM hItem = ( (PSS_TreeCtrl*)&GetTreeCtrl() )->HitTest( pt, &uFlags );
+    CPoint pt(point);
+    ScreenToClient(&pt);
+    HTREEITEM hItem = ((PSS_TreeCtrl*)&GetTreeCtrl())->HitTest(pt, &uFlags);
 
-    if ( ( hItem != NULL ) && ( TVHT_ONITEM & uFlags ) )
+    if ((hItem != NULL) && (TVHT_ONITEM & uFlags))
     {
-        ( (PSS_TreeCtrl*)&GetTreeCtrl() )->Select( hItem, TVGN_CARET );
+        ((PSS_TreeCtrl*)&GetTreeCtrl())->Select(hItem, TVGN_CARET);
 
         // Test if local or referenced symbol
         bool Local = true;
-        CODSymbolComponent* pComp = m_ModelTree.GetSymbol( hItem );
+        CODSymbolComponent* pComp = m_ModelTree.GetSymbol(hItem);
 
-        if ( pComp && ( ISA( pComp, ZBSymbol ) || ISA( pComp, ZBLinkSymbol ) ) )
+        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol)))
         {
-            if ( ISA( pComp, ZBSymbol ) )
+            if (ISA(pComp, ZBSymbol))
             {
-                Local = dynamic_cast<ZBSymbol*>( pComp )->IsLocal();
+                Local = dynamic_cast<ZBSymbol*>(pComp)->IsLocal();
             }
-            else if ( ISA( pComp, ZBLinkSymbol ) )
+            else if (ISA(pComp, ZBLinkSymbol))
             {
-                Local = dynamic_cast<ZBLinkSymbol*>( pComp )->IsLocal();
+                Local = dynamic_cast<ZBLinkSymbol*>(pComp)->IsLocal();
             }
         }
 
         CMenu* pPopup = NULL;
 
-        if ( Local )
+        if (Local)
         {
-            pPopup = m_SymbolPopupMainMenu.GetSubMenu( IdMenu );
+            pPopup = m_SymbolPopupMainMenu.GetSubMenu(IdMenu);
         }
         else
         {
-            pPopup = m_SymbolRefPopupMainMenu.GetSubMenu( IdMenu );
+            pPopup = m_SymbolRefPopupMainMenu.GetSubMenu(IdMenu);
         }
 
-        ASSERT( pPopup != NULL );
+        ASSERT(pPopup != NULL);
         CWnd* pWndPopupOwner = this;
-        
-        while ( pWndPopupOwner->GetStyle() & WS_CHILD )
+
+        while (pWndPopupOwner->GetStyle() & WS_CHILD)
         {
             pWndPopupOwner = pWndPopupOwner->GetParent();
         }
 
         // If required to enable all menu items
-        if ( m_EnableMenuItems )
+        if (m_EnableMenuItems)
         {
             UINT Count = pPopup->GetMenuItemCount();
 
-            for ( UINT i = 0; i < Count; ++i )
+            for (UINT i = 0; i < Count; ++i)
             {
-                pPopup->EnableMenuItem( i, MF_BYPOSITION | MF_ENABLED );
+                pPopup->EnableMenuItem(i, MF_BYPOSITION | MF_ENABLED);
             }
         }
 
-        pPopup->TrackPopupMenu( TPM_LEFTALIGN | TPM_RIGHTBUTTON,
-                                point.x,
-                                point.y,
-                                ( m_EnableMenuItems ) ? this : pWndPopupOwner );
+        pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+                               point.x,
+                               point.y,
+                               (m_EnableMenuItems) ? this : pWndPopupOwner);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCProcessModelTreeView drawing
 
-void ZCProcessModelTreeView::OnDraw( CDC* pDC )
-{
-}
+void ZCProcessModelTreeView::OnDraw(CDC* pDC)
+{}
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCProcessModelTreeView message handlers
 
-void ZCProcessModelTreeView::OnContextMenu( CWnd* pWnd, CPoint point )
+void ZCProcessModelTreeView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-    DisplayContextMenu( pWnd, point );
+    DisplayContextMenu(pWnd, point);
 }
 
-void ZCProcessModelTreeView::OnLButtonDblClk( UINT nFlags, CPoint point )
+void ZCProcessModelTreeView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
     // Browse the symbol
     OnDoubleClick();
 }
 
-void ZCProcessModelTreeView::OnRButtonDblClk( UINT nFlags, CPoint point )
+void ZCProcessModelTreeView::OnRButtonDblClk(UINT nFlags, CPoint point)
 {
-    ZITreeView::OnRButtonDblClk( nFlags, point );
+    PSS_TreeView::OnRButtonDblClk(nFlags, point);
 
     // Browse the symbol
     OnDoubleClick();
 }
 
-void ZCProcessModelTreeView::OnRButtonUp( UINT nFlags, CPoint point )
+void ZCProcessModelTreeView::OnRButtonUp(UINT nFlags, CPoint point)
 {
-    ZITreeView::OnRButtonUp( nFlags, point );
+    PSS_TreeView::OnRButtonUp(nFlags, point);
 }
 
 void ZCProcessModelTreeView::OnRefresh()
@@ -278,43 +276,43 @@ void ZCProcessModelTreeView::OnRefresh()
 void ZCProcessModelTreeView::OnModelBrowserEditName()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_EDIT_NAME );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_EDIT_NAME);
 }
 
 void ZCProcessModelTreeView::OnModelBrowserGoInSymbol()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_GOIN_SYMBOL );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_GOIN_SYMBOL);
 }
 
 void ZCProcessModelTreeView::OnModelBrowserEditCut()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_EDIT_CUT );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_EDIT_CUT);
 }
 
 void ZCProcessModelTreeView::OnModelBrowserEditCopy()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_EDIT_COPY );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_EDIT_COPY);
 }
 
 void ZCProcessModelTreeView::OnModelBrowserEditClear()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_EDIT_CLEAR );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_EDIT_CLEAR);
 }
 
 void ZCProcessModelTreeView::OnModelBrowserProperties()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_OD_PROPERTIES );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_OD_PROPERTIES);
 }
 
 void ZCProcessModelTreeView::OnModelBrowserBrowseSourceSymbol()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_BROWSE_SOURCESYMBOL );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_BROWSE_SOURCESYMBOL);
 }
 
 void ZCProcessModelTreeView::OnModelBrowserSelectSymbol()
@@ -324,29 +322,29 @@ void ZCProcessModelTreeView::OnModelBrowserSelectSymbol()
 
 void ZCProcessModelTreeView::OnInsertModelPage()
 {
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_INSERT_MODELPAGE );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_INSERT_MODELPAGE);
 }
 
 void ZCProcessModelTreeView::OnRenameModelPage()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_RENAME_CURRENTMODELPAGE );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_RENAME_CURRENTMODELPAGE);
 }
 
 void ZCProcessModelTreeView::OnDeleteModelPage()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage( WM_COMMAND, ID_DELETE_CURRENTMODELPAGE );
+    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_DELETE_CURRENTMODELPAGE);
 }
 
 void ZCProcessModelTreeView::OnCollapseBranch()
 {
-    CollapseBranch( ( (PSS_TreeCtrl*)&GetTreeCtrl() )->GetSelectedItem(), TRUE );
+    CollapseBranch(((PSS_TreeCtrl*)&GetTreeCtrl())->GetSelectedItem(), TRUE);
 }
 
 void ZCProcessModelTreeView::OnExpandBranch()
 {
-    ExpandBranch( ( (PSS_TreeCtrl*)&GetTreeCtrl() )->GetSelectedItem(), TRUE );
+    ExpandBranch(((PSS_TreeCtrl*)&GetTreeCtrl())->GetSelectedItem(), TRUE);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -358,8 +356,8 @@ void ZCProcessModelTreeView::AssertValid() const
     ZITreeView::AssertValid();
 }
 
-void ZCProcessModelTreeView::Dump( CDumpContext& dc ) const
+void ZCProcessModelTreeView::Dump(CDumpContext& dc) const
 {
-    ZITreeView::Dump( dc );
+    ZITreeView::Dump(dc);
 }
 #endif

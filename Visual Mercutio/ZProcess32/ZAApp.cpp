@@ -4,7 +4,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\ZMessage.h"
+#include "zBaseLib\PSS_MessageDlg.h"
 #include "zBaseLib\PSS_VisualTool.h"
 #include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
@@ -420,8 +420,8 @@ BOOL ZAApp::InitAppl()
     // zProcess is only available in EntrepriseEdition
     if (GetApplicationInfoType() != ZBCriptedFileApplicationTypeInfo::EntrepriseEdition)
     {
-        ZIMessage Message;
-        Message.DisplayMessage(IDS_APPINFO_INCOMP, IDS_APPINFO_INCOMP_TITLE);
+        PSS_MessageDlg message;
+        message.ShowMessage(IDS_APPINFO_INCOMP, IDS_APPINFO_INCOMP_TITLE);
         return FALSE;
     }
 #endif // _ZCHECKINFO
