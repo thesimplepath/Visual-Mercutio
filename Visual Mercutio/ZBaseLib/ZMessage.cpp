@@ -1,38 +1,24 @@
-//## begin module%36DEE3D90136.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%36DEE3D90136.cm
+/****************************************************************************
+ * ==> PSS_MessageDlg ------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a message dialog box                              *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%36DEE3D90136.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%36DEE3D90136.cp
-
-//## Module: ZMessage%36DEE3D90136; Package body
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\ZMessage.cpp
-
-//## begin module%36DEE3D90136.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%36DEE3D90136.additionalIncludes
-
-//## begin module%36DEE3D90136.includes preserve=yes
-//## end module%36DEE3D90136.includes
-
-// ZMessage
 #include "ZMessage.h"
-//## begin module%36DEE3D90136.declarations preserve=no
-//## end module%36DEE3D90136.declarations
 
-//## begin module%36DEE3D90136.additionalDeclarations preserve=yes
 #include "PSS_DrawFunctions.h"
 #ifdef _DEBUG
 #undef THIS_FILE
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-
-BEGIN_MESSAGE_MAP(ZIMessage, PSS_Dialog)
-    //{{AFX_MSG_MAP(ZIMessage)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_MessageDlg, PSS_Dialog)
+    //{{AFX_MSG_MAP(PSS_MessageDlg)
     ON_WM_TIMER()
     ON_WM_PAINT()
     ON_BN_CLICKED(IDC_CLOSEWINDOW, OnCloseWindow)
@@ -42,221 +28,192 @@ BEGIN_MESSAGE_MAP(ZIMessage, PSS_Dialog)
     ON_WM_MOUSEMOVE()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-//## end module%36DEE3D90136.additionalDeclarations
-
-
-// Class ZIMessage 
-
-
-
-
-
-
-
-ZIMessage::ZIMessage (CWnd* pWnd)
-  //## begin ZIMessage::ZIMessage%920577013.hasinit preserve=no
-      : m_IDBitmap(0), m_hInst(0)
-  //## end ZIMessage::ZIMessage%920577013.hasinit
-  //## begin ZIMessage::ZIMessage%920577013.initialization preserve=yes
-  , PSS_Dialog(ZIMessage::IDD)
-  //## end ZIMessage::ZIMessage%920577013.initialization
+//---------------------------------------------------------------------------
+// PSS_MessageDlg
+//---------------------------------------------------------------------------
+PSS_MessageDlg::PSS_MessageDlg(CWnd* pWnd) :
+    PSS_Dialog(PSS_MessageDlg::IDD),
+    m_hInst(NULL),
+    m_Cursor(NULL),
+    m_Icon(0),
+    m_BitmapID(0),
+    m_TimerID(0)
 {
-  //## begin ZIMessage::ZIMessage%920577013.body preserve=yes
-  
-    //{{AFX_DATA_INIT(ZIMessage)
-    //}}AFX_DATA_INIT
+    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(IDC_CLICKTOCLOSE), RT_GROUP_CURSOR);
+    m_Cursor        = ::LoadCursor(hInst, MAKEINTRESOURCE(IDC_CLICKTOCLOSE));
 
-    m_iIcon = 0;    // Init the sequence
+    // create the text font
+    VERIFY(m_TextFont.CreateFont(10,
+                                 8,
+                                 0,
+                                 0,
+                                 FW_NORMAL,
+                                 0,
+                                 0,
+                                 0,
+                                 DEFAULT_CHARSET,
+                                 OUT_DEVICE_PRECIS,
+                                 CLIP_TT_ALWAYS,
+                                 PROOF_QUALITY,
+                                 DEFAULT_PITCH,
+                                 "System"));
 
-    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE (IDC_CLICKTOCLOSE), RT_GROUP_CURSOR);
-    m_Cursor = ::LoadCursor( hInst, MAKEINTRESOURCE(IDC_CLICKTOCLOSE) );
-
-    // Create the text font
-    VERIFY( m_TextFont.CreateFont( 10, 8,        // Size
-                                0, 0,        // Escapment and Orientation
-                                FW_NORMAL,  // Weight
-                                0, 0, 0,    // Italic, Underline, StrikeOut
-                                DEFAULT_CHARSET,
-                                OUT_DEVICE_PRECIS,
-                                CLIP_TT_ALWAYS,
-                                PROOF_QUALITY,
-                                DEFAULT_PITCH,
-                                "System" ) );
-    // Create the title font
-    VERIFY( m_TitleFont.CreateFont( 20, 16,        // Size
-                                0, 0,        // Escapment and Orientation
-                                FW_BOLD,    // Weight
-                                0, 0, 0,    // Italic, Underline, StrikeOut
-                                DEFAULT_CHARSET,
-                                OUT_DEVICE_PRECIS,
-                                CLIP_TT_ALWAYS,
-                                PROOF_QUALITY,
-                                DEFAULT_PITCH,
-                                "System" ) );
-    
-  //## end ZIMessage::ZIMessage%920577013.body
+    // create the title font
+    VERIFY(m_TitleFont.CreateFont(20,
+                                  16,
+                                  0,
+                                  0,
+                                  FW_BOLD,
+                                  0,
+                                  0,
+                                  0,
+                                  DEFAULT_CHARSET,
+                                  OUT_DEVICE_PRECIS,
+                                  CLIP_TT_ALWAYS,
+                                  PROOF_QUALITY,
+                                  DEFAULT_PITCH,
+                                  "System"));
 }
-
-
-ZIMessage::~ZIMessage()
+//---------------------------------------------------------------------------
+PSS_MessageDlg::PSS_MessageDlg(const PSS_MessageDlg& other)
 {
-  //## begin ZIMessage::~ZIMessage%.body preserve=yes
-  //## end ZIMessage::~ZIMessage%.body
+    THROW("Copy constructor isn't allowed for this class");
 }
-
-
-
-//## Other Operations (implementation)
-void ZIMessage::DisplayMessage (const CString Text, CString Title, UINT IDBitmap)
+//---------------------------------------------------------------------------
+PSS_MessageDlg::~PSS_MessageDlg()
+{}
+//---------------------------------------------------------------------------
+const PSS_MessageDlg& PSS_MessageDlg::operator = (const PSS_MessageDlg& other)
 {
-  //## begin ZIMessage::DisplayMessage%920577014.body preserve=yes
-    m_IDBitmap = IDBitmap;
-    m_Text = Text;
-    m_Title = Title;
-    if (m_IDBitmap)
-        m_hInst = AfxFindResourceHandle( MAKEINTRESOURCE (m_IDBitmap), RT_BITMAP );
+    THROW("Copy operator isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::ShowMessage(const CString& text, const CString& title, UINT bitmapID)
+{
+    m_Title    = title;
+    m_Text     = text;
+    m_BitmapID = bitmapID;
+
+    if (m_BitmapID)
+        m_hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
+
     DoModal();
-  //## end ZIMessage::DisplayMessage%920577014.body
 }
-
-void ZIMessage::DisplayMessage (UINT IDText, UINT IDTitle, UINT IDBitmap)
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::ShowMessage(UINT textID, UINT titleID, UINT bitmapID)
 {
-  //## begin ZIMessage::DisplayMessage%920577015.body preserve=yes
-      CString    Text;
-      CString    Title;
-      
-    Text.LoadString( IDText );
-      if (IDTitle)
-          Title.LoadString( IDTitle );
-      DisplayMessage( Text, Title, IDBitmap );
-  //## end ZIMessage::DisplayMessage%920577015.body
+    CString text;
+    Text.LoadString(textID);
+
+    CString title;
+
+    if (titleID)
+        title.LoadString(titleID);
+
+    ShowMessage(text, title, bitmapID);
 }
-
-// Additional Declarations
-  //## begin ZIMessage%36DEE2420330.declarations preserve=yes
-  //## end ZIMessage%36DEE2420330.declarations
-
-//## begin module%36DEE3D90136.epilog preserve=yes
-void ZIMessage::DoDataExchange(CDataExchange* pDX)
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(ZIMessage)
+
+    //{{AFX_DATA_MAP(PSS_MessageDlg)
     DDX_Control(pDX, IDC_DIALOGMESSAGE_ICON, m_icnApp);
     DDX_Control(pDX, IDC_CLOSEWINDOW, m_CloseButton);
     //}}AFX_DATA_MAP
 }
-
-
-BOOL ZIMessage::OnInitDialog()
+//---------------------------------------------------------------------------
+BOOL PSS_MessageDlg::OnInitDialog()
 {
     PSS_Dialog::OnInitDialog();
-    
+
     m_CloseButton.SetIcon(IDI_CLOSEWINDOW);
-    m_CloseButton.SetBtnCursor( IDC_CLOSEWINDOW );
+    m_CloseButton.SetBtnCursor(IDC_CLOSEWINDOW);
     m_CloseButton.SetAlign(PSS_FlatButton::IE_ST_ALIGN_HORZ_RIGHT);
     m_CloseButton.DrawTransparent();
-//    m_CloseButton.AutoLoad( IDC_CLOSEWINDOW, this );
-    
-    return TRUE;  // return TRUE  unless you set the focus to a control
+
+    // return TRUE unless the focus is set to a control
+    return TRUE;
 }
-
-void ZIMessage::OnPaint()
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::OnTimer(UINT nIDEvent)
 {
-    CPaintDC dc(this); // device context for painting
-    
-    CRect    rect;
-    CFont*    OldFont;
-    CBrush*    OldBrush;
-                 
-    CBrush    NewBrush( defCOLOR_WHITE ); 
-    GetClientRect( &rect );
-    CRect    WhiteRect( rect.left+1, rect.top+1, rect.right-2, rect.top+40 );
+    // Increment the icon for the next time
+    m_icnApp.SetIcon(m_pIcon[m_iIcon]);
+    if (++m_iIcon >= NUMBER_OF_MESSAGE_ICON)
+        m_iIcon = 0;
+    CDialog::OnTimer(nIDEvent);
+}
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::OnPaint()
+{
+    // device context for painting
+    CPaintDC dc(this);
 
-    OldBrush = dc.SelectObject( &NewBrush );
-    dc.FillRect( WhiteRect, &NewBrush );
+    CBrush newBrush(defCOLOR_WHITE);
 
-      CPen*    pOldPen = NULL;
-      CPen    PenBlack( PS_SOLID, 1, defCOLOR_GRAY );
-    pOldPen = dc.SelectObject( &PenBlack );
-    dc.MoveTo( rect.right, rect.top );
-    dc.LineTo( rect.left, rect.top );
-    dc.LineTo( rect.left, rect.top+40 );
-    dc.SelectObject( pOldPen );
+    CRect rect;
+    GetClientRect(&rect);
 
-      CPen    PenGray( PS_SOLID, 1, defCOLOR_BLACK );
-    pOldPen = dc.SelectObject( &PenGray );
-    dc.MoveTo( rect.left, rect.top+40 );
-    dc.LineTo( rect.right-1, rect.top+40 );
-    dc.LineTo( rect.right-1, rect.top );
-    dc.SelectObject( pOldPen );
+    CRect whiteRect(rect.left + 1, rect.top + 1, rect.right - 2, rect.top + 40);
 
-    Draw3DLine( dc.m_hDC, 0, WhiteRect.left+2, WhiteRect.bottom+2, WhiteRect.right-2, WhiteRect.bottom+2 );
+    CBrush* pOldBrush = dc.SelectObject(&newBrush);
+    dc.FillRect(whiteRect, &newBrush);
 
-    // Display the title
-    OldFont = dc.SelectObject( &m_TitleFont );
+    CPen  blackPen(PS_SOLID, 1, defCOLOR_GRAY);
+    CPen* pOldPen = dc.SelectObject(&blackPen);
+    dc.MoveTo(rect.right, rect.top);
+    dc.LineTo(rect.left,  rect.top);
+    dc.LineTo(rect.left,  rect.top + 40);
+    dc.SelectObject(pOldPen);
+
+    CPen grayPen(PS_SOLID, 1, defCOLOR_BLACK);
+    pOldPen = dc.SelectObject(&grayPen);
+    dc.MoveTo(rect.left,      rect.top + 40);
+    dc.LineTo(rect.right - 1, rect.top + 40);
+    dc.LineTo(rect.right - 1, rect.top);
+    dc.SelectObject(pOldPen);
+
+    Draw3DLine(dc.m_hDC, 0, whiteRect.left + 2, whiteRect.bottom + 2, whiteRect.right - 2, whiteRect.bottom + 2);
+
+    // draw the title
+    CFont* pOldFont = dc.SelectObject(&m_TitleFont);
     dc.SetBkMode(TRANSPARENT);
-    dc.SetTextColor( defCOLOR_BLACK );
-    dc.SetTextAlign( TA_LEFT | TA_BOTTOM );
-    dc.TextOut( rect.left+20, rect.top+30, m_Title );
-    dc.SelectObject( OldFont );
+    dc.SetTextColor(defCOLOR_BLACK);
+    dc.SetTextAlign(TA_LEFT | TA_BOTTOM);
+    dc.TextOut(rect.left + 20, rect.top + 30, m_Title);
+    dc.SelectObject(OldFont);
 
-    // Display the text    
-    CRect    TextRect( rect.left+40, rect.top+65, rect.right-20, rect.bottom-40 );
-    DrawEngraveRect( dc.m_hDC, TextRect, defCOLOR_LTLTGRAY );
-    
-    OldFont = dc.SelectObject( &m_TextFont );
-    dc.SetTextColor( defCOLOR_BLACK );
-    dc.SetTextAlign( 0 );
-    TextRect.InflateRect( -5, -5 );
-    dc.DrawText( m_Text, -1, &TextRect, DT_LEFT | DT_BOTTOM | DT_WORDBREAK );
+    // draw the text 
+    CRect textRect(rect.left + 40, rect.top + 65, rect.right - 20, rect.bottom - 40);
+    DrawEngraveRect(dc.m_hDC, textRect, defCOLOR_LTLTGRAY);
 
+    pOldFont = dc.SelectObject(&m_TextFont);
+    dc.SetTextColor(defCOLOR_BLACK);
+    dc.SetTextAlign(0);
+    textRect.InflateRect(-5, -5);
+    dc.DrawText(m_Text, -1, &textRect, DT_LEFT | DT_BOTTOM | DT_WORDBREAK);
 
-    Draw3DLine( dc.m_hDC, 0, WhiteRect.left+2, rect.bottom-30, WhiteRect.right-2, rect.bottom-30 );
+    Draw3DLine(dc.m_hDC, 0, whiteRect.left + 2, rect.bottom - 30, whiteRect.right - 2, rect.bottom - 30);
 
-    dc.SelectObject( OldFont );
-    dc.SelectObject( OldBrush );
+    dc.SelectObject(pOldFont);
+    dc.SelectObject(pOldBrush);
 
-    if (m_IDBitmap && m_hInst)
-        ShowBitmapFile(MAKEINTRESOURCE(m_IDBitmap),
+    // draw the bitmap
+    if (m_BitmapID && m_hInst)
+        ShowBitmapFile(MAKEINTRESOURCE(m_BitmapID),
                        dc.m_hDC,
                        m_hInst,
                        rect.right - 5,
                        rect.top   + 5);
 }
-
-
-void ZIMessage::OnCloseWindow()
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::OnCloseWindow()
 {
     CloseWindow();
 }
-
-
-void ZIMessage::CloseWindow()
-{
-    // remove the timer
-    KillTimer(m_uTimerID);
-    m_uTimerID = 0;
-
-    for(int i = 0; i < NUMBER_OF_MESSAGE_ICON; ++i)
-        DestroyIcon(m_pIcon[i]);
-
-    ReleaseCapture();
-    EndDialog(IDOK);
-}
-
-void ZIMessage::OnLButtonDown(UINT nFlags, CPoint point)
-{
-    PSS_Dialog::OnLButtonDown(nFlags, point);
-    CloseWindow();
-}
-
-void ZIMessage::OnLButtonDblClk(UINT nFlags, CPoint point)
-{
-    PSS_Dialog::OnLButtonDblClk(nFlags, point);
-    CloseWindow();
-}
-
-int ZIMessage::OnCreate(LPCREATESTRUCT lpCreateStruct)
+//---------------------------------------------------------------------------
+int PSS_MessageDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
@@ -278,50 +235,39 @@ int ZIMessage::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_pIcon[14] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS15));
     m_pIcon[15] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS16));
 
-    // create the timer for the animation
-    m_uTimerID = SetTimer(ID_TIMERMESSAGE, 120, NULL);
+    // create the animation timer
+    m_TimerID = SetTimer(ID_TIMERMESSAGE, 120, NULL);
 
     return 0;
 }
-
-void ZIMessage::OnTimer(UINT nIDEvent)
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    // Increment the icon for the next time
-    m_icnApp.SetIcon( m_pIcon[m_iIcon] );
-    if( ++m_iIcon >= NUMBER_OF_MESSAGE_ICON )
-        m_iIcon = 0;
-    CDialog::OnTimer(nIDEvent);
+    PSS_Dialog::OnLButtonDown(nFlags, point);
+    CloseWindow();
 }
-
-
-void ZIMessage::OnMouseMove(UINT nFlags, CPoint point) 
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+    PSS_Dialog::OnLButtonDblClk(nFlags, point);
+    CloseWindow();
+}
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
     PSS_Dialog::OnMouseMove(nFlags, point);
-    return;    
-    // Convert the cursor point
-//    ScreenToClient(&point);
-
-    // Retreive the client rect
-    CRect ClientRect;
-    GetClientRect(ClientRect);
-    if (ClientRect.PtInRect(point))
-    {
-        m_CloseButton.GetClientRect( ClientRect );
-        if (!ClientRect.PtInRect(point))
-        {
-            PSS_Dialog::OnMouseMove(nFlags, point);
-            // Set the capture
-            SetCapture();
-            if (GetCursor() !=  m_Cursor)
-                SetCursor( m_Cursor );
-            return;
-        }
-    }
-    ReleaseCapture();
 }
+//---------------------------------------------------------------------------
+void PSS_MessageDlg::CloseWindow()
+{
+    // remove the timer
+    ::KillTimer(m_TimerID);
+    m_TimerID = 0;
 
+    for (int i = 0; i < M_Message_Icon_Count; ++i)
+        DestroyIcon(m_pIcon[i]);
 
-//## end module%36DEE3D90136.epilog
-
-
-
+    ReleaseCapture();
+    EndDialog(IDOK);
+}
+//---------------------------------------------------------------------------
