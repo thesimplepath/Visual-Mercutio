@@ -1085,13 +1085,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIntelliListBox.cpp">
+    <ClCompile Include="PSS_IntelliListBox.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIntelliMultiLineBox.cpp">
+    <ClCompile Include="PSS_IntelliMultiLineEditBox.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1503,8 +1503,8 @@
     <ClInclude Include="PSS_HtmlView.h" />
     <ClInclude Include="PSS_ListCtrl.h" />
     <ClInclude Include="PSS_Log.h" />
-    <ClInclude Include="ZIntelliListBox.h" />
-    <ClInclude Include="ZIntelliMultiLineBox.h" />
+    <ClInclude Include="PSS_IntelliListBox.h" />
+    <ClInclude Include="PSS_IntelliMultiLineEditBox.h" />
     <ClInclude Include="PSS_Observer.h" />
     <ClInclude Include="PSS_ObserverMsg.h" />
     <ClInclude Include="PSS_Subject.h" />

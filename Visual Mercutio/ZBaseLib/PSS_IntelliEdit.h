@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIntelliListBox.h"
+#include "PSS_IntelliListBox.h"
 #include "PSS_DragEdit.h"
 
 // forward class declaration
@@ -148,10 +148,10 @@ class PSS_IntelliEditBtn : public CButton
         DECLARE_MESSAGE_MAP()
 
     private:
-        CStringArray*   m_pArrayOfValues;
-        ZIntelliListBox m_ListBoxOfValues;
-        CSize           m_Size;
-        int             m_ListBoxHeight;
+        CStringArray*      m_pArrayOfValues;
+        PSS_IntelliListBox m_ListBoxOfValues;
+        CSize              m_Size;
+        int                m_ListBoxHeight;
 
         /**
         * Calculates the size and position
@@ -375,11 +375,11 @@ class AFX_EXT_CLASS PSS_IntelliEdit : public PSS_DragEdit
         virtual void DestroyEdit();
 
     private:
-        ZIntelliListBox m_ListBoxOfValues;
-        CSize           m_Size;
-        int             m_ListBoxHeight;
-        bool            m_HasFocus;
-        bool            m_BeingResized;
+        PSS_IntelliListBox m_ListBoxOfValues;
+        CSize              m_Size;
+        int                m_ListBoxHeight;
+        bool               m_HasFocus;
+        bool               m_BeingResized;
 
         /**
         * Builds the similar list

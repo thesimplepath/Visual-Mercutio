@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIntelliMultiLineBox.h"
+#include "PSS_IntelliMultiLineEditBox.h"
 #include "PSS_DragEdit.h"
 
 // forward class declaration
