@@ -86,7 +86,7 @@ class AFX_EXT_CLASS PSS_PLFNCheckBtn : public PSS_PLFNTwoStates
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Edits the object

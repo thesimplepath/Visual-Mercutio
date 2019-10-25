@@ -92,7 +92,7 @@ class AFX_EXT_CLASS PSS_PLFNMaskString : public PSS_PLFNString
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Gets the tab list that should be shown when the user asks for object properties

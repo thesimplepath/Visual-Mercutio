@@ -97,14 +97,14 @@ class AFX_EXT_CLASS PSS_PLFNBoundText : public PSS_PLFNString
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Draws an empty object with the current DC
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawEmpty(CDC* pDC, ZIView* pView);
+        virtual void DrawEmpty(CDC* pDC, PSS_View* pView);
 
         /**
         * Gets the tab list that should be shown when the user asks for object properties

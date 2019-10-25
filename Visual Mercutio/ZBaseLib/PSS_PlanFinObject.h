@@ -33,7 +33,7 @@
     #define PSS_FieldColumn ZBFieldColumn
 #endif
 
-class ZIView;
+class PSS_View;
 class PSS_Document;
 class PSS_FieldColumn;
 
@@ -364,14 +364,14 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Draws an empty object with the current DC
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawEmpty(CDC* pDC, ZIView* pView);
+        virtual void DrawEmpty(CDC* pDC, PSS_View* pView);
 
         /**
         * Draws the hidden symbol for the object
@@ -420,7 +420,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void DrawFillObject(CDC* pDC, ZIView* pView);
+        virtual void DrawFillObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Checks if object is selected
@@ -449,7 +449,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param show - if TRUE, the field code name should be shown
         *@param pWnd - parent window, can be NULL
         */
-        virtual void DisplayCodeName(CDC* pDC, ZIView* pView, BOOL show = TRUE, CWnd* pWnd = NULL);
+        virtual void DisplayCodeName(CDC* pDC, PSS_View* pView, BOOL show = TRUE, CWnd* pWnd = NULL);
 
         /**
         * Invalidates the object area. When the next draw is started, the object's rectangle will be redrawn
@@ -477,7 +477,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void ShowColorForNumber(CDC* pDC, ZIView* pView);
+        virtual void ShowColorForNumber(CDC* pDC, PSS_View* pView);
 
         /**
         * Selects the object
@@ -507,7 +507,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pView - view
         *@return the object font
         */
-        virtual PSS_Font* GetFont(ZIView* pView);
+        virtual PSS_Font* GetFont(PSS_View* pView);
 
         /**
         * Gets the color to use to draw the object. Can be the object color,
@@ -515,7 +515,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pView - view
         *@return the color to use to draw the object
         */
-        virtual COLORREF GetColor(ZIView* pView);
+        virtual COLORREF GetColor(PSS_View* pView);
 
         /**
         * Sets the style handle
@@ -572,7 +572,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pView - view
         *@return the fill color
         */
-        virtual COLORREF GetFillColor(ZIView* pView) const;
+        virtual COLORREF GetFillColor(PSS_View* pView) const;
 
         /**
         * Moves the object
@@ -591,7 +591,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pView - view
         *@return the border
         */
-        virtual const PSS_Border* GetBorder(ZIView* pView) const;
+        virtual const PSS_Border* GetBorder(PSS_View* pView) const;
 
         /**
         * Checks if object has changed

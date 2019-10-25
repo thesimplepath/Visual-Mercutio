@@ -557,7 +557,7 @@ public:
 
     //## Operation: IsCursorCapturedValid%908554843
     // Check if the cursor capture still valid.
-    virtual BOOL IsCursorCapturedValid(const CPoint& point, ZIView* pView);
+    virtual BOOL IsCursorCapturedValid(const CPoint& point, PSS_View* pView);
 
     //## Operation: GetFieldRepository%910104706
     PSS_FieldRepository* GetFieldRepository();

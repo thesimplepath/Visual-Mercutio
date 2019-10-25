@@ -58,7 +58,7 @@ void PSS_PLFNRadioBtn::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNRadioBtn*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

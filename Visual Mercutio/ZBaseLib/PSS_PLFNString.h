@@ -104,7 +104,7 @@ class AFX_EXT_CLASS PSS_PLFNString : public PSS_PLFNText
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Serializes the class content to an archive

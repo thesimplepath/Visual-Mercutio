@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -87,7 +87,7 @@ void PSS_PLFNBoundText::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNBoundText*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNBoundText::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNBoundText::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 
@@ -122,7 +122,7 @@ void PSS_PLFNBoundText::DrawObject(CDC* pDC, ZIView* pView)
     PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
+void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, PSS_View* pView)
 {
     // if printing and the empty style isn't required, just return
     if (pDC->IsPrinting() && !pView->GetDocument()->GetDocOptions().GetPrintEmptyStyleWhenEmpty())

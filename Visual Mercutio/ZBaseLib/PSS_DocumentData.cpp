@@ -26,7 +26,7 @@
 #include "PSS_Tokenizer.h"
 #include "PSS_ObjectUtility.h"
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 #include "PSS_MsgBox.h"
 
 #ifdef _DEBUG
@@ -507,7 +507,7 @@ void PSS_DocumentData::CheckForClearCalcField(CView* pView)
 
                     // redraw the object only if he is positionned on the current page
                     if (pView && pDC && GetCurrentPage() == pObj->GetObjectPage())
-                        pObj->DrawObject(pDC, (ZIView*)pView);
+                        pObj->DrawObject(pDC, (PSS_View*)pView);
                 }
             }
 
@@ -1252,7 +1252,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
     if (pObj->GetObjectName().IsEmpty())
         return;
 
-    ZIView* pView = m_pDocument->GetMainView();
+    PSS_View* pView = m_pDocument->GetMainView();
     ASSERT(pView);
 
     CString fieldName;
@@ -1453,13 +1453,13 @@ BOOL PSS_DocumentData::DeleteTemporaryFile()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::OnDraw(CDC*    pDC,
-                              ZIView* pView,
-                              BOOL    drawCalculatedSymbol,
-                              BOOL    drawHiddenObject,
-                              BOOL    drawBoundRectObject,
-                              BOOL    drawCalculatedRefObject,
-                              BOOL    drawTabOrder)
+void PSS_DocumentData::OnDraw(CDC*      pDC,
+                              PSS_View* pView,
+                              BOOL      drawCalculatedSymbol,
+                              BOOL      drawHiddenObject,
+                              BOOL      drawBoundRectObject,
+                              BOOL      drawCalculatedRefObject,
+                              BOOL      drawTabOrder)
 {
     if (IsFormData())
         OnDrawForms(pDC,
@@ -1865,7 +1865,7 @@ BOOL PSS_DocumentData::CalculateFormula(PSS_Formula* pFormula, CWnd* pWnd, CDC* 
     return(FALSE);
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::OnDrawBinary(CDC* pDC, ZIView* pView)
+void PSS_DocumentData::OnDrawBinary(CDC* pDC, PSS_View* pView)
 {
     if (!pDC)
         return;
@@ -1874,7 +1874,7 @@ void PSS_DocumentData::OnDrawBinary(CDC* pDC, ZIView* pView)
     pDC->DrawText(m_BinaryDrawMessage, &rect, DT_WORDBREAK | DT_LEFT);
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::OnDrawExternalBinary(CDC* pDC, ZIView* pView)
+void PSS_DocumentData::OnDrawExternalBinary(CDC* pDC, PSS_View* pView)
 {
     if (!pDC)
         return;
@@ -1883,7 +1883,7 @@ void PSS_DocumentData::OnDrawExternalBinary(CDC* pDC, ZIView* pView)
     pDC->DrawText(m_BinaryDrawMessage, &rect, DT_WORDBREAK | DT_LEFT);
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::OnDrawBackgroundPicture(CDC* pDC, ZIView* pView, int page)
+void PSS_DocumentData::OnDrawBackgroundPicture(CDC* pDC, PSS_View* pView, int page)
 {
     if (!pDC)
         return;
@@ -1907,13 +1907,13 @@ void PSS_DocumentData::OnDrawBackgroundPicture(CDC* pDC, ZIView* pView, int page
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::OnDrawForms(CDC*    pDC,
-                                   ZIView* pView,
-                                   BOOL    drawCalculatedSymbol,
-                                   BOOL    drawHiddenObject,
-                                   BOOL    drawBoundRectObject,
-                                   BOOL    drawCalculatedRefObject,
-                                   BOOL    drawTabOrder)
+void PSS_DocumentData::OnDrawForms(CDC*      pDC,
+                                   PSS_View* pView,
+                                   BOOL      drawCalculatedSymbol,
+                                   BOOL      drawHiddenObject,
+                                   BOOL      drawBoundRectObject,
+                                   BOOL      drawCalculatedRefObject,
+                                   BOOL      drawTabOrder)
 {
     if (!pDC)
         return;
@@ -1969,16 +1969,16 @@ void PSS_DocumentData::OnDrawForms(CDC*    pDC,
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::OnDrawExternalForms(CDC*    pDC,
-                                           ZIView* pView,
-                                           BOOL    drawCalculatedSymbol,
-                                           BOOL    drawHiddenObject,
-                                           BOOL    drawBoundRectObject,
-                                           BOOL    drawCalculatedRefObject,
-                                           BOOL    drawTabOrder)
+void PSS_DocumentData::OnDrawExternalForms(CDC*      pDC,
+                                           PSS_View* pView,
+                                           BOOL      drawCalculatedSymbol,
+                                           BOOL      drawHiddenObject,
+                                           BOOL      drawBoundRectObject,
+                                           BOOL      drawCalculatedRefObject,
+                                           BOOL      drawTabOrder)
 {}
 //---------------------------------------------------------------------------
-void PSS_DocumentData::OnDrawURL(CDC* pDC, ZIView* pView)
+void PSS_DocumentData::OnDrawURL(CDC* pDC, PSS_View* pView)
 {
     if (!pDC)
         return;

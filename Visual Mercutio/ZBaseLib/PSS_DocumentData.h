@@ -47,7 +47,7 @@ class PSS_Document;
 class PSS_FileBuffer;
 class PSS_PlanFinObject;
 class PSS_FieldRepository;
-class ZIView;
+class PSS_View;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -627,13 +627,13 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param drawCalculatedRefObject - if TRUE, calculated reference objects will be drawn
         *@param drawTabOrder - if TRUE, the tab order will be drawn
         */
-        virtual void OnDraw(CDC*    pDC,
-                            ZIView* pView,
-                            BOOL    drawCalculatedSymbol    = TRUE,
-                            BOOL    drawHiddenObject        = FALSE,
-                            BOOL    drawBoundRectObject     = FALSE,
-                            BOOL    drawCalculatedRefObject = FALSE,
-                            BOOL    drawTabOrder            = FALSE);
+        virtual void OnDraw(CDC*      pDC,
+                            PSS_View* pView,
+                            BOOL      drawCalculatedSymbol    = TRUE,
+                            BOOL      drawHiddenObject        = FALSE,
+                            BOOL      drawBoundRectObject     = FALSE,
+                            BOOL      drawCalculatedRefObject = FALSE,
+                            BOOL      drawTabOrder            = FALSE);
 
         /**
         * Switches the object matching with the tab order with the provided one
@@ -790,14 +790,14 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void OnDrawBinary(CDC* pDC, ZIView* pView);
+        virtual void OnDrawBinary(CDC* pDC, PSS_View* pView);
 
         /**
         * Draws the external binary file
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void OnDrawExternalBinary(CDC* pDC, ZIView* pView);
+        virtual void OnDrawExternalBinary(CDC* pDC, PSS_View* pView);
 
         /**
         * Draws the background picture of a page
@@ -805,7 +805,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param pView - view
         *@param page - page index
         */
-        virtual void OnDrawBackgroundPicture(CDC* pDC, ZIView* pView, int page);
+        virtual void OnDrawBackgroundPicture(CDC* pDC, PSS_View* pView, int page);
 
         /**
         * Draws the forms
@@ -817,13 +817,13 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param drawCalculatedRefObject - if TRUE, calculated reference objects will be drawn
         *@param drawTabOrder - if TRUE, the tab order will be drawn
         */
-        virtual void OnDrawForms(CDC*    pDC,
-                                 ZIView* pView,
-                                 BOOL    drawCalculatedSymbol    = TRUE,
-                                 BOOL    drawHiddenObject        = FALSE,
-                                 BOOL    drawBoundRectObject     = FALSE,
-                                 BOOL    drawCalculatedRefObject = FALSE,
-                                 BOOL    drawTabOrder            = FALSE);
+        virtual void OnDrawForms(CDC*      pDC,
+                                 PSS_View* pView,
+                                 BOOL      drawCalculatedSymbol    = TRUE,
+                                 BOOL      drawHiddenObject        = FALSE,
+                                 BOOL      drawBoundRectObject     = FALSE,
+                                 BOOL      drawCalculatedRefObject = FALSE,
+                                 BOOL      drawTabOrder            = FALSE);
 
         /**
         * Draws the external forms
@@ -835,20 +835,20 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param drawCalculatedRefObject - if TRUE, calculated reference objects will be drawn
         *@param drawTabOrder - if TRUE, the tab order will be drawn
         */
-        virtual void OnDrawExternalForms(CDC*    pDC,
-                                         ZIView* pView,
-                                         BOOL    drawCalculatedSymbol    = TRUE,
-                                         BOOL    drawHiddenObject        = FALSE,
-                                         BOOL    drawBoundRectObject     = FALSE,
-                                         BOOL    drawCalculatedRefObject = FALSE,
-                                         BOOL    drawTabOrder            = FALSE);
+        virtual void OnDrawExternalForms(CDC*      pDC,
+                                         PSS_View* pView,
+                                         BOOL      drawCalculatedSymbol    = TRUE,
+                                         BOOL      drawHiddenObject        = FALSE,
+                                         BOOL      drawBoundRectObject     = FALSE,
+                                         BOOL      drawCalculatedRefObject = FALSE,
+                                         BOOL      drawTabOrder            = FALSE);
 
         /**
         * Draws the url
         *@param pDC - device context to paint to
         *@param pView - view
         */
-        virtual void OnDrawURL(CDC* pDC, ZIView* pView);
+        virtual void OnDrawURL(CDC* pDC, PSS_View* pView);
 
         /**
         * Checks if a field name exists in the object array

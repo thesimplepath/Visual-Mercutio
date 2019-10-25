@@ -1,43 +1,32 @@
-//## begin module%3365108E0302.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%3365108E0302.cm
+/****************************************************************************
+ * ==> PSS_CodeView --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a code view                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%3365108E0302.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%3365108E0302.cp
-
-//## Module: ZIViewCd%3365108E0302; Package body
-//## Subsystem: PlanFin%334FC46302B2
-//## Source file: z:\adsoft~1\PLANFIN\ZIViewCd.cpp
-
-//## begin module%3365108E0302.additionalIncludes preserve=no
 #include "StdAfx.h"
-//## end module%3365108E0302.additionalIncludes
+#include "ZIViewCd.h"
 
-//## begin module%3365108E0302.includes preserve=yes
+ // processsoft
 #include "PSS_PlanFinObjects.h"
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNBitmap.h"
-//## end module%3365108E0302.includes
-
-// ZIViewCd
-#include "ZIViewCd.h"
-//## begin module%3365108E0302.declarations preserve=no
-//## end module%3365108E0302.declarations
-
-//## begin module%3365108E0302.additionalDeclarations preserve=yes
 #include "PSS_Document.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_DYNCREATE(ZIViewCode, ZIView)
-
-
-BEGIN_MESSAGE_MAP(ZIViewCode, ZIView)
+//---------------------------------------------------------------------------
+// Dynamic creation
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNCREATE(ZIViewCode, PSS_View)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(ZIViewCode, PSS_View)
     //{{AFX_MSG_MAP(ZIViewCode)
     ON_WM_RBUTTONDOWN()
     ON_COMMAND(ID_ONLY_NUMERICFIELDS, OnOnlyNumericFields)
@@ -58,35 +47,34 @@ BEGIN_MESSAGE_MAP(ZIViewCode, ZIView)
     ON_WM_LBUTTONDOWN()
     ON_WM_LBUTTONUP()
     ON_WM_MOUSEMOVE()
-    //}}AFX_MSG_MAP
     ON_COMMAND(ID_FILEPRINT_PAGE_FIELDNAME, CScrollView::OnFilePrint)
     ON_COMMAND(ID_FILEPRINTPREVIEW_PAGE_FIELDNAME, CScrollView::OnFilePrintPreview)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-//## end module%3365108E0302.additionalDeclarations
-
-
-// Class ZIViewCode 
-
-
-
-ZIViewCode::ZIViewCode()
-//## begin ZIViewCode::ZIViewCode%.hasinit preserve=no
-//## end ZIViewCode::ZIViewCode%.hasinit
-//## begin ZIViewCode::ZIViewCode%.initialization preserve=yes
-//## end ZIViewCode::ZIViewCode%.initialization
+//---------------------------------------------------------------------------
+// PSS_CodeView
+//---------------------------------------------------------------------------
+ZIViewCode::ZIViewCode() :
+    PSS_View(),
+    m_iCodeType(E_CT_AllObjects),
+    m_iSavePageForPrinting(0)
 {
-    //## begin ZIViewCode::ZIViewCode%.body preserve=yes
-    m_iCodeType = E_CT_AllObjects;
-    m_ViewType = FormFieldCodeView;
-    //## end ZIViewCode::ZIViewCode%.body
+    m_ViewType = PSS_View::IE_VT_FormFieldCode;
 }
-
-
+//---------------------------------------------------------------------------
+ZIViewCode::ZIViewCode(const ZIViewCode& other)
+{
+    THROW("Copy constructor isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
 ZIViewCode::~ZIViewCode()
+{}
+//---------------------------------------------------------------------------
+const ZIViewCode& ZIViewCode::operator = (const ZIViewCode& other)
 {
-    //## begin ZIViewCode::~ZIViewCode%.body preserve=yes
-    //## end ZIViewCode::~ZIViewCode%.body
+    THROW("Copy operator isn't allowed for this class");
 }
+//---------------------------------------------------------------------------
 
 
 
@@ -164,7 +152,7 @@ void ZIViewCode::OnDraw(CDC* pDC)
 void ZIViewCode::OnInitialUpdate()
 {
     //## begin ZIViewCode::OnInitialUpdate%862261466.body preserve=yes
-    ZIView::OnInitialUpdate();
+    PSS_View::OnInitialUpdate();
     //## end ZIViewCode::OnInitialUpdate%862261466.body
 }
 

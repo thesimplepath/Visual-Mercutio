@@ -86,7 +86,7 @@ class AFX_EXT_CLASS PSS_PLFNRadioBtn : public PSS_PLFNTwoStates
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Edits the object

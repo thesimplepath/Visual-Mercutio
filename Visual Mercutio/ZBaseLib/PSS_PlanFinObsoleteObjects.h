@@ -223,7 +223,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbered : public PSS_PLFNStatic
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 };
 
 //---------------------------------------------------------------------------
@@ -320,7 +320,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbEdit : public PSS_PLFNString
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 };
 
 //---------------------------------------------------------------------------
@@ -596,7 +596,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbNumEdit : public PSS_PLFNLong
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 };
 
 //---------------------------------------------------------------------------

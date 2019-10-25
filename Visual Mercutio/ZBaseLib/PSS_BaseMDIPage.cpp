@@ -12,7 +12,7 @@
 #include "PSS_BaseMainFrame.h"
 #include "PSS_Document.h"
 #include "PSS_DocumentData.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 #include "PSS_Global.h"
 #include "PSS_CommandObserverMsg.h"
 

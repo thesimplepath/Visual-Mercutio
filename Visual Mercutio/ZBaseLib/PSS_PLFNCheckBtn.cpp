@@ -58,7 +58,7 @@ void PSS_PLFNCheckBtn::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNCheckBtn*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

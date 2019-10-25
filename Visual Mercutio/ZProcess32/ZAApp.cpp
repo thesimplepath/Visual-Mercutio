@@ -1653,7 +1653,7 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     return pNewFile;
 }
 
-BOOL ZAApp::IsCursorCapturedValid(const CPoint& point, ZIView* pView)
+BOOL ZAApp::IsCursorCapturedValid(const CPoint& point, PSS_View* pView)
 {
     return TRUE;
 }

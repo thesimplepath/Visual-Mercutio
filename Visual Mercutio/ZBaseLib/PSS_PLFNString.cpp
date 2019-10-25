@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -59,7 +59,7 @@ void PSS_PLFNString::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNString*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNString::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNString::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

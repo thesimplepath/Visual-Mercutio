@@ -135,7 +135,7 @@ END_MESSAGE_MAP()
 PSS_ModifyView::PSS_ModifyView() :
     PSS_ReadView()
 {
-    m_ViewType = FormModifyView;
+    m_ViewType = PSS_View::IE_VT_FormModify;
 
     m_ToolTipNoteText.LoadString(IDS_TOOLTIPNOTETEXT);
     m_ToolTipTypeObject.LoadString(IDS_TOOLTIPOBJECTTYPE);
@@ -952,7 +952,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     afx_msg LONG PSS_ModifyView::OnPointerSelection(WPARAM wParam, LPARAM lParam)
     {
-        TRACE(_T(" On Pointer In Selection ZIView 1 "));
+        TRACE(_T(" On Pointer In Selection PSS_View 1 "));
 
         if (ZAApp::ZAGetApp()->GetCurrentDocument() != GetDocument() || IsKindOf(RUNTIME_CLASS(ZIViewCode)))
             return 0;
@@ -981,7 +981,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             m_pOldPointerSelectedObj = pObj;
         }
 
-        TRACE(_T(" On Pointer In Selection ZIView 2 "));
+        TRACE(_T(" On Pointer In Selection PSS_View 2 "));
         VERIFY(ReleaseDC(pDC));
 
         return 1;

@@ -12,7 +12,7 @@
 // processsoft
 #include "PSS_DrawFunctions.h"
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 
 // windows
 #include <float.h>
@@ -192,7 +192,7 @@ void PSS_PLFNNumbered::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PLFNNumbered::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNNumbered::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 
@@ -321,7 +321,7 @@ void PSS_PLFNNumbEdit::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PLFNNumbEdit::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNNumbEdit::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 
@@ -611,7 +611,7 @@ void PSS_PLFNNumbNumEdit::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PLFNNumbNumEdit::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNNumbNumEdit::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

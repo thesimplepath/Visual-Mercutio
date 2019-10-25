@@ -1767,7 +1767,7 @@ BOOL ZAMainApp::ProcessMessageFilter(int code, LPMSG lpMsg)
 
 // *************************************************** Curseur **************************************************
 
-BOOL ZAMainApp::IsCursorCapturedValid(const CPoint& point, ZIView* pView)
+BOOL ZAMainApp::IsCursorCapturedValid(const CPoint& point, PSS_View* pView)
 {
     //## begin ZAMainApp::IsCursorCapturedValid%908554843.body preserve=yes
     if (!pView)

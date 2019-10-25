@@ -103,7 +103,7 @@ class AFX_EXT_CLASS PSS_PLFNBitmap : public PSS_PlanFinObject
         *@param pDC - device context to draw to
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
         /**
         * Selects the bitmap file from the disk

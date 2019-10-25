@@ -174,7 +174,7 @@ class AFX_EXT_CLASS PSS_PLFNRect : public PSS_PLFNGraphic
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
     private:
         WORD m_ArcOffset;
@@ -338,7 +338,7 @@ class AFX_EXT_CLASS PSS_PLFNLine : public PSS_PLFNGraphic
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
     private:
         PSS_Point m_StartPoint;
@@ -442,7 +442,7 @@ class AFX_EXT_CLASS PSS_PLFNStatic : public PSS_PLFNText
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
     protected:
         /**
@@ -628,7 +628,7 @@ class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
     private:
         PSS_Date m_Time;
@@ -947,7 +947,7 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
         *@param pDC - device context
         *@param pView - view
         */
-        virtual void DrawObject(CDC* pDC, ZIView* pView);
+        virtual void DrawObject(CDC* pDC, PSS_View* pView);
 
     private:
         IEIconDisplayType             m_IconDisplayType;

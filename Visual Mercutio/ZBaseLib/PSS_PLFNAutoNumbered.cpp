@@ -113,7 +113,7 @@ BOOL PSS_PLFNAutoNumbered::ConvertFormattedObject(const CString& value, BOOL loc
     return FALSE;
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNAutoNumbered::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNAutoNumbered::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
     m_TextLevel.DrawObject(pDC, pView);

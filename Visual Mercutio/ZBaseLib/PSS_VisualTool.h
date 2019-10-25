@@ -18,7 +18,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIView.h"
+#include "PSS_View.h"
 
 #ifndef _WIN32
     #include "ToolBarx.h"
@@ -98,7 +98,7 @@ class AFX_EXT_CLASS PSS_VisualTool
         *@param flags - mouse flags
         *@param point - clicked point in pixels
         */
-        virtual void OnLButtonDown(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnLButtonDown(PSS_View* pView, UINT flags, const CPoint& point);
 
         /**
         * Called when the left button is double clicked
@@ -106,7 +106,7 @@ class AFX_EXT_CLASS PSS_VisualTool
         *@param flags - mouse flags
         *@param point - clicked point in pixels
         */
-        virtual void OnLButtonDblClk(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnLButtonDblClk(PSS_View* pView, UINT flags, const CPoint& point);
 
         /**
         * Called when the left button is up
@@ -114,7 +114,7 @@ class AFX_EXT_CLASS PSS_VisualTool
         *@param flags - mouse flags
         *@param point - mouse position in pixels
         */
-        virtual void OnLButtonUp(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnLButtonUp(PSS_View* pView, UINT flags, const CPoint& point);
 
         /**
         * Called when the mouse moves
@@ -122,7 +122,7 @@ class AFX_EXT_CLASS PSS_VisualTool
         *@param flags - mouse flags
         *@param point - mouse position in pixels
         */
-        virtual void OnMouseMove(ZIView* pView, UINT nFlags, const CPoint& point);
+        virtual void OnMouseMove(PSS_View* pView, UINT nFlags, const CPoint& point);
 
         /**
         * Called when the current action is canceled
@@ -191,7 +191,7 @@ class AFX_EXT_CLASS PSS_VisualToolEdit : public PSS_VisualTool
         *@param flags - mouse flags
         *@param point - clicked point in pixels
         */
-        virtual void OnLButtonDown(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnLButtonDown(PSS_View* pView, UINT flags, const CPoint& point);
 
         /**
         * Called when the left button is up
@@ -199,7 +199,7 @@ class AFX_EXT_CLASS PSS_VisualToolEdit : public PSS_VisualTool
         *@param flags - mouse flags
         *@param point - clicked point in pixels
         */
-        virtual void OnLButtonUp(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnLButtonUp(PSS_View* pView, UINT flags, const CPoint& point);
 
         /**
         * Called when the mouse moves
@@ -207,7 +207,7 @@ class AFX_EXT_CLASS PSS_VisualToolEdit : public PSS_VisualTool
         *@param flags - mouse flags
         *@param point - mouse position in pixels
         */
-        virtual void OnMouseMove(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnMouseMove(PSS_View* pView, UINT flags, const CPoint& point);
 
     private:
         HCURSOR m_hCurEdit;
@@ -249,7 +249,7 @@ class AFX_EXT_CLASS PSS_VisualToolObjectCreator : public PSS_VisualTool
         *@param flags - mouse flags
         *@param point - clicked point in pixels
         */
-        virtual void OnLButtonDown(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnLButtonDown(PSS_View* pView, UINT flags, const CPoint& point);
 
         /**
         * Called when the left button is up
@@ -257,7 +257,7 @@ class AFX_EXT_CLASS PSS_VisualToolObjectCreator : public PSS_VisualTool
         *@param flags - mouse flags
         *@param point - clicked point in pixels
         */
-        virtual void OnLButtonUp(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnLButtonUp(PSS_View* pView, UINT flags, const CPoint& point);
 
         /**
         * Called when the mouse moves
@@ -265,7 +265,7 @@ class AFX_EXT_CLASS PSS_VisualToolObjectCreator : public PSS_VisualTool
         *@param flags - mouse flags
         *@param point - mouse position in pixels
         */
-        virtual void OnMouseMove(ZIView* pView, UINT flags, const CPoint& point);
+        virtual void OnMouseMove(PSS_View* pView, UINT flags, const CPoint& point);
 
     protected:
         HCURSOR m_hCurCreation;

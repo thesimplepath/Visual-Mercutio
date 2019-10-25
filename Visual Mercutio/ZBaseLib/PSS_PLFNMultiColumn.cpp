@@ -74,7 +74,7 @@ void PSS_PLFNMultiColumn::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNMultiColumn*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNMultiColumn::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNMultiColumn::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

@@ -18,7 +18,7 @@
 
 // processsoft
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -34,12 +34,12 @@
 * Read view
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ReadView : public ZIView
+class AFX_EXT_CLASS PSS_ReadView : public PSS_View
 {
     DECLARE_DYNCREATE(PSS_ReadView)
 
     public:
-        typedef ZIView inherited;
+        typedef PSS_View inherited;
 
         PSS_ReadView();
 
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PSS_ReadView : public ZIView
         virtual inline UINT GetRightPopupMenuID();
 
         /// Generated message map functions
-        //{{AFX_MSG(ZIViewRead)
+        //{{AFX_MSG(PSS_ReadView)
         afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
         afx_msg void OnViewZoomIn();
         afx_msg void OnViewZoomOut();

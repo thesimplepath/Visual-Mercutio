@@ -164,7 +164,7 @@ public:
     ZDProcessGraphModelDoc* FileNewModel();
 
     // View functions
-    ZIView* GetMainView()
+    PSS_View* GetMainView()
     {
         return (GetActiveDocument()) ? GetActiveDocument()->GetMainView() : NULL;
     }
@@ -265,7 +265,7 @@ public:
 
     //## Operation: IsCursorCapturedValid%910434304
     //    Check if the cursor capture still valid.
-    virtual BOOL IsCursorCapturedValid(const CPoint& point, ZIView* pView);
+    virtual BOOL IsCursorCapturedValid(const CPoint& point, PSS_View* pView);
 
     //## Operation: GetCurrentDocument%910434306
     //    Returns the current document pointer.

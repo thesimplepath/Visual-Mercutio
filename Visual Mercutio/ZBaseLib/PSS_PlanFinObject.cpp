@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 #include "PSS_DrawFunctions.h"
 #include "PSS_PaintResources.h"
 
@@ -638,7 +638,7 @@ void PSS_PlanFinObject::SetOrigin(CPoint& point)
     m_ObjectRect.bottom = m_ObjectRect.top  + height;
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PlanFinObject::DrawObject(CDC* pDC, PSS_View* pView)
 {
     if (IsObjectSelected() && m_pRectTracker)
     {
@@ -655,7 +655,7 @@ void PSS_PlanFinObject::DrawObject(CDC* pDC, ZIView* pView)
         pBorder->DrawBorderRect(pDC, m_ObjectRect);
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::DrawEmpty(CDC* pDC, ZIView* pView)
+void PSS_PlanFinObject::DrawEmpty(CDC* pDC, PSS_View* pView)
 {
     // if printing and the empty style shouldn't be printed, just return
     if (pDC->IsPrinting() && !pView->GetDocument()->GetDocOptions().GetPrintEmptyStyleWhenEmpty())
@@ -830,7 +830,7 @@ void PSS_PlanFinObject::DrawBoundRect(CDC* pDC)
     DrawRightCorner(pDC);
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::DrawFillObject(CDC* pDC, ZIView* pView)
+void PSS_PlanFinObject::DrawFillObject(CDC* pDC, PSS_View* pView)
 {
     COLORREF color = GetFillColor(pView);
 
@@ -848,7 +848,7 @@ void PSS_PlanFinObject::DrawFillObject(CDC* pDC, ZIView* pView)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::DisplayCodeName(CDC* pDC, ZIView* pView, BOOL display, CWnd* pWnd)
+void PSS_PlanFinObject::DisplayCodeName(CDC* pDC, PSS_View* pView, BOOL display, CWnd* pWnd)
 {
     // draw the object
     CFont* pOldFont = pDC->SelectObject(&PSS_PaintResources::GetSmallSystemFont());
@@ -943,7 +943,7 @@ void PSS_PlanFinObject::InvalidateObjectRect(CDC* pDC, CWnd* pWnd, CRect* pRect)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::ShowColorForNumber(CDC* pDC, ZIView* pView)
+void PSS_PlanFinObject::ShowColorForNumber(CDC* pDC, PSS_View* pView)
 {
     // draw the object
     DrawObject(pDC, pView);
@@ -982,7 +982,7 @@ void PSS_PlanFinObject::SizePositionHasChanged()
     AfxGetMainWnd()->SendMessageToDescendants(UM_MOVEOBJECTINORDER, 0, LPARAM(this));
 }
 //---------------------------------------------------------------------------
-PSS_Font* PSS_PlanFinObject::GetFont(ZIView* pView)
+PSS_Font* PSS_PlanFinObject::GetFont(PSS_View* pView)
 {
     PSS_Document* pDoc = pView->GetDocument();
 
@@ -1002,7 +1002,7 @@ PSS_Font* PSS_PlanFinObject::GetFont(ZIView* pView)
     return NULL;
 }
 //---------------------------------------------------------------------------
-COLORREF PSS_PlanFinObject::GetColor(ZIView* pView)
+COLORREF PSS_PlanFinObject::GetColor(PSS_View* pView)
 {
     PSS_Document* pDoc = pView->GetDocument();
 
@@ -1112,7 +1112,7 @@ void PSS_PlanFinObject::GetTextExtentOrg(CDC* pDC, const CString& str, CSize& si
     }
 }
 //---------------------------------------------------------------------------
-COLORREF PSS_PlanFinObject::GetFillColor(ZIView* pView) const
+COLORREF PSS_PlanFinObject::GetFillColor(PSS_View* pView) const
 {
     if (m_FillColor != -1)
         return m_FillColor;
@@ -1142,7 +1142,7 @@ void PSS_PlanFinObject::MoveObject(CPoint& point, BOOL relativeMove)
     }
 }
 //---------------------------------------------------------------------------
-const PSS_Border* PSS_PlanFinObject::GetBorder(ZIView* pView) const
+const PSS_Border* PSS_PlanFinObject::GetBorder(PSS_View* pView) const
 {
     if (m_pBorder)
         return m_pBorder;

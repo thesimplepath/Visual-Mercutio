@@ -13,7 +13,7 @@
 
 // processsoft
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 #include "PSS_MathParser.h"
 #include "PSS_DrawFunctions.h"
 
@@ -126,7 +126,7 @@ void PSS_PLFNRect::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PLFNRect::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNRect::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 
@@ -311,7 +311,7 @@ void PSS_PLFNLine::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PLFNLine::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNLine::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 
@@ -379,7 +379,7 @@ void PSS_PLFNStatic::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNStatic*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNStatic::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNStatic::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 
@@ -661,7 +661,7 @@ void PSS_PLFNTime::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PLFNTime::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNTime::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 
@@ -1198,7 +1198,7 @@ void PSS_PLFNLong::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PLFNLong::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNLong::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

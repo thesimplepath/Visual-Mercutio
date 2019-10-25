@@ -9,7 +9,7 @@
 #include "PSS_PLFNMaskString.h"
 
 #include "PSS_Document.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 #include "PSS_MaskEditBase.h"
 
 #ifdef _DEBUG
@@ -66,7 +66,7 @@ void PSS_PLFNMaskString::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNMaskString*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNMaskString::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNMaskString::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

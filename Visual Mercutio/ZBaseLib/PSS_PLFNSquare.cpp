@@ -116,7 +116,7 @@ void PSS_PLFNSquare::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNSquare*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNSquare::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNSquare::DrawObject(CDC* pDC, PSS_View* pView)
 {
     DrawFillObject(pDC, pView);
 

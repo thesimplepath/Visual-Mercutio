@@ -20,7 +20,7 @@
 #include "PSS_PLFNMultiColumn.h"
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_MsgBox.h"
-#include "ZIView.h"
+#include "PSS_View.h"
 #include "PSS_HtmlView.h"
 #include "PSS_Edit.h"
 #include "PSS_DocumentExport.h"
@@ -573,14 +573,14 @@ BOOL PSS_Document::ObjectExist(const CString& name, int documentIndex)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-ZIView* PSS_Document::GetMainView()
+PSS_View* PSS_Document::GetMainView()
 {
     POSITION pPos  = GetFirstViewPosition();
     CView*   pView = GetNextView(pPos);
 
     while (pView)
     {
-        ZIView* pCurView = dynamic_cast<ZIView*>(pView);
+        PSS_View* pCurView = dynamic_cast<PSS_View*>(pView);
 
         if (pCurView)
             return pCurView;
@@ -1061,7 +1061,7 @@ BOOL PSS_Document::ReadDocument(const CString& fileName)
     return result;
 }
 //---------------------------------------------------------------------------
-void PSS_Document::OnDraw(CDC* pDC, ZIView* pView, int documentIndex)
+void PSS_Document::OnDraw(CDC* pDC, PSS_View* pView, int documentIndex)
 {
     if (documentIndex == -1)
     {

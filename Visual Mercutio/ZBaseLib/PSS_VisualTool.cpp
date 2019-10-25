@@ -47,7 +47,7 @@ const PSS_VisualTool& PSS_VisualTool::operator = (const PSS_VisualTool& other)
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_VisualTool::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualTool::OnLButtonDown(PSS_View* pView, UINT flags, const CPoint& point)
 {
     // deactivate any in-place active item on this view
     m_DownFlags = flags;
@@ -55,15 +55,15 @@ void PSS_VisualTool::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& poin
     m_LastPoint = point;
 }
 //---------------------------------------------------------------------------
-void PSS_VisualTool::OnLButtonDblClk(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualTool::OnLButtonDblClk(PSS_View* pView, UINT flags, const CPoint& point)
 {}
 //---------------------------------------------------------------------------
-void PSS_VisualTool::OnLButtonUp(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualTool::OnLButtonUp(PSS_View* pView, UINT flags, const CPoint& point)
 {
     ReleaseCapture();
 }
 //---------------------------------------------------------------------------
-void PSS_VisualTool::OnMouseMove(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualTool::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& point)
 {
     m_LastPoint = point;
 }
@@ -111,7 +111,7 @@ const PSS_VisualToolEdit& PSS_VisualToolEdit::operator = (const PSS_VisualToolEd
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualToolEdit::OnLButtonDown(PSS_View* pView, UINT flags, const CPoint& point)
 {
     // check read-only mode
     if (!pView->GetDocument() || pView->GetDocument()->IsReadOnlyAtRuntime())
@@ -140,7 +140,7 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
         {
             switch (pView->GetViewType())
             {
-                case FormModifyView:
+                case PSS_View::IE_VT_FormModify:
                     // is the cursor on the object?
                     if (!pObj->IsReadOnlyAtRuntime())
                         if (!pObj->IsObjectSelected() && !pObj->GetIsStatic())
@@ -152,7 +152,7 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
 
                     break;
 
-                case FormDesignView:
+                case PSS_View::IE_VT_FormDesign:
                     // is the cursor on the object?
                     if (!pObj->IsObjectSelected())
                     {
@@ -178,12 +178,12 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
         pView->SetFocus();
 }
 //---------------------------------------------------------------------------
-void PSS_VisualToolEdit::OnLButtonUp(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualToolEdit::OnLButtonUp(PSS_View* pView, UINT flags, const CPoint& point)
 {
     PSS_VisualTool::OnLButtonUp(pView, flags, point);
 }
 //---------------------------------------------------------------------------
-void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualToolEdit::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& point)
 {
     CWnd* pActiveWnd = pView->GetActiveWindow();
 
@@ -207,7 +207,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
     }
 
     // reader view cannot change anything
-    if (pView->GetViewType() != FormReadView)
+    if (pView->GetViewType() != PSS_View::IE_VT_FormRead)
     {
         BOOL releaseCapture = FALSE;
 
@@ -230,7 +230,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
                     {
                         switch (pView->GetViewType())
                         {
-                            case FormModifyView:
+                            case PSS_View::IE_VT_FormModify:
                                 // If the cursor is on the object
                                 if (!pObj->IsReadOnlyAtRuntime())
                                 {
@@ -251,7 +251,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
 
                                 break;
 
-                            case FormDesignView:
+                            case PSS_View::IE_VT_FormDesign:
                                 // If the cursor is on the object
                                 if (!pObj->IsObjectSelected())
                                 {
@@ -310,7 +310,7 @@ const PSS_VisualToolObjectCreator& PSS_VisualToolObjectCreator::operator = (cons
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_VisualToolObjectCreator::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualToolObjectCreator::OnLButtonDown(PSS_View* pView, UINT flags, const CPoint& point)
 {
     // check read-only mode
     if (!pView->GetDocument() || pView->GetDocument()->IsReadOnlyAtRuntime())
@@ -325,7 +325,7 @@ void PSS_VisualToolObjectCreator::OnLButtonDown(ZIView* pView, UINT flags, const
     pView->SetCapture();
 }
 //---------------------------------------------------------------------------
-void PSS_VisualToolObjectCreator::OnLButtonUp(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualToolObjectCreator::OnLButtonUp(PSS_View* pView, UINT flags, const CPoint& point)
 {
     CPoint local = point;
     pView->ClientToDoc(local);
@@ -370,7 +370,7 @@ void PSS_VisualToolObjectCreator::OnLButtonUp(ZIView* pView, UINT flags, const C
     ReleaseCapture();
 }
 //---------------------------------------------------------------------------
-void PSS_VisualToolObjectCreator::OnMouseMove(ZIView* pView, UINT flags, const CPoint& point)
+void PSS_VisualToolObjectCreator::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& point)
 {
     CPoint local = point;
     pView->ClientToDoc(local);

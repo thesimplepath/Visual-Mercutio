@@ -19,11 +19,11 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_ReadView, ZIView)
+IMPLEMENT_DYNCREATE(PSS_ReadView, PSS_View)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ReadView, ZIView)
+BEGIN_MESSAGE_MAP(PSS_ReadView, PSS_View)
     //{{AFX_MSG_MAP(PSS_ReadView)
     ON_WM_RBUTTONDOWN()
     ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
@@ -36,10 +36,10 @@ END_MESSAGE_MAP()
 // PSS_ReadView
 //---------------------------------------------------------------------------
 PSS_ReadView::PSS_ReadView() :
-    ZIView(),
+    PSS_View(),
     m_SavePageForPrinting(0)
 {
-    m_ViewType = FormReadView;
+    m_ViewType = IE_VT_FormRead;
 }
 //---------------------------------------------------------------------------
 PSS_ReadView::PSS_ReadView(const PSS_ReadView& other)

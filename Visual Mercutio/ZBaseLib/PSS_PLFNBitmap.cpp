@@ -146,7 +146,7 @@ void PSS_PLFNBitmap::CopyObject(PSS_PlanFinObject* pSrc)
     operator = (dynamic_cast<PSS_PLFNBitmap*>(pSrc));
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNBitmap::DrawObject(CDC* pDC, ZIView* pView)
+void PSS_PLFNBitmap::DrawObject(CDC* pDC, PSS_View* pView)
 {
     m_Bitmap.DrawDIB(pDC, NULL, m_ObjectRect.left, m_ObjectRect.top);
     PSS_PlanFinObject::DrawObject(pDC, pView);

@@ -39,7 +39,7 @@
 #endif
 
 // forward class declaration
-class ZIView;
+class PSS_View;
 class PSS_HtmlView;
 class PSS_Edit;
 class PSS_DocumentExport;
@@ -358,7 +358,7 @@ class AFX_EXT_CLASS PSS_Document : public PSS_BaseDocument
         * Gets the main view
         *@return the main view
         */
-        virtual ZIView* GetMainView();
+        virtual PSS_View* GetMainView();
 
         /**
         * Starts the real-time export
@@ -647,7 +647,7 @@ class AFX_EXT_CLASS PSS_Document : public PSS_BaseDocument
         *@param pView - the view
         *@param documentIndex - document index
         */
-        virtual void OnDraw(CDC* pDC, ZIView* pView, int documentIndex = -1);
+        virtual void OnDraw(CDC* pDC, PSS_View* pView, int documentIndex = -1);
 
         /**
         * Starts the tab order counter
