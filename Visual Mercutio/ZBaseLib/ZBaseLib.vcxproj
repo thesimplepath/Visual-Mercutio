@@ -1139,7 +1139,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIViewCd.cpp">
+    <ClCompile Include="PSS_CodeView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1512,7 +1512,7 @@
     <ClInclude Include="PSS_TreeCtrl.h" />
     <ClInclude Include="PSS_TreeView.h" />
     <ClInclude Include="PSS_View.h" />
-    <ClInclude Include="ZIViewCd.h" />
+    <ClInclude Include="PSS_CodeView.h" />
     <ClInclude Include="PSS_ListViewCombo.h" />
     <ClInclude Include="ZLVEdit.h" />
     <ClInclude Include="PSS_MessageDlg.h" />

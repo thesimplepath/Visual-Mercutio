@@ -9,7 +9,7 @@
 #include "PSS_ModifyView.h"
 
 // processsoft
-#include "zBaseLib\ZIViewCd.h"
+#include "zBaseLib\PSS_CodeView.h"
 #include "zBaseLib\PSS_VisualTool.h"
 #include "zBaseLib\PSS_PLFNCheckBtn.h"
 #include "zBaseLib\PSS_PLFNRadioBtn.h"
