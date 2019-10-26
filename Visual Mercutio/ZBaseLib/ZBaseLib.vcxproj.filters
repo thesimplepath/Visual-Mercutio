@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZLVEdit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZNetwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +599,9 @@
     <ClCompile Include="PSS_CodeView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ListViewEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -716,9 +716,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zBaseLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZLVEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZNetWork.h">
@@ -1295,6 +1292,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CodeView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ListViewEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

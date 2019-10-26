@@ -1151,7 +1151,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZLVEdit.cpp">
+    <ClCompile Include="PSS_ListViewEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1514,7 +1514,7 @@
     <ClInclude Include="PSS_View.h" />
     <ClInclude Include="PSS_CodeView.h" />
     <ClInclude Include="PSS_ListViewCombo.h" />
-    <ClInclude Include="ZLVEdit.h" />
+    <ClInclude Include="PSS_ListViewEdit.h" />
     <ClInclude Include="PSS_MessageDlg.h" />
     <ClInclude Include="PSS_NetResource.h" />
     <ClInclude Include="PSS_NetResourceManager.h" />

@@ -7,7 +7,7 @@
 
 #include "stdafx.h"
 #include "PSS_GridCtrl.h"
-#include "ZLVEdit.h"
+#include "PSS_ListViewEdit.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -1234,7 +1234,9 @@ void PSS_GridCtrl::OnControlLButtonDown(UINT flags, const CPoint& point, LVHITTE
 
         const DWORD style = WS_BORDER | WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT;
 
-        std::unique_ptr<CEdit> pEdit(new ZLVEdit(hitTest.iItem, hitTest.iSubItem, GetItemText(hitTest.iItem, hitTest.iSubItem)));
+        std::unique_ptr<CEdit> pEdit(new PSS_ListViewEdit(hitTest.iItem,
+                                                          hitTest.iSubItem,
+                                                          GetItemText(hitTest.iItem, hitTest.iSubItem)));
         pEdit->Create(style, rcItem, this, 0x1233);
         pEdit.release();
         return;
@@ -1435,7 +1437,7 @@ BOOL PSS_GridCtrl::PreTranslateMessage(MSG* pMsg)
 
                                 const DWORD style = WS_BORDER | WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT;
 
-                                std::unique_ptr<CEdit> pEdit(new ZLVEdit(item, subItem, GetItemText(item, subItem)));
+                                std::unique_ptr<CEdit> pEdit(new PSS_ListViewEdit(item, subItem, GetItemText(item, subItem)));
                                 pEdit->Create(style, rcItem, this, 0x1233);
                                 pEdit.release();
                             }
@@ -2566,7 +2568,7 @@ CEdit* PSS_GridCtrl::EditLabelEx(int item, int col)
     }
 
     style |= WS_BORDER | WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;
-    std::unique_ptr<CEdit> pEdit(new ZLVEdit(item, col, GetItemText(item, col)));
+    std::unique_ptr<CEdit> pEdit(new PSS_ListViewEdit(item, col, GetItemText(item, col)));
     pEdit->Create(style, rect, this, IDC_EDITCTRL);
 
     return pEdit.release();
