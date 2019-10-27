@@ -12,11 +12,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 29 septembre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// _ZVOutputViewListBox
-
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
 BEGIN_MESSAGE_MAP(_ZVOutputViewListBox, CListBox)
     //{{AFX_MSG_MAP(_ZVOutputViewListBox)
     ON_CONTROL_REFLECT(LBN_SELCHANGE, OnSelchange)
