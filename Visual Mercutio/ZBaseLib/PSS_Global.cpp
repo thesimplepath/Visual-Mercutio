@@ -92,7 +92,7 @@ PSS_TemplateManager           PSS_Global::m_TemplateManager;
 PSS_TemplateManager           PSS_Global::m_ProcessTemplateManager;
 PSS_TemplateManager           PSS_Global::m_ModelTemplateManager;
 PSS_UserManager               PSS_Global::m_UserManager;
-ZUNetwork                     PSS_Global::m_NetWork;
+PSS_Network                   PSS_Global::m_NetWork;
 ZUMail                        PSS_Global::m_Mail;
 PSS_Global::IFullMonthSet     PSS_Global::m_FullMonthSet;
 PSS_Global::IShortMonthSet    PSS_Global::m_ShortMonthSet;

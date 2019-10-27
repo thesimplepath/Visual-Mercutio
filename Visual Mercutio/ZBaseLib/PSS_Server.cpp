@@ -11,7 +11,7 @@
  // processsoft
 #include "PSS_File.h"
 #include "PSS_Directory.h"
-#include "ZNetWork.h"
+#include "PSS_Network.h"
 
 //---------------------------------------------------------------------------
 // PSS_Server
@@ -58,13 +58,13 @@ BOOL PSS_Server::OpenSession(BOOL checkStructure, BOOL forceNetwork)
         const CString path = file.GetFilePath();
 
         // open the connection
-        ZUNetwork    net;
+        PSS_Network  network;
         CStringArray freeConnections;
 
-        if (!net.GetFreeConnections(freeConnections))
+        if (!network.GetFreeConnections(freeConnections))
             return m_StatusCode = M_Srv_AccessDenied;
 
-        if (!net.Map(file.GetFilePath(), freeConnections.GetAt(0)))
+        if (!network.Map(file.GetFilePath(), freeConnections.GetAt(0)))
             return m_StatusCode = M_Srv_AccessDenied;
     }
 
