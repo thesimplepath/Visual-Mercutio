@@ -1187,7 +1187,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUFileLauncher.cpp">
+    <ClCompile Include="PSS_FileLauncher.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1521,7 +1521,7 @@
     <ClInclude Include="PSS_NetResourceWrapper.h" />
     <ClInclude Include="PSS_Network.h" />
     <ClInclude Include="PSS_TypedPtrList.h" />
-    <ClInclude Include="ZUFileLauncher.h" />
+    <ClInclude Include="PSS_FileLauncher.h" />
     <ClInclude Include="ZUFloatingToolbar.h" />
     <ClInclude Include="PSS_GUID.h" />
     <ClInclude Include="zumail.h" />

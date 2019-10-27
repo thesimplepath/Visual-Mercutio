@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Global.h"
-#include "zBaseLib\ZUFileLauncher.h"
+#include "zBaseLib\PSS_FileLauncher.h"
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zModel\ProcGraphModelMdl.h"
@@ -145,7 +145,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
 //---------------------------------------------------------------------------
 void PSS_PublishModelToHTML::LaunchBrowser(const CString& index)
 {
-    ZUFileLauncher fileLauncher(index, FLMopen);
+    PSS_FileLauncher fileLauncher(index, PSS_FileLauncher::IE_FM_Open);
     fileLauncher.Launch();
 }
 //---------------------------------------------------------------------------

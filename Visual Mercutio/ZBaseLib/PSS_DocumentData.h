@@ -26,7 +26,7 @@
 #include "PSS_Stamp.h"
 #include "PSS_StyleManager.h"
 #include "PSS_FontManager.h"
-#include "ZUFileLauncher.h"
+#include "PSS_FileLauncher.h"
 
 // class name mapping
 #ifndef PSS_Document
@@ -723,7 +723,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the file launcher
         *@return the file launcher
         */
-        virtual inline ZUFileLauncher& GetFileLauncher();
+        virtual inline PSS_FileLauncher& GetFileLauncher();
 
         /**
         * Gets the last tab order
@@ -864,7 +864,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         PSS_FontManager    m_FontManager;
         PSS_StyleManager   m_StyleManager;
         PSS_PlanFinObject* m_pCurrentEditedObject;
-        ZUFileLauncher     m_FileLauncher;
+        PSS_FileLauncher   m_FileLauncher;
         CObList            m_ObjElements;
         POSITION           m_pPosition;
         CStringArray       m_FieldNameArray;
@@ -1120,7 +1120,7 @@ const CString& PSS_DocumentData::GetFileBufferTemporaryFile() const
     return m_FileBufferTemporaryFile;
 }
 //---------------------------------------------------------------------------
-ZUFileLauncher& PSS_DocumentData::GetFileLauncher()
+PSS_FileLauncher& PSS_DocumentData::GetFileLauncher()
 {
     return m_FileLauncher;
 }

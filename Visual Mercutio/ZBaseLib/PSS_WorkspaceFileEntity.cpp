@@ -11,7 +11,7 @@
 // processsoft
 #include "PSS_WorkspaceGroupEntity.h"
 #include "PSS_WorkspaceFilePropertiesDlg.h"
-#include "ZUFileLauncher.h"
+#include "PSS_FileLauncher.h"
 #include "PSS_FileDialog.h"
 #include "PSS_MsgBox.h"
 
@@ -112,10 +112,10 @@ bool PSS_WorkspaceFileEntity::OpenFile()
             return false;
     }
 
-    // launch the file
-    ZUFileLauncher fl;
+    PSS_FileLauncher fileLauncher;
 
-    return fl.Launch(m_File.GetCompleteFileName());
+    // launch the file
+    return fileLauncher.Launch(m_File.GetCompleteFileName());
 }
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceFileEntity::PropertiesVisible()

@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_File.h"
-#include "ZUFileLauncher.h"
+#include "PSS_FileLauncher.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -91,9 +91,9 @@ void PSS_WorkspaceEnv::OpenLastFiles()
         // check if the file exists
         if (PSS_File::Exist(m_OpenedFileArray.GetAt(i)))
         {
-            ZUFileLauncher fl;
+            PSS_FileLauncher fileLauncher;
 
-            if (fl.Launch(m_OpenedFileArray.GetAt(i)))
+            if (fileLauncher.Launch(m_OpenedFileArray.GetAt(i)))
             {
                 // todo -cFeature -oJean: show error message
             }

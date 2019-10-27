@@ -9,7 +9,7 @@
 #include "PSS_CommandLine.h"
 
 // processsoft
-#include "ZUFileLauncher.h"
+#include "PSS_FileLauncher.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -69,7 +69,7 @@ void PSS_CommandLine::Initialize(const CString& commandLine,
 //---------------------------------------------------------------------------
 BOOL PSS_CommandLine::Launch()
 {
-    ZUFileLauncher fileLauncher(m_CommandLine, FLMopen, m_Arguments, m_StartupDir);
+    PSS_FileLauncher fileLauncher(m_CommandLine, PSS_FileLauncher::IE_FM_Open, m_Arguments, m_StartupDir);
     return fileLauncher.Launch();
 }
 //---------------------------------------------------------------------------
