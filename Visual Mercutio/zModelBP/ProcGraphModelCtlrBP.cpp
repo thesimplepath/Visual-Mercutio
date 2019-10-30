@@ -5,7 +5,7 @@
 
 // processsoft
 #include "zMediator\PSS_Application.h"
-#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zModel\ProcGraphModelVp.h"
@@ -1577,9 +1577,9 @@ void ZDProcessGraphModelControllerBP::OnViewModelGenToolbar()
 {
     if ( !m_pwndModelGenerationBar )
     {
-        ASSERT( ZUFloatingToolbar::GetToolBarManager() );
+        ASSERT(PSS_FloatingToolBar::GetToolBarManager() );
         ASSERT_KINDOF( SECToolBarManager, ZUFloatingToolbar::GetToolBarManager() );
-        SECToolBarManager* pMgr = ZUFloatingToolbar::GetToolBarManager();
+        SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelGenerationBar = pMgr->ToolBarFromID( _GenerationToolBarID );
     }
 
@@ -1595,9 +1595,9 @@ void ZDProcessGraphModelControllerBP::OnUpdateViewModelGenToolbar( CCmdUI* pCmdU
 {
     if ( !m_pwndModelGenerationBar )
     {
-        ASSERT( ZUFloatingToolbar::GetToolBarManager() );
+        ASSERT(PSS_FloatingToolBar::GetToolBarManager() );
         ASSERT_KINDOF( SECToolBarManager, ZUFloatingToolbar::GetToolBarManager() );
-        SECToolBarManager* pMgr = ZUFloatingToolbar::GetToolBarManager();
+        SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelisationBar = pMgr->ToolBarFromID( _GenerationToolBarID );
     }
 
@@ -1615,9 +1615,9 @@ void ZDProcessGraphModelControllerBP::OnViewModelToolbar()
 {
     if ( !m_pwndModelisationBar )
     {
-        ASSERT( ZUFloatingToolbar::GetToolBarManager() );
+        ASSERT(PSS_FloatingToolBar::GetToolBarManager() );
         ASSERT_KINDOF( SECToolBarManager, ZUFloatingToolbar::GetToolBarManager() );
-        SECToolBarManager* pMgr = ZUFloatingToolbar::GetToolBarManager();
+        SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelisationBar = pMgr->ToolBarFromID( _ModelisationToolBarID );
     }
 
@@ -1632,9 +1632,9 @@ void ZDProcessGraphModelControllerBP::OnUpdateViewModelToolbar( CCmdUI* pCmdUI )
 {
     if ( !m_pwndModelisationBar )
     {
-        ASSERT( ZUFloatingToolbar::GetToolBarManager() );
+        ASSERT(PSS_FloatingToolBar::GetToolBarManager() );
         ASSERT_KINDOF( SECToolBarManager, ZUFloatingToolbar::GetToolBarManager() );
-        SECToolBarManager* pMgr = ZUFloatingToolbar::GetToolBarManager();
+        SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelisationBar = pMgr->ToolBarFromID( _ModelisationToolBarID );
     }
 

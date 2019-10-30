@@ -26,19 +26,10 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUFloatingToolbar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zumail.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZUSystemOption.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVOutputView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVSpanView.cpp">
@@ -602,6 +593,15 @@
     <ClCompile Include="PSS_FileLauncher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_OutputView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FloatingToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Mail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,19 +718,10 @@
     <ClInclude Include="zBaseLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZUFloatingToolbar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zumail.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZUser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUSystemOption.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVOutputView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVSpanView.h">
@@ -1295,6 +1286,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_FileLauncher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_OutputView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FloatingToolBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Mail.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

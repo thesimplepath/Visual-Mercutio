@@ -14,7 +14,7 @@
 
 #include "zModel\ZBDocObserverMsg.h"
 
-#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zModel\zModelRes.h"
 #include "zModelBP\zModelBPRes.h"
 
@@ -707,7 +707,7 @@ BOOL ZIMainFrame::CreateToolBars()
                                TRUE);                    // Show. FALSE devient TRUE.
 
    // Register BP toolbar
-    ZUFloatingToolbar::RegisterToolbar(_ModelisationToolbarName, AFX_IDW_TOOLBAR + 23, this, E_MN_Beryl);
+    PSS_FloatingToolBar::RegisterToolBar(_ModelisationToolbarName, AFX_IDW_TOOLBAR + 23, this, E_MN_Beryl);
 
     Title.LoadString(IDS_TB_BPMODELGENERATIONBUTTONS);
 
@@ -722,7 +722,7 @@ BOOL ZIMainFrame::CreateToolBars()
                                TRUE,                    // Docking
                                TRUE);                    // Show. FALSE devient TRUE.
 
-    ZUFloatingToolbar::RegisterToolbar(_ModelGenerationToolbarName, AFX_IDW_TOOLBAR + 24, this, E_MN_Beryl);
+    PSS_FloatingToolBar::RegisterToolBar(_ModelGenerationToolbarName, AFX_IDW_TOOLBAR + 24, this, E_MN_Beryl);
 
     // Enable the tooltips
     pMgr->EnableToolTips(TRUE);

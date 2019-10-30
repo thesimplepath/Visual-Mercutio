@@ -172,7 +172,6 @@ public:
     afx_msg void OnVScroll(UINT, UINT, CScrollBar*);
     afx_msg void OnSize(UINT nType, int cx, int cy);
     //}}AFX_MSG
-    //}}AFX_MSG
     DECLARE_MESSAGE_MAP();
 };
 

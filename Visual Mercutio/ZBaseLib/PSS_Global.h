@@ -19,7 +19,7 @@
 // processsoft
 #include "PSS_Network.h"
 #include "PSS_TemplateManager.h"
-#include "ZUMail.h"
+#include "PSS_Mail.h"
 #include "PSS_DocTemplateEx.h"
 #include "PSS_HistoricValueManager.h"
 
@@ -373,7 +373,7 @@ class AFX_EXT_CLASS PSS_Global
         * Gets the e-mail
         *@return the e-mail
         */
-        static inline ZUMail& GetMail();
+        static inline PSS_Mail& GetMail();
 
         /**
         * Gets the user manager
@@ -794,7 +794,7 @@ class AFX_EXT_CLASS PSS_Global
         static PSS_TemplateManager      m_ModelTemplateManager;
         static PSS_UserManager          m_UserManager;
         static PSS_Network              m_NetWork;
-        static ZUMail                   m_Mail;
+        static PSS_Mail                 m_Mail;
         static IFullMonthSet            m_FullMonthSet;
         static IShortMonthSet           m_ShortMonthSet;
         static IDaySet                  m_DaySet;
@@ -1049,7 +1049,7 @@ PSS_Network& PSS_Global::GetNetWork()
     return m_NetWork;
 }
 //---------------------------------------------------------------------------
-ZUMail& PSS_Global::GetMail()
+PSS_Mail& PSS_Global::GetMail()
 {
     return m_Mail;
 }

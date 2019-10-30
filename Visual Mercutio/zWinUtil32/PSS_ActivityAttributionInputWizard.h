@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZUMail.h"
+#include "zBaseLib\PSS_Mail.h"
 #include "zBaseLib\PSS_UserManager.h"
 #include "zEvent\Activity.h"
 
@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
         *@param pParent - parent window, can be NULL
         */
         PSS_ActivityAttributionInputWizard(PSS_UserManager& userManager,
-                                           ZUMail&          mail,
+                                           PSS_Mail&        mail,
                                            ZActivity*       pActivity,
                                            BOOL             lastActivity,
                                            BOOL             userAttribution       = TRUE,
@@ -74,7 +74,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
 
     private:
         PSS_UserManager& m_UserManager;
-        ZUMail&          m_Mail;
+        PSS_Mail&        m_Mail;
         ZActivity*       m_pActivity;
         BOOL             m_LastActivity;
         BOOL             m_UserAttribution;

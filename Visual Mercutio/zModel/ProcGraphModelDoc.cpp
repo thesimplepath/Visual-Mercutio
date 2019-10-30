@@ -9,7 +9,7 @@
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\PSS_Log.h"
-#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_GUID.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "ProcGraphModelView.h"
@@ -149,7 +149,7 @@ void ZDProcessGraphModelDoc::SetNewModel(ZDProcessGraphModelMdl* pModel)
         pView->GetViewport()->OnInitialUpdateVp();
 
         // Switch the context
-        ZUFloatingToolbar::SwitchContext(m_pModel->GetNotation());
+        PSS_FloatingToolBar::SwitchContext(m_pModel->GetNotation());
 
         // *******************************************************************************************************
         // JMR-MODIF - Le 12 juillet 2005 - La prise en charge du format de page rend cette modification obsolète.

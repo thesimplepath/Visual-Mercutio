@@ -1193,7 +1193,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUFloatingToolbar.cpp">
+    <ClCompile Include="PSS_FloatingToolBar.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1205,7 +1205,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="zumail.cpp">
+    <ClCompile Include="PSS_Mail.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1249,7 +1249,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVOutputView.cpp">
+    <ClCompile Include="PSS_OutputView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1522,9 +1522,9 @@
     <ClInclude Include="PSS_Network.h" />
     <ClInclude Include="PSS_TypedPtrList.h" />
     <ClInclude Include="PSS_FileLauncher.h" />
-    <ClInclude Include="ZUFloatingToolbar.h" />
+    <ClInclude Include="PSS_FloatingToolBar.h" />
     <ClInclude Include="PSS_GUID.h" />
-    <ClInclude Include="zumail.h" />
+    <ClInclude Include="PSS_Mail.h" />
     <ClInclude Include="ZUser.h" />
     <ClInclude Include="PSS_StringFormatter.h" />
     <ClInclude Include="ZUSystemOption.h" />
@@ -1533,7 +1533,7 @@
     <ClInclude Include="PSS_DocumentPageSetup.h" />
     <ClInclude Include="PSS_DocumentPageSetupDlg.h" />
     <ClInclude Include="PSS_ManageValueIntelliEditDlg.h" />
-    <ClInclude Include="ZVOutputView.h" />
+    <ClInclude Include="PSS_OutputView.h" />
     <ClInclude Include="ZVSpanView.h" />
     <ClInclude Include="PSS_SpanWnd.h" />
     <ClInclude Include="PSS_TreeListCtrl.h" />

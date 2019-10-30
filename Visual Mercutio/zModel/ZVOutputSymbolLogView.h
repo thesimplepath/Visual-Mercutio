@@ -15,7 +15,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZVOutputView.h"
+#include "zBaseLib\PSS_OutputView.h"
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -33,7 +33,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZVOutputSymbolLogView view
 
-class AFX_EXT_CLASS ZVOutputSymbolLogView : public ZVOutputView
+class AFX_EXT_CLASS ZVOutputSymbolLogView : public PSS_OutputView
 {
 public:
     DECLARE_DYNAMIC( ZVOutputSymbolLogView )
@@ -57,8 +57,4 @@ protected:
     virtual void OnDoubleClick();
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVOutputSymbolLogView_H__8D6DF672_6E58_4F75_A154_14FFDB5EE0F1__INCLUDED_)
+#endif

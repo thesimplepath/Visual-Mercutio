@@ -15,15 +15,16 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVOutputWorkflowLogView
 
-IMPLEMENT_DYNAMIC(ZVOutputWorkflowLogView, ZVOutputView)
+IMPLEMENT_DYNAMIC(ZVOutputWorkflowLogView, PSS_OutputView)
 
-BEGIN_MESSAGE_MAP(ZVOutputWorkflowLogView, ZVOutputView)
+BEGIN_MESSAGE_MAP(ZVOutputWorkflowLogView, PSS_OutputView)
     //{{AFX_MSG_MAP(ZVOutputWorkflowLogView)
         // NOTE - the ClassWizard will add and remove mapping macros here.
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVOutputWorkflowLogView::ZVOutputWorkflowLogView()
+ZVOutputWorkflowLogView::ZVOutputWorkflowLogView() :
+    PSS_OutputView()
 {
     SetSelectLast(true);
 }

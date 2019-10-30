@@ -15,7 +15,7 @@
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceWizardTemplateManager.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
-#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_FolderInfoDialog.h"
 #include "zWinUtil32\PSS_SystemOptionSheet.h"
@@ -393,7 +393,7 @@ void ZAApp::Release()
     ZAModelGlobal::Release();
     PSS_ObjectUtility::Release();
     PSS_ResourceManager::Release();
-    ZUFloatingToolbar::Release();
+    PSS_FloatingToolBar::Release();
 
     // Appel à la fonction Release de la classe de base.
     ZAMainApp::Release();

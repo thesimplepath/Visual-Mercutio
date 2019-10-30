@@ -24,7 +24,7 @@
 // PSS_ActivityAttributionInputWizard
 //---------------------------------------------------------------------------
 PSS_ActivityAttributionInputWizard::PSS_ActivityAttributionInputWizard(PSS_UserManager& userManager,
-                                                                       ZUMail&          mail,
+                                                                       PSS_Mail&        mail,
                                                                        ZActivity*       pActivity,
                                                                        BOOL             lastActivity,
                                                                        BOOL             userAttribution,

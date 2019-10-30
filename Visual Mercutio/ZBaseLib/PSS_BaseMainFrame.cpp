@@ -11,9 +11,9 @@
 // processsoft
 #include "PSS_DrawFunctions.h"
 #include "PSS_VisualTool.h"
-#include "Message.h"
 #include "PSS_BaseMDIPage.h"
-#include "ZUFloatingToolbar.h"
+#include "PSS_FloatingToolBar.h"
+#include "Message.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -152,9 +152,9 @@ PSS_BaseMainFrame::PSS_BaseMainFrame(bool mustSaveBarState) :
     EnableBmpMenus();
 
     // initialize the Floating Toolbar
-    ZUFloatingToolbar::Initialize(&m_WindowConfiguration,
-                                  dynamic_cast<SECToolBarManager*>(m_pControlBarManager),
-                                  m_pMenuBar);
+    PSS_FloatingToolBar::Initialize(&m_WindowConfiguration,
+                                    dynamic_cast<SECToolBarManager*>(m_pControlBarManager),
+                                    m_pMenuBar);
 }
 //---------------------------------------------------------------------------
 PSS_BaseMainFrame::~PSS_BaseMainFrame()

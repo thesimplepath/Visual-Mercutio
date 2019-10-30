@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zBaseLib\ZUMail.h"
+#include "zBaseLib\PSS_Mail.h"
 #include "zBaseLib\PSS_UserManager.h"
 #include "zEvent\Activity.h"
 
@@ -63,7 +63,7 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
         *@param pParent - parent window, can be NULL
         */
         PSS_ActivityAttributionInputBackupDialog(PSS_UserManager& userManager,
-                                                 ZUMail&          mail,
+                                                 PSS_Mail&        mail,
                                                  ZActivity*       pActivity,
                                                  BOOL             lastActivity,
                                                  CWnd*            pParent = NULL);
@@ -95,7 +95,7 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
     
     private:
         PSS_UserManager& m_UserManager;
-        ZUMail&          m_Mail;
+        PSS_Mail&        m_Mail;
         ZActivity*       m_pActivity;
         CListBox         m_UserList;
         CString          m_ActivityName;

@@ -14,14 +14,15 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVOutputSymbolLogView
 
-IMPLEMENT_DYNAMIC(ZVOutputSymbolLogView, ZVOutputView)
+IMPLEMENT_DYNAMIC(ZVOutputSymbolLogView, PSS_OutputView)
 
-BEGIN_MESSAGE_MAP(ZVOutputSymbolLogView, ZVOutputView)
+BEGIN_MESSAGE_MAP(ZVOutputSymbolLogView, PSS_OutputView)
     //{{AFX_MSG_MAP(ZVOutputSymbolLogView)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVOutputSymbolLogView::ZVOutputSymbolLogView()
+ZVOutputSymbolLogView::ZVOutputSymbolLogView() :
+    PSS_OutputView()
 {
     SetSelectLast(true);
 }

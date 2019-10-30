@@ -4,7 +4,7 @@
 #include "ProcGraphChildFrm.h"
 
 #include "zResMgr\PSS_ResourceManager.h"
-#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "ProcGraphModelDoc.h"
 #include "ProcGraphModelView.h"
@@ -128,7 +128,7 @@ void ZIProcessGraphChildFrame::OnMDIActivate( BOOL bActivate, CWnd* pActivateWnd
     if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
     {
         // Switch the context
-        ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
+        PSS_FloatingToolBar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
 
         // Request the change of the resource language
         PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
@@ -149,7 +149,7 @@ int ZIProcessGraphChildFrame::OnMouseActivate( CWnd* pDesktopWnd, UINT nHitTest,
     if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
     {
         // Switch the context
-        ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
+        PSS_FloatingToolBar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
 
         // Request the change of the resource language
         PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
