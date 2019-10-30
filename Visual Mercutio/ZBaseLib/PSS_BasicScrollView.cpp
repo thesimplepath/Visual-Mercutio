@@ -17,11 +17,11 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_BasicScrollView, ZVSpanView)
+IMPLEMENT_DYNCREATE(PSS_BasicScrollView, PSS_SpanView)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_BasicScrollView, ZVSpanView)
+BEGIN_MESSAGE_MAP(PSS_BasicScrollView, PSS_SpanView)
     //{{AFX_MSG_MAP(PSS_BasicScrollView)
     ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
     ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
@@ -31,7 +31,7 @@ END_MESSAGE_MAP()
 // PSS_BasicScrollView
 //---------------------------------------------------------------------------
 PSS_BasicScrollView::PSS_BasicScrollView() :
-    ZVSpanView()
+    PSS_SpanView()
 {}
 //---------------------------------------------------------------------------
 PSS_BasicScrollView::~PSS_BasicScrollView()
@@ -66,7 +66,7 @@ void PSS_BasicScrollView::OnInitialUpdate()
     if (m_pPageSetup->IsFormatDefined())
         SetScrollSizes(MM_TEXT, m_pPageSetup->GetPaperSize());
 
-    ZVSpanView::OnInitialUpdate();
+    PSS_SpanView::OnInitialUpdate();
 }
 //---------------------------------------------------------------------------
 void PSS_BasicScrollView::OnDraw(CDC* pDC)

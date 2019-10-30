@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_OutputView : public CWnd,
         /**
         * Releases the view
         */
-        void Release();
+        virtual void Release();
 
         /**
         * Initializes the logger for the view

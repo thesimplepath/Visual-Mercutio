@@ -10,7 +10,7 @@
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBDocObserverMsg.h"
 
-#include "zBaseLib\ZVSpanView.h"
+#include "zBaseLib\PSS_SpanView.h"
 
 #include "Resource.h"
 
@@ -162,11 +162,11 @@ void ZVPropertiesWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
             case UM_FRAMEHASBEENACTIVATED:
             {
                 if (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetView() &&
-                    ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetView(), ZVSpanView))
+                    ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetView(), PSS_SpanView))
                 {
                     /* Don't add the pan view for the SR1
                     m_PanView.AssignPanView
-                        ( dynamic_cast<ZVSpanView*>( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpView() ) );
+                        ( dynamic_cast<PSS_SpanView*>( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpView() ) );
                     */
                     break;
                 }

@@ -9,7 +9,7 @@
 #include "PSS_SpanWnd.h"
 
 // processsoft
-#include "ZVSpanView.h"
+#include "PSS_SpanView.h"
 
 // resources
 #include "zRes32\zRes.h"
@@ -36,7 +36,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SpanWnd
 //---------------------------------------------------------------------------
-PSS_SpanWnd::PSS_SpanWnd(ZVSpanView* pPanView) :
+PSS_SpanWnd::PSS_SpanWnd(PSS_SpanView* pPanView) :
     m_pPanView(pPanView),
     m_hOverviewCursor(NULL),
     m_hCurrentOverviewCursor(NULL),
@@ -75,12 +75,12 @@ BOOL PSS_SpanWnd::Create(const CRect& rectCreate, CWnd* pParent, UINT id, LPCTST
                           NULL);
 }
 //---------------------------------------------------------------------------
-void PSS_SpanWnd::AssignPanView(ZVSpanView* pView)
+void PSS_SpanWnd::AssignPanView(PSS_SpanView* pView)
 {
     m_pPanView = pView;
 
     if (pView)
-        dynamic_cast<ZVSpanView*>(m_pPanView)->AssignSpanWnd(this);
+        dynamic_cast<PSS_SpanView*>(m_pPanView)->AssignSpanWnd(this);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_SpanWnd::PreCreateWindow(CREATESTRUCT& cs)
@@ -306,7 +306,7 @@ void PSS_SpanWnd::OnLButtonDown(UINT nFlags, CPoint pointDev)
         ClipOverviewCursor();
 
         // tell the view where we started
-        m_pPanView->m_ptLogStartDrag = pointLog;
+        m_pPanView->m_LogStartDrag = pointLog;
     }
 }
 //---------------------------------------------------------------------------
@@ -373,10 +373,10 @@ void PSS_SpanWnd::OnMouseMove(UINT nFlags, CPoint pointDev)
         SetPanRect(rectNewLogPan);
 
         // Update the view, if desired
-        if (m_pPanView->m_panMode == ZVP_PANINSTANT)
+        if (m_pPanView->m_PanMode == PSS_SpanView::IE_PM_Instant)
         {
             m_pPanView->UpdatePanViewport(&pointLog);
-            m_pPanView->m_ptLogStartDrag = pointLog;
+            m_pPanView->m_LogStartDrag = pointLog;
         }
     }
     else

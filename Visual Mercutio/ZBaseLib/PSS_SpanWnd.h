@@ -20,13 +20,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
- // class name mapping
-#ifndef PSS_SpanView
-    #define PSS_SpanView ZVSpanView
-#endif
-
 // forward class declaration
-class ZVSpanView;
+class PSS_SpanView;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -44,14 +39,14 @@ class ZVSpanView;
 */
 class AFX_EXT_CLASS PSS_SpanWnd : public CWnd
 {
-    friend class ZVSpanView;
+    friend class PSS_SpanView;
 
     public:
         /**
         * Constructor
         *@param pPanView - parent pan view, can be NULL
         */
-        PSS_SpanWnd(ZVSpanView* pPanView = NULL);
+        PSS_SpanWnd(PSS_SpanView* pPanView = NULL);
 
         virtual ~PSS_SpanWnd();
 
@@ -68,7 +63,7 @@ class AFX_EXT_CLASS PSS_SpanWnd : public CWnd
         * Assigns the pan view
         *@param pView - the pan view to assign
         */
-        virtual void AssignPanView(ZVSpanView* pView);
+        virtual void AssignPanView(PSS_SpanView* pView);
 
         /**
         * Implements the overview window style settings at creation
@@ -124,14 +119,14 @@ class AFX_EXT_CLASS PSS_SpanWnd : public CWnd
         #endif
 
     protected:
-        ZVSpanView* m_pPanView;
-        HCURSOR     m_hOverviewCursor;
-        HCURSOR     m_hCurrentOverviewCursor;
-        HCURSOR     m_hOverviewOnMoveCursor;
-        CRect       m_RectLogPan;
-        CSize       m_LogDrag;
-        BOOL        m_Captured;
-        BOOL        m_ClipVerified;
+        PSS_SpanView* m_pPanView;
+        HCURSOR       m_hOverviewCursor;
+        HCURSOR       m_hCurrentOverviewCursor;
+        HCURSOR       m_hOverviewOnMoveCursor;
+        CRect         m_RectLogPan;
+        CSize         m_LogDrag;
+        BOOL          m_Captured;
+        BOOL          m_ClipVerified;
 
         /// Generated message map functions
         //{{AFX_MSG(PSS_SpanWnd)

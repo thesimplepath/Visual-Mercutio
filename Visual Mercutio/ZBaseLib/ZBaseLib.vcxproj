@@ -1255,7 +1255,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVSpanView.cpp">
+    <ClCompile Include="PSS_SpanView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1534,7 +1534,7 @@
     <ClInclude Include="PSS_DocumentPageSetupDlg.h" />
     <ClInclude Include="PSS_ManageValueIntelliEditDlg.h" />
     <ClInclude Include="PSS_OutputView.h" />
-    <ClInclude Include="ZVSpanView.h" />
+    <ClInclude Include="PSS_SpanView.h" />
     <ClInclude Include="PSS_SpanWnd.h" />
     <ClInclude Include="PSS_TreeListCtrl.h" />
     <ClInclude Include="PSS_WorkspaceFilePropertiesDlg.h" />

@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZVSpanView.h"
+#include "PSS_SpanView.h"
 #include "PSS_DocumentPageSetup.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -38,7 +38,7 @@
 * Basic scroll view
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_BasicScrollView : public ZVSpanView
+class AFX_EXT_CLASS PSS_BasicScrollView : public PSS_SpanView
 {
     DECLARE_DYNCREATE(PSS_BasicScrollView)
 
