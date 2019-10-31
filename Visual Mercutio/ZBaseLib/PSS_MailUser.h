@@ -33,7 +33,7 @@
 #endif
 
 // processsoft
-#include "ZUser.h"
+#include "PSS_User.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_MailUser : public CObject
         *@param personName - person name
         *@param recipClass - recipient class
         */
-        PSS_MailUser(ZUser& personName, ULONG recipClass = MAPI_TO);
+        PSS_MailUser(PSS_User& personName, ULONG recipClass = MAPI_TO);
 
         /**
         * Copy constructor

@@ -73,7 +73,7 @@ void PSS_UserTree::Refresh()
     CreateTree();
 }
 //---------------------------------------------------------------------------
-ZUser* PSS_UserTree::GetSelectedUser() const
+PSS_User* PSS_UserTree::GetSelectedUser() const
 {
     if (m_Invalid)
         return NULL;
@@ -85,7 +85,7 @@ ZUser* PSS_UserTree::GetSelectedUser() const
         CObject* pObj = (CObject*)m_pTreeCtrl->GetItemData(hSelected);
 
         if (pObj)
-            return dynamic_cast<ZUser*>(pObj);
+            return dynamic_cast<PSS_User*>(pObj);
     }
 
     return NULL;
@@ -158,7 +158,7 @@ HTREEITEM PSS_UserTree::AddDepartementItem(const CString& departement, int iconI
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_UserTree::AddUserItem(ZUser* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_UserTree::AddUserItem(PSS_User* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     if (!pData)
         return NULL;

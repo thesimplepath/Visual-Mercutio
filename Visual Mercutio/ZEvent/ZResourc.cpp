@@ -145,7 +145,7 @@ PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, PSS_Use
     if (GetUserType() == ResponsibleOfUser)
     {
         // Search the connected user
-        ZUser* pUser = UserManager.FindUser ( ConnectedUser );
+        PSS_User* pUser = UserManager.FindUser ( ConnectedUser );
         if (pUser)
         {
             PSS_MailUserList*    pPersonList = new PSS_MailUserList;
@@ -191,7 +191,7 @@ PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, PSS_Use
                 // Run through the user list and build the person
                 for (size_t i = 0; i < GetUserCount(); ++i)
                 {
-                    ZUser* pUser = UserManager.FindUser ( GetUserAt(i) );
+                    PSS_User* pUser = UserManager.FindUser ( GetUserAt(i) );
                     // If the user is found add the user,
                     // otherwise add directly the string
                     if (pUser)
@@ -213,7 +213,7 @@ BOOL ZBResources::FillPersonArray (ZProcess* pMainProcess, PSS_UserManager& User
     if (GetUserType() == ResponsibleOfUser)
     {
         // Search the connected user
-        ZUser* pUser = UserManager.FindUser ( ConnectedUser );
+        PSS_User* pUser = UserManager.FindUser ( ConnectedUser );
         if (pUser)
         {
             UserArray.RemoveAll();
@@ -257,7 +257,7 @@ BOOL ZBResources::FillPersonArray (ZProcess* pMainProcess, PSS_UserManager& User
                 // Run through the user list and build the person
                 for (size_t i = 0; i < GetUserCount(); ++i)
                 {
-                    ZUser* pUser = UserManager.FindUser ( GetUserAt(i) );
+                    PSS_User* pUser = UserManager.FindUser ( GetUserAt(i) );
                     // If the user is found add the user,
                     // otherwise add directly the string
                     if (pUser)
@@ -293,7 +293,7 @@ CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, PSS_UserManag
     if (GetUserType() == ResponsibleOfUser)
     {
         // Search the connected user
-        ZUser* pUser = UserManager.FindUser ( ConnectedUser );
+        PSS_User* pUser = UserManager.FindUser ( ConnectedUser );
         if (pUser)
         {
             // Search the corresponding responsible user ptr
@@ -329,7 +329,7 @@ CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, PSS_UserManag
                 // Run through the user list and build the person
                 for (size_t i = 0; i < GetUserCount(); ++i)
                 {
-                    ZUser* pUser = UserManager.FindUser ( GetUserAt(i) );
+                    PSS_User* pUser = UserManager.FindUser ( GetUserAt(i) );
                     // If the user is found add the user,
                     // otherwise add directly the string
                     if (pUser)

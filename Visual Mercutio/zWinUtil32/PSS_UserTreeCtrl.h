@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_UserTreeCtrl : public PSS_TreeCtrl
         * Gets the selected user
         *@return the selected user, NULL if no selectoin or on error
         */
-        ZUser* GetSelectedUser();
+        PSS_User* GetSelectedUser();
 
         /**
         * Gets the selected department

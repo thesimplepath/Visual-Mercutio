@@ -41,7 +41,7 @@ const PSS_UserExport& PSS_UserExport::operator = (const PSS_UserExport& other)
 //---------------------------------------------------------------------------
 CString PSS_UserExport::GetExportedLine(CObject* pObj)
 {
-    ZUser*        pUser = (ZUser*)pObj;
+    PSS_User*     pUser = (PSS_User*)pObj;
     PSS_Tokenizer tokenizer;
 
     switch (GetSeparatorType())

@@ -74,7 +74,7 @@ class AFX_EXT_CLASS PSS_UserView : public PSS_TreeView
         * Gets the selected user
         *@param the selected user, NULL if no selection or on error
         */
-        virtual ZUser* GetSelectedUser();
+        virtual PSS_User* GetSelectedUser();
 
         /**
         * Gets the selected departement

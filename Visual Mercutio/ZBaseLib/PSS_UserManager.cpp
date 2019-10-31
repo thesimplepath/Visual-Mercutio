@@ -37,30 +37,30 @@ void PSS_UserManager::AddUser(const CString& userName,
                               BOOL           isAdministrator,
                               const CString& displayName)
 {
-    std::unique_ptr<ZUser> pUser(new ZUser(userName,
-                                           mailAddress,
-                                           description,
-                                           responsible,
-                                           departement,
-                                           isAdministrator,
-                                           displayName));
+    std::unique_ptr<PSS_User> pUser(new PSS_User(userName,
+                                                 mailAddress,
+                                                 description,
+                                                 responsible,
+                                                 departement,
+                                                 isAdministrator,
+                                                 displayName));
 
     m_UserArray.Add(pUser.get());
     pUser.release();
 }
 //---------------------------------------------------------------------------
-void PSS_UserManager::AddUser(ZUser& user)
+void PSS_UserManager::AddUser(PSS_User& user)
 {
     m_UserArray.Add(&user);
 }
 //---------------------------------------------------------------------------
-ZUser* PSS_UserManager::FindUser(const CString& userName, BOOL byDisplayName)
+PSS_User* PSS_UserManager::FindUser(const CString& userName, BOOL byDisplayName)
 {
     const std::size_t count = GetCount();
 
     for (std::size_t i = 0; i < count; ++i)
     {
-        ZUser* pUser = GetAt(i);
+        PSS_User* pUser = GetAt(i);
 
         if (byDisplayName)
         {
@@ -81,7 +81,7 @@ BOOL PSS_UserManager::RemoveUser(const CString& userName, BOOL byDisplayName)
 
     for (std::size_t i = 0; i < count; ++i)
     {
-        ZUser* pUser = GetAt(i);
+        PSS_User* pUser = GetAt(i);
 
         if (byDisplayName)
         {

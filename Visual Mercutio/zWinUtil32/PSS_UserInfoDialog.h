@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "zBaseLib\ZUser.h"
+#include "zBaseLib\PSS_User.h"
 
 // resources
 #include "zWinUtil32Res.h"
@@ -50,7 +50,7 @@ class AFX_EXT_CLASS PSS_UserInfoDialog : public PSS_Dialog
         *@param creationMode - if true, dialog will enter in creation mode
         *@param pParent - parent window, can be NULL
         */
-        PSS_UserInfoDialog(ZUser& user, bool creationMode = false, CWnd* pParent = NULL);
+        PSS_UserInfoDialog(PSS_User& user, bool creationMode = false, CWnd* pParent = NULL);
 
     protected:
         /// ClassWizard generated virtual function overrides
@@ -74,15 +74,15 @@ class AFX_EXT_CLASS PSS_UserInfoDialog : public PSS_Dialog
             IDD = IDD_USERINFO
         };
 
-        ZUser&  m_User;
-        CString m_UserName;
-        CString m_Description;
-        CString m_EMail;
-        CString m_Departement;
-        CString m_DisplayName;
-        CString m_Responsible;
-        BOOL    m_Admin;
-        bool    m_CreationMode;
+        PSS_User& m_User;
+        CString   m_UserName;
+        CString   m_Description;
+        CString   m_EMail;
+        CString   m_Departement;
+        CString   m_DisplayName;
+        CString   m_Responsible;
+        BOOL      m_Admin;
+        bool      m_CreationMode;
 };
 
 #endif

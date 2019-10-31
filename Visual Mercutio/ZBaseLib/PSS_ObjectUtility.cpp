@@ -9,7 +9,7 @@
 #include "PSS_ObjectUtility.h"
 
 // processsoft
-#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_SystemOption.h"
 #include "PSS_File.h"
 #include "PSS_PLFNRadioBtn.h"
 #include "PSS_PLFNSquare.h"
@@ -301,7 +301,7 @@ PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
 //---------------------------------------------------------------------------
 BOOL PSS_ObjectUtility::InitializeDefinition(const CString& iniFileName)
 {
-    ZUSystemOption systemOption;
+    PSS_SystemOption systemOption;
 
     Release();
 
@@ -341,9 +341,9 @@ BOOL PSS_ObjectUtility::InitializeDefinition(const CString& iniFileName)
 //---------------------------------------------------------------------------
 CString PSS_ObjectUtility::LoadFieldDefinition(const CString& iniFileName, const CString& fieldKey)
 {
-    ZUSystemOption m_SystemOptionField(iniFileName, fieldKey);
-    char           buffer[100];
-    CString        description;
+    PSS_SystemOption m_SystemOptionField(iniFileName, fieldKey);
+    char             buffer[100];
+    CString          description;
 
     for (int i = 0; ; ++i)
     {

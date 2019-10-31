@@ -72,7 +72,7 @@ void PSS_UserTreeCtrl::Refresh()
     m_UserTree.Refresh();
 }
 //---------------------------------------------------------------------------
-ZUser* PSS_UserTreeCtrl::GetSelectedUser()
+PSS_User* PSS_UserTreeCtrl::GetSelectedUser()
 {
     return m_UserTree.GetSelectedUser();
 }

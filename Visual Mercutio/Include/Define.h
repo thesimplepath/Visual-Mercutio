@@ -190,7 +190,7 @@ const UINT g_DefVersion = 1;
 
 // Version 13 for 32bit compatibility
 // Version 15 for DocumentType and Key1
-// Version 16 for DisplayName in ZUser class
+// Version 16 for DisplayName in PSS_User class
 // Version 17 for model compatibility and multi-activities
 // Version 18 for zForms.01 Beta 2
 // Version 18 for Conceptor Beta 1

@@ -52,7 +52,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_UserPropertyCtrl
 //---------------------------------------------------------------------------
-PSS_UserPropertyCtrl::PSS_UserPropertyCtrl(ZUser* pUser, BOOL enableModify) :
+PSS_UserPropertyCtrl::PSS_UserPropertyCtrl(PSS_User* pUser, BOOL enableModify) :
     PSS_ListCtrl(),
     m_pUser(pUser),
     m_EnableModify(enableModify),
@@ -73,7 +73,7 @@ const PSS_UserPropertyCtrl& PSS_UserPropertyCtrl::operator = (const PSS_UserProp
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_UserPropertyCtrl::Initialize(ZUser* pUser, BOOL enableModify)
+int PSS_UserPropertyCtrl::Initialize(PSS_User* pUser, BOOL enableModify)
 {
     m_pUser        = pUser;
     m_EnableModify = enableModify;

@@ -85,7 +85,7 @@ PSS_DocTemplateEx*            PSS_Global::m_pDocTemplate                     = N
 PSS_DocTemplateEx*            PSS_Global::m_pProcessDocTemplate              = NULL;
 CMultiDocTemplate*            PSS_Global::m_pReportDocTemplate               = NULL;
 PSS_ProcessModelDocTmpl*      PSS_Global::m_pProcessModelDocumentTemplate    = NULL;
-ZUser*                        PSS_Global::m_ConnectedUser                    = NULL;
+PSS_User*                     PSS_Global::m_ConnectedUser                    = NULL;
 PSS_Server*                   PSS_Global::m_pServer                          = NULL;
 PSS_HistoricValueManager      PSS_Global::m_HistoricValueManager;
 PSS_TemplateManager           PSS_Global::m_TemplateManager;

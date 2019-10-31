@@ -87,7 +87,7 @@ void PSS_UserListDialog::OnSelChangeListOfUsers()
 
     if (curSel != LB_ERR)
     {
-        m_pUser = (ZUser*)m_UserList.GetItemDataPtr(curSel);
+        m_pUser = (PSS_User*)m_UserList.GetItemDataPtr(curSel);
 
         if (m_pUser)
         {
@@ -122,7 +122,7 @@ void PSS_UserListDialog::LoadSource()
 
     for (std::size_t index = 0; index < m_UserManager.GetCount(); ++index)
     {
-        ZUser* pObj = m_UserManager.GetAt(index);
+        PSS_User* pObj = m_UserManager.GetAt(index);
         ASSERT(pObj);
 
         m_UserList.AddString((const char*)pObj->GetUserName());

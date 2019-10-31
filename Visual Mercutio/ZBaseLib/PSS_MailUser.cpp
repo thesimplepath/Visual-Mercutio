@@ -25,7 +25,7 @@ PSS_MailUser::PSS_MailUser(const CString& personName, ULONG recipClass) :
     m_RecipClass(recipClass)
 {}
 //---------------------------------------------------------------------------
-PSS_MailUser::PSS_MailUser(ZUser& personName, ULONG recipClass) :
+PSS_MailUser::PSS_MailUser(PSS_User& personName, ULONG recipClass) :
     m_PersonName(personName.GetMailAddress()),
     m_RecipClass(recipClass)
 {}

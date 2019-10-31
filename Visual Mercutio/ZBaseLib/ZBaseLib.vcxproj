@@ -1211,7 +1211,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUser.cpp">
+    <ClCompile Include="PSS_User.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1223,7 +1223,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSystemOption.cpp">
+    <ClCompile Include="PSS_SystemOption.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1525,9 +1525,9 @@
     <ClInclude Include="PSS_FloatingToolBar.h" />
     <ClInclude Include="PSS_GUID.h" />
     <ClInclude Include="PSS_Mail.h" />
-    <ClInclude Include="ZUser.h" />
+    <ClInclude Include="PSS_User.h" />
     <ClInclude Include="PSS_StringFormatter.h" />
-    <ClInclude Include="ZUSystemOption.h" />
+    <ClInclude Include="PSS_SystemOption.h" />
     <ClInclude Include="PSS_BasicScrollView.h" />
     <ClInclude Include="PSS_BasicView.h" />
     <ClInclude Include="PSS_DocumentPageSetup.h" />

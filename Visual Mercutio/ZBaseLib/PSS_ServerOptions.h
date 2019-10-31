@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_SystemOption.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -327,29 +327,29 @@ class AFX_EXT_CLASS PSS_ServerOptions
         virtual inline CString GetNormalModelTemplate() const;
 
     private:
-        ZUSystemOption m_Option;
-        CString        m_RootPath;
-        CString        m_TemplateDirectory;
-        CString        m_FileDirectory;
-        CString        m_GlobalFieldNameRepository;
-        CString        m_ProcessTemplateDirectory;
-        CString        m_LogFile;
-        CString        m_SystemDirectory;
-        CString        m_EventDirectory;
-        CString        m_InterfaceDirectory;
-        CString        m_LogDirectory;
-        CString        m_UserDirectory;
-        CString        m_FieldDefinitionIniFile;
-        CString        m_UserDefinitionFile;
-        CString        m_LogDatabaseFile;
-        CString        m_HistoryProcessDatabaseFile;
-        CString        m_ModelTemplateDirectory;
-        CString        m_ModelUnitDirectory;
-        BOOL           m_UseFolderNameAsFile;
-        BOOL           m_StoreUserFileByUser;
-        BOOL           m_UseLogTextFile;
-        BOOL           m_UseLogDatabaseFile;
-        BOOL           m_KeepHistoryOnProcess;
+        PSS_SystemOption m_Option;
+        CString          m_RootPath;
+        CString          m_TemplateDirectory;
+        CString          m_FileDirectory;
+        CString          m_GlobalFieldNameRepository;
+        CString          m_ProcessTemplateDirectory;
+        CString          m_LogFile;
+        CString          m_SystemDirectory;
+        CString          m_EventDirectory;
+        CString          m_InterfaceDirectory;
+        CString          m_LogDirectory;
+        CString          m_UserDirectory;
+        CString          m_FieldDefinitionIniFile;
+        CString          m_UserDefinitionFile;
+        CString          m_LogDatabaseFile;
+        CString          m_HistoryProcessDatabaseFile;
+        CString          m_ModelTemplateDirectory;
+        CString          m_ModelUnitDirectory;
+        BOOL             m_UseFolderNameAsFile;
+        BOOL             m_StoreUserFileByUser;
+        BOOL             m_UseLogTextFile;
+        BOOL             m_UseLogDatabaseFile;
+        BOOL             m_KeepHistoryOnProcess;
 
         /**
         * Copy constructor

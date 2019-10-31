@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_UserInfoDialog
 //---------------------------------------------------------------------------
-PSS_UserInfoDialog::PSS_UserInfoDialog(ZUser& user, bool creationMode, CWnd* pParent) :
+PSS_UserInfoDialog::PSS_UserInfoDialog(PSS_User& user, bool creationMode, CWnd* pParent) :
     PSS_Dialog(PSS_UserInfoDialog::IDD, TRUE, pParent),
     m_User(user),
     m_CreationMode(creationMode)

@@ -6,7 +6,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Log.h"
-#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_SystemOption.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Global.h"
 #include "zModel\ProcGraphModelDoc.h"
@@ -642,7 +642,7 @@ void ZVPublishToMessengerStart::OnNext()
 
 bool ZVPublishToMessengerStart::LoadStateFromIniFile()
 {
-    ZUSystemOption SystemOption(m_IniFile, gPublishMessengerSectionName);
+    PSS_SystemOption SystemOption(m_IniFile, gPublishMessengerSectionName);
 
     // Read the options
     // JMR-MODIF - Le 30 mai 2006 - Ajouté la ligne pour la lecture de m_IncludePrestations.
@@ -684,7 +684,7 @@ bool ZVPublishToMessengerStart::LoadStateFromIniFile()
 //---------------------------------------------------------------------------
 bool ZVPublishToMessengerStart::SaveStateToIniFile()
 {
-    ZUSystemOption systemOption(m_IniFile, gPublishMessengerSectionName);
+    PSS_SystemOption systemOption(m_IniFile, gPublishMessengerSectionName);
 
     // save the options
     // JMR-MODIF - Le 30 mai 2006 - Ajouté la ligne pour l'écritue de m_IncludePrestations.

@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_SystemOption.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -110,7 +110,7 @@ class AFX_EXT_CLASS PSS_WindowConfiguration
         virtual void WriteWindowPlacement(LPWINDOWPLACEMENT pWP, const CString& wndName);
 
     private:
-        ZUSystemOption m_SystemOption;
+        PSS_SystemOption m_SystemOption;
 
         /**
         * Copy constructor

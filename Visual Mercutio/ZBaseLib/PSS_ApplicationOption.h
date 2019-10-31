@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_SystemOption.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -421,37 +421,37 @@ class AFX_EXT_CLASS PSS_ApplicationOption : public CObject
         virtual inline void SetRegisteredProductKey(const CString& value);
 
     protected:
-        ZUSystemOption m_SystemOption;
-        CString        m_ExportFileName;
-        CString        m_ExportSchemaName;
-        CString        m_LastLoadedFileName;
-        CString        m_ServerIniFileName;
-        CString        m_RegisteredUserName;
-        CString        m_RegisteredCompanyName;
-        CString        m_RegisteredProductKey;
-        CString        m_RiskTypeFileName;
-        CString        m_RiskImpactFileName;
-        CString        m_RiskProbabilityFileName;
-        CString        m_AppDir;
-        int            m_ExportPropagationMode;
-        BOOL           m_OpenLastLoadedFile;
-        BOOL           m_GoNextEdit;
-        BOOL           m_EmptyWhenZero;
-        BOOL           m_AutomaticFieldNameCreation;
-        BOOL           m_MaximizeFormOnOpen;
-        BOOL           m_ShowWelcomeScreen;
-        BOOL           m_ForceNetworkConnection;
-        BOOL           m_DontShowToolTip;
-        BOOL           m_DontShowTaskList;
-        BOOL           m_AnimationShow;
-        BOOL           m_CreateOnStartup;
-        BOOL           m_ScreenPos;
-        BOOL           m_PrintLine;
-        BOOL           m_AutoCalculate;
-        BOOL           m_CalculateFieldShow;
-        BOOL           m_ShowHiddenField;
-        BOOL           m_ShowBoundsRect;
-        BOOL           m_FirstUse;
+        PSS_SystemOption m_SystemOption;
+        CString          m_ExportFileName;
+        CString          m_ExportSchemaName;
+        CString          m_LastLoadedFileName;
+        CString          m_ServerIniFileName;
+        CString          m_RegisteredUserName;
+        CString          m_RegisteredCompanyName;
+        CString          m_RegisteredProductKey;
+        CString          m_RiskTypeFileName;
+        CString          m_RiskImpactFileName;
+        CString          m_RiskProbabilityFileName;
+        CString          m_AppDir;
+        int              m_ExportPropagationMode;
+        BOOL             m_OpenLastLoadedFile;
+        BOOL             m_GoNextEdit;
+        BOOL             m_EmptyWhenZero;
+        BOOL             m_AutomaticFieldNameCreation;
+        BOOL             m_MaximizeFormOnOpen;
+        BOOL             m_ShowWelcomeScreen;
+        BOOL             m_ForceNetworkConnection;
+        BOOL             m_DontShowToolTip;
+        BOOL             m_DontShowTaskList;
+        BOOL             m_AnimationShow;
+        BOOL             m_CreateOnStartup;
+        BOOL             m_ScreenPos;
+        BOOL             m_PrintLine;
+        BOOL             m_AutoCalculate;
+        BOOL             m_CalculateFieldShow;
+        BOOL             m_ShowHiddenField;
+        BOOL             m_ShowBoundsRect;
+        BOOL             m_FirstUse;
 
     private:
         /**

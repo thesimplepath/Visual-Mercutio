@@ -75,7 +75,7 @@ class AFX_EXT_CLASS PSS_UserListDialog : public PSS_Dialog
         * Gets the selected user
         *@return selected user, NULL if no user selected or on error
         */
-        virtual inline ZUser* GetUser() const;
+        virtual inline PSS_User* GetUser() const;
 
     protected:
         /**
@@ -95,7 +95,7 @@ class AFX_EXT_CLASS PSS_UserListDialog : public PSS_Dialog
 
     private:
         PSS_UserManager& m_UserManager;
-        ZUser*           m_pUser;
+        PSS_User*        m_pUser;
 
         /**
         * Loads the source
@@ -111,7 +111,7 @@ class AFX_EXT_CLASS PSS_UserListDialog : public PSS_Dialog
 //---------------------------------------------------------------------------
 // PSS_UserListDialog
 //---------------------------------------------------------------------------
-ZUser* PSS_UserListDialog::GetUser() const
+PSS_User* PSS_UserListDialog::GetUser() const
 {
     return m_pUser;
 }

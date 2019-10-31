@@ -65,7 +65,7 @@ void PSS_UserView::Refresh()
     m_UserTree.Refresh();
 }
 //---------------------------------------------------------------------------
-ZUser* PSS_UserView::GetSelectedUser()
+PSS_User* PSS_UserView::GetSelectedUser()
 {
     return m_UserTree.GetSelectedUser();
 }

@@ -2,14 +2,12 @@
 
 #include "stdafx.h"
 #include "ZBPropertyManager.h"
+
+// processsoft
+#include "zBaseLib\PSS_SystemOption.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "ZCPropertyListCtrl.h"
 #include "ZBPropertyItems.h"
-
-// ZUSystemOption
-#include "zBaseLib\ZUSystemOption.h"
-
-// ZBTokenizer
-#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1481,7 +1479,7 @@ bool ZBPropertyItemManager::LoadStateFromIniFile(const CString IniFile)
     // First, delete all states
     DeletePropertyState();
 
-    ZUSystemOption    SystemOption(IniFile, _PropertyItemManagerSectionName);
+    PSS_SystemOption    SystemOption(IniFile, _PropertyItemManagerSectionName);
 
     CString KeyName;
     CString Line;
@@ -1625,7 +1623,7 @@ bool ZBPropertyItemManager::LoadStateFromIniFile(const CString IniFile)
 
 bool ZBPropertyItemManager::SaveStateToIniFile(const CString IniFile)
 {
-    ZUSystemOption SystemOption(IniFile, _PropertyItemManagerSectionName);
+    PSS_SystemOption SystemOption(IniFile, _PropertyItemManagerSectionName);
 
     _ZBPropertyStateIterator i(&m_PropertyState);
     size_t Idx = 0;

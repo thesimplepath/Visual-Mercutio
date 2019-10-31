@@ -80,7 +80,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         *@param recipClass - recipient class
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL AddPerson(ZUser& person, ULONG recipClass = MAPI_TO);
+        virtual inline BOOL AddPerson(PSS_User& person, ULONG recipClass = MAPI_TO);
 
         /**
         * Adds a new person
@@ -270,7 +270,7 @@ BOOL PSS_MailMessage::AddPerson(PSS_MailUser& person, ULONG recipClass)
     return m_pMailUserList->AddPerson(person, recipClass);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_MailMessage::AddPerson(ZUser& person, ULONG recipClass)
+BOOL PSS_MailMessage::AddPerson(PSS_User& person, ULONG recipClass)
 {
     if (!m_pMailUserList)
         m_pMailUserList = new PSS_MailUserList;

@@ -68,7 +68,7 @@ class AFX_EXT_CLASS PSS_UserTree
         * Gets the selected user
         *@return the selected user, NULL if no selection or on error
         */
-        virtual ZUser* GetSelectedUser() const;
+        virtual PSS_User* GetSelectedUser() const;
 
         /**
         * Gets the selected department
@@ -125,7 +125,7 @@ class AFX_EXT_CLASS PSS_UserTree
         *@param iconIndex - icon index
         *@return the newly added item handle, NULL on error
         */
-        HTREEITEM AddUserItem(ZUser* pData, HTREEITEM hParentTreeItem, int iconIndex);
+        HTREEITEM AddUserItem(PSS_User* pData, HTREEITEM hParentTreeItem, int iconIndex);
 
         /**
         * Checks if a department exists

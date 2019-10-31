@@ -9,7 +9,7 @@
 #include "PSS_PublishModel.h"
 
 // processsoft
-#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_SystemOption.h"
 #include "zBaseLib\PSS_Tokenizer.h"
 #include "zProperty\zBPropertyAttributes.h"
 #include "PSS_PublishModelWelcomeDialog.h"
@@ -166,7 +166,7 @@ void PSS_PublishModel::RemoveAllAttributes()
 //---------------------------------------------------------------------------
 bool PSS_PublishModel::LoadStateFromIniFile()
 {
-    ZUSystemOption systemOption(m_IniFile, g_PublishModelHTMLSectionName);
+    PSS_SystemOption systemOption(m_IniFile, g_PublishModelHTMLSectionName);
 
     // read the options
     m_PublishConceptor = systemOption.ReadOption(g_PublishModelHTMLPublishConceptor, true);
@@ -211,7 +211,7 @@ bool PSS_PublishModel::LoadStateFromIniFile()
 //---------------------------------------------------------------------------
 bool PSS_PublishModel::SaveStateToIniFile()
 {
-    ZUSystemOption systemOption(m_IniFile, g_PublishModelHTMLSectionName);
+    PSS_SystemOption systemOption(m_IniFile, g_PublishModelHTMLSectionName);
 
     // save the options
     systemOption.WriteOption(g_PublishModelHTMLPublishConceptor, m_PublishConceptor);
@@ -254,7 +254,7 @@ bool PSS_PublishModel::LoadAttributesFromIniFile()
     // delete all attributes
     RemoveAllAttributes();
 
-    ZUSystemOption systemOption(m_IniFile, _T("_PropertyDefaultAttributeSaveStateWeb"));
+    PSS_SystemOption systemOption(m_IniFile, _T("_PropertyDefaultAttributeSaveStateWeb"));
 
     CString     keyName;
     CString     line;
@@ -306,7 +306,7 @@ bool PSS_PublishModel::LoadAttributesFromIniFile()
 //---------------------------------------------------------------------------
 bool PSS_PublishModel::SaveAttributesToIniFile()
 {
-    ZUSystemOption systemOption(m_IniFile, _T("_PropertyDefaultAttributeSaveStateWeb"));
+    PSS_SystemOption systemOption(m_IniFile, _T("_PropertyDefaultAttributeSaveStateWeb"));
 
     // need to delete all records before saving
     DeleteAttributesFromIniFile();
@@ -339,7 +339,7 @@ bool PSS_PublishModel::SaveAttributesToIniFile()
 //---------------------------------------------------------------------------
 bool PSS_PublishModel::DeleteAttributesFromIniFile()
 {
-    ZUSystemOption systemOption(m_IniFile, _T("_PropertyDefaultAttributeSaveStateWeb"));
+    PSS_SystemOption systemOption(m_IniFile, _T("_PropertyDefaultAttributeSaveStateWeb"));
 
     CString     keyName;
     CString     line;

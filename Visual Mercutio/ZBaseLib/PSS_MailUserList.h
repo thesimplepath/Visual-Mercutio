@@ -103,7 +103,7 @@ class AFX_EXT_CLASS PSS_MailUserList : public CObject
         *@param recipClass - recipient class
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL AddPerson(ZUser& person, ULONG recipClass = MAPI_TO);
+        virtual inline BOOL AddPerson(PSS_User& person, ULONG recipClass = MAPI_TO);
 
         /**
         * Adds a new person
@@ -191,7 +191,7 @@ BOOL PSS_MailUserList::AddPerson(PSS_MailUser& person, ULONG recipClass)
     return m_PersonList.Add(&person) >= 0;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_MailUserList::AddPerson(ZUser& person, ULONG recipClass)
+BOOL PSS_MailUserList::AddPerson(PSS_User& person, ULONG recipClass)
 {
     std::unique_ptr<PSS_MailUser> pNewPerson(new PSS_MailUser(person.GetMailAddress(), recipClass));
     const bool result = m_PersonList.Add(pNewPerson.get()) >= 0;

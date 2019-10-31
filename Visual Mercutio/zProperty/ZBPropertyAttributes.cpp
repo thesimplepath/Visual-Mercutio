@@ -1,16 +1,10 @@
 #include <StdAfx.h>
-
-// ZBPropertyAttributes
 #include "ZBPropertyAttributes.h"
 
-// ZBTokenizer
+// processsoft
 #include "zBaseLib\PSS_Tokenizer.h"
-
-// ZUStringFormater
 #include "zBaseLib\PSS_StringFormatter.h"
-
-// ZUSystemOption
-#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_SystemOption.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -451,7 +445,7 @@ bool ZBPropertyAttributes::LoadStateFromIniFile(const CString IniFile, int Objec
     CString EntityName;
     EntityName.Format(_T("%s%d"), (const char*)_PropertyAttributeStateSectionName, ObjectID);
 
-    ZUSystemOption SystemOption(IniFile, EntityName);
+    PSS_SystemOption SystemOption(IniFile, EntityName);
 
     CString KeyName;
     CString Line;
@@ -511,7 +505,7 @@ bool ZBPropertyAttributes::SaveStateToIniFile(const CString IniFile, int ObjectI
     CString EntityName;
     EntityName.Format(_T("%s%d"), (const char*)_PropertyAttributeStateSectionName, ObjectID);
 
-    ZUSystemOption SystemOption(IniFile, EntityName);
+    PSS_SystemOption SystemOption(IniFile, EntityName);
 
     // RS-MODIF 12.12.04 we need to delete all records before saving
     DeleteAttributesFromIniFile(IniFile, ObjectID);
@@ -544,7 +538,7 @@ bool ZBPropertyAttributes::DeleteAttributesFromIniFile(const CString IniFile, in
     CString EntityName;
     EntityName.Format(_T("%s%d"), (const char*)_PropertyAttributeStateSectionName, ObjectID);
 
-    ZUSystemOption    SystemOption(IniFile, EntityName);
+    PSS_SystemOption    SystemOption(IniFile, EntityName);
 
     CString KeyName;
     CString Line;

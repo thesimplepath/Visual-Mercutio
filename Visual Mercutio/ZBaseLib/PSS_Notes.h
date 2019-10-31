@@ -20,7 +20,7 @@
 #include "Mfc.h"
 
 // processsoft
-#include "ZUser.h"
+#include "PSS_User.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again

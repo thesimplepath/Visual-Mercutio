@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZUser.h"
+#include "zBaseLib\PSS_User.h"
 #include "zBaseLib\PSS_ListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -48,7 +48,7 @@
         *@param pUser - user
         *@param enableModify - if TRUE, property may be modified
         */
-        PSS_UserPropertyCtrl(ZUser* pUser = NULL, BOOL enableModify = FALSE);
+        PSS_UserPropertyCtrl(PSS_User* pUser = NULL, BOOL enableModify = FALSE);
 
         virtual ~PSS_UserPropertyCtrl();
 
@@ -57,7 +57,7 @@
         *@param pUser - user
         *@param enableModify - if TRUE, property may be modified
         */
-        virtual int Initialize(ZUser* pUser, BOOL enableModify = FALSE);
+        virtual int Initialize(PSS_User* pUser, BOOL enableModify = FALSE);
 
         /**
         * Checks if property is modified
@@ -83,10 +83,10 @@
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZUser* m_pUser;
-        BOOL   m_EnableModify;
-        BOOL   m_ColumnsBuilt;
-        BOOL   m_IsModified;
+        PSS_User* m_pUser;
+        BOOL      m_EnableModify;
+        BOOL      m_ColumnsBuilt;
+        BOOL      m_IsModified;
 
         /**
         * Copy constructor

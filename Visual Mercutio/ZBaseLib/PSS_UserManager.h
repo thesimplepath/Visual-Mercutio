@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZUser.h"
+#include "PSS_User.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_UserManager
         * Adds a new user
         *@param user - user to add
         */
-        virtual void AddUser(ZUser& user);
+        virtual void AddUser(PSS_User& user);
 
         /**
         * Searches if a specific user exists
@@ -69,7 +69,7 @@ class AFX_EXT_CLASS PSS_UserManager
         *@param byDisplayName - if TRUE, the search will be processed by display name
         *@return the user, NULL if not found or on error
         */
-        virtual ZUser* FindUser(const CString& userName, BOOL byDisplayName = FALSE);
+        virtual PSS_User* FindUser(const CString& userName, BOOL byDisplayName = FALSE);
 
         /**
         * Removes a specific user
@@ -89,7 +89,7 @@ class AFX_EXT_CLASS PSS_UserManager
         *@param index - index
         *@return the user, NULL if not found or on error
         */
-        virtual inline ZUser* GetAt(int Index);
+        virtual inline PSS_User* GetAt(int Index);
 
         /**
         * Gets the user count
@@ -123,10 +123,10 @@ class AFX_EXT_CLASS PSS_UserManager
 //---------------------------------------------------------------------------
 // PSS_UserManager
 //---------------------------------------------------------------------------
-ZUser* PSS_UserManager::GetAt(int index)
+PSS_User* PSS_UserManager::GetAt(int index)
 {
     if (index < int(GetCount()))
-        return (ZUser*)m_UserArray.GetAt(index);
+        return (PSS_User*)m_UserArray.GetAt(index);
 
     return NULL;
 }

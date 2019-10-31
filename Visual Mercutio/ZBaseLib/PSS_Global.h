@@ -403,7 +403,7 @@ class AFX_EXT_CLASS PSS_Global
         * Gets the connected user
         *@return the connected user
         */
-        static inline const ZUser* GetConnectedUser();
+        static inline const PSS_User* GetConnectedUser();
 
         /**
         * Gets the modal dialog window
@@ -786,7 +786,7 @@ class AFX_EXT_CLASS PSS_Global
         static PSS_DocTemplateEx*       m_pProcessDocTemplate;
         static CMultiDocTemplate*       m_pReportDocTemplate;
         static PSS_ProcessModelDocTmpl* m_pProcessModelDocumentTemplate;
-        static ZUser*                   m_ConnectedUser;
+        static PSS_User*                m_ConnectedUser;
         static PSS_Server*              m_pServer;
         static PSS_HistoricValueManager m_HistoricValueManager;
         static PSS_TemplateManager      m_TemplateManager;
@@ -1069,7 +1069,7 @@ const CString& PSS_Global::GetRequestedUserNameKeyString()
     return m_RequestedUserNameKeyString;
 }
 //---------------------------------------------------------------------------
-const ZUser* PSS_Global::GetConnectedUser()
+const PSS_User* PSS_Global::GetConnectedUser()
 {
     return m_ConnectedUser;
 }

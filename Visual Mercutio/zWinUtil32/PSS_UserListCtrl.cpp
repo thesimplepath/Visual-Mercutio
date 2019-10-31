@@ -173,7 +173,7 @@ int PSS_UserListCtrl::Refresh()
 
     for (int index = 0; index < count; ++index)
     {
-        ZUser* pUser = m_pUserManager->GetAt(index);
+        PSS_User* pUser = m_pUserManager->GetAt(index);
 
         if (!pUser)
             continue;
