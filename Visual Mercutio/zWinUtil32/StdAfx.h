@@ -90,11 +90,11 @@
 #include <zEvent\zEventLib.h>
 #include <zWeb\zWebLib.h>
 #include <zRes32\zRes32Lib.h>
-#include "Define.h"
-#include "ZAConst.h"
-#include "zMacros.h"
-#include "Message.h"
-#include "ZSrvMess.h"
+#include "PSS_Defines.h"
+#include "PSS_Constants.h"
+#include "PSS_Macros.h"
+#include "PSS_Messages.h"
+#include "PSS_SrvMsgs.h"
 
 // stingray studio
 #define _SECDLL

@@ -13,7 +13,7 @@
 #include "PSS_Document.h"
 #include "PSS_PLFNMaskString.h"
 #include "PSS_PLFNMultiColumn.h"
-#include "ToolBarx.h"
+#include "PSS_Interfaces.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

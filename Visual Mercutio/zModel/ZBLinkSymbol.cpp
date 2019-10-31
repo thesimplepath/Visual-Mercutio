@@ -24,7 +24,7 @@
 
 // Resource include
 #include "zModelRes.h"
-#include "zRBProp.h"
+#include "PSS_ResIDs.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 

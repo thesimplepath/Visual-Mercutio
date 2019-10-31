@@ -16,7 +16,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "Define.h"
+#include "PSS_Defines.h"
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
@@ -32,7 +32,7 @@
 
 #include "ZBWorkflowDefinition.h"
 
-#include "zLanguageDef.h"
+#include "PSS_LanguageDefs.h"
 
 #include "zBaseLib\PSS_DocumentPageSetup.h"
 

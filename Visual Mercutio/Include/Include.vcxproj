@@ -86,20 +86,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Define.h" />
-    <ClInclude Include="Message.h" />
+    <ClInclude Include="PSS_Defines.h" />
+    <ClInclude Include="PSS_Messages.h" />
     <ClInclude Include="mfc.h" />
-    <ClInclude Include="RegistryDef.h" />
-    <ClInclude Include="Stbox.h" />
-    <ClInclude Include="Toolbarx.h" />
-    <ClInclude Include="ZAconst.h" />
-    <ClInclude Include="ZEvent.h" />
-    <ClInclude Include="zLanguageDef.h" />
-    <ClInclude Include="zMacros.h" />
-    <ClInclude Include="zPropertyIds.h" />
-    <ClInclude Include="zRBProp.h" />
-    <ClInclude Include="zRMdlBP.h" />
-    <ClInclude Include="ZSrvMess.h" />
+    <ClInclude Include="PSS_RegistryDefs.h" />
+    <ClInclude Include="PSS_ExternalBoxFunctions.h" />
+    <ClInclude Include="PSS_Interfaces.h" />
+    <ClInclude Include="PSS_Constants.h" />
+    <ClInclude Include="PSS_ZEvent.h" />
+    <ClInclude Include="PSS_LanguageDefs.h" />
+    <ClInclude Include="PSS_Macros.h" />
+    <ClInclude Include="PSS_PropIDs.h" />
+    <ClInclude Include="PSS_ResIDs.h" />
+    <ClInclude Include="PSS_ModelResIDs.h" />
+    <ClInclude Include="PSS_SrvMsgs.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="planfin.hdf" />

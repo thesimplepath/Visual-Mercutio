@@ -74,9 +74,9 @@
 
 // JMR-MODIF - Le 16 août 2005 - Ajout de l'en-tête <dde> pour implémenter les fonctions d'échange de données dynamiques.
 #include <dde.h>
-#include "ZAConst.h"
-#include "Define.h"
-#include "Message.h"
+#include "PSS_Constants.h"
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "PlanFin.hdf"
 #include <CJ60Lib.h>            // CJ60 Library components
 

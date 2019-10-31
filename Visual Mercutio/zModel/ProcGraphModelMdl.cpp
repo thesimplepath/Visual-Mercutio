@@ -29,7 +29,7 @@
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zModel\ZBSearchSymbolLogLine.h"
 
-#include "zRBProp.h"
+#include "PSS_ResIDs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

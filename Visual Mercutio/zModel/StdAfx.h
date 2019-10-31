@@ -105,9 +105,9 @@
 #include <zResMgr\zResMgrLib.h>         // the resource manager library
 #include "zFormsRes\zFormsRes.h"
 #include "zRes32\zRes.h"
-#include "ZAConst.h"
-#include "Define.h"
-#include "Message.h"
+#include "PSS_Constants.h"
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "PlanFin.hdf"
 
 //{{AFX_INSERT_LOCATION}}

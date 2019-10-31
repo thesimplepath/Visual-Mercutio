@@ -16,7 +16,7 @@
 #include "ZBBPDecisionListProp.h"
 
 // Resources
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

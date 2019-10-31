@@ -17,7 +17,7 @@
 #include "ZBBPTextItemListProp.h"
 
 // Resources
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 
 #ifdef _DEBUG

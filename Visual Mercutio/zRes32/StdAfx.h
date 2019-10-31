@@ -64,7 +64,7 @@
 #include <AFXPRIV.H>
 
 // processsoft
-#include "ZAConst.h"
+#include "PSS_Constants.h"
 
 #ifdef _ENABLETRACE
     #include "zBaseLib\ZGTrace.h"

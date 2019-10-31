@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZBDynamicPropertiesManager.h"
 
-#include "zPropertyIds.h"
+#include "PSS_PropIDs.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

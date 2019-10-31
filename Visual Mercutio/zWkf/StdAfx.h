@@ -65,9 +65,9 @@
 #include <zBaseSym\zBaseSymLib.h>
 #include <zModel\zModelLib.h>
 #include <zRes32\zRes32Lib.h>
-#include "ZAConst.h"
-#include "Define.h"
-#include "Message.h"
+#include "PSS_Constants.h"
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "PlanFin.hdf"
 
 // stingray studio

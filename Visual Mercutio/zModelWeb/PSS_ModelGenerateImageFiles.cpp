@@ -32,7 +32,7 @@
 #include "zWeb\PSS_HtmlFile.h"
 
 // resources
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

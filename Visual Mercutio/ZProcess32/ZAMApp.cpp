@@ -55,7 +55,7 @@
 // BObjUtil
 #include "zBaseLib\PSS_ObjectUtility.h"
 
-#include "ZEvent.h"
+#include "PSS_ZEvent.h"
 
 // PaintRes
 #include "zBaseLib\PSS_PaintResources.h"
@@ -69,7 +69,7 @@
 #include "zSplash\PSS_SplashController.h"
 
 // Used to access predefined registry keys
-#include "RegistryDef.h"
+#include "PSS_RegistryDefs.h"
 #include "zBaseLib\PSS_RegisterSetup.h"
 
 #include <CTYPE.H>

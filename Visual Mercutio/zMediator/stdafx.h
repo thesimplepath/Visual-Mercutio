@@ -65,11 +65,11 @@
 #include <afxmt.h>
 
 // visual mercutio
-#include "ZAConst.h"
-#include "Define.h"
-#include "Message.h"
+#include "PSS_Constants.h"
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "Planfin.hdf"
-#include "ZSrvMess.h"
+#include "PSS_SrvMsgs.h"
 
 // use Objective Toolkit as a DLL
 #define _SECDLL

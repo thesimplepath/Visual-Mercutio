@@ -28,7 +28,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zBaseLib\PSS_Tokenizer.h"
 #include "zModelBPRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

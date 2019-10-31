@@ -12,7 +12,7 @@
 #include <afxdisp.h>
 
 // processsoft
-#include "Define.h"
+#include "PSS_Defines.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

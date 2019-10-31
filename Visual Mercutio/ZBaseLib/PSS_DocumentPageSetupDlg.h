@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "Define.h"
+#include "PSS_Defines.h"
 #include "PSS_WizardDialog.h"
 
 // resources

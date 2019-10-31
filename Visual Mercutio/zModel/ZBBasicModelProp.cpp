@@ -15,7 +15,7 @@
 #include "ZBBasicModelProp.h"
 
 // Resource include
-#include "zRBProp.h"
+#include "PSS_ResIDs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

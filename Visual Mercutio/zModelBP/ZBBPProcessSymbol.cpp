@@ -50,7 +50,7 @@
 // Resources
 #include "zModel\zModelRes.h"
 #include "zModelBPRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 #include "zBaseLib\PSS_Global.h"
 

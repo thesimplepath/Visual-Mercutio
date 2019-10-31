@@ -45,7 +45,7 @@
 
 #include "ColorRefDefinition.h"
 #include "zReportBPRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 #include "ZBModelBPReportGenerator.h"
 

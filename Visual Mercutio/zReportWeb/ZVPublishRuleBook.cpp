@@ -10,7 +10,7 @@
 #include "ZVPublishRuleBook.h"
 
 #include "zReportWebRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 // ******************************************************************************************************
 // *                                   Construction et destruction                                        *

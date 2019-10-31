@@ -92,12 +92,13 @@
 // Use StingRay Fondation Classes as a DLL
 #define _SFLDLL
 
-#include "ZAConst.h"
-#include "zMacros.h"                // JMR-MODIF - Le 30 mars 2006 - Ajout de l'en-tête zMacros.h
-#include "Define.h"
-#include "Message.h"
+// processsoft
+#include "PSS_Constants.h"
+#include "PSS_Macros.h"                // JMR-MODIF - Le 30 mars 2006 - Ajout de l'en-tête zMacros.h
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "PlanFin.hdf"
-#include "ZSrvMess.h"
+#include "PSS_SrvMsgs.h"
 #include <zBaseLib\zBaseLib.h>        // The base library
 
 // ***********************************************************

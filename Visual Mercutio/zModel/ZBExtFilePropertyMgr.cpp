@@ -16,7 +16,7 @@
 // resources
 #include "zFormsRes\zFormsRes.h"
 #include "zModelRes.h"
-#include "zRBProp.h"
+#include "PSS_ResIDs.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

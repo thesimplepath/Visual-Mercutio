@@ -26,8 +26,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zPropertyIds.h"
-#include "zLanguageDef.h"
+#include "PSS_PropIDs.h"
+#include "PSS_LanguageDefs.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

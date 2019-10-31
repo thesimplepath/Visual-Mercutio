@@ -90,12 +90,10 @@
 #define AFX_EXT_API AFX_API_EXPORT
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 
-#include "ZAConst.h"
-
-#include "Define.h"
-
-#include "Message.h"
-
+// processsoft
+#include "PSS_Constants.h"
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "PlanFin.hdf"
 
 #include <zBaseLib\zBaseLib.h>        // The base library

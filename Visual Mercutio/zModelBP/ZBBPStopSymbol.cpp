@@ -40,7 +40,7 @@
 // Resources
 #include "zModelBPRes.h"
 #include "zModel\zModelRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

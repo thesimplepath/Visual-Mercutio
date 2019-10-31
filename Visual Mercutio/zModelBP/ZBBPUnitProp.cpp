@@ -19,7 +19,7 @@
 #include "zBaseLib\PSS_BaseDocument.h"
 
 // Resources
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 
 #ifdef _DEBUG

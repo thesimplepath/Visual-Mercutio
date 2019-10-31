@@ -24,7 +24,7 @@
 #include "ZBLogicalPrestationsEntity.h"
 
 #include "zModelRes.h"
-#include "zRBProp.h"
+#include "PSS_ResIDs.h"
 #include "zFormsRes\zFormsRes.h"
 
 #ifdef _DEBUG

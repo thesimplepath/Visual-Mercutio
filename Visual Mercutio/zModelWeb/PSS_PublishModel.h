@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zProperty\ZBPropertyAttributes.h"
-#include "zLanguageDef.h"
+#include "PSS_LanguageDefs.h"
 
 #ifdef _ZMODELWEBEXPORT
     // put the values back to make AFX_EXT_CLASS export again

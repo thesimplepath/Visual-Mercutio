@@ -9,7 +9,7 @@
 #define PSS_PointerWndH
 
 // processsoft
-#include "Message.h"
+#include "PSS_Messages.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"

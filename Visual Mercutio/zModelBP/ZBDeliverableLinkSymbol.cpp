@@ -42,7 +42,7 @@
 #include "ZVRiskOptionsDlg.h"
 
 // Resources
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 #include "zModelBPRes.h"
 
 // Global resources

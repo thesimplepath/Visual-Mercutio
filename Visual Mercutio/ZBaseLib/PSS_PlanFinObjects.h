@@ -38,7 +38,7 @@
 #include <math.h>
 
 // processsoft
-#include "zaconst.h"
+#include "PSS_Constants.h"
 #include "PSS_MathParser.h"
 #include "PSS_PlanFinObject.h"
 #include "PSS_PLFNAscii.h"

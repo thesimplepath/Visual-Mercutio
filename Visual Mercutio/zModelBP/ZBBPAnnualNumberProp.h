@@ -34,7 +34,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_NumbersEqualizer.h"
-#include "zPropertyIds.h"
+#include "PSS_PropIDs.h"
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

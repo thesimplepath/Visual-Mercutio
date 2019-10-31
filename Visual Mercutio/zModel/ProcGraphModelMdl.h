@@ -21,7 +21,7 @@
 #include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
 #include "zBaseSym\ZINavigableModel.h"
-#include "zLanguageDef.h"
+#include "PSS_LanguageDefs.h"
 
 // JMR-MODIF - Le 26 mai 2005 - Ajout de cet include pour résoudre une erreur de lien.
 #include "zModel\ZBUserGroupEntity.h"

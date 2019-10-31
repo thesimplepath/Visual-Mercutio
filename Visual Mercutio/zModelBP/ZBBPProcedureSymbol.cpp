@@ -48,7 +48,7 @@
 
 // Resources
 #include "zModelBPRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 #include "zModel\zModelRes.h"
 
 #ifdef _DEBUG

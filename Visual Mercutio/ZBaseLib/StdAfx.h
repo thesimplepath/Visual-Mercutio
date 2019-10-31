@@ -82,11 +82,11 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 
 // processsoft
-#include "Zaconst.h"
-#include "Define.h"
-#include "Message.h"
+#include "PSS_Constants.h"
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "Planfin.hdf"
-#include "ZSrvMess.h"
+#include "PSS_SrvMsgs.h"
 
 #ifdef _ENABLETRACE
     #include "zBaseLib\ZGTrace.h"

@@ -20,7 +20,7 @@
 #include "stdafx.h"
 #include "ZBBPCostPropDeliverable.h"
 
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

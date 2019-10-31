@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_StringFormatter.h"
 
 #include "zReportWebRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 // ******************************************************************************************************
 // *                              Fonctions utilisées par les classes internes                            *

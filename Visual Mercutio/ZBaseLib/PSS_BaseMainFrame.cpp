@@ -13,7 +13,7 @@
 #include "PSS_VisualTool.h"
 #include "PSS_BaseMDIPage.h"
 #include "PSS_FloatingToolBar.h"
-#include "Message.h"
+#include "PSS_Messages.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

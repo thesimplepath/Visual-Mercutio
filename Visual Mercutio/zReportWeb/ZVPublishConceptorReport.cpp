@@ -11,7 +11,7 @@
 #include "zConversion\PSS_StringTools.h"
 
 #include "zReportWebRes.h"
-#include "zRMdlBP.h"
+#include "PSS_ModelResIDs.h"
 
 // JMR-MODIF - Le 28 février 2006 - Ressources de génération HTML déplacées dans zReportWeb.rc et zRMdlBPxx.rc.
 

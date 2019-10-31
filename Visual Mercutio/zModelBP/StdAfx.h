@@ -91,9 +91,9 @@ using namespace std;
 #define _OVDLL                            // Use Objective Views as a DLL
 #include "Views/OdAll.h"                // Objective Views Header Files
 
-#include "ZAConst.h"
-#include "Define.h"
-#include "Message.h"
+#include "PSS_Constants.h"
+#include "PSS_Defines.h"
+#include "PSS_Messages.h"
 #include "PlanFin.hdf"
 
 #include <zBaseLib\zBaseLib.h>            // The base library

@@ -43,7 +43,7 @@
 
 #include "zBaseLib\PSS_SingleInstanceApplication.h"
 
-#include "stbox.h"
+#include "PSS_ExternalBoxFunctions.h"
 
 #ifndef _WIN32
 

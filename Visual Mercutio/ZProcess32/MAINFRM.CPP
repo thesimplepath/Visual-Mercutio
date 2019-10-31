@@ -23,7 +23,7 @@
 #endif
 
 // Used to access predefined registry keys
-#include "RegistryDef.h"
+#include "PSS_RegistryDefs.h"
 #include "zBaseLib\PSS_RegisterSetup.h"
 
 #ifdef _DEBUG

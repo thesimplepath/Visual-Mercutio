@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // resources
-#include "zLanguageDef.h"
+#include "PSS_LanguageDefs.h"
 
 // forward classes definition
 class PSS_ResourceInfo;
