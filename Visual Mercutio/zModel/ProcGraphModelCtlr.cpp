@@ -1864,7 +1864,7 @@ void ZDProcessGraphModelController::OnSymbolShowAttributeArea()
         // If it is visible, then refresh the attribute area
         if (dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible())
         {
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->RefreshAttributeAreaText();
+            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->RefreshAttributeTextArea();
         }
 
         // Adjust the element position for areas
@@ -1878,7 +1878,7 @@ void ZDProcessGraphModelController::OnSymbolShowAttributeArea()
         // If it is visible, then refresh the attribute area
         if (dynamic_cast<ZBLinkSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible())
         {
-            dynamic_cast<ZBLinkSymbol*>(m_pSymbolHit)->RefreshAttributeAreaText();
+            dynamic_cast<ZBLinkSymbol*>(m_pSymbolHit)->RefreshAttributeTextArea();
         }
 
         // Adjust the element position for areas
@@ -2164,8 +2164,8 @@ void ZDProcessGraphModelController::OnDynamicAttributesAdd()
     if (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) || ISA(m_pSymbolHit, ZBLinkSymbol)))
     {
         pRTClass = m_pSymbolHit->GetRuntimeClass();
-        SymbolName = dynamic_cast<ZIBasicSymbol*>(m_pSymbolHit)->GetSymbolName();
-        SymbolRef = dynamic_cast<ZIBasicSymbol*>(m_pSymbolHit)->GetSymbolReferenceNumber();
+        SymbolName = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolName();
+        SymbolRef = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolReferenceNumber();
     }
 
     ZBProperty*        pProperty = NULL;
@@ -2187,7 +2187,7 @@ void ZDProcessGraphModelController::OnDynamicAttributesAdd()
                                                                                   SymbolRef);
 
                 // Add the property directly to the symbol
-                dynamic_cast<ZIBasicSymbol*>(m_pSymbolHit)->
+                dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->
                     GetDynamicPropertiesManager()->AddDynamicProperty(pProperty->Dup());
             }
 
@@ -2277,8 +2277,8 @@ void ZDProcessGraphModelController::OnDynamicAttributesDuplicate()
     // Retrouve le nom et la référence du symbole propriétaire.
     if (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) || ISA(m_pSymbolHit, ZBLinkSymbol)))
     {
-        SymbolName = dynamic_cast<ZIBasicSymbol*>(m_pSymbolHit)->GetSymbolName();
-        SymbolRef = dynamic_cast<ZIBasicSymbol*>(m_pSymbolHit)->GetSymbolReferenceNumber();
+        SymbolName = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolName();
+        SymbolRef = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolReferenceNumber();
     }
 
     // Obtient les propriétés dynamiques contenues dans le symbole. Cela servira pour obtenir les données.
@@ -2375,7 +2375,7 @@ void ZDProcessGraphModelController::OnDynamicAttributesDuplicate()
         }
 
         // Copie la nouvelle propriété directement dans le symbole.
-        dynamic_cast<ZIBasicSymbol*>(m_pSymbolHit)->
+        dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->
             GetDynamicPropertiesManager()->AddDynamicProperty(pDestProperty->Dup());
     }
 
@@ -3120,7 +3120,7 @@ void ZDProcessGraphModelController::EndLink(UINT nFlags, CPoint ptDev)
         }
 
         // Refresh the attribute area and redraw the symbol
-        ((ZBLinkSymbol*)pComp)->RefreshAttributeAreaText(true);
+        ((ZBLinkSymbol*)pComp)->RefreshAttributeTextArea(true);
 
         if (m_NewSymbolCreated && ((ZBLinkSymbol*)pComp)->IsLocal())
         {
@@ -3225,7 +3225,7 @@ CODComponent* ZDProcessGraphModelController::InsertSymbol(CODComponent*    pComp
         }
 
         // Refresh the attribute area and redraw the symbol
-        ((ZBSymbol*)pComp)->RefreshAttributeAreaText(true);
+        ((ZBSymbol*)pComp)->RefreshAttributeTextArea(true);
 
         if (m_NewSymbolCreated && ((ZBSymbol*)pComp)->IsLocal())
         {
@@ -3889,11 +3889,11 @@ void ZDProcessGraphModelController::OnLButtonDown(UINT nFlags, CPoint point)
             {
                 CODComponent* m_SrcSymbol =
                     ZUODSymbolManipulator::FindSymbol(dynamic_cast<ZBLinkSymbol*>(m_pFormatPainterSymbol),
-                                                      SymbolNameComponentControlLabel);
+                                                      M_SymbolNameComponentControlLabel);
 
                 CODComponent* m_DstSymbol =
                     ZUODSymbolManipulator::FindSymbol(dynamic_cast<ZBLinkSymbol*>(pCompHit),
-                                                      SymbolNameComponentControlLabel);
+                                                      M_SymbolNameComponentControlLabel);
 
                 if (m_SrcSymbol != NULL && m_DstSymbol != NULL)
                 {
@@ -3910,7 +3910,7 @@ void ZDProcessGraphModelController::OnLButtonDown(UINT nFlags, CPoint point)
             {
                 CODComponent* m_SrcSymbol =
                     ZUODSymbolManipulator::FindSymbol(dynamic_cast<ZBLinkSymbol*>(m_pFormatPainterSymbol),
-                                                      SymbolNameComponentControlLabel);
+                                                      M_SymbolNameComponentControlLabel);
 
                 if (m_SrcSymbol != NULL && pCompHit != NULL)
                 {

@@ -174,14 +174,12 @@ BOOL ZBLinkSymbol::CreateOrthogonal(int nStyle, int nPointSize, COLORREF crColor
     return RetValue;
 }
 
-ZBSymbolEdit* ZBLinkSymbol::CreateEditText(const CString    AreaName,
-                                           const CString    EditName,
-                                           CODComponent*    pParent        /*= NULL*/)
+ZBSymbolEdit* ZBLinkSymbol::CreateEditText(const CString& AreaName, const CString& EditName, CODComponent* pParent)
 {
     return ZUODSymbolManipulator::CreateEditText(this, AreaName, EditName, pParent);
 }
 
-ZBSymbolEdit* ZBLinkSymbol::CreateAndReplaceEditText(const CString EditName, CODComponent* pParent /*= NULL*/)
+ZBSymbolEdit* ZBLinkSymbol::CreateAndReplaceEditText(const CString& EditName, CODComponent* pParent)
 {
     return ZUODSymbolManipulator::CreateAndReplaceEditText(this, EditName, pParent);
 }
@@ -224,14 +222,14 @@ bool ZBLinkSymbol::CreateSymbolProperties()
     return true;
 }
 
-void ZBLinkSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
+void ZBLinkSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     if (ISA((&src), ZBLinkSymbol))
     {
         // Don't use direct assignement, if symbols are referenced, not notification will be done.
-        SetSymbolName(reinterpret_cast<ZBLinkSymbol&>(src).GetSymbolName());
-        SetSymbolComment(reinterpret_cast<ZBLinkSymbol&>(src).GetSymbolComment());
-        SetAbsolutePath(reinterpret_cast<ZBLinkSymbol&>(src).GetAbsolutePath());
+        SetSymbolName(reinterpret_cast<const ZBLinkSymbol&>(src).GetSymbolName());
+        SetSymbolComment(reinterpret_cast<const ZBLinkSymbol&>(src).GetSymbolComment());
+        SetAbsolutePath(reinterpret_cast<const ZBLinkSymbol&>(src).GetAbsolutePath());
 
         // Symbol is local
         m_IsLocal = true;
@@ -240,29 +238,29 @@ void ZBLinkSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
         m_pReference = NULL;
         m_NameOfReference.Empty();
 
-        m_AllSymbolPosition = dynamic_cast<ZBLinkSymbol&>(src).m_AllSymbolPosition;
-        m_CurrentLineColor = dynamic_cast<ZBLinkSymbol&>(src).m_CurrentLineColor;
-        m_CurrentLabelLineColor = dynamic_cast<ZBLinkSymbol&>(src).m_CurrentLabelLineColor;
-        m_InitialLineColor = dynamic_cast<ZBLinkSymbol&>(src).m_InitialLineColor;
-        m_InitialLineWidth = dynamic_cast<ZBLinkSymbol&>(src).m_InitialLineWidth;
-        m_InitialLabelLineColor = dynamic_cast<ZBLinkSymbol&>(src).m_InitialLabelLineColor;
-        m_InitialLabelLineWidth = dynamic_cast<ZBLinkSymbol&>(src).m_InitialLabelLineWidth;
-        m_ShortCutBitmapPosition = dynamic_cast<ZBLinkSymbol&>(src).m_ShortCutBitmapPosition;
+        m_AllSymbolPosition = dynamic_cast<const ZBLinkSymbol&>(src).m_AllSymbolPosition;
+        m_CurrentLineColor = dynamic_cast<const ZBLinkSymbol&>(src).m_CurrentLineColor;
+        m_CurrentLabelLineColor = dynamic_cast<const ZBLinkSymbol&>(src).m_CurrentLabelLineColor;
+        m_InitialLineColor = dynamic_cast<const ZBLinkSymbol&>(src).m_InitialLineColor;
+        m_InitialLineWidth = dynamic_cast<const ZBLinkSymbol&>(src).m_InitialLineWidth;
+        m_InitialLabelLineColor = dynamic_cast<const ZBLinkSymbol&>(src).m_InitialLabelLineColor;
+        m_InitialLabelLineWidth = dynamic_cast<const ZBLinkSymbol&>(src).m_InitialLabelLineWidth;
+        m_ShortCutBitmapPosition = dynamic_cast<const ZBLinkSymbol&>(src).m_ShortCutBitmapPosition;
 
 
-        m_ExternalApplications = dynamic_cast<ZBLinkSymbol&>(src).m_ExternalApplications;
+        m_ExternalApplications = dynamic_cast<const ZBLinkSymbol&>(src).m_ExternalApplications;
         m_ExternalApplications.SetParent(this);
 
-        m_ExternalFiles = dynamic_cast<ZBLinkSymbol&>(src).m_ExternalFiles;
+        m_ExternalFiles = dynamic_cast<const ZBLinkSymbol&>(src).m_ExternalFiles;
         m_ExternalFiles.SetParent(this);
 
 
-        m_DisplayNameArea = dynamic_cast<ZBLinkSymbol&>(src).m_DisplayNameArea;
-        m_DisplayDescriptionArea = dynamic_cast<ZBLinkSymbol&>(src).m_DisplayDescriptionArea;
-        m_DisplayAttributeArea = dynamic_cast<ZBLinkSymbol&>(src).m_DisplayAttributeArea;
+        m_DisplayNameArea = dynamic_cast<const ZBLinkSymbol&>(src).m_DisplayNameArea;
+        m_DisplayDescriptionArea = dynamic_cast<const ZBLinkSymbol&>(src).m_DisplayDescriptionArea;
+        m_DisplayAttributeArea = dynamic_cast<const ZBLinkSymbol&>(src).m_DisplayAttributeArea;
 
-        m_RelativeCoordinates = dynamic_cast<ZBLinkSymbol&>(src).m_RelativeCoordinates;
-        m_Attributes = dynamic_cast<ZBLinkSymbol&>(src).m_Attributes;
+        m_RelativeCoordinates = dynamic_cast<const ZBLinkSymbol&>(src).m_RelativeCoordinates;
+        m_Attributes = dynamic_cast<const ZBLinkSymbol&>(src).m_Attributes;
 
         // JMR-MODIF - Le 6 février 2006 - Nettoyage des memory leaks, destruction de la variable
         // m_DynamicPropManager avant de tenter d'en assigner une nouvelle.
@@ -272,10 +270,10 @@ void ZBLinkSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
             m_DynamicPropManager = NULL;
         }
 
-        m_DynamicPropManager = dynamic_cast<ZBLinkSymbol&>(src).m_DynamicPropManager->Dup();
+        m_DynamicPropManager = dynamic_cast<const ZBLinkSymbol&>(src).m_DynamicPropManager->Dup();
 
         // Now sets the right area name
-        ZUODSymbolManipulator::MatchSymbolAreaName(this, &src);
+        ZUODSymbolManipulator::MatchSymbolAreaName(this, const_cast<CODSymbolComponent*>(&src));
     }
 }
 
@@ -508,7 +506,7 @@ void ZBLinkSymbol::RedrawSymbol()
     AdjustLinePath();
 }
 
-void ZBLinkSymbol::RefreshAttributeAreaText(bool Redraw /*= false*/)
+void ZBLinkSymbol::RefreshAttributeTextArea(bool Redraw /*= false*/)
 {
     if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {
@@ -1486,7 +1484,7 @@ CODModel* ZBLinkSymbol::GetRootModel()
     return NULL;
 }
 
-CString ZBLinkSymbol::GetSymbolComment()
+CString ZBLinkSymbol::GetSymbolComment() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -1498,7 +1496,7 @@ CString ZBLinkSymbol::GetSymbolComment()
     return pBasicProps->GetSymbolDescription();
 }
 
-CString ZBLinkSymbol::GetSymbolName()
+CString ZBLinkSymbol::GetSymbolName() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -1510,7 +1508,7 @@ CString ZBLinkSymbol::GetSymbolName()
     return pBasicProps->GetSymbolName();
 }
 
-int ZBLinkSymbol::GetSymbolReferenceNumber()
+int ZBLinkSymbol::GetSymbolReferenceNumber() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -1522,7 +1520,7 @@ int ZBLinkSymbol::GetSymbolReferenceNumber()
     return pBasicProps->GetSymbolNumber();
 }
 
-CString ZBLinkSymbol::GetSymbolReferenceNumberStr()
+CString ZBLinkSymbol::GetSymbolReferenceNumberStr() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -1724,7 +1722,7 @@ void ZBLinkSymbol::SetInitialLabelLineWidth(int value)
     ZUODSymbolManipulator::ChangeLabelLineWidth(this, value);
 }
 
-BOOL ZBLinkSymbol::SetSymbolComment(const CString value)
+BOOL ZBLinkSymbol::SetSymbolComment(const CString& value)
 {
     if (GetSymbolComment() != value)
     {
@@ -1760,7 +1758,7 @@ BOOL ZBLinkSymbol::SetSymbolComment(const CString value)
     return TRUE;
 }
 
-BOOL ZBLinkSymbol::SetSymbolName(const CString value)
+BOOL ZBLinkSymbol::SetSymbolName(const CString& value)
 {
     CString OldName = GetSymbolName();
 
@@ -1817,7 +1815,7 @@ BOOL ZBLinkSymbol::SetSymbolName(const CString value)
     return TRUE;
 }
 
-BOOL ZBLinkSymbol::SetSymbolReferenceNumberStr(const CString value)
+BOOL ZBLinkSymbol::SetSymbolReferenceNumberStr(const CString& value)
 {
     if (GetSymbolReferenceNumberStr() != value)
     {

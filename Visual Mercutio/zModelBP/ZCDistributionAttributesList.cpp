@@ -274,7 +274,7 @@ void ZCDistributionAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverM
             m_pComp = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement();
             if (m_pComp &&
                 (ISA(m_pComp, ZBSymbol) || ISA(m_pComp, ZBLinkSymbol)))
-                SetSymbolRef(dynamic_cast<ZIBasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());
+                SetSymbolRef(dynamic_cast<PSS_BasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());
             else
                 SetSymbolRef(-1);
         }

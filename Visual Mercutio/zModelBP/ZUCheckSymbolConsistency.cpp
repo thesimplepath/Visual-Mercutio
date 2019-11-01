@@ -1270,7 +1270,7 @@ bool ZUCheckSymbolConsistency::CheckLink(ZBLinkSymbol* pLink)
 }
 
 // Check for special characters in the name
-bool ZUCheckSymbolConsistency::CheckInvalidCharInSymbolName(ZIBasicSymbol* pSymbol, CString Path)
+bool ZUCheckSymbolConsistency::CheckInvalidCharInSymbolName(PSS_BasicSymbol* pSymbol, CString Path)
 {
     ASSERT(pSymbol);
 
@@ -1296,7 +1296,7 @@ bool ZUCheckSymbolConsistency::CheckInvalidCharInSymbolName(ZIBasicSymbol* pSymb
     return true;
 }
 
-bool ZUCheckSymbolConsistency::CheckUniqueRef(ZIBasicSymbol* pSymbol)
+bool ZUCheckSymbolConsistency::CheckUniqueRef(PSS_BasicSymbol* pSymbol)
 {
     ASSERT(pSymbol);
 

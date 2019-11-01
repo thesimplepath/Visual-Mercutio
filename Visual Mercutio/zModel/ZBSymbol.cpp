@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "ZBSymbol.h"
+
 #include "ZBSymbolEdit.h"
 #include "zProperty\ZBDynamicProperties.h"
 
@@ -176,7 +177,7 @@ void ZBSymbol::SetDisplayTitleText(bool value)
     }
 }
 
-void ZBSymbol::RefreshAttributeAreaText(bool Redraw /*= false*/)
+void ZBSymbol::RefreshAttributeTextArea(bool Redraw)
 {
     if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {
@@ -245,16 +246,16 @@ CString ZBSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
     return _T("");
 }
 
-void ZBSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
+void ZBSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     if (ISA((&src), ZBSymbol))
     {
         // Don't use direct assignement, if
         // symbols are referenced, not notification will be done
-        SetSymbolName(reinterpret_cast<ZBSymbol&>(src).GetSymbolName());
-        SetSymbolComment(reinterpret_cast<ZBSymbol&>(src).GetSymbolComment());
-        SetAbsolutePath(reinterpret_cast<ZBSymbol&>(src).GetAbsolutePath());
-        SetpModel(reinterpret_cast<ZBSymbol&>(src).GetpModel());
+        SetSymbolName(reinterpret_cast<const ZBSymbol&>(src).GetSymbolName());
+        SetSymbolComment(reinterpret_cast<const ZBSymbol&>(src).GetSymbolComment());
+        SetAbsolutePath(reinterpret_cast<const ZBSymbol&>(src).GetAbsolutePath());
+        SetpModel(const_cast<ZBSymbol&>(reinterpret_cast<const ZBSymbol&>(src)).GetpModel());
 
         // Symbol is local
         m_IsLocal = true;
@@ -263,29 +264,29 @@ void ZBSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
         m_pReference = NULL;
         m_NameOfReference.Empty();
 
-        m_AllSymbolPosition = dynamic_cast<ZBSymbol&>(src).m_AllSymbolPosition;
-        m_ChildModelPathName = dynamic_cast<ZBSymbol&>(src).m_ChildModelPathName;
+        m_AllSymbolPosition = dynamic_cast<const ZBSymbol&>(src).m_AllSymbolPosition;
+        m_ChildModelPathName = dynamic_cast<const ZBSymbol&>(src).m_ChildModelPathName;
 
-        m_CurrentLineColor = dynamic_cast<ZBSymbol&>(src).m_CurrentLineColor;
-        m_CurrentLabelLineColor = dynamic_cast<ZBSymbol&>(src).m_CurrentLabelLineColor;
-        m_InitialLineColor = dynamic_cast<ZBSymbol&>(src).m_InitialLineColor;
-        m_InitialLineWidth = dynamic_cast<ZBSymbol&>(src).m_InitialLineWidth;
-        m_InitialLabelLineColor = dynamic_cast<ZBSymbol&>(src).m_InitialLabelLineColor;
-        m_InitialLabelLineWidth = dynamic_cast<ZBSymbol&>(src).m_InitialLabelLineWidth;
-        m_ShortCutBitmapPosition = dynamic_cast<ZBSymbol&>(src).m_ShortCutBitmapPosition;
+        m_CurrentLineColor = dynamic_cast<const ZBSymbol&>(src).m_CurrentLineColor;
+        m_CurrentLabelLineColor = dynamic_cast<const ZBSymbol&>(src).m_CurrentLabelLineColor;
+        m_InitialLineColor = dynamic_cast<const ZBSymbol&>(src).m_InitialLineColor;
+        m_InitialLineWidth = dynamic_cast<const ZBSymbol&>(src).m_InitialLineWidth;
+        m_InitialLabelLineColor = dynamic_cast<const ZBSymbol&>(src).m_InitialLabelLineColor;
+        m_InitialLabelLineWidth = dynamic_cast<const ZBSymbol&>(src).m_InitialLabelLineWidth;
+        m_ShortCutBitmapPosition = dynamic_cast<const ZBSymbol&>(src).m_ShortCutBitmapPosition;
 
-        m_ExternalApplications = dynamic_cast<ZBSymbol&>(src).m_ExternalApplications;
+        m_ExternalApplications = dynamic_cast<const ZBSymbol&>(src).m_ExternalApplications;
         m_ExternalApplications.SetParent(this);
 
-        m_ExternalFiles = dynamic_cast<ZBSymbol&>(src).m_ExternalFiles;
+        m_ExternalFiles = dynamic_cast<const ZBSymbol&>(src).m_ExternalFiles;
         m_ExternalFiles.SetParent(this);
 
-        m_DisplayNameArea = dynamic_cast<ZBSymbol&>(src).m_DisplayNameArea;
-        m_DisplayDescriptionArea = dynamic_cast<ZBSymbol&>(src).m_DisplayDescriptionArea;
-        m_DisplayAttributeArea = dynamic_cast<ZBSymbol&>(src).m_DisplayAttributeArea;
+        m_DisplayNameArea = dynamic_cast<const ZBSymbol&>(src).m_DisplayNameArea;
+        m_DisplayDescriptionArea = dynamic_cast<const ZBSymbol&>(src).m_DisplayDescriptionArea;
+        m_DisplayAttributeArea = dynamic_cast<const ZBSymbol&>(src).m_DisplayAttributeArea;
 
-        m_RelativeCoordinates = dynamic_cast<ZBSymbol&>(src).m_RelativeCoordinates;
-        m_Attributes = dynamic_cast<ZBSymbol&>(src).m_Attributes;
+        m_RelativeCoordinates = dynamic_cast<const ZBSymbol&>(src).m_RelativeCoordinates;
+        m_Attributes = dynamic_cast<const ZBSymbol&>(src).m_Attributes;
 
         // JMR-MODIF - Le 6 février 2006 - Nettoyage des memory leaks, destruction de la variable
         // m_DynamicPropManager avant de tenter d'en assigner une nouvelle.
@@ -295,10 +296,10 @@ void ZBSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
             m_DynamicPropManager = NULL;
         }
 
-        m_DynamicPropManager = dynamic_cast<ZBSymbol&>(src).m_DynamicPropManager->Dup();
+        m_DynamicPropManager = dynamic_cast<const ZBSymbol&>(src).m_DynamicPropManager->Dup();
 
         // Now sets the right area name
-        ZUODSymbolManipulator::MatchSymbolAreaName(this, &src);
+        ZUODSymbolManipulator::MatchSymbolAreaName(this, const_cast<CODSymbolComponent*>(&src));
     }
 }
 
@@ -491,14 +492,14 @@ void ZBSymbol::SetModifiedFlag(BOOL Value /*= TRUE*/)
     }
 }
 
-ZBSymbolEdit* ZBSymbol::CreateEditText(const CString AreaName,
-                                       const CString EditName,
-                                       CODComponent* pParent /*= NULL*/)
+ZBSymbolEdit* ZBSymbol::CreateEditText(const CString& AreaName,
+                                       const CString& EditName,
+                                       CODComponent*  pParent /*= NULL*/)
 {
     return ZUODSymbolManipulator::CreateEditText(this, AreaName, EditName, pParent);
 }
 
-ZBSymbolEdit* ZBSymbol::CreateAndReplaceEditText(const CString EditName, CODComponent* pParent /*= NULL*/)
+ZBSymbolEdit* ZBSymbol::CreateAndReplaceEditText(const CString& EditName, CODComponent* pParent /*= NULL*/)
 {
     return ZUODSymbolManipulator::CreateAndReplaceEditText(this, EditName, pParent);
 }
@@ -582,7 +583,7 @@ BOOL ZBSymbol::Create(UINT nID, HINSTANCE hInst, const CString Name /*= ""*/)
     return TRUE;
 }
 
-CString ZBSymbol::GetSymbolName()
+CString ZBSymbol::GetSymbolName() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -594,7 +595,7 @@ CString ZBSymbol::GetSymbolName()
     return pBasicProps->GetSymbolName();
 }
 
-BOOL ZBSymbol::SetSymbolName(const CString value)
+BOOL ZBSymbol::SetSymbolName(const CString& value)
 {
     CString OldName = GetSymbolName();
 
@@ -646,7 +647,7 @@ BOOL ZBSymbol::SetSymbolName(const CString value)
     return TRUE;
 }
 
-CString ZBSymbol::GetSymbolComment()
+CString ZBSymbol::GetSymbolComment() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -658,7 +659,7 @@ CString ZBSymbol::GetSymbolComment()
     return pBasicProps->GetSymbolDescription();
 }
 
-BOOL ZBSymbol::SetSymbolComment(const CString value)
+BOOL ZBSymbol::SetSymbolComment(const CString& value)
 {
     if (GetSymbolComment() != value)
     {
@@ -692,7 +693,7 @@ BOOL ZBSymbol::SetSymbolComment(const CString value)
     return TRUE;
 }
 
-int ZBSymbol::GetSymbolReferenceNumber()
+int ZBSymbol::GetSymbolReferenceNumber() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -704,7 +705,7 @@ int ZBSymbol::GetSymbolReferenceNumber()
     return pBasicProps->GetSymbolNumber();
 }
 
-CString ZBSymbol::GetSymbolReferenceNumberStr()
+CString ZBSymbol::GetSymbolReferenceNumberStr() const
 {
     ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
@@ -745,7 +746,7 @@ BOOL ZBSymbol::SetSymbolReferenceNumber(int value)
     return TRUE;
 }
 
-BOOL ZBSymbol::SetSymbolReferenceNumberStr(const CString value)
+BOOL ZBSymbol::SetSymbolReferenceNumberStr(const CString& value)
 {
     if (GetSymbolReferenceNumberStr() != value)
     {
@@ -1964,22 +1965,22 @@ size_t ZBSymbol::GetEdgesLeaving_Name(const CString Name, CODEdgeArray& Edges)
 
 size_t ZBSymbol::GetEdgesLeaving_Right(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name(PortRIGHTComponentLabel, Edges);
+    return ZBSymbol::GetEdgesLeaving_Name(M_PortRIGHTComponentLabel, Edges);
 }
 
 size_t ZBSymbol::GetEdgesLeaving_Left(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name(PortLEFTComponentLabel, Edges);
+    return ZBSymbol::GetEdgesLeaving_Name(M_PortLEFTComponentLabel, Edges);
 }
 
 size_t ZBSymbol::GetEdgesLeaving_Up(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name(PortUPComponentLabel, Edges);
+    return ZBSymbol::GetEdgesLeaving_Name(M_PortUPComponentLabel, Edges);
 }
 
 size_t ZBSymbol::GetEdgesLeaving_Down(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name(PortDOWNComponentLabel, Edges);
+    return ZBSymbol::GetEdgesLeaving_Name(M_PortDOWNComponentLabel, Edges);
 }
 
 size_t ZBSymbol::GetEdgesEntering(CODEdgeArray& Edges)
@@ -2037,22 +2038,22 @@ size_t ZBSymbol::GetEdgesEntering_Name(const CString Name, CODEdgeArray& Edges)
 
 size_t ZBSymbol::GetEdgesEntering_Right(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name(PortRIGHTComponentLabel, Edges);
+    return ZBSymbol::GetEdgesEntering_Name(M_PortRIGHTComponentLabel, Edges);
 }
 
 size_t ZBSymbol::GetEdgesEntering_Left(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name(PortLEFTComponentLabel, Edges);
+    return ZBSymbol::GetEdgesEntering_Name(M_PortLEFTComponentLabel, Edges);
 }
 
 size_t ZBSymbol::GetEdgesEntering_Up(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name(PortUPComponentLabel, Edges);
+    return ZBSymbol::GetEdgesEntering_Name(M_PortUPComponentLabel, Edges);
 }
 
 size_t ZBSymbol::GetEdgesEntering_Down(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name(PortDOWNComponentLabel, Edges);
+    return ZBSymbol::GetEdgesEntering_Name(M_PortDOWNComponentLabel, Edges);
 }
 
 void ZBSymbol::Serialize(CArchive& ar)

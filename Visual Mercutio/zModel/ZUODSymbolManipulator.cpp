@@ -6,7 +6,7 @@
 
 #include "ZBSymbolEdit.h"
 #include "ZBSymbolLabel.h"
-#include "zBaseSym\ZIBasicSymbol.h"
+#include "zBaseSym\PSS_BasicSymbol.h"
 
 // JMR-MODIF - Le 10 mai 2006 - Ajout de l'en-tête MsgBox.h
 #include "zBaseLib\PSS_MsgBox.h"
@@ -402,9 +402,9 @@ CODComponent* ZUODSymbolManipulator::FindSymbol(CODComponent* pSymbol, const CSt
 
             pLabel->GetValue(OD_PROP_TYPE, componentType);
 
-            if (symbolName == SymbolNameComponentControlLabel && componentType == _T("Label"))
+            if (symbolName == M_SymbolNameComponentControlLabel && componentType == _T("Label"))
             {
-                pLabel->SetName(SymbolNameComponentControlLabel);
+                pLabel->SetName(M_SymbolNameComponentControlLabel);
                 return pLabel;
             }
             // ****************************************************************************************

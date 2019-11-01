@@ -373,7 +373,7 @@ bool ZBBPPageSymbol::SaveProperties(ZBPropertySet& PropSet)
         return false;
     }
 
-    RefreshAttributeAreaText(true);
+    RefreshAttributeTextArea(true);
 
     return true;
 }

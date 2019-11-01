@@ -43,7 +43,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // Forward class declaration
-class ZIBasicSymbol;
+class PSS_BasicSymbol;
 
 
 #ifdef _ZMODELEXPORT

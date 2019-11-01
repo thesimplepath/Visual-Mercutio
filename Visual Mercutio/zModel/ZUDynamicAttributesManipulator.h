@@ -24,7 +24,7 @@
 class ZDProcessGraphModelMdl;
 class ZBProperty;
 class ZBDynamicPropertiesManager;
-class ZIBasicSymbol;
+class PSS_BasicSymbol;
 class ZBSymbol;
 class ZBLinkSymbol;
 
@@ -68,7 +68,7 @@ public:
 private:
 
     static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
-                                               ZIBasicSymbol*                pSymbol,
+                                              PSS_BasicSymbol*                pSymbol,
                                                const CString&                ClassName );
 };
 

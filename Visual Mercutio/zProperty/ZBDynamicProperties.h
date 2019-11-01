@@ -20,9 +20,8 @@
 // ZIProperties
 #include "ZIProperties.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZIBasicSymbol;
+// forward class declaration
+class PSS_BasicSymbol;
 
 #ifdef _ZPROPERTYEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

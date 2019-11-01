@@ -408,7 +408,7 @@ void ZVDistributionAttributes::OnAddDistributionAttrib()
             // Assigns value members
             pDistr->SetCategoryID(dlg.GetCategoryID());
             pDistr->SetItemID(dlg.GetItemID());
-            pDistr->SetSymbolRef((m_pSymbol) ? dynamic_cast<ZIBasicSymbol*>(m_pSymbol)->GetSymbolReferenceNumber() : -1);
+            pDistr->SetSymbolRef((m_pSymbol) ? dynamic_cast<PSS_BasicSymbol*>(m_pSymbol)->GetSymbolReferenceNumber() : -1);
 
             pDistr->SetUserGroupGUID(dlg.GetGroupGUID());
 

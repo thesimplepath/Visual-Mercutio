@@ -196,7 +196,7 @@ int ZCInputAttributesList::Refresh()
             if (pSet && pSet->GetSize() > 0)
             {
                 SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
-                        dynamic_cast<ZIBasicSymbol*>(pSet->GetAt(0))->GetSymbolName(),
+                        dynamic_cast<PSS_BasicSymbol*>(pSet->GetAt(0))->GetSymbolName(),
                         0, 0, 0, 0);
             }
             else
@@ -281,7 +281,7 @@ void ZCInputAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
             m_pComp = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement();
             if (m_pComp &&
                 (ISA(m_pComp, ZBSymbol) || ISA(m_pComp, ZBLinkSymbol)))
-                SetSymbolRef(dynamic_cast<ZIBasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());
+                SetSymbolRef(dynamic_cast<PSS_BasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());
             else
                 SetSymbolRef(-1);
         }

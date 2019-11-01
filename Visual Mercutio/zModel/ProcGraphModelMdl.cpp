@@ -2181,11 +2181,11 @@ void ZDProcessGraphModelMdl::RefreshSymbolAttributes(bool Redraw /*= false*/)
             // Notify the change to elements
             if (ISA(pComp, ZBSymbol))
             {
-                reinterpret_cast<ZBSymbol*>(pComp)->RefreshAttributeAreaText(Redraw);
+                reinterpret_cast<ZBSymbol*>(pComp)->RefreshAttributeTextArea(Redraw);
             }
             else if (ISA(pComp, ZBLinkSymbol))
             {
-                reinterpret_cast<ZBLinkSymbol*>(pComp)->RefreshAttributeAreaText(Redraw);
+                reinterpret_cast<ZBLinkSymbol*>(pComp)->RefreshAttributeTextArea(Redraw);
             }
 
             // Check if has sub-model
@@ -3390,7 +3390,7 @@ void ZDProcessGraphModelMdl::RecalculateReference()
             ASSERT(GetRoot());
 
             CODComponentSet* pSet =
-                GetRoot()->FindSymbolByRefNumber(atoi(((ZBSymbol*)pComp)->GetNameOfReference()), true);
+                GetRoot()->FindSymbolByRefNumber(atoi(((ZBSymbol*)pComp)->GetReferenceName()), true);
 
             if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0) && ISA(pSet->GetAt(0), ZBSymbol))
             {
@@ -3402,7 +3402,7 @@ void ZDProcessGraphModelMdl::RecalculateReference()
             ASSERT(GetRoot());
 
             CODComponentSet* pSet =
-                GetRoot()->FindSymbolByRefNumber(atoi(((ZBLinkSymbol*)pComp)->GetNameOfReference()), true);
+                GetRoot()->FindSymbolByRefNumber(atoi(((ZBLinkSymbol*)pComp)->GetReferenceName()), true);
 
             if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0) && ISA(pSet->GetAt(0), ZBLinkSymbol))
             {

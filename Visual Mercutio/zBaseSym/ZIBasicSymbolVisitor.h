@@ -41,7 +41,7 @@
 // *                                          Class ZIBasicSymbolVisitor                                *
 // ******************************************************************************************************
 // * Define the basic interface for visiting objects implementing                                        *
-// * the ZIBasicSymbol interface                                                                        *
+// * the PSS_BasicSymbol interface                                                                        *
 // ******************************************************************************************************
 
 class AFX_EXT_CLASS ZIBasicSymbolVisitor

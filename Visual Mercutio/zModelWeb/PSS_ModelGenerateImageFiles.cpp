@@ -522,7 +522,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
             // is a symbol or a link?
             if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                ZIBasicSymbol* pBasicSym = dynamic_cast<ZIBasicSymbol*>(pComp);
+                PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
 
                 // if no sub-model, just the area for the popup
                 ZDProcessGraphModelMdl* pOwnerModel = dynamic_cast<ZDProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
@@ -632,7 +632,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
             // for all symbols, create a popup 
             if (pSymbol || pLinkSymbol)
             {
-                ZIBasicSymbol* pBasicSym = dynamic_cast<ZIBasicSymbol*>(pComp);
+                PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
 
                 // allocate the new popup object
@@ -847,7 +847,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
             if (pSymbol || pLinkSymbol)
             {
                 // if no sub-model, just the area for the popup
-                CODModel* pOwnerModel = dynamic_cast<ZIBasicSymbol*>(pComp)->GetOwnerModel();
+                CODModel* pOwnerModel = dynamic_cast<PSS_BasicSymbol*>(pComp)->GetOwnerModel();
 
                 // and then, retreive the symbol position
                 if (pSymbol)
@@ -2048,7 +2048,7 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(ZBUserGroupEntity* pG
         {
             if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                ZIBasicSymbol* pBasicSym = dynamic_cast<ZIBasicSymbol*>(pComp);
+                PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
 
                 CString                 htmlFileNameOwnerModel;
@@ -2208,7 +2208,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(ZBLogicalSystemEn
         {
             if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                ZIBasicSymbol* pBasicSym = dynamic_cast<ZIBasicSymbol*>(pComp);
+                PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
 
                 CString                 htmlFileNameOwnerModel;
@@ -2373,7 +2373,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(ZBLogicalPre
         {
             if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                ZIBasicSymbol* pBasicSym = dynamic_cast<ZIBasicSymbol*>(pComp);
+                PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
 
                 CString                 htmlFileNameOwnerModel;
@@ -2694,7 +2694,7 @@ CString PSS_ModelGenerateImageFiles::BuildPrestationsReportHTMLFileName(const CS
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildSymbolPropertyHTMLFileName(ZIBasicSymbol*          pSymbol,
+CString PSS_ModelGenerateImageFiles::BuildSymbolPropertyHTMLFileName(PSS_BasicSymbol*        pSymbol,
                                                                      ZDProcessGraphModelMdl* pModel,
                                                                      const CString&          prefix) const
 {

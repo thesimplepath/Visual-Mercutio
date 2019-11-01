@@ -9,7 +9,7 @@
 #include "PSS_StateMachine.h"
 
 // processsoft
-#include "zBaseSym\ZIBasicSymbol.h"
+#include "zBaseSym\PSS_BasicSymbol.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"

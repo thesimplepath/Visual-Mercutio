@@ -31,7 +31,7 @@
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
 // forward class declaration
-class ZIBasicSymbol;
+class PSS_BasicSymbol;
 class ZIProperties;
 class ZBInfoModelGraphicGeneration;
 class ZBUserGroupEntity;
@@ -480,7 +480,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param prefix - file name prefix
         *@return file name
         */
-        CString BuildSymbolPropertyHTMLFileName(ZIBasicSymbol*          pSymbol,
+        CString BuildSymbolPropertyHTMLFileName(PSS_BasicSymbol*        pSymbol,
                                                 ZDProcessGraphModelMdl* pModel,
                                                 const CString&          prefix = _T("")) const;
 };

@@ -13,7 +13,7 @@
 #include "ZUReassignDynamicAttributesToModel.h"
 #include "ZUDeleteDynamicAttributesToModel.h"
 #include "ZUExtractModelAttributes.h"
-#include "zBaseSym\ZIBasicSymbol.h"
+#include "zBaseSym\PSS_BasicSymbol.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zProperty\ZBDynamicProperties.h"
 
@@ -90,7 +90,7 @@ bool ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol( ZBDynamicPro
 }
 
 bool ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
-                                                                    ZIBasicSymbol*                pSymbol,
+                                                                   PSS_BasicSymbol*                pSymbol,
                                                                     const CString&                ClassName )
 {
     if ( !pDynamicPropertiesManager )

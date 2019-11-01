@@ -250,7 +250,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolName()
     // If we would like to use dynamic area
     if (UseDynamicArea())
     {
-        pLabelComp->SetName(EditAreaComponentControlLabel);
+        pLabelComp->SetName(M_EditAreaComponentControlLabel);
 
         pLabelComp->SetValue(OD_PROP_AUTOSIZE, TRUE);
         pLabelComp->SetValue(OD_PROP_WORDBREAK, TRUE);
@@ -277,7 +277,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolName()
         // Set its size
         pTextComp->Create(pLabelComp->GetBounds(), NULL);
 
-        pTextComp->SetName(SymbolNameComponentControlLabel);
+        pTextComp->SetName(M_SymbolNameComponentControlLabel);
         CODLineProperties lineProp;
         lineProp.SetTransparent(TRUE);
         pTextComp->SetProperty(&lineProp);
@@ -318,7 +318,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolName()
         // Set its size
         pTextComp->Create(pLabelComp->GetBounds(), NULL);
 
-        pTextComp->SetName(CommentComponentControlLabel);
+        pTextComp->SetName(M_CommentComponentControlLabel);
         CODLineProperties lineProp2;
         lineProp2.SetTransparent(TRUE);
         pTextComp->SetProperty(&lineProp2);
@@ -359,7 +359,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolName()
         // Set its size
         pTextComp->Create(pLabelComp->GetBounds(), NULL);
 
-        pTextComp->SetName(AttributeAreaComponentLabel);
+        pTextComp->SetName(M_AttributeAreaComponentLabel);
         CODLineProperties lineProp3;
         lineProp3.SetTransparent(TRUE);
         pTextComp->SetProperty(&lineProp3);
@@ -399,7 +399,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolName()
     else
     {
         // No dynamic attributes
-        pLabelComp->SetName(SymbolNameComponentControlLabel);
+        pLabelComp->SetName(M_SymbolNameComponentControlLabel);
         pLabelComp->SetTextBox(CRect(0, 0, 100, 40));
 
         CODFontProperties* pFontProp = (CODFontProperties*)pLabelComp->GetProperty(OD_PROP_FONT);
@@ -739,22 +739,22 @@ void ZBDeliverableLinkSymbol::AdjustPoints()
 
             CString SrcPortName = pSourcePort->GetName();
 
-            if (SrcPortName == PortUPComponentLabel)
+            if (SrcPortName == M_PortUPComponentLabel)
             {
                 szDirPt1.cx = 0;
                 szDirPt1.cy = -1;
             }
-            else if (SrcPortName == PortDOWNComponentLabel)
+            else if (SrcPortName == M_PortDOWNComponentLabel)
             {
                 szDirPt1.cx = 0;
                 szDirPt1.cy = 1;
             }
-            else if (SrcPortName == PortLEFTComponentLabel)
+            else if (SrcPortName == M_PortLEFTComponentLabel)
             {
                 szDirPt1.cx = -1;
                 szDirPt1.cy = 0;
             }
-            else if (SrcPortName == PortRIGHTComponentLabel)
+            else if (SrcPortName == M_PortRIGHTComponentLabel)
             {
                 szDirPt1.cx = 1;
                 szDirPt1.cy = 0;
@@ -801,22 +801,22 @@ void ZBDeliverableLinkSymbol::AdjustPoints()
 
             CString TrgPortName = pTargetPort->GetName();
 
-            if (TrgPortName == PortUPComponentLabel)
+            if (TrgPortName == M_PortUPComponentLabel)
             {
                 szDirPt2.cx = 0;
                 szDirPt2.cy = -1;
             }
-            else if (TrgPortName == PortDOWNComponentLabel)
+            else if (TrgPortName == M_PortDOWNComponentLabel)
             {
                 szDirPt2.cx = 0;
                 szDirPt2.cy = 1;
             }
-            else if (TrgPortName == PortLEFTComponentLabel)
+            else if (TrgPortName == M_PortLEFTComponentLabel)
             {
                 szDirPt2.cx = -1;
                 szDirPt2.cy = 0;
             }
-            else if (TrgPortName == PortRIGHTComponentLabel)
+            else if (TrgPortName == M_PortRIGHTComponentLabel)
             {
                 szDirPt2.cx = 1;
                 szDirPt2.cy = 0;
@@ -3775,7 +3775,7 @@ bool ZBDeliverableLinkSymbol::SaveProperties(ZBPropertySet& PropSet)
         }
     }
 
-    RefreshAttributeAreaText(true);
+    RefreshAttributeTextArea(true);
 
     return true;
 }

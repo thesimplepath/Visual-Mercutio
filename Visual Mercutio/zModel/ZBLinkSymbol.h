@@ -16,7 +16,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseSym\ZIBasicSymbol.h"
+#include "zBaseSym\PSS_BasicSymbol.h"
 #include "zBaseSym\ZIObjectPath.h"
 #include "zProperty\ZIProperties.h"
 #include "zBaseLib\PSS_Subject.h"
@@ -54,16 +54,16 @@ class ZBPropertyAttributes;
 // JMR-MODIF - Le 28 septembre 2005 - Ajout de la décoration unicode _T( ), suppression du code inutilisé.
 
 class AFX_EXT_CLASS ZBLinkSymbol : public CODLinkComponent,
-                                   public ZIBasicSymbol,
-                                   public ZIObjectPath,
-                                   public ZIProperties,
-                                   public ZBExtAppPropertyMgr,
-                                   public ZBExtFilePropertyMgr,
-                                   public ZVSymbolAttributes,
-                                   public ZIBasicSymbolAcceptVisitor,
-                                   public PSS_Subject,
-                                   public PSS_Observer,
-                                   public PSS_ToolTip
+    public PSS_BasicSymbol,
+    public ZIObjectPath,
+    public ZIProperties,
+    public ZBExtAppPropertyMgr,
+    public ZBExtFilePropertyMgr,
+    public ZVSymbolAttributes,
+    public ZIBasicSymbolAcceptVisitor,
+    public PSS_Subject,
+    public PSS_Observer,
+    public PSS_ToolTip
 {
     DECLARE_SERIAL(ZBLinkSymbol)
 
@@ -106,7 +106,7 @@ public:
     virtual bool OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes);
     virtual bool OnChangeAttributes(ZBPropertyAttributes* pAttributes);
     virtual CString GetAttributeString(ZBPropertyAttributes* pAttributes) const;
-    virtual void RefreshAttributeAreaText(bool Redraw = false);
+    virtual void RefreshAttributeTextArea(bool Redraw = false);
 
     bool GetDisplayTitleText() const;
     void SetDisplayTitleText(bool value);
@@ -117,23 +117,23 @@ public:
     // Create the symbol itself
     BOOL Create(UINT nID, HINSTANCE hInst, const CString Name = _T(""));
 
-    ZBSymbolEdit* CreateEditText(const CString AreaName, const CString EditName, CODComponent* pParent = NULL);
-    ZBSymbolEdit* CreateAndReplaceEditText(const CString EditName, CODComponent* pParent = NULL);
+    ZBSymbolEdit* CreateEditText(const CString& AreaName, const CString& EditName, CODComponent* pParent = NULL);
+    ZBSymbolEdit* CreateAndReplaceEditText(const CString& EditName, CODComponent* pParent = NULL);
 
-    virtual CString GetSymbolComment();
-    virtual BOOL SetSymbolComment(const CString value);
+    virtual CString GetSymbolComment() const;
+    virtual BOOL SetSymbolComment(const CString& value);
 
-    virtual CString GetSymbolName();
-    virtual BOOL SetSymbolName(const CString value);
+    virtual CString GetSymbolName() const;
+    virtual BOOL SetSymbolName(const CString& value);
 
     // JMR-MODIF - Le 27 mars 2006 - Ajout de la fonction virtuelle OnSymbolNameChange.
     virtual void OnSymbolNameChange(CString OldName, CString NewName)
     {}
 
-    virtual int GetSymbolReferenceNumber();
-    virtual CString GetSymbolReferenceNumberStr();
+    virtual int GetSymbolReferenceNumber() const;
+    virtual CString GetSymbolReferenceNumberStr() const;
     virtual BOOL SetSymbolReferenceNumber(int value);
-    virtual BOOL SetSymbolReferenceNumberStr(const CString value);
+    virtual BOOL SetSymbolReferenceNumberStr(const CString& value);
 
     virtual bool Match(const CString            What,
                        ZBPropertyAttributes*    pPropAttributes = NULL,
@@ -202,10 +202,10 @@ public:
     };
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
+    virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
-    virtual CString GetNameOfReference() const;
-    virtual void SetNameOfReference(CString value);
+    virtual CString GetReferenceName() const;
+    virtual void SetReferenceName(const CString& value);
 
     virtual bool IsLocal() const;
     virtual void SetIsLocal(bool value = true);
@@ -243,7 +243,7 @@ public:
         return false;
     };
 
-    virtual void DisplayNameArea(bool value = true)
+    virtual void ShowNameArea(bool value = true)
     {
         ZVSymbolAttributes::DisplayNameArea(value);
     };
@@ -253,7 +253,7 @@ public:
         return ZVSymbolAttributes::IsNameAreaVisible();
     };
 
-    virtual void DisplayDescriptionArea(bool value = true)
+    virtual void ShowDescriptionArea(bool value = true)
     {
         ZVSymbolAttributes::DisplayDescriptionArea(value);
     };
@@ -263,7 +263,7 @@ public:
         return ZVSymbolAttributes::IsDescriptionsAreaVisible();
     };
 
-    virtual void DisplayAttributeArea(bool value = true)
+    virtual void ShowAttributeArea(bool value = true)
     {
         ZVSymbolAttributes::DisplayAttributeArea(value);
     };
@@ -281,32 +281,32 @@ public:
         return true;
     };
 
-    virtual bool OnMouseMove(UINT nFlags, CPoint point, CODController& Ctrl)
+    virtual bool OnMouseMove(UINT flags, const CPoint& point, CODController& Ctrl)
     {
-        return ZVSymbolAttributes::OnMouseMove(nFlags, point, Ctrl);
+        return ZVSymbolAttributes::OnMouseMove(flags, point, Ctrl);
     };
 
-    virtual bool OnLButtonDown(UINT nFlags, CPoint point, CODController& Ctrl)
+    virtual bool OnLButtonDown(UINT flags, const CPoint& point, CODController& Ctrl)
     {
-        return ZVSymbolAttributes::OnLButtonDown(nFlags, point, Ctrl);
+        return ZVSymbolAttributes::OnLButtonDown(flags, point, Ctrl);
     };
 
-    virtual bool OnLButtonUp(UINT nFlags, CPoint point, CODController& Ctrl)
+    virtual bool OnLButtonUp(UINT flags, const CPoint& point, CODController& Ctrl)
     {
-        return ZVSymbolAttributes::OnLButtonUp(nFlags, point, Ctrl);
+        return ZVSymbolAttributes::OnLButtonUp(flags, point, Ctrl);
     };
 
-    virtual bool OnLButtonDblClk(UINT nFlags, CPoint point, CODController& Ctrl)
-    {
-        return false;
-    };
-
-    virtual bool OnRButtonDown(UINT nFlags, CPoint point, CODController& Ctrl)
+    virtual bool OnLButtonDblClk(UINT flags, const CPoint& point, CODController& Ctrl)
     {
         return false;
     };
 
-    virtual bool OnRButtonUp(UINT nFlags, CPoint point, CODController& Ctrl)
+    virtual bool OnRButtonDown(UINT flags, const CPoint& point, CODController& Ctrl)
+    {
+        return false;
+    };
+
+    virtual bool OnRButtonUp(UINT flags, const CPoint& point, CODController& Ctrl)
     {
         return false;
     };
@@ -525,13 +525,13 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Call-back on symbols
-    virtual void OnSymbolNameChanged(CODComponent& Comp, const CString OldName)
+    virtual void OnSymbolNameChanged(CODComponent& Comp, const CString& oldName)
     {};
 
-    virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString OldName)
+    virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName)
     {};
 
-    virtual void OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString OldName)
+    virtual void OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString& oldName)
     {};
 
     //////////////////////////////////////////////////////////////////////
@@ -640,7 +640,7 @@ public:
 protected:
 
     ///////////////////////////////////////////////////////
-    // ZIBasicSymbol methods
+    // PSS_BasicSymbol methods
     virtual CODLabelComponent* CreateSymbolLabel();
 
     virtual CODComponent* GetpEditBoxArea()
@@ -653,22 +653,22 @@ protected:
         ZVSymbolAttributes::SetpEditBoxArea(value);
     };
 
-    virtual CODTextComponent* GetpNameEditText()
+    virtual CODTextComponent* GetNameEditText()
     {
         return ZVSymbolAttributes::GetpNameEditText();
     };
 
-    virtual void SetpNameEditText(CODTextComponent* value)
+    virtual void SetNameEditText(CODTextComponent* value)
     {
         ZVSymbolAttributes::SetpNameEditText(value);
     };
 
-    virtual CODTextComponent* GetpCommentEditText()
+    virtual CODTextComponent* GetCommentEditText()
     {
         return ZVSymbolAttributes::GetpCommentEditText();
     };
 
-    virtual void SetpCommentEditText(CODTextComponent* value)
+    virtual void SetCommentEditText(CODTextComponent* value)
     {
         ZVSymbolAttributes::SetpCommentEditText(value);
     };
@@ -738,12 +738,12 @@ inline bool ZBLinkSymbol::OnToolTip(CString& toolTipText, const CPoint& point, P
     return false;
 }
 
-inline CString ZBLinkSymbol::GetNameOfReference() const
+inline CString ZBLinkSymbol::GetReferenceName() const
 {
     return m_NameOfReference;
 }
 
-inline void ZBLinkSymbol::SetNameOfReference(CString value)
+inline void ZBLinkSymbol::SetReferenceName(const CString& value)
 {
     m_NameOfReference = value;
 }

@@ -222,7 +222,7 @@ bool ZBBPStartSymbol::DropItem(CObject* pObj, CPoint pt)
         SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText(true);
+        RefreshAttributeTextArea(true);
         return true;
     }
 
@@ -256,7 +256,7 @@ bool ZBBPStartSymbol::DropItem(CObject* pObj, CPoint pt)
         SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText(true);
+        RefreshAttributeTextArea(true);
         return true;
     }
     // **********************************************************************************************************
@@ -800,7 +800,7 @@ bool ZBBPStartSymbol::SaveProperties(ZBPropertySet& PropSet)
         }
     }
 
-    RefreshAttributeAreaText(true);
+    RefreshAttributeTextArea(true);
 
     return true;
 }

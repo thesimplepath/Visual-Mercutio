@@ -33,9 +33,6 @@
     <ClCompile Include="zBaseSym.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZIBasicSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZIBasicSymbolAcceptVisitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,6 +46,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIObjectPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_BasicSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -177,9 +177,6 @@
     <ClInclude Include="zBaseSymRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZIBasicSymbol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZIBasicSymbolAcceptVisitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -193,6 +190,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIObjectPath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BasicSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

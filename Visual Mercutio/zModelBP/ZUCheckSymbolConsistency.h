@@ -12,7 +12,7 @@
 
 // Forward declaration
 class PSS_Log;
-class ZIBasicSymbol;
+class PSS_BasicSymbol;
 class ZBSymbol;
 class ZBLinkSymbol;
 class ZBBPDoorSymbol;
@@ -83,8 +83,8 @@ private:
     bool CheckSymbol(ZBSymbol* pSymbol);
     bool CheckLink(ZBLinkSymbol* pLink);
 
-    bool CheckInvalidCharInSymbolName(ZIBasicSymbol* pSymbol, CString Path);
-    bool CheckUniqueRef(ZIBasicSymbol* pSymbol);
+    bool CheckInvalidCharInSymbolName(PSS_BasicSymbol* pSymbol, CString Path);
+    bool CheckUniqueRef(PSS_BasicSymbol* pSymbol);
     bool RefExist(int ref);
 
     void DeleteCorruptedSymbol(ZBSymbol*                    m_Symbol,

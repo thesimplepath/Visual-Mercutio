@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseSym\ZIBasicSymbol.h"
+#include "zBaseSym\PSS_BasicSymbol.h"
 
 // ZBPropertyAttributes
 #include "zProperty\ZBPropertyAttributes.h"
@@ -38,7 +38,7 @@ class AFX_EXT_CLASS ZVSymbolAttributes
 {
 public:
 
-    ZVSymbolAttributes( ZIBasicSymbol* pSymbol = NULL )
+    ZVSymbolAttributes(PSS_BasicSymbol* pSymbol = NULL )
     {
         m_pEditBoxArea                    = NULL;
         m_pNameEditText                    = NULL;
@@ -67,7 +67,7 @@ public:
         }
     };
 
-    void SetSymbol( ZIBasicSymbol* pSymbol )
+    void SetSymbol(PSS_BasicSymbol* pSymbol )
     {
         m_pSymbol = pSymbol;
     };
@@ -232,7 +232,7 @@ protected:
 
     //@cmember
     /* Pointer to symbol. */
-    ZIBasicSymbol*            m_pSymbol;
+    PSS_BasicSymbol*            m_pSymbol;
 };
 
 #endif // !defined(_ZVSYMBOLATTRIBUTES_H__)

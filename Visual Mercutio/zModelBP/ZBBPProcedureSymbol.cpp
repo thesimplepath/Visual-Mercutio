@@ -2073,7 +2073,7 @@ bool ZBBPProcedureSymbol::SaveProperties(ZBPropertySet& PropSet)
         }
     }
 
-    RefreshAttributeAreaText(true);
+    RefreshAttributeTextArea(true);
 
     return true;
 }
@@ -3326,7 +3326,7 @@ bool ZBBPProcedureSymbol::DropItem(CObject* pObj, CPoint pt)
         SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText(true);
+        RefreshAttributeTextArea(true);
         return true;
     }
 
@@ -3360,7 +3360,7 @@ bool ZBBPProcedureSymbol::DropItem(CObject* pObj, CPoint pt)
         SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText(true);
+        RefreshAttributeTextArea(true);
         return true;
     }
     // *********************************************************************************************

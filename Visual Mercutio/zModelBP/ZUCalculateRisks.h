@@ -17,7 +17,7 @@
 
 // Forward declaration
 class PSS_Log;
-class ZIBasicSymbol;
+class PSS_BasicSymbol;
 class ZBSymbol;
 class ZBLinkSymbol;
 class ZBBPDoorSymbol;

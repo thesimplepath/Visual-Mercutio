@@ -232,7 +232,7 @@ bool ZBBPStopSymbol::DropItem(CObject* pObj, CPoint pt)
         SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText(true);
+        RefreshAttributeTextArea(true);
 
         return true;
     }
@@ -267,7 +267,7 @@ bool ZBBPStopSymbol::DropItem(CObject* pObj, CPoint pt)
         SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText(true);
+        RefreshAttributeTextArea(true);
         return true;
     }
     // **********************************************************************************************************
@@ -812,7 +812,7 @@ bool ZBBPStopSymbol::SaveProperties(ZBPropertySet& PropSet)
         }
     }
 
-    RefreshAttributeAreaText(true);
+    RefreshAttributeTextArea(true);
 
     return true;
 }
