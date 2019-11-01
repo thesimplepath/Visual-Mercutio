@@ -14,12 +14,12 @@
 
 #ifdef _AFXDLL
     #ifdef _DEBUG
-        #pragma comment(lib, "zSOAPd.lib") 
+        #pragma comment(lib, "zSOAPd.lib")
         #pragma message("Automatically linking with zSOAPd.dll")
     #endif
     #ifdef NDEBUG
-        #pragma comment(lib, "zSOAP.lib") 
-        #pragma message("Automatically linking with zSOAP.dll") 
+        #pragma comment(lib, "zSOAP.lib")
+        #pragma message("Automatically linking with zSOAP.dll")
     #endif
 #endif
 

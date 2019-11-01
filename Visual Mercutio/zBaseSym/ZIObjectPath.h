@@ -1,13 +1,18 @@
-// ZIObjectPath.h: interface for the ZIObjectPath class.
+/****************************************************************************
+ * ==> PSS_ObjectPath ------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an object path interface                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZIOBJECTPATH_H__B5847982_B00A_419D_9BDE_669222D2913F__INCLUDED_)
-#define AFX_ZIOBJECTPATH_H__B5847982_B00A_419D_9BDE_669222D2913F__INCLUDED_
+#ifndef PSS_ObjectPathH
+#define PSS_ObjectPathH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -16,70 +21,106 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZBASESYMEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 11 octobre 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-const char ObjectSeparatorChar = _T( ':' );
-
-class AFX_EXT_CLASS ZIObjectPath
+/**
+* Object path interface
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ObjectPath
 {
-public:
+    public:
+        PSS_ObjectPath();
+        virtual ~PSS_ObjectPath();
 
-    ZIObjectPath();
-    virtual ~ZIObjectPath();
+        /**
+        * Gets the absolute path
+        *@return the absolute path
+        */
+        virtual inline CString GetAbsolutePath() const;
 
-    virtual CString GetAbsolutePath() const;
+        /**
+        * Sets the absolute path
+        *@param path - the absolute path
+        */
+        virtual inline void SetAbsolutePath(const CString& path);
 
-    virtual bool    IsEqual( const ZIObjectPath& Path );
+        /**
+        * Checks if paths are equals
+        *@param path - path to compare with
+        *@return if paths are equals
+        */
+        virtual inline bool IsEqual(const PSS_ObjectPath& path);
 
-    virtual void    SetAbsolutePath( const CString Path );
-    virtual void    ClearPath();
-    virtual void    ReCalculateAbsolutePath();
+        /**
+        * Clears the path
+        */
+        virtual inline void ClearPath();
 
-    virtual void    CalculateAbsolutePath()
-    {
-    };
+        /**
+        * Calculates the absolute path
+        */
+        virtual inline void CalculateAbsolutePath();
 
-    virtual void    AddMemberToPath( const CString Member );
-    virtual CString    GetRootMember();
+        /**
+        * Recalculates the absolute path
+        */
+        virtual inline void RecalculateAbsolutePath();
 
-protected:
+        /**
+        * Adds a member to path
+        *@param member - member to add
+        */
+        virtual void AddMemberToPath(const CString& member);
 
-    CString m_ObjectPath;
+        /**
+        * Gets the root member
+        *@return the root member
+        */
+        virtual CString GetRootMember();
+
+    protected:
+        CString m_ObjectPath;
 };
 
-inline CString ZIObjectPath::GetAbsolutePath() const
+//---------------------------------------------------------------------------
+// PSS_ObjectPath
+//---------------------------------------------------------------------------
+CString PSS_ObjectPath::GetAbsolutePath() const
 {
     return m_ObjectPath;
 }
-
-inline void ZIObjectPath::SetAbsolutePath( const CString Path )
+//---------------------------------------------------------------------------
+void PSS_ObjectPath::SetAbsolutePath(const CString& path)
 {
-    m_ObjectPath = Path;
+    m_ObjectPath = path;
 }
-
-inline void ZIObjectPath::ClearPath()
+//---------------------------------------------------------------------------
+bool PSS_ObjectPath::IsEqual(const PSS_ObjectPath& Path)
+{
+    return !m_ObjectPath.Compare((const char*)Path.GetAbsolutePath());
+}
+//---------------------------------------------------------------------------
+void PSS_ObjectPath::ClearPath()
 {
     m_ObjectPath.Empty();
 }
-
-inline void ZIObjectPath::ReCalculateAbsolutePath()
+//---------------------------------------------------------------------------
+void PSS_ObjectPath::CalculateAbsolutePath()
+{}
+//---------------------------------------------------------------------------
+void PSS_ObjectPath::RecalculateAbsolutePath()
 {
     ClearPath();
     CalculateAbsolutePath();
 }
+//---------------------------------------------------------------------------
 
-inline bool ZIObjectPath::IsEqual( const ZIObjectPath& Path )
-{
-    return ( m_ObjectPath.Compare( (const char*)Path.GetAbsolutePath() ) == 0 ) ? true : false;
-}
-
-#endif // !defined(AFX_ZIOBJECTPATH_H__B5847982_B00A_419D_9BDE_669222D2913F__INCLUDED_)
+#endif

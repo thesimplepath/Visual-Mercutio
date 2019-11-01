@@ -1,22 +1,25 @@
-// ZIBasicSymbolAcceptVisitor.cpp: implementation of the ZIBasicSymbolAcceptVisitor class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_BasicSymbolAcceptVisitor ----------------------------------------*
+ ****************************************************************************
+ * Description : Provides a symbol interface which can accept visitors      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZIBasicSymbolAcceptVisitor.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZIBasicSymbolAcceptVisitor::ZIBasicSymbolAcceptVisitor()
+//---------------------------------------------------------------------------
+// PSS_BasicSymbolAcceptVisitor
+//---------------------------------------------------------------------------
+PSS_BasicSymbolAcceptVisitor::PSS_BasicSymbolAcceptVisitor()
 {}
-
-ZIBasicSymbolAcceptVisitor::~ZIBasicSymbolAcceptVisitor()
+//---------------------------------------------------------------------------
+PSS_BasicSymbolAcceptVisitor::~PSS_BasicSymbolAcceptVisitor()
 {}
+//---------------------------------------------------------------------------
