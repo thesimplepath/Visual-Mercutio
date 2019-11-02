@@ -19,7 +19,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -33,7 +33,7 @@
 
 // JMR-MODIF - Le 22 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZUBuildSymbolNewName : public ZIBasicSymbolVisitor
+class AFX_EXT_CLASS ZUBuildSymbolNewName : public PSS_BasicSymbolVisitor
 {
 public:
 
@@ -61,4 +61,4 @@ private:
     CString    m_BaseName;
 };
 
-#endif // !defined(AFX_ZUBuildSymbolNewName_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

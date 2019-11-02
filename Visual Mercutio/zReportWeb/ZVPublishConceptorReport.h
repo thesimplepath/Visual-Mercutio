@@ -10,9 +10,9 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -20,16 +20,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "PSS_Constants.h"
-
+// processsoft
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
 #include "zModel\ZDProcessGraphPage.h"
-
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
-
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
@@ -38,19 +35,18 @@
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
-
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
-
 #include "zWeb\PSS_HtmlFile.h"
+#include "PSS_Constants.h"
 
 #ifdef _ZREPORTWEBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // ******************************************************************************************************
@@ -67,41 +63,41 @@ enum AFX_EXT_CLASS ZVPublishConceptorProc
 // ******************************************************************************************************
 // *                                       Classe ZVPublishConceptorReport                                *
 // ******************************************************************************************************
-class AFX_EXT_CLASS ZVPublishConceptorReport : public ZIBasicSymbolVisitor
+class AFX_EXT_CLASS ZVPublishConceptorReport : public PSS_BasicSymbolVisitor
 {
 public:
 
-    ZVPublishConceptorReport            ( ZDProcessGraphModelMdlBP* pModel    = NULL,
-                                          BOOL bShowDetails                    = TRUE,
-                                          BOOL bShowDeliverables            = TRUE );
+    ZVPublishConceptorReport(ZDProcessGraphModelMdlBP* pModel = NULL,
+                             BOOL bShowDetails = TRUE,
+                             BOOL bShowDeliverables = TRUE);
 
-    virtual ~ZVPublishConceptorReport    ();
+    virtual ~ZVPublishConceptorReport();
 
-    bool Publish                        ( CString Directory );
+    bool Publish(CString Directory);
 
 private:
 
-    void GeneratePageFile                (CString Name, CString Description);
+    void GeneratePageFile(CString Name, CString Description);
 
-    bool CreateFileSystem                ( ZBUserGroupEntity* pGroup, CString Directory );
-    bool CreateProcess                    ();
-    bool StartSection                    ( CODNodeArray& Nodes );
-    bool OnDoorSymbol                    ( ZBBPDoorSymbol* pSymbol );
-    bool OnPageSymbol                    ( ZBBPPageSymbol* pSymbol );
-    bool OnProcedureSymbol                ( ZBBPProcedureSymbol* pSymbol );
-    bool OnProcessSymbol                ( ZBBPProcessSymbol* pSymbol );
-    bool OnStartSymbol                    ( ZBBPStartSymbol* pSymbol );
-    bool OnStopSymbol                    ( ZBBPStopSymbol* pSymbol );
-    bool OnDeliverableLinkSymbol        ( ZBDeliverableLinkSymbol* pSymbol );
-    bool OnSymbol                        ( ZBSymbol* pSymbol );
-    bool OnLink                            ( ZBLinkSymbol* pLink );
+    bool CreateFileSystem(ZBUserGroupEntity* pGroup, CString Directory);
+    bool CreateProcess();
+    bool StartSection(CODNodeArray& Nodes);
+    bool OnDoorSymbol(ZBBPDoorSymbol* pSymbol);
+    bool OnPageSymbol(ZBBPPageSymbol* pSymbol);
+    bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    bool OnProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
+    bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
+    bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
+    bool OnSymbol(ZBSymbol* pSymbol);
+    bool OnLink(ZBLinkSymbol* pLink);
 
-    virtual bool Visit                    ( CODComponent& Symbol );
+    virtual bool Visit(CODComponent& Symbol);
 
-    CString GenerateFilename            ( CString Directory, CString EntityName );
+    CString GenerateFilename(CString Directory, CString EntityName);
 
-    void WriteLine                        ( CString Text );
-    void WriteLine                        ( int nID );
+    void WriteLine(CString Text);
+    void WriteLine(int nID);
 
 private:
 
@@ -126,4 +122,4 @@ private:
     ZVPublishConceptorProc                PublishProc;
 };
 
-#endif // !defined(AFX_ZVPUBLISHCONCEPTORREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
+#endif

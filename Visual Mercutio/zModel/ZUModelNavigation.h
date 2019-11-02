@@ -34,7 +34,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 // Forward declaration
 class ZBSymbol;
@@ -54,7 +54,7 @@ class PSS_Log;
 
 // JMR-MODIF - Le 23 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZUModelNavigation : public ZIBasicSymbolVisitor
+class AFX_EXT_CLASS ZUModelNavigation : public PSS_BasicSymbolVisitor
 {
 public:
 

@@ -33,7 +33,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 // forward class declarations
 class ZBBPProcessSymbol;
@@ -52,7 +52,7 @@ class PSS_Log;
 
 // JMR-MODIF - Le 8 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZUExtractProcessName : public ZIBasicSymbolVisitor
+class AFX_EXT_CLASS ZUExtractProcessName : public PSS_BasicSymbolVisitor
 {
 public:
 

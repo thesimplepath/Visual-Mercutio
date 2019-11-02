@@ -1488,7 +1488,7 @@ void ZDProcessGraphModelController::OnEditPaste()
 
         // Recalculate all references
         GetRootModel()->RecalculateParentPtr();
-        GetRootModel()->ReCalculateAbsolutePath();
+        GetRootModel()->RecalculateAbsolutePath();
     }
     else
     {

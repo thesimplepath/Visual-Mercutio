@@ -33,7 +33,7 @@ DllMain( HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved )
         {
             TRACE0(_T("ZCONVERSION.DLL Initializing!\n"));
 
-            // Extension DLL one-time initialization
+            // extension DLL one-time initialization
             if (!AfxInitExtensionModule(g_zConversionDLL, hInstance))
                 return 0;
 
@@ -52,7 +52,7 @@ DllMain( HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved )
         {
             TRACE0(_T("ZCONVERSION.DLL Terminating!\n"));
 
-            // Terminate the library before destructors are called
+            // terminate the library before destructors are called
             AfxTermExtensionModule(g_zConversionDLL);
 
             break;

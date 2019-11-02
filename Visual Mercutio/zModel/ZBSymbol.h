@@ -16,25 +16,21 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseSym\PSS_BasicSymbol.h"
-#include "zBaseSym\ZIObjectPath.h"
-#include "zBaseSym\ZINavigableSymbol.h"
-
-#include "zBaseLib\PSS_Bitmap.h"
-
-#include "zProperty\ZIProperties.h"
+// processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
+#include "zBaseLib\PSS_Tokenizer.h"
+#include "zBaseLib\PSS_Bitmap.h"
 #include "zBaseLib\PSS_ToolTip.h"
-
+#include "zBaseSym\PSS_BasicSymbolAcceptVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
+#include "zBaseSym\PSS_BasicSymbol.h"
+#include "zBaseSym\PSS_ObjectPath.h"
+#include "zBaseSym\PSS_NavigableSymbol.h"
+#include "zProperty\ZIProperties.h"
 #include "zModel\ZBExtAppPropertyMgr.h"
 #include "zModel\ZBExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
-
-// JMR-MODIF - Le 20 février 2006 - Ajout de l'en-tête pour la prise en charge des Tokens.
-#include "zBaseLib\PSS_Tokenizer.h"
 
 //////////////////////////////////////////////////////////////////////
 // Forward declaration
@@ -56,13 +52,13 @@ class ZBPropertyAttributes;
 // Each symbol implement the subject and observer interface
 class AFX_EXT_CLASS ZBSymbol : public CODSymbolComponent,
                                public PSS_BasicSymbol,
-                               public ZIObjectPath,
-                               public ZINavigableSymbol,
+                               public PSS_ObjectPath,
+                               public PSS_NavigableSymbol,
                                public ZIProperties,
                                public ZBExtAppPropertyMgr,
                                public ZBExtFilePropertyMgr,
                                public ZVSymbolAttributes,
-                               public ZIBasicSymbolAcceptVisitor,
+                               public PSS_BasicSymbolAcceptVisitor,
                                public PSS_Subject,
                                public PSS_Observer,
                                public PSS_ToolTip
@@ -557,7 +553,7 @@ public:
 
     /* AcceptVisitor method let the object be visited
        by concreted derived ZIBasicSymbolVisitor classes */
-    virtual bool AcceptVisitor(ZIBasicSymbolVisitor& Visitor)
+    virtual bool AcceptVisitor(PSS_BasicSymbolVisitor& Visitor)
     {
         return Visitor.Visit(*this);
     }

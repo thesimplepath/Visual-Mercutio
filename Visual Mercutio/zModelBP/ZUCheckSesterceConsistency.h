@@ -25,7 +25,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 // Forward declaration
 class PSS_Log;
@@ -42,7 +42,7 @@ class ZDProcessGraphModelMdl;
 
 // JMR-MODIF - Le 17 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class ZUCheckSesterceConsistency : public ZIBasicSymbolVisitor
+class ZUCheckSesterceConsistency : public PSS_BasicSymbolVisitor
 {
 public:
 

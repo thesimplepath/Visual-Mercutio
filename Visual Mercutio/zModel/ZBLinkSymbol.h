@@ -16,28 +16,23 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseSym\PSS_BasicSymbol.h"
-#include "zBaseSym\ZIObjectPath.h"
-#include "zProperty\ZIProperties.h"
+// processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
+#include "zBaseLib\PSS_Bitmap.h"
 #include "zBaseLib\PSS_ToolTip.h"
-
-// ZBPropertyAttributes
+#include "zBaseSym\PSS_BasicSymbol.h"
+#include "zBaseSym\PSS_ObjectPath.h"
+#include "zBaseSym\PSS_BasicSymbolAcceptVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
+#include "zProperty\ZIProperties.h"
 #include "zProperty\ZBPropertyAttributes.h"
-
 #include "zModel\ZBExtAppPropertyMgr.h"
 #include "zModel\ZBExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
-
-#include "zBaseLib\PSS_Bitmap.h"
-
 #include "zModel\Maths.h"
 
-//////////////////////////////////////////////////////////////////////
-// Forward declaration
+// forward declaration
 class ZBSymbolEdit;
 class ZBPropertyAttributes;
 
@@ -54,16 +49,16 @@ class ZBPropertyAttributes;
 // JMR-MODIF - Le 28 septembre 2005 - Ajout de la décoration unicode _T( ), suppression du code inutilisé.
 
 class AFX_EXT_CLASS ZBLinkSymbol : public CODLinkComponent,
-    public PSS_BasicSymbol,
-    public ZIObjectPath,
-    public ZIProperties,
-    public ZBExtAppPropertyMgr,
-    public ZBExtFilePropertyMgr,
-    public ZVSymbolAttributes,
-    public ZIBasicSymbolAcceptVisitor,
-    public PSS_Subject,
-    public PSS_Observer,
-    public PSS_ToolTip
+                                   public PSS_BasicSymbol,
+                                   public PSS_ObjectPath,
+                                   public ZIProperties,
+                                   public ZBExtAppPropertyMgr,
+                                   public ZBExtFilePropertyMgr,
+                                   public ZVSymbolAttributes,
+                                   public PSS_BasicSymbolAcceptVisitor,
+                                   public PSS_Subject,
+                                   public PSS_Observer,
+                                   public PSS_ToolTip
 {
     DECLARE_SERIAL(ZBLinkSymbol)
 
@@ -539,7 +534,7 @@ public:
 
     /* AcceptVisitor method let the object be visited
        by concreted derived ZIBasicSymbolVisitor classes */
-    virtual bool AcceptVisitor(ZIBasicSymbolVisitor& Visitor)
+    virtual bool AcceptVisitor(PSS_BasicSymbolVisitor& Visitor)
     {
         return Visitor.Visit(*this);
     };

@@ -13,7 +13,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 // Forward declaration
 class PSS_Log;
@@ -31,7 +31,7 @@ class ZDProcessGraphModelMdl;
 class ZDProcessGraphModelMdlBP;
 class ZDProcessGraphModelController;
 
-class ZUCalculateRisks : public ZIBasicSymbolVisitor
+class ZUCalculateRisks : public PSS_BasicSymbolVisitor
 {
 public:
 

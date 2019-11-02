@@ -431,7 +431,7 @@ void ZDProcessGraphModelMdl::SetModelName(const CString value)
 
     // Recalculate all references
     RecalculateParentPtr();
-    ReCalculateAbsolutePath();
+    RecalculateAbsolutePath();
 }
 
 const CString ZDProcessGraphModelMdl::GetDescription()
@@ -1804,7 +1804,7 @@ void ZDProcessGraphModelMdl::_GetExistingReferenceNumberArray(CStringArray& Refe
     }
 }
 
-bool ZDProcessGraphModelMdl::AcceptVisitor(ZIBasicSymbolVisitor& Visitor)
+bool ZDProcessGraphModelMdl::AcceptVisitor(PSS_BasicSymbolVisitor& Visitor)
 {
     CODComponentSet* pSet = GetComponents();
 
@@ -3115,7 +3115,7 @@ void ZDProcessGraphModelMdl::SetParent(ZDProcessGraphModelMdl* value)
 
 void ZDProcessGraphModelMdl::ClearPath()
 {
-    ZIObjectPath::ClearPath();
+    PSS_ObjectPath::ClearPath();
     CODComponentSet* pSet = GetComponents();
 
     for (int i = 0; i < pSet->GetSize(); ++i)

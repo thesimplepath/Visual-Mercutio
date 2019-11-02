@@ -16,11 +16,11 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zBaseLib\PSS_Subject.h"
-#include "zBaseSym\ZIObjectPath.h"
+#include "zBaseSym\PSS_ObjectPath.h"
 #include "zProperty\ZIProperties.h"
-#include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
-#include "zBaseSym\ZIBasicSymbolVisitor.h"
-#include "zBaseSym\ZINavigableModel.h"
+#include "zBaseSym\PSS_BasicSymbolAcceptVisitor.h"
+#include "zBaseSym\PSS_BasicSymbolVisitor.h"
+#include "zBaseSym\PSS_NavigableModel.h"
 #include "PSS_LanguageDefs.h"
 
 // JMR-MODIF - Le 26 mai 2005 - Ajout de cet include pour résoudre une erreur de lien.
@@ -54,8 +54,8 @@ class ZBLogicalRulesEntity;
 class ZBRulesEntity;
 
 // processsoft
-#include "zEvent\ZResourc.h"
 #include "zBaseLib\PSS_UserManager.h"
+#include "zEvent\ZResourc.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -85,11 +85,11 @@ typedef CCArray_T<ZDProcessGraphPage*, ZDProcessGraphPage*> ZBProcessGraphPageSe
 typedef Iterator_T<ZDProcessGraphPage*> ZBProcessGraphPageIterator;
 
 class AFX_EXT_CLASS ZDProcessGraphModelMdl : public CODModel,
-    public PSS_Subject,
-    public ZIObjectPath,
-    public ZIProperties,
-    public ZINavigableModel,
-    public ZIBasicSymbolAcceptVisitor
+                                             public PSS_Subject,
+                                             public PSS_ObjectPath,
+                                             public ZIProperties,
+                                             public PSS_NavigableModel,
+                                             public PSS_BasicSymbolAcceptVisitor
 {
     DECLARE_SERIAL(ZDProcessGraphModelMdl)
 
@@ -452,7 +452,7 @@ public:
     }
 
     ///////////////////////////////////////////////////////
-    // ZIObjectPath    methods
+    // PSS_ObjectPath    methods
     virtual void                    ClearPath();
     virtual void                    CalculateAbsolutePath();
 
@@ -477,7 +477,7 @@ public:
 
     /* AcceptVisitor method let the object be visited
        by concreted derived ZIBasicSymbolVisitor classes */
-    virtual bool                    AcceptVisitor(ZIBasicSymbolVisitor& Visitor);
+    virtual bool                    AcceptVisitor(PSS_BasicSymbolVisitor& Visitor);
 
     ///////////////////////////////////////////////////////
     // ZINavigableModel methods
