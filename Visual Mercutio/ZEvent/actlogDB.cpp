@@ -1,210 +1,213 @@
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
+/****************************************************************************
+ * ==> PSS_ActivityLogDatabase ---------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an activity log database                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include <StdAfx.h>
-
-// ActLogDB
 #include "ActLogDB.h"
+
+// processsoft
 #include "zBaseLib\PSS_Date.h"
 
-ZUActivityLogDatabase::ZUActivityLogDatabase (CString LogFileName) :
-    m_LogFileName(LogFileName),
-    m_pLogRecordset(NULL)
+#ifdef _DEBUG
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
+#endif
+
+//---------------------------------------------------------------------------
+// PSS_ActivityLogDatabase
+//---------------------------------------------------------------------------
+PSS_ActivityLogDatabase::PSS_ActivityLogDatabase(const CString& fileName) :
+    m_pLogRecordSet(NULL),
+    m_FileName(fileName)
 {}
-
-
-ZUActivityLogDatabase::~ZUActivityLogDatabase()
+//---------------------------------------------------------------------------
+PSS_ActivityLogDatabase::PSS_ActivityLogDatabase(const PSS_ActivityLogDatabase& other)
 {
+    THROW("Copy constructor isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
+PSS_ActivityLogDatabase::~PSS_ActivityLogDatabase()
+{
+    // NOTE the fully qualified name is required here to avoid any pure virtual function call issues
+    PSS_ActivityLogDatabase::Close();
+}
+//---------------------------------------------------------------------------
+const PSS_ActivityLogDatabase& PSS_ActivityLogDatabase::operator = (const PSS_ActivityLogDatabase& other)
+{
+    THROW("Copy operator isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
+void PSS_ActivityLogDatabase::Create(const CString& fileName)
+{
+    m_FileName = fileName;
+
+    if (m_FileName.IsEmpty())
+        return;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogDatabase::AppendToLog(const ZBEventActivity& eventActivity)
+{
+    if (!m_Database.IsOpen())
+        OpenWrite();
+
+    if (!m_pRecordSet)
+        return FALSE;
+
+    try
+    {
+        if (!m_pRecordSet->IsOpen())
+            m_pRecordSet->Open(dbOpenDynaset, NULL, dbAppendOnly);
+
+        if (m_pRecordSet->IsOpen() && m_pRecordSet->CanUpdate())
+            m_pRecordSet->AddNew();
+    }
+    catch (CDaoException&)
+    {
+        return FALSE;
+    }
+
+    const PSS_Date currentDate = PSS_Date::GetToday();
+
+    // populate the table record
+    m_pRecordSet->SetDate                (currentDate);
+    m_pRecordSet->SetEventType           (eventActivity.GetActivityEventTypeString());
+    m_pRecordSet->SetProcessFilename     (eventActivity.GetProcessFilename());
+    m_pRecordSet->SetFormDataFilename    (eventActivity.GetExchangeDataFilename());
+    m_pRecordSet->SetProcessDataFilename (eventActivity.GetProcessExchangeDataFilename());
+    m_pRecordSet->SetFolderName          (eventActivity.GetFolderName());
+    m_pRecordSet->SetProcessName         (eventActivity.GetProcessName());
+    m_pRecordSet->SetProcessCreationDate (eventActivity.GetProcessCreationDate());
+    m_pRecordSet->SetProcessDueDate      (eventActivity.GetProcessDueDate());
+    m_pRecordSet->SetActivityType        (eventActivity.GetActivityType());
+    m_pRecordSet->SetActivityName        (eventActivity.GetActivityName());
+    m_pRecordSet->SetActivityCreationDate(eventActivity.GetActivityCreationDate());
+    m_pRecordSet->SetActivityDueDate     (eventActivity.GetActivityDueDate());
+    m_pRecordSet->SetActivityStatus      (eventActivity.GetActivityStatus());
+    m_pRecordSet->SetSender              (eventActivity.GetSender());
+    m_pRecordSet->SetReceiver            (eventActivity.GetReceiver());
+    m_pRecordSet->SetComments            (eventActivity.GetComments());
+    m_pRecordSet->SetInBackup            (eventActivity.GetIsInBackup());
+
+    try
+    {
+        // update the new inserted recordset
+        m_pRecordSet->Update();
+        m_pRecordSet->Close();
+    }
+    catch (CDaoException&)
+    {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogDatabase::ClearLog()
+{
+    if (!m_Database.IsOpen())
+        OpenWrite();
+
+    if (!m_pRecordSet)
+        return FALSE;
+
+    try
+    {
+        // build the query statement
+        const CString query = "DELETE " + g_ActivityLogTableName + ".* FROM " + g_ActivityLogTableName + ";";
+
+        // execute the query
+        m_Database.Execute(Query);
+    }
+    catch (CDaoException&)
+    {
+        Close();
+        return FALSE;
+    }
+
     Close();
-}
-
-
-void ZUActivityLogDatabase::Create (CString LogFileName)
-{
-      m_LogFileName = LogFileName;
-      if (m_LogFileName.IsEmpty())
-          return;
-}
-
-
-BOOL ZUActivityLogDatabase::OpenRead ()
-{
-   //Open the database and the recordset
-    try 
-    {
-        // First close the database
-        Close();
-        m_LogDatabase.Open( m_LogFileName, FALSE, TRUE );
-        m_pLogRecordset = new ZDActivityLogRecordset( &m_LogDatabase, m_LogFileName );
-        if (m_pLogRecordset)
-        {
-            m_pLogRecordset->Open( dbOpenSnapshot, NULL, dbReadOnly );
-        }
-        else
-        {
-            Close();
-            return FALSE;
-        }
-    } 
-    catch (CDaoException&)
-    {
-        return (FALSE);
-    }
-
     return TRUE;
 }
-
-BOOL ZUActivityLogDatabase::OpenWrite ()
-{
-   //Open the database and the recordset
-    try 
-    {
-        // First close the database
-        Close();
-        m_LogDatabase.Open( m_LogFileName );
-        m_pLogRecordset = new ZDActivityLogRecordset( &m_LogDatabase, m_LogFileName );
-        if (m_pLogRecordset)
-        {
-            m_pLogRecordset->Open( dbOpenDynaset, NULL, dbAppendOnly );
-        }
-        else
-        {
-            Close();
-            return FALSE;
-        }
-    } 
-    catch (CDaoException&)
-    {
-        return (FALSE);
-    }
-
-    return TRUE;
-}
-
-BOOL ZUActivityLogDatabase::Close ()
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogDatabase::Close()
 {
     TRY
     {
-        if (m_pLogRecordset)
+        if (m_pRecordSet)
         {
-            if (m_pLogRecordset->IsOpen())
-                m_pLogRecordset->Close();
-            delete m_pLogRecordset;
-            m_pLogRecordset = NULL;
+            if (m_pRecordSet->IsOpen())
+                m_pRecordSet->Close();
+
+            delete m_pRecordSet;
+            m_pRecordSet = NULL;
         }
-        if (m_LogDatabase.IsOpen())
-            m_LogDatabase.Close();
+
+        if (m_Database.IsOpen())
+            m_Database.Close();
     }
-    CATCH( CDaoException, e )
+    CATCH(CDaoException, e)
     {
-        // Do nothing
+        // do nothing
         return FALSE;
     }
     END_CATCH
-    return TRUE;
-}
-
-
-BOOL ZUActivityLogDatabase::AppendToLog (ZBEventActivity& EventActivity)
-{
-    if (!m_LogDatabase.IsOpen())
-        OpenWrite();
-    if (!m_pLogRecordset)
-        return FALSE;
-    try 
-    {
-        if (!m_pLogRecordset->IsOpen())
-            m_pLogRecordset->Open( dbOpenDynaset, NULL, dbAppendOnly );
-        if (m_pLogRecordset->IsOpen() && m_pLogRecordset->CanUpdate())
-            m_pLogRecordset->AddNew();
-    }
-    catch (CDaoException&)
-    {
-        return (FALSE);
-    }
-
-    PSS_Date CurrentDate = PSS_Date::GetToday();
-
-    // The current date
-    m_pLogRecordset->SetDate( CurrentDate );
-    // The Event type
-    m_pLogRecordset->SetEventType( EventActivity.GetActivityEventTypeString() );
-    // The process file
-      m_pLogRecordset->SetProcessFilename( EventActivity.GetProcessFilename() );
-    // The form data file
-    m_pLogRecordset->SetFormDataFilename( EventActivity.GetExchangeDataFilename() );
-    // The process data file
-    m_pLogRecordset->SetProcessDataFilename( EventActivity.GetProcessExchangeDataFilename() );
-    // The folder name
-    m_pLogRecordset->SetFolderName( EventActivity.GetFolderName() );
-    // The process name    
-    m_pLogRecordset->SetProcessName( EventActivity.GetProcessName() );
-    // The process start date
-    m_pLogRecordset->SetProcessCreationDate( EventActivity.GetProcessCreationDate() );
-    // The process end date
-    m_pLogRecordset->SetProcessDueDate( EventActivity.GetProcessDueDate() );
-    // The activity type
-    m_pLogRecordset->SetActivityType( EventActivity.GetActivityType() );
-    // The activity name    
-    m_pLogRecordset->SetActivityName( EventActivity.GetActivityName() );
-    // The activity start date
-    m_pLogRecordset->SetActivityCreationDate( EventActivity.GetActivityCreationDate() );
-    // The activity end date
-    m_pLogRecordset->SetActivityDueDate( EventActivity.GetActivityDueDate() );
-    // The status
-      m_pLogRecordset->SetActivityStatus( EventActivity.GetActivityStatus() );
-    // The sender
-      m_pLogRecordset->SetSender( EventActivity.GetSender() );
-    // The receiver
-      m_pLogRecordset->SetReceiver( EventActivity.GetReceiver() );
-    // The comment
-      m_pLogRecordset->SetComments( EventActivity.GetComments() );
-    // Is In Backup mode or not
-    m_pLogRecordset->SetInBackup( EventActivity.GetIsInBackup() );
-
-    try 
-    {
-        // Now update the new inserted record
-        m_pLogRecordset->Update();
-        m_pLogRecordset->Close();
-    }
-    catch (CDaoException&)
-    {
-        return (FALSE);
-    }
 
     return TRUE;
 }
-
-
-
-
-BOOL ZUActivityLogDatabase::ClearLog ()
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogDatabase::OpenRead()
 {
-    if (!m_LogDatabase.IsOpen())
-        OpenWrite();
-    if (!m_pLogRecordset)
-        return FALSE;
-    try 
+    // open the database and the recordset
+    try
     {
-        CString    Query = "DELETE ";
-        Query += g_ActivityLogTableName; 
-        Query += ".* FROM "; 
-        Query += g_ActivityLogTableName; 
-        Query += ";";
-        
-        m_LogDatabase.Execute( Query );
-
-//        m_pLogRecordset->m_strFilter = Query;
-//        m_pLogRecordset->Requery();
-    } 
-    catch (CDaoException&)
-    {
+        // close the previously opened database, if any
         Close();
+
+        m_Database.Open(m_FileName, FALSE, TRUE);
+        m_pRecordSet = new ZDActivityLogRecordset(&m_Database, m_FileName);
+
+        if (m_pRecordSet)
+            m_pRecordSet->Open(dbOpenSnapshot, NULL, dbReadOnly);
+        else
+        {
+            Close();
+            return FALSE;
+        }
+    }
+    catch (CDaoException&)
+    {
         return FALSE;
     }
 
-    Close();
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogDatabase::OpenWrite()
+{
+    // open the database and the recordset
+    try
+    {
+        // close the previously opened database, if any
+        Close();
+
+        m_Database.Open(m_FileName);
+        m_pRecordset = new ZDActivityLogRecordset(&m_Database, m_FileName);
+
+        if (m_pRecordset)
+            m_pRecordset->Open(dbOpenDynaset, NULL, dbAppendOnly);
+        else
+        {
+            Close();
+            return FALSE;
+        }
+    }
+    catch (CDaoException&)
+    {
+        return FALSE;
+    }
 
     return TRUE;
 }
+//---------------------------------------------------------------------------

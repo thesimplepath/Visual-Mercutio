@@ -1,91 +1,104 @@
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-#include <StdAfx.h>
+/****************************************************************************
+ * ==> PSS_ActivityLog -----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an activity logger                                *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-// ActLog
+#include <StdAfx.h>
 #include "ActLog.h"
 
+#ifdef _DEBUG
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
+#endif
 
-ZUActivityLog::ZUActivityLog (CString LogFileName, BOOL UseDatabase)
-  : m_LogFileName(LogFileName), m_UseDatabase(UseDatabase),
-    m_pActivityLogDatabase(NULL), m_pActivityLogFile(NULL)
+//---------------------------------------------------------------------------
+// PSS_ActivityLog
+//---------------------------------------------------------------------------
+PSS_ActivityLog::PSS_ActivityLog(const CString& fileName, BOOL useDatabase) :
+    m_pActivityLogDatabase(NULL),
+    m_pActivityLogFile(NULL),
+    m_FileName(fileName),
+    m_UseDatabase(useDatabase)
+{}
+//---------------------------------------------------------------------------
+PSS_ActivityLog::PSS_ActivityLog(const PSS_ActivityLog& other)
 {
+    THROW("Copy constructor isn't allowed for this class");
 }
-
-BOOL ZUActivityLog::Create (CString LogFileName, BOOL UseDatabase)
-{
-    m_UseDatabase = UseDatabase;
-      m_LogFileName = LogFileName;
-    return ZUActivityLog::Initialize();
-}
-
-
-BOOL ZUActivityLog::Initialize ()
-{
-      if (m_LogFileName.IsEmpty())
-          return FALSE;
-    if (m_UseDatabase)
-        m_pActivityLogDatabase = new ZUActivityLogDatabase( m_LogFileName );
-    else
-        m_pActivityLogFile = new ZUActivityLogFile( m_LogFileName );
-
-    return TRUE;
-}
-
-ZUActivityLog::~ZUActivityLog()
+//---------------------------------------------------------------------------
+PSS_ActivityLog::~PSS_ActivityLog()
 {
     if (m_UseDatabase && m_pActivityLogDatabase)
     {
         m_pActivityLogDatabase->Close();
         delete m_pActivityLogDatabase;
-        m_pActivityLogDatabase = NULL;
     }
     else
-        if (m_pActivityLogFile)
-        {
-            m_pActivityLogFile->Close();
-            delete m_pActivityLogFile;
-            m_pActivityLogFile = NULL;
-        }
+    if (m_pActivityLogFile)
+    {
+        m_pActivityLogFile->Close();
+        delete m_pActivityLogFile;
+    }
 }
+//---------------------------------------------------------------------------
+const PSS_ActivityLog& PSS_ActivityLog::operator = (const PSS_ActivityLog& other)
+{
+    THROW("Copy operator isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLog::Create(const CString& fileName, BOOL useDatabase)
+{
+    m_FileName    = fileName;
+    m_UseDatabase = useDatabase;
 
+    return Initialize();
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLog::Initialize()
+{
+    if (m_FileName.IsEmpty())
+        return FALSE;
 
+    if (m_UseDatabase)
+        m_pActivityLogDatabase = new ZUActivityLogDatabase(m_FileName);
+    else
+        m_pActivityLogFile = new ZUActivityLogFile(m_FileName);
 
-
-BOOL ZUActivityLog::Close ()
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLog::AppendToLog(const ZBEventActivity& eventActivity)
 {
     if (m_UseDatabase && m_pActivityLogDatabase)
-    {
-        return m_pActivityLogDatabase->Close();
-    }
+        return m_pActivityLogDatabase->AppendToLog(eventActivity);
     else
-        if (m_pActivityLogFile)
-            return m_pActivityLogFile->Close();
+    if (m_pActivityLogFile)
+        return m_pActivityLogFile->AppendToLog(eventActivity);
+
     return FALSE;
 }
-
-
-BOOL ZUActivityLog::AppendToLog (ZBEventActivity& EventActivity)
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLog::ClearLog()
 {
     if (m_UseDatabase && m_pActivityLogDatabase)
-    {
-        return m_pActivityLogDatabase->AppendToLog( EventActivity );
-    }
-    else
-        if (m_pActivityLogFile)
-            return m_pActivityLogFile->AppendToLog( EventActivity );
-    return FALSE;
-}
-
-
-BOOL ZUActivityLog::ClearLog()
-{
-    if (m_UseDatabase && m_pActivityLogDatabase)
-    {
         return m_pActivityLogDatabase->ClearLog();
-    }
     else
-        if (m_pActivityLogFile)
-            return m_pActivityLogFile->ClearLog();
+    if (m_pActivityLogFile)
+        return m_pActivityLogFile->ClearLog();
+
     return FALSE;
 }
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLog::Close()
+{
+    if (m_UseDatabase && m_pActivityLogDatabase)
+        return m_pActivityLogDatabase->Close();
+    else
+    if (m_pActivityLogFile)
+        return m_pActivityLogFile->Close();
+
+    return FALSE;
+}
+//---------------------------------------------------------------------------

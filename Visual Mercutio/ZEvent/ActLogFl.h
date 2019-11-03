@@ -58,8 +58,4 @@ class AFX_EXT_CLASS ZUActivityLogFile
 
 };
 
-
-//#undef  AFX_DATA
-//#define AFX_DATA
-
 #endif
