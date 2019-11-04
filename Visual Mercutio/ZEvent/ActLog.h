@@ -118,7 +118,7 @@ const CString PSS_ActivityLog::GetFileName() const
     return m_FileName;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityLog::SetFileName(CString value)
+void PSS_ActivityLog::SetFileName(const CString& value)
 {
     m_FileName = value;
 }

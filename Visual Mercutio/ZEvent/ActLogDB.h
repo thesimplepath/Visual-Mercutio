@@ -58,12 +58,6 @@ class AFX_EXT_CLASS PSS_ActivityLogDatabase
         virtual inline const CString GetFileName() const;
 
         /**
-        * Sets the log file name
-        *@param value - the log file name
-        */
-        virtual inline void SetFileName(const CString& value);
-
-        /**
         * Appends an activity to the log
         *@param eventActivity - event activity
         *@return TRUE on success, otherwise FALSE
@@ -119,11 +113,6 @@ class AFX_EXT_CLASS PSS_ActivityLogDatabase
 const CString PSS_ActivityLogDatabase::GetFileName() const
 {
     return m_FileName;
-}
-//---------------------------------------------------------------------------
-void PSS_ActivityLogDatabase::SetFileName(CString value)
-{
-    m_FileName = value;
 }
 //---------------------------------------------------------------------------
 
