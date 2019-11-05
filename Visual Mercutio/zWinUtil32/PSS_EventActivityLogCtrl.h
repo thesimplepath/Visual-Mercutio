@@ -18,8 +18,8 @@
 
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
+#include "zEvent\PSS_ActivityEvent.h"
 #include "zEvent\EventManager.h"
-#include "zEvent\ActEvent.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_EventActivityLogCtrl : public PSS_ListCtrl
         *@return event activity
         */
         #ifdef _WIN32
-            AFX_EXT_API friend ZBEventActivity& operator >> (ZBEventActivity& left, PSS_EventActivityLogCtrl& listCtrl);
+            AFX_EXT_API friend PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_EventActivityLogCtrl& listCtrl);
         #endif
 
         /**
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_EventActivityLogCtrl : public PSS_ListCtrl
         * Gets selected item
         *@return selected item, NULL if not found or on error
         */
-        virtual ZBEventActivity* GetSelectedItem() const;
+        virtual PSS_ActivityEvent* GetSelectedItem() const;
 
         /**
         * Refreshes the logger

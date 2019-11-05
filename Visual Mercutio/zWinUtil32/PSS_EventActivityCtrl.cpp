@@ -79,12 +79,12 @@ const PSS_EventActivityCtrl& PSS_EventActivityCtrl::operator = (const PSS_EventA
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    ZBEventActivity& operator >> (ZBEventActivity& left, PSS_EventActivityCtrl& listCtrl)
+PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_EventActivityCtrl& listCtrl)
     {
         const int index      = listCtrl.GetItemCount();
               int imageIndex = 13;
 
-        if (left.GetActivityEventType() != MessageActivity)
+        if (left.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
             if (left.GetActivityStatus() == ActivityStatusProcessPaused)
                 imageIndex = 12;
             else
@@ -145,12 +145,12 @@ void PSS_EventActivityCtrl::Initialize(ZBEventManager* pEventManager)
     Refresh();
 }
 //---------------------------------------------------------------------------
-ZBEventActivity* PSS_EventActivityCtrl::GetSelectedItem() const
+PSS_ActivityEvent* PSS_EventActivityCtrl::GetSelectedItem() const
 {
     POSITION pPos = GetFirstSelectedItemPosition();
 
     if (pPos)
-        return (ZBEventActivity*)GetItemData(GetNextSelectedItem(pPos));
+        return (PSS_ActivityEvent*)GetItemData(GetNextSelectedItem(pPos));
 
     return NULL;
 }
@@ -166,12 +166,12 @@ void PSS_EventActivityCtrl::Refresh()
     const int eventCount = m_pEventManager->GetEventCount();
 
     for (int i = 0; i < eventCount; ++i)
-        ((ZBEventActivity&)*(m_pEventManager->GetEventAt(i))) >> *this;
+        ((PSS_ActivityEvent&)*(m_pEventManager->GetEventAt(i))) >> *this;
 }
 //---------------------------------------------------------------------------
 LRESULT PSS_EventActivityCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lParam)
 {
-    ZBEventActivity* pEvent = (ZBEventActivity*)lParam;
+    PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)lParam;
 
     // were the columns never built?
     if (!ColumnsHasBeenBuilt())

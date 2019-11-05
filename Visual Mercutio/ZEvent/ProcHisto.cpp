@@ -1,39 +1,34 @@
 //    ADSoft / Advanced Dedicated Software
 //    Dominique AIGROZ
 #include <StdAfx.h>
-
-// ProcHisto
 #include "ProcHisto.h"
 
-
-ZDProcessHistoryDb::ZDProcessHistoryDb (CString DatabaseFileName, DatabaseType DatabaseTp)
-  : m_DatabaseFileName(DatabaseFileName), m_DatabaseTp(DatabaseTp),
+ZDProcessHistoryDb::ZDProcessHistoryDb(CString DatabaseFileName, DatabaseType DatabaseTp)
+    : m_DatabaseFileName(DatabaseFileName), m_DatabaseTp(DatabaseTp),
     m_pProcessHistoDAO(NULL)
-{
-}
+{}
 
-BOOL ZDProcessHistoryDb::Create (CString DatabaseFileName, DatabaseType DatabaseTp)
+BOOL ZDProcessHistoryDb::Create(CString DatabaseFileName, DatabaseType DatabaseTp)
 {
-      m_DatabaseFileName = DatabaseFileName;
+    m_DatabaseFileName = DatabaseFileName;
     m_DatabaseTp = DatabaseTp;
     return ZDProcessHistoryDb::Initialize();
 }
 
-
-BOOL ZDProcessHistoryDb::Initialize ()
+BOOL ZDProcessHistoryDb::Initialize()
 {
-      if (m_DatabaseFileName.IsEmpty())
-          return FALSE;
+    if (m_DatabaseFileName.IsEmpty())
+        return FALSE;
     switch (m_DatabaseTp)
     {
         case DAODatabase:
         {
-            m_pProcessHistoDAO = new ZDProcessHistoryDAO( m_DatabaseFileName );
+            m_pProcessHistoDAO = new ZDProcessHistoryDAO(m_DatabaseFileName);
             break;
         }
         case ODBCDatabase:
         {
-            ASSERT( FALSE );    // Not yet implemented
+            ASSERT(FALSE);    // Not yet implemented
             return FALSE;
         }
 
@@ -57,17 +52,14 @@ ZDProcessHistoryDb::~ZDProcessHistoryDb()
         }
         case ODBCDatabase:
         {
-            ASSERT( FALSE );    // Not yet implemented
+            ASSERT(FALSE);    // Not yet implemented
             break;
         }
 
     }
 }
 
-
-
-
-BOOL ZDProcessHistoryDb::Close ()
+BOOL ZDProcessHistoryDb::Close()
 {
     switch (m_DatabaseTp)
     {
@@ -79,31 +71,28 @@ BOOL ZDProcessHistoryDb::Close ()
         }
         case ODBCDatabase:
         {
-            ASSERT( FALSE );    // Not yet implemented
+            ASSERT(FALSE);    // Not yet implemented
             break;
         }
     }
     return FALSE;
 }
 
-
-BOOL ZDProcessHistoryDb::AppendEventToHistoric (ZBEventActivity& EventActivity)
+BOOL ZDProcessHistoryDb::AppendEventToHistoric(PSS_ActivityEvent& EventActivity)
 {
     switch (m_DatabaseTp)
     {
         case DAODatabase:
         {
             if (m_pProcessHistoDAO)
-                return m_pProcessHistoDAO->AppendEventToHistoric( EventActivity );
+                return m_pProcessHistoDAO->AppendEventToHistoric(EventActivity);
             break;
         }
         case ODBCDatabase:
         {
-            ASSERT( FALSE );    // Not yet implemented
+            ASSERT(FALSE);    // Not yet implemented
             break;
         }
     }
     return FALSE;
 }
-
-

@@ -16,15 +16,13 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZBActivityEventReminderManager::ZBActivityEventReminderManager(ZBActivityEventManager* pEventManager, int RemindDays)
-: m_pEventManager(pEventManager), m_RemindDays(RemindDays)
-{
-}
+    : m_pEventManager(pEventManager), m_RemindDays(RemindDays)
+{}
 
 ZBActivityEventReminderManager::~ZBActivityEventReminderManager()
-{
-}
+{}
 
-void    ZBActivityEventReminderManager::Create( ZBActivityEventManager* pEventManager, int RemindDays )
+void    ZBActivityEventReminderManager::Create(ZBActivityEventManager* pEventManager, int RemindDays)
 {
     m_pEventManager = pEventManager;
     m_RemindDays = RemindDays;
@@ -34,16 +32,16 @@ void    ZBActivityEventReminderManager::Create( ZBActivityEventManager* pEventMa
 int    ZBActivityEventReminderManager::Refresh()
 {
     RemoveAllEvents();
-    ZBEventActivity*    pEvent;
-    int                    EffectiveRemainingDays;                
+    PSS_ActivityEvent* pEvent;
+    int                    EffectiveRemainingDays;
     for (int i = 0; i < m_pEventManager->GetEventCount(); ++i)
     {
-        pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
-        if (EventShouldBeReminded( pEvent, &EffectiveRemainingDays ))
-            AddEvent( COleDateTime::GetCurrentTime(),
-                      EventPriorityHigh,
-                      EffectiveRemainingDays,
-                      pEvent );
+        pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
+        if (EventShouldBeReminded(pEvent, &EffectiveRemainingDays))
+            AddEvent(COleDateTime::GetCurrentTime(),
+                     g_EventPriorityHigh,
+                     EffectiveRemainingDays,
+                     pEvent);
     }
     return GetEventCount();
 }
@@ -54,7 +52,7 @@ ZBEventActivityReminder*    ZBActivityEventReminderManager::AddEvent(COleDateTim
                                                                      CString Priority,
                                                                      int     RemainingDays,
                                                                      CString Message,
-                                                                     ZBEventActivity* pEvent)
+                                                                     PSS_ActivityEvent* pEvent)
 {
     return AddEvent(Time,
                     Priority,
@@ -62,8 +60,8 @@ ZBEventActivityReminder*    ZBActivityEventReminderManager::AddEvent(COleDateTim
                     pEvent->GetProcessName(),
                     pEvent->GetActivityName(),
                     RemainingDays,
-                    pEvent->GetActivityDueDate(), 
-                    pEvent->GetProcessFilename(),
+                    pEvent->GetActivityDueDate(),
+                    pEvent->GetProcessFileName(),
                     pEvent->GetActivityStatus(),
                     Message);
 }
@@ -71,7 +69,7 @@ ZBEventActivityReminder*    ZBActivityEventReminderManager::AddEvent(COleDateTim
 ZBEventActivityReminder*    ZBActivityEventReminderManager::AddEvent(COleDateTime Time,
                                                                      CString Priority,
                                                                      int     RemainingDays,
-                                                                     ZBEventActivity* pEvent)
+                                                                     PSS_ActivityEvent* pEvent)
 {
     return AddEvent(Time,
                     Priority,
@@ -79,10 +77,10 @@ ZBEventActivityReminder*    ZBActivityEventReminderManager::AddEvent(COleDateTim
                     pEvent->GetProcessName(),
                     pEvent->GetActivityName(),
                     RemainingDays,
-                    pEvent->GetActivityDueDate(), 
-                    pEvent->GetProcessFilename(),
+                    pEvent->GetActivityDueDate(),
+                    pEvent->GetProcessFileName(),
                     pEvent->GetActivityStatus(),
-                    BuildReminderMessage( RemainingDays ));
+                    BuildReminderMessage(RemainingDays));
 }
 
 ZBEventActivityReminder* ZBActivityEventReminderManager::AddEvent(COleDateTime Time,
@@ -96,17 +94,17 @@ ZBEventActivityReminder* ZBActivityEventReminderManager::AddEvent(COleDateTime T
                                                                   CString ActivityStatus,
                                                                   CString Message)
 {
-    ZBEventActivityReminder*    pEvent = new ZBEventActivityReminder( Time,
-                                                                      Priority,
-                                                                      FolderName,
-                                                                      ProcessName,
-                                                                      ActivityName,
-                                                                      RemainingDays,
-                                                                      ActivityDueDate,
-                                                                      ProcessFilename,
-                                                                      ActivityStatus,
-                                                                      Message);
-    if (!ZBEventManager::AddEvent( pEvent ))
+    ZBEventActivityReminder*    pEvent = new ZBEventActivityReminder(Time,
+                                                                     Priority,
+                                                                     FolderName,
+                                                                     ProcessName,
+                                                                     ActivityName,
+                                                                     RemainingDays,
+                                                                     ActivityDueDate,
+                                                                     ProcessFilename,
+                                                                     ActivityStatus,
+                                                                     Message);
+    if (!ZBEventManager::AddEvent(pEvent))
     {
         delete pEvent;
         pEvent = NULL;
@@ -116,30 +114,30 @@ ZBEventActivityReminder* ZBActivityEventReminderManager::AddEvent(COleDateTime T
 
 
 
-BOOL    ZBActivityEventReminderManager::EventShouldBeReminded( ZBEventActivity* pEvent, int* EffectiveRemainingDays )
+BOOL    ZBActivityEventReminderManager::EventShouldBeReminded(PSS_ActivityEvent* pEvent, int* EffectiveRemainingDays)
 {
     if (pEvent->GetActivityDueDate().IsEmpty())
         return FALSE;
-    COleDateTime    DueDate = COleDateTime(pEvent->GetActivityDueDate().GetYear(), 
-                                           pEvent->GetActivityDueDate().GetMonth(), 
+    COleDateTime    DueDate = COleDateTime(pEvent->GetActivityDueDate().GetYear(),
+                                           pEvent->GetActivityDueDate().GetMonth(),
                                            pEvent->GetActivityDueDate().GetDay(),
-                                           0,0,0);
-    COleDateTime    Today =  COleDateTime::GetCurrentTime();
-    Today.SetDate(Today.GetYear(), Today.GetMonth(), Today.GetDay() );
+                                           0, 0, 0);
+    COleDateTime    Today = COleDateTime::GetCurrentTime();
+    Today.SetDate(Today.GetYear(), Today.GetMonth(), Today.GetDay());
     *EffectiveRemainingDays = (int)(DueDate - Today);
     return (*EffectiveRemainingDays <= COleDateTimeSpan(m_RemindDays)) ? TRUE : FALSE;
 }
 
 
-CString    ZBActivityEventReminderManager::BuildReminderMessage( int RemainingDays )
+CString    ZBActivityEventReminderManager::BuildReminderMessage(int RemainingDays)
 {
     CString    Text;
     if (RemainingDays == 0)
-        Text.LoadString( IDS_REMINDERDAYSEQ0 );
+        Text.LoadString(IDS_REMINDERDAYSEQ0);
     else
         if (RemainingDays < 0)
-            Text.LoadString( IDS_REMINDERDAYSLT0 );
+            Text.LoadString(IDS_REMINDERDAYSLT0);
         else
-            Text.LoadString( IDS_REMINDERDAYS );
+            Text.LoadString(IDS_REMINDERDAYS);
     return Text;
 }

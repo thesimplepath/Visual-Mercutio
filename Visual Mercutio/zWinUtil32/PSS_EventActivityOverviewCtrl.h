@@ -18,8 +18,8 @@
 
 // processsoft
 #include "zBaseLib\PSS_TreeCtrl.h"
+#include "zEvent\PSS_ActivityEvent.h"
 #include "zEvent\EventManager.h"
-#include "zEvent\ActEvent.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -57,7 +57,7 @@ class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
         * Gets the selected activity item
         *@return the selected activity item, NULL if no selection or on error
         */
-        virtual ZBEventActivity* GetSelectedActivityItem();
+        virtual PSS_ActivityEvent* GetSelectedActivityItem();
 
         /**
         * Gets the selected user
@@ -112,16 +112,16 @@ class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
                 IE_AT_Activity
             };
 
-            ZBEventActivity* m_pData;
-            CString          m_Name;
-            IEActivityType   m_Type;
+            PSS_ActivityEvent* m_pData;
+            CString            m_Name;
+            IEActivityType     m_Type;
 
             /**
             * Constructor
             *@param pData - element data, can be NULL
             *@param type - activity type
             */
-            IElementType(ZBEventActivity* pData = NULL, IEActivityType type = IE_AT_Activity);
+            IElementType(PSS_ActivityEvent* pData = NULL, IEActivityType type = IE_AT_Activity);
 
             /**
             * Constructor
@@ -182,7 +182,7 @@ class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
         *@param pData - activity data
         *@return the formatted activity text
         */
-        CString FormatActivityText(ZBEventActivity* pData);
+        CString FormatActivityText(PSS_ActivityEvent* pData);
 
         /**
         * Checks if an user exists
@@ -203,7 +203,7 @@ class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
         *@param pActEvent - activity event to check
         *@return TRUE if activity event exists, otherwise FALSE
         */
-        BOOL EventExist(ZBEventActivity* pActEvent);
+        BOOL EventExist(PSS_ActivityEvent* pActEvent);
 
         /**
         * Builds the user array

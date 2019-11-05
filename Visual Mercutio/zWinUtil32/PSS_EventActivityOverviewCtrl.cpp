@@ -35,7 +35,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_EventActivityOverviewCtrl::IElementType
 //---------------------------------------------------------------------------
-PSS_EventActivityOverviewCtrl::IElementType::IElementType(ZBEventActivity* pData, IEActivityType type) :
+PSS_EventActivityOverviewCtrl::IElementType::IElementType(PSS_ActivityEvent* pData, IEActivityType type) :
     m_pData(pData),
     m_Type(type)
 {}
@@ -109,13 +109,13 @@ void PSS_EventActivityOverviewCtrl::Initialize()
 
             for (int i = 0; i < eventCount; ++i)
             {
-                ZBEventActivity* pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
+                PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
 
                 if (!pEvent)
                     continue;
 
                 // is the same process?
-                if (pEvent->GetActivityEventType() == ToDoActivity &&
+                if (pEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo &&
                         !pEvent->GetProcessName().CompareNoCase(m_ProcessArray[processIndex]))
                     // is the same user and folder?
                     if (pEvent->IsInUserQueue() && !pEvent->GetUserQueue().CompareNoCase(m_UserArray[mainIndex]))
@@ -147,7 +147,7 @@ void PSS_EventActivityOverviewCtrl::Initialize(ZBEventManager* pEventManager)
     Refresh();
 }
 //---------------------------------------------------------------------------
-ZBEventActivity* PSS_EventActivityOverviewCtrl::GetSelectedActivityItem()
+PSS_ActivityEvent* PSS_EventActivityOverviewCtrl::GetSelectedActivityItem()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
@@ -205,7 +205,7 @@ CObArray& PSS_EventActivityOverviewCtrl::GetUserActivities(const CString& user)
     // iterate through events
     for (int i = 0; i < eventCount; ++i)
     {
-        ZBEventActivity* pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
+        PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
 
         if (!pEvent)
             continue;
@@ -228,7 +228,7 @@ CObArray& PSS_EventActivityOverviewCtrl::GetProcessActivities(const CString& pro
     // iterate through events
     for (int i = 0; i < m_pEventManager->GetEventCount(); ++i)
     {
-        ZBEventActivity* pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
+        PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
 
         if (!pEvent)
             continue;
@@ -315,7 +315,7 @@ HTREEITEM PSS_EventActivityOverviewCtrl::AddSubItem(IElementType* pElement, HTRE
     return InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-CString PSS_EventActivityOverviewCtrl::FormatActivityText(ZBEventActivity* pData)
+CString PSS_EventActivityOverviewCtrl::FormatActivityText(PSS_ActivityEvent* pData)
 {
     CString processNameLabel;
     processNameLabel.LoadString(IDS_COLUMN2_EVENTREMINDER);
@@ -357,7 +357,7 @@ BOOL PSS_EventActivityOverviewCtrl::ProcessExist(const CString& process)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityOverviewCtrl::EventExist(ZBEventActivity* pActEvent)
+BOOL PSS_EventActivityOverviewCtrl::EventExist(PSS_ActivityEvent* pActEvent)
 {
     const int count = m_ActPtrArray.GetSize();
 
@@ -376,13 +376,13 @@ void PSS_EventActivityOverviewCtrl::BuildUserArray()
 
     for (int i = 0; i < eventCount; ++i)
     {
-        ZBEventActivity* pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
+        PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
 
         if (!pEvent)
             continue;
 
         // is a todo activity?
-        if (pEvent->GetActivityEventType() != ToDoActivity)
+        if (pEvent->GetActivityEventType() != PSS_ActivityEvent::IE_AT_ToDo)
             continue;
 
         if (!pEvent->IsInUserQueue())
@@ -403,13 +403,13 @@ void PSS_EventActivityOverviewCtrl::BuildProcessArray()
 
     for (int i = 0; i < eventCount; ++i)
     {
-        ZBEventActivity* pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
+        PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
 
         if (!pEvent)
             continue;
 
         // is a todo activity?
-        if (pEvent->GetActivityEventType() != ToDoActivity)
+        if (pEvent->GetActivityEventType() != PSS_ActivityEvent::IE_AT_ToDo)
             continue;
 
         const CString processName = pEvent->GetProcessName();

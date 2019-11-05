@@ -11,7 +11,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "ActEventReminder.h"
 #include "EventManager.h"
 #include "ActEvtManager.h"
@@ -53,14 +53,14 @@ class AFX_EXT_CLASS ZBActivityEventReminderManager : public    ZBEventManager
                                          CString Priority,
                                          int     RemainingDays,
                                          CString Message,
-                                         ZBEventActivity* pEvent);
+                                           PSS_ActivityEvent* pEvent);
 
       ZBEventActivityReminder*    AddEvent(COleDateTime Time,
                                          CString Priority,
                                          int     RemainingDays,
-                                         ZBEventActivity* pEvent);
+                                           PSS_ActivityEvent* pEvent);
 
-      BOOL    EventShouldBeReminded( ZBEventActivity* pEvent, int* EffectiveRemainingDays );
+      BOOL    EventShouldBeReminded(PSS_ActivityEvent* pEvent, int* EffectiveRemainingDays );
 
   protected:
 
@@ -73,12 +73,5 @@ class AFX_EXT_CLASS ZBActivityEventReminderManager : public    ZBEventManager
       ZBActivityEventManager*    m_pEventManager;
       int                        m_RemindDays;
 };
-
-
-
-//#undef  AFX_DATA
-//#define AFX_DATA
-
-
 
 #endif

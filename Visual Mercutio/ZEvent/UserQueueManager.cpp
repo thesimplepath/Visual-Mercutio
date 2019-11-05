@@ -34,9 +34,9 @@ BOOL ZBUserQueueManager::Create( const CString Directory )
     return TRUE;
 }
 
-ZBEventActivity* ZBUserQueueManager::DispatchToUserQueue( const CString Filename )
+PSS_ActivityEvent* ZBUserQueueManager::DispatchToUserQueue( const CString Filename )
 {
-    ZBEventActivity*    pEventActivity = (ZBEventActivity*)m_EventActivityFile.ImportActivityFromFile( Filename );
+    PSS_ActivityEvent* pEventActivity = (PSS_ActivityEvent*)m_EventActivityFile.ImportActivityFromFile( Filename );
     if (!pEventActivity)
         return NULL;
     TRACE1("DISPATCH TO USER QUEUE IN WITH FILENAME = %s\n", (const char*)Filename);
@@ -48,19 +48,19 @@ ZBEventActivity* ZBUserQueueManager::DispatchToUserQueue( const CString Filename
         delete pEventActivity;
         return NULL;
     }
-    if (pEventActivity->GetActivityEventType() == LogActivityEvent)
+    if (pEventActivity->GetActivityEventType() == PSS_ActivityEvent::IE_AT_LogEvent)
     {
         // In case of log, do nothing
         return pEventActivity;
     }
-    if (pEventActivity->GetActivityEventType() == DeleteToDoEvent)
+    if (pEventActivity->GetActivityEventType() == PSS_ActivityEvent::IE_AT_DeleteToDoEvent)
     {
         ProceedDeleteMessage( *pEventActivity );
         return pEventActivity;
     }
     // Create place the new event to the receiver queue
     ForwardToUserQueue( *pEventActivity );
-    if (pEventActivity->GetActivityEventType() == ToDoActivity)
+    if (pEventActivity->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo)
     {
         // Remove the old event if exists, from the sender queue
         RemoveAssociatedEventFromUserQueue( *pEventActivity );
@@ -69,7 +69,7 @@ ZBEventActivity* ZBUserQueueManager::DispatchToUserQueue( const CString Filename
 }
 
 
-BOOL    ZBUserQueueManager::CheckDirectory( ZBEventActivity& EventActivity )
+BOOL    ZBUserQueueManager::CheckDirectory(PSS_ActivityEvent& EventActivity )
 {
     // For multi-user mode, run through all senders
     PSS_Tokenizer    Tokenizer( ';' );
@@ -94,7 +94,7 @@ BOOL    ZBUserQueueManager::CheckDirectory( ZBEventActivity& EventActivity )
     return TRUE;
 }
 
-BOOL    ZBUserQueueManager::ForwardToUserQueue( ZBEventActivity& EventActivity )
+BOOL    ZBUserQueueManager::ForwardToUserQueue(PSS_ActivityEvent& EventActivity )
 {
     // For multi-user mode, run through all receivers
     PSS_Tokenizer    Tokenizer( ';' );
@@ -102,7 +102,7 @@ BOOL    ZBUserQueueManager::ForwardToUserQueue( ZBEventActivity& EventActivity )
     while (!Token.IsEmpty())
     {
         // Dispatch to the 
-        CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFilename() + EventActivity.GetFileExtension(), Token );
+        CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFileName() + EventActivity.GetFileExtension(), Token );
         m_EventActivityFile.ExportActivityToFile( Filename, &EventActivity );
         TRACE("FORWARDED TO USER QUEUE\n");
         Token = Tokenizer.GetNextToken();
@@ -110,19 +110,19 @@ BOOL    ZBUserQueueManager::ForwardToUserQueue( ZBEventActivity& EventActivity )
     return TRUE;
 }
 
-BOOL    ZBUserQueueManager::RemoveAssociatedEventFromUserQueue( ZBEventActivity& EventActivity )
+BOOL    ZBUserQueueManager::RemoveAssociatedEventFromUserQueue(PSS_ActivityEvent& EventActivity )
 {
-    ZBEventActivity*    pEventActivity = NULL;
+    PSS_ActivityEvent*    pEventActivity = NULL;
     // For multi-user mode, run through all senders
     PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetSender() );
     while (!Token.IsEmpty())
     {
-        CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFilename() + EventActivity.GetFileExtension(ToDoActivity), Token );
+        CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFileName() + EventActivity.GetFileExtension(PSS_ActivityEvent::IE_AT_ToDo), Token );
         // Import file first
-        pEventActivity = (ZBEventActivity*)m_EventActivityFile.ImportActivityFromFile( Filename );
+        pEventActivity = (PSS_ActivityEvent*)m_EventActivityFile.ImportActivityFromFile( Filename );
         // If it is a todo activity, therefore remove the associated message
-        if (pEventActivity && pEventActivity->GetActivityEventType() == ToDoActivity && 
+        if (pEventActivity && pEventActivity->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo &&
             Token != pEventActivity->GetSender())
         {
             TRACE("REMOVE ASSIOCIATED EVENT\n");
@@ -140,7 +140,7 @@ BOOL    ZBUserQueueManager::RemoveAssociatedEventFromUserQueue( ZBEventActivity&
 }
 
 
-BOOL    ZBUserQueueManager::RemoveEventFromUserQueue( ZBEventActivity& EventActivity, CString User )
+BOOL    ZBUserQueueManager::RemoveEventFromUserQueue(PSS_ActivityEvent& EventActivity, CString User )
 {
     // For multi-user mode, run through all users
     PSS_Tokenizer    Tokenizer( ';' );
@@ -154,7 +154,7 @@ BOOL    ZBUserQueueManager::RemoveEventFromUserQueue( ZBEventActivity& EventActi
     return TRUE;
 }
 
-BOOL    ZBUserQueueManager::RemoveEventFromReceiverQueue( ZBEventActivity& EventActivity )
+BOOL    ZBUserQueueManager::RemoveEventFromReceiverQueue(PSS_ActivityEvent& EventActivity )
 {
     // For multi-user mode, run through all receiver
     PSS_Tokenizer    Tokenizer( ';' );
@@ -168,7 +168,7 @@ BOOL    ZBUserQueueManager::RemoveEventFromReceiverQueue( ZBEventActivity& Event
     return TRUE;
 }
 
-BOOL    ZBUserQueueManager::RemoveEventFromSenderQueue( ZBEventActivity& EventActivity )
+BOOL    ZBUserQueueManager::RemoveEventFromSenderQueue(PSS_ActivityEvent& EventActivity )
 {
     // For multi-user mode, run through all senders
     PSS_Tokenizer    Tokenizer( ';' );
@@ -182,20 +182,20 @@ BOOL    ZBUserQueueManager::RemoveEventFromSenderQueue( ZBEventActivity& EventAc
     return TRUE;
 }
 
-BOOL    ZBUserQueueManager::RemoveFromUserQueue( ZBEventActivity& EventActivity, CString User )
+BOOL    ZBUserQueueManager::RemoveFromUserQueue(PSS_ActivityEvent& EventActivity, CString User )
 {
-    CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFilename() + EventActivity.GetFileExtension(), User );
+    CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFileName() + EventActivity.GetFileExtension(), User );
     return RemoveEventFilename( Filename );
 }           
 
-BOOL    ZBUserQueueManager::ProceedDeleteMessage( ZBEventActivity& EventActivity )
+BOOL    ZBUserQueueManager::ProceedDeleteMessage(PSS_ActivityEvent& EventActivity )
 {
     // For multi-user mode, run through all senders
     PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetReceiver() );
     while (!Token.IsEmpty())
     {
-        CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFilename() + EventActivity.GetFileExtension(ToDoActivity), Token );
+        CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFileName() + EventActivity.GetFileExtension(PSS_ActivityEvent::IE_AT_ToDo), Token );
         RemoveEventFilename( Filename );
         Token = Tokenizer.GetNextToken();
     }

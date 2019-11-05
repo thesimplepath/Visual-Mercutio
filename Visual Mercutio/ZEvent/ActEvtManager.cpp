@@ -18,39 +18,49 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZBActivityEventManager::ZBActivityEventManager()
-{
-}
+{}
 
 ZBActivityEventManager::~ZBActivityEventManager()
+{}
+
+PSS_ActivityEvent* ZBActivityEventManager::AddEvent(PSS_ActivityEvent::IEType EventType,
+                                                    CString Filename,
+                                                    COleDateTime Time,
+                                                    CString FolderName,
+                                                    CString ProcessName,
+                                                    COleDateTime ProcessCreationDate,
+                                                    COleDateTime ProcessDueDate,
+                                                    CString ActivityType,
+                                                    CString ActivityName,
+                                                    COleDateTime ActivityCreationDate,
+                                                    COleDateTime ActivityDueDate,
+                                                    CString Sender,
+                                                    CString Receiver,
+                                                    CString ProcessFilename,
+                                                    CString ExchangeDataFilename,
+                                                    CString ProcessExchangeDataFilename,
+                                                    CString ActivityStatus,
+                                                    CString Comments)
 {
-}
-
-
-
-ZBEventActivity* ZBActivityEventManager::AddEvent(ActivityEventType EventType,
-                                                  CString Filename,
-                                                  COleDateTime Time, 
-                                                  CString FolderName,
-                                                  CString ProcessName,
-                                                  COleDateTime ProcessCreationDate,
-                                                  COleDateTime ProcessDueDate,
-                                                  CString ActivityType,
-                                                  CString ActivityName,
-                                                  COleDateTime ActivityCreationDate,
-                                                  COleDateTime ActivityDueDate,
-                                                  CString Sender,
-                                                  CString Receiver,
-                                                  CString ProcessFilename,
-                                                  CString ExchangeDataFilename,
-                                                  CString ProcessExchangeDataFilename,
-                                                  CString ActivityStatus,
-                                                  CString Comments)
-{
-    ZBEventActivity*    pEvent = new ZBEventActivity( EventType, Filename, Time, FolderName, ProcessName, ProcessCreationDate, ProcessDueDate,
-                                                      ActivityType, ActivityName, ActivityCreationDate, ActivityDueDate,
-                                                      Sender, Receiver, ProcessFilename, ExchangeDataFilename, ProcessExchangeDataFilename,
-                                                      ActivityStatus, Comments);
-    if (!ZBEventManager::AddEvent( pEvent ))
+    PSS_ActivityEvent* pEvent = new PSS_ActivityEvent(EventType,
+                                                      Filename,
+                                                      Time,
+                                                      FolderName,
+                                                      ProcessName,
+                                                      ProcessCreationDate,
+                                                      ProcessDueDate,
+                                                      ActivityType,
+                                                      ActivityName,
+                                                      ActivityCreationDate,
+                                                      ActivityDueDate,
+                                                      Sender,
+                                                      Receiver,
+                                                      ProcessFilename,
+                                                      ExchangeDataFilename,
+                                                      ProcessExchangeDataFilename,
+                                                      ActivityStatus,
+                                                      Comments);
+    if (!ZBEventManager::AddEvent(pEvent))
     {
         delete pEvent;
         pEvent = NULL;
@@ -58,24 +68,21 @@ ZBEventActivity* ZBActivityEventManager::AddEvent(ActivityEventType EventType,
     return pEvent;
 }
 
-
-ZBEvent*    ZBActivityEventManager::LoadEventFromFile( const CString Filename )
+ZBEvent* ZBActivityEventManager::LoadEventFromFile(const CString Filename)
 {
     ZBEventActivityFile    EventActivityFile;
-    ZBEvent*    pEvent = EventActivityFile.ImportActivityFromFile( Filename );
+    ZBEvent*    pEvent = EventActivityFile.ImportActivityFromFile(Filename);
 
     if (pEvent)
     {
         PSS_File File(Filename);
-        CString    Path = PSS_Directory::NormalizeDirectory( File.GetFilePath() );
+        CString    Path = PSS_Directory::NormalizeDirectory(File.GetFilePath());
         // If are not in root directory
-        if (Path.CompareNoCase( GetRootDirectory() ) != 0)
+        if (Path.CompareNoCase(GetRootDirectory()) != 0)
         {
             // Set the user queue name
-            pEvent->SetUserQueue(PSS_Directory::GetShortDirectoryName( Path ) );
+            pEvent->SetUserQueue(PSS_Directory::GetShortDirectoryName(Path));
         }
     }
     return pEvent;
 }
-
-

@@ -18,7 +18,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "ActEvent.h"
+#include "PSS_ActivityEvent.h"
 #include "EventFl.h"
 
 #ifdef _ZEVENTEXPORT
@@ -50,16 +50,10 @@ protected:
     virtual ZBEvent*    AllocateEventPtr();
 };
 
-
-//#undef  AFX_DATA
-//#define AFX_DATA
-
-
-inline ZBEvent*    ZBEventActivityFile::AllocateEventPtr()
+inline ZBEvent* ZBEventActivityFile::AllocateEventPtr()
 {
-    ZBEventActivity*    pEvent = new ZBEventActivity;
+    PSS_ActivityEvent* pEvent = new PSS_ActivityEvent;
     return pEvent;
 }
 
-
-#endif // !defined(AFX_ZBEventActivityFile_H__0F4A8AF0_0EAC_11D3_9810_00C04FB4D0D7__INCLUDED_)
+#endif

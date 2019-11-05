@@ -141,7 +141,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActEvent.cpp">
+    <ClCompile Include="PSS_ActivityEvent.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -189,13 +189,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="actlog.cpp">
+    <ClCompile Include="PSS_ActivityLog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="actlogDB.cpp">
+    <ClCompile Include="PSS_ActivityLogDatabase.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -374,7 +374,7 @@
     <ResourceCompile Include="ZEvent.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActEvent.h" />
+    <ClInclude Include="PSS_ActivityEvent.h" />
     <ClInclude Include="ActEventReminder.h" />
     <ClInclude Include="ActEvtFl.h" />
     <ClInclude Include="ActEvtManager.h" />
@@ -382,8 +382,8 @@
     <ClInclude Include="ActEvtReminderManager.h" />
     <ClInclude Include="ActEvtToDoMgr.h" />
     <ClInclude Include="Activity.h" />
-    <ClInclude Include="ActLog.h" />
-    <ClInclude Include="ActLogDB.h" />
+    <ClInclude Include="PSS_ActivityLog.h" />
+    <ClInclude Include="PSS_ActivityLogDatabase.h" />
     <ClInclude Include="ActLogFl.h" />
     <ClInclude Include="BActvt.h" />
     <ClInclude Include="EventFl.h" />

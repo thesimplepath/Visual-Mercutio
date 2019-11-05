@@ -19,9 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ActEventReminder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -41,12 +38,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Activity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="actlog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="actlogDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="actlogFl.cpp">
@@ -127,6 +118,15 @@
     <ClCompile Include="ZResourc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ActivityLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityLogDatabase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ZEvent.rc2">
@@ -142,9 +142,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ActEventReminder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -164,12 +161,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Activity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ActLog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ActLogDB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ActLogFl.h">
@@ -251,6 +242,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZResourc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityLogDatabase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,76 +19,54 @@
 
 //## begin module%334FC4630329.includes preserve=yes
 #ifndef __AFXWIN_H__
-#error include 'stdafx.h' before including this file for PCH
+    #error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "zBaseLib\PSS_Document.h"
-#include "mainfrm.h"
-#include "PSS_ModifyView.h"
-#include "planfin.hdf"
-#include "zEvent\ActLog.h"
-
-// Contains obsolete class for PLFN hierarchy
+// processsoft
 #include "zBaseLib\PSS_PlanFinObsoleteObjects.h"
+#include "zBaseLib\PSS_Document.h"
+#include "zBaseLib\PSS_DocTemplateEx.h"
+#include "zBaseLib\PSS_ProcessModelDocTmpl.h"
+#include "zBaseLib\PSS_SingleInstanceApplication.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Server.h"
+#include "zBaseLib\PSS_FontManager.h"
+#include "zBaseLib\PSS_StyleManager.h"
+#include "zBaseLib\PSS_TemplateManager.h"
+#include "zBaseLib\PSS_ApplicationOption.h"
+#include "zBaseLib\PSS_FieldRepository.h"
+#include "zBaseLib\PSS_GlobalFieldDocument.h"
+#include "zBaseLib\PSS_Global.h"
+#ifdef _ZCHECKINFO
+    #include "zBaseLib\ZBCriptedFileApplicationTypeInfo.h"
+#endif
+#include "zEvent\PSS_ActivityLog.h"
+#include "ZTTemplateDocument.h"
+#include "PSS_ModifyView.h"
+#include "PSS_ExternalBoxFunctions.h"
+#include "mainfrm.h"
+#include "planfin.hdf"
 
+// windows
 #include <CTYPE.H>
 #include <locale.h>
 
-#include "zBaseLib\PSS_DocTemplateEx.h"
-#include "zBaseLib\PSS_ProcessModelDocTmpl.h"
-
-#ifdef _ZCHECKINFO
-#include "zBaseLib\ZBCriptedFileApplicationTypeInfo.h"
-#endif
-
-#include "zBaseLib\PSS_SingleInstanceApplication.h"
-
-#include "PSS_ExternalBoxFunctions.h"
-
 #ifndef _WIN32
+    extern "C" extern void WINAPI InitZResDLL();
+    extern "C" extern void WINAPI InitZWinUtilDLL();
 
-extern "C" extern void WINAPI InitZResDLL();
-extern "C" extern void WINAPI InitZWinUtilDLL();
-
-// Three external functions to enable 3d controls
-#ifdef __cplusplus
-extern "C" {
+    // Three external functions to enable 3d controls
+    #ifdef __cplusplus
+        extern "C"
+        {
+            #endif
+                int FAR PASCAL Ctl3dRegister(HANDLE);
+                int FAR PASCAL Ctl3dAutoSubclass(HANDLE);
+                int FAR PASCAL Ctl3dUnregister(HANDLE);
+            #ifdef __cplusplus
+        }
+    #endif
 #endif
-    int FAR PASCAL Ctl3dRegister(HANDLE);
-    int FAR PASCAL Ctl3dAutoSubclass(HANDLE);
-    int FAR PASCAL Ctl3dUnregister(HANDLE);
-#ifdef __cplusplus
-}
-#endif
-
-#endif
-
-#include "zBaseLib\PSS_Subject.h"
-
-// ZBServer
-#include "zBaseLib\PSS_Server.h"
-
-//## end module%334FC4630329.includes
-
-// ZAFontMg
-#include "zBaseLib\PSS_FontManager.h"
-
-// ZAStylMg
-#include "zBaseLib\PSS_StyleManager.h"
-
-// TmplMng
-#include "zBaseLib\PSS_TemplateManager.h"
-
-// AppOpt
-#include "zBaseLib\PSS_ApplicationOption.h"
-
-// FieldRep
-#include "zBaseLib\PSS_FieldRepository.h"
-
-// GFldDoc
-#include "zBaseLib\PSS_GlobalFieldDocument.h"
-#include "zBaseLib\PSS_Global.h"
-#include "ZTTemplateDocument.h"
 
 // JMR-MODIF - Le 24 avril 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -614,7 +592,7 @@ public:
 
     //## Attribute: ActivityLog%369BC5AC0258
     // Has an activity log utility class.
-    ZUActivityLog& GetActivityLog();
+    PSS_ActivityLog& GetActivityLog();
 
     //## Attribute: ApplicationOptions%3705D2C00105
     // Is the application options class.
@@ -749,7 +727,7 @@ private:
     //## end ZAMainApp::Server%36643CEB0064.attr
 
     //## begin ZAMainApp::ActivityLog%369BC5AC0258.attr preserve=no  public: ZUActivityLog {U}
-    ZUActivityLog    m_ActivityLog;
+    PSS_ActivityLog    m_ActivityLog;
 
     //## end ZAMainApp::ActivityLog%369BC5AC0258.attr
 
@@ -888,7 +866,7 @@ inline PSS_CltServer& ZAMainApp::GetServer()
     //## end ZAMainApp::GetServer%36643CEB0064.get
 }
 
-inline ZUActivityLog& ZAMainApp::GetActivityLog()
+inline PSS_ActivityLog& ZAMainApp::GetActivityLog()
 {
     //## begin ZAMainApp::GetActivityLog%369BC5AC0258.get preserve=no
     return m_ActivityLog;

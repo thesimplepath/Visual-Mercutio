@@ -23,7 +23,7 @@
 #include "zBaseLib\PSS_BaseDocument.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_MessageDlg.h"
-#include "ActEvent.h"
+#include "PSS_ActivityEvent.h"
 
 // resources
 #include "zRes32\ZRes.h"

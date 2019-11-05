@@ -47,39 +47,45 @@ const    char    EventDateFormatString[] = "%d.%m.%Y";
 
 class AFX_EXT_CLASS ZBEvent : public CObject  
 {
-public:
-// Inherited feature
-    typedef CObject inherited;
     DECLARE_DYNAMIC(ZBEvent)
+
 public:
+    typedef CObject inherited;
+
     ZBEvent();
-    ZBEvent( COleDateTime Time, int EventID = EVT_UNDEFINED, CString UserQueue = "" );
+
+    ZBEvent(const COleDateTime& Time, int EventID = EVT_UNDEFINED, const CString& UserQueue = "" );
+
+    ZBEvent(const ZBEvent& other);
+
     virtual ~ZBEvent();
-    ZBEvent(const ZBEvent &right);
-    const ZBEvent & operator=(const ZBEvent &right);
+
+    const ZBEvent& operator = (const ZBEvent& other);
+
+    #ifdef _WIN32
+        AFX_EXT_API    friend    ZBEvent&    operator>>(ZBEvent& left, PSS_ListCtrl& listCtrl);
+    #endif
+
     PSS_Date            GetTimeStamp() const { return m_TimeStamp; };
+
     CString            GetFormattedTimeStamp() { return m_TimeStamp.Format( EventDateTimeFormatString ); };
+
     int                GetEventID() const { return m_EventID; };
+
     CString            GetEventIDStr() const;
 
     CString            GetUserQueue() const { return m_UserQueue; };
-    void            SetUserQueue(const CString value) { m_UserQueue = value; };
+
+    void            SetUserQueue(const CString& value) { m_UserQueue = value; };
+
     BOOL            IsInUserQueue() const { return m_UserQueue.IsEmpty() != TRUE; };
 
     BOOL            ParseDateTime(COleDateTime& Date, CString& value);
-#ifdef _WIN32
-    AFX_EXT_API    friend    ZBEvent&    operator>>( ZBEvent& left, PSS_ListCtrl& listCtrl );
-#endif
 
 protected:
-    PSS_Date            m_TimeStamp;
-    int                m_EventID;
-    CString            m_UserQueue;
+    PSS_Date m_TimeStamp;
+    CString  m_UserQueue;
+    int      m_EventID;
 };
 
-
-//#undef  AFX_DATA
-//#define AFX_DATA
-
-
-#endif // !defined(AFX_ZBEVENT_H__0F4A8AF0_0EAC_11D3_9810_00C04FB4D0D7__INCLUDED_)
+#endif

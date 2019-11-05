@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
 #include "zEvent\EventManager.h"
-#include "zEvent\ActEvent.h"
+#include "zEvent\PSS_ActivityEvent.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_EventActivityCtrl : public PSS_ListCtrl
         *@return event activity
         */
         #ifdef _WIN32
-            AFX_EXT_API friend ZBEventActivity& operator >> (ZBEventActivity& left, PSS_EventActivityCtrl& listCtrl);
+            AFX_EXT_API friend PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_EventActivityCtrl& listCtrl);
         #endif
 
         /**
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_EventActivityCtrl : public PSS_ListCtrl
         * Gets the selected item
         *@return the selected item, NULL if no item selected or on error
         */
-        virtual ZBEventActivity* GetSelectedItem() const;
+        virtual PSS_ActivityEvent* GetSelectedItem() const;
 
         /**
         * Refreshes the control
@@ -75,7 +75,7 @@ class AFX_EXT_CLASS PSS_EventActivityCtrl : public PSS_ListCtrl
 
     protected:
         //{{AFX_MSG(PSS_EventActivityCtrl)
-        afx_msg LRESULT OnNewActivityEvent( WPARAM wParam, LPARAM lParam );
+        afx_msg LRESULT OnNewActivityEvent(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -94,7 +94,7 @@ class AFX_EXT_CLASS PSS_EventActivityCtrl : public PSS_ListCtrl
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_EventActivityCtrl & operator = (const PSS_EventActivityCtrl& other);
+        const PSS_EventActivityCtrl& operator = (const PSS_EventActivityCtrl& other);
       
         /**
         * Checks if columns were built

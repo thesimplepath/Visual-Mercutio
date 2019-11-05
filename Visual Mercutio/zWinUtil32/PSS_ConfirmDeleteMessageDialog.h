@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "zEvent\ActEvent.h"
+#include "zEvent\PSS_ActivityEvent.h"
 #include "PSS_HoverButton.h"
 
 // resources
@@ -69,7 +69,7 @@ class AFX_EXT_CLASS PSS_ConfirmDeleteMessageDialog : public PSS_Dialog
         *@param eventActivity - event activity
         *@param pParent - parent window - can be NULL
         */
-        PSS_ConfirmDeleteMessageDialog(ZBEventActivity& eventActivity, CWnd* pParent = NULL);
+        PSS_ConfirmDeleteMessageDialog(PSS_ActivityEvent& eventActivity, CWnd* pParent = NULL);
 
     protected:
         /// ClassWizard generated virtual function overrides

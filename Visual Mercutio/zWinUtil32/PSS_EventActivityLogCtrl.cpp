@@ -101,12 +101,12 @@ const PSS_EventActivityLogCtrl& PSS_EventActivityLogCtrl::operator = (const PSS_
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    ZBEventActivity& operator >> (ZBEventActivity& left, PSS_EventActivityLogCtrl& listCtrl)
+    PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_EventActivityLogCtrl& listCtrl)
     {
         const int index      = listCtrl.GetItemCount();
               int imageIndex = 13;
 
-        if (left.GetActivityEventType() != MessageActivity)
+        if (left.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
             if (left.GetActivityStatus() == ActivityStatusProcessPaused)
                 imageIndex = 12;
             else
@@ -183,13 +183,13 @@ const PSS_EventActivityLogCtrl& PSS_EventActivityLogCtrl::operator = (const PSS_
         listCtrl.SetItem(index, 12, LVIF_TEXT, left.GetReceiver(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process filename
-        listCtrl.SetItem(index, 13, LVIF_TEXT, left.GetProcessFilename(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 13, LVIF_TEXT, left.GetProcessFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the exchange date filename
-        listCtrl.SetItem(index, 14, LVIF_TEXT, left.GetExchangeDataFilename(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 14, LVIF_TEXT, left.GetExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process exchange date filename
-        listCtrl.SetItem(index, 15, LVIF_TEXT, left.GetProcessExchangeDataFilename(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 15, LVIF_TEXT, left.GetProcessExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the comments
         listCtrl.SetItem(index, 16, LVIF_TEXT, left.GetComments(), 0, LVIF_TEXT, LVIF_TEXT, 0);
@@ -205,7 +205,7 @@ void PSS_EventActivityLogCtrl::Initialize (ZBEventManager* pEventManager)
     Refresh();
 }
 //---------------------------------------------------------------------------
-ZBEventActivity* PSS_EventActivityLogCtrl::GetSelectedItem() const
+PSS_ActivityEvent* PSS_EventActivityLogCtrl::GetSelectedItem() const
 {
     int      index;
     POSITION pPos = GetFirstSelectedItemPosition();
@@ -213,7 +213,7 @@ ZBEventActivity* PSS_EventActivityLogCtrl::GetSelectedItem() const
     if (pPos)
     {
         index = GetNextSelectedItem(pPos);
-        return (ZBEventActivity*)GetItemData(index);
+        return (PSS_ActivityEvent*)GetItemData(index);
     }
 
     return NULL;
@@ -232,13 +232,13 @@ void PSS_EventActivityLogCtrl::Refresh()
         const int count = m_pEventManager->GetEventCount();
 
         for (int i = 0; i < count; ++i)
-            ((ZBEventActivity&)*(m_pEventManager->GetEventAt(i))) >> *this;
+            ((PSS_ActivityEvent&)*(m_pEventManager->GetEventAt(i))) >> *this;
     }
 }
 //---------------------------------------------------------------------------
 LRESULT PSS_EventActivityLogCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lParam)
 {
-    ZBEventActivity* pEvent = (ZBEventActivity*)lParam;
+    PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)lParam;
 
     // if the columns were never built
     if (!ColumnsHasBeenBuilt())

@@ -71,7 +71,7 @@ void PSS_EventActivityUserOverviewCtrl::Initialize()
 
         for (int i = 0; i < m_pEventManager->GetEventCount(); ++i)
         {
-            ZBEventActivity* pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
+            PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
 
             if (!pEvent)
                 continue;
@@ -90,7 +90,7 @@ void PSS_EventActivityUserOverviewCtrl::Initialize(ZBEventManager* pEventManager
     Refresh();
 }
 //---------------------------------------------------------------------------
-ZBEventActivity* PSS_EventActivityUserOverviewCtrl::GetSelectedActivityItem()
+PSS_ActivityEvent* PSS_EventActivityUserOverviewCtrl::GetSelectedActivityItem()
 {
     HTREEITEM hSelected = GetSelectedItem();
  
@@ -99,7 +99,7 @@ ZBEventActivity* PSS_EventActivityUserOverviewCtrl::GetSelectedActivityItem()
         CObject* pObj = (CObject*)GetItemData(hSelected);
 
         if (pObj)
-            return reinterpret_cast<ZBEventActivity*>(pObj);
+            return reinterpret_cast<PSS_ActivityEvent*>(pObj);
     }
 
     return NULL;
@@ -140,7 +140,7 @@ HTREEITEM PSS_EventActivityUserOverviewCtrl::AddProcessItem(const CString& proce
     return InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_EventActivityUserOverviewCtrl::AddSubItem(ZBEventActivity* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_EventActivityUserOverviewCtrl::AddSubItem(PSS_ActivityEvent* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     if (!pData)
         return NULL;
@@ -176,7 +176,7 @@ void PSS_EventActivityUserOverviewCtrl::BuildProcessArray()
 
     for (int i = 0; i < eventCount; ++i)
     {
-        ZBEventActivity* pEvent = (ZBEventActivity*)m_pEventManager->GetEventAt(i);
+        PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
 
         if (!pEvent)
             continue;

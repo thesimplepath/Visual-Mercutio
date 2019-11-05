@@ -4,16 +4,17 @@
 
 #include "stdafx.h"
 #include "ZBEvent.h"
-// Include resource header file
+
+// processsoft
 #include "ZEvtRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_DYNAMIC( ZBEvent, CObject )
+IMPLEMENT_DYNAMIC(ZBEvent, CObject)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -21,15 +22,14 @@ IMPLEMENT_DYNAMIC( ZBEvent, CObject )
 
 
 ZBEvent::ZBEvent()
-: m_EventID(EVT_UNDEFINED)
+    : m_EventID(EVT_UNDEFINED)
 {
 
 }
 
-ZBEvent::ZBEvent( COleDateTime Time, int EventID, CString UserQueue )
-: m_TimeStamp(Time), m_EventID(EventID), m_UserQueue(UserQueue)
-{
-}
+ZBEvent::ZBEvent(const COleDateTime& Time, int EventID, const CString& UserQueue)
+    : m_TimeStamp(Time), m_EventID(EventID), m_UserQueue(UserQueue)
+{}
 
 ZBEvent::~ZBEvent()
 {
@@ -69,7 +69,7 @@ CString        ZBEvent::GetEventIDStr() const
             break;
         }
     }
-    Text.LoadString( nID );
+    Text.LoadString(nID);
     return Text;
 }
 
@@ -85,49 +85,48 @@ BOOL    ZBEvent::ParseDateTime(COleDateTime& Date, CString& value)
 
     // 01.01.1999 - 23:10:30
     // After day
-    *(pNext+2) = 0x00;
+    *(pNext + 2) = 0x00;
     // After month
-    *(pNext+5) = 0x00;
+    *(pNext + 5) = 0x00;
     // After year
-    *(pNext+10) = 0x00;
+    *(pNext + 10) = 0x00;
     // After hour
-    *(pNext+15) = 0x00;
+    *(pNext + 15) = 0x00;
     // After min
-    *(pNext+18) = 0x00;
+    *(pNext + 18) = 0x00;
 
     // Extract day
-    Day = atoi( pNext );
+    Day = atoi(pNext);
     // go to month and extract it
     pNext += 3;
-    Month = atoi( pNext );
+    Month = atoi(pNext);
     // go to year and extract it
     pNext += 3;
-    Year = atoi( pNext );
+    Year = atoi(pNext);
     // go to hour and extract it
     pNext += 7;
-    Hour = atoi( pNext );
+    Hour = atoi(pNext);
     // go to minute and extract it
     pNext += 3;
-    Min = atoi( pNext );
+    Min = atoi(pNext);
     // go to second and extract it
     pNext += 3;
-    Sec = atoi( pNext );
+    Sec = atoi(pNext);
     // Release the buffer
     value.ReleaseBuffer();
     // Sets the date time
-    return (Date.SetDateTime( Year, Month, Day, Hour, Min, Sec ) == 0) ? TRUE: FALSE;
+    return (Date.SetDateTime(Year, Month, Day, Hour, Min, Sec) == 0) ? TRUE : FALSE;
 }
 
-ZBEvent&    operator>>( ZBEvent& left, PSS_ListCtrl& listCtrl )
+ZBEvent&    operator>>(ZBEvent& left, PSS_ListCtrl& listCtrl)
 {
     int    Index = listCtrl.GetItemCount();
     // Add the event Date
-    listCtrl.InsertItem( Index, left.GetFormattedTimeStamp() );
+    listCtrl.InsertItem(Index, left.GetFormattedTimeStamp());
     // Add the event type
-    listCtrl.SetItem( Index, 1, LVIF_TEXT,
-                      left.GetEventIDStr(),
-                      0, LVIF_TEXT, LVIF_TEXT, 0 );
+    listCtrl.SetItem(Index, 1, LVIF_TEXT,
+                     left.GetEventIDStr(),
+                     0, LVIF_TEXT, LVIF_TEXT, 0);
 
     return left;
 }
-

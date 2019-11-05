@@ -14,17 +14,15 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZBEventQueueManager::ZBEventQueueManager()
-{
-}
+{}
 
 ZBEventQueueManager::~ZBEventQueueManager()
-{
-}
+{}
 
-BOOL ZBEventQueueManager::Create( const CString Directory )
+BOOL ZBEventQueueManager::Create(const CString Directory)
 {
-    if (Directory.GetAt( Directory.GetLength()-1 ) == '\\')
-        m_Directory = Directory.Left( Directory.GetLength()-1 );
+    if (Directory.GetAt(Directory.GetLength() - 1) == '\\')
+        m_Directory = Directory.Left(Directory.GetLength() - 1);
     else
         m_Directory = Directory;
 
@@ -34,16 +32,16 @@ BOOL ZBEventQueueManager::Create( const CString Directory )
     return TRUE;
 }
 
-BOOL    ZBEventQueueManager::DispatchToEventQueue( ZBEventActivity& EventActivity )
+BOOL    ZBEventQueueManager::DispatchToEventQueue(PSS_ActivityEvent& EventActivity)
 {
-    CString    Filename = BuildActivityEventFilename( EventActivity );
-    m_EventActivityFile.ExportActivityToFile( Filename, &EventActivity );
+    CString    Filename = BuildActivityEventFilename(EventActivity);
+    m_EventActivityFile.ExportActivityToFile(Filename, &EventActivity);
     return TRUE;
 }
 //---------------------------------------------------------------------------
-CString ZBEventQueueManager::BuildActivityEventFilename(ZBEventActivity& EventActivity)
+CString ZBEventQueueManager::BuildActivityEventFilename(PSS_ActivityEvent& EventActivity)
 {
-    CString file  = m_Directory + "\\" + EventActivity.GetFilename() + EventActivity.GetFileExtension();
+    CString file = m_Directory + "\\" + EventActivity.GetFileName() + EventActivity.GetFileExtension();
     int     index = 0;
 
     for (int i = 0; i < 20; ++i)
@@ -74,7 +72,7 @@ CString ZBEventQueueManager::BuildActivityEventFilename(ZBEventActivity& EventAc
                       0,           // number used to create temporary file name
                       fileBuffer); // pointer to buffer that receives the new file name
     TRACE("TEMPORARY FILE CREATED");
-    
+
     return fileBuffer;
 }
 //---------------------------------------------------------------------------

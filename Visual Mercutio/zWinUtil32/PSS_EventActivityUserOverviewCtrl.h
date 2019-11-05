@@ -18,8 +18,8 @@
 
 // processsoft
 #include "zBaseLib\PSS_TreeCtrl.h"
+#include "zEvent\PSS_ActivityEvent.h"
 #include "zEvent\EventManager.h"
-#include "zEvent\ActEvent.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -57,7 +57,7 @@ class AFX_EXT_CLASS PSS_EventActivityUserOverviewCtrl : public PSS_TreeCtrl
         * Gets the selected activity item
         *@return the selected activity item, NULL if no selection or on error
         */
-        ZBEventActivity* GetSelectedActivityItem();
+        PSS_ActivityEvent* GetSelectedActivityItem();
 
         /**
         * Gets the selected process
@@ -106,7 +106,7 @@ class AFX_EXT_CLASS PSS_EventActivityUserOverviewCtrl : public PSS_TreeCtrl
         *@param iconIndex - icon index
         *@return newly added sub-item handle, NULL on error
         */
-        HTREEITEM AddSubItem(ZBEventActivity* pData, HTREEITEM hParentTreeItem, int iconIndex);
+        HTREEITEM AddSubItem(PSS_ActivityEvent* pData, HTREEITEM hParentTreeItem, int iconIndex);
 
         /**
         * Checks if a process exists

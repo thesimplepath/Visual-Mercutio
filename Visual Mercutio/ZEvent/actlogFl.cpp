@@ -8,129 +8,127 @@
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_Tokenizer.h"
 
-ZUActivityLogFile::ZUActivityLogFile (CString LogFileName)
-  : m_LogFileName(LogFileName), m_IsOpen(FALSE)
-{
-}
+ZUActivityLogFile::ZUActivityLogFile(CString LogFileName)
+    : m_LogFileName(LogFileName), m_IsOpen(FALSE)
+{}
 
 
 ZUActivityLogFile::~ZUActivityLogFile()
-{
-}
+{}
 
 
 
-BOOL ZUActivityLogFile::OpenRead ()
+BOOL ZUActivityLogFile::OpenRead()
 {
-TRY
-{
-    // Construct a CFile object in read mode
-    if (m_LogFileName.IsEmpty() || !m_File.Open( m_LogFileName, CFile::modeRead | CFile::typeBinary ))
-        return FALSE;
-}
-CATCH( CFileException, e )
-{
+    TRY
+    {
+        // Construct a CFile object in read mode
+        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeRead | CFile::typeBinary))
+            return FALSE;
+    }
+        CATCH(CFileException, e)
+    {
     #ifdef _DEBUG
         afxDump << "File could not be opened " << e->m_cause << "\n";
     #endif
-}
-END_CATCH
-    // Set flag for open
-    m_IsOpen = TRUE;
+    }
+    END_CATCH
+        // Set flag for open
+        m_IsOpen = TRUE;
     return TRUE;
 }
 
-BOOL ZUActivityLogFile::OpenCreate ()
+BOOL ZUActivityLogFile::OpenCreate()
 {
-TRY
-{
-    // Construct a CFile object in write mode for creation
-    if (m_LogFileName.IsEmpty() || !m_File.Open( m_LogFileName, CFile::modeWrite | CFile::typeBinary | CFile::modeCreate ))
-        return FALSE;
-}
-CATCH( CFileException, e )
-{
+    TRY
+    {
+        // Construct a CFile object in write mode for creation
+        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeWrite | CFile::typeBinary | CFile::modeCreate))
+            return FALSE;
+    }
+        CATCH(CFileException, e)
+    {
     #ifdef _DEBUG
         afxDump << "File could not be opened " << e->m_cause << "\n";
     #endif
-}
-END_CATCH
-    // Set flag for open
-    m_IsOpen = TRUE;
+    }
+    END_CATCH
+        // Set flag for open
+        m_IsOpen = TRUE;
     return TRUE;
 }
 
-BOOL ZUActivityLogFile::OpenWrite ()
+BOOL ZUActivityLogFile::OpenWrite()
 {
-TRY
-{
-    // Construct a CFile object in read mode
-    if (m_LogFileName.IsEmpty() || !m_File.Open( m_LogFileName, CFile::modeWrite | CFile::typeBinary ))
-        return FALSE;
-}
-CATCH( CFileException, e )
-{
+    TRY
+    {
+        // Construct a CFile object in read mode
+        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeWrite | CFile::typeBinary))
+            return FALSE;
+    }
+        CATCH(CFileException, e)
+    {
     #ifdef _DEBUG
         afxDump << "File could not be opened " << e->m_cause << "\n";
     #endif
-}
-END_CATCH
-    // Set flag for open
-    m_IsOpen = TRUE;
+    }
+    END_CATCH
+        // Set flag for open
+        m_IsOpen = TRUE;
     return TRUE;
 }
 
-BOOL ZUActivityLogFile::Close ()
+BOOL ZUActivityLogFile::Close()
 {
     if (!m_IsOpen)
         return TRUE;
-TRY
-{
-    m_File.Close();
-}
-CATCH( CFileException, e )
-{
+    TRY
+    {
+        m_File.Close();
+    }
+        CATCH(CFileException, e)
+    {
     #ifdef _DEBUG
         afxDump << "File could not be opened " << e->m_cause << "\n";
     #endif
-    return FALSE;
-}
-END_CATCH
-    m_IsOpen = FALSE;
+        return FALSE;
+    }
+    END_CATCH
+        m_IsOpen = FALSE;
     return TRUE;
 }
 
 
-BOOL ZUActivityLogFile::WriteLine (CString& Line)
+BOOL ZUActivityLogFile::WriteLine(CString& Line)
 {
     // Go to the end of the file
     m_File.SeekToEnd();
-TRY
-{
-    m_File.Write( Line, Line.GetLength() );
-}
-CATCH( CFileException, e )
-{
+    TRY
+    {
+        m_File.Write(Line, Line.GetLength());
+    }
+        CATCH(CFileException, e)
+    {
     #ifdef _DEBUG
         afxDump << "File could write to file " << e->m_cause << "\n";
     #endif
-    return FALSE;
-}
-END_CATCH
-    return TRUE;
+        return FALSE;
+    }
+    END_CATCH
+        return TRUE;
 }
 
-void ZUActivityLogFile::Create (CString LogFileName)
+void ZUActivityLogFile::Create(CString LogFileName)
 {
-      m_LogFileName = LogFileName;
-      if (m_LogFileName.IsEmpty())
-          return;
-      if (!OpenRead())
-          OpenCreate();
+    m_LogFileName = LogFileName;
+    if (m_LogFileName.IsEmpty())
+        return;
+    if (!OpenRead())
+        OpenCreate();
     Close();
 }
 
-BOOL ZUActivityLogFile::AppendToLog (ZBEventActivity& EventActivity)
+BOOL ZUActivityLogFile::AppendToLog(const PSS_ActivityEvent& activityEvent)
 {
     if (!OpenWrite())
         OpenCreate();
@@ -138,73 +136,73 @@ BOOL ZUActivityLogFile::AppendToLog (ZBEventActivity& EventActivity)
     PSS_Date    CurrentDate = PSS_Date::GetToday();
     CString    Line;
 
-    PSS_Tokenizer    Tokenizer( '\t' );
+    PSS_Tokenizer Tokenizer('\t');
 
     // The current date
-    Tokenizer.AddToken( CurrentDate.GetStandardFormattedDate() );
+    Tokenizer.AddToken(CurrentDate.GetStandardFormattedDate());
 
     // The Event type
-    Tokenizer.AddToken( EventActivity.GetActivityEventTypeString() );
+    Tokenizer.AddToken(activityEvent.GetActivityEventTypeString());
 
     // The process file
-      Tokenizer.AddToken( EventActivity.GetProcessFilename() );
+    Tokenizer.AddToken(activityEvent.GetProcessFileName());
 
     // The data file
-    Tokenizer.AddToken( EventActivity.GetExchangeDataFilename() );
-    
+    Tokenizer.AddToken(activityEvent.GetExchangeDataFileName());
+
     // The process data file
-    Tokenizer.AddToken( EventActivity.GetProcessExchangeDataFilename() );
+    Tokenizer.AddToken(activityEvent.GetProcessExchangeDataFileName());
 
     // The folder name
-    Tokenizer.AddToken( EventActivity.GetFolderName() );
+    Tokenizer.AddToken(activityEvent.GetFolderName());
 
     // The process name
-    Tokenizer.AddToken( EventActivity.GetProcessName() );
+    Tokenizer.AddToken(activityEvent.GetProcessName());
 
     // The process start date
-    Tokenizer.AddToken( EventActivity.GetFormattedProcessCreationDate() );
+    Tokenizer.AddToken(activityEvent.GetFormattedProcessCreationDate());
 
     // The process end date
-    Tokenizer.AddToken( EventActivity.GetFormattedProcessDueDate() );
+    Tokenizer.AddToken(activityEvent.GetFormattedProcessDueDate());
 
     // The activity type
-    Tokenizer.AddToken( EventActivity.GetActivityType() );
+    Tokenizer.AddToken(activityEvent.GetActivityType());
 
     // The activity name    
-    Tokenizer.AddToken( EventActivity.GetActivityName() );
+    Tokenizer.AddToken(activityEvent.GetActivityName());
 
     // The activity start date
-    Tokenizer.AddToken( EventActivity.GetFormattedActivityCreationDate() );
+    Tokenizer.AddToken(activityEvent.GetFormattedActivityCreationDate());
 
     // The activity end date
-    Tokenizer.AddToken( EventActivity.GetFormattedActivityDueDate() );
+    Tokenizer.AddToken(activityEvent.GetFormattedActivityDueDate());
 
     // The status
-      Tokenizer.AddToken( EventActivity.GetActivityStatus() );
+    Tokenizer.AddToken(activityEvent.GetActivityStatus());
 
     // The sender
-      Tokenizer.AddToken( EventActivity.GetSender() );
+    Tokenizer.AddToken(activityEvent.GetSender());
 
     // The receiver
-      Tokenizer.AddToken( EventActivity.GetReceiver() );
+    Tokenizer.AddToken(activityEvent.GetReceiver());
 
     // The comment
-      Tokenizer.AddToken( EventActivity.GetComments() );
+    Tokenizer.AddToken(activityEvent.GetComments());
 
     // Is In Backup mode or not
-    if (EventActivity.GetIsInBackup())
-        Tokenizer.AddToken( "1" );
+    if (activityEvent.GetIsInBackup())
+        Tokenizer.AddToken("1");
     else
-        Tokenizer.AddToken( "0" );
+        Tokenizer.AddToken("0");
 
-    if (!WriteLine( Tokenizer.GetString() ))
+    if (!WriteLine(Tokenizer.GetString()))
         return FALSE;
-    
-      return Close();
+
+    return Close();
 }
 
 
-BOOL ZUActivityLogFile::ClearLog ()
+BOOL ZUActivityLogFile::ClearLog()
 {
     return OpenCreate();
 }

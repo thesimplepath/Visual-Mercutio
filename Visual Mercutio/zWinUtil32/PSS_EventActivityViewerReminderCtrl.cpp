@@ -86,10 +86,10 @@ const PSS_EventActivityViewerReminderCtrl& PSS_EventActivityViewerReminderCtrl::
         const int index      = listCtrl.GetItemCount();
               int imageIndex = 11;
 
-        if (left.GetPriority() == EventPriorityHigh)
+        if (left.GetPriority() == g_EventPriorityHigh)
             imageIndex = 10;
         else
-        if (left.GetPriority() == EventPriorityLow)
+        if (left.GetPriority() == g_EventPriorityLow)
             imageIndex = 9;
 
         // add the priority
