@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_EventActivityViewerReminderCtrl ---------------------------------*
+ * ==> PSS_ActivityEventViewerReminderCtrl ---------------------------------*
  ****************************************************************************
  * Description : Provides an event activity viewer reminder control         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_EventActivityViewerReminderCtrl.h"
+#include "PSS_ActivityEventViewerReminderCtrl.h"
 
 // processsoft
 #include "zEvent\ZProcess.h"
@@ -53,35 +53,35 @@ static int g_EventReminderColSize[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventActivityViewerReminderCtrl, PSS_ListCtrl)
-    //{{AFX_MSG_MAP(PSS_EventActivityViewerReminderCtrl)
+BEGIN_MESSAGE_MAP(PSS_ActivityEventViewerReminderCtrl, PSS_ListCtrl)
+    //{{AFX_MSG_MAP(PSS_ActivityEventViewerReminderCtrl)
     ON_MESSAGE(UM_NEWACTIVITYREMINDEREVENT, OnNewActivityEvent)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_EventActivityViewerReminderCtrl
+// PSS_ActivityEventViewerReminderCtrl
 //---------------------------------------------------------------------------
-PSS_EventActivityViewerReminderCtrl::PSS_EventActivityViewerReminderCtrl(ZBActivityEventReminderManager* pReminderManager) :
+PSS_ActivityEventViewerReminderCtrl::PSS_ActivityEventViewerReminderCtrl(ZBActivityEventReminderManager* pReminderManager) :
     PSS_ListCtrl(),
     m_pReminderManager(pReminderManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
 //---------------------------------------------------------------------------
-PSS_EventActivityViewerReminderCtrl::PSS_EventActivityViewerReminderCtrl(const PSS_EventActivityViewerReminderCtrl& other)
+PSS_ActivityEventViewerReminderCtrl::PSS_ActivityEventViewerReminderCtrl(const PSS_ActivityEventViewerReminderCtrl& other)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-PSS_EventActivityViewerReminderCtrl::~PSS_EventActivityViewerReminderCtrl()
+PSS_ActivityEventViewerReminderCtrl::~PSS_ActivityEventViewerReminderCtrl()
 {}
 //---------------------------------------------------------------------------
-const PSS_EventActivityViewerReminderCtrl& PSS_EventActivityViewerReminderCtrl::operator = (const PSS_EventActivityViewerReminderCtrl& other)
+const PSS_ActivityEventViewerReminderCtrl& PSS_ActivityEventViewerReminderCtrl::operator = (const PSS_ActivityEventViewerReminderCtrl& other)
 {
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    ZBEventActivityReminder& operator>>(ZBEventActivityReminder& left, PSS_EventActivityViewerReminderCtrl& listCtrl)
+PSS_ActivityEventReminder& operator>>(PSS_ActivityEventReminder& left, PSS_ActivityEventViewerReminderCtrl& listCtrl)
     {
         const int index      = listCtrl.GetItemCount();
               int imageIndex = 11;
@@ -120,23 +120,23 @@ const PSS_EventActivityViewerReminderCtrl& PSS_EventActivityViewerReminderCtrl::
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_EventActivityViewerReminderCtrl::Initialize(ZBActivityEventReminderManager* pReminderManager)
+void PSS_ActivityEventViewerReminderCtrl::Initialize(ZBActivityEventReminderManager* pReminderManager)
 {
     m_pReminderManager = pReminderManager;
     Refresh();
 }
 //---------------------------------------------------------------------------
-ZBEventActivityReminder* PSS_EventActivityViewerReminderCtrl::GetSelectedItem() const
+PSS_ActivityEventReminder* PSS_ActivityEventViewerReminderCtrl::GetSelectedItem() const
 {
     POSITION pPos = GetFirstSelectedItemPosition();
 
     if (pPos)
-        return (ZBEventActivityReminder*)GetItemData(GetNextSelectedItem(pPos));
+        return (PSS_ActivityEventReminder*)GetItemData(GetNextSelectedItem(pPos));
 
     return NULL;
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityViewerReminderCtrl::Refresh()
+void PSS_ActivityEventViewerReminderCtrl::Refresh()
 {
     DeleteAllItems();
 
@@ -147,12 +147,12 @@ void PSS_EventActivityViewerReminderCtrl::Refresh()
     const int eventCount = m_pReminderManager->GetEventCount();
 
     for (int i = 0; i < eventCount; ++i)
-        ((ZBEventActivityReminder&)*(m_pReminderManager->GetEventAt(i))) >> *this;
+        ((PSS_ActivityEventReminder&)*(m_pReminderManager->GetEventAt(i))) >> *this;
 }
 //---------------------------------------------------------------------------
-LRESULT PSS_EventActivityViewerReminderCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lParam)
+LRESULT PSS_ActivityEventViewerReminderCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lParam)
 {
-    ZBEventActivityReminder* pEvent = (ZBEventActivityReminder*)lParam;
+    PSS_ActivityEventReminder* pEvent = (PSS_ActivityEventReminder*)lParam;
 
     // were the columns never built?
     if (!ColumnsHasBeenBuilt())
@@ -162,7 +162,7 @@ LRESULT PSS_EventActivityViewerReminderCtrl::OnNewActivityEvent(WPARAM wParam, L
     return 0;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityViewerReminderCtrl::BuildColumns()
+BOOL PSS_ActivityEventViewerReminderCtrl::BuildColumns()
 {
     // load images
     LoadImageListMasked(IDB_MESSAGEITEM0_ACTEVT, IDB_MESSAGEITEM11_ACTEVT);

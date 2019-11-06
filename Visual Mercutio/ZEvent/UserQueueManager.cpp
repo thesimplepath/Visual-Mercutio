@@ -36,7 +36,7 @@ BOOL ZBUserQueueManager::Create( const CString Directory )
 
 PSS_ActivityEvent* ZBUserQueueManager::DispatchToUserQueue( const CString Filename )
 {
-    PSS_ActivityEvent* pEventActivity = (PSS_ActivityEvent*)m_EventActivityFile.ImportActivityFromFile( Filename );
+    PSS_ActivityEvent* pEventActivity = (PSS_ActivityEvent*)m_ActivityEventFile.ImportActivityFromFile( Filename );
     if (!pEventActivity)
         return NULL;
     TRACE1("DISPATCH TO USER QUEUE IN WITH FILENAME = %s\n", (const char*)Filename);
@@ -103,7 +103,7 @@ BOOL    ZBUserQueueManager::ForwardToUserQueue(PSS_ActivityEvent& EventActivity 
     {
         // Dispatch to the 
         CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFileName() + EventActivity.GetFileExtension(), Token );
-        m_EventActivityFile.ExportActivityToFile( Filename, &EventActivity );
+        m_ActivityEventFile.ExportActivityToFile( Filename, &EventActivity );
         TRACE("FORWARDED TO USER QUEUE\n");
         Token = Tokenizer.GetNextToken();
     }
@@ -120,7 +120,7 @@ BOOL    ZBUserQueueManager::RemoveAssociatedEventFromUserQueue(PSS_ActivityEvent
     {
         CString    Filename = BuildUserActivityEventFilename( EventActivity.GetFileName() + EventActivity.GetFileExtension(PSS_ActivityEvent::IE_AT_ToDo), Token );
         // Import file first
-        pEventActivity = (PSS_ActivityEvent*)m_EventActivityFile.ImportActivityFromFile( Filename );
+        pEventActivity = (PSS_ActivityEvent*)m_ActivityEventFile.ImportActivityFromFile( Filename );
         // If it is a todo activity, therefore remove the associated message
         if (pEventActivity && pEventActivity->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo &&
             Token != pEventActivity->GetSender())

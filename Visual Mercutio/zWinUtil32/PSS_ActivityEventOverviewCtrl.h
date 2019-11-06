@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_EventActivityOverviewCtrl ---------------------------------------*
+ * ==> PSS_ActivityEventOverviewCtrl ---------------------------------------*
  ****************************************************************************
  * Description : Provides an event activity overview control                *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_EventActivityOverviewCtrlH
-#define PSS_EventActivityOverviewCtrlH
+#ifndef PSS_ActivityEventOverviewCtrlH
+#define PSS_ActivityEventOverviewCtrlH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -35,16 +35,16 @@
 * Event activity overview control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
+class AFX_EXT_CLASS PSS_ActivityEventOverviewCtrl : public PSS_TreeCtrl
 {
     public:
         /**
         * Constructor
         *@param pEventManager - event manager
         */
-        PSS_EventActivityOverviewCtrl(ZBEventManager* pEventManager = NULL);
+        PSS_ActivityEventOverviewCtrl(ZBEventManager* pEventManager = NULL);
 
-        virtual ~PSS_EventActivityOverviewCtrl();
+        virtual ~PSS_ActivityEventOverviewCtrl();
 
         /**
         * Initializes the control
@@ -91,7 +91,7 @@ class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
         */
         virtual void Refresh();
 
-        //{{AFX_MSG(PSS_EventActivityOverviewCtrl)
+        //{{AFX_MSG(PSS_ActivityEventOverviewCtrl)
         afx_msg void OnDestroy();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
@@ -142,14 +142,14 @@ class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public PSS_TreeCtrl
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_EventActivityOverviewCtrl(const PSS_EventActivityOverviewCtrl& other);
+        PSS_ActivityEventOverviewCtrl(const PSS_ActivityEventOverviewCtrl& other);
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_EventActivityOverviewCtrl& operator = (const PSS_EventActivityOverviewCtrl& other);
+        const PSS_ActivityEventOverviewCtrl& operator = (const PSS_ActivityEventOverviewCtrl& other);
 
         /**
         * Adds an user item

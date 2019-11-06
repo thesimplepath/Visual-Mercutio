@@ -14,7 +14,7 @@
 // processsoft
 #include "EventManager.h"
 #include "UserDMng.h"
-#include "ActEvtFl.h"
+#include "PSS_ActivityEventFile.h"
 
 #ifdef _ZEVENTEXPORT
 // put the values back to make AFX_EXT_CLASS export again
@@ -32,32 +32,32 @@
 
 class AFX_EXT_CLASS ZBUserQueueManager
 {
-  public:
-        ZBUserQueueManager ();
-        ~ZBUserQueueManager();
-        BOOL                Create( const CString Directory );
-        PSS_ActivityEvent*    DispatchToUserQueue( const CString Filename );
-        BOOL    RemoveEventFromUserQueue(PSS_ActivityEvent& EventActivity, CString User );
-        BOOL    RemoveEventFromReceiverQueue(PSS_ActivityEvent& EventActivity );
-        BOOL    RemoveEventFromSenderQueue(PSS_ActivityEvent& EventActivity );
+public:
+    ZBUserQueueManager();
+    ~ZBUserQueueManager();
+    BOOL                Create(const CString Directory);
+    PSS_ActivityEvent*    DispatchToUserQueue(const CString Filename);
+    BOOL    RemoveEventFromUserQueue(PSS_ActivityEvent& EventActivity, CString User);
+    BOOL    RemoveEventFromReceiverQueue(PSS_ActivityEvent& EventActivity);
+    BOOL    RemoveEventFromSenderQueue(PSS_ActivityEvent& EventActivity);
 
-  protected:
-        BOOL    ForwardToUserQueue(PSS_ActivityEvent& EventActivity );
-        BOOL    RemoveFromUserQueue(PSS_ActivityEvent& EventActivity, CString User );
-        BOOL    RemoveAssociatedEventFromUserQueue(PSS_ActivityEvent& EventActivity );
-        BOOL    CheckDirectory(PSS_ActivityEvent& EventActivity );
-        BOOL    ProceedDeleteMessage(PSS_ActivityEvent& EventActivity );
+protected:
+    BOOL    ForwardToUserQueue(PSS_ActivityEvent& EventActivity);
+    BOOL    RemoveFromUserQueue(PSS_ActivityEvent& EventActivity, CString User);
+    BOOL    RemoveAssociatedEventFromUserQueue(PSS_ActivityEvent& EventActivity);
+    BOOL    CheckDirectory(PSS_ActivityEvent& EventActivity);
+    BOOL    ProceedDeleteMessage(PSS_ActivityEvent& EventActivity);
 
-  private:
-      ZBUserQueueManager(const ZBUserQueueManager &right);
-      const ZBUserQueueManager & operator=(const ZBUserQueueManager &right);
+private:
+    ZBUserQueueManager(const ZBUserQueueManager &right);
+    const ZBUserQueueManager & operator=(const ZBUserQueueManager &right);
 
-      CString    BuildUserActivityEventFilename( CString Filename, const CString User );
-      BOOL        RemoveEventFilename( const CString Filename );
+    CString    BuildUserActivityEventFilename(CString Filename, const CString User);
+    BOOL        RemoveEventFilename(const CString Filename);
 
-  private:
+private:
     ZBUserDirectoryManager m_UserDirectoryManager;
-    ZBEventActivityFile    m_EventActivityFile;
+    PSS_ActivityEventFile  m_ActivityEventFile;
     CString                m_Directory;
 };
 

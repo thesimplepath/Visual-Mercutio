@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_EventActivityOverviewCtrl ---------------------------------------*
+ * ==> PSS_ActivityEventOverviewCtrl ---------------------------------------*
  ****************************************************************************
  * Description : Provides an event activity overview control                *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_EventActivityOverviewCtrl.h"
+#include "PSS_ActivityEventOverviewCtrl.h"
 
 // processsoft
 #include "zBaseLib\PSS_Tokenizer.h"
@@ -27,54 +27,54 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventActivityOverviewCtrl, PSS_TreeCtrl)
-    //{{AFX_MSG_MAP(PSS_EventActivityOverviewCtrl)
+BEGIN_MESSAGE_MAP(PSS_ActivityEventOverviewCtrl, PSS_TreeCtrl)
+    //{{AFX_MSG_MAP(PSS_ActivityEventOverviewCtrl)
     ON_WM_DESTROY()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_EventActivityOverviewCtrl::IElementType
+// PSS_ActivityEventOverviewCtrl::IElementType
 //---------------------------------------------------------------------------
-PSS_EventActivityOverviewCtrl::IElementType::IElementType(PSS_ActivityEvent* pData, IEActivityType type) :
+PSS_ActivityEventOverviewCtrl::IElementType::IElementType(PSS_ActivityEvent* pData, IEActivityType type) :
     m_pData(pData),
     m_Type(type)
 {}
 //---------------------------------------------------------------------------
-PSS_EventActivityOverviewCtrl::IElementType::IElementType(const CString& name, IEActivityType type) :
+PSS_ActivityEventOverviewCtrl::IElementType::IElementType(const CString& name, IEActivityType type) :
     m_pData(NULL),
     m_Name(name),
     m_Type(type)
 {}
 //---------------------------------------------------------------------------
-PSS_EventActivityOverviewCtrl::IElementType::~IElementType()
+PSS_ActivityEventOverviewCtrl::IElementType::~IElementType()
 {
     m_pData = NULL;
 }
 //---------------------------------------------------------------------------
-// PSS_EventActivityOverviewCtrl
+// PSS_ActivityEventOverviewCtrl
 //---------------------------------------------------------------------------
-PSS_EventActivityOverviewCtrl::PSS_EventActivityOverviewCtrl(ZBEventManager* pEventManager) :
+PSS_ActivityEventOverviewCtrl::PSS_ActivityEventOverviewCtrl(ZBEventManager* pEventManager) :
     PSS_TreeCtrl(),
     m_pEventManager(pEventManager)
 {}
 //---------------------------------------------------------------------------
-PSS_EventActivityOverviewCtrl::PSS_EventActivityOverviewCtrl(const PSS_EventActivityOverviewCtrl& other)
+PSS_ActivityEventOverviewCtrl::PSS_ActivityEventOverviewCtrl(const PSS_ActivityEventOverviewCtrl& other)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-PSS_EventActivityOverviewCtrl::~PSS_EventActivityOverviewCtrl()
+PSS_ActivityEventOverviewCtrl::~PSS_ActivityEventOverviewCtrl()
 {
     m_UserArray.RemoveAll();
     m_ProcessArray.RemoveAll();
 }
 //---------------------------------------------------------------------------
-const PSS_EventActivityOverviewCtrl& PSS_EventActivityOverviewCtrl::operator = (const PSS_EventActivityOverviewCtrl& other)
+const PSS_ActivityEventOverviewCtrl& PSS_ActivityEventOverviewCtrl::operator = (const PSS_ActivityEventOverviewCtrl& other)
 {
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::Initialize()
+void PSS_ActivityEventOverviewCtrl::Initialize()
 {
     // set styles
     HasButtons();
@@ -141,13 +141,13 @@ void PSS_EventActivityOverviewCtrl::Initialize()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::Initialize(ZBEventManager* pEventManager)
+void PSS_ActivityEventOverviewCtrl::Initialize(ZBEventManager* pEventManager)
 {
     m_pEventManager = pEventManager;
     Refresh();
 }
 //---------------------------------------------------------------------------
-PSS_ActivityEvent* PSS_EventActivityOverviewCtrl::GetSelectedActivityItem()
+PSS_ActivityEvent* PSS_ActivityEventOverviewCtrl::GetSelectedActivityItem()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
@@ -162,7 +162,7 @@ PSS_ActivityEvent* PSS_EventActivityOverviewCtrl::GetSelectedActivityItem()
     return NULL;
 }
 //---------------------------------------------------------------------------
-CString PSS_EventActivityOverviewCtrl::GetSelectedUser()
+CString PSS_ActivityEventOverviewCtrl::GetSelectedUser()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
@@ -179,7 +179,7 @@ CString PSS_EventActivityOverviewCtrl::GetSelectedUser()
     return "";
 }
 //---------------------------------------------------------------------------
-CString PSS_EventActivityOverviewCtrl::GetSelectedProcess()
+CString PSS_ActivityEventOverviewCtrl::GetSelectedProcess()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
@@ -196,7 +196,7 @@ CString PSS_EventActivityOverviewCtrl::GetSelectedProcess()
     return "";
 }
 //---------------------------------------------------------------------------
-CObArray& PSS_EventActivityOverviewCtrl::GetUserActivities(const CString& user)
+CObArray& PSS_ActivityEventOverviewCtrl::GetUserActivities(const CString& user)
 {
     m_ActPtrArray.RemoveAll();
 
@@ -219,7 +219,7 @@ CObArray& PSS_EventActivityOverviewCtrl::GetUserActivities(const CString& user)
     return m_ActPtrArray;
 }
 //---------------------------------------------------------------------------
-CObArray& PSS_EventActivityOverviewCtrl::GetProcessActivities(const CString& process, const CString& user)
+CObArray& PSS_ActivityEventOverviewCtrl::GetProcessActivities(const CString& process, const CString& user)
 {
     m_ActPtrArray.RemoveAll();
 
@@ -245,7 +245,7 @@ CObArray& PSS_EventActivityOverviewCtrl::GetProcessActivities(const CString& pro
     return m_ActPtrArray;
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::Refresh()
+void PSS_ActivityEventOverviewCtrl::Refresh()
 {
     DeleteAllItems();
 
@@ -254,14 +254,14 @@ void PSS_EventActivityOverviewCtrl::Refresh()
     Initialize();
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::OnDestroy()
+void PSS_ActivityEventOverviewCtrl::OnDestroy()
 {
     DeleteAllItems();
 
     PSS_TreeCtrl::OnDestroy();
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_EventActivityOverviewCtrl::AddUserItem(IElementType* pElement, int iconIndex)
+HTREEITEM PSS_ActivityEventOverviewCtrl::AddUserItem(IElementType* pElement, int iconIndex)
 {
     if (!pElement || pElement->m_Type != IElementType::IE_AT_User)
         return NULL;
@@ -278,7 +278,7 @@ HTREEITEM PSS_EventActivityOverviewCtrl::AddUserItem(IElementType* pElement, int
     return InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_EventActivityOverviewCtrl::AddProcessItem(IElementType* pElement, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_ActivityEventOverviewCtrl::AddProcessItem(IElementType* pElement, HTREEITEM hParentTreeItem, int iconIndex)
 {
     if (!pElement || pElement->m_Type != IElementType::IE_AT_Process)
         return NULL;
@@ -295,7 +295,7 @@ HTREEITEM PSS_EventActivityOverviewCtrl::AddProcessItem(IElementType* pElement, 
     return InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_EventActivityOverviewCtrl::AddSubItem(IElementType* pElement, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_ActivityEventOverviewCtrl::AddSubItem(IElementType* pElement, HTREEITEM hParentTreeItem, int iconIndex)
 {
     if (!pElement || pElement->m_Type != IElementType::IE_AT_Activity)
         return NULL;
@@ -315,7 +315,7 @@ HTREEITEM PSS_EventActivityOverviewCtrl::AddSubItem(IElementType* pElement, HTRE
     return InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-CString PSS_EventActivityOverviewCtrl::FormatActivityText(PSS_ActivityEvent* pData)
+CString PSS_ActivityEventOverviewCtrl::FormatActivityText(PSS_ActivityEvent* pData)
 {
     CString processNameLabel;
     processNameLabel.LoadString(IDS_COLUMN2_EVENTREMINDER);
@@ -335,7 +335,7 @@ CString PSS_EventActivityOverviewCtrl::FormatActivityText(PSS_ActivityEvent* pDa
     return buffer;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityOverviewCtrl::UserExist(const CString& user)
+BOOL PSS_ActivityEventOverviewCtrl::UserExist(const CString& user)
 {
     const int count = m_UserArray.GetSize();
 
@@ -346,7 +346,7 @@ BOOL PSS_EventActivityOverviewCtrl::UserExist(const CString& user)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityOverviewCtrl::ProcessExist(const CString& process)
+BOOL PSS_ActivityEventOverviewCtrl::ProcessExist(const CString& process)
 {
     const int count = m_ProcessArray.GetSize();
 
@@ -357,7 +357,7 @@ BOOL PSS_EventActivityOverviewCtrl::ProcessExist(const CString& process)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityOverviewCtrl::EventExist(PSS_ActivityEvent* pActEvent)
+BOOL PSS_ActivityEventOverviewCtrl::EventExist(PSS_ActivityEvent* pActEvent)
 {
     const int count = m_ActPtrArray.GetSize();
 
@@ -368,7 +368,7 @@ BOOL PSS_EventActivityOverviewCtrl::EventExist(PSS_ActivityEvent* pActEvent)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::BuildUserArray()
+void PSS_ActivityEventOverviewCtrl::BuildUserArray()
 {
     m_UserArray.RemoveAll();
 
@@ -395,7 +395,7 @@ void PSS_EventActivityOverviewCtrl::BuildUserArray()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::BuildProcessArray()
+void PSS_ActivityEventOverviewCtrl::BuildProcessArray()
 {
     m_ProcessArray.RemoveAll();
 
@@ -419,12 +419,12 @@ void PSS_EventActivityOverviewCtrl::BuildProcessArray()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::DeleteAllItems()
+void PSS_ActivityEventOverviewCtrl::DeleteAllItems()
 {
     DeleteAllItems(GetRootItem());
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityOverviewCtrl::DeleteAllItems(HTREEITEM hTreeItem)
+void PSS_ActivityEventOverviewCtrl::DeleteAllItems(HTREEITEM hTreeItem)
 {
     if (!hTreeItem)
         return;

@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_EventActivityViewerReminderCtrl ---------------------------------*
+ * ==> PSS_ActivityEventCtrl -----------------------------------------------*
  ****************************************************************************
- * Description : Provides an event activity viewer reminder control         *
+ * Description : Provides an event activity control                         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_EventActivityViewerReminderCtrlH
-#define PSS_EventActivityViewerReminderCtrlH
+#ifndef PSS_ActivityEventCtrlH
+#define PSS_ActivityEventCtrlH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
 #include "zEvent\EventManager.h"
-#include "zEvent\ActEvtReminderManager.h"
+#include "zEvent\PSS_ActivityEvent.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -32,42 +32,41 @@
 #endif
 
 /**
-* Event activity viewer reminder control
+* Event activity control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventActivityViewerReminderCtrl : public PSS_ListCtrl
+class AFX_EXT_CLASS PSS_ActivityEventCtrl : public PSS_ListCtrl
 {
     public:
         /**
         * Constructor
-        *@param pReminderManager - reminder manager, can be NULL
+        *@param pEventManager - event manager, can be NULL
         */
-        PSS_EventActivityViewerReminderCtrl(ZBActivityEventReminderManager* pReminderManager = NULL);
+        PSS_ActivityEventCtrl(ZBEventManager* pEventManager = NULL);
 
-        virtual ~PSS_EventActivityViewerReminderCtrl();
+        virtual ~PSS_ActivityEventCtrl();
 
         /**
         * Stream out operator
-        *@param left - left event activity reminder
-        *@param listCtrl - event activity view reminder controller
-        *@return event activity reminder
+        *@param left - left event activity
+        *@param listCtrl - event activity controller
+        *@return event activity
         */
         #ifdef _WIN32
-            AFX_EXT_API friend ZBEventActivityReminder& operator >> (ZBEventActivityReminder&             left,
-                                                                     PSS_EventActivityViewerReminderCtrl& listCtrl);
+            AFX_EXT_API friend PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventCtrl& listCtrl);
         #endif
 
         /**
         * Initializes the control
         *@param pReminderManager - reminder manager, can be NULL
         */
-        virtual void Initialize(ZBActivityEventReminderManager* pReminderManager);
+        virtual void Initialize(ZBEventManager* pEventManager);
 
         /**
         * Gets the selected item
         *@return the selected item, NULL if no item selected or on error
         */
-        ZBEventActivityReminder* GetSelectedItem() const;
+        virtual PSS_ActivityEvent* GetSelectedItem() const;
 
         /**
         * Refreshes the control
@@ -75,28 +74,28 @@ class AFX_EXT_CLASS PSS_EventActivityViewerReminderCtrl : public PSS_ListCtrl
         virtual void Refresh();
 
     protected:
-        //{{AFX_MSG(PSS_EventActivityViewerReminderCtrl)
-        afx_msg LRESULT OnNewActivityEvent( WPARAM wParam, LPARAM lParam );
+        //{{AFX_MSG(PSS_ActivityEventCtrl)
+        afx_msg LRESULT OnNewActivityEvent(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBActivityEventReminderManager* m_pReminderManager;
-        BOOL                            m_ColumnsHasBeenBuilt;
+        ZBEventManager* m_pEventManager;
+        BOOL            m_ColumnsHasBeenBuilt;
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_EventActivityViewerReminderCtrl(const PSS_EventActivityViewerReminderCtrl& other);
+        PSS_ActivityEventCtrl(const PSS_ActivityEventCtrl& other);
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_EventActivityViewerReminderCtrl& operator = (const PSS_EventActivityViewerReminderCtrl& other);
-
+        const PSS_ActivityEventCtrl& operator = (const PSS_ActivityEventCtrl& other);
+      
         /**
         * Checks if columns were built
         *@return TRUE if columns were built, otherwise FALSE
@@ -111,9 +110,9 @@ class AFX_EXT_CLASS PSS_EventActivityViewerReminderCtrl : public PSS_ListCtrl
 };
 
 //---------------------------------------------------------------------------
-// PSS_EventActivityViewerReminderCtrl
+// PSS_ActivityEventCtrl
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityViewerReminderCtrl::ColumnsHasBeenBuilt() const
+BOOL PSS_ActivityEventCtrl::ColumnsHasBeenBuilt() const
 {
     return m_ColumnsHasBeenBuilt;
 }

@@ -80,7 +80,7 @@ public:
 
     BOOL            IsInUserQueue() const { return m_UserQueue.IsEmpty() != TRUE; };
 
-    BOOL            ParseDateTime(COleDateTime& Date, CString& value);
+    BOOL            ParseDateTime(COleDateTime& Date, const CString& value);
 
 protected:
     PSS_Date m_TimeStamp;

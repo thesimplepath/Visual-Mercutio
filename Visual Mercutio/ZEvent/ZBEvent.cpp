@@ -73,9 +73,10 @@ CString        ZBEvent::GetEventIDStr() const
     return Text;
 }
 
-BOOL    ZBEvent::ParseDateTime(COleDateTime& Date, CString& value)
+BOOL    ZBEvent::ParseDateTime(COleDateTime& Date, const CString& value)
 {
-    char*    pNext = value.GetBuffer(30);
+    CString dateToParse = value;
+    char*    pNext = dateToParse.GetBuffer(30);
     int        Year = 0;
     int        Month = 0;
     int        Day = 0;
@@ -113,7 +114,7 @@ BOOL    ZBEvent::ParseDateTime(COleDateTime& Date, CString& value)
     pNext += 3;
     Sec = atoi(pNext);
     // Release the buffer
-    value.ReleaseBuffer();
+    dateToParse.ReleaseBuffer();
     // Sets the date time
     return (Date.SetDateTime(Year, Month, Day, Hour, Min, Sec) == 0) ? TRUE : FALSE;
 }

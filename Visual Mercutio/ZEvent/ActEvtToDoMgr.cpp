@@ -4,9 +4,9 @@
 #include "ActEvtToDoMgr.h"
 
 // processsoft
-#include "ActEvtFl.h"
 #include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_File.h"
+#include "PSS_ActivityEventFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -25,8 +25,9 @@ ZBActivityEventToDoManager::~ZBActivityEventToDoManager()
 
 ZBEvent* ZBActivityEventToDoManager::LoadEventFromFile(const CString Filename)
 {
-    ZBEventActivityFile    EventActivityFile;
-    ZBEvent*    pEvent = EventActivityFile.ImportActivityFromFile(Filename);
+    PSS_ActivityEventFile activityEventFile;
+
+    ZBEvent*    pEvent = activityEventFile.ImportActivityFromFile(Filename);
     if (pEvent &&
         pEvent->IsKindOf(RUNTIME_CLASS(PSS_ActivityEvent)) &&
         ((PSS_ActivityEvent*)pEvent)->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo)
@@ -41,6 +42,7 @@ ZBEvent* ZBActivityEventToDoManager::LoadEventFromFile(const CString Filename)
         }
         return pEvent;
     }
+
     delete pEvent;
     return NULL;
 }

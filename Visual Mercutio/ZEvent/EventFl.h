@@ -48,9 +48,16 @@ private:
     const ZBEventFile & operator=(const ZBEventFile &right);
 
 protected:
-    virtual void        BuildLine(const CString Path, const CString Filename) = 0;
-    virtual BOOL        ParseLine() = 0;
-    virtual ZBEvent*    AllocateEventPtr() = 0;
+    /**
+    * Builds a line
+    *@param path - path
+    *@param fileName - file name
+    */
+    virtual void BuildLine(const CString& path, const CString& fileName) = 0;
+
+    virtual BOOL ParseLine() = 0;
+
+    virtual ZBEvent* AllocateEvent() const = 0;
 
 private:
     BOOL    OpenFileCreate();
@@ -73,14 +80,9 @@ private:
     CFile                m_File;
 };
 
-
-//#undef  AFX_DATA
-//#define AFX_DATA
-
-
 inline void ZBEventFile::WriteLine ()
 {
     m_File.Write( m_FileBuffer, m_FileBuffer.GetLength() );
 }
 
-#endif // !defined(AFX_ZBEventFile_H__0F4A8AF0_0EAC_11D3_9810_00C04FB4D0D7__INCLUDED_)
+#endif

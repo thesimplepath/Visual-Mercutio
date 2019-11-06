@@ -47,7 +47,7 @@ BOOL    ZBEventFile::ExportActivityToFile( const CString Filename, ZBEvent* pAct
 ZBEvent*    ZBEventFile::ImportActivityFromFile( const CString Filename )
 {
     m_Filename = Filename;
-    m_pEvent = AllocateEventPtr();
+    m_pEvent = AllocateEvent();
     if (!m_pEvent)
         return NULL;
     if (!OpenFileRead ())

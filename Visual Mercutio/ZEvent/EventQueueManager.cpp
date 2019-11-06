@@ -35,7 +35,7 @@ BOOL ZBEventQueueManager::Create(const CString Directory)
 BOOL    ZBEventQueueManager::DispatchToEventQueue(PSS_ActivityEvent& EventActivity)
 {
     CString    Filename = BuildActivityEventFilename(EventActivity);
-    m_EventActivityFile.ExportActivityToFile(Filename, &EventActivity);
+    m_ActivityEventFile.ExportActivityToFile(Filename, &EventActivity);
     return TRUE;
 }
 //---------------------------------------------------------------------------

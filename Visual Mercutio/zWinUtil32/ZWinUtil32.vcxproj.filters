@@ -31,25 +31,10 @@
     <ClCompile Include="PSS_ActivityAttributionBackupInputDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_EventActivityOverviewCtrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_EventActivityViewerReminderCtrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_EventActivityLogCtrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_ActivityComboBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_LanguageComboBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_EventActivityCtrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_EventActivityUserOverviewCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_ActivityListCtrl.cpp">
@@ -337,6 +322,21 @@
     <ClCompile Include="PSS_UrlWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ActivityEventCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityEventLogCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityEventOverviewCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityEventUserOverviewCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityEventViewerReminderCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\POINTER.CUR">
@@ -367,25 +367,10 @@
     <ClInclude Include="ZWinUtil32Res.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PSS_EventActivityOverviewCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_EventActivityViewerReminderCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_EventActivityLogCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PSS_ActivityComboBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_LanguageComboBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_EventActivityCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_EventActivityUserOverviewCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ActivityListCtrl.h">
@@ -674,6 +659,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_UrlWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityEventCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityEventLogCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityEventOverviewCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityEventUserOverviewCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityEventViewerReminderCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

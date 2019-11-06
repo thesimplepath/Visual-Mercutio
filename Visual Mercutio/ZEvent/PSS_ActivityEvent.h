@@ -231,10 +231,10 @@ class AFX_EXT_CLASS PSS_ActivityEvent : public ZBEvent
 
         /**
         * Sets the process creation date from a string
-        *@param[out] value - the string which will contain the process creation date on function ends
+        *@param value - the process creation date
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL SetProcessCreationDate(CString& value);
+        virtual inline BOOL SetProcessCreationDate(const CString& value);
 
         /**
         * Gets the formatted process creation date
@@ -274,10 +274,10 @@ class AFX_EXT_CLASS PSS_ActivityEvent : public ZBEvent
 
         /**
         * Sets the process due date from a string
-        *@param[out] value - the string which will contain the process due date on function ends
+        *@param value - the process due date
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL SetProcessDueDate(CString& value);
+        virtual inline BOOL SetProcessDueDate(const CString& value);
 
         /**
         * Gets the process due date as a string
@@ -316,11 +316,11 @@ class AFX_EXT_CLASS PSS_ActivityEvent : public ZBEvent
         virtual inline int SetActivityCreationDate(int year, int month, int day, int hour, int min, int sec);
 
         /**
-        * Sets the activity creation date
-        *@param[out] value - the string which will contain the activity creation date on function ends
+        * Sets the activity creation date from a string
+        *@param value - the activity creation date
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL SetActivityCreationDate(CString& value);
+        virtual inline BOOL SetActivityCreationDate(const CString& value);
 
         /**
         * Gets the formatted activity creation date
@@ -581,7 +581,7 @@ int PSS_ActivityEvent::SetProcessCreationDate(int year, int month, int day, int 
     return m_ProcessCreationDate.SetDateTime(year, month, day, hour, min, sec);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityEvent::SetProcessCreationDate(CString& value)
+BOOL PSS_ActivityEvent::SetProcessCreationDate(const CString& value)
 {
     return ParseDateTime(m_ProcessCreationDate, value);
 }
@@ -611,7 +611,7 @@ int PSS_ActivityEvent::SetProcessDueDate(int year, int month, int day, int hour,
     return m_ProcessDueDate.SetDateTime(year, month, day, hour, min, sec);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityEvent::SetProcessDueDate(CString& value)
+BOOL PSS_ActivityEvent::SetProcessDueDate(const CString& value)
 {
     return ParseDateTime(m_ProcessDueDate, value);
 }
@@ -641,7 +641,7 @@ int PSS_ActivityEvent::SetActivityCreationDate(int year, int month, int day, int
     return m_ActivityCreationDate.SetDateTime(year, month, day, hour, min, sec);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityEvent::SetActivityCreationDate(CString& value)
+BOOL PSS_ActivityEvent::SetActivityCreationDate(const CString& value)
 {
     return ParseDateTime(m_ActivityCreationDate, value);
 }

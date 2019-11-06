@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_EventActivityLogCtrl --------------------------------------------*
+ * ==> PSS_ActivityEventLogCtrl --------------------------------------------*
  ****************************************************************************
  * Description : Provides an event activity logger control                  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_EventActivityLogCtrl.h"
+#include "PSS_ActivityEventLogCtrl.h"
 
 // processsoft
 #include "zEvent\BActVt.h"
@@ -73,35 +73,35 @@ static int g_EventActivityColSize[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_EventActivityLogCtrl, PSS_ListCtrl)
-    //{{AFX_MSG_MAP(PSS_EventActivityLogCtrl)
+BEGIN_MESSAGE_MAP(PSS_ActivityEventLogCtrl, PSS_ListCtrl)
+    //{{AFX_MSG_MAP(PSS_ActivityEventLogCtrl)
     ON_MESSAGE(UM_NEWACTIVITYEVENT, OnNewActivityEvent)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_EventActivityLogCtrl
+// PSS_ActivityEventLogCtrl
 //---------------------------------------------------------------------------
-PSS_EventActivityLogCtrl::PSS_EventActivityLogCtrl(ZBEventManager* pEventManager) :
+PSS_ActivityEventLogCtrl::PSS_ActivityEventLogCtrl(ZBEventManager* pEventManager) :
     PSS_ListCtrl(),
     m_pEventManager(pEventManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
 //---------------------------------------------------------------------------
-PSS_EventActivityLogCtrl::PSS_EventActivityLogCtrl(const PSS_EventActivityLogCtrl& other)
+PSS_ActivityEventLogCtrl::PSS_ActivityEventLogCtrl(const PSS_ActivityEventLogCtrl& other)
 {
     THROW("Copy constructor is prohibited for this class");
 }
 //---------------------------------------------------------------------------
-PSS_EventActivityLogCtrl::~PSS_EventActivityLogCtrl()
+PSS_ActivityEventLogCtrl::~PSS_ActivityEventLogCtrl()
 {}
 //---------------------------------------------------------------------------
-const PSS_EventActivityLogCtrl& PSS_EventActivityLogCtrl::operator = (const PSS_EventActivityLogCtrl& other)
+const PSS_ActivityEventLogCtrl& PSS_ActivityEventLogCtrl::operator = (const PSS_ActivityEventLogCtrl& other)
 {
     THROW("Copy operator is prohibited for this class");
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_EventActivityLogCtrl& listCtrl)
+    PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventLogCtrl& listCtrl)
     {
         const int index      = listCtrl.GetItemCount();
               int imageIndex = 13;
@@ -198,14 +198,14 @@ const PSS_EventActivityLogCtrl& PSS_EventActivityLogCtrl::operator = (const PSS_
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_EventActivityLogCtrl::Initialize (ZBEventManager* pEventManager)
+void PSS_ActivityEventLogCtrl::Initialize (ZBEventManager* pEventManager)
 {
     m_pEventManager = pEventManager;
 
     Refresh();
 }
 //---------------------------------------------------------------------------
-PSS_ActivityEvent* PSS_EventActivityLogCtrl::GetSelectedItem() const
+PSS_ActivityEvent* PSS_ActivityEventLogCtrl::GetSelectedItem() const
 {
     int      index;
     POSITION pPos = GetFirstSelectedItemPosition();
@@ -219,7 +219,7 @@ PSS_ActivityEvent* PSS_EventActivityLogCtrl::GetSelectedItem() const
     return NULL;
 }
 //---------------------------------------------------------------------------
-void PSS_EventActivityLogCtrl::Refresh()
+void PSS_ActivityEventLogCtrl::Refresh()
 {
     DeleteAllItems();
 
@@ -236,7 +236,7 @@ void PSS_EventActivityLogCtrl::Refresh()
     }
 }
 //---------------------------------------------------------------------------
-LRESULT PSS_EventActivityLogCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lParam)
+LRESULT PSS_ActivityEventLogCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lParam)
 {
     PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)lParam;
 
@@ -249,7 +249,7 @@ LRESULT PSS_EventActivityLogCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lPara
     return 0;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityLogCtrl::BuildColumns()
+BOOL PSS_ActivityEventLogCtrl::BuildColumns()
 {
     // load images
     LoadImageListMasked(IDB_MESSAGEITEM0_ACTEVT, IDB_MESSAGEITEM13_ACTEVT);

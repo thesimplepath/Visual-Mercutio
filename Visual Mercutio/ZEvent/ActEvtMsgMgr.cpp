@@ -6,7 +6,7 @@
 // processsoft
 #include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_File.h"
-#include "ActEvtFl.h"
+#include "PSS_ActivityEventFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,15 +22,16 @@ ZBActivityEventMessageManager::ZBActivityEventMessageManager()
 ZBActivityEventMessageManager::~ZBActivityEventMessageManager()
 {}
 
-ZBEvent* ZBActivityEventMessageManager::LoadEventFromFile(const CString Filename)
+ZBEvent* ZBActivityEventMessageManager::LoadEventFromFile(const CString fileName)
 {
-    ZBEventActivityFile    EventActivityFile;
-    ZBEvent*    pEvent = EventActivityFile.ImportActivityFromFile(Filename);
+    PSS_ActivityEventFile activityEventFile;
+    ZBEvent*              pEvent = activityEventFile.ImportActivityFromFile(fileName);
+
     if (pEvent &&
         pEvent->IsKindOf(RUNTIME_CLASS(PSS_ActivityEvent)) &&
         ((PSS_ActivityEvent*)pEvent)->GetActivityEventType() == PSS_ActivityEvent::IE_AT_Message)
     {
-        PSS_File File(Filename);
+        PSS_File File(fileName);
         CString    Path = PSS_Directory::NormalizeDirectory(File.GetFilePath());
         // If are not in root directory
         if (Path.CompareNoCase(GetRootDirectory()) != 0)

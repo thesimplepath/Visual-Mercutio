@@ -13,7 +13,7 @@
 
 // processsoft
 #include "EventManager.h"
-#include "ActEvtFl.h"
+#include "PSS_ActivityEventFile.h"
 
 #ifdef _ZEVENTEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -33,21 +33,30 @@ class AFX_EXT_CLASS ZBEventQueueManager
 {
 public:
     ZBEventQueueManager();
-    ~ZBEventQueueManager();
-    BOOL    Create(const CString Directory);
-    BOOL    DispatchToEventQueue(PSS_ActivityEvent& EventActivity);
+    virtual ~ZBEventQueueManager();
 
-protected:
+    BOOL Create(const CString Directory);
 
-private:
-    ZBEventQueueManager(const ZBEventQueueManager &right);
-    const ZBEventQueueManager & operator=(const ZBEventQueueManager &right);
-
-    CString    BuildActivityEventFilename(PSS_ActivityEvent& EventActivity);
+    BOOL DispatchToEventQueue(PSS_ActivityEvent& EventActivity);
 
 private:
-    ZBEventActivityFile m_EventActivityFile;
-    CString             m_Directory;
+    PSS_ActivityEventFile m_ActivityEventFile;
+    CString               m_Directory;
+
+    /**
+    * Copy constructor
+    *@param other - other object to copy from
+    */
+    ZBEventQueueManager(const ZBEventQueueManager& other);
+
+    /**
+    * Copy operator
+    *@param other - other object to copy from
+    *@return copy of itself
+    */
+    const ZBEventQueueManager& operator = (const ZBEventQueueManager& other);
+
+    CString BuildActivityEventFilename(PSS_ActivityEvent& EventActivity);
 };
 
 #endif

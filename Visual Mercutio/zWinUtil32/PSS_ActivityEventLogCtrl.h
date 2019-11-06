@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_EventActivityCtrl -----------------------------------------------*
+ * ==> PSS_ActivityEventLogCtrl --------------------------------------------*
  ****************************************************************************
- * Description : Provides an event activity control                         *
+ * Description : Provides an event activity logger control                  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_EventActivityCtrlH
-#define PSS_EventActivityCtrlH
+#ifndef PSS_ActivityEventLogCtrlH
+#define PSS_ActivityEventLogCtrlH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -18,8 +18,8 @@
 
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
-#include "zEvent\EventManager.h"
 #include "zEvent\PSS_ActivityEvent.h"
+#include "zEvent\EventManager.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -32,49 +32,49 @@
 #endif
 
 /**
-* Event activity control
+* Event activity logger control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventActivityCtrl : public PSS_ListCtrl
+class AFX_EXT_CLASS PSS_ActivityEventLogCtrl : public PSS_ListCtrl
 {
     public:
         /**
         * Constructor
         *@param pEventManager - event manager, can be NULL
         */
-        PSS_EventActivityCtrl(ZBEventManager* pEventManager = NULL);
+        PSS_ActivityEventLogCtrl(ZBEventManager* pEventManager = NULL);
 
-        virtual ~PSS_EventActivityCtrl();
+        virtual ~PSS_ActivityEventLogCtrl();
 
         /**
         * Stream out operator
         *@param left - left event activity
-        *@param listCtrl - event activity controller
+        *@param listCtrl - event activity log controller
         *@return event activity
         */
         #ifdef _WIN32
-            AFX_EXT_API friend PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_EventActivityCtrl& listCtrl);
+            AFX_EXT_API friend PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventLogCtrl& listCtrl);
         #endif
 
         /**
-        * Initializes the control
-        *@param pReminderManager - reminder manager, can be NULL
+        * Initializes the logger
+        *@param pEventManager - event manager
         */
-        virtual void Initialize(ZBEventManager* pEventManager);
+        virtual void Initialize (ZBEventManager* pEventManager);
 
         /**
-        * Gets the selected item
-        *@return the selected item, NULL if no item selected or on error
+        * Gets selected item
+        *@return selected item, NULL if not found or on error
         */
         virtual PSS_ActivityEvent* GetSelectedItem() const;
 
         /**
-        * Refreshes the control
+        * Refreshes the logger
         */
         virtual void Refresh();
 
     protected:
-        //{{AFX_MSG(PSS_EventActivityCtrl)
+        //{{AFX_MSG(PSS_ActivityEventLogCtrl)
         afx_msg LRESULT OnNewActivityEvent(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
@@ -85,34 +85,34 @@ class AFX_EXT_CLASS PSS_EventActivityCtrl : public PSS_ListCtrl
 
         /**
         * Copy constructor
-        *@param other - other object to copy from
+        *@param other - other combo box to copy from
         */
-        PSS_EventActivityCtrl(const PSS_EventActivityCtrl& other);
+        PSS_ActivityEventLogCtrl(const PSS_ActivityEventLogCtrl &other);
 
         /**
         * Copy operator
-        *@param other - other object to copy from
+        *@param other - other combo box to copy from
         *@return copy of itself
         */
-        const PSS_EventActivityCtrl& operator = (const PSS_EventActivityCtrl& other);
-      
+        const PSS_ActivityEventLogCtrl& operator = (const PSS_ActivityEventLogCtrl &other);
+
         /**
         * Checks if columns were built
-        *@return TRUE if columns were built, otherwise FALSE
+        *@return TRUE if coulmns were build, otherwise FALSE
         */
         inline BOOL ColumnsHasBeenBuilt() const;
 
         /**
-        * Builds columns
+        * Builds the columns
         *@return TRUE on success, otherwise FALSE
         */
         BOOL BuildColumns();
 };
 
 //---------------------------------------------------------------------------
-// PSS_EventActivityCtrl
+// PSS_ActivityEventLogCtrl
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityCtrl::ColumnsHasBeenBuilt() const
+BOOL PSS_ActivityEventLogCtrl::ColumnsHasBeenBuilt() const
 {
     return m_ColumnsHasBeenBuilt;
 }

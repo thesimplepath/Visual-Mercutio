@@ -12,7 +12,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ActEventReminder.h"
+#include "PSS_ActivityEventReminder.h"
 #include "EventManager.h"
 #include "ActEvtManager.h"
 
@@ -32,46 +32,46 @@
 
 class AFX_EXT_CLASS ZBActivityEventReminderManager : public    ZBEventManager
 {
-  public:
-      ZBActivityEventReminderManager (ZBActivityEventManager* pEventManager = NULL, int RemindDays = 1);
-      void    Create( ZBActivityEventManager* pEventManager, int RemindDays = 1 );
-      int    Refresh();
+public:
+    ZBActivityEventReminderManager(ZBActivityEventManager* pEventManager = NULL, int RemindDays = 1);
+    void    Create(ZBActivityEventManager* pEventManager, int RemindDays = 1);
+    int    Refresh();
 
-      ~ZBActivityEventReminderManager();
-      ZBEventActivityReminder*    AddEvent(COleDateTime Time,
-                                         CString Priority,
-                                         CString FolderName,
-                                         CString ProcessName,
-                                         CString ActivityName,
-                                         int     RemainingDays,
-                                         COleDateTime ActivityDueDate,
-                                         CString ProcessFilename,
-                                         CString ActivityStatus,
-                                         CString Message);
+    ~ZBActivityEventReminderManager();
+    PSS_ActivityEventReminder* AddEvent(COleDateTime Time,
+                                        CString Priority,
+                                        CString FolderName,
+                                        CString ProcessName,
+                                        CString ActivityName,
+                                        int     RemainingDays,
+                                        COleDateTime ActivityDueDate,
+                                        CString ProcessFilename,
+                                        CString ActivityStatus,
+                                        CString Message);
 
-      ZBEventActivityReminder*    AddEvent(COleDateTime Time,
-                                         CString Priority,
-                                         int     RemainingDays,
-                                         CString Message,
-                                           PSS_ActivityEvent* pEvent);
+    PSS_ActivityEventReminder* AddEvent(COleDateTime Time,
+                                        CString Priority,
+                                        int     RemainingDays,
+                                        CString Message,
+                                        PSS_ActivityEvent* pEvent);
 
-      ZBEventActivityReminder*    AddEvent(COleDateTime Time,
-                                         CString Priority,
-                                         int     RemainingDays,
-                                           PSS_ActivityEvent* pEvent);
+    PSS_ActivityEventReminder* AddEvent(COleDateTime Time,
+                                        CString Priority,
+                                        int     RemainingDays,
+                                        PSS_ActivityEvent* pEvent);
 
-      BOOL    EventShouldBeReminded(PSS_ActivityEvent* pEvent, int* EffectiveRemainingDays );
+    BOOL    EventShouldBeReminded(PSS_ActivityEvent* pEvent, int* EffectiveRemainingDays);
 
-  protected:
+protected:
 
-  private:
-      ZBActivityEventReminderManager(const ZBActivityEventReminderManager &right);
-      const ZBActivityEventReminderManager & operator=(const ZBActivityEventReminderManager &right);
+private:
+    ZBActivityEventReminderManager(const ZBActivityEventReminderManager &right);
+    const ZBActivityEventReminderManager & operator=(const ZBActivityEventReminderManager &right);
 
-      CString    BuildReminderMessage( int RemainingDays );
-  private:
-      ZBActivityEventManager*    m_pEventManager;
-      int                        m_RemindDays;
+    CString    BuildReminderMessage(int RemainingDays);
+private:
+    ZBActivityEventManager*    m_pEventManager;
+    int                        m_RemindDays;
 };
 
 #endif
