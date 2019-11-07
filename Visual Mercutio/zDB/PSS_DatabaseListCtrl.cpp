@@ -148,23 +148,23 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
         switch (variant->vt)
         {
             case VT_ERROR:
-                strcpy_s(value, _tcslen(value), "Error");
+                ::strcpy_s(value, ::_tcslen(value), "Error");
                 break;
 
             case VT_I2:
-                wsprintf(value, "%d", variant->iVal);
+                ::wsprintf(value, "%d", variant->iVal);
                 break;
 
             case VT_I4:
-                wsprintf(value, "%d", variant->lVal);
+                ::wsprintf(value, "%d", variant->lVal);
                 break;
 
             case VT_R4:
-                wsprintf(value, "%f", variant->fltVal);
+                ::wsprintf(value, "%f", variant->fltVal);
                 break;
 
             case VT_R8:
-                wsprintf(value, "%f", variant->dblVal);
+                ::wsprintf(value, "%f", variant->dblVal);
                 break;
 
             case VT_CY:
@@ -173,7 +173,7 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 
                 // i.e. 1.00
                 CString s = c.Format();
-                strcpy_s(value, _tcslen(value), s.GetBuffer(s.GetLength()));
+                ::strcpy_s(value, ::_tcslen(value), s.GetBuffer(s.GetLength()));
                 s.ReleaseBuffer();
                 break;
             }
@@ -184,7 +184,7 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 
                 // day of week, month, day, year
                 CString s = t.Format("%B %d, %Y");
-                strcpy_s(value, _tcslen(value), s.GetBuffer(s.GetLength()));
+                ::strcpy_s(value, ::_tcslen(value), s.GetBuffer(s.GetLength()));
                 s.ReleaseBuffer();
                 break;
             }
@@ -193,21 +193,21 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
             {
                 // convert BSTR to CString
                 CString str = V_BSTRT(&varValue);
-                strcpy_s(value, _tcslen(value), str.GetBuffer(str.GetLength()));
+                ::strcpy_s(value, ::_tcslen(value), str.GetBuffer(str.GetLength()));
                 str.ReleaseBuffer();
                 break;
             }
 
             case VT_BOOL:
                 if (variant->boolVal)
-                    strcpy_s(value, _tcslen(value), "TRUE");
+                    ::strcpy_s(value, ::_tcslen(value), "TRUE");
                 else
-                    strcpy_s(value, _tcslen(value), "FALSE");
+                    ::strcpy_s(value, ::_tcslen(value), "FALSE");
 
                 break;
 
             case VT_UI1:
-                wsprintf(value, "%d", variant->bVal);
+                ::wsprintf(value, "%d", variant->bVal);
                 break;
 
             default:
@@ -216,7 +216,7 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
         }
 
         // set item text
-        lstrcpyn(pDispInfo->item.pszText, value, pDispInfo->item.cchTextMax);
+        ::lstrcpyn(pDispInfo->item.pszText, value, pDispInfo->item.cchTextMax);
     }
 
     // set image to first in list
@@ -265,7 +265,7 @@ void PSS_DatabaseListCtrl::BuildColumns()
 
                 // get field name
                 pBuffer = new TCHAR[len + 1];
-                strcpy_s(pBuffer, _tcslen(pBuffer), temp.GetBuffer(len));
+                ::strcpy_s(pBuffer, ::_tcslen(pBuffer), temp.GetBuffer(len));
                 temp.ReleaseBuffer();
                 lvColumn.pszText = pBuffer;
 

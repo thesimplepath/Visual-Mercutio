@@ -54,11 +54,11 @@ std::string PSS_StringTools::ConvertTo(const PSS_String16& str)
         case 1:
         {
             const wchar_t* pPtr = str;
-            std::string    tmp = PSS_Utf::UTF16toUTF8(str);
+            std::string    tmp  = PSS_Utf::UTF16toUTF8(str);
 
-            char xxx[111];
-            sprintf_s(xxx, sizeof(xxx), _T("L=%d"), tmp.length());
-            OutputDebugString(xxx);
+            char text[111];
+            ::sprintf_s(text, sizeof(text), _T("L=%d"), tmp.length());
+            OutputDebugString(text);
             OutputDebugString(_T("<\n"));
 
             result = PSS_Encoding::Base64Encode((char*)tmp.c_str(), tmp.length());

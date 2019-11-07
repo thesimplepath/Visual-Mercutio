@@ -126,7 +126,7 @@ void PSS_FolderInfoCtrl::Refresh()
 
     // add the publish version
     InsertItem(index, m_PublishVersionTitle);
-    sprintf_s(buffer, _tcslen(buffer), "%ld", m_pFolderStamp->GetPublishVersion());
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%ld", m_pFolderStamp->GetPublishVersion());
     SetItem(index, 1, LVIF_TEXT, buffer, 0, LVIF_TEXT, LVIF_TEXT, 0);
     ++index;
 

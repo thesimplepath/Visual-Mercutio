@@ -81,7 +81,7 @@ void PSS_SpanView::AssignSpanWnd(PSS_SpanWnd* pWnd)
 //---------------------------------------------------------------------------
 void PSS_SpanView::SetPanMode(IEPanMode mode)
 {
-    ASSERT(mode != IE_PM_Delay || mode != IE_PM_Iinstant);
+    ASSERT(mode != IE_PM_Delay || mode != IE_PM_Instant);
 
     m_PanMode = mode;
 }

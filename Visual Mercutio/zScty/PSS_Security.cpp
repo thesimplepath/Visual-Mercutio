@@ -48,7 +48,7 @@ PSS_SecurityEntity::~PSS_SecurityEntity()
 CString PSS_SecurityEntity::GenerateRandomEntity()
 {
     char buffer[20];
-    sprintf_s(buffer, _tcslen(buffer), "%04d%04d%04d", std::rand(), std::rand(), std::rand());
+    ::sprintf_s(buffer, _tcslen(buffer), "%04d%04d%04d", std::rand(), std::rand(), std::rand());
     m_Entity = buffer;
 
     CryptEntity();
@@ -72,18 +72,18 @@ int PSS_SecurityEntity::GetCounter()
 CString PSS_SecurityEntity::GenerateCounter(int counter)
 {
     char buffer[20];
-    sprintf_s(buffer, _tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
 
     // bug with the format length, cut it artificially
     buffer[4] = 0x00;
     m_Entity = buffer;
 
     // add the counter
-    sprintf_s(buffer, _tcslen(buffer), "%04.04d", counter);
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", counter);
     buffer[4] = 0x00;
     m_Entity += buffer;
 
-    sprintf_s(buffer, _tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
     buffer[4] = 0x00;
     m_Entity += buffer;
 
@@ -116,13 +116,13 @@ CTime PSS_SecurityEntity::GetDate()
 CString PSS_SecurityEntity::GenerateDate(const CTime& date)
 {
     char buffer[20];
-    sprintf_s(buffer, _tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
 
     // bug with the format length, cut it artificially
     buffer[4] = 0x00;
     m_Entity  = buffer;
 
-    sprintf_s(buffer, _tcslen(buffer), "%04d%02d%02d", date.GetYear(), date.GetMonth(), date.GetDay());
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%04d%02d%02d", date.GetYear(), date.GetMonth(), date.GetDay());
     m_Entity += buffer;
 
     CryptEntity();
@@ -150,14 +150,14 @@ int PSS_SecurityEntity::GetVersion()
 CString PSS_SecurityEntity::GenerateVersion(int version)
 {
     char buffer[20];
-    sprintf_s(buffer, _tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
 
     // bug with the format length, cut it artificially
     buffer[4] = 0x00;
     m_Entity  = buffer;
 
     // Add the version
-    sprintf_s(buffer, _tcslen(buffer), "%04.04d", version);
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", version);
     buffer[4]  = 0x00;
     m_Entity  += buffer;
 

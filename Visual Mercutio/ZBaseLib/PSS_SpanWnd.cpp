@@ -250,7 +250,7 @@ void PSS_SpanWnd::OverviewDPtoLP(CPoint* pPoint)
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
-    void PSS_SpanWnd::AssertValid()
+    void PSS_SpanWnd::AssertValid() const
     {
         CWnd::AssertValid();
         ASSERT(m_pPanView);
@@ -258,7 +258,7 @@ void PSS_SpanWnd::OverviewDPtoLP(CPoint* pPoint)
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
-    void PSS_SpanWnd::Dump(CDumpContext& dc)
+    void PSS_SpanWnd::Dump(CDumpContext& dc) const
     {
         CWnd::Dump(dc);
 

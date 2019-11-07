@@ -353,11 +353,11 @@ void ZCProcessModelTreeView::OnExpandBranch()
 #ifdef _DEBUG
 void ZCProcessModelTreeView::AssertValid() const
 {
-    ZITreeView::AssertValid();
+    PSS_TreeView::AssertValid();
 }
 
 void ZCProcessModelTreeView::Dump(CDumpContext& dc) const
 {
-    ZITreeView::Dump(dc);
+    PSS_TreeView::Dump(dc);
 }
 #endif

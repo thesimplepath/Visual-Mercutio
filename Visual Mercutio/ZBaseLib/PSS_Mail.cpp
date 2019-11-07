@@ -424,7 +424,7 @@ BOOL PSS_Mail::SendDocument(CDocument&        doc,
 
         if (pTemplate && pTemplate->GetDocString(ext, CDocTemplate::filterExt) && !ext.IsEmpty())
         {
-            ASSERT(strExt[0] == '.');
+            ASSERT(ext[0] == '.');
 
             const int len = lstrlen(title);
             lstrcpyn(title + len, ext, sizeof(title) - len);

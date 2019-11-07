@@ -20,7 +20,8 @@
 //---------------------------------------------------------------------------
 // PSS_ActivityEventFile
 //---------------------------------------------------------------------------
-PSS_ActivityEventFile::PSS_ActivityEventFile()
+PSS_ActivityEventFile::PSS_ActivityEventFile() :
+    PSS_EventFile()
 {}
 //---------------------------------------------------------------------------
 PSS_ActivityEventFile::PSS_ActivityEventFile(const PSS_ActivityEventFile& other)

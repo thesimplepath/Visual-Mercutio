@@ -21,12 +21,12 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_ActivityEvent, ZBEvent)
+IMPLEMENT_DYNAMIC(PSS_ActivityEvent, PSS_Event)
 //---------------------------------------------------------------------------
 // PSS_ActivityEvent
 //---------------------------------------------------------------------------
 PSS_ActivityEvent::PSS_ActivityEvent() :
-    ZBEvent(COleDateTime::GetCurrentTime(), EVT_ACTIVITY)
+    PSS_Event(COleDateTime::GetCurrentTime(), g_Evt_Activity)
 {}
 //---------------------------------------------------------------------------
 PSS_ActivityEvent::PSS_ActivityEvent(IEType              eventType,
@@ -48,7 +48,7 @@ PSS_ActivityEvent::PSS_ActivityEvent(IEType              eventType,
                                      const CString&      activityStatus,
                                      const CString&      comments,
                                      BOOL                isInBackup) :
-    ZBEvent(time, EVT_ACTIVITY),
+    PSS_Event(time, g_Evt_Activity),
     m_ActivityEventType(eventType),
     m_ProcessCreationDate(processCreationDate),
     m_ProcessDueDate(processDueDate),
@@ -79,7 +79,7 @@ PSS_ActivityEvent::PSS_ActivityEvent(const PSS_ActivityEvent& other)
 //---------------------------------------------------------------------------
 const PSS_ActivityEvent& PSS_ActivityEvent::operator = (const PSS_ActivityEvent& other)
 {
-    ZBEvent::operator = (other);
+    PSS_Event::operator = (other);
 
     m_ActivityEventType           = other.m_ActivityEventType;
     m_ProcessCreationDate         = other.m_ProcessCreationDate;

@@ -61,7 +61,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityEventViewerReminderCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityEventViewerReminderCtrl::PSS_ActivityEventViewerReminderCtrl(ZBActivityEventReminderManager* pReminderManager) :
+PSS_ActivityEventViewerReminderCtrl::PSS_ActivityEventViewerReminderCtrl(PSS_ActivityReminderEventManager* pReminderManager) :
     PSS_ListCtrl(),
     m_pReminderManager(pReminderManager),
     m_ColumnsHasBeenBuilt(FALSE)
@@ -81,7 +81,7 @@ const PSS_ActivityEventViewerReminderCtrl& PSS_ActivityEventViewerReminderCtrl::
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-PSS_ActivityEventReminder& operator>>(PSS_ActivityEventReminder& left, PSS_ActivityEventViewerReminderCtrl& listCtrl)
+PSS_ActivityReminderEvent& operator>>(PSS_ActivityReminderEvent& left, PSS_ActivityEventViewerReminderCtrl& listCtrl)
     {
         const int index      = listCtrl.GetItemCount();
               int imageIndex = 11;
@@ -120,18 +120,18 @@ PSS_ActivityEventReminder& operator>>(PSS_ActivityEventReminder& left, PSS_Activ
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_ActivityEventViewerReminderCtrl::Initialize(ZBActivityEventReminderManager* pReminderManager)
+void PSS_ActivityEventViewerReminderCtrl::Initialize(PSS_ActivityReminderEventManager* pReminderManager)
 {
     m_pReminderManager = pReminderManager;
     Refresh();
 }
 //---------------------------------------------------------------------------
-PSS_ActivityEventReminder* PSS_ActivityEventViewerReminderCtrl::GetSelectedItem() const
+PSS_ActivityReminderEvent* PSS_ActivityEventViewerReminderCtrl::GetSelectedItem() const
 {
     POSITION pPos = GetFirstSelectedItemPosition();
 
     if (pPos)
-        return (PSS_ActivityEventReminder*)GetItemData(GetNextSelectedItem(pPos));
+        return (PSS_ActivityReminderEvent*)GetItemData(GetNextSelectedItem(pPos));
 
     return NULL;
 }
@@ -147,12 +147,12 @@ void PSS_ActivityEventViewerReminderCtrl::Refresh()
     const int eventCount = m_pReminderManager->GetEventCount();
 
     for (int i = 0; i < eventCount; ++i)
-        ((PSS_ActivityEventReminder&)*(m_pReminderManager->GetEventAt(i))) >> *this;
+        ((PSS_ActivityReminderEvent&)*(m_pReminderManager->GetEventAt(i))) >> *this;
 }
 //---------------------------------------------------------------------------
 LRESULT PSS_ActivityEventViewerReminderCtrl::OnNewActivityEvent(WPARAM wParam, LPARAM lParam)
 {
-    PSS_ActivityEventReminder* pEvent = (PSS_ActivityEventReminder*)lParam;
+    PSS_ActivityReminderEvent* pEvent = (PSS_ActivityReminderEvent*)lParam;
 
     // were the columns never built?
     if (!ColumnsHasBeenBuilt())

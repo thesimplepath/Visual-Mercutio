@@ -178,7 +178,7 @@ void PSS_Document::CalculateAllFormula(CView* pView, BOOL allPages, int document
         return;
     }
 
-    ASSERT(GetDocumentDataAt(DocumentIndex));
+    ASSERT(GetDocumentDataAt(documentIndex));
     GetDocumentDataAt(documentIndex)->CalculateAllFormula(pView, allPages);
 }
 //---------------------------------------------------------------------------
@@ -192,7 +192,7 @@ void PSS_Document::CheckForClearCalcField(CView* pView, int documentIndex)
         return;
     }
 
-    ASSERT(GetDocumentDataAt(DocumentIndex));
+    ASSERT(GetDocumentDataAt(documentIndex));
     GetDocumentDataAt(documentIndex)->CheckForClearCalcField(pView);
 }
 //---------------------------------------------------------------------------
@@ -206,7 +206,7 @@ void PSS_Document::ClearCurrentAssociation(int documentIndex)
         return;
     }
 
-    ASSERT(GetDocumentDataAt(DocumentIndex));
+    ASSERT(GetDocumentDataAt(documentIndex));
     GetDocumentDataAt(documentIndex)->ClearCurrentAssociation();
 }
 //---------------------------------------------------------------------------
@@ -220,7 +220,7 @@ void PSS_Document::ChangeFieldForCalculation(int documentIndex)
         return;
     }
 
-    ASSERT(GetDocumentDataAt(DocumentIndex));
+    ASSERT(GetDocumentDataAt(documentIndex));
     GetDocumentDataAt(documentIndex)->ChangeFieldForCalculation();
 }
 //---------------------------------------------------------------------------
@@ -257,7 +257,7 @@ void PSS_Document::RefreshCurrentSchema(int documentIndex)
         return;
     }
 
-    ASSERT(GetDocumentDataAt(DocumentIndex));
+    ASSERT(GetDocumentDataAt(documentIndex));
     GetDocumentDataAt(documentIndex)->RefreshCurrentSchema();
 }
 //---------------------------------------------------------------------------

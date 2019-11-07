@@ -200,14 +200,14 @@ void PSS_UserView::OnRightDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 #ifdef _DEBUG
     void PSS_UserView::AssertValid() const
     {
-        ZITreeView::AssertValid();
+        PSS_TreeView::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_UserView::Dump(CDumpContext& dc) const
     {
-        ZITreeView::Dump(dc);
+        PSS_TreeView::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------

@@ -11,9 +11,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "ActEvtManager.h"
-
+// processsoft
+#include "PSS_ActivityEventManager.h"
 
 #ifdef _ZEVENTEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -29,27 +28,19 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBActivityEventToDoManager : public    ZBActivityEventManager
+class AFX_EXT_CLASS ZBActivityEventToDoManager : public PSS_ActivityEventManager
 {
-  public:
-      ZBActivityEventToDoManager ();
-      ~ZBActivityEventToDoManager();
+public:
+    ZBActivityEventToDoManager();
+    ~ZBActivityEventToDoManager();
 
-      virtual ZBEvent*    LoadEventFromFile( const CString Filename );
+    virtual PSS_Event* LoadEventFromFile(const CString Filename);
 
-  protected:
+protected:
 
-  private:
-      ZBActivityEventToDoManager(const ZBActivityEventToDoManager &right);
-      const ZBActivityEventToDoManager & operator=(const ZBActivityEventToDoManager &right);
-
-
+private:
+    ZBActivityEventToDoManager(const ZBActivityEventToDoManager &right);
+    const ZBActivityEventToDoManager & operator=(const ZBActivityEventToDoManager &right);
 };
-
-
-
-//#undef  AFX_DATA
-//#define AFX_DATA
-
 
 #endif

@@ -125,7 +125,7 @@ void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
     char buffer[300];
 
     // build the string and inserts the item
-    sprintf_s(buffer, _tcslen(buffer), m_FieldDescriptionKey, pField->GetDescription());
+    ::sprintf_s(buffer, ::_tcslen(buffer), m_FieldDescriptionKey, pField->GetDescription());
     curTreeItem.hParent             = hRootItem; 
     curTreeItem.hInsertAfter        = TVI_LAST;
     curTreeItem.item.iImage         = 1;
@@ -136,7 +136,7 @@ void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
     InsertItem(&curTreeItem);
 
     // build the string and inserts the item
-    sprintf_s(buffer, _tcslen(buffer), m_UserHelpKey, pField->GetHelpUserDescription());
+    ::sprintf_s(buffer, ::_tcslen(buffer), m_UserHelpKey, pField->GetHelpUserDescription());
     curTreeItem.hParent             = hRootItem; 
     curTreeItem.hInsertAfter        = TVI_LAST;
     curTreeItem.item.iImage         = 2;
@@ -147,7 +147,7 @@ void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
     InsertItem(&curTreeItem);
 
     // build the string and inserts the item
-    sprintf_s(buffer, _tcslen(buffer), m_ClassNameKey, pField->GetClassName());
+    ::sprintf_s(buffer, ::_tcslen(buffer), m_ClassNameKey, pField->GetClassName());
     curTreeItem.hParent             = hRootItem; 
     curTreeItem.hInsertAfter        = TVI_LAST;
     curTreeItem.item.iImage         = 3;
@@ -158,7 +158,7 @@ void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
     InsertItem(&curTreeItem);
     
     // Build the string and inserts the item
-    sprintf_s(buffer, _tcslen(buffer), m_SortedKey, pField->IsSorted() ? "1" : "0");
+    ::sprintf_s(buffer, ::_tcslen(buffer), m_SortedKey, pField->IsSorted() ? "1" : "0");
     curTreeItem.hParent             = hRootItem; 
     curTreeItem.hInsertAfter        = TVI_LAST;
     curTreeItem.item.iImage         = 4;
@@ -173,7 +173,7 @@ void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
     if (pHistory)
     {
         // build the string and inserts the item
-        sprintf_s(buffer, _tcslen(buffer), m_IsReadOnlyKey, pHistory->IsReadOnly() ? "1" : "0");
+        ::sprintf_s(buffer, ::_tcslen(buffer), m_IsReadOnlyKey, pHistory->IsReadOnly() ? "1" : "0");
         curTreeItem.hParent             = hRootItem;
         curTreeItem.hInsertAfter        = TVI_LAST;
         curTreeItem.item.iImage         = 5;

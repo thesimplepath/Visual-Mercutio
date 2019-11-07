@@ -214,7 +214,7 @@ CString ZActivity::GetDefaultString()
         Line += " Démarré le: ";
 
         char buf[30];
-        sprintf_s(buf, _tcslen(buf), "%d.%d.%d", GetStartDate().GetDay(), GetStartDate().GetMonth(), GetStartDate().GetYear());
+        ::sprintf_s(buf, ::_tcslen(buf), "%d.%d.%d", GetStartDate().GetDay(), GetStartDate().GetMonth(), GetStartDate().GetYear());
 
         Line += buf;
     }

@@ -19,15 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActEvtManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ActEvtMsgMgr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ActEvtReminderManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ActEvtToDoMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,9 +29,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BActvt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EventFl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EventManager.cpp">
@@ -94,9 +82,6 @@
     <ClCompile Include="UserQueueManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBEventServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -121,10 +106,25 @@
     <ClCompile Include="PSS_ActivityEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_ActivityEventReminder.cpp">
+    <ClCompile Include="PSS_ActivityEventFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_ActivityEventFile.cpp">
+    <ClCompile Include="PSS_ActivityEventManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityReminderEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityMessageEventManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EventFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityReminderEventManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -142,15 +142,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActEvtManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ActEvtMsgMgr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ActEvtReminderManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ActEvtToDoMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -161,9 +152,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BActvt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventFl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EventManager.h">
@@ -217,9 +205,6 @@
     <ClInclude Include="UserQueueManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZBEventServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -247,10 +232,25 @@
     <ClInclude Include="PSS_ActivityEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PSS_ActivityEventReminder.h">
+    <ClInclude Include="PSS_ActivityEventFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PSS_ActivityEventFile.h">
+    <ClInclude Include="PSS_ActivityEventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityReminderEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityMessageEventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EventFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityReminderEventManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

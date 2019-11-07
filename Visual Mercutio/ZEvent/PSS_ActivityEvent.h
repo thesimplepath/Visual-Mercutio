@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBEvent.h"
+#include "PSS_Event.h"
 
 #ifdef _ZEVENTEXPORT
     //put the values back to make AFX_EXT_CLASS export again
@@ -45,7 +45,7 @@ const char g_EventPriorityLow[]    = "LW";
 * Activity event
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityEvent : public ZBEvent
+class AFX_EXT_CLASS PSS_ActivityEvent : public PSS_Event
 {
     DECLARE_DYNAMIC(PSS_ActivityEvent)
 
@@ -65,7 +65,7 @@ class AFX_EXT_CLASS PSS_ActivityEvent : public ZBEvent
             IE_AT_FindProcessesInitiatedEvent
         };
 
-        typedef ZBEvent inherited;
+        typedef PSS_Event inherited;
 
         PSS_ActivityEvent();
 
@@ -588,12 +588,12 @@ BOOL PSS_ActivityEvent::SetProcessCreationDate(const CString& value)
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedProcessCreationDate() const
 {
-    return m_ProcessCreationDate.Format(EventDateFormatString);
+    return m_ProcessCreationDate.Format(g_EventDateFormatString);
 }
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedProcessCreationDateTime() const
 {
-    return m_ProcessCreationDate.Format(EventDateTimeFormatString);
+    return m_ProcessCreationDate.Format(g_EventDateTimeFormatString);
 }
 //---------------------------------------------------------------------------
 PSS_Date PSS_ActivityEvent::GetProcessDueDate() const
@@ -618,12 +618,12 @@ BOOL PSS_ActivityEvent::SetProcessDueDate(const CString& value)
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedProcessDueDate() const
 {
-    return m_ProcessDueDate.Format(EventDateFormatString);
+    return m_ProcessDueDate.Format(g_EventDateFormatString);
 }
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedProcessDueDateTime() const
 {
-    return m_ProcessDueDate.Format(EventDateTimeFormatString);
+    return m_ProcessDueDate.Format(g_EventDateTimeFormatString);
 }
 //---------------------------------------------------------------------------
 PSS_Date PSS_ActivityEvent::GetActivityCreationDate() const
@@ -648,12 +648,12 @@ BOOL PSS_ActivityEvent::SetActivityCreationDate(const CString& value)
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedActivityCreationDate() const
 {
-    return m_ActivityCreationDate.Format(EventDateFormatString);
+    return m_ActivityCreationDate.Format(g_EventDateFormatString);
 }
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedActivityCreationDateTime() const
 {
-    return m_ActivityCreationDate.Format(EventDateTimeFormatString);
+    return m_ActivityCreationDate.Format(g_EventDateTimeFormatString);
 }
 //---------------------------------------------------------------------------
 PSS_Date PSS_ActivityEvent::GetActivityDueDate() const
@@ -678,12 +678,12 @@ BOOL PSS_ActivityEvent::SetActivityDueDate(CString value)
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedActivityDueDate() const
 {
-    return m_ActivityDueDate.Format(EventDateFormatString);
+    return m_ActivityDueDate.Format(g_EventDateFormatString);
 }
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFormattedActivityDueDateTime() const
 {
-    return m_ActivityDueDate.Format(EventDateTimeFormatString);
+    return m_ActivityDueDate.Format(g_EventDateTimeFormatString);
 }
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetActivityType() const

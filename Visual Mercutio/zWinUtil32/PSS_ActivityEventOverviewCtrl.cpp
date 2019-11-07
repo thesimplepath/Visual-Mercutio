@@ -324,13 +324,13 @@ CString PSS_ActivityEventOverviewCtrl::FormatActivityText(PSS_ActivityEvent* pDa
     activityNameLabel.LoadString(IDS_COLUMN3_EVENTREMINDER);
 
     char buffer[100];
-    sprintf_s(buffer,
-              _tcslen(buffer),
-              "%s: %s - %s: %s",
-              (const char*)processNameLabel,
-              (const char*)pData->GetProcessName(),
-              (const char*)activityNameLabel,
-              (const char*)pData->GetActivityName());
+    ::sprintf_s(buffer,
+                ::_tcslen(buffer),
+                "%s: %s - %s: %s",
+                (const char*)processNameLabel,
+                (const char*)pData->GetProcessName(),
+                (const char*)activityNameLabel,
+                (const char*)pData->GetActivityName());
 
     return buffer;
 }

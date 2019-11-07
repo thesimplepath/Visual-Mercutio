@@ -84,7 +84,7 @@ void PSS_BaseTitleMDIPage::OnUpdateFrameTitle(BOOL addToTitle)
     text[0] = 0x00;
 
     if (m_nWindow > 0)
-        wsprintf(text, _T(" :%d"), m_nWindow);
+        ::wsprintf(text, _T(" :%d"), m_nWindow);
 
     CString title;
     CString newTitle;

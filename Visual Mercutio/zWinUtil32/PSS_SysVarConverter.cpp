@@ -128,14 +128,12 @@ CString PSS_SysVarConverter::GetVariableContent(const CString& variable)
     }
     else
     if (variable == g_FileVer)
-    {
         if (m_pDoc)
         {
             char buffer[5];
-            sprintf_s(buffer, _tcslen(buffer), "%ld", m_pDoc->GetDocumentStamp().GetPublishVersion());
+            ::sprintf_s(buffer, ::_tcslen(buffer), "%ld", m_pDoc->GetDocumentStamp().GetPublishVersion());
             return buffer;
         }
-    }
 
     return "";
 }

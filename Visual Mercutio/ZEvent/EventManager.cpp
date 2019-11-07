@@ -3,6 +3,9 @@
 #include <StdAfx.h>
 #include "EventManager.h"
 
+// std
+#include <memory>
+
 // processsoft
 #include "zBaseLib\PSS_Directory.h"
 
@@ -16,37 +19,36 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZBEventManager::ZBEventManager()
-: m_IncludeSubDirectory(FALSE)
-{
-}
+    : m_IncludeSubDirectory(FALSE)
+{}
 
 ZBEventManager::~ZBEventManager()
 {
     RemoveAllEvents();
 }
 
-BOOL    ZBEventManager::Initialize( const CString Directory )
+BOOL    ZBEventManager::Initialize(const CString Directory)
 {
-    m_RootDirectory = PSS_Directory::NormalizeDirectory( Directory );
-    return PSS_Directory::Exist( m_RootDirectory );
+    m_RootDirectory = PSS_Directory::NormalizeDirectory(Directory);
+    return PSS_Directory::Exist(m_RootDirectory);
 }
 
-BOOL    ZBEventManager::LoadFromDirectory( BOOL ClearAllFirst, BOOL IncludeSubDirectory )
+BOOL    ZBEventManager::LoadFromDirectory(BOOL ClearAllFirst, BOOL IncludeSubDirectory)
 {
     m_IncludeSubDirectory = IncludeSubDirectory;
     if (ClearAllFirst)
         RemoveAllEvents();
-    LoadFromSubDirectory( m_RootDirectory );
+    LoadFromSubDirectory(m_RootDirectory);
     return GetEventCount() > 0;
 }
 
-BOOL    ZBEventManager::LoadFromDirectory( const CString Directory, BOOL ClearAllFirst, BOOL IncludeSubDirectory )
+BOOL    ZBEventManager::LoadFromDirectory(const CString Directory, BOOL ClearAllFirst, BOOL IncludeSubDirectory)
 {
-    m_RootDirectory = PSS_Directory::NormalizeDirectory( Directory );
-    return LoadFromDirectory( ClearAllFirst, IncludeSubDirectory );
+    m_RootDirectory = PSS_Directory::NormalizeDirectory(Directory);
+    return LoadFromDirectory(ClearAllFirst, IncludeSubDirectory);
 }
 
-void    ZBEventManager::LoadFromSubDirectory( const CString Directory )
+void    ZBEventManager::LoadFromSubDirectory(const CString Directory)
 {
     // Run through the file list
     CFileFind finder;
@@ -66,7 +68,7 @@ void    ZBEventManager::LoadFromSubDirectory( const CString Directory )
         // recur infinitely!
         // Skip directory because only the current directory
         if (finder.IsDots())
-         continue;
+            continue;
 
 
         // if it's a directory, recursively search it
@@ -77,22 +79,26 @@ void    ZBEventManager::LoadFromSubDirectory( const CString Directory )
             LoadFromSubDirectory(finder.GetFilePath());
             continue;
         }
-   
-        ZBEvent* pEvent = LoadEventFromFile( finder.GetFilePath() );
-        if (pEvent)
-            AddEvent( pEvent );
+
+        std::unique_ptr<PSS_Event> pEvent(LoadEventFromFile(finder.GetFilePath()));
+
+        if (pEvent.get())
+        {
+            AddEvent(pEvent.get());
+            pEvent.release();
+        }
     }
     finder.Close();
 }
 
 
-BOOL    ZBEventManager::AddEvent( ZBEvent* pEvent )
+BOOL    ZBEventManager::AddEvent(PSS_Event* pEvent)
 {
-    m_Events.Add( pEvent );
+    m_Events.Add(pEvent);
     return TRUE;
 }
 
-BOOL    ZBEventManager::RemoveEvent( ZBEvent* pEvent )
+BOOL    ZBEventManager::RemoveEvent(PSS_Event* pEvent)
 {
     for (int i = 0; i < m_Events.GetSize(); ++i)
     {
@@ -106,7 +112,7 @@ BOOL    ZBEventManager::RemoveEvent( ZBEvent* pEvent )
     }
     return FALSE;
 }
-BOOL    ZBEventManager::RemoveEventAt( int Index )
+BOOL    ZBEventManager::RemoveEventAt(int Index)
 {
     if (Index < m_Events.GetSize())
         return FALSE;
@@ -125,5 +131,3 @@ BOOL    ZBEventManager::RemoveAllEvents()
     m_Events.RemoveAll();
     return TRUE;
 }
-
-

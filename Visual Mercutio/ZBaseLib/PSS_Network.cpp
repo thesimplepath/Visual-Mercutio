@@ -589,18 +589,18 @@ BOOL PSS_Network::NetworkEnumAll()
                 if (pMNetGetNetInfo)
                 {
                     // write message to the window debugger
-                    wsprintf(LPSTR(buffer),
-                             LPSTR(_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
-                             LPINT(&hNetwork),
-                             LPINT(&netInfo),
-                             LPSTR(button),
-                             LPINT(&cbButton),
-                             LPINT(&hInstance));
+                    ::wsprintf(LPSTR(buffer),
+                               LPSTR(_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                               LPINT(&hNetwork),
+                               LPINT(&netInfo),
+                               LPSTR(button),
+                               LPINT(&cbButton),
+                               LPINT(&hInstance));
 
                     TRACE1(_T("%s"), buffer);
 
                     errInfo = (*pMNetGetNetInfo)(HANDLE(hNetwork),
-                        (WORD*)&netInfo,
+                                                 (WORD*)&netInfo,
                                                  LPSTR(button),
                                                  LPINT(&cbButton),
                                                  (HANDLE*)&hInstance);
@@ -610,13 +610,13 @@ BOOL PSS_Network::NetworkEnumAll()
                         // write message to the window debugger
                         TRACE0(_T(" MNetGetInfo returned valid information"));
 
-                        wsprintf(LPSTR(buffer),
-                                 LPSTR(_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
-                                 LPINT(&hNetwork),
-                                 LPINT(&netInfo),
-                                 LPSTR(button),
-                                 LPINT(&cbButton),
-                                 LPINT(&hInstance));
+                        ::wsprintf(LPSTR(buffer),
+                                   LPSTR(_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                   LPINT(&hNetwork),
+                                   LPINT(&netInfo),
+                                   LPSTR(button),
+                                   LPINT(&cbButton),
+                                   LPINT(&hInstance));
 
                         TRACE1(_T("%s"), buffer);
 
@@ -639,18 +639,18 @@ BOOL PSS_Network::NetworkEnumAll()
                         if (pMNetGetNetInfo)
                         {
                             // write message to the window debugger
-                            wsprintf(LPSTR(buffer),
-                                     LPSTR(_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
-                                     LPINT(&hNetwork),
-                                     LPINT(&netInfo),
-                                     LPSTR(button),
-                                     LPINT(&cbButton),
-                                     LPINT(&hInstance));
+                            ::wsprintf(LPSTR(buffer),
+                                       LPSTR(_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                       LPINT(&hNetwork),
+                                       LPINT(&netInfo),
+                                       LPSTR(button),
+                                       LPINT(&cbButton),
+                                       LPINT(&hInstance));
 
-                            TRACE1(_T("%s"), szBuffer2);
+                            TRACE1(_T("%s"), buffer);
 
                             errInfo = (*pMNetGetNetInfo)(HANDLE(hNetwork),
-                                (WORD*)&netInfo,
+                                                         (WORD*)&netInfo,
                                                          LPSTR(button),
                                                          LPINT(&cbButton),
                                                          (HANDLE*)&hInstance);
@@ -660,13 +660,13 @@ BOOL PSS_Network::NetworkEnumAll()
                                 // write message to the window debugger
                                 TRACE0(_T(" MNetGetInfo returned valid information"));
 
-                                wsprintf(LPSTR(buffer),
-                                         LPSTR(_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
-                                         LPINT(&hNetwork),
-                                         LPINT(&netInfo),
-                                         LPSTR(button),
-                                         LPINT(&cbButton),
-                                         LPINT(&hInstance));
+                                ::wsprintf(LPSTR(buffer),
+                                           LPSTR(_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                           LPINT(&hNetwork),
+                                           LPINT(&netInfo),
+                                           LPSTR(button),
+                                           LPINT(&cbButton),
+                                           LPINT(&hInstance));
 
                                 TRACE1(_T("%s"), buffer);
 
@@ -695,7 +695,7 @@ bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManage
 {
     HANDLE hEnum;
 
-    // Call the WNetOpenEnum function to begin the enumeration.
+    // call the WNetOpenEnum function to begin the enumeration.
     DWORD result = ::WNetOpenEnum(RESOURCE_CONNECTED, RESOURCETYPE_ANY, 0, pNetResources, &hEnum);
 
     if (result != NO_ERROR)

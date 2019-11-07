@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityEventReminder -------------------------------------------*
+ * ==> PSS_ActivityReminderEvent -------------------------------------------*
  ****************************************************************************
  * Description : Provides an activity event reminder                        *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ActivityEventReminderH
-#define PSS_ActivityEventReminderH
+#ifndef PSS_ActivityReminderEventH
+#define PSS_ActivityReminderEventH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBEvent.h"
+#include "PSS_Event.h"
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -37,10 +37,10 @@
 * Activity event reminder
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityEventReminder : public ZBEvent
+class AFX_EXT_CLASS PSS_ActivityReminderEvent : public PSS_Event
 {
     public:
-        PSS_ActivityEventReminder();
+        PSS_ActivityReminderEvent();
 
         /**
         * Constructor
@@ -55,7 +55,7 @@ class AFX_EXT_CLASS PSS_ActivityEventReminder : public ZBEvent
         *@param activityStatus - activity status
         *@param message - message
         */
-        PSS_ActivityEventReminder(const COleDateTime& time,
+        PSS_ActivityReminderEvent(const COleDateTime& time,
                                   const CString&      priority,
                                   const CString&      folderName,
                                   const CString&      processName,
@@ -70,16 +70,16 @@ class AFX_EXT_CLASS PSS_ActivityEventReminder : public ZBEvent
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_ActivityEventReminder(const PSS_ActivityEventReminder& other);
+        PSS_ActivityReminderEvent(const PSS_ActivityReminderEvent& other);
 
-        virtual ~PSS_ActivityEventReminder();
+        virtual ~PSS_ActivityReminderEvent();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_ActivityEventReminder& operator = (const PSS_ActivityEventReminder& other);
+        const PSS_ActivityReminderEvent& operator = (const PSS_ActivityReminderEvent& other);
 
         /**
         * Gets the priority
@@ -239,114 +239,114 @@ class AFX_EXT_CLASS PSS_ActivityEventReminder : public ZBEvent
 };
 
 //---------------------------------------------------------------------------
-// PSS_ActivityEventReminder
+// PSS_ActivityReminderEvent
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetPriority() const
+CString PSS_ActivityReminderEvent::GetPriority() const
 {
     return m_Priority;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetPriority(const CString& value)
+void PSS_ActivityReminderEvent::SetPriority(const CString& value)
 {
     m_Priority = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetFolderName() const
+CString PSS_ActivityReminderEvent::GetFolderName() const
 {
     return m_FolderName;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetFolderName(const CString& value)
+void PSS_ActivityReminderEvent::SetFolderName(const CString& value)
 {
     m_FolderName = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetProcessName() const
+CString PSS_ActivityReminderEvent::GetProcessName() const
 {
     return m_ProcessName;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetProcessName(const CString& value)
+void PSS_ActivityReminderEvent::SetProcessName(const CString& value)
 {
     m_ProcessName = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetActivityName() const
+CString PSS_ActivityReminderEvent::GetActivityName() const
 {
     return m_ActivityName;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetActivityName(const CString& value)
+void PSS_ActivityReminderEvent::SetActivityName(const CString& value)
 {
     m_ActivityName = value;
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityEventReminder::GetRemainingDays() const
+int PSS_ActivityReminderEvent::GetRemainingDays() const
 {
     return m_RemainingDays;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetRemainingDays(int value)
+void PSS_ActivityReminderEvent::SetRemainingDays(int value)
 {
     m_RemainingDays = value;
 }
 //---------------------------------------------------------------------------
-COleDateTime PSS_ActivityEventReminder::GetActivityDueDate() const
+COleDateTime PSS_ActivityReminderEvent::GetActivityDueDate() const
 {
     return m_ActivityDueDate;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetActivityDueDate(const COleDateTime& value)
+void PSS_ActivityReminderEvent::SetActivityDueDate(const COleDateTime& value)
 {
     m_ActivityDueDate = value;
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityEventReminder::SetActivityDueDate(int year, int month, int day, int hour, int min, int sec)
+int PSS_ActivityReminderEvent::SetActivityDueDate(int year, int month, int day, int hour, int min, int sec)
 {
     return m_ActivityDueDate.SetDateTime(year, month, day, hour, min, sec);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityEventReminder::SetActivityDueDate(const CString& value)
+BOOL PSS_ActivityReminderEvent::SetActivityDueDate(const CString& value)
 {
     return ParseDateTime(m_ActivityDueDate, value);
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetFormattedActivityDueDate() const
+CString PSS_ActivityReminderEvent::GetFormattedActivityDueDate() const
 {
-    return m_ActivityDueDate.Format(EventDateFormatString);
+    return m_ActivityDueDate.Format(g_EventDateFormatString);
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetFormattedActivityDueDateTime() const
+CString PSS_ActivityReminderEvent::GetFormattedActivityDueDateTime() const
 {
-    return m_ActivityDueDate.Format(EventDateTimeFormatString);
+    return m_ActivityDueDate.Format(g_EventDateTimeFormatString);
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetProcessFilename() const
+CString PSS_ActivityReminderEvent::GetProcessFilename() const
 {
     return m_ProcessFileName;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetProcessFilename(const CString& value)
+void PSS_ActivityReminderEvent::SetProcessFilename(const CString& value)
 {
     m_ProcessFileName = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetActivityStatus() const
+CString PSS_ActivityReminderEvent::GetActivityStatus() const
 {
     return m_ActivityStatus;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetActivityStatus(const CString& value)
+void PSS_ActivityReminderEvent::SetActivityStatus(const CString& value)
 {
     m_ActivityStatus = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetMessage() const
+CString PSS_ActivityReminderEvent::GetMessage() const
 {
     return m_Message;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventReminder::SetMessage(const CString& value)
+void PSS_ActivityReminderEvent::SetMessage(const CString& value)
 {
     m_Message = value;
 }

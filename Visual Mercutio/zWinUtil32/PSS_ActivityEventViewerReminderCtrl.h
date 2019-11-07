@@ -19,16 +19,16 @@
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
 #include "zEvent\EventManager.h"
-#include "zEvent\ActEvtReminderManager.h"
+#include "zEvent\PSS_ActivityReminderEventManager.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 /**
@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PSS_ActivityEventViewerReminderCtrl : public PSS_ListCtrl
         * Constructor
         *@param pReminderManager - reminder manager, can be NULL
         */
-        PSS_ActivityEventViewerReminderCtrl(ZBActivityEventReminderManager* pReminderManager = NULL);
+        PSS_ActivityEventViewerReminderCtrl(PSS_ActivityReminderEventManager* pReminderManager = NULL);
 
         virtual ~PSS_ActivityEventViewerReminderCtrl();
 
@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_ActivityEventViewerReminderCtrl : public PSS_ListCtrl
         *@return event activity reminder
         */
         #ifdef _WIN32
-            AFX_EXT_API friend PSS_ActivityEventReminder& operator >> (PSS_ActivityEventReminder&           left,
+            AFX_EXT_API friend PSS_ActivityReminderEvent& operator >> (PSS_ActivityReminderEvent&           left,
                                                                        PSS_ActivityEventViewerReminderCtrl& listCtrl);
         #endif
 
@@ -61,13 +61,13 @@ class AFX_EXT_CLASS PSS_ActivityEventViewerReminderCtrl : public PSS_ListCtrl
         * Initializes the control
         *@param pReminderManager - reminder manager, can be NULL
         */
-        virtual void Initialize(ZBActivityEventReminderManager* pReminderManager);
+        virtual void Initialize(PSS_ActivityReminderEventManager* pReminderManager);
 
         /**
         * Gets the selected item
         *@return the selected item, NULL if no item selected or on error
         */
-        PSS_ActivityEventReminder* GetSelectedItem() const;
+        PSS_ActivityReminderEvent* GetSelectedItem() const;
 
         /**
         * Refreshes the control
@@ -81,8 +81,8 @@ class AFX_EXT_CLASS PSS_ActivityEventViewerReminderCtrl : public PSS_ListCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBActivityEventReminderManager* m_pReminderManager;
-        BOOL                            m_ColumnsHasBeenBuilt;
+        PSS_ActivityReminderEventManager* m_pReminderManager;
+        BOOL                              m_ColumnsHasBeenBuilt;
 
         /**
         * Copy constructor

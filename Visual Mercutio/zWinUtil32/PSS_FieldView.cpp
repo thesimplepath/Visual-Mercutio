@@ -69,14 +69,14 @@ void PSS_FieldView::PostNcDestroy()
 #ifdef _DEBUG
     void PSS_FieldView::AssertValid() const
     {
-        ZITreeView::AssertValid();
+        PSS_TreeView::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_FieldView::Dump(CDumpContext& dc) const
     {
-        ZITreeView::Dump(dc);
+        PSS_TreeView::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------

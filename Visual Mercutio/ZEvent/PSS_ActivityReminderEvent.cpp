@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityEventReminder -------------------------------------------*
+ * ==> PSS_ActivityReminderEvent -------------------------------------------*
  ****************************************************************************
  * Description : Provides an activity event reminder                        *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_ActivityEventReminder.h"
+#include "PSS_ActivityReminderEvent.h"
 
 // processsoft
 #include "ZEvtRes.h"
@@ -18,13 +18,13 @@
 #endif
 
 //---------------------------------------------------------------------------
-// PSS_ActivityEventReminder
+// PSS_ActivityReminderEvent
 //---------------------------------------------------------------------------
-PSS_ActivityEventReminder::PSS_ActivityEventReminder() :
-    ZBEvent(COleDateTime::GetCurrentTime(), EVT_REMINDER)
+PSS_ActivityReminderEvent::PSS_ActivityReminderEvent() :
+    PSS_Event(COleDateTime::GetCurrentTime(), g_Evt_Reminder)
 {}
 //---------------------------------------------------------------------------
-PSS_ActivityEventReminder::PSS_ActivityEventReminder(const COleDateTime& time,
+PSS_ActivityReminderEvent::PSS_ActivityReminderEvent(const COleDateTime& time,
                                                      const CString&      priority,
                                                      const CString&      folderName,
                                                      const CString&      processName,
@@ -34,7 +34,7 @@ PSS_ActivityEventReminder::PSS_ActivityEventReminder(const COleDateTime& time,
                                                      const CString&      processFileName,
                                                      const CString&      activityStatus,
                                                      const CString&      message) :
-    ZBEvent(time, EVT_REMINDER),
+    PSS_Event(time, g_Evt_Reminder),
     m_ActivityDueDate(activityDueDate),
     m_ProcessName(processName),
     m_FolderName(folderName),
@@ -46,17 +46,17 @@ PSS_ActivityEventReminder::PSS_ActivityEventReminder(const COleDateTime& time,
     m_RemainingDays(remainingDays)
 {}
 //---------------------------------------------------------------------------
-PSS_ActivityEventReminder::~PSS_ActivityEventReminder()
+PSS_ActivityReminderEvent::~PSS_ActivityReminderEvent()
 {}
 //---------------------------------------------------------------------------
-PSS_ActivityEventReminder::PSS_ActivityEventReminder(const PSS_ActivityEventReminder& other)
+PSS_ActivityReminderEvent::PSS_ActivityReminderEvent(const PSS_ActivityReminderEvent& other)
 {
     *this = other;
 }
 //---------------------------------------------------------------------------
-const PSS_ActivityEventReminder& PSS_ActivityEventReminder::operator = (const PSS_ActivityEventReminder& other)
+const PSS_ActivityReminderEvent& PSS_ActivityReminderEvent::operator = (const PSS_ActivityReminderEvent& other)
 {
-    ZBEvent::operator = (other);
+    PSS_Event::operator = (other);
 
     m_ActivityDueDate = other.m_ActivityDueDate;
     m_ProcessName     = other.m_ProcessName;
@@ -71,10 +71,10 @@ const PSS_ActivityEventReminder& PSS_ActivityEventReminder::operator = (const PS
     return *this;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityEventReminder::GetRemainingDaysString() const
+CString PSS_ActivityReminderEvent::GetRemainingDaysString() const
 {
     char buffer[10];
-    sprintf_s(buffer, _tcslen(buffer), "%d", m_RemainingDays);
+    ::sprintf_s(buffer, ::_tcslen(buffer), "%d", m_RemainingDays);
     return buffer;
 }
 //---------------------------------------------------------------------------

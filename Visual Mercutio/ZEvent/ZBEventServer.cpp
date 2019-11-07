@@ -19,13 +19,13 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBEventServer::ZBEventServer()
-: ZBEvent(), m_EventResult(EventNF)
+: PSS_Event(), m_EventResult(EventNF)
 {
 
 }
 
 ZBEventServer::ZBEventServer( COleDateTime Time, CString Filename, EventResult EventResultValue )
-: ZBEvent(Time, EVT_SERVER), m_Filename(Filename), m_EventResult(EventResultValue)
+: PSS_Event(Time, g_Evt_Server), m_Filename(Filename), m_EventResult(EventResultValue)
 {
 }
 
@@ -43,7 +43,7 @@ ZBEventServer::ZBEventServer(const ZBEventServer &right)
 
 const ZBEventServer & ZBEventServer::operator=(const ZBEventServer &right)
 {
-    ZBEvent::operator=( right );
+    PSS_Event::operator=( right );
     m_Filename = right.m_Filename;
     m_EventResult = right.m_EventResult;
     return *this;

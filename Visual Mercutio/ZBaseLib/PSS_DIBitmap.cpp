@@ -490,7 +490,7 @@ void PSS_DIBitmap::SetPalette(RGBQUAD* pRGB)
 //---------------------------------------------------------------------------
 COLORREF PSS_DIBitmap::PaletteColor(int index) const
 {
-    ASSERT(nIndex < 256);
+    ASSERT(index < 256);
 
     RGBQUAD* pRGB = m_pRGB + index;
 
@@ -524,8 +524,8 @@ void PSS_DIBitmap::GetPixel(UINT x, UINT y, int& pixel) const
 //---------------------------------------------------------------------------
 void PSS_DIBitmap::SetPixel(int x, int y, COLORREF color)
 {
-    ASSERT(x >= 0     && y >= 0);
-    ASSERT(x <  width && y <  height);
+    ASSERT(x >= 0       && y >= 0);
+    ASSERT(x <  m_Width && y <  m_Height);
 
     unsigned char* pLine = (unsigned char*)(m_pLine[y] + (x * 3));
     ASSERT(pLine);

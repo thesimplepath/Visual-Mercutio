@@ -22,7 +22,7 @@
 
 // processoft
 #include "PSS_ActivityEvent.h"
-#include "EventFl.h"
+#include "PSS_EventFile.h"
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -38,7 +38,7 @@
 * Activity event file
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityEventFile : public ZBEventFile
+class AFX_EXT_CLASS PSS_ActivityEventFile : public PSS_EventFile
 {
     public:
         PSS_ActivityEventFile();
@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_ActivityEventFile : public ZBEventFile
         * Allocates a new event
         *@return the newly created event, NULL on error
         */
-        virtual inline ZBEvent* AllocateEvent() const;
+        virtual inline PSS_Event* AllocateEvent() const;
 
     private:
         /**
@@ -81,10 +81,9 @@ class AFX_EXT_CLASS PSS_ActivityEventFile : public ZBEventFile
 //---------------------------------------------------------------------------
 // PSS_ActivityEventFile
 //---------------------------------------------------------------------------
-ZBEvent* PSS_ActivityEventFile::AllocateEvent() const
+PSS_Event* PSS_ActivityEventFile::AllocateEvent() const
 {
-    PSS_ActivityEvent* pEvent = new PSS_ActivityEvent;
-    return pEvent;
+    return new PSS_ActivityEvent();
 }
 //---------------------------------------------------------------------------
 

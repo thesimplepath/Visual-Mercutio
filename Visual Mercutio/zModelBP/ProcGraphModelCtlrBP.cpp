@@ -1577,7 +1577,7 @@ void ZDProcessGraphModelControllerBP::OnViewModelGenToolbar()
     if (!m_pwndModelGenerationBar)
     {
         ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, ZUFloatingToolbar::GetToolBarManager());
+        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelGenerationBar = pMgr->ToolBarFromID(_GenerationToolBarID);
     }
@@ -1595,7 +1595,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateViewModelGenToolbar(CCmdUI* pCmdUI
     if (!m_pwndModelGenerationBar)
     {
         ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, ZUFloatingToolbar::GetToolBarManager());
+        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelisationBar = pMgr->ToolBarFromID(_GenerationToolBarID);
     }
@@ -1615,7 +1615,7 @@ void ZDProcessGraphModelControllerBP::OnViewModelToolbar()
     if (!m_pwndModelisationBar)
     {
         ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, ZUFloatingToolbar::GetToolBarManager());
+        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelisationBar = pMgr->ToolBarFromID(_ModelisationToolBarID);
     }
@@ -1632,7 +1632,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateViewModelToolbar(CCmdUI* pCmdUI)
     if (!m_pwndModelisationBar)
     {
         ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, ZUFloatingToolbar::GetToolBarManager());
+        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
         m_pwndModelisationBar = pMgr->ToolBarFromID(_ModelisationToolBarID);
     }

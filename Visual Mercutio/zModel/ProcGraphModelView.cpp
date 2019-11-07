@@ -215,7 +215,7 @@ BOOL PSS_MvcScrollView::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRE
 // NULL if OnPrepareDC is being called for screen display.
 void PSS_MvcScrollView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 {
-    ASSERT(ZIDropScrollView::m_nMapMode == MM_TEXT);
+    ASSERT(PSS_DropScrollView::m_nMapMode == MM_TEXT);
     MvcWrapper_T<ZIProcessGraphModelViewport>::OnPrepareDC(pDC);
 
     // For default Printing behavior
@@ -836,12 +836,12 @@ void ZIProcessGraphModelView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 
 void ZIProcessGraphModelView::AssertValid() const
 {
-    ZIDropScrollView::AssertValid();
+    PSS_DropScrollView::AssertValid();
 }
 
 void ZIProcessGraphModelView::Dump(CDumpContext& dc) const
 {
-    ZIDropScrollView::Dump(dc);
+    PSS_DropScrollView::Dump(dc);
 }
 
 #endif //_DEBUG

@@ -18,7 +18,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "ZBEvent.h"
+#include "PSS_Event.h"
 
 enum EventResult { EventNF, EventImported, EventRejected, EventLogAdded, EventLogProblem  };
 
@@ -37,7 +37,7 @@ enum EventResult { EventNF, EventImported, EventRejected, EventLogAdded, EventLo
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBEventServer : public ZBEvent  
+class AFX_EXT_CLASS ZBEventServer : public PSS_Event
 {
 public:
     ZBEventServer();

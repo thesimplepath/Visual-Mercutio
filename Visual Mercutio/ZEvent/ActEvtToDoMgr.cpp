@@ -23,11 +23,11 @@ ZBActivityEventToDoManager::ZBActivityEventToDoManager()
 ZBActivityEventToDoManager::~ZBActivityEventToDoManager()
 {}
 
-ZBEvent* ZBActivityEventToDoManager::LoadEventFromFile(const CString Filename)
+PSS_Event* ZBActivityEventToDoManager::LoadEventFromFile(const CString Filename)
 {
     PSS_ActivityEventFile activityEventFile;
 
-    ZBEvent*    pEvent = activityEventFile.ImportActivityFromFile(Filename);
+    PSS_Event*    pEvent = activityEventFile.ImportActivityFromFile(Filename);
     if (pEvent &&
         pEvent->IsKindOf(RUNTIME_CLASS(PSS_ActivityEvent)) &&
         ((PSS_ActivityEvent*)pEvent)->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo)

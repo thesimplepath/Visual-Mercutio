@@ -83,14 +83,14 @@ void PSS_BasicScrollView::OnViewZoomOut()
 #ifdef _DEBUG
     void PSS_BasicScrollView::AssertValid() const
     {
-        ZVSpanView::AssertValid();
+        PSS_SpanView::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_BasicScrollView::Dump(CDumpContext& dc) const
     {
-        ZVSpanView::Dump(dc);
+        PSS_SpanView::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------
