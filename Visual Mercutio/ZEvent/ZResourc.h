@@ -130,16 +130,16 @@ public:
       //## Operation: CreatePersonList%927742730
       //    Take the activity and build the person list for the
       //    email.
-      PSS_MailUserList* CreatePersonList (ZProcess* pMainProcess, PSS_UserManager& UserManager, CString ConnectedUser);
+      PSS_MailUserList* CreatePersonList (ZProcess* pMainProcess, const PSS_UserManager& UserManager, const CString& ConnectedUser);
 
       //## Operation: FillPersonArray%927742731
       //    Take the activity and fill a person array.
-      BOOL FillPersonArray (ZProcess* pMainProcess, PSS_UserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
+      BOOL FillPersonArray (ZProcess* pMainProcess, const PSS_UserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
 
       //## Operation: CreatePersonDelimStr%927742732
       //    Take the activity and build a delimited string
       //    containing the person list.
-      CString CreatePersonDelimStr (ZProcess* pMainProcess, PSS_UserManager& UserManager, CString ConnectedUser, CString Delimiter = ";");
+      CString CreatePersonDelimStr (ZProcess* pMainProcess, const PSS_UserManager& UserManager, const CString& ConnectedUser, const CString& Delimiter = ";");
 
       //## Operation: Clone%927742733
       //    Clone this class.

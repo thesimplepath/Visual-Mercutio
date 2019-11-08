@@ -24,7 +24,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityAttributionWelcomeDialog
 //---------------------------------------------------------------------------
-PSS_ActivityAttributionWelcomeDialog::PSS_ActivityAttributionWelcomeDialog(ZActivity* pActivity, CWnd* pParent) :
+PSS_ActivityAttributionWelcomeDialog::PSS_ActivityAttributionWelcomeDialog(PSS_Activity* pActivity, CWnd* pParent) :
     PSS_WizardDialog(PSS_ActivityAttributionWelcomeDialog::IDD,
                      IDB_WZBMP1,
                      0,

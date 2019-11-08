@@ -69,7 +69,7 @@ class AFX_EXT_CLASS PSS_UserManager
         *@param byDisplayName - if TRUE, the search will be processed by display name
         *@return the user, NULL if not found or on error
         */
-        virtual PSS_User* FindUser(const CString& userName, BOOL byDisplayName = FALSE);
+        virtual PSS_User* FindUser(const CString& userName, BOOL byDisplayName = FALSE) const;
 
         /**
         * Removes a specific user
@@ -89,13 +89,13 @@ class AFX_EXT_CLASS PSS_UserManager
         *@param index - index
         *@return the user, NULL if not found or on error
         */
-        virtual inline PSS_User* GetAt(int Index);
+        virtual inline PSS_User* GetAt(int index) const;
 
         /**
         * Gets the user count
         *@return the user count
         */
-        virtual inline std::size_t GetCount();
+        virtual inline std::size_t GetCount() const;
 
         /**
         * Serializes the class content to an archive
@@ -123,7 +123,7 @@ class AFX_EXT_CLASS PSS_UserManager
 //---------------------------------------------------------------------------
 // PSS_UserManager
 //---------------------------------------------------------------------------
-PSS_User* PSS_UserManager::GetAt(int index)
+PSS_User* PSS_UserManager::GetAt(int index) const
 {
     if (index < int(GetCount()))
         return (PSS_User*)m_UserArray.GetAt(index);
@@ -131,7 +131,7 @@ PSS_User* PSS_UserManager::GetAt(int index)
     return NULL;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_UserManager::GetCount()
+std::size_t PSS_UserManager::GetCount() const
 {
     return m_UserArray.GetSize();
 }

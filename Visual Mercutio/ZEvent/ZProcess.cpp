@@ -168,13 +168,13 @@ size_t ZProcess::GetActivityNameArray (CStringArray& ActivityArray, WORD Activit
       for (size_t i = 0; i < GetActivityCount(); ++i)
     {
         ZBaseActivity*    pActivity = GetActivityAt( i );
-        if (pActivity && pActivity->IsKindOf(RUNTIME_CLASS(ZActivity)))
+        if (pActivity && pActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
         {
             if (ExcludedActivity != pActivity->GetName())
             {
-                if (ActivityType == 0 || ActivityType & ((ZActivity*)pActivity)->GetActivityType())
+                if (ActivityType == 0 || ActivityType & ((PSS_Activity*)pActivity)->GetActivityType())
                 {
-                    if (!AttributedActivityOnly || (AttributedActivityOnly && ((ZActivity*)pActivity)->IsAttributedActivity()))
+                    if (!AttributedActivityOnly || (AttributedActivityOnly && ((PSS_Activity*)pActivity)->IsAttributedActivity()))
                     {
                         ActivityArray.Add( pActivity->GetName() );
                         ++Count;
@@ -196,9 +196,9 @@ BOOL ZProcess::TemplateExist (const CString& TemplateName)
   //## begin ZProcess::TemplateExist%916261170.body preserve=yes
       for (size_t i = 0; i < GetActivityCount(); ++i)
     {
-        if (GetActivityAt(i)->IsKindOf(RUNTIME_CLASS(ZActivity)))
+        if (GetActivityAt(i)->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
         {
-              if (((ZActivity*)GetActivityAt(i))->TemplateExist( TemplateName ))
+              if (((PSS_Activity*)GetActivityAt(i))->TemplateExist( TemplateName ))
                   return TRUE;
         }
     }
@@ -250,9 +250,9 @@ CString ZProcess::CreatePersonDelimStr (ZBaseActivity& Activity, PSS_UserManager
 CString ZProcess::CreatePersonDelimStr (int Index, PSS_UserManager& UserManager, CString Delimiter)
 {
   //## begin ZProcess::CreatePersonDelimStr%927439021.body preserve=yes
-    if (GetActivityAt(Index)->IsKindOf(RUNTIME_CLASS(ZActivity)))
+    if (GetActivityAt(Index)->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
     {
-        ZActivity*    pActivity = (ZActivity*)GetActivityAt( Index );
+        PSS_Activity*    pActivity = (PSS_Activity*)GetActivityAt( Index );
         if (pActivity)
             return CreatePersonDelimStr( *pActivity, UserManager, Delimiter );
     }
@@ -270,9 +270,9 @@ CObArray* ZProcess::GetAttributedActivities (const CString Name)
     // Create a new one
     m_pAttributedActivitiesArray = new CObArray;
       for (size_t i = 0; i < GetActivityCount(); ++i)
-        if (GetActivityAt(i)->IsKindOf(RUNTIME_CLASS(ZActivity)))
+        if (GetActivityAt(i)->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
         {
-              if (((ZActivity*)GetActivityAt(i))->GetAttributedByActivity() == Name)
+              if (((PSS_Activity*)GetActivityAt(i))->GetAttributedByActivity() == Name)
                   m_pAttributedActivitiesArray->Add( GetActivityAt(i) );
         }
     // If nothing found, delete it

@@ -49,7 +49,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         /**
         * File attachment type
         */
-        enum IEAttachementType
+        enum IEAttachmentType
         {
             IE_AT_InsertedFile,
             IE_AT_HyperLinkFile,
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        PSS_File(const CString& fileName, IEAttachementType attachement = IE_AT_InsertedFile);
+        PSS_File(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
 
         /**
         * Copy constructor
@@ -129,7 +129,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        void SetCompleteFileName(const CString& fileName, IEAttachementType attachement = IE_AT_InsertedFile);
+        void SetCompleteFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
 
         /**
         * Gets the file name
@@ -142,7 +142,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        void SetFileName(const CString& fileName, IEAttachementType attachement = IE_AT_InsertedFile);
+        void SetFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
 
         /**
         * Gets the file name path
@@ -262,23 +262,23 @@ class AFX_EXT_CLASS PSS_File : public CObject
         * Gets the attachment type
         *@return the attachment type
         */
-        virtual inline const IEAttachementType GetAttachementType() const;
+        virtual inline const IEAttachmentType GetAttachmentType() const;
 
         /**
         * Sets the attachment type
         *@param value - the attachment type
         */
-        virtual inline void SetAttachementType(IEAttachementType value);
+        virtual inline void SetAttachmentType(IEAttachmentType value);
 
     protected:
         CString m_FileName;
 
     private:
-        IEAttachementType m_AttachementType;
-        char              m_Drive         [_MAX_DRIVE];
-        char              m_Dir           [_MAX_DIR];
-        char              m_FileNameBuffer[_MAX_FNAME];
-        char              m_FileExt       [_MAX_EXT];
+        IEAttachmentType m_AttachmentType;
+        char             m_Drive         [_MAX_DRIVE];
+        char             m_Dir           [_MAX_DIR];
+        char             m_FileNameBuffer[_MAX_FNAME];
+        char             m_FileExt       [_MAX_EXT];
 
         /**
         * Gets the file handle
@@ -296,14 +296,14 @@ PSS_File* PSS_File::Clone() const
     return new PSS_File(*this);
 }
 //---------------------------------------------------------------------------
-const PSS_File::IEAttachementType PSS_File::GetAttachementType() const
+const PSS_File::IEAttachmentType PSS_File::GetAttachmentType() const
 {
-    return m_AttachementType;
+    return m_AttachmentType;
 }
 //---------------------------------------------------------------------------
-void PSS_File::SetAttachementType(IEAttachementType value)
+void PSS_File::SetAttachmentType(IEAttachmentType value)
 {
-    m_AttachementType = value;
+    m_AttachmentType = value;
 }
 //---------------------------------------------------------------------------
 

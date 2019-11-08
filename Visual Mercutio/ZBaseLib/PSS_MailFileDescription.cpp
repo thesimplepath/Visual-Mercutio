@@ -13,19 +13,19 @@
 //---------------------------------------------------------------------------
 PSS_MailFileDescription::PSS_MailFileDescription() :
     m_MapiFileDesc(NULL),
-    m_AttachementType(PSS_File::IE_AT_InsertedFile)
+    m_AttachmentType(PSS_File::IE_AT_InsertedFile)
 {}
 //---------------------------------------------------------------------------
-PSS_MailFileDescription::PSS_MailFileDescription(CStringArray& fileList, PSS_File::IEAttachementType attachType) :
+PSS_MailFileDescription::PSS_MailFileDescription(CStringArray& fileList, PSS_File::IEAttachmentType attachType) :
     m_MapiFileDesc(NULL),
-    m_AttachementType(attachType)
+    m_AttachmentType(attachType)
 {
     Fill(fileList, attachType);
 }
 //---------------------------------------------------------------------------
-PSS_MailFileDescription::PSS_MailFileDescription(PSS_FileManager& fileList, PSS_File::IEAttachementType attachType) :
+PSS_MailFileDescription::PSS_MailFileDescription(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType) :
     m_MapiFileDesc(NULL),
-    m_AttachementType(PSS_File::IE_AT_InsertedFile)
+    m_AttachmentType(PSS_File::IE_AT_InsertedFile)
 {
     Fill(fileList, attachType);
 }
@@ -36,7 +36,7 @@ PSS_MailFileDescription::~PSS_MailFileDescription()
         delete[] m_MapiFileDesc;
 }
 //---------------------------------------------------------------------------
-void PSS_MailFileDescription::Fill(CStringArray& fileList, PSS_File::IEAttachementType attachType)
+void PSS_MailFileDescription::Fill(CStringArray& fileList, PSS_File::IEAttachmentType attachType)
 {
     RemoveAllFiles();
 
@@ -44,7 +44,7 @@ void PSS_MailFileDescription::Fill(CStringArray& fileList, PSS_File::IEAttacheme
         AddFile(fileList[i]);
 }
 //---------------------------------------------------------------------------
-void PSS_MailFileDescription::Fill(PSS_FileManager& fileList, PSS_File::IEAttachementType attachType)
+void PSS_MailFileDescription::Fill(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType)
 {
     RemoveAllFiles();
 
@@ -52,9 +52,9 @@ void PSS_MailFileDescription::Fill(PSS_FileManager& fileList, PSS_File::IEAttach
         AddFile(*fileList.GetAt(i));
 }
 //---------------------------------------------------------------------------
-BOOL PSS_MailFileDescription::AddFile(PSS_File& file, PSS_File::IEAttachementType attachType)
+BOOL PSS_MailFileDescription::AddFile(PSS_File& file, PSS_File::IEAttachmentType attachType)
 {
-    SetAttachementType(file.GetAttachementType());
+    SetAttachmentType(file.GetAttachmentType());
     return (m_FileArray.Add(file.GetCompleteFileName()) >= 0);
 }
 //---------------------------------------------------------------------------

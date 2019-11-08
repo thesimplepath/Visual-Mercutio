@@ -54,7 +54,7 @@ void PSS_UserManager::AddUser(PSS_User& user)
     m_UserArray.Add(&user);
 }
 //---------------------------------------------------------------------------
-PSS_User* PSS_UserManager::FindUser(const CString& userName, BOOL byDisplayName)
+PSS_User* PSS_UserManager::FindUser(const CString& userName, BOOL byDisplayName) const
 {
     const std::size_t count = GetCount();
 

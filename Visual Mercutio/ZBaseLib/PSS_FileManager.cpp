@@ -47,7 +47,7 @@ const PSS_FileManager& PSS_FileManager::operator = (const PSS_FileManager& other
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_FileManager::AddFile(const CString& fileName, PSS_File::IEAttachementType attachement)
+void PSS_FileManager::AddFile(const CString& fileName, PSS_File::IEAttachmentType attachement)
 {
     PSS_File* pFile = new PSS_File(fileName, attachement);
     AddFile(pFile);

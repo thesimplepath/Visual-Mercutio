@@ -24,12 +24,12 @@ IMPLEMENT_SERIAL(PSS_File, CObject, g_DefVersion)
 // PSS_File
 //---------------------------------------------------------------------------
 PSS_File::PSS_File() :
-    m_AttachementType(IE_AT_InsertedFile)
+    m_AttachmentType(IE_AT_InsertedFile)
 {}
 //---------------------------------------------------------------------------
-PSS_File::PSS_File(const CString& fileName, IEAttachementType attachement) :
+PSS_File::PSS_File(const CString& fileName, IEAttachmentType attachment) :
     m_FileName(fileName),
-    m_AttachementType(attachement)
+    m_AttachmentType(attachment)
 {
     // if file:// defined, remove it
     if (!m_FileName.Left(7).CompareNoCase(_T("file://")))
@@ -48,8 +48,8 @@ PSS_File::~PSS_File()
 //---------------------------------------------------------------------------
 const PSS_File& PSS_File::operator = (const PSS_File& other)
 {
-    m_FileName        = other.m_FileName;
-    m_AttachementType = other.m_AttachementType;
+    m_FileName       = other.m_FileName;
+    m_AttachmentType = other.m_AttachmentType;
 
     return *this;
 }
@@ -70,7 +70,7 @@ CArchive& operator >> (CArchive& ar, PSS_File& file)
 
     WORD value;
     ar >> value;
-    file.m_AttachementType = PSS_File::IEAttachementType(value);
+    file.m_AttachmentType = PSS_File::IEAttachmentType(value);
 
     // build completely all file components
     file.Rebuild();
@@ -81,7 +81,7 @@ CArchive& operator >> (CArchive& ar, PSS_File& file)
 CArchive& operator << (CArchive& ar, const PSS_File& file)
 {
     ar << file.m_FileName;
-    ar << WORD(file.m_AttachementType);
+    ar << WORD(file.m_AttachmentType);
 
     return ar;
 }
@@ -108,10 +108,10 @@ CString PSS_File::GetCompleteFileName() const
     return m_FileName;
 }
 //---------------------------------------------------------------------------
-void PSS_File::SetCompleteFileName(const CString& fileName, IEAttachementType attachement)
+void PSS_File::SetCompleteFileName(const CString& fileName, IEAttachmentType attachment)
 {
-    m_FileName        = fileName;
-    m_AttachementType = attachement;
+    m_FileName       = fileName;
+    m_AttachmentType = attachment;
 
     ::_splitpath(m_FileName, m_Drive, m_Dir, m_FileNameBuffer, m_FileExt);
 }
@@ -124,7 +124,7 @@ CString PSS_File::GetFileName() const
     return str;
 }
 //---------------------------------------------------------------------------
-void PSS_File::SetFileName(const CString& fileName, IEAttachementType attachement)
+void PSS_File::SetFileName(const CString& fileName, IEAttachmentType attachement)
 {
     m_FileName  = m_Drive;
     m_FileName += m_Dir;

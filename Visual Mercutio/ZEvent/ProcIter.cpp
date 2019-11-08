@@ -25,7 +25,7 @@
 
 //## begin module%379033CE027E.additionalDeclarations preserve=yes
 #include "ZProcess.h"
-#include "Activity.h"
+#include "PSS_Activity.h"
 //## end module%379033CE027E.additionalDeclarations
 
 
@@ -109,15 +109,15 @@ ZBaseActivity* ZProcessIterator::GetLastValidActivity ()
   //## end ZProcessIterator::GetLastValidActivity%932314504.body
 }
 
-ZActivity* ZProcessIterator::GetLastActivityWithinProcess ()
+PSS_Activity* ZProcessIterator::GetLastActivityWithinProcess ()
 {
   //## begin ZProcessIterator::GetLastActivityWithinProcess%932314505.body preserve=yes
     if (!m_pProcess && !m_pProcess->GetFirstValidActivity())
         return NULL;
     m_IteratorActivityPointer = m_pProcess->GetFirstValidActivity();
-    while (m_IteratorActivityPointer->GetNextBaseActivity() && m_IteratorActivityPointer->GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(ZActivity)))
+    while (m_IteratorActivityPointer->GetNextBaseActivity() && m_IteratorActivityPointer->GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
         m_IteratorActivityPointer = m_IteratorActivityPointer->GetNextBaseActivity();
-    return (ZActivity*)m_IteratorActivityPointer;
+    return (PSS_Activity*)m_IteratorActivityPointer;
   //## end ZProcessIterator::GetLastActivityWithinProcess%932314505.body
 }
 
@@ -147,7 +147,7 @@ ZBaseActivity* ZProcessIterator::GetNextValidActivity ()
     if (!m_IteratorActivityPointer)
         return NULL;
     m_IteratorActivityPointer = m_IteratorActivityPointer->GetNextValidActivity();
-    return (ZActivity*)m_IteratorActivityPointer;
+    return (PSS_Activity*)m_IteratorActivityPointer;
   //## end ZProcessIterator::GetNextValidActivity%932194636.body
 }
 
@@ -157,7 +157,7 @@ ZBaseActivity* ZProcessIterator::GetPreviousValidActivity ()
     if (!m_IteratorActivityPointer)
         return NULL;
     m_IteratorActivityPointer = m_IteratorActivityPointer->GetPreviousValidActivity();
-    return (ZActivity*)m_IteratorActivityPointer;
+    return (PSS_Activity*)m_IteratorActivityPointer;
   //## end ZProcessIterator::GetPreviousValidActivity%932194637.body
 }
 

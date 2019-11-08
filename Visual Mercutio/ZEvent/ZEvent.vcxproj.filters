@@ -19,12 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActEvtToDoMgr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Activity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="actlogFl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -127,6 +121,12 @@
     <ClCompile Include="PSS_ActivityReminderEventManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ActivityToDoEventManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Activity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ZEvent.rc2">
@@ -142,12 +142,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActEvtToDoMgr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Activity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ActLogFl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -251,6 +245,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ActivityReminderEventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityToDoEventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Activity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

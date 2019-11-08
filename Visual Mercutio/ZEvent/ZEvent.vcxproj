@@ -177,13 +177,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ActEvtToDoMgr.cpp">
+    <ClCompile Include="PSS_ActivityToDoEventManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="Activity.cpp">
+    <ClCompile Include="PSS_Activity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -380,8 +380,8 @@
     <ClInclude Include="PSS_ActivityEventManager.h" />
     <ClInclude Include="PSS_ActivityMessageEventManager.h" />
     <ClInclude Include="PSS_ActivityReminderEventManager.h" />
-    <ClInclude Include="ActEvtToDoMgr.h" />
-    <ClInclude Include="Activity.h" />
+    <ClInclude Include="PSS_ActivityToDoEventManager.h" />
+    <ClInclude Include="PSS_Activity.h" />
     <ClInclude Include="PSS_ActivityLog.h" />
     <ClInclude Include="PSS_ActivityLogDatabase.h" />
     <ClInclude Include="ActLogFl.h" />

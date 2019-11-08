@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\PSS_Mail.h"
 #include "zBaseLib\PSS_UserManager.h"
-#include "zEvent\Activity.h"
+#include "zEvent\PSS_Activity.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -52,7 +52,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
         */
         PSS_ActivityAttributionInputWizard(PSS_UserManager& userManager,
                                            PSS_Mail&        mail,
-                                           ZActivity*       pActivity,
+                                           PSS_Activity*    pActivity,
                                            BOOL             lastActivity,
                                            BOOL             userAttribution       = TRUE,
                                            BOOL             backupUserAttribution = TRUE,
@@ -64,7 +64,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
         * Gets the activity
         *@return the activity
         */
-        virtual inline ZActivity* GetActivity() const;
+        virtual inline PSS_Activity* GetActivity() const;
 
         /**
         * Executes the wizard
@@ -75,7 +75,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
     private:
         PSS_UserManager& m_UserManager;
         PSS_Mail&        m_Mail;
-        ZActivity*       m_pActivity;
+        PSS_Activity*    m_pActivity;
         BOOL             m_LastActivity;
         BOOL             m_UserAttribution;
         BOOL             m_BackupUserAttribution;
@@ -98,7 +98,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
 //---------------------------------------------------------------------------
 // PSS_ActivityAttributionInputWizard
 //---------------------------------------------------------------------------
-ZActivity* PSS_ActivityAttributionInputWizard::GetActivity() const
+PSS_Activity* PSS_ActivityAttributionInputWizard::GetActivity() const
 {
     return m_pActivity;
 }

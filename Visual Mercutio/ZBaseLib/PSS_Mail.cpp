@@ -287,9 +287,9 @@ BOOL PSS_Mail::SendMail(PSS_MailMessage& mailMessage)
     message.lpszNoteText = (char*)((const char*)mailMessage.GetText());
 
     // if file has been defined
-    if (mailMessage.GetFileCount() > 0 && mailMessage.GetAttachementType() != PSS_File::IE_AT_Undefined)
+    if (mailMessage.GetFileCount() > 0 && mailMessage.GetAttachmentType() != PSS_File::IE_AT_Undefined)
         // if the files must be inserted
-        if (mailMessage.GetAttachementType() == PSS_File::IE_AT_InsertedFile)
+        if (mailMessage.GetAttachmentType() == PSS_File::IE_AT_InsertedFile)
         {
             message.nFileCount = mailMessage.GetFileCount();
             message.lpFiles    = mailMessage.GetMapiFileDesc();
@@ -541,7 +541,7 @@ BOOL PSS_Mail::SendDocuments(PSS_MailFileDescription& fileList,
     CString textStr = messageHeader;
 
     // if the files must be inserted
-    if (fileList.GetAttachementType() == PSS_File::IE_AT_InsertedFile)
+    if (fileList.GetAttachmentType() == PSS_File::IE_AT_InsertedFile)
     {
         message.nFileCount = fileList.GetCount();
         message.lpFiles    = fileList.GetMapiFileDesc();

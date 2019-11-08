@@ -20,7 +20,7 @@
 #include "zBaseLib\PSS_WizardDialog.h"
 #include "zBaseLib\PSS_Mail.h"
 #include "zBaseLib\PSS_UserManager.h"
-#include "zEvent\Activity.h"
+#include "zEvent\PSS_Activity.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -64,7 +64,7 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
         */
         PSS_ActivityAttributionInputBackupDialog(PSS_UserManager& userManager,
                                                  PSS_Mail&        mail,
-                                                 ZActivity*       pActivity,
+                                                 PSS_Activity*    pActivity,
                                                  BOOL             lastActivity,
                                                  CWnd*            pParent = NULL);
 
@@ -72,7 +72,7 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
         * Gets the activity
         *@return the activity
         */
-        virtual inline ZActivity* GetActivity();
+        virtual inline PSS_Activity* GetActivity();
 
     protected:
         /**
@@ -96,7 +96,7 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
     private:
         PSS_UserManager& m_UserManager;
         PSS_Mail&        m_Mail;
-        ZActivity*       m_pActivity;
+        PSS_Activity*    m_pActivity;
         CListBox         m_UserList;
         CString          m_ActivityName;
         BOOL             m_LastActivity;
@@ -121,7 +121,7 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
 //---------------------------------------------------------------------------
 // PSS_ActivityAttributionInputBackupDialog
 //---------------------------------------------------------------------------
-ZActivity* PSS_ActivityAttributionInputBackupDialog::GetActivity()
+PSS_Activity* PSS_ActivityAttributionInputBackupDialog::GetActivity()
 {
     return m_pActivity;
 }

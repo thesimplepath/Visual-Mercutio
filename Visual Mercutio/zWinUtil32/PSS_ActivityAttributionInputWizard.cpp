@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------
 PSS_ActivityAttributionInputWizard::PSS_ActivityAttributionInputWizard(PSS_UserManager& userManager,
                                                                        PSS_Mail&        mail,
-                                                                       ZActivity*       pActivity,
+                                                                       PSS_Activity*    pActivity,
                                                                        BOOL             lastActivity,
                                                                        BOOL             userAttribution,
                                                                        BOOL             backupUserAttribution,

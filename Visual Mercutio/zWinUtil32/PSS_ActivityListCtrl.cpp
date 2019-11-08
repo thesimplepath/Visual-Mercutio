@@ -200,7 +200,7 @@ int PSS_ActivityListCtrl::Refresh ()
         #ifdef _WIN32
             int imageIndex;
 
-            if (pActivity->IsKindOf(RUNTIME_CLASS(ZActivity)))
+            if (pActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
                 imageIndex = 1;
             else
             if (pActivity->IsKindOf(RUNTIME_CLASS(ZProcess)))

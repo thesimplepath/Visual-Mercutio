@@ -27,7 +27,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 class    ZBaseActivity;
-class    ZActivity;
+class    PSS_Activity;
 class    ZProcess;
 //## end module%379033D80156.includes
 
@@ -95,7 +95,7 @@ class AFX_EXT_CLASS ZProcessIterator
       //## Operation: GetLastActivityWithinProcess%932314505
       //    Get the last base activity pointer within the same
       //    process.
-      ZActivity* GetLastActivityWithinProcess ();
+      PSS_Activity* GetLastActivityWithinProcess ();
 
       //## Operation: GetParent%932278211
       //    Return the parent process of an activity.

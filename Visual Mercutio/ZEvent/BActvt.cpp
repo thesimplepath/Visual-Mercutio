@@ -28,7 +28,7 @@
 #include "zRes32\ZRes.h"
 
 #include "ZProcess.h"
-#include "Activity.h"
+#include "PSS_Activity.h"
 #include "zBaseLib\PSS_BaseDocument.h"
 //## end module%3786DB6B0323.additionalDeclarations
 
@@ -122,7 +122,7 @@ ZBaseActivity* ZBaseActivity::GetFirstValidActivity() const
         return NULL;
     }
 
-    if (pFirstActivity->IsKindOf(RUNTIME_CLASS(ZActivity)) ||
+    if (pFirstActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
         (pFirstActivity->HasActivities() && pFirstActivity->GetRunMode() == ChooseMode))
     {
         if (pFirstActivity->IsConsiderAsVisible() != E_TS_False)
@@ -161,7 +161,7 @@ ZBaseActivity* ZBaseActivity::GetNextValidActivity() const
     {
         // If the next activity is a valid activity, return it
         // otherwise, delegate the next search to him
-        if (GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(ZActivity)) ||
+        if (GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
             (GetNextBaseActivity()->HasActivities() && GetNextBaseActivity()->GetRunMode() == ChooseMode))
         {
             if (GetNextBaseActivity()->IsConsiderAsVisible() != E_TS_False)
@@ -203,7 +203,7 @@ ZBaseActivity* ZBaseActivity::GetPreviousValidActivity() const
     {
         // If the previous activity is a valid activity, return it
         // otherwise, delegate the next search to him
-        if (GetPreviousBaseActivity()->IsKindOf(RUNTIME_CLASS(ZActivity)) ||
+        if (GetPreviousBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
             (GetPreviousBaseActivity()->HasActivities() && GetPreviousBaseActivity()->GetRunMode() == ChooseMode))
         {
             if (GetPreviousBaseActivity()->IsConsiderAsVisible() != E_TS_False)
@@ -320,7 +320,7 @@ BOOL ZBaseActivity::FillPersonArray(int            Index,
     //## end ZBaseActivity::FillPersonArray%931585013.body
 }
 
-BOOL ZBaseActivity::ActivityFillPersonArray(PSS_UserManager&    UserManager,
+BOOL ZBaseActivity::ActivityFillPersonArray(const PSS_UserManager&    UserManager,
                                             CStringArray&    UserArray,
                                             CString        ConnectedUser)
 {
@@ -360,16 +360,14 @@ BOOL ZBaseActivity::BackupResourceActivityAddUsers(CString DelimiterString)
     return m_BackupResources.AddUsers(DelimiterString);
 }
 
-CString ZBaseActivity::ActivityCreatePersonDelimStr(PSS_UserManager&    UserManager,
-                                                    CString        ConnectedUser,
-                                                    CString        Delimiter)
+CString ZBaseActivity::ActivityCreatePersonDelimStr(const PSS_UserManager& userManager,
+                                                    const CString&         connectedUser,
+                                                    const CString&         delimiter)
 {
-    //## begin ZBaseActivity::ActivityCreatePersonDelimStr%931584998.body preserve=yes
-    return GetCurrentResources().CreatePersonDelimStr(GetMainProcess(), UserManager, ConnectedUser, Delimiter);
-    //## end ZBaseActivity::ActivityCreatePersonDelimStr%931584998.body
+    return GetCurrentResources().CreatePersonDelimStr(GetMainProcess(), userManager, connectedUser, delimiter);
 }
 
-PSS_MailUserList* ZBaseActivity::ActivityCreatePersonList(PSS_UserManager& UserManager, CString ConnectedUser)
+PSS_MailUserList* ZBaseActivity::ActivityCreatePersonList(const PSS_UserManager& UserManager, const CString& ConnectedUser)
 {
     //## begin ZBaseActivity::ActivityCreatePersonList%931585003.body preserve=yes
     return GetCurrentResources().CreatePersonList(GetMainProcess(), UserManager, ConnectedUser);
@@ -711,7 +709,7 @@ BOOL ZBaseActivity::MustRemindEndActivity()
     //## end ZBaseActivity::MustRemindEndActivity%931613250.body
 }
 
-CString ZBaseActivity::GetActivityStatusString()
+CString ZBaseActivity::GetActivityStatusString() const
 {
     //## begin ZBaseActivity::GetActivityStatusString%931711481.body preserve=yes
     CString Status;
@@ -1011,24 +1009,24 @@ ZBaseActivity* ZBaseActivity::FindBaseActivity(const CString& ActivityName)
     //## end ZProcess::FindBaseActivity%934700763.body
 }
 
-ZActivity* ZBaseActivity::FindActivity(const CString& ActivityName)
+PSS_Activity* ZBaseActivity::FindActivity(const CString& ActivityName)
 {
     //## begin ZProcess::FindActivity%913664909.body preserve=yes
     for (size_t i = 0; i < GetActivityCount(); ++i)
     {
         if (GetActivityAt(i)->HasActivities())
         {
-            ZActivity* pReturnedActivity = GetActivityAt(i)->FindActivity(ActivityName);
+            PSS_Activity* pReturnedActivity = GetActivityAt(i)->FindActivity(ActivityName);
 
             if (pReturnedActivity)
             {
                 return pReturnedActivity;
             }
         }
-        else if (GetActivityAt(i)->IsKindOf(RUNTIME_CLASS(ZActivity)) &&
+        else if (GetActivityAt(i)->IsKindOf(RUNTIME_CLASS(PSS_Activity)) &&
                  GetActivityAt(i)->GetName() == ActivityName)
         {
-            return (ZActivity*)GetActivityAt(i);
+            return (PSS_Activity*)GetActivityAt(i);
         }
     }
 

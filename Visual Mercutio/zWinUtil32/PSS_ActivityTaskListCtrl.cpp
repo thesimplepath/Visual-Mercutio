@@ -227,7 +227,7 @@ LRESULT PSS_ActivityTaskListCtrl::OnActivityListChange(WPARAM wParam, LPARAM lPa
 //---------------------------------------------------------------------------
 LRESULT PSS_ActivityTaskListCtrl::OnSelectActivityInTaskList(WPARAM wParam, LPARAM lParam)
 {
-    ZActivity* pActivity = (ZActivity*)lParam;
+    PSS_Activity* pActivity = (PSS_Activity*)lParam;
     SelectActivity(pActivity->GetName(), TRUE);
     return 1;
 }

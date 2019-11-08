@@ -75,12 +75,12 @@ ZProcess* PSS_ProcessTreeCtrl::GetRootProcessItem()
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZActivity* PSS_ProcessTreeCtrl::GetSelectedActivityItem()
+PSS_Activity* PSS_ProcessTreeCtrl::GetSelectedActivityItem()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<ZActivity*>((CObject*)GetItemData(hSelected));
+        return dynamic_cast<PSS_Activity*>((CObject*)GetItemData(hSelected));
 
     return NULL;
 }
@@ -129,7 +129,7 @@ void PSS_ProcessTreeCtrl::AddProcess(ZBaseActivity* pBaseActivity, HTREEITEM hPa
                 AddProcess(pActivity, hParentTreeItem, 2);
         }
         else
-            AddSubItem((ZActivity*)pActivity, hParentTreeItem, 1);
+            AddSubItem((PSS_Activity*)pActivity, hParentTreeItem, 1);
     }
 }
 //---------------------------------------------------------------------------
@@ -141,7 +141,7 @@ void PSS_ProcessTreeCtrl::AddActivityItems(ZBaseActivity* pBaseActivity, HTREEIT
     for (std::size_t i = 0; i < activityCount; ++i)
     {
         // insert all pages from the template manager
-        ZActivity* pActivity = dynamic_cast<ZActivity*>(pBaseActivity->GetActivityAt(i));
+        PSS_Activity* pActivity = dynamic_cast<PSS_Activity*>(pBaseActivity->GetActivityAt(i));
 
         if (pActivity)
             AddSubItem(pActivity, hParentTreeItem, iconIndex);
@@ -161,7 +161,7 @@ HTREEITEM PSS_ProcessTreeCtrl::AddProcessItem(ZBaseActivity* pData, HTREEITEM hP
     return InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_ProcessTreeCtrl::AddSubItem(ZActivity* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_ProcessTreeCtrl::AddSubItem(PSS_Activity* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     TV_INSERTSTRUCT curTreeItem;
     curTreeItem.hParent             = hParentTreeItem; 

@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zEvent\Activity.h"
+#include "zEvent\PSS_Activity.h"
 
 #ifndef _WIN32
     #include "ZWinUtilRes.h"
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionWelcomeDialog : public PSS_WizardDial
         *@param pActivity - activity
         *@param pParent - parent window, can be NULL
         */
-        PSS_ActivityAttributionWelcomeDialog(ZActivity* pActivity, CWnd* pParent = NULL);
+        PSS_ActivityAttributionWelcomeDialog(PSS_Activity* pActivity, CWnd* pParent = NULL);
 
     protected:
         /// ClassWizard generated virtual function overrides
@@ -75,7 +75,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionWelcomeDialog : public PSS_WizardDial
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZActivity* m_pActivity;
+        PSS_Activity* m_pActivity;
 };
 
 #endif

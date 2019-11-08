@@ -73,7 +73,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         * Gets the selected activity item
         *@return the selected activity item, NULL if no item selected or on error
         */
-        virtual ZActivity* GetSelectedActivityItem();
+        virtual PSS_Activity* GetSelectedActivityItem();
 
         /**
         * Refreshes the control
@@ -123,7 +123,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         *@param iconIndex - icon index
         *@return newly added sub-item handle, NULL on error
         */
-        virtual HTREEITEM AddSubItem(ZActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex = 0);
+        virtual HTREEITEM AddSubItem(PSS_Activity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex = 0);
 
     private:
         ZProcess* m_pProcess;

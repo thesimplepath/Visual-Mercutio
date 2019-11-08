@@ -24,7 +24,7 @@
 #include "zBaseLib\PSS_WizardDialog.h"
 #include "zBaseLib\PSS_Mail.h"
 #include "zBaseLib\PSS_UserManager.h"
-#include "zEvent\Activity.h"
+#include "zEvent\PSS_Activity.h"
 
 // resources
 #ifndef _WIN32
@@ -70,14 +70,14 @@ class PSS_ActivityAttributionInputValueDialog : public PSS_WizardDialog
         */
         PSS_ActivityAttributionInputValueDialog(PSS_UserManager& userManager,
                                                 PSS_Mail&        mail,
-                                                ZActivity*       pActivity,
+                                                PSS_Activity*    pActivity,
                                                 BOOL             lastActivity,
                                                 BOOL             userAttribution       = TRUE,
                                                 BOOL             timeAttribution       = TRUE,
                                                 BOOL             visibilityAttribution = TRUE,
                                                 CWnd*            pParent               = NULL);
 
-        virtual inline ZActivity* GetActivity() const;
+        virtual inline PSS_Activity* GetActivity() const;
 
     protected:
         /**
@@ -102,7 +102,7 @@ class PSS_ActivityAttributionInputValueDialog : public PSS_WizardDialog
     private:
         PSS_UserManager& m_UserManager;
         PSS_Mail&        m_Mail;
-        ZActivity*       m_pActivity;
+        PSS_Activity*    m_pActivity;
         BOOL             m_LastActivity;
         BOOL             m_UserAttribution;
         BOOL             m_TimeAttribution;
@@ -128,7 +128,7 @@ class PSS_ActivityAttributionInputValueDialog : public PSS_WizardDialog
 //---------------------------------------------------------------------------
 // PSS_ActivityAttributionInputValueDialog
 //---------------------------------------------------------------------------
-ZActivity* PSS_ActivityAttributionInputValueDialog::GetActivity() const
+PSS_Activity* PSS_ActivityAttributionInputValueDialog::GetActivity() const
 {
     return m_pActivity;
 }

@@ -38,7 +38,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_ActivityAttributionInputValueDialog::PSS_ActivityAttributionInputValueDialog(PSS_UserManager& userManager,
                                                                                  PSS_Mail&        mail,
-                                                                                 ZActivity*       pActivity,
+                                                                                 PSS_Activity*    pActivity,
                                                                                  BOOL             lastActivity,
                                                                                  BOOL             userAttribution,
                                                                                  BOOL             timeAttribution,

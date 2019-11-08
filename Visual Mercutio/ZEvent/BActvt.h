@@ -28,7 +28,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // Forward declarations
-class ZActivity;
+class PSS_Activity;
 class ZProcess;
 
 //## end module%3786DB7B0055.includes
@@ -213,12 +213,12 @@ public:
     //## Operation: ActivityCreatePersonDelimStr%931584998
     //    Take the activity and build a delimited string
     //    containing the person list.
-    virtual CString ActivityCreatePersonDelimStr(PSS_UserManager& UserManager, CString ConnectedUser, CString Delimiter = ";");
+    virtual CString ActivityCreatePersonDelimStr(const PSS_UserManager& userManager, const CString& connectedUser, const CString& delimiter = ";");
 
     //## Operation: ActivityCreatePersonList%931585003
     //    Take the activity and build the person list for the
     //    email.
-    virtual PSS_MailUserList* ActivityCreatePersonList(PSS_UserManager& UserManager, CString ConnectedUser);
+    virtual PSS_MailUserList* ActivityCreatePersonList(const PSS_UserManager& UserManager, const CString& ConnectedUser);
 
     //## Operation: CreatePersonList%931584999
     //    Take the activity and build the person list for the
@@ -249,7 +249,7 @@ public:
     virtual BOOL FillPersonArray(int Index, PSS_UserManager& UserManager, CStringArray& UserArray);
 
     //    Take the activity and fill a person array.
-    virtual BOOL ActivityFillPersonArray(PSS_UserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
+    virtual BOOL ActivityFillPersonArray(const PSS_UserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
 
     virtual BOOL ActivityAddUsers(CString DelimiterString);
 
@@ -383,38 +383,38 @@ public:
 
     //## Operation: ActivityIsAttribution%931613263
     //    Returns TRUE if it is an attribution activity.
-    virtual BOOL ActivityIsAttribution();
+    virtual BOOL ActivityIsAttribution() const;
 
     //## Operation: ActivityIsAcceptation%931613264
     //    Returns TRUE if it is an acceptation activity.
-    virtual BOOL ActivityIsAcceptation();
+    virtual BOOL ActivityIsAcceptation() const;
 
     //## Operation: ActivityIsInput%931613265
     //    Returns TRUE if it is an input information activity.
-    virtual BOOL ActivityIsInput();
+    virtual BOOL ActivityIsInput() const;
 
     //## Operation: ActivityIsSendMail%931613266
     //    Returns TRUE if it is a send mail activity.
-    virtual BOOL ActivityIsSendMail();
+    virtual BOOL ActivityIsSendMail() const;
 
     //## Operation: ActivityIsStartProcess%931613267
     //    Returns TRUE if it is a start process activity.
-    virtual BOOL ActivityIsStartProcess();
+    virtual BOOL ActivityIsStartProcess() const;
 
     //## Operation: ActivityIsCommandLine%931613268
     //    Returns TRUE if it is a command line activity.
-    virtual BOOL ActivityIsCommandLine();
+    virtual BOOL ActivityIsCommandLine() const;
 
     //## Operation: ActivityIsScanning%940156895
     //    Returns TRUE if it is a scanning process activity.
-    virtual BOOL ActivityIsScanning();
+    virtual BOOL ActivityIsScanning() const;
 
     //## Operation: ActivityIsArchiving%940156896
     //    Returns TRUE if it is an archiving process activity.
-    virtual BOOL ActivityIsArchiving();
+    virtual BOOL ActivityIsArchiving() const;
 
     //## Operation: GetActivityStatusString%931711481
-    virtual CString GetActivityStatusString();
+    virtual CString GetActivityStatusString() const;
 
     //## Operation: AssignNextActivityPtr%932406382
     //    Assigns the next base activity pointer.
@@ -691,7 +691,7 @@ public:
 
     //## Operation: FindActivity%913664909
     //    Finds an activity. Returns the pointer to the activity.
-    ZActivity* FindActivity(const CString& ActivityName);
+    PSS_Activity* FindActivity(const CString& ActivityName);
 
     //## Operation: AddProcess%932406384
     //    Add a new process. At the end.
@@ -1090,7 +1090,7 @@ inline void ZBaseActivity::SetAttributedByActivity(const CString value)
     //## end ZBaseActivity::SetAttributedByActivity%931585033.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsAttribution()
+inline BOOL ZBaseActivity::ActivityIsAttribution() const
 {
     //## begin ZBaseActivity::ActivityIsAttribution%931613263.body preserve=yes
       // If no activites or If it is parallel mode
@@ -1103,7 +1103,7 @@ inline BOOL ZBaseActivity::ActivityIsAttribution()
     //## end ZBaseActivity::ActivityIsAttribution%931613263.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsAcceptation()
+inline BOOL ZBaseActivity::ActivityIsAcceptation() const
 {
     //## begin ZBaseActivity::ActivityIsAcceptation%931613264.body preserve=yes
       // If no activites or If it is parallel mode
@@ -1115,7 +1115,7 @@ inline BOOL ZBaseActivity::ActivityIsAcceptation()
     //## end ZBaseActivity::ActivityIsAcceptation%931613264.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsInput()
+inline BOOL ZBaseActivity::ActivityIsInput() const
 {
     //## begin ZBaseActivity::ActivityIsInput%931613265.body preserve=yes
       // If no activites or If it is parallel mode
@@ -1127,7 +1127,7 @@ inline BOOL ZBaseActivity::ActivityIsInput()
     //## end ZBaseActivity::ActivityIsInput%931613265.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsSendMail()
+inline BOOL ZBaseActivity::ActivityIsSendMail() const
 {
     //## begin ZBaseActivity::ActivityIsSendMail%931613266.body preserve=yes
       // If no activites or If it is parallel mode
@@ -1139,7 +1139,7 @@ inline BOOL ZBaseActivity::ActivityIsSendMail()
     //## end ZBaseActivity::ActivityIsSendMail%931613266.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsStartProcess()
+inline BOOL ZBaseActivity::ActivityIsStartProcess() const
 {
     //## begin ZBaseActivity::ActivityIsStartProcess%931613267.body preserve=yes
       // If no activites or If it is parallel mode
@@ -1151,7 +1151,7 @@ inline BOOL ZBaseActivity::ActivityIsStartProcess()
     //## end ZBaseActivity::ActivityIsStartProcess%931613267.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsCommandLine()
+inline BOOL ZBaseActivity::ActivityIsCommandLine() const
 {
     //## begin ZBaseActivity::ActivityIsCommandLine%931613268.body preserve=yes
       // If no activites or If it is parallel mode
@@ -1163,7 +1163,7 @@ inline BOOL ZBaseActivity::ActivityIsCommandLine()
     //## end ZBaseActivity::ActivityIsCommandLine%931613268.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsScanning()
+inline BOOL ZBaseActivity::ActivityIsScanning() const
 {
     //## begin ZBaseActivity::ActivityIsScanning%940156895.body preserve=yes
       // If no activites or If it is parallel mode
@@ -1175,7 +1175,7 @@ inline BOOL ZBaseActivity::ActivityIsScanning()
     //## end ZBaseActivity::ActivityIsScanning%940156895.body
 }
 
-inline BOOL ZBaseActivity::ActivityIsArchiving()
+inline BOOL ZBaseActivity::ActivityIsArchiving() const
 {
     //## begin ZBaseActivity::ActivityIsArchiving%940156896.body preserve=yes
       // If no activites or If it is parallel mode
