@@ -1,24 +1,14 @@
-//## begin module%379033D80156.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%379033D80156.cm
+/****************************************************************************
+ * ==> PSS_ProcessIterator -------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a process iterator                                *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%379033D80156.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%379033D80156.cp
+#ifndef PSS_ProcessIteratorH
+#define PSS_ProcessIteratorH
 
-//## Module: ProcIter%379033D80156; Package specification
-//## Subsystem: ZEvent%378A5F7E02DB
-//## Source file: z:\adsoft~1\ZEvent\ProcIter.h
-
-#ifndef ProcIter_h
-#define ProcIter_h 1
-
-//## begin module%379033D80156.additionalIncludes preserve=no
-//## end module%379033D80156.additionalIncludes
-
-//## begin module%379033D80156.includes preserve=yes
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -26,175 +16,178 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-class    ZBaseActivity;
-class    PSS_Activity;
-class    ZProcess;
-//## end module%379033D80156.includes
-
-//## begin module%379033D80156.declarations preserve=no
-//## end module%379033D80156.declarations
-
-//## begin module%379033D80156.additionalDeclarations preserve=yes
-#ifdef _ZEVENTEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+// class name mapping
+#ifndef PSS_BaseActivity
+    //#define PSS_BaseActivity ZBaseActivity
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-//## end module%379033D80156.additionalDeclarations
+// forward class declarations
+class PSS_BaseActivity;
+class PSS_Activity;
+class ZProcess;
 
+#ifdef _ZEVENTEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
 
-//## Class: ZProcessIterator%379031B90231
-//## Category: ZEvent::Process Classes - Event%378A5FD903A4
-//## Subsystem: ZEvent%378A5F7E02DB
-//## Persistence: Transient
-//## Cardinality/Multiplicity: n
-
-class AFX_EXT_CLASS ZProcessIterator 
+/**
+* Process iterator
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ProcessIterator
 {
-  //## begin ZProcessIterator%379031B90231.initialDeclarations preserve=yes
-  //## end ZProcessIterator%379031B90231.initialDeclarations
+    public:
+        /**
+        * Constructor
+        *@param pProcess - process
+        */
+        PSS_ProcessIterator(ZProcess* pProcess = NULL);
 
-  public:
-    //## Constructors (specified)
-      //## Operation: ZProcessIterator%932194635
-      //    Initialize the process iterator.
-      ZProcessIterator (ZProcess* pProcess = NULL);
+        virtual ~PSS_ProcessIterator();
 
-    //## Destructor (generated)
-      ~ZProcessIterator();
+        /**
+        * Gets the first base activity
+        *@return the first base activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetFirstBaseActivity();
 
+        /**
+        * Gets the first valid activity
+        *@return the first valid activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetFirstValidActivity();
 
-    //## Other Operations (specified)
-      //## Operation: GetFirstBaseActivity%932194644
-      //    Get the first base activity pointer.
-      ZBaseActivity* GetFirstBaseActivity ();
+        /**
+        * Gets the first valid base activity
+        *@return the first valid base activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetFirstValidBaseActivity();
 
-      //## Operation: GetLastBaseActivity%932278212
-      //    Get the last base activity pointer.
-      ZBaseActivity* GetLastBaseActivity ();
+        /**
+        * Gets the last base activity
+        *@return the last base activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetLastBaseActivity();
 
-      //## Operation: GetFirstValidActivity%932314503
-      //    Get the first base activity pointer.
-      ZBaseActivity* GetFirstValidActivity ();
+        /**
+        * Gets the last valid activity
+        *@return the last valid activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetLastValidActivity();
 
-      //## Operation: GetFirstValidBaseActivity%937152025
-      //    Return the first activity pointer.
-      ZBaseActivity* GetFirstValidBaseActivity ();
+        /**
+        * Gets the last base activity within the same process
+        *@return the last base activity within the same process
+        */
+        virtual PSS_Activity* GetLastActivityWithinProcess();
 
-      //## Operation: GetLastValidActivity%932314504
-      //    Get the last activity pointer.
-      ZBaseActivity* GetLastValidActivity ();
+        /**
+        * Gets the parent activity
+        *@param pActivity - activity
+        *@return the activity parent process, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetParent(PSS_BaseActivity* pActivity);
 
-      //## Operation: GetLastActivityWithinProcess%932314505
-      //    Get the last base activity pointer within the same
-      //    process.
-      PSS_Activity* GetLastActivityWithinProcess ();
+        /**
+        * Gets the activity parent process
+        *@param pActivity - activity
+        *@return the activity parent process, NULL if not found or on error
+        */
+        virtual ZProcess* GetParentProcess(PSS_BaseActivity* pActivity);
 
-      //## Operation: GetParent%932278211
-      //    Return the parent process of an activity.
-      ZBaseActivity* GetParent (ZBaseActivity* pActivity);
+        /**
+        * Gets the previous valid activity
+        *@return the previous valid activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetPreviousValidActivity();
 
-      ZProcess*         GetParentProcess (ZBaseActivity* pActivity);
+        /**
+        * Gets the previous base activity
+        *@return the previous base activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetPreviousBaseActivity();
 
-      //## Operation: GetNextValidActivity%932194636
-      //    Get the next valid activity pointer.
-      ZBaseActivity* GetNextValidActivity ();
+        /**
+        * Gets the previous valid base activity
+        *@return the previous valid base activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetPreviousValidBaseActivity();
 
-      //## Operation: GetPreviousValidActivity%932194637
-      //    Get the previous valid activity pointer.
-      ZBaseActivity* GetPreviousValidActivity ();
+        /**
+        * Gets the next valid activity
+        *@return the next valid activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetNextValidActivity();
 
-      //## Operation: GetNextBaseActivity%933094114
-      //    Get the next activity pointer.
-      ZBaseActivity* GetNextBaseActivity ();
+        /**
+        * Gets the next base activity
+        *@return the next base activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetNextBaseActivity();
 
-      //## Operation: GetNextValidBaseActivity%937152026
-      //    Return the next activity pointer. If no, return NULL.
-      ZBaseActivity* GetNextValidBaseActivity ();
+        /**
+        * Gets the next valid base activity
+        *@return the next valid base activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* GetNextValidBaseActivity();
 
-      //## Operation: GetPreviousBaseActivity%933094115
-      //    Get the previous activity pointer.
-      ZBaseActivity* GetPreviousBaseActivity ();
+        /**
+        * Gets the previous process
+        *@return the previous process, NULL if not found or on error
+        */
+        virtual ZProcess* GetPreviousProcess();
 
-      //## Operation: GetPreviousValidBaseActivity%937152027
-      //    Return the previous activity pointer. If no, return NULL.
-      ZBaseActivity* GetPreviousValidBaseActivity ();
+        /**
+        * Gets the next process
+        *@return the next process, NULL if not found or on error
+        */
+        virtual ZProcess* GetNextProcess();
 
-      //## Operation: GetNextProcess%932194638
-      //    Get the next valid activity pointer.
-      ZProcess* GetNextProcess ();
+        /**
+        * Starts the iterator using an activity and a process
+        *@param pActivity - the activity to iterate
+        *@param pProcess - the process
+        *@return the next activity
+        */
+        virtual PSS_BaseActivity* StartIterator(PSS_BaseActivity* pActivity = NULL, ZProcess* pProcess = NULL);
 
-      //## Operation: GetPreviousProcess%932194639
-      //    Get the previous valid activity pointer.
-      ZProcess* GetPreviousProcess ();
+        /**
+        * Starts the iterator using an activity name and a process
+        *@param activityName - the activity name to iterate
+        *@param pProcess - the process
+        *@return the next activity
+        */
+        virtual PSS_BaseActivity* StartIterator(const CString& activityName, ZProcess* pProcess = NULL);
 
-      //## Operation: StartIterator%932194640
-      //    Start the iterator using an activity index.
-      ZBaseActivity* StartIterator (ZBaseActivity* pActivity = NULL, ZProcess* pProcess = NULL);
+        /**
+        * Finds an activity
+        *@param activityName - the activity name to search
+        *@return the activity, NULL if not found or on error
+        */
+        virtual PSS_BaseActivity* FindActivity(const CString& activityName);
 
-      //## Operation: StartIterator%932194641
-      //    Start the iterator using an activity name.
-      ZBaseActivity* StartIterator (const CString& ActivityName, ZProcess* pProcess = NULL);
+    private:
+        PSS_BaseActivity* m_IteratorActivityPointer;
+        ZProcess*         m_pProcess;
 
-      //## Operation: FindActivity%932194643
-      //    Finds an activity. Returns the pointer to the activity.
-      virtual ZBaseActivity* FindActivity (const CString& ActivityName);
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        PSS_ProcessIterator(const PSS_ProcessIterator& other);
 
-    // Additional Public Declarations
-      //## begin ZProcessIterator%379031B90231.public preserve=yes
-      //## end ZProcessIterator%379031B90231.public
-
-  protected:
-    // Additional Protected Declarations
-      //## begin ZProcessIterator%379031B90231.protected preserve=yes
-      //## end ZProcessIterator%379031B90231.protected
-
-  private:
-    //## Constructors (generated)
-      ZProcessIterator(const ZProcessIterator &right);
-
-    //## Assignment Operation (generated)
-      const ZProcessIterator & operator=(const ZProcessIterator &right);
-
-    // Data Members for Class Attributes
-
-      //## Attribute: IteratorActivityPointer%379031CE01A5
-      //    Used for iterating through activity list
-      //## begin ZProcessIterator::IteratorActivityPointer%379031CE01A5.attr preserve=no  private: ZBaseActivity* {U} NULL
-      ZBaseActivity* m_IteratorActivityPointer;
-      //## end ZProcessIterator::IteratorActivityPointer%379031CE01A5.attr
-
-      //## Attribute: pProcess%379034DE00DA
-      //    Contains the process pointer.
-      //## begin ZProcessIterator::pProcess%379034DE00DA.attr preserve=no  private: ZProcess* {U} 
-      ZProcess* m_pProcess;
-      //## end ZProcessIterator::pProcess%379034DE00DA.attr
-
-    // Additional Private Declarations
-      //## begin ZProcessIterator%379031B90231.private preserve=yes
-      //## end ZProcessIterator%379031B90231.private
-
-  private:  //## implementation
-    // Additional Implementation Declarations
-      //## begin ZProcessIterator%379031B90231.implementation preserve=yes
-      //## end ZProcessIterator%379031B90231.implementation
-
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_ProcessIterator& operator = (const PSS_ProcessIterator& other);
 };
-
-//## begin ZProcessIterator%379031B90231.postscript preserve=yes
-//## end ZProcessIterator%379031B90231.postscript
-
-// Class ZProcessIterator 
-
-//## begin module%379033D80156.epilog preserve=yes
-//## end module%379033D80156.epilog
-
 
 #endif
