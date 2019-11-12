@@ -114,6 +114,12 @@ class AFX_EXT_CLASS PSS_File : public CObject
         AFX_EXT_API friend CArchive& operator << (CArchive& ar, const PSS_File& file);
 
         /**
+        * Clones the object
+        *@return the cloned object, NULL on error
+        */
+        virtual inline PSS_File* Clone() const;
+
+        /**
         * Rebuilds the file name
         */
         void Rebuild();
@@ -167,12 +173,6 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param drive - file name drive
         */
         void SetFileDrive(const char fileName);
-
-        /**
-        * Clones the object
-        *@return the cloned object, NULL on error
-        */
-        virtual inline PSS_File* Clone() const;
 
         /**
         * Gets the display name

@@ -280,7 +280,7 @@ BOOL PSS_BaseActivity::ActivityFillPersonArray(const PSS_UserManager& userManage
 BOOL PSS_BaseActivity::ActivityAddUsers(const CString& delimiterString)
 {
     // set the user mode
-    SetUserType(Users);
+    SetUserType(PSS_ActivityResources::IE_UT_Users);
     return GetCurrentResources().AddUsers(delimiterString);
 }
 //---------------------------------------------------------------------------

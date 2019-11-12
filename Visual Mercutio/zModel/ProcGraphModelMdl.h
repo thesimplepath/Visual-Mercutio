@@ -55,7 +55,7 @@ class ZBRulesEntity;
 
 // processsoft
 #include "zBaseLib\PSS_UserManager.h"
-#include "zEvent\ZResourc.h"
+#include "zEvent\PSS_ActivityResources.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

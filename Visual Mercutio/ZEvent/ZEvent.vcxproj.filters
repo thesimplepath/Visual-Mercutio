@@ -82,9 +82,6 @@
     <ClCompile Include="ZProcess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZResourc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_ActivityLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -125,6 +122,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_ProcessIterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityResources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -208,9 +208,6 @@
     <ClInclude Include="ZProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZResourc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PSS_ActivityLog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -251,6 +248,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ProcessIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityResources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

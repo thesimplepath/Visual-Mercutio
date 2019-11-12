@@ -28,9 +28,7 @@
 #include "zBaseLib\PSS_SmartPtr.h"
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_MailUserList.h"
-
-// resources
-#include "zResourc.h"
+#include "PSS_ActivityResources.h"
 
 // class name mapping
 #ifndef PSS_Activity
@@ -354,7 +352,9 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         *@param connectedUser - connected user
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL ActivityFillPersonArray(const PSS_UserManager& userManager, CStringArray& userArray, const CString& connectedUser);
+        virtual BOOL ActivityFillPersonArray(const PSS_UserManager& userManager,
+                                             CStringArray&          userArray,
+                                             const CString&         connectedUser);
 
         /**
         * Add users
@@ -710,32 +710,32 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         * Gets the user type
         *@return the user type
         */
-        virtual inline ActivityUserType GetUserType() const;
+        virtual inline PSS_ActivityResources::IEUserType GetUserType() const;
 
         /**
         * Sets the user type
         *@param value - the user type
         */
-        virtual inline void SetUserType(ActivityUserType value);
+        virtual inline void SetUserType(PSS_ActivityResources::IEUserType value);
 
         /**
         * Gets the backup user type
         *@return the backup user type
         */
-        virtual inline ActivityUserType GetBackupUserType() const;
+        virtual inline PSS_ActivityResources::IEUserType GetBackupUserType() const;
 
         /**
         * Sets the backup user type
         *@param value - the backup user type
         */
-        virtual inline void SetBackupUserType(ActivityUserType value);
+        virtual inline void SetBackupUserType(PSS_ActivityResources::IEUserType value);
 
         /**
         * Gets the current resources. It depends if the activity has been entered in backup process
         *@return the current resources
         */
-        virtual inline       ZBResources& GetCurrentResources();
-        virtual inline const ZBResources& GetCurrentResources() const;
+        virtual inline       PSS_ActivityResources& GetCurrentResources();
+        virtual inline const PSS_ActivityResources& GetCurrentResources() const;
 
         /**
         * Gets if the activity should be considered as visible
@@ -1231,29 +1231,29 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         virtual void Serialize(CArchive& ar);
 
     protected:
-        IEStatus          m_ActivityStatus;
-        IEVisibilityType  m_VisibilityType;
-        IERunMode         m_RunMode;
-        ZBResources       m_MainResources;
-        ZBResources       m_BackupResources;
-        PSS_BaseActivity* m_pParent;
-        PSS_BaseActivity* m_pCurrentActivity;
-        PSS_BaseActivity* m_pPreviousActivity;
-        PSS_BaseActivity* m_pNextActivity;
-        CObArray          m_ActivityArray;
-        CStringArray      m_SelectedActivityArray;
-        CString           m_Name;
-        CString           m_Description;
-        CString           m_Comment;
-        CString           m_Initiator;
-        CString           m_ConnectedUser;
-        PSS_Date          m_StartDate;
-        PSS_Date          m_EndDate;
-        PSS_Date          m_ForecastedEndDate;
-        PSS_Date          m_ForecastedStartDate;
-        PSS_Date          m_LastUpdateDate;
-        WORD              m_ActivityType;
-        WORD              m_DurationDays;
+        IEStatus              m_ActivityStatus;
+        IEVisibilityType      m_VisibilityType;
+        IERunMode             m_RunMode;
+        PSS_ActivityResources m_MainResources;
+        PSS_ActivityResources m_BackupResources;
+        PSS_BaseActivity*     m_pParent;
+        PSS_BaseActivity*     m_pCurrentActivity;
+        PSS_BaseActivity*     m_pPreviousActivity;
+        PSS_BaseActivity*     m_pNextActivity;
+        CObArray              m_ActivityArray;
+        CStringArray          m_SelectedActivityArray;
+        CString               m_Name;
+        CString               m_Description;
+        CString               m_Comment;
+        CString               m_Initiator;
+        CString               m_ConnectedUser;
+        PSS_Date              m_StartDate;
+        PSS_Date              m_EndDate;
+        PSS_Date              m_ForecastedEndDate;
+        PSS_Date              m_ForecastedStartDate;
+        PSS_Date              m_LastUpdateDate;
+        WORD                  m_ActivityType;
+        WORD                  m_DurationDays;
 
         /**
         * Recalculates all links for the process
@@ -1530,9 +1530,9 @@ BOOL PSS_BaseActivity::IsVisibilityAttributionDone() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::IsAttributedActivity() const
 {
-    return (m_MainResources.GetUserType()   == AttributionOfUsers         ||
-            m_BackupResources.GetUserType() == AttributionOfUsers         ||
-            GetTimeType()                   == IE_TT_AttributionOfTimeout ||
+    return (m_MainResources.GetUserType()   == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
+            m_BackupResources.GetUserType() == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
+            GetTimeType()                   == IE_TT_AttributionOfTimeout                      ||
             GetVisibilityType()             == IE_VT_AttributionOfVisibility);
 }
 //---------------------------------------------------------------------------
@@ -1546,32 +1546,32 @@ void PSS_BaseActivity::SetIsInBackupProcess(BOOL value)
     m_IsInBackupProcess = value;
 }
 //---------------------------------------------------------------------------
-ActivityUserType PSS_BaseActivity::GetUserType() const
+PSS_ActivityResources::IEUserType PSS_BaseActivity::GetUserType() const
 {
     return m_MainResources.GetUserType();
 }
 //---------------------------------------------------------------------------
-void PSS_BaseActivity::SetUserType(ActivityUserType value)
+void PSS_BaseActivity::SetUserType(PSS_ActivityResources::IEUserType value)
 {
     m_MainResources.SetUserType(value);
 }
 //---------------------------------------------------------------------------
-ActivityUserType PSS_BaseActivity::GetBackupUserType() const
+PSS_ActivityResources::IEUserType PSS_BaseActivity::GetBackupUserType() const
 {
     return m_BackupResources.GetUserType();
 }
 //---------------------------------------------------------------------------
-void PSS_BaseActivity::SetBackupUserType(ActivityUserType value)
+void PSS_BaseActivity::SetBackupUserType(PSS_ActivityResources::IEUserType value)
 {
     m_BackupResources.SetUserType(value);
 }
 //---------------------------------------------------------------------------
-ZBResources& PSS_BaseActivity::GetCurrentResources()
+PSS_ActivityResources& PSS_BaseActivity::GetCurrentResources()
 {
     return (IsInBackupProcess() ? m_BackupResources : m_MainResources);
 }
 //---------------------------------------------------------------------------
-const ZBResources& PSS_BaseActivity::GetCurrentResources() const
+const PSS_ActivityResources& PSS_BaseActivity::GetCurrentResources() const
 {
     return (IsInBackupProcess() ? m_BackupResources : m_MainResources);
 }

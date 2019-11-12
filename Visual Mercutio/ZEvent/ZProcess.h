@@ -117,7 +117,7 @@ public:
     //## Operation: FillAuthUser%940840074
     //    Fill the authorization user list with a ZBResource
     //    object.
-    void FillAuthUser(ZBResources& Resources);
+    void FillAuthUser(PSS_ActivityResources& Resources);
 
     //    Fill the authorization user list directly with a user delimiter string
     void FillAuthUser(CString UserDelimiter);

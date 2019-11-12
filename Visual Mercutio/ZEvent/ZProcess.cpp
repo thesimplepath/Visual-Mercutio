@@ -131,7 +131,7 @@ void ZProcess::FillAuthUser(PSS_BaseActivity& Activity, PSS_UserManager& UserMan
     //## end ZProcess::FillAuthUser%915992439.body
 }
 
-void ZProcess::FillAuthUser(ZBResources& Resources)
+void ZProcess::FillAuthUser(PSS_ActivityResources& Resources)
 {
     //## begin ZProcess::FillAuthUser%940840074.body preserve=yes
         // First remove all users

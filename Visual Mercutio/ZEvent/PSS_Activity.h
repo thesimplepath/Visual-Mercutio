@@ -614,9 +614,9 @@ void PSS_Activity::SetActivityAsArchiving(BOOL value)
 //---------------------------------------------------------------------------
 BOOL PSS_Activity::IsAttributedActivity() const
 {
-    return (GetVisibilityType()             == IE_VT_AttributionOfVisibility ||
-            m_MainResources.GetUserType()   == AttributionOfUsers            ||
-            m_BackupResources.GetUserType() == AttributionOfUsers            ||
+    return (GetVisibilityType()             == IE_VT_AttributionOfVisibility                   ||
+            m_MainResources.GetUserType()   == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
+            m_BackupResources.GetUserType() == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
             GetTimeType()                   == IE_TT_AttributionOfTimeout);
 }
 //---------------------------------------------------------------------------
