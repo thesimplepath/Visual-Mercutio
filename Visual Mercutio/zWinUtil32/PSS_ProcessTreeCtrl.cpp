@@ -106,7 +106,7 @@ void PSS_ProcessTreeCtrl::FillControl()
     ExpandRoot();
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessTreeCtrl::AddProcess(ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex)
+void PSS_ProcessTreeCtrl::AddProcess(PSS_BaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex)
 {
     hParentTreeItem = AddProcessItem(pBaseActivity, hParentTreeItem, iconIndex);
 
@@ -116,14 +116,14 @@ void PSS_ProcessTreeCtrl::AddProcess(ZBaseActivity* pBaseActivity, HTREEITEM hPa
     for (std::size_t i = 0; i < activityCount; ++i)
     {
         // insert all pages from the template manager
-        ZBaseActivity* pActivity = pBaseActivity->GetActivityAt(i);
+        PSS_BaseActivity* pActivity = pBaseActivity->GetActivityAt(i);
 
         if (!pActivity)
             continue;
 
         if (pActivity->HasActivities())
         {
-            if (pActivity->GetRunMode() == SequenceRun)
+            if (pActivity->GetRunMode() == PSS_BaseActivity::IE_RM_Sequence)
                 AddProcess(pActivity, hParentTreeItem, 0);
             else
                 AddProcess(pActivity, hParentTreeItem, 2);
@@ -133,7 +133,7 @@ void PSS_ProcessTreeCtrl::AddProcess(ZBaseActivity* pBaseActivity, HTREEITEM hPa
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessTreeCtrl::AddActivityItems(ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex)
+void PSS_ProcessTreeCtrl::AddActivityItems(PSS_BaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex)
 {
     const std::size_t activityCount = pBaseActivity->GetActivityCount();
 
@@ -148,7 +148,7 @@ void PSS_ProcessTreeCtrl::AddActivityItems(ZBaseActivity* pBaseActivity, HTREEIT
     }
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_ProcessTreeCtrl::AddProcessItem(ZBaseActivity* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_ProcessTreeCtrl::AddProcessItem(PSS_BaseActivity* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     TV_INSERTSTRUCT curTreeItem;
     curTreeItem.hParent             = hParentTreeItem; 

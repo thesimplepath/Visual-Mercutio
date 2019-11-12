@@ -97,7 +97,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         *@param hParentTreeItem - parent tree item to add to, will be added to root if NULL
         *@param iconIndex - icon index
         */
-        virtual void AddProcess(ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex);
+        virtual void AddProcess(PSS_BaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex);
 
         /**
         * Adds activity items
@@ -105,7 +105,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         *@param hParentTreeItem - parent tree item to add to, will be added to root if NULL
         *@param iconIndex - icon index
         */
-        virtual void AddActivityItems(ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex = 0);
+        virtual void AddActivityItems(PSS_BaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex = 0);
 
         /**
         * Adds a process item
@@ -114,7 +114,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         *@param iconIndex - icon index
         *@return newly added item handle, NULL on error
         */
-        virtual HTREEITEM AddProcessItem(ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex = 0);
+        virtual HTREEITEM AddProcessItem(PSS_BaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex = 0);
 
         /**
         * Adds a sub-item

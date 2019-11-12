@@ -189,7 +189,7 @@ int PSS_ActivityListAttributionCtrl::Refresh()
         {
             InsertItem(index, activityArray[index]);
 
-            ZBaseActivity* pActivity = m_pProcess->FindActivity(activityArray[index]);
+            PSS_BaseActivity* pActivity = m_pProcess->FindActivity(activityArray[index]);
 
             SetItem(index, 1, LVIF_TEXT, pActivity ? pActivity->GetAttributedByActivity() : "", 0, LVIF_TEXT, LVIF_TEXT, 0);
         }

@@ -18,7 +18,10 @@
 
 // class name mapping
 #ifndef PSS_BaseActivity
-    //#define PSS_BaseActivity ZBaseActivity
+    #define PSS_BaseActivity ZBaseActivity
+#endif
+#ifndef PSS_Activity
+    #define PSS_Activity ZActivity
 #endif
 
 // forward class declarations

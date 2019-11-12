@@ -208,9 +208,9 @@ int PSS_ActivityTaskListCtrl::Refresh()
         ResetContent();
     #endif
 
-    ZProcessIterator it(m_pProcess);
+    PSS_ProcessIterator it(m_pProcess);
 
-    for (ZBaseActivity* pRunner = it.StartIterator(it.GetFirstValidActivity()); pRunner; pRunner = it.GetNextValidActivity())
+    for (PSS_BaseActivity* pRunner = it.StartIterator(it.GetFirstValidActivity()); pRunner; pRunner = it.GetNextValidActivity())
         if (m_pProcess->GetCurrentActivity() && m_pProcess->GetCurrentActivity()->GetName() == pRunner->GetName())
             InsertActivity(*pRunner, true);
         else
@@ -232,7 +232,7 @@ LRESULT PSS_ActivityTaskListCtrl::OnSelectActivityInTaskList(WPARAM wParam, LPAR
     return 1;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCurrentActivity)
+void PSS_ActivityTaskListCtrl::InsertActivity(PSS_BaseActivity& activity, bool isCurrentActivity)
 {
     if (!HasBuiltColumns())
         BuildColumns();
@@ -264,28 +264,28 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
         const int index = GetItemCount();
               int imageIndex = 11;
 
-        if (isCurrentActivity || activity.GetActivityStatus() == ActivityStarted)
+        if (isCurrentActivity || activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Started)
             imageIndex = 14;
         else
-        if (activity.GetActivityStatus() == ActivitySent)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Sent)
             imageIndex = 0;
         else
-        if (activity.GetActivityStatus() == ActivitySentForAcceptation)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_SentForAcceptation)
             imageIndex = 8;
         else
-        if (activity.GetActivityStatus() == ActivityCompleted)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Completed)
             imageIndex = 15;
         else
-        if (activity.GetActivityStatus() == ActivityRejected)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Rejected)
             imageIndex = 6;
         else
-        if (activity.GetActivityStatus() == ActivitySuspended)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Suspended)
             imageIndex = 12;
         else
-        if (activity.GetActivityStatus() == ActivityAborted)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Aborted)
             imageIndex = 4;
         else
-        if (activity.GetActivityStatus() == ActivityNotStarted)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted)
             imageIndex = 16;
 
         // add the action icon
@@ -303,17 +303,17 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
         CString text;
 
         // the creation date
-        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((PSS_Date&)activity.GetStartDate()).GetStandardFormattedDate());
+        text = (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted ? " - " : ((PSS_Date&)activity.GetStartDate()).GetStandardFormattedDate());
         SetItem(index, 4, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // the due date
-        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((PSS_Date&)activity.GetForecastedEndDate()).GetStandardFormattedDate());
+        text = (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted ? " - " : ((PSS_Date&)activity.GetForecastedEndDate()).GetStandardFormattedDate());
         SetItem(index, 5, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         char buffer[50];
 
         // the remaining days
-        if (activity.GetActivityStatus() == ActivityNotStarted)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted)
             ::strcpy_s(buffer, ::_tcslen(buffer), " - ");
         else
         {

@@ -25,15 +25,15 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_Activity, ZBaseActivity, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_Activity, PSS_BaseActivity, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_Activity
 //---------------------------------------------------------------------------
 PSS_Activity::PSS_Activity(const CString& activityName,
                            const CString& activityDescription,
                            int            activityType,
-                           ActivityStatus activityStatus) :
-    ZBaseActivity(activityName, activityDescription, activityStatus),
+                           IEStatus       activityStatus) :
+    PSS_BaseActivity(activityName, activityDescription, activityStatus),
     m_pMailMessage(NULL),
     m_pCommandLine(NULL),
     m_pBaseOnFormFile(NULL),
@@ -124,7 +124,7 @@ CString PSS_Activity::GetDefaultString() const
 {
     CString line = "Activité:" + GetName() + GetActivityStatusString();
 
-    if (GetActivityStatus() != ActivityNotStarted)
+    if (GetActivityStatus() != IE_AS_NotStarted)
     {
         line += " Démarré le: ";
 
@@ -181,6 +181,9 @@ void PSS_Activity::DeleteCommandLine()
     SetActivityAsCommandLine(FALSE);
 }
 //---------------------------------------------------------------------------
+void PSS_Activity::CalculateForecastedStartDate()
+{}
+//---------------------------------------------------------------------------
 void PSS_Activity::CalculateForecastedEndDate()
 {
     // set the forecasted end date by adding the duration to the start date
@@ -198,9 +201,6 @@ void PSS_Activity::CalculateForecastedEndDate()
             SetForecastedEndDate(GetForecastedStartDate() + COleDateTimeSpan(GetDurationDays()));
     #endif
 }
-//---------------------------------------------------------------------------
-void PSS_Activity::CalculateForecastedStartDate()
-{}
 //---------------------------------------------------------------------------
 BOOL PSS_Activity::AddFormFile(const CString& fileName, PSS_File::IEAttachmentType attachment)
 {
@@ -303,7 +303,7 @@ PSS_File* PSS_Activity::GetProcFileAt(std::size_t index)
 void PSS_Activity::SetDefaultProperty()
 {
     // call the base class function first
-    ZBaseActivity::SetDefaultProperty();
+    PSS_BaseActivity::SetDefaultProperty();
 
     RemoveAllTemplates();
 
@@ -325,28 +325,28 @@ CString PSS_Activity::GetActivityTypeKeyString() const
     PSS_Tokenizer tokenizer(';');
 
     if (ActivityIsAttribution())
-        tokenizer.AddToken(ActivityTypeAttributionKey);
+        tokenizer.AddToken(g_ActivityTypeAttributionKey);
 
     if (ActivityIsAcceptation())
-        tokenizer.AddToken(ActivityTypeAcceptationKey);
+        tokenizer.AddToken(g_ActivityTypeAcceptationKey);
 
     if (ActivityIsInput())
-        tokenizer.AddToken(ActivityTypeInputInformationKey);
+        tokenizer.AddToken(g_ActivityTypeInputInformationKey);
 
     if (ActivityIsSendMail())
-        tokenizer.AddToken(ActivityTypeSendMailKey);
+        tokenizer.AddToken(g_ActivityTypeSendMailKey);
 
     if (ActivityIsStartProcess())
-        tokenizer.AddToken(ActivityTypeStartProcessKey);
+        tokenizer.AddToken(g_ActivityTypeStartProcessKey);
 
     if (ActivityIsCommandLine())
-        tokenizer.AddToken(ActivityTypeCommandLineKey);
+        tokenizer.AddToken(g_ActivityTypeCommandLineKey);
 
     if (ActivityIsScanning())
-        tokenizer.AddToken(ActivityTypeScanningKey);
+        tokenizer.AddToken(g_ActivityTypeScanningKey);
 
     if (ActivityIsArchiving())
-        tokenizer.AddToken(ActivityTypeArchivingKey);
+        tokenizer.AddToken(g_ActivityTypeArchivingKey);
 
     return tokenizer.GetString();
 }
@@ -360,28 +360,28 @@ void PSS_Activity::SetActivityTypeFromKeyString(const CString& key)
     while (!token.IsEmpty())
     {
         // if the user was found, return true
-        if (token == ActivityTypeAttributionKey)
+        if (token == g_ActivityTypeAttributionKey)
             SetActivityAsAttribution();
         else
-        if (token == ActivityTypeAcceptationKey)
+        if (token == g_ActivityTypeAcceptationKey)
             SetActivityAsAcceptation();
         else
-        if (token == ActivityTypeInputInformationKey)
+        if (token == g_ActivityTypeInputInformationKey)
             SetActivityAsInput();
         else
-        if (token == ActivityTypeSendMailKey)
+        if (token == g_ActivityTypeSendMailKey)
             SetActivityAsSendMail();
         else
-        if (token == ActivityTypeStartProcessKey)
+        if (token == g_ActivityTypeStartProcessKey)
             SetActivityAsStartProcess();
         else
-        if (token == ActivityTypeCommandLineKey)
+        if (token == g_ActivityTypeCommandLineKey)
             SetActivityAsCommandLine();
         else
-        if (token == ActivityTypeScanningKey)
+        if (token == g_ActivityTypeScanningKey)
             SetActivityAsScanning();
         else
-        if (token == ActivityTypeArchivingKey)
+        if (token == g_ActivityTypeArchivingKey)
             SetActivityAsArchiving();
 
         // get the next token
@@ -413,7 +413,7 @@ void PSS_Activity::DeleteBaseOnProcFile()
 //---------------------------------------------------------------------------
 void PSS_Activity::Serialize(CArchive& ar)
 {
-    ZBaseActivity::Serialize(ar);
+    PSS_BaseActivity::Serialize(ar);
 
     if (ar.IsStoring())
     {

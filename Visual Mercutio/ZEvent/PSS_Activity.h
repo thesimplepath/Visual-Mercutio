@@ -18,7 +18,7 @@
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_Activity
-    //#define PSS_Activity ZActivity
+    #define PSS_Activity ZActivity
 #endif
 
 // processsoft
@@ -47,12 +47,12 @@ const char g_RejectActivityToPrevious[] = "/P";
 * Activity
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_Activity : public ZBaseActivity
+class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
 {
     DECLARE_SERIAL(PSS_Activity)
 
     public:
-        typedef ZBaseActivity inherited;
+        typedef PSS_BaseActivity inherited;
 
         /**
         * Constructor
@@ -63,8 +63,8 @@ class AFX_EXT_CLASS PSS_Activity : public ZBaseActivity
         */
         PSS_Activity(const CString& activityName        = "",
                      const CString& activityDescription = "",
-                     int            activityType        = ActivityTypeInputInformation,
-                     ActivityStatus activityStatus      = ActivityNotStarted);
+                     int            activityType        = IE_AT_InputInformation,
+                     IEStatus       activityStatus      = IE_AS_NotStarted);
 
         virtual ~PSS_Activity();
 
@@ -214,14 +214,14 @@ class AFX_EXT_CLASS PSS_Activity : public ZBaseActivity
         virtual void DeleteCommandLine();
 
         /**
-        * Calculates the forecasted end date by taking all activities
-        */
-        virtual void CalculateForecastedEndDate();
-
-        /**
         * Calculates the forecasted start date by taking all activities
         */
         virtual void CalculateForecastedStartDate();
+
+        /**
+        * Calculates the forecasted end date by taking all activities
+        */
+        virtual void CalculateForecastedEndDate();
 
         /**
         * Gets the attributed by activity
@@ -551,73 +551,73 @@ CString PSS_Activity::GetTemplateAt(int index) const
 void PSS_Activity::SetActivityAsAttribution(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeAttribution;
+        m_ActivityType |= IE_AT_Attribution;
     else
-        m_ActivityType &= ~ActivityTypeAttribution;
+        m_ActivityType &= ~IE_AT_Attribution;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsAcceptation(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeAcceptation;
+        m_ActivityType |= IE_AT_Acceptation;
     else
-        m_ActivityType &= ~ActivityTypeAcceptation;
+        m_ActivityType &= ~IE_AT_Acceptation;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsInput(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeInputInformation;
+        m_ActivityType |= IE_AT_InputInformation;
     else
-        m_ActivityType &= ~ActivityTypeInputInformation;
+        m_ActivityType &= ~IE_AT_InputInformation;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsSendMail(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeSendMail;
+        m_ActivityType |= IE_AT_SendMail;
     else
-        m_ActivityType &= ~ActivityTypeSendMail;
+        m_ActivityType &= ~IE_AT_SendMail;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsStartProcess(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeStartProcess;
+        m_ActivityType |= IE_AT_StartProcess;
     else
-        m_ActivityType &= ~ActivityTypeStartProcess;
+        m_ActivityType &= ~IE_AT_StartProcess;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsCommandLine(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeCommandLine;
+        m_ActivityType |= IE_AT_CommandLine;
     else
-        m_ActivityType &= ~ActivityTypeCommandLine;
+        m_ActivityType &= ~IE_AT_CommandLine;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsScanning(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeScanning;
+        m_ActivityType |= IE_AT_Scanning;
     else
-        m_ActivityType &= ~ActivityTypeScanning;
+        m_ActivityType &= ~IE_AT_Scanning;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsArchiving(BOOL value)
 {
     if (value)
-        m_ActivityType |= ActivityTypeArchiving;
+        m_ActivityType |= IE_AT_Archiving;
     else
-        m_ActivityType &= ~ActivityTypeArchiving;
+        m_ActivityType &= ~IE_AT_Archiving;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Activity::IsAttributedActivity() const
 {
-    return (GetVisibilityType()                == AttributionOfVisibility ||
-            m_PrincipalResources.GetUserType() == AttributionOfUsers      ||
-            m_BackupResources.GetUserType()    == AttributionOfUsers      ||
-            GetTimeType()                      == AttributionOfTimeOut);
+    return (GetVisibilityType()             == IE_VT_AttributionOfVisibility ||
+            m_MainResources.GetUserType()   == AttributionOfUsers            ||
+            m_BackupResources.GetUserType() == AttributionOfUsers            ||
+            GetTimeType()                   == IE_TT_AttributionOfTimeout);
 }
 //---------------------------------------------------------------------------
 CString PSS_Activity::GetAttributedByActivity() const

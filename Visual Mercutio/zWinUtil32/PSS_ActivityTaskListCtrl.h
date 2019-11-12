@@ -125,7 +125,7 @@
         *@param activity - activity
         *@param isCurrentActivity - if true, inserted activity will be the current one
         */
-        void InsertActivity(ZBaseActivity& activity, bool isCurrentActivity);
+        void InsertActivity(PSS_BaseActivity& activity, bool isCurrentActivity);
 
         /**
         * Builds the columns

@@ -113,7 +113,7 @@ public:
 
       //## Operation: UserExist%927742727
       //    Search if a specific user exists.
-      BOOL UserExist (const CString& UserName);
+      BOOL UserExist (const CString& UserName) const;
 
       //## Operation: GetUserCount%927742728
       //    Return the number of users.

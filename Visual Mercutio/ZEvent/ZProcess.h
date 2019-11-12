@@ -71,12 +71,12 @@ enum     ProcessStatus
 //## Uses: <unnamed>%3675469003E2;ZActivity { -> }
 //## Uses: <unnamed>%37905224005E;ZProcessIterator { -> }
 
-class AFX_EXT_CLASS ZProcess : public ZBaseActivity  //## Inherits: <unnamed>%3786DA75035C
+class AFX_EXT_CLASS ZProcess : public PSS_BaseActivity
 {
     //## begin ZProcess%36725B570291.initialDeclarations preserve=yes
 public:
     // Inherited feature
-    typedef ZBaseActivity inherited;
+    typedef PSS_BaseActivity inherited;
     DECLARE_SERIAL(ZProcess)
     //## end ZProcess%36725B570291.initialDeclarations
 
@@ -112,7 +112,7 @@ public:
 
     //## Operation: FillAuthUser%915992439
     //    Fill the authorization user list with the activity.
-    void FillAuthUser(ZBaseActivity& Activity, PSS_UserManager& UserManager);
+    void FillAuthUser(PSS_BaseActivity& Activity, PSS_UserManager& UserManager);
 
     //## Operation: FillAuthUser%940840074
     //    Fill the authorization user list with a ZBResource
@@ -134,7 +134,7 @@ public:
     //## Operation: CreatePersonList%927439016
     //    Take the activity and build the person list for the
     //    email.
-    virtual PSS_MailUserList* CreatePersonList(ZBaseActivity& Activity, PSS_UserManager& UserManager);
+    virtual PSS_MailUserList* CreatePersonList(PSS_BaseActivity& Activity, PSS_UserManager& UserManager);
 
     //## Operation: CreatePersonList%927439017
     //    Take the activity and build the person list for the
@@ -143,7 +143,7 @@ public:
 
     //## Operation: FillPersonArray%927439018
     //    Take the activity and fill a person array.
-    virtual BOOL FillPersonArray(ZBaseActivity& Activity, PSS_UserManager& UserManager, CStringArray& UserArray);
+    virtual BOOL FillPersonArray(PSS_BaseActivity& Activity, PSS_UserManager& UserManager, CStringArray& UserArray);
 
     //## Operation: FillPersonArray%927439019
     //    Take the activity and fill a person array.
@@ -152,7 +152,7 @@ public:
     //## Operation: CreatePersonDelimStr%927439020
     //    Take the activity and build a delimited string
     //    containing the person list.
-    virtual CString CreatePersonDelimStr(ZBaseActivity& Activity, PSS_UserManager& UserManager, CString Delimiter = ";");
+    virtual CString CreatePersonDelimStr(PSS_BaseActivity& Activity, PSS_UserManager& UserManager, CString Delimiter = ";");
 
     //## Operation: CreatePersonDelimStr%927439021
     //    Take the activity and build a delimited string
@@ -178,7 +178,7 @@ public:
 
     //## Operation: GetStatusKeyString%931585016
     //    Return the Activity Status string.
-    virtual CString GetStatusKeyString(ZBaseActivity* pActivity = NULL);
+    virtual CString GetStatusKeyString(PSS_BaseActivity* pActivity = NULL);
 
     //## Operation: SetStatusFromKeyString%943181049
     //    Set the Activity Status based on a keystring.
@@ -233,18 +233,6 @@ public:
     virtual void    SetDefaultProperty();
 
     //## end ZProcess%36725B570291.public
-
-protected:
-
-    //## Other Operations (specified)
-      //## Operation: RecalculateProcessAllLinks%932406381
-    // Data Members for Class Attributes
-
-      //## Attribute: pCurrentActivity%36754A250232
-
-    // Additional Protected Declarations
-      //## begin ZProcess%36725B570291.protected preserve=yes
-      //## end ZProcess%36725B570291.protected
 
 private:
     //## Constructors (generated)

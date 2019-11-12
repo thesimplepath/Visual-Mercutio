@@ -85,31 +85,31 @@ PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventCtrl& 
               int imageIndex = 13;
 
         if (left.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
-            if (left.GetActivityStatus() == ActivityStatusProcessPaused)
+            if (left.GetActivityStatus() == g_ActivityStatusProcessPaused)
                 imageIndex = 12;
             else
-            if (left.GetActivityStatus() == ActivityStatusProcessAborted)
+            if (left.GetActivityStatus() == g_ActivityStatusProcessAborted)
                 imageIndex = 4;
             else
-            if (left.GetActivityStatus() == ActivityStatusProcessCompleted)
+            if (left.GetActivityStatus() == g_ActivityStatusProcessCompleted)
                 imageIndex = 5;
             else
-            if (left.GetActivityStatus() == ActivityStatusRequestAcceptation)
+            if (left.GetActivityStatus() == g_ActivityStatusRequestAcceptation)
                 imageIndex = 8;
             else
-            if (left.GetActivityStatus() == ActivityStatusAccepted)
+            if (left.GetActivityStatus() == g_ActivityStatusAccepted)
                 imageIndex = 7;
             else
-            if (left.GetActivityStatus() == ActivityStatusRejected)
+            if (left.GetActivityStatus() == g_ActivityStatusRejected)
                 imageIndex = 6;
             else
-            if (left.GetActivityStatus() == ActivityStatusAttribution)
+            if (left.GetActivityStatus() == g_ActivityStatusAttribution)
                 imageIndex = 3;
             else
-            if (left.GetActivityStatus() == ActivityStatusSent)
+            if (left.GetActivityStatus() == g_ActivityStatusSent)
                 imageIndex = 0;
             else
-            if (left.GetActivityStatus() == ActivityStatusAttribution)
+            if (left.GetActivityStatus() == g_ActivityStatusAttribution)
                 imageIndex = 7;
             else
                 imageIndex = 11;

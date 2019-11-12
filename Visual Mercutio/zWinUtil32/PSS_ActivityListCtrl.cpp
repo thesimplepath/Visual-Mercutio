@@ -186,7 +186,7 @@ int PSS_ActivityListCtrl::Refresh ()
 
     for (std::size_t index = 0; index < count; ++index)
     {
-        ZBaseActivity* pActivity = m_pProcess->GetActivityAt(index);
+        PSS_BaseActivity* pActivity = m_pProcess->GetActivityAt(index);
 
         if (!pActivity)
             continue;
@@ -204,7 +204,7 @@ int PSS_ActivityListCtrl::Refresh ()
                 imageIndex = 1;
             else
             if (pActivity->IsKindOf(RUNTIME_CLASS(ZProcess)))
-                imageIndex = (((ZProcess*)pActivity)->GetRunMode() == SequenceRun) ? 0 : 2;
+                imageIndex = (((ZProcess*)pActivity)->GetRunMode() == PSS_BaseActivity::IE_RM_Sequence) ? 0 : 2;
 
             // add the action icon
             InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, 0);

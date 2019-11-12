@@ -1,955 +1,862 @@
-//## begin module%3786DB6B0323.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%3786DB6B0323.cm
+/****************************************************************************
+ * ==> PSS_BaseActivity ----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a basic activity interface                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%3786DB6B0323.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%3786DB6B0323.cp
-
-//## Module: BActvt%3786DB6B0323; Package body
-//## Subsystem: ZEvent%378A5F7E02DB
-//## Source file: z:\adsoft~1\ZEvent\BActvt.cpp
-
-//## begin module%3786DB6B0323.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%3786DB6B0323.additionalIncludes
-
-//## begin module%3786DB6B0323.includes preserve=yes
-//## end module%3786DB6B0323.includes
-
-// BActvt
 #include "BActvt.h"
 
-//## begin module%3786DB6B0323.declarations preserve=no
-//## end module%3786DB6B0323.declarations
-
-//## begin module%3786DB6B0323.additionalDeclarations preserve=yes
-#include "zRes32\ZRes.h"
-
+// processsoft
 #include "ZProcess.h"
 #include "PSS_Activity.h"
 #include "zBaseLib\PSS_BaseDocument.h"
-//## end module%3786DB6B0323.additionalDeclarations
+
+// resources
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 30 mars 2006 - Ajout des décorations unicode _T( ), nettoyage de code inutile. (En commentaires)
-
-IMPLEMENT_SERIAL(ZBaseActivity, CObject, g_DefVersion)
-
-// Class ZBaseActivity
-
-ZBaseActivity::ZBaseActivity(const CString        ActivityName,
-                             const CString        ActivityDescription,
-                             ActivityStatus    ActivityStatus)
-    //## begin ZBaseActivity::ZBaseActivity%931584984.hasinit preserve=no
-    : m_IsVisible(E_TS_Undefined),
-    m_DurationDays(2),
-    m_VisibilityType(Visible),
-    m_pNextActivity(NULL),
-    m_pPreviousActivity(NULL),
-    m_IntranetActivity(TRUE),
-    //## end ZBaseActivity::ZBaseActivity%931584984.hasinit
-    //## begin ZBaseActivity::ZBaseActivity%931584984.initialization preserve=yes
-    m_Name(ActivityName),
-    m_Description(ActivityDescription),
-    m_ActivityStatus(ActivityStatus),
-    m_TimeType(TimeDays),
-    m_DaysForBackupResources(1),
-    m_UseBackupResources(FALSE),
-    m_RemindDays(1),
-    m_IsInBackupProcess(FALSE),
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_SERIAL(PSS_BaseActivity, CObject, g_DefVersion)
+//---------------------------------------------------------------------------
+// PSS_BaseActivity
+//---------------------------------------------------------------------------
+PSS_BaseActivity::PSS_BaseActivity(const CString& name, const CString& description, IEStatus status) :
+    CObject(),
+    m_ActivityStatus(status),
+    m_VisibilityType(IE_VT_Visible),
+    m_RunMode(IE_RM_Sequence),
     m_pParent(NULL),
     m_pCurrentActivity(NULL),
-    m_RunMode(SequenceRun),
-    m_ActivityType(0)
-    //## end ZBaseActivity::ZBaseActivity%931584984.initialization
+    m_pPreviousActivity(NULL),
+    m_pNextActivity(NULL),
+    m_Name(name),
+    m_Description(description),
+    m_ActivityType(0),
+    m_DurationDays(2),
+    m_IsVisible(E_TS_Undefined),
+    m_TimeType(IE_TT_TimeDays),
+    m_DaysForBackupResources(1),
+    m_RemindDays(1),
+    m_UseBackupResources(FALSE),
+    m_IsInBackupProcess(FALSE),
+    m_IntranetActivity(TRUE)
+{}
+//---------------------------------------------------------------------------
+PSS_BaseActivity::PSS_BaseActivity(const PSS_BaseActivity& other)
 {
-    //## begin ZBaseActivity::ZBaseActivity%931584984.body preserve=yes
-    //## end ZBaseActivity::ZBaseActivity%931584984.body
+    THROW("Copy constructor isn't allowed for this class");
 }
-
-ZBaseActivity::~ZBaseActivity()
+//---------------------------------------------------------------------------
+PSS_BaseActivity::~PSS_BaseActivity()
 {
-    //## begin ZBaseActivity::~ZBaseActivity%.body preserve=yes
     RemoveAllActivities();
-    //## end ZBaseActivity::~ZBaseActivity%.body
 }
-
-//## Other Operations (implementation)
-ZBaseActivity* ZBaseActivity::GetParent() const
+//---------------------------------------------------------------------------
+const PSS_BaseActivity& PSS_BaseActivity::operator = (const PSS_BaseActivity& other)
 {
-    //## begin ZBaseActivity::GetParent%932278208.body preserve=yes
+    THROW("Copy operator isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetParent() const
+{
     return m_pParent;
-    //## end ZBaseActivity::GetParent%932278208.body
 }
-
-ZProcess* ZBaseActivity::GetParentProcess() const
+//---------------------------------------------------------------------------
+ZProcess* PSS_BaseActivity::GetParentProcess() const
 {
-    //## begin ZBaseActivity::GetParent%932278208.body preserve=yes
     if (m_pParent)
     {
-        if (ISA(m_pParent, ZProcess))
-        {
-            return (ZProcess*)m_pParent;
-        }
+        ZProcess* pParentProcess = dynamic_cast<ZProcess*>(m_pParent);
+
+        if (pParentProcess)
+            return pParentProcess;
 
         return m_pParent->GetParentProcess();
     }
 
     return NULL;
-    //## end ZBaseActivity::GetParent%932278208.body
 }
-
-ZBaseActivity* ZBaseActivity::GetFirstBaseActivity() const
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetFirstBaseActivity() const
 {
-    //## begin ZBaseActivity::GetFirstBaseActivity%932314507.body preserve=yes
     return GetActivityAt(0);
-    //## end ZBaseActivity::GetFirstBaseActivity%932314507.body
 }
-
-ZBaseActivity* ZBaseActivity::GetFirstValidActivity() const
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetFirstValidActivity() const
 {
-    //## begin ZBaseActivity::GetFirstValidActivity%932278209.body preserve=yes
-    ZBaseActivity* pFirstActivity = GetActivityAt(0);
+    PSS_BaseActivity* pFirstActivity = GetActivityAt(0);
 
     if (!pFirstActivity)
-    {
         return NULL;
-    }
 
-    if (pFirstActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
-        (pFirstActivity->HasActivities() && pFirstActivity->GetRunMode() == ChooseMode))
-    {
-        if (pFirstActivity->IsConsiderAsVisible() != E_TS_False)
-        {
+    if (pFirstActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)) || 
+       (pFirstActivity->HasActivities() && pFirstActivity->GetRunMode() == IE_RM_Select))
+        if (pFirstActivity->DoConsiderAsVisible() != E_TS_False)
             return pFirstActivity;
-        }
-    }
 
     return pFirstActivity->GetNextValidActivity();
-    //## end ZBaseActivity::GetFirstValidActivity%932278209.body
 }
-
-ZBaseActivity* ZBaseActivity::GetFirstValidBaseActivity() const
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetFirstValidBaseActivity() const
 {
-    //## begin ZBaseActivity::GetFirstValidBaseActivity%937152021.body preserve=yes
-    ZBaseActivity* pFirstActivity = GetActivityAt(0);
+    PSS_BaseActivity* pFirstActivity = GetActivityAt(0);
 
     if (!pFirstActivity)
-    {
         return NULL;
-    }
 
-    if (pFirstActivity->IsConsiderAsVisible() != E_TS_False)
-    {
+    if (pFirstActivity->DoConsiderAsVisible() != E_TS_False)
         return pFirstActivity;
-    }
 
     return pFirstActivity->GetNextValidActivity();
-    //## end ZBaseActivity::GetFirstValidBaseActivity%937152021.body
 }
-
-ZBaseActivity* ZBaseActivity::GetNextValidActivity() const
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetPreviousValidActivity() const
 {
-    //## begin ZBaseActivity::GetNextValidActivity%932278204.body preserve=yes
-    if (GetNextBaseActivity())
-    {
-        // If the next activity is a valid activity, return it
-        // otherwise, delegate the next search to him
-        if (GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
-            (GetNextBaseActivity()->HasActivities() && GetNextBaseActivity()->GetRunMode() == ChooseMode))
-        {
-            if (GetNextBaseActivity()->IsConsiderAsVisible() != E_TS_False)
-            {
-                return GetNextBaseActivity();
-            }
-        }
-
-        return GetNextBaseActivity()->GetNextValidActivity();
-    }
-
-    return NULL;
-    //## end ZBaseActivity::GetNextValidActivity%932278204.body
-}
-
-ZBaseActivity* ZBaseActivity::GetNextValidBaseActivity() const
-{
-    //## begin ZBaseActivity::GetNextValidBaseActivity%937152022.body preserve=yes
-    if (GetNextBaseActivity())
-    {
-        // If the next activity is a valid activity, return it
-        // otherwise, delegate the next search to him
-        if (GetNextBaseActivity()->IsConsiderAsVisible() != E_TS_False)
-        {
-            return GetNextBaseActivity();
-        }
-
-        return GetNextBaseActivity()->GetNextValidBaseActivity();
-    }
-
-    return NULL;
-    //## end ZBaseActivity::GetNextValidBaseActivity%937152022.body
-}
-
-ZBaseActivity* ZBaseActivity::GetPreviousValidActivity() const
-{
-    //## begin ZBaseActivity::GetPreviousValidActivity%932278205.body preserve=yes
     if (GetPreviousBaseActivity())
     {
-        // If the previous activity is a valid activity, return it
-        // otherwise, delegate the next search to him
+        // if the previous activity is a valid activity, return it
         if (GetPreviousBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
-            (GetPreviousBaseActivity()->HasActivities() && GetPreviousBaseActivity()->GetRunMode() == ChooseMode))
-        {
-            if (GetPreviousBaseActivity()->IsConsiderAsVisible() != E_TS_False)
-            {
+           (GetPreviousBaseActivity()->HasActivities() && GetPreviousBaseActivity()->GetRunMode() == IE_RM_Select))
+            if (GetPreviousBaseActivity()->DoConsiderAsVisible() != E_TS_False)
                 return GetPreviousBaseActivity();
-            }
-        }
 
+        // continue to search in previous base activities
         return GetPreviousBaseActivity()->GetPreviousValidActivity();
     }
 
     return NULL;
-    //## end ZBaseActivity::GetPreviousValidActivity%932278205.body
 }
-
-ZBaseActivity* ZBaseActivity::GetPreviousValidBaseActivity() const
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetPreviousValidBaseActivity() const
 {
-    //## begin ZBaseActivity::GetPreviousValidBaseActivity%937152023.body preserve=yes
     if (GetPreviousBaseActivity())
     {
-        // If the previous activity is a valid activity, return it
-        // otherwise, delegate the next search to him
-        if (GetPreviousBaseActivity()->IsConsiderAsVisible() != E_TS_False)
-        {
+        // if the previous activity is a valid activity, return it
+        if (GetPreviousBaseActivity()->DoConsiderAsVisible() != E_TS_False)
             return GetPreviousBaseActivity();
-        }
 
+        // continue to search in previous base activities
         return GetPreviousBaseActivity()->GetPreviousValidBaseActivity();
     }
 
     return NULL;
-    //## end ZBaseActivity::GetPreviousValidBaseActivity%937152023.body
 }
-
-ZProcess* ZBaseActivity::GetNextProcess() const
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetNextValidActivity() const
 {
-    //## begin ZBaseActivity::GetNextProcess%932278206.body preserve=yes
     if (GetNextBaseActivity())
     {
-        // If the next activity is a process, return it
-        // otherwise, delegate the next search to him
-        if (GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(ZProcess)))
-        {
-            return (ZProcess*)GetNextBaseActivity();
-        }
+        // if the next activity is a valid activity, return it
+        if (GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
+           (GetNextBaseActivity()->HasActivities() && GetNextBaseActivity()->GetRunMode() == IE_RM_Select))
+            if (GetNextBaseActivity()->DoConsiderAsVisible() != E_TS_False)
+                return GetNextBaseActivity();
 
-        return GetNextBaseActivity()->GetNextProcess();
+        // continue to search in next base activities
+        return GetNextBaseActivity()->GetNextValidActivity();
     }
 
     return NULL;
-    //## end ZBaseActivity::GetNextProcess%932278206.body
 }
-
-ZProcess* ZBaseActivity::GetPreviousProcess() const
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetNextValidBaseActivity() const
 {
-    //## begin ZBaseActivity::GetPreviousProcess%932278207.body preserve=yes
-    if (GetPreviousBaseActivity())
+    if (GetNextBaseActivity())
     {
-        // If the next activity is a process, return it
-        // otherwise, delegate the next search to him
-        if (GetPreviousBaseActivity()->IsKindOf(RUNTIME_CLASS(ZProcess)))
-        {
-            return (ZProcess*)GetPreviousBaseActivity();
-        }
+        // if the next activity is a valid activity, return it
+        if (GetNextBaseActivity()->DoConsiderAsVisible() != E_TS_False)
+            return GetNextBaseActivity();
 
+        // continue to search in next base activities
+        return GetNextBaseActivity()->GetNextValidBaseActivity();
+    }
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+ZProcess* PSS_BaseActivity::GetPreviousProcess() const
+{
+    PSS_BaseActivity* pBaseActivity = GetPreviousBaseActivity();
+
+    if (pBaseActivity)
+    {
+        ZProcess* pProcess = dynamic_cast<ZProcess*>(pBaseActivity);
+
+        // if the previous activity is a process, return it
+        if (pProcess)
+            return pProcess;
+
+        // continue to search in previous activities
         return GetPreviousBaseActivity()->GetPreviousProcess();
     }
 
     return NULL;
-    //## end ZBaseActivity::GetPreviousProcess%932278207.body
 }
-
-void ZBaseActivity::CalculateForecastedEndDate()
+//---------------------------------------------------------------------------
+ZProcess* PSS_BaseActivity::GetNextProcess() const
 {
-    //## begin ZBaseActivity::CalculateForecastedEndDate%931585004.body preserve=yes
-    //## end ZBaseActivity::CalculateForecastedEndDate%931585004.body
-}
+    PSS_BaseActivity* pBaseActivity = GetNextBaseActivity();
 
-void ZBaseActivity::CalculateForecastedStartDate()
-{
-    //## begin ZBaseActivity::CalculateForecastedStartDate%931585005.body preserve=yes
-    //## end ZBaseActivity::CalculateForecastedStartDate%931585005.body
-}
+    if (pBaseActivity)
+    {
+        ZProcess* pProcess = dynamic_cast<ZProcess*>(pBaseActivity);
 
-WORD ZBaseActivity::GetDurationDays()
-{
-    //## begin ZBaseActivity::GetDurationDays%931585008.body preserve=yes
-    return m_DurationDays;
-    //## end ZBaseActivity::GetDurationDays%931585008.body
-}
+        // if the next activity is a process, return it
+        if (pProcess)
+            return pProcess;
 
-void ZBaseActivity::SetDurationDays(WORD value)
-{
-    //## begin ZBaseActivity::SetDurationDays%931585009.body preserve=yes
-    m_DurationDays = value;
-    //## end ZBaseActivity::SetDurationDays%931585009.body
-}
+        // continue to search in next activities
+        return GetNextBaseActivity()->GetNextProcess();
+    }
 
-BOOL ZBaseActivity::FillPersonArray(ZBaseActivity&    Activity,
-                                    PSS_UserManager&    UserManager,
-                                    CStringArray&    UserArray)
-{
-    //## begin ZBaseActivity::FillPersonArray%931585012.body preserve=yes
-    return TRUE;
-    //## end ZBaseActivity::FillPersonArray%931585012.body
+    return NULL;
 }
-
-BOOL ZBaseActivity::FillPersonArray(int            Index,
-                                    PSS_UserManager&    UserManager,
-                                    CStringArray&    UserArray)
-{
-    //## begin ZBaseActivity::FillPersonArray%931585013.body preserve=yes
-    return TRUE;
-    //## end ZBaseActivity::FillPersonArray%931585013.body
-}
-
-BOOL ZBaseActivity::ActivityFillPersonArray(const PSS_UserManager&    UserManager,
-                                            CStringArray&    UserArray,
-                                            CString        ConnectedUser)
-{
-    //## begin ZBaseActivity::ActivityFillPersonArray%931585014.body preserve=yes
-    return GetCurrentResources().FillPersonArray(GetMainProcess(), UserManager, UserArray, ConnectedUser);
-    //## end ZBaseActivity::ActivityFillPersonArray%931585014.body
-}
-
-BOOL ZBaseActivity::PrincipalResourceActivityFillPersonArray(PSS_UserManager&    UserManager,
-                                                             CStringArray&        UserArray,
-                                                             CString            ConnectedUser)
-{
-    return m_PrincipalResources.FillPersonArray(GetMainProcess(), UserManager, UserArray, ConnectedUser);
-}
-
-BOOL ZBaseActivity::BackupResourceActivityFillPersonArray(PSS_UserManager&    UserManager,
-                                                          CStringArray&    UserArray,
-                                                          CString            ConnectedUser)
-{
-    return m_BackupResources.FillPersonArray(GetMainProcess(), UserManager, UserArray, ConnectedUser);
-}
-
-BOOL ZBaseActivity::ActivityAddUsers(CString DelimiterString)
-{
-    // Set the user mode
-    SetUserType(Users);
-    return GetCurrentResources().AddUsers(DelimiterString);
-}
-
-BOOL ZBaseActivity::PrincipalResourceActivityAddUsers(CString DelimiterString)
-{
-    return m_PrincipalResources.AddUsers(DelimiterString);
-}
-
-BOOL ZBaseActivity::BackupResourceActivityAddUsers(CString DelimiterString)
-{
-    return m_BackupResources.AddUsers(DelimiterString);
-}
-
-CString ZBaseActivity::ActivityCreatePersonDelimStr(const PSS_UserManager& userManager,
-                                                    const CString&         connectedUser,
-                                                    const CString&         delimiter)
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::ActivityCreatePersonDelimStr(const PSS_UserManager& userManager,
+                                                       const CString&         connectedUser,
+                                                       const CString&         delimiter)
 {
     return GetCurrentResources().CreatePersonDelimStr(GetMainProcess(), userManager, connectedUser, delimiter);
 }
-
-PSS_MailUserList* ZBaseActivity::ActivityCreatePersonList(const PSS_UserManager& UserManager, const CString& ConnectedUser)
+//---------------------------------------------------------------------------
+PSS_MailUserList* PSS_BaseActivity::ActivityCreatePersonList(const PSS_UserManager& userManager, const CString& connectedUser)
 {
-    //## begin ZBaseActivity::ActivityCreatePersonList%931585003.body preserve=yes
-    return GetCurrentResources().CreatePersonList(GetMainProcess(), UserManager, ConnectedUser);
-    //## end ZBaseActivity::ActivityCreatePersonList%931585003.body
+    return GetCurrentResources().CreatePersonList(GetMainProcess(), userManager, connectedUser);
 }
-
-PSS_MailUserList* ZBaseActivity::CreatePersonList(ZBaseActivity& Activity, PSS_UserManager& UserManager)
+//---------------------------------------------------------------------------
+PSS_MailUserList* PSS_BaseActivity::CreatePersonList(const PSS_BaseActivity& activity, const PSS_UserManager& userManager)
 {
-    //## begin ZBaseActivity::CreatePersonList%931584999.body preserve=yes
     return NULL;
-    //## end ZBaseActivity::CreatePersonList%931584999.body
 }
-
-PSS_MailUserList* ZBaseActivity::CreatePersonList(int Index, PSS_UserManager& UserManager)
+//---------------------------------------------------------------------------
+PSS_MailUserList* PSS_BaseActivity::CreatePersonList(int index, const PSS_UserManager& userManager)
 {
-    //## begin ZBaseActivity::CreatePersonList%931585000.body preserve=yes
     return NULL;
-    //## end ZBaseActivity::CreatePersonList%931585000.body
 }
-
-CString ZBaseActivity::CreatePersonDelimStr(ZBaseActivity&    Activity,
-                                            PSS_UserManager&    UserManager,
-                                            CString        Delimiter)
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::CreatePersonDelimStr(const PSS_BaseActivity& activity,
+                                               const PSS_UserManager&  userManager,
+                                               const CString&          delimiter)
 {
-    //## begin ZBaseActivity::CreatePersonDelimStr%931585001.body preserve=yes
     return _T("");
-    //## end ZBaseActivity::CreatePersonDelimStr%931585001.body
 }
-
-CString ZBaseActivity::CreatePersonDelimStr(int            Index,
-                                            PSS_UserManager&    UserManager,
-                                            CString        Delimiter)
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::CreatePersonDelimStr(int                    index,
+                                               const PSS_UserManager& userManager,
+                                               const CString&         delimiter)
 {
-    //## begin ZBaseActivity::CreatePersonDelimStr%931585002.body preserve=yes
     return _T("");
-    //## end ZBaseActivity::CreatePersonDelimStr%931585002.body
 }
-
-PSS_MailUserList* ZBaseActivity::PrincipalResourceActivityCreatePersonList(PSS_UserManager&    UserManager,
-                                                                           CString            ConnectedUser)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::FillPersonArray(const PSS_BaseActivity& activity,
+                                       const PSS_UserManager&  userManager,
+                                       CStringArray&           userArray)
 {
-    return m_PrincipalResources.CreatePersonList(GetMainProcess(), UserManager, ConnectedUser);
+    return TRUE;
 }
-
-CString ZBaseActivity::PrincipalResourceActivityCreatePersonDelimStr(PSS_UserManager&    UserManager,
-                                                                     CString            ConnectedUser,
-                                                                     CString            Delimiter)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::FillPersonArray(int                    index,
+                                       const PSS_UserManager& userManager,
+                                       CStringArray&          userArray)
 {
-    return m_PrincipalResources.CreatePersonDelimStr(GetMainProcess(), UserManager, ConnectedUser, Delimiter);
+    return TRUE;
 }
-
-PSS_MailUserList* ZBaseActivity::BackupResourceActivityCreatePersonList(PSS_UserManager&    UserManager,
-                                                                        CString            ConnectedUser)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::ActivityFillPersonArray(const PSS_UserManager& userManager,
+                                               CStringArray&          userArray,
+                                               const CString&         connectedUser)
 {
-    return m_BackupResources.CreatePersonList(GetMainProcess(), UserManager, ConnectedUser);
+    return GetCurrentResources().FillPersonArray(GetMainProcess(), userManager, userArray, connectedUser);
 }
-
-CString ZBaseActivity::BackupResourceActivityCreatePersonDelimStr(PSS_UserManager&    UserManager,
-                                                                  CString            ConnectedUser,
-                                                                  CString            Delimiter)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::ActivityAddUsers(const CString& delimiterString)
 {
-    return m_BackupResources.CreatePersonDelimStr(GetMainProcess(), UserManager, ConnectedUser, Delimiter);
+    // set the user mode
+    SetUserType(Users);
+    return GetCurrentResources().AddUsers(delimiterString);
 }
-
-CString ZBaseActivity::GetStatusKeyString(ZBaseActivity* pActivity)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::MainResourceActivityAddUsers(const CString& delimiterString)
 {
-    //## begin ZBaseActivity::GetStatusKeyString%931585015.body preserve=yes
-    if (ActivityIsAttribution() && GetActivityStatus() != ActivitySentForAcceptation)
-    {
-        return ActivityStatusAttribution;
-    }
+    return m_MainResources.AddUsers(delimiterString);
+}
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::BackupResourceActivityAddUsers(const CString& delimiterString)
+{
+    return m_BackupResources.AddUsers(delimiterString);
+}
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::MainResourceActivityFillPersonArray(const PSS_UserManager& userManager,
+                                                           CStringArray&          userArray,
+                                                           const CString&         connectedUser)
+{
+    return m_MainResources.FillPersonArray(GetMainProcess(), userManager, userArray, connectedUser);
+}
+//---------------------------------------------------------------------------
+PSS_MailUserList* PSS_BaseActivity::MainResourceActivityCreatePersonList(const PSS_UserManager& userManager,
+                                                                         const CString&         connectedUser)
+{
+    return m_MainResources.CreatePersonList(GetMainProcess(), userManager, connectedUser);
+}
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::MainResourceActivityCreatePersonDelimStr(const PSS_UserManager& userManager,
+                                                                   const CString&         connectedUser,
+                                                                   const CString&         delimiter)
+{
+    return m_MainResources.CreatePersonDelimStr(GetMainProcess(), userManager, connectedUser, delimiter);
+}
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::BackupResourceActivityFillPersonArray(const PSS_UserManager& userManager,
+                                                             CStringArray&          userArray,
+                                                             const CString&         connectedUser)
+{
+    return m_BackupResources.FillPersonArray(GetMainProcess(), userManager, userArray, connectedUser);
+}
+//---------------------------------------------------------------------------
+PSS_MailUserList* PSS_BaseActivity::BackupResourceActivityCreatePersonList(const PSS_UserManager& userManager,
+                                                                           const CString&         connectedUser)
+{
+    return m_BackupResources.CreatePersonList(GetMainProcess(), userManager, connectedUser);
+}
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::BackupResourceActivityCreatePersonDelimStr(const PSS_UserManager& userManager,
+                                                                     const CString&         connectedUser,
+                                                                     const CString&         delimiter)
+{
+    return m_BackupResources.CreatePersonDelimStr(GetMainProcess(), userManager, connectedUser, delimiter);
+}
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::CalculateForecastedStartDate()
+{}
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::CalculateForecastedEndDate()
+{}
+//---------------------------------------------------------------------------
+WORD PSS_BaseActivity::GetDurationDays() const
+{
+    return m_DurationDays;
+}
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::SetDurationDays(WORD value)
+{
+    m_DurationDays = value;
+}
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::GetStatusKeyString(PSS_BaseActivity* pActivity)
+{
+    if (ActivityIsAttribution() && GetActivityStatus() != IE_AS_SentForAcceptation)
+        return g_ActivityStatusAttribution;
 
     switch (GetActivityStatus())
     {
-        case ActivityCompleted:
-        {
-            return ActivityStatusCompleted;
-        }
-
-        case ActivityRejected:
-        {
-            return ActivityStatusRejected;
-        }
-
-        case ActivitySent:
-        {
-            return ActivityStatusSent;
-        }
-
-        case ActivitySentForAcceptation:
-        {
-            return ActivityStatusRequestAcceptation;
-        }
-
-        case ActivityNotStarted:
-        {
-            return ActivityStatusNotStarted;
-        }
-
-        case ActivitySuspended:
-        {
-            return ActivityStatusProcessPaused;
-        }
-
-        case ActivityAborted:
-        {
-            return ActivityStatusProcessAborted;
-        }
-
-        case ActivityStarted:
-        {
-            return ActivityStatusStarted;
-        }
+        case IE_AS_Completed:          return g_ActivityStatusCompleted;
+        case IE_AS_Rejected:           return g_ActivityStatusRejected;
+        case IE_AS_Sent:               return g_ActivityStatusSent;
+        case IE_AS_SentForAcceptation: return g_ActivityStatusRequestAcceptation;
+        case IE_AS_NotStarted:         return g_ActivityStatusNotStarted;
+        case IE_AS_Suspended:          return g_ActivityStatusProcessPaused;
+        case IE_AS_Aborted:            return g_ActivityStatusProcessAborted;
+        case IE_AS_Started:            return g_ActivityStatusStarted;
     }
 
     return _T("");
-    //## end ZBaseActivity::GetStatusKeyString%931585015.body
 }
-
-void ZBaseActivity::SetStatusFromKeyString(const CString KeyString)
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::SetStatusFromKeyString(const CString& key)
 {
-    //## begin ZBaseActivity::SetStatusFromKeyString%943181050.body preserve=yes
-    if (KeyString == ActivityStatusCompleted)
-    {
-        SetActivityStatus(ActivityCompleted);
-    }
-    else if (KeyString == ActivityStatusRejected)
-    {
-        SetActivityStatus(ActivityRejected);
-    }
-    else if (KeyString == ActivityStatusSent)
-    {
-        SetActivityStatus(ActivitySent);
-    }
-    else if (KeyString == ActivityStatusRequestAcceptation)
-    {
-        SetActivityStatus(ActivitySentForAcceptation);
-    }
-    else if (KeyString == ActivityStatusNotStarted)
-    {
-        SetActivityStatus(ActivityNotStarted);
-    }
-    else if (KeyString == ActivityStatusProcessPaused)
-    {
-        SetActivityStatus(ActivitySuspended);
-    }
-    else if (KeyString == ActivityStatusProcessAborted)
-    {
-        SetActivityStatus(ActivityAborted);
-    }
-    else if (KeyString == ActivityStatusStarted)
-    {
-        SetActivityStatus(ActivityStarted);
-    }
-    //## end ZBaseActivity::SetStatusFromKeyString%943181050.body
-}
-
-CString ZBaseActivity::GetStatusString(const CString KeyString)
-{
-    //## begin ZBaseActivity::GetStatusString%931585018.body preserve=yes
-    UINT nID;
-
-    if (KeyString == ActivityStatusProcessCompleted)
-    {
-        nID = IDS_STATUSPROC_COMPLETED;
-    }
-    else if (KeyString == ActivityStatusAttribution)
-    {
-        nID = IDS_STATUSACT_ATTRIBUTION;
-    }
-    else if (KeyString == ActivityStatusCompleted)
-    {
-        nID = IDS_STATUSACT_COMPLETED;
-    }
-    else if (KeyString == ActivityStatusRejected)
-    {
-        nID = IDS_STATUSACT_REJECTED;
-    }
-    else if (KeyString == ActivityStatusSent)
-    {
-        nID = IDS_STATUSACT_SENT;
-    }
-    else if (KeyString == ActivityStatusRequestAcceptation)
-    {
-        nID = IDS_STATUSACT_SENTFORACPT;
-    }
-    else if (KeyString == ActivityStatusNotStarted)
-    {
-        nID = IDS_STATUSACT_NOTSTARTED;
-    }
-    else if (KeyString == ActivityStatusProcessPaused)
-    {
-        nID = IDS_STATUSPROC_SUSPENDED;
-    }
-    else if (KeyString == ActivityStatusProcessAborted)
-    {
-        nID = IDS_STATUSPROC_ABORTED;
-    }
+    if (key == g_ActivityStatusCompleted)
+        SetActivityStatus(IE_AS_Completed);
     else
-    {
-        nID = IDS_STATUSACT_UNKNOWN;
-    }
-
-    CString Text;
-    Text.LoadString(nID);
-
-    return Text;
-    //## end ZBaseActivity::GetStatusString%931585018.body
+    if (key == g_ActivityStatusRejected)
+        SetActivityStatus(IE_AS_Rejected);
+    else
+    if (key == g_ActivityStatusSent)
+        SetActivityStatus(IE_AS_Sent);
+    else
+    if (key == g_ActivityStatusRequestAcceptation)
+        SetActivityStatus(IE_AS_SentForAcceptation);
+    else
+    if (key == g_ActivityStatusNotStarted)
+        SetActivityStatus(IE_AS_NotStarted);
+    else
+    if (key == g_ActivityStatusProcessPaused)
+        SetActivityStatus(IE_AS_Suspended);
+    else
+    if (key == g_ActivityStatusProcessAborted)
+        SetActivityStatus(IE_AS_Aborted);
+    else
+    if (key == g_ActivityStatusStarted)
+        SetActivityStatus(IE_AS_Started);
 }
-
-void ZBaseActivity::FillActivityInformationWhenStart()
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::GetStatusString(const CString& key)
 {
-    //## begin ZBaseActivity::FillActivityInformationWhenStart%931613230.body preserve=yes
+    UINT id;
+
+    if (key == g_ActivityStatusProcessCompleted)
+        id = IDS_STATUSPROC_COMPLETED;
+    else
+    if (key == g_ActivityStatusAttribution)
+        id = IDS_STATUSACT_ATTRIBUTION;
+    else
+    if (key == g_ActivityStatusCompleted)
+        id = IDS_STATUSACT_COMPLETED;
+    else
+    if (key == g_ActivityStatusRejected)
+        id = IDS_STATUSACT_REJECTED;
+    else
+    if (key == g_ActivityStatusSent)
+        id = IDS_STATUSACT_SENT;
+    else
+    if (key == g_ActivityStatusRequestAcceptation)
+        id = IDS_STATUSACT_SENTFORACPT;
+    else
+    if (key == g_ActivityStatusNotStarted)
+        id = IDS_STATUSACT_NOTSTARTED;
+    else
+    if (key == g_ActivityStatusProcessPaused)
+        id = IDS_STATUSPROC_SUSPENDED;
+    else
+    if (key == g_ActivityStatusProcessAborted)
+        id = IDS_STATUSPROC_ABORTED;
+    else
+        id = IDS_STATUSACT_UNKNOWN;
+
+    CString text;
+    text.LoadString(id);
+
+    return text;
+}
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::FillActivityInformationWhenStart()
+{
     SetInitiator(GetConnectedUser());
     SetStartDate(PSS_Date::GetToday());
 
-    // Set the forecasted start date to be able 
-    // to calculate the forecasted end date
+    // set the forecasted start date to be able to calculate the forecasted end date
     SetForecastedStartDate(PSS_Date::GetToday());
 
-    // Calculate the forecasted end date
+    // calculate the forecasted end date
     CalculateForecastedEndDate();
-    SetActivityStatus(ActivityStarted);
-    //## end ZBaseActivity::FillActivityInformationWhenStart%931613230.body
+    SetActivityStatus(IE_AS_Started);
 }
-
-void ZBaseActivity::FillActivityInformationWhenEnd()
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::FillActivityInformationWhenEnd()
 {
-    //## begin ZBaseActivity::FillActivityInformationWhenEnd%931613231.body preserve=yes
     SetEndDate(PSS_Date::GetToday());
-    SetActivityStatus(ActivityCompleted);
-    //## end ZBaseActivity::FillActivityInformationWhenEnd%931613231.body
+    SetActivityStatus(IE_AS_Completed);
 }
-
-void ZBaseActivity::FillActivityInformationWhenRefused()
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::FillActivityInformationWhenRefused()
 {
-    //## begin ZBaseActivity::FillActivityInformationWhenRefused%931613232.body preserve=yes
     SetLastUpdateDate(PSS_Date::GetToday());
-    SetActivityStatus(ActivityRejected);
-    //## end ZBaseActivity::FillActivityInformationWhenRefused%931613232.body
+    SetActivityStatus(IE_AS_Rejected);
 }
-
-void ZBaseActivity::FillActivityInformationWhenSentForAccept()
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::FillActivityInformationWhenSentForAccept()
 {
-    //## begin ZBaseActivity::FillActivityInformationWhenSentForAccept%931613233.body preserve=yes
-    if (GetActivityStatus() == ActivityNotStarted)
+    if (GetActivityStatus() == IE_AS_NotStarted)
     {
         SetForecastedStartDate(PSS_Date::GetToday());
 
-        // Calculate the forecasted end date
+        // calculate the forecasted end date
         CalculateForecastedEndDate();
     }
 
     SetLastUpdateDate(PSS_Date::GetToday());
-    SetActivityStatus(ActivitySentForAcceptation);
-    //## end ZBaseActivity::FillActivityInformationWhenSentForAccept%931613233.body
+    SetActivityStatus(IE_AS_SentForAcceptation);
 }
-
-void ZBaseActivity::FillActivityInformationWhenSent()
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::FillActivityInformationWhenSent()
 {
-    //## begin ZBaseActivity::FillActivityInformationWhenSent%931613244.body preserve=yes
-    if (GetActivityStatus() == ActivityNotStarted)
+    if (GetActivityStatus() == IE_AS_NotStarted)
     {
         SetForecastedStartDate(PSS_Date::GetToday());
 
-        // Calculate the forecasted end date
+        // calculate the forecasted end date
         CalculateForecastedEndDate();
     }
 
     SetLastUpdateDate(PSS_Date::GetToday());
-    SetActivityStatus(ActivitySent);
-    //## end ZBaseActivity::FillActivityInformationWhenSent%931613244.body
+    SetActivityStatus(IE_AS_Sent);
 }
-
-BOOL ZBaseActivity::ActivityIsShared()
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::ActivityIsShared() const
 {
-    //## begin ZBaseActivity::ActivityIsShared%931613245.body preserve=yes
-    // If no activites or If it is parallel mode, check the number of resources
-    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-    {
-        return GetCurrentResources().GetUserCount() > 1;
-    }
+    // if no activites or in selection mode, check the number of resources
+    if (!HasActivities() || GetRunMode() == IE_RM_Select)
+        return (GetCurrentResources().GetUserCount() > 1);
 
-    // If has activities, check the current activity
+    // if has activities, check the current one
     if (!GetCurrentActivity())
-    {
         return FALSE;
-    }
 
     return GetCurrentActivity()->ActivityIsShared();
-    //## end ZBaseActivity::ActivityIsShared%931613245.body
 }
-
-BOOL ZBaseActivity::MustSwitchToBackupResourceActivity()
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::MustSwitchToBackupResourceActivity() const
 {
-    //## begin ZBaseActivity::MustSwitchToBackupResourceActivity%931613249.body preserve=yes
-    // If it is parallel mode, check the number of resources
-    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+    // if no activites or in selection mode, check the number of resources
+    if (!HasActivities() || GetRunMode() == IE_RM_Select)
     {
         if (GetUseBackupResources() && GetForecastedEndDate() > 0)
-        {
-            return (COleDateTime::GetCurrentTime() >= (GetForecastedEndDate() + COleDateTimeSpan(GetDaysForBackupResources()))) ? TRUE : FALSE;
-        }
+            return (COleDateTime::GetCurrentTime() >= (GetForecastedEndDate() + COleDateTimeSpan(GetDaysForBackupResources())));
 
         return FALSE;
     }
 
-    // Else, check the current activity
+    // check the current activity
     if (!GetCurrentActivity())
-    {
         return FALSE;
-    }
 
     return GetCurrentActivity()->MustSwitchToBackupResourceActivity();
-    //## end ZBaseActivity::MustSwitchToBackupResourceActivity%931613249.body
 }
-
-BOOL ZBaseActivity::MustRemindEndActivity()
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::MustRemindEndActivity() const
 {
-    //## begin ZBaseActivity::MustRemindEndActivity%931613250.body preserve=yes
-    // If it is parallel mode, check the number of resources
-    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+    // if no activites or in selection mode, check the number of resources
+    if (!HasActivities() || GetRunMode() == IE_RM_Select)
     {
         if (GetForecastedEndDate() > 0)
-        {
-            return (COleDateTime::GetCurrentTime() >= (GetForecastedEndDate() - COleDateTimeSpan(GetRemindDays()))) ? TRUE : FALSE;
-        }
+            return (COleDateTime::GetCurrentTime() >= (GetForecastedEndDate() - COleDateTimeSpan(GetRemindDays())));
 
         return FALSE;
     }
 
-    // Else, check the current activity
+    // check the current activity
     if (!GetCurrentActivity())
-    {
         return FALSE;
-    }
 
     return GetCurrentActivity()->MustRemindEndActivity();
-    //## end ZBaseActivity::MustRemindEndActivity%931613250.body
 }
-
-CString ZBaseActivity::GetActivityStatusString() const
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::SetParent(PSS_BaseActivity* pParent)
 {
-    //## begin ZBaseActivity::GetActivityStatusString%931711481.body preserve=yes
-    CString Status;
+    m_pParent = pParent;
+}
+//---------------------------------------------------------------------------
+ZProcess* PSS_BaseActivity::GetMainProcess()
+{
+    if (GetParent())
+        return GetParent()->GetMainProcess();
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+CString PSS_BaseActivity::GetActivityStatusString() const
+{
+    CString status;
 
     switch (GetActivityStatus())
     {
-        case ActivityStarted:
-        {
-            Status.LoadString(IDS_ACTIVITY_STARTED);
-            break;
-        }
-
-        case ActivityCompleted:
-        {
-            Status.LoadString(IDS_ACTIVITY_COMPLETED);
-            break;
-        }
-
-        case ActivityRejected:
-        {
-            Status.LoadString(IDS_ACTIVITY_REJECTED);
-            break;
-        }
-
-        case ActivitySent:
-        {
-            Status.LoadString(IDS_ACTIVITY_NEXTPERSON);
-            break;
-        }
-
-        case ActivitySentForAcceptation:
-        {
-            Status.LoadString(IDS_ACTIVITY_FORACCEPTATION);
-            break;
-        }
-
-        case ActivityNotStarted:
-        {
-            Status.LoadString(IDS_ACTIVITY_NOTSTARTED);
-            break;
-        }
-
-        case ActivitySuspended:
-        {
-            Status.LoadString(IDS_PROCESS_SUSPENDED);
-            break;
-        }
-
-        case ActivityAborted:
-        {
-            Status.LoadString(IDS_PROCESS_ABORTED);
-            break;
-        }
-
-        default:
-        {
-            Status.LoadString(IDS_ACTIVITY_UNKNOWNSTATE);
-        }
+        case IE_AS_Started:            status.LoadString(IDS_ACTIVITY_STARTED);        break;
+        case IE_AS_Completed:          status.LoadString(IDS_ACTIVITY_COMPLETED);      break;
+        case IE_AS_Rejected:           status.LoadString(IDS_ACTIVITY_REJECTED);       break;
+        case IE_AS_Sent:               status.LoadString(IDS_ACTIVITY_NEXTPERSON);     break;
+        case IE_AS_SentForAcceptation: status.LoadString(IDS_ACTIVITY_FORACCEPTATION); break;
+        case IE_AS_NotStarted:         status.LoadString(IDS_ACTIVITY_NOTSTARTED);     break;
+        case IE_AS_Suspended:          status.LoadString(IDS_PROCESS_SUSPENDED);       break;
+        case IE_AS_Aborted:            status.LoadString(IDS_PROCESS_ABORTED);         break;
+        default:                       status.LoadString(IDS_ACTIVITY_UNKNOWNSTATE);
     }
 
-    return Status;
-    //## end ZBaseActivity::GetActivityStatusString%931711481.body
+    return status;
 }
-
-void ZBaseActivity::SetParent(ZBaseActivity* pParent)
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::SetDefaultProperty()
 {
-    //## begin ZBaseActivity::SetParent%936211873.body preserve=yes
-    m_pParent = pParent;
-    //## end ZBaseActivity::SetParent%936211873.body
+    m_VisibilityType         = IE_VT_Visible;
+    m_DurationDays           = 2;
+    m_IsVisible              = E_TS_True;
+    m_TimeType               = IE_TT_TimeDays;
+    m_DaysForBackupResources = 2;
+    m_RemindDays             = 1;
+    m_UseBackupResources     = FALSE;
+    m_IsInBackupProcess      = FALSE;
+    m_IntranetActivity       = TRUE;
+
+    m_Initiator.Empty();
+
+    RemoveAllUsers();
+    RemoveAllBackupUsers();
 }
-
-ZProcess* ZBaseActivity::GetMainProcess()
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::AddActivityToSelection(const CString& activityName)
 {
-    //## begin ZBaseActivity::GetMainProcess%945000546.body preserve=yes
-    if (GetParent())
+    const int selectedArraySize = GetSelectedActivityArray().GetSize();
+
+    // check if the array doesn't contain the value
+    for (int i = 0; i < selectedArraySize; ++i)
+        if (activityName == GetSelectedActivityArray().GetAt(i))
+            return TRUE;
+
+    return GetSelectedActivityArray().Add(activityName) > -1;
+}
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::SetChildVisibility(const EThreeState value)
+{
+    const std::size_t activityCount = GetActivityCount();
+
+    // set the value for all activities and sub-process
+    for (std::size_t i = 0; i < activityCount; ++i)
+        GetActivityAt(i)->SetVisibility(value);
+}
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::MoveActivityUp(const CString& activityName)
+{
+    if (!CanActivityMoveUp(activityName))
+        return FALSE;
+
+    PSS_BaseActivity* pActivity = FindBaseActivity(activityName);
+
+    if (pActivity)
     {
-        return GetParent()->GetMainProcess();
+        PSS_BaseActivity* pParent = pActivity->GetParent();
+
+        if (pParent)
+        {
+            const std::size_t activityCount = pParent->GetActivityCount();
+
+            for (std::size_t i = 0; i < activityCount; ++i)
+            {
+                // activity found?
+                if (pParent->GetActivityAt(i) == pActivity)
+                {
+                    // remove the activity from the array
+                    if (!pParent->RemoveActivityAt(i))
+                        return FALSE;
+
+                    // insert it after
+                    if (!pParent->InsertActivityAt(pActivity, i - 1))
+                        return FALSE;
+
+                    // recalculate all links
+                    RecalculateAllLinks();
+                    return TRUE;
+                }
+            }
+        }
     }
 
-    return NULL;
-    //## end ZBaseActivity::GetMainProcess%945000546.body
+    return FALSE;
 }
-
-void ZBaseActivity::SetCurrentActivity(const CString ActivityName)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::MoveActivityDown(const CString& activityName)
 {
-    //## begin ZProcess::SetCurrentActivity%931815523.body preserve=yes
-    m_pCurrentActivity = FindActivity(ActivityName);
-    //## end ZProcess::SetCurrentActivity%931815523.body
+    if (!CanActivityMoveDown(activityName))
+        return FALSE;
+
+    PSS_BaseActivity* pActivity = FindBaseActivity(activityName);
+
+    if (pActivity)
+    {
+        PSS_BaseActivity* pParent = pActivity->GetParent();
+
+        if (pParent)
+        {
+            const std::size_t activityCount = pParent->GetActivityCount();
+
+            for (std::size_t i = 0; i < activityCount; ++i)
+            {
+                // activity found?
+                if (pParent->GetActivityAt(i) == pActivity)
+                {
+                    // remove the activity from the array
+                    if (!pParent->RemoveActivityAt(i))
+                        return FALSE;
+
+                    // insert it after
+                    if (!pParent->InsertActivityAt(pActivity, i + 1))
+                        return FALSE;
+
+                    // recalculate all links
+                    RecalculateAllLinks();
+                    return TRUE;
+                }
+            }
+        }
+    }
+
+    return FALSE;
 }
-
-void ZBaseActivity::SetCurrentActivity(ZBaseActivity* pActivity)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::CanActivityMoveUp(const CString& activityName)
 {
-    //## begin ZProcess::SetCurrentActivity%931815525.body preserve=yes
+    PSS_BaseActivity* pActivity      = FindBaseActivity(activityName);
+    PSS_BaseActivity* pFirstActivity = GetActivityAt(0);
+
+    if (pActivity)
+        // if owns activities, can only move at the same level
+        if (pActivity->HasActivities())
+        {
+            PSS_BaseActivity* pParent = pActivity->GetParent();
+
+            if (pParent)
+            {
+                const std::size_t activityCount = pParent->GetActivityCount();
+
+                // iterate through parent activities. When activity found, return true if there is one more above
+                for (std::size_t i = 0; i < activityCount; ++i)
+                    if (pParent->GetActivityAt(i) == pActivity)
+                        return i;
+            }
+        }
+        else
+            // return true if not the first activity and not the process
+            return (pFirstActivity->GetName() != activityName && GetName() != activityName);
+
+    return FALSE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::CanActivityMoveDown(const CString& activityName)
+{
+    PSS_BaseActivity* pActivity = FindBaseActivity(activityName);
+
+    if (pActivity)
+    {
+        // if owns activities, can only move at the same level
+        if (pActivity->HasActivities())
+        {
+            PSS_BaseActivity* pParent = pActivity->GetParent();
+
+            if (pParent)
+            {
+                const std::size_t activityCount = pParent->GetActivityCount();
+
+                // iterate through parent activities. When activity found, return true if there is one more below
+                for (std::size_t i = 0; i < activityCount; ++i)
+                    if (pParent->GetActivityAt(i) == pActivity)
+                        return (i < pParent->GetActivityCount() - 1);
+            }
+        }
+        else
+        if (pActivity->GetNextBaseActivity())
+            return TRUE;
+    }
+
+    return FALSE;
+}
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::SetCurrentActivity(const CString& activityName)
+{
+    m_pCurrentActivity = FindActivity(activityName);
+}
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::SetCurrentActivity(PSS_BaseActivity* pActivity)
+{
     m_pCurrentActivity = pActivity;
-    //## end ZProcess::SetCurrentActivity%931815525.body
 }
-
-ZBaseActivity* ZBaseActivity::SetCurrentActivityToNext()
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::SetCurrentActivityToPrevious()
 {
-    //## begin ZProcess::SetCurrentActivityToNext%931677640.body preserve=yes
     if (m_pCurrentActivity)
-    {
-        m_pCurrentActivity = m_pCurrentActivity->GetNextValidActivity();
-    }
-    else
-    {
-        m_pCurrentActivity = GetNextValidActivity();
-    }
-
-    return m_pCurrentActivity;
-    //## end ZProcess::SetCurrentActivityToNext%931677640.body
-}
-
-ZBaseActivity* ZBaseActivity::SetCurrentActivityToPrevious()
-{
-    //## begin ZProcess::SetCurrentActivityToPrevious%931677641.body preserve=yes
-    if (m_pCurrentActivity)
-    {
         m_pCurrentActivity = m_pCurrentActivity->GetPreviousValidActivity();
-    }
     else
-    {
         m_pCurrentActivity = GetPreviousValidActivity();
-    }
 
     return m_pCurrentActivity;
-    //## end ZProcess::SetCurrentActivityToPrevious%931677641.body
 }
-
-ZBaseActivity* ZBaseActivity::GetNextValidActivityFromCurrent()
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::SetCurrentActivityToNext()
 {
-    //## begin ZProcess::GetNextValidActivityFromCurrent%932278231.body preserve=yes
     if (m_pCurrentActivity)
-    {
-        return m_pCurrentActivity->GetNextValidActivity();
-    }
+        m_pCurrentActivity = m_pCurrentActivity->GetNextValidActivity();
+    else
+        m_pCurrentActivity = GetNextValidActivity();
 
-    return NULL;
-    //## end ZProcess::GetNextValidActivityFromCurrent%932278231.body
+    return m_pCurrentActivity;
 }
-
-ZBaseActivity* ZBaseActivity::GetPreviousValidActivityFromCurrent()
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetPreviousValidActivityFromCurrent() const
 {
-    //## begin ZProcess::GetPreviousValidActivityFromCurrent%932278232.body preserve=yes
     if (m_pCurrentActivity)
-    {
         return m_pCurrentActivity->GetPreviousValidActivity();
-    }
 
     return NULL;
-    //## end ZProcess::GetPreviousValidActivityFromCurrent%932278232.body
 }
-
-ZBaseActivity* ZBaseActivity::GetNextBaseActivityFromCurrent()
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetNextValidActivityFromCurrent() const
 {
-    //## begin ZProcess::GetNextBaseActivityFromCurrent%932278233.body preserve=yes
     if (m_pCurrentActivity)
-    {
-        return m_pCurrentActivity->GetNextBaseActivity();
-    }
+        return m_pCurrentActivity->GetNextValidActivity();
 
     return NULL;
-    //## end ZProcess::GetNextBaseActivityFromCurrent%932278233.body
 }
-
-ZBaseActivity* ZBaseActivity::GetPreviousBaseActivityFromCurrent()
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetPreviousBaseActivityFromCurrent() const
 {
-    //## begin ZProcess::GetPreviousBaseActivityFromCurrent%932278234.body preserve=yes
     if (m_pCurrentActivity)
-    {
         return m_pCurrentActivity->GetPreviousBaseActivity();
-    }
 
     return NULL;
-    //## end ZProcess::GetPreviousBaseActivityFromCurrent%932278234.body
 }
-
-BOOL ZBaseActivity::RemoveActivityAt(size_t Index)
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::GetNextBaseActivityFromCurrent() const
 {
-    //## begin ZProcess::RemoveActivityAt%935832848.body preserve=yes
-    if (Index < GetActivityCount())
+    if (m_pCurrentActivity)
+        return m_pCurrentActivity->GetNextBaseActivity();
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::RemoveActivityAt(std::size_t index)
+{
+    if (index < GetActivityCount())
     {
-        m_ActivityArray.RemoveAt(Index);
+        m_ActivityArray.RemoveAt(index);
         return TRUE;
     }
 
     return FALSE;
-    //## end ZProcess::RemoveActivityAt%935832848.body
 }
-
-BOOL ZBaseActivity::InsertActivityAt(ZBaseActivity* pActivity, size_t Index)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::InsertActivityAt(PSS_BaseActivity* pActivity, std::size_t index)
 {
-    //## begin ZProcess::InsertActivityAt%935832849.body preserve=yes
-    if (Index >= GetActivityCount())
-    {
-        m_ActivityArray.Add((CObject*)pActivity);
-    }
+    if (index >= GetActivityCount())
+        m_ActivityArray.Add(pActivity);
     else
-    {
-        m_ActivityArray.InsertAt(Index, (CObject*)pActivity);
-    }
+        m_ActivityArray.InsertAt(index, pActivity);
 
     return TRUE;
-    //## end ZProcess::InsertActivityAt%935832849.body
 }
-
-BOOL ZBaseActivity::AddActivity(ZBaseActivity* Activity)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::AddActivity(PSS_BaseActivity* pActivity)
 {
-    //## begin ZProcess::AddActivity%913664906.body preserve=yes
-    if (m_ActivityArray.Add((CObject*)Activity) < 0)
-    {
+    if (m_ActivityArray.Add(pActivity) < 0)
         return FALSE;
-    }
 
     return TRUE;
-    //## end ZProcess::AddActivity%913664906.body
 }
-
-BOOL ZBaseActivity::AddActivityAfter(ZBaseActivity* Activity, const CString& ActivityName)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::AddActivityAfter(PSS_BaseActivity* pActivity, const CString& activityName)
 {
-    //## begin ZProcess::AddActivityAfter%913664907.body preserve=yes
-    for (size_t i = 0; i < GetActivityCount(); ++i)
-    {
-        if (GetActivityAt(i)->GetName() == ActivityName)
+    const std::size_t activityCount = GetActivityCount();
+
+    for (std::size_t i = 0; i < activityCount; ++i)
+        if (GetActivityAt(i)->GetName() == activityName)
         {
-            m_ActivityArray.InsertAt(i + 1, (CObject*)Activity);
+            m_ActivityArray.InsertAt(i + 1, pActivity);
             return TRUE;
         }
-    }
 
     return FALSE;
-    //## end ZProcess::AddActivityAfter%913664907.body
 }
-
-BOOL ZBaseActivity::DeleteActivity(ZBaseActivity* Activity)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::DeleteActivity(PSS_BaseActivity* pActivity)
 {
-    //## begin ZProcess::DeleteActivity%913664908.body preserve=yes
-    for (size_t i = 0; i < GetActivityCount(); ++i)
+    const std::size_t activityCount = GetActivityCount();
+
+    for (std::size_t i = 0; i < activityCount; ++i)
     {
-        if (GetActivityAt(i) == Activity)
+        if (GetActivityAt(i) == pActivity)
         {
             delete GetActivityAt(i);
             m_ActivityArray.RemoveAt(i);
@@ -958,516 +865,156 @@ BOOL ZBaseActivity::DeleteActivity(ZBaseActivity* Activity)
         }
 
         if (GetActivityAt(i)->HasActivities())
-        {
-            if (GetActivityAt(i)->DeleteActivity(Activity) == TRUE)
-            {
+            if (GetActivityAt(i)->DeleteActivity(pActivity) == TRUE)
                 return TRUE;
-            }
-        }
     }
 
     return FALSE;
-    //## end ZProcess::DeleteActivity%913664908.body
 }
-
-BOOL ZBaseActivity::DeleteActivity(const CString& ActivityName)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::DeleteActivity(const CString& activityName)
 {
-    //## begin ZProcess::DeleteActivity%913885071.body preserve=yes
-    ZBaseActivity* pActivity = FindActivity(ActivityName);
+    PSS_BaseActivity* pActivity = FindActivity(activityName);
 
     if (pActivity)
-    {
         return DeleteActivity(pActivity);
-    }
 
     return FALSE;
-    //## end ZProcess::DeleteActivity%913885071.body
 }
-
-ZBaseActivity* ZBaseActivity::FindBaseActivity(const CString& ActivityName)
+//---------------------------------------------------------------------------
+PSS_Activity* PSS_BaseActivity::FindActivity(const CString& activityName) const
 {
-    //## begin ZProcess::FindBaseActivity%934700763.body preserve=yes
-    for (size_t i = 0; i < GetActivityCount(); ++i)
-    {
-        if (GetActivityAt(i)->GetName() == ActivityName)
-        {
-            return GetActivityAt(i);
-        }
+    const std::size_t activityCount = GetActivityCount();
 
-        if (GetActivityAt(i)->HasActivities())
+    for (std::size_t i = 0; i < activityCount; ++i)
+    {
+        PSS_BaseActivity* pActivity = GetActivityAt(i);
+
+        if (!pActivity)
+            continue;
+
+        if (pActivity->HasActivities())
         {
-            ZBaseActivity* pReturnedActivity = GetActivityAt(i)->FindBaseActivity(ActivityName);
+            PSS_Activity* pReturnedActivity = pActivity->FindActivity(activityName);
 
             if (pReturnedActivity)
-            {
                 return pReturnedActivity;
-            }
         }
+        else
+        if (pActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)) && pActivity->GetName() == activityName)
+            return static_cast<PSS_Activity*>(pActivity);
     }
 
     return NULL;
-    //## end ZProcess::FindBaseActivity%934700763.body
 }
-
-PSS_Activity* ZBaseActivity::FindActivity(const CString& ActivityName)
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::FindBaseActivity(const CString& activityName) const
 {
-    //## begin ZProcess::FindActivity%913664909.body preserve=yes
-    for (size_t i = 0; i < GetActivityCount(); ++i)
+    const std::size_t activityCount = GetActivityCount();
+
+    for (std::size_t i = 0; i < activityCount; ++i)
     {
-        if (GetActivityAt(i)->HasActivities())
+        PSS_BaseActivity* pActivity = GetActivityAt(i);
+
+        if (!pActivity)
+            continue;
+
+        if (pActivity->GetName() == activityName)
+            return pActivity;
+
+        if (pActivity->HasActivities())
         {
-            PSS_Activity* pReturnedActivity = GetActivityAt(i)->FindActivity(ActivityName);
+            PSS_BaseActivity* pReturnedActivity = pActivity->FindBaseActivity(activityName);
 
             if (pReturnedActivity)
-            {
                 return pReturnedActivity;
-            }
-        }
-        else if (GetActivityAt(i)->IsKindOf(RUNTIME_CLASS(PSS_Activity)) &&
-                 GetActivityAt(i)->GetName() == ActivityName)
-        {
-            return (PSS_Activity*)GetActivityAt(i);
         }
     }
 
     return NULL;
-    //## end ZProcess::FindActivity%913664909.body
 }
-
-BOOL ZBaseActivity::AddProcess(ZProcess* Process)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::AddProcess(ZProcess* pProcess)
 {
-    //## begin ZProcess::AddProcess%932406384.body preserve=yes
-    return AddActivity(Process);
-    //## end ZProcess::AddProcess%932406384.body
+    return AddActivity(pProcess);
 }
-
-BOOL ZBaseActivity::AddProcessAfter(ZProcess* Process, const CString& ActivityName)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::AddProcessAfter(ZProcess* pProcess, const CString& activityName)
 {
-    //## begin ZProcess::AddProcessAfter%932406385.body preserve=yes
-    return AddActivityAfter(Process, ActivityName);
-    //## end ZProcess::AddProcessAfter%932406385.body
+    return AddActivityAfter(pProcess, activityName);
 }
-
-BOOL ZBaseActivity::DeleteProcess(ZProcess* Process)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::DeleteProcess(ZProcess* pProcess)
 {
-    //## begin ZProcess::DeleteProcess%932406386.body preserve=yes
-    return DeleteActivity(Process);
-    //## end ZProcess::DeleteProcess%932406386.body
+    return DeleteActivity(pProcess);
 }
-
-BOOL ZBaseActivity::DeleteProcess(const CString& ProcessName)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::DeleteProcess(const CString& processName)
 {
-    //## begin ZProcess::DeleteProcess%932406387.body preserve=yes
-    return DeleteActivity(ProcessName);
-    //## end ZProcess::DeleteProcess%932406387.body
+    return DeleteActivity(processName);
 }
-
-ZProcess* ZBaseActivity::FindProcess(const CString& ProcessName)
+//---------------------------------------------------------------------------
+ZProcess* PSS_BaseActivity::FindProcess(const CString& processName) const
 {
-    //## begin ZProcess::FindProcess%932406388.body preserve=yes
-    ZBaseActivity* pProcess = FindActivity(ProcessName);
+    ZProcess* pProcess = dynamic_cast<ZProcess*>(FindActivity(processName));
 
-    if (pProcess && pProcess->IsKindOf(RUNTIME_CLASS(ZProcess)))
-    {
-        return (ZProcess*)pProcess;
-    }
+    if (pProcess)
+        return pProcess;
 
     return NULL;
-    //## end ZProcess::FindProcess%932406388.body
 }
-
-void ZBaseActivity::RemoveAllActivities(bool bDeleteActivityPtr /*= true*/)
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::RemoveAllActivities(bool doDelete)
 {
-    //## begin ZProcess::RemoveAllActivities%913664910.body preserve=yes
-    for (size_t i = 0; i < GetActivityCount(); ++i)
-    {
+    const std::size_t activityCount = GetActivityCount();
+
+    for (std::size_t i = 0; i < activityCount; ++i)
         if (GetActivityAt(i))
         {
             if (GetActivityAt(i)->HasActivities())
-            {
-                GetActivityAt(i)->RemoveAllActivities(bDeleteActivityPtr);
-            }
+                GetActivityAt(i)->RemoveAllActivities(doDelete);
 
-            if (bDeleteActivityPtr)
-            {
+            if (doDelete)
                 delete GetActivityAt(i);
-            }
         }
-    }
 
     m_ActivityArray.RemoveAll();
-    //## end ZProcess::RemoveAllActivities%913664910.body
 }
-
-int ZBaseActivity::GetActivityIndex(const CString& ActivityName) const
+//---------------------------------------------------------------------------
+int PSS_BaseActivity::GetActivityIndex(const CString& activityName) const
 {
-    //## begin ZProcess::GetActivityIndex%916175122.body preserve=yes
-    for (size_t i = 0; i < GetActivityCount(); ++i)
-    {
-        if (GetActivityAt(i)->GetName() == ActivityName)
-        {
-            return (int)i;
-        }
-    }
+    const std::size_t activityCount = GetActivityCount();
+
+    for (std::size_t i = 0; i < activityCount; ++i)
+        if (GetActivityAt(i)->GetName() == activityName)
+            return int(i);
 
     return -1;
-    //## end ZProcess::GetActivityIndex%916175122.body
 }
-
-BOOL ZBaseActivity::SetActivityAt(int Index, ZBaseActivity* pActivity)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::SetActivityAt(int index, PSS_BaseActivity* pActivity)
 {
-    //## begin ZProcess::SetActivityAt%916175123.body preserve=yes
-    if (Index < (int)GetActivityCount())
+    if (index < int(GetActivityCount()))
     {
-        m_ActivityArray.SetAt(Index, pActivity);
+        m_ActivityArray.SetAt(index, pActivity);
         return TRUE;
     }
 
     return FALSE;
-    //## end ZProcess::SetActivityAt%916175123.body
 }
-
-BOOL ZBaseActivity::ChoiceActivityAdd(const CString ActivityName)
+//---------------------------------------------------------------------------
+BOOL PSS_BaseActivity::RecalculateAllLinks()
 {
-    //## begin ZProcess::ChoiceActivityAdd%934700762.body preserve=yes
-    // First, check if the array does not contains the value
-    for (int i = 0; i < GetChoiceActivityArray().GetSize(); ++i)
-    {
-        if (ActivityName == GetChoiceActivityArray().GetAt(i))
-        {
-            return TRUE;
-        }
-    }
-
-    return GetChoiceActivityArray().Add(ActivityName) > -1;
-    //## end ZProcess::ChoiceActivityAdd%934700762.body
-}
-
-void ZBaseActivity::SetChildVisibility(const EThreeState value)
-{
-    //## begin ZProcess::SetChildVisibility%935952019.body preserve=yes
-    // Sets the value for all activities and sub-process
-    for (size_t i = 0; i < GetActivityCount(); ++i)
-    {
-        GetActivityAt(i)->SetVisibility(value);
-    }
-    //## end ZProcess::SetChildVisibility%935952019.body
-}
-
-BOOL ZBaseActivity::MoveActivityDown(const CString ActivityName)
-{
-    //## begin ZProcess::MoveActivityDown%935832843.body preserve=yes
-    if (!CanActivityMoveDown(ActivityName))
-    {
-        return FALSE;
-    }
-
-    ZBaseActivity* pActivity = FindBaseActivity(ActivityName);
-
-    if (pActivity)
-    {
-        ZBaseActivity* pParent = pActivity->GetParent();
-
-        if (pParent)
-        {
-            for (size_t i = 0; i < pParent->GetActivityCount(); ++i)
-            {
-                // When activity found
-                if (pParent->GetActivityAt(i) == pActivity)
-                {
-                    // Remove the pointer from the activity array
-                    if (!pParent->RemoveActivityAt(i))
-                    {
-                        return FALSE;
-                    }
-
-                    // And insert it after
-                    if (!pParent->InsertActivityAt(pActivity, i + 1))
-                    {
-                        return FALSE;
-                    }
-
-                    // Then recalculate all links
-                    RecalculateAllLinks();
-                    return TRUE;
-                }
-            }
-        }
-    }
-
-    return FALSE;
-    //## end ZProcess::MoveActivityDown%935832843.body
-}
-
-BOOL ZBaseActivity::MoveActivityUp(const CString ActivityName)
-{
-    //## begin ZProcess::MoveActivityUp%935832844.body preserve=yes
-    if (!CanActivityMoveUp(ActivityName))
-    {
-        return FALSE;
-    }
-
-    ZBaseActivity* pActivity = FindBaseActivity(ActivityName);
-
-    if (pActivity)
-    {
-        ZBaseActivity* pParent = pActivity->GetParent();
-
-        if (pParent)
-        {
-            for (size_t i = 0; i < pParent->GetActivityCount(); ++i)
-            {
-                // When activity found
-                if (pParent->GetActivityAt(i) == pActivity)
-                {
-                    // Remove the pointer from the activity array
-                    if (!pParent->RemoveActivityAt(i))
-                    {
-                        return FALSE;
-                    }
-
-                    // And insert it after
-                    if (!pParent->InsertActivityAt(pActivity, i - 1))
-                    {
-                        return FALSE;
-                    }
-
-                    // Then recalculate all links
-                    RecalculateAllLinks();
-                    return TRUE;
-                }
-            }
-        }
-    }
-
-    return FALSE;
-    //## end ZProcess::MoveActivityUp%935832844.body
-}
-
-BOOL ZBaseActivity::CanActivityMoveDown(const CString ActivityName)
-{
-    //## begin ZProcess::CanActivityMoveDown%935832845.body preserve=yes
-    ZBaseActivity* pActivity = FindBaseActivity(ActivityName);
-
-    if (pActivity)
-    {
-        // If owns activities, can only move at the same level
-        if (pActivity->HasActivities())
-        {
-            ZBaseActivity* pParent = pActivity->GetParent();
-
-            if (pParent)
-            {
-                for (size_t i = 0; i < pParent->GetActivityCount(); ++i)
-                {
-                    // When activity found, return true if there is one more below
-                    if (pParent->GetActivityAt(i) == pActivity)
-                    {
-                        return i < pParent->GetActivityCount() - 1;
-                    }
-                }
-            }
-        }
-        else if (pActivity->GetNextBaseActivity())
-        {
-            return TRUE;
-        }
-    }
-
-    return FALSE;
-    //## end ZProcess::CanActivityMoveDown%935832845.body
-}
-
-BOOL ZBaseActivity::CanActivityMoveUp(const CString ActivityName)
-{
-    //## begin ZProcess::CanActivityMoveUp%935832846.body preserve=yes
-    ZBaseActivity*    pActivity = FindBaseActivity(ActivityName);
-    ZBaseActivity*    pFirstActivity = GetActivityAt(0);
-
-    if (pActivity)
-    {
-        // If owns activities, can only move at the same level
-        if (pActivity->HasActivities())
-        {
-            ZBaseActivity* pParent = pActivity->GetParent();
-
-            if (pParent)
-            {
-                for (size_t i = 0; i < pParent->GetActivityCount(); ++i)
-                {
-                    // When activity found, return true if there is one more above
-                    if (pParent->GetActivityAt(i) == pActivity)
-                    {
-                        return i != 0;
-                    }
-                }
-            }
-        }
-        else
-        {
-            // return true if not the first activity and not the process
-            return pFirstActivity->GetName() != ActivityName && GetName() != ActivityName;
-        }
-    }
-
-    return FALSE;
-    //## end ZProcess::CanActivityMoveUp%935832846.body
-}
-
-BOOL ZBaseActivity::RecalculateAllLinks()
-{
-    //## begin ZProcess::RecalculateAllLinks%932406379.body preserve=yes
     RecalculateProcessAllLinks(this);
     return TRUE;
-    //## end ZProcess::RecalculateAllLinks%932406379.body
 }
-
-ZBaseActivity* ZBaseActivity::RecalculateProcessAllLinks(ZBaseActivity* pParent, ZBaseActivity* pNextOfParent)
+//---------------------------------------------------------------------------
+void PSS_BaseActivity::Serialize(CArchive& ar)
 {
-    //## begin ZProcess::RecalculateProcessAllLinks%932406381.body preserve=yes
-    if (GetActivityCount() > 0)
-    {
-        // Initialize the previous pointer of first activity to the parent
-        ZBaseActivity*    pPrevious = pParent;
-        ZBaseActivity*    pReturnActivity = NULL;
-        ZBaseActivity*    pLastOfChild = NULL;
+    PSS_BaseDocument* pDocument = dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument);
 
-        if (GetRunMode() == SequenceRun || !IsChoiceActivityDone())
-        {
-            // Assigns the next pointer of the process to the first activity
-            AssignNextActivityPtr(GetActivityAt(0));
-
-            // Run through the process' activities
-            for (size_t i = 0; i < GetActivityCount(); ++i)
-            {
-                // Assign the parent pointer to the activity
-                GetActivityAt(i)->SetParent(this);
-
-                // And assigns previous pointer
-                GetActivityAt(i)->AssignPreviousActivityPtr(pPrevious);
-
-                // If the activity has activities, process all activities
-                if (GetActivityAt(i)->HasActivities())
-                {
-                    // Call recursively with the parent and the next activity
-                    // and save the previous activity pointer
-                    pPrevious = GetActivityAt(i)->RecalculateProcessAllLinks(GetActivityAt(i),
-                                                                             GetActivityAt(i + 1));
-
-                    // Assign the next of the returned activity
-                    if (pPrevious)
-                    {
-                        pPrevious->AssignNextActivityPtr(GetActivityAt(i + 1));
-                    }
-                    else
-                    {
-                        // If no activity, set previous as normal previous
-                        // Save the previous activity pointer
-                        pPrevious = GetActivityAt(i);
-                    }
-
-                    // If no next activity, therefore, the last activity is the returned activity
-                    if (GetActivityAt(i + 1) == NULL)
-                    {
-                        pReturnActivity = pPrevious;
-                    }
-                }
-                else
-                {
-                    // Assigns next, if no, it assigns NULL pointer
-                    GetActivityAt(i)->AssignNextActivityPtr(GetActivityAt(i + 1));
-
-                    // Save the previous activity pointer
-                    pPrevious = GetActivityAt(i);
-                }
-            }
-
-            // The next pointer of the last activity points to the next activity of the parent
-            // only if not a process and has no activities
-            if (!GetActivityAt(GetActivityCount() - 1)->IsKindOf(RUNTIME_CLASS(ZProcess)) &&
-                !GetActivityAt(GetActivityCount() - 1)->HasActivities())
-            {
-                GetActivityAt(GetActivityCount() - 1)->AssignNextActivityPtr(pNextOfParent);
-            }
-
-            return (pReturnActivity) ? pReturnActivity : GetActivityAt(GetActivityCount() - 1);
-        }
-        else
-        {
-            // Take the choosen activity and link it
-            // In the first version, only the first chosen activity is selected
-            ZBaseActivity* pChoosenActivity = FindBaseActivity(GetChoiceActivityArray().GetAt(0));
-
-            // Assigns the next pointer of the process to the chosen activity
-            AssignNextActivityPtr(pChoosenActivity);
-
-            // Assign the parent pointer to the activity
-            pChoosenActivity->SetParent(this);
-
-            // and assigns previous pointer
-            pChoosenActivity->AssignPreviousActivityPtr(pPrevious);
-
-            // If the activity owns activities, process all activities
-            if (pChoosenActivity->HasActivities())
-            {
-                // Call recursively with the parent and the next activity
-                // and save the previous activity pointer
-                pPrevious = pChoosenActivity->RecalculateProcessAllLinks(pChoosenActivity, NULL);
-
-                // If no activity, set previous as normal previous
-                if (!pPrevious)
-                {
-                    // Save the previous activity pointer
-                    pPrevious = pChoosenActivity;
-                }
-            }
-            else
-            {
-                // Assigns next, if no, it assigns NULL pointer
-                pChoosenActivity->AssignNextActivityPtr(NULL);
-
-                // Save the previous activity pointer
-                pPrevious = pChoosenActivity;
-            }
-
-            // The next pointer of the last activity points to the next activity of the parent
-            // only if not a process
-            if (!pPrevious->IsKindOf(RUNTIME_CLASS(ZProcess)) && !pPrevious->HasActivities())
-            {
-                pPrevious->AssignNextActivityPtr(pNextOfParent);
-            }
-
-            return pPrevious;
-        }
-    }
-
-    return NULL;
-    //## end ZProcess::RecalculateProcessAllLinks%932406381.body
-}
-
-void ZBaseActivity::SetDefaultProperty()
-{
-    m_TimeType = TimeDays;
-    m_DurationDays = 2;
-    m_VisibilityType = Visible;
-    m_IsVisible = E_TS_True;
-    m_DaysForBackupResources = 2;
-    m_UseBackupResources = FALSE;
-    m_RemindDays = 1;
-    m_IntranetActivity = TRUE;
-    m_IsInBackupProcess = FALSE;
-
-    m_Initiator.Empty();
-
-    RemoveAllUsers();
-    RemoveAllBackupUsers();
-}
-
-void ZBaseActivity::Serialize(CArchive& ar)
-{
-    //## begin ZBaseActivity::Serialize%931584985.body preserve=yes
-    CString CurrentActivityName;
-    CurrentActivityName.Empty();
+    CString currentActivityName;
+    currentActivityName.Empty();
 
     if (ar.IsStoring())
     {
@@ -1475,38 +1022,32 @@ void ZBaseActivity::Serialize(CArchive& ar)
         ar << m_Description;
         ar << m_Comment;
         ar << m_Initiator;
-        ar << (WORD)m_ActivityStatus;
+        ar << WORD(m_ActivityStatus);
         ar << m_DurationDays;
         ar << m_ForecastedStartDate;
         ar << m_ForecastedEndDate;
         ar << m_StartDate;
         ar << m_EndDate;
         ar << m_LastUpdateDate;
-        ar << (WORD)m_VisibilityType;
-        ar << (WORD)m_IsVisible;
-        ar << (WORD)m_TimeType;
-        ar << (WORD)m_IntranetActivity;
-
-        ar << (WORD)m_DaysForBackupResources;
-        ar << (WORD)m_UseBackupResources;
-        ar << (WORD)m_IsInBackupProcess;
-        ar << (WORD)m_RemindDays;
-
-        ar << m_PrincipalResources;
+        ar << WORD(m_VisibilityType);
+        ar << WORD(m_IsVisible);
+        ar << WORD(m_TimeType);
+        ar << WORD(m_IntranetActivity);
+        ar << WORD(m_DaysForBackupResources);
+        ar << WORD(m_UseBackupResources);
+        ar << WORD(m_IsInBackupProcess);
+        ar << WORD(m_RemindDays);
+        ar << m_MainResources;
         ar << m_BackupResources;
 
-        // Version 17
+        // version 17
         if (m_pCurrentActivity)
-        {
             ar << m_pCurrentActivity->GetName();
-        }
         else
-        {
-            // Serialize empty
-            ar << CurrentActivityName;
-        }
+            // serialize empty
+            ar << currentActivityName;
 
-        ar << (WORD)m_RunMode;
+        ar << WORD(m_RunMode);
         ar << m_ActivityType;
     }
     else
@@ -1518,7 +1059,7 @@ void ZBaseActivity::Serialize(CArchive& ar)
 
         WORD wValue;
         ar >> wValue;
-        m_ActivityStatus = (ActivityStatus)wValue;
+        m_ActivityStatus = IEStatus(wValue);
 
         ar >> m_DurationDays;
         ar >> m_ForecastedStartDate;
@@ -1528,59 +1069,159 @@ void ZBaseActivity::Serialize(CArchive& ar)
         ar >> m_LastUpdateDate;
 
         ar >> wValue;
-        m_VisibilityType = (ActivityVisibilityType)wValue;
+        m_VisibilityType = IEVisibilityType(wValue);
 
         ar >> wValue;
-        m_IsVisible = (EThreeState)wValue;
+        m_IsVisible = EThreeState(wValue);
 
         ar >> wValue;
-        m_TimeType = (ActivityTimeOutType)wValue;
+        m_TimeType = IETimeoutType(wValue);
 
         ar >> wValue;
-        m_IntranetActivity = (BOOL)wValue;
+        m_IntranetActivity = BOOL(wValue);
 
         ar >> wValue;
-        m_DaysForBackupResources = (size_t)wValue;
+        m_DaysForBackupResources = std::size_t(wValue);
 
         ar >> wValue;
-        m_UseBackupResources = (BOOL)wValue;
+        m_UseBackupResources = BOOL(wValue);
 
         ar >> wValue;
-        m_IsInBackupProcess = (BOOL)wValue;
+        m_IsInBackupProcess = BOOL(wValue);
 
         ar >> wValue;
-        m_RemindDays = (size_t)wValue;
+        m_RemindDays = std::size_t(wValue);
 
-        ar >> m_PrincipalResources;
+        ar >> m_MainResources;
         ar >> m_BackupResources;
 
-        // Version 17
-        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17)
+        // version 17
+        if (pDocument && pDocument->GetDocumentStamp().GetInternalVersion() >= 17)
         {
-            ar >> CurrentActivityName;
+            ar >> currentActivityName;
 
             ar >> wValue;
-            m_RunMode = (ActivityRunMode)wValue;
+            m_RunMode = IERunMode(wValue);
 
             ar >> m_ActivityType;
         }
     }
 
-    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17)
+    if (pDocument && pDocument->GetDocumentStamp().GetInternalVersion() >= 17)
     {
         m_ActivityArray.Serialize(ar);
+
+        m_SelectedActivityArray.Serialize(ar);
+
+        // once the activity array is serialized, and in reading mode, assign the current activity
+        if (!ar.IsStoring() && !currentActivityName.IsEmpty())
+            m_pCurrentActivity = FindBaseActivity(currentActivityName);
     }
-
-    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17)
+}
+//---------------------------------------------------------------------------
+PSS_BaseActivity* PSS_BaseActivity::RecalculateProcessAllLinks(PSS_BaseActivity* pParent, PSS_BaseActivity* pNextOfParent)
+{
+    if (GetActivityCount() > 0)
     {
-        m_ChoiceActivityArray.Serialize(ar);
+        // initialize the previous activity of the first one to the parent
+        PSS_BaseActivity* pPrevious       = pParent;
+        PSS_BaseActivity* pReturnActivity = NULL;
+        PSS_BaseActivity* pLastOfChild    = NULL;
 
-        // Once the activity array is serialized, and in reading mode
-        // Assign the current activity pointer
-        if (!ar.IsStoring() && !CurrentActivityName.IsEmpty())
+        if (GetRunMode() == IE_RM_Sequence || !IsActivitySelectionDone())
         {
-            m_pCurrentActivity = FindBaseActivity(CurrentActivityName);
+            // assigns the next pointer of the process to the first activity
+            AssignNextActivity(GetActivityAt(0));
+
+            const std::size_t activityCount = GetActivityCount();
+
+            // iterate through the process activities
+            for (std::size_t i = 0; i < activityCount; ++i)
+            {
+                // assign the parent pointer to the activity
+                GetActivityAt(i)->SetParent(this);
+
+                // assigns previous activity
+                GetActivityAt(i)->AssignPreviousActivity(pPrevious);
+
+                // if the activity contains children activities, process all of them
+                if (GetActivityAt(i)->HasActivities())
+                {
+                    // call recursively with the parent and the next activity, and save the previous activity
+                    pPrevious = GetActivityAt(i)->RecalculateProcessAllLinks(GetActivityAt(i), GetActivityAt(i + 1));
+
+                    // assign the next of the returned activity
+                    if (pPrevious)
+                        pPrevious->AssignNextActivity(GetActivityAt(i + 1));
+                    else
+                        // if no activity, set previous as normal previous. Save the previous activity
+                        pPrevious = GetActivityAt(i);
+
+                    // if no next activity, therefore, the last activity is the returned activity
+                    if (!GetActivityAt(i + 1))
+                        pReturnActivity = pPrevious;
+                }
+                else
+                {
+                    // assign next, if no, NULL will be assigned
+                    GetActivityAt(i)->AssignNextActivity(GetActivityAt(i + 1));
+
+                    // save the previous activity pointer
+                    pPrevious = GetActivityAt(i);
+                }
+            }
+
+            PSS_BaseActivity* pProcess = GetActivityAt(GetActivityCount() - 1);
+
+            // the next activity of the last one points to the next activity of the parent, only if not a process
+            // and has no activities
+            if (!pProcess->IsKindOf(RUNTIME_CLASS(ZProcess)) && !pProcess->HasActivities())
+                GetActivityAt(GetActivityCount() - 1)->AssignNextActivity(pNextOfParent);
+
+            return (pReturnActivity ? pReturnActivity : pProcess);
+        }
+        else
+        {
+            // take the selected activity and link it. In the first version, only the first selected activity was selected
+            PSS_BaseActivity* pSelectedActivity = FindBaseActivity(GetSelectedActivityArray().GetAt(0));
+
+            // assign the next process activity to the selected activity
+            AssignNextActivity(pSelectedActivity);
+
+            // assign the parent to the activity
+            pSelectedActivity->SetParent(this);
+
+            // assign previous activiy
+            pSelectedActivity->AssignPreviousActivity(pPrevious);
+
+            // if the activity owns activities, process all activities
+            if (pSelectedActivity->HasActivities())
+            {
+                // call recursively with the parent and the next activity and save the previous activity
+                pPrevious = pSelectedActivity->RecalculateProcessAllLinks(pSelectedActivity, NULL);
+
+                // if no activity, set previous as normal previous
+                if (!pPrevious)
+                    // save the previous activity pointer
+                    pPrevious = pSelectedActivity;
+            }
+            else
+            {
+                // assign next, if no, it will be assigned to NULL
+                pSelectedActivity->AssignNextActivity(NULL);
+
+                // save the previous activity
+                pPrevious = pSelectedActivity;
+            }
+
+            // the next activity of the last one points to the next activity of the parent only if not a process
+            if (!pPrevious->IsKindOf(RUNTIME_CLASS(ZProcess)) && !pPrevious->HasActivities())
+                pPrevious->AssignNextActivity(pNextOfParent);
+
+            return pPrevious;
         }
     }
-    //## end ZBaseActivity::Serialize%931584985.body
+
+    return NULL;
 }
+//---------------------------------------------------------------------------

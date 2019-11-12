@@ -44,44 +44,44 @@ IMPLEMENT_DYNAMIC(ZBResources, CObject)
 
 
 ZBResources::ZBResources()
-  //## begin ZBResources::ZBResources%.hasinit preserve=no
-      : m_UserType(Users)
-  //## end ZBResources::ZBResources%.hasinit
-  //## begin ZBResources::ZBResources%.initialization preserve=yes
-  //## end ZBResources::ZBResources%.initialization
+//## begin ZBResources::ZBResources%.hasinit preserve=no
+    : m_UserType(Users)
+    //## end ZBResources::ZBResources%.hasinit
+    //## begin ZBResources::ZBResources%.initialization preserve=yes
+    //## end ZBResources::ZBResources%.initialization
 {
-  //## begin ZBResources::ZBResources%.body preserve=yes
-  //## end ZBResources::ZBResources%.body
+    //## begin ZBResources::ZBResources%.body preserve=yes
+    //## end ZBResources::ZBResources%.body
 }
 
 ZBResources::ZBResources(const ZBResources &right)
-  //## begin ZBResources::ZBResources%copy.hasinit preserve=no
-      : m_UserType(Users)
-  //## end ZBResources::ZBResources%copy.hasinit
-  //## begin ZBResources::ZBResources%copy.initialization preserve=yes
-  //## end ZBResources::ZBResources%copy.initialization
+//## begin ZBResources::ZBResources%copy.hasinit preserve=no
+    : m_UserType(Users)
+    //## end ZBResources::ZBResources%copy.hasinit
+    //## begin ZBResources::ZBResources%copy.initialization preserve=yes
+    //## end ZBResources::ZBResources%copy.initialization
 {
-  //## begin ZBResources::ZBResources%copy.body preserve=yes
+    //## begin ZBResources::ZBResources%copy.body preserve=yes
     *this = right;
-  //## end ZBResources::ZBResources%copy.body
+    //## end ZBResources::ZBResources%copy.body
 }
 
 
 ZBResources::~ZBResources()
 {
-  //## begin ZBResources::~ZBResources%.body preserve=yes
-  //## end ZBResources::~ZBResources%.body
+    //## begin ZBResources::~ZBResources%.body preserve=yes
+    //## end ZBResources::~ZBResources%.body
 }
 
 
 const ZBResources & ZBResources::operator=(const ZBResources &right)
 {
-  //## begin ZBResources::operator=%.body preserve=yes
-      for (size_t i = 0; i < right.GetUserCount(); ++i)
-          AddUser( right.GetUserAt(i) );
+    //## begin ZBResources::operator=%.body preserve=yes
+    for (size_t i = 0; i < right.GetUserCount(); ++i)
+        AddUser(right.GetUserAt(i));
     m_UserType = right.m_UserType;
     return *this;
-  //## end ZBResources::operator=%.body
+    //## end ZBResources::operator=%.body
 }
 
 
@@ -89,14 +89,14 @@ const ZBResources & ZBResources::operator=(const ZBResources &right)
 //## Other Operations (implementation)
 CArchive& operator >> (CArchive& ar, ZBResources& ActivityResource)
 {
-  //## begin ZBResources::operator >>%927742723.body preserve=yes
-       WORD    wValue;
+    //## begin ZBResources::operator >>%927742723.body preserve=yes
+    WORD    wValue;
     ar >> wValue;
     ActivityResource.m_UserType = (ActivityUserType)wValue;
 
-    ActivityResource.m_UserArray.Serialize( ar );
+    ActivityResource.m_UserArray.Serialize(ar);
     return ar;
-  //## end ZBResources::operator >>%927742723.body
+    //## end ZBResources::operator >>%927742723.body
 }
 
 CArchive& operator << (CArchive& ar, const ZBResources& ActivityResource)
@@ -106,54 +106,54 @@ CArchive& operator << (CArchive& ar, const ZBResources& ActivityResource)
     return ar;
 }
 
-void ZBResources::AddUser (const CString UserName)
+void ZBResources::AddUser(const CString UserName)
 {
-  //## begin ZBResources::AddUser%927742725.body preserve=yes
-      if (UserExist( UserName ))
-          return;
-    m_UserArray.Add( UserName );
-  //## end ZBResources::AddUser%927742725.body
+    //## begin ZBResources::AddUser%927742725.body preserve=yes
+    if (UserExist(UserName))
+        return;
+    m_UserArray.Add(UserName);
+    //## end ZBResources::AddUser%927742725.body
 }
 
-BOOL ZBResources::RemoveUser (const CString& UserName)
+BOOL ZBResources::RemoveUser(const CString& UserName)
 {
-  //## begin ZBResources::RemoveUser%927742726.body preserve=yes
-      for (size_t i = 0; i < GetUserCount(); ++i)
-          if (GetUserAt(i) == UserName)
-          {
-              m_UserArray.RemoveAt(i);
-              return TRUE;
-          }
-      return FALSE;
-  //## end ZBResources::RemoveUser%927742726.body
+    //## begin ZBResources::RemoveUser%927742726.body preserve=yes
+    for (size_t i = 0; i < GetUserCount(); ++i)
+        if (GetUserAt(i) == UserName)
+        {
+            m_UserArray.RemoveAt(i);
+            return TRUE;
+        }
+    return FALSE;
+    //## end ZBResources::RemoveUser%927742726.body
 }
 
-BOOL ZBResources::UserExist (const CString& UserName)
+BOOL ZBResources::UserExist(const CString& UserName) const
 {
-  //## begin ZBResources::UserExist%927742727.body preserve=yes
-      for (size_t i = 0; i < GetUserCount(); ++i)
-          if (GetUserAt(i) == UserName)
-              return TRUE;
-      return FALSE;
-  //## end ZBResources::UserExist%927742727.body
+    //## begin ZBResources::UserExist%927742727.body preserve=yes
+    for (size_t i = 0; i < GetUserCount(); ++i)
+        if (GetUserAt(i) == UserName)
+            return TRUE;
+    return FALSE;
+    //## end ZBResources::UserExist%927742727.body
 }
 
-PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, const PSS_UserManager& UserManager, const CString& ConnectedUser)
+PSS_MailUserList* ZBResources::CreatePersonList(ZProcess* pMainProcess, const PSS_UserManager& UserManager, const CString& ConnectedUser)
 {
-  //## begin ZBResources::CreatePersonList%927742730.body preserve=yes
-    // If responsible requested
+    //## begin ZBResources::CreatePersonList%927742730.body preserve=yes
+      // If responsible requested
     if (GetUserType() == ResponsibleOfUser)
     {
         // Search the connected user
-        PSS_User* pUser = UserManager.FindUser ( ConnectedUser );
+        PSS_User* pUser = UserManager.FindUser(ConnectedUser);
         if (pUser)
         {
             PSS_MailUserList*    pPersonList = new PSS_MailUserList;
             // Search the corresponding responsible user ptr
-            pUser = UserManager.FindUser ( pUser->GetResponsible() );
+            pUser = UserManager.FindUser(pUser->GetResponsible());
             if (pUser)
             {
-                pPersonList->AddPerson( *pUser );
+                pPersonList->AddPerson(*pUser);
                 return pPersonList;
             }
         }
@@ -167,20 +167,20 @@ PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, const P
                 CString    ActivityName = GetUserAt(0);
                 if (ActivityName.IsEmpty())
                     return NULL;
-                ZBaseActivity* pActivity = pMainProcess->FindBaseActivity( ActivityName );
+                PSS_BaseActivity* pActivity = pMainProcess->FindBaseActivity(ActivityName);
                 if (!pActivity)
                     return NULL;
                 // Return the initiator if the activity has been done.
                 if (!pActivity->GetInitiator().IsEmpty())
                 {
                     PSS_MailUserList*    pPersonList = new PSS_MailUserList;
-                    pPersonList->AddPerson( pActivity->GetInitiator() );
+                    pPersonList->AddPerson(pActivity->GetInitiator());
                     return pPersonList;
                 }
                 else
                 {
                     // Return the person list of the activity.
-                    return pActivity->ActivityCreatePersonList( UserManager, ConnectedUser );
+                    return pActivity->ActivityCreatePersonList(UserManager, ConnectedUser);
                 }
             }
         }
@@ -191,37 +191,37 @@ PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, const P
                 // Run through the user list and build the person
                 for (size_t i = 0; i < GetUserCount(); ++i)
                 {
-                    PSS_User* pUser = UserManager.FindUser ( GetUserAt(i) );
+                    PSS_User* pUser = UserManager.FindUser(GetUserAt(i));
                     // If the user is found add the user,
                     // otherwise add directly the string
                     if (pUser)
-                        pPersonList->AddPerson( *pUser );
+                        pPersonList->AddPerson(*pUser);
                     else
-                        pPersonList->AddPerson( GetUserAt(i) );
+                        pPersonList->AddPerson(GetUserAt(i));
                 }
                 // OK
                 return pPersonList;
             }
     return NULL;
-  //## end ZBResources::CreatePersonList%927742730.body
+    //## end ZBResources::CreatePersonList%927742730.body
 }
 
 BOOL ZBResources::FillPersonArray(ZProcess* pMainProcess, const PSS_UserManager& UserManager, CStringArray& UserArray, CString ConnectedUser)
 {
-  //## begin ZBResources::FillPersonArray%927742731.body preserve=yes
-    // If responsible requested
+    //## begin ZBResources::FillPersonArray%927742731.body preserve=yes
+      // If responsible requested
     if (GetUserType() == ResponsibleOfUser)
     {
         // Search the connected user
-        PSS_User* pUser = UserManager.FindUser ( ConnectedUser );
+        PSS_User* pUser = UserManager.FindUser(ConnectedUser);
         if (pUser)
         {
             UserArray.RemoveAll();
             // Search the corresponding responsible user ptr
-            pUser = UserManager.FindUser ( pUser->GetResponsible() );
+            pUser = UserManager.FindUser(pUser->GetResponsible());
             if (pUser)
             {
-                UserArray.Add( pUser->GetUserName() );
+                UserArray.Add(pUser->GetUserName());
                 return TRUE;
             }
         }
@@ -235,19 +235,19 @@ BOOL ZBResources::FillPersonArray(ZProcess* pMainProcess, const PSS_UserManager&
                 CString    ActivityName = GetUserAt(0);
                 if (ActivityName.IsEmpty())
                     return FALSE;
-                ZBaseActivity* pActivity = pMainProcess->FindBaseActivity( ActivityName );
+                PSS_BaseActivity* pActivity = pMainProcess->FindBaseActivity(ActivityName);
                 if (!pActivity)
                     return FALSE;
                 // Return the initiator if the activity has been done.
                 if (!pActivity->GetInitiator().IsEmpty())
                 {
                     UserArray.RemoveAll();
-                    UserArray.Add( pActivity->GetInitiator() );
+                    UserArray.Add(pActivity->GetInitiator());
                     return TRUE;
                 }
                 else
                     // Return the resource of the activity.
-                    return pActivity->ActivityFillPersonArray( UserManager, UserArray, ConnectedUser );
+                    return pActivity->ActivityFillPersonArray(UserManager, UserArray, ConnectedUser);
             }
         }
         else
@@ -257,47 +257,47 @@ BOOL ZBResources::FillPersonArray(ZProcess* pMainProcess, const PSS_UserManager&
                 // Run through the user list and build the person
                 for (size_t i = 0; i < GetUserCount(); ++i)
                 {
-                    PSS_User* pUser = UserManager.FindUser ( GetUserAt(i) );
+                    PSS_User* pUser = UserManager.FindUser(GetUserAt(i));
                     // If the user is found add the user,
                     // otherwise add directly the string
                     if (pUser)
-                        UserArray.Add( pUser->GetUserName() );
+                        UserArray.Add(pUser->GetUserName());
                     else
-                        UserArray.Add( GetUserAt(i) );
+                        UserArray.Add(GetUserAt(i));
                 }
                 // OK
                 return TRUE;
             }
     return FALSE;
-  //## end ZBResources::FillPersonArray%927742731.body
+    //## end ZBResources::FillPersonArray%927742731.body
 }
 
-BOOL ZBResources::AddUsers (CString DelimiterString)
+BOOL ZBResources::AddUsers(CString DelimiterString)
 {
     // Run through the user delimiter string and build the person
-    PSS_Tokenizer    Tokenizer( ';' );
-    CString    Token = Tokenizer.GetFirstToken( DelimiterString );
+    PSS_Tokenizer    Tokenizer(';');
+    CString    Token = Tokenizer.GetFirstToken(DelimiterString);
     while (!Token.IsEmpty())
     {
-        AddUser( Token );
+        AddUser(Token);
         // Next token
         Token = Tokenizer.GetNextToken();
     }
     return TRUE;
 }
 
-CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, const PSS_UserManager& UserManager, const CString& ConnectedUser, const CString& Delimiter)
+CString ZBResources::CreatePersonDelimStr(ZProcess* pMainProcess, const PSS_UserManager& UserManager, const CString& ConnectedUser, const CString& Delimiter)
 {
-  //## begin ZBResources::CreatePersonDelimStr%927742732.body preserve=yes
-    // If responsible requested
+    //## begin ZBResources::CreatePersonDelimStr%927742732.body preserve=yes
+      // If responsible requested
     if (GetUserType() == ResponsibleOfUser)
     {
         // Search the connected user
-        PSS_User* pUser = UserManager.FindUser ( ConnectedUser );
+        PSS_User* pUser = UserManager.FindUser(ConnectedUser);
         if (pUser)
         {
             // Search the corresponding responsible user ptr
-            pUser = UserManager.FindUser ( pUser->GetResponsible() );
+            pUser = UserManager.FindUser(pUser->GetResponsible());
             if (pUser)
                 return pUser->GetUserName();
         }
@@ -311,7 +311,7 @@ CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, const PSS_Use
                 CString    ActivityName = GetUserAt(0);
                 if (ActivityName.IsEmpty())
                     return "";
-                ZBaseActivity* pActivity = pMainProcess->FindBaseActivity( ActivityName );
+                PSS_BaseActivity* pActivity = pMainProcess->FindBaseActivity(ActivityName);
                 if (!pActivity)
                     return "";
                 // Return the initiator if the activity has been done.
@@ -319,17 +319,17 @@ CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, const PSS_Use
                     return pActivity->GetInitiator();
                 else
                     // Return the resource of the activity.
-                    return pActivity->ActivityCreatePersonDelimStr( UserManager, ConnectedUser, Delimiter );
+                    return pActivity->ActivityCreatePersonDelimStr(UserManager, ConnectedUser, Delimiter);
             }
         }
         else
             if (GetUserCount())
             {
-                  CString    ReceiverString;
+                CString    ReceiverString;
                 // Run through the user list and build the person
                 for (size_t i = 0; i < GetUserCount(); ++i)
                 {
-                    PSS_User* pUser = UserManager.FindUser ( GetUserAt(i) );
+                    PSS_User* pUser = UserManager.FindUser(GetUserAt(i));
                     // If the user is found add the user,
                     // otherwise add directly the string
                     if (pUser)
@@ -345,25 +345,18 @@ CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, const PSS_Use
                     }
                 }
                 // Remove the last trail char
-                ReceiverString = ReceiverString.Left( ReceiverString.GetLength() - Delimiter.GetLength() );
+                ReceiverString = ReceiverString.Left(ReceiverString.GetLength() - Delimiter.GetLength());
                 // OK
                 return ReceiverString;
             }
     return "";
-  //## end ZBResources::CreatePersonDelimStr%927742732.body
+    //## end ZBResources::CreatePersonDelimStr%927742732.body
 }
 
-ZBResources* ZBResources::Clone ()
+ZBResources* ZBResources::Clone()
 {
-  //## begin ZBResources::Clone%927742733.body preserve=yes
-    ZBResources*    pResources = new ZBResources( *this );
+    //## begin ZBResources::Clone%927742733.body preserve=yes
+    ZBResources*    pResources = new ZBResources(*this);
     return pResources;
-  //## end ZBResources::Clone%927742733.body
+    //## end ZBResources::Clone%927742733.body
 }
-
-// Additional Declarations
-  //## begin ZBResources%374C378F0049.declarations preserve=yes
-  //## end ZBResources%374C378F0049.declarations
-
-//## begin module%374C3A9E019A.epilog preserve=yes
-//## end module%374C3A9E019A.epilog
