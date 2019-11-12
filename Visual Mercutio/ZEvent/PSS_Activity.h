@@ -25,7 +25,7 @@
 #include "zBaseLib\PSS_FileManager.h"
 #include "zBaseLib\PSS_MailMessage.h"
 #include "zBaseLib\PSS_CommandLine.h"
-#include "BActvt.h"
+#include "PSS_BaseActivity.h"
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again

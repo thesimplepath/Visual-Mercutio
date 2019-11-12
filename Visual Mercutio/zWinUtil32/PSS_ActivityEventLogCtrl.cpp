@@ -9,7 +9,7 @@
 #include "PSS_ActivityEventLogCtrl.h"
 
 // processsoft
-#include "zEvent\BActVt.h"
+#include "zEvent\PSS_BaseActivity.h"
 #include "zEvent\ZProcess.h"
 
 // resources

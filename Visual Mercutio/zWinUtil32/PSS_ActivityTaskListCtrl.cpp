@@ -9,7 +9,7 @@
 #include "PSS_ActivityTaskListCtrl.h"
 
 // processsoft
-#include "zEvent\ProcIter.h"
+#include "zEvent\PSS_ProcessIterator.h"
 
 // resources
 #ifndef _WIN32

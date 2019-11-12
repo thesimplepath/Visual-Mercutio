@@ -22,9 +22,6 @@
     <ClCompile Include="actlogFl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BActvt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EventManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,9 +56,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProcHistoDAO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProcIter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SrvEvtManager.cpp">
@@ -127,6 +121,12 @@
     <ClCompile Include="PSS_Activity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_BaseActivity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessIterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ZEvent.rc2">
@@ -143,9 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActLogFl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BActvt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EventManager.h">
@@ -182,9 +179,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProcHistoDAO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProcIter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SrvEvtManager.h">
@@ -251,6 +245,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_Activity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BaseActivity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessIterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

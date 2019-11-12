@@ -207,7 +207,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="BActvt.cpp">
+    <ClCompile Include="PSS_BaseActivity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -291,7 +291,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcIter.cpp">
+    <ClCompile Include="PSS_ProcessIterator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -385,7 +385,7 @@
     <ClInclude Include="PSS_ActivityLog.h" />
     <ClInclude Include="PSS_ActivityLogDatabase.h" />
     <ClInclude Include="ActLogFl.h" />
-    <ClInclude Include="BActvt.h" />
+    <ClInclude Include="PSS_BaseActivity.h" />
     <ClInclude Include="PSS_EventFile.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventQueueManager.h" />
@@ -399,7 +399,7 @@
     <ClInclude Include="HistoryProcessStatusRecordSetv99.h" />
     <ClInclude Include="ProcHisto.h" />
     <ClInclude Include="ProcHistoDAO.h" />
-    <ClInclude Include="ProcIter.h" />
+    <ClInclude Include="PSS_ProcessIterator.h" />
     <ClInclude Include="SrvEvtManager.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="UserDMng.h" />

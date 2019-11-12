@@ -32,9 +32,9 @@
 // Activity
 #include "PSS_Activity.h"
 // ProcIter
-#include "ProcIter.h"
+#include "PSS_ProcessIterator.h"
 // BActvt
-#include "BActvt.h"
+#include "PSS_BaseActivity.h"
 //## begin module%367549960100.declarations preserve=no
 //## end module%367549960100.declarations
 
