@@ -30,7 +30,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_DatabaseListCtrl::PSS_DatabaseListCtrl(const CString& fileName, const CString& tableName) :
     PSS_ListCtrl(),
-    m_pRecordSet(NULL),
+    m_pRecordset(NULL),
     m_pDataBase(NULL),
     m_FileName(fileName),
     m_TableName(tableName),
@@ -64,15 +64,15 @@ BOOL PSS_DatabaseListCtrl::Initialize(const CString& fileName, const CString& ta
     return TRUE;
 }
 //---------------------------------------------------------------------------
-CDaoRecordset* PSS_DatabaseListCtrl::GetRecordSet()
+CDaoRecordset* PSS_DatabaseListCtrl::GetRecordset()
 {
-    return m_pRecordSet;
+    return m_pRecordset;
 }
 //---------------------------------------------------------------------------
 long PSS_DatabaseListCtrl::GetRecordCount() const
 {
-    if (m_pRecordSet)
-        return m_pRecordSet->GetRecordCount();
+    if (m_pRecordset)
+        return m_pRecordset->GetRecordCount();
 
     return 0;
 }
@@ -101,9 +101,9 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
     TCHAR value[MAX_PATH];
     value[0] = '\0';
 
-    CDaoRecordset* pRecordSet = GetRecordSet();
+    CDaoRecordset* pRecordset = GetRecordset();
 
-    if (!pRecordSet)
+    if (!pRecordset)
         return;
 
     const long index   = pDispInfo->item.iItem;
@@ -115,7 +115,7 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
         try
         {
             // set the file to desired index
-            pRecordSet->SetAbsolutePosition(index);
+            pRecordset->SetAbsolutePosition(index);
         }
         catch (CDaoException* e)
         {
@@ -129,9 +129,9 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
         try
         {
             if (subItem)
-                pRecordSet->GetFieldValue(subItem, varValue);
+                pRecordset->GetFieldValue(subItem, varValue);
             else
-                pRecordSet->GetFieldValue(0, varValue);
+                pRecordset->GetFieldValue(0, varValue);
         }
         catch (CDaoException* e)
         {
@@ -232,9 +232,9 @@ void PSS_DatabaseListCtrl::BuildColumns()
         return;
 
     // set list item count to record set item count and create image list
-    CDaoRecordset* pRecordSet = GetRecordSet();
+    CDaoRecordset* pRecordset = GetRecordset();
 
-    if (pRecordSet)
+    if (pRecordset)
     {
         m_pImageList = new CImageList();
         m_pImageList->Create(IDB_DATABASEIMAGELIST, 16, 1, RGB(0, 0, 0));
@@ -251,10 +251,10 @@ void PSS_DatabaseListCtrl::BuildColumns()
         lvColumn.cx   = 120;
 
         // setup columns
-        for (int i = 0; i < pRecordSet->GetFieldCount(); ++i)
+        for (int i = 0; i < pRecordset->GetFieldCount(); ++i)
         {
             CDaoFieldInfo m_fieldinfo;
-            pRecordSet->GetFieldInfo(i, m_fieldinfo);
+            pRecordset->GetFieldInfo(i, m_fieldinfo);
 
             TCHAR* pBuffer = NULL;
 
@@ -312,18 +312,18 @@ BOOL PSS_DatabaseListCtrl::OpenDatabase()
         return FALSE;
     }
 
-    m_pRecordSet               = new CDaoRecordset(m_pDataBase);
+    m_pRecordset               = new CDaoRecordset(m_pDataBase);
     const CString sqlStatement = "SELECT * FROM " + m_TableName;
 
     try
     {
         // open recordset using SQL statement
-        m_pRecordSet->Open(dbOpenDynaset, sqlStatement);
+        m_pRecordset->Open(dbOpenDynaset, sqlStatement);
     }
     catch (CDaoException* e)
     {
         AfxMessageBox(e->m_pErrorInfo->m_strDescription, MB_ICONEXCLAMATION);
-        delete m_pRecordSet;
+        delete m_pRecordset;
 
         m_pDataBase->Close();
 
@@ -333,24 +333,24 @@ BOOL PSS_DatabaseListCtrl::OpenDatabase()
         return FALSE;
     }
 
-    // access the records in the dynaset to get GCDaoRecordSet::SetRecordCount() to work
-    if (!m_pRecordSet->IsEOF())
-        m_pRecordSet->MoveLast();
+    // access the records in the dynaset to get GCDaoRecordset::SetRecordCount() to work
+    if (!m_pRecordset->IsEOF())
+        m_pRecordset->MoveLast();
 
     return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DatabaseListCtrl::CloseDatabase()
 {
-    if (m_pRecordSet)
+    if (m_pRecordset)
     {
-        ASSERT_VALID(m_pRecordSet);
+        ASSERT_VALID(m_pRecordset);
 
-        if (m_pRecordSet->IsOpen())
-            m_pRecordSet->Close();
+        if (m_pRecordset->IsOpen())
+            m_pRecordset->Close();
 
-        delete m_pRecordSet;
-        m_pRecordSet = NULL;
+        delete m_pRecordset;
+        m_pRecordset = NULL;
     }
 
     if (m_pDataBase)

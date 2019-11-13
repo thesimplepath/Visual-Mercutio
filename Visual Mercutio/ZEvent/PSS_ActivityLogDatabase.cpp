@@ -20,7 +20,7 @@
 // PSS_ActivityLogDatabase
 //---------------------------------------------------------------------------
 PSS_ActivityLogDatabase::PSS_ActivityLogDatabase(const CString& fileName) :
-    m_pRecordSet(NULL),
+    m_pRecordset(NULL),
     m_FileName(fileName)
 {}
 //---------------------------------------------------------------------------
@@ -53,16 +53,16 @@ BOOL PSS_ActivityLogDatabase::AppendToLog(const PSS_ActivityEvent& activityEvent
     if (!m_Database.IsOpen())
         OpenWrite();
 
-    if (!m_pRecordSet)
+    if (!m_pRecordset)
         return FALSE;
 
     try
     {
-        if (!m_pRecordSet->IsOpen())
-            m_pRecordSet->Open(dbOpenDynaset, NULL, dbAppendOnly);
+        if (!m_pRecordset->IsOpen())
+            m_pRecordset->Open(dbOpenDynaset, NULL, dbAppendOnly);
 
-        if (m_pRecordSet->IsOpen() && m_pRecordSet->CanUpdate())
-            m_pRecordSet->AddNew();
+        if (m_pRecordset->IsOpen() && m_pRecordset->CanUpdate())
+            m_pRecordset->AddNew();
     }
     catch (CDaoException&)
     {
@@ -72,30 +72,30 @@ BOOL PSS_ActivityLogDatabase::AppendToLog(const PSS_ActivityEvent& activityEvent
     const PSS_Date currentDate = PSS_Date::GetToday();
 
     // populate the table record
-    m_pRecordSet->SetDate                (currentDate);
-    m_pRecordSet->SetEventType           (activityEvent.GetActivityEventTypeString());
-    m_pRecordSet->SetProcessFilename     (activityEvent.GetProcessFileName());
-    m_pRecordSet->SetFormDataFilename    (activityEvent.GetExchangeDataFileName());
-    m_pRecordSet->SetProcessDataFilename (activityEvent.GetProcessExchangeDataFileName());
-    m_pRecordSet->SetFolderName          (activityEvent.GetFolderName());
-    m_pRecordSet->SetProcessName         (activityEvent.GetProcessName());
-    m_pRecordSet->SetProcessCreationDate (activityEvent.GetProcessCreationDate());
-    m_pRecordSet->SetProcessDueDate      (activityEvent.GetProcessDueDate());
-    m_pRecordSet->SetActivityType        (activityEvent.GetActivityType());
-    m_pRecordSet->SetActivityName        (activityEvent.GetActivityName());
-    m_pRecordSet->SetActivityCreationDate(activityEvent.GetActivityCreationDate());
-    m_pRecordSet->SetActivityDueDate     (activityEvent.GetActivityDueDate());
-    m_pRecordSet->SetActivityStatus      (activityEvent.GetActivityStatus());
-    m_pRecordSet->SetSender              (activityEvent.GetSender());
-    m_pRecordSet->SetReceiver            (activityEvent.GetReceiver());
-    m_pRecordSet->SetComments            (activityEvent.GetComments());
-    m_pRecordSet->SetInBackup            (activityEvent.GetIsInBackup());
+    m_pRecordset->SetDate                (currentDate);
+    m_pRecordset->SetEventType           (activityEvent.GetActivityEventTypeString());
+    m_pRecordset->SetProcessFilename     (activityEvent.GetProcessFileName());
+    m_pRecordset->SetFormDataFilename    (activityEvent.GetExchangeDataFileName());
+    m_pRecordset->SetProcessDataFilename (activityEvent.GetProcessExchangeDataFileName());
+    m_pRecordset->SetFolderName          (activityEvent.GetFolderName());
+    m_pRecordset->SetProcessName         (activityEvent.GetProcessName());
+    m_pRecordset->SetProcessCreationDate (activityEvent.GetProcessCreationDate());
+    m_pRecordset->SetProcessDueDate      (activityEvent.GetProcessDueDate());
+    m_pRecordset->SetActivityType        (activityEvent.GetActivityType());
+    m_pRecordset->SetActivityName        (activityEvent.GetActivityName());
+    m_pRecordset->SetActivityCreationDate(activityEvent.GetActivityCreationDate());
+    m_pRecordset->SetActivityDueDate     (activityEvent.GetActivityDueDate());
+    m_pRecordset->SetActivityStatus      (activityEvent.GetActivityStatus());
+    m_pRecordset->SetSender              (activityEvent.GetSender());
+    m_pRecordset->SetReceiver            (activityEvent.GetReceiver());
+    m_pRecordset->SetComments            (activityEvent.GetComments());
+    m_pRecordset->SetInBackup            (activityEvent.GetIsInBackup());
 
     try
     {
         // update the new inserted recordset
-        m_pRecordSet->Update();
-        m_pRecordSet->Close();
+        m_pRecordset->Update();
+        m_pRecordset->Close();
     }
     catch (CDaoException&)
     {
@@ -110,7 +110,7 @@ BOOL PSS_ActivityLogDatabase::ClearLog()
     if (!m_Database.IsOpen())
         OpenWrite();
 
-    if (!m_pRecordSet)
+    if (!m_pRecordset)
         return FALSE;
 
     try
@@ -139,13 +139,13 @@ BOOL PSS_ActivityLogDatabase::Close()
 {
     TRY
     {
-        if (m_pRecordSet)
+        if (m_pRecordset)
         {
-            if (m_pRecordSet->IsOpen())
-                m_pRecordSet->Close();
+            if (m_pRecordset->IsOpen())
+                m_pRecordset->Close();
 
-            delete m_pRecordSet;
-            m_pRecordSet = NULL;
+            delete m_pRecordset;
+            m_pRecordset = NULL;
         }
 
         if (m_Database.IsOpen())
@@ -170,10 +170,10 @@ BOOL PSS_ActivityLogDatabase::OpenRead()
         Close();
 
         m_Database.Open(m_FileName, FALSE, TRUE);
-        m_pRecordSet = new ZDActivityLogRecordset(&m_Database, m_FileName);
+        m_pRecordset = new ZDActivityLogRecordset(&m_Database, m_FileName);
 
-        if (m_pRecordSet)
-            m_pRecordSet->Open(dbOpenSnapshot, NULL, dbReadOnly);
+        if (m_pRecordset)
+            m_pRecordset->Open(dbOpenSnapshot, NULL, dbReadOnly);
         else
         {
             Close();
@@ -197,10 +197,10 @@ BOOL PSS_ActivityLogDatabase::OpenWrite()
         Close();
 
         m_Database.Open(m_FileName);
-        m_pRecordSet = new ZDActivityLogRecordset(&m_Database, m_FileName);
+        m_pRecordset = new ZDActivityLogRecordset(&m_Database, m_FileName);
 
-        if (m_pRecordSet)
-            m_pRecordSet->Open(dbOpenDynaset, NULL, dbAppendOnly);
+        if (m_pRecordset)
+            m_pRecordset->Open(dbOpenDynaset, NULL, dbAppendOnly);
         else
         {
             Close();

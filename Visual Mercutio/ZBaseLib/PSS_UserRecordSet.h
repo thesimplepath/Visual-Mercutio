@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_UserRecordSet ---------------------------------------------------*
+ * ==> PSS_UserRecordset ---------------------------------------------------*
  ****************************************************************************
- * Description : Provides an user record set                                *
+ * Description : Provides an user recordset                                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_UserRecordSetH
-#define PSS_UserRecordSetH
+#ifndef PSS_UserRecordsetH
+#define PSS_UserRecordsetH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -30,9 +30,9 @@
 * User record set
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UserRecordSet : public CRecordset
+class AFX_EXT_CLASS PSS_UserRecordset : public CRecordset
 {
-    DECLARE_DYNAMIC(PSS_UserRecordSet)
+    DECLARE_DYNAMIC(PSS_UserRecordset)
 
     public:
         CString m_UserName;
@@ -44,7 +44,7 @@ class AFX_EXT_CLASS PSS_UserRecordSet : public CRecordset
         * Constructor
         *@param pDatabase - database, can be NULL
         */
-        PSS_UserRecordSet(CDatabase* pDatabase = NULL);
+        PSS_UserRecordset(CDatabase* pDatabase = NULL);
 
         /**
         * Gets the user database table name

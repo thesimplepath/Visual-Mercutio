@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_DatabaseListCtrl : public PSS_ListCtrl
         * Gets the record set
         *@return the record set
         */
-        virtual CDaoRecordset* GetRecordSet();
+        virtual CDaoRecordset* GetRecordset();
 
         /**
         * Gets the record count
@@ -88,7 +88,7 @@ class AFX_EXT_CLASS PSS_DatabaseListCtrl : public PSS_ListCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        CDaoRecordset* m_pRecordSet;
+        CDaoRecordset* m_pRecordset;
         CDaoDatabase*  m_pDataBase;
         CString        m_FileName;
         CString        m_TableName;

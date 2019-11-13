@@ -416,8 +416,7 @@ BOOL ZAApp::InitInstance()
 BOOL ZAApp::InitAppl()
 {
 #ifdef _ZCHECKINFO
-    // Check the application type
-    // zProcess is only available in EntrepriseEdition
+    // Check the application type. ZProcess is only available in Entreprise edition
     if (GetApplicationInfoType() != ZBCriptedFileApplicationTypeInfo::EntrepriseEdition)
     {
         PSS_MessageDlg message;

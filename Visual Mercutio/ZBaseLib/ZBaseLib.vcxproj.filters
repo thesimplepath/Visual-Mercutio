@@ -179,12 +179,6 @@
     <ClCompile Include="PSS_MailUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_ActivityLogRecordSet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_UserRecordSet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_MailUserList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +596,12 @@
     <ClCompile Include="PSS_SystemOption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ActivityLogRecordset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserRecordset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -869,12 +869,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_MailUser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_ActivityLogRecordSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_UserRecordSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_MailUserList.h">
@@ -1295,6 +1289,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_SystemOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityLogRecordset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserRecordset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

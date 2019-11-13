@@ -460,13 +460,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_ActivityLogRecordSet.cpp">
+    <ClCompile Include="PSS_ActivityLogRecordset.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_UserRecordSet.cpp">
+    <ClCompile Include="PSS_UserRecordset.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1398,8 +1398,8 @@
     <ClInclude Include="PSS_PLFNBackImage.h" />
     <ClInclude Include="PSS_ProcessModelDocTmpl.h" />
     <ClInclude Include="PSS_ProcessDocumentOptions.h" />
-    <ClInclude Include="PSS_ActivityLogRecordSet.h" />
-    <ClInclude Include="PSS_UserRecordSet.h" />
+    <ClInclude Include="PSS_ActivityLogRecordset.h" />
+    <ClInclude Include="PSS_UserRecordset.h" />
     <ClInclude Include="PSS_SingleInstanceApplication.h" />
     <ClInclude Include="PSS_SmartPtr.h" />
     <ClInclude Include="PSS_SpecialHelpWnd.h" />

@@ -78,7 +78,7 @@ class AFX_EXT_CLASS PSS_ActivityLogDatabase
 
     private:
         CDaoDatabase            m_Database;
-        ZDActivityLogRecordset* m_pRecordSet;
+        ZDActivityLogRecordset* m_pRecordset;
         CString                 m_FileName;
 
         /**

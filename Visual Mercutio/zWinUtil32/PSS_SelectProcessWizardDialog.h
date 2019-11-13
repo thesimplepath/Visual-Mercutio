@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zEvent\ZProcess.h"
+#include "zEvent\PSS_Process.h"
 #include "PSS_SearchEdit.h"
 #include "PSS_ActivityListCtrl.h"
 

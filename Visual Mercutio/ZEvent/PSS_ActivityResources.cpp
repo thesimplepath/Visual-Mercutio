@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Tokenizer.h"
-#include "ZProcess.h"
+#include "PSS_Process.h"
 
 // resources
 #include "zRes32\ZRes.h"

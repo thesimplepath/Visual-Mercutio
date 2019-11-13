@@ -9,7 +9,7 @@
 #include "PSS_ActivityEventCtrl.h"
 
 // processsoft
-#include "zEvent\ZProcess.h"
+#include "zEvent\PSS_Process.h"
 
 // resources
 #ifndef _WIN32

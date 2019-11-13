@@ -24,7 +24,7 @@
     #define PSS_Activity ZActivity
 #endif
 #ifndef PSS_Process
-    //#define PSS_Process ZProcess
+    #define PSS_Process ZProcess
 #endif
 
 // forward class declarations

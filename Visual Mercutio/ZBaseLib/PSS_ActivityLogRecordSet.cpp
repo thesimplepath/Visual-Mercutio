@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityLogRecordSet --------------------------------------------*
+ * ==> PSS_ActivityLogRecordset --------------------------------------------*
  ****************************************************************************
- * Description : Provides an activity log record set                        *
+ * Description : Provides an activity log recordset                         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_ActivityLogRecordSet.h"
+#include "PSS_ActivityLogRecordset.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -16,30 +16,30 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_ActivityLogRecordSet, CRecordset)
+IMPLEMENT_DYNAMIC(PSS_ActivityLogRecordset, CRecordset)
 //---------------------------------------------------------------------------
-// PSS_ActivityLogRecordSet
+// PSS_ActivityLogRecordset
 //---------------------------------------------------------------------------
-PSS_ActivityLogRecordSet::PSS_ActivityLogRecordSet(CDatabase* pDB) :
+PSS_ActivityLogRecordset::PSS_ActivityLogRecordset(CDatabase* pDB) :
     CRecordset(pDB)
 {
     // configure field number in base
     m_nFields = 11;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityLogRecordSet::GetDefaultConnect() const
+CString PSS_ActivityLogRecordset::GetDefaultConnect() const
 {
     return "ODBC;DSN=ADSoft Server Database;";
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityLogRecordSet::GetDefaultSQL() const
+CString PSS_ActivityLogRecordset::GetDefaultSQL() const
 {
     return "ActivityLog";
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityLogRecordSet::DoFieldExchange(CFieldExchange* pFX)
+void PSS_ActivityLogRecordset::DoFieldExchange(CFieldExchange* pFX)
 {
-    //{{AFX_FIELD_MAP(PSS_ActivityLogRecordSet)
+    //{{AFX_FIELD_MAP(PSS_ActivityLogRecordset)
     pFX->SetFieldType(CFieldExchange::outputColumn);
     RFX_Date(pFX, "Date",       m_Date);
     RFX_Text(pFX, "FolderName", m_FolderName);

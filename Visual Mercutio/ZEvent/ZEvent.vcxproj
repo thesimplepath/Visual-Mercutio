@@ -347,7 +347,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZProcess.cpp">
+    <ClCompile Include="PSS_Process.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -409,7 +409,7 @@
     <ClInclude Include="ZDActivityLogRecordset.h" />
     <ClInclude Include="zEventLib.h" />
     <ClInclude Include="ZEvtRes.h" />
-    <ClInclude Include="ZProcess.h" />
+    <ClInclude Include="PSS_Process.h" />
     <ClInclude Include="PSS_ActivityResources.h" />
   </ItemGroup>
   <ItemGroup>

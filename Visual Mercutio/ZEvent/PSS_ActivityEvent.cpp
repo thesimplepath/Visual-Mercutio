@@ -10,7 +10,7 @@
 
 // processsoft
 #include "ZEvtRes.h"
-#include "ZProcess.h"
+#include "PSS_Process.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_TreeCtrl.h"
-#include "zEvent\ZProcess.h"
+#include "zEvent\PSS_Process.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again

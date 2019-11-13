@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityLogRecordSet --------------------------------------------*
+ * ==> PSS_ActivityLogRecordset --------------------------------------------*
  ****************************************************************************
- * Description : Provides an activity log record set                        *
+ * Description : Provides an activity log recordset                         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ActivityLogRecordSetH
-#define PSS_ActivityLogRecordSetH
+#ifndef PSS_ActivityLogRecordsetH
+#define PSS_ActivityLogRecordsetH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -30,9 +30,9 @@
 * Activity log record set
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityLogRecordSet : public CRecordset
+class AFX_EXT_CLASS PSS_ActivityLogRecordset : public CRecordset
 {
-    DECLARE_DYNAMIC(PSS_ActivityLogRecordSet)
+    DECLARE_DYNAMIC(PSS_ActivityLogRecordset)
 
     public:
         CString m_FolderName;
@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_ActivityLogRecordSet : public CRecordset
         * Constructor
         *@param pDatabase - database, can be NULL
         */
-        PSS_ActivityLogRecordSet(CDatabase* pDatabase = NULL);
+        PSS_ActivityLogRecordset(CDatabase* pDatabase = NULL);
 
     protected:
         /**
