@@ -70,11 +70,11 @@ PSS_BaseActivity* PSS_BaseActivity::GetParent() const
     return m_pParent;
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_BaseActivity::GetParentProcess() const
+PSS_Process* PSS_BaseActivity::GetParentProcess() const
 {
     if (m_pParent)
     {
-        ZProcess* pParentProcess = dynamic_cast<ZProcess*>(m_pParent);
+        PSS_Process* pParentProcess = dynamic_cast<PSS_Process*>(m_pParent);
 
         if (pParentProcess)
             return pParentProcess;
@@ -182,13 +182,13 @@ PSS_BaseActivity* PSS_BaseActivity::GetNextValidBaseActivity() const
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_BaseActivity::GetPreviousProcess() const
+PSS_Process* PSS_BaseActivity::GetPreviousProcess() const
 {
     PSS_BaseActivity* pBaseActivity = GetPreviousBaseActivity();
 
     if (pBaseActivity)
     {
-        ZProcess* pProcess = dynamic_cast<ZProcess*>(pBaseActivity);
+        PSS_Process* pProcess = dynamic_cast<PSS_Process*>(pBaseActivity);
 
         // if the previous activity is a process, return it
         if (pProcess)
@@ -201,13 +201,13 @@ ZProcess* PSS_BaseActivity::GetPreviousProcess() const
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_BaseActivity::GetNextProcess() const
+PSS_Process* PSS_BaseActivity::GetNextProcess() const
 {
     PSS_BaseActivity* pBaseActivity = GetNextBaseActivity();
 
     if (pBaseActivity)
     {
-        ZProcess* pProcess = dynamic_cast<ZProcess*>(pBaseActivity);
+        PSS_Process* pProcess = dynamic_cast<PSS_Process*>(pBaseActivity);
 
         // if the next activity is a process, return it
         if (pProcess)
@@ -543,7 +543,7 @@ void PSS_BaseActivity::SetParent(PSS_BaseActivity* pParent)
     m_pParent = pParent;
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_BaseActivity::GetMainProcess()
+PSS_Process* PSS_BaseActivity::GetMainProcess()
 {
     if (GetParent())
         return GetParent()->GetMainProcess();
@@ -934,17 +934,17 @@ PSS_BaseActivity* PSS_BaseActivity::FindBaseActivity(const CString& activityName
     return NULL;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_BaseActivity::AddProcess(ZProcess* pProcess)
+BOOL PSS_BaseActivity::AddProcess(PSS_Process* pProcess)
 {
     return AddActivity(pProcess);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_BaseActivity::AddProcessAfter(ZProcess* pProcess, const CString& activityName)
+BOOL PSS_BaseActivity::AddProcessAfter(PSS_Process* pProcess, const CString& activityName)
 {
     return AddActivityAfter(pProcess, activityName);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_BaseActivity::DeleteProcess(ZProcess* pProcess)
+BOOL PSS_BaseActivity::DeleteProcess(PSS_Process* pProcess)
 {
     return DeleteActivity(pProcess);
 }
@@ -954,9 +954,9 @@ BOOL PSS_BaseActivity::DeleteProcess(const CString& processName)
     return DeleteActivity(processName);
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_BaseActivity::FindProcess(const CString& processName) const
+PSS_Process* PSS_BaseActivity::FindProcess(const CString& processName) const
 {
-    ZProcess* pProcess = dynamic_cast<ZProcess*>(FindActivity(processName));
+    PSS_Process* pProcess = dynamic_cast<PSS_Process*>(FindActivity(processName));
 
     if (pProcess)
         return pProcess;
@@ -1175,7 +1175,7 @@ PSS_BaseActivity* PSS_BaseActivity::RecalculateProcessAllLinks(PSS_BaseActivity*
 
             // the next activity of the last one points to the next activity of the parent, only if not a process
             // and has no activities
-            if (!pProcess->IsKindOf(RUNTIME_CLASS(ZProcess)) && !pProcess->HasActivities())
+            if (!pProcess->IsKindOf(RUNTIME_CLASS(PSS_Process)) && !pProcess->HasActivities())
                 GetActivityAt(GetActivityCount() - 1)->AssignNextActivity(pNextOfParent);
 
             return (pReturnActivity ? pReturnActivity : pProcess);
@@ -1215,7 +1215,7 @@ PSS_BaseActivity* PSS_BaseActivity::RecalculateProcessAllLinks(PSS_BaseActivity*
             }
 
             // the next activity of the last one points to the next activity of the parent only if not a process
-            if (!pPrevious->IsKindOf(RUNTIME_CLASS(ZProcess)) && !pPrevious->HasActivities())
+            if (!pPrevious->IsKindOf(RUNTIME_CLASS(PSS_Process)) && !pPrevious->HasActivities())
                 pPrevious->AssignNextActivity(pNextOfParent);
 
             return pPrevious;

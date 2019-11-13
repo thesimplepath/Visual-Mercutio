@@ -121,7 +121,7 @@ PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventCtrl& 
         listCtrl.SetItem(index, 1, LVIF_TEXT, left.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the action text
-        listCtrl.SetItem(index, 2, LVIF_TEXT, ZProcess::GetStatusString(left.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 2, LVIF_TEXT, PSS_Process::GetStatusString(left.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the folder name
         listCtrl.SetItem(index, 3, LVIF_TEXT, left.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);

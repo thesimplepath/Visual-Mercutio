@@ -57,7 +57,7 @@ class AFX_EXT_CLASS PSS_SysVarConverter
         *@param pDoc - document
         *@param pProcess - process
         */
-        PSS_SysVarConverter(PSS_Document* pDoc = NULL, ZProcess* pProcess = NULL);
+        PSS_SysVarConverter(PSS_Document* pDoc = NULL, PSS_Process* pProcess = NULL);
 
         virtual ~PSS_SysVarConverter();
 
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_SysVarConverter
         *@param pDoc - document
         *@param pProcess - process
         */
-        virtual void Initialize(PSS_Document* pDoc = NULL, ZProcess* pProcess = NULL);
+        virtual void Initialize(PSS_Document* pDoc = NULL, PSS_Process* pProcess = NULL);
 
         /**
         * Parses the line and replace keywords with its value
@@ -77,7 +77,7 @@ class AFX_EXT_CLASS PSS_SysVarConverter
 
     private:
         PSS_Document* m_pDoc;
-        ZProcess*     m_pProcess;
+        PSS_Process*  m_pProcess;
 
         /**
         * Copy constructor

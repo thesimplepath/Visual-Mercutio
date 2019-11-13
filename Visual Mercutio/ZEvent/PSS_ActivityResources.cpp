@@ -125,7 +125,7 @@ BOOL PSS_ActivityResources::UserExist(const CString& userName) const
     return FALSE;
 }
 //---------------------------------------------------------------------------
-PSS_MailUserList* PSS_ActivityResources::CreatePersonList(ZProcess*              pMainProcess,
+PSS_MailUserList* PSS_ActivityResources::CreatePersonList(PSS_Process*           pMainProcess,
                                                           const PSS_UserManager& userManager,
                                                           const CString&         connectedUser)
 {
@@ -201,7 +201,7 @@ PSS_MailUserList* PSS_ActivityResources::CreatePersonList(ZProcess*             
     return NULL;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityResources::FillPersonArray(ZProcess*              pMainProcess,
+BOOL PSS_ActivityResources::FillPersonArray(PSS_Process*           pMainProcess,
                                             const PSS_UserManager& userManager,
                                             CStringArray&          userArray,
                                             const CString&         connectedUser)
@@ -279,7 +279,7 @@ BOOL PSS_ActivityResources::FillPersonArray(ZProcess*              pMainProcess,
     return FALSE;
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityResources::CreatePersonDelimStr(ZProcess*              pMainProcess,
+CString PSS_ActivityResources::CreatePersonDelimStr(PSS_Process*           pMainProcess,
                                                     const PSS_UserManager& userManager,
                                                     const CString&         connectedUser,
                                                     const CString&         delimiter)

@@ -52,7 +52,7 @@ class AFX_EXT_CLASS PSS_SelectProcessWizard
         * Constructor
         *@param process - process
         */
-        PSS_SelectProcessWizard(ZProcess& process);
+        PSS_SelectProcessWizard(PSS_Process& process);
 
         virtual ~PSS_SelectProcessWizard();
 
@@ -69,8 +69,8 @@ class AFX_EXT_CLASS PSS_SelectProcessWizard
         virtual inline CString GetBaseActivityName() const;
 
     private:
-        ZProcess& m_Process;
-        CString   m_BaseActivityName;
+        PSS_Process& m_Process;
+        CString      m_BaseActivityName;
 };
 
 //---------------------------------------------------------------------------

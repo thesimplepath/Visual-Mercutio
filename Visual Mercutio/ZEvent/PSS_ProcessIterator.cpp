@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 // PSS_ProcessIterator
 //---------------------------------------------------------------------------
-PSS_ProcessIterator::PSS_ProcessIterator(ZProcess* pProcess) :
+PSS_ProcessIterator::PSS_ProcessIterator(PSS_Process* pProcess) :
     m_IteratorActivityPointer(NULL),
     m_pProcess(pProcess)
 {}
@@ -99,7 +99,7 @@ PSS_Activity* PSS_ProcessIterator::GetLastActivityWithinProcess()
     while (m_IteratorActivityPointer->GetNextBaseActivity() && m_IteratorActivityPointer->GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
         m_IteratorActivityPointer = m_IteratorActivityPointer->GetNextBaseActivity();
 
-    return (PSS_Activity*)m_IteratorActivityPointer;
+    return static_cast<PSS_Activity*>(m_IteratorActivityPointer);
 }
 //---------------------------------------------------------------------------
 PSS_BaseActivity* PSS_ProcessIterator::GetParent(PSS_BaseActivity* pActivity)
@@ -112,14 +112,14 @@ PSS_BaseActivity* PSS_ProcessIterator::GetParent(PSS_BaseActivity* pActivity)
     return m_IteratorActivityPointer;
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_ProcessIterator::GetParentProcess(PSS_BaseActivity* pActivity)
+PSS_Process* PSS_ProcessIterator::GetParentProcess(PSS_BaseActivity* pActivity)
 {
     if (!pActivity)
         return NULL;
 
     m_IteratorActivityPointer = pActivity->GetParentProcess();
 
-    return (ZProcess*)m_IteratorActivityPointer;
+    return static_cast<PSS_Process*>(m_IteratorActivityPointer);
 }
 //---------------------------------------------------------------------------
 PSS_BaseActivity* PSS_ProcessIterator::GetPreviousValidActivity()
@@ -129,7 +129,7 @@ PSS_BaseActivity* PSS_ProcessIterator::GetPreviousValidActivity()
 
     m_IteratorActivityPointer = m_IteratorActivityPointer->GetPreviousValidActivity();
 
-    return (PSS_Activity*)m_IteratorActivityPointer;
+    return static_cast<PSS_Activity*>(m_IteratorActivityPointer);
 }
 //---------------------------------------------------------------------------
 PSS_BaseActivity* PSS_ProcessIterator::GetPreviousBaseActivity()
@@ -159,7 +159,7 @@ PSS_BaseActivity* PSS_ProcessIterator::GetNextValidActivity()
 
     m_IteratorActivityPointer = m_IteratorActivityPointer->GetNextValidActivity();
 
-    return (PSS_Activity*)m_IteratorActivityPointer;
+    return static_cast<PSS_Activity*>(m_IteratorActivityPointer);
 }
 //---------------------------------------------------------------------------
 PSS_BaseActivity* PSS_ProcessIterator::GetNextBaseActivity()
@@ -182,27 +182,27 @@ PSS_BaseActivity* PSS_ProcessIterator::GetNextValidBaseActivity()
     return m_IteratorActivityPointer;
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_ProcessIterator::GetPreviousProcess()
+PSS_Process* PSS_ProcessIterator::GetPreviousProcess()
 {
     if (!m_IteratorActivityPointer)
         return NULL;
 
     m_IteratorActivityPointer = m_IteratorActivityPointer->GetPreviousProcess();
 
-    return (ZProcess*)m_IteratorActivityPointer;
+    return static_cast<PSS_Process*>(m_IteratorActivityPointer);
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_ProcessIterator::GetNextProcess()
+PSS_Process* PSS_ProcessIterator::GetNextProcess()
 {
     if (!m_IteratorActivityPointer)
         return NULL;
 
     m_IteratorActivityPointer = m_IteratorActivityPointer->GetNextProcess();
 
-    return (ZProcess*)m_IteratorActivityPointer;
+    return static_cast<PSS_Process*>(m_IteratorActivityPointer);
 }
 //---------------------------------------------------------------------------
-PSS_BaseActivity* PSS_ProcessIterator::StartIterator(PSS_BaseActivity* pActivity, ZProcess* pProcess)
+PSS_BaseActivity* PSS_ProcessIterator::StartIterator(PSS_BaseActivity* pActivity, PSS_Process* pProcess)
 {
     if (pProcess)
         m_pProcess = pProcess;
@@ -216,7 +216,7 @@ PSS_BaseActivity* PSS_ProcessIterator::StartIterator(PSS_BaseActivity* pActivity
     return m_IteratorActivityPointer;
 }
 //---------------------------------------------------------------------------
-PSS_BaseActivity* PSS_ProcessIterator::StartIterator(const CString& activityName, ZProcess* pProcess)
+PSS_BaseActivity* PSS_ProcessIterator::StartIterator(const CString& activityName, PSS_Process* pProcess)
 {
     if (pProcess)
         m_pProcess = pProcess;

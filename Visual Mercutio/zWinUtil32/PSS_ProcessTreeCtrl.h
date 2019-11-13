@@ -41,7 +41,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         * Constructor
         *@param pPropcess - process
         */
-        PSS_ProcessTreeCtrl(ZProcess* pProcess = NULL);
+        PSS_ProcessTreeCtrl(PSS_Process* pProcess = NULL);
 
         virtual ~PSS_ProcessTreeCtrl();
 
@@ -49,25 +49,25 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         * Initializes the control
         *@param pProcess - process
         */
-        virtual void Initialize(ZProcess* pProcess);
+        virtual void Initialize(PSS_Process* pProcess);
 
         /**
         * Gets the process
         *@return the process, NULL if no process or on error
         */
-        virtual inline ZProcess* GetProcess() const;
+        virtual inline PSS_Process* GetProcess() const;
 
         /**
         * Gets the selected process item
         *@return the selected process item, NULL if no item selected or on error
         */
-        virtual ZProcess* GetSelectedProcessItem();
+        virtual PSS_Process* GetSelectedProcessItem();
 
         /**
         * Gets the root process item
         *@return the root process item, NULL if no root item or on error
         */
-        virtual ZProcess* GetRootProcessItem();
+        virtual PSS_Process* GetRootProcessItem();
 
         /**
         * Gets the selected activity item
@@ -126,7 +126,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
         virtual HTREEITEM AddSubItem(PSS_Activity* pBaseActivity, HTREEITEM hParentTreeItem, int iconIndex = 0);
 
     private:
-        ZProcess* m_pProcess;
+        PSS_Process* m_pProcess;
 
         /**
         * Copy constructor
@@ -145,7 +145,7 @@ class AFX_EXT_CLASS PSS_ProcessTreeCtrl : public PSS_TreeCtrl
 //---------------------------------------------------------------------------
 // PSS_ProcessTreeCtrl
 //---------------------------------------------------------------------------
-ZProcess* PSS_ProcessTreeCtrl::GetProcess() const
+PSS_Process* PSS_ProcessTreeCtrl::GetProcess() const
 {
     return m_pProcess;
 }

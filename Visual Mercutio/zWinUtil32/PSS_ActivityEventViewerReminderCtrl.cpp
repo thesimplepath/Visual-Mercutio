@@ -111,7 +111,7 @@ PSS_ActivityReminderEvent& operator>>(PSS_ActivityReminderEvent& left, PSS_Activ
         listCtrl.SetItem(index, 5, LVIF_TEXT, left.GetFormattedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity status
-        listCtrl.SetItem(index, 6, LVIF_TEXT, ZProcess::GetStatusString(left.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 6, LVIF_TEXT, PSS_Process::GetStatusString(left.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the message
         listCtrl.SetItem(index, 7, LVIF_TEXT, left.GetMessage(), 0, LVIF_TEXT, LVIF_TEXT, 0);

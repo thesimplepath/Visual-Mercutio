@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // PSS_ActivityComboBox
 //---------------------------------------------------------------------------
-PSS_ActivityComboBox::PSS_ActivityComboBox(ZProcess*      pProcess,
+PSS_ActivityComboBox::PSS_ActivityComboBox(PSS_Process*   pProcess,
                                            int            activityType,
                                            const CString& excludedActivity,
                                            BOOL           stopOnFound,
@@ -49,7 +49,7 @@ const PSS_ActivityComboBox& PSS_ActivityComboBox::operator = (const PSS_Activity
     THROW("Copy operator is prohibited for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityComboBox::Initialize(ZProcess*      pProcess,
+int PSS_ActivityComboBox::Initialize(PSS_Process*   pProcess,
                                      int            activityType,
                                      const CString& excludedActivity,
                                      BOOL           stopOnFound,

@@ -31,7 +31,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SelectProcessWizardDialog
 //---------------------------------------------------------------------------
-PSS_SelectProcessWizardDialog::PSS_SelectProcessWizardDialog(ZProcess& process, CWnd* pParent) :
+PSS_SelectProcessWizardDialog::PSS_SelectProcessWizardDialog(PSS_Process& process, CWnd* pParent) :
     PSS_WizardDialog(PSS_SelectProcessWizardDialog::IDD,
                      IDB_WZBMP1,
                      0,

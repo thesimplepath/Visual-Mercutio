@@ -31,7 +31,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ProcessTreeCtrl
 //---------------------------------------------------------------------------
-PSS_ProcessTreeCtrl::PSS_ProcessTreeCtrl(ZProcess* pProcess) :
+PSS_ProcessTreeCtrl::PSS_ProcessTreeCtrl(PSS_Process* pProcess) :
     PSS_TreeCtrl(),
     m_pProcess(pProcess)
 {}
@@ -49,28 +49,28 @@ const PSS_ProcessTreeCtrl& PSS_ProcessTreeCtrl::operator = (const PSS_ProcessTre
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessTreeCtrl::Initialize (ZProcess* pProcess)
+void PSS_ProcessTreeCtrl::Initialize (PSS_Process* pProcess)
 {
     m_pProcess = pProcess;
     FillControl();
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_ProcessTreeCtrl::GetSelectedProcessItem()
+PSS_Process* PSS_ProcessTreeCtrl::GetSelectedProcessItem()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<ZProcess*>((CObject*)GetItemData(hSelected));
+        return dynamic_cast<PSS_Process*>((CObject*)GetItemData(hSelected));
 
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZProcess* PSS_ProcessTreeCtrl::GetRootProcessItem()
+PSS_Process* PSS_ProcessTreeCtrl::GetRootProcessItem()
 {
     HTREEITEM hRoot = GetRootItem();
 
     if (hRoot)
-        return dynamic_cast<ZProcess*>((CObject*)GetItemData(hRoot));
+        return dynamic_cast<PSS_Process*>((CObject*)GetItemData(hRoot));
 
     return NULL;
 }

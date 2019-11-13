@@ -143,7 +143,7 @@ const PSS_ActivityEventLogCtrl& PSS_ActivityEventLogCtrl::operator = (const PSS_
         listCtrl.SetItem(index,
                          1,
                          LVIF_TEXT,
-                         ZProcess::GetStatusString(left.GetActivityStatus()),
+                         PSS_Process::GetStatusString(left.GetActivityStatus()),
                          0,
                          LVIF_TEXT,
                          LVIF_TEXT,

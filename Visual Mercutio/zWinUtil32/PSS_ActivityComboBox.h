@@ -50,7 +50,7 @@
         *@param stopOnFound - if TRUE, stop the search on found
         *@param attributedActivityOnly - if TRUE, attributed activity only will be processed
         */
-        PSS_ActivityComboBox(ZProcess*      pProcess               = NULL,
+        PSS_ActivityComboBox(PSS_Process*   pProcess               = NULL,
                              int            activityType           = 0,
                              const CString& excludedActivity       = "",
                              BOOL           stopOnFound            = TRUE,
@@ -66,7 +66,7 @@
         *@param stopOnFound - if TRUE, stop the search on found
         *@param attributedActivityOnly - if TRUE, attributed activity only will be processed
         */
-        virtual int Initialize(ZProcess*      pProcess,
+        virtual int Initialize(PSS_Process*   pProcess,
                                int            activityType           = 0,
                                const CString& excludedActivity       = "",
                                BOOL           stopOnFound            = TRUE,
@@ -90,11 +90,11 @@
         virtual int Refresh();
 
     private:
-        ZProcess* m_pProcess;
-        CString   m_ExcludedActivity;
-        int       m_ActivityType;
-        BOOL      m_StopOnFound;
-        BOOL      m_AttributedActivityOnly;
+        PSS_Process* m_pProcess;
+        CString      m_ExcludedActivity;
+        int          m_ActivityType;
+        BOOL         m_StopOnFound;
+        BOOL         m_AttributedActivityOnly;
 
         /**
         * Copy constructor

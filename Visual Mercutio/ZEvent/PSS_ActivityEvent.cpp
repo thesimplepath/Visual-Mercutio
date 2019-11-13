@@ -168,6 +168,6 @@ CString PSS_ActivityEvent::GetFileExtension(int eventType) const
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetActivityStatusString() const
 {
-    return ZProcess::GetStatusString(m_ActivityStatus);
+    return PSS_Process::GetStatusString(m_ActivityStatus);
 }
 //---------------------------------------------------------------------------

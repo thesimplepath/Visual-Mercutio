@@ -51,7 +51,7 @@
         *@param stopOnFound - if TRUE, search will stop on first found item
         *@param attributedActivityOnly - if TRUE, only attributed activity will be processed
         */
-        PSS_ActivityListAttributionCtrl(ZProcess*      pProcess               = NULL,
+        PSS_ActivityListAttributionCtrl(PSS_Process*   pProcess               = NULL,
                                         int            activityType           = 0,
                                         const CString& excludedActivity       = "",
                                         BOOL           stopOnFound            = TRUE,
@@ -67,7 +67,7 @@
         *@param stopOnFound - if TRUE, search will stop on first found item
         *@param attributedActivityOnly - if TRUE, only attributed activity will be processed
         */
-        virtual int Initialize(ZProcess*      pProcess,
+        virtual int Initialize(PSS_Process*   pProcess,
                                int            activityType           = 0,
                                const CString& excludedActivity       = "",
                                BOOL           stopOnFound            = TRUE,
@@ -98,24 +98,24 @@
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZProcess* m_pProcess;
-        int       m_ActivityType;
-        CString   m_ExcludedActivity;
-        BOOL      m_StopOnFound;
-        BOOL      m_AttributedActivityOnly;
+        PSS_Process* m_pProcess;
+        int          m_ActivityType;
+        CString      m_ExcludedActivity;
+        BOOL         m_StopOnFound;
+        BOOL         m_AttributedActivityOnly;
     
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_ActivityListAttributionCtrl(const PSS_ActivityListAttributionCtrl &right);
+        PSS_ActivityListAttributionCtrl(const PSS_ActivityListAttributionCtrl& other);
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_ActivityListAttributionCtrl & operator = (const PSS_ActivityListAttributionCtrl &right);
+        const PSS_ActivityListAttributionCtrl& operator = (const PSS_ActivityListAttributionCtrl& other);
 };
 
 #endif

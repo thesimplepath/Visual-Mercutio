@@ -67,7 +67,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityTaskListCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityTaskListCtrl::PSS_ActivityTaskListCtrl(ZProcess* pProcess) :
+PSS_ActivityTaskListCtrl::PSS_ActivityTaskListCtrl(PSS_Process* pProcess) :
     #ifdef _WIN32
         // 32 bit version
         PSS_ListCtrl(),
@@ -92,7 +92,7 @@ const PSS_ActivityTaskListCtrl& PSS_ActivityTaskListCtrl::operator = (const PSS_
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityTaskListCtrl::Initialize(ZProcess* pProcess)
+int PSS_ActivityTaskListCtrl::Initialize(PSS_Process* pProcess)
 {
     m_pProcess = pProcess;
     return Refresh();

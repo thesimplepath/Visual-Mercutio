@@ -23,11 +23,14 @@
 #ifndef PSS_Activity
     #define PSS_Activity ZActivity
 #endif
+#ifndef PSS_Process
+    //#define PSS_Process ZProcess
+#endif
 
 // forward class declarations
 class PSS_BaseActivity;
 class PSS_Activity;
-class ZProcess;
+class PSS_Process;
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -50,7 +53,7 @@ class AFX_EXT_CLASS PSS_ProcessIterator
         * Constructor
         *@param pProcess - process
         */
-        PSS_ProcessIterator(ZProcess* pProcess = NULL);
+        PSS_ProcessIterator(PSS_Process* pProcess = NULL);
 
         virtual ~PSS_ProcessIterator();
 
@@ -102,7 +105,7 @@ class AFX_EXT_CLASS PSS_ProcessIterator
         *@param pActivity - activity
         *@return the activity parent process, NULL if not found or on error
         */
-        virtual ZProcess* GetParentProcess(PSS_BaseActivity* pActivity);
+        virtual PSS_Process* GetParentProcess(PSS_BaseActivity* pActivity);
 
         /**
         * Gets the previous valid activity
@@ -144,13 +147,13 @@ class AFX_EXT_CLASS PSS_ProcessIterator
         * Gets the previous process
         *@return the previous process, NULL if not found or on error
         */
-        virtual ZProcess* GetPreviousProcess();
+        virtual PSS_Process* GetPreviousProcess();
 
         /**
         * Gets the next process
         *@return the next process, NULL if not found or on error
         */
-        virtual ZProcess* GetNextProcess();
+        virtual PSS_Process* GetNextProcess();
 
         /**
         * Starts the iterator using an activity and a process
@@ -158,7 +161,7 @@ class AFX_EXT_CLASS PSS_ProcessIterator
         *@param pProcess - the process
         *@return the next activity
         */
-        virtual PSS_BaseActivity* StartIterator(PSS_BaseActivity* pActivity = NULL, ZProcess* pProcess = NULL);
+        virtual PSS_BaseActivity* StartIterator(PSS_BaseActivity* pActivity = NULL, PSS_Process* pProcess = NULL);
 
         /**
         * Starts the iterator using an activity name and a process
@@ -166,7 +169,7 @@ class AFX_EXT_CLASS PSS_ProcessIterator
         *@param pProcess - the process
         *@return the next activity
         */
-        virtual PSS_BaseActivity* StartIterator(const CString& activityName, ZProcess* pProcess = NULL);
+        virtual PSS_BaseActivity* StartIterator(const CString& activityName, PSS_Process* pProcess = NULL);
 
         /**
         * Finds an activity
@@ -177,7 +180,7 @@ class AFX_EXT_CLASS PSS_ProcessIterator
 
     private:
         PSS_BaseActivity* m_IteratorActivityPointer;
-        ZProcess*         m_pProcess;
+        PSS_Process*      m_pProcess;
 
         /**
         * Copy constructor

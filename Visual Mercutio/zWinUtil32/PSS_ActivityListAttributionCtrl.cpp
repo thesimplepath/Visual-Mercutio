@@ -52,7 +52,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityListAttributionCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityListAttributionCtrl::PSS_ActivityListAttributionCtrl(ZProcess*      pProcess,
+PSS_ActivityListAttributionCtrl::PSS_ActivityListAttributionCtrl(PSS_Process*   pProcess,
                                                                  int            activityType,
                                                                  const CString& excludedActivity,
                                                                  BOOL           stopOnFound,
@@ -84,11 +84,11 @@ const PSS_ActivityListAttributionCtrl& PSS_ActivityListAttributionCtrl::operator
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityListAttributionCtrl::Initialize (ZProcess*      pProcess,
-                                                 int            activityType,
-                                                 const CString& excludedActivity,
-                                                 BOOL           stopOnFound,
-                                                 BOOL           attributedActivityOnly)
+int PSS_ActivityListAttributionCtrl::Initialize(PSS_Process*   pProcess,
+                                                int            activityType,
+                                                const CString& excludedActivity,
+                                                BOOL           stopOnFound,
+                                                BOOL           attributedActivityOnly)
 {
     m_pProcess               = pProcess;
     m_ActivityType           = activityType;

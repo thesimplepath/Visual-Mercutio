@@ -54,7 +54,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityListCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityListCtrl::PSS_ActivityListCtrl(ZProcess*      pProcess,
+PSS_ActivityListCtrl::PSS_ActivityListCtrl(PSS_Process*   pProcess,
                                            int            activityType,
                                            const CString& excludedActivity,
                                            BOOL           stopOnFound,
@@ -86,7 +86,7 @@ const PSS_ActivityListCtrl& PSS_ActivityListCtrl::operator = (const PSS_Activity
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityListCtrl::Initialize(ZProcess*     pProcess,
+int PSS_ActivityListCtrl::Initialize(PSS_Process*  pProcess,
                                     int            activityType,
                                     const CString& excludedActivity,
                                     BOOL           stopOnFound,
@@ -203,8 +203,8 @@ int PSS_ActivityListCtrl::Refresh ()
             if (pActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)))
                 imageIndex = 1;
             else
-            if (pActivity->IsKindOf(RUNTIME_CLASS(ZProcess)))
-                imageIndex = (((ZProcess*)pActivity)->GetRunMode() == PSS_BaseActivity::IE_RM_Sequence) ? 0 : 2;
+            if (pActivity->IsKindOf(RUNTIME_CLASS(PSS_Process)))
+                imageIndex = (static_cast<PSS_Process*>(pActivity)->GetRunMode() == PSS_BaseActivity::IE_RM_Sequence ? 0 : 2);
 
             // add the action icon
             InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, 0);

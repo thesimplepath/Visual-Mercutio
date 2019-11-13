@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------
 // PSS_SelectProcessWizard
 //---------------------------------------------------------------------------
-PSS_SelectProcessWizard::PSS_SelectProcessWizard(ZProcess& process) :
+PSS_SelectProcessWizard::PSS_SelectProcessWizard(PSS_Process& process) :
     m_Process(process)
 {}
 //---------------------------------------------------------------------------

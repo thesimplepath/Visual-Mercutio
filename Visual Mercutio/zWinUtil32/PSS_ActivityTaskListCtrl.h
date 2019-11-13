@@ -47,7 +47,7 @@
         * Constructor
         *@param pProcess - process, can be NULL
         */
-        PSS_ActivityTaskListCtrl(ZProcess* pProcess = NULL);
+        PSS_ActivityTaskListCtrl(PSS_Process* pProcess = NULL);
 
         virtual ~PSS_ActivityTaskListCtrl();
 
@@ -55,7 +55,7 @@
         * Initializes the control
         *@param pProcess - process
         */
-        int Initialize(ZProcess* pProcess);
+        int Initialize(PSS_Process* pProcess);
 
         /**
         * Gets the selected activity
@@ -104,8 +104,8 @@
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZProcess* m_pProcess;
-        BOOL      m_HasBuiltColumns;
+        PSS_Process* m_pProcess;
+        BOOL         m_HasBuiltColumns;
 
         /**
         * Copy constructor

@@ -34,10 +34,13 @@
 #ifndef PSS_Activity
     #define PSS_Activity ZActivity
 #endif
+#ifndef PSS_Process
+    //#define PSS_Process ZProcess
+#endif
 
 // forward class declarations
 class PSS_Activity;
-class ZProcess;
+class PSS_Process;
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -192,7 +195,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         * Gets the parent process
         *@return the parent process, NULL if no parent or on error
         */
-        virtual ZProcess* GetParentProcess() const;
+        virtual PSS_Process* GetParentProcess() const;
 
         /**
         * Checks if activities are defined
@@ -264,13 +267,13 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         * Gets the previous process
         *@return the previous process, NULL if not found or on error
         */
-        virtual ZProcess* GetPreviousProcess() const;
+        virtual PSS_Process* GetPreviousProcess() const;
 
         /**
         * Gets the next process
         *@return the next process, NULL if not found or on error
         */
-        virtual ZProcess* GetNextProcess() const;
+        virtual PSS_Process* GetNextProcess() const;
 
         /**
         * Builds a delimited string containing the person list
@@ -760,7 +763,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         * Gets the main process
         *@return the main process
         */
-        virtual ZProcess* GetMainProcess();
+        virtual PSS_Process* GetMainProcess();
 
         /**
         * Gets if activity is visible
@@ -1154,7 +1157,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         *@param pProcess - the process to add
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL AddProcess(ZProcess* pProcess);
+        virtual BOOL AddProcess(PSS_Process* pProcess);
 
         /**
         * Adds a new process after a specified activity
@@ -1162,14 +1165,14 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         *@param activityName - activity name after which the new process should be added
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL AddProcessAfter(ZProcess* pProcess, const CString& activityName);
+        virtual BOOL AddProcessAfter(PSS_Process* pProcess, const CString& activityName);
 
         /**
         * Deletes a process
         *@param pProcess - the process to delete
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL DeleteProcess(ZProcess* pProcess);
+        virtual BOOL DeleteProcess(PSS_Process* pProcess);
 
         /**
         * Deletes a process
@@ -1183,7 +1186,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         *@param processName - the process name to find
         *@returns the process, NULL if not found or on error
         */
-        virtual ZProcess* FindProcess(const CString& processName) const;
+        virtual PSS_Process* FindProcess(const CString& processName) const;
 
         /**
         * Removes all the activities

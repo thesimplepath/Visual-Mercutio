@@ -1,25 +1,14 @@
-//## begin module%367549960100.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%367549960100.cm
+/****************************************************************************
+ * ==> PSS_Process ---------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a process                                         *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%367549960100.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%367549960100.cp
+#ifndef PSS_ProcessH
+#define PSS_ProcessH
 
-//## Module: ZProcess%367549960100; Package specification
-//## Subsystem: ZEvent%378A5F7E02DB
-//## Source file: z:\adsoft~1\ZEvent\ZProcess.h
-
-#ifndef ZProcess_h
-#define ZProcess_h 1
-
-//## begin module%367549960100.additionalIncludes preserve=no
-//## end module%367549960100.additionalIncludes
-
-//## begin module%367549960100.includes preserve=yes
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -27,370 +16,384 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-//## end module%367549960100.includes
-
-// Activity
-#include "PSS_Activity.h"
-// ProcIter
-#include "PSS_ProcessIterator.h"
-// BActvt
-#include "PSS_BaseActivity.h"
-//## begin module%367549960100.declarations preserve=no
-//## end module%367549960100.declarations
-
-//## begin module%367549960100.additionalDeclarations preserve=yes
-enum     ProcessStatus
-{
-    ProcessStarted, ProcessInProcess, ProcessCompleted, ProcessAborted, ProcessNotStarted, ProcessSuspend
-};
-
-#ifdef _ZEVENTEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_Process
+    //#define PSS_Process ZProcess
 #endif
 
+// processsoft
+#include "PSS_Activity.h"
+#include "PSS_ProcessIterator.h"
+#include "PSS_BaseActivity.h"
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
+#ifdef _ZEVENTEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
 
-//## end module%367549960100.additionalDeclarations
-
-
-//## Class: ZProcess%36725B570291
-//    This function defines a complete process.
-//## Category: ZEvent::Process Classes - Event%378A5FD903A4
-//## Subsystem: ZEvent%378A5F7E02DB
-//## Persistence: Transient
-//## Cardinality/Multiplicity: n
-
-//## Uses: <unnamed>%3675469003E2;ZActivity { -> }
-//## Uses: <unnamed>%37905224005E;ZProcessIterator { -> }
-
-class AFX_EXT_CLASS ZProcess : public PSS_BaseActivity
+/**
+* Process
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_Process : public PSS_BaseActivity
 {
-    //## begin ZProcess%36725B570291.initialDeclarations preserve=yes
-public:
-    // Inherited feature
-    typedef PSS_BaseActivity inherited;
-    DECLARE_SERIAL(ZProcess)
-    //## end ZProcess%36725B570291.initialDeclarations
+    DECLARE_SERIAL(PSS_Process)
 
-public:
-    //## Constructors (specified)
-      //## Operation: ZProcess%915870188
-    ZProcess(ProcessStatus ProcessStatus = ProcessNotStarted, CString ConnectedUser = "");
+    public:
+        typedef PSS_BaseActivity inherited;
 
-    //## Destructor (generated)
-    ~ZProcess();
+        enum IEStatus
+        {
+            IE_PS_Started,
+            IE_PS_InProcess,
+            IE_PS_Completed,
+            IE_PS_Aborted,
+            IE_PS_NotStarted,
+            IE_PS_Suspend
+        };
 
+        /**
+        * Constructor
+        *@param processStatus - process status
+        *@param connectedUser - connected user
+        */
+        PSS_Process(IEStatus processStatus = IE_PS_NotStarted, const CString& connectedUser = "");
 
-    //## Other Operations (specified)
+        virtual ~PSS_Process();
 
-      //## Operation: Serialize%913664905
-      //    Serialization function required for MFC mecanism.
-    virtual void Serialize(CArchive& ar);
+        /**
+        * Adds a new authorized user
+        *@param userName - user name
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual inline BOOL AddAuthUser(const CString& userName);
 
-    //## Operation: RemoveAllAuthUsers%915926630
-    void RemoveAllAuthUsers();
+        /**
+        * Gets the authorized user count
+        *@return the authorized user count
+        */
+        virtual inline std::size_t GetAuthUserCount() const;
 
-    //## Operation: AddAuthUser%915926631
-    //    Add a new authorized user.
-    BOOL AddAuthUser(const CString UserName);
+        /**
+        * Gets the authorized user name at index
+        *@param index - index
+        *@return the authorized user name at index, empty string if not found or on error
+        */
+        virtual inline CString GetAuthUserAt(int index);
 
-    //## Operation: GetAuthUserCount%915926632
-    //    Return the number of authorized users.
-    size_t GetAuthUserCount();
+        /**
+        * Removes all the authorized users
+        */
+        virtual inline void RemoveAllAuthUsers();
 
-    //## Operation: GetAuthUserAt%915926633
-    //    Returns the authorized username at the index position.
-    CString GetAuthUserAt(int Index);
+        /**
+        * Fills the authorization user list from an activity
+        *@param activity - the activity
+        *@param userManager - user manager
+        */
+        virtual void FillAuthUser(PSS_BaseActivity& activity, const PSS_UserManager& userManager);
 
-    //## Operation: FillAuthUser%915992439
-    //    Fill the authorization user list with the activity.
-    void FillAuthUser(PSS_BaseActivity& Activity, PSS_UserManager& UserManager);
+        /**
+        * Fills the authorization user list from resources
+        *@param resources - resources
+        */
+        virtual void FillAuthUser(const PSS_ActivityResources& resources);
 
-    //## Operation: FillAuthUser%940840074
-    //    Fill the authorization user list with a ZBResource
-    //    object.
-    void FillAuthUser(PSS_ActivityResources& Resources);
+        /**
+        * Fills the authorization user list from a delimiter string of users
+        *@param userDelimiter - delimited string containing users
+        */
+        virtual void FillAuthUser(const CString& userDelimiter);
 
-    //    Fill the authorization user list directly with a user delimiter string
-    void FillAuthUser(CString UserDelimiter);
+        /**
+        * Fills the string array with activity name
+        *@param[out] activityArray - activity array to populate with result
+        *@param activityType - activity type
+        *@param excludedActivity - excluded activity
+        *@param stopWhenFound - if TRUE, the fill will stop when found
+        *@param attributedActivityOnly - if TRUE, only the attributed activities will be considered
+        *@return the activity count
+        */
+        virtual std::size_t GetActivityNameArray(CStringArray&  activityArray,
+                                                 WORD           activityType           = 0,
+                                                 const CString& excludedActivity       = "",
+                                                 BOOL           stopWhenFound          = TRUE,
+                                                 BOOL           attributedActivityOnly = FALSE);
 
-    //## Operation: GetActivityNameArray%916072770
-    //    Fill the string array with activity name. Return the
-    //    number of activities.
-    size_t GetActivityNameArray(CStringArray& ActivityArray, WORD ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
+        /**
+        * Checks if a specific template name exists
+        *@param templateName - the template name
+        *@return TRUE if a specific template name exists, otherwise FALS
+        */
+        virtual BOOL TemplateExist(const CString& templateName);
 
-    //## Operation: TemplateExist%916261170
-    //    Search if a specific template name exists.
-    BOOL TemplateExist(const CString& TemplateName);
+        /**
+        * Build the person email list
+        *@param activity - the activity
+        *@param userManager - the user manager
+        *@return the user email list, NULL on error
+        */
+        virtual PSS_MailUserList* CreatePersonList(PSS_BaseActivity& activity, const PSS_UserManager& userManager);
 
-    //## Operation: CreatePersonList%927439016
-    //    Take the activity and build the person list for the
-    //    email.
-    virtual PSS_MailUserList* CreatePersonList(PSS_BaseActivity& Activity, PSS_UserManager& UserManager);
+        /**
+        * Build the person email list
+        *@param index - the activity index
+        *@param userManager - the user manager
+        *@return the user email list, NULL on error
+        */
+        virtual PSS_MailUserList* CreatePersonList(int index, const PSS_UserManager& userManager);
 
-    //## Operation: CreatePersonList%927439017
-    //    Take the activity and build the person list for the
-    //    email.
-    virtual PSS_MailUserList* CreatePersonList(int Index, PSS_UserManager& UserManager);
+        /**
+        * Fills a person array
+        *@param activity - the activity
+        *@param userManager - the user manager
+        *@param[out] userArray - the user array to populate
+        *@return the user email list, NULL on error
+        */
+        virtual BOOL FillPersonArray(PSS_BaseActivity& activity, const PSS_UserManager& userManager, CStringArray& userArray);
 
-    //## Operation: FillPersonArray%927439018
-    //    Take the activity and fill a person array.
-    virtual BOOL FillPersonArray(PSS_BaseActivity& Activity, PSS_UserManager& UserManager, CStringArray& UserArray);
+        /**
+        * Fills a person array
+        *@param index - the activity index
+        *@param userManager - the user manager
+        *@param[out] userArray - the user array to populate
+        *@return the user email list, NULL on error
+        */
+        virtual BOOL FillPersonArray(int index, const PSS_UserManager& userManager, CStringArray& userArray);
 
-    //## Operation: FillPersonArray%927439019
-    //    Take the activity and fill a person array.
-    virtual BOOL FillPersonArray(int Index, PSS_UserManager& UserManager, CStringArray& UserArray);
+        /**
+        * Build a delimited string containing the person list
+        *@param activity - activity from which the list will be get
+        *@param userManager - user manager
+        *@param delimiter - delimiter to use to tokenize the source string
+        *@return the person list delimited string
+        */
+        virtual CString CreatePersonDelimStr(PSS_BaseActivity&       activity,
+                                             const PSS_UserManager&  userManager,
+                                             const CString&          delimiter = ";");
 
-    //## Operation: CreatePersonDelimStr%927439020
-    //    Take the activity and build a delimited string
-    //    containing the person list.
-    virtual CString CreatePersonDelimStr(PSS_BaseActivity& Activity, PSS_UserManager& UserManager, CString Delimiter = ";");
+        /**
+        * Build a delimited string containing the person list
+        *@param index - the activity index from which the list will be get
+        *@param userManager - user manager
+        *@param delimiter - delimiter to use to tokenize the source string
+        *@return the person list delimited string
+        */
+        virtual CString CreatePersonDelimStr(int index, const PSS_UserManager& userManager, const CString& delimiter = ";");
 
-    //## Operation: CreatePersonDelimStr%927439021
-    //    Take the activity and build a delimited string
-    //    containing the person list.
-    virtual CString CreatePersonDelimStr(int Index, PSS_UserManager& UserManager, CString Delimiter = ";");
+        /**
+        * For a specific activity, finds its attributed activities
+        *@param name - the activity name to search
+        *@return the attributed activities array, NULL if not found or on error
+        */
+        virtual CObArray* GetAttributedActivities(const CString& name);
 
-    //## Operation: GetAttributedActivities%927535108
-    //    For a specific activity, find its attributed activities.
-    CObArray* GetAttributedActivities(const CString Name);
+        /**
+        * Calculates the forecasted start date by taking all activities
+        */
+        virtual void CalculateForecastedStartDate();
 
-    //## Operation: CalculateForecastedStartDate%931585006
-    //    This function calculates the forecasted start date by
-    //    taking all activities.
-    virtual void CalculateForecastedStartDate();
+        /**
+        * Calculates the forecasted end date by taking all activities
+        */
+        virtual void CalculateForecastedEndDate();
 
-    //## Operation: CalculateForecastedEndDate%929033120
-    //    This function calculates the forecasted end date by
-    //    taking all activities.
-    virtual void CalculateForecastedEndDate();
+        /**
+        * Gets the duration days
+        *@return the duration days
+        */
+        virtual WORD GetDurationDays();
 
-    //## Operation: GetDurationDays%931585010
-    virtual WORD GetDurationDays();
+        /**
+        * Gets the activity status key string
+        *@param pActivity - the activity
+        *@return the activity status key string
+        */
+        virtual CString GetStatusKeyString(PSS_BaseActivity* pActivity = NULL);
 
-    //## Operation: GetStatusKeyString%931585016
-    //    Return the Activity Status string.
-    virtual CString GetStatusKeyString(PSS_BaseActivity* pActivity = NULL);
+        /**
+        * Sets the activity status based on a key string
+        *@param key - the key string
+        */
+        virtual void SetStatusFromKeyString(const CString& key);
 
-    //## Operation: SetStatusFromKeyString%943181049
-    //    Set the Activity Status based on a keystring.
-    virtual void SetStatusFromKeyString(const CString KeyString);
+        /**
+        * Sets the visibility of an activity or process
+        *@param value - the visibility status
+        */
+        virtual void SetVisibility(const EThreeState value);
 
-    //## Operation: IsChoiceActivityDone%934700760
-    //## Operation: SetVisibility%935776836
-    //    Set the visibility of an activity or process.
-    virtual void SetVisibility(const EThreeState value);
+        /**
+        * Gets the activity status string
+        *@return the activity status string
+        */
+        virtual CString GetActivityStatusString() const;
 
+        /**
+        * Gets the main process
+        *@return the main process
+        */
+        virtual PSS_Process* GetMainProcess();
 
-    //## Operation: GetActivityStatusString%935923759
-    virtual CString GetActivityStatusString();
+        /**
+        * Gets the process status
+        *@return the process status
+        */
+        virtual inline const IEStatus GetProcessStatus() const;
 
-    //## Operation: GetMainProcess%945000549
-    //    Return the main process.
-    virtual ZProcess* GetMainProcess();
+        /**
+        * Sets the process status
+        *@param value - the process status
+        */
+        virtual inline void SetProcessStatus(IEStatus value);
 
-    //## Get and Set Operations for Class Attributes (generated)
+        /**
+        * Gets the list of authorized users allowed to modify the process. It is a function of the activity
+        *@return the list of authorized users allowed to modify the process
+        */
+        virtual inline CStringArray& GetAuthorizedUser();
 
-      //## Attribute: ProcessStatus%3697133A00B4
-      //    The process status.
-    const ProcessStatus GetProcessStatus() const;
-    void SetProcessStatus(ProcessStatus value);
+        /**
+        * Gets if the mail may be also used as workflow support
+        *@return TRUE if the mail may be also used as workflow support, otherwise FALSE
+        */
+        virtual inline const BOOL GetUseMail() const;
 
-    //## Attribute: AuthorizedUser%3697EE070096
-    //    Contains the list of users authorized to modify the
-    //    process. It is function of the activity.
-    CStringArray& GetAuthorizedUser();
+        /**
+        * Sets if the mail may be also used as workflow support
+        *@param value - if TRUE, the mail may be also used as workflow support
+        */
+        virtual inline void SetUseMail(BOOL value);
 
-    //## Attribute: UseMail%3763A53B03BD
-    //    Use also the mail as workflow support.
-    const BOOL GetUseMail() const;
-    void SetUseMail(BOOL value);
+        /**
+        * Gets if the process can be automatically started without human intervention
+        *@return TRUE if the process can be automatically started without human intervention, otherwise FALSE
+        */
+        virtual inline const BOOL GetAutoStart() const;
 
-    //## Attribute: AutoStart%37B42F980310
-    //    Defines if the process can be automatically started
-    //    without human intervention.
-    const BOOL GetAutoStart() const;
-    void SetAutoStart(BOOL value);
+        /**
+        * Gets if the process can be automatically started without human intervention
+        *@param value - if TRUE, the process can be automatically started without human intervention
+        */
+        virtual inline void SetAutoStart(BOOL value);
 
-    //## Attribute: ChoiceActivityArray%37B51FAB03B0
+        /**
+        * Gets if the process do not must use the internal messagerie
+        *@return TRUE if the process do not must use the internal messagerie, otherwise FALSE
+        */
+        virtual inline const BOOL GetDoNotUseInternalMessage() const;
 
-    //## Attribute: DoNotUseInternalMessage%3809A028029C
-    //    Set to TRUE if the process do not must use the internal
-    //    messagerie.
-    const BOOL GetDoNotUseInternalMessage() const;
-    void SetDoNotUseInternalMessage(BOOL value);
+        /**
+        * Sets if the process do not must use the internal messagerie
+        *@param value - if TRUE, the process do not must use the internal messagerie
+        */
+        virtual inline void SetDoNotUseInternalMessage(BOOL value);
 
-    // Additional Public Declarations
-      //## begin ZProcess%36725B570291.public preserve=yes
-    virtual void    SetDefaultProperty();
+        /**
+        * Sets the default property
+        */
+        virtual void SetDefaultProperty();
 
-    //## end ZProcess%36725B570291.public
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
 
-private:
-    //## Constructors (generated)
-    ZProcess(const ZProcess &right);
+    private:
+        CObArray*    m_pAttributedActivitiesArray;
+        IEStatus     m_ProcessStatus;
+        CStringArray m_AuthorizedUser;
+        BOOL         m_UseMail;
+        BOOL         m_AutoStart;
+        BOOL         m_DoNotUseInternalMessage;
 
-    //## Assignment Operation (generated)
-    const ZProcess & operator=(const ZProcess &right);
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        PSS_Process(const PSS_Process& other);
 
-    // Data Members for Class Attributes
-
-      //## Attribute: ActivityArray%36754AAB01C7
-      //    Contains the array of activities.
-      //## begin ZProcess::ActivityArray%36754AAB01C7.attr preserve=no  public: CObArray {U} 
-      //## end ZProcess::ActivityArray%36754AAB01C7.attr
-
-      //## begin ZProcess::ProcessStatus%3697133A00B4.attr preserve=no  public: ProcessStatus {U} 
-    ProcessStatus m_ProcessStatus;
-    //## end ZProcess::ProcessStatus%3697133A00B4.attr
-
-    //## begin ZProcess::AuthorizedUser%3697EE070096.attr preserve=no  public: CStringArray {U} 
-    CStringArray m_AuthorizedUser;
-    //## end ZProcess::AuthorizedUser%3697EE070096.attr
-
-    //## Attribute: pAttributedActivitiesArray%37490F450357
-    //    Contains the attributed activities array.
-    //## begin ZProcess::pAttributedActivitiesArray%37490F450357.attr preserve=no  public: CObArray* {V} 
-    CObArray* m_pAttributedActivitiesArray;
-    //## end ZProcess::pAttributedActivitiesArray%37490F450357.attr
-
-    //## begin ZProcess::UseMail%3763A53B03BD.attr preserve=no  public: BOOL {U} 
-    BOOL m_UseMail;
-    //## end ZProcess::UseMail%3763A53B03BD.attr
-
-    //## begin ZProcess::RunMode%37A2AA430062.attr preserve=no  public: ActivityRunMode {U} SequenceRun
-    //## end ZProcess::RunMode%37A2AA430062.attr
-
-    //## begin ZProcess::AutoStart%37B42F980310.attr preserve=no  public: BOOL {U} 
-    BOOL m_AutoStart;
-    //## end ZProcess::AutoStart%37B42F980310.attr
-
-    //## begin ZProcess::ChoiceActivityArray%37B51FAB03B0.attr preserve=no  public: CStringArray {V} 
-    //## end ZProcess::ChoiceActivityArray%37B51FAB03B0.attr
-
-    //## begin ZProcess::DoNotUseInternalMessage%3809A028029C.attr preserve=no  public: BOOL {U} 
-    BOOL m_DoNotUseInternalMessage;
-    //## end ZProcess::DoNotUseInternalMessage%3809A028029C.attr
-
-  // Additional Private Declarations
-    //## begin ZProcess%36725B570291.private preserve=yes
-    //## end ZProcess%36725B570291.private
-
-private:  //## implementation
-  // Additional Implementation Declarations
-    //## begin ZProcess%36725B570291.implementation preserve=yes
-    //## end ZProcess%36725B570291.implementation
-
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_Process& operator = (const PSS_Process& other);
 };
 
-//## begin ZProcess%36725B570291.postscript preserve=yes
-//#undef  AFX_DATA
-//#define AFX_DATA
-//## end ZProcess%36725B570291.postscript
-
-// Class ZProcess 
-
-
-//## Other Operations (inline)
-inline void ZProcess::RemoveAllAuthUsers()
+//---------------------------------------------------------------------------
+// PSS_Process
+//---------------------------------------------------------------------------
+BOOL PSS_Process::AddAuthUser(const CString& userName)
 {
-    //## begin ZProcess::RemoveAllAuthUsers%915926630.body preserve=yes
+    return m_AuthorizedUser.Add(userName) >= 0;
+}
+//---------------------------------------------------------------------------
+std::size_t PSS_Process::GetAuthUserCount() const
+{
+    return std::size_t(m_AuthorizedUser.GetSize());
+}
+//---------------------------------------------------------------------------
+CString PSS_Process::GetAuthUserAt(int index)
+{
+    return (CString)m_AuthorizedUser.GetAt(index);
+}
+//---------------------------------------------------------------------------
+void PSS_Process::RemoveAllAuthUsers()
+{
     m_AuthorizedUser.RemoveAll();
-    //## end ZProcess::RemoveAllAuthUsers%915926630.body
 }
-
-inline BOOL ZProcess::AddAuthUser(const CString UserName)
+//---------------------------------------------------------------------------
+const PSS_Process::IEStatus PSS_Process::GetProcessStatus() const
 {
-    //## begin ZProcess::AddAuthUser%915926631.body preserve=yes
-    return m_AuthorizedUser.Add(UserName) >= 0;
-    //## end ZProcess::AddAuthUser%915926631.body
-}
-
-inline size_t ZProcess::GetAuthUserCount()
-{
-    //## begin ZProcess::GetAuthUserCount%915926632.body preserve=yes
-    return (size_t)m_AuthorizedUser.GetSize();
-    //## end ZProcess::GetAuthUserCount%915926632.body
-}
-
-inline CString ZProcess::GetAuthUserAt(int Index)
-{
-    //## begin ZProcess::GetAuthUserAt%915926633.body preserve=yes
-    return (CString)m_AuthorizedUser.GetAt(Index);
-    //## end ZProcess::GetAuthUserAt%915926633.body
-}
-
-//## Get and Set Operations for Class Attributes (inline)
-
-inline const ProcessStatus ZProcess::GetProcessStatus() const
-{
-    //## begin ZProcess::GetProcessStatus%3697133A00B4.get preserve=no
     return m_ProcessStatus;
-    //## end ZProcess::GetProcessStatus%3697133A00B4.get
 }
-
-inline void ZProcess::SetProcessStatus(ProcessStatus value)
+//---------------------------------------------------------------------------
+void PSS_Process::SetProcessStatus(IEStatus value)
 {
-    //## begin ZProcess::SetProcessStatus%3697133A00B4.set preserve=no
     m_ProcessStatus = value;
-    //## end ZProcess::SetProcessStatus%3697133A00B4.set
 }
-
-inline CStringArray& ZProcess::GetAuthorizedUser()
+//---------------------------------------------------------------------------
+CStringArray& PSS_Process::GetAuthorizedUser()
 {
-    //## begin ZProcess::GetAuthorizedUser%3697EE070096.get preserve=no
     return m_AuthorizedUser;
-    //## end ZProcess::GetAuthorizedUser%3697EE070096.get
 }
-
-inline const BOOL ZProcess::GetUseMail() const
+//---------------------------------------------------------------------------
+const BOOL PSS_Process::GetUseMail() const
 {
-    //## begin ZProcess::GetUseMail%3763A53B03BD.get preserve=no
     return m_UseMail;
-    //## end ZProcess::GetUseMail%3763A53B03BD.get
 }
-
-inline void ZProcess::SetUseMail(BOOL value)
+//---------------------------------------------------------------------------
+void PSS_Process::SetUseMail(BOOL value)
 {
-    //## begin ZProcess::SetUseMail%3763A53B03BD.set preserve=no
     m_UseMail = value;
-    //## end ZProcess::SetUseMail%3763A53B03BD.set
 }
-
-inline const BOOL ZProcess::GetAutoStart() const
+//---------------------------------------------------------------------------
+const BOOL PSS_Process::GetAutoStart() const
 {
-    //## begin ZProcess::GetAutoStart%37B42F980310.get preserve=no
     return m_AutoStart;
-    //## end ZProcess::GetAutoStart%37B42F980310.get
 }
-
-inline void ZProcess::SetAutoStart(BOOL value)
+//---------------------------------------------------------------------------
+void PSS_Process::SetAutoStart(BOOL value)
 {
-    //## begin ZProcess::SetAutoStart%37B42F980310.set preserve=no
     m_AutoStart = value;
-    //## end ZProcess::SetAutoStart%37B42F980310.set
 }
-
-inline const BOOL ZProcess::GetDoNotUseInternalMessage() const
+//---------------------------------------------------------------------------
+const BOOL PSS_Process::GetDoNotUseInternalMessage() const
 {
-    //## begin ZProcess::GetDoNotUseInternalMessage%3809A028029C.get preserve=no
     return m_DoNotUseInternalMessage;
-    //## end ZProcess::GetDoNotUseInternalMessage%3809A028029C.get
 }
-
-inline void ZProcess::SetDoNotUseInternalMessage(BOOL value)
+//---------------------------------------------------------------------------
+void PSS_Process::SetDoNotUseInternalMessage(BOOL value)
 {
-    //## begin ZProcess::SetDoNotUseInternalMessage%3809A028029C.set preserve=no
     m_DoNotUseInternalMessage = value;
-    //## end ZProcess::SetDoNotUseInternalMessage%3809A028029C.set
 }
+//---------------------------------------------------------------------------
 
 #endif

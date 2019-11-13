@@ -55,7 +55,7 @@ class PSS_SelectProcessWizardDialog : public PSS_WizardDialog
         *@param process - process
         *@param pParent - parent window, can be NULL
         */
-        PSS_SelectProcessWizardDialog(ZProcess& Process, CWnd* pParent = NULL);
+        PSS_SelectProcessWizardDialog(PSS_Process& process, CWnd* pParent = NULL);
 
         /**
         * Gets the base activity name
@@ -87,7 +87,7 @@ class PSS_SelectProcessWizardDialog : public PSS_WizardDialog
         };
 
         PSS_ActivityListCtrl m_ActivityProcList;
-        ZProcess&            m_Process;
+        PSS_Process&         m_Process;
         CString              m_ProcessName;
         CString              m_BaseActivityName;
 

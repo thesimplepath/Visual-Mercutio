@@ -51,7 +51,7 @@
         *@param stopOnFound - if TRUE, search will stop on first found item
         *@param attributedActivityOnly - if TRUE, only attributed activity will be processed
         */
-        PSS_ActivityListCtrl(ZProcess*      pProcess               = NULL,
+        PSS_ActivityListCtrl(PSS_Process*   pProcess               = NULL,
                              int            activityType           = 0,
                              const CString& excludedActivity       = "",
                              BOOL           stopOnFound            = TRUE,
@@ -67,7 +67,7 @@
         *@param stopOnFound - if TRUE, search will stop on first found item
         *@param attributedActivityOnly - if TRUE, only attributed activity will be processed
         */
-        virtual int Initialize(ZProcess*      pProcess,
+        virtual int Initialize(PSS_Process*   pProcess,
                                int            activityType           = 0,
                                const CString& excludedActivity       = "",
                                BOOL           stopOnFound            = TRUE,
@@ -98,11 +98,11 @@
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZProcess* m_pProcess;
-        int       m_ActivityType;
-        CString   m_ExcludedActivity;
-        BOOL      m_StopOnFound;
-        BOOL      m_AttributedActivityOnly;
+        PSS_Process* m_pProcess;
+        int          m_ActivityType;
+        CString      m_ExcludedActivity;
+        BOOL         m_StopOnFound;
+        BOOL         m_AttributedActivityOnly;
 
         /**
         * Copy constructor
@@ -115,7 +115,7 @@
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_ActivityListCtrl & operator = (const PSS_ActivityListCtrl& other);
+        const PSS_ActivityListCtrl& operator = (const PSS_ActivityListCtrl& other);
 };
 
 #endif

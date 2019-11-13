@@ -24,8 +24,13 @@
 #include "zBaseLib\PSS_MailUserList.h"
 #include "zBaseLib\PSS_UserManager.h"
 
+// class name mapping
+#ifndef PSS_Process
+    //#define PSS_Process ZProcess
+#endif
+
 // forward class declarations
-class ZProcess;
+class PSS_Process;
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -151,7 +156,7 @@ class AFX_EXT_CLASS PSS_ActivityResources : public CObject
         *@param connectedUser - connected user
         *@return the user email list
         */
-        virtual PSS_MailUserList* CreatePersonList(ZProcess*              pMainProcess,
+        virtual PSS_MailUserList* CreatePersonList(PSS_Process*           pMainProcess,
                                                    const PSS_UserManager& userManager,
                                                    const CString&         connectedUser);
 
@@ -163,7 +168,7 @@ class AFX_EXT_CLASS PSS_ActivityResources : public CObject
         *@param connectedUser - connected user
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL FillPersonArray(ZProcess*              pMainProcess,
+        virtual BOOL FillPersonArray(PSS_Process*           pMainProcess,
                                      const PSS_UserManager& userManager,
                                      CStringArray&          userArray,
                                      const CString&         connectedUser);
@@ -176,7 +181,7 @@ class AFX_EXT_CLASS PSS_ActivityResources : public CObject
         *@param delimiter - delimiter to use to tokenize the source string
         *@return the person list delimited string
         */
-        virtual CString CreatePersonDelimStr(ZProcess*              pMainProcess,
+        virtual CString CreatePersonDelimStr(PSS_Process*           pMainProcess,
                                              const PSS_UserManager& userManager,
                                              const CString&         connectedUser,
                                              const CString&         delimiter = ";");
