@@ -1,5 +1,9 @@
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
+/****************************************************************************
+ * ==> PSS_ActivityLogFile -------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an activity log file                              *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include <StdAfx.h>
 #include "ActLogFl.h"
@@ -8,201 +12,191 @@
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_Tokenizer.h"
 
-ZUActivityLogFile::ZUActivityLogFile(CString LogFileName)
-    : m_LogFileName(LogFileName), m_IsOpen(FALSE)
+//---------------------------------------------------------------------------
+// PSS_ActivityLogFile
+//---------------------------------------------------------------------------
+PSS_ActivityLogFile::PSS_ActivityLogFile(const CString& fileName) :
+    m_LogFileName(fileName),
+    m_IsOpen(FALSE)
 {}
-
-
-ZUActivityLogFile::~ZUActivityLogFile()
+//---------------------------------------------------------------------------
+PSS_ActivityLogFile::PSS_ActivityLogFile(const PSS_ActivityLogFile& other)
+{
+    THROW("Copy constructor isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
+PSS_ActivityLogFile::~PSS_ActivityLogFile()
 {}
-
-
-
-BOOL ZUActivityLogFile::OpenRead()
+//---------------------------------------------------------------------------
+const PSS_ActivityLogFile& PSS_ActivityLogFile::operator = (const PSS_ActivityLogFile& other)
 {
-    TRY
-    {
-        // Construct a CFile object in read mode
-        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeRead | CFile::typeBinary))
-            return FALSE;
-    }
-        CATCH(CFileException, e)
-    {
-    #ifdef _DEBUG
-        afxDump << "File could not be opened " << e->m_cause << "\n";
-    #endif
-    }
-    END_CATCH
-        // Set flag for open
-        m_IsOpen = TRUE;
-    return TRUE;
+    THROW("Copy operator isn't allowed for this class");
 }
-
-BOOL ZUActivityLogFile::OpenCreate()
+//---------------------------------------------------------------------------
+void PSS_ActivityLogFile::Create(const CString& fileName)
 {
-    TRY
-    {
-        // Construct a CFile object in write mode for creation
-        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeWrite | CFile::typeBinary | CFile::modeCreate))
-            return FALSE;
-    }
-        CATCH(CFileException, e)
-    {
-    #ifdef _DEBUG
-        afxDump << "File could not be opened " << e->m_cause << "\n";
-    #endif
-    }
-    END_CATCH
-        // Set flag for open
-        m_IsOpen = TRUE;
-    return TRUE;
-}
+    m_LogFileName = fileName;
 
-BOOL ZUActivityLogFile::OpenWrite()
-{
-    TRY
-    {
-        // Construct a CFile object in read mode
-        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeWrite | CFile::typeBinary))
-            return FALSE;
-    }
-        CATCH(CFileException, e)
-    {
-    #ifdef _DEBUG
-        afxDump << "File could not be opened " << e->m_cause << "\n";
-    #endif
-    }
-    END_CATCH
-        // Set flag for open
-        m_IsOpen = TRUE;
-    return TRUE;
-}
-
-BOOL ZUActivityLogFile::Close()
-{
-    if (!m_IsOpen)
-        return TRUE;
-    TRY
-    {
-        m_File.Close();
-    }
-        CATCH(CFileException, e)
-    {
-    #ifdef _DEBUG
-        afxDump << "File could not be opened " << e->m_cause << "\n";
-    #endif
-        return FALSE;
-    }
-    END_CATCH
-        m_IsOpen = FALSE;
-    return TRUE;
-}
-
-
-BOOL ZUActivityLogFile::WriteLine(CString& Line)
-{
-    // Go to the end of the file
-    m_File.SeekToEnd();
-    TRY
-    {
-        m_File.Write(Line, Line.GetLength());
-    }
-        CATCH(CFileException, e)
-    {
-    #ifdef _DEBUG
-        afxDump << "File could write to file " << e->m_cause << "\n";
-    #endif
-        return FALSE;
-    }
-    END_CATCH
-        return TRUE;
-}
-
-void ZUActivityLogFile::Create(CString LogFileName)
-{
-    m_LogFileName = LogFileName;
     if (m_LogFileName.IsEmpty())
         return;
+
     if (!OpenRead())
         OpenCreate();
+
     Close();
 }
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogFile::WriteLine(const CString& Line)
+{
+    // seek to file end
+    m_File.SeekToEnd();
 
-BOOL ZUActivityLogFile::AppendToLog(const PSS_ActivityEvent& activityEvent)
+    TRY
+    {
+        m_File.Write(line, line.GetLength());
+    }
+    CATCH (CFileException, e)
+    {
+        #ifdef _DEBUG
+            afxDump << "File could write to file " << e->m_cause << "\n";
+        #endif
+
+        return FALSE;
+    }
+    END_CATCH
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogFile::AppendToLog(const PSS_ActivityEvent& activityEvent)
 {
     if (!OpenWrite())
         OpenCreate();
 
-    PSS_Date    CurrentDate = PSS_Date::GetToday();
-    CString    Line;
+    PSS_Date currentDate = PSS_Date::GetToday();
+    CString  line;
 
-    PSS_Tokenizer Tokenizer('\t');
+    PSS_Tokenizer tokenizer('\t');
+    tokenizer.AddToken(currentDate.GetStandardFormattedDate());
+    tokenizer.AddToken(activityEvent.GetActivityEventTypeString());
+    tokenizer.AddToken(activityEvent.GetProcessFileName());
+    tokenizer.AddToken(activityEvent.GetExchangeDataFileName());
+    tokenizer.AddToken(activityEvent.GetProcessExchangeDataFileName());
+    tokenizer.AddToken(activityEvent.GetFolderName());
+    tokenizer.AddToken(activityEvent.GetProcessName());
+    tokenizer.AddToken(activityEvent.GetFormattedProcessCreationDate());
+    tokenizer.AddToken(activityEvent.GetFormattedProcessDueDate());
+    tokenizer.AddToken(activityEvent.GetActivityType());
+    tokenizer.AddToken(activityEvent.GetActivityName());
+    tokenizer.AddToken(activityEvent.GetFormattedActivityCreationDate());
+    tokenizer.AddToken(activityEvent.GetFormattedActivityDueDate());
+    tokenizer.AddToken(activityEvent.GetActivityStatus());
+    tokenizer.AddToken(activityEvent.GetSender());
+    tokenizer.AddToken(activityEvent.GetReceiver());
+    tokenizer.AddToken(activityEvent.GetComments());
 
-    // The current date
-    Tokenizer.AddToken(CurrentDate.GetStandardFormattedDate());
-
-    // The Event type
-    Tokenizer.AddToken(activityEvent.GetActivityEventTypeString());
-
-    // The process file
-    Tokenizer.AddToken(activityEvent.GetProcessFileName());
-
-    // The data file
-    Tokenizer.AddToken(activityEvent.GetExchangeDataFileName());
-
-    // The process data file
-    Tokenizer.AddToken(activityEvent.GetProcessExchangeDataFileName());
-
-    // The folder name
-    Tokenizer.AddToken(activityEvent.GetFolderName());
-
-    // The process name
-    Tokenizer.AddToken(activityEvent.GetProcessName());
-
-    // The process start date
-    Tokenizer.AddToken(activityEvent.GetFormattedProcessCreationDate());
-
-    // The process end date
-    Tokenizer.AddToken(activityEvent.GetFormattedProcessDueDate());
-
-    // The activity type
-    Tokenizer.AddToken(activityEvent.GetActivityType());
-
-    // The activity name    
-    Tokenizer.AddToken(activityEvent.GetActivityName());
-
-    // The activity start date
-    Tokenizer.AddToken(activityEvent.GetFormattedActivityCreationDate());
-
-    // The activity end date
-    Tokenizer.AddToken(activityEvent.GetFormattedActivityDueDate());
-
-    // The status
-    Tokenizer.AddToken(activityEvent.GetActivityStatus());
-
-    // The sender
-    Tokenizer.AddToken(activityEvent.GetSender());
-
-    // The receiver
-    Tokenizer.AddToken(activityEvent.GetReceiver());
-
-    // The comment
-    Tokenizer.AddToken(activityEvent.GetComments());
-
-    // Is In Backup mode or not
+    // is in backup mode?
     if (activityEvent.GetIsInBackup())
-        Tokenizer.AddToken("1");
+        tokenizer.AddToken("1");
     else
-        Tokenizer.AddToken("0");
+        tokenizer.AddToken("0");
 
-    if (!WriteLine(Tokenizer.GetString()))
+    if (!WriteLine(tokenizer.GetString()))
         return FALSE;
 
     return Close();
 }
-
-
-BOOL ZUActivityLogFile::ClearLog()
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogFile::ClearLog()
 {
     return OpenCreate();
 }
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogFile::Close()
+{
+    if (!m_IsOpen)
+        return TRUE;
+
+    TRY
+    {
+        m_File.Close();
+    }
+    CATCH (CFileException, e)
+    {
+        #ifdef _DEBUG
+            afxDump << "File could not be opened " << e->m_cause << "\n";
+        #endif
+ 
+        return FALSE;
+    }
+    END_CATCH
+
+    m_IsOpen = FALSE;
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogFile::OpenCreate()
+{
+    TRY
+    {
+        // open a file in write mode, create it if still not exists
+        if (m_LogFileName.IsEmpty() ||
+           !m_File.Open(m_LogFileName, CFile::modeWrite | CFile::typeBinary | CFile::modeCreate))
+            return FALSE;
+    }
+    CATCH (CFileException, e)
+    {
+        #ifdef _DEBUG
+            afxDump << "File could not be opened " << e->m_cause << "\n";
+        #endif
+    }
+    END_CATCH
+
+    m_IsOpen = TRUE;
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogFile::OpenRead()
+{
+    TRY
+    {
+        // open a file in read mode
+        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeRead | CFile::typeBinary))
+            return FALSE;
+    }
+    CATCH (CFileException, e)
+    {
+        #ifdef _DEBUG
+            afxDump << "File could not be opened " << e->m_cause << "\n";
+        #endif
+    }
+    END_CATCH
+
+    m_IsOpen = TRUE;
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ActivityLogFile::OpenWrite()
+{
+    TRY
+    {
+        // open a file in write mode
+        if (m_LogFileName.IsEmpty() || !m_File.Open(m_LogFileName, CFile::modeWrite | CFile::typeBinary))
+            return FALSE;
+    }
+    CATCH (CFileException, e)
+    {
+        #ifdef _DEBUG
+            afxDump << "File could not be opened " << e->m_cause << "\n";
+        #endif
+    }
+    END_CATCH
+
+    m_IsOpen = TRUE;
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
