@@ -46,7 +46,7 @@ BOOL ZDProcessHistoryDAO::OpenRead()
 
         // Create the history activity recordset
         m_pHistoryActivityRecordset =
-            new ZDHistoryActivityRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
+                new PSS_HistoryActivityRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
 
         if (m_pHistoryActivityRecordset)
         {
@@ -135,7 +135,7 @@ BOOL ZDProcessHistoryDAO::OpenWrite()
 
         // Create the history activity recordset
         m_pHistoryActivityRecordset =
-            new ZDHistoryActivityRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
+                new PSS_HistoryActivityRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
 
         if (!m_pHistoryActivityRecordset)
         {

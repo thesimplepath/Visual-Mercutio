@@ -1,6 +1,3 @@
-// dbSet.cpp : implementation of the ZDHistoryProcessRecordset class
-//
-
 #include "stdafx.h"
 #include "HistoryProcessRecordSet.h"
 
@@ -10,13 +7,16 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZDHistoryProcessRecordset implementation
-
+//---------------------------------------------------------------------------
+// Dynamic creation
+//---------------------------------------------------------------------------
 IMPLEMENT_DYNAMIC(ZDHistoryProcessRecordset, CDaoRecordset)
-
-ZDHistoryProcessRecordset::ZDHistoryProcessRecordset(CDaoDatabase* pdb, CString DatabaseFilename)
-    : CDaoRecordset(pdb), m_DatabaseFilename(DatabaseFilename)
+//---------------------------------------------------------------------------
+// PSS_HistoryProcessRecordset
+//---------------------------------------------------------------------------
+ZDHistoryProcessRecordset::ZDHistoryProcessRecordset(CDaoDatabase* pdb, CString DatabaseFilename) :
+    CDaoRecordset(pdb),
+    m_DatabaseFilename(DatabaseFilename)
 {
     //{{AFX_FIELD_INIT(ZDHistoryProcessRecordset)
     m_ProcessID = 0;

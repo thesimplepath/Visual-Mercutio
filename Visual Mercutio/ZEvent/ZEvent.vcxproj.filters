@@ -28,12 +28,6 @@
     <ClCompile Include="EventQueueManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HistoryActivityRecordSet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HistoryActivityRecordSetv99.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HistoryActivityStatusRecordSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -127,6 +121,12 @@
     <ClCompile Include="PSS_Process.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_HistoryActivityRecordsetVersion99.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_HistoryActivityRecordset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ZEvent.rc2">
@@ -149,12 +149,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EventQueueManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HistoryActivityRecordSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HistoryActivityRecordSetv99.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HistoryActivityStatusRecordSet.h">
@@ -251,6 +245,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_Process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_HistoryActivityRecordsetVersion99.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_HistoryActivityRecordset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

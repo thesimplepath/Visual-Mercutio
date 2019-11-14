@@ -1,20 +1,19 @@
-// HistoryProcessRecordSetv99.cpp : implementation of the ZDHistoryProcessRecordsetVersion99 class
-//
-
 #include "stdafx.h"
 #include "HistoryProcessRecordSetv99.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZDHistoryProcessRecordsetVersion99 implementation
-
+//---------------------------------------------------------------------------
+// Dynamic creation
+//---------------------------------------------------------------------------
 IMPLEMENT_DYNAMIC(ZDHistoryProcessRecordsetVersion99, CDaoRecordset)
-
+//---------------------------------------------------------------------------
+// PSS_HistoryProcessRecordsetVersion99
+//---------------------------------------------------------------------------
 ZDHistoryProcessRecordsetVersion99::ZDHistoryProcessRecordsetVersion99(CDaoDatabase* pdb, CString DatabaseFilename)
     : CDaoRecordset(pdb), m_DatabaseFilename(DatabaseFilename)
 {

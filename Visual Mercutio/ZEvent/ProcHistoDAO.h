@@ -13,7 +13,7 @@
 // processsoft
 #include "PSS_ActivityEvent.h"
 #include "HistoryProcessRecordSet.h"
-#include "HistoryActivityRecordSet.h"
+#include "PSS_HistoryActivityRecordSet.h"
 #include "HistoryActivityStatusRecordSet.h"
 #include "HistoryProcessStatusRecordSet.h"
 #include "HistoryFolderStatusRecordSet.h"
@@ -48,14 +48,13 @@ public:
     CString GetDatabaseFileName() const;
 
 private:
-
-    CDaoDatabase                        m_ProcessHistoryDatabase;
-    ZDHistoryActivityRecordset*            m_pHistoryActivityRecordset;
-    ZDHistoryActivityStatusRecordset*    m_pHistoryActivityStatusRecordset;
-    ZDHistoryProcessRecordset*            m_pHistoryProcessRecordset;
-    ZDHistoryProcessStatusRecordset*    m_pHistoryProcessStatusRecordset;
-    ZDHistoryFolderStatusRecordset*        m_pHistoryFolderStatusRecordset;
-    CString                                m_DatabaseFileName;
+    CDaoDatabase                      m_ProcessHistoryDatabase;
+    PSS_HistoryActivityRecordset*     m_pHistoryActivityRecordset;
+    ZDHistoryActivityStatusRecordset* m_pHistoryActivityStatusRecordset;
+    ZDHistoryProcessRecordset*        m_pHistoryProcessRecordset;
+    ZDHistoryProcessStatusRecordset*  m_pHistoryProcessStatusRecordset;
+    ZDHistoryFolderStatusRecordset*   m_pHistoryFolderStatusRecordset;
+    CString                           m_DatabaseFileName;
 
 private:
     ZDProcessHistoryDAO(const ZDProcessHistoryDAO &right);
