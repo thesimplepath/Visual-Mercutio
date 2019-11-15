@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
-#include "zEvent\EventManager.h"
+#include "zEvent\PSS_EventManager.h"
 #include "zEvent\PSS_ActivityReminderEventManager.h"
 
 #ifdef _ZWINUTIL32EXPORT

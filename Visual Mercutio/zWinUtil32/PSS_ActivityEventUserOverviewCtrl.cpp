@@ -32,7 +32,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityEventUserOverviewCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityEventUserOverviewCtrl::PSS_ActivityEventUserOverviewCtrl(ZBEventManager* pEventManager) :
+PSS_ActivityEventUserOverviewCtrl::PSS_ActivityEventUserOverviewCtrl(PSS_EventManager* pEventManager) :
     PSS_TreeCtrl(),
     m_pEventManager(pEventManager)
 {}
@@ -83,7 +83,7 @@ void PSS_ActivityEventUserOverviewCtrl::Initialize()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventUserOverviewCtrl::Initialize(ZBEventManager* pEventManager)
+void PSS_ActivityEventUserOverviewCtrl::Initialize(PSS_EventManager* pEventManager)
 {
     m_pEventManager = pEventManager;
 

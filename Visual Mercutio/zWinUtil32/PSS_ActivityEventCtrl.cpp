@@ -59,7 +59,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityEventCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityEventCtrl::PSS_ActivityEventCtrl(ZBEventManager* pEventManager) :
+PSS_ActivityEventCtrl::PSS_ActivityEventCtrl(PSS_EventManager* pEventManager) :
     PSS_ListCtrl(),
     m_pEventManager(pEventManager),
     m_ColumnsHasBeenBuilt(FALSE)
@@ -138,7 +138,7 @@ PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventCtrl& 
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_ActivityEventCtrl::Initialize(ZBEventManager* pEventManager)
+void PSS_ActivityEventCtrl::Initialize(PSS_EventManager* pEventManager)
 {
     m_pEventManager = pEventManager;
 

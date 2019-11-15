@@ -201,7 +201,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="actlogFl.cpp">
+    <ClCompile Include="PSS_ActivityLogFile.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -219,13 +219,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="EventManager.cpp">
+    <ClCompile Include="PSS_EventManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="EventQueueManager.cpp">
+    <ClCompile Include="PSS_EventQueueManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -243,7 +243,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="HistoryActivityStatusRecordSet.cpp">
+    <ClCompile Include="PSS_HistoryActivityStatusRecordset.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -384,14 +384,14 @@
     <ClInclude Include="PSS_Activity.h" />
     <ClInclude Include="PSS_ActivityLog.h" />
     <ClInclude Include="PSS_ActivityLogDatabase.h" />
-    <ClInclude Include="ActLogFl.h" />
+    <ClInclude Include="PSS_ActivityLogFile.h" />
     <ClInclude Include="PSS_BaseActivity.h" />
     <ClInclude Include="PSS_EventFile.h" />
-    <ClInclude Include="EventManager.h" />
-    <ClInclude Include="EventQueueManager.h" />
+    <ClInclude Include="PSS_EventManager.h" />
+    <ClInclude Include="PSS_EventQueueManager.h" />
     <ClInclude Include="PSS_HistoryActivityRecordset.h" />
     <ClInclude Include="PSS_HistoryActivityRecordsetVersion99.h" />
-    <ClInclude Include="HistoryActivityStatusRecordSet.h" />
+    <ClInclude Include="PSS_HistoryActivityStatusRecordset.h" />
     <ClInclude Include="HistoryFolderStatusRecordSet.h" />
     <ClInclude Include="HistoryProcessRecordSet.h" />
     <ClInclude Include="HistoryProcessRecordSetv99.h" />

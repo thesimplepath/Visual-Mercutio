@@ -18,7 +18,7 @@
 
 // processsoft
 #include "PSS_ActivityEvent.h"
-#include "EventManager.h"
+#include "PSS_EventManager.h"
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -34,7 +34,7 @@
 * Activity event manager
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityEventManager : public ZBEventManager
+class AFX_EXT_CLASS PSS_ActivityEventManager : public PSS_EventManager
 {
     public:
         PSS_ActivityEventManager();

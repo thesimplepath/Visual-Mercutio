@@ -1,13 +1,16 @@
-// HistoryFolderStatusRecordSet.h : interface of the ZDHistoryFolderStatusRecordset class
-//
-/////////////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_HistoryFolderStatusRecordset ------------------------------------*
+ ****************************************************************************
+ * Description : Provides an historic activity recordset                    *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_HistoryFolderStatusRecordSet_H__293D9E4D_F146_11D3_96DD_0000B45D7C6F__INCLUDED_)
-#define AFX_HistoryFolderStatusRecordSet_H__293D9E4D_F146_11D3_96DD_0000B45D7C6F__INCLUDED_
+#ifndef PSS_HistoryFolderStatusRecordsetH
+#define PSS_HistoryFolderStatusRecordsetH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 class ZDHistoryFolderStatusRecordset : public CDaoRecordset
 {

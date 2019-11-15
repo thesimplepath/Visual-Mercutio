@@ -18,7 +18,7 @@
 
 // processsoft
 #include "PSS_ActivityReminderEvent.h"
-#include "EventManager.h"
+#include "PSS_EventManager.h"
 #include "PSS_ActivityEventManager.h"
 
 #ifdef _ZEVENTEXPORT
@@ -35,7 +35,7 @@
 * Activity reminder event manager
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityReminderEventManager : public ZBEventManager
+class AFX_EXT_CLASS PSS_ActivityReminderEventManager : public PSS_EventManager
 {
 public:
     /**

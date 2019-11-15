@@ -53,7 +53,7 @@ PSS_ActivityEventOverviewCtrl::IElementType::~IElementType()
 //---------------------------------------------------------------------------
 // PSS_ActivityEventOverviewCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityEventOverviewCtrl::PSS_ActivityEventOverviewCtrl(ZBEventManager* pEventManager) :
+PSS_ActivityEventOverviewCtrl::PSS_ActivityEventOverviewCtrl(PSS_EventManager* pEventManager) :
     PSS_TreeCtrl(),
     m_pEventManager(pEventManager)
 {}
@@ -141,7 +141,7 @@ void PSS_ActivityEventOverviewCtrl::Initialize()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventOverviewCtrl::Initialize(ZBEventManager* pEventManager)
+void PSS_ActivityEventOverviewCtrl::Initialize(PSS_EventManager* pEventManager)
 {
     m_pEventManager = pEventManager;
     Refresh();

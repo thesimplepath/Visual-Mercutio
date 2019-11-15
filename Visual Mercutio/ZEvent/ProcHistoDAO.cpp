@@ -74,7 +74,7 @@ BOOL ZDProcessHistoryDAO::OpenRead()
 
         // Create the history activity status recordset
         m_pHistoryActivityStatusRecordset =
-            new ZDHistoryActivityStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
+                new PSS_HistoryActivityStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
 
         if (m_pHistoryActivityStatusRecordset)
         {
@@ -155,7 +155,7 @@ BOOL ZDProcessHistoryDAO::OpenWrite()
 
         // Create the history activity status recordset
         m_pHistoryActivityStatusRecordset =
-            new ZDHistoryActivityStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
+                new PSS_HistoryActivityStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
 
         if (!m_pHistoryActivityStatusRecordset)
         {

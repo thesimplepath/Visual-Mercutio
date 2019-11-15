@@ -25,12 +25,23 @@
 // PSS_ActivityReminderEventManager
 //---------------------------------------------------------------------------
 PSS_ActivityReminderEventManager::PSS_ActivityReminderEventManager(PSS_ActivityEventManager* pEventManager, int remindDays) :
+    PSS_EventManager(),
     m_pEventManager(pEventManager),
     m_RemindDays(remindDays)
 {}
 //---------------------------------------------------------------------------
+PSS_ActivityReminderEventManager::PSS_ActivityReminderEventManager(const PSS_ActivityReminderEventManager& other)
+{
+    THROW("Copy constructor isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
 PSS_ActivityReminderEventManager::~PSS_ActivityReminderEventManager()
 {}
+//---------------------------------------------------------------------------
+const PSS_ActivityReminderEventManager& PSS_ActivityReminderEventManager::operator = (const PSS_ActivityReminderEventManager& other)
+{
+    THROW("Copy operator isn't allowed for this class");
+}
 //---------------------------------------------------------------------------
 void PSS_ActivityReminderEventManager::Create(PSS_ActivityEventManager* pEventManager, int remindDays)
 {
@@ -81,7 +92,7 @@ PSS_ActivityReminderEvent* PSS_ActivityReminderEventManager::AddEvent(const COle
                                                                                     activityStatus,
                                                                                     message));
 
-    if (!ZBEventManager::AddEvent(pEvent.get()))
+    if (!PSS_EventManager::AddEvent(pEvent.get()))
         return NULL;
 
     return pEvent.release();

@@ -81,7 +81,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityEventLogCtrl
 //---------------------------------------------------------------------------
-PSS_ActivityEventLogCtrl::PSS_ActivityEventLogCtrl(ZBEventManager* pEventManager) :
+PSS_ActivityEventLogCtrl::PSS_ActivityEventLogCtrl(PSS_EventManager* pEventManager) :
     PSS_ListCtrl(),
     m_pEventManager(pEventManager),
     m_ColumnsHasBeenBuilt(FALSE)
@@ -198,7 +198,7 @@ const PSS_ActivityEventLogCtrl& PSS_ActivityEventLogCtrl::operator = (const PSS_
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_ActivityEventLogCtrl::Initialize (ZBEventManager* pEventManager)
+void PSS_ActivityEventLogCtrl::Initialize(PSS_EventManager* pEventManager)
 {
     m_pEventManager = pEventManager;
 

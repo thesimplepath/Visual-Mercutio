@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zEvent\EventManager.h"
+#include "zEvent\PSS_EventManager.h"
 #include "zEvent\ZBEventServer.h"
 #include "zBaseLib\PSS_ListCtrl.h"
 
@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PSS_EventLogCtrl : public PSS_ListCtrl
         * Constructor
         *@param pEventManager - event manager
         */
-        PSS_EventLogCtrl(ZBEventManager* pEventManager = NULL);
+        PSS_EventLogCtrl(PSS_EventManager* pEventManager = NULL);
 
         ~PSS_EventLogCtrl();
 
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_EventLogCtrl : public PSS_ListCtrl
         * Initializes the event log control
         *@param pEventManager - event manager
         */
-        void Initialize(ZBEventManager* pEventManager);
+        void Initialize(PSS_EventManager* pEventManager);
 
         /**
         * Refreshes the event log control
@@ -75,8 +75,8 @@ class AFX_EXT_CLASS PSS_EventLogCtrl : public PSS_ListCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBEventManager* m_pEventManager;
-        BOOL            m_ColumnsHasBeenBuilt;
+        PSS_EventManager* m_pEventManager;
+        BOOL              m_ColumnsHasBeenBuilt;
 
         /**
         * Copy constructor
@@ -89,7 +89,7 @@ class AFX_EXT_CLASS PSS_EventLogCtrl : public PSS_ListCtrl
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_EventLogCtrl & operator=(const PSS_EventLogCtrl& other);
+        const PSS_EventLogCtrl& operator = (const PSS_EventLogCtrl& other);
 
         /**
         * Checkes if the columns were built

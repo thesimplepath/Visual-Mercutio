@@ -18,7 +18,7 @@
 
 // processsoft
 #include "PSS_ActivityEvent.h"
-#include "ActLogFl.h"
+#include "PSS_ActivityLogFile.h"
 #include "PSS_ActivityLogDatabase.h"
 
 #ifdef _ZEVENTEXPORT
@@ -92,7 +92,7 @@ class AFX_EXT_CLASS PSS_ActivityLog
 
     private:
         PSS_ActivityLogDatabase* m_pActivityLogDatabase;
-        ZUActivityLogFile*       m_pActivityLogFile;
+        PSS_ActivityLogFile*     m_pActivityLogFile;
         CString                  m_FileName;
         BOOL                     m_UseDatabase;
 

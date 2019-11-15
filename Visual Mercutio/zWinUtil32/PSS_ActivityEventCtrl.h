@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
-#include "zEvent\EventManager.h"
+#include "zEvent\PSS_EventManager.h"
 #include "zEvent\PSS_ActivityEvent.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PSS_ActivityEventCtrl : public PSS_ListCtrl
         * Constructor
         *@param pEventManager - event manager, can be NULL
         */
-        PSS_ActivityEventCtrl(ZBEventManager* pEventManager = NULL);
+        PSS_ActivityEventCtrl(PSS_EventManager* pEventManager = NULL);
 
         virtual ~PSS_ActivityEventCtrl();
 
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_ActivityEventCtrl : public PSS_ListCtrl
         * Initializes the control
         *@param pReminderManager - reminder manager, can be NULL
         */
-        virtual void Initialize(ZBEventManager* pEventManager);
+        virtual void Initialize(PSS_EventManager* pEventManager);
 
         /**
         * Gets the selected item
@@ -80,8 +80,8 @@ class AFX_EXT_CLASS PSS_ActivityEventCtrl : public PSS_ListCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBEventManager* m_pEventManager;
-        BOOL            m_ColumnsHasBeenBuilt;
+        PSS_EventManager* m_pEventManager;
+        BOOL              m_ColumnsHasBeenBuilt;
 
         /**
         * Copy constructor

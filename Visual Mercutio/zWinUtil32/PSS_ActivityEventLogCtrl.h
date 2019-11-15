@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\PSS_ListCtrl.h"
 #include "zEvent\PSS_ActivityEvent.h"
-#include "zEvent\EventManager.h"
+#include "zEvent\PSS_EventManager.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PSS_ActivityEventLogCtrl : public PSS_ListCtrl
         * Constructor
         *@param pEventManager - event manager, can be NULL
         */
-        PSS_ActivityEventLogCtrl(ZBEventManager* pEventManager = NULL);
+        PSS_ActivityEventLogCtrl(PSS_EventManager* pEventManager = NULL);
 
         virtual ~PSS_ActivityEventLogCtrl();
 
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_ActivityEventLogCtrl : public PSS_ListCtrl
         * Initializes the logger
         *@param pEventManager - event manager
         */
-        virtual void Initialize (ZBEventManager* pEventManager);
+        virtual void Initialize(PSS_EventManager* pEventManager);
 
         /**
         * Gets selected item
@@ -80,8 +80,8 @@ class AFX_EXT_CLASS PSS_ActivityEventLogCtrl : public PSS_ListCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBEventManager* m_pEventManager;
-        BOOL            m_ColumnsHasBeenBuilt;
+        PSS_EventManager* m_pEventManager;
+        BOOL              m_ColumnsHasBeenBuilt;
 
         /**
         * Copy constructor

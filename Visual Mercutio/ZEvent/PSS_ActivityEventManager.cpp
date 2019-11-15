@@ -76,7 +76,7 @@ PSS_ActivityEvent* PSS_ActivityEventManager::AddEvent(PSS_ActivityEvent::IEType 
                                                       activityStatus,
                                                       comments);
 
-    if (!ZBEventManager::AddEvent(pEvent))
+    if (!PSS_EventManager::AddEvent(pEvent))
     {
         delete pEvent;
         pEvent = NULL;

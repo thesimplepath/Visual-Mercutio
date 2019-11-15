@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\PSS_TreeCtrl.h"
 #include "zEvent\PSS_ActivityEvent.h"
-#include "zEvent\EventManager.h"
+#include "zEvent\PSS_EventManager.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PSS_ActivityEventOverviewCtrl : public PSS_TreeCtrl
         * Constructor
         *@param pEventManager - event manager
         */
-        PSS_ActivityEventOverviewCtrl(ZBEventManager* pEventManager = NULL);
+        PSS_ActivityEventOverviewCtrl(PSS_EventManager* pEventManager = NULL);
 
         virtual ~PSS_ActivityEventOverviewCtrl();
 
@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_ActivityEventOverviewCtrl : public PSS_TreeCtrl
         *@param pEventManager - event manager
         */
         virtual void Initialize();
-        virtual void Initialize(ZBEventManager* pEventManager);
+        virtual void Initialize(PSS_EventManager* pEventManager);
 
         /**
         * Gets the selected activity item
@@ -133,10 +133,10 @@ class AFX_EXT_CLASS PSS_ActivityEventOverviewCtrl : public PSS_TreeCtrl
             ~IElementType();
         };
 
-        ZBEventManager* m_pEventManager;
-        CStringArray    m_UserArray;
-        CStringArray    m_ProcessArray;
-        CObArray        m_ActPtrArray;
+        PSS_EventManager* m_pEventManager;
+        CStringArray      m_UserArray;
+        CStringArray      m_ProcessArray;
+        CObArray          m_ActPtrArray;
 
         /**
         * Copy constructor

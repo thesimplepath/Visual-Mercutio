@@ -64,7 +64,7 @@ BOOL PSS_ActivityLog::Initialize()
     if (m_UseDatabase)
         m_pActivityLogDatabase = new PSS_ActivityLogDatabase(m_FileName);
     else
-        m_pActivityLogFile = new ZUActivityLogFile(m_FileName);
+        m_pActivityLogFile = new PSS_ActivityLogFile(m_FileName);
 
     return TRUE;
 }

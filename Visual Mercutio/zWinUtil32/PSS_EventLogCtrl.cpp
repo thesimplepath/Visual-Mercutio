@@ -48,14 +48,24 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_EventLogCtrl
 //---------------------------------------------------------------------------
-PSS_EventLogCtrl::PSS_EventLogCtrl(ZBEventManager* pEventManager) :
+PSS_EventLogCtrl::PSS_EventLogCtrl(PSS_EventManager* pEventManager) :
     PSS_ListCtrl(),
     m_pEventManager(pEventManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
 //---------------------------------------------------------------------------
+PSS_EventLogCtrl::PSS_EventLogCtrl(const PSS_EventLogCtrl& other)
+{
+    THROW("Copy constructor isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
 PSS_EventLogCtrl::~PSS_EventLogCtrl()
 {}
+//---------------------------------------------------------------------------
+const PSS_EventLogCtrl& PSS_EventLogCtrl::operator = (const PSS_EventLogCtrl& other)
+{
+    THROW("Copy operator isn't allowed for this class");
+}
 //---------------------------------------------------------------------------
 #ifdef _WIN32
     ZBEventServer& operator >> (ZBEventServer& left, PSS_EventLogCtrl& listCtrl)
@@ -75,7 +85,7 @@ PSS_EventLogCtrl::~PSS_EventLogCtrl()
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_EventLogCtrl::Initialize(ZBEventManager* pEventManager)
+void PSS_EventLogCtrl::Initialize(PSS_EventManager* pEventManager)
 {
     m_pEventManager = pEventManager;
     Refresh();
