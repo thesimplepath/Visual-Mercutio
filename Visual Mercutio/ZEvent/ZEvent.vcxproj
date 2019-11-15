@@ -249,7 +249,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="HistoryFolderStatusRecordSet.cpp">
+    <ClCompile Include="PSS_HistoryFolderStatusRecordset.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -392,7 +392,7 @@
     <ClInclude Include="PSS_HistoryActivityRecordset.h" />
     <ClInclude Include="PSS_HistoryActivityRecordsetVersion99.h" />
     <ClInclude Include="PSS_HistoryActivityStatusRecordset.h" />
-    <ClInclude Include="HistoryFolderStatusRecordSet.h" />
+    <ClInclude Include="PSS_HistoryFolderStatusRecordset.h" />
     <ClInclude Include="HistoryProcessRecordSet.h" />
     <ClInclude Include="HistoryProcessRecordSetv99.h" />
     <ClInclude Include="HistoryProcessStatusRecordSet.h" />

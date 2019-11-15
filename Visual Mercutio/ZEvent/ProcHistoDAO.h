@@ -16,7 +16,7 @@
 #include "PSS_HistoryActivityRecordSet.h"
 #include "PSS_HistoryActivityStatusRecordset.h"
 #include "HistoryProcessStatusRecordSet.h"
-#include "HistoryFolderStatusRecordSet.h"
+#include "PSS_HistoryFolderStatusRecordset.h"
 
 #ifdef _ZEVENTEXPORT
 // put the values back to make AFX_EXT_CLASS export again
@@ -53,7 +53,7 @@ private:
     PSS_HistoryActivityStatusRecordset* m_pHistoryActivityStatusRecordset;
     ZDHistoryProcessRecordset*          m_pHistoryProcessRecordset;
     ZDHistoryProcessStatusRecordset*    m_pHistoryProcessStatusRecordset;
-    ZDHistoryFolderStatusRecordset*     m_pHistoryFolderStatusRecordset;
+    PSS_HistoryFolderStatusRecordset*   m_pHistoryFolderStatusRecordset;
     CString                             m_DatabaseFileName;
 
 private:

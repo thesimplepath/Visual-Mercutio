@@ -60,7 +60,7 @@ BOOL ZDProcessHistoryDAO::OpenRead()
 
         // Create the history folder status recordset
         m_pHistoryFolderStatusRecordset =
-            new ZDHistoryFolderStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
+                new PSS_HistoryFolderStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
 
         if (m_pHistoryFolderStatusRecordset)
         {
@@ -145,7 +145,7 @@ BOOL ZDProcessHistoryDAO::OpenWrite()
 
         // Create the history folder status recordset
         m_pHistoryFolderStatusRecordset =
-            new ZDHistoryFolderStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
+                new PSS_HistoryFolderStatusRecordset(&m_ProcessHistoryDatabase, m_DatabaseFileName);
 
         if (!m_pHistoryFolderStatusRecordset)
         {
