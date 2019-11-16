@@ -1,8 +1,12 @@
-// Source file: SrvEvtManager.h
+/****************************************************************************
+ * ==> PSS_ServerEventManager ----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a server event manager                            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#ifndef ServerEventManager_h
-#define ServerEventManager_h 1
-
+#ifndef PSS_ServerEventManagerH
+#define PSS_ServerEventManagerH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,38 +21,47 @@
 #include "PSS_EventManager.h"
 
 #ifdef _ZEVENTEXPORT
-// put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-class AFX_EXT_CLASS ZBServerEventManager : public PSS_EventManager
+/**
+* Server event manager
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ServerEventManager : public PSS_EventManager
 {
-  public:
-      ZBServerEventManager ();
-      ~ZBServerEventManager();
-      ZBEventServer*    AddEvent( COleDateTime Time, CString fileName, EventResult EventResultValue );
+    public:
+        PSS_ServerEventManager();
+        virtual ~PSS_ServerEventManager();
 
-  protected:
+        /**
+        * Adds an event
+        *@param dateTime - date and time
+        *@param fileName - file name
+        *@param eventResult - the event result value
+        *@return the newly added event, NULL on error
+        */
+        ZBEventServer* AddEvent(const COleDateTime& dateTime, const CString& fileName, EventResult eventResult);
 
-  private:
-      ZBServerEventManager(const ZBServerEventManager &right);
-      const ZBServerEventManager & operator=(const ZBServerEventManager &right);
+    private:
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        PSS_ServerEventManager(const PSS_ServerEventManager& other);
 
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_ServerEventManager& operator = (const PSS_ServerEventManager& other);
 };
-
-
-
-//#undef  AFX_DATA
-//#define AFX_DATA
-
 
 #endif
