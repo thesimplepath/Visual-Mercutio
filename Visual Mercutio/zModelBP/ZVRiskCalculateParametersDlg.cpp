@@ -53,11 +53,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVRiskNewFileDlg dialog
 
-ZVRiskCalculateParametersDlg::ZVRiskCalculateParametersDlg(CString    IniFilename,
+ZVRiskCalculateParametersDlg::ZVRiskCalculateParametersDlg(CString    iniFileName,
                                                            CString    CurrencySymbol,
                                                            CWnd*    pParent            /*= NULL*/)
     : CDialog(ZVRiskCalculateParametersDlg::IDD, pParent),
-    m_IniFilename(IniFilename),
+    m_IniFileName(iniFileName),
     m_CurrencySymbol(CurrencySymbol),
     m_OrangeSeverity(0),
     m_RedSeverity(0),
@@ -180,7 +180,7 @@ void ZVRiskCalculateParametersDlg::UpdateOKButton()
 // Cette fonction permet de charger les données des paramètres depuis le fichier de configuration.
 bool ZVRiskCalculateParametersDlg::LoadStateFromIniFile()
 {
-    PSS_SystemOption SystemOption(m_IniFilename, gRulesCalculationSectionName);
+    PSS_SystemOption SystemOption(m_IniFileName, gRulesCalculationSectionName);
 
     // Read the options
     m_OrangeSeverity = SystemOption.ReadOption(gRulesCalculationOrangeSeverity, 1);
@@ -203,7 +203,7 @@ bool ZVRiskCalculateParametersDlg::LoadStateFromIniFile()
 // Cette fonction permet de sauvegarder les données des paramètres dans le fichier de configuration.
 bool ZVRiskCalculateParametersDlg::SaveStateToIniFile()
 {
-    PSS_SystemOption SystemOption(m_IniFilename, gRulesCalculationSectionName);
+    PSS_SystemOption SystemOption(m_IniFileName, gRulesCalculationSectionName);
 
     // Saves the options
     SystemOption.WriteOption(gRulesCalculationOrangeSeverity, m_OrangeSeverity);

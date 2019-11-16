@@ -105,24 +105,24 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
         /**
         * Creates a html page from a model
         *@param pModel - model from which html page should be created
-        *@param imageFilename - image file name
+        *@param imageFileName - image file name
         *@return true on success, otherwise false
         */
-        bool CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString& imageFilename);
+        bool CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString& imageFileName);
 
         /**
         * Builds a file name for the model image
         *@param pModel - model for which file name should be created
         *@return file name, empty string on error
         */
-        CString BuildModelImageFilename(ZDProcessGraphModelMdl* pModel);
+        CString BuildModelImageFileName(ZDProcessGraphModelMdl* pModel);
 
         /**
         * Builds a file name for the model html page
         *@param pModel - model for which html page file name should be created
         *@return file name, empty string on error
         */
-        CString BuildModelHTMLFilename(ZDProcessGraphModelMdl* pModel);
+        CString BuildModelHTMLFileName(ZDProcessGraphModelMdl* pModel);
 
         /**
         * Parses a model file name

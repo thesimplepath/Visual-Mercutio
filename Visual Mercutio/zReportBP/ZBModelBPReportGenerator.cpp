@@ -39,7 +39,7 @@ ZBModelBPReportGenerator::ZBModelBPReportGenerator( ZDGridDocument*             
     // If a source document, assigns its path name
     if ( m_pSourceDoc )
     {
-        m_Filename = m_pSourceDoc->GetPathName();
+        m_FileName = m_pSourceDoc->GetPathName();
     }
 
     // Fill the tab name array
@@ -68,7 +68,7 @@ void ZBModelBPReportGenerator::Initialize( ZDGridDocument*                pDoc,
     // If a source document, assigns its path name
     if ( m_pSourceDoc )
     {
-        m_Filename = m_pSourceDoc->GetPathName();
+        m_FileName = m_pSourceDoc->GetPathName();
     }
 
     // Fill the tab name array
@@ -77,11 +77,11 @@ void ZBModelBPReportGenerator::Initialize( ZDGridDocument*                pDoc,
 
 bool ZBModelBPReportGenerator::ReportDataMustBeReloaded() const
 {
-    if ( !m_Filename.IsEmpty() )
+    if ( !m_FileName.IsEmpty() )
     {
         SYSTEMTIME tm;
 
-        if (PSS_File::GetLastWriteTime( m_Filename, tm ) )
+        if (PSS_File::GetLastWriteTime( m_FileName, tm ) )
         {
             return (PSS_Date( tm ) > m_LastUpdateDateTime ) ? true : false;
         }
@@ -92,13 +92,13 @@ bool ZBModelBPReportGenerator::ReportDataMustBeReloaded() const
 
 void ZBModelBPReportGenerator::OnPostRead( CArchive& ar )
 {
-    if ( m_pSourceDoc == NULL && !m_Filename.IsEmpty() )
+    if ( m_pSourceDoc == NULL && !m_FileName.IsEmpty() )
     {
         m_pSourceDoc = new ZDProcessGraphModelDoc();
 
         // If the document is valid, assign the right model pointer
         if ( m_pSourceDoc &&
-             m_pSourceDoc->ReadFromFile( m_Filename ) &&
+             m_pSourceDoc->ReadFromFile( m_FileName ) &&
              m_pSourceDoc->GetModel() &&
              ISA( m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
         {
@@ -110,13 +110,13 @@ void ZBModelBPReportGenerator::OnPostRead( CArchive& ar )
 
 void ZBModelBPReportGenerator::OnPostDataFilled( size_t Index )
 {
-    if ( !m_Filename.IsEmpty() )
+    if ( !m_FileName.IsEmpty() )
     {
         // Saves the last update date/time, this is set to the 
-        // filename last write date/time
+        // file name last write date/time
         SYSTEMTIME tm;
 
-        if (PSS_File::GetLastWriteTime( m_Filename, tm ) )
+        if (PSS_File::GetLastWriteTime( m_FileName, tm ) )
         {
             m_LastUpdateDateTime = PSS_Date( tm );
         }

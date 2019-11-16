@@ -40,13 +40,13 @@ BOOL ZDLogicalPrestationsDocument::OnNewDocument()
     return FALSE;
 }
 
-bool ZDLogicalPrestationsDocument::ReadFromFile( const CString Filename )
+bool ZDLogicalPrestationsDocument::ReadFromFile( const CString fileName)
 {
     bool            RetValue = false;
     CFile            file;
     CFileException    fe;
 
-    if ( !file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
+    if ( !file.Open(fileName, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
     {
         return FALSE;
     }
@@ -73,7 +73,7 @@ bool ZDLogicalPrestationsDocument::ReadFromFile( const CString Filename )
     // If everything is ok, set the pathname.
     if ( RetValue )
     {
-        SetPathName( Filename, FALSE );
+        SetPathName(fileName, FALSE );
     }
 
     // Set IsLoaded member
@@ -82,13 +82,13 @@ bool ZDLogicalPrestationsDocument::ReadFromFile( const CString Filename )
     return RetValue;
 }
 
-bool ZDLogicalPrestationsDocument::SaveToFile( const CString Filename )
+bool ZDLogicalPrestationsDocument::SaveToFile( const CString fileName)
 {
     bool            RetValue = false;
     CFile            file;
     CFileException    fe;
 
-    if ( !file.Open( Filename, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
+    if ( !file.Open(fileName, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
     {
         return FALSE;
     }

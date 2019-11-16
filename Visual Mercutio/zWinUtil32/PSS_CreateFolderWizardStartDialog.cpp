@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_CreateFolderWizardStartDialog
 //---------------------------------------------------------------------------
-PSS_CreateFolderWizardStartDialog::PSS_CreateFolderWizardStartDialog(BOOL           useFolderNameAsFilename,
+PSS_CreateFolderWizardStartDialog::PSS_CreateFolderWizardStartDialog(BOOL           useFolderNameAsFileName,
                                                                      const CString& folderDirectory,
                                                                      const CString& folderName,
                                                                      const CString& folderDescription,
@@ -47,7 +47,7 @@ PSS_CreateFolderWizardStartDialog::PSS_CreateFolderWizardStartDialog(BOOL       
     m_FolderDirectory(folderDirectory),
     m_InitialFileName(initialFileName),
     m_FileExtension(fileExtension),
-    m_UseFolderNameAsFileName(useFolderNameAsFilename)
+    m_UseFolderNameAsFileName(useFolderNameAsFileName)
 {
     m_CompleteFileName.SetSearchType(PSS_SearchEditButton::IE_T_File, IDS_CHOOSEFILENAMEFORFOLDER, m_FolderDirectory, "", 0);
     GetCurrentDirectory(_MAX_DIR - 1, m_Dir);

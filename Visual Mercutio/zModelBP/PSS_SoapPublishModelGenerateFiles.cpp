@@ -103,14 +103,14 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
                                              (const char*)g_ParentImageFile)))
             TRACE(_T("Problem publishing the Parent image file\n"));
 
-    // reset the generated filenames array
+    // reset the generated file name array
     ResetStringsArray();
 
     if (!PublishModel(m_pModel))
         return false;
 
-    // save the root html filename
-    m_RootHtmlFileName = BuildModelHTMLFilename(m_pModel);
+    // save the root html file name
+    m_RootHtmlFileName = BuildModelHTMLFileName(m_pModel);
     m_RootName         = m_pModel->GetAbsolutePath();
 
     return true;
@@ -166,7 +166,7 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
         return false;
 
     // export the model to the image file name
-    const CString imageFileName = BuildModelImageFilename(pModel);
+    const CString imageFileName = BuildModelImageFileName(pModel);
 
     // refresh the setup copy file window
     m_FileGenerateWindow.SetDestination(imageFileName);
@@ -205,7 +205,7 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFilename(ZDProcessGraphModelMdl* pModel)
+CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFileName(ZDProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return _T("");
@@ -218,7 +218,7 @@ CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFilename(ZDProcessGrap
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_SoapPublishModelGenerateFiles::BuildModelHTMLFilename(ZDProcessGraphModelMdl* pModel)
+CString PSS_SoapPublishModelGenerateFiles::BuildModelHTMLFileName(ZDProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return _T("");
@@ -241,7 +241,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     if (!pModel)
         return false;
 
-    const CString  htmlFileName = BuildModelHTMLFilename(pModel);
+    const CString  htmlFileName = BuildModelHTMLFileName(pModel);
           PSS_File rootHtmlFile(m_RootHtmlFileName);
 
     // refresh the setup copy file window
@@ -295,8 +295,8 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     // write the parent if there is one
     if (pModel->GetParent())
     {
-        // get the parent html filename and name
-        const CString  parentHtmlFileName = BuildModelHTMLFilename(pModel->GetParent());
+        // get the parent html file name and name
+        const CString  parentHtmlFileName = BuildModelHTMLFileName(pModel->GetParent());
               PSS_File parentHtmlFile(parentHtmlFileName);
         const CString  ParentName         = pModel->GetParent()->GetAbsolutePath();
 
@@ -349,7 +349,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
         if (pCompSym && pCompSym->GetChildModel())
         {
             // get the html file name for the reference
-            symbolHtmlFileName = BuildModelHTMLFilename(dynamic_cast<ZDProcessGraphModelMdl*>(pCompSym->GetChildModel()));
+            symbolHtmlFileName = BuildModelHTMLFileName(dynamic_cast<ZDProcessGraphModelMdl*>(pCompSym->GetChildModel()));
 
             PSS_File symbol(symbolHtmlFileName);
 

@@ -48,14 +48,14 @@ public:
     ZAModelGlobal();
     virtual ~ZAModelGlobal();
 
-    static bool LoadStateGlobalPropertyAttributes( const CString Filename )
+    static bool LoadStateGlobalPropertyAttributes( const CString fileName )
     {
-        // Only save the filename.
-        m_Filename = Filename;
+        // Only save the file name
+        m_FileName = fileName;
         return true;
     };
 
-    static bool SaveStateGlobalPropertyAttributes( const CString Filename );
+    static bool SaveStateGlobalPropertyAttributes( const CString fileName );
 
     static ZBPropertyAttributes& GetGlobalPropertyAttributes( int ObjectID );
 
@@ -66,7 +66,7 @@ private:
 
     static ZBPropertyAttributesSet    m_Set;
 
-    static CString                    m_Filename;
+    static CString                    m_FileName;
 };
 
 #endif // !defined(AFX_ZAMODELGLOBAL_H__EE1AEA1E_DC05_4884_BD63_36A1EC1EEC87__INCLUDED_)

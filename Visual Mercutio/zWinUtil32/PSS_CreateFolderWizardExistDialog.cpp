@@ -114,7 +114,7 @@ void PSS_CreateFolderWizardExistDialog::OnOK()
             break;
         }
 
-        // change filename
+        // change file name
         case 2:
         {
             CString fileName;
@@ -123,7 +123,7 @@ void PSS_CreateFolderWizardExistDialog::OnOK()
             if (fileName.IsEmpty())
                 return;
 
-            // assign the new filename
+            // assign the new file name
             m_CompleteFileName = fileName;
             break;
         }
@@ -186,7 +186,7 @@ void PSS_CreateFolderWizardExistDialog::CheckControlStates()
 
             break;
 
-        // change filename
+        // change file name
         case 2:
             // hide controls
             if (GetDlgItem(IDC_FOLDERFILENAME))

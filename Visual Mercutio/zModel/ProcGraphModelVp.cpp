@@ -254,10 +254,10 @@ BOOL ZIProcessGraphModelViewport::AssignNewController( ZDProcessGraphModelContro
     return FALSE;
 }
 
-SECImage* ZIProcessGraphModelViewport::CreateImageObjectFromFileExtension( const CString Filename )
+SECImage* ZIProcessGraphModelViewport::CreateImageObjectFromFileExtension( const CString fileName)
 {
     SECImage* pImage = NULL;
-    PSS_File file( Filename );
+    PSS_File file(fileName);
 
     if ( file.GetFileExt().CompareNoCase( _T( ".gif" ) ) == 0 )
     {
@@ -287,18 +287,18 @@ SECImage* ZIProcessGraphModelViewport::CreateImageObjectFromFileExtension( const
     return pImage;
 }
 
-SECImage* ZIProcessGraphModelViewport::LoadImageFromFile( const CString Filename )
+SECImage* ZIProcessGraphModelViewport::LoadImageFromFile( const CString fileName)
 {
     // JMR-MODIF - Le 5 août 2005 - Ajout du test de la présence d'un fichier avant de tenter de charger ce fichier.
-    PSS_File myFile( Filename );
+    PSS_File myFile(fileName);
 
     if ( myFile.Exist() )
     {
-        SECImage* pImage = CreateImageObjectFromFileExtension( Filename );
+        SECImage* pImage = CreateImageObjectFromFileExtension(fileName);
 
         if ( pImage )
         {
-            if ( !pImage->LoadImage( Filename ) )
+            if ( !pImage->LoadImage(fileName) )
             {
                 delete pImage;
                 pImage = NULL;
@@ -310,9 +310,9 @@ SECImage* ZIProcessGraphModelViewport::LoadImageFromFile( const CString Filename
     else return NULL;
 }
 
-bool ZIProcessGraphModelViewport::ExportModelToImageFile( const CString Filename, CDC& dc )
+bool ZIProcessGraphModelViewport::ExportModelToImageFile( const CString fileName, CDC& dc )
 {
-    SECImage* pImage = CreateImageObjectFromFileExtension( Filename );
+    SECImage* pImage = CreateImageObjectFromFileExtension(fileName);
 
     if ( pImage )
     {
@@ -321,7 +321,7 @@ bool ZIProcessGraphModelViewport::ExportModelToImageFile( const CString Filename
 
         TRY
         {
-            RetValue = pImage->SaveImage( Filename );
+            RetValue = pImage->SaveImage(fileName);
         }
         CATCH( CFileException, e )
         {

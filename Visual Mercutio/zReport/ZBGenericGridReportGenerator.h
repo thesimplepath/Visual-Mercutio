@@ -146,9 +146,9 @@ public:
 protected:
 
     ZDGridDocument*    m_pDoc;
-    CString            m_Filename;
+    CString            m_FileName;
     int                m_TypeID;
     PSS_Date           m_LastUpdateDateTime;
 };
 
-#endif // !defined(AFX_ZBGENERICGRIDREPORTGENERATOR_H__9F9F4F11_EC1C_46C8_9324_965098AC7702__INCLUDED_)
+#endif

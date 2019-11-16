@@ -49,8 +49,8 @@ public:
 // Operations
 public:
 
-    bool ReadFromFile( const CString Filename );
-    bool SaveToFile( const CString Filename );
+    bool ReadFromFile( const CString fileName );
+    bool SaveToFile( const CString fileName );
 
     ZBLogicalSystemEntity& GetLogicalSystemEnvironment()
     {

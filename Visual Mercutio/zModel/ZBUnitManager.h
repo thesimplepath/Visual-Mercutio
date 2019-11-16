@@ -70,7 +70,7 @@ public:
     size_t    GetUnitCount() const;
     ZBUnit*    GetUnitAt( size_t Index );
     bool    AddUnit( ZBUnit* pUnit );
-    ZBUnit*    CreateNewUnit( const CString Name, const CString Filename = "" );
+    ZBUnit*    CreateNewUnit( const CString Name, const CString fileName = "" );
 
     // Serializes the unit manager
     virtual void Serialize(CArchive& ar);

@@ -40,12 +40,12 @@ public:
 
 public:
 
-    BOOL LoadFile( CString Filename );
+    BOOL LoadFile( CString fileName);
 
     CStringArray* GetElementsArray();
 
     CString GetElementAt( size_t Index ) const;
-    CString GetFilename();
+    CString GetFileName();
 
     void RemoveAllElements();
 
@@ -57,7 +57,7 @@ public:
 
 private:
 
-    CString            m_Filename;
+    CString            m_FileName;
     CStringArray    m_Set;
 };
 

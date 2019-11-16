@@ -83,19 +83,19 @@ public:
     // Store the object Stamp to the archive.
     AFX_EXT_API friend CArchive& operator << (CArchive& ar, const ZBSymbolStamp& Stamp);
 
-    // Read the stamp from a given filename.
-    virtual BOOL ReadFromFile (CString Filename);
+    // Read the stamp from a given file name
+    virtual BOOL ReadFromFile (CString fileName);
 
-    // Write the stamp to a given filename.
-    virtual BOOL WriteToFile (CString Filename);
+    // Write the stamp to a given file name
+    virtual BOOL WriteToFile (CString fileName);
 
 
     // Versioning operations ---------------------------------
 
-    DWORD IncrementPublishVersionOfFile (const CString Filename);
-    DWORD DecrementPublishVersionOfFile (const CString Filename);
-    BOOL  SetPublishVersionOfFile (const CString Filename, DWORD Version);
-    DWORD GetPublishVersionOfFile (const CString Filename);
+    DWORD IncrementPublishVersionOfFile (const CString fileName);
+    DWORD DecrementPublishVersionOfFile (const CString fileName);
+    BOOL  SetPublishVersionOfFile (const CString fileName, DWORD Version);
+    DWORD GetPublishVersionOfFile (const CString fileName);
 
 
 private:

@@ -342,11 +342,11 @@ void ZVGridView::ExportToTextFile()
     }
 }
 
-bool ZVGridView::ExportToTextFile(const CString Filename)
+bool ZVGridView::ExportToTextFile(const CString fileName)
 {
     CFile textFile;
 
-    if (!textFile.Open(Filename, CFile::modeCreate | CFile::modeWrite))
+    if (!textFile.Open(fileName, CFile::modeCreate | CFile::modeWrite))
     {
         return false;
     }
@@ -393,11 +393,11 @@ void ZVGridView::ImportTextFile()
     }
 }
 
-bool ZVGridView::ImportTextFile(const CString Filename)
+bool ZVGridView::ImportTextFile(const CString fileName)
 {
     CFile textFile;
 
-    if (!textFile.Open(Filename, CFile::modeRead))
+    if (!textFile.Open(fileName, CFile::modeRead))
     {
         return false;
     }

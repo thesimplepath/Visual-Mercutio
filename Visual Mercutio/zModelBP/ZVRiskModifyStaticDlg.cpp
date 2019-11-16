@@ -34,12 +34,12 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVRiskModifyStaticDlg dialog
 
-ZVRiskModifyStaticDlg::ZVRiskModifyStaticDlg(CString    Filename,
+ZVRiskModifyStaticDlg::ZVRiskModifyStaticDlg(CString    fileName,
                                              CString    Extension,
                                              int        NbElements,
                                              CWnd*        pParent        /*= NULL*/)
     : CDialog(ZVRiskModifyStaticDlg::IDD, pParent),
-    m_Filename(Filename),
+    m_FileName(fileName),
     m_Extension(Extension),
     i_NbElements(NbElements),
     m_Element(_T(""))
@@ -49,9 +49,9 @@ ZVRiskModifyStaticDlg::ZVRiskModifyStaticDlg(CString    Filename,
 }
 
 // Cette fonction retourne le nom du fichier utilisé pour la liste en cours de modification.
-CString ZVRiskModifyStaticDlg::GetFilename()
+CString ZVRiskModifyStaticDlg::GetFileName()
 {
-    return m_Filename;
+    return m_FileName;
 }
 
 void ZVRiskModifyStaticDlg::DoDataExchange(CDataExchange* pDX)
@@ -77,7 +77,7 @@ BOOL ZVRiskModifyStaticDlg::OnInitDialog()
 
     PSS_TextFile p_File;
 
-    if (p_File.OpenRead(m_Filename) == TRUE)
+    if (p_File.OpenRead(m_FileName) == TRUE)
     {
         BOOL    m_EndReached = FALSE;
         CString    m_Text = _T("");
@@ -168,7 +168,7 @@ void ZVRiskModifyStaticDlg::OnBnClickedStaticNewFile()
 
     if (m_NewFileDlg.DoModal() == IDOK)
     {
-        m_Filename = m_NewFileDlg.GetDirectory() + _T("\\") + m_NewFileDlg.GetFilename() + m_Extension;
+        m_FileName = m_NewFileDlg.GetDirectory() + _T("\\") + m_NewFileDlg.GetFileName() + m_Extension;
 
         while (m_ElementsListCtrl.GetCount() > 0)
         {
@@ -190,23 +190,21 @@ void ZVRiskModifyStaticDlg::OnBnClickedOk()
 {
     PSS_File m_File;
 
-    if (m_File.Exist(m_Filename) == TRUE)
-    {
-        CFile::Remove(m_Filename);
-    }
+    if (m_File.Exist(m_FileName) == TRUE)
+        CFile::Remove(m_FileName);
 
-    PSS_TextFile p_NewFile;
+    PSS_TextFile pNewFile;
 
-    p_NewFile.OpenWrite(m_Filename);
+    pNewFile.OpenWrite(m_FileName);
 
     for (int i = 0; i < m_ElementsListCtrl.GetCount(); i++)
     {
         CString s = _T("");
         m_ElementsListCtrl.GetText(i, s);
-        p_NewFile << s + _T("\r\n");
+        pNewFile << s + _T("\r\n");
     }
 
-    p_NewFile.CloseFile();
+    pNewFile.CloseFile();
 
     OnOK();
 }

@@ -36,7 +36,7 @@ ZBWorkflowDefinition::ZBWorkflowDefinition(const ZBWorkflowDefinition& src)
 
 ZBWorkflowDefinition& ZBWorkflowDefinition::operator=(const ZBWorkflowDefinition& src)
 {
-    m_WorkflowFilename = src.m_WorkflowFilename;
+    m_WorkflowFileName = src.m_WorkflowFileName;
     m_WorkflowLastUpdateDate = src.m_WorkflowLastUpdateDate;
     m_CheckConsistency = src.m_CheckConsistency;
     m_SaveModelInWorkflow = src.m_SaveModelInWorkflow;
@@ -55,14 +55,14 @@ void ZBWorkflowDefinition::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        ar << m_WorkflowFilename;
+        ar << m_WorkflowFileName;
         ar << m_WorkflowLastUpdateDate;
         ar << (WORD)m_CheckConsistency;
         ar << (WORD)m_SaveModelInWorkflow;
     }
     else
     {
-        ar >> m_WorkflowFilename;
+        ar >> m_WorkflowFileName;
         ar >> m_WorkflowLastUpdateDate;
 
         WORD    wValue;

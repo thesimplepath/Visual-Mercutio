@@ -1,0 +1,90 @@
+// MdlTmplSav.h : header file
+
+#include "Resource.h"
+
+#include "zWinUtil32\PSS_SearchEdit.h"
+#include "zBaseLib\PSS_Dialog.h"
+
+#include "zBaseLib\PSS_FolderStamp.h"
+
+// JMR-MODIF - Le 9 décembre 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
+
+/////////////////////////////////////////////////////////////////////////////
+// ZIModelTemplateCopyDlg dialog
+
+class ZIModelTemplateCopyDlg : public PSS_Dialog
+{
+// Construction
+public:
+
+    // Standard constructor
+    ZIModelTemplateCopyDlg( CString            FileExtension,
+                            const CString    Directory,
+                           PSS_FolderStamp*    pFolderStamp    = NULL,
+                            BOOL            AllowReplace    = FALSE,
+                            CWnd*            pParent            = NULL );
+
+public:
+
+    CString GetDirectory() const
+    {
+        return m_Directory;
+    }
+
+    CString GetDescription()
+    {
+        return m_sDescription;
+    }
+
+    CString GetFileName()
+    {
+        return m_sFileName;
+    }
+
+    CString GetTitle()
+    {
+        return m_sTitle;
+    }
+
+    bool FileChooseExists() const
+    {
+        return m_FileExist;
+    }
+
+// Dialog Data
+private:
+
+    //{{AFX_DATA(ZIModelTemplateCopyDlg)
+    enum { IDD = IDD_MODELTEMPLATESAVE };
+    PSS_SearchEdit m_ModelDirectory;
+    CString        m_sDescription;
+    CString        m_sFileName;
+    CString        m_sTitle;
+    //}}AFX_DATA
+
+// Implementation
+protected:
+
+    // DDX/DDV support
+    virtual void DoDataExchange( CDataExchange* pDX );
+
+    // Generated message map functions
+    //{{AFX_MSG(ZIModelTemplateCopyDlg)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnChangeTitle();
+    afx_msg void OnDontSave();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
+
+private:
+
+    PSS_FolderStamp*    m_pFolderStamp;
+
+    CString            m_FileExtension;
+    CString            m_Directory;
+
+    BOOL            m_AllowReplace;
+
+    bool            m_FileExist;
+};

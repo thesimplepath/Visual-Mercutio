@@ -38,11 +38,11 @@ class AFX_EXT_CLASS ZBUnit : public CObject
     DECLARE_SERIAL(ZBUnit)
 
 public:
-    ZBUnit( const CString Name = "", const CString Filename = "" );
+    ZBUnit( const CString Name = "", const CString fileName = "" );
     virtual ~ZBUnit();
 
     bool    Create( const CString Name );
-    bool    Create( const CString Name, const CString Filename );
+    bool    Create( const CString Name, const CString fileName );
     CString    CreateUniqueKey();
     bool    LoadUnit(PSS_ProcessModelDocTmpl* pDocTmpl);
     bool    UnloadUnit();
@@ -57,8 +57,8 @@ public:
     CString GetKey() const { return m_Key; };
     void SetKey( CString value ) { m_Key = value; };
 
-    CString GetFilename() const { return m_Filename; };
-    void SetFilename( CString value ) { m_Filename = value; };
+    CString GetFileName() const { return m_FileName; };
+    void SetFileName( CString value ) { m_FileName = value; };
 
 //    ZBUnit*    Clone();
 
@@ -75,7 +75,7 @@ protected:
     ZDProcessGraphModelDoc* m_pUnitDoc;
     CString m_Name;
     CString m_Key;
-    CString m_Filename;
+    CString m_FileName;
 };
 
 #endif // !defined(AFX_ZBUNIT_H__C267AE1B_E6C2_4678_A8D8_CD5CA2644DC7__INCLUDED_)

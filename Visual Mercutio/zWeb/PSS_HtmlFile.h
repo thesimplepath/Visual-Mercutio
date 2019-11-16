@@ -107,7 +107,7 @@ class AFX_EXT_CLASS PSS_HtmlFile
         BOOL CloseFile();
 
     private:
-        CString m_Filename;
+        CString m_FileName;
         CFile   m_File;
         char*   m_pCurrent;
         char*   m_pNext;

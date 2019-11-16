@@ -625,9 +625,9 @@ public:
     //////////////////////////////////////////////////////////////////////
     // JMR-MODIF - Le 5 août 2005 - Fonctions concernant le tramage.
 
-    CString                            GetBkGndFilename();
+    CString                            GetBkGndFileName();
 
-    void                            SetBkGndFilename(CString Filename);
+    void                            SetBkGndFileName(CString fileName);
     void                            ResetBkGndMustBeRestored();
     void                            SetIsLogo(BOOL IsLogo);
 
@@ -811,7 +811,7 @@ private:
     static size_t                                    m_FindCounter;
 
     // JMR-MODIF - Le 5 août 2005 - Ajout des variables de tramage.
-    CString                                            m_BkGndFilename;
+    CString                                            m_BkGndFileName;
     BOOL                                            bBkGndFlag;
     BOOL                                            bIsLogo;
 

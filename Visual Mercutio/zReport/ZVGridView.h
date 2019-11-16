@@ -74,10 +74,10 @@ public:
 
     void SetPopupMenu( UINT nIDRes );
     void ExportToTextFile();
-    bool ExportToTextFile( const CString Filename );
+    bool ExportToTextFile( const CString fileName);
 
     void ImportTextFile();
-    bool ImportTextFile( const CString Filename );
+    bool ImportTextFile( const CString fileName);
 
     virtual void FreezeSplitter();
     virtual void UnfreezeSplitter();

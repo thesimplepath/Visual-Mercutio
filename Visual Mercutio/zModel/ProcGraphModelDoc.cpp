@@ -372,9 +372,9 @@ bool ZDProcessGraphModelDoc::CreateUnitManager()
     return true;
 }
 
-bool ZDProcessGraphModelDoc::InsertUnit(const CString Filename)
+bool ZDProcessGraphModelDoc::InsertUnit(const CString fileName)
 {
-    PSS_File File(Filename);
+    PSS_File File(fileName);
 
     if (!File.Exist())
     {
@@ -386,7 +386,7 @@ bool ZDProcessGraphModelDoc::InsertUnit(const CString Filename)
         CreateUnitManager();
     }
 
-    ZBUnit* pUnit = m_pUnitManager->CreateNewUnit(_T(""), Filename);
+    ZBUnit* pUnit = m_pUnitManager->CreateNewUnit(_T(""), fileName);
 
     if (!pUnit)
     {
@@ -1258,13 +1258,13 @@ BOOL ZDProcessGraphModelDoc::SetFileReadOnly(const char* pszPathName, BOOL Value
     return bRet;
 }
 
-bool ZDProcessGraphModelDoc::ReadFromFile(const CString Filename)
+bool ZDProcessGraphModelDoc::ReadFromFile(const CString fileName)
 {
     bool            RetValue = false;
     CFile            file;
     CFileException    fe;
 
-    if (!file.Open(Filename, CFile::modeRead | CFile::shareDenyWrite, &fe))
+    if (!file.Open(fileName, CFile::modeRead | CFile::shareDenyWrite, &fe))
     {
         return FALSE;
     }
@@ -1290,19 +1290,19 @@ bool ZDProcessGraphModelDoc::ReadFromFile(const CString Filename)
     // If everything is ok, set the pathname.
     if (RetValue)
     {
-        SetPathName(Filename, FALSE);
+        SetPathName(fileName, FALSE);
     }
 
     return RetValue;
 }
 
-bool ZDProcessGraphModelDoc::SaveToFile(const CString Filename)
+bool ZDProcessGraphModelDoc::SaveToFile(const CString fileName)
 {
     bool            RetValue = false;
     CFile            file;
     CFileException    fe;
 
-    if (!file.Open(Filename, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe))
+    if (!file.Open(fileName, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe))
     {
         return FALSE;
     }

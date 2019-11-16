@@ -59,7 +59,7 @@ class AFX_EXT_CLASS PSS_PublishModelToHTML
         static bool ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc,
                                           ZIProcessGraphModelView* pView,
                                           ZUPublishReportInfo*     pReportInfo,
-                                          const CString&           iniFilename = _T(""));
+                                          const CString&           iniFileName = _T(""));
 
         /**
         * Launches the browser

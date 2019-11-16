@@ -111,7 +111,7 @@ public:
     // Return true if the ExtApp already exists
     bool ExtAppExist( const CString CommandTitle ) const;
 
-    // Retreive the right ExtApp properties base on the ExtApp filename
+    // Retreive the right ExtApp properties base on the ExtApp file name
     ZBExtAppProperties* LocateExtApp( const CString CommandTitle ) const;
 
     ZBExtAppPropertiesSet& GetExtAppSet()
@@ -153,27 +153,27 @@ public:
     void SetCommandTitle( size_t Index, CString Value );
 
     //@cmember
-    /* Gets the filename at the specific Index. */
+    /* Gets the file name at the specific Index. */
     CString GetCommandLine( size_t Index ) const;
 
     //@cmember
-    /* Sets the filename at the specific Index. */
+    /* Sets the file name at the specific Index. */
     void SetCommandLine( size_t Index, CString Value );
 
     //@cmember
-    /* Gets the filename at the specific Index. */
+    /* Gets the file name at the specific Index. */
     CString GetCommandParameters( size_t Index ) const;
 
     //@cmember
-    /* Sets the filename at the specific Index. */
+    /* Sets the file name at the specific Index. */
     void SetCommandParameters( size_t Index, CString Value );
 
     //@cmember
-    /* Gets the filename at the specific Index. */
+    /* Gets the file name at the specific Index. */
     CString GetCommandStartupDirectory( size_t Index ) const;
 
     //@cmember
-    /* Sets the filename at the specific Index. */
+    /* Sets the file name at the specific Index. */
     void SetCommandStartupDirectory( size_t Index, CString Value );
 
     //@cmember

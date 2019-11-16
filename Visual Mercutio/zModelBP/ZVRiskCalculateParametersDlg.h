@@ -43,7 +43,7 @@ class AFX_EXT_CLASS ZVRiskCalculateParametersDlg : public CDialog
 // Construction / Destruction
 public:
 
-    ZVRiskCalculateParametersDlg( CString    IniFilename,
+    ZVRiskCalculateParametersDlg( CString    IniFileName,
                                   CString    CurrencySymbol,
                                   CWnd*        pParent            = NULL );
 
@@ -131,11 +131,8 @@ private:
     BOOL    m_OrangeActionChecked;
     BOOL    m_OrangeNoActionChecked;
 
-    CString    m_IniFilename;
+    CString    m_IniFileName;
     CString m_CurrencySymbol;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVRISKCALCULATEPARAMETERSDLG_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
+#endif

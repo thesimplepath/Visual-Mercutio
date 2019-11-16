@@ -47,7 +47,7 @@ public:
 public:
 
     CString GetDirectory();
-    CString GetFilename();
+    CString GetFileName();
 
 private:
 
@@ -58,9 +58,9 @@ private:
     // Dialog Data
     //{{AFX_DATA(ZVRiskNewFileDlg)
     enum { IDD = IDD_NEW_RISK_FILE };
-    CString m_Filename;
+    CString m_FileName;
     CString m_Directory;
-    CEdit m_Filename_Ctrl;
+    CEdit m_FileName_Ctrl;
     CEdit m_Directory_Ctrl;
     CButton m_OK_Ctrl;
     //}}AFX_DATA
@@ -79,7 +79,7 @@ protected:
     //{{AFX_MSG(ZVRiskNewFileDlg)
     virtual BOOL OnInitDialog();
     afx_msg void OnBnClickedDirectorySelect();
-    afx_msg void OnEnChangeFilename();
+    afx_msg void OnEnChangeFileName();
     afx_msg void OnEnChangeDirectory();
     afx_msg void OnBnClickedOk();
     //}}AFX_MSG

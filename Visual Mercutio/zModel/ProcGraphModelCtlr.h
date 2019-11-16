@@ -145,11 +145,11 @@ public:
     void                                    ReleaseClipboard();
 
     // JMR-MODIF - Le 20 juillet 2005 - Ajout de la fonction SetImage et ClearImage.
-    void                                    SetImage(CString Filename, BOOL IsLogo);
+    void                                    SetImage(CString fileName, BOOL IsLogo);
     void                                    ClearImage();
 
-    // JMR-MODIF - Le 7 octobre 2005 - Ajout de la fonction AskImageFilename.
-    BOOL                                    AskImageFilename(CString& Filename);
+    // JMR-MODIF - Le 7 octobre 2005 - Ajout de la fonction AskImageFileName.
+    BOOL                                    AskImageFileName(CString& fileName);
 
     // Animation functions
     void    AnimateNode(IODNode& Node, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4);

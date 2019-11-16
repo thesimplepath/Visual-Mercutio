@@ -301,12 +301,12 @@ bool ZVPublishPrestationsReport::CreateFileSystem( ZBLogicalPrestationsEntity* p
     CString PrestationName = pPrestations->GetEntityName();
     CString PrestationDesc = pPrestations->GetEntityDescription();
 
-    if ( !HtmlFile.Create( GenerateFilename( Directory, PrestationName ) ) )
+    if ( !HtmlFile.Create( GenerateFileName( Directory, PrestationName ) ) )
     {
         return false;
     }
 
-    m_FileGenerateWindow.SetDestination( GenerateFilename( Directory, PrestationName ) );
+    m_FileGenerateWindow.SetDestination( GenerateFileName( Directory, PrestationName ) );
     m_FileGenerateWindow.UpdateWindow();
 
     GenerateHTMLPageHead( PrestationName );
@@ -356,14 +356,14 @@ void ZVPublishPrestationsReport::CreateReport( CString PrestationName )
 }
 
 // Cette fonction permet de créer le nom de fichier correct pour chaque page du rapport.
-CString ZVPublishPrestationsReport::GenerateFilename( CString Directory, CString PrestationName )
+CString ZVPublishPrestationsReport::GenerateFileName( CString Directory, CString PrestationName )
 {
-    CString sFilename     = Directory;
-    sFilename            += _T( "PrestationsReport_" );
-    sFilename            += PSS_StringTools::ConvertSpecialChar( PrestationName );
-    sFilename            += _T( ".htm" );
+    CString sFileName     = Directory;
+    sFileName            += _T( "PrestationsReport_" );
+    sFileName            += PSS_StringTools::ConvertSpecialChar( PrestationName );
+    sFileName            += _T( ".htm" );
 
-    return sFilename;
+    return sFileName;
 }
 
 // Cette fonction permet la génération d'un en-tête standard HTML.

@@ -45,7 +45,7 @@ public:
                                   bool                                IncludeConceptor        = true,
                                   bool                                IncludeProcessReport    = true,
                                   bool                                IncludeRuleBook            = true,
-                                  const                                CString ImageFilename    = _T( "" ),
+                                  const                                CString imageFileName    = _T( "" ),
                                   const                                CString HyperLink        = _T( "" ),
                                   CDC*                                pDC                        = NULL,
                                  PSS_Server*                          pServer                    = NULL);
@@ -75,8 +75,8 @@ public:
     bool GetIncludeRuleBook() const;
     void SetIncludeRuleBook( bool value );
 
-    CString GetImageFilename() const;
-    void SetImageFilename( CString value );
+    CString GetImageFileName() const;
+    void SetImageFileName( CString value );
 
     CString GetHyperLink() const;
     void SetHyperLink( CString value );
@@ -97,7 +97,7 @@ private:
     bool                            m_IncludeRuleBook;
 
     CString                            m_URLName;
-    CString                            m_ImageFilename;
+    CString                            m_ImageFileName;
     CString                            m_HyperLink;
 
     CDC*                            m_pDC;
@@ -183,14 +183,14 @@ inline void ZBInfoModelGraphicGeneration::SetIncludeRuleBook( bool value )
     m_IncludeRuleBook = value;
 }
 
-inline CString ZBInfoModelGraphicGeneration::GetImageFilename() const
+inline CString ZBInfoModelGraphicGeneration::GetImageFileName() const
 {
-    return m_ImageFilename;
+    return m_ImageFileName;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetImageFilename( CString value )
+inline void ZBInfoModelGraphicGeneration::SetImageFileName( CString value )
 {
-    m_ImageFilename = value;
+    m_ImageFileName = value;
 }
 
 inline CString ZBInfoModelGraphicGeneration::GetHyperLink() const

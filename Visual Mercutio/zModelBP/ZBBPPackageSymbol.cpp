@@ -28,8 +28,8 @@ IMPLEMENT_SERIAL(ZBBPPackageSymbol, ZBSymbol, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBBPPackageSymbol::ZBBPPackageSymbol( const CString Name /*= ""*/, const CString Filename /*= ""*/ )
-: m_FilenameLinkedTo(Filename), m_DisplayPreview(false), m_pPackageDoc(NULL)
+ZBBPPackageSymbol::ZBBPPackageSymbol( const CString Name /*= ""*/, const CString fileName /*= ""*/ )
+: m_FileNameLinkedTo(fileName), m_DisplayPreview(false), m_pPackageDoc(NULL)
 {
     ZBSymbol::SetSymbolName(Name); 
     if (!m_LinkedToFileBitmap.IsValid())
@@ -51,7 +51,7 @@ ZBBPPackageSymbol& ZBBPPackageSymbol::operator=(const ZBBPPackageSymbol& src)
     // Call the base class assignement operator
     ZBSymbol::operator=( (const ZBSymbol&)src);
     m_DisplayPreview = src.m_DisplayPreview;
-    m_FilenameLinkedTo = src.m_FilenameLinkedTo;
+    m_FileNameLinkedTo = src.m_FileNameLinkedTo;
     return *this;
 }
 
@@ -96,22 +96,22 @@ void ZBBPPackageSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
     if (ISA((&src),ZBBPPackageSymbol))
     {
         m_DisplayPreview = ((ZBBPPackageSymbol&)src).m_DisplayPreview;
-        m_FilenameLinkedTo = ((ZBBPPackageSymbol&)src).m_FilenameLinkedTo;
+        m_FileNameLinkedTo = ((ZBBPPackageSymbol&)src).m_FileNameLinkedTo;
 
         m_CommentRect = ((ZBBPPackageSymbol&)src).m_CommentRect;
-        // Used to link the package to a filename
-        m_FilenameLinkedTo = ((ZBBPPackageSymbol&)src).m_FilenameLinkedTo;
+        // Used to link the package to a file name
+        m_FileNameLinkedTo = ((ZBBPPackageSymbol&)src).m_FileNameLinkedTo;
         m_pPackageDoc = ((ZBBPPackageSymbol&)src).m_pPackageDoc;
 
     }
 }
 
-BOOL ZBBPPackageSymbol::Create( const CString Name /*= ""*/, const CString Filename /*= ""*/ )
+BOOL ZBBPPackageSymbol::Create( const CString Name /*= ""*/, const CString fileName /*= ""*/ )
 {
     m_IsInCreationProcess = true;
 
-    if (!Filename.IsEmpty())
-        m_FilenameLinkedTo = Filename;
+    if (!fileName.IsEmpty())
+        m_FileNameLinkedTo = fileName;
 
     BOOL RetValue = ZBSymbol::Create( IDR_PACKAGE_SYM, AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")), Name );
 
@@ -144,7 +144,7 @@ void ZBBPPackageSymbol::AdjustElementPosition()
 bool    ZBBPPackageSymbol::LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent)
 {
     // Check if the file exists
-    PSS_File File(m_FilenameLinkedTo);
+    PSS_File File(m_FileNameLinkedTo);
     if (!File.Exist())
         return false;
 
@@ -153,7 +153,7 @@ bool    ZBBPPackageSymbol::LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProc
         if (!UnloadPackage())
             return false;
     }
-    CDocument*    pDoc = pDocTmpl->OpenDocumentFile( m_FilenameLinkedTo, FALSE );
+    CDocument*    pDoc = pDocTmpl->OpenDocumentFile( m_FileNameLinkedTo, FALSE );
     if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
     {
         m_pPackageDoc = (ZDProcessGraphModelDoc*)pDoc;
@@ -196,7 +196,7 @@ void ZBBPPackageSymbol::OnDraw(CDC* pDC)
     ZBSymbol::OnDraw(pDC);
 //    if (m_pModel && ISA(m_pModel,ZDProcessGraphModelMdl) && m_DisplayPreview)
 //        reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->DrawMetaFile(pDC, m_CommentRect);
-    if (IsLinkedToFilename() && m_LinkedToFileBitmap.IsValid())
+    if (IsLinkedToFileName() && m_LinkedToFileBitmap.IsValid())
     {
         ShowBitmap(HBITMAP(m_LinkedToFileBitmap), pDC->m_hDC, AfxGetInstanceHandle(), m_LinkedToFileBitmapPosition.x, m_LinkedToFileBitmapPosition.y);
 //        m_LinkedToFileBitmap.DrawBitmap( pDC, NULL, m_LinkedToFileBitmapPosition.x, m_LinkedToFileBitmapPosition.y );
@@ -218,7 +218,7 @@ void ZBBPPackageSymbol::Serialize(CArchive& ar)
             TRACE( "ZBBPPackageSymbol::Serialize : Start Save\n" );
 
             ar << (WORD)m_DisplayPreview;
-            ar << m_FilenameLinkedTo;
+            ar << m_FileNameLinkedTo;
 
             TRACE( "ZBBPPackageSymbol::Serialize : End Save\n" );
         }
@@ -229,10 +229,10 @@ void ZBBPPackageSymbol::Serialize(CArchive& ar)
             WORD wValue;
             ar >> wValue;
             m_DisplayPreview = (wValue == 0) ? false : true;
-            ar >> m_FilenameLinkedTo;
-            // If is linked to filename
+            ar >> m_FileNameLinkedTo;
+            // If is linked to file name
             // serialize null as model pointer
-            if (IsLinkedToFilename())
+            if (IsLinkedToFileName())
                 m_pModel = NULL;
 
             TRACE( "ZBBPPackageSymbol::Serialize : End Read\n" );
@@ -264,10 +264,10 @@ bool ZBBPPackageSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS
 {
     toolTipText.Format(IDS_FS_BPPACKAGE_TOOLTIP, (const char*)GetSymbolName());
 
-    if (IsLinkedToFilename())
+    if (IsLinkedToFileName())
     {
         CString LinkToFile;
-        LinkToFile.Format( IDS_FS_BPPACKAGE_LINKTF_TOOLTIP, m_FilenameLinkedTo );
+        LinkToFile.Format( IDS_FS_BPPACKAGE_LINKTF_TOOLTIP, m_FileNameLinkedTo );
         toolTipText += LinkToFile;
     }
     return true;

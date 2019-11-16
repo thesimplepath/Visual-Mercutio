@@ -74,12 +74,12 @@ bool ZVPublishRuleBookDetails::CreateFileSystem( ZBLogicalRulesEntity* pRules, C
         return false;
     }
 
-    if ( !HtmlFile.Create( GenerateFilename( Directory ) ) )
+    if ( !HtmlFile.Create( GenerateFileName( Directory ) ) )
     {
         return false;
     }
 
-    m_FileGenerateWindow.SetDestination( GenerateFilename( Directory ) );
+    m_FileGenerateWindow.SetDestination( GenerateFileName( Directory ) );
     m_FileGenerateWindow.UpdateWindow();
 
     CString Title = _T( "" );
@@ -373,13 +373,13 @@ void ZVPublishRuleBookDetails::CreateReport( ZBLogicalRulesEntity* pRules )
 }
 
 // Cette fonction permet de créer le nom de fichier correct pour le livre du détail des règles.
-CString ZVPublishRuleBookDetails::GenerateFilename( CString Directory )
+CString ZVPublishRuleBookDetails::GenerateFileName( CString Directory )
 {
-    CString sFilename     = Directory;
-    sFilename            += _T( "RuleBookDetails" );
-    sFilename            += _T( ".htm" );
+    CString sFileName     = Directory;
+    sFileName            += _T( "RuleBookDetails" );
+    sFileName            += _T( ".htm" );
 
-    return sFilename;
+    return sFileName;
 }
 
 // Cette fonction permet la génération d'un en-tête standard HTML.

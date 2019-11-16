@@ -24,7 +24,7 @@ static char THIS_FILE[] = __FILE__;
 BEGIN_MESSAGE_MAP(ZVRiskNewFileDlg, CDialog)
     //{{AFX_MSG_MAP(ZVRiskNewFileDlg)
     ON_BN_CLICKED(IDC_DIRECTORY_SELECT, OnBnClickedDirectorySelect)
-    ON_EN_CHANGE(IDC_FILENAME, OnEnChangeFilename)
+    ON_EN_CHANGE(IDC_FILENAME, OnEnChangeFileName)
     ON_EN_CHANGE(IDC_DIRECTORY, OnEnChangeDirectory)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
     //}}AFX_MSG_MAP
@@ -36,7 +36,7 @@ END_MESSAGE_MAP()
 ZVRiskNewFileDlg::ZVRiskNewFileDlg(CString Extension, CWnd* pParent /*= NULL*/)
     : CDialog(ZVRiskNewFileDlg::IDD, pParent),
     m_Extension(Extension),
-    m_Filename(_T("")),
+    m_FileName(_T("")),
     m_Directory(_T(""))
 {
     //{{AFX_DATA_INIT(ZVRiskNewFileDlg)
@@ -50,15 +50,15 @@ CString ZVRiskNewFileDlg::GetDirectory()
 }
 
 // Cette fonction retourne le nom du fichier utilisé pour la nouvelle liste.
-CString ZVRiskNewFileDlg::GetFilename()
+CString ZVRiskNewFileDlg::GetFileName()
 {
-    return m_Filename;
+    return m_FileName;
 }
 
 // Cette fonction contrôle les entrées utilisateurs.
 void ZVRiskNewFileDlg::CheckUserEntry()
 {
-    if ((m_Filename.IsEmpty() == FALSE) && (m_Directory.IsEmpty() == FALSE))
+    if ((m_FileName.IsEmpty() == FALSE) && (m_Directory.IsEmpty() == FALSE))
     {
         m_OK_Ctrl.EnableWindow(TRUE);
     }
@@ -73,9 +73,9 @@ void ZVRiskNewFileDlg::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVRiskNewFileDlg)
-    DDX_Text(pDX, IDC_FILENAME, m_Filename);
+    DDX_Text(pDX, IDC_FILENAME, m_FileName);
     DDX_Text(pDX, IDC_DIRECTORY, m_Directory);
-    DDX_Control(pDX, IDC_FILENAME, m_Filename_Ctrl);
+    DDX_Control(pDX, IDC_FILENAME, m_FileName_Ctrl);
     DDX_Control(pDX, IDC_DIRECTORY, m_Directory_Ctrl);
     DDX_Control(pDX, IDOK, m_OK_Ctrl);
     //}}AFX_DATA_MAP
@@ -98,9 +98,9 @@ BOOL ZVRiskNewFileDlg::OnInitDialog()
 }
 
 // Cette fonction est appelée lorsque le nom du fichier change.
-void ZVRiskNewFileDlg::OnEnChangeFilename()
+void ZVRiskNewFileDlg::OnEnChangeFileName()
 {
-    m_Filename_Ctrl.GetWindowText(m_Filename);
+    m_FileName_Ctrl.GetWindowText(m_FileName);
 
     CheckUserEntry();
 }
@@ -140,7 +140,7 @@ void ZVRiskNewFileDlg::OnBnClickedOk()
         return;
     }
 
-    if (m_File.Exist(m_Directory + _T("\\") + m_Filename + m_Extension))
+    if (m_File.Exist(m_Directory + _T("\\") + m_FileName + m_Extension))
     {
         PSS_MsgBox mBox;
 

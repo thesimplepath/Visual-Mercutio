@@ -107,18 +107,18 @@ public:
 
     virtual void Serialize(CArchive& ar);
 
-    // Read the stamp from a given filename.
-    virtual BOOL ReadFromFile (CString Filename);
+    // Read the stamp from a given file name
+    virtual BOOL ReadFromFile (CString fileName);
 
-    // Write the stamp to a given filename.
-    virtual BOOL WriteToFile (CString Filename);
+    // Write the stamp to a given file name
+    virtual BOOL WriteToFile (CString fileName);
 
     // Versioning operations ---------------------------------
 
-    DWORD IncrementPublishVersionOfFile (const CString Filename);
-    DWORD DecrementPublishVersionOfFile (const CString Filename);
-    BOOL  SetPublishVersionOfFile (const CString Filename, DWORD Version);
-    DWORD GetPublishVersionOfFile (const CString Filename);
+    DWORD IncrementPublishVersionOfFile (const CString fileName);
+    DWORD DecrementPublishVersionOfFile (const CString fileName);
+    BOOL  SetPublishVersionOfFile (const CString fileName, DWORD Version);
+    DWORD GetPublishVersionOfFile (const CString fileName);
 
 protected:
     ZBSymbolStamp    m_SymbolStamp;
@@ -197,21 +197,21 @@ inline void ZBSymbolEntity::SetModificationDate(PSS_Date value )
 }
 
 
-inline DWORD ZBSymbolEntity::IncrementPublishVersionOfFile (const CString Filename)
+inline DWORD ZBSymbolEntity::IncrementPublishVersionOfFile (const CString fileName)
 {
-    return m_SymbolStamp.IncrementPublishVersionOfFile(Filename);
+    return m_SymbolStamp.IncrementPublishVersionOfFile(fileName);
 }
-inline DWORD ZBSymbolEntity::DecrementPublishVersionOfFile (const CString Filename)
+inline DWORD ZBSymbolEntity::DecrementPublishVersionOfFile (const CString fileName)
 {
-    return m_SymbolStamp.DecrementPublishVersionOfFile(Filename);
+    return m_SymbolStamp.DecrementPublishVersionOfFile(fileName);
 }
-inline BOOL  ZBSymbolEntity::SetPublishVersionOfFile (const CString Filename, DWORD Version)
+inline BOOL  ZBSymbolEntity::SetPublishVersionOfFile (const CString fileName, DWORD Version)
 {
-    return m_SymbolStamp.SetPublishVersionOfFile(Filename,Version);
+    return m_SymbolStamp.SetPublishVersionOfFile(fileName, Version);
 }
-inline DWORD ZBSymbolEntity::GetPublishVersionOfFile (const CString Filename)
+inline DWORD ZBSymbolEntity::GetPublishVersionOfFile (const CString fileName)
 {
-    return m_SymbolStamp.GetPublishVersionOfFile(Filename);
+    return m_SymbolStamp.GetPublishVersionOfFile(fileName);
 }
 
 

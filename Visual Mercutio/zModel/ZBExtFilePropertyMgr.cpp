@@ -101,7 +101,7 @@ bool ZBExtFilePropertyMgr::FillProperties(ZBPropertySet&    PropSet,
                                       PropName,
                                       (GroupValue == true) ? Z_FILE_NAME : (Z_FILE_NAME + (i * 40)),
                                       PropDesc,
-                                      GetFilename(i),
+                                      GetFileName(i),
                                       ZBProperty::PT_EDIT_EXTENDED);
 
         PropSet.Add(pCombination);
@@ -296,7 +296,7 @@ bool ZBExtFilePropertyMgr::SaveProperty(ZBProperty& Property)
 
             case Z_FILE_NAME:
             {
-                SetFilename(i, Property.GetValueString());
+                SetFileName(i, Property.GetValueString());
                 break;
             }
 
@@ -328,7 +328,7 @@ bool ZBExtFilePropertyMgr::ProcessExtendedInput(ZBProperty&    Property,
         int i = Property.GetCategoryID() - ZS_BP_PROP_EXTFILE;
 
         // Call the dialog
-        PSS_ReferenceFileDialog refFileDlg(GetFilename(i),
+        PSS_ReferenceFileDialog refFileDlg(GetFileName(i),
                                            GetInsertionType(i),
                                            GetActivationType(i));
 
@@ -346,7 +346,7 @@ bool ZBExtFilePropertyMgr::ProcessExtendedInput(ZBProperty&    Property,
                 SetFileTitle(i, refFileDlg.GetReference());
             }
 
-            SetFilename(i, refFileDlg.GetReference());
+            SetFileName(i, refFileDlg.GetReference());
             SetInsertionType(i, refFileDlg.GetInsertionType());
             SetActivationType(i, refFileDlg.GetActivationType());
 
@@ -401,7 +401,7 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile(bool DisplayDialog /*= true*/)
         if (DisplayDialog)
         {
             // call the dialog
-            PSS_ReferenceFileDialog refFileDlg(GetFilename(Idx),
+            PSS_ReferenceFileDialog refFileDlg(GetFileName(Idx),
                                                GetInsertionType(Idx),
                                                GetActivationType(Idx));
 
@@ -418,7 +418,7 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile(bool DisplayDialog /*= true*/)
                     SetFileTitle(Idx, refFileDlg.GetReference());
                 }
 
-                SetFilename(Idx, refFileDlg.GetReference());
+                SetFileName(Idx, refFileDlg.GetReference());
                 SetInsertionType(Idx, refFileDlg.GetInsertionType());
                 SetActivationType(Idx, refFileDlg.GetActivationType());
             }
@@ -485,7 +485,7 @@ bool ZBExtFilePropertyMgr::DropItem(CObject* pObj, CPoint pt)
         if (Idx >= 0 && ISA(pObj, PSS_TemplateFile))
         {
             SetFileTitle(Idx, ((PSS_TemplateFile*)pObj)->GetTitle());
-            SetFilename(Idx, ((PSS_TemplateFile*)pObj)->GetFileName());
+            SetFileName(Idx, ((PSS_TemplateFile*)pObj)->GetFileName());
             SetInsertionType(Idx, 0);
             SetActivationType(Idx, 0);
 
@@ -506,7 +506,7 @@ bool ZBExtFilePropertyMgr::DropItem(CObject* pObj, CPoint pt)
                 SetFileTitle(Idx, ((PSS_NetResourceWrapper*)pObj)->GetFileName());
             }
 
-            SetFilename(Idx, ((PSS_NetResourceWrapper*)pObj)->GetFileName());
+            SetFileName(Idx, ((PSS_NetResourceWrapper*)pObj)->GetFileName());
             SetInsertionType(Idx, 0);
             SetActivationType(Idx, 0);
 

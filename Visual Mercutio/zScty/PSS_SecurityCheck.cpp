@@ -228,7 +228,7 @@ const CString& PSS_SecurityCheck::FindFile(const CString& fileName, int drive)
     // initialize the buffer that will contain the result
     m_FoundFileName = "";
 
-    // assign the filename to search
+    // assign the file name to search
     m_FileNameToSearch = fileName;
 
     CString driveLetter;

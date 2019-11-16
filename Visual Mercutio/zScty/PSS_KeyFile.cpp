@@ -102,9 +102,9 @@ BOOL PSS_KeyFile::IsKeyValid(const CString& key)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_KeyFile::WriteEntityTable(const CString& filename)
+BOOL PSS_KeyFile::WriteEntityTable(const CString& fileName)
 {
-    if (!m_SecurityFile.Open(filename, CFile::modeCreate | CFile::modeWrite | CFile::shareExclusive))
+    if (!m_SecurityFile.Open(fileName, CFile::modeCreate | CFile::modeWrite | CFile::shareExclusive))
         return FALSE;
 
     BOOL error = FALSE;
@@ -133,10 +133,10 @@ BOOL PSS_KeyFile::WriteEntityTable(const CString& filename)
     return !error;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_KeyFile::LoadSecurityTable(const CString& filename)
+BOOL PSS_KeyFile::LoadSecurityTable(const CString& fileName)
 {
     // open the file
-    if (!m_SecurityFile.Open(filename, CFile::modeRead | CFile::shareDenyWrite))
+    if (!m_SecurityFile.Open(fileName, CFile::modeRead | CFile::shareDenyWrite))
         return FALSE;
 
     const int  maxElement = sizeof(m_KeyEntityTable) / sizeof(PSS_KeyEntity);

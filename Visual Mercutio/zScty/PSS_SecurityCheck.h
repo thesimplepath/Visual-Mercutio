@@ -63,11 +63,11 @@ class AFX_EXT_CLASS PSS_SecurityCheck : public PSS_Security
         virtual BOOL Check();
 
         /**
-        * Finds an old filename on the disk
-        *@param exeFilename - old exe file name to find
+        * Finds an old file name on the disk
+        *@param exeFileName - old exe file name to find
         *@return found old version file name and path, empty string if not found or on error
         */
-        virtual const CString FindOldVersion(const CString& exeFilename);
+        virtual const CString FindOldVersion(const CString& exeFileName);
 
         /**
         * Creates the security file
@@ -84,7 +84,7 @@ class AFX_EXT_CLASS PSS_SecurityCheck : public PSS_Security
         *@param appRegistryKey - application registry key
         *@param appPID - application identifier
         */
-        virtual BOOL Create(const CString& filename,
+        virtual BOOL Create(const CString& fileName,
                             int            daysMax,
                             int            counterMax,
                             int            counterMin,
@@ -134,7 +134,7 @@ class AFX_EXT_CLASS PSS_SecurityCheck : public PSS_Security
         *@param drive - drive index
         *@return found file name, empty string if not found or on error
         */
-        const CString& FindFile(const CString& filename, int drive);
+        const CString& FindFile(const CString& fileName, int drive);
 
         /**
         * Finds a specific file in the current directory

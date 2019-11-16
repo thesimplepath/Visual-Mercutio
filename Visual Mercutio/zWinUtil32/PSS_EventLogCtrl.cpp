@@ -75,8 +75,8 @@ const PSS_EventLogCtrl& PSS_EventLogCtrl::operator = (const PSS_EventLogCtrl& ot
         // add the event date
         listCtrl.InsertItem(index, left.GetFormattedTimeStamp());
 
-        // add the filename
-        listCtrl.SetItem(index, 1, LVIF_TEXT, left.GetFilename(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        // add the file name
+        listCtrl.SetItem(index, 1, LVIF_TEXT, left.GetFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the result
         listCtrl.SetItem(index, 2, LVIF_TEXT, left.GetEventResultStr(), 0, LVIF_TEXT, LVIF_TEXT, 0);

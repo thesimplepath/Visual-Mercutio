@@ -42,7 +42,7 @@ PSS_PublishModelToHTML::~PSS_PublishModelToHTML()
 bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc,
                                                    ZIProcessGraphModelView* pView,
                                                    ZUPublishReportInfo*     pReportInfo,
-                                                   const CString&           iniFilename)
+                                                   const CString&           iniFileName)
 {
     if (!pDoc || !pView)
         return false;
@@ -53,7 +53,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
     ZBPropertyAttributes propAttributes;
 
     // start with the wizard to choose the directory to export the model
-    PSS_PublishModel publishModel(&propAttributes, &propSet, iniFilename);
+    PSS_PublishModel publishModel(&propAttributes, &propSet, iniFileName);
 
     if (!publishModel.SelectDir())
         return false;
@@ -75,7 +75,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
                                                publishModel.GetPublishConceptor(),
                                                publishModel.GetPublishProcess(),
                                                publishModel.GetPublishRuleBook(),
-                                               publishModel.GetImageFilename(),
+                                               publishModel.GetImageFileName(),
                                                publishModel.GetHyperLink(),
                                                pDC,
                                                PSS_Global::GetServer());

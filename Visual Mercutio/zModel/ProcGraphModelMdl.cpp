@@ -103,8 +103,8 @@ ZDProcessGraphModelMdl::ZDProcessGraphModelMdl(const CString            Name    
 
     CalculateAbsolutePath();
 
-    // JMR-MODIF - Le 5 août 2005 - Ajout du code d'initialisation des variables m_BkGndFilename et bBkGndFlag.
-    m_BkGndFilename = _T("");
+    // JMR-MODIF - Le 5 août 2005 - Ajout du code d'initialisation des variables m_BkGndFileName et bBkGndFlag.
+    m_BkGndFileName = _T("");
     bBkGndFlag = FALSE;
 }
 
@@ -1960,16 +1960,16 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetLinkSymbolModel(ZBLinkSymbol*
     return NULL;
 }
 
-// JMR-MODIF - Le 5 août 2005 - Ajout de la fonction SetBkGndFilename.
-void ZDProcessGraphModelMdl::SetBkGndFilename(CString Filename)
+// JMR-MODIF - Le 5 août 2005 - Ajout de la fonction SetBkGndFileName.
+void ZDProcessGraphModelMdl::SetBkGndFileName(CString fileName)
 {
-    m_BkGndFilename = Filename;
+    m_BkGndFileName = fileName;
 }
 
-// JMR-MODIF - Le 5 août 2005 - Ajout de la fonction GetBkGndFilename.
-CString ZDProcessGraphModelMdl::GetBkGndFilename()
+// JMR-MODIF - Le 5 août 2005 - Ajout de la fonction GetBkGndFileName.
+CString ZDProcessGraphModelMdl::GetBkGndFileName()
 {
-    return m_BkGndFilename;
+    return m_BkGndFileName;
 }
 
 void ZDProcessGraphModelMdl::SetBackgroundComponent(CODComponent&    BkgndComponent,
@@ -3911,7 +3911,7 @@ void ZDProcessGraphModelMdl::Serialize(CArchive& ar)
     {
         if (ar.IsStoring())
         {
-            ar << m_BkGndFilename;
+            ar << m_BkGndFileName;
 
             // JMR-MODIF - Le 7 octobre 2005 - Intègre le marquage du logo au document.
             if (dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 23)
@@ -3928,7 +3928,7 @@ void ZDProcessGraphModelMdl::Serialize(CArchive& ar)
         }
         else
         {
-            ar >> m_BkGndFilename;
+            ar >> m_BkGndFileName;
 
             // JMR-MODIF - Le 7 octobre 2005 - Récupère le marquage du logo depuis le document.
             if (dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 23)

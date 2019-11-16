@@ -105,13 +105,13 @@ public:
 
     // Delete an extfile
     bool DeleteExtFile( size_t Index );
-    bool DeleteExtFile( const CString Filename );
+    bool DeleteExtFile( const CString fileName );
     bool DeleteExtFile( ZBExtFileProperties* pProperty );
 
     // Return true if the extfile already exists
-    bool ExtFileExist( const CString Filename ) const;
-    // Retreive the right extfile properties base on the extfile filename
-    ZBExtFileProperties* LocateExtFile( const CString Filename ) const;
+    bool ExtFileExist( const CString fileName ) const;
+    // Retreive the right extfile properties base on the extfile file name
+    ZBExtFileProperties* LocateExtFile( const CString fileName ) const;
 
     ZBExtFilePropertiesSet& GetExtFileSet()
     {
@@ -147,12 +147,12 @@ public:
     void SetFileTitle(size_t Index, CString Value);
 
     //@cmember
-    /* Gets the filename at the specific Index. */
-    CString GetFilename(size_t Index) const;
+    /* Gets the file name at the specific Index. */
+    CString GetFileName(size_t Index) const;
 
     //@cmember
-    /* Sets the filename at the specific Index. */
-    void SetFilename(size_t Index, CString Value);
+    /* Sets the file name at the specific Index. */
+    void SetFileName(size_t Index, CString Value);
 
     //@cmember
     /* Gets the insertion type at the specific Index. */

@@ -591,12 +591,12 @@ bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
                                     CString ProcessName = m_Process->GetSymbolName();
                                     CString DomainName = _T("");
 
-                                    if (!HtmlFile.Create(GenerateFilename(Directory, ProcessName)))
+                                    if (!HtmlFile.Create(GenerateFileName(Directory, ProcessName)))
                                     {
                                         return false;
                                     }
 
-                                    m_FileGenerateWindow.SetDestination(GenerateFilename(Directory,
+                                    m_FileGenerateWindow.SetDestination(GenerateFileName(Directory,
                                                                                          ProcessName));
 
                                     m_FileGenerateWindow.UpdateWindow();
@@ -1964,14 +1964,14 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
 }
 
 // Cette fonction permet de créer le nom de fichier correct pour chaque page du rapport.
-CString ZVPublishProcessReport::GenerateFilename(CString Directory, CString ProcessName)
+CString ZVPublishProcessReport::GenerateFileName(CString Directory, CString ProcessName)
 {
-    CString sFilename = Directory;
-    sFilename += _T("ProcessReport_");
-    sFilename += PSS_StringTools::ConvertSpecialChar(ProcessName);
-    sFilename += _T(".htm");
+    CString sFileName = Directory;
+    sFileName += _T("ProcessReport_");
+    sFileName += PSS_StringTools::ConvertSpecialChar(ProcessName);
+    sFileName += _T(".htm");
 
-    return sFilename;
+    return sFileName;
 }
 
 // Cette fonction permet la génération d'une section contenant toutes les propriétés d'un symbole.

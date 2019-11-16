@@ -48,14 +48,14 @@ private:
 public:
 
     // Standard constructor
-    ZVRiskModifyStaticDlg( CString    Filename,
+    ZVRiskModifyStaticDlg( CString    fileName,
                            CString    Extension,
                            int        NbElements,
                            CWnd*    pParent        = NULL );
 
 public:
 
-    CString GetFilename();
+    CString GetFileName();
 
 private:
 
@@ -93,11 +93,8 @@ private:
 
     int        i_NbElements;
 
-    CString    m_Filename;
+    CString    m_FileName;
     CString    m_Extension;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVRISKMODIFYSTATICDLG_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
+#endif

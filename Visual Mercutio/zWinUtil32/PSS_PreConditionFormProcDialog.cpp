@@ -136,7 +136,7 @@ void PSS_PreConditionFormProcDialog::OnOK()
     CString fileName;
     m_FileName.GetWindowText(fileName);
 
-    // save filename
+    // save file name
     m_FileArray.Add(fileName);
 
     PSS_WizardDialog::OnOK();

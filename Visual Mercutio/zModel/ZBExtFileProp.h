@@ -118,7 +118,7 @@ protected:
     /* The task list. */
     CString m_FileTitle;
     /* The decision list. */
-    CString m_Filename;
+    CString m_FileName;
     /* The activation percentage */
     int m_InsertionType;
     /* The activation type */
@@ -135,11 +135,11 @@ public:
 
     //@cmember
     /* Gets the list of deliberables. */
-    CString GetFilename() const;
+    CString GetFileName() const;
 
     //@cmember
     /* Sets the list of deliberables. */
-    void SetFilename(LPCTSTR lpszValue);
+    void SetFileName(LPCTSTR lpszValue);
 
     //@cmember
     /* Gets the combination percentage. */
@@ -182,7 +182,7 @@ public:
     virtual BOOL IsEmpty() const
     {
         return m_FileTitle.IsEmpty() &&     
-               m_Filename.IsEmpty();
+               m_FileName.IsEmpty();
     };
     /////////////////////////////////////////////////////////////////////////
     // GetValue and SetValue functions
@@ -229,7 +229,7 @@ private:
 
     /* Additional mutators for use with CODIntPropertyAccessor */
     void SetFileTitleEx(const CString value);
-    void SetFilenameEx(const CString value);
+    void SetFileNameEx(const CString value);
     
 // Implementation
 public:
@@ -251,9 +251,9 @@ inline CString ZBExtFileProperties::GetFileTitle() const
 
 //@mfunc Gets the decision list.
 //@rdesc The decision list.
-inline CString ZBExtFileProperties::GetFilename() const
+inline CString ZBExtFileProperties::GetFileName() const
 {
-    return m_Filename;
+    return m_FileName;
 }
 
 //@mfunc Creates a copy of this property.

@@ -83,13 +83,13 @@ ZBSymbolStamp* ZBSymbolStamp::Clone()
     return pNewStamp;
 }
 
-BOOL ZBSymbolStamp::ReadFromFile( CString Filename )
+BOOL ZBSymbolStamp::ReadFromFile( CString fileName)
 {
     BOOL            RetValue = TRUE;
     CFile            file;
     CFileException    fe;
 
-    if ( !file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
+    if ( !file.Open(fileName, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
     {
         return FALSE;
     }
@@ -119,7 +119,7 @@ BOOL ZBSymbolStamp::ReadFromFile( CString Filename )
     return RetValue;
 }
 
-BOOL ZBSymbolStamp::WriteToFile( CString Filename )
+BOOL ZBSymbolStamp::WriteToFile( CString fileName)
 {
     ZBSymbolStamp        DummyStamp;
 
@@ -129,7 +129,7 @@ BOOL ZBSymbolStamp::WriteToFile( CString Filename )
     CFile                file;
     CFileException        fe;
 
-    if ( !file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
+    if ( !file.Open(fileName, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
     {
         return FALSE;
     }
@@ -199,7 +199,7 @@ BOOL ZBSymbolStamp::WriteToFile( CString Filename )
     file.Close();
 
     // Now write the new stamp
-    if ( !file.Open( Filename, CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
+    if ( !file.Open(fileName, CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
     {
         return FALSE;
     }
@@ -258,10 +258,10 @@ BOOL ZBSymbolStamp::WriteToFile( CString Filename )
     //## end ZBSymbolStamp::WriteToFile%939754019.body
 }
 
-DWORD ZBSymbolStamp::IncrementPublishVersionOfFile( const CString Filename )
+DWORD ZBSymbolStamp::IncrementPublishVersionOfFile( const CString fileName)
 {
     // If unable to read file, return error
-    if ( !ReadFromFile( Filename ) )
+    if ( !ReadFromFile(fileName) )
     {
         return -1;
     }
@@ -270,7 +270,7 @@ DWORD ZBSymbolStamp::IncrementPublishVersionOfFile( const CString Filename )
     ++m_SymbolVersion;
 
     // If unable to write file, return error
-    if ( !WriteToFile( Filename ) )
+    if ( !WriteToFile(fileName) )
     {
         return -1;
     }
@@ -278,10 +278,10 @@ DWORD ZBSymbolStamp::IncrementPublishVersionOfFile( const CString Filename )
     return m_SymbolVersion;
 }
 
-DWORD ZBSymbolStamp::DecrementPublishVersionOfFile( const CString Filename )
+DWORD ZBSymbolStamp::DecrementPublishVersionOfFile( const CString fileName)
 {
     // If unable to read file, return error
-    if ( !ReadFromFile( Filename ) )
+    if ( !ReadFromFile(fileName) )
     {
         return -1;
     }
@@ -290,7 +290,7 @@ DWORD ZBSymbolStamp::DecrementPublishVersionOfFile( const CString Filename )
     --m_SymbolVersion;
 
     // If unable to write file, return error
-    if ( !WriteToFile( Filename ) )
+    if ( !WriteToFile(fileName) )
     {
         return -1;
     }
@@ -298,10 +298,10 @@ DWORD ZBSymbolStamp::DecrementPublishVersionOfFile( const CString Filename )
     return m_SymbolVersion;
 }
 
-BOOL ZBSymbolStamp::SetPublishVersionOfFile( const CString Filename, DWORD Version )
+BOOL ZBSymbolStamp::SetPublishVersionOfFile( const CString fileName, DWORD Version )
 {
     // If unable to read file, return error
-    if ( !ReadFromFile( Filename ) )
+    if ( !ReadFromFile(fileName) )
     {
         return FALSE;
     }
@@ -310,7 +310,7 @@ BOOL ZBSymbolStamp::SetPublishVersionOfFile( const CString Filename, DWORD Versi
     m_SymbolVersion = Version;
 
     // If unable to write file, return error
-    if ( !WriteToFile( Filename ) )
+    if ( !WriteToFile(fileName) )
     {
         return FALSE;
     }
@@ -318,10 +318,10 @@ BOOL ZBSymbolStamp::SetPublishVersionOfFile( const CString Filename, DWORD Versi
     return m_SymbolVersion;
 }
 
-DWORD ZBSymbolStamp::GetPublishVersionOfFile( const CString Filename )
+DWORD ZBSymbolStamp::GetPublishVersionOfFile( const CString fileName)
 {
     // If reading the file is ok, return the publish version
-    if ( ReadFromFile( Filename ) )
+    if ( ReadFromFile(fileName) )
     {
         return m_SymbolVersion;
     }

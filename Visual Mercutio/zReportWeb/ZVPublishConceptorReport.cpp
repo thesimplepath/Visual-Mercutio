@@ -84,12 +84,12 @@ bool ZVPublishConceptorReport::CreateFileSystem( ZBUserGroupEntity* pGroup, CStr
     CString sEntityName            = pGroup->GetEntityName();
     CString sEntityDescription    = pGroup->GetEntityDescription().IsEmpty() ? _T( " " ) : pGroup->GetEntityDescription();
 
-    if ( !HtmlFile.Create( GenerateFilename( Directory, sEntityName ) ) )
+    if ( !HtmlFile.Create( GenerateFileName( Directory, sEntityName ) ) )
     {
         return false;
     }
 
-    m_FileGenerateWindow.SetDestination( GenerateFilename( Directory, sEntityName ) );
+    m_FileGenerateWindow.SetDestination( GenerateFileName( Directory, sEntityName ) );
     m_FileGenerateWindow.UpdateWindow();
 
     GeneratePageFile( sEntityName, sEntityDescription );
@@ -123,14 +123,14 @@ bool ZVPublishConceptorReport::CreateFileSystem( ZBUserGroupEntity* pGroup, CStr
 }
 
 // Cette fonction permet de créer le nom de fichier correct pour chaque page du rapport.
-CString ZVPublishConceptorReport::GenerateFilename( CString Directory, CString EntityName )
+CString ZVPublishConceptorReport::GenerateFileName( CString Directory, CString EntityName )
 {
-    CString sFilename     = Directory;
-    sFilename            += _T( "Conceptor_" );
-    sFilename            += PSS_StringTools::ConvertSpecialChar( EntityName );
-    sFilename            += _T( ".htm" );
+    CString sFileName     = Directory;
+    sFileName            += _T( "Conceptor_" );
+    sFileName            += PSS_StringTools::ConvertSpecialChar( EntityName );
+    sFileName            += _T( ".htm" );
 
-    return sFilename;
+    return sFileName;
 }
 
 // Cette fonction permet de remplir les données du fichier contenant la page du rapport.

@@ -76,7 +76,7 @@ class AFX_EXT_CLASS PSS_FolderInfoCtrl : public PSS_ListCtrl
         CString          m_PublishVersionTitle;
         CString          m_TypeTitle;
         CString          m_TemplateNameTitle;
-        CString          m_TemplateFilenameTitle;
+        CString          m_TemplateFileNameTitle;
         BOOL             m_IsColumnBuilt;
         BOOL             m_CanModify;
 

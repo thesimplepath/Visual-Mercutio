@@ -8,7 +8,7 @@
 #define szFileDirEntry                     "Files Directory"
 #define szGlobalFieldRepositoryEntry       "Global Fields Repository"
 #define szGlobalHistoValueRepositoryEntry  "Global Histo Values Repository"
-#define szUseFolderNameAsFilename          "Use Foldername as Filename"
+#define szUseFolderNameAsFileName          "Use Foldername as Filename"
 #define szStoreUserFileByUser              "Store User File By User"
 #define szUseLogTextFile                   "Use Log Text File"
 #define szUseLogDatabaseFile               "Use Log Database File"
@@ -64,7 +64,7 @@
 #define szIniStartKeyEntry                 ""
 #define szIniAutomaticFieldNameCreation    "Automatic Field Name Creation"
 #define szIniGoNext                        "Go Next"
-#define szIniExportFile                    "Export Filename"
+#define szIniExportFileName                "Export Filename"
 #define szIniExportSchema                  "Export Schema"
 #define szIniExportPropagationMode         "Export Propagation"
 #define szIniExportEmptyWhenZero           "Export Empty When Zero"
@@ -106,7 +106,7 @@
 #define szPublishOptionsEntry              "Publish Options"
 
 // security implementation
-#define szSecurityFilename                 "winplf.lic"
+#define szSecurityFileName                 "winplf.lic"
 
 // product key definition
 #define RESOURCE_PRODUCT_KEY               80000

@@ -94,7 +94,7 @@ private:
 
     virtual bool Visit(CODComponent& Symbol);
 
-    CString GenerateFilename(CString Directory, CString EntityName);
+    CString GenerateFileName(CString Directory, CString EntityName);
 
     void WriteLine(CString Text);
     void WriteLine(int nID);

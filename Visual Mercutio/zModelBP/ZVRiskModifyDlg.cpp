@@ -36,11 +36,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVRiskModifyDlg dialog
 
-ZVRiskModifyDlg::ZVRiskModifyDlg(CString    Filename,
+ZVRiskModifyDlg::ZVRiskModifyDlg(CString    fileName,
                                  CString    Extension,
                                  CWnd*        pParent        /*= NULL*/)
     : CDialog(ZVRiskModifyDlg::IDD, pParent),
-    m_Filename(Filename),
+    m_FileName(fileName),
     m_Extension(Extension),
     m_Element(_T(""))
 {
@@ -49,9 +49,9 @@ ZVRiskModifyDlg::ZVRiskModifyDlg(CString    Filename,
 }
 
 // Cette fonction retourne le nom du fichier utilisé pour la liste en cours de modification.
-CString ZVRiskModifyDlg::GetFilename()
+CString ZVRiskModifyDlg::GetFileName()
 {
-    return m_Filename;
+    return m_FileName;
 }
 
 void ZVRiskModifyDlg::DoDataExchange(CDataExchange* pDX)
@@ -78,7 +78,7 @@ BOOL ZVRiskModifyDlg::OnInitDialog()
 
     PSS_TextFile p_File;
 
-    if (p_File.OpenRead(m_Filename) == TRUE)
+    if (p_File.OpenRead(m_FileName) == TRUE)
     {
         BOOL    m_EndReached = FALSE;
         CString    m_Text = _T("");
@@ -164,7 +164,7 @@ void ZVRiskModifyDlg::OnBnClickedNewFile()
 
     if (m_NewFileDlg.DoModal() == IDOK)
     {
-        m_Filename = m_NewFileDlg.GetDirectory() + _T("\\") + m_NewFileDlg.GetFilename() + m_Extension;
+        m_FileName = m_NewFileDlg.GetDirectory() + _T("\\") + m_NewFileDlg.GetFileName() + m_Extension;
 
         while (m_ElementsListCtrl.GetCount() > 0)
         {
@@ -178,12 +178,12 @@ void ZVRiskModifyDlg::OnBnClickedOk()
 {
     PSS_File m_File;
 
-    if (m_File.Exist(m_Filename) == TRUE)
-        CFile::Remove(m_Filename);
+    if (m_File.Exist(m_FileName) == TRUE)
+        CFile::Remove(m_FileName);
 
     PSS_TextFile p_NewFile;
 
-    p_NewFile.OpenWrite(m_Filename);
+    p_NewFile.OpenWrite(m_FileName);
 
     for (int i = 0; i < m_ElementsListCtrl.GetCount(); i++)
     {

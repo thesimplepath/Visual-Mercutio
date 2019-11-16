@@ -132,7 +132,7 @@ private:
 
     bool CreateFileSystem            ( CString Directory, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
 
-    CString GenerateFilename        ( CString Directory, CString ProcessName );
+    CString GenerateFileName        ( CString Directory, CString ProcessName );
 
     ZBSymbol* FindSymbol            ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
     ZBLinkSymbol* FindLinkSymbol    ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );

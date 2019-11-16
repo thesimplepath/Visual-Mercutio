@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------
 PSS_HtmlFile::PSS_HtmlFile(const CString& fileName) :
     m_pCurrent(NULL),
-    m_Filename(fileName)
+    m_FileName(fileName)
 {}
 //---------------------------------------------------------------------------
 PSS_HtmlFile::~PSS_HtmlFile()
@@ -100,7 +100,7 @@ PSS_HtmlFile& PSS_HtmlFile::operator << (LONG value)
 //---------------------------------------------------------------------------
 BOOL PSS_HtmlFile::Create(const CString& fileName)
 {
-    m_Filename = fileName;
+    m_FileName = fileName;
     return OpenFileCreate();
 }
 //---------------------------------------------------------------------------
@@ -109,7 +109,7 @@ BOOL PSS_HtmlFile::OpenFileCreate()
     TRY
     {
         // construct a CFile object in read mode
-        if (!m_File.Open(m_Filename, CFile::modeWrite | CFile::typeBinary | CFile::modeCreate))
+        if (!m_File.Open(m_FileName, CFile::modeWrite | CFile::typeBinary | CFile::modeCreate))
             return FALSE;
     }
     CATCH (CFileException, e)
@@ -130,7 +130,7 @@ BOOL PSS_HtmlFile::OpenFileRead()
     TRY
     {
         // construct a CFile object in read mode
-        if (!m_File.Open(m_Filename, CFile::modeRead | CFile::typeBinary))
+        if (!m_File.Open(m_FileName, CFile::modeRead | CFile::typeBinary))
             return FALSE;
     }
     CATCH (CFileException, e)

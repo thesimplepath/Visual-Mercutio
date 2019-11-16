@@ -161,9 +161,9 @@ public:
     virtual void            SetPageUnits(CODRuler& value);
 
     // Unit functions
-    bool    InsertUnit(const CString Filename);
+    bool    InsertUnit(const CString fileName);
     bool    LoadAllUnits();
-    //REM bool    LoadUnit(const CString Filename, ZDProcessGraphModelMdl& Model);
+    //REM bool    LoadUnit(const CString fileName, ZDProcessGraphModelMdl& Model);
 
     bool IsUnit()
     {
@@ -221,9 +221,9 @@ public:
         m_BrowseInSameWindow = value;
     }
 
-    CString        GetWorkflowFilename() const;
-    void        ClearWorkflowFilename();
-    void        SetWorkflowFilename(CString value);
+    CString        GetWorkflowFileName() const;
+    void        ClearWorkflowFileName();
+    void        SetWorkflowFileName(CString value);
 
     PSS_Date*        GetWorkflowLastUpdateDate();
     void        SetWorkflowLastUpdateDate(PSS_Date value);
@@ -422,8 +422,8 @@ public:
 
     // Reader and Writer methods
     // These methods don't use the standard MVC framework
-    bool ReadFromFile(const CString Filename);
-    bool SaveToFile(const CString Filename);
+    bool ReadFromFile(const CString fileName);
+    bool SaveToFile(const CString fileName);
 
     virtual void Serialize(CArchive& ar);
 
@@ -562,16 +562,16 @@ inline void ZDProcessGraphModelDoc::AssignRulesDefGUID(const CString value)
     m_RulesDefGUID = value;
 }
 
-inline CString ZDProcessGraphModelDoc::GetWorkflowFilename() const
+inline CString ZDProcessGraphModelDoc::GetWorkflowFileName() const
 {
-    return (m_pWorkflowDefinition) ? m_pWorkflowDefinition->GetWorkflowFilename() : _T("");
+    return (m_pWorkflowDefinition) ? m_pWorkflowDefinition->GetWorkflowFileName() : _T("");
 }
 
-inline void ZDProcessGraphModelDoc::SetWorkflowFilename(CString value)
+inline void ZDProcessGraphModelDoc::SetWorkflowFileName(CString value)
 {
     if (m_pWorkflowDefinition)
     {
-        m_pWorkflowDefinition->SetWorkflowFilename(value);
+        m_pWorkflowDefinition->SetWorkflowFileName(value);
     }
 }
 
@@ -681,11 +681,11 @@ inline void ZDProcessGraphModelDoc::SetSaveModelInWorkflow(bool value)
     }
 }
 
-inline void ZDProcessGraphModelDoc::ClearWorkflowFilename()
+inline void ZDProcessGraphModelDoc::ClearWorkflowFileName()
 {
     if (m_pWorkflowDefinition)
     {
-        m_pWorkflowDefinition->ClearWorkflowFilename();
+        m_pWorkflowDefinition->ClearWorkflowFileName();
     }
 }
 

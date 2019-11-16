@@ -13,7 +13,7 @@ static char THIS_FILE[]=__FILE__;
 // JMR-MODIF - Le 25 décembre 2006 - Ajout des décorations unicode _T(), nettoyage du code inutile. (En commentaires)
 
 ZBPropertyAttributesSet    ZAModelGlobal::m_Set;
-CString                    ZAModelGlobal::m_Filename;
+CString                    ZAModelGlobal::m_FileName;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -46,10 +46,10 @@ void ZAModelGlobal::Release()
 
     m_Set.RemoveAll();
 
-    m_Filename.Empty();
+    m_FileName.Empty();
 }
 
-bool ZAModelGlobal::SaveStateGlobalPropertyAttributes( const CString Filename )
+bool ZAModelGlobal::SaveStateGlobalPropertyAttributes( const CString fileName)
 {
     // Run through our sets of global attributes
     int Count = m_Set.GetSize();
@@ -60,7 +60,9 @@ bool ZAModelGlobal::SaveStateGlobalPropertyAttributes( const CString Filename )
 
         if ( pPropAtt )
         {
-            pPropAtt->SaveStateToIniFile( m_Filename, i );
+            // todo FIXME -cCheck -oJean: This should really do this way? What it the purpose of passing fileName
+            //                            as parameter in this case?
+            pPropAtt->SaveStateToIniFile( m_FileName, i );
         }
     }
 
@@ -79,7 +81,7 @@ ZBPropertyAttributes& ZAModelGlobal::GetGlobalPropertyAttributes( int ObjectID )
     {
         pPropAtt = new ZBPropertyAttributes;
         ASSERT( pPropAtt );
-        pPropAtt->LoadStateFromIniFile( m_Filename, ObjectID );
+        pPropAtt->LoadStateFromIniFile( m_FileName, ObjectID );
         m_Set.SetAtGrow( ObjectID, pPropAtt );
     }
 

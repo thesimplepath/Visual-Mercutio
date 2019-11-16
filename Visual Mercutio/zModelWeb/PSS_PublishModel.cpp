@@ -30,7 +30,7 @@ const CString g_PublishModelHTMLPublishConceptorDeliverables = _T("PublishConcep
 const CString g_PublishModelHTMLPublishProcess               = _T("PublishProcess");
 const CString g_PublishModelHTMLPublishRuleBook              = _T("PublishRuleBook");
 const CString g_PublishModelHTMLVisualizeEntityName          = _T("Visualize");
-const CString g_PublishModelHTMLLogoFilenameEntityName       = _T("LogoFilename");
+const CString g_PublishModelHTMLLogoFileNameEntityName       = _T("LogoFilename");
 const CString g_PublishModelHTMLLogoRefHTMLEntityName        = _T("LogoRef");
 //---------------------------------------------------------------------------
 // PSS_PublishModel
@@ -80,12 +80,12 @@ BOOL PSS_PublishModel::SelectDir()
 
     m_Directory = select.GetDirectory();
 
-    PSS_PublishModelBannerDialog banner(m_HyperLink, m_ImageFilename);
+    PSS_PublishModelBannerDialog banner(m_HyperLink, m_ImageFileName);
 
     if (banner.DoModal() == IDCANCEL)
         return FALSE;
 
-    m_ImageFilename = banner.GetImageFilename();
+    m_ImageFileName = banner.GetImageFileName();
     m_HyperLink = banner.GetHyperLink();
 
     CWaitCursor                      cursor;
@@ -95,23 +95,23 @@ BOOL PSS_PublishModel::SelectDir()
         return FALSE;
 
     PSS_PublishModelOptionsDialog options(m_VisualizeResult,
-        m_PublishConceptor,
-        m_PublishConceptorDetails,
-        m_PublishConceptorDeliverables,
-        m_PublishProcess,
-        m_PublishRuleBook,
-        m_Language);
+                                          m_PublishConceptor,
+                                          m_PublishConceptorDetails,
+                                          m_PublishConceptorDeliverables,
+                                          m_PublishProcess,
+                                          m_PublishRuleBook,
+                                          m_Language);
 
     if (options.DoModal() == IDCANCEL)
         return FALSE;
 
-    m_VisualizeResult = options.GetVisualize() ? true : false;
-    m_PublishConceptor = options.GetPublishConceptor() ? true : false;
-    m_PublishConceptorDetails = options.GetPublishConceptorDetails() ? true : false;
-    m_PublishConceptorDeliverables = options.GetPublishConceptorDeliverables() ? true : false;
-    m_PublishProcess = options.GetPublishProcess() ? true : false;
-    m_PublishRuleBook = options.GetPublishRuleBook() ? true : false;
-    m_Language = options.GetLanguage();
+    m_VisualizeResult              = options.GetVisualize();
+    m_PublishConceptor             = options.GetPublishConceptor();
+    m_PublishConceptorDetails      = options.GetPublishConceptorDetails();
+    m_PublishConceptorDeliverables = options.GetPublishConceptorDeliverables();
+    m_PublishProcess               = options.GetPublishProcess();
+    m_PublishRuleBook              = options.GetPublishRuleBook();
+    m_Language                     = options.GetLanguage();
 
     // save the state
     SaveStateToIniFile();
@@ -169,16 +169,16 @@ bool PSS_PublishModel::LoadStateFromIniFile()
     PSS_SystemOption systemOption(m_IniFile, g_PublishModelHTMLSectionName);
 
     // read the options
-    m_PublishConceptor = systemOption.ReadOption(g_PublishModelHTMLPublishConceptor, true);
-    m_PublishConceptorDetails = systemOption.ReadOption(g_PublishModelHTMLPublishConceptorDetails, true);
-    m_PublishConceptorDeliverables = systemOption.ReadOption(g_PublishModelHTMLPublishConceptorDeliverables, true);
-    m_PublishProcess = systemOption.ReadOption(g_PublishModelHTMLPublishProcess, true);
-    m_PublishRuleBook = systemOption.ReadOption(g_PublishModelHTMLPublishRuleBook, true);
-    m_VisualizeResult = systemOption.ReadOption(g_PublishModelHTMLVisualizeEntityName, true);
-    m_Language = static_cast<ELanguage>(systemOption.ReadOption(g_PublishModelHTMLLastLanguageEntityName, 0));
-    m_Directory = systemOption.ReadOption(g_PublishModelHTMLAddressEntityName, _T(""));
-    m_ImageFilename = systemOption.ReadOption(g_PublishModelHTMLLogoFilenameEntityName, _T(""));
-    m_HyperLink = systemOption.ReadOption(g_PublishModelHTMLLogoRefHTMLEntityName, _T(""));
+    m_PublishConceptor             =                        systemOption.ReadOption(g_PublishModelHTMLPublishConceptor,             true);
+    m_PublishConceptorDetails      =                        systemOption.ReadOption(g_PublishModelHTMLPublishConceptorDetails,      true);
+    m_PublishConceptorDeliverables =                        systemOption.ReadOption(g_PublishModelHTMLPublishConceptorDeliverables, true);
+    m_PublishProcess               =                        systemOption.ReadOption(g_PublishModelHTMLPublishProcess,               true);
+    m_PublishRuleBook              =                        systemOption.ReadOption(g_PublishModelHTMLPublishRuleBook,              true);
+    m_VisualizeResult              =                        systemOption.ReadOption(g_PublishModelHTMLVisualizeEntityName,          true);
+    m_Language                     = static_cast<ELanguage>(systemOption.ReadOption(g_PublishModelHTMLLastLanguageEntityName,       0));
+    m_Directory                    =                        systemOption.ReadOption(g_PublishModelHTMLAddressEntityName,            _T(""));
+    m_ImageFileName                =                        systemOption.ReadOption(g_PublishModelHTMLLogoFileNameEntityName,       _T(""));
+    m_HyperLink                    =                        systemOption.ReadOption(g_PublishModelHTMLLogoRefHTMLEntityName,        _T(""));
 
     CString     keyName;
     CString     addr;
@@ -214,16 +214,16 @@ bool PSS_PublishModel::SaveStateToIniFile()
     PSS_SystemOption systemOption(m_IniFile, g_PublishModelHTMLSectionName);
 
     // save the options
-    systemOption.WriteOption(g_PublishModelHTMLPublishConceptor, m_PublishConceptor);
-    systemOption.WriteOption(g_PublishModelHTMLPublishConceptorDetails, m_PublishConceptorDetails);
+    systemOption.WriteOption(g_PublishModelHTMLPublishConceptor,             m_PublishConceptor);
+    systemOption.WriteOption(g_PublishModelHTMLPublishConceptorDetails,      m_PublishConceptorDetails);
     systemOption.WriteOption(g_PublishModelHTMLPublishConceptorDeliverables, m_PublishConceptorDeliverables);
-    systemOption.WriteOption(g_PublishModelHTMLPublishProcess, m_PublishProcess);
-    systemOption.WriteOption(g_PublishModelHTMLPublishRuleBook, m_PublishRuleBook);
-    systemOption.WriteOption(g_PublishModelHTMLVisualizeEntityName, m_VisualizeResult);
-    systemOption.WriteOption(g_PublishModelHTMLLastLanguageEntityName, m_Language);
-    systemOption.WriteOption(g_PublishModelHTMLAddressEntityName, m_Directory);
-    systemOption.WriteOption(g_PublishModelHTMLLogoFilenameEntityName, m_ImageFilename);
-    systemOption.WriteOption(g_PublishModelHTMLLogoRefHTMLEntityName, m_HyperLink);
+    systemOption.WriteOption(g_PublishModelHTMLPublishProcess,               m_PublishProcess);
+    systemOption.WriteOption(g_PublishModelHTMLPublishRuleBook,              m_PublishRuleBook);
+    systemOption.WriteOption(g_PublishModelHTMLVisualizeEntityName,          m_VisualizeResult);
+    systemOption.WriteOption(g_PublishModelHTMLLastLanguageEntityName,       m_Language);
+    systemOption.WriteOption(g_PublishModelHTMLAddressEntityName,            m_Directory);
+    systemOption.WriteOption(g_PublishModelHTMLLogoFileNameEntityName,       m_ImageFileName);
+    systemOption.WriteOption(g_PublishModelHTMLLogoRefHTMLEntityName,        m_HyperLink);
 
     CString keyName;
 

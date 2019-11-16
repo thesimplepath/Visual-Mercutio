@@ -44,7 +44,7 @@ class AFX_EXT_CLASS ZBBPPackageSymbol : public ZBSymbol
 
 public:
 
-    ZBBPPackageSymbol(const CString Name = _T(""), const CString Filename = _T(""));
+    ZBBPPackageSymbol(const CString Name = _T(""), const CString fileName = _T(""));
     virtual ~ZBBPPackageSymbol();
 
     /* Copy constructor. */
@@ -91,7 +91,7 @@ public:
     virtual bool DropItem(CObject* pObj, CPoint pt);
 
     /* Creates the symbol component. */
-    BOOL Create(const CString Name = _T(""), const CString Filename = _T(""));
+    BOOL Create(const CString Name = _T(""), const CString fileName = _T(""));
 
     bool IsLoaded() const
     {
@@ -106,24 +106,24 @@ public:
     bool LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent = NULL);
     bool UnloadPackage();
 
-    bool IsLinkedToFilename() const
+    bool IsLinkedToFileName() const
     {
-        return !m_FilenameLinkedTo.IsEmpty();
+        return !m_FileNameLinkedTo.IsEmpty();
     }
 
-    CString GetFilenameLinkedTo() const
+    CString GetFileNameLinkedTo() const
     {
-        return m_FilenameLinkedTo;
+        return m_FileNameLinkedTo;
     }
 
-    void SetFilenameLinkedTo(CString value)
+    void SetFileNameLinkedTo(CString value)
     {
-        m_FilenameLinkedTo = value;
+        m_FileNameLinkedTo = value;
     }
 
-    void ClearLinkedToFilename()
+    void ClearLinkedToFileName()
     {
-        m_FilenameLinkedTo.Empty();
+        m_FileNameLinkedTo.Empty();
     }
 
     void SetPackageName(const CString value)
@@ -187,8 +187,8 @@ private:
     CPoint                    m_LinkedToFileBitmapPosition;
     bool                    m_DisplayPreview;
 
-    // Used to link the package to a filename
-    CString                    m_FilenameLinkedTo;
+    // Used to link the package to a file name
+    CString                    m_FileNameLinkedTo;
     ZDProcessGraphModelDoc*    m_pPackageDoc;
 
     // Bitmap resource

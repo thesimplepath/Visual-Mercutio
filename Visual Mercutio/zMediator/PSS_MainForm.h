@@ -67,13 +67,13 @@ class AFX_EXT_CLASS PSS_MainForm : public CWinApp
         * Gets the application ini file
         *@return Mercutio ini file
         */
-        virtual CString GetApplicationIniFilename() const = 0;
+        virtual CString GetApplicationIniFileName() const = 0;
 
         /**
         * Updates the last loaded file
         *@param fileName - file name to upload
         */
-        virtual void UpdateLastLoadedFile(const CString& Filename) = 0;
+        virtual void UpdateLastLoadedFile(const CString& fileName) = 0;
 
         /**
         * Gets the Risk type container
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PSS_MainForm : public CWinApp
         *@param pDoc - opened document
         *@param fileName - opened document file name
         */
-        virtual void OnAfterOpenDocument(CDocument* pDoc, const CString& Filename) = 0;
+        virtual void OnAfterOpenDocument(CDocument* pDoc, const CString& fileName) = 0;
 
         /// Message map
         //{{AFX_MSG(PSS_MainForm)

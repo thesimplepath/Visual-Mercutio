@@ -132,7 +132,7 @@ class AFX_EXT_CLASS PSS_FileFormView : public CFormView
             IDD = IDD_FILEWINDOW
         };
 
-        PSS_SearchEdit                m_Filename;
+        PSS_SearchEdit                m_FileName;
         PSS_DirTreeCtrl               m_DirTreeCtrl;
         PSS_FileFormViewButtonToolBar m_FlatToolBar;
 

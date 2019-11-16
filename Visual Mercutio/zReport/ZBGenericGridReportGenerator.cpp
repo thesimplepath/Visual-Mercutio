@@ -64,8 +64,8 @@ void ZBGenericGridReportGenerator::Serialize( CArchive& ar )
 {
     if ( ar.IsStoring() )
     {
-        // Write the filename
-        ar << m_Filename;
+        // Write the file name
+        ar << m_FileName;
 
         // Write the report type
         ar << m_TypeID;
@@ -78,8 +78,8 @@ void ZBGenericGridReportGenerator::Serialize( CArchive& ar )
     }
     else
     {
-        // Read the filename
-        ar >> m_Filename;
+        // Read the file name
+        ar >> m_FileName;
 
         // Read the report type
         ar >> m_TypeID;

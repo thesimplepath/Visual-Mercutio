@@ -966,8 +966,8 @@ void ZDProcessGraphModelControllerBP::OnLinktoFilePackage()
             return;
         }
 
-        // Set the filename
-        pPackage->SetFilenameLinkedTo(fileDialog.GetFileName());
+        // Set the file name
+        pPackage->SetFileNameLinkedTo(fileDialog.GetFileName());
 
         // Update the symbol
         CODComponentSet CompSet;
@@ -988,14 +988,14 @@ void ZDProcessGraphModelControllerBP::OnUnlinkFromFilePackage()
     {
         ZBBPPackageSymbol* pPackage = (ZBBPPackageSymbol*)m_pCompHit;
 
-        if (pPackage->IsLinkedToFilename() && pPackage->IsLoaded())
+        if (pPackage->IsLinkedToFileName() && pPackage->IsLoaded())
         {
             // Unload the package
             pPackage->UnloadPackage();
         }
 
         // Then clear the link
-        pPackage->ClearLinkedToFilename();
+        pPackage->ClearLinkedToFileName();
 
         // Update the symbol
         CODComponentSet CompSet;
@@ -1013,7 +1013,7 @@ void ZDProcessGraphModelControllerBP::OnUnlinkFromFilePackage()
 void ZDProcessGraphModelControllerBP::OnUpdateUnlinkFromFilePackage(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(m_pSymbolHit && ISA(m_pSymbolHit, ZBBPPackageSymbol) &&
-        ((ZBBPPackageSymbol*)m_pSymbolHit)->IsLinkedToFilename());
+        ((ZBBPPackageSymbol*)m_pSymbolHit)->IsLinkedToFileName());
 }
 
 void ZDProcessGraphModelControllerBP::OnLoadPackage()
@@ -1022,13 +1022,13 @@ void ZDProcessGraphModelControllerBP::OnLoadPackage()
     {
         ZBBPPackageSymbol* pPackage = (ZBBPPackageSymbol*)m_pCompHit;
 
-        if (pPackage->IsLinkedToFilename() && pPackage->IsLoaded())
+        if (pPackage->IsLinkedToFileName() && pPackage->IsLoaded())
         {
             // Unload the package first
             pPackage->UnloadPackage();
         }
 
-        if (pPackage->IsLinkedToFilename() && !pPackage->IsLoaded())
+        if (pPackage->IsLinkedToFileName() && !pPackage->IsLoaded())
         {
             ZIProcessGraphModelView*    pView = GetView();
 
@@ -1055,7 +1055,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateLoadPackage(CCmdUI* pCmdUI)
     AssignSymbolHit();
 
     pCmdUI->Enable(m_pSymbolHit && ISA(m_pSymbolHit, ZBBPPackageSymbol) &&
-        ((ZBBPPackageSymbol*)m_pSymbolHit)->IsLinkedToFilename());
+        ((ZBBPPackageSymbol*)m_pSymbolHit)->IsLinkedToFileName());
 }
 
 void ZDProcessGraphModelControllerBP::OnUnloadPackage()
@@ -1066,7 +1066,7 @@ void ZDProcessGraphModelControllerBP::OnUnloadPackage()
     {
         ZBBPPackageSymbol* pPackage = (ZBBPPackageSymbol*)m_pCompHit;
 
-        if (pPackage->IsLinkedToFilename() && pPackage->IsLoaded())
+        if (pPackage->IsLinkedToFileName() && pPackage->IsLoaded())
         {
             // Unload the package first
             pPackage->UnloadPackage();
@@ -1084,7 +1084,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateUnloadPackage(CCmdUI* pCmdUI)
     AssignSymbolHit();
 
     pCmdUI->Enable(m_pSymbolHit && ISA(m_pSymbolHit, ZBBPPackageSymbol) &&
-        ((ZBBPPackageSymbol*)m_pSymbolHit)->IsLinkedToFilename() &&
+        ((ZBBPPackageSymbol*)m_pSymbolHit)->IsLinkedToFileName() &&
                    ((ZBBPPackageSymbol*)m_pSymbolHit)->IsLoaded());
 }
 
@@ -1412,7 +1412,7 @@ void ZDProcessGraphModelControllerBP::OnCalculateRisks()
         }
     }
 
-    ZVRiskCalculateParametersDlg riskParametersDlg(PSS_Application::Instance()->GetMainForm()->GetApplicationIniFilename(),
+    ZVRiskCalculateParametersDlg riskParametersDlg(PSS_Application::Instance()->GetMainForm()->GetApplicationIniFileName(),
                                                    CurrencySymbol);
 
     if (riskParametersDlg.DoModal() == IDOK)

@@ -25,18 +25,18 @@ ZVRiskProbabilityContainer::~ZVRiskProbabilityContainer()
 }
 
 // Cette fonction permet d'ouvrir un fichier de données.
-BOOL ZVRiskProbabilityContainer::LoadFile( CString Filename )
+BOOL ZVRiskProbabilityContainer::LoadFile( CString fileName)
 {
-    if ( Filename.IsEmpty() == true )
+    if (fileName.IsEmpty() == true )
     {
         return FALSE;
     }
 
-    m_Filename = Filename;
+    m_FileName = fileName;
 
     PSS_TextFile p_File;
 
-    if ( p_File.OpenRead( m_Filename ) == FALSE )
+    if ( p_File.OpenRead( m_FileName ) == FALSE )
     {
         return FALSE;
     }
@@ -81,9 +81,9 @@ CString ZVRiskProbabilityContainer::GetElementAt( size_t Index ) const
 }
 
 // Cette fonction retourne le nom du fchier en cours d'utilisation.
-CString ZVRiskProbabilityContainer::GetFilename()
+CString ZVRiskProbabilityContainer::GetFileName()
 {
-    return m_Filename;
+    return m_FileName;
 }
 
 // Cette fonction permet la suppression de tous les éléments dans la liste.

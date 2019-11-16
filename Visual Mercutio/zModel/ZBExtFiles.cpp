@@ -128,14 +128,14 @@ bool ZBExtFiles::DeleteExtFile( size_t Index )
     return false;
 }
 
-bool ZBExtFiles::DeleteExtFile( const CString Filename )
+bool ZBExtFiles::DeleteExtFile( const CString fileName )
 {
     // Run through the set of deliverables and check if found
     ZBExtFilePropertiesIterator i( &m_Set );
 
     for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
     {
-        if ( pProp->GetFilename() == Filename )
+        if ( pProp->GetFileName() == fileName)
         {
             delete pProp;
             i.Remove();
@@ -224,21 +224,21 @@ void ZBExtFiles::SetFileTitle( size_t Index, CString Value )
     }
 }
 
-CString ZBExtFiles::GetFilename( size_t Index ) const
+CString ZBExtFiles::GetFileName( size_t Index ) const
 {
     if ( Index < GetExtFileCount() )
     {
-        return m_Set.GetAt( Index )->GetFilename();
+        return m_Set.GetAt( Index )->GetFileName();
     }
 
     return _T( "" );
 }
 
-void ZBExtFiles::SetFilename( size_t Index, CString Value )
+void ZBExtFiles::SetFileName( size_t Index, CString Value )
 {
     if ( Index < GetExtFileCount() )
     {
-        m_Set.GetAt( Index )->SetFilename( Value );
+        m_Set.GetAt( Index )->SetFileName( Value );
     }
 }
 
@@ -278,14 +278,14 @@ void ZBExtFiles::SetActivationType( size_t Index, const int value )
     }
 }
 
-bool ZBExtFiles::ExtFileExist( const CString Filename ) const
+bool ZBExtFiles::ExtFileExist( const CString fileName) const
 {
     // Run through the set and build the string
     ZBExtFilePropertiesIterator i( &m_Set );
 
     for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
     {
-        if ( pProp->GetFilename() == Filename )
+        if ( pProp->GetFileName() == fileName)
         {
             return true;
         }
@@ -294,14 +294,14 @@ bool ZBExtFiles::ExtFileExist( const CString Filename ) const
     return false;
 }
 
-ZBExtFileProperties* ZBExtFiles::LocateExtFile( const CString Filename ) const
+ZBExtFileProperties* ZBExtFiles::LocateExtFile( const CString fileName) const
 {
     // Run through the set of deliverables and check if found
     ZBExtFilePropertiesIterator i( &m_Set );
 
     for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
     {
-        if ( pProp->GetFilename() == Filename )
+        if ( pProp->GetFileName() == fileName)
         {
             return pProp;
         }

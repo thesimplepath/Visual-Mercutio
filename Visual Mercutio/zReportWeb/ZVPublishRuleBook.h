@@ -53,7 +53,7 @@ private:
 
     bool CreateFileSystem                ( ZBLogicalRulesEntity* pRules, CString Directory );
 
-    CString GenerateFilename            ( CString Directory );
+    CString GenerateFileName            ( CString Directory );
 
     void CreateReport                    ( ZBLogicalRulesEntity* pRules );
     void GenerateHTMLPageHead            ( CString Title );

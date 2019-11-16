@@ -107,7 +107,7 @@ class AFX_EXT_CLASS PSS_PublishModel
         * Gets the image file name
         *@return the image file name
         */
-        virtual inline CString GetImageFilename() const;
+        virtual inline CString GetImageFileName() const;
 
         /**
         * Gets the publication language
@@ -147,7 +147,7 @@ class AFX_EXT_CLASS PSS_PublishModel
         ELanguage               m_Language;
         CStringArray            m_ArrayOfAddress;
         CString                 m_Directory;
-        CString                 m_ImageFilename;
+        CString                 m_ImageFileName;
         CString                 m_HyperLink;
         CString                 m_IniFile;
         bool                    m_VisualizeResult;
@@ -244,9 +244,9 @@ CString PSS_PublishModel::GetHyperLink() const
     return m_HyperLink;
 }
 //---------------------------------------------------------------------------
-CString PSS_PublishModel::GetImageFilename() const
+CString PSS_PublishModel::GetImageFileName() const
 {
-    return m_ImageFilename;
+    return m_ImageFileName;
 }
 //---------------------------------------------------------------------------
 ELanguage PSS_PublishModel::GetLanguage() const

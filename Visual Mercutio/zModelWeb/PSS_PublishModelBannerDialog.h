@@ -46,7 +46,7 @@ class PSS_PublishModelBannerDialog : public PSS_WizardDialog
         * Gets the image file name
         *@return the image file name
         */
-        virtual inline CString GetImageFilename() const;
+        virtual inline CString GetImageFileName() const;
 
     protected:
         /// ClassWizard generated virtual function overrides
@@ -70,7 +70,7 @@ class PSS_PublishModelBannerDialog : public PSS_WizardDialog
             IDD = IDD_WZPUBMODEL_BANNER
         };
 
-        CString        m_ImageFilename;
+        CString        m_ImageFileName;
         PSS_SearchEdit m_Image;
         CString        m_HyperLink;
 };
@@ -83,9 +83,9 @@ CString PSS_PublishModelBannerDialog::GetHyperLink() const
     return m_HyperLink;
 }
 //---------------------------------------------------------------------------
-CString PSS_PublishModelBannerDialog::GetImageFilename() const
+CString PSS_PublishModelBannerDialog::GetImageFileName() const
 {
-    return m_ImageFilename;
+    return m_ImageFileName;
 }
 //---------------------------------------------------------------------------
 

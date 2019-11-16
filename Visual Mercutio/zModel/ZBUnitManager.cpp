@@ -257,10 +257,10 @@ bool    ZBUnitManager::AddUnit( ZBUnit* pUnit )
     return GetUnitCount() > PreviousCount;
 }
 
-ZBUnit*    ZBUnitManager::CreateNewUnit( const CString Name, const CString Filename /*= ""*/ )
+ZBUnit*    ZBUnitManager::CreateNewUnit( const CString Name, const CString fileName /*= ""*/ )
 {
     ZBUnit*    pNewUnit = new ZBUnit;
-    if (!pNewUnit->Create( Name, Filename ))
+    if (!pNewUnit->Create( Name, fileName))
     {
         delete pNewUnit;
         pNewUnit = NULL;

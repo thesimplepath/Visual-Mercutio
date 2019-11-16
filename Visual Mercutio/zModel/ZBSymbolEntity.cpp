@@ -49,13 +49,13 @@ ZBSymbolEntity* ZBSymbolEntity::Clone()
     return pNewObject;
 }
 
-BOOL ZBSymbolEntity::ReadFromFile( CString Filename )
+BOOL ZBSymbolEntity::ReadFromFile( CString fileName)
 {
     BOOL            RetValue = TRUE;
     CFile            file;
     CFileException    fe;
 
-    if ( !file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
+    if ( !file.Open(fileName, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
     {
         return FALSE;
     }
@@ -85,13 +85,13 @@ BOOL ZBSymbolEntity::ReadFromFile( CString Filename )
     return RetValue;
 }
 
-BOOL ZBSymbolEntity::WriteToFile( CString Filename )
+BOOL ZBSymbolEntity::WriteToFile( CString fileName)
 {
     CFile            file;
     CFileException    fe;
 
     // Now write the new stamp
-    if ( !file.Open( Filename, CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
+    if ( !file.Open(fileName, CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
     {
         return FALSE;
     }

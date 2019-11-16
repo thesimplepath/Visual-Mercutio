@@ -95,7 +95,7 @@ void PSS_FolderInfoCtrl::Refresh()
         m_PublishVersionTitle.LoadString(IDS_FOLDERNAME_PUBLISHVERSION);
         m_TypeTitle.LoadString(IDS_FOLDERNAME_TYPE);
         m_TemplateNameTitle.LoadString(IDS_FOLDERNAME_TEMPLATENAME);
-        m_TemplateFilenameTitle.LoadString(IDS_TEMPLATENAME_FILENAME);
+        m_TemplateFileNameTitle.LoadString(IDS_TEMPLATENAME_FILENAME);
     }
 
     DeleteAllItems();
@@ -145,7 +145,7 @@ void PSS_FolderInfoCtrl::Refresh()
     ++index;
 
     // add the template file name
-    InsertItem(index, m_TemplateFilenameTitle);
+    InsertItem(index, m_TemplateFileNameTitle);
     SetItem(index, 1, LVIF_TEXT, m_pFolderStamp->GetTemplate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 }
 //---------------------------------------------------------------------------
@@ -182,7 +182,7 @@ BOOL PSS_FolderInfoCtrl::OnDoubleClick(NMHDR* pNMHDR, LRESULT* pResult)
     if (label == m_TemplateNameTitle)
         value = m_pFolderStamp->GetTitle();
     else
-    if (label == m_TemplateFilenameTitle)
+    if (label == m_TemplateFileNameTitle)
         return TRUE;
     else
         return TRUE;
@@ -216,7 +216,7 @@ BOOL PSS_FolderInfoCtrl::OnDoubleClick(NMHDR* pNMHDR, LRESULT* pResult)
         if (label == m_TemplateNameTitle)
             m_pFolderStamp->SetTitle(inputValue.GetValue());
         else
-        if (label == m_TemplateFilenameTitle)
+        if (label == m_TemplateFileNameTitle)
             return TRUE;
         else
             return TRUE;

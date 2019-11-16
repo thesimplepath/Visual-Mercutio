@@ -133,7 +133,7 @@ PSS_FileFormView::PSS_FileFormView() :
     CFormView(PSS_FileFormView::IDD)
 {
     // defines the edit as search for file
-    m_Filename.SetSearchType(PSS_SearchEditButton::IE_T_File, "");
+    m_FileName.SetSearchType(PSS_SearchEditButton::IE_T_File, "");
 }
 //---------------------------------------------------------------------------
 PSS_FileFormView::~PSS_FileFormView()
@@ -149,7 +149,7 @@ void PSS_FileFormView::OnInitialUpdate( )
     m_FlatToolBar.SetParent(this);
 
     // initialize the edit for drag & drop
-    m_Filename.Init();
+    m_FileName.Init();
 }
 //---------------------------------------------------------------------------
 void PSS_FileFormView::DoDataExchange(CDataExchange* pDX)
@@ -157,7 +157,7 @@ void PSS_FileFormView::DoDataExchange(CDataExchange* pDX)
     CFormView::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVFileFormView)
-    DDX_Control(pDX, IDC_FILENAME,    m_Filename);
+    DDX_Control(pDX, IDC_FILENAME,    m_FileName);
     DDX_Control(pDX, IDC_FILETREE,    m_DirTreeCtrl);
     DDX_Control(pDX, IDC_FLATTOOLBAR, m_FlatToolBar);
     //}}AFX_DATA_MAP
@@ -252,8 +252,8 @@ void PSS_FileFormView::ReflectChangedDirectory()
 {
     if (m_DirTreeCtrl.IsValid())
     {
-        CString filename = m_DirTreeCtrl.GetSelectedDirectory();
-        m_Filename.GetWindowText(filename);
+        CString fileName = m_DirTreeCtrl.GetSelectedDirectory();
+        m_FileName.GetWindowText(fileName);
     }
 }
 //---------------------------------------------------------------------------

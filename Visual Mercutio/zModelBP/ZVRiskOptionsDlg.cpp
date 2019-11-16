@@ -140,7 +140,7 @@ void ZVRiskOptionsDlg::UpdateSeverity()
 }
 
 // Cette fonction permet à l'utilisateur de sélectionner un fichier exstant.
-void ZVRiskOptionsDlg::SelectFileToOpen(const CString& dir, const CString& caption, const CString& extension, CString& filename)
+void ZVRiskOptionsDlg::SelectFileToOpen(const CString& dir, const CString& caption, const CString& extension, CString& fileName)
 {
     CFileDialog dlgFile(TRUE);
 
@@ -184,19 +184,19 @@ void ZVRiskOptionsDlg::SelectFileToOpen(const CString& dir, const CString& capti
     // show the Open File dialog
     if (dlgFile.DoModal() == IDOK)
     {
-        filename = fn.GetBuffer();
+        fileName = fn.GetBuffer();
         return;
     }
 
-    filename = _T("");
+    fileName = _T("");
 }
 
 // Cette fonction mets à jour les données des types après un changement de fichier.
-BOOL ZVRiskOptionsDlg::ReloadTypeFile(const CString& filename )
+BOOL ZVRiskOptionsDlg::ReloadTypeFile(const CString& fileName)
 {
     PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->RemoveAllElements();
 
-    if (PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->LoadFile(filename))
+    if (PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->LoadFile(fileName))
     {
         LoadTypeList();
 
@@ -211,11 +211,11 @@ BOOL ZVRiskOptionsDlg::ReloadTypeFile(const CString& filename )
 }
 
 // Cette fonction mets à jour les données des impacts après un changement de fichier.
-BOOL ZVRiskOptionsDlg::ReloadImpactFile(const CString& filename )
+BOOL ZVRiskOptionsDlg::ReloadImpactFile(const CString& fileName)
 {
     PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->RemoveAllElements();
 
-    if (PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->LoadFile(filename))
+    if (PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->LoadFile(fileName))
     {
         LoadImpactList();
         m_RiskImpactCtrl.SetCurSel(m_RiskImpact);
@@ -226,11 +226,11 @@ BOOL ZVRiskOptionsDlg::ReloadImpactFile(const CString& filename )
 }
 
 // Cette fonction mets à jour les données des probabilités après un changement de fichier.
-BOOL ZVRiskOptionsDlg::ReloadProbabilityFile(const CString& filename )
+BOOL ZVRiskOptionsDlg::ReloadProbabilityFile(const CString& fileName)
 {
     PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->RemoveAllElements();
 
-    if (PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->LoadFile(filename))
+    if (PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->LoadFile(fileName))
     {
         LoadProbabilityList();
         m_RiskProbabilityCtrl.SetCurSel(m_RiskProbability);
@@ -331,17 +331,17 @@ void ZVRiskOptionsDlg::OnCbnSelchangeRiskProbability()
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "modifier un fichier de type".
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskType()
 {
-    const CString         typeFilename = PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetFilename();
-          ZVRiskModifyDlg modifyTypeDlg(typeFilename, g_RiskTypeExtension);
+    const CString         typeFileName = PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetFileName();
+          ZVRiskModifyDlg modifyTypeDlg(typeFileName, g_RiskTypeExtension);
 
     if (modifyTypeDlg.DoModal())
-        ReloadTypeFile(modifyTypeDlg.GetFilename());
+        ReloadTypeFile(modifyTypeDlg.GetFileName());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "ouvrir un fichier de type".
 void ZVRiskOptionsDlg::OnBnClickedOpenRiskType()
 {
-    CString filename = _T("");
+    CString fileName = _T("");
     CString desc     = _T("");
 
     desc.LoadString(IDS_RISK_TYPE_FILE_DESCRIPTION);
@@ -349,26 +349,26 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskType()
     SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory,
                      desc,
                      g_RiskTypeExtension,
-                     filename );
+                     fileName );
 
-    if (!filename.IsEmpty())
-        ReloadTypeFile(filename);
+    if (!fileName.IsEmpty())
+        ReloadTypeFile(fileName);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "modifier un fichier d'impact".
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskImpact()
 {
-    const CString               impactFilename = PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetFilename();
-          ZVRiskModifyStaticDlg riskModifyStatic(impactFilename, g_RiskImpactExtension, 5);
+    const CString               impactFileName = PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetFileName();
+          ZVRiskModifyStaticDlg riskModifyStatic(impactFileName, g_RiskImpactExtension, 5);
 
     if (riskModifyStatic.DoModal() == IDOK)
-        ReloadImpactFile(riskModifyStatic.GetFilename());
+        ReloadImpactFile(riskModifyStatic.GetFileName());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "ouvrir un fichier d'impact".
 void ZVRiskOptionsDlg::OnBnClickedOpenRiskImpact()
 {
-    CString filename = _T("");
+    CString fileName = _T("");
     CString desc     = _T("");
 
     desc.LoadString(IDS_RISK_IMPACT_FILE_DESCRIPTION);
@@ -376,26 +376,26 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskImpact()
     SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory,
                      desc,
                      g_RiskImpactExtension,
-                     filename);
+                     fileName);
 
-    if (!filename.IsEmpty())
-        ReloadImpactFile(filename);
+    if (!fileName.IsEmpty())
+        ReloadImpactFile(fileName);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "modifier un fichier de probabilités".
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskProbability()
 {
-    const CString               probabilityFileName = PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetFilename();
+    const CString               probabilityFileName = PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetFileName();
           ZVRiskModifyStaticDlg riskModifyStatic(probabilityFileName, g_RiskProbabilityExtension, 6);
 
     if (riskModifyStatic.DoModal() == IDOK)
-        ReloadProbabilityFile(riskModifyStatic.GetFilename());
+        ReloadProbabilityFile(riskModifyStatic.GetFileName());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "ouvrir un fichier de probabilités".
 void ZVRiskOptionsDlg::OnBnClickedOpenRiskProbability()
 {
-    CString filename = _T("");
+    CString fileName = _T("");
     CString desc     = _T("");
 
     desc.LoadString(IDS_RISK_PROBABILITY_FILE_DESCRIPTION);
@@ -403,10 +403,10 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskProbability()
     SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory,
                      desc,
                      g_RiskProbabilityExtension,
-                     filename);
+                     fileName);
 
-    if (!filename.IsEmpty())
-        ReloadProbabilityFile(filename);
+    if (!fileName.IsEmpty())
+        ReloadProbabilityFile(fileName);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "OK".

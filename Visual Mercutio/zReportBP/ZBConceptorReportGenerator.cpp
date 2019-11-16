@@ -375,13 +375,13 @@ void ZBConceptorReportGenerator::Dump( CDumpContext& dc ) const
 
 void ZBConceptorReportGenerator::OnPostRead( CArchive& ar )
 {
-    if ( m_pSourceDoc == NULL && !m_Filename.IsEmpty() )
+    if ( m_pSourceDoc == NULL && !m_FileName.IsEmpty() )
     {
         m_pSourceDoc = new ZDProcessGraphModelDoc();
 
         // If the document is valid, assign the right model pointer
         if ( m_pSourceDoc                                &&
-             m_pSourceDoc->ReadFromFile( m_Filename )    &&
+             m_pSourceDoc->ReadFromFile( m_FileName )    &&
              m_pSourceDoc->GetModel()                    &&
              ISA( m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
         {

@@ -38,7 +38,7 @@ PSS_PublishModelBannerDialog::PSS_PublishModelBannerDialog(const CString& hyperL
                      IDS_PUBLISHMODELBANNER_S,
                      IDS_PUBLISHMODELBANNER_T),
     m_HyperLink(hyperLink),
-    m_ImageFilename(imageFileName)
+    m_ImageFileName(imageFileName)
 {
     m_Image.SetSearchType(PSS_SearchEditButton::IE_T_File);
 }
@@ -57,8 +57,8 @@ BOOL PSS_PublishModelBannerDialog::OnInitDialog()
 {
     PSS_WizardDialog::OnInitDialog();
 
-    // initialize the logo filename
-    m_Image.SetWindowText(m_ImageFilename);
+    // initialize the logo file name
+    m_Image.SetWindowText(m_ImageFileName);
 
     // return TRUE unless the focus was set to a control. NOTE OCX property pages should return FALSE
     return TRUE;
@@ -69,9 +69,9 @@ void PSS_PublishModelBannerDialog::OnOK()
     UpdateData();
 
     // check the image reference
-    m_Image.GetWindowText(m_ImageFilename);
+    m_Image.GetWindowText(m_ImageFileName);
 
-    if (!m_ImageFilename.IsEmpty() && !PSS_File::Exist(m_ImageFilename))
+    if (!m_ImageFileName.IsEmpty() && !PSS_File::Exist(m_ImageFileName))
     {
         PSS_MsgBox mBox;
         mBox.Show(IDS_IMAGEFILENAME_NOTFOUND, MB_OK);

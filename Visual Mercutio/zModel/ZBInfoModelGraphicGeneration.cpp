@@ -26,7 +26,7 @@ ZBInfoModelGraphicGeneration::ZBInfoModelGraphicGeneration( ZDProcessGraphModelM
                                                             bool IncludeConceptor                    /*= true*/,
                                                             bool IncludeProcessReport                /*= true*/,
                                                             bool IncludeRuleBook                    /*= true*/,
-                                                            const CString ImageFilename                /*= ""*/,
+                                                            const CString imageFileName                /*= ""*/,
                                                             const CString HyperLink                    /*= ""*/,
                                                             CDC* pDC                                /*= NULL*/,
                                                            PSS_Server* pServer                        /*= NULL*/)
@@ -37,7 +37,7 @@ ZBInfoModelGraphicGeneration::ZBInfoModelGraphicGeneration( ZDProcessGraphModelM
       m_IncludeConceptor    ( IncludeConceptor ),
       m_IncludeProcessReport( IncludeProcessReport ),
       m_IncludeRuleBook        ( IncludeRuleBook ),
-      m_ImageFilename        ( ImageFilename ),
+      m_ImageFileName        ( imageFileName ),
       m_HyperLink            ( HyperLink ),
       m_pDC                    ( pDC ),
       m_pServer                ( pServer )

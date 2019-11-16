@@ -113,14 +113,14 @@ bool PSS_ModelGenerateImageFiles::OnStart()
     // copy images from the system root directory
     if (m_pInfo->GetServer())
     {
-        if (m_pInfo->GetImageFilename().IsEmpty())
+        if (m_pInfo->GetImageFileName().IsEmpty())
         {
             PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory, g_LogoImageFile);
             m_InternalLogoFileName.Empty();
         }
         else
         {
-            PSS_File file(m_pInfo->GetImageFilename());
+            PSS_File file(m_pInfo->GetImageFileName());
             m_InternalLogoFileName = file.GetFileName();
             PSS_Directory::CopyFileFromToDirectory(file.GetFilePath(), m_ImageDirectory, m_InternalLogoFileName);
         }
@@ -686,7 +686,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                         s.Format(IDS_MODELGENHTML_60,
                                  objectCounter,
                                  (const char*)dummy,
-                                 (const char*)ReplaceBackSlash(pFileProp->GetFilename()),
+                                 (const char*)ReplaceBackSlash(pFileProp->GetFileName()),
                                  (const char*)g_BlankTarget);
                         htmlFile << s;
                     }

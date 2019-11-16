@@ -136,7 +136,7 @@ class AFX_EXT_CLASS PSS_SoapPublisher_File
         *@param fileName - file name to download and get
         *@return downloaded file
         */
-        virtual PSS_SoapData_File GetFile(int folder, const std::string& filename);
+        virtual PSS_SoapData_File GetFile(int folder, const std::string& fileName);
 };
 
 END_EASYSOAP_NAMESPACE

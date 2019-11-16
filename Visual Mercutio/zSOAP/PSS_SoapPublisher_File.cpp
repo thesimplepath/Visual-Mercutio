@@ -57,7 +57,7 @@ bool PSS_SoapPublisher_File::Add(const PSS_SoapData_File& file)
 }
 //---------------------------------------------------------------------------
 int PSS_SoapPublisher_File::HasChanged(int                folder,
-                                       const std::string& filename,
+                                       const std::string& fileName,
                                        int                day,
                                        int                month,
                                        int                year,
@@ -68,7 +68,7 @@ int PSS_SoapPublisher_File::HasChanged(int                folder,
     return 0;
 }
 //---------------------------------------------------------------------------
-PSS_SoapData_File PSS_SoapPublisher_File::GetFile(int folder, const std::string& filename)
+PSS_SoapData_File PSS_SoapPublisher_File::GetFile(int folder, const std::string& fileName)
 {
     SOAPDebugger::SetFile(_T("c:\\psssoap.log"));
     PSS_SoapData_File result;
@@ -86,7 +86,7 @@ PSS_SoapData_File PSS_SoapPublisher_File::GetFile(int folder, const std::string&
 
         // set folder and file name
         getFile.AddParameter(_T("mfolder")).SetValue(folder);
-        getFile.AddParameter(_T("mfilename")).SetValue(filename.c_str());
+        getFile.AddParameter(_T("mfilename")).SetValue(fileName.c_str());
 
         // execute the query
         const SOAPResponse& resp = proxy.Execute(getFile);

@@ -20,9 +20,9 @@ IMPLEMENT_SERIAL(ZBUnit, CObject, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBUnit::ZBUnit( const CString Name /*= ""*/, const CString Filename /*= ""*/ )
+ZBUnit::ZBUnit( const CString Name /*= ""*/, const CString fileName /*= ""*/ )
     : m_Name        ( Name ),
-      m_Filename    ( Filename ),
+      m_FileName    (fileName),
       m_pUnitDoc    ( NULL )
 {
 }
@@ -46,10 +46,10 @@ bool ZBUnit::Create( const CString Name )
     return true;
 }
 
-bool ZBUnit::Create( const CString Name, const CString Filename )
+bool ZBUnit::Create( const CString Name, const CString fileName)
 {
     m_Name        = Name;
-    m_Filename    = Filename;
+    m_FileName    = fileName;
     m_Key        = CreateUniqueKey();
 
     if ( m_Key.IsEmpty() )
@@ -81,7 +81,7 @@ CString    ZBUnit::CreateUniqueKey()
 bool ZBUnit::LoadUnit( PSS_ProcessModelDocTmpl* pDocTmpl )
 {
     // Check if the file exists
-    PSS_File File( m_Filename );
+    PSS_File File( m_FileName );
 
     if ( !File.Exist() )
     {
@@ -96,7 +96,7 @@ bool ZBUnit::LoadUnit( PSS_ProcessModelDocTmpl* pDocTmpl )
         }
     }
 
-    CDocument* pDoc = pDocTmpl->OpenDocumentFile( m_Filename, FALSE );
+    CDocument* pDoc = pDocTmpl->OpenDocumentFile( m_FileName, FALSE );
 
     if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
     {
@@ -138,12 +138,12 @@ void ZBUnit::Serialize( CArchive& ar )
     {
         ar << m_Key;
         ar << m_Name;
-        ar << m_Filename;
+        ar << m_FileName;
     }
     else
     {
         ar >> m_Key;
         ar >> m_Name;
-        ar >> m_Filename;
+        ar >> m_FileName;
     }
 }

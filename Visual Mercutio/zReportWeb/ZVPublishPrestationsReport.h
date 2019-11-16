@@ -75,7 +75,7 @@ private:
 
     bool CreateFileSystem                ( ZBLogicalPrestationsEntity* pPrestations, CString Directory );
 
-    CString GenerateFilename            ( CString Directory, CString PrestationName );
+    CString GenerateFileName            ( CString Directory, CString PrestationName );
 
     void CreateReport                    ( CString PrestationName );
     void GenerateHTMLPageHead            ( CString Title );

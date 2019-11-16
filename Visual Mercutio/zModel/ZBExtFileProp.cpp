@@ -43,7 +43,7 @@ IMPLEMENT_SERIAL(ZBExtFileProperties, CObject, g_DefVersion)
 ZBExtFileProperties::ZBExtFileProperties()
 {
     m_FileTitle            = _T( "" );
-    m_Filename            = _T( "" );
+    m_FileName            = _T( "" );
     m_InsertionType        = 0;
     m_ActivationType    = 0;
 }
@@ -51,7 +51,7 @@ ZBExtFileProperties::ZBExtFileProperties()
 ZBExtFileProperties::ZBExtFileProperties( const ZBExtFileProperties& propProcess )
 {
     m_FileTitle            = propProcess.GetFileTitle();
-    m_Filename            = propProcess.GetFilename();
+    m_FileName            = propProcess.GetFileName();
     m_InsertionType        = propProcess.GetInsertionType();
     m_ActivationType    = propProcess.GetActivationType();
 }
@@ -91,11 +91,11 @@ void ZBExtFileProperties::SetFileTitleEx( const CString value )
 //@mfunc Sets the decision list.
 //@rdesc void
 //@parm The new decision list.
-void ZBExtFileProperties::SetFilename( LPCTSTR lpszValue )
+void ZBExtFileProperties::SetFileName( LPCTSTR lpszValue )
 {
     if ( lpszValue != NULL )
     {
-        m_Filename = lpszValue;
+        m_FileName = lpszValue;
     }
     else
     {
@@ -107,9 +107,9 @@ void ZBExtFileProperties::SetFilename( LPCTSTR lpszValue )
 //@mfunc Sets the decision list.
 //@rdesc void
 //@parm The new decision list.
-void ZBExtFileProperties::SetFilenameEx( const CString value )
+void ZBExtFileProperties::SetFileNameEx( const CString value )
 {
-    SetFilename( value );
+    SetFileName( value );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -121,7 +121,7 @@ void ZBExtFileProperties::SetFilenameEx( const CString value )
 ZBExtFileProperties& ZBExtFileProperties::operator=( const ZBExtFileProperties& propProcess )
 {
     SetFileTitle        ( propProcess.GetFileTitle() );
-    SetFilename            ( propProcess.GetFilename() );
+    SetFileName            ( propProcess.GetFileName() );
     SetInsertionType    ( propProcess.GetInsertionType() );
     SetActivationType    ( propProcess.GetActivationType() );
 
@@ -134,7 +134,7 @@ ZBExtFileProperties& ZBExtFileProperties::operator=( const ZBExtFileProperties& 
 BOOL ZBExtFileProperties::operator==( const ZBExtFileProperties propProcess ) const
 {
     return ( GetFileTitle()            == propProcess.GetFileTitle()        &&
-             GetFilename()            == propProcess.GetFilename()        &&
+             GetFileName()            == propProcess.GetFileName()        &&
              GetInsertionType()        == propProcess.GetInsertionType()    &&
              GetActivationType()    == propProcess.GetActivationType() );
 }
@@ -156,7 +156,7 @@ void ZBExtFileProperties::Merge( ZBExtFileProperties* pProperty, DWORD dwChangeF
 
         if ( dwChangeFlags & Z_CHANGE_FILE_NAME )
         {
-            m_Filename = pProperty->GetFilename();
+            m_FileName = pProperty->GetFileName();
         }
 
         if ( dwChangeFlags & Z_CHANGE_INSERTION_TYPE )
@@ -222,7 +222,7 @@ BOOL ZBExtFileProperties::GetValue( const int nPropId, CString& strValue ) const
 
         case Z_FILE_NAME:
         {
-            strValue = m_Filename;
+            strValue = m_FileName;
             break;
         }
 
@@ -378,7 +378,7 @@ BOOL ZBExtFileProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 
         case Z_FILE_NAME:
         {
-            m_Filename = lpszValue;
+            m_FileName = lpszValue;
             break;
         }
 
@@ -517,7 +517,7 @@ void ZBExtFileProperties::Dump( CDumpContext& dc ) const
     CObject::Dump( dc );
 
     dc << _T( "Name = " )                << m_FileTitle        << _T( "\n" );
-    dc << _T( "Deliverables = " )        << m_Filename        << _T( "\n" );
+    dc << _T( "Deliverables = " )        << m_FileName        << _T( "\n" );
     dc << _T( "Insertion Type = " )        << m_InsertionType    << _T( "\n" );
     dc << _T( "Activation Type = " )    << m_ActivationType    << _T( "\n" );
 }
@@ -534,14 +534,14 @@ void ZBExtFileProperties::Serialize( CArchive& ar )
     if (ar.IsStoring())
     {
         ar << m_FileTitle;
-        ar << m_Filename;
+        ar << m_FileName;
         ar << m_InsertionType;
         ar << m_ActivationType;
     }
     else
     {
         ar >> m_FileTitle;
-        ar >> m_Filename;
+        ar >> m_FileName;
         ar >> m_InsertionType;
         ar >> m_ActivationType;
     }

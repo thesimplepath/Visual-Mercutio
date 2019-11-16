@@ -82,9 +82,9 @@ public:
         return m_ExternalFiles.DeleteExtFile( Index );
     }
 
-    bool DeleteExtFile( const CString Filename )
+    bool DeleteExtFile( const CString fileName )
     {
-        return m_ExternalFiles.DeleteExtFile( Filename );
+        return m_ExternalFiles.DeleteExtFile( fileName );
     }
 
     bool DeleteExtFile( ZBExtFileProperties* pProperty )
@@ -93,15 +93,15 @@ public:
     }
 
     // Return true if the extfile already exists
-    bool ExtFileExist( const CString Filename ) const
+    bool ExtFileExist( const CString fileName ) const
     {
-        return m_ExternalFiles.ExtFileExist( Filename );
+        return m_ExternalFiles.ExtFileExist( fileName );
     }
 
-    // Retreive the right extfile properties base on the extfile filename
-    ZBExtFileProperties* LocateExtFile( const CString Filename ) const
+    // Retreive the right extfile properties base on the extfile file name
+    ZBExtFileProperties* LocateExtFile( const CString fileName ) const
     {
-        return m_ExternalFiles.LocateExtFile( Filename );
+        return m_ExternalFiles.LocateExtFile( fileName );
     }
 
     ZBExtFileProperties* GetExtFileProperty( size_t Index ) const
@@ -142,17 +142,17 @@ public:
     }
 
     //@cmember
-    /* Gets the filename at the specific Index. */
-    CString GetFilename( size_t Index ) const
+    /* Gets the file name at the specific Index. */
+    CString GetFileName( size_t Index ) const
     {
-        return m_ExternalFiles.GetFilename( Index );
+        return m_ExternalFiles.GetFileName( Index );
     }
 
     //@cmember
-    /* Sets the filename at the specific Index. */
-    void SetFilename( size_t Index, CString Value )
+    /* Sets the file name at the specific Index. */
+    void SetFileName( size_t Index, CString Value )
     {
-        m_ExternalFiles.SetFilename( Index, Value );
+        m_ExternalFiles.SetFileName( Index, Value );
     }
 
     //@cmember

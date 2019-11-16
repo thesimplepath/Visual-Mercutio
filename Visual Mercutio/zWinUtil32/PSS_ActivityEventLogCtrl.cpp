@@ -65,9 +65,9 @@ static int g_EventActivityColSize[] =
     100, // ActivityDueDate
     100, // Sender
     100, // Receiver
-    200, // ProcessFilename
-    200, // ExchangeDataFilename
-    200, // Process ExchangeDataFilename
+    200, // ProcessFileName
+    200, // ExchangeDataFileName
+    200, // Process ExchangeDataFileName
     1000 // Comments
 };
 //---------------------------------------------------------------------------
@@ -182,13 +182,13 @@ const PSS_ActivityEventLogCtrl& PSS_ActivityEventLogCtrl::operator = (const PSS_
         // add the receiver name
         listCtrl.SetItem(index, 12, LVIF_TEXT, left.GetReceiver(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
-        // add the process filename
+        // add the process file name
         listCtrl.SetItem(index, 13, LVIF_TEXT, left.GetProcessFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
-        // add the exchange date filename
+        // add the exchange date file name
         listCtrl.SetItem(index, 14, LVIF_TEXT, left.GetExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
-        // add the process exchange date filename
+        // add the process exchange date file name
         listCtrl.SetItem(index, 15, LVIF_TEXT, left.GetProcessExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the comments

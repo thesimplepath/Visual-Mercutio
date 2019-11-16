@@ -5300,11 +5300,11 @@ void ZDProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_Observer
     {
         if (GetModel()->GetRoot()->IsBkGndMustBeRestored() == TRUE)
         {
-            CString BkGndFilename = GetModel()->GetRoot()->GetBkGndFilename();
+            CString bkGndFileName = GetModel()->GetRoot()->GetBkGndFileName();
 
-            if (BkGndFilename != _T(""))
+            if (bkGndFileName != _T(""))
             {
-                SetImage(BkGndFilename, GetModel()->GetRoot()->IsLogo());
+                SetImage(bkGndFileName, GetModel()->GetRoot()->IsLogo());
             }
 
             GetModel()->GetRoot()->ResetBkGndMustBeRestored();
@@ -5340,16 +5340,16 @@ bool ZDProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoint
 // Cette fonction est appelée lorsque l'utilisateur désire ajouter un logo a ses pages.
 void ZDProcessGraphModelController::OnAddWatermarkModelLogo()
 {
-    CString Filename;
+    CString fileName;
 
-    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction AskImageFilename.
-    if (AskImageFilename(Filename) != TRUE)
+    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction AskImageFileName.
+    if (AskImageFileName(fileName) != TRUE)
     {
         return;
     }
 
     // JMR-MODIF - Le 6 octobre 2005 - Dorénavant, la suite de la fonction se trouve dans SetImage.
-    SetImage(Filename, TRUE);
+    SetImage(fileName, TRUE);
 }
 
 // Cette fonction est appelée lorsque l'entrée "Ajouter un logo" du menu doit être mise à jour.
@@ -5359,16 +5359,16 @@ void ZDProcessGraphModelController::OnUpdateAddWatermarkModelLogo(CCmdUI* pCmdUI
 // Cette fonction est appelée lorsque l'utilisateur désire ajouter une trame de fond a ses pages.
 void ZDProcessGraphModelController::OnSetBackgroundImage()
 {
-    CString Filename;
+    CString fileName;
 
-    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction AskImageFilename.
-    if (AskImageFilename(Filename) != TRUE)
+    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction AskImageFileName.
+    if (AskImageFileName(fileName) != TRUE)
     {
         return;
     }
 
     // JMR-MODIF - Le 20 juillet 2005 - Dorénavant, la suite de la fonction se trouve dans SetImage.
-    SetImage(Filename, FALSE);
+    SetImage(fileName, FALSE);
 }
 
 // Cette fonction est appelée lorsque l'entrée "Ajouter une trame de fond" du menu doit être mise à jour.
@@ -5393,7 +5393,7 @@ void ZDProcessGraphModelController::OnClearBackgroundImage()
 
 // JMR-MODIF - Le 7 octobre 2005 -
 // Cette fonction permet à l'utilisateur de choisir le fichier d'image à travers une boîte de dialogue.
-BOOL ZDProcessGraphModelController::AskImageFilename(CString& Filename)
+BOOL ZDProcessGraphModelController::AskImageFileName(CString& fileName)
 {
     CString title;
     VERIFY(title.LoadString(IDS_IMAGEFILE_CHOOSETITLE));
@@ -5447,36 +5447,36 @@ BOOL ZDProcessGraphModelController::AskImageFilename(CString& Filename)
 
     if (fileDialog.DoModal() == IDCANCEL)
     {
-        Filename = _T("");
+        fileName = _T("");
         return FALSE;
     }
 
-    Filename = fileDialog.GetFileName();
+    fileName = fileDialog.GetFileName();
     return TRUE;
 }
 
 // ******************************************* Fonctions de gestion des images **************************************
 
 // JMR-MODIF - Le 20 juillet 2005 - Ajout de la fonction SetImage, afin de pouvoir inclure la trame de fond.
-void ZDProcessGraphModelController::SetImage(CString Filename, BOOL IsLogo)
+void ZDProcessGraphModelController::SetImage(CString fileName, BOOL IsLogo)
 {
     ZDProcessGraphModelMdl* pModel = GetRootModel();
     ASSERT(pModel);
 
-    SECImage* pImage = ZIProcessGraphModelView::LoadImageFromFile(Filename);
+    SECImage* pImage = ZIProcessGraphModelView::LoadImageFromFile(fileName);
 
     // JMR-MODIF - Le 5 août 2005 - Ajout du code pour permettre à l'utilisateur de réattribuer le fichier si celui-ci
     // a été déplaçé, supprimé ou endommagé.
     if (!pImage)
     {
         CString m_StrMsg = _T("");
-        m_StrMsg.Format(IDS_WARN_IMGFILECORRUPTED, Filename);
+        m_StrMsg.Format(IDS_WARN_IMGFILECORRUPTED, fileName);
 
         int myResult = AfxMessageBox(m_StrMsg, MB_YESNO);
 
         if (myResult == 7)
         {
-            pModel->SetBkGndFilename(_T(""));
+            pModel->SetBkGndFileName(_T(""));
             return;
         }
         else
@@ -5533,7 +5533,7 @@ void ZDProcessGraphModelController::SetImage(CString Filename, BOOL IsLogo)
     delete pImage;
 
     // JMR-MODIF - Le 5 août 2005 - Ajout du code d'initialisation du nom du fichier de tramage.
-    pModel->SetBkGndFilename(Filename);
+    pModel->SetBkGndFileName(fileName);
 
     // Refresh the viewport
     ASSERT(GetViewport());
@@ -5548,7 +5548,7 @@ void ZDProcessGraphModelController::ClearImage()
     pModel->ClearBackgroundComponent(true);
 
     // JMR-MODIF - Le 5 août 2005 - Ajout du code de réinitialisation du nom du fichier de tramage.
-    pModel->SetBkGndFilename(_T(""));
+    pModel->SetBkGndFileName(_T(""));
 
     // Refresh the viewport
     ASSERT(GetViewport());

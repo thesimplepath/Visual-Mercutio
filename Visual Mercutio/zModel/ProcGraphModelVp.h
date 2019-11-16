@@ -82,9 +82,9 @@ public:
 
     BOOL AssignNewController( ZDProcessGraphModelController* pCtlr, ZDProcessGraphModelMdl* pModel );
 
-    static SECImage* CreateImageObjectFromFileExtension( const CString Filename );
-    static SECImage* LoadImageFromFile( const CString Filename );
-    bool ExportModelToImageFile( const CString Filename, CDC& dc );
+    static SECImage* CreateImageObjectFromFileExtension( const CString fileName );
+    static SECImage* LoadImageFromFile( const CString fileName );
+    bool ExportModelToImageFile( const CString fileName, CDC& dc );
 
 protected:
 
