@@ -1,98 +1,116 @@
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
+/****************************************************************************
+ * ==> PSS_ProcessHistoryDatabase ------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a process history database                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
 #include <StdAfx.h>
 #include "ProcHisto.h"
 
-ZDProcessHistoryDb::ZDProcessHistoryDb(CString DatabaseFileName, DatabaseType DatabaseTp)
-    : m_DatabaseFileName(DatabaseFileName), m_DatabaseTp(DatabaseTp),
-    m_pProcessHistoDAO(NULL)
+#ifdef _DEBUG
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
+#endif
+
+//---------------------------------------------------------------------------
+// PSS_ProcessHistoryDatabase
+//---------------------------------------------------------------------------
+PSS_ProcessHistoryDatabase::PSS_ProcessHistoryDatabase(const CString& fileName, IEType type) :
+    m_pProcessHistoDAO(NULL),
+    m_Type(type),
+    m_FileName(fileName)
 {}
-
-BOOL ZDProcessHistoryDb::Create(CString DatabaseFileName, DatabaseType DatabaseTp)
+//---------------------------------------------------------------------------
+PSS_ProcessHistoryDatabase::PSS_ProcessHistoryDatabase(const PSS_ProcessHistoryDatabase& other)
 {
-    m_DatabaseFileName = DatabaseFileName;
-    m_DatabaseTp = DatabaseTp;
-    return ZDProcessHistoryDb::Initialize();
+    THROW("Copy constructor isn't allowed for this class");
 }
-
-BOOL ZDProcessHistoryDb::Initialize()
+//---------------------------------------------------------------------------
+PSS_ProcessHistoryDatabase::~PSS_ProcessHistoryDatabase()
 {
-    if (m_DatabaseFileName.IsEmpty())
-        return FALSE;
-    switch (m_DatabaseTp)
+    switch (m_Type)
     {
-        case DAODatabase:
-        {
-            m_pProcessHistoDAO = new ZDProcessHistoryDAO(m_DatabaseFileName);
-            break;
-        }
-        case ODBCDatabase:
-        {
-            ASSERT(FALSE);    // Not yet implemented
-            return FALSE;
-        }
-
-    }
-    return TRUE;
-}
-
-ZDProcessHistoryDb::~ZDProcessHistoryDb()
-{
-    switch (m_DatabaseTp)
-    {
-        case DAODatabase:
-        {
+        case IE_DT_DAO:
             if (m_pProcessHistoDAO)
             {
                 m_pProcessHistoDAO->Close();
                 delete m_pProcessHistoDAO;
-                m_pProcessHistoDAO = NULL;
             }
-            break;
-        }
-        case ODBCDatabase:
-        {
-            ASSERT(FALSE);    // Not yet implemented
-            break;
-        }
 
+            break;
+
+        case IE_DT_ODBC:
+            // not yet implemented
+            THROW("NOT IMPLEMENTED");
     }
 }
+//---------------------------------------------------------------------------
+const PSS_ProcessHistoryDatabase& PSS_ProcessHistoryDatabase::operator = (const PSS_ProcessHistoryDatabase& other)
+{
+    THROW("Copy operator isn't allowed for this class");
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessHistoryDatabase::Create(const CString& fileName, IEType type)
+{
+    m_FileName = fileName;
+    m_Type     = type;
 
-BOOL ZDProcessHistoryDb::Close()
+    return Initialize();
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessHistoryDatabase::Initialize()
+{
+    if (m_FileName.IsEmpty())
+        return FALSE;
+
+    switch (m_Type)
+    {
+        case IE_DT_DAO:
+            m_pProcessHistoDAO = new ZDProcessHistoryDAO(m_FileName);
+            break;
+
+        case IE_DT_ODBC:
+            // not yet implemented
+            THROW("NOT IMPLEMENTED");
+    }
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessHistoryDatabase::AppendEventToHistoric(const PSS_ActivityEvent& event)
+{
+    switch (m_Type)
+    {
+        case IE_DT_DAO:
+            if (m_pProcessHistoDAO)
+                return m_pProcessHistoDAO->AppendEventToHistoric(event);
+
+            break;
+
+        case IE_DT_ODBC:
+            // not yet implemented
+            THROW("NOT IMPLEMENTED");
+    }
+
+    return FALSE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessHistoryDatabase::Close()
 {
     switch (m_DatabaseTp)
     {
-        case DAODatabase:
-        {
+        case IE_DT_DAO:
             if (m_pProcessHistoDAO)
                 return m_pProcessHistoDAO->Close();
-            break;
-        }
-        case ODBCDatabase:
-        {
-            ASSERT(FALSE);    // Not yet implemented
-            break;
-        }
-    }
-    return FALSE;
-}
 
-BOOL ZDProcessHistoryDb::AppendEventToHistoric(PSS_ActivityEvent& EventActivity)
-{
-    switch (m_DatabaseTp)
-    {
-        case DAODatabase:
-        {
-            if (m_pProcessHistoDAO)
-                return m_pProcessHistoDAO->AppendEventToHistoric(EventActivity);
             break;
-        }
-        case ODBCDatabase:
-        {
-            ASSERT(FALSE);    // Not yet implemented
-            break;
-        }
+
+        case IE_DT_ODBC:
+            // not yet implemented
+            THROW("NOT IMPLEMENTED");
     }
+
     return FALSE;
 }
+//---------------------------------------------------------------------------

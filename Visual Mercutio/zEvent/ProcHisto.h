@@ -1,5 +1,12 @@
-#ifndef ProcHisto_h
-#define ProcHisto_h 1
+/****************************************************************************
+ * ==> PSS_ProcessHistoryDatabase ------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a process history database                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_ProcessHistoryDatabaseH
+#define PSS_ProcessHistoryDatabaseH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -14,61 +21,111 @@
 #include "ProcHistoDAO.h"
 
 #ifdef _ZEVENTEXPORT
-// put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-class AFX_EXT_CLASS ZDProcessHistoryDb
+/**
+* Process history database
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ProcessHistoryDatabase
 {
-public:
-    enum DatabaseType
-    {
-        DAODatabase, ODBCDatabase
-    };
-public:
-    ZDProcessHistoryDb(CString DatabaseFileName = "", DatabaseType DatabaseTp = DAODatabase);
-    BOOL Create(CString DatabaseFileName, DatabaseType DatabaseTp = DAODatabase);
-    BOOL Initialize();
+    public:
+        /**
+        * Database type
+        */
+        enum IEType
+        {
+            IE_DT_DAO,
+            IE_DT_ODBC
+        };
 
-    ~ZDProcessHistoryDb();
+        /**
+        * Constructor
+        *@param fileName - the database file name
+        *@param type - the database type
+        */
+        PSS_ProcessHistoryDatabase(const CString& fileName = "", IEType type = IE_DT_DAO);
 
+        virtual ~PSS_ProcessHistoryDatabase();
 
-    // the log file name
-    const CString GetDatabaseFileName() const;
-    void SetDatabaseFileName(CString value);
+        /**
+        * Creates the database
+        *@param fileName - the database file name
+        *@param type - the database type
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL Create(const CString& fileName = "", IEType type = IE_DT_DAO);
 
-    BOOL AppendEventToHistoric(PSS_ActivityEvent& EventActivity);
-    BOOL Close();
+        /**
+        * Initializes the database
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL Initialize();
 
-private:
-    ZDProcessHistoryDb(const ZDProcessHistoryDb &right);
-    const ZDProcessHistoryDb & operator=(const ZDProcessHistoryDb &right);
+        /**
+        * Gets the database file name
+        *@return the database file name
+        */
+        virtual inline const CString GetDatabaseFileName() const;
 
-    // Data Members for Class Attributes
+        /**
+        * Sets the database file name
+        *@param value - the database file name
+        */
+        virtual inline void SetDatabaseFileName(const CString& value);
 
-    CString                        m_DatabaseFileName;
-    DatabaseType                    m_DatabaseTp;
-    ZDProcessHistoryDAO*            m_pProcessHistoDAO;
+        /**
+        * Appends an event to the historic
+        *@param event - event to append
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL AppendEventToHistoric(const PSS_ActivityEvent& event);
+
+        /**
+        * Closes the database
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL Close();
+
+    private:
+        ZDProcessHistoryDAO* m_pProcessHistoDAO;
+        DatabaseType         m_Type;
+        CString              m_FileName;
+
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        PSS_ProcessHistoryDatabase(const PSS_ProcessHistoryDatabase& other);
+
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_ProcessHistoryDatabase& operator = (const PSS_ProcessHistoryDatabase& other);
 };
 
-inline const CString ZDProcessHistoryDb::GetDatabaseFileName() const
+//---------------------------------------------------------------------------
+// PSS_ProcessHistoryDatabase
+//---------------------------------------------------------------------------
+const CString PSS_ProcessHistoryDatabase::GetDatabaseFileName() const
 {
     return m_DatabaseFileName;
 }
-
-inline void ZDProcessHistoryDb::SetDatabaseFileName(CString value)
+//---------------------------------------------------------------------------
+void PSS_ProcessHistoryDatabase::SetDatabaseFileName(const CString& value)
 {
     m_DatabaseFileName = value;
 }
+//---------------------------------------------------------------------------
 
 
 #endif
