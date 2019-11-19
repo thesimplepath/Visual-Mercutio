@@ -268,25 +268,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="HistoryProcessStatusRecordSet.cpp">
+    <ClCompile Include="PSS_HistoryProcessStatusRecordset.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="HistoryProcessStatusRecordSetv99.cpp">
+    <ClCompile Include="PSS_HistoryProcessStatusRecordsetVersion99.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcHisto.cpp">
+    <ClCompile Include="PSS_ProcessHistoryDatabase.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcHistoDAO.cpp">
+    <ClCompile Include="PSS_ProcessHistoryDAODatabase.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -298,7 +298,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="SrvEvtManager.cpp">
+    <ClCompile Include="PSS_ServerEventManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -396,12 +396,12 @@
     <ClInclude Include="PSS_HistoryFolderStatusRecordset.h" />
     <ClInclude Include="PSS_HistoryProcessRecordset.h" />
     <ClInclude Include="PSS_HistoryProcessRecordsetVersion99.h" />
-    <ClInclude Include="HistoryProcessStatusRecordSet.h" />
-    <ClInclude Include="HistoryProcessStatusRecordSetv99.h" />
-    <ClInclude Include="ProcHisto.h" />
-    <ClInclude Include="ProcHistoDAO.h" />
+    <ClInclude Include="PSS_HistoryProcessStatusRecordset.h" />
+    <ClInclude Include="PSS_HistoryProcessStatusRecordsetVersion99.h" />
+    <ClInclude Include="PSS_ProcessHistoryDatabase.h" />
+    <ClInclude Include="PSS_ProcessHistoryDAODatabase.h" />
     <ClInclude Include="PSS_ProcessIterator.h" />
-    <ClInclude Include="SrvEvtManager.h" />
+    <ClInclude Include="PSS_ServerEventManager.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="UserDMng.h" />
     <ClInclude Include="UserQueueManager.h" />
