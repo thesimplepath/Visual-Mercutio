@@ -13,7 +13,7 @@
 
 // processsoft
 #include "PSS_EventManager.h"
-#include "UserDMng.h"
+#include "PSS_UserDirectoryManager.h"
 #include "PSS_ActivityEventFile.h"
 
 #ifdef _ZEVENTEXPORT
@@ -56,9 +56,9 @@ private:
     BOOL        RemoveEventFileName(const CString fileName);
 
 private:
-    ZBUserDirectoryManager m_UserDirectoryManager;
-    PSS_ActivityEventFile  m_ActivityEventFile;
-    CString                m_Directory;
+    PSS_UserDirectoryManager m_UserDirectoryManager;
+    PSS_ActivityEventFile    m_ActivityEventFile;
+    CString                  m_Directory;
 };
 
 #endif

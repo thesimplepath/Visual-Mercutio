@@ -312,7 +312,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="UserDMng.cpp">
+    <ClCompile Include="PSS_UserDirectoryManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -403,7 +403,7 @@
     <ClInclude Include="PSS_ProcessIterator.h" />
     <ClInclude Include="PSS_ServerEventManager.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="UserDMng.h" />
+    <ClInclude Include="PSS_UserDirectoryManager.h" />
     <ClInclude Include="UserQueueManager.h" />
     <ClInclude Include="PSS_Event.h" />
     <ClInclude Include="ZBEventServer.h" />
