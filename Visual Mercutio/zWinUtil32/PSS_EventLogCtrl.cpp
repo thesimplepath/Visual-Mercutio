@@ -68,20 +68,20 @@ const PSS_EventLogCtrl& PSS_EventLogCtrl::operator = (const PSS_EventLogCtrl& ot
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    ZBEventServer& operator >> (ZBEventServer& left, PSS_EventLogCtrl& listCtrl)
+    PSS_ServerEvent& operator >> (PSS_ServerEvent& serverEvent, PSS_EventLogCtrl& eventCtrl)
     {
-        const int index = listCtrl.GetItemCount();
+        const int index = eventCtrl.GetItemCount();
 
         // add the event date
-        listCtrl.InsertItem(index, left.GetFormattedTimeStamp());
+        eventCtrl.InsertItem(index, serverEvent.GetFormattedTimeStamp());
 
         // add the file name
-        listCtrl.SetItem(index, 1, LVIF_TEXT, left.GetFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 1, LVIF_TEXT, serverEvent.GetFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the result
-        listCtrl.SetItem(index, 2, LVIF_TEXT, left.GetEventResultStr(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 2, LVIF_TEXT, serverEvent.GetEventResultStr(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
-        return left;
+        return serverEvent;
     }
 #endif
 //---------------------------------------------------------------------------
@@ -102,12 +102,12 @@ void PSS_EventLogCtrl::Refresh()
     const int eventCount = m_pEventManager->GetEventCount();
 
     for (int i = 0; i < eventCount; ++i)
-        ((ZBEventServer&)*m_pEventManager->GetEventAt(i)) >> *this;
+        ((PSS_ServerEvent&)*m_pEventManager->GetEventAt(i)) >> *this;
 }
 //---------------------------------------------------------------------------
 LRESULT PSS_EventLogCtrl::OnNewEvent(WPARAM wParam, LPARAM lParam)
 {
-    ZBEventServer* pEvent = (ZBEventServer*)lParam;
+    PSS_ServerEvent* pEvent = reinterpret_cast<PSS_ServerEvent*>(lParam);
 
     // columns were built?
     if (!ColumnsHasBeenBuilt())

@@ -81,42 +81,42 @@ const PSS_ActivityEventViewerReminderCtrl& PSS_ActivityEventViewerReminderCtrl::
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-PSS_ActivityReminderEvent& operator>>(PSS_ActivityReminderEvent& left, PSS_ActivityEventViewerReminderCtrl& listCtrl)
+PSS_ActivityReminderEvent& operator >> (PSS_ActivityReminderEvent& activityEvent, PSS_ActivityEventViewerReminderCtrl& eventCtrl)
     {
-        const int index      = listCtrl.GetItemCount();
+        const int index      = eventCtrl.GetItemCount();
               int imageIndex = 11;
 
-        if (left.GetPriority() == g_EventPriorityHigh)
+        if (activityEvent.GetPriority() == g_EventPriorityHigh)
             imageIndex = 10;
         else
-        if (left.GetPriority() == g_EventPriorityLow)
+        if (activityEvent.GetPriority() == g_EventPriorityLow)
             imageIndex = 9;
 
         // add the priority
-        listCtrl.InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, (LPARAM)&left);
+        eventCtrl.InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, LPARAM(&activityEvent));
 
         // add the folder name
-        listCtrl.SetItem(index, 1, LVIF_TEXT, left.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 1, LVIF_TEXT, activityEvent.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process name
-        listCtrl.SetItem(index, 2, LVIF_TEXT, left.GetProcessName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 2, LVIF_TEXT, activityEvent.GetProcessName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity name
-        listCtrl.SetItem(index, 3, LVIF_TEXT, left.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 3, LVIF_TEXT, activityEvent.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity remaining days
-        listCtrl.SetItem(index, 4, LVIF_TEXT, left.GetRemainingDaysString(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 4, LVIF_TEXT, activityEvent.GetRemainingDaysString(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity due date
-        listCtrl.SetItem(index, 5, LVIF_TEXT, left.GetFormattedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 5, LVIF_TEXT, activityEvent.GetFormattedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity status
-        listCtrl.SetItem(index, 6, LVIF_TEXT, PSS_Process::GetStatusString(left.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 6, LVIF_TEXT, PSS_Process::GetStatusString(activityEvent.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the message
-        listCtrl.SetItem(index, 7, LVIF_TEXT, left.GetMessage(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 7, LVIF_TEXT, activityEvent.GetMessage(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
-        return left;
+        return activityEvent;
     }
 #endif
 //---------------------------------------------------------------------------

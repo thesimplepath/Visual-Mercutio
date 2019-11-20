@@ -47,13 +47,13 @@ class AFX_EXT_CLASS PSS_ActivityEventCtrl : public PSS_ListCtrl
         virtual ~PSS_ActivityEventCtrl();
 
         /**
-        * Stream out operator
-        *@param left - left event activity
-        *@param listCtrl - event activity controller
-        *@return event activity
+        * Put the event in the event controller
+        *@param activityEvent - the activity event
+        *@param eventCtrl - the event controller
+        *@return the activity event, to allow operator to be chained with other controllers, e.g a >> b >> c
         */
         #ifdef _WIN32
-            AFX_EXT_API friend PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventCtrl& listCtrl);
+            AFX_EXT_API friend PSS_ActivityEvent& operator >> (PSS_ActivityEvent& activityEvent, PSS_ActivityEventCtrl& eventCtrl);
         #endif
 
         /**

@@ -101,100 +101,100 @@ const PSS_ActivityEventLogCtrl& PSS_ActivityEventLogCtrl::operator = (const PSS_
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-    PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventLogCtrl& listCtrl)
+    PSS_ActivityEvent& operator >> (PSS_ActivityEvent& activityEvent, PSS_ActivityEventLogCtrl& eventCtrl)
     {
-        const int index      = listCtrl.GetItemCount();
+        const int index      = eventCtrl.GetItemCount();
               int imageIndex = 13;
 
-        if (left.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
-            if (left.GetActivityStatus() == g_ActivityStatusProcessPaused)
+        if (activityEvent.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusProcessPaused)
                 imageIndex = 12;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusProcessAborted)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusProcessAborted)
                 imageIndex = 4;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusProcessCompleted)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusProcessCompleted)
                 imageIndex = 5;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusRequestAcceptation)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusRequestAcceptation)
                 imageIndex = 8;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusAccepted)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusAccepted)
                 imageIndex = 7;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusRejected)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusRejected)
                 imageIndex = 6;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusAttribution)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusAttribution)
                 imageIndex = 3;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusSent)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusSent)
                 imageIndex = 0;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusAttribution)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusAttribution)
                 imageIndex = 7;
             else
                 imageIndex = 11;
 
         // add the action icon
-        listCtrl.InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, LPARAM(&left));
+        eventCtrl.InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, LPARAM(&activityEvent));
 
         // add the action text
-        listCtrl.SetItem(index,
-                         1,
-                         LVIF_TEXT,
-                         PSS_Process::GetStatusString(left.GetActivityStatus()),
-                         0,
-                         LVIF_TEXT,
-                         LVIF_TEXT,
-                         0);
+        eventCtrl.SetItem(index,
+                          1,
+                          LVIF_TEXT,
+                          PSS_Process::GetStatusString(activityEvent.GetActivityStatus()),
+                          0,
+                          LVIF_TEXT,
+                          LVIF_TEXT,
+                          0);
 
         // add the Activity Type
-        listCtrl.SetItem(index, 2, LVIF_TEXT, left.GetActivityType(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 2, LVIF_TEXT, activityEvent.GetActivityType(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the event Date
-        listCtrl.SetItem(index, 3, LVIF_TEXT, left.GetFormattedTimeStamp(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 3, LVIF_TEXT, activityEvent.GetFormattedTimeStamp(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the folder name
-        listCtrl.SetItem(index, 4, LVIF_TEXT, left.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 4, LVIF_TEXT, activityEvent.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process name
-        listCtrl.SetItem(index, 5, LVIF_TEXT, left.GetProcessName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 5, LVIF_TEXT, activityEvent.GetProcessName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process creation date
-        listCtrl.SetItem(index, 6, LVIF_TEXT, left.GetFormattedProcessCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 6, LVIF_TEXT, activityEvent.GetFormattedProcessCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process due date
-        listCtrl.SetItem(index, 7, LVIF_TEXT, left.GetFormattedProcessDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 7, LVIF_TEXT, activityEvent.GetFormattedProcessDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity name
-        listCtrl.SetItem(index, 8, LVIF_TEXT, left.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 8, LVIF_TEXT, activityEvent.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity creation date
-        listCtrl.SetItem(index, 9, LVIF_TEXT, left.GetFormattedActivityCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 9, LVIF_TEXT, activityEvent.GetFormattedActivityCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity due date
-        listCtrl.SetItem(index, 10, LVIF_TEXT, left.GetFormattedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 10, LVIF_TEXT, activityEvent.GetFormattedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the sender name
-        listCtrl.SetItem(index, 11, LVIF_TEXT, left.GetSender(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 11, LVIF_TEXT, activityEvent.GetSender(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the receiver name
-        listCtrl.SetItem(index, 12, LVIF_TEXT, left.GetReceiver(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 12, LVIF_TEXT, activityEvent.GetReceiver(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process file name
-        listCtrl.SetItem(index, 13, LVIF_TEXT, left.GetProcessFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 13, LVIF_TEXT, activityEvent.GetProcessFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the exchange date file name
-        listCtrl.SetItem(index, 14, LVIF_TEXT, left.GetExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 14, LVIF_TEXT, activityEvent.GetExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process exchange date file name
-        listCtrl.SetItem(index, 15, LVIF_TEXT, left.GetProcessExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 15, LVIF_TEXT, activityEvent.GetProcessExchangeDataFileName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the comments
-        listCtrl.SetItem(index, 16, LVIF_TEXT, left.GetComments(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 16, LVIF_TEXT, activityEvent.GetComments(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
-        return left;
+        return activityEvent;
     }
 #endif
 //---------------------------------------------------------------------------

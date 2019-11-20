@@ -79,62 +79,63 @@ const PSS_ActivityEventCtrl& PSS_ActivityEventCtrl::operator = (const PSS_Activi
 }
 //---------------------------------------------------------------------------
 #ifdef _WIN32
-PSS_ActivityEvent& operator >> (PSS_ActivityEvent& left, PSS_ActivityEventCtrl& listCtrl)
+PSS_ActivityEvent& operator >> (PSS_ActivityEvent& activityEvent, PSS_ActivityEventCtrl& eventCtrl)
     {
-        const int index      = listCtrl.GetItemCount();
+        const int index      = eventCtrl.GetItemCount();
               int imageIndex = 13;
 
-        if (left.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
-            if (left.GetActivityStatus() == g_ActivityStatusProcessPaused)
+        if (activityEvent.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusProcessPaused)
                 imageIndex = 12;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusProcessAborted)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusProcessAborted)
                 imageIndex = 4;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusProcessCompleted)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusProcessCompleted)
                 imageIndex = 5;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusRequestAcceptation)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusRequestAcceptation)
                 imageIndex = 8;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusAccepted)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusAccepted)
                 imageIndex = 7;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusRejected)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusRejected)
                 imageIndex = 6;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusAttribution)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusAttribution)
                 imageIndex = 3;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusSent)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusSent)
                 imageIndex = 0;
             else
-            if (left.GetActivityStatus() == g_ActivityStatusAttribution)
+            if (activityEvent.GetActivityStatus() == g_ActivityStatusAttribution)
                 imageIndex = 7;
             else
                 imageIndex = 11;
 
         // add the action icon
-        listCtrl.InsertItem( LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, (LPARAM)&left);
+        eventCtrl.InsertItem( LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, LPARAM(&activityEvent));
 
         // add the activity name
-        listCtrl.SetItem(index, 1, LVIF_TEXT, left.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 1, LVIF_TEXT, activityEvent.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the action text
-        listCtrl.SetItem(index, 2, LVIF_TEXT, PSS_Process::GetStatusString(left.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 2, LVIF_TEXT, PSS_Process::GetStatusString(activityEvent.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the folder name
-        listCtrl.SetItem(index, 3, LVIF_TEXT, left.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 3, LVIF_TEXT, activityEvent.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process name
-        listCtrl.SetItem(index, 4, LVIF_TEXT, left.GetProcessName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 4, LVIF_TEXT, activityEvent.GetProcessName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the sender name
-        listCtrl.SetItem(index, 5, LVIF_TEXT, left.GetSender(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        eventCtrl.SetItem(index, 5, LVIF_TEXT, activityEvent.GetSender(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the comments
-        listCtrl.SetItem(index, 6, LVIF_TEXT, left.GetComments(), 0, LVIF_TEXT, LVIF_TEXT, 0);
-        return left;
+        eventCtrl.SetItem(index, 6, LVIF_TEXT, activityEvent.GetComments(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+
+        return activityEvent;
     }
 #endif
 //---------------------------------------------------------------------------

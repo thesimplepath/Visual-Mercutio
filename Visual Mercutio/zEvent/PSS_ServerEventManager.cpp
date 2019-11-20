@@ -36,11 +36,11 @@ const PSS_ServerEventManager& PSS_ServerEventManager::operator = (const PSS_Serv
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-ZBEventServer* PSS_ServerEventManager::AddEvent(const COleDateTime& dateTime,
-                                                const CString&      fileName,
-                                                EventResult         eventResult)
+PSS_ServerEvent* PSS_ServerEventManager::AddEvent(const COleDateTime&       dateTime,
+                                                  const CString&            fileName,
+                                                  PSS_ServerEvent::IEResult eventResult)
 {
-    std::unique_ptr<ZBEventServer> pEvent(new ZBEventServer(dateTime, fileName, eventResult));
+    std::unique_ptr<PSS_ServerEvent> pEvent(new PSS_ServerEvent(dateTime, fileName, eventResult));
 
     if (!PSS_EventManager::AddEvent(pEvent.get()))
         return NULL;

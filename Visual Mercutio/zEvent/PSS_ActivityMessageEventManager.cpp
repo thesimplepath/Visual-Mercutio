@@ -41,7 +41,7 @@ const PSS_ActivityMessageEventManager& PSS_ActivityMessageEventManager::operator
 PSS_Event* PSS_ActivityMessageEventManager::LoadEventFromFile(const CString& fileName)
 {
     PSS_ActivityEventFile activityEventFile;
-    PSS_Event*            pEvent(activityEventFile.ImportActivityFromFile(fileName));
+    PSS_Event*            pEvent         = activityEventFile.ImportActivityFromFile(fileName);
     PSS_ActivityEvent*    pActivityEvent = dynamic_cast<PSS_ActivityEvent*>(pEvent);
 
     if (pActivityEvent && pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_Message)

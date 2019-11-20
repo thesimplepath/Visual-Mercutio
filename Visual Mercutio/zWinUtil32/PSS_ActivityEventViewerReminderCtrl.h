@@ -47,14 +47,14 @@ class AFX_EXT_CLASS PSS_ActivityEventViewerReminderCtrl : public PSS_ListCtrl
         virtual ~PSS_ActivityEventViewerReminderCtrl();
 
         /**
-        * Stream out operator
-        *@param left - left event activity reminder
-        *@param listCtrl - event activity view reminder controller
-        *@return event activity reminder
+        * Put the event in the event controller
+        *@param activityEvent - the activity reminder event
+        *@param eventCtrl - the event controller
+        *@return the activity reminder event, to allow operator to be chained with other controllers, e.g a >> b >> c
         */
         #ifdef _WIN32
-            AFX_EXT_API friend PSS_ActivityReminderEvent& operator >> (PSS_ActivityReminderEvent&           left,
-                                                                       PSS_ActivityEventViewerReminderCtrl& listCtrl);
+            AFX_EXT_API friend PSS_ActivityReminderEvent& operator >> (PSS_ActivityReminderEvent&           activityEvent,
+                                                                       PSS_ActivityEventViewerReminderCtrl& eventCtrl);
         #endif
 
         /**

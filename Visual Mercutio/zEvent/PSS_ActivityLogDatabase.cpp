@@ -170,7 +170,7 @@ BOOL PSS_ActivityLogDatabase::OpenRead()
         Close();
 
         m_Database.Open(m_FileName, FALSE, TRUE);
-        m_pRecordset = new ZDActivityLogRecordset(&m_Database, m_FileName);
+        m_pRecordset = new PSS_ActivityLogRecordset(&m_Database, m_FileName);
 
         if (m_pRecordset)
             m_pRecordset->Open(dbOpenSnapshot, NULL, dbReadOnly);
@@ -197,7 +197,7 @@ BOOL PSS_ActivityLogDatabase::OpenWrite()
         Close();
 
         m_Database.Open(m_FileName);
-        m_pRecordset = new ZDActivityLogRecordset(&m_Database, m_FileName);
+        m_pRecordset = new PSS_ActivityLogRecordset(&m_Database, m_FileName);
 
         if (m_pRecordset)
             m_pRecordset->Open(dbOpenDynaset, NULL, dbAppendOnly);

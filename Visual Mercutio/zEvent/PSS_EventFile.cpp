@@ -46,6 +46,12 @@ const PSS_EventFile& PSS_EventFile::operator = (const PSS_EventFile& other)
 //---------------------------------------------------------------------------
 PSS_Event* PSS_EventFile::ImportActivityFromFile(const CString& fileName)
 {
+    if (m_LocalEvent && m_pEvent)
+    {
+        delete m_pEvent;
+        m_pEvent = NULL;
+    }
+
     m_FileName   = fileName;
     m_pEvent     = AllocateEvent();
     m_LocalEvent = true;
@@ -68,6 +74,12 @@ PSS_Event* PSS_EventFile::ImportActivityFromFile(const CString& fileName)
 //---------------------------------------------------------------------------
 BOOL PSS_EventFile::ExportActivityToFile(const CString& fileName, PSS_Event* pActivity)
 {
+    if (m_LocalEvent && m_pEvent)
+    {
+        delete m_pEvent;
+        m_pEvent = NULL;
+    }
+
     m_FileName   = fileName;
     m_pEvent     = pActivity;
     m_LocalEvent = false;

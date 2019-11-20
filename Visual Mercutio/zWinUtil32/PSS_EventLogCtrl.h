@@ -17,9 +17,9 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zEvent\PSS_EventManager.h"
-#include "zEvent\ZBEventServer.h"
 #include "zBaseLib\PSS_ListCtrl.h"
+#include "zEvent\PSS_ServerEvent.h"
+#include "zEvent\PSS_EventManager.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -47,13 +47,13 @@ class AFX_EXT_CLASS PSS_EventLogCtrl : public PSS_ListCtrl
         ~PSS_EventLogCtrl();
 
         /**
-        * Stream out operator
-        *@param left - left event activity
-        *@param listCtrl - event activity log controller
-        *@return event activity
+        * Put the event in the event controller
+        *@param serverEvent - the server event
+        *@param eventCtrl - the event controller
+        *@return the server event, to allow operator to be chained with other controllers, e.g a >> b >> c
         */
         #ifdef _WIN32
-            AFX_EXT_API friend ZBEventServer& operator >> (ZBEventServer& left, PSS_EventLogCtrl& listCtrl);
+            AFX_EXT_API friend PSS_ServerEvent& operator >> (PSS_ServerEvent& serverEvent, PSS_EventLogCtrl& eventCtrl);
         #endif
 
         /**

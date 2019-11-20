@@ -318,7 +318,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="UserQueueManager.cpp">
+    <ClCompile Include="PSS_UserQueueManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -330,13 +330,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBEventServer.cpp">
+    <ClCompile Include="PSS_ServerEvent.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDActivityLogRecordset.cpp">
+    <ClCompile Include="PSS_ActivityLogRecordset.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -404,10 +404,10 @@
     <ClInclude Include="PSS_ServerEventManager.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_UserDirectoryManager.h" />
-    <ClInclude Include="UserQueueManager.h" />
+    <ClInclude Include="PSS_UserQueueManager.h" />
     <ClInclude Include="PSS_Event.h" />
-    <ClInclude Include="ZBEventServer.h" />
-    <ClInclude Include="ZDActivityLogRecordset.h" />
+    <ClInclude Include="PSS_ServerEvent.h" />
+    <ClInclude Include="PSS_ActivityLogRecordset.h" />
     <ClInclude Include="zEventLib.h" />
     <ClInclude Include="ZEvtRes.h" />
     <ClInclude Include="PSS_Process.h" />

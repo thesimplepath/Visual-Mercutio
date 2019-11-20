@@ -54,13 +54,13 @@ class AFX_EXT_CLASS PSS_WorkspaceTemplateListCtrl : public PSS_ListCtrl
         virtual ~PSS_WorkspaceTemplateListCtrl();
 
         /**
-        * Stream out operator
-        *@param left - left value to stream out
-        *@param listCtrl - workspace template list control
-        *@return workspace wizard template item instance
+        * Put the workspace wizard template item in the workspace template list controller
+        *@param templateItem - the template item
+        *@param listCtrl - the template list controller
+        *@return the template item, to allow operator to be chained with other controllers, e.g a >> b >> c
         */
         #ifdef _WIN32
-            AFX_EXT_API friend PSS_WorkspaceWizardTemplateItem& operator >> (PSS_WorkspaceWizardTemplateItem& left,
+            AFX_EXT_API friend PSS_WorkspaceWizardTemplateItem& operator >> (PSS_WorkspaceWizardTemplateItem& templateItem,
                                                                              PSS_WorkspaceTemplateListCtrl&   listCtrl);
         #endif
 

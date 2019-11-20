@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBEventServer.h"
+#include "PSS_ServerEvent.h"
 #include "PSS_EventManager.h"
 
 #ifdef _ZEVENTEXPORT
@@ -47,7 +47,7 @@ class AFX_EXT_CLASS PSS_ServerEventManager : public PSS_EventManager
         *@param eventResult - the event result value
         *@return the newly added event, NULL on error
         */
-        ZBEventServer* AddEvent(const COleDateTime& dateTime, const CString& fileName, EventResult eventResult);
+        PSS_ServerEvent* AddEvent(const COleDateTime& dateTime, const CString& fileName, PSS_ServerEvent::IEResult eventResult);
 
     private:
         /**

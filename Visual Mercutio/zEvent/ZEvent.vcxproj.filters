@@ -22,15 +22,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserQueueManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBEventServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDActivityLogRecordset.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -127,6 +118,15 @@
     <ClCompile Include="PSS_UserDirectoryManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_UserQueueManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ServerEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityLogRecordset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ZEvent.rc2">
@@ -143,15 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UserQueueManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBEventServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDActivityLogRecordset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zEventLib.h">
@@ -251,6 +242,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_UserDirectoryManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserQueueManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ServerEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityLogRecordset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

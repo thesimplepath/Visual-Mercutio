@@ -63,19 +63,18 @@ const PSS_WorkspaceTemplateListCtrl& PSS_WorkspaceTemplateListCtrl::operator = (
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-PSS_WorkspaceWizardTemplateItem& operator >> (PSS_WorkspaceWizardTemplateItem& left, PSS_WorkspaceTemplateListCtrl& listCtrl)
+PSS_WorkspaceWizardTemplateItem& operator >> (PSS_WorkspaceWizardTemplateItem& templateItem, PSS_WorkspaceTemplateListCtrl& listCtrl)
 {
-    int    Index = listCtrl.GetItemCount();
-    int    ImageIndex = 1;
-    // Add the template icon
-    listCtrl.InsertItem(LVIF_IMAGE | LVIF_PARAM, Index,
-                        NULL,
-                        0, 0, ImageIndex, (LPARAM)&left);
-    // Add the template name
-    listCtrl.SetItem(Index, 1, LVIF_TEXT,
-                     left.GetTemplateName(),
-                     0, LVIF_TEXT, LVIF_TEXT, 0);
-    return left;
+    const int index      = listCtrl.GetItemCount();
+    const int imageIndex = 1;
+
+    // add the template icon
+    listCtrl.InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, LPARAM(&templateItem));
+
+    // add the template name
+    listCtrl.SetItem(index, 1, LVIF_TEXT, templateItem.GetTemplateName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+
+    return templateItem;
 }
 //---------------------------------------------------------------------------
 void PSS_WorkspaceTemplateListCtrl::Initialize(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager)

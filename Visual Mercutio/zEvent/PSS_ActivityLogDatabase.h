@@ -18,7 +18,7 @@
 
 // processsoft
 #include "PSS_ActivityEvent.h"
-#include "ZDActivityLogRecordset.h"
+#include "PSS_ActivityLogRecordset.h"
 
 #ifdef _ZEVENTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -77,9 +77,9 @@ class AFX_EXT_CLASS PSS_ActivityLogDatabase
         virtual BOOL Close();
 
     private:
-        CDaoDatabase            m_Database;
-        ZDActivityLogRecordset* m_pRecordset;
-        CString                 m_FileName;
+        CDaoDatabase              m_Database;
+        PSS_ActivityLogRecordset* m_pRecordset;
+        CString                   m_FileName;
 
         /**
         * Copy constructor

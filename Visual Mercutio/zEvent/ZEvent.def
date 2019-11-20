@@ -1,9 +1,9 @@
-; ZEvent.def : Declares the module parameters for the DLL.
+; ZEvent.def: Declares the module parameters for the DLL
 
-LIBRARY      "ZEvent"
+LIBRARY "ZEvent"
 
-; JMR-MODIF - Le 25 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'ZEvent Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'ZEvent Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here
