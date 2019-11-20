@@ -30,7 +30,7 @@
 #include "zModel\ZBExtAppPropertyMgr.h"
 #include "zModel\ZBExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
-#include "zModel\Maths.h"
+#include "zModel\PSS_MathHelper.h"
 
 // forward declaration
 class ZBSymbolEdit;

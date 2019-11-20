@@ -141,7 +141,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Maths.cpp" />
+    <ClCompile Include="PSS_MathHelper.cpp" />
     <ClCompile Include="modeltreei.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -752,7 +752,7 @@
     <ResourceCompile Include="zModel.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Maths.h" />
+    <ClInclude Include="PSS_MathHelper.h" />
     <ClInclude Include="modeltreei.h" />
     <ClInclude Include="ObjectCollections.h" />
     <ClInclude Include="ProcGraphChildFrm.h" />

@@ -571,9 +571,7 @@ void ZBLinkSymbol::AdjustLinePath()
     // L'effet escargot n'a lieu que sur les chemins à 5 sommets.
     if (myPointsCount == 5)
     {
-        Maths    myMathsAlgorythms;
-        CPoint    myVertex[5];
-        int        i = 0;
+        CPoint myVertex[5];
 
         CODComponent* SrcComp = GetSourceComponent();
         CODComponent* DestComp = GetTargetComponent();
@@ -607,162 +605,133 @@ void ZBLinkSymbol::AdjustLinePath()
             else return;
 
             // Obtient la liste des sommets composant actuellement le chemin.
-            for (i = 0; i < myPointsCount; i++)
-            {
+            for (int i = 0; i < myPointsCount; ++i)
                 myVertex[i] = GetVertex(i);
-            }
 
-            // Teste sur quel côté du rectangle source se trouve le point d'ancrage.
-            int            mySrcEdge = 0;
-            Vector2D*    mySrcTestPos = new Vector2D((float)myVertex[0].x, (float)myVertex[0].y);
+            // calculate the source anchor center point
+            const PSS_Vector2D srcCenter(float(mySrcBounds.left) + ((float(mySrcBounds.right)  - float(mySrcBounds.left)) / 2.0f),
+                                         float(mySrcBounds.top)  + ((float(mySrcBounds.bottom) - float(mySrcBounds.top))  / 2.0f));
 
-            Vector2D mySrcVertice1;
-            Vector2D mySrcVertice2;
-            Vector2D mySrcVertice3;
-            Vector2D mySrcVertice4;
-            Vector2D mySrcCenter;
+            // get the source component vertices
+            const PSS_Vector2D srcVertices[] =
+            {
+                PSS_Vector2D(float(mySrcBounds.left),  float(mySrcBounds.top)),
+                PSS_Vector2D(float(mySrcBounds.left),  float(mySrcBounds.bottom)),
+                PSS_Vector2D(float(mySrcBounds.right), float(mySrcBounds.bottom)),
+                PSS_Vector2D(float(mySrcBounds.right), float(mySrcBounds.top))
+            };
 
-            mySrcVertice1.setX((float)mySrcBounds.left);
-            mySrcVertice1.setY((float)mySrcBounds.top);
-            mySrcVertice2.setX((float)mySrcBounds.left);
-            mySrcVertice2.setY((float)mySrcBounds.bottom);
-            mySrcVertice3.setX((float)mySrcBounds.right);
-            mySrcVertice3.setY((float)mySrcBounds.bottom);
-            mySrcVertice4.setX((float)mySrcBounds.right);
-            mySrcVertice4.setY((float)mySrcBounds.top);
-            mySrcCenter.setX((float)mySrcBounds.left + (((float)mySrcBounds.right - (float)mySrcBounds.left) / 2));
-            mySrcCenter.setY((float)mySrcBounds.top + (((float)mySrcBounds.bottom - (float)mySrcBounds.top) / 2));
+            // calculate 4 polygons around the source component center
+            const PSS_Triangle srcTriangles[] =
+            {
+                PSS_Triangle(srcVertices[0], srcVertices[1], srcCenter),
+                PSS_Triangle(srcVertices[1], srcVertices[2], srcCenter),
+                PSS_Triangle(srcVertices[2], srcVertices[3], srcCenter),
+                PSS_Triangle(srcVertices[3], srcVertices[0], srcCenter)
+            };
 
-            Triangle* mySrcTri1 = new Triangle(mySrcVertice1, mySrcVertice2, mySrcCenter);
-            Triangle* mySrcTri2 = new Triangle(mySrcVertice2, mySrcVertice3, mySrcCenter);
-            Triangle* mySrcTri3 = new Triangle(mySrcVertice3, mySrcVertice4, mySrcCenter);
-            Triangle* mySrcTri4 = new Triangle(mySrcVertice4, mySrcVertice1, mySrcCenter);
+            // get the source test point
+            const PSS_Vector2D srcTestPos(float(myVertex[0].x), float(myVertex[0].y));
+            int                srcEdge = 0;
 
-            if (myMathsAlgorythms.IsTriPointCollision(mySrcTri1, mySrcTestPos) == TRUE) mySrcEdge = 1;
-            else if (myMathsAlgorythms.IsTriPointCollision(mySrcTri2, mySrcTestPos) == TRUE) mySrcEdge = 2;
-            else if (myMathsAlgorythms.IsTriPointCollision(mySrcTri3, mySrcTestPos) == TRUE) mySrcEdge = 3;
-            else if (myMathsAlgorythms.IsTriPointCollision(mySrcTri4, mySrcTestPos) == TRUE) mySrcEdge = 4;
+            // find on which component edge the source anchor is
+            for (int i = 0; i < 4; ++i)
+                if (PSS_MathHelper::Inside(srcTriangles[i], srcTestPos))
+                {
+                    srcEdge = i + 1;
+                    break;
+                }
 
-            delete mySrcTestPos;
-            delete mySrcTri1;
-            delete mySrcTri2;
-            delete mySrcTri3;
-            delete mySrcTri4;
-
-            // Teste sur quel côté du rectangle destination se trouve le point d'ancrage.
-            int            myDestEdge = 0;
-            Vector2D*    myDestTestPos = new Vector2D((float)myVertex[4].x, (float)myVertex[4].y);
-
-            Vector2D myDestVertice1;
-            Vector2D myDestVertice2;
-            Vector2D myDestVertice3;
-            Vector2D myDestVertice4;
-            Vector2D myDestCenter;
-
-            myDestVertice1.setX((float)myDestBounds.left);
-            myDestVertice1.setY((float)myDestBounds.top);
-            myDestVertice2.setX((float)myDestBounds.left);
-            myDestVertice2.setY((float)myDestBounds.bottom);
-            myDestVertice3.setX((float)myDestBounds.right);
-            myDestVertice3.setY((float)myDestBounds.bottom);
-            myDestVertice4.setX((float)myDestBounds.right);
-            myDestVertice4.setY((float)myDestBounds.top);
-            myDestCenter.setX((float)myDestBounds.left + (((float)myDestBounds.right - (float)myDestBounds.left) / 2));
-            myDestCenter.setY((float)myDestBounds.top + (((float)myDestBounds.bottom - (float)myDestBounds.top) / 2));
-
-            Triangle* myDestTri1 = new Triangle(myDestVertice1, myDestVertice2, myDestCenter);
-            Triangle* myDestTri2 = new Triangle(myDestVertice2, myDestVertice3, myDestCenter);
-            Triangle* myDestTri3 = new Triangle(myDestVertice3, myDestVertice4, myDestCenter);
-            Triangle* myDestTri4 = new Triangle(myDestVertice4, myDestVertice1, myDestCenter);
-
-            if (myMathsAlgorythms.IsTriPointCollision(myDestTri1, myDestTestPos) == TRUE) myDestEdge = 1;
-            else if (myMathsAlgorythms.IsTriPointCollision(myDestTri2, myDestTestPos) == TRUE) myDestEdge = 2;
-            else if (myMathsAlgorythms.IsTriPointCollision(myDestTri3, myDestTestPos) == TRUE) myDestEdge = 3;
-            else if (myMathsAlgorythms.IsTriPointCollision(myDestTri4, myDestTestPos) == TRUE) myDestEdge = 4;
-
-            delete myDestTestPos;
-            delete myDestTri1;
-            delete myDestTri2;
-            delete myDestTri3;
-            delete myDestTri4;
-
-            // Construit le point le plus proche de la source.
-            switch (mySrcEdge)
+            // search the source closest point
+            switch (srcEdge)
             {
                 case 1:
-                {
                     myVertex[1].x = myVertex[0].x - 20;
                     myVertex[1].y = myVertex[0].y;
                     break;
-                }
 
                 case 2:
-                {
                     myVertex[1].x = myVertex[0].x;
                     myVertex[1].y = myVertex[0].y + 20;
                     break;
-                }
 
                 case 3:
-                {
                     myVertex[1].x = myVertex[0].x + 20;
                     myVertex[1].y = myVertex[0].y;
                     break;
-                }
 
                 case 4:
-                {
                     myVertex[1].x = myVertex[0].x;
                     myVertex[1].y = myVertex[0].y - 20;
                     break;
-                }
 
-                // Cas inapproprié, stoppe tout en cas d'erreur.
                 default:
-                {
                     return;
-                }
             }
 
-            // Construit le point le plus proche de la destination.
-            switch (myDestEdge)
+            // calculate the destination anchor center point
+            const PSS_Vector2D dstCenter(float(myDestBounds.left) + ((float(myDestBounds.right)  - float(myDestBounds.left)) / 2.0f),
+                                         float(myDestBounds.top)  + ((float(myDestBounds.bottom) - float(myDestBounds.top))  / 2.0f));
+
+            // get the destination component vertices
+            const PSS_Vector2D dstVertices[] =
+            {
+                PSS_Vector2D(float(myDestBounds.left),  float(myDestBounds.top)),
+                PSS_Vector2D(float(myDestBounds.left),  float(myDestBounds.bottom)),
+                PSS_Vector2D(float(myDestBounds.right), float(myDestBounds.bottom)),
+                PSS_Vector2D(float(myDestBounds.right), float(myDestBounds.top))
+            };
+
+            // calculate 4 polygons around the destination component center
+            const PSS_Triangle dstTriangles[] =
+            {
+                PSS_Triangle(dstVertices[0], dstVertices[1], dstCenter),
+                PSS_Triangle(dstVertices[1], dstVertices[2], dstCenter),
+                PSS_Triangle(dstVertices[2], dstVertices[3], dstCenter),
+                PSS_Triangle(dstVertices[3], dstVertices[0], dstCenter)
+            };
+
+            // get the destination test point
+            const PSS_Vector2D dstTestPos(float(myVertex[4].x), float(myVertex[4].y));
+            int                dstEdge = 0;
+
+            // find on which component edge the destination anchor is
+            for (int i = 0; i < 4; ++i)
+                if (PSS_MathHelper::Inside(dstTriangles[i], dstTestPos))
+                {
+                    dstEdge = i + 1;
+                    break;
+                }
+
+            // search the destination closest point
+            switch (dstEdge)
             {
                 case 1:
-                {
                     myVertex[3].x = myVertex[4].x - 20;
                     myVertex[3].y = myVertex[4].y;
                     break;
-                }
 
                 case 2:
-                {
                     myVertex[3].x = myVertex[4].x;
                     myVertex[3].y = myVertex[4].y + 20;
                     break;
-                }
 
                 case 3:
-                {
                     myVertex[3].x = myVertex[4].x + 20;
                     myVertex[3].y = myVertex[4].y;
                     break;
-                }
 
                 case 4:
-                {
                     myVertex[3].x = myVertex[4].x;
                     myVertex[3].y = myVertex[4].y - 20;
                     break;
-                }
 
-                // Cas inapproprié, stoppe tout en cas d'erreur.
                 default:
-                {
                     return;
-                }
             }
 
-            if (mySrcEdge == 2 || mySrcEdge == 4)
+            // handle special cases
+            if (srcEdge == 2 || srcEdge == 4)
             {
                 myVertex[2].x = myVertex[3].x;
                 myVertex[2].y = myVertex[1].y;
@@ -773,11 +742,9 @@ void ZBLinkSymbol::AdjustLinePath()
                 myVertex[2].y = myVertex[3].y;
             }
 
-            // Inscrit la nouvelle liste des sommets du chemin.
-            for (i = 0; i < myPointsCount; i++)
-            {
+            // write the new path vertices
+            for (int i = 0; i < myPointsCount; ++i)
                 SetVertex(i, myVertex[i]);
-            }
 
             // Mets à jour la position du label.
             UpdateRgn(TRUE);
