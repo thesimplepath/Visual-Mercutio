@@ -1,14 +1,18 @@
-// ProcGraphChildFrm.h : interface of the ZIProcessGraphChildFrame class
-/////////////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_ProcessGraphChildFrame ------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a graphic process child frame                     *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ProcGraphChildFrm_H__4B1BEB8D_8452_4F59_A51D_BE57E94FD6E1__INCLUDED_)
-#define AFX_ProcGraphChildFrm_H__4B1BEB8D_8452_4F59_A51D_BE57E94FD6E1__INCLUDED_
+#ifndef PSS_ProcessGraphChildFrameH
+#define PSS_ProcessGraphChildFrameH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,61 +21,63 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 21 octobre 2007 - Ajout des décorations unicode _T( ), nettoyage du code nutile. (En commentaires)
-
-class AFX_EXT_CLASS ZIProcessGraphChildFrame : public SECMDIChildWnd
+/**
+* Graphic process child frame
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ProcessGraphChildFrame : public SECMDIChildWnd
 {
-    DECLARE_DYNCREATE( ZIProcessGraphChildFrame )
+    DECLARE_DYNCREATE(PSS_ProcessGraphChildFrame)
 
-public:
+    public:
+        PSS_ProcessGraphChildFrame();
+        virtual ~PSS_ProcessGraphChildFrame();
 
-    ZIProcessGraphChildFrame();
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
 
-// Overrides
-public:
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
 
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZIProcessGraphChildFrame)
-    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-    //}}AFX_VIRTUAL
+    protected:
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_ProcessGraphChildFrame)
+        virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+        //}}AFX_VIRTUAL
 
-// Implementation
-public:
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_ProcessGraphChildFrame)
+        afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+        afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    virtual ~ZIProcessGraphChildFrame();
+        /**
+        * Called when the frame title should be updated
+        *@param addToTitle - if true, the frame name will be added to title
+        */
+        virtual void OnUpdateFrameTitle(BOOL addToTitle);
 
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
-#endif
-
-// Generated message map functions
-protected:
-
-    //{{AFX_MSG(ZIProcessGraphChildFrame)
-    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
-    afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-
-    virtual void OnUpdateFrameTitle( BOOL bAddToTitle );
-
-private:
-
-    static CDocument* m_pLastDocumentActivated;
+    private:
+        static CDocument* m_pLastActivatedDocument;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ProcGraphChildFrm_H__4B1BEB8D_8452_4F59_A51D_BE57E94FD6E1__INCLUDED_)
+#endif

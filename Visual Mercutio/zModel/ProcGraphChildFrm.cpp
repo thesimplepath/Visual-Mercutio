@@ -1,8 +1,14 @@
-// ProcGraphChildFrm.cpp : implementation of the ZIProcessGraphChildFrame class
+/****************************************************************************
+ * ==> PSS_ProcessGraphChildFrame ------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a graphic process child frame                     *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "StdAfx.h"
 #include "ProcGraphChildFrm.h"
 
+// processsoft
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
@@ -16,151 +22,142 @@
     static char THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 28 septembre 2005 - Ajout des décorations unicode _T( ), nettoyage du code non utilisé.
-
-CDocument* ZIProcessGraphChildFrame::m_pLastDocumentActivated = NULL;
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIProcessGraphChildFrame
-
-IMPLEMENT_DYNCREATE( ZIProcessGraphChildFrame, SECMDIChildWnd )
-
-BEGIN_MESSAGE_MAP( ZIProcessGraphChildFrame, SECMDIChildWnd )
-    //{{AFX_MSG_MAP(ZIProcessGraphChildFrame)
+//---------------------------------------------------------------------------
+// Static members
+//---------------------------------------------------------------------------
+CDocument* PSS_ProcessGraphChildFrame::m_pLastActivatedDocument = NULL;
+//---------------------------------------------------------------------------
+// Dynamic creation
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNCREATE(PSS_ProcessGraphChildFrame, SECMDIChildWnd)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_ProcessGraphChildFrame, SECMDIChildWnd)
+    //{{AFX_MSG_MAP(PSS_ProcessGraphChildFrame)
     ON_WM_MDIACTIVATE()
     ON_WM_MOUSEACTIVATE()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIProcessGraphChildFrame construction/destruction
-
-ZIProcessGraphChildFrame::ZIProcessGraphChildFrame()
-{
-}
-
-ZIProcessGraphChildFrame::~ZIProcessGraphChildFrame()
-{
-}
-
-BOOL ZIProcessGraphChildFrame::PreCreateWindow( CREATESTRUCT& cs )
-{
-    // TODO: Modify the Window class or styles here by modifying
-    //  the CREATESTRUCT cs
-
-    if( !SECMDIChildWnd::PreCreateWindow( cs ) )
-    {
-        return FALSE;
-    }
-
-    return TRUE;
-}
-
-//////////////////
-// Override to change the model title.
-//
-void ZIProcessGraphChildFrame::OnUpdateFrameTitle( BOOL bAddToTitle )
-{
-    SECMDIChildWnd::OnUpdateFrameTitle( bAddToTitle );
-    CDocument* pDoc = GetActiveDocument();
-
-    if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
-    {
-        CView* pView = GetActiveView();
-
-        if ( pView && ISA( pView, ZIProcessGraphModelView ) )
-        {
-            // JMR-MODIF - Le 29 septembre 2005 - Si le document est en cours de fermeture, abandonne l'opération.
-            if ( dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->IsClosing() == FALSE )
-            {
-                if ( !( (ZIProcessGraphModelView*)pView )->GetModel()->GetAbsolutePath().IsEmpty() )
-                {
-                    CString WndText = ( (ZIProcessGraphModelView*)pView )->GetModel()->GetAbsolutePath();
-
-                    // If has a page set, add the page name
-                    if ( ( (ZIProcessGraphModelView*)pView )->GetModel()->HasPageSet() )
-                    {
-                        ZDProcessGraphPage* pPage =
-                            ( (ZIProcessGraphModelView*)pView )->GetModel()->FindModelPage( ( (ZIProcessGraphModelView*)pView )->GetModel() );
-
-                        if ( pPage )
-                        {
-                            WndText += _T( "[" ) + pPage->GetPageName() + _T( "]" );
-                        }
-                    }
-
-                    SetWindowText( WndText );
-                }
-            }
-        }
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIProcessGraphChildFrame diagnostics
-
+//---------------------------------------------------------------------------
+// PSS_ProcessGraphChildFrame
+//---------------------------------------------------------------------------
+PSS_ProcessGraphChildFrame::PSS_ProcessGraphChildFrame() :
+    SECMDIChildWnd()
+{}
+//---------------------------------------------------------------------------
+PSS_ProcessGraphChildFrame::~PSS_ProcessGraphChildFrame()
+{}
+//---------------------------------------------------------------------------
 #ifdef _DEBUG
-void ZIProcessGraphChildFrame::AssertValid() const
-{
-    SECMDIChildWnd::AssertValid();
-}
-
-void ZIProcessGraphChildFrame::Dump( CDumpContext& dc ) const
-{
-    SECMDIChildWnd::Dump( dc );
-}
-#endif //_DEBUG
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIProcessGraphChildFrame message handlers
-
-void ZIProcessGraphChildFrame::OnMDIActivate( BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd )
-{
-    SECMDIChildWnd::OnMDIActivate( bActivate, pActivateWnd, pDeactivateWnd );
-    
-    if ( m_pLastDocumentActivated && m_pLastDocumentActivated != GetActiveDocument() )
+    void PSS_ProcessGraphChildFrame::AssertValid() const
     {
-        AfxGetMainWnd()->SendMessageToDescendants( UM_DOCUMENTHASBEENSELECTED, 0, (LPARAM)GetActiveDocument() );
+        SECMDIChildWnd::AssertValid();
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifdef _DEBUG
+    void PSS_ProcessGraphChildFrame::Dump(CDumpContext& dc) const
+    {
+        SECMDIChildWnd::Dump(dc);
+    }
+#endif
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessGraphChildFrame::PreCreateWindow(CREATESTRUCT& cs)
+{
+    // todo -cFeature -oJean: Modify the Window class or styles here by modifying the CREATESTRUCT cs
+    return SECMDIChildWnd::PreCreateWindow(cs);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
+{
+    SECMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+
+    if (m_pLastActivatedDocument && m_pLastActivatedDocument != GetActiveDocument())
+        AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(GetActiveDocument()));
+
+    m_pLastActivatedDocument = GetActiveDocument();
+
+    ZDProcessGraphModelDoc* pLastActivatedModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(m_pLastActivatedDocument);
+
+    if (pLastActivatedModelDoc)
+    {
+        ZDProcessGraphModelMdl* pModel = pLastActivatedModelDoc->GetModel();
+
+        // switch the context
+        if (pModel)
+            PSS_FloatingToolBar::SwitchContext(pModel->GetNotation());
+
+        // request the resource language change
+        PSS_ResourceManager::ChangeLanguage(pLastActivatedModelDoc->GetLanguage());
+
+        // notify all document observers about the frame activation
+        PSS_DocumentObserverMsg msg(UM_FRAMEHASBEENACTIVATED, m_pLastActivatedDocument, GetActiveView());
+        pLastActivatedModelDoc->NotifyAllObservers(&msg);
+    }
+}
+//---------------------------------------------------------------------------
+int PSS_ProcessGraphChildFrame::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message)
+{
+    const int result = SECMDIChildWnd::OnMouseActivate(pDesktopWnd, nHitTest, message);
+
+    ZDProcessGraphModelDoc* pLastActivatedModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(m_pLastActivatedDocument);
+
+    if (pLastActivatedModelDoc)
+    {
+        ZDProcessGraphModelMdl* pModel = pLastActivatedModelDoc->GetModel();
+
+        // switch the context
+        if (pModel)
+            PSS_FloatingToolBar::SwitchContext(pModel->GetNotation());
+
+        // request the resource language change
+        PSS_ResourceManager::ChangeLanguage(pLastActivatedModelDoc->GetLanguage());
+
+        // notify all document observers about the frame activation
+        PSS_DocumentObserverMsg msg(UM_FRAMEHASBEENACTIVATED, m_pLastActivatedDocument, GetActiveView());
+        pLastActivatedModelDoc->NotifyAllObservers(&msg);
     }
 
-    m_pLastDocumentActivated = GetActiveDocument();
-
-    if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
-    {
-        // Switch the context
-        PSS_FloatingToolBar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
-
-        // Request the change of the resource language
-        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
-
-        // Notify all document's observers about the frame activation
-        PSS_DocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
-                                   m_pLastDocumentActivated,
-                                   GetActiveView() );
-
-        dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->NotifyAllObservers( &Msg );
-    }
+    return result;
 }
-
-int ZIProcessGraphChildFrame::OnMouseActivate( CWnd* pDesktopWnd, UINT nHitTest, UINT message )
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphChildFrame::OnUpdateFrameTitle(BOOL addToTitle)
 {
-    int nResult = SECMDIChildWnd::OnMouseActivate( pDesktopWnd, nHitTest, message );
+    SECMDIChildWnd::OnUpdateFrameTitle(addToTitle);
 
-    if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
+    ZDProcessGraphModelDoc* pModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveDocument());
+
+    if (!pModelDoc)
+        return;
+
+    ZIProcessGraphModelView* pModelView = dynamic_cast<ZIProcessGraphModelView*>(GetActiveView());
+
+    if (!pModelView)
+        return;
+
+    // is document closing?
+    if (!pModelDoc->IsClosing())
     {
-        // Switch the context
-        PSS_FloatingToolBar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
+        ZDProcessGraphModelMdl* pModel = pModelView->GetModel();
 
-        // Request the change of the resource language
-        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
+        if (!pModel)
+            return;
 
-        // Notify all document's observers about the frame activation
-        PSS_DocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
-                                   m_pLastDocumentActivated,
-                                   GetActiveView() );
+        if (!pModel->GetAbsolutePath().IsEmpty())
+        {
+            CString wndText = pModel->GetAbsolutePath();
 
-        dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->NotifyAllObservers( &Msg );
-    }
+            // if has a page set, add the page name
+            if (pModel->HasPageSet())
+            {
+                ZDProcessGraphPage* pPage = pModel->FindModelPage(pModel);
 
-    return nResult;
+                if (pPage)
+                    wndText += _T("[") + pPage->GetPageName() + _T("]");
+            }
+
+            SetWindowText(wndText);
+        }
 }
+//---------------------------------------------------------------------------
