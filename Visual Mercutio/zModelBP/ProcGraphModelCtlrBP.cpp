@@ -1657,7 +1657,7 @@ void ZDProcessGraphModelControllerBP::OnInsertPage()
     }
 
     // Filter object classes
-    ZBRuntimeClassSet rtClasses;
+    PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
@@ -1693,7 +1693,7 @@ void ZDProcessGraphModelControllerBP::OnRenamePage()
     CString NewPage = pRoot->GetValidNextPageName();
 
     // Filter object classes
-    ZBRuntimeClassSet rtClasses;
+    PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
@@ -1842,7 +1842,7 @@ void ZDProcessGraphModelControllerBP::OnDeletePage()
     }
 
     // filter object classes
-    ZBRuntimeClassSet rtClasses;
+    PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 

@@ -42,7 +42,7 @@ public:
 
 // Operations
 public:
-    void Initialize( const CString ModelName, ZBModelSet* pModelSet, UINT nIDImageRes, ZBRuntimeClassSet* pSet = NULL, bool EnableMenuItems = true );
+    void Initialize( const CString ModelName, ZBModelSet* pModelSet, UINT nIDImageRes, PSS_RuntimeClassSet* pSet = NULL, bool EnableMenuItems = true );
     void Refresh();
     void Empty();
     ZDProcessGraphModelMdl* GetSelectedModel()

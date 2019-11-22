@@ -11,7 +11,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -19,17 +19,19 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "zBaseLib\PSS_Dialog.h"
-
-#include "ObjectCollections.h"
-#include "zModelRes.h"
+#include "PSS_ObjectCollections.h"
 #include "ZCProcessModelTree.h"
 
-// Forward declaration
+// resources
+#include "zModelRes.h"
+
+// forward class declaration
 class ZDProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -52,7 +54,7 @@ public:
     ZVRenameModelPageDlg( ZDProcessGraphModelMdl*    pModel,
                           CStringArray*                pArrayPageName    = NULL,
                           ZDProcessGraphPage*        pPageToRename    = NULL,
-                          ZBRuntimeClassSet*        pSet            = NULL,
+                          PSS_RuntimeClassSet*       pSet            = NULL,
                           CWnd*                        pParent            = NULL );
 
     CString GetPageName() const;
@@ -97,7 +99,7 @@ private:
     ZDProcessGraphPage*        m_pPageToRename;
 
     // Set of elements that can be displayed in the tree
-    ZBRuntimeClassSet*        m_pSet;
+    PSS_RuntimeClassSet*        m_pSet;
 };
 
 inline CString ZVRenameModelPageDlg::GetPageName() const
@@ -105,7 +107,4 @@ inline CString ZVRenameModelPageDlg::GetPageName() const
     return m_PageName;
 }
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVRenameModelPageDlg_H__5CD7AD82_AB75_4CDC_9B1B_0F0808494530__INCLUDED_)
+#endif

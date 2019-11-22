@@ -69,7 +69,7 @@ ZCProcessModelTree::~ZCProcessModelTree()
 void ZCProcessModelTree::Initialize(const CString        ModelName,
                                     ZBModelSet*        pModelSet,
                                     UINT                nIDImageRes,
-                                    ZBRuntimeClassSet*    pSet            /*= NULL*/,
+                                    PSS_RuntimeClassSet*    pSet            /*= NULL*/,
                                     bool                EnableMenuItems    /*= true*/)
 {
     m_pModelSet = pModelSet;

@@ -30,7 +30,7 @@ ZIModelTree::ZIModelTree(PSS_TreeCtrl*            pTreeCtrl,
                          const CString            RootName,
                          ZBModelSet*            pModelSet,
                          UINT                    nIDImageRes,
-                         ZBRuntimeClassSet*    pSet            /*= NULL*/)
+                         PSS_RuntimeClassSet*    pSet            /*= NULL*/)
     : m_pTreeCtrl(pTreeCtrl),
     m_pModelSet(NULL),
     m_HasBeenInitialized(FALSE),
@@ -88,7 +88,7 @@ void ZIModelTree::Initialize(PSS_TreeCtrl*            pTreeCtrl,
                              const CString            RootName,
                              ZBModelSet*            pModelSet,
                              UINT                    nIDImageRes,
-                             ZBRuntimeClassSet*    pSet            /*= NULL*/)
+                             PSS_RuntimeClassSet*    pSet            /*= NULL*/)
 {
     m_pTreeCtrl = pTreeCtrl;
     m_pSet = pSet;
@@ -1335,7 +1335,7 @@ bool ZIModelTree::SymbolIsPartOfSet(CODComponent* pSymbol) const
 {
     // Run through the set of runtime class pointer and check
     // if the symbol is part of it.
-    ZBRuntimeClassIterator i(m_pSet);
+    PSS_RuntimeClassIterator i(m_pSet);
 
     for (const CRuntimeClass* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {

@@ -17,7 +17,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "ObjectCollections.h"
+#include "PSS_ObjectCollections.h"
 #include "ZCProcessModelTree.h"
 
 // resources
@@ -49,7 +49,7 @@ class AFX_EXT_CLASS ZVDeleteModelPageDlg : public PSS_Dialog
 {
 // Construction
 public:
-    ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, ZBRuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
+    ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, PSS_RuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
 
     CString    GetPageName() const;
     ZDProcessGraphPage* GetSelectedPage()
@@ -91,7 +91,7 @@ private:
     ZDProcessGraphPage* m_pSelectedPage;
     ZDProcessGraphPage* m_pRootPage;
     // Set of elements that can be displayed in the tree
-    ZBRuntimeClassSet* m_pSet;
+    PSS_RuntimeClassSet* m_pSet;
 };
 
 inline CString    ZVDeleteModelPageDlg::GetPageName() const

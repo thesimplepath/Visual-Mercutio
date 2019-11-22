@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ObjectCollections.h"
+#include "PSS_ObjectCollections.h"
 
 // class name mapping
 #ifndef PSS_LinkSymbol
@@ -100,7 +100,7 @@ public:
                 const CString        RootName = _T(""),
                 ZBModelSet*        pModelSet = NULL,
                 UINT                nIDImageRes = -1,
-                ZBRuntimeClassSet*    pSet = NULL);
+                PSS_RuntimeClassSet*    pSet = NULL);
 
     virtual ~ZIModelTree();
 
@@ -108,7 +108,7 @@ public:
                     const CString        RootName = _T(""),
                     ZBModelSet*        pModelSet = NULL,
                     UINT                nIDImageRes = -1,
-                    ZBRuntimeClassSet*    pSet = NULL);
+                    PSS_RuntimeClassSet*    pSet = NULL);
 
     void SetRootName(const CString RootName);
     void Empty();
@@ -226,7 +226,7 @@ private:
     _ZInternalModelTreeDataSet    m_DataSet;
 
     // Set of elements that can be displayed in the tree
-    ZBRuntimeClassSet*            m_pSet;
+    PSS_RuntimeClassSet*            m_pSet;
 };
 
 #endif

@@ -7,7 +7,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,14 +15,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ObjectCollections.h"
-
+// processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "zModelRes.h"
+#include "PSS_ObjectCollections.h"
 #include "ZCProcessModelTree.h"
 
+// resources
+#include "zModelRes.h"
+
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -45,7 +47,7 @@ public:
     ZVInsertModelNewPageDlg( ZDProcessGraphModelMdl*    pModel,
                              const CString                NewPageName        = _T( "" ),
                              CStringArray*                pArrayPageName    = NULL,
-                             ZBRuntimeClassSet*            pSet            = NULL,
+                             PSS_RuntimeClassSet*         pSet            = NULL,
                              CWnd*                        pParent            = NULL);
 
     CString GetPageName() const;
@@ -95,7 +97,7 @@ private:
     ZDProcessGraphModelMdl*    m_pParentModel;
 
     // Set of elements that can be displayed in the tree
-    ZBRuntimeClassSet*        m_pSet;
+    PSS_RuntimeClassSet*        m_pSet;
 };
 
 inline CString ZVInsertModelNewPageDlg::GetPageName() const

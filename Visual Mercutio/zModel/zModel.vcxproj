@@ -148,7 +148,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcGraphChildFrm.cpp">
+    <ClCompile Include="PSS_ProcessGraphChildFrame.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -754,8 +754,8 @@
   <ItemGroup>
     <ClInclude Include="PSS_MathHelper.h" />
     <ClInclude Include="modeltreei.h" />
-    <ClInclude Include="ObjectCollections.h" />
-    <ClInclude Include="ProcGraphChildFrm.h" />
+    <ClInclude Include="PSS_ObjectCollections.h" />
+    <ClInclude Include="PSS_ProcessGraphChildFrame.h" />
     <ClInclude Include="ProcGraphModelCtlr.h" />
     <ClInclude Include="ProcGraphModelDoc.h" />
     <ClInclude Include="ProcGraphModelMdl.h" />

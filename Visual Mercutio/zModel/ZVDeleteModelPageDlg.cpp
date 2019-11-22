@@ -18,7 +18,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVDeleteModelPageDlg dialog
 
 
-ZVDeleteModelPageDlg::ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, ZBRuntimeClassSet* pSet /*= NULL*/, CWnd* pParent /*=NULL*/)
+ZVDeleteModelPageDlg::ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, PSS_RuntimeClassSet* pSet /*= NULL*/, CWnd* pParent /*=NULL*/)
     : PSS_Dialog(ZVDeleteModelPageDlg::IDD, TRUE, pParent),
       m_pModel(pModel),
       m_pSelectedPage(NULL),

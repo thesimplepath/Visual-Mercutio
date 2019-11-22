@@ -49,7 +49,7 @@ public:
     void Initialize( const CString        ModelName,
                      ZBModelSet*        pModelSet,
                      UINT                nIDImageRes,
-                     ZBRuntimeClassSet*    pSet            = NULL,
+                     PSS_RuntimeClassSet*    pSet            = NULL,
                      bool                EnableMenuItems    = true );
 
     void Refresh();

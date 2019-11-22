@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 ZVInsertModelNewPageDlg::ZVInsertModelNewPageDlg(ZDProcessGraphModelMdl*    pModel,
                                                  const CString                NewPageName        /*= ""*/,
                                                  CStringArray*                pArrayPageName    /*= NULL*/,
-                                                 ZBRuntimeClassSet*        pSet            /*= NULL*/,
+                                                 PSS_RuntimeClassSet*        pSet            /*= NULL*/,
                                                  CWnd*                        pParent            /*=NULL*/)
     : PSS_Dialog(ZVInsertModelNewPageDlg::IDD, TRUE, pParent),
     m_pModel(pModel),

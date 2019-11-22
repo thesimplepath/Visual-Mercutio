@@ -23,7 +23,7 @@
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
-#include "zModel\ProcGraphChildFrm.h"
+#include "zModel\PSS_ProcessGraphChildFrame.h"
 #include "zModel\ProcGraphModelDoc.h"
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
@@ -466,7 +466,7 @@ BOOL ZAApp::InitAppl()
     PSS_ProcessModelDocTmpl* pProcessModelDocumentTemplate =
         new PSS_ProcessModelDocTmpl(IDR_MODEL,
                                     RUNTIME_CLASS(ZDProcessGraphModelDoc),
-                                    RUNTIME_CLASS(ZIProcessGraphChildFrame),                // custom MDI child frame
+                                    RUNTIME_CLASS(PSS_ProcessGraphChildFrame),                // custom MDI child frame
                                     RUNTIME_CLASS(ZIProcessGraphModelView),
                                     ID_FILE_MRU_MODEL1);
 
@@ -3349,7 +3349,7 @@ void ZAApp::OnGenerateMercutioReport()
 
         // Let the user choose a sub-process
         // filter object classes
-        ZBRuntimeClassSet rtClasses;
+        PSS_RuntimeClassSet rtClasses;
         rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 

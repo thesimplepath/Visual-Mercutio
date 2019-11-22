@@ -445,7 +445,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         // and then get the owner model
         ZDProcessGraphModelMdl* pOwnerModel = pRootModel->GetOwnerPageModel(pPageFromModel);
 
-        ZBRuntimeClassSet rtClasses;
+        PSS_RuntimeClassSet rtClasses;
 
         rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));

@@ -7,7 +7,7 @@
 // ZVInsertLinkModelPageDlg.h : header file
 //
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,18 +17,17 @@
 
 //processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "ObjectCollections.h"
+#include "PSS_ObjectCollections.h"
 #include "ZCProcessModelTree.h"
 
 // resources
 #include "zModelRes.h"
 
-// Forward declaration
+// forward class declaration
 class ZDProcessGraphModelMdl;
 
-
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -48,7 +47,11 @@ class AFX_EXT_CLASS ZVInsertLinkModelPageDlg : public PSS_Dialog
 {
 // Construction
 public:
-    ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pModel, const CString NewPageName = "", CStringArray* pArrayPageName = NULL, ZBRuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
+    ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pModel,
+                             const CString NewPageName = "",
+                             CStringArray* pArrayPageName = NULL,
+                             PSS_RuntimeClassSet* pSet = NULL,
+                             CWnd* pParent = NULL);
 
     CString    GetPageName() const
     {
@@ -109,7 +112,7 @@ private:
     ZDProcessGraphModelMdl* m_pParentModel;
 
     // Set of elements that can be displayed in the tree
-    ZBRuntimeClassSet* m_pSet;
+    PSS_RuntimeClassSet* m_pSet;
 };
 
 inline ZDProcessGraphModelMdl*    ZVInsertLinkModelPageDlg::GetParentModel() const

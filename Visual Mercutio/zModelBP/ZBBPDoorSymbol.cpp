@@ -424,7 +424,7 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         }
 
         // filter object classes
-        ZBRuntimeClassSet rtClasses;
+        PSS_RuntimeClassSet rtClasses;
         rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 

@@ -33,7 +33,7 @@ END_MESSAGE_MAP()
 ZVRenameModelPageDlg::ZVRenameModelPageDlg(ZDProcessGraphModelMdl*    pModel,
                                            CStringArray*            pArrayPageName    /*= NULL*/,
                                            ZDProcessGraphPage*        pPageToRename    /*= NULL*/,
-                                           ZBRuntimeClassSet*        pSet            /*= NULL*/,
+                                           PSS_RuntimeClassSet*        pSet            /*= NULL*/,
                                            CWnd*                    pParent            /*= NULL*/)
     : PSS_Dialog(ZVRenameModelPageDlg::IDD, TRUE, pParent),
     m_pModel(pModel),

@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_GUID.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "ProcGraphModelView.h"
-#include "ProcGraphChildFrm.h"
+#include "PSS_ProcessGraphChildFrame.h"
 #include "ProcGraphModelCtlr.h"
 #include "ZBDocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
@@ -301,7 +301,7 @@ CView* ZDProcessGraphModelDoc::ActivateView(const CString Name)
     {
         CWnd* pWnd = pView->GetParent();
 
-        if (pWnd && ISA(pWnd, ZIProcessGraphChildFrame))
+        if (pWnd && ISA(pWnd, PSS_ProcessGraphChildFrame))
         {
             if (AfxGetMainWnd() && ISA(AfxGetMainWnd(), CMDIFrameWnd))
             {

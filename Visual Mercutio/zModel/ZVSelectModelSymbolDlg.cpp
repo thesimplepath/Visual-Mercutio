@@ -31,7 +31,7 @@ END_MESSAGE_MAP()
 ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
                                                const CString            Title            /*= ""*/,
                                                int                        SelectableItem    /*= Selectable_All*/,
-                                               ZBRuntimeClassSet*        pSet            /*= NULL*/,
+                                               PSS_RuntimeClassSet*        pSet            /*= NULL*/,
                                                CWnd*                    pParent            /*=NULL*/)
     : PSS_Dialog(ZVSelectModelSymbolDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
@@ -52,7 +52,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel
 ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
                                                const CString            Title,
                                                CRuntimeClass*            pSelectableClass,
-                                               ZBRuntimeClassSet*        pSet                /*= NULL*/,
+                                               PSS_RuntimeClassSet*        pSet                /*= NULL*/,
                                                CWnd*                    pParent                /*=NULL*/)
     : PSS_Dialog(ZVSelectModelSymbolDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
@@ -73,7 +73,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel
 ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
                                                UINT                    nIDResTitle,
                                                int                        SelectableItem    /*= Selectable_All*/,
-                                               ZBRuntimeClassSet*        pSet            /*= NULL*/,
+                                               PSS_RuntimeClassSet*        pSet            /*= NULL*/,
                                                CWnd*                    pParent            /*=NULL*/)
     : PSS_Dialog(ZVSelectModelSymbolDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
@@ -94,7 +94,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel
 ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
                                                UINT                    nIDResTitle,
                                                CRuntimeClass*            pSelectableClass,
-                                               ZBRuntimeClassSet*        pSet                /*= NULL*/,
+                                               PSS_RuntimeClassSet*        pSet                /*= NULL*/,
                                                CWnd*                    pParent                /*=NULL*/)
     : PSS_Dialog(ZVSelectModelSymbolDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
