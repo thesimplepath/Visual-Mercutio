@@ -39,28 +39,55 @@ class ZBUnitManager;
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBUnitObserverMsg : public PSS_ObserverMsg  
+class AFX_EXT_CLASS ZBUnitObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC(ZBUnitObserverMsg)
 public:
-    enum MessageActionType { NoAction, OpenUnit, CloseUnit, ActivateUnit, AddElement, RemoveElement, ChangedElement };
+    enum MessageActionType
+    {
+        NoAction, OpenUnit, CloseUnit, ActivateUnit, AddElement, RemoveElement, ChangedElement
+    };
 
 public:
-    ZBUnitObserverMsg( MessageActionType ActionType = NoAction, ZBUnitManager* pUnitManager = NULL, ZBUnit* pUnit = NULL, ZBSymbol* pElement = NULL );
+    ZBUnitObserverMsg(MessageActionType ActionType = NoAction, ZBUnitManager* pUnitManager = NULL, ZBUnit* pUnit = NULL, ZBSymbol* pElement = NULL);
     virtual ~ZBUnitObserverMsg();
 
-    MessageActionType GetActionType() const { return m_ActionType; };
-    void SetActionType( MessageActionType value ) { m_ActionType = value; };
+    MessageActionType GetActionType() const
+    {
+        return m_ActionType;
+    };
+    void SetActionType(MessageActionType value)
+    {
+        m_ActionType = value;
+    };
 
-    ZBUnitManager*    GetpUnitManager() const { return m_pUnitManager; };
-    void SetpUnitManager( ZBUnitManager* value ) { m_pUnitManager = value; };
+    ZBUnitManager* GetUnitManager() const
+    {
+        return m_pUnitManager;
+    };
+    void SetUnitManager(ZBUnitManager* value)
+    {
+        m_pUnitManager = value;
+    };
 
-    ZBUnit*    GetpUnit() const { return m_pUnit; };
-    void SetpUnit( ZBUnit* value ) { m_pUnit = value; };
+    ZBUnit* GetUnit() const
+    {
+        return m_pUnit;
+    };
+    void SetUnit(ZBUnit* value)
+    {
+        m_pUnit = value;
+    };
 
-    ZBSymbol*    GetpElement() const { return m_pElement; };
-    void SetpElement( ZBSymbol* value ) { m_pElement = value; };
-        
+    ZBSymbol* GetElement() const
+    {
+        return m_pElement;
+    };
+    void SetElement(ZBSymbol* value)
+    {
+        m_pElement = value;
+    };
+
 private:
     MessageActionType            m_ActionType;
     ZBUnitManager*                m_pUnitManager;
@@ -68,4 +95,4 @@ private:
     ZBSymbol*                    m_pElement;
 };
 
-#endif // !defined(AFX_ZBUnitObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)
+#endif

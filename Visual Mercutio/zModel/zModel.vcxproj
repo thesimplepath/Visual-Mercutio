@@ -276,7 +276,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBLinkSymbol.cpp">
+    <ClCompile Include="PSS_LinkSymbol.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -776,7 +776,7 @@
     <ClInclude Include="ZBGenericSymbolErrorLine.h" />
     <ClInclude Include="ZBInfoModelGraphicGeneration.h" />
     <ClInclude Include="ZBLanguageProp.h" />
-    <ClInclude Include="ZBLinkSymbol.h" />
+    <ClInclude Include="PSS_LinkSymbol.h" />
     <ClInclude Include="ZBLogicalPrestationsEntity.h" />
     <ClInclude Include="ZBLogicalPrestationsObserverMsg.h" />
     <ClInclude Include="ZBLogicalRulesEntity.h" />

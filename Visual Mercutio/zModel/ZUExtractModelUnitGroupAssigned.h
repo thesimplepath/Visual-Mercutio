@@ -64,7 +64,7 @@ class AFX_EXT_CLASS ZUExtractModelUnitGroupAssigned : public ZUModelNavigation
 {
 public:
 
-    ZUExtractModelUnitGroupAssigned( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUExtractModelUnitGroupAssigned(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUExtractModelUnitGroupAssigned();
 
     CODComponentSet& GetComponentSet()
@@ -76,8 +76,8 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
 
-    virtual bool OnSymbol( ZBSymbol* pSymbol );
-    virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:
 

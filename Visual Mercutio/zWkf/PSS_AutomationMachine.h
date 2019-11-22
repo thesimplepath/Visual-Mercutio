@@ -25,9 +25,14 @@
 #include "PSS_StateMachineCollection.h"
 #include "PSS_StateObject.h"
 
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
 // forward class declaration
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class ZDProcessGraphModelMdl;
 class PSS_MainAutomationRunnerThread;
 class PSS_Log;

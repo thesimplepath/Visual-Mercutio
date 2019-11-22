@@ -11,7 +11,7 @@
 // processsoft
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -27,7 +27,7 @@ IMPLEMENT_SERIAL(PSS_StateObject, CObject, g_DefVersion)
 // PSS_StateObject
 //---------------------------------------------------------------------------
 PSS_StateObject::PSS_StateObject(ZBSymbol*                      pSymbol,
-                                 ZBLinkSymbol*                  pLinkSymbol, 
+                                 PSS_LinkSymbol*                pLinkSymbol,
                                  PSS_StateLink::IELinkDirection direction,
                                  ZDProcessGraphModelMdl*        pModel) :
     CObject(),
@@ -95,7 +95,7 @@ bool PSS_StateObject::IsEqual(PSS_StateObject* pOther)
             pOther->GetSymbol()->GetSymbolReferenceNumber() == GetSymbol()->GetSymbolReferenceNumber());
 }
 //---------------------------------------------------------------------------
-bool PSS_StateObject::Exist(ZBLinkSymbol& linkSymbol)
+bool PSS_StateObject::Exist(PSS_LinkSymbol& linkSymbol)
 {
     PSS_StateLinksIterator it(&GetLinkSet());
 
@@ -119,7 +119,7 @@ std::size_t PSS_StateObject::EdgesExist(CODEdgeArray& edges)
         if (!pIEdge)
             continue;
 
-        ZBLinkSymbol* pLink = dynamic_cast<ZBLinkSymbol*>(pIEdge);
+        PSS_LinkSymbol* pLink = dynamic_cast<PSS_LinkSymbol*>(pIEdge);
 
         if (!pLink)
             continue;
@@ -131,13 +131,13 @@ std::size_t PSS_StateObject::EdgesExist(CODEdgeArray& edges)
     return counter;
 }
 //---------------------------------------------------------------------------
-void PSS_StateObject::AddLink(ZBLinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction)
+void PSS_StateObject::AddLink(PSS_LinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction)
 {
     PSS_StateLink* pStateLink = new PSS_StateLink(pLinkSymbol, direction, m_pModel);
     AddStateLink(pStateLink);
 }
 //---------------------------------------------------------------------------
-bool PSS_StateObject::RemoveLink(ZBLinkSymbol* pLinkSymbol)
+bool PSS_StateObject::RemoveLink(PSS_LinkSymbol* pLinkSymbol)
 {
     PSS_StateLinksIterator it(&m_Set);
 

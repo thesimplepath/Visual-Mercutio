@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZUODSymbolManipulator.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
@@ -83,7 +83,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*          
     for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
     {
         // get page model
-        ZDProcessGraphModelMdlBP* pPageModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel());
+        ZDProcessGraphModelMdlBP* pPageModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
 
         if (!pPageModel)
             continue;
@@ -109,7 +109,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*          
             if (pCompProcSym)
             {
                 // get process child model
-                ZDProcessGraphModelMdlBP* pChildModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pCompProcSym->GetpModel());
+                ZDProcessGraphModelMdlBP* pChildModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pCompProcSym->GetModel());
 
                 // search a matching symbol in the process model children
                 const int result = GetParentSymbolReference(pSymbol,

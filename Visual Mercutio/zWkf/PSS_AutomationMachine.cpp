@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "PSS_MainAutomationRunnerThread.h"
 #include "PSS_StateMachine.h"
 
@@ -280,8 +280,8 @@ std::size_t PSS_AutomationMachine::CopyEdgeArrayToStateLinksSet(CODEdgeArray&   
 
     for (std::size_t edgeIndex = 0; edgeIndex < elementCount; ++edgeIndex)
     {
-        IODEdge*      pIEdge = edges.GetAt(edgeIndex);
-        ZBLinkSymbol* pLink  = dynamic_cast<ZBLinkSymbol*>(pIEdge);
+        IODEdge*        pIEdge = edges.GetAt(edgeIndex);
+        PSS_LinkSymbol* pLink  = dynamic_cast<PSS_LinkSymbol*>(pIEdge);
 
         if (!pLink)
             continue;

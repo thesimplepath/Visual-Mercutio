@@ -119,9 +119,9 @@ void ZCPropertyListCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     if (pMsg && ISA(pMsg, ZBPropertyObserverMsg))
     {
 
-        if (((ZBPropertyObserverMsg*)pMsg)->GetpProperties() && m_pPropertyItemManager)
+        if (((ZBPropertyObserverMsg*)pMsg)->GetProperties() && m_pPropertyItemManager)
         {
-            Initialize(((ZBPropertyObserverMsg*)pMsg)->GetpProperties());
+            Initialize(((ZBPropertyObserverMsg*)pMsg)->GetProperties());
         }
         else
         {

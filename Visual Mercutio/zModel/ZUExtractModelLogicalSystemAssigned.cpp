@@ -12,11 +12,11 @@
 #include "ZBSystemEntity.h"
 
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -26,21 +26,19 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractModelLogicalSystemAssigned::ZUExtractModelLogicalSystemAssigned( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
-                                                                          void*                        pClass    /*= NULL*/ )
-    : ZUModelNavigation( pModel, pClass )
-{
-}
+ZUExtractModelLogicalSystemAssigned::ZUExtractModelLogicalSystemAssigned(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                                         void*                        pClass    /*= NULL*/)
+    : ZUModelNavigation(pModel, pClass)
+{}
 
 ZUExtractModelLogicalSystemAssigned::~ZUExtractModelLogicalSystemAssigned()
-{
-}
+{}
 
 bool ZUExtractModelLogicalSystemAssigned::OnStart()
 {
-    m_pLogicalSystem = static_cast<ZBSystemEntity*>( m_pClass );
+    m_pLogicalSystem = static_cast<ZBSystemEntity*>(m_pClass);
 
-    if ( !m_pLogicalSystem )
+    if (!m_pLogicalSystem)
     {
         return false;
     }
@@ -57,22 +55,22 @@ bool ZUExtractModelLogicalSystemAssigned::OnFinish()
     return true;
 }
 
-bool ZUExtractModelLogicalSystemAssigned::OnSymbol( ZBSymbol* pSymbol )
+bool ZUExtractModelLogicalSystemAssigned::OnSymbol(ZBSymbol* pSymbol)
 {
-    if ( pSymbol->ExtAppExist( m_pLogicalSystem->GetEntityName() ) ||
-         pSymbol->ExtAppExist( m_pLogicalSystem->GetGUID() ) )
+    if (pSymbol->ExtAppExist(m_pLogicalSystem->GetEntityName()) ||
+        pSymbol->ExtAppExist(m_pLogicalSystem->GetGUID()))
     {
-        m_Set.Add( pSymbol );
+        m_Set.Add(pSymbol);
     }
 
     return true;
 }
-bool ZUExtractModelLogicalSystemAssigned::OnLink( ZBLinkSymbol* pLink )
+bool ZUExtractModelLogicalSystemAssigned::OnLink(PSS_LinkSymbol* pLink)
 {
-    if ( pLink->ExtAppExist( m_pLogicalSystem->GetEntityName() ) ||
-         pLink->ExtAppExist( m_pLogicalSystem->GetGUID() ) )
+    if (pLink->ExtAppExist(m_pLogicalSystem->GetEntityName()) ||
+        pLink->ExtAppExist(m_pLogicalSystem->GetGUID()))
     {
-        m_Set.Add( pLink );
+        m_Set.Add(pLink);
     }
 
     return true;

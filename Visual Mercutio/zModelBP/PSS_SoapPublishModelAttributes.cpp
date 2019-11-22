@@ -14,7 +14,7 @@
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 
@@ -110,7 +110,7 @@ bool PSS_SoapPublishModelAttributes::OnSymbol(ZBSymbol* pSymbol)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelAttributes::OnLink(ZBLinkSymbol* pLink)
+bool PSS_SoapPublishModelAttributes::OnLink(PSS_LinkSymbol* pLink)
 {
     if (!pLink)
         return false;

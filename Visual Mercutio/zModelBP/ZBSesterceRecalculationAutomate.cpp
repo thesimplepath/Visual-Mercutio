@@ -13,7 +13,7 @@
 #include "ZUProcessCalculateTotals.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"
@@ -513,7 +513,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 {
                     IODEdge* pIEdge = LeavingRightEdges.GetAt(nEdgeIdx);
 
-                    // Check if a ZBLinkSymbol
+                    // Check if a PSS_LinkSymbol
                     if (!static_cast<CODLinkComponent*>(pIEdge) ||
                         !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                     {
@@ -558,7 +558,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 {
                     IODEdge* pIEdge = LeavingDownEdges.GetAt(nEdgeIdx);
 
-                    // Check if a ZBLinkSymbol
+                    // Check if a PSS_LinkSymbol
                     if (!static_cast<CODLinkComponent*>(pIEdge) ||
                         !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                     {
@@ -959,7 +959,7 @@ double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables(CODEdgeArr
     {
         IODEdge* pIEdge = LeavingEdges.GetAt(nEdgeIdx);
 
-        // Check if a ZBLinkSymbol
+        // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
             !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
         {

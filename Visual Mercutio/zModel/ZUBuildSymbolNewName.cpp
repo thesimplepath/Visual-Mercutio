@@ -10,11 +10,11 @@
 #include "ProcGraphModelMdl.h"
 
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -24,17 +24,15 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUBuildSymbolNewName::ZUBuildSymbolNewName( const CString BaseName /*= ""*/ )
-    : m_BaseName( BaseName )
-{
-}
+ZUBuildSymbolNewName::ZUBuildSymbolNewName(const CString BaseName /*= ""*/)
+    : m_BaseName(BaseName)
+{}
 
 ZUBuildSymbolNewName::~ZUBuildSymbolNewName()
-{
-}
+{}
 
 // JMR-MODIF - Le 23 mai 2006 - Ajout du paramètre RefNumber.
-CString ZUBuildSymbolNewName::GetNextAvailableSymbolName( CODModel& Model, int RefNumber )
+CString ZUBuildSymbolNewName::GetNextAvailableSymbolName(CODModel& Model, int RefNumber)
 {
     // **********************************************************************************************************
     // JMR-MODIF - Le 23 mai 2006 - Suppression de l'ancien code de la fonction GetNextAvailableSymbolName.
@@ -65,56 +63,56 @@ CString ZUBuildSymbolNewName::GetNextAvailableSymbolName( CODModel& Model, int R
     // If no page available, return empty string
     return _T( "" );
 */
-    // **********************************************************************************************************
+// **********************************************************************************************************
 
-    // **********************************************************************************************************
-    // JMR-MODIF - Le 23 mai 2006 - Nouveau code pour la fonction GetNextAvailableSymbolName.
+// **********************************************************************************************************
+// JMR-MODIF - Le 23 mai 2006 - Nouveau code pour la fonction GetNextAvailableSymbolName.
 
-    if ( m_BaseName.IsEmpty() )
+    if (m_BaseName.IsEmpty())
     {
-        m_SymbolName.Format( _T( "sym%d" ), RefNumber );
+        m_SymbolName.Format(_T("sym%d"), RefNumber);
     }
     else
     {
-        m_SymbolName.Format( _T( "%s%d" ), (const char*)m_BaseName, RefNumber );
+        m_SymbolName.Format(_T("%s%d"), (const char*)m_BaseName, RefNumber);
     }
 
     m_Found = false;
 
     // Try the name
-    _GetNextAvailableSymbolName( Model );
+    _GetNextAvailableSymbolName(Model);
 
     // If did found the same symbol name, return it
-    if ( m_Found == false )
+    if (m_Found == false)
     {
         return m_SymbolName;
     }
 
     // If no page available, return empty string
-    return _T( "" );
+    return _T("");
     // **********************************************************************************************************
 }
 
-void ZUBuildSymbolNewName::_GetNextAvailableSymbolName( CODModel& Model )
+void ZUBuildSymbolNewName::_GetNextAvailableSymbolName(CODModel& Model)
 {
     CODModel* pModel = &Model;
 
-    if ( ISA( pModel, ZDProcessGraphModelMdl ) )
+    if (ISA(pModel, ZDProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl&>( Model ).AcceptVisitor( *this );
+        dynamic_cast<ZDProcessGraphModelMdl&>(Model).AcceptVisitor(*this);
     }
 }
 
-bool ZUBuildSymbolNewName::Visit( CODComponent& Symbol )
+bool ZUBuildSymbolNewName::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if ( ISA( pSymbol, ZBSymbol ) && dynamic_cast<ZBSymbol*>( &Symbol )->GetSymbolName() == m_SymbolName )
+    if (ISA(pSymbol, ZBSymbol) && dynamic_cast<ZBSymbol*>(&Symbol)->GetSymbolName() == m_SymbolName)
     {
         m_Found = true;
     }
-    else if ( ISA( pSymbol, ZBLinkSymbol ) &&
-              dynamic_cast<ZBLinkSymbol*>( &Symbol )->GetSymbolName() == m_SymbolName )
+    else if (ISA(pSymbol, PSS_LinkSymbol) &&
+             dynamic_cast<PSS_LinkSymbol*>(&Symbol)->GetSymbolName() == m_SymbolName)
     {
         m_Found = true;
     }

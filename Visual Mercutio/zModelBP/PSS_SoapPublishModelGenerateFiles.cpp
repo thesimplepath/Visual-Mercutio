@@ -20,7 +20,7 @@
 #include "zModel\ProcGraphModelCtlr.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "ZBPublishMessengerModelInformation.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
@@ -134,14 +134,14 @@ bool PSS_SoapPublishModelGenerateFiles::OnSymbol(ZBSymbol* pSymbol)
 
     ASSERT(m_pInfo);
 
-    if (pSymbol->GetChildModel() && m_pInfo->GetpDC() && m_pInfo->GetpCtlr())
+    if (pSymbol->GetChildModel() && m_pInfo->GetDC() && m_pInfo->GetCtlr())
         if (!PublishModel(dynamic_cast<ZDProcessGraphModelMdl*>(pSymbol->GetChildModel())))
             return false;
 
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelGenerateFiles::OnLink(ZBLinkSymbol* pLink)
+bool PSS_SoapPublishModelGenerateFiles::OnLink(PSS_LinkSymbol* pLink)
 {
     return true;
 }
@@ -153,8 +153,8 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
 
     ASSERT(m_pInfo);
 
-    ZDProcessGraphModelController* pCtrl = m_pInfo->GetpCtlr();
-    CDC*                           pDC   = m_pInfo->GetpDC();
+    ZDProcessGraphModelController* pCtrl = m_pInfo->GetCtlr();
+    CDC*                           pDC   = m_pInfo->GetDC();
 
     if (!pDC || !pCtrl)
         return false;

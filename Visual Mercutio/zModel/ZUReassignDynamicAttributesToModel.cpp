@@ -8,13 +8,13 @@
 #include "zModel\ProcGraphModelMdl.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "zProperty\ZBDynamicProperties.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -22,13 +22,12 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUReassignDynamicAttributesToModel::ZUReassignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/, 
-                                                                   ZBProperty* pProperty /*= NULL*/,
-                                                                   void* pClass /*= NULL*/)
-: ZUModelNavigation(pModel,pClass),
-  m_pProperty(pProperty)
-{
-}
+ZUReassignDynamicAttributesToModel::ZUReassignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/,
+                                                                       ZBProperty* pProperty /*= NULL*/,
+                                                                       void* pClass /*= NULL*/)
+    : ZUModelNavigation(pModel, pClass),
+    m_pProperty(pProperty)
+{}
 
 ZUReassignDynamicAttributesToModel::~ZUReassignDynamicAttributesToModel()
 {
@@ -50,28 +49,21 @@ bool ZUReassignDynamicAttributesToModel::OnFinish()
     return true;
 }
 
-bool ZUReassignDynamicAttributesToModel::OnSymbol( ZBSymbol* pSymbol )
+bool ZUReassignDynamicAttributesToModel::OnSymbol(ZBSymbol* pSymbol)
 {
     // If for the symbol has the same property
     // delete the property and assign the new one
-    if (pSymbol->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty ))
-        pSymbol->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
+    if (pSymbol->GetDynamicPropertiesManager()->DeleteProperty(m_pProperty))
+        pSymbol->GetDynamicPropertiesManager()->AddDynamicProperty(m_pProperty->Dup());
 
     return true;
 }
-bool ZUReassignDynamicAttributesToModel::OnLink( ZBLinkSymbol* pLink )
+bool ZUReassignDynamicAttributesToModel::OnLink(PSS_LinkSymbol* pLink)
 {
     // If for the symbol has the same property
     // delete the property and assign the new one
-    if (pLink->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty ))
-        pLink->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
+    if (pLink->GetDynamicPropertiesManager()->DeleteProperty(m_pProperty))
+        pLink->GetDynamicPropertiesManager()->AddDynamicProperty(m_pProperty->Dup());
 
     return true;
 }
-
-
-
-
-
-
-

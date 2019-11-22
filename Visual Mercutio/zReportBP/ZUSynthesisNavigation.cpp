@@ -6,7 +6,7 @@
 #include "ZUSynthesisNavigation.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZDProcessGraphPage.h"
 
@@ -144,8 +144,8 @@ bool ZUSynthesisNavigation::OnSymbol( ZBSymbol* pSymbol )
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBLinkSymbol dans le modèle.
-bool ZUSynthesisNavigation::OnLink( ZBLinkSymbol* pLink )
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_LinkSymbol dans le modèle.
+bool ZUSynthesisNavigation::OnLink( PSS_LinkSymbol* pLink )
 {
     return true;
 }

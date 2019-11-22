@@ -38,21 +38,21 @@ class ZUSynthesisNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUSynthesisNavigation( ZDProcessGraphModelMdl*    pModel        = NULL,
-                           void*                    pClass        = NULL,
-                           ZDProcessGraphModelMdl*    pRootModel    = NULL,
-                           const CString            domainName    = _T( "" ),
-                           const CString            unitName    = _T( "" ) );
+    ZUSynthesisNavigation(ZDProcessGraphModelMdl*    pModel = NULL,
+                          void*                    pClass = NULL,
+                          ZDProcessGraphModelMdl*    pRootModel = NULL,
+                          const CString            domainName = _T(""),
+                          const CString            unitName = _T(""));
 
     virtual ~ZUSynthesisNavigation();
 
     // Call-back methods
-    virtual bool OnStart            ();
-    virtual bool OnFinish            ();
-    virtual bool OnProcedureSymbol    ( ZBBPProcedureSymbol*    pSymbol );
-    virtual bool OnProcessSymbol    ( ZBBPProcessSymbol*    pSymbol );
-    virtual bool OnSymbol            ( ZBSymbol*                pSymbol );
-    virtual bool OnLink                ( ZBLinkSymbol*            pLink );
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*    pSymbol);
+    virtual bool OnProcessSymbol(ZBBPProcessSymbol*    pSymbol);
+    virtual bool OnSymbol(ZBSymbol*                pSymbol);
+    virtual bool OnLink(PSS_LinkSymbol*            pLink);
 
 private:
 
@@ -66,4 +66,4 @@ private:
     CString                    m_CurrentProcessName;
 };
 
-#endif // !defined(AFX_ZUSynthesisNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

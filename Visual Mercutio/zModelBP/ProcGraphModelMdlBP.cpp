@@ -284,9 +284,9 @@ void ZDProcessGraphModelMdlBP::MigrateProperties()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel())->MigrateProperties();
+                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel())->MigrateProperties();
             }
         }
     }
@@ -347,9 +347,9 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel())->MigrateUnitGUID();
+                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel())->MigrateUnitGUID();
             }
         }
     }
@@ -391,9 +391,9 @@ void ZDProcessGraphModelMdlBP::NotifyDeletePage(ZDProcessGraphPage* pPage)
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel())->NotifyDeletePage(pPage);
+                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel())->NotifyDeletePage(pPage);
             }
         }
     }
@@ -466,9 +466,9 @@ void ZDProcessGraphModelMdlBP::ConvertDeliverables()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel())->ConvertDeliverables();
+                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel())->ConvertDeliverables();
             }
         }
     }
@@ -572,9 +572,9 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel())->ReassignUnit(pLog);
+                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel())->ReassignUnit(pLog);
             }
         }
     }
@@ -625,9 +625,9 @@ void ZDProcessGraphModelMdlBP::RecalculatePageReference()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel())->RecalculatePageReference();
+                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel())->RecalculatePageReference();
             }
         }
     }
@@ -666,9 +666,9 @@ void ZDProcessGraphModelMdlBP::RecalculateDoorReference()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel())->RecalculateDoorReference();
+                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel())->RecalculateDoorReference();
             }
         }
     }

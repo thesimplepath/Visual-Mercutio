@@ -13,11 +13,11 @@
 #include "ZBUserEntity.h"
 
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -27,21 +27,19 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractModelUnitGroupAssigned::ZUExtractModelUnitGroupAssigned( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
-                                                                  void*                        pClass    /*= NULL*/ )
-    : ZUModelNavigation( pModel, pClass )
-{
-}
+ZUExtractModelUnitGroupAssigned::ZUExtractModelUnitGroupAssigned(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                                 void*                        pClass    /*= NULL*/)
+    : ZUModelNavigation(pModel, pClass)
+{}
 
 ZUExtractModelUnitGroupAssigned::~ZUExtractModelUnitGroupAssigned()
-{
-}
+{}
 
 bool ZUExtractModelUnitGroupAssigned::OnStart()
 {
-    m_pUserEntity = static_cast<ZBUserEntity*>( m_pClass );
+    m_pUserEntity = static_cast<ZBUserEntity*>(m_pClass);
 
-    if ( !m_pUserEntity )
+    if (!m_pUserEntity)
     {
         return false;
     }
@@ -58,21 +56,21 @@ bool ZUExtractModelUnitGroupAssigned::OnFinish()
     return true;
 }
 
-bool ZUExtractModelUnitGroupAssigned::OnSymbol( ZBSymbol* pSymbol )
+bool ZUExtractModelUnitGroupAssigned::OnSymbol(ZBSymbol* pSymbol)
 {
-    if ( pSymbol->HasUnit() && pSymbol->GetUnitName() == m_pUserEntity->GetEntityName() )
+    if (pSymbol->HasUnit() && pSymbol->GetUnitName() == m_pUserEntity->GetEntityName())
     {
-        m_Set.Add( pSymbol );
+        m_Set.Add(pSymbol);
     }
 
     return true;
 }
 
-bool ZUExtractModelUnitGroupAssigned::OnLink( ZBLinkSymbol* pLink )
+bool ZUExtractModelUnitGroupAssigned::OnLink(PSS_LinkSymbol* pLink)
 {
-    if ( pLink->HasUnit() && pLink->GetUnitName() == m_pUserEntity->GetEntityName() )
+    if (pLink->HasUnit() && pLink->GetUnitName() == m_pUserEntity->GetEntityName())
     {
-        m_Set.Add( pLink );
+        m_Set.Add(pLink);
     }
 
     return true;

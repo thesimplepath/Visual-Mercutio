@@ -865,7 +865,7 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel());
+                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -902,7 +902,7 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
 
                                 // Obtient le contrôleur de modèle du processus.
                                 ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetpModel());
+                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                 // Appel récursif à FindQuantity, jusqu'à ce que toutes les pages des processus
                                 // enfants aient été visitées, ou que le livrable original ait été trouvé.
@@ -947,7 +947,7 @@ int ZBBPProcessSymbol::GetDeliverablesInChildPages(CString& DeliverablesList)
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel());
+                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {

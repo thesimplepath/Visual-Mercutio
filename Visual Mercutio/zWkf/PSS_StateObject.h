@@ -29,10 +29,15 @@
 #include "PSS_AutomationCollections.h"
 #include "PSS_StateLink.h"
 
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
 // forward class declaration
 class ZDProcessGraphModelMdl;
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class PSS_StateLink;
 
 #ifdef _ZWKFEXPORT
@@ -62,7 +67,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@param pModel - model
         */
         PSS_StateObject(ZBSymbol*                      pSymbol = NULL,
-                        ZBLinkSymbol*                  pLinkSymbol = NULL,
+                        PSS_LinkSymbol*                pLinkSymbol = NULL,
                         PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_EnteringUp,
                         ZDProcessGraphModelMdl*        pModel = NULL);
 
@@ -126,7 +131,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@param linkSymbol - link symbol to search for
         *@return true if the link exists in the state object, otherwose false
         */
-        virtual bool Exist(ZBLinkSymbol& linkSymbol);
+        virtual bool Exist(PSS_LinkSymbol& linkSymbol);
 
         /**
         * Gets the number of existing edges found in the state object
@@ -161,14 +166,14 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@param pLinkSymbol - link symbol
         *@param direction - link direction
         */
-        virtual void AddLink(ZBLinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction);
+        virtual void AddLink(PSS_LinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction);
 
         /**
         * Removes a link
         *@param pLinkSymbol - link symbol to remove
         *@return true on success, otherwise false
         */
-        virtual bool RemoveLink(ZBLinkSymbol* pLinkSymbol);
+        virtual bool RemoveLink(PSS_LinkSymbol* pLinkSymbol);
  
         /**
         * Removes a link by reference

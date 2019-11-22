@@ -127,11 +127,11 @@ void ZCRulesTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
         {
             case UM_INITRULES:
             {
-                if (dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetpEntity() &&
-                    ISA(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetpEntity(), ZBLogicalRulesEntity))
+                if (dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity(), ZBLogicalRulesEntity))
                 {
                     ZBLogicalRulesEntity* pLogicalRule =
-                        dynamic_cast<ZBLogicalRulesEntity*>(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetpEntity());
+                        dynamic_cast<ZBLogicalRulesEntity*>(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity());
 
                     Initialize(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetRootName(), pLogicalRule);
                 }

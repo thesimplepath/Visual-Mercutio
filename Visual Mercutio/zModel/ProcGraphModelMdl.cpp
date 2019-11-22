@@ -10,7 +10,7 @@
 #include "ZDProcessGraphPage.h"
 
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #include "ZBLanguageProp.h"
 #include "ZBBasicModelProp.h"
@@ -158,14 +158,10 @@ void ZDProcessGraphModelMdl::DetachAllObserversInHierarchy(ZIProcessGraphModelVi
     {
         ZBProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
-        {
+        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage; pPage = i.GetNext())
             // Ne pas effectuer de modifications sur le même modèle.
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
-            {
-                pPage->GetpModel()->DetachAllObserversInHierarchy(m_pViewport, m_pDocument);
-            }
-        }
+            if (pPage->GetModel() && pPage->GetModel() != this)
+                pPage->GetModel()->DetachAllObserversInHierarchy(m_pViewport, m_pDocument);
     }
 
     // Nettoie les liens sur les observeurs du modèle.
@@ -206,9 +202,9 @@ void ZDProcessGraphModelMdl::DeleteModelSet()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Ne pas effectuer de modifications sur le même modèle.
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->DeleteModelSet();
+                pPage->GetModel()->DeleteModelSet();
             }
         }
     }
@@ -239,10 +235,10 @@ void ZDProcessGraphModelMdl::DeleteModelSet()
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
-            if (pPage->GetpModel() != this)
+            if (pPage->GetModel() != this)
             {
-                delete pPage->GetpModel();
-                pPage->SetpModel(NULL);
+                delete pPage->GetModel();
+                pPage->SetModel(NULL);
             }
 
             delete pPage;
@@ -1007,10 +1003,10 @@ bool ZDProcessGraphModelMdl::DeletePage(const CString PageName, bool DeleteModel
             if (pPage->GetPageName() == PageName)
             {
                 // Remove the current element
-                if (DeleteModel && pPage->GetpModel())
+                if (DeleteModel && pPage->GetModel())
                 {
-                    delete pPage->GetpModel();
-                    pPage->SetpModel(NULL);
+                    delete pPage->GetModel();
+                    pPage->SetModel(NULL);
                 }
 
                 delete pPage;
@@ -1021,9 +1017,9 @@ bool ZDProcessGraphModelMdl::DeletePage(const CString PageName, bool DeleteModel
                 return true;
             }
 
-            if (pPage->GetpModel() != this)
+            if (pPage->GetModel() != this)
             {
-                if (pPage->GetpModel()->DeletePage(PageName, DeleteModel))
+                if (pPage->GetModel()->DeletePage(PageName, DeleteModel))
                 {
                     return true;
                 }
@@ -1064,9 +1060,9 @@ bool ZDProcessGraphModelMdl::DeleteAllPages()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->DeleteAllPages();
+                pPage->GetModel()->DeleteAllPages();
             }
         }
     }
@@ -1113,9 +1109,9 @@ ZDProcessGraphPage* ZDProcessGraphModelMdl::FindPage(const CString PageName)
             }
 
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                ZDProcessGraphPage* pPage2 = pPage->GetpModel()->FindPage(PageName);
+                ZDProcessGraphPage* pPage2 = pPage->GetModel()->FindPage(PageName);
 
                 if (pPage2)
                 {
@@ -1162,7 +1158,7 @@ ZDProcessGraphPage* ZDProcessGraphModelMdl::FindModelPage(const CString ModelNam
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
-            if (pPage->GetpModel() && pPage->GetpModel()->GetModelName() == ModelName)
+            if (pPage->GetModel() && pPage->GetModel()->GetModelName() == ModelName)
             {
                 return pPage;
             }
@@ -1217,15 +1213,15 @@ ZDProcessGraphPage* ZDProcessGraphModelMdl::FindModelPage(ZDProcessGraphModelMdl
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
-            if (pPage->GetpModel() == pModel)
+            if (pPage->GetModel() == pModel)
             {
                 return pPage;
             }
 
             // Do not check for itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                ZDProcessGraphPage* pSubPage = pPage->GetpModel()->FindModelPage(pModel, InSubModel);
+                ZDProcessGraphPage* pSubPage = pPage->GetModel()->FindModelPage(pModel, InSubModel);
 
                 if (pSubPage)
                 {
@@ -1388,9 +1384,9 @@ void ZDProcessGraphModelMdl::_GetExistingPageNameArray(CStringArray& PageArray)
             }
 
             // Do not check for itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_GetExistingPageNameArray(PageArray);
+                pPage->GetModel()->_GetExistingPageNameArray(PageArray);
             }
         }
     }
@@ -1437,8 +1433,8 @@ bool ZDProcessGraphModelMdl::SymbolNameAlreadyAllocated(const CString SymbolName
             return true;
         }
         // If we found the same reference number, return true
-        else if (ISA(pComp, ZBLinkSymbol) &&
-                 reinterpret_cast<ZBLinkSymbol*>(pComp)->GetSymbolName() == SymbolName)
+        else if (ISA(pComp, PSS_LinkSymbol) &&
+                 reinterpret_cast<PSS_LinkSymbol*>(pComp)->GetSymbolName() == SymbolName)
         {
             return true;
         }
@@ -1465,9 +1461,9 @@ bool ZDProcessGraphModelMdl::SymbolNameAlreadyAllocated(const CString SymbolName
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not check if allocated for itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                if (pPage->GetpModel()->SymbolNameAlreadyAllocated(SymbolName))
+                if (pPage->GetModel()->SymbolNameAlreadyAllocated(SymbolName))
                 {
                     return true;
                 }
@@ -1509,8 +1505,8 @@ bool ZDProcessGraphModelMdl::ReferenceNumberAlreadyAllocated(int ReferenceNumber
             return true;
         }
         // If we found the same reference number, return true
-        else if (ISA(pComp, ZBLinkSymbol) &&
-                 reinterpret_cast<ZBLinkSymbol*>(pComp)->GetSymbolReferenceNumber() == ReferenceNumber)
+        else if (ISA(pComp, PSS_LinkSymbol) &&
+                 reinterpret_cast<PSS_LinkSymbol*>(pComp)->GetSymbolReferenceNumber() == ReferenceNumber)
         {
             return true;
         }
@@ -1538,9 +1534,9 @@ bool ZDProcessGraphModelMdl::ReferenceNumberAlreadyAllocated(int ReferenceNumber
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not check if allocated for itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                if (pPage->GetpModel()->ReferenceNumberAlreadyAllocated(ReferenceNumber))
+                if (pPage->GetModel()->ReferenceNumberAlreadyAllocated(ReferenceNumber))
                 {
                     return true;
                 }
@@ -1619,7 +1615,7 @@ int ZDProcessGraphModelMdl::_GetNextAvailableReferenceNumber(ZDProcessGraphModel
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdl* m_CurModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetpModel());
+                ZDProcessGraphModelMdl* m_CurModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -1661,12 +1657,12 @@ int ZDProcessGraphModelMdl::_GetNextAvailableReferenceNumber(ZDProcessGraphModel
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un symbole de lien.
-                            if (pComponent && ISA(pComponent, ZBLinkSymbol))
+                            if (pComponent && ISA(pComponent, PSS_LinkSymbol))
                             {
                                 // Contrôle et mets à jour le résultat.
-                                if (dynamic_cast<ZBLinkSymbol*>(pComponent)->GetSymbolReferenceNumber() >= Result)
+                                if (dynamic_cast<PSS_LinkSymbol*>(pComponent)->GetSymbolReferenceNumber() >= Result)
                                 {
-                                    Result = dynamic_cast<ZBLinkSymbol*>(pComponent)->GetSymbolReferenceNumber();
+                                    Result = dynamic_cast<PSS_LinkSymbol*>(pComponent)->GetSymbolReferenceNumber();
                                     Result++;
                                 }
                             }
@@ -1702,8 +1698,8 @@ bool ZDProcessGraphModelMdl::_GetNextAvailableReferenceNumber( int& ReferenceNum
             return true;
         }
         // If we found the same reference number, return true
-        else if ( ISA( pComp, ZBLinkSymbol ) &&
-                  reinterpret_cast<ZBLinkSymbol*>( pComp )->GetSymbolReferenceNumber() == ReferenceNumber )
+        else if ( ISA( pComp, PSS_LinkSymbol ) &&
+                  reinterpret_cast<PSS_LinkSymbol*>( pComp )->GetSymbolReferenceNumber() == ReferenceNumber )
         {
             return true;
         }
@@ -1729,9 +1725,9 @@ bool ZDProcessGraphModelMdl::_GetNextAvailableReferenceNumber( int& ReferenceNum
         for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )
         {
             // Do not clear the path of itself
-            if ( pPage->GetpModel() && pPage->GetpModel() != this )
+            if ( pPage->GetModel() && pPage->GetModel() != this )
             {
-                if ( pPage->GetpModel()->_GetNextAvailableReferenceNumber( ReferenceNumber ) )
+                if ( pPage->GetModel()->_GetNextAvailableReferenceNumber( ReferenceNumber ) )
                 {
                     return true;
                 }
@@ -1773,9 +1769,9 @@ void ZDProcessGraphModelMdl::_GetExistingReferenceNumberArray(CStringArray& Refe
             ReferenceNumberArray.Add(reinterpret_cast<ZBSymbol*>(pComp)->GetSymbolReferenceNumberStr());
         }
         // Add the reference number to the array
-        else if (ISA(pComp, ZBLinkSymbol))
+        else if (ISA(pComp, PSS_LinkSymbol))
         {
-            ReferenceNumberArray.Add(reinterpret_cast<ZBLinkSymbol*>(pComp)->GetSymbolReferenceNumberStr());
+            ReferenceNumberArray.Add(reinterpret_cast<PSS_LinkSymbol*>(pComp)->GetSymbolReferenceNumberStr());
         }
 
         if (ISA(pComp, ZBSymbol) &&
@@ -1796,9 +1792,9 @@ void ZDProcessGraphModelMdl::_GetExistingReferenceNumberArray(CStringArray& Refe
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not clear the path of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_GetExistingReferenceNumberArray(ReferenceNumberArray);
+                pPage->GetModel()->_GetExistingReferenceNumberArray(ReferenceNumberArray);
             }
         }
     }
@@ -1818,9 +1814,9 @@ bool ZDProcessGraphModelMdl::AcceptVisitor(PSS_BasicSymbolVisitor& Visitor)
             {
                 reinterpret_cast<ZBSymbol*>(pComp)->AcceptVisitor(Visitor);
             }
-            else if (ISA(pComp, ZBLinkSymbol))
+            else if (ISA(pComp, PSS_LinkSymbol))
             {
-                reinterpret_cast<ZBLinkSymbol*>(pComp)->AcceptVisitor(Visitor);
+                reinterpret_cast<PSS_LinkSymbol*>(pComp)->AcceptVisitor(Visitor);
             }
 
             // If sub model defined
@@ -1841,9 +1837,9 @@ bool ZDProcessGraphModelMdl::AcceptVisitor(PSS_BasicSymbolVisitor& Visitor)
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do process itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->AcceptVisitor(Visitor);
+                pPage->GetModel()->AcceptVisitor(Visitor);
             }
         }
     }
@@ -1893,9 +1889,9 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetSymbolModel(ZBSymbol* pSymbol
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                ZDProcessGraphModelMdl* pMdl = pPage->GetpModel()->GetSymbolModel(pSymbolToFind);
+                ZDProcessGraphModelMdl* pMdl = pPage->GetModel()->GetSymbolModel(pSymbolToFind);
 
                 if (pMdl)
                 {
@@ -1908,7 +1904,7 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetSymbolModel(ZBSymbol* pSymbol
     return NULL;
 }
 
-ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetLinkSymbolModel(ZBLinkSymbol* pSymbolToFind)
+ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetLinkSymbolModel(PSS_LinkSymbol* pSymbolToFind)
 {
     CODComponentSet* pSet = GetComponents();
 
@@ -1916,7 +1912,7 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetLinkSymbolModel(ZBLinkSymbol*
     {
         CODComponent* pComp = pSet->GetAt(i);
 
-        if (pComp && ISA(pComp, ZBLinkSymbol) && pComp == pSymbolToFind)
+        if (pComp && ISA(pComp, PSS_LinkSymbol) && pComp == pSymbolToFind)
         {
             // If the symbol has been identified,
             // return the model
@@ -1945,9 +1941,9 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetLinkSymbolModel(ZBLinkSymbol*
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                ZDProcessGraphModelMdl* pMdl = pPage->GetpModel()->GetLinkSymbolModel(pSymbolToFind);
+                ZDProcessGraphModelMdl* pMdl = pPage->GetModel()->GetLinkSymbolModel(pSymbolToFind);
 
                 if (pMdl)
                 {
@@ -2022,10 +2018,10 @@ void ZDProcessGraphModelMdl::_SetBackgroundComponentToAll(CODComponent&    Bkgnd
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // The parent of all pages is itself
-                pPage->GetpModel()->_SetBackgroundComponentToAll(BkgndComponent, StretchToModel);
+                pPage->GetModel()->_SetBackgroundComponentToAll(BkgndComponent, StretchToModel);
             }
         }
     }
@@ -2099,10 +2095,10 @@ void ZDProcessGraphModelMdl::_ClearBackgroundComponentToAll()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // The parent of all pages is itself
-                pPage->GetpModel()->_ClearBackgroundComponentToAll();
+                pPage->GetModel()->_ClearBackgroundComponentToAll();
             }
         }
     }
@@ -2135,10 +2131,10 @@ void ZDProcessGraphModelMdl::PropagateNewSymbolAttributes(ZBPropertyAttributes* 
             {
                 dynamic_cast<ZBSymbol*>(pComp)->OnChangeAttributes(pAttributes);
             }
-            else if (ISA(pComp, ZBLinkSymbol) &&
-                     dynamic_cast<ZBLinkSymbol*>(pComp)->GetObjectTypeID() == ObjectID)
+            else if (ISA(pComp, PSS_LinkSymbol) &&
+                     dynamic_cast<PSS_LinkSymbol*>(pComp)->GetObjectTypeID() == ObjectID)
             {
-                reinterpret_cast<ZBLinkSymbol*>(pComp)->OnChangeAttributes(pAttributes);
+                reinterpret_cast<PSS_LinkSymbol*>(pComp)->OnChangeAttributes(pAttributes);
             }
 
             // Check if has sub-model
@@ -2159,10 +2155,10 @@ void ZDProcessGraphModelMdl::PropagateNewSymbolAttributes(ZBPropertyAttributes* 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // The parent of all pages is itself
-                pPage->GetpModel()->PropagateNewSymbolAttributes(pAttributes, ObjectID);
+                pPage->GetModel()->PropagateNewSymbolAttributes(pAttributes, ObjectID);
             }
         }
     }
@@ -2183,9 +2179,9 @@ void ZDProcessGraphModelMdl::RefreshSymbolAttributes(bool Redraw /*= false*/)
             {
                 reinterpret_cast<ZBSymbol*>(pComp)->RefreshAttributeTextArea(Redraw);
             }
-            else if (ISA(pComp, ZBLinkSymbol))
+            else if (ISA(pComp, PSS_LinkSymbol))
             {
-                reinterpret_cast<ZBLinkSymbol*>(pComp)->RefreshAttributeTextArea(Redraw);
+                reinterpret_cast<PSS_LinkSymbol*>(pComp)->RefreshAttributeTextArea(Redraw);
             }
 
             // Check if has sub-model
@@ -2206,10 +2202,10 @@ void ZDProcessGraphModelMdl::RefreshSymbolAttributes(bool Redraw /*= false*/)
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // The parent of all pages is itself
-                pPage->GetpModel()->RefreshSymbolAttributes(Redraw);
+                pPage->GetModel()->RefreshSymbolAttributes(Redraw);
             }
         }
     }
@@ -2386,7 +2382,7 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::FindModel(const CString         
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdl* m_CurModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetpModel());
+                ZDProcessGraphModelMdl* m_CurModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -2574,14 +2570,14 @@ void ZDProcessGraphModelMdl::_Find(const CString            What,
             }
         }
         // If a link symbol and the same name
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
-            if (((ZBLinkSymbol*)pComp)->Match(What, pPropAttributes, CaseSensitive, PartialSearch))
+            if (((PSS_LinkSymbol*)pComp)->Match(What, pPropAttributes, CaseSensitive, PartialSearch))
             {
                 // Add to the log
                 if (pLog)
                 {
-                    ZBSearchSymbolLogLine e(((ZBLinkSymbol*)pComp)->GetSymbolName(), ((ZBLinkSymbol*)pComp)->GetAbsolutePath());
+                    ZBSearchSymbolLogLine e(((PSS_LinkSymbol*)pComp)->GetSymbolName(), ((PSS_LinkSymbol*)pComp)->GetAbsolutePath());
                     pLog->AddLine(e);
                 }
 
@@ -2608,9 +2604,9 @@ void ZDProcessGraphModelMdl::_Find(const CString            What,
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_Find(What, pLog, pPropAttributes, InSubModel, CaseSensitive, PartialSearch);
+                pPage->GetModel()->_Find(What, pLog, pPropAttributes, InSubModel, CaseSensitive, PartialSearch);
             }
         }
     }
@@ -2649,9 +2645,9 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbol(CODComponent* pCompToFind, 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_FindSymbol(pCompToFind, InSubModel);
+                pPage->GetModel()->_FindSymbol(pCompToFind, InSubModel);
             }
         }
     }
@@ -2688,16 +2684,16 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbol(const CString    Name,
             }
         }
         // If a link symbol and the same name
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
-            if ((CaseSensitive && ((ZBLinkSymbol*)pComp)->GetSymbolName() == Name) ||
-                (!CaseSensitive && Name.CompareNoCase(((ZBLinkSymbol*)pComp)->GetSymbolName()) == 0))
+            if ((CaseSensitive && ((PSS_LinkSymbol*)pComp)->GetSymbolName() == Name) ||
+                (!CaseSensitive && Name.CompareNoCase(((PSS_LinkSymbol*)pComp)->GetSymbolName()) == 0))
             {
                 // If no path required or the path is equal
                 // and if only local and islocal
                 // add the element to the set
-                if ((Path.IsEmpty() || (!Path.IsEmpty() && ((ZBLinkSymbol*)pComp)->GetAbsolutePath() == Path)) &&
-                    (OnlyLocal == false || (OnlyLocal && ((ZBLinkSymbol*)pComp)->IsLocal())))
+                if ((Path.IsEmpty() || (!Path.IsEmpty() && ((PSS_LinkSymbol*)pComp)->GetAbsolutePath() == Path)) &&
+                    (OnlyLocal == false || (OnlyLocal && ((PSS_LinkSymbol*)pComp)->IsLocal())))
                 {
                     m_FindSet.Add(pComp);
                 }
@@ -2723,9 +2719,9 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbol(const CString    Name,
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_FindSymbol(Name, Path, InSubModel, CaseSensitive, OnlyLocal);
+                pPage->GetModel()->_FindSymbol(Name, Path, InSubModel, CaseSensitive, OnlyLocal);
             }
         }
     }
@@ -2774,9 +2770,9 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbol(CODModel*    pModel,
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_FindSymbol(pModel, InSubModel, OnlyLocal);
+                pPage->GetModel()->_FindSymbol(pModel, InSubModel, OnlyLocal);
             }
         }
     }
@@ -2806,11 +2802,11 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbolFromPath(const CString    Pa
             }
         }
         // If a link symbol and the same name
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
-            if (((CaseSensitive && ((ZBLinkSymbol*)pComp)->GetAbsolutePath() == Path) ||
-                (!CaseSensitive && Path.CompareNoCase(((ZBLinkSymbol*)pComp)->GetAbsolutePath()) == 0)) &&
-                 (OnlyLocal == false || (OnlyLocal && ((ZBLinkSymbol*)pComp)->IsLocal())))
+            if (((CaseSensitive && ((PSS_LinkSymbol*)pComp)->GetAbsolutePath() == Path) ||
+                (!CaseSensitive && Path.CompareNoCase(((PSS_LinkSymbol*)pComp)->GetAbsolutePath()) == 0)) &&
+                 (OnlyLocal == false || (OnlyLocal && ((PSS_LinkSymbol*)pComp)->IsLocal())))
             {
                 m_FindSet.Add(pComp);
             }
@@ -2835,9 +2831,9 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbolFromPath(const CString    Pa
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_FindSymbolFromPath(Path, InSubModel, CaseSensitive, OnlyLocal);
+                pPage->GetModel()->_FindSymbolFromPath(Path, InSubModel, CaseSensitive, OnlyLocal);
             }
         }
     }
@@ -2862,9 +2858,9 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbolByRefNumber(int RefNumber, b
             }
         }
         // If a link symbol and the same name
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
-            if (((ZBLinkSymbol*)pComp)->GetSymbolReferenceNumber() == RefNumber)
+            if (((PSS_LinkSymbol*)pComp)->GetSymbolReferenceNumber() == RefNumber)
             {
                 m_FindSet.Add(pComp);
             }
@@ -2889,9 +2885,9 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbolByRefNumber(int RefNumber, b
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_FindSymbolByRefNumber(RefNumber, InSubModel);
+                pPage->GetModel()->_FindSymbolByRefNumber(RefNumber, InSubModel);
             }
         }
     }
@@ -2933,22 +2929,22 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbolPartialName(const CString   
             }
         }
         // If a link symbol and the same name
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
             // For non case sensitive search, transform the string to lowercase
-            CString SymbName = ((ZBLinkSymbol*)pComp)->GetSymbolName();
+            CString SymbName = ((PSS_LinkSymbol*)pComp)->GetSymbolName();
             SymbName.MakeLower();
 
             CString NameToFind = Name;
             NameToFind.MakeLower();
 
-            if ((CaseSensitive && ((ZBLinkSymbol*)pComp)->GetSymbolName().Find(Name) != -1) ||
+            if ((CaseSensitive && ((PSS_LinkSymbol*)pComp)->GetSymbolName().Find(Name) != -1) ||
                 (!CaseSensitive && SymbName.Find(NameToFind) != -1))
             {
                 // If no path required or the path is equal
                 // and if only local and islocal
                 // add the element to the set
-                if (OnlyLocal == false || (OnlyLocal && ((ZBLinkSymbol*)pComp)->IsLocal()))
+                if (OnlyLocal == false || (OnlyLocal && ((PSS_LinkSymbol*)pComp)->IsLocal()))
                 {
                     m_FindSet.Add(pComp);
                 }
@@ -2974,9 +2970,9 @@ CODComponentSet* ZDProcessGraphModelMdl::_FindSymbolPartialName(const CString   
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->_FindSymbolPartialName(Name, InSubModel, CaseSensitive, OnlyLocal);
+                pPage->GetModel()->_FindSymbolPartialName(Name, InSubModel, CaseSensitive, OnlyLocal);
             }
         }
     }
@@ -3021,9 +3017,9 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::_FindModelFromPath(const CString
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the same model
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                ZDProcessGraphModelMdl* pMdl = pPage->GetpModel()->_FindModelFromPath(Path, CaseSensitive);
+                ZDProcessGraphModelMdl* pMdl = pPage->GetModel()->_FindModelFromPath(Path, CaseSensitive);
 
                 if (pMdl)
                 {
@@ -3077,10 +3073,10 @@ ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::_FindModel( const CString Name, 
         for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )
         {
             // Do not process the same model.
-            if ( pPage->GetpModel() && pPage->GetpModel() != this )
+            if ( pPage->GetModel() && pPage->GetModel() != this )
             {
                 // Check if it's the good model, otherwise continue.
-                ZDProcessGraphModelMdl* pMdl = pPage->GetpModel()->_FindModel( Name, CaseSensitive );
+                ZDProcessGraphModelMdl* pMdl = pPage->GetModel()->_FindModel( Name, CaseSensitive );
 
                 if ( pMdl )
                 {
@@ -3131,9 +3127,9 @@ void ZDProcessGraphModelMdl::ClearPath()
         {
             reinterpret_cast<ZBSymbol*>(pComp)->ClearPath();
         }
-        else if (ISA(pComp, ZBLinkSymbol))
+        else if (ISA(pComp, PSS_LinkSymbol))
         {
-            reinterpret_cast<ZBLinkSymbol*>(pComp)->ClearPath();
+            reinterpret_cast<PSS_LinkSymbol*>(pComp)->ClearPath();
         }
 
         if (ISA(pComp, ZBSymbol) &&
@@ -3154,9 +3150,9 @@ void ZDProcessGraphModelMdl::ClearPath()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not clear the path of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->ClearPath();
+                pPage->GetModel()->ClearPath();
             }
         }
     }
@@ -3191,9 +3187,9 @@ void ZDProcessGraphModelMdl::CalculateAbsolutePath()
         {
             reinterpret_cast<ZBSymbol*>(pComp)->CalculateAbsolutePath();
         }
-        else if (ISA(pComp, ZBLinkSymbol))
+        else if (ISA(pComp, PSS_LinkSymbol))
         {
-            reinterpret_cast<ZBLinkSymbol*>(pComp)->CalculateAbsolutePath();
+            reinterpret_cast<PSS_LinkSymbol*>(pComp)->CalculateAbsolutePath();
         }
 
         if (ISA(pComp, ZBSymbol) && ((ZBSymbol*)pComp)->GetChildModel() &&
@@ -3213,9 +3209,9 @@ void ZDProcessGraphModelMdl::CalculateAbsolutePath()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not clear the path of itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->CalculateAbsolutePath();
+                pPage->GetModel()->CalculateAbsolutePath();
             }
         }
     }
@@ -3239,9 +3235,9 @@ void ZDProcessGraphModelMdl::OnSymbolNameChanged(CODComponent& Comp, const CStri
         {
             ((ZBSymbol*)pComp)->OnSymbolNameChanged(Comp, OldName);
         }
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
-            ((ZBLinkSymbol*)pComp)->OnSymbolNameChanged(Comp, OldName);
+            ((PSS_LinkSymbol*)pComp)->OnSymbolNameChanged(Comp, OldName);
         }
 
         // Find in sub-model if there is
@@ -3260,10 +3256,10 @@ void ZDProcessGraphModelMdl::OnSymbolNameChanged(CODComponent& Comp, const CStri
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // call the methods for all pages
-                pPage->GetpModel()->OnSymbolNameChanged(Comp, OldName);
+                pPage->GetModel()->OnSymbolNameChanged(Comp, OldName);
             }
         }
     }
@@ -3281,9 +3277,9 @@ void ZDProcessGraphModelMdl::OnPageNameChanged(ZDProcessGraphPage* pPage, const 
         {
             ((ZBSymbol*)pComp)->OnPageNameChanged(pPage, OldName);
         }
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
-            ((ZBLinkSymbol*)pComp)->OnPageNameChanged(pPage, OldName);
+            ((PSS_LinkSymbol*)pComp)->OnPageNameChanged(pPage, OldName);
         }
 
         // Find in sub-model if there is
@@ -3302,10 +3298,10 @@ void ZDProcessGraphModelMdl::OnPageNameChanged(ZDProcessGraphPage* pPage, const 
         for (ZDProcessGraphPage* pGraphPage = i.GetFirst(); pGraphPage != NULL; pGraphPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pGraphPage->GetpModel() && pGraphPage->GetpModel() != this)
+            if (pGraphPage->GetModel() && pGraphPage->GetModel() != this)
             {
                 // call the methods for all pages
-                pGraphPage->GetpModel()->OnPageNameChanged(pPage, OldName);
+                pGraphPage->GetModel()->OnPageNameChanged(pPage, OldName);
             }
         }
     }
@@ -3323,9 +3319,9 @@ void ZDProcessGraphModelMdl::OnUserEntityChanged(ZBUserEntity* pUserEntity, cons
         {
             ((ZBSymbol*)pComp)->OnUserEntityChanged(pUserEntity, OldName);
         }
-        else if (pComp && ISA(pComp, ZBLinkSymbol))
+        else if (pComp && ISA(pComp, PSS_LinkSymbol))
         {
-            ((ZBLinkSymbol*)pComp)->OnUserEntityChanged(pUserEntity, OldName);
+            ((PSS_LinkSymbol*)pComp)->OnUserEntityChanged(pUserEntity, OldName);
         }
 
         // Find in sub-model if there is
@@ -3344,10 +3340,10 @@ void ZDProcessGraphModelMdl::OnUserEntityChanged(ZBUserEntity* pUserEntity, cons
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // call the methods for all pages
-                pPage->GetpModel()->OnUserEntityChanged(pUserEntity, OldName);
+                pPage->GetModel()->OnUserEntityChanged(pUserEntity, OldName);
             }
         }
     }
@@ -3397,16 +3393,16 @@ void ZDProcessGraphModelMdl::RecalculateReference()
                 ((ZBSymbol*)pComp)->AssignReferenceSymbol((ZBSymbol*)pSet->GetAt(0));
             }
         }
-        else if (pComp && ISA(pComp, ZBLinkSymbol) && ((ZBLinkSymbol*)pComp)->IsReferenced())
+        else if (pComp && ISA(pComp, PSS_LinkSymbol) && ((PSS_LinkSymbol*)pComp)->IsReferenced())
         {
             ASSERT(GetRoot());
 
             CODComponentSet* pSet =
-                GetRoot()->FindSymbolByRefNumber(atoi(((ZBLinkSymbol*)pComp)->GetReferenceName()), true);
+                GetRoot()->FindSymbolByRefNumber(atoi(((PSS_LinkSymbol*)pComp)->GetReferenceName()), true);
 
-            if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0) && ISA(pSet->GetAt(0), ZBLinkSymbol))
+            if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0) && ISA(pSet->GetAt(0), PSS_LinkSymbol))
             {
-                ((ZBLinkSymbol*)pComp)->AssignReferenceSymbol((ZBLinkSymbol*)pSet->GetAt(0));
+                ((PSS_LinkSymbol*)pComp)->AssignReferenceSymbol((PSS_LinkSymbol*)pSet->GetAt(0));
             }
         }
 
@@ -3426,10 +3422,10 @@ void ZDProcessGraphModelMdl::RecalculateReference()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // The parent of all pages is itself
-                pPage->GetpModel()->RecalculateReference();
+                pPage->GetModel()->RecalculateReference();
             }
         }
     }
@@ -3465,11 +3461,11 @@ void ZDProcessGraphModelMdl::RecalculateParentPtr()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not process the page pointing on itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
                 // The parent of all pages is itself
-                pPage->GetpModel()->SetParent(this);
-                pPage->GetpModel()->RecalculateParentPtr();
+                pPage->GetModel()->SetParent(this);
+                pPage->GetModel()->RecalculateParentPtr();
             }
         }
     }
@@ -3506,9 +3502,9 @@ void ZDProcessGraphModelMdl::RecalculateChildModelPtr()
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate itself
-            if (pPage->GetpModel() && pPage->GetpModel() != this)
+            if (pPage->GetModel() && pPage->GetModel() != this)
             {
-                pPage->GetpModel()->RecalculateChildModelPtr();
+                pPage->GetModel()->RecalculateChildModelPtr();
             }
         }
     }
@@ -3654,10 +3650,10 @@ size_t ZDProcessGraphModelMdl::GetSymbolsISA(CODNodeArray&            Nodes,
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Do not process the page pointing on itself
-                if (pPage->GetpModel() && pPage->GetpModel() != this)
+                if (pPage->GetModel() && pPage->GetModel() != this)
                 {
                     // The parent of all pages is itself
-                    pPage->GetpModel()->GetSymbolsISA(Nodes, pClass, Deep);
+                    pPage->GetModel()->GetSymbolsISA(Nodes, pClass, Deep);
                 }
             }
         }
@@ -3835,13 +3831,13 @@ void ZDProcessGraphModelMdl::SerializePageSet(CArchive& ar)
                 ar << pPage->GetPageName();
 
                 // Do not serialize root model, already serialized by the document
-                if (pPage->GetpModel())
+                if (pPage->GetModel())
                 {
-                    ar << pPage->GetpModel()->GetAbsolutePath();
+                    ar << pPage->GetModel()->GetAbsolutePath();
 
-                    if (pPage->GetpModel() != this)
+                    if (pPage->GetModel() != this)
                     {
-                        ar << pPage->GetpModel();
+                        ar << pPage->GetModel();
                     }
                     else
                     {

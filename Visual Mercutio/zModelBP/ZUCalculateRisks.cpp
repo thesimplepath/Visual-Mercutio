@@ -12,7 +12,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ProcGraphModelCtlr.h"
 #include "zModel\ZUODSymbolManipulator.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
@@ -95,9 +95,9 @@ bool ZUCalculateRisks::Calculate(CODComponent& Symbol)
     {
         dynamic_cast<ZBSymbol&>(Symbol).AcceptVisitor(*this);
     }
-    else if (ISA(pSymbol, ZBLinkSymbol))
+    else if (ISA(pSymbol, PSS_LinkSymbol))
     {
-        dynamic_cast<ZBLinkSymbol&>(Symbol).AcceptVisitor(*this);
+        dynamic_cast<PSS_LinkSymbol&>(Symbol).AcceptVisitor(*this);
     }
     else if (ISA(pSymbol, ZDProcessGraphModelMdl))
     {
@@ -163,9 +163,9 @@ bool ZUCalculateRisks::Visit(CODComponent& Symbol)
     {
         return CheckSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBLinkSymbol))
+    else if (ISA(pSymbol, PSS_LinkSymbol))
     {
-        return CheckLink(dynamic_cast<ZBLinkSymbol*>(&Symbol));
+        return CheckLink(dynamic_cast<PSS_LinkSymbol*>(&Symbol));
     }
 
     // Not a right symbol or not necessary to visit
@@ -765,7 +765,7 @@ bool ZUCalculateRisks::CheckSymbol(ZBSymbol* pSymbol)
     return true;
 }
 
-bool ZUCalculateRisks::CheckLink(ZBLinkSymbol* pLink)
+bool ZUCalculateRisks::CheckLink(PSS_LinkSymbol* pLink)
 {
     ASSERT(pLink);
     return true;

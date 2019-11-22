@@ -29,7 +29,7 @@
 #include "StdAfx.h"
 
 // processsoft
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "PSS_AutomationCollections.h"
 
 // forward class declaration
@@ -76,7 +76,7 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         *@param direction - link direction
         *@param pModel - model
         */
-        PSS_StateLink(ZBLinkSymbol*           pLinkSymbol = NULL,
+        PSS_StateLink(PSS_LinkSymbol*         pLinkSymbol = NULL,
                       IELinkDirection         direction   = IE_LD_EnteringUp,
                       ZDProcessGraphModelMdl* pModel      = NULL);
 
@@ -111,13 +111,13 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         * Gets the link symbol
         *@return the link symbol
         */
-        virtual inline ZBLinkSymbol* GetLinkSymbol() const;
+        virtual inline PSS_LinkSymbol* GetLinkSymbol() const;
 
         /**
         * Sets the link symbol
         *@param value - link symbol to set
         */
-        virtual inline void SetLinkSymbol(ZBLinkSymbol* value);
+        virtual inline void SetLinkSymbol(PSS_LinkSymbol* value);
 
         /**
         * Gets the link direction
@@ -143,7 +143,7 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         *@param other - other instance to compare with
         *@return true if instances are equals, otherwise false
         */
-        virtual bool IsEqual(const ZBLinkSymbol& other) const;
+        virtual bool IsEqual(const PSS_LinkSymbol& other) const;
 
         /**
         * Serializes the state link content
@@ -168,7 +168,7 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
 
     private:
         ZDProcessGraphModelMdl* m_pModel;
-        ZBLinkSymbol*           m_pLinkSymbol;
+        PSS_LinkSymbol*           m_pLinkSymbol;
         IELinkDirection         m_Direction;
 };
 
@@ -180,12 +180,12 @@ void PSS_StateLink::AssignModel(ZDProcessGraphModelMdl* pModel)
     m_pModel = pModel;
 }
 //---------------------------------------------------------------------------
-ZBLinkSymbol* PSS_StateLink::GetLinkSymbol() const
+PSS_LinkSymbol* PSS_StateLink::GetLinkSymbol() const
 {
     return m_pLinkSymbol;
 }
 //---------------------------------------------------------------------------
-void PSS_StateLink::SetLinkSymbol(ZBLinkSymbol* value)
+void PSS_StateLink::SetLinkSymbol(PSS_LinkSymbol* value)
 {
     m_pLinkSymbol = value;
 }

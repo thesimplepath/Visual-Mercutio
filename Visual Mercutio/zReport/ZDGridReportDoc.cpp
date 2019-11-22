@@ -44,7 +44,7 @@ ZDGridReportDocument::ZDGridReportDocument()
     m_ViewRequireDataRefresh(false)
 {
     // RS-MODIF 14.12.04 bug error closing doc
-    //ZAGlobal::SetpReportDocumentTemplate(NULL);
+    //ZAGlobal::SetReportDocumentTemplate(NULL);
     //m_pGenerator = NULL;
 }
 
@@ -57,10 +57,10 @@ ZDGridReportDocument::~ZDGridReportDocument()
     }
 
     // RS-MODIF 14.12.04 try to kill the doc
-    /*CMultiDocTemplate* test = ZAGlobal::GetpReportDocumentTemplate();
+    /*CMultiDocTemplate* test = ZAGlobal::GetReportDocumentTemplate();
     if (test != NULL)
     {
-        ZAGlobal::SetpReportDocumentTemplate(NULL);
+        ZAGlobal::SetReportDocumentTemplate(NULL);
     }*/
 
     //if(m_pReportDocTemplate != NULL)

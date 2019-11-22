@@ -19,7 +19,7 @@
 #include "zModelBPRes.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 
 #ifdef _DEBUG
@@ -271,9 +271,9 @@ void ZCDistributionAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverM
     {
         if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
         {
-            m_pComp = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement();
+            m_pComp = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement();
             if (m_pComp &&
-                (ISA(m_pComp, ZBSymbol) || ISA(m_pComp, ZBLinkSymbol)))
+                (ISA(m_pComp, ZBSymbol) || ISA(m_pComp, PSS_LinkSymbol)))
                 SetSymbolRef(dynamic_cast<PSS_BasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());
             else
                 SetSymbolRef(-1);

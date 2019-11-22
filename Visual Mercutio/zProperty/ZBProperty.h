@@ -332,11 +332,11 @@ public:
     PSS_StringFormat& GetStringFormat();
     void SetStringFormat(PSS_StringFormat& value);
 
-    CStringArray* GetpArrayOfValues() const;
-    void SetpArrayOfValues(CStringArray* value);
+    CStringArray* GetArrayOfValues() const;
+    void SetArrayOfValues(CStringArray* value);
 
-    CMenu* GetpMenu() const;
-    void SetpMenu(CMenu* value);
+    CMenu* GetMenu() const;
+    void SetMenu(CMenu* value);
 
     PropertyType GetPTType() const;
 
@@ -545,22 +545,22 @@ inline void ZBProperty::SetStringFormat(PSS_StringFormat& value)
     m_ft = value;
 }
 
-inline CStringArray* ZBProperty::GetpArrayOfValues() const
+inline CStringArray* ZBProperty::GetArrayOfValues() const
 {
     return m_pArrayOfValues;
 }
 
-inline void ZBProperty::SetpArrayOfValues(CStringArray *value)
+inline void ZBProperty::SetArrayOfValues(CStringArray *value)
 {
     m_pArrayOfValues = value;
 }
 
-inline CMenu* ZBProperty::GetpMenu() const
+inline CMenu* ZBProperty::GetMenu() const
 {
     return m_pMenu;
 }
 
-inline void ZBProperty::SetpMenu(CMenu *value)
+inline void ZBProperty::SetMenu(CMenu *value)
 {
     m_pMenu = value;
 }

@@ -36,22 +36,22 @@ using namespace sfl;
 
 class AFX_EXT_CLASS ZDProcessGraphPage : public CObject
 {
-    DECLARE_SERIAL( ZDProcessGraphPage )
+    DECLARE_SERIAL(ZDProcessGraphPage)
 
 public:
 
-    ZDProcessGraphPage( const CString PageName = _T( "" ), ZDProcessGraphModelMdl* pModel = NULL );
+    ZDProcessGraphPage(const CString PageName = _T(""), ZDProcessGraphModelMdl* pModel = NULL);
     virtual ~ZDProcessGraphPage();
 
     CString GetPageName() const;
-    void SetPageName( CString value );
+    void SetPageName(CString value);
 
-    ZDProcessGraphModelMdl* GetpModel() const
+    ZDProcessGraphModelMdl* GetModel() const
     {
         return m_pModel;
     }
 
-    void SetpModel( ZDProcessGraphModelMdl* value )
+    void SetModel(ZDProcessGraphModelMdl* value)
     {
         m_pModel = value;
     }
@@ -61,7 +61,7 @@ public:
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZDProcessGraphPage)
-    public:
+public:
     virtual void Serialize(CArchive& ar);
     //}}AFX_VIRTUAL
 
@@ -70,7 +70,7 @@ public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif // _DEBUG
 
 protected:
@@ -85,16 +85,16 @@ inline CString ZDProcessGraphPage::GetPageName() const
     return m_PageName;
 }
 
-inline void ZDProcessGraphPage::SetPageName( CString value )
+inline void ZDProcessGraphPage::SetPageName(CString value)
 {
     m_PageName = value;
 
     // Bug found when renaming the page name
     // Must be applied to the model name also
-    if ( m_pModel )
+    if (m_pModel)
     {
-        m_pModel->SetModelName( m_PageName );
+        m_pModel->SetModelName(m_PageName);
     }
 }
 
-#endif // !defined(AFX_ZDProcessGraphPage_H__3D6120F1_F8CF_4120_8F8E_5A6338BEFC4B__INCLUDED_)
+#endif

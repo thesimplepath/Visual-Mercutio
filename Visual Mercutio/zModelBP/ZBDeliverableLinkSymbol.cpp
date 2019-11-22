@@ -1,13 +1,14 @@
 // **********************************************************************************************************
 // *                                       Classe ZBDeliverableLinkSymbol                                    *
 // **********************************************************************************************************
-// * Cette classe représente un livrable. Elle hélrite de la classe ZBLinkSymbol, qui contient tous les        *
+// * Cette classe représente un livrable. Elle hélrite de la classe PSS_LinkSymbol, qui contient tous les        *
 // * outils nécessaires à la jonction entre deux symboles, et ajoute à cette classe l'interface complète    *
 // * pour la gestion des livrables.                                                                            *
 // **********************************************************************************************************
 
 #include "stdafx.h"
 #include "ZBDeliverableLinkSymbol.h"
+
 #include "ProcGraphModelMdlBP.h"
 #include "zModel\ProcGraphModelDoc.h"
 
@@ -60,7 +61,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 3 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZBDeliverableLinkSymbol, ZBLinkSymbol, g_DefVersion)
+IMPLEMENT_SERIAL(ZBDeliverableLinkSymbol, PSS_LinkSymbol, g_DefVersion)
 
 // **********************************************************************************************************
 // *                                           Static variables                                                *
@@ -104,7 +105,7 @@ ZBDeliverableLinkSymbol::ZBDeliverableLinkSymbol(const ZBDeliverableLinkSymbol& 
 ZBDeliverableLinkSymbol& ZBDeliverableLinkSymbol::operator=(const ZBDeliverableLinkSymbol& src)
 {
     // Call the base class assignement operator
-    ZBLinkSymbol::operator=((const ZBLinkSymbol&)src);
+    PSS_LinkSymbol::operator=((const PSS_LinkSymbol&)src);
 
     m_Quantity = src.m_Quantity;
     m_SimProperties = src.m_SimProperties;
@@ -139,7 +140,7 @@ BOOL ZBDeliverableLinkSymbol::Create(int nStyle, int nPointSize, COLORREF crColo
 {
     m_IsInCreationProcess = true;
 
-    BOOL bResult = ZBLinkSymbol::Create(nStyle, nPointSize, crColor, bTransparent);
+    BOOL bResult = PSS_LinkSymbol::Create(nStyle, nPointSize, crColor, bTransparent);
 
     if (bResult)
     {
@@ -172,7 +173,7 @@ BOOL ZBDeliverableLinkSymbol::CreateOrthogonal(int nStyle, int nPointSize, COLOR
 {
     m_IsInCreationProcess = true;
 
-    BOOL bResult = ZBLinkSymbol::CreateOrthogonal(nStyle, nPointSize, crColor, bTransparent);
+    BOOL bResult = PSS_LinkSymbol::CreateOrthogonal(nStyle, nPointSize, crColor, bTransparent);
 
     if (bResult)
     {
@@ -234,7 +235,7 @@ CODLabelComponent* ZBDeliverableLinkSymbol::CreateLabel(const LPCTSTR           
         return pLabelComp;
     }
 
-    return ZBLinkSymbol::CreateLabel(lpszText, ctlPoint, pDC);
+    return PSS_LinkSymbol::CreateLabel(lpszText, ctlPoint, pDC);
 }
 
 bool ZBDeliverableLinkSymbol::CreateSymbolName()
@@ -432,7 +433,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolName()
 void ZBDeliverableLinkSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBLinkSymbol::CopySymbolDefinitionFrom(src);
+    PSS_LinkSymbol::CopySymbolDefinitionFrom(src);
 
     if (ISA((&src), ZBDeliverableLinkSymbol))
     {
@@ -472,7 +473,7 @@ bool ZBDeliverableLinkSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
         return true;
     }
 
-    return ZBLinkSymbol::AcceptDropItem(pObj, pt);
+    return PSS_LinkSymbol::AcceptDropItem(pObj, pt);
 }
 
 // JMR-MODIF - Le 19 novembre 2006 - Fonction de réponse à l'ordre de glisser-coller.
@@ -513,7 +514,7 @@ bool ZBDeliverableLinkSymbol::DropItem(CObject* pObj, CPoint pt)
     }
     // *********************************************************************************************
 
-    return ZBLinkSymbol::DropItem(pObj, pt);
+    return PSS_LinkSymbol::DropItem(pObj, pt);
 }
 
 // JMR-MODIF - Le 27 mars 2006 - Ajout de la fonction virtuelle OnSymbolNameChange.
@@ -524,7 +525,7 @@ void ZBDeliverableLinkSymbol::OnSymbolNameChange(CString OldName, CString NewNam
 
 bool ZBDeliverableLinkSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/)
 {
-    if (!ZBLinkSymbol::OnPostCreation(pModel, pCtrl))
+    if (!PSS_LinkSymbol::OnPostCreation(pModel, pCtrl))
     {
         return false;
     }
@@ -912,7 +913,7 @@ void ZBDeliverableLinkSymbol::AdjustPoints()
 // Cette fonction est appelée lorsque la connection du livrable sur ses symboles d'ancrage doit être crée.
 void ZBDeliverableLinkSymbol::OnConnect(CODConnection* pConnection)
 {
-    ZBLinkSymbol::OnConnect(pConnection);
+    PSS_LinkSymbol::OnConnect(pConnection);
 
     // After connecting the link to the symbol
     CODSymbolComponent* pDst = GetFollowingSymbol();
@@ -955,7 +956,7 @@ void ZBDeliverableLinkSymbol::OnDisconnect(CODConnection* pConnection)
         }
     }
 
-    ZBLinkSymbol::OnDisconnect(pConnection);
+    PSS_LinkSymbol::OnDisconnect(pConnection);
 
     // Check the status in order to set the right color
     CheckDeliverableStatus();
@@ -964,7 +965,7 @@ void ZBDeliverableLinkSymbol::OnDisconnect(CODConnection* pConnection)
 // Cette fonction est appelée lorsque les points d'ancrage du symbole bougent.
 BOOL ZBDeliverableLinkSymbol::OnConnectionMove(CODConnection* pConnection)
 {
-    BOOL RetValue = ZBLinkSymbol::OnConnectionMove(pConnection);
+    BOOL RetValue = PSS_LinkSymbol::OnConnectionMove(pConnection);
 
     // Check the status in order to set the right color
     CheckDeliverableStatus();
@@ -974,7 +975,7 @@ BOOL ZBDeliverableLinkSymbol::OnConnectionMove(CODConnection* pConnection)
 
 BOOL ZBDeliverableLinkSymbol::OnRemoveDependent(CODConnection* pConnection)
 {
-    BOOL RetValue = ZBLinkSymbol::OnRemoveDependent(pConnection);
+    BOOL RetValue = PSS_LinkSymbol::OnRemoveDependent(pConnection);
 
     // Check the status in order to set the right color
     CheckDeliverableStatus();
@@ -982,17 +983,13 @@ BOOL ZBDeliverableLinkSymbol::OnRemoveDependent(CODConnection* pConnection)
     return RetValue;
 }
 
-bool ZBDeliverableLinkSymbol::OnPrePropertyChanged(CString            NewValue,
-                                                   ZBProperty&        Property,
-                                                   ZBPropertySet&    Properties)
+bool ZBDeliverableLinkSymbol::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props)
 {
-    // Only local symbol have access to properties
+    // only local symbols have access to properties
     if (!IsLocal())
-    {
         return true;
-    }
 
-    return ZBLinkSymbol::OnPrePropertyChanged(NewValue, Property, Properties);
+    return PSS_LinkSymbol::OnPrePropertyChanged(newValue, prop, props);
 }
 
 bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
@@ -1181,7 +1178,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
 
     if (RetValue == false)
     {
-        return ZBLinkSymbol::OnPostPropertyChanged(Property, Properties, Refresh);
+        return PSS_LinkSymbol::OnPostPropertyChanged(Property, Properties, Refresh);
     }
 
     return RetValue;
@@ -1316,7 +1313,7 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetpModel());
+                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -1338,7 +1335,7 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
 
                                 // Obtient le contrôleur de modèle du processus.
                                 ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetpModel());
+                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                 // Appel récursif à NotifyNameChange, jusqu'à ce que toutes les pages des
                                 // processus enfants aient été visitées.
@@ -1399,7 +1396,7 @@ bool ZBDeliverableLinkSymbol::CheckPropertyValue(ZBProperty&        Property,
         return true;
     }
 
-    return ZBLinkSymbol::CheckPropertyValue(Property, value, Properties);
+    return PSS_LinkSymbol::CheckPropertyValue(Property, value, Properties);
 }
 
 // **************************** Fonctions concernant la connexion à un symbole ******************************
@@ -1407,7 +1404,7 @@ bool ZBDeliverableLinkSymbol::CheckPropertyValue(ZBProperty&        Property,
 // Cette fonction est appelée lorsque l'un des points d'attache du livrable est déplacé.
 BOOL ZBDeliverableLinkSymbol::MovePort(CODPortComponent* pPort, const int nOffsetX, const int nOffsetY)
 {
-    BOOL RetValue = ZBLinkSymbol::MovePort(pPort, nOffsetX, nOffsetY);
+    BOOL RetValue = PSS_LinkSymbol::MovePort(pPort, nOffsetX, nOffsetY);
 
     // Check the status in order to set the right color
     CheckDeliverableStatus();
@@ -1902,7 +1899,7 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
         }
     }
 
-    return ZBLinkSymbol::ProcessExtendedInput(Property, value, Properties, Refresh);
+    return PSS_LinkSymbol::ProcessExtendedInput(Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 28 novembre 2006 - Ajout de la fonction ProcessMenuCommand.
@@ -1965,7 +1962,7 @@ bool ZBDeliverableLinkSymbol::ProcessMenuCommand(int                MenuCommand,
         }
     }
 
-    return ZBLinkSymbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
+    return PSS_LinkSymbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnAddNewRisk.
@@ -2098,7 +2095,7 @@ void ZBDeliverableLinkSymbol::RemoveTextItem(const CString Value)
 
 bool ZBDeliverableLinkSymbol::CreateSymbolProperties()
 {
-    if (!ZBLinkSymbol::CreateSymbolProperties())
+    if (!PSS_LinkSymbol::CreateSymbolProperties())
     {
         return false;
     }
@@ -2185,7 +2182,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     // Les propriétés "Nom", "Description" et "Référence" du groupe "General" sont affichées par la classe de base.
     // La classe de base affiche également les propriétés des groupes "Liens externes" et "Fichiers externes",
     // ainsi que les propriétés dynamiques.
-    if (!ZBLinkSymbol::FillProperties(propSet, numericValue, groupValue))
+    if (!PSS_LinkSymbol::FillProperties(propSet, numericValue, groupValue))
         return false;
 
     // FIXME translate comments
@@ -3514,7 +3511,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 //---------------------------------------------------------------------------
 bool ZBDeliverableLinkSymbol::SaveProperties(ZBPropertySet& PropSet)
 {
-    if (!ZBLinkSymbol::SaveProperties(PropSet))
+    if (!PSS_LinkSymbol::SaveProperties(PropSet))
     {
         return false;
     }
@@ -3782,7 +3779,7 @@ bool ZBDeliverableLinkSymbol::SaveProperties(ZBPropertySet& PropSet)
 
 bool ZBDeliverableLinkSymbol::SaveProperty(ZBProperty& Property)
 {
-    if (!ZBLinkSymbol::SaveProperty(Property))
+    if (!PSS_LinkSymbol::SaveProperty(Property))
     {
         return false;
     }
@@ -4256,7 +4253,7 @@ void ZBDeliverableLinkSymbol::SetVisualInfo(int iPercent)
     // A 100%, le trait est plein. Sinon, il est soit pointillé (0 à 49%), soit traitillé (50-99%).
     if (Style == 2)
     {
-        ZBLinkSymbol::SetCurrentLineStyle(PS_SOLID);
+        PSS_LinkSymbol::SetCurrentLineStyle(PS_SOLID);
     }
     else
     {
@@ -4265,14 +4262,14 @@ void ZBDeliverableLinkSymbol::SetVisualInfo(int iPercent)
             // 0%-49% -> Le trait est pointillé. (........)
             case 0:
             {
-                ZBLinkSymbol::SetCurrentLineStyle(PS_DOT);
+                PSS_LinkSymbol::SetCurrentLineStyle(PS_DOT);
                 break;
             }
 
             // 50%-99% -> le trait est traitillé. (--------)
             case 1:
             {
-                ZBLinkSymbol::SetCurrentLineStyle(PS_DASH);
+                PSS_LinkSymbol::SetCurrentLineStyle(PS_DASH);
                 break;
             }
         }
@@ -4791,7 +4788,7 @@ bool ZBDeliverableLinkSymbol::IsInterProcess() const
 void ZBDeliverableLinkSymbol::Serialize(CArchive& ar)
 {
     // Serialize the link symbol
-    ZBLinkSymbol::Serialize(ar);
+    PSS_LinkSymbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
     if (ar.m_pDocument)

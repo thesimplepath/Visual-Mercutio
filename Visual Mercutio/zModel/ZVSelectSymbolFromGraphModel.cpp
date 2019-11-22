@@ -5,7 +5,7 @@
 
 #include "ProcGraphModelMdl.h"
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 
@@ -138,9 +138,9 @@ void ZVSelectSymbolFromGraphModel::CheckSymbol(CODSymbolComponent* pComp)
     {
         m_SymbolPath = dynamic_cast<ZBSymbol*>(pComp)->GetAbsolutePath();
     }
-    else if (pComp && ISA(pComp, ZBLinkSymbol))
+    else if (pComp && ISA(pComp, PSS_LinkSymbol))
     {
-        m_SymbolPath = dynamic_cast<ZBLinkSymbol*>(pComp)->GetAbsolutePath();
+        m_SymbolPath = dynamic_cast<PSS_LinkSymbol*>(pComp)->GetAbsolutePath();
     }
 
     // Reset the selected symbol
@@ -162,7 +162,7 @@ void ZVSelectSymbolFromGraphModel::CheckSymbol(CODSymbolComponent* pComp)
         }
         else if (m_SelectableItem & Selectable_LinkSymbol)
         {
-            if (pComp && ISA(pComp, ZBLinkSymbol))
+            if (pComp && ISA(pComp, PSS_LinkSymbol))
             {
                 m_pSelectedSymbol = pComp;
             }
@@ -235,7 +235,7 @@ void ZVSelectSymbolFromGraphModel::OnUpdate(PSS_Subject* pSubject, PSS_ObserverM
 {
     if (pMsg && ISA(pMsg, _ZBSelectSymbolObserverMsg))
     {
-        CheckSymbol(dynamic_cast<_ZBSelectSymbolObserverMsg*>(pMsg)->GetpComponent());
+        CheckSymbol(dynamic_cast<_ZBSelectSymbolObserverMsg*>(pMsg)->GetComponent());
     }
 
     m_wndModelGraph.OnUpdate(pSubject, pMsg);
@@ -477,7 +477,7 @@ CODSymbolComponent* _ZVGraphModelController::GetSymbolSelected()
     CODSymbolComponent* pComp = NULL;
 
     if (GetSelection()->GetSize() == 1 &&
-        (ISA(GetSelection()->GetAt(0), ZBSymbol) || ISA(GetSelection()->GetAt(0), ZBLinkSymbol)))
+        (ISA(GetSelection()->GetAt(0), ZBSymbol) || ISA(GetSelection()->GetAt(0), PSS_LinkSymbol)))
     {
         pComp = (CODSymbolComponent*)GetSelection()->GetAt(0);
     }

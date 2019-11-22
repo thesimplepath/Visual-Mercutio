@@ -52,11 +52,11 @@ public:
 
     virtual ~ZBInfoModelGraphicGeneration();
 
-    ZDProcessGraphModelMdl* GetpModel() const;
-    void SetpModel( ZDProcessGraphModelMdl* value );
+    ZDProcessGraphModelMdl* GetModel() const;
+    void SetModel( ZDProcessGraphModelMdl* value );
     
-    ZDProcessGraphModelController* GetpCtlr() const;
-    void SetpCtlr( ZDProcessGraphModelController* value );
+    ZDProcessGraphModelController* GetCtlr() const;
+    void SetCtlr( ZDProcessGraphModelController* value );
     
     CString GetURLName() const;
     void SetURLName( CString value );
@@ -81,8 +81,8 @@ public:
     CString GetHyperLink() const;
     void SetHyperLink( CString value );
 
-    CDC* GetpDC() const;
-    void SetpDC( CDC* value );
+    CDC* GetDC() const;
+    void SetDC( CDC* value );
 
     PSS_Server* GetServer() const;
     void SetServer(PSS_Server* value );
@@ -109,22 +109,22 @@ private:
     PSS_Server*                        m_pServer;
 };
 
-inline ZDProcessGraphModelMdl* ZBInfoModelGraphicGeneration::GetpModel() const
+inline ZDProcessGraphModelMdl* ZBInfoModelGraphicGeneration::GetModel() const
 {
     return m_pModel;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetpModel( ZDProcessGraphModelMdl* value )
+inline void ZBInfoModelGraphicGeneration::SetModel( ZDProcessGraphModelMdl* value )
 {
     m_pModel = value;
 }
 
-inline ZDProcessGraphModelController* ZBInfoModelGraphicGeneration::GetpCtlr() const
+inline ZDProcessGraphModelController* ZBInfoModelGraphicGeneration::GetCtlr() const
 {
     return m_pCtlr;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetpCtlr( ZDProcessGraphModelController* value )
+inline void ZBInfoModelGraphicGeneration::SetCtlr( ZDProcessGraphModelController* value )
 {
     m_pCtlr = value;
 }
@@ -203,12 +203,12 @@ inline void ZBInfoModelGraphicGeneration::SetHyperLink( CString value )
     m_HyperLink = value;
 }
 
-inline CDC* ZBInfoModelGraphicGeneration::GetpDC() const
+inline CDC* ZBInfoModelGraphicGeneration::GetDC() const
 {
     return m_pDC;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetpDC( CDC* value )
+inline void ZBInfoModelGraphicGeneration::SetDC( CDC* value )
 {
     m_pDC = value;
 }

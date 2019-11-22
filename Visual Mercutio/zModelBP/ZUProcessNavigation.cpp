@@ -6,7 +6,7 @@
 #include "ZUProcessNavigation.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
@@ -19,7 +19,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -29,24 +29,22 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcessNavigation::ZUProcessNavigation( ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/ )
-    : m_pModel    ( pModel ),
-      m_pClass    ( pClass )
-{
-}
+ZUProcessNavigation::ZUProcessNavigation(ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
+    : m_pModel(pModel),
+    m_pClass(pClass)
+{}
 
 ZUProcessNavigation::~ZUProcessNavigation()
-{
-}
+{}
 
-bool ZUProcessNavigation::Navigate( ZDProcessGraphModelMdl* pModel, void* pClass )
+bool ZUProcessNavigation::Navigate(ZDProcessGraphModelMdl* pModel, void* pClass)
 {
     m_pModel = pModel;
     m_pClass = pClass;
     return ZUProcessNavigation::Navigate();
 }
 
-bool ZUProcessNavigation::Navigate( ZDProcessGraphModelMdl* pModel )
+bool ZUProcessNavigation::Navigate(ZDProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
     return ZUProcessNavigation::Navigate();
@@ -54,20 +52,20 @@ bool ZUProcessNavigation::Navigate( ZDProcessGraphModelMdl* pModel )
 
 bool ZUProcessNavigation::Navigate()
 {
-    if ( m_pModel )
+    if (m_pModel)
     {
         // Initialize counters
-        m_ErrorCounter        = 0;
-        m_WarningCounter    = 0;
+        m_ErrorCounter = 0;
+        m_WarningCounter = 0;
 
         // Call the OnStart method
-        if ( !OnStart() )
+        if (!OnStart())
         {
             return false;
         }
 
         // Process the model
-        m_pModel->AcceptVisitor( *this );
+        m_pModel->AcceptVisitor(*this);
 
         // Call the OnFinish method and returns its retval.
         return OnFinish();
@@ -76,45 +74,45 @@ bool ZUProcessNavigation::Navigate()
     return false;
 }
 
-bool ZUProcessNavigation::Visit( CODComponent& Symbol )
+bool ZUProcessNavigation::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if ( ISA ( pSymbol, ZBBPProcedureSymbol ) )
+    if (ISA(pSymbol, ZBBPProcedureSymbol))
     {
-        return OnProcedureSymbol( dynamic_cast<ZBBPProcedureSymbol*>( &Symbol ) );
+        return OnProcedureSymbol(dynamic_cast<ZBBPProcedureSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBDeliverableLinkSymbol ) )
+    else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
     {
-        return OnDeliverableLinkSymbol( dynamic_cast<ZBDeliverableLinkSymbol*>( &Symbol ) );
+        return OnDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBBPDoorSymbol ) )
+    else if (ISA(pSymbol, ZBBPDoorSymbol))
     {
-        return OnDoorSymbol( dynamic_cast<ZBBPDoorSymbol*>( &Symbol ) );
+        return OnDoorSymbol(dynamic_cast<ZBBPDoorSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBBPPageSymbol ) )
+    else if (ISA(pSymbol, ZBBPPageSymbol))
     {
-        return OnPageSymbol( dynamic_cast<ZBBPPageSymbol*>( &Symbol ) );
+        return OnPageSymbol(dynamic_cast<ZBBPPageSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBBPProcessSymbol ) )
+    else if (ISA(pSymbol, ZBBPProcessSymbol))
     {
-        return OnProcessSymbol( dynamic_cast<ZBBPProcessSymbol*>( &Symbol ) );
+        return OnProcessSymbol(dynamic_cast<ZBBPProcessSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBBPStartSymbol ) )
+    else if (ISA(pSymbol, ZBBPStartSymbol))
     {
-        return OnStartSymbol( dynamic_cast<ZBBPStartSymbol*>( &Symbol ) );
+        return OnStartSymbol(dynamic_cast<ZBBPStartSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBBPStopSymbol ) )
+    else if (ISA(pSymbol, ZBBPStopSymbol))
     {
-        return OnStopSymbol( dynamic_cast<ZBBPStopSymbol*>( &Symbol ) );
+        return OnStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBSymbol ) )
+    else if (ISA(pSymbol, ZBSymbol))
     {
-        return OnSymbol( dynamic_cast<ZBSymbol*>( &Symbol ) );
+        return OnSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
     }
-    else if ( ISA ( pSymbol, ZBLinkSymbol ) )
+    else if (ISA(pSymbol, PSS_LinkSymbol))
     {
-        return OnLink( dynamic_cast<ZBLinkSymbol*>( &Symbol ) );
+        return OnLink(dynamic_cast<PSS_LinkSymbol*>(&Symbol));
     }
 
     // Not a right symbol or not necessary to visit

@@ -145,52 +145,52 @@ public:
     CODLineComponent* GetSplitter1();
     CODLineComponent* GetSplitter2();
 
-    CODComponent* GetpEditBoxArea()
+    CODComponent* GetEditBoxAreaComponent()
     {
         return m_pEditBoxArea;
     };
 
-    void SetpEditBoxArea( CODComponent* value )
+    void SetEditBoxAreaComponent( CODComponent* value )
     {
         m_pEditBoxArea = value;
     };
 
-    CODTextComponent* GetpNameEditText()
+    CODTextComponent* GetNameEditTextComponent()
     {
         return m_pNameEditText;
     };
 
-    void SetpNameEditText( CODTextComponent* value )
+    void SetNameEditTextComponent( CODTextComponent* value )
     {
         m_pNameEditText = value;
     };
 
-    CODTextComponent* GetpCommentEditText()
+    CODTextComponent* GetCommentEditTextComponent()
     {
         return m_pCommentEditText;
     };
 
-    void SetpCommentEditText( CODTextComponent* value )
+    void SetCommentEditTextComponent( CODTextComponent* value )
     {
         m_pCommentEditText = value;
     };
 
-    CODLineComponent* GetpSplitter1()
+    CODLineComponent* GetSplitter1Component()
     {
         return m_pSplitterComponent1;
     };
 
-    void SetpSplitter1( CODLineComponent* value )
+    void SetSplitter1Component( CODLineComponent* value )
     {
         m_pSplitterComponent1 = value;
     };
 
-    CODLineComponent* GetpSplitter2()
+    CODLineComponent* GetSplitter2Component()
     {
         return m_pSplitterComponent2;
     };
 
-    void SetpSplitter2( CODLineComponent* value )
+    void SetSplitter2Component( CODLineComponent* value )
     {
         m_pSplitterComponent2 = value;
     };

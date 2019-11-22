@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "PSS_PathMachine.h"
 #include "PSS_StateMachine.h"
 #include "PSS_StateMachineCollection.h"

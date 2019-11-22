@@ -82,7 +82,7 @@ CODComponent* ZBBPPageSymbol::Dup() const
 
 ZDProcessGraphModelMdl* ZBBPPageSymbol::GetModelPage()
 {
-    return (GetPage()) ? GetPage()->GetpModel() : NULL;
+    return (GetPage()) ? GetPage()->GetModel() : NULL;
 }
 
 bool ZBBPPageSymbol::SetPageModel(ZDProcessGraphModelMdl* pModel)
@@ -128,7 +128,7 @@ void ZBBPPageSymbol::RecalculateTwinPageReference(ZDProcessGraphModelMdl* pRootM
         {
             if (m_pPage)
             {
-                m_pModel = m_pPage->GetpModel();
+                m_pModel = m_pPage->GetModel();
             }
         }
         else
@@ -252,7 +252,7 @@ void ZBBPPageSymbol::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString 
         // Bug about renaming the page name.
         // In fact the model name isn't changed. Therefore, in the navigation and the
         // web generation, the old name is displayed.
-        pPage->GetpModel()->SetModelName(pPage->GetPageName());
+        pPage->GetModel()->SetModelName(pPage->GetPageName());
 
         // And assign the right page name
         SetSymbolName(BuildSymbolName());
@@ -471,7 +471,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                 // And assign the right child model
                 if (m_pPage)
                 {
-                    m_pModel = m_pPage->GetpModel();
+                    m_pModel = m_pPage->GetModel();
                 }
 
                 // And assign the right page name
@@ -504,7 +504,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                 // And assign the right child model
                 if (m_pPage)
                 {
-                    m_pModel = m_pPage->GetpModel();
+                    m_pModel = m_pPage->GetModel();
 
                     // And assign the right page name
                     SetSymbolName(BuildSymbolName());
@@ -703,7 +703,7 @@ void ZBBPPageSymbol::Serialize(CArchive& ar)
 
             // If the model is different from the model page,
             // serialize the model name and put null to model
-            if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl) && m_pModel != m_pPage->GetpModel())
+            if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl) && m_pModel != m_pPage->GetModel())
             {
                 ar << reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetAbsolutePath();
             }

@@ -189,12 +189,12 @@ public:
     _ZBSelectSymbolObserverMsg(CODSymbolComponent* pComp = NULL);
     virtual ~_ZBSelectSymbolObserverMsg();
 
-    CODSymbolComponent* GetpComponent() const
+    CODSymbolComponent* GetComponent() const
     {
         return m_pComp;
     };
 
-    void SetpComponent(CODSymbolComponent* value)
+    void SetComponent(CODSymbolComponent* value)
     {
         m_pComp = value;
     };

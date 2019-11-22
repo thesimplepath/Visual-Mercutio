@@ -24,7 +24,7 @@ IMPLEMENT_SERIAL(PSS_StateLink, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_StateLink
 //---------------------------------------------------------------------------
-PSS_StateLink::PSS_StateLink(ZBLinkSymbol*           pLinkSymbol,
+PSS_StateLink::PSS_StateLink(PSS_LinkSymbol*         pLinkSymbol,
                              IELinkDirection         direction,
                              ZDProcessGraphModelMdl* pModel) :
     CObject(),
@@ -64,10 +64,10 @@ bool PSS_StateLink::IsEqual(const PSS_StateLink& other) const
             GetDirection()                            == other.GetDirection());
 }
 //---------------------------------------------------------------------------
-bool PSS_StateLink::IsEqual(const ZBLinkSymbol& linkSymbol) const
+bool PSS_StateLink::IsEqual(const PSS_LinkSymbol& linkSymbol) const
 {
     return (m_pLinkSymbol &&
-            m_pLinkSymbol->GetSymbolReferenceNumber() == const_cast<ZBLinkSymbol&>(linkSymbol).GetSymbolReferenceNumber());
+            m_pLinkSymbol->GetSymbolReferenceNumber() == const_cast<PSS_LinkSymbol&>(linkSymbol).GetSymbolReferenceNumber());
 }
 //---------------------------------------------------------------------------
 void PSS_StateLink::Serialize(CArchive& ar)
@@ -102,7 +102,7 @@ void PSS_StateLink::Serialize(CArchive& ar)
             CODComponentSet* pSet      = m_pModel->FindSymbolByRefNumber(refNumber, true);
 
             if (pSet && pSet->GetSize() > 0)
-                m_pLinkSymbol = dynamic_cast<ZBLinkSymbol*>(pSet->GetAt(0));
+                m_pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(0));
         }
     }
 }

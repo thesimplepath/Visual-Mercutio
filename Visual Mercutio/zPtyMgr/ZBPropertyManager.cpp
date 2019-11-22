@@ -567,14 +567,14 @@ ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(ZBProperty& Prop)
 
         case ZBProperty::PT_EDIT_MENU:
         {
-            pItem = new ZBPropertyItemMenuFileDir(Prop.GetpMenu());
+            pItem = new ZBPropertyItemMenuFileDir(Prop.GetMenu());
             break;
         }
 
         case ZBProperty::PT_EDIT_MENU_READONLY:
         {
             // Read-only
-            pItem = new ZBPropertyItemMenuFileDir(Prop.GetpMenu(), true);
+            pItem = new ZBPropertyItemMenuFileDir(Prop.GetMenu(), true);
             break;
         }
 
@@ -705,7 +705,7 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             if (Prop.HasValueList())
             {
                 // Add all values
-                reinterpret_cast<ZBPropertyItemList*>(pPropertyItem)->SetData(Prop.GetpArrayOfValues());
+                reinterpret_cast<ZBPropertyItemList*>(pPropertyItem)->SetData(Prop.GetArrayOfValues());
             }
 
             break;
@@ -879,7 +879,7 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             if (Prop.HasValueList())
             {
                 // Add all values
-                reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->SetData(Prop.GetpArrayOfValues());
+                reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->SetData(Prop.GetArrayOfValues());
             }
 
             break;

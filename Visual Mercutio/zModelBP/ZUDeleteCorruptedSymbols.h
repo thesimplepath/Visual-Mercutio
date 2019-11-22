@@ -23,7 +23,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"

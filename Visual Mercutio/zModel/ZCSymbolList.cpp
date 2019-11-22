@@ -9,7 +9,7 @@
 #include "zModelRes.h"
 
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 
 #ifdef _DEBUG
@@ -94,7 +94,7 @@ int ZCSymbolList::Refresh ()
         CODComponent*    pComp = m_pSet->GetAt(Index);
         // If a symbol
         if (pComp && 
-            (ISA(pComp,ZBSymbol) || ISA(pComp,ZBLinkSymbol)))
+            (ISA(pComp,ZBSymbol) || ISA(pComp,PSS_LinkSymbol)))
         {
             // Add the symbol type icon
             InsertItem( LVIF_IMAGE | LVIF_PARAM, LineCounter, 
@@ -121,16 +121,16 @@ int ZCSymbolList::Refresh ()
             else
             {
                 SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((ZBLinkSymbol*)pComp)->GetSymbolName(),
+                         ((PSS_LinkSymbol*)pComp)->GetSymbolName(),
                          0, 0, 0, 0 );
                 SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((ZBLinkSymbol*)pComp)->GetSymbolComment(),
+                         ((PSS_LinkSymbol*)pComp)->GetSymbolComment(),
                          0, 0, 0, 0 );
                 SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((ZBLinkSymbol*)pComp)->GetAbsolutePath(),
+                         ((PSS_LinkSymbol*)pComp)->GetAbsolutePath(),
                          0, 0, 0, 0 );
                 SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         (((ZBLinkSymbol*)pComp)->IsLocal()) ? "1" : "0",
+                         (((PSS_LinkSymbol*)pComp)->IsLocal()) ? "1" : "0",
                          0, 0, 0, 0 );
             }
             // Increment Line counter
@@ -164,8 +164,8 @@ int    ZCSymbolList::GetItemIndex( CODSymbolComponent* pSymbol )
     if (ISA(pSymbol, ZBSymbol))
         return dynamic_cast<ZBSymbol*>(pSymbol)->GetIconIndex();
 
-    if (ISA(pSymbol, ZBLinkSymbol))
-        return dynamic_cast<ZBLinkSymbol*>(pSymbol)->GetIconIndex();
+    if (ISA(pSymbol, PSS_LinkSymbol))
+        return dynamic_cast<PSS_LinkSymbol*>(pSymbol)->GetIconIndex();
 
     return -1;
 }

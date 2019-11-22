@@ -51,17 +51,17 @@ class ZBPropertyAttributes;
 
 // Each symbol implement the subject and observer interface
 class AFX_EXT_CLASS ZBSymbol : public CODSymbolComponent,
-                               public PSS_BasicSymbol,
-                               public PSS_ObjectPath,
-                               public PSS_NavigableSymbol,
-                               public ZIProperties,
-                               public ZBExtAppPropertyMgr,
-                               public ZBExtFilePropertyMgr,
-                               public ZVSymbolAttributes,
-                               public PSS_BasicSymbolAcceptVisitor,
-                               public PSS_Subject,
-                               public PSS_Observer,
-                               public PSS_ToolTip
+    public PSS_BasicSymbol,
+    public PSS_ObjectPath,
+    public PSS_NavigableSymbol,
+    public ZIProperties,
+    public ZBExtAppPropertyMgr,
+    public ZBExtFilePropertyMgr,
+    public ZVSymbolAttributes,
+    public PSS_BasicSymbolAcceptVisitor,
+    public PSS_Subject,
+    public PSS_Observer,
+    public PSS_ToolTip
 {
     DECLARE_SERIAL(ZBSymbol)
 
@@ -364,9 +364,9 @@ public:
     // Retreive the root symbol model
     virtual CODModel* GetRootModel();
 
-    // JMR-MODIF - Le 2 mars 2006 - La fonction GetpModel est changée de protected à public.
+    // JMR-MODIF - Le 2 mars 2006 - La fonction GetModel est changée de protected à public.
     // Nécessaire, car certaine fonction doivent récupérer uniquement le modèle enfant pour travailler.
-    CODModel* GetpModel()
+    CODModel* GetModel()
     {
         return m_pModel;
     };
@@ -604,7 +604,7 @@ public:
                                     bool&            Refresh);
 
     // Called before the property changed
-    virtual bool OnPrePropertyChanged(CString NewValue, ZBProperty& Property, ZBPropertySet& Properties);
+    virtual bool OnPrePropertyChanged(const CString& NewValue, ZBProperty& Property, ZBPropertySet& Properties);
 
     // Called after the property changed
     virtual bool OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh);
@@ -737,64 +737,64 @@ protected:
     // PSS_BasicSymbol methods
     virtual CODLabelComponent* CreateSymbolLabel();
 
-    virtual CODComponent* GetpEditBoxArea()
+    virtual CODComponent* GetEditBoxAreaComponent()
     {
-        return ZVSymbolAttributes::GetpEditBoxArea();
+        return ZVSymbolAttributes::GetEditBoxAreaComponent();
     }
 
-    virtual void SetpEditBoxArea(CODComponent* value)
+    virtual void SetEditBoxAreaComponent(CODComponent* value)
     {
-        ZVSymbolAttributes::SetpEditBoxArea(value);
+        ZVSymbolAttributes::SetEditBoxAreaComponent(value);
     }
 
-    virtual CODTextComponent* GetNameEditText()
+    virtual CODTextComponent* GetNameEditTextComponent()
     {
-        return ZVSymbolAttributes::GetpNameEditText();
+        return ZVSymbolAttributes::GetNameEditTextComponent();
     }
 
-    virtual void SetNameEditText(CODTextComponent* value)
+    virtual void SetNameEditTextComponent(CODTextComponent* value)
     {
-        ZVSymbolAttributes::SetpNameEditText(value);
+        ZVSymbolAttributes::SetNameEditTextComponent(value);
     }
 
-    virtual CODTextComponent* GetCommentEditText()
+    virtual CODTextComponent* GetCommentEditTextComponent()
     {
-        return ZVSymbolAttributes::GetpCommentEditText();
+        return ZVSymbolAttributes::GetCommentEditTextComponent();
     }
 
-    virtual void SetCommentEditText(CODTextComponent* value)
+    virtual void SetCommentEditTextComponent(CODTextComponent* value)
     {
-        ZVSymbolAttributes::SetpCommentEditText(value);
+        ZVSymbolAttributes::SetCommentEditTextComponent(value);
     }
 
-    virtual CODLineComponent* GetpSplitter1()
+    virtual CODLineComponent* GetSplitter1Component()
     {
-        return ZVSymbolAttributes::GetpSplitter1();
+        return ZVSymbolAttributes::GetSplitter1Component();
     }
 
-    virtual void SetpSplitter1(CODLineComponent* value)
+    virtual void SetSplitter1Component(CODLineComponent* value)
     {
-        ZVSymbolAttributes::SetpSplitter1(value);
+        ZVSymbolAttributes::SetSplitter1Component(value);
     }
 
-    virtual CODLineComponent* GetpSplitter2()
+    virtual CODLineComponent* GetSplitter2Component()
     {
-        return ZVSymbolAttributes::GetpSplitter2();
+        return ZVSymbolAttributes::GetSplitter2Component();
     }
 
-    virtual void SetpSplitter2(CODLineComponent* value)
+    virtual void SetSplitter2Component(CODLineComponent* value)
     {
-        ZVSymbolAttributes::SetpSplitter2(value);
+        ZVSymbolAttributes::SetSplitter2Component(value);
     }
 
-    void SetpModel(CODModel* pValue)
+    void SetModel(CODModel* pValue)
     {
         m_pModel = pValue;
     }
 
     // All methods to obtain leaving and entering links of a specific name
-    size_t GetEdgesLeaving_Name(const CString Name, CODEdgeArray& Edges);
-    size_t GetEdgesEntering_Name(const CString Name, CODEdgeArray& Edges);
+    std::size_t GetEdgesLeaving_Name(const CString Name, CODEdgeArray& Edges);
+    std::size_t GetEdgesEntering_Name(const CString Name, CODEdgeArray& Edges);
 
 protected:
 

@@ -38,29 +38,29 @@ class ZUProcessConceptorNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUProcessConceptorNavigation( ZDProcessGraphModelMdl*    pModel                    = NULL,
-                                  void*                        pClass                    = NULL,
-                                  ZDProcessGraphModelMdl*    pRootModel                = NULL,
-                                  const CString                domainName                = _T( "" ),
-                                  const CString                unitName                = _T( "" ),
-                                  BOOL                        bIncludeSynthesis        = TRUE,
-                                  BOOL                        bIncludeDetail            = TRUE,
-                                  BOOL                        bIncludeDeliverables    = TRUE );
+    ZUProcessConceptorNavigation(ZDProcessGraphModelMdl*    pModel = NULL,
+                                 void*                        pClass = NULL,
+                                 ZDProcessGraphModelMdl*    pRootModel = NULL,
+                                 const CString                domainName = _T(""),
+                                 const CString                unitName = _T(""),
+                                 BOOL                        bIncludeSynthesis = TRUE,
+                                 BOOL                        bIncludeDetail = TRUE,
+                                 BOOL                        bIncludeDeliverables = TRUE);
 
     virtual ~ZUProcessConceptorNavigation();
 
     // Call-back methods
-    virtual bool OnStart            ();
-    virtual bool OnFinish            ();
-    virtual bool OnProcedureSymbol    ( ZBBPProcedureSymbol*    pProcedure );
-    virtual bool OnProcessSymbol    ( ZBBPProcessSymbol*    pSymbol );
-    virtual bool OnSymbol            ( ZBSymbol*                pSymbol );
-    virtual bool OnLink                ( ZBLinkSymbol*            pLink );
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*    pProcedure);
+    virtual bool OnProcessSymbol(ZBBPProcessSymbol*    pSymbol);
+    virtual bool OnSymbol(ZBSymbol*                pSymbol);
+    virtual bool OnLink(PSS_LinkSymbol*            pLink);
 
 private:
 
     bool DisplayProcess();
-    bool StartSection( CODNodeArray& Nodes );
+    bool StartSection(CODNodeArray& Nodes);
 
 private:
 
@@ -91,4 +91,4 @@ private:
     bool                    m_First;
 };
 
-#endif // !defined(AFX_ZUProcessConceptorNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

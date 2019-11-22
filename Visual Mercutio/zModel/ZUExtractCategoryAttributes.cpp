@@ -8,11 +8,11 @@
 #include "zModel\ProcGraphModelMdl.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -22,31 +22,29 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractCategoryAttributes::ZUExtractCategoryAttributes( ZDProcessGraphModelMdl*    pModel            /*= NULL*/,
-                                                          CStringArray*                pStaticArray    /*= NULL*/,
-                                                          CStringArray*                pDynamicArray    /*= NULL*/,
-                                                          void*                        pClass            /*= NULL*/)
-    : ZUModelNavigation    ( pModel, pClass ),
-      m_pStaticArray    ( pStaticArray ),
-      m_pDynamicArray    ( pDynamicArray )
-{
-}
+ZUExtractCategoryAttributes::ZUExtractCategoryAttributes(ZDProcessGraphModelMdl*    pModel            /*= NULL*/,
+                                                         CStringArray*                pStaticArray    /*= NULL*/,
+                                                         CStringArray*                pDynamicArray    /*= NULL*/,
+                                                         void*                        pClass            /*= NULL*/)
+    : ZUModelNavigation(pModel, pClass),
+    m_pStaticArray(pStaticArray),
+    m_pDynamicArray(pDynamicArray)
+{}
 
 ZUExtractCategoryAttributes::~ZUExtractCategoryAttributes()
-{
-}
+{}
 
 bool ZUExtractCategoryAttributes::OnStart()
 {
     // Reset the array of categories
     ResetStringsArray();
 
-    if ( m_pDynamicArray )
+    if (m_pDynamicArray)
     {
         m_pDynamicArray->RemoveAll();
     }
 
-    if ( m_pStaticArray )
+    if (m_pStaticArray)
     {
         m_pStaticArray->RemoveAll();
     }
@@ -61,21 +59,21 @@ bool ZUExtractCategoryAttributes::OnFinish()
     return true;
 }
 
-bool ZUExtractCategoryAttributes::OnSymbol( ZBSymbol* pSymbol )
+bool ZUExtractCategoryAttributes::OnSymbol(ZBSymbol* pSymbol)
 {
     ZBPropertySet PropSet;
 
     // Retrieve the property set from object
-    pSymbol->FillProperties( PropSet, true );
+    pSymbol->FillProperties(PropSet, true);
 
     // Add the attributes to the pPublishAttribDef class
-    FillAttribCategory( PropSet );
+    FillAttribCategory(PropSet);
 
     // Remove all properties
-    ZBPropertyIterator i( &PropSet );
+    ZBPropertyIterator i(&PropSet);
     ZBProperty* pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -85,21 +83,21 @@ bool ZUExtractCategoryAttributes::OnSymbol( ZBSymbol* pSymbol )
     return true;
 }
 
-bool ZUExtractCategoryAttributes::OnLink( ZBLinkSymbol* pLink )
+bool ZUExtractCategoryAttributes::OnLink(PSS_LinkSymbol* pLink)
 {
     ZBPropertySet PropSet;
 
     // Retrieve the property set from object
-    pLink->FillProperties( PropSet, true );
+    pLink->FillProperties(PropSet, true);
 
     // Add the attributes to the pPublishAttribDef class
-    FillAttribCategory( PropSet );
+    FillAttribCategory(PropSet);
 
     // Remove all properties
-    ZBPropertyIterator i( &PropSet );
+    ZBPropertyIterator i(&PropSet);
     ZBProperty* pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -109,24 +107,24 @@ bool ZUExtractCategoryAttributes::OnLink( ZBLinkSymbol* pLink )
     return true;
 }
 
-void ZUExtractCategoryAttributes::FillAttribCategory( ZBPropertySet& PropSet )
+void ZUExtractCategoryAttributes::FillAttribCategory(ZBPropertySet& PropSet)
 {
     // Remove all properties
-    ZBPropertyIterator i( &PropSet );
+    ZBPropertyIterator i(&PropSet);
     ZBProperty* pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // Check if the category has already been generated
-        if ( !StringAlreadyGenerated( pProp->GetCategory() ) )
+        if (!StringAlreadyGenerated(pProp->GetCategory()))
         {
-            if ( pProp->IsDynamic() && m_pDynamicArray )
+            if (pProp->IsDynamic() && m_pDynamicArray)
             {
-                m_pDynamicArray->Add( pProp->GetCategory() );
+                m_pDynamicArray->Add(pProp->GetCategory());
             }
-            else if ( m_pStaticArray )
+            else if (m_pStaticArray)
             {
-                m_pStaticArray->Add( pProp->GetCategory() );
+                m_pStaticArray->Add(pProp->GetCategory());
             }
         }
     }

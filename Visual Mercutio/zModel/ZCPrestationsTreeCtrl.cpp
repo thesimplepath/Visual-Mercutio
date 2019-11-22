@@ -128,11 +128,11 @@ void ZCPrestationsTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
         {
             case UM_INITPRESTATIONS:
             {
-                if (dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetpEntity() &&
-                    ISA(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetpEntity(), ZBLogicalPrestationsEntity))
+                if (dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity(), ZBLogicalPrestationsEntity))
                 {
                     ZBLogicalPrestationsEntity* pLogicalPrestation =
-                        dynamic_cast<ZBLogicalPrestationsEntity*>(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetpEntity());
+                        dynamic_cast<ZBLogicalPrestationsEntity*>(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity());
 
                     Initialize(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetRootName(), pLogicalPrestation);
                 }

@@ -15,6 +15,9 @@
 #include "StdAfx.h"
 
  // class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
 #ifndef PSS_StateObject
     #define PSS_StateObject ZBStateObject
 #endif
@@ -27,7 +30,7 @@
 
 // forward class declaration
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class PSS_StateObject;
 class PSS_StateMachine;
 class PSS_StateLink;
@@ -46,14 +49,14 @@ typedef CCArray_T<ZBSymbol*, ZBSymbol*> PSS_SymbolSet;
 typedef Iterator_T<ZBSymbol*> PSS_SymbolIterator;
 
 /**
-* ZBLinkSymbol collection
+* PSS_LinkSymbol collection
 */
-typedef CCArray_T<ZBLinkSymbol*, ZBLinkSymbol*> PSS_LinkSymbolSet;
+typedef CCArray_T<PSS_LinkSymbol*, PSS_LinkSymbol*> PSS_LinkSymbolSet;
 
 /**
-* ZBLinkSymbol collection iterator
+* PSS_LinkSymbol collection iterator
 */
-typedef Iterator_T<ZBLinkSymbol*> PSS_LinkSymbolIterator;
+typedef Iterator_T<PSS_LinkSymbol*> PSS_LinkSymbolIterator;
 
 /**
 * State machine handle collection

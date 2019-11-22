@@ -110,7 +110,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pSymbol - found symbol
         *@return true on success, otherwise false
         */
-        virtual bool OnLink(ZBLinkSymbol* pLink);
+        virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
         static std::size_t             m_IndexItem;

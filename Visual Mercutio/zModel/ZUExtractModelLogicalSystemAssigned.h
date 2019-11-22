@@ -64,7 +64,7 @@ class AFX_EXT_CLASS ZUExtractModelLogicalSystemAssigned : public ZUModelNavigati
 {
 public:
 
-    ZUExtractModelLogicalSystemAssigned( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUExtractModelLogicalSystemAssigned(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUExtractModelLogicalSystemAssigned();
 
     CODComponentSet& GetComponentSet()
@@ -76,8 +76,8 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
 
-    virtual bool OnSymbol( ZBSymbol* pSymbol );
-    virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:
 
@@ -85,4 +85,4 @@ private:
     CODComponentSet    m_Set;
 };
 
-#endif // !defined(AFX_ZUExtractModelLogicalSystemAssigned_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

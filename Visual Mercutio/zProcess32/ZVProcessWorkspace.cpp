@@ -610,11 +610,11 @@ afx_msg LRESULT ZVProcessWorkspace::OnInitializeModelDocument(WPARAM wParam, LPA
     {
         ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
 
-        if (pDocMsg->GetpDoc())
+        if (pDocMsg->GetDoc())
         {
             ZBModelSet DocumentModelSet;
 
-            DocumentModelSet.AddModel(pDocMsg->GetpDoc()->GetModel());
+            DocumentModelSet.AddModel(pDocMsg->GetDoc()->GetModel());
             InitializeModelDocumentTree(&DocumentModelSet);
         }
     }
@@ -657,11 +657,11 @@ afx_msg LRESULT ZVProcessWorkspace::OnInitializeModelUnit(WPARAM wParam, LPARAM 
     {
         ZBUnitObserverMsg* pUnitMsg = (ZBUnitObserverMsg*)pMsg;
 
-        if (pUnitMsg->GetpUnitManager())
+        if (pUnitMsg->GetUnitManager())
         {
             ZBModelSet UnitModelSet;
 
-            pUnitMsg->GetpUnitManager()->FillModelSet(UnitModelSet);
+            pUnitMsg->GetUnitManager()->FillModelSet(UnitModelSet);
             InitializeModelUnitTree(&UnitModelSet);
         }
         else
@@ -728,9 +728,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnAddModelUnit(WPARAM wParam, LPARAM lParam)
     {
         ZBUnitObserverMsg* pUnitMsg = (ZBUnitObserverMsg*)pMsg;
 
-        if (pUnitMsg->GetpUnit() && pUnitMsg->GetpUnit()->GetUnitDocumentPtr())
+        if (pUnitMsg->GetUnit() && pUnitMsg->GetUnit()->GetUnitDocumentPtr())
         {
-            AddModelUnit(pUnitMsg->GetpUnit()->GetUnitDocumentPtr()->GetModel());
+            AddModelUnit(pUnitMsg->GetUnit()->GetUnitDocumentPtr()->GetModel());
         }
     }
 
@@ -760,9 +760,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnAddModelDocumentSymbol(WPARAM wParam, LPAR
     {
         ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
 
-        if (pDocMsg->GetpModel() && pDocMsg->GetpElement())
+        if (pDocMsg->GetModel() && pDocMsg->GetElement())
         {
-            AddModelDocumentSymbol(pDocMsg->GetpElement(), pDocMsg->GetpModel());
+            AddModelDocumentSymbol(pDocMsg->GetElement(), pDocMsg->GetModel());
         }
     }
 
@@ -782,9 +782,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnRemoveModelDocumentSymbol(WPARAM wParam, L
     {
         ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
 
-        if (pDocMsg->GetpModel() && pDocMsg->GetpElement())
+        if (pDocMsg->GetModel() && pDocMsg->GetElement())
         {
-            RemoveModelDocumentSymbol(pDocMsg->GetpElement(), pDocMsg->GetpModel());
+            RemoveModelDocumentSymbol(pDocMsg->GetElement(), pDocMsg->GetModel());
         }
     }
 
@@ -804,9 +804,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnModifyModelDocumentSymbol(WPARAM wParam, L
     {
         ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
 
-        if (pDocMsg->GetpModel() && pDocMsg->GetpElement())
+        if (pDocMsg->GetModel() && pDocMsg->GetElement())
         {
-            ModifyModelDocumentSymbol(pDocMsg->GetpElement(), pDocMsg->GetpModel());
+            ModifyModelDocumentSymbol(pDocMsg->GetElement(), pDocMsg->GetModel());
         }
     }
 

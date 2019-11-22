@@ -84,7 +84,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
         *@param pLink - link for which files sould be added
         *@return true on success, otherwise false
         */
-        virtual bool OnLink(ZBLinkSymbol* pLink);
+        virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
         PSS_PublishModelGenerateDialog      m_FileGenerateWindow;

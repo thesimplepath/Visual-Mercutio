@@ -8,7 +8,7 @@
 #include "ZUProcedureCalculateTotals.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"

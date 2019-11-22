@@ -120,7 +120,7 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy( CString                 
             for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( pPage->GetpModel() );
+                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( pPage->GetModel() );
 
                 if ( m_CurModel != NULL )
                 {
@@ -143,7 +143,7 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy( CString                 
                                 {
                                     // Obtient le contrôleur de modèles enfant du processus.
                                     ZDProcessGraphModelMdlBP* m_ChildModel =
-                                        dynamic_cast<ZDProcessGraphModelMdlBP*>( m_Process->GetpModel() );
+                                        dynamic_cast<ZDProcessGraphModelMdlBP*>( m_Process->GetModel() );
 
                                     // Si le contrôleur de modèles existe, fait un appel récursif sur celui-ci,
                                     // afin de passer en revue toutes les pages du document.

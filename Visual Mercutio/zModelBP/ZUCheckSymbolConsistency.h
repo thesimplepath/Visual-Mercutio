@@ -8,13 +8,19 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+// processsoft
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
-// Forward declaration
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
+// forward class declaration
 class PSS_Log;
 class PSS_BasicSymbol;
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class ZBBPDoorSymbol;
 class ZBBPPageSymbol;
 class ZBBPProcedureSymbol;
@@ -81,7 +87,7 @@ private:
     bool CheckStopSymbol(ZBBPStopSymbol* pSymbol);
     bool CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
     bool CheckSymbol(ZBSymbol* pSymbol);
-    bool CheckLink(ZBLinkSymbol* pLink);
+    bool CheckLink(PSS_LinkSymbol* pLink);
 
     bool CheckInvalidCharInSymbolName(PSS_BasicSymbol* pSymbol, CString Path);
     bool CheckUniqueRef(PSS_BasicSymbol* pSymbol);

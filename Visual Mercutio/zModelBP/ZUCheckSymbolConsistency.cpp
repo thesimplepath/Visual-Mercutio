@@ -5,7 +5,7 @@
 #include "ZUCheckSymbolConsistency.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"
@@ -105,9 +105,9 @@ bool ZUCheckSymbolConsistency::CheckSymbol(CODComponent& Symbol, BOOL ModelIsCle
     {
         dynamic_cast<ZBSymbol&>(Symbol).AcceptVisitor(*this);
     }
-    else if (ISA(pSymbol, ZBLinkSymbol))
+    else if (ISA(pSymbol, PSS_LinkSymbol))
     {
-        dynamic_cast<ZBLinkSymbol&>(Symbol).AcceptVisitor(*this);
+        dynamic_cast<PSS_LinkSymbol&>(Symbol).AcceptVisitor(*this);
     }
     else if (ISA(pSymbol, ZDProcessGraphModelMdl))
     {
@@ -178,9 +178,9 @@ bool ZUCheckSymbolConsistency::Visit(CODComponent& Symbol)
     {
         return CheckSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBLinkSymbol))
+    else if (ISA(pSymbol, PSS_LinkSymbol))
     {
-        return CheckLink(dynamic_cast<ZBLinkSymbol*>(&Symbol));
+        return CheckLink(dynamic_cast<PSS_LinkSymbol*>(&Symbol));
     }
 
     // Not a right symbol or not necessary to visit
@@ -697,7 +697,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
         {
             IODEdge* pIEdge = LeavingDownEdges.GetAt(nEdgeIdx);
 
-            // Check if a ZBLinkSymbol
+            // check if a link symbol
             if (!static_cast<CODLinkComponent*>(pIEdge) ||
                 !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
             {
@@ -1256,7 +1256,7 @@ bool ZUCheckSymbolConsistency::CheckSymbol(ZBSymbol* pSymbol)
     return true;
 }
 
-bool ZUCheckSymbolConsistency::CheckLink(ZBLinkSymbol* pLink)
+bool ZUCheckSymbolConsistency::CheckLink(PSS_LinkSymbol* pLink)
 {
     ASSERT(pLink);
 

@@ -36,20 +36,20 @@ class ZBPrestationsEntity;
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-const int UM_INITPRESTATIONS    = 400;
-const int UM_REFRESHPRESTATIONS    = 401;
-const int UM_CLEARPRESTATIONS    = 402;
-const int UM_CLOSEPRESTATIONS    = 403;
+const int UM_INITPRESTATIONS = 400;
+const int UM_REFRESHPRESTATIONS = 401;
+const int UM_CLEARPRESTATIONS = 402;
+const int UM_CLOSEPRESTATIONS = 403;
 
 class AFX_EXT_CLASS ZBLogicalPrestationsObserverMsg : public PSS_ObserverMsg
 {
-    DECLARE_DYNAMIC( ZBLogicalPrestationsObserverMsg )
+    DECLARE_DYNAMIC(ZBLogicalPrestationsObserverMsg)
 
 public:
 
-    ZBLogicalPrestationsObserverMsg( UINT                    MessageID    = 0,
-                                     ZBPrestationsEntity*    pEntity        = NULL,
-                                     const CString            RootName    = _T( "" ) );
+    ZBLogicalPrestationsObserverMsg(UINT                    MessageID = 0,
+                                    ZBPrestationsEntity*    pEntity = NULL,
+                                    const CString            RootName = _T(""));
 
     virtual ~ZBLogicalPrestationsObserverMsg();
 
@@ -58,17 +58,17 @@ public:
         return m_MessageID;
     };
 
-    void SetMessageID( UINT value )
+    void SetMessageID(UINT value)
     {
         m_MessageID = value;
     };
 
-    ZBPrestationsEntity* GetpEntity() const
+    ZBPrestationsEntity* GetEntity() const
     {
         return m_pEntity;
     };
 
-    void SetpEntity( ZBPrestationsEntity* value )
+    void SetEntity(ZBPrestationsEntity* value)
     {
         m_pEntity = value;
     };
@@ -78,16 +78,15 @@ public:
         return m_RootName;
     };
 
-    void SetRootName( const CString value )
+    void SetRootName(const CString value)
     {
         m_RootName = value;
     };
 
 private:
-
-    UINT                    m_MessageID;
-    ZBPrestationsEntity*    m_pEntity;
-    CString                    m_RootName;
+    ZBPrestationsEntity* m_pEntity;
+    CString              m_RootName;
+    UINT                 m_MessageID;
 };
 
-#endif // !defined(AFX_ZBLogicalPrestationsObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)
+#endif

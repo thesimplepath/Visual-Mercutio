@@ -9,7 +9,7 @@
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zModel\ProcGraphModelVp.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ProcGraphModelDoc.h"
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
@@ -1160,9 +1160,9 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl*
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not check for itself
-            if (pPage->GetpModel() && pPage->GetpModel() != pModel)
+            if (pPage->GetModel() && pPage->GetModel() != pModel)
             {
-                DoDuplicateProcess(pPage->GetpModel());
+                DoDuplicateProcess(pPage->GetModel());
             }
         }
     }
@@ -1192,20 +1192,20 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl*
                                                                                       RefNumber));
         }
         // If we found the same reference number, return true
-        else if (ISA(pComp, ZBLinkSymbol))
+        else if (ISA(pComp, PSS_LinkSymbol))
         {
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
             int RefNumber = GetRootModel()->GetNextAvailableReferenceNumber();
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-//            ( (ZBLinkSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
-            ((ZBLinkSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
+//            ( (PSS_LinkSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
+            ((PSS_LinkSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
 
             // Retreive the next available name
-            ZUBuildSymbolNewName BuildNewName(((ZBLinkSymbol*)pComp)->GetSymbolName());
+            ZUBuildSymbolNewName BuildNewName(((PSS_LinkSymbol*)pComp)->GetSymbolName());
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-            ((ZBLinkSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
+            ((PSS_LinkSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
                                                                                           RefNumber));
         }
 
@@ -1934,7 +1934,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateFormatPainter(CCmdUI* pCmdUI)
         pCmdUI->Enable(GetSelection()->GetSize() == 1 &&
                        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsGeneric() == FALSE);
     }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBLinkSymbol))
+    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
     {
         pCmdUI->Enable(GetSelection()->GetSize() == 1);
     }

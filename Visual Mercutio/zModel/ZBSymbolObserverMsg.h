@@ -34,30 +34,51 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBSymbolObserverMsg : public PSS_ObserverMsg  
+class AFX_EXT_CLASS ZBSymbolObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC(ZBSymbolObserverMsg)
 public:
-    enum MessageActionType { NoAction, ElementHasChanged, NameHasChanged, DescriptionHasChanged, ElementSelected };
+    enum MessageActionType
+    {
+        NoAction, ElementHasChanged, NameHasChanged, DescriptionHasChanged, ElementSelected
+    };
 
 public:
-    ZBSymbolObserverMsg( MessageActionType ActionType = NoAction, CODComponent* pElement = NULL );
-    ZBSymbolObserverMsg( int SymbolRef, MessageActionType ActionType = NoAction );
+    ZBSymbolObserverMsg(MessageActionType ActionType = NoAction, CODComponent* pElement = NULL);
+    ZBSymbolObserverMsg(int SymbolRef, MessageActionType ActionType = NoAction);
     virtual ~ZBSymbolObserverMsg();
 
-    MessageActionType GetActionType() const { return m_ActionType; };
-    void SetActionType( MessageActionType value ) { m_ActionType = value; };
+    MessageActionType GetActionType() const
+    {
+        return m_ActionType;
+    };
+    void SetActionType(MessageActionType value)
+    {
+        m_ActionType = value;
+    };
 
-    CODComponent*    GetpElement() const { return m_pElement; };
-    void SetpElement( CODComponent* value ) { m_pElement = value; };
+    CODComponent* GetElement() const
+    {
+        return m_pElement;
+    };
+    void SetElement(CODComponent* value)
+    {
+        m_pElement = value;
+    };
 
-    int    GetSymbolRef() const { return m_SymbolRef; };
-    void SetSymbolRef( int value ) { m_SymbolRef = value; };
-    
+    int GetSymbolRef() const
+    {
+        return m_SymbolRef;
+    };
+    void SetSymbolRef(int value)
+    {
+        m_SymbolRef = value;
+    };
+
 private:
     MessageActionType            m_ActionType;
     CODComponent*                m_pElement;
     int                            m_SymbolRef;
 };
 
-#endif // !defined(AFX_ZBSymbolObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)
+#endif

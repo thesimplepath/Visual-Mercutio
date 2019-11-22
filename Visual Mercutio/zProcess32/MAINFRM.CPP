@@ -1070,22 +1070,22 @@ afx_msg LRESULT ZIMainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
     {
         ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
 
-        if (pDocMsg->GetpDoc())
+        if (pDocMsg->GetDoc())
         {
             // Attach process workspace as observer
-            pDocMsg->GetpDoc()->AttachObserver(GetWorkspace());
-            pDocMsg->GetpDoc()->AttachObserver(GetPropertiesWorkspace());
-            pDocMsg->GetpDoc()->AttachObserver(GetOutputWorkspace());
+            pDocMsg->GetDoc()->AttachObserver(GetWorkspace());
+            pDocMsg->GetDoc()->AttachObserver(GetPropertiesWorkspace());
+            pDocMsg->GetDoc()->AttachObserver(GetOutputWorkspace());
 
-            GetOutputWorkspace()->AttachObserver(pDocMsg->GetpDoc());
+            GetOutputWorkspace()->AttachObserver(pDocMsg->GetDoc());
 
-            pDocMsg->GetpDoc()->Initialize(GetOutputWorkspace()->GetLogView(),
-                                           GetOutputWorkspace()->GetLogAnalyzerView(),
-                                           GetOutputWorkspace()->GetLogSearchView(),
-                                           GetOutputWorkspace()->GetLogWorkflowView(),
-                                           NULL,
-                                           NULL,
-                                           NULL);
+            pDocMsg->GetDoc()->Initialize(GetOutputWorkspace()->GetLogView(),
+                                          GetOutputWorkspace()->GetLogAnalyzerView(),
+                                          GetOutputWorkspace()->GetLogSearchView(),
+                                          GetOutputWorkspace()->GetLogWorkflowView(),
+                                          NULL,
+                                          NULL,
+                                          NULL);
         }
     }
 

@@ -30,7 +30,7 @@
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZDProcessGraphPage.h"
 
 #include "zModelBP\ProcGraphModelMdlBP.h"

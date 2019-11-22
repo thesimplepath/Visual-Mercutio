@@ -945,9 +945,9 @@ afx_msg LRESULT ZIProcessGraphModelView::OnRefreshSymbol(WPARAM wParam, LPARAM l
     {
         ZBModelObserverMsg* pModelMsg = (ZBModelObserverMsg*)pMsg;
 
-        if (pModelMsg->GetpElement())
+        if (pModelMsg->GetElement())
         {
-            ZIProcessGraphModelViewport::GetModelController()->ReDrawComponent(*pModelMsg->GetpElement());
+            ZIProcessGraphModelViewport::GetModelController()->ReDrawComponent(*pModelMsg->GetElement());
             return 1;
         }
     }
@@ -968,9 +968,9 @@ afx_msg LRESULT ZIProcessGraphModelView::OnRefreshSymbolSet(WPARAM wParam, LPARA
     {
         ZBModelObserverMsg*    pModelMsg = (ZBModelObserverMsg*)pMsg;
 
-        if (pModelMsg->GetpElementSet())
+        if (pModelMsg->GetElementSet())
         {
-            ZIProcessGraphModelViewport::GetModelController()->ReDrawComponentSet(*pModelMsg->GetpElementSet());
+            ZIProcessGraphModelViewport::GetModelController()->ReDrawComponentSet(*pModelMsg->GetElementSet());
             return 1;
         }
     }
@@ -991,9 +991,9 @@ afx_msg LRESULT ZIProcessGraphModelView::OnBrowseSymbol(WPARAM wParam, LPARAM lP
     {
         ZBModelObserverMsg* pModelMsg = (ZBModelObserverMsg*)pMsg;
 
-        if (pModelMsg->GetpElement())
+        if (pModelMsg->GetElement())
         {
-            if (ZIProcessGraphModelViewport::GetModelController()->OpenSymbol(pModelMsg->GetpElement()))
+            if (ZIProcessGraphModelViewport::GetModelController()->OpenSymbol(pModelMsg->GetElement()))
             {
                 return 1;
             }
@@ -1017,18 +1017,18 @@ afx_msg LRESULT ZIProcessGraphModelView::OnOpenModelPage(WPARAM wParam, LPARAM l
         ZBModelObserverMsg* pModelMsg = (ZBModelObserverMsg*)pMsg;
 
         // If a page specified
-        if (pModelMsg->GetpPage())
+        if (pModelMsg->GetPage())
         {
-            if (ZIProcessGraphModelViewport::GetModelController()->OpenPage(pModelMsg->GetpPage()))
+            if (ZIProcessGraphModelViewport::GetModelController()->OpenPage(pModelMsg->GetPage()))
             {
                 return 1;
             }
         }
-        else if (pModelMsg->GetpModel())
+        else if (pModelMsg->GetModel())
         {
             // Browse the model
-            if (ZIProcessGraphModelViewport::GetModelController()->BrowseModel(pModelMsg->GetpModel(),
-                                                                               pModelMsg->GetpModel()->GetParent()))
+            if (ZIProcessGraphModelViewport::GetModelController()->BrowseModel(pModelMsg->GetModel(),
+                                                                               pModelMsg->GetModel()->GetParent()))
             {
                 return 1;
             }
@@ -1051,14 +1051,14 @@ afx_msg LRESULT ZIProcessGraphModelView::OnEnsureVisibleSymbol(WPARAM wParam, LP
     {
         ZBModelObserverMsg* pModelMsg = (ZBModelObserverMsg*)pMsg;
 
-        if (pModelMsg->GetpElement())
+        if (pModelMsg->GetElement())
         {
-            if (ZIProcessGraphModelViewport::GetModelController()->EnsureSymbolVisible(pModelMsg->GetpElement()))
+            if (ZIProcessGraphModelViewport::GetModelController()->EnsureSymbolVisible(pModelMsg->GetElement()))
             {
                 // Do selection if necessary
                 if (pModelMsg->GetActionType() == ZBModelObserverMsg::SelectElement)
                 {
-                    ZIProcessGraphModelViewport::GetModelController()->SelectComponent(*pModelMsg->GetpElement());
+                    ZIProcessGraphModelViewport::GetModelController()->SelectComponent(*pModelMsg->GetElement());
                 }
 
                 return 1;

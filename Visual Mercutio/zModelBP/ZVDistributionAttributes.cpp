@@ -16,7 +16,7 @@
 
 #include "zModel\ZBSymbolObserverMsg.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPStartSymbol.h"
@@ -218,7 +218,7 @@ void ZVDistributionAttributes::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* 
     {
         if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
         {
-            m_pSymbol = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement();
+            m_pSymbol = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement();
         }
     }
     else

@@ -127,11 +127,11 @@ void ZCLogicalSystemTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* p
         {
             case UM_INITLOGICALSYSTEM:
             {
-                if (dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetpEntity() &&
-                    ISA(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetpEntity(), ZBLogicalSystemEntity))
+                if (dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetEntity(), ZBLogicalSystemEntity))
                 {
                     ZBLogicalSystemEntity* pLogicalSystem =
-                        dynamic_cast<ZBLogicalSystemEntity*>(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetpEntity());
+                        dynamic_cast<ZBLogicalSystemEntity*>(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetEntity());
 
                     Initialize(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetRootName(), pLogicalSystem);
                 }

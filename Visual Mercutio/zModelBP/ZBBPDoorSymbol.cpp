@@ -439,9 +439,9 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             ZDProcessGraphModelMdl*            pSelectedModel = NULL;
 
             // If a page has been selected
-            if (Dlg.GetSelectedPage() && Dlg.GetSelectedPage()->GetpModel())
+            if (Dlg.GetSelectedPage() && Dlg.GetSelectedPage()->GetModel())
             {
-                pSelectedModel = Dlg.GetSelectedPage()->GetpModel();
+                pSelectedModel = Dlg.GetSelectedPage()->GetModel();
             }
 
             // If a a model has been selected

@@ -93,9 +93,6 @@
     <ClCompile Include="ZBLanguageProp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBLinkSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBLogicalPrestationsEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -360,6 +357,9 @@
     <ClCompile Include="PSS_MathHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_LinkSymbol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -526,9 +526,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBLanguageProp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBLinkSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBLogicalPrestationsEntity.h">
@@ -799,6 +796,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_MathHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LinkSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

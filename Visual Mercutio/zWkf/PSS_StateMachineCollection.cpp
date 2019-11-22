@@ -70,7 +70,7 @@ void PSS_StateMachineCollection::AssignModel(ZDProcessGraphModelMdl* pModel)
 }
 //---------------------------------------------------------------------------
 PSS_StateMachineHandle PSS_StateMachineCollection::CreateNewStateMachine(ZBSymbol*                      pSymbol,
-                                                                         ZBLinkSymbol*                  pLinkSymbol,
+                                                                         PSS_LinkSymbol*                pLinkSymbol,
                                                                          PSS_StateLink::IELinkDirection direction)
 {
     PSS_StateMachine* pNewStateMachine = new PSS_StateMachine(m_pModel);
@@ -132,7 +132,7 @@ PSS_StateObject* PSS_StateMachineCollection::GetCurrentStateMachineObject(PSS_St
 //---------------------------------------------------------------------------
 bool PSS_StateMachineCollection::PushSymbol(PSS_StateMachineHandle         hStateMachine,
                                             ZBSymbol*                      pSymbol,
-                                            ZBLinkSymbol*                  pLinkSymbol,
+                                            PSS_LinkSymbol*                pLinkSymbol,
                                             PSS_StateLink::IELinkDirection direction)
 {
     PSS_StateMachine* pStateMachine = GetStateMachine(hStateMachine);

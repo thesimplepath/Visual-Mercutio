@@ -12,7 +12,7 @@
 #include "zBaseSym\PSS_BasicSymbol.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "PSS_StateObject.h"
 
 #ifdef _DEBUG
@@ -97,7 +97,7 @@ bool PSS_StateMachine::IsEqual(PSS_StateMachine* pOther)
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_StateMachine::PushSymbol(ZBSymbol* pSymbol, ZBLinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction)
+void PSS_StateMachine::PushSymbol(ZBSymbol* pSymbol, PSS_LinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction)
 {
     PSS_StateObject* pStateObj = new PSS_StateObject(pSymbol, pLinkSymbol, direction, m_pModel);
     AddStateObject(pStateObj);

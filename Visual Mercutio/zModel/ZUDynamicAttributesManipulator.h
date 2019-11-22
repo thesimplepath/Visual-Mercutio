@@ -17,16 +17,21 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "zProperty\ZIProperties.h"
 
-//////////////////////////////////////////////////////////////////////
-// Forward declaration
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
+// forward class declaration
 class ZDProcessGraphModelMdl;
 class ZBProperty;
 class ZBDynamicPropertiesManager;
 class PSS_BasicSymbol;
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -47,29 +52,29 @@ public:
     ZUDynamicAttributesManipulator();
     virtual ~ZUDynamicAttributesManipulator();
 
-    static void GetCategories( ZDProcessGraphModelMdl*    pModel,
-                               CStringArray&            StaticAttributes,
-                               CStringArray&            DynamicAttributes );
+    static void GetCategories(ZDProcessGraphModelMdl*    pModel,
+                              CStringArray&            StaticAttributes,
+                              CStringArray&            DynamicAttributes);
 
-    static bool AssignProperty( ZDProcessGraphModelMdl*    pModel,
-                                ZBProperty*                pProperty,
-                                CRuntimeClass*            pRTClass    = NULL );
+    static bool AssignProperty(ZDProcessGraphModelMdl*    pModel,
+                               ZBProperty*                pProperty,
+                               CRuntimeClass*            pRTClass = NULL);
 
-    static bool ReassignProperty        ( ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty );
-    static bool DeleteProperty            ( ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty );
-    static void ExtractUniqueAttributes    ( ZDProcessGraphModelMdl* pModel, ZBPropertySet& Set );
+    static bool ReassignProperty(ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty);
+    static bool DeleteProperty(ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty);
+    static void ExtractUniqueAttributes(ZDProcessGraphModelMdl* pModel, ZBPropertySet& Set);
 
-    static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
-                                               ZBSymbol*                    pSymbol );
+    static bool AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
+                                              ZBSymbol*                    pSymbol);
 
-    static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
-                                               ZBLinkSymbol*                pSymbol );
+    static bool AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
+                                              PSS_LinkSymbol*                pSymbol);
 
 private:
 
-    static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
+    static bool AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
                                               PSS_BasicSymbol*                pSymbol,
-                                               const CString&                ClassName );
+                                              const CString&                ClassName);
 };
 
-#endif // !defined(AFX_ZUDYNAMICATTRIBUTESMANIPULATOR_H__2D70943F_BFF5_4D6B_B874_3DA54C957314__INCLUDED_)
+#endif

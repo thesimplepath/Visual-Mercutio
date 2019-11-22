@@ -68,7 +68,7 @@ public:
     virtual bool OnFinish();
 
     virtual bool OnSymbol(ZBSymbol* pSymbol);
-    virtual bool OnLink(ZBLinkSymbol* pLink);
+    virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:
     CStringArray* m_pDynamicArray;

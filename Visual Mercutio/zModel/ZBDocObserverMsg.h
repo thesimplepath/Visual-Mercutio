@@ -38,7 +38,7 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZBDocObserverMsg : public PSS_ObserverMsg
 {
-    DECLARE_DYNAMIC( ZBDocObserverMsg )
+    DECLARE_DYNAMIC(ZBDocObserverMsg)
 
 public:
 
@@ -55,10 +55,10 @@ public:
 
 public:
 
-    ZBDocObserverMsg( MessageActionType            ActionType    = NoAction,
-                      ZDProcessGraphModelDoc*    pDoc        = NULL,
-                      ZDProcessGraphModelMdl*    pModel        = NULL,
-                      CODSymbolComponent*        pElement    = NULL );
+    ZBDocObserverMsg(MessageActionType            ActionType = NoAction,
+                     ZDProcessGraphModelDoc*    pDoc = NULL,
+                     ZDProcessGraphModelMdl*    pModel = NULL,
+                     CODSymbolComponent*        pElement = NULL);
 
     virtual ~ZBDocObserverMsg();
 
@@ -67,47 +67,46 @@ public:
         return m_ActionType;
     };
 
-    void SetActionType( MessageActionType value )
+    void SetActionType(MessageActionType value)
     {
         m_ActionType = value;
     };
 
-    ZDProcessGraphModelDoc* GetpDoc() const
+    ZDProcessGraphModelDoc* GetDoc() const
     {
         return m_pDoc;
     };
 
-    void SetpDoc( ZDProcessGraphModelDoc* value )
+    void SetDoc(ZDProcessGraphModelDoc* value)
     {
         m_pDoc = value;
     };
 
-    ZDProcessGraphModelMdl* GetpModel() const
+    ZDProcessGraphModelMdl* GetModel() const
     {
         return m_pModel;
     };
 
-    void SetpModel( ZDProcessGraphModelMdl* value )
+    void SetModel(ZDProcessGraphModelMdl* value)
     {
         m_pModel = value;
     };
 
-    CODSymbolComponent* GetpElement() const
+    CODSymbolComponent* GetElement() const
     {
         return m_pElement;
     };
 
-    void SetpElement( CODSymbolComponent* value )
+    void SetElement(CODSymbolComponent* value)
     {
         m_pElement = value;
     };
 
 private:
-
-    MessageActionType            m_ActionType;
-    ZDProcessGraphModelDoc*        m_pDoc;
-    ZDProcessGraphModelMdl*        m_pModel;
-    CODSymbolComponent*            m_pElement;
+    ZDProcessGraphModelDoc* m_pDoc;
+    ZDProcessGraphModelMdl* m_pModel;
+    CODSymbolComponent*     m_pElement;
+    MessageActionType       m_ActionType;
 };
 
-#endif // !defined(AFX_ZBDOCOBSERVERMSG_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)
+#endif

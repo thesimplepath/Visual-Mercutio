@@ -26,7 +26,7 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 #include "ZVDynamicAttributesDuplication.h"
 
 class ZIProcessGraphModelViewport;
@@ -344,7 +344,7 @@ protected:
     void                                    RemoveReferenceSymbol(CODComponentSet* pCompSet);
 
     ZIProcessGraphModelViewport*            BrowseSymbolModel(ZBSymbol* pSymbol);
-    ZIProcessGraphModelViewport*            BrowseLinkSymbolModel(ZBLinkSymbol* pSymbol);
+    ZIProcessGraphModelViewport*            BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol);
 
 protected:
 

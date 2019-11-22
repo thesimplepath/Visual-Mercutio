@@ -255,7 +255,7 @@ void ZBSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
         SetSymbolName(reinterpret_cast<const ZBSymbol&>(src).GetSymbolName());
         SetSymbolComment(reinterpret_cast<const ZBSymbol&>(src).GetSymbolComment());
         SetAbsolutePath(reinterpret_cast<const ZBSymbol&>(src).GetAbsolutePath());
-        SetpModel(const_cast<ZBSymbol&>(reinterpret_cast<const ZBSymbol&>(src)).GetpModel());
+        SetModel(const_cast<ZBSymbol&>(reinterpret_cast<const ZBSymbol&>(src)).GetModel());
 
         // Symbol is local
         m_IsLocal = true;
@@ -1351,7 +1351,7 @@ bool ZBSymbol::ProcessMenuCommand(int                MenuCommand,
     return RetValue;
 }
 
-bool ZBSymbol::OnPrePropertyChanged(CString NewValue, ZBProperty& Property, ZBPropertySet& Properties)
+bool ZBSymbol::OnPrePropertyChanged(const CString& NewValue, ZBProperty& Property, ZBPropertySet& Properties)
 {
     bool RetValue = true;
 

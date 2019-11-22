@@ -30,11 +30,16 @@
 #include "PSS_AutomationCollections.h"
 #include "PSS_StateLink.h"
 
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
 // forward class declaration
 class PSS_StateMachine;
 class PSS_StateObject;
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class ZDProcessGraphModelMdl;
 
 #ifdef _ZWKFEXPORT
@@ -96,7 +101,7 @@ public:
     *@return newly created state machine handle, -1 on error
     */
     virtual PSS_StateMachineHandle CreateNewStateMachine(ZBSymbol*                      pSymbol,
-                                                         ZBLinkSymbol*                  pLinkSymbol,
+                                                         PSS_LinkSymbol*                pLinkSymbol,
                                                          PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_UnknownDirection);
 
     /**
@@ -140,7 +145,7 @@ public:
     */
     virtual bool PushSymbol(PSS_StateMachineHandle         hStateMachine,
                             ZBSymbol*                      pSymbol,
-                            ZBLinkSymbol*                  pLinkSymbol,
+                            PSS_LinkSymbol*                pLinkSymbol,
                             PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_UnknownDirection);
 
     /**

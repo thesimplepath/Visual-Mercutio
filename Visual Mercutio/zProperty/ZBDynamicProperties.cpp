@@ -7,7 +7,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -20,26 +20,25 @@ IMPLEMENT_SERIAL(ZBDynamicProperties, CObject, g_DefVersion)
 //////////////////////////////////////////////////////////////////////
 
 ZBDynamicProperties::ZBDynamicProperties()
-{
-}
+{}
 
 ZBDynamicProperties::~ZBDynamicProperties()
 {
     FreePropertiesSet();
 }
 
-ZBDynamicProperties::ZBDynamicProperties( const ZBDynamicProperties& src )
+ZBDynamicProperties::ZBDynamicProperties(const ZBDynamicProperties& src)
 {
     *this = src;
 }
 
-ZBDynamicProperties& ZBDynamicProperties::operator=( const ZBDynamicProperties& src )
+ZBDynamicProperties& ZBDynamicProperties::operator=(const ZBDynamicProperties& src)
 {
     ZBDynamicPropertiesIterator i(&src.m_Set);
 
-    for ( ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        AddDynamicProperty( pProp->Dup() );
+        AddDynamicProperty(pProp->Dup());
     }
 
     return *this;
@@ -47,14 +46,14 @@ ZBDynamicProperties& ZBDynamicProperties::operator=( const ZBDynamicProperties& 
 
 ZBDynamicProperties* ZBDynamicProperties::Dup() const
 {
-    return ( new ZBDynamicProperties( *this ) );
+    return (new ZBDynamicProperties(*this));
 }
 
 void ZBDynamicProperties::FreePropertiesSet()
 {
-    ZBDynamicPropertiesIterator i( &m_Set );
+    ZBDynamicPropertiesIterator i(&m_Set);
 
-    for ( ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -62,26 +61,26 @@ void ZBDynamicProperties::FreePropertiesSet()
     m_Set.RemoveAll();
 }
 
-void ZBDynamicProperties::AddDynamicProperty( ZBProperty* pProperty )
+void ZBDynamicProperties::AddDynamicProperty(ZBProperty* pProperty)
 {
-    if ( !pProperty )
+    if (!pProperty)
     {
         return;
     }
 
-    if ( !Exist( pProperty ) )
+    if (!Exist(pProperty))
     {
-        m_Set.Add( pProperty );
+        m_Set.Add(pProperty);
     }
 }
 
-bool ZBDynamicProperties::Exist( ZBProperty* pProperty )
+bool ZBDynamicProperties::Exist(ZBProperty* pProperty)
 {
-    ZBDynamicPropertiesIterator i( &m_Set );
+    ZBDynamicPropertiesIterator i(&m_Set);
 
-    for ( ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCategoryID() == pProperty->GetCategoryID() && pProp->GetItemID() == pProperty->GetItemID() )
+        if (pProp->GetCategoryID() == pProperty->GetCategoryID() && pProp->GetItemID() == pProperty->GetItemID())
         {
             return true;
         }
@@ -90,13 +89,13 @@ bool ZBDynamicProperties::Exist( ZBProperty* pProperty )
     return false;
 }
 
-bool ZBDynamicProperties::DeleteProperty( ZBProperty* pProperty )
+bool ZBDynamicProperties::DeleteProperty(ZBProperty* pProperty)
 {
-    ZBDynamicPropertiesIterator i( &m_Set );
+    ZBDynamicPropertiesIterator i(&m_Set);
 
-    for ( ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCategoryID() == pProperty->GetCategoryID() && pProp->GetItemID() == pProperty->GetItemID() )
+        if (pProp->GetCategoryID() == pProperty->GetCategoryID() && pProp->GetItemID() == pProperty->GetItemID())
         {
             delete pProp;
             i.Remove();
@@ -107,70 +106,70 @@ bool ZBDynamicProperties::DeleteProperty( ZBProperty* pProperty )
     return false;
 }
 
-bool ZBDynamicProperties::FillProperties( ZBPropertySet&    PropSet,
-                                          bool                NumericValue    /*= false*/,
-                                          bool                GroupValue        /*= false*/ )
+bool ZBDynamicProperties::FillProperties(ZBPropertySet&    PropSet,
+                                         bool                NumericValue    /*= false*/,
+                                         bool                GroupValue        /*= false*/)
 {
-    ZBDynamicPropertiesIterator i( &m_Set );
+    ZBDynamicPropertiesIterator i(&m_Set);
 
-    for ( ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // Add the properties to the set.
-        PropSet.Add( pProp->Dup() );
+        PropSet.Add(pProp->Dup());
     }
 
     return true;
 }
 
-bool ZBDynamicProperties::SaveProperties( ZBPropertySet& PropSet )
+bool ZBDynamicProperties::SaveProperties(ZBPropertySet& PropSet)
 {
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator s( &PropSet );
+    ZBPropertyIterator s(&PropSet);
 
-    for ( ZBProperty* pPropSrc = s.GetFirst(); pPropSrc; pPropSrc = s.GetNext() )
+    for (ZBProperty* pPropSrc = s.GetFirst(); pPropSrc; pPropSrc = s.GetNext())
     {
-        ZBDynamicPropertiesIterator d( &m_Set );
+        ZBDynamicPropertiesIterator d(&m_Set);
 
-        for ( ZBProperty* pPropDst = d.GetFirst(); pPropDst; pPropDst = d.GetNext() )
-        {        
-            if ( pPropSrc->GetCategoryID() == pPropDst->GetCategoryID() &&
-                 pPropSrc->GetItemID() == pPropDst->GetItemID() )
+        for (ZBProperty* pPropDst = d.GetFirst(); pPropDst; pPropDst = d.GetNext())
+        {
+            if (pPropSrc->GetCategoryID() == pPropDst->GetCategoryID() &&
+                pPropSrc->GetItemID() == pPropDst->GetItemID())
             {
-                switch ( pPropSrc->GetPTValueType() )
+                switch (pPropSrc->GetPTValueType())
                 {
                     case ZBProperty::PT_STRING:
                     {
-                        pPropDst->SetValueString( pPropSrc->GetValueString() );
+                        pPropDst->SetValueString(pPropSrc->GetValueString());
                         break;
                     }
 
                     case ZBProperty::PT_DOUBLE:
                     {
-                        pPropDst->SetValueDouble( pPropSrc->GetValueDouble() );
+                        pPropDst->SetValueDouble(pPropSrc->GetValueDouble());
                         break;
                     }
 
                     case ZBProperty::PT_FLOAT:
                     {
-                        pPropDst->SetValueFloat( pPropSrc->GetValueFloat() );
+                        pPropDst->SetValueFloat(pPropSrc->GetValueFloat());
                         break;
                     }
 
                     case ZBProperty::PT_DATE:
                     {
-                        pPropDst->SetValueDate( pPropSrc->GetValueDate() );
+                        pPropDst->SetValueDate(pPropSrc->GetValueDate());
                         break;
                     }
 
                     case ZBProperty::PT_TIMESPAN:
                     {
-                        pPropDst->SetValueTimeSpan( pPropSrc->GetValueTimeSpan() );
+                        pPropDst->SetValueTimeSpan(pPropSrc->GetValueTimeSpan());
                         break;
                     }
 
                     case ZBProperty::PT_DURATION:
                     {
-                        pPropDst->SetValueDuration( pPropSrc->GetValueDuration() );
+                        pPropDst->SetValueDuration(pPropSrc->GetValueDuration());
                         break;
                     }
                 }
@@ -181,52 +180,52 @@ bool ZBDynamicProperties::SaveProperties( ZBPropertySet& PropSet )
     return true;
 }
 
-bool ZBDynamicProperties::FillProperty( ZBProperty& Property )
+bool ZBDynamicProperties::FillProperty(ZBProperty& Property)
 {
     return true;
 }
 
-bool ZBDynamicProperties::SaveProperty( ZBProperty& Property )
+bool ZBDynamicProperties::SaveProperty(ZBProperty& Property)
 {
     return true;
 }
 
-bool ZBDynamicProperties::CheckPropertyValue( ZBProperty& Property, CString& value, ZBPropertySet& Properties )
+bool ZBDynamicProperties::CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties)
 {
     return true;
 }
 
-bool ZBDynamicProperties::ProcessExtendedInput( ZBProperty&        Property,
-                                                CString&        value,
-                                                ZBPropertySet&    Properties,
-                                                bool&            Refresh )
+bool ZBDynamicProperties::ProcessExtendedInput(ZBProperty&        Property,
+                                               CString&        value,
+                                               ZBPropertySet&    Properties,
+                                               bool&            Refresh)
 {
     return true;
 }
 
-bool ZBDynamicProperties::ProcessMenuCommand( int                MenuCommand,
-                                              ZBProperty&        Property,
-                                              CString&            value,
-                                              ZBPropertySet&    Properties,
-                                              bool&                Refresh )
+bool ZBDynamicProperties::ProcessMenuCommand(int                MenuCommand,
+                                             ZBProperty&        Property,
+                                             CString&            value,
+                                             ZBPropertySet&    Properties,
+                                             bool&                Refresh)
 {
     return true;
 }
 
-bool ZBDynamicProperties::OnPrePropertyChanged( CString NewValue, ZBProperty& Property, ZBPropertySet& Properties )
+bool ZBDynamicProperties::OnPrePropertyChanged(const CString& NewValue, ZBProperty& Property, ZBPropertySet& Properties)
 {
     return true;
 }
 
-bool ZBDynamicProperties::OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh )
+bool ZBDynamicProperties::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh)
 {
     return true;
 }
 
-bool ZBDynamicProperties::OnDropInternalPropertyItem( ZBProperty&        SrcProperty,
-                                                      ZBProperty&        DstProperty,
-                                                      bool                Top2Down,
-                                                      ZBPropertySet&    Properties )
+bool ZBDynamicProperties::OnDropInternalPropertyItem(ZBProperty&        SrcProperty,
+                                                     ZBProperty&        DstProperty,
+                                                     bool                Top2Down,
+                                                     ZBPropertySet&    Properties)
 {
     return true;
 }
@@ -236,17 +235,17 @@ bool ZBDynamicProperties::CreateSymbolProperties()
     return true;
 }
 
-void ZBDynamicProperties::Serialize( CArchive& ar )
+void ZBDynamicProperties::Serialize(CArchive& ar)
 {
-    if ( ar.IsStoring() )
+    if (ar.IsStoring())
     {
         // JMR-MODIF - Le 7 septembre 2005 - Ajout de la conversion explicite de SEC_INT en int.
         // Serialize the size
         ar << (int)m_Set.GetSize();
 
-        ZBDynamicPropertiesIterator i( &m_Set );
+        ZBDynamicPropertiesIterator i(&m_Set);
 
-        for ( ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
             ar << pProp;
         }
@@ -258,10 +257,10 @@ void ZBDynamicProperties::Serialize( CArchive& ar )
 
         ZBProperty* pProp;
 
-        for ( int i = 0; i < Size; ++i )
+        for (int i = 0; i < Size; ++i)
         {
             ar >> pProp;
-            AddDynamicProperty( pProp );
+            AddDynamicProperty(pProp);
         }
     }
 }

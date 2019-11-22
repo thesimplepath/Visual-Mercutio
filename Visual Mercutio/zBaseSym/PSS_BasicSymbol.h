@@ -598,25 +598,25 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         * Gets the name edit text
         *@return the name edit text
         */
-        virtual CODTextComponent* GetNameEditText() = 0;
+        virtual CODTextComponent* GetNameEditTextComponent() = 0;
 
         /**
         * Sets the name edit text
         *@param pValue - the name edit text
         */
-        virtual void SetNameEditText(CODTextComponent* pValue) = 0;
+        virtual void SetNameEditTextComponent(CODTextComponent* pValue) = 0;
 
         /**
         * Gets the comment edit text
         *@return the comment edit text
         */
-        virtual CODTextComponent* GetCommentEditText() = 0;
+        virtual CODTextComponent* GetCommentEditTextComponent() = 0;
 
         /**
         * Sets the comment edit text
         *@param pValue - the comment edit text
         */
-        virtual void SetCommentEditText(CODTextComponent* pValue) = 0;
+        virtual void SetCommentEditTextComponent(CODTextComponent* pValue) = 0;
 };
 
 #endif

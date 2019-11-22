@@ -15,7 +15,7 @@
 #include "ZUCheckSesterceConsistency.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
@@ -104,9 +104,9 @@ bool ZUCheckSesterceConsistency::Visit(CODComponent& Symbol)
     {
         return CheckSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBLinkSymbol))
+    else if (ISA(pSymbol, PSS_LinkSymbol))
     {
-        return CheckLink(dynamic_cast<ZBLinkSymbol*>(&Symbol));
+        return CheckLink(dynamic_cast<PSS_LinkSymbol*>(&Symbol));
     }
 
     // Not a right symbol or not necessary to visit
@@ -446,7 +446,7 @@ bool ZUCheckSesterceConsistency::CheckSymbol(ZBSymbol* pSymbol)
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckLink(ZBLinkSymbol* pLink)
+bool ZUCheckSesterceConsistency::CheckLink(PSS_LinkSymbol* pLink)
 {
     ASSERT(pLink);
     return true;

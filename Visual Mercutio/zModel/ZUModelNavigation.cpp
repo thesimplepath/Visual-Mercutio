@@ -7,13 +7,13 @@
 
 #include "ProcGraphModelMdl.h"
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #include "zModelRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -23,17 +23,15 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUModelNavigation::ZUModelNavigation( ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/ )
-    : m_pModel    ( pModel ),
-      m_pClass    ( pClass )
-{
-}
+ZUModelNavigation::ZUModelNavigation(ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
+    : m_pModel(pModel),
+    m_pClass(pClass)
+{}
 
 ZUModelNavigation::~ZUModelNavigation()
-{
-}
+{}
 
-bool ZUModelNavigation::Navigate( ZDProcessGraphModelMdl* pModel, void* pClass )
+bool ZUModelNavigation::Navigate(ZDProcessGraphModelMdl* pModel, void* pClass)
 {
     m_pModel = pModel;
     m_pClass = pClass;
@@ -41,7 +39,7 @@ bool ZUModelNavigation::Navigate( ZDProcessGraphModelMdl* pModel, void* pClass )
     return ZUModelNavigation::Navigate();
 }
 
-bool ZUModelNavigation::Navigate( ZDProcessGraphModelMdl* pModel )
+bool ZUModelNavigation::Navigate(ZDProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
     return ZUModelNavigation::Navigate();
@@ -49,16 +47,16 @@ bool ZUModelNavigation::Navigate( ZDProcessGraphModelMdl* pModel )
 
 bool ZUModelNavigation::Navigate()
 {
-    if ( m_pModel )
+    if (m_pModel)
     {
         // Call the OnStart method
-        if ( !OnStart() )
+        if (!OnStart())
         {
             return false;
         }
 
         // Process the model
-        m_pModel->AcceptVisitor( *this );
+        m_pModel->AcceptVisitor(*this);
 
         // Call the OnFinish method and returns its retval.
         return OnFinish();
@@ -67,17 +65,17 @@ bool ZUModelNavigation::Navigate()
     return false;
 }
 
-bool ZUModelNavigation::Visit( CODComponent& Symbol )
+bool ZUModelNavigation::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if ( ISA( pSymbol, ZBSymbol ) )
+    if (ISA(pSymbol, ZBSymbol))
     {
-        return OnSymbol( dynamic_cast<ZBSymbol*>( &Symbol ) );
+        return OnSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
     }
-    else if ( ISA( pSymbol, ZBLinkSymbol ) )
+    else if (ISA(pSymbol, PSS_LinkSymbol))
     {
-        return OnLink( dynamic_cast<ZBLinkSymbol*>( &Symbol ) );
+        return OnLink(dynamic_cast<PSS_LinkSymbol*>(&Symbol));
     }
 
     // Not a right symbol or not necessary to visit

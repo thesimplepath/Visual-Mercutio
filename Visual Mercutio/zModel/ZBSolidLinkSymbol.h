@@ -17,9 +17,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "ZBLinkSymbol.h"
-
+// processsoft
+#include "PSS_LinkSymbol.h"
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -35,12 +34,11 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBSolidLinkSymbol : public ZBLinkSymbol  
+class AFX_EXT_CLASS ZBSolidLinkSymbol : public PSS_LinkSymbol
 {
 public:
     ZBSolidLinkSymbol();
     virtual ~ZBSolidLinkSymbol();
-
 };
 
-#endif // !defined(AFX_ZBSOLIDLINKSYMBOL_H__5E36A170_1309_40A0_921E_21E59A1D4936__INCLUDED_)
+#endif

@@ -42,7 +42,7 @@ class AFX_EXT_CLASS ZUExtractModelLogicalPrestationsAssigned : public ZUModelNav
 {
 public:
 
-    ZUExtractModelLogicalPrestationsAssigned( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUExtractModelLogicalPrestationsAssigned(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUExtractModelLogicalPrestationsAssigned();
 
     CODComponentSet& GetComponentSet()
@@ -54,8 +54,8 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
 
-    virtual bool OnSymbol( ZBSymbol* pSymbol );
-    virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:
 

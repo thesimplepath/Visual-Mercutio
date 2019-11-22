@@ -82,17 +82,17 @@ public:
     // JMR-MODIF - Le 29 septembre 2005 - Ajout de la fonction IsClosing.
     BOOL IsClosing();
 
-    virtual ZUUserManager* GetpUserManager() const
+    virtual ZUUserManager* GetUserManager() const
     {
         return m_pUserManager;
     }
 
-    virtual ZUMail* GetpMail() const
+    virtual ZUMail* GetMail() const
     {
         return m_pMail;
     }
 
-    virtual ZDTemplateManager* GetpTemplateManager() const
+    virtual ZDTemplateManager* GetTemplateManager() const
     {
         return m_pTemplateManager;
     }

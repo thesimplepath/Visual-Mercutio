@@ -35,9 +35,14 @@
 // JMR-MODIF - Le 19 novembre 2006 - Ajout de l'en-tête ZBLogicalRulesEntity.h
 #include "zModel\ZBLogicalRulesEntity.h"
 
-// Forward declaration
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
+// forward class declaration
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class PSS_Log;
 class ZDProcessGraphModelDoc;
 class ZIProcessGraphModelViewport;
@@ -419,7 +424,7 @@ public:
     }
 
     // Called before the property changed
-    virtual bool OnPrePropertyChanged(CString NewValue, ZBProperty& Property, ZBPropertySet& Properties)
+    virtual bool OnPrePropertyChanged(const CString& newValue, ZBProperty& Property, ZBPropertySet& Properties)
     {
         // Do nothing
         return true;
@@ -515,7 +520,7 @@ public:
     }
 
     virtual ZDProcessGraphModelMdl* GetSymbolModel(ZBSymbol* pSymbolToFind);
-    virtual ZDProcessGraphModelMdl* GetLinkSymbolModel(ZBLinkSymbol* pSymbolToFind);
+    virtual ZDProcessGraphModelMdl* GetLinkSymbolModel(PSS_LinkSymbol* pSymbolToFind);
 
     virtual ZDProcessGraphModelMdl* GetRoot();
     virtual ZDProcessGraphModelMdl* GetParent()

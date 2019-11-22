@@ -12,7 +12,7 @@
 // processsoft
 #include "ZUExtractModelAttributes.h"
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -71,7 +71,7 @@ bool ZUExtractModelAttributes::OnSymbol(ZBSymbol* pSymbol)
     return true;
 }
 //---------------------------------------------------------------------------
-bool ZUExtractModelAttributes::OnLink(ZBLinkSymbol* pLink)
+bool ZUExtractModelAttributes::OnLink(PSS_LinkSymbol* pLink)
 {
     ZBPropertySet propSet;
 

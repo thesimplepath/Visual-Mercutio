@@ -8,13 +8,13 @@
 #include "zModel\ProcGraphModelMdl.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "zProperty\ZBDynamicProperties.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -22,15 +22,14 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUAssignDynamicAttributesToModel::ZUAssignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/, 
-                                                                   ZBProperty* pProperty /*= NULL*/, 
+ZUAssignDynamicAttributesToModel::ZUAssignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/,
+                                                                   ZBProperty* pProperty /*= NULL*/,
                                                                    CRuntimeClass* pRTClass /*= NULL*/,
                                                                    void* pClass /*= NULL*/)
-: ZUModelNavigation(pModel,pClass),
-  m_pProperty(pProperty),
-  m_pRTClass(pRTClass)
-{
-}
+    : ZUModelNavigation(pModel, pClass),
+    m_pProperty(pProperty),
+    m_pRTClass(pRTClass)
+{}
 
 ZUAssignDynamicAttributesToModel::~ZUAssignDynamicAttributesToModel()
 {
@@ -52,32 +51,25 @@ bool ZUAssignDynamicAttributesToModel::OnFinish()
     return true;
 }
 
-bool ZUAssignDynamicAttributesToModel::OnSymbol( ZBSymbol* pSymbol )
+bool ZUAssignDynamicAttributesToModel::OnSymbol(ZBSymbol* pSymbol)
 {
     // If for the whole model
     // or for a specific class name
     if (!m_pRTClass ||
-        (m_pRTClass && 
+        (m_pRTClass &&
          m_pRTClass->m_lpszClassName == pSymbol->GetRuntimeClass()->m_lpszClassName))
-        pSymbol->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
+        pSymbol->GetDynamicPropertiesManager()->AddDynamicProperty(m_pProperty->Dup());
 
     return true;
 }
-bool ZUAssignDynamicAttributesToModel::OnLink( ZBLinkSymbol* pLink )
+bool ZUAssignDynamicAttributesToModel::OnLink(PSS_LinkSymbol* pLink)
 {
     // If for the whole model
     // or for a specific class name
     if (!m_pRTClass ||
-        (m_pRTClass && 
+        (m_pRTClass &&
          m_pRTClass->m_lpszClassName == pLink->GetRuntimeClass()->m_lpszClassName))
-        pLink->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
+        pLink->GetDynamicPropertiesManager()->AddDynamicProperty(m_pProperty->Dup());
 
     return true;
 }
-
-
-
-
-
-
-

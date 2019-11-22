@@ -40,10 +40,10 @@ public:
     virtual ~ZBExtFilePropertyMgr();
 
     /* Copy constructor. */
-    ZBExtFilePropertyMgr( const ZBExtFilePropertyMgr& src );
+    ZBExtFilePropertyMgr(const ZBExtFilePropertyMgr& src);
 
     /* Assignment operator. */
-    ZBExtFilePropertyMgr& operator=( const ZBExtFilePropertyMgr& src );
+    ZBExtFilePropertyMgr& operator=(const ZBExtFilePropertyMgr& src);
 
     /////////////////////////////////////////////////////////////////////////////
     // External Files methods
@@ -71,42 +71,42 @@ public:
     // Add a new extfile,
     // and return the index of the new added extfile
     // Return -1 if the function fails
-    int AddExtFile( ZBExtFileProperties* pProperty )
+    int AddExtFile(ZBExtFileProperties* pProperty)
     {
         return m_ExternalFiles.AddExtFile(pProperty);
     }
 
     // Delete an extfile
-    bool DeleteExtFile( size_t Index )
+    bool DeleteExtFile(size_t Index)
     {
-        return m_ExternalFiles.DeleteExtFile( Index );
+        return m_ExternalFiles.DeleteExtFile(Index);
     }
 
-    bool DeleteExtFile( const CString fileName )
+    bool DeleteExtFile(const CString fileName)
     {
-        return m_ExternalFiles.DeleteExtFile( fileName );
+        return m_ExternalFiles.DeleteExtFile(fileName);
     }
 
-    bool DeleteExtFile( ZBExtFileProperties* pProperty )
+    bool DeleteExtFile(ZBExtFileProperties* pProperty)
     {
-        return m_ExternalFiles.DeleteExtFile( pProperty );
+        return m_ExternalFiles.DeleteExtFile(pProperty);
     }
 
     // Return true if the extfile already exists
-    bool ExtFileExist( const CString fileName ) const
+    bool ExtFileExist(const CString fileName) const
     {
-        return m_ExternalFiles.ExtFileExist( fileName );
+        return m_ExternalFiles.ExtFileExist(fileName);
     }
 
     // Retreive the right extfile properties base on the extfile file name
-    ZBExtFileProperties* LocateExtFile( const CString fileName ) const
+    ZBExtFileProperties* LocateExtFile(const CString fileName) const
     {
-        return m_ExternalFiles.LocateExtFile( fileName );
+        return m_ExternalFiles.LocateExtFile(fileName);
     }
 
-    ZBExtFileProperties* GetExtFileProperty( size_t Index ) const
+    ZBExtFileProperties* GetExtFileProperty(size_t Index) const
     {
-        return m_ExternalFiles.GetProperty( Index );
+        return m_ExternalFiles.GetProperty(Index);
     }
 
     // Returns the index of the first empty element if there is,
@@ -129,80 +129,80 @@ public:
     }
 
     /* Gets the file title at the specific Index. */
-    CString GetFileTitle( size_t Index ) const
+    CString GetFileTitle(size_t Index) const
     {
-        return m_ExternalFiles.GetFileTitle( Index );
+        return m_ExternalFiles.GetFileTitle(Index);
     }
 
     //@cmember
     /* Sets the file title at the specific Index. */
-    void SetFileTitle( size_t Index, CString Value )
+    void SetFileTitle(size_t Index, CString Value)
     {
-        m_ExternalFiles.SetFileTitle( Index, Value );
+        m_ExternalFiles.SetFileTitle(Index, Value);
     }
 
     //@cmember
     /* Gets the file name at the specific Index. */
-    CString GetFileName( size_t Index ) const
+    CString GetFileName(size_t Index) const
     {
-        return m_ExternalFiles.GetFileName( Index );
+        return m_ExternalFiles.GetFileName(Index);
     }
 
     //@cmember
     /* Sets the file name at the specific Index. */
-    void SetFileName( size_t Index, CString Value )
+    void SetFileName(size_t Index, CString Value)
     {
-        m_ExternalFiles.SetFileName( Index, Value );
+        m_ExternalFiles.SetFileName(Index, Value);
     }
 
     //@cmember
     /* Gets the insertion type at the specific Index. */
-    int GetInsertionType( size_t Index ) const
+    int GetInsertionType(size_t Index) const
     {
-        return m_ExternalFiles.GetInsertionType( Index );
+        return m_ExternalFiles.GetInsertionType(Index);
     }
 
     //@cmember
     /* Sets the insertion type at the specific Index. */
-    void SetInsertionType( size_t Index, const int value )
+    void SetInsertionType(size_t Index, const int value)
     {
-        m_ExternalFiles.SetInsertionType( Index, value );
+        m_ExternalFiles.SetInsertionType(Index, value);
     }
 
     //@cmember
     /* Gets the activation type at the specific Index. */
-    int GetActivationType( size_t Index ) const
+    int GetActivationType(size_t Index) const
     {
-        return m_ExternalFiles.GetActivationType( Index );
+        return m_ExternalFiles.GetActivationType(Index);
     }
 
     //@cmember
     /* Sets the activation type at the specific Index. */
-    void SetActivationType( size_t Index, const int value )
+    void SetActivationType(size_t Index, const int value)
     {
-        m_ExternalFiles.SetActivationType( Index, value );
+        m_ExternalFiles.SetActivationType(Index, value);
     }
 
-    virtual void OnAddNewExtFile( ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh )
+    virtual void OnAddNewExtFile(ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh)
     {
         // Sets the refresh flag to true
-        Refresh = DoInsertExtFile( false );
+        Refresh = DoInsertExtFile(false);
 
-        if ( Refresh )
+        if (Refresh)
         {
-            value = GetFileTitle( GetExtFileCount() - 1 );
+            value = GetFileTitle(GetExtFileCount() - 1);
         }
     }
 
-    virtual void OnDelCurrentExtFile( ZBProperty&        Property,
-                                      CString&            value,
-                                      ZBPropertySet&    Properties,
-                                      bool&                Refresh )
+    virtual void OnDelCurrentExtFile(ZBProperty&        Property,
+                                     CString&            value,
+                                     ZBPropertySet&    Properties,
+                                     bool&                Refresh)
     {
         // Delete the current selected external file
         int Index = Property.GetCategoryID() - ZS_BP_PROP_EXTFILE;
 
-        if ( DeleteExtFile( Index ) )
+        if (DeleteExtFile(Index))
         {
             // Sets the refresh flag to true
             Refresh = true;
@@ -210,11 +210,11 @@ public:
     }
 
     // Do a standard ext app insertion.
-    virtual bool DoInsertExtFile( bool DisplayDialog = true );
+    virtual bool DoInsertExtFile(bool DisplayDialog = true);
 
     // Drag and drop methods
-    virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
-    virtual bool DropItem( CObject* pObj, CPoint pt );
+    virtual bool AcceptDropItem(CObject* pObj, CPoint pt);
+    virtual bool DropItem(CObject* pObj, CPoint pt);
 
     // Call when a new symbol is created
     virtual bool CreateSymbolProperties()
@@ -225,60 +225,60 @@ public:
     }
 
     // Call to retreive properties for the object
-    virtual bool FillProperties( ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false );
+    virtual bool FillProperties(ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false);
 
     // RS-MODIF 11.12.04 fill properties for segregation
-    virtual bool FillPropertiesMessenger( ZBPropertySet&    PropSet,
-                                          bool                NumericValue    = false,
-                                          bool                GroupValue        = false );
+    virtual bool FillPropertiesMessenger(ZBPropertySet&    PropSet,
+                                         bool                NumericValue = false,
+                                         bool                GroupValue = false);
 
     // Call to save new changes to object's properties
-    virtual bool SaveProperties( ZBPropertySet& PropSet );
+    virtual bool SaveProperties(ZBPropertySet& PropSet);
 
     // Called to retreive a property for the object
-    virtual bool FillProperty( ZBProperty& Property )
+    virtual bool FillProperty(ZBProperty& Property)
     {
         return true;
     }
 
     // Called to save a property for the object
-    virtual bool SaveProperty( ZBProperty& Property );
+    virtual bool SaveProperty(ZBProperty& Property);
 
     // Called to check the property value
-    virtual bool CheckPropertyValue( ZBProperty& Property, CString& value, ZBPropertySet& Properties )
+    virtual bool CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties)
     {
         return true;
     }
 
     // Called to process the extended input for the property value
-    virtual bool ProcessExtendedInput( ZBProperty&        Property,
-                                       CString&            value,
-                                       ZBPropertySet&    Properties,
-                                       bool&            Refresh );
+    virtual bool ProcessExtendedInput(ZBProperty&        Property,
+                                      CString&            value,
+                                      ZBPropertySet&    Properties,
+                                      bool&            Refresh);
 
     // Called to process the a menu command for the property value
-    virtual bool ProcessMenuCommand( int            MenuCommand,
-                                     ZBProperty&    Property,
-                                     CString&        value,
-                                     ZBPropertySet&    Properties,
-                                     bool&            Refresh );
+    virtual bool ProcessMenuCommand(int            MenuCommand,
+                                    ZBProperty&    Property,
+                                    CString&        value,
+                                    ZBPropertySet&    Properties,
+                                    bool&            Refresh);
 
     // Called after the property changed
-    virtual bool OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh )
+    virtual bool OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh)
     {
         // Nothing has changed
         return false;
     }
 
     // Called before the property changed
-    virtual bool OnPrePropertyChanged( CString NewValue, ZBProperty& Property, ZBPropertySet& Properties )
+    virtual bool OnPrePropertyChanged(const CString& NewValue, ZBProperty& Property, ZBPropertySet& Properties)
     {
         // No error
         return true;
     }
 
     /* Serializes the external applications and files. */
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
 protected:
 

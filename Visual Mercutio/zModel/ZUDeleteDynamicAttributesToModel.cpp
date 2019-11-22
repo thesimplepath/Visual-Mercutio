@@ -8,13 +8,13 @@
 #include "zModel\ProcGraphModelMdl.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "zProperty\ZBDynamicProperties.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -22,13 +22,12 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUDeleteDynamicAttributesToModel::ZUDeleteDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/, 
+ZUDeleteDynamicAttributesToModel::ZUDeleteDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/,
                                                                    ZBProperty* pProperty /*= NULL*/,
                                                                    void* pClass /*= NULL*/)
-: ZUModelNavigation(pModel,pClass),
-  m_pProperty(pProperty)
-{
-}
+    : ZUModelNavigation(pModel, pClass),
+    m_pProperty(pProperty)
+{}
 
 ZUDeleteDynamicAttributesToModel::~ZUDeleteDynamicAttributesToModel()
 {
@@ -50,26 +49,19 @@ bool ZUDeleteDynamicAttributesToModel::OnFinish()
     return true;
 }
 
-bool ZUDeleteDynamicAttributesToModel::OnSymbol( ZBSymbol* pSymbol )
+bool ZUDeleteDynamicAttributesToModel::OnSymbol(ZBSymbol* pSymbol)
 {
     // If for the symbol has the same property
     // delete the property and assign the new one
-    pSymbol->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty );
+    pSymbol->GetDynamicPropertiesManager()->DeleteProperty(m_pProperty);
 
     return true;
 }
-bool ZUDeleteDynamicAttributesToModel::OnLink( ZBLinkSymbol* pLink )
+bool ZUDeleteDynamicAttributesToModel::OnLink(PSS_LinkSymbol* pLink)
 {
     // If for the symbol has the same property
     // delete the property and assign the new one
-    pLink->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty );
+    pLink->GetDynamicPropertiesManager()->DeleteProperty(m_pProperty);
 
     return true;
 }
-
-
-
-
-
-
-

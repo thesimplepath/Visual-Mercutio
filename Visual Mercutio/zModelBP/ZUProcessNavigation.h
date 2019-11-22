@@ -34,12 +34,18 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
-// Forward declaration
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
+// forward class declaration
 class PSS_Log;
 class ZBSymbol;
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class ZBBPDoorSymbol;
 class ZBBPPageSymbol;
 class ZBBPProcedureSymbol;
@@ -124,7 +130,7 @@ public:
         return true;
     };
 
-    virtual bool OnLink(ZBLinkSymbol* pLink)
+    virtual bool OnLink(PSS_LinkSymbol* pLink)
     {
         return true;
     };

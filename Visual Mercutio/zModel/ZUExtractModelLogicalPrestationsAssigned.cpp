@@ -14,13 +14,13 @@
 #include "ZBPrestationsEntity.h"
 
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -28,21 +28,19 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractModelLogicalPrestationsAssigned::ZUExtractModelLogicalPrestationsAssigned( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
-                                                                                    void*                    pClass    /*= NULL*/ )
-    : ZUModelNavigation( pModel, pClass )
-{
-}
+ZUExtractModelLogicalPrestationsAssigned::ZUExtractModelLogicalPrestationsAssigned(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                                                   void*                    pClass    /*= NULL*/)
+    : ZUModelNavigation(pModel, pClass)
+{}
 
 ZUExtractModelLogicalPrestationsAssigned::~ZUExtractModelLogicalPrestationsAssigned()
-{
-}
+{}
 
 bool ZUExtractModelLogicalPrestationsAssigned::OnStart()
 {
-    m_pPrestationsEntity = static_cast<ZBPrestationsEntity*>( m_pClass );
+    m_pPrestationsEntity = static_cast<ZBPrestationsEntity*>(m_pClass);
 
-    if ( !m_pPrestationsEntity )
+    if (!m_pPrestationsEntity)
     {
         return false;
     }
@@ -59,20 +57,20 @@ bool ZUExtractModelLogicalPrestationsAssigned::OnFinish()
     return true;
 }
 
-bool ZUExtractModelLogicalPrestationsAssigned::OnSymbol( ZBSymbol* pSymbol )
+bool ZUExtractModelLogicalPrestationsAssigned::OnSymbol(ZBSymbol* pSymbol)
 {
-    if ( pSymbol->HasPrestations() )
+    if (pSymbol->HasPrestations())
     {
         PSS_Tokenizer aToken = pSymbol->GetPrestationsList();
 
-        for ( size_t i = 0; i < aToken.GetTokenCount(); i++ )
+        for (size_t i = 0; i < aToken.GetTokenCount(); i++)
         {
-            CString m_Src = _T( "" );
-            aToken.GetTokenAt( i, m_Src );
+            CString m_Src = _T("");
+            aToken.GetTokenAt(i, m_Src);
 
-            if ( m_Src == m_pPrestationsEntity->GetEntityName() )
+            if (m_Src == m_pPrestationsEntity->GetEntityName())
             {
-                m_Set.Add( pSymbol );
+                m_Set.Add(pSymbol);
             }
         }
     }
@@ -80,7 +78,7 @@ bool ZUExtractModelLogicalPrestationsAssigned::OnSymbol( ZBSymbol* pSymbol )
     return true;
 }
 
-bool ZUExtractModelLogicalPrestationsAssigned::OnLink( ZBLinkSymbol* pLink )
+bool ZUExtractModelLogicalPrestationsAssigned::OnLink(PSS_LinkSymbol* pLink)
 {
     return true;
 }

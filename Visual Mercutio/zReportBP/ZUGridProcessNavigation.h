@@ -38,21 +38,21 @@ class ZUGridProcessNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUGridProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUGridProcessNavigation(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUGridProcessNavigation();
 
     // Call-back methods
-    virtual bool OnStart                    ();
-    virtual bool OnFinish                    ();
-    virtual bool OnDoorSymbol                ( ZBBPDoorSymbol*            pSymbol );
-    virtual bool OnPageSymbol                ( ZBBPPageSymbol*            pSymbol );
-    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol*        pSymbol );
-    virtual bool OnProcessSymbol            ( ZBBPProcessSymbol*        pSymbol );
-    virtual bool OnStartSymbol                ( ZBBPStartSymbol*            pSymbol );
-    virtual bool OnStopSymbol                ( ZBBPStopSymbol*            pSymbol );
-    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol*    pSymbol );
-    virtual bool OnSymbol                    ( ZBSymbol*                    pSymbol );
-    virtual bool OnLink                        ( ZBLinkSymbol*                pLink );
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnDoorSymbol(ZBBPDoorSymbol*            pSymbol);
+    virtual bool OnPageSymbol(ZBBPPageSymbol*            pSymbol);
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*        pSymbol);
+    virtual bool OnProcessSymbol(ZBBPProcessSymbol*        pSymbol);
+    virtual bool OnStartSymbol(ZBBPStartSymbol*            pSymbol);
+    virtual bool OnStopSymbol(ZBBPStopSymbol*            pSymbol);
+    virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol*    pSymbol);
+    virtual bool OnSymbol(ZBSymbol*                    pSymbol);
+    virtual bool OnLink(PSS_LinkSymbol*                pLink);
 
 private:
 

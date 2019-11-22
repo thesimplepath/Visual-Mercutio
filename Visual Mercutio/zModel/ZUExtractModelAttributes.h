@@ -50,7 +50,7 @@ class AFX_EXT_CLASS ZUExtractModelAttributes : public ZUModelNavigation
         virtual bool OnFinish();
 
         virtual bool OnSymbol(ZBSymbol* pSymbol);
-        virtual bool OnLink(ZBLinkSymbol* pLink);
+        virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
         int            m_IDArray[500];

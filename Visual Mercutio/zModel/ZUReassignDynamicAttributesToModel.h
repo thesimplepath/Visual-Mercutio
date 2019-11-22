@@ -69,9 +69,9 @@ class PSS_BasicSymbol;
 class AFX_EXT_CLASS ZUReassignDynamicAttributesToModel : public ZUModelNavigation
 {
 public:
-    ZUReassignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL, 
-                                     ZBProperty* pProperty = NULL, 
-                                     void* pClass = NULL);
+    ZUReassignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL,
+                                       ZBProperty* pProperty = NULL,
+                                       void* pClass = NULL);
     virtual ~ZUReassignDynamicAttributesToModel();
 
 
@@ -79,8 +79,8 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
 
-    virtual bool OnSymbol( ZBSymbol* pSymbol );
-    virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 
 private:
@@ -88,4 +88,4 @@ private:
 
 };
 
-#endif // !defined(AFX_ZUReassignDynamicAttributesToModel_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

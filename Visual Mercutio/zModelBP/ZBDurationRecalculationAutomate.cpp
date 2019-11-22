@@ -10,7 +10,7 @@
 #include "ZUProcessClearDurationFigures.h"
 
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"
@@ -308,7 +308,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                 // to the leaving deliverable attached to the target door
                 IODEdge* pIEdge = EnteringEdges.GetAt(0);
 
-                // Check if a ZBLinkSymbol
+                // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
                     !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                 {
@@ -320,7 +320,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                 // Now the deliverable to the target door
                 pIEdge = LeavingEdges.GetAt(0);
 
-                // Check if a ZBLinkSymbol
+                // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
                     !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                 {
@@ -378,7 +378,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                 // to the leaving deliverable attached to the target door
                 IODEdge* pIEdge = EnteringEdges.GetAt(0);
 
-                // Check if a ZBLinkSymbol
+                // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
                     !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                 {
@@ -390,7 +390,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                 // Now the deliverable to the target door
                 pIEdge = LeavingEdges.GetAt(0);
 
-                // Check if a ZBLinkSymbol
+                // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
                     !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
                 {
@@ -471,7 +471,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfLateralDeliverables(CODEd
     {
         IODEdge* pIEdge = LeavingEdges.GetAt(nEdgeIdx);
 
-        // Check if a ZBLinkSymbol
+        // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
             !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
         {
@@ -542,7 +542,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
     {
         IODEdge* pIEdge = LeavingEdges.GetAt(nEdgeIdx);
 
-        // Check if a ZBLinkSymbol
+        // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
             !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
         {
@@ -789,7 +789,7 @@ bool ZBDurationRecalculationAutomate::SetStartSymbolCaseDurationOfDownDeliverabl
     {
         IODEdge* pIEdge = LeavingEdges.GetAt(nEdgeIdx);
 
-        // Check if a ZBLinkSymbol
+        // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
             !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
         {
@@ -885,7 +885,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
     {
         IODEdge* pIEdge = LeavingEdges.GetAt(nEdgeIdx);
 
-        // Check if a ZBLinkSymbol
+        // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
             !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
         {
@@ -957,7 +957,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
     {
         IODEdge* pIEdge = EnteringEdgesUp.GetAt(nEdgeIdx);
 
-        // Check if a ZBLinkSymbol
+        // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
             !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
         {

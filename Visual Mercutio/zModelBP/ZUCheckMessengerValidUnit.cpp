@@ -11,7 +11,7 @@
 
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBUserGroupEntity.h"
 
 // Include files for log

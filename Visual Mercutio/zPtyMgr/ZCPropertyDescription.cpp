@@ -43,7 +43,7 @@ void ZCPropertyDescription::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
 
     if (ISA(pMsg, ZBPropertyItemObserverMsg))
     {
-        ZBProperty* pProp = ((ZBPropertyItemObserverMsg*)pMsg)->GetpProperty();
+        ZBProperty* pProp = ((ZBPropertyItemObserverMsg*)pMsg)->GetProperty();
 
         if (pProp)
         {

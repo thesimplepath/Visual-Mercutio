@@ -516,9 +516,9 @@ void ZBBPProcedureSymbol::OnDisconnect(CODConnection* pConnection)
 
 void ZBBPProcedureSymbol::OnLinkDisconnect(CODLinkComponent* pLink)
 {
-    if (pLink && ISA(pLink, ZBLinkSymbol))
+    if (pLink && ISA(pLink, PSS_LinkSymbol))
     {
-        DeleteDeliverableFromAllCombinations(dynamic_cast<ZBLinkSymbol*>(pLink)->GetSymbolName());
+        DeleteDeliverableFromAllCombinations(dynamic_cast<PSS_LinkSymbol*>(pLink)->GetSymbolName());
     }
 }
 
@@ -574,9 +574,9 @@ void ZBBPProcedureSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString 
     CODComponent* pComp = &Comp;
 
     // Check the deliverable for combinations
-    if (ISA(pComp, ZBLinkSymbol))
+    if (ISA(pComp, PSS_LinkSymbol))
     {
-        ReplaceDeliverable(OldName, dynamic_cast<ZBLinkSymbol*>(pComp)->GetSymbolName());
+        ReplaceDeliverable(OldName, dynamic_cast<PSS_LinkSymbol*>(pComp)->GetSymbolName());
     }
 }
 

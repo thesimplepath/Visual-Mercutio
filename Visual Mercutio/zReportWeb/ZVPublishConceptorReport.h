@@ -25,7 +25,7 @@
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZDProcessGraphPage.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
@@ -90,7 +90,7 @@ private:
     bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
     bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
     bool OnSymbol(ZBSymbol* pSymbol);
-    bool OnLink(ZBLinkSymbol* pLink);
+    bool OnLink(PSS_LinkSymbol* pLink);
 
     virtual bool Visit(CODComponent& Symbol);
 

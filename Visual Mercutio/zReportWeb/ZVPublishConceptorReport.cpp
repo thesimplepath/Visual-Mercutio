@@ -710,8 +710,8 @@ bool ZVPublishConceptorReport::OnSymbol( ZBSymbol* pSymbol )
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBLinkSymbol.
-bool ZVPublishConceptorReport::OnLink( ZBLinkSymbol* pLink )
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_LinkSymbol.
+bool ZVPublishConceptorReport::OnLink( PSS_LinkSymbol* pLink )
 {
     return true;
 }
@@ -753,9 +753,9 @@ bool ZVPublishConceptorReport::Visit( CODComponent& Symbol )
     {
         return OnSymbol( dynamic_cast<ZBSymbol*>( &Symbol ) );
     }
-    else if ( ISA ( pSymbol, ZBLinkSymbol ) )
+    else if ( ISA ( pSymbol, PSS_LinkSymbol ) )
     {
-        return OnLink( dynamic_cast<ZBLinkSymbol*>( &Symbol ) );
+        return OnLink( dynamic_cast<PSS_LinkSymbol*>( &Symbol ) );
     }
 
     // Not a right symbol or not necessary to visit

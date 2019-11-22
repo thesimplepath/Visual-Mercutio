@@ -12,11 +12,11 @@
 #include "ProcGraphModelMdl.h"
 
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -24,64 +24,62 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUBuildGenericSymbolNewName::ZUBuildGenericSymbolNewName( const CString BaseName /*= ""*/ )
-    : m_BaseName( BaseName )
-{
-}
+ZUBuildGenericSymbolNewName::ZUBuildGenericSymbolNewName(const CString BaseName /*= ""*/)
+    : m_BaseName(BaseName)
+{}
 
 ZUBuildGenericSymbolNewName::~ZUBuildGenericSymbolNewName()
-{
-}
+{}
 
-CString ZUBuildGenericSymbolNewName::GetNextAvailableSymbolName( CODModel& Model )
+CString ZUBuildGenericSymbolNewName::GetNextAvailableSymbolName(CODModel& Model)
 {
-    for ( int p = 1; p < 10000000; ++p )
+    for (int p = 1; p < 10000000; ++p)
     {
-        if ( m_BaseName.IsEmpty() )
+        if (m_BaseName.IsEmpty())
         {
-            m_GenericSymbolName.Format( _T( "Generic%d" ), p );
+            m_GenericSymbolName.Format(_T("Generic%d"), p);
         }
         else
         {
-            m_GenericSymbolName.Format( _T( "%s%d" ), (const char*)m_BaseName, p );
+            m_GenericSymbolName.Format(_T("%s%d"), (const char*)m_BaseName, p);
         }
 
         m_Found = false;
 
         // Try the name
-        _GetNextAvailableSymbolName( Model );
+        _GetNextAvailableSymbolName(Model);
 
         // If did found the same symbol name, return it
-        if ( m_Found == false )
+        if (m_Found == false)
         {
             return m_GenericSymbolName;
         }
     }
 
     // If no page available, return empty string
-    return _T( "" );
+    return _T("");
 }
 
-void ZUBuildGenericSymbolNewName::_GetNextAvailableSymbolName( CODModel& Model )
+void ZUBuildGenericSymbolNewName::_GetNextAvailableSymbolName(CODModel& Model)
 {
     CODModel* pModel = &Model;
 
-    if ( ISA( pModel, ZDProcessGraphModelMdl ) )
+    if (ISA(pModel, ZDProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl&>( Model ).AcceptVisitor( *this );
+        dynamic_cast<ZDProcessGraphModelMdl&>(Model).AcceptVisitor(*this);
     }
 }
 
-bool ZUBuildGenericSymbolNewName::Visit( CODComponent& Symbol )
+bool ZUBuildGenericSymbolNewName::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if ( ISA( pSymbol, ZBSymbol ) && dynamic_cast<ZBSymbol*>( &Symbol )->GetSymbolName() == m_GenericSymbolName )
+    if (ISA(pSymbol, ZBSymbol) && dynamic_cast<ZBSymbol*>(&Symbol)->GetSymbolName() == m_GenericSymbolName)
     {
         m_Found = true;
     }
-    else if ( ISA( pSymbol, ZBLinkSymbol ) &&
-              dynamic_cast<ZBLinkSymbol*>( &Symbol )->GetSymbolName() == m_GenericSymbolName )
+    else if (ISA(pSymbol, PSS_LinkSymbol) &&
+             dynamic_cast<PSS_LinkSymbol*>(&Symbol)->GetSymbolName() == m_GenericSymbolName)
     {
         m_Found = true;
     }

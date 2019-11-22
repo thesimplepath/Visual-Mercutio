@@ -22,7 +22,7 @@
 #include "zModel\ZUExtractModelLogicalSystemAssigned.h"
 #include "zModel\ZUExtractModelLogicalPrestationsAssigned.h"
 #include "zModel\ZBSymbol.h"
-#include "zModel\ZBLinkSymbol.h"
+#include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
 #include "zModel\ZBLogicalSystemEntity.h"
@@ -179,7 +179,7 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(ZBSymbol* pSymbol)
     if (!GeneratePropertyPage(pSymbol, htmlFileName))
         return false;
 
-    if (pSymbol->GetChildModel() && m_pInfo->GetpDC() && m_pInfo->GetpCtlr())
+    if (pSymbol->GetChildModel() && m_pInfo->GetDC() && m_pInfo->GetCtlr())
     {
         ZDProcessGraphModelMdl* pChildModel = dynamic_cast<ZDProcessGraphModelMdl*>(pSymbol->GetChildModel());
 
@@ -200,7 +200,7 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(ZBSymbol* pSymbol)
             for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
             {
                 // get the page model
-                ZDProcessGraphModelMdl* pPageModel = pPage->GetpModel();
+                ZDProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
                 if (!pPageModel)
                     continue;
@@ -218,7 +218,7 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(ZBSymbol* pSymbol)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::OnLink(ZBLinkSymbol* pLink)
+bool PSS_ModelGenerateImageFiles::OnLink(PSS_LinkSymbol* pLink)
 {
     if (!pLink)
         return false;
@@ -241,11 +241,11 @@ bool PSS_ModelGenerateImageFiles::GenerateModel(ZDProcessGraphModelMdl* pModel)
 
     ASSERT(m_pInfo);
 
-    if (!m_pInfo->GetpDC() || !m_pInfo->GetpCtlr())
+    if (!m_pInfo->GetDC() || !m_pInfo->GetCtlr())
         return false;
 
     // get the viewport
-    ZIProcessGraphModelViewport* pVp = m_pInfo->GetpCtlr()->BrowseModel(pModel, pModel->GetParent());
+    ZIProcessGraphModelViewport* pVp = m_pInfo->GetCtlr()->BrowseModel(pModel, pModel->GetParent());
 
     if (!pVp)
         return false;
@@ -270,7 +270,7 @@ bool PSS_ModelGenerateImageFiles::GenerateModel(ZDProcessGraphModelMdl* pModel)
     // check if the image has already been generated, to avoid to generate the same image twice
     if (!StringAlreadyGenerated(imageFileName))
         // write the file
-        pVp->ExportModelToImageFile(imageFileName, *m_pInfo->GetpDC());
+        pVp->ExportModelToImageFile(imageFileName, *m_pInfo->GetDC());
 
     CreateHtmlPage(pModel, imageFileName);
 
@@ -472,7 +472,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                 continue;
 
             // is a symbol or a link?
-            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 // write it
                 s.Format(IDS_MODELGENHTML_86, objectCounter);
@@ -496,7 +496,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                 continue;
 
             // is a symbol or a link?
-            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 // Write it
                 s.Format(IDS_MODELGENHTML_82, objectCounter, objectCounter, objectCounter);
@@ -520,7 +520,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                 continue;
 
             // is a symbol or a link?
-            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
 
@@ -626,8 +626,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
             if (!pComp)
                 continue;
 
-            ZBSymbol*     pSymbol     = dynamic_cast<ZBSymbol*>(pComp);
-            ZBLinkSymbol* pLinkSymbol = dynamic_cast<ZBLinkSymbol*>(pComp);
+            ZBSymbol*       pSymbol     = dynamic_cast<ZBSymbol*>(pComp);
+            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
 
             // for all symbols, create a popup 
             if (pSymbol || pLinkSymbol)
@@ -780,7 +780,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                             for (pPage = it.GetNext(); pPage; pPage = it.GetNext())
                             {
                                 // retreive the html file name for the reference
-                                symbolChildModelHtmlFileName = BuildModelHTMLFileName(pPage->GetpModel());
+                                symbolChildModelHtmlFileName = BuildModelHTMLFileName(pPage->GetModel());
                                 dummy.Format(IDS_GOINSYMBOL_HTML, (const char*)pPage->GetPageName());
 
                                 s.Format(IDS_MODELGENHTML_59,
@@ -841,8 +841,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
             if (!pComp)
                 continue;
 
-            ZBSymbol*     pSymbol     = dynamic_cast<ZBSymbol*>(pComp);
-            ZBLinkSymbol* pLinkSymbol = dynamic_cast<ZBLinkSymbol*>(pComp);
+            ZBSymbol*       pSymbol     = dynamic_cast<ZBSymbol*>(pComp);
+            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
 
             if (pSymbol || pLinkSymbol)
             {
@@ -1026,10 +1026,10 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(ZDProcessGraphModelMdl* pMod
 
             // iterate through all pages if there are
             for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
-                if (pPage->GetpModel())
+                if (pPage->GetModel())
                 {
                     // get page model
-                    ZDProcessGraphModelMdl* pPageModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetpModel());
+                    ZDProcessGraphModelMdl* pPageModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetModel());
                     ASSERT(pPageModel);
 
                     GenerateModel(pPageModel);
@@ -2046,7 +2046,7 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(ZBUserGroupEntity* pG
         // iterate through the symbol list and build the page
         for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
         {
-            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
@@ -2206,7 +2206,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(ZBLogicalSystemEn
         // iterate through the list of symbols and build the page
         for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
         {
-            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
@@ -2371,7 +2371,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(ZBLogicalPre
         // iterate through the symbols and build the page
         for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
         {
-            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);

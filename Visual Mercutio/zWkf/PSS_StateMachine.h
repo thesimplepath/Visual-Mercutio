@@ -30,8 +30,13 @@
 #include "PSS_AutomationCollections.h"
 #include "PSS_StateObject.h"
 
+// class name mapping
+#ifndef PSS_LinkSymbol
+    #define PSS_LinkSymbol ZBLinkSymbol
+#endif
+
 // forward class declaration
-class ZBLinkSymbol;
+class PSS_LinkSymbol;
 class ZDProcessGraphModelMdl;
 
 #ifdef _ZWKFEXPORT
@@ -118,7 +123,7 @@ class AFX_EXT_CLASS PSS_StateMachine : public CObject
         *@param pLinkSymbol - link symbol to push on the stack
         *@param direction - link direction
         */
-        virtual void PushSymbol(ZBSymbol* pSymbol, ZBLinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction);
+        virtual void PushSymbol(ZBSymbol* pSymbol, PSS_LinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction);
 
         /**
         * Pushes a symbol on the stack

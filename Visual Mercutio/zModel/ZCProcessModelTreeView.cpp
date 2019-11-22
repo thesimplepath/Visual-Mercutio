@@ -6,7 +6,7 @@
 #include "zBaseLib\PSS_DropView.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
 #include "ZBSymbol.h"
-#include "ZBLinkSymbol.h"
+#include "PSS_LinkSymbol.h"
 
 #include "ZDProcessGraphPage.h"
 #include "ZBModelObserverMsg.h"
@@ -143,15 +143,15 @@ int ZCProcessModelTreeView::HasContextMenu(CWnd* pWnd, CPoint point)
     {
         CODSymbolComponent* pComp = m_ModelTree.GetSymbol(hItem);
 
-        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol)))
+        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol)))
         {
             if (ISA(pComp, ZBSymbol))
             {
                 IdMenu = dynamic_cast<ZBSymbol*>(pComp)->GetRightSubMenu();
             }
-            else if (ISA(pComp, ZBLinkSymbol))
+            else if (ISA(pComp, PSS_LinkSymbol))
             {
-                IdMenu = dynamic_cast<ZBLinkSymbol*>(pComp)->GetRightSubMenu();
+                IdMenu = dynamic_cast<PSS_LinkSymbol*>(pComp)->GetRightSubMenu();
             }
         }
         else if (m_ModelTree.GetPage(hItem))
@@ -186,15 +186,15 @@ void ZCProcessModelTreeView::DisplayContextMenu(CWnd* pWnd, CPoint point)
         bool Local = true;
         CODSymbolComponent* pComp = m_ModelTree.GetSymbol(hItem);
 
-        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol)))
+        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol)))
         {
             if (ISA(pComp, ZBSymbol))
             {
                 Local = dynamic_cast<ZBSymbol*>(pComp)->IsLocal();
             }
-            else if (ISA(pComp, ZBLinkSymbol))
+            else if (ISA(pComp, PSS_LinkSymbol))
             {
-                Local = dynamic_cast<ZBLinkSymbol*>(pComp)->IsLocal();
+                Local = dynamic_cast<PSS_LinkSymbol*>(pComp)->IsLocal();
             }
         }
 

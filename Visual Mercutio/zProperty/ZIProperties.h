@@ -46,11 +46,11 @@ typedef Iterator_T<ZBProperty*> ZBPropertyIterator;
 
 //////////////////////////////////////////////////////////////////////
 // Utility function for swaping two internal property items
-AFX_EXT_API bool SwapInternalPropertyItem( ZBProperty&        SrcProperty,
-                                           ZBProperty&        DstProperty,
-                                           bool                Top2Down,
-                                           ZBPropertySet&    Properties,
-                                           int                CategoryID );
+AFX_EXT_API bool SwapInternalPropertyItem(ZBProperty&        SrcProperty,
+                                          ZBProperty&        DstProperty,
+                                          bool                Top2Down,
+                                          ZBPropertySet&    Properties,
+                                          int                CategoryID);
 
 // Define the interface for properties
 // A class who owns properties must implement 
@@ -67,45 +67,45 @@ public:
     virtual bool HasProperties() const = 0;
 
     // Called to retreive properties for the object
-    virtual bool FillProperties( ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false ) = 0;
+    virtual bool FillProperties(ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false) = 0;
 
     // Called to save new changes to object's properties
-    virtual bool SaveProperties( ZBPropertySet& PropSet ) = 0;
+    virtual bool SaveProperties(ZBPropertySet& PropSet) = 0;
 
     // Called to retreive a property for the object
-    virtual bool FillProperty( ZBProperty& Property ) = 0;
+    virtual bool FillProperty(ZBProperty& Property) = 0;
 
     // Called to save a property for the object
-    virtual bool SaveProperty( ZBProperty& Property ) = 0;
+    virtual bool SaveProperty(ZBProperty& Property) = 0;
 
     // Called to check the property value
-    virtual bool CheckPropertyValue( ZBProperty& Property, CString& value, ZBPropertySet& Properties ) = 0;
+    virtual bool CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties) = 0;
 
     // Called to process the extended input for the property value
-    virtual bool ProcessExtendedInput( ZBProperty&        Property,
-                                       CString&            value,
-                                       ZBPropertySet&    Properties,
-                                       bool&            Refresh ) = 0;
+    virtual bool ProcessExtendedInput(ZBProperty&        Property,
+                                      CString&            value,
+                                      ZBPropertySet&    Properties,
+                                      bool&            Refresh) = 0;
 
     // Called to process the a menu command for the property value
-    virtual bool ProcessMenuCommand( int            MenuCommand,
-                                     ZBProperty&    Property,
-                                     CString&        value,
-                                     ZBPropertySet&    Properties,
-                                     bool&            Refresh ) = 0;
+    virtual bool ProcessMenuCommand(int            MenuCommand,
+                                    ZBProperty&    Property,
+                                    CString&        value,
+                                    ZBPropertySet&    Properties,
+                                    bool&            Refresh) = 0;
 
     // Called before the property changed
-    virtual bool OnPrePropertyChanged( CString NewValue, ZBProperty& Property, ZBPropertySet& Properties ) = 0;
+    virtual bool OnPrePropertyChanged(const CString& NewValue, ZBProperty& Property, ZBPropertySet& Properties) = 0;
 
     // Called after the property changed
-    virtual bool OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh ) = 0;
+    virtual bool OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh) = 0;
 
     // Called when an internal drag&drop of property occured
-    virtual bool OnDropInternalPropertyItem( ZBProperty&    SrcProperty,
-                                             ZBProperty&    DstProperty,
-                                             bool            Top2Down,
-                                             ZBPropertySet&    Properties ) = 0;
-    
+    virtual bool OnDropInternalPropertyItem(ZBProperty&    SrcProperty,
+                                            ZBProperty&    DstProperty,
+                                            bool            Top2Down,
+                                            ZBPropertySet&    Properties) = 0;
+
     // Called to create the properties
     virtual bool CreateSymbolProperties() = 0;
 

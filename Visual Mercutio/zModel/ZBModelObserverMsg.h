@@ -55,20 +55,20 @@ public:
     MessageActionType GetActionType() const { return m_ActionType; };
     void SetActionType( MessageActionType value ) { m_ActionType = value; };
 
-    ZDProcessGraphModelDoc*    GetpDoc() const { return m_pDoc; };
-    void SetpDoc( ZDProcessGraphModelDoc* value ) { m_pDoc = value; };
+    ZDProcessGraphModelDoc* GetDoc() const { return m_pDoc; };
+    void SetDoc( ZDProcessGraphModelDoc* value ) { m_pDoc = value; };
 
-    ZDProcessGraphModelMdl*    GetpModel() const { return m_pModel; };
-    void SetpModel( ZDProcessGraphModelMdl* value ) { m_pModel = value; };
+    ZDProcessGraphModelMdl* GetModel() const { return m_pModel; };
+    void SetModel( ZDProcessGraphModelMdl* value ) { m_pModel = value; };
 
-    CODComponent*    GetpElement() const { return m_pElement; };
-    void SetpElement( CODComponent* value ) { m_pElement = value; };
+    CODComponent* GetElement() const { return m_pElement; };
+    void SetElement( CODComponent* value ) { m_pElement = value; };
     
-    CODComponentSet*    GetpElementSet() const { return m_pElementSet; };
-    void SetpElementSet( CODComponentSet* value ) { m_pElementSet = value; };
+    CODComponentSet* GetElementSet() const { return m_pElementSet; };
+    void SetElementSet( CODComponentSet* value ) { m_pElementSet = value; };
 
-    ZDProcessGraphPage*    GetpPage() const { return m_pPage; };
-    void SetpPage( ZDProcessGraphPage* value ) { m_pPage = value; };
+    ZDProcessGraphPage* GetPage() const { return m_pPage; };
+    void SetPage( ZDProcessGraphPage* value ) { m_pPage = value; };
     
 private:
     MessageActionType            m_ActionType;

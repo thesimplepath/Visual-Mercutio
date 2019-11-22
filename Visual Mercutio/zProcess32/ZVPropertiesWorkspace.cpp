@@ -166,7 +166,7 @@ void ZVPropertiesWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
                 {
                     /* Don't add the pan view for the SR1
                     m_PanView.AssignPanView
-                        ( dynamic_cast<PSS_SpanView*>( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpView() ) );
+                        ( dynamic_cast<PSS_SpanView*>( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetView() ) );
                     */
                     break;
                 }
@@ -214,14 +214,14 @@ afx_msg LRESULT ZVPropertiesWorkspace::OnInitializeModelDocument(WPARAM wParam, 
     {
         ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
 
-        if (pDocMsg->GetpDoc())
+        if (pDocMsg->GetDoc())
         {
             // Notify all document's observers about the frame activation
             PSS_DocumentObserverMsg Msg(UM_FRAMEHASBEENACTIVATED,
-                                        pDocMsg->GetpDoc(),
+                                        pDocMsg->GetDoc(),
                                         NULL);
 
-            ((ZDProcessGraphModelDoc*)pDocMsg->GetpDoc())->NotifyAllObservers(&Msg);
+            ((ZDProcessGraphModelDoc*)pDocMsg->GetDoc())->NotifyAllObservers(&Msg);
         }
     }
 

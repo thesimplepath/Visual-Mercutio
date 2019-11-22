@@ -38,20 +38,26 @@ class ZBProperty;
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBPropertyItemObserverMsg : public PSS_ObserverMsg  
+class AFX_EXT_CLASS ZBPropertyItemObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC(ZBPropertyItemObserverMsg)
 public:
 
 public:
-    ZBPropertyItemObserverMsg( ZBProperty* pProperty = NULL );
+    ZBPropertyItemObserverMsg(ZBProperty* pProperty = NULL);
     virtual ~ZBPropertyItemObserverMsg();
 
-    ZBProperty* GetpProperty() const { return m_pProperty; };
-    void SetpProperty( ZBProperty* value ) { m_pProperty = value; };
+    ZBProperty* GetProperty() const
+    {
+        return m_pProperty;
+    };
+    void SetProperty(ZBProperty* value)
+    {
+        m_pProperty = value;
+    };
 
 private:
-    ZBProperty*        m_pProperty;
+    ZBProperty* m_pProperty;
 };
 
-#endif // !defined(AFX_ZBPropertyItemObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)
+#endif

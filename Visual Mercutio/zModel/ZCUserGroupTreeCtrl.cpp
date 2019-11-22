@@ -114,11 +114,11 @@ void ZCUserGroupTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
         {
             case UM_INITUSERGROUP:
             {
-                if (dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetpEntity() &&
-                    ISA(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetpEntity(), ZBUserGroupEntity))
+                if (dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetEntity(), ZBUserGroupEntity))
                 {
                     ZBUserGroupEntity* pGroup =
-                        dynamic_cast<ZBUserGroupEntity*>(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetpEntity());
+                        dynamic_cast<ZBUserGroupEntity*>(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetEntity());
 
                     Initialize(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetRootName(), pGroup);
                 }

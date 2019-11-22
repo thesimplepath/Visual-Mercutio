@@ -886,7 +886,7 @@ void ZBPrestationsReportGenerator::Associate( ZDProcessGraphModelMdlBP* m_RootMo
             for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( pPage->GetpModel() );
+                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( pPage->GetModel() );
 
                 if ( m_CurModel != NULL )
                 {
@@ -908,7 +908,7 @@ void ZBPrestationsReportGenerator::Associate( ZDProcessGraphModelMdlBP* m_RootMo
 
                                 // Obtient le contrôleur de modèle du processus.
                                 ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>( m_Process->GetpModel() );
+                                    dynamic_cast<ZDProcessGraphModelMdlBP*>( m_Process->GetModel() );
 
                                 // Appel récursif à FillProcessAssociation, jusqu'à ce que tous les
                                 // processus du modèle aient été visités.
