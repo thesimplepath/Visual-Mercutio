@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="modeltreei.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ProcGraphModelCtlr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -360,6 +357,9 @@
     <ClCompile Include="PSS_ProcessGraphChildFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ModelTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -459,9 +459,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="modeltreei.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProcGraphModelCtlr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -799,6 +796,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ObjectCollections.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ModelTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

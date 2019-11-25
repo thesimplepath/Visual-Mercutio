@@ -142,7 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PSS_MathHelper.cpp" />
-    <ClCompile Include="modeltreei.cpp">
+    <ClCompile Include="PSS_ModelTree.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -753,7 +753,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PSS_MathHelper.h" />
-    <ClInclude Include="modeltreei.h" />
+    <ClInclude Include="PSS_ModelTree.h" />
     <ClInclude Include="PSS_ObjectCollections.h" />
     <ClInclude Include="PSS_ProcessGraphChildFrame.h" />
     <ClInclude Include="ProcGraphModelCtlr.h" />

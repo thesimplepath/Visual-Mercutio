@@ -1,19 +1,18 @@
-/************************************************************************************************************
- *                                          Classe ZDProcessGraphModelController                                *
- ************************************************************************************************************
- * Cette classe s'occupe de la gestion des modèles. Son rôle est d'effectuer les opérations globales sur    *
- * les modèles, tels que la gestion des couper-copier-coller, la gestion des trames de fond, l'introduction    *
- * de nouvelles pages, ou la gestion des zooms.                                                                *
- ************************************************************************************************************/
+/****************************************************************************
+ * ==> PSS_ProcessGraphModelController -------------------------------------*
+ ****************************************************************************
+ * Description : Provides a process graphic model controller                *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ProcGraphModelCtlr_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_)
-#define AFX_ProcGraphModelCtlr_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_
+#ifndef PSS_ProcessGraphModelControllerH
+#define PSS_ProcessGraphModelControllerH
 
 #if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
+    #pragma once
+#endif
 
- // Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -29,6 +28,7 @@
 #include "PSS_LinkSymbol.h"
 #include "ZVDynamicAttributesDuplication.h"
 
+// forward class definition
 class ZIProcessGraphModelViewport;
 class ZIProcessGraphModelView;
 class ZDProcessGraphModelDoc;
@@ -36,17 +36,21 @@ class ZDProcessGraphModelMdl;
 class ZDProcessGraphPage;
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 16 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
+/**
+* Process graphic model controller. This class processes global operations on model,
+* like e.g the cut/copy/paste operations, the background image management, the page
+* management (addig a new page, ...), the zoom/pan effects, ...
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZDProcessGraphModelController : public CODController, public PSS_Subject, public PSS_Observer
 {
 public:

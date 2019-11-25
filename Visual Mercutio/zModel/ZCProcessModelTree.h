@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zBaseLib\PSS_TreeCtrl.h"
-#include "ModelTreei.h"
+#include "PSS_ModelTree.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -135,8 +135,8 @@ private:
 
 protected:
 
-    ZBModelSet*    m_pModelSet;
-    ZIModelTree    m_ModelTree;
+    ZBModelSet*   m_pModelSet;
+    PSS_ModelTree m_ModelTree;
 
     CMenu        m_SymbolPopupMainMenu;
     CMenu        m_SymbolRefPopupMainMenu;

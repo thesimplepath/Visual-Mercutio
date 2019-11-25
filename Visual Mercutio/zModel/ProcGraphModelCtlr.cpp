@@ -1,70 +1,47 @@
-/************************************************************************************************************
- *                                          Classe ZDProcessGraphModelController                                *
- ************************************************************************************************************
- * Cette classe s'occupe de la gestion des modèles. Son rôle est d'effectuer les opérations globales sur    *
- * les modèles, tels que la gestion des couper-copier-coller, la gestion des trames de fond, l'introduction    *
- * de nouvelles pages, ou la gestion des zooms.                                                                *
- ************************************************************************************************************/
+/****************************************************************************
+ * ==> PSS_ProcessGraphModelController -------------------------------------*
+ ****************************************************************************
+ * Description : Provides a process graphic model controller                *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ProcGraphModelCtlr.h"
 
- // JMR-MODIF - Le 1er septembre 2005 - Pourquoi qu'en debug ?
- //#ifdef _DEBUG
-#include "zFormsRes\zFormsRes.h"
-//#endif
-
-#include "zRes32\zRes.h"
-
+// processsoft
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
-
-// FileDlg
 #include "zBaseLib\PSS_FileDialog.h"
-
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "zProperty\ZBDynamicProperties.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
-
+#include "zFormsRes\zFormsRes.h"
 #include "ProcGraphModelVp.h"
 #include "ProcGraphModelDoc.h"
 #include "ProcGraphModelView.h"
-
 #include "ZUODSymbolManipulator.h"
-
 #include "ZBDocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
 #include "ZBModelObserverMsg.h"
 #include "ZBSymbolObserverMsg.h"
 #include "ZBSymbolLogObserverMsg.h"
-
 #include "PSS_LinkSymbol.h"
-
-// JMR-MODIF - LE 5 avril 2006 - Ajout de la classe ZBTextZone
 #include "ZBTextZone.h"
-
 #include "ZDProcessGraphPage.h"
-
 #include "ZVInsertModelNewPageDlg.h"
 #include "ZVRenameModelPageDlg.h"
 #include "ZVDeleteModelPageDlg.h"
 #include "ZVSelectSymbolAttributeDlg.h"
-
-// Find a symbol dialog
 #include "ZVFindSymbolExtDlg.h"
-
-// Utility class to found the next available symbol name
 #include "ZUBuildSymbolNewName.h"
-
-// JMR-MODIF - Le 4 avril 2006 - Ajout de l'en-tête ZUBuildGenericSymbolNewName.h
 #include "ZUBuildGenericSymbolNewName.h"
-
 #include "ZVDynamicAttributesCreation.h"
 #include "ZUDynamicAttributesManipulator.h"
-
-// Global for model
 #include "ZAModelGlobal.h"
+
+// resources
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,47 +49,39 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 21 octobre 2007 - Ajout des décorations unicode _T( ), nettoyage du code nutile. (En commentaires)
-
+//---------------------------------------------------------------------------
+// Global defines
+//---------------------------------------------------------------------------
 #define ANIMATE_TIMER 1123
-
-// **********************************************************************************************************
-// *                                             Static class variables                                        *
-// **********************************************************************************************************
+//---------------------------------------------------------------------------
+// Static variables
+//---------------------------------------------------------------------------
 static bool                CutCommand = false;
 static CODComponentSet    m_setCut;
-
+//---------------------------------------------------------------------------
+// Member variables
+//---------------------------------------------------------------------------
 CODSymbolComponent*        ZDProcessGraphModelController::m_LastSelectedElement = NULL;
 CODSymbolComponent*        ZDProcessGraphModelController::m_pFormatPainterSymbol = NULL;
-
 CODComponentSet            ZDProcessGraphModelController::m_setCopy;
 CODComponentSet            ZDProcessGraphModelController::m_setSymbolAddedSet;
 CODComponentSet            ZDProcessGraphModelController::m_animateComponents;
-
 CODNodeArray            ZDProcessGraphModelController::m_animateNodes;
 CODEdgeArray            ZDProcessGraphModelController::m_animateEdges;
-
 int                        ZDProcessGraphModelController::m_nAnimateCounter = 4;
 int                        ZDProcessGraphModelController::m_nAnimateSeconds = 4;
-
 bool                    ZDProcessGraphModelController::m_SelectionChanged = false;
 bool                    ZDProcessGraphModelController::m_AnimatedUseColor = false;
 bool                    ZDProcessGraphModelController::m_TimerInitialized = false;
 bool                    ZDProcessGraphModelController::m_IsInFormatPainter = false;
-
 UINT                    ZDProcessGraphModelController::m_nTimer = 0;
 UINT                    ZDProcessGraphModelController::m_CurrentCommandID = 0;
-
 CPoint                    ZDProcessGraphModelController::m_savedEditPosition;
-
 COLORREF                ZDProcessGraphModelController::m_AnimatedColor = -1;
-
 PSS_Date                    ZDProcessGraphModelController::m_StartTimeOfTimer;
-
-// **********************************************************************************************************
-// *                                     Message map for call back functions                                *
-// **********************************************************************************************************
-
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
 BEGIN_MESSAGE_MAP(ZDProcessGraphModelController, CODController)
     //{{AFX_MSG_MAP(ZDProcessGraphModelController)
     ON_WM_MOUSEMOVE()
@@ -184,11 +153,9 @@ BEGIN_MESSAGE_MAP(ZDProcessGraphModelController, CODController)
     ON_WM_TIMER()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-// **********************************************************************************************************
-// *                                        ZDProcessGraphModelController                                    *
-// **********************************************************************************************************
-
+//---------------------------------------------------------------------------
+// PSS_ProcessGraphModelController
+//---------------------------------------------------------------------------
 ZDProcessGraphModelController::ZDProcessGraphModelController(ZIProcessGraphModelViewport* pViewport)
     : CODController(pViewport),
     m_pRightSubMenu(NULL),

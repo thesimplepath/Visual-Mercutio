@@ -17,7 +17,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_TreeView.h"
-#include "ModelTreei.h"
+#include "PSS_ModelTree.h"
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -128,8 +128,8 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 protected:
-    ZBModelSet*        m_pModelSet;
-    ZIModelTree        m_ModelTree;
+    ZBModelSet*   m_pModelSet;
+    PSS_ModelTree m_ModelTree;
 
 private:
     void OnDoubleClick();
