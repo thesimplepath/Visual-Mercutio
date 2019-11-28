@@ -20,7 +20,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#ifdef _ZMODELEXPORT
+#ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
     #undef AFX_EXT_CLASS
     #undef AFX_EXT_API

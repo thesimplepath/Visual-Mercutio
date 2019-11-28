@@ -28,6 +28,7 @@
 // processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
+#include "zBaseLib\PSS_MathHelper.h"
 #include "zBaseLib\PSS_Bitmap.h"
 #include "zBaseLib\PSS_ToolTip.h"
 #include "zBaseSym\PSS_BasicSymbol.h"
@@ -39,7 +40,6 @@
 #include "zModel\ZBExtAppPropertyMgr.h"
 #include "zModel\ZBExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
-#include "zModel\PSS_MathHelper.h"
 
 // forward class declarations
 class ZBSymbolEdit;

@@ -33,7 +33,8 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define _CANSELECTCONVERTER 1
+#define M_CanSelectConverter 1
+#define M_Path_Margin        20
 //---------------------------------------------------------------------------
 // Static members
 //---------------------------------------------------------------------------
@@ -894,23 +895,23 @@ void PSS_LinkSymbol::AdjustLinePath()
         switch (srcEdge)
         {
             case 1:
-                vertices[1].x = vertices[0].x - 20;
+                vertices[1].x = vertices[0].x - M_Path_Margin;
                 vertices[1].y = vertices[0].y;
                 break;
 
             case 2:
                 vertices[1].x = vertices[0].x;
-                vertices[1].y = vertices[0].y + 20;
+                vertices[1].y = vertices[0].y + M_Path_Margin;
                 break;
 
             case 3:
-                vertices[1].x = vertices[0].x + 20;
+                vertices[1].x = vertices[0].x + M_Path_Margin;
                 vertices[1].y = vertices[0].y;
                 break;
 
             case 4:
                 vertices[1].x = vertices[0].x;
-                vertices[1].y = vertices[0].y - 20;
+                vertices[1].y = vertices[0].y - M_Path_Margin;
                 break;
 
             default:
@@ -955,23 +956,23 @@ void PSS_LinkSymbol::AdjustLinePath()
         switch (dstEdge)
         {
             case 1:
-                vertices[3].x = vertices[4].x - 20;
+                vertices[3].x = vertices[4].x - M_Path_Margin;
                 vertices[3].y = vertices[4].y;
                 break;
 
             case 2:
                 vertices[3].x = vertices[4].x;
-                vertices[3].y = vertices[4].y + 20;
+                vertices[3].y = vertices[4].y + M_Path_Margin;
                 break;
 
             case 3:
-                vertices[3].x = vertices[4].x + 20;
+                vertices[3].x = vertices[4].x + M_Path_Margin;
                 vertices[3].y = vertices[4].y;
                 break;
 
             case 4:
                 vertices[3].x = vertices[4].x;
-                vertices[3].y = vertices[4].y - 20;
+                vertices[3].y = vertices[4].y - M_Path_Margin;
                 break;
 
             default:

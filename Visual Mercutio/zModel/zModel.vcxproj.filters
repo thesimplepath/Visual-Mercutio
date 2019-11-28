@@ -345,9 +345,6 @@
     <ClCompile Include="ZVUserGroupInfoDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_MathHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_LinkSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -781,9 +778,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVUserGroupInfoDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_MathHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_LinkSymbol.h">
