@@ -44,9 +44,9 @@
 #include "zRes32\zRes.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 //---------------------------------------------------------------------------
@@ -54,36 +54,33 @@ static char THIS_FILE[] = __FILE__;
 //---------------------------------------------------------------------------
 #define ANIMATE_TIMER 1123
 //---------------------------------------------------------------------------
-// Static variables
-//---------------------------------------------------------------------------
-static bool                CutCommand = false;
-static CODComponentSet    m_setCut;
-//---------------------------------------------------------------------------
 // Member variables
 //---------------------------------------------------------------------------
-CODSymbolComponent*        ZDProcessGraphModelController::m_LastSelectedElement = NULL;
-CODSymbolComponent*        ZDProcessGraphModelController::m_pFormatPainterSymbol = NULL;
-CODComponentSet            ZDProcessGraphModelController::m_setCopy;
-CODComponentSet            ZDProcessGraphModelController::m_setSymbolAddedSet;
-CODComponentSet            ZDProcessGraphModelController::m_animateComponents;
-CODNodeArray            ZDProcessGraphModelController::m_animateNodes;
-CODEdgeArray            ZDProcessGraphModelController::m_animateEdges;
-int                        ZDProcessGraphModelController::m_nAnimateCounter = 4;
-int                        ZDProcessGraphModelController::m_nAnimateSeconds = 4;
-bool                    ZDProcessGraphModelController::m_SelectionChanged = false;
-bool                    ZDProcessGraphModelController::m_AnimatedUseColor = false;
-bool                    ZDProcessGraphModelController::m_TimerInitialized = false;
-bool                    ZDProcessGraphModelController::m_IsInFormatPainter = false;
-UINT                    ZDProcessGraphModelController::m_nTimer = 0;
-UINT                    ZDProcessGraphModelController::m_CurrentCommandID = 0;
-CPoint                    ZDProcessGraphModelController::m_savedEditPosition;
-COLORREF                ZDProcessGraphModelController::m_AnimatedColor = -1;
-PSS_Date                    ZDProcessGraphModelController::m_StartTimeOfTimer;
+CODSymbolComponent* PSS_ProcessGraphModelController::m_pFormatPainterSymbol = NULL;
+CODSymbolComponent* PSS_ProcessGraphModelController::m_LastSelectedElement  = NULL;
+CODComponentSet     PSS_ProcessGraphModelController::m_CutSet;
+CODComponentSet     PSS_ProcessGraphModelController::m_CopySet;
+CODComponentSet     PSS_ProcessGraphModelController::m_SymbolAddedSet;
+CPoint              PSS_ProcessGraphModelController::m_SavedEditPosition;
+UINT                PSS_ProcessGraphModelController::m_CurrentCommandID     = 0;
+bool                PSS_ProcessGraphModelController::m_CutCommand           = false;
+bool                PSS_ProcessGraphModelController::m_IsInFormatPainter    = false;
+CODNodeArray        PSS_ProcessGraphModelController::m_AnimatedNodes;
+CODEdgeArray        PSS_ProcessGraphModelController::m_AnimatedEdges;
+CODComponentSet     PSS_ProcessGraphModelController::m_AnimatedComponents;
+COLORREF            PSS_ProcessGraphModelController::m_AnimatedColor        = -1;
+PSS_Date            PSS_ProcessGraphModelController::m_TimerStartTime;
+UINT                PSS_ProcessGraphModelController::m_Timer                = 0;
+int                 PSS_ProcessGraphModelController::m_AnimateCounter       = 4;
+int                 PSS_ProcessGraphModelController::m_AnimateSeconds       = 4;
+bool                PSS_ProcessGraphModelController::m_SelectionChanged     = false;
+bool                PSS_ProcessGraphModelController::m_AnimatedUseColor     = false;
+bool                PSS_ProcessGraphModelController::m_TimerInitialized     = false;
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(ZDProcessGraphModelController, CODController)
-    //{{AFX_MSG_MAP(ZDProcessGraphModelController)
+BEGIN_MESSAGE_MAP(PSS_ProcessGraphModelController, CODController)
+    //{{AFX_MSG_MAP(PSS_ProcessGraphModelController)
     ON_WM_MOUSEMOVE()
     ON_WM_LBUTTONDBLCLK()
     ON_WM_RBUTTONUP()
@@ -116,7 +113,7 @@ BEGIN_MESSAGE_MAP(ZDProcessGraphModelController, CODController)
     ON_COMMAND(ID_DELETE_MODELPAGE, OnDeletePage)
     ON_COMMAND(ID_RENAME_CURRENTMODELPAGE, OnRenameCurrentPage)
     ON_COMMAND(ID_DELETE_CURRENTMODELPAGE, OnDeleteCurrentPage)
-    ON_COMMAND(ID_GOIN_SYMBOL, OnGoinSymbol)
+    ON_COMMAND(ID_GOIN_SYMBOL, OnGoInSymbol)
     ON_COMMAND(ID_SELECT_SYMBOL, OnSelectSymbol)
     ON_COMMAND(ID_OD_MEASUREMENTS, OnOdMeasurements)
     ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
@@ -156,5261 +153,1198 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ProcessGraphModelController
 //---------------------------------------------------------------------------
-ZDProcessGraphModelController::ZDProcessGraphModelController(ZIProcessGraphModelViewport* pViewport)
-    : CODController(pViewport),
-    m_pRightSubMenu(NULL),
+PSS_ProcessGraphModelController::PSS_ProcessGraphModelController(ZIProcessGraphModelViewport* pViewport) :
+    CODController(pViewport),
     m_pSymbolHit(NULL),
     m_pLabelHit(NULL),
-    m_CurrentCursor(0),        // JMR-MODIF - Le 5 mai 2006 - Initialisation de la variable m_OldCursor.
+    m_pRightSubMenu(NULL),
+    m_CurrentCursor(0),
     m_IsEditingSymbolName(false),
     m_IsEditingSymbolComment(false),
     m_NewSymbolCreated(false)
 {
     GetCanvasVp()->Invalidate();
 }
-
-ZDProcessGraphModelController::~ZDProcessGraphModelController()
+//---------------------------------------------------------------------------
+PSS_ProcessGraphModelController::~PSS_ProcessGraphModelController()
 {
-    // When the controller is closed, reset the last selected element.
-    // Otherwise, we have the risk to keep a pointer on an unexisting symbol
+    // when the controller is closed, reset the last selected element. Otherwise a pointer may be kept
+    // on an unexisting symbol while the base class is deleted
     m_LastSelectedElement = NULL;
 }
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::GetViewport()
-{
-    return dynamic_cast<ZIProcessGraphModelViewport*>(m_pViewport);
-}
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::GetViewportConstPtr() const
-{
-    return dynamic_cast<ZIProcessGraphModelViewport*>(m_pViewport);
-}
-
-ZIProcessGraphModelView* ZDProcessGraphModelController::GetView()
+//---------------------------------------------------------------------------
+ZIProcessGraphModelView* PSS_ProcessGraphModelController::GetView()
 {
     if (m_pViewport)
     {
-        CWnd* pWnd = m_pViewport->GetWnd();
-
-        if (pWnd && ISA(pWnd, ZIProcessGraphModelView))
-        {
-            return (ZIProcessGraphModelView*)pWnd;
-        }
-    }
-
-    return NULL;
-}
-
-ZIProcessGraphModelView* ZDProcessGraphModelController::GetViewConstPtr() const
-{
-    if (m_pViewport)
-    {
-        CWnd* pWnd = m_pViewport->GetWnd();
-
-        if (pWnd && ISA(pWnd, ZIProcessGraphModelView))
-        {
-            return (ZIProcessGraphModelView*)pWnd;
-        }
-    }
-
-    return NULL;
-}
-
-CDocument* ZDProcessGraphModelController::GetDocument()
-{
-    if (GetView())
-    {
-        return GetView()->GetDocument();
-    }
-
-    return NULL;
-}
-
-CDocument* ZDProcessGraphModelController::GetDocumentConstPtr() const
-{
-    if (GetViewConstPtr())
-    {
-        return GetViewConstPtr()->GetDocument();
-    }
-
-    return NULL;
-}
-
-ZDProcessGraphModelMdl* ZDProcessGraphModelController::GetModel()
-{
-    if (m_pViewport && m_pViewport->GetModel() && ISA(m_pViewport->GetModel(), ZDProcessGraphModelMdl))
-    {
-        return (ZDProcessGraphModelMdl*)m_pViewport->GetModel();
-    }
-
-    return NULL;
-}
-
-ZDProcessGraphModelMdl* ZDProcessGraphModelController::GetRootModel()
-{
-    if (m_pViewport && m_pViewport->GetModel() && ISA(m_pViewport->GetModel(), ZDProcessGraphModelMdl))
-    {
-        return dynamic_cast<ZDProcessGraphModelMdl*>(m_pViewport->GetModel())->GetRoot();
-    }
-
-    return NULL;
-}
-
-void ZDProcessGraphModelController::OnInitialUpdate()
-{
-    // JMR-MODIF - Le 27 septembre 2006 - Vide le presse-papier pour commencer avec un presse-papier propre.
-    ReleaseClipboard();
-}
-
-bool ZDProcessGraphModelController::BrowseInSameWindow() const
-{
-    if (GetDocumentConstPtr() && ISA(GetDocumentConstPtr(), ZDProcessGraphModelDoc))
-    {
-        return dynamic_cast<ZDProcessGraphModelDoc*>(GetDocumentConstPtr())->BrowseInSameWindow();
-    }
-
-    return false;
-}
-
-void ZDProcessGraphModelController::SetBrowseInSameWindow(bool value)
-{
-    if (GetDocument() && ISA(GetDocument(), ZDProcessGraphModelDoc))
-    {
-        dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument())->SetBrowseInSameWindow(value);
-    }
-}
-
-void ZDProcessGraphModelController::AssignSymbolHit()
-{
-    if (GetSelection()->GetSize() == 1 &&
-        (ISA(GetSelection()->GetAt(0), ZBSymbol) || ISA(GetSelection()->GetAt(0), PSS_LinkSymbol)))
-    {
-        m_pSymbolHit = (CODSymbolComponent*)GetSelection()->GetAt(0);
-    }
-    else
-    {
-        if (GetSelection()->GetSize() == 1 && ISA(GetSelection()->GetAt(0), CODLabelComponent))
-        {
-            // Select the symbol behind
-            // JMR-MODIF - Le 31 mai 2005 - Conversion explicite remplace le cast. La conversion explicite
-            // donne un résultat identique sur l'objet casté en classe de base, tandis que l'ancienne
-            // implémentation (dynamic_cast) provoque une exception dans le compilateur VC.NET
-            CODLabelComponent* m_pTmpSymbolHit = (CODLabelComponent*)GetSelection()->GetAt(0);
-            m_pSymbolHit = m_pTmpSymbolHit->GetOwner();
-            //            m_pSymbolHit = dynamic_cast<CODLabelComponent*>(GetSelection()->GetAt(0))->GetOwner();
-        }
-        else
-        {
-            m_pSymbolHit = NULL;
-        }
-    }
-}
-
-void ZDProcessGraphModelController::AssignLabelHit()
-{
-    if (GetSelection()->GetSize() == 1 && ISA(GetSelection()->GetAt(0), CODLabelComponent))
-    {
-        m_pLabelHit = (CODLabelComponent*)GetSelection()->GetAt(0);
-
-        // Select the symbol behind
-        m_pSymbolHit = m_pLabelHit->GetOwner();
-    }
-    else
-    {
-        m_pLabelHit = NULL;
-    }
-}
-
-void ZDProcessGraphModelController::AnimateNode(IODNode&    Node,
-                                                bool        UseColor        /*= false*/,
-                                                COLORREF    col                /*= -1*/,
-                                                size_t        AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Add the component
-    m_animateNodes.Add(&Node);
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::AnimateNodes(CODNodeArray&    Nodes,
-                                                 bool            UseColor        /*= false*/,
-                                                 COLORREF        col                /*= -1*/,
-                                                 size_t        AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Add the components
-    for (int nNodeIdx = 0; nNodeIdx < Nodes.GetSize(); ++nNodeIdx)
-    {
-        m_animateNodes.Add(Nodes.GetAt(nNodeIdx));
-    }
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::AnimateEdge(IODEdge&    Edge,
-                                                bool        UseColor        /*= false*/,
-                                                COLORREF    col                /*= -1*/,
-                                                size_t        AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Add the component
-    m_animateEdges.Add(&Edge);
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::AnimateEdges(CODEdgeArray&    Edges,
-                                                 bool            UseColor        /*= false*/,
-                                                 COLORREF        col                /*= -1*/,
-                                                 size_t        AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Add the components
-    for (int nNodeIdx = 0; nNodeIdx < Edges.GetSize(); ++nNodeIdx)
-    {
-        m_animateEdges.Add(Edges.GetAt(nNodeIdx));
-    }
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::AnimateSymbol(CODSymbolComponent&    Symbol,
-                                                  bool                    UseColor        /*= false*/,
-                                                  COLORREF                col                /*= -1*/,
-                                                  size_t                AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Add the component
-    m_animateComponents.Add(&Symbol);
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::AnimateSymbols(CODComponentSet&    Set,
-                                                   bool                UseColor        /*= false*/,
-                                                   COLORREF            col                /*= -1*/,
-                                                   size_t                AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Copy symbol to set
-    CODComponentIterator    IterSelection(&Set);
-    CODComponent*            pSrcComp;
-
-    for (pSrcComp = IterSelection.GetFirst(); pSrcComp != NULL; pSrcComp = IterSelection.GetNext())
-    {
-        m_animateComponents.Add(pSrcComp);
-    }
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::AnimateLink(CODLinkComponent&    Link,
-                                                bool                UseColor        /*= false*/,
-                                                COLORREF            col                /*= -1*/,
-                                                size_t                AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Add the component
-    m_animateComponents.Add(&Link);
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::AnimateLinks(CODComponentSet&    Set,
-                                                 bool                UseColor        /*= false*/,
-                                                 COLORREF            col                /*= -1*/,
-                                                 size_t            AnimateCounter    /*= 4*/)
-{
-    if (UseColor)
-    {
-        m_nAnimateSeconds = AnimateCounter;
-    }
-    else
-    {
-        m_nAnimateCounter = AnimateCounter;
-    }
-
-    m_AnimatedUseColor = UseColor;
-    m_AnimatedColor = col;
-
-    // Kill the timer if necessary
-    if (m_nTimer != 0)
-    {
-        _EndAnimateTimer();
-    }
-
-    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
-
-    // Copy symbol to set
-    CODComponentIterator    IterSelection(&Set);
-    CODComponent*            pSrcComp;
-
-    for (pSrcComp = IterSelection.GetFirst(); pSrcComp != NULL; pSrcComp = IterSelection.GetNext())
-    {
-        m_animateComponents.Add(pSrcComp);
-    }
-
-    // Start the timer
-    m_nTimer = SetTimer(ANIMATE_TIMER, 50, NULL);
-}
-
-void ZDProcessGraphModelController::_AnimateNodes()
-{
-    CODComponentSet setUpdate;
-
-    for (int nNodeIdx = 0; nNodeIdx < m_animateNodes.GetSize(); nNodeIdx++)
-    {
-        IODNode*            pINode = m_animateNodes.GetAt(nNodeIdx);
-        CODSymbolComponent*    pComp = static_cast<CODSymbolComponent*>(pINode);
-
-        BOOL bFlag = !(m_nAnimateCounter % 2);
-
-        pComp->SetTracking(bFlag);
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_AnimateEdges()
-{
-    CODComponentSet setUpdate;
-
-    for (int nEdgeIdx = 0; nEdgeIdx < m_animateEdges.GetSize(); nEdgeIdx++)
-    {
-        IODEdge*            pIEdge = m_animateEdges.GetAt(nEdgeIdx);
-        CODLinkComponent*    pComp = static_cast<CODLinkComponent*>(pIEdge);
-
-        BOOL bFlag = !(m_nAnimateCounter % 2);
-
-        pComp->SetTracking(bFlag);
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_AnimateSymbols()
-{
-    CODComponentSet setUpdate;
-
-    CODComponentIterator    IterSelection(&m_animateComponents);
-    CODComponent*            pSrcComp;
-
-    for (pSrcComp = IterSelection.GetFirst(); pSrcComp != NULL; pSrcComp = IterSelection.GetNext())
-    {
-        BOOL bFlag = !(m_nAnimateCounter % 2);
-
-        pSrcComp->SetTracking(bFlag);
-
-        setUpdate.Add(pSrcComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_ChangeColorNodes()
-{
-    CODComponentSet setUpdate;
-
-    for (int nNodeIdx = 0; nNodeIdx < m_animateNodes.GetSize(); nNodeIdx++)
-    {
-        IODNode*            pINode = m_animateNodes.GetAt(nNodeIdx);
-        CODSymbolComponent*    pComp = static_cast<CODSymbolComponent*>(pINode);
-
-        if (pComp != NULL)
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
-        }
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_ChangeColorEdges()
-{
-    CODComponentSet setUpdate;
-
-    for (int nEdgeIdx = 0; nEdgeIdx < m_animateEdges.GetSize(); nEdgeIdx++)
-    {
-        IODEdge*            pIEdge = m_animateEdges.GetAt(nEdgeIdx);
-        CODLinkComponent*    pComp = static_cast<CODLinkComponent*>(pIEdge);
-
-        if (pComp != NULL)
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
-        }
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_ChangeColorSymbols()
-{
-    CODComponentSet setUpdate;
-
-    CODComponentIterator    IterSelection(&m_animateComponents);
-    CODComponent*            pComp;
-
-    for (pComp = IterSelection.GetFirst(); pComp != NULL; pComp = IterSelection.GetNext())
-    {
-        if (pComp != NULL)
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
-            ZUODSymbolManipulator::ChangeLabelLineColor(dynamic_cast<CODSymbolComponent*>(pComp),
-                                                        m_AnimatedColor);
-        }
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_ChangeBackColorNodes()
-{
-    CODComponentSet setUpdate;
-
-    for (int nNodeIdx = 0; nNodeIdx < m_animateNodes.GetSize(); nNodeIdx++)
-    {
-        IODNode*            pINode = m_animateNodes.GetAt(nNodeIdx);
-        CODSymbolComponent*    pComp = static_cast<CODSymbolComponent*>(pINode);
-
-        if (pComp != NULL && ISA(pComp, ZBSymbol))
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp,
-                                                   dynamic_cast<ZBSymbol*>(pComp)->GetCurrentLineColor());
-
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp,
-                                                        dynamic_cast<ZBSymbol*>(pComp)->GetCurrentLabelColor());
-        }
-        else if (pComp != NULL && ISA(pComp, PSS_LinkSymbol))
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp,
-                                                   dynamic_cast<PSS_LinkSymbol*>(pComp)->GetCurrentLineColor());
-
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp,
-                                                        dynamic_cast<PSS_LinkSymbol*>(pComp)->GetCurrentLabelColor());
-        }
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_ChangeBackColorEdges()
-{
-    CODComponentSet setUpdate;
-
-    for (int nEdgeIdx = 0; nEdgeIdx < m_animateEdges.GetSize(); nEdgeIdx++)
-    {
-        IODEdge*            pIEdge = m_animateEdges.GetAt(nEdgeIdx);
-        CODLinkComponent*    pComp = static_cast<CODLinkComponent*>(pIEdge);
-
-        if (pComp != NULL && ISA(pComp, ZBSymbol))
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp,
-                                                   dynamic_cast<ZBSymbol*>(pComp)->GetCurrentLineColor());
-
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp,
-                                                        dynamic_cast<ZBSymbol*>(pComp)->GetCurrentLabelColor());
-        }
-        else if (pComp != NULL && ISA(pComp, PSS_LinkSymbol))
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp,
-                                                   dynamic_cast<PSS_LinkSymbol*>(pComp)->GetCurrentLineColor());
-
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp,
-                                                        dynamic_cast<PSS_LinkSymbol*>(pComp)->GetCurrentLabelColor());
-        }
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::_ChangeBackColorSymbols()
-{
-    CODComponentSet setUpdate;
-
-    CODComponentIterator    IterSelection(&m_animateComponents);
-    CODComponent*            pComp;
-
-    for (pComp = IterSelection.GetFirst(); pComp != NULL; pComp = IterSelection.GetNext())
-    {
-        if (pComp != NULL && ISA(pComp, ZBSymbol))
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp,
-                                                   dynamic_cast<ZBSymbol*>(pComp)->GetCurrentLineColor());
-
-            ZUODSymbolManipulator::ChangeLabelLineColor(dynamic_cast<CODSymbolComponent*>(pComp),
-                                                        dynamic_cast<ZBSymbol*>(pComp)->GetCurrentLabelColor());
-        }
-        else if (pComp != NULL && ISA(pComp, PSS_LinkSymbol))
-        {
-            ZUODSymbolManipulator::ChangeLineColor(pComp,
-                                                   dynamic_cast<PSS_LinkSymbol*>(pComp)->GetCurrentLineColor());
-
-            ZUODSymbolManipulator::ChangeLabelLineColor(dynamic_cast<CODSymbolComponent*>(pComp),
-                                                        dynamic_cast<PSS_LinkSymbol*>(pComp)->GetCurrentLabelColor());
-        }
-
-        setUpdate.Add(pComp);
-    }
-
-    GetVp()->DrawComponents(&setUpdate);
-}
-
-// JMR-MODIF - Le 17 septembre 2006 - Supprime de la sélection les objets interdits à la copie. (Portes, pages, ...)
-BOOL ZDProcessGraphModelController::FilterSelection(BOOL ModifyFlag /*= FALSE*/)
-{
-    CODComponentIterator    IterSelection(GetSelection());
-    CODComponent*            pComp;
-    BOOL                    SelectionIsModified = ModifyFlag;
-
-    for (pComp = IterSelection.GetFirst(); pComp != NULL; pComp = IterSelection.GetNext())
-    {
-        if (ISA(pComp, ZBSymbol))
-        {
-            ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
-
-            if (pSymbol != NULL)
-            {
-                if (pSymbol->IsDoor() ||
-                    pSymbol->IsPackage() ||
-                    pSymbol->IsPage() ||
-                    !pSymbol->IsLocal())
-                {
-                    GetSelection()->Remove(IterSelection.Get());
-                    return FilterSelection(TRUE);
-                }
-            }
-        }
-        else if (ISA(pComp, PSS_LinkSymbol))
-        {
-            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
-
-            if (pLinkSymbol != NULL)
-            {
-                if (!pLinkSymbol->IsLocal())
-                {
-                    GetSelection()->Remove(IterSelection.Get());
-                    return FilterSelection(TRUE);
-                }
-            }
-        }
-        else if (ISA(pComp, CODLabelComponent))
-        {
-            GetSelection()->Remove(IterSelection.Get());
-            return FilterSelection(SelectionIsModified);
-        }
-    }
-
-    return SelectionIsModified;
-}
-
-// JMR-MODIF - Le 17 septembre 2006 - Contrôle la validité des objets avant de valider la commande couper/copier.
-BOOL ZDProcessGraphModelController::ValidateCutCopyOperations()
-{
-    CODComponentIterator    IterSelection(GetSelection());
-    CODComponent*            pComp;
-
-    for (pComp = IterSelection.GetFirst(); pComp != NULL; pComp = IterSelection.GetNext())
-    {
-        if (ISA(pComp, ZBSymbol))
-        {
-            ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
-
-            if (pSymbol != NULL)
-            {
-                if (!pSymbol->IsDoor() &&
-                    !pSymbol->IsPackage() &&
-                    !pSymbol->IsPage() &&
-                    pSymbol->IsLocal())
-                {
-                    return TRUE;
-                }
-            }
-        }
-        else if (ISA(pComp, PSS_LinkSymbol))
-        {
-            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
-
-            if (pLinkSymbol != NULL)
-            {
-                if (pLinkSymbol->IsLocal())
-                {
-                    return TRUE;
-                }
-            }
-        }
-        // JMR-MODIF - Le 8 mai 2007 - Autorise la copie si l'élément sélectionné est une zone de texte.
-        else if (ISA(pComp, ZBTextZone))
-        {
-            return TRUE;
-        }
-        // JMR-MODIF - Le 8 mai 2007 - Autorise la copie si l'élément sélectionné est une entité de type composant. Ceci
-        // inclut tous les symboles de Mercutio, mais les éléments sensibles ont déjà été filtrés dans les lignes de code
-        // ci-dessus, et donc seront rejetés avant que le programme atteigne ce point
-        else if (ISA(pComp, CODComponent))
-        {
-            return TRUE;
-        }
-    }
-
-    return FALSE;
-}
-
-// JMR-MODIF - Le 27 septembre 2006 - Cette fonction permet de vider le presse-papiers.
-void ZDProcessGraphModelController::ReleaseClipboard()
-{
-    OpenClipboard();
-    EmptyClipboard();
-    CloseClipboard();
-}
-
-// Cette fonction effectue la fonction "Copier" dans le document.
-void ZDProcessGraphModelController::OnEditCopy()
-{
-    // JMR-MODIF - Le 27 septembre 2006 - Vide le presse-papier avant la nouvelle opération.
-    ReleaseClipboard();
-
-    // JMR-MODIF - Le 17 septembre 2006 - Filtre la sélection avant d'autoriser l'opération "copier".
-    if (FilterSelection() == TRUE)
-    {
-        RefreshAllSymbols();
-
-        PSS_MsgBox mBox;
-
-        CString s = _T("");
-        s.Format(IDS_WARNING_COPY_SELECTION);
-        mBox.Show(s, MB_OK);
-    }
-
-    CopySelectionToSet();
-
-    // Call the base class
-    CODController::OnEditCopy();
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-
-    CutCommand = false;
-}
-
-// JMR-MODIF - Le 17 septembre 2006 - Ajout de la fonction OnUpdateEditCopy.
-void ZDProcessGraphModelController::OnUpdateEditCopy(CCmdUI* pCmdUI)
-{
-    pCmdUI->Enable(ValidateCutCopyOperations());
-}
-
-// Cette fonction effectue la fonction "Couper" dans le document.
-void ZDProcessGraphModelController::OnEditCut()
-{
-    // JMR-MODIF - Le 27 septembre 2006 - Vide le presse-papier avant la nouvelle opération.
-    ReleaseClipboard();
-
-    ClearSelectionToSet();
-    RemoveReferenceSymbol(GetSelection());
-
-    // JMR-MODIF - Le 17 septembre 2006 - Filtre la sélection avant d'autoriser l'opération "couper".
-    if (FilterSelection() == TRUE)
-    {
-        RefreshAllSymbols();
-
-        PSS_MsgBox mBox;
-
-        CString s = _T("");
-        s.Format(IDS_WARNING_CUT_SELECTION);
-        mBox.Show(s, MB_OK);
-    }
-
-    if (m_pTextEdit != NULL && m_pTextEdit->IsEditing())
-    {
-        CEdit* pEdit = m_pTextEdit->GetEditControl();
-
-        ASSERT(pEdit != NULL);
-
-        pEdit->Cut();
-
-        return;
-    }
-
-    ASSERT(GetRootModel());
-    GetRootModel()->SetInCutOperation(true);
-
-    // In our clipboard set
-    CopyToClipboardSet(GetSelection());
-    ExecuteDeleteCommand(GetSelection());
-
-    GetRootModel()->SetInCutOperation(false);
-
-    // Reset the paste insertion point.
-    GetCanvasVp()->SetPasteInsertionPoint(CPoint(0, 0));
-
-    // Refresh the tree
-    RefreshModelTree();
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-
-    CutCommand = true;
-}
-
-// JMR-MODIF - Le 17 septembre 2006 - Ajout de la fonction OnUpdateEditCut.
-void ZDProcessGraphModelController::OnUpdateEditCut(CCmdUI* pCmdUI)
-{
-    pCmdUI->Enable(ValidateCutCopyOperations());
-}
-
-// Cette fonction permet la copie vers le presse-papier.
-void ZDProcessGraphModelController::CopyToClipboardSet(CODComponentSet* pCompSet)
-{
-    ASSERT(pCompSet != NULL);
-
-    if (pCompSet && pCompSet->GetSize() > 0)
-    {
-        EmptyClipboardSet();
-
-        // Copy selected components to clipboard using custom clipboard format.
-        StoreComponentsToSet(*pCompSet);
-
-        OpenClipboard();
-        EmptyClipboard();
-
-        // Copy selected components to clipboard using custom clipboard format.
-        CSharedFile file;
-
-        CArchive ar(&file, CArchive::store);
-
-        StoreComponents(ar, *pCompSet);
-
-        ar.Close();
-
-        ::SetClipboardData(m_cfCanvas, file.Detach());
-
-        // Copy selected components to clipboard in enhanced metafile format.
-        if (ClipboardEnhMetafileEnabled())
-        {
-            CMetaFileDC* pMetaDC = GetCanvasVp()->CreateMetafile(*pCompSet);
-
-            if (pMetaDC != NULL)
-            {
-                HENHMETAFILE hMetaFile = pMetaDC->CloseEnhanced();
-                ::SetClipboardData(CF_ENHMETAFILE, hMetaFile);
-
-                delete pMetaDC;
-            }
-        }
-
-        CloseClipboard();
-    }
-}
-
-// JMR-MODIF - Le 17 septembre 2006 - Cette fonction vide l'ensemble des données à couper.
-void ZDProcessGraphModelController::EmptyClipboardSet()
-{
-    m_setCut.RemoveAll();
-}
-
-// Cette fonction permet l'enregistrement d'un composant dans le presse-papier.
-void ZDProcessGraphModelController::StoreComponentsToSet(const CODComponentSet& setComponents)
-{
-    CODComponentSet        setPrimary;
-    CODComponentSet        setDependents;
-    CODConnectionSet    setMovingConnections;
-    int                    i;
-
-    setPrimary.Append(setComponents);
-
-    // Include labels and contained objects.
-    for (i = 0; i < setComponents.GetSize(); i++)
-    {
-        CODComponent* pComp = setComponents.GetAt(i);
-
-        switch (m_state)
-        {
-            case OD_MOVE_START:
-            case OD_MOVING:
-            {
-                // Get labels and contained objects
-                pComp->GetTranslateSet(setPrimary);
-                break;
-            }
-
-            case OD_ROTATE_START:
-            case OD_ROTATING:
-            {
-                pComp->GetRotateSet(setPrimary);
-                break;
-            }
-
-            case OD_SCALE_START:
-            case OD_SCALING:
-            {
-                pComp->GetScaleSet(setPrimary);
-                break;
-            }
-        }
-    }
-
-    // Get all connections affected by symbols that are moving.
-    for (i = 0; i < setPrimary.GetSize(); i++)
-    {
-        CODComponent* pComp = setPrimary.GetAt(i);
-
-        if (ISA(pComp, CODSymbolComponent))
-        {
-            CODSymbolComponent* pSymbol = static_cast<CODSymbolComponent*>(pComp);
-            pSymbol->GetMovingConnections(setMovingConnections);
-        }
-    }
-
-    // Examine moving connections and extract the symbols. Symbols affected that
-    // are not already included in the primary set are added to the dependent
-    // symbol set.
-    for (int nConnectIdx = 0; nConnectIdx < setMovingConnections.GetSize(); nConnectIdx++)
-    {
-        CODConnection* pConnection = setMovingConnections.GetAt(nConnectIdx);
-
-        ASSERT_VALID(pConnection->GetSourcePort());
-        CODSymbolComponent* pSourceSymbol = pConnection->GetSourcePort()->GetOwner();
-
-        ASSERT_VALID(pConnection->GetTargetPort());
-        CODSymbolComponent* pTargetSymbol = pConnection->GetTargetPort()->GetOwner();
-
-        BOOL bSourceFound = FALSE;
-        BOOL bTargetFound = FALSE;
-
-        for (int i = 0; i < setPrimary.GetSize() && (!bSourceFound || !bTargetFound); i++)
-        {
-            CODComponent* pComp = setPrimary.GetAt(i);
-
-            if (pSourceSymbol == pComp || pComp->IsChild(pSourceSymbol))
-            {
-                bSourceFound = TRUE;
-            }
-
-            if (pTargetSymbol == pComp || pComp->IsChild(pTargetSymbol))
-            {
-                bTargetFound = TRUE;
-            }
-        }
-
-        for (int j = 0; j < setDependents.GetSize() && (!bSourceFound || !bTargetFound); j++)
-        {
-            CODComponent* pDepComp = setDependents.GetAt(j);
-
-            if (pSourceSymbol == pDepComp || pDepComp->IsChild(pSourceSymbol))
-            {
-                bSourceFound = TRUE;
-            }
-
-            if (pTargetSymbol == pDepComp || pDepComp->IsChild(pTargetSymbol))
-            {
-                bTargetFound = TRUE;
-            }
-        }
-
-        if (!bSourceFound)
-        {
-            //            setDependents.Add( pSourceSymbol );
-        }
-
-        if (!bTargetFound)
-        {
-            //            setDependents.Add( pTargetSymbol );
-        }
-    }
-
-    // Loop through the primary set and dependent set and serialize the components.
-    CODComponentSet* pCurSet = &setDependents;
-
-    for (int nSetCount = 1; nSetCount <= 2; nSetCount++)
-    {
-        for (i = 0; i < pCurSet->GetSize(); i++)
-        {
-            CODComponent*        pComp = pCurSet->GetAt(i);
-            CODSymbolComponent*    pSymbol = NULL;
-            CODConnectionSet    setConnections;
-            CODConnectionSet    setDetached;
-            int                    nConnectIdx;
-
-            if (ISA(pComp, CODSymbolComponent))
-            {
-                pSymbol = static_cast<CODSymbolComponent*>(pComp);
-
-                // Any connections to symbols that are not going to be serialized
-                // must be detached. This eliminates dangling references.
-                pSymbol->GetAllConnections(setConnections);
-
-                for (nConnectIdx = 0; nConnectIdx < setConnections.GetSize(); nConnectIdx++)
-                {
-                    CODConnection* pConnection = setConnections.GetAt(nConnectIdx);
-
-                    if (setMovingConnections.FindIndex(pConnection) == -1)
-                    {
-                        pSymbol->Detach(pConnection);
-                        setDetached.Add(pConnection);
-                    }
-                }
-            }
-
-            // Store the component
-            m_setCut.Add(pComp);
-
-            // Concatonate all parent transformations and store those
-            // with the component. This is necessary because the parent
-            // isn't being saved with the component, but we still want
-            // the component to be rendered in the same place. When
-            // read back in, the parent transform matrix is concatonated
-            // with the component transform matrix.
-            CODTransform parentXform;
-
-            pComp->ConcatParentTransforms(parentXform);
-
-            if (pSymbol != NULL)
-            {
-                // Re-attach connections that were detached.
-                for (nConnectIdx = 0; nConnectIdx < setDetached.GetSize(); nConnectIdx++)
-                {
-                    CODConnection* pConnection = setDetached.GetAt(nConnectIdx);
-                    pSymbol->Attach(pConnection);
-                }
-            }
-        }
-
-        pCurSet = &setPrimary;
-    }
-}
-
-// Cette fonction effectue la fonction "Coller" dans le document.
-void ZDProcessGraphModelController::OnEditPaste()
-{
-    if (CutCommand == true)
-    {
-        ASSERT(GetRootModel());
-        GetRootModel()->SetInCutOperation(true);
-
-        CODComponent*                                    pComp;
-        CODComponentSet                                    setTranslate;
-        CMap<CODComponent*, CODComponent*, int, int>    mapTranslateSet;
-        BOOL                                            bAdded;
-
-        int nPos = 0;
-
-        CODComponentIterator i(&m_setCut);
-
-        // Remove labels from the set
-        for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-        {
-            if (ISA(pComp, CODLabelComponent))
-            {
-                i.Remove();
-                pComp->Release();
-                i.GetPrev();
-            }
-        }
-
-        for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-        {
-            if (!mapTranslateSet.Lookup(pComp, bAdded))
-            {
-                mapTranslateSet.SetAt(pComp, nPos++);
-            }
-        }
-
-        for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-        {
-            pComp->GetTranslateSet(setTranslate);
-
-            if (setTranslate.GetSize() > 0)
-            {
-                CODComponent* pTranslateComp;
-                CODComponentIterator iTransSet(&setTranslate);
-
-                for (pTranslateComp = iTransSet.GetFirst(); pTranslateComp != NULL; pTranslateComp = iTransSet.GetNext())
-                {
-                    if (!mapTranslateSet.Lookup(pTranslateComp, bAdded))
-                    {
-                        ASSERT_VALID(pTranslateComp);
-                        mapTranslateSet.SetAt(pTranslateComp, nPos++);
-                        pTranslateComp->AddRef();
-                    }
-                }
-            }
-
-            setTranslate.SetSize(0);
-        }
-
-        CPoint    ptComp;
-        CSize    szComp;
-        CRect    rcAllComps;
-        CRect    rcComp;
-
-        setTranslate.SetSize(mapTranslateSet.GetCount());
-
-        POSITION pos;
-
-        for (pos = mapTranslateSet.GetStartPosition(); pos != NULL; )
-        {
-            mapTranslateSet.GetNextAssoc(pos, pComp, nPos);
-            ASSERT_VALID(pComp);
-            setTranslate.SetAt(nPos, pComp);
-        }
-
-        BOOL bFirstComp = TRUE;
-        CODComponentIterator iTranslate(&setTranslate);
-
-        // Find bounding rectangle for all components
-        for (pComp = iTranslate.GetFirst(); pComp != NULL; pComp = iTranslate.GetNext())
-        {
-            ptComp = pComp->GetOrigin();
-            szComp = pComp->GetSize();
-
-            rcComp.SetRect(ptComp.x, ptComp.y, ptComp.x + szComp.cx, ptComp.y + szComp.cy);
-
-            if (bFirstComp)
-            {
-                rcAllComps = rcComp;
-                bFirstComp = FALSE;
-            }
-            else
-            {
-                rcAllComps = CODGlobal::UnionRect(rcAllComps, rcComp);
-            }
-        }
-
-        // Get current paste insertion point.
-        CPoint ptInsert = GetCanvasVp()->GetPasteInsertionPoint();
-        CPoint ptHoldInsert = ptInsert;
-
-        CODTransform xform;
-        CODTransform *pCompXForm;
-
-        int nMoveX = (int)(ptInsert.x - rcAllComps.TopLeft().x);
-        int nMoveY = (int)(ptInsert.y - rcAllComps.TopLeft().y);
-
-        if ((nMoveX < 5) && (nMoveY < 5) && (nMoveX > -5) && (nMoveY > -5))
-        {
-            nMoveX = 5;
-            nMoveY = 5;
-        }
-
-        // Make sure components will be inserted inside the model.
-        GetCanvasModel()->FindValidMove(m_setCut, nMoveX, nMoveY, &rcAllComps);
-        ptInsert.x = (LONG)nMoveX;
-        ptInsert.y = (LONG)nMoveY;
-
-        // Translate the components.
-        xform.Translate(ptInsert.x, ptInsert.y);
-
-        // Translate the components to the new insertion point.
-        for (pComp = iTranslate.GetFirst(); pComp != NULL; pComp = iTranslate.GetNext())
-        {
-            pCompXForm = pComp->GetTransform();
-
-            if (pCompXForm)
-            {
-                *pCompXForm = xform * (*pCompXForm);
-            }
-            else
-            {
-                pComp->SetTransform(new CODTransform(xform));
-            }
-
-            pComp->UpdateRgn();
-
-            if (ISA(pComp, CODSymbolComponent))
-            {
-                // Hide the ports
-                ((CODSymbolComponent*)(pComp))->SetPortsVisible(FALSE);
-            }
-        }
-
-        // Get current viewport visible region info.
-        rcAllComps.OffsetRect(ptInsert);
-
-        CPoint ptVpOrigin = GetCanvasVp()->GetLogOrigin();
-        CPoint ptOldVpOrigin = ptVpOrigin;
-
-        CSize szVpSize = GetCanvasVp()->GetLogSize();
-
-        // If new components bottom right corner extends beyond the visible area,
-        // pan the viewport so it is visible.
-        if (ptVpOrigin.x + szVpSize.cx < rcAllComps.right ||
-            ptVpOrigin.y + szVpSize.cy < rcAllComps.bottom)
-        {
-            if (ptVpOrigin.x + szVpSize.cx < rcAllComps.right)
-            {
-                ptVpOrigin.x = rcAllComps.right - szVpSize.cx;
-            }
-
-            if (ptVpOrigin.y + szVpSize.cy < rcAllComps.bottom)
-            {
-                ptVpOrigin.y = rcAllComps.bottom - szVpSize.cy;
-            }
-
-            GetCanvasVp()->Pan(ptVpOrigin.x - ptOldVpOrigin.x, ptVpOrigin.y - ptOldVpOrigin.y);
-            GetCanvasVp()->Invalidate();
-        }
-
-        OnPostCutPasteOperation(&m_setCut);
-
-        // Insert the components.
-        ExecuteInsertCommand(&m_setCut);
-
-        /***********************************************************************************************************
-        // JMR-MODIF - Le 16 mars 2006 - Supprimé destruction du lien, car utilisé lors de la fermeture du document.
-        // Sans ce lien, la fermeture du document envoie un message "Debug assertion failed."
-
-        // Release the components (they were AddRef'd once on CopyFromClipboard()
-        // and a second time when inserted into the model).
-        for( pComp = iTranslate.GetFirst(); pComp != NULL; pComp = iTranslate.GetNext() )
-        {
-            pComp->Release();
-        }
-        ***********************************************************************************************************/
-
-        // Find new viewport paste insertion point.
-        float fGridSpacingLogX;
-        float fGridSpacingLogY;
-
-        GetCanvasVp()->GetRuler()->MeasureToLog(GetCanvasVp()->GetHorizontalGridSpacing(),
-                                                fGridSpacingLogX,
-                                                FALSE);
-
-        GetCanvasVp()->GetRuler()->MeasureToLog(GetCanvasVp()->GetVerticalGridSpacing(),
-                                                fGridSpacingLogY,
-                                                TRUE);
-
-        ptInsert.x += (LONG)(fGridSpacingLogX + 0.5);
-        ptInsert.y += (LONG)(fGridSpacingLogY + 0.5);
-
-        // Set new viewport paste insertion point.
-        ptHoldInsert.x += (LONG)(fGridSpacingLogX + 0.5);
-        ptHoldInsert.y += (LONG)(fGridSpacingLogY + 0.5);
-
-        GetCanvasVp()->SetPasteInsertionPoint(ptHoldInsert);
-
-        ASSERT(GetRootModel());
-        GetRootModel()->SetInCutOperation(false);
-
-        // Recalculate all references
-        GetRootModel()->RecalculateParentPtr();
-        GetRootModel()->RecalculateAbsolutePath();
-    }
-    else
-    {
-        // Call the base class
-        CODController::OnEditPaste();
-
-        // Call the virtual method on symbol added
-        OnSymbolAdded(&m_setSelection);
-    }
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-
-    // ***********************************************************************************************************
-    // JMR-MODIF - Le 27 septembre 2006 - Remplace la fonction RefreshModelTree par la fonction RefreshAllSymbols.
-
-    // Refresh the tree
-//    RefreshModelTree();
-
-    RefreshAllSymbols();
-    // ***********************************************************************************************************
-
-    // JMR-MODIF - Le 27 septembre 2006 - Vide le presse-papier à la fin de l'opération.
-    ReleaseClipboard();
-
-    CutCommand = false;
-}
-
-void ZDProcessGraphModelController::OnEditDuplicate()
-{
-    CWaitCursor cursor;
-
-    // Call the base class
-    CODController::OnEditPaste();
-
-    // Call the virtual method on symbol added
-    OnSymbolDuplicated(&m_setSelection);
-
-    // ***********************************************************************************************************
-    // JMR-MODIF - Le 27 septembre 2006 - Remplace la fonction RefreshModelTree par la fonction RefreshAllSymbols.
-
-    // Refresh the tree
-//    RefreshModelTree();
-
-    RefreshAllSymbols();
-    // ***********************************************************************************************************
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-
-    // JMR-MODIF - Le 27 septembre 2006 - Vide le presse-papier à la fin de l'opération.
-    ReleaseClipboard();
-
-    CutCommand = false;
-}
-
-void ZDProcessGraphModelController::OnUpdateEditDuplicate(CCmdUI* pCmdUI)
-{
-    // Allow duplicates only if at least one object in the selection set
-    pCmdUI->Enable(m_setCopy.GetSize() > 0 && CanDuplicateObject(&m_setCopy));
-}
-
-void ZDProcessGraphModelController::OnEditRedo()
-{
-    // Call the base class
-    CODController::OnEditRedo();
-
-    // Refresh the tree
-    RefreshModelTree();
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnEditUndo()
-{
-    // Call the base class
-    CODController::OnEditUndo();
-
-    // ***********************************************************************************************************
-    // JMR-MODIF - Le 21 mars 2006 - Si le dernier élément effacé était un livrable, ordonne son rafraîchissement.
-    // Ceci permet d'éviter que les symboles des anciens modèles ne s'affichent pas correctement après une
-    // commande Undo.
-    for (SEC_INT i = 0; i < GetSelection()->GetSize(); i++)
-    {
-        if (GetSelection()->GetAt(i) != NULL && ISA(GetSelection()->GetAt(i), PSS_LinkSymbol))
-        {
-            PSS_LinkSymbol* m_TmpSym = reinterpret_cast<PSS_LinkSymbol*>(GetSelection()->GetAt(i));
-
-            if (m_TmpSym != NULL)
-            {
-                m_TmpSym->UpdateRgn(TRUE);
-                m_TmpSym->RedrawSymbol();
-            }
-        }
-    }
-    // ***********************************************************************************************************
-
-    // Refresh the tree
-    RefreshModelTree();
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-// Select all objects
-void ZDProcessGraphModelController::OnSelectAll()
-{
-    SelectAllComponents();
-}
-
-// Delete a symbol
-void ZDProcessGraphModelController::OnEditClear()
-{
-    CutCommand = false;
-
-    AssignSymbolHit();
-
-    // Call the base class
-    CODController::OnEditClear();
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnEditName()
-{
-    AssignSymbolHit();
-
-    // Check if is local
-    bool IsLocal = false;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        IsLocal = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsLocal();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        IsLocal = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsLocal();
-    }
-
-    if (IsLocal)
-    {
-        EditName(m_pSymbolHit);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateEditName(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    // Retreive the enable flag
-    BOOL bEnable = FALSE;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        bEnable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IncludeNameArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->UseDynamicArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsNameAreaVisible();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        bEnable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IncludeNameArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->UseDynamicArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsNameAreaVisible();
-    }
-
-    pCmdUI->Enable(bEnable);
-}
-
-void ZDProcessGraphModelController::OnEditComment()
-{
-    AssignSymbolHit();
-
-    // Check if is local
-    bool IsLocal = false;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        IsLocal = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsLocal();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        IsLocal = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsLocal();
-    }
-
-    if (IsLocal)
-    {
-        EditComment(m_pSymbolHit);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateEditComment(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    // Retreive the enable flag
-    BOOL bEnable = FALSE;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        bEnable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IncludeDescriptionArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->UseDynamicArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsDescriptionsAreaVisible();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        bEnable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IncludeDescriptionArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->UseDynamicArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsDescriptionsAreaVisible();
-    }
-
-    pCmdUI->Enable(bEnable);
-}
-
-void ZDProcessGraphModelController::OnSymbolShowNameArea()
-{
-    AssignSymbolHit();
-
-    // Change the flag
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->DisplayNameArea(!dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsNameAreaVisible());
-
-        // Adjust the element position for areas
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->AdjustAreaPosition();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->DisplayNameArea(!dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsNameAreaVisible());
-
-        // Adjust the element position for areas
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->AdjustAreaPosition();
-    }
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateSymbolShowNameArea(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    // Retreive the enable flag
-    BOOL bEnable = FALSE;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        bEnable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IncludeNameArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        bEnable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IncludeNameArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-
-    pCmdUI->Enable(bEnable);
-
-    // If enable, retreive the checked flag
-    if (bEnable)
-    {
-        BOOL bChecked = FALSE;
-
-        if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-        {
-            bChecked = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsNameAreaVisible();
-        }
-        else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-        {
-            bChecked = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsNameAreaVisible();
-        }
-
-        pCmdUI->SetCheck(bChecked);
-    }
-}
-
-void ZDProcessGraphModelController::OnSymbolShowDescriptionArea()
-{
-    AssignSymbolHit();
-
-    // Change the flag
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->
-            DisplayDescriptionArea(!dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsDescriptionsAreaVisible());
-
-        // Adjust the element position for areas
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->AdjustAreaPosition();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->
-            DisplayDescriptionArea(!dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsDescriptionsAreaVisible());
-
-        // Adjust the element position for areas
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->AdjustAreaPosition();
-    }
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateSymbolShowDescriptionArea(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    // Retreive the enable flag
-    BOOL bEnable = FALSE;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        bEnable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IncludeDescriptionArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        bEnable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IncludeDescriptionArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-
-    pCmdUI->Enable(bEnable);
-
-    // If enable, retreive the checked flag
-    if (bEnable)
-    {
-        BOOL bChecked = FALSE;
-
-        if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-        {
-            bChecked = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsDescriptionsAreaVisible();
-        }
-        else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-        {
-            bChecked = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsDescriptionsAreaVisible();
-        }
-
-        pCmdUI->SetCheck(bChecked);
-    }
-}
-
-void ZDProcessGraphModelController::OnSymbolShowAttributeArea()
-{
-    AssignSymbolHit();
-
-    // Change the flag
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->
-            DisplayAttributeArea(!dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible());
-
-        // If it is visible, then refresh the attribute area
-        if (dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible())
-        {
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->RefreshAttributeTextArea();
-        }
-
-        // Adjust the element position for areas
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->AdjustAreaPosition();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->
-            DisplayAttributeArea(!dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible());
-
-        // If it is visible, then refresh the attribute area
-        if (dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible())
-        {
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->RefreshAttributeTextArea();
-        }
-
-        // Adjust the element position for areas
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->AdjustAreaPosition();
-    }
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateSymbolShowAttributeArea(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    // Retreive the enable flag
-    BOOL bEnable = FALSE;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        bEnable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IncludeAttributeArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        bEnable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IncludeAttributeArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-
-    pCmdUI->Enable(bEnable);
-
-    // If enable, retreive the checked flag
-    if (bEnable)
-    {
-        BOOL bChecked = FALSE;
-
-        if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-        {
-            bChecked = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible();
-        }
-        else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-        {
-            bChecked = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible();
-        }
-
-        pCmdUI->SetCheck(bChecked);
-    }
-}
-
-void ZDProcessGraphModelController::OnSymbolShowLabelAttributes()
-{
-    AssignSymbolHit();
-
-    // Change the flag
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->
-            SetDisplayTitleText(!dynamic_cast<ZBSymbol*>(m_pSymbolHit)->GetDisplayTitleText());
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->
-            SetShowTitleText(!dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetShowTitleText());
-    }
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateSymbolShowLabelAttributes(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    // Retreive the enable flag
-    BOOL bEnable = FALSE;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        bEnable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IncludeAttributeArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        bEnable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IncludeAttributeArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-
-    pCmdUI->Enable(bEnable);
-
-    // If enable, retreive the checked flag
-    if (bEnable)
-    {
-        BOOL bChecked = FALSE;
-
-        if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-        {
-            bChecked = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->GetDisplayTitleText();
-        }
-        else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-        {
-            bChecked = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetShowTitleText();
-        }
-
-        pCmdUI->SetCheck(bChecked);
-    }
-}
-
-void ZDProcessGraphModelController::OnSymbolSelectAttributes()
-{
-    AssignSymbolHit();
-
-    // Check if symbol clicked allow the
-    if (m_pSymbolHit == NULL || (!ISA(m_pSymbolHit, ZBSymbol) && !ISA(m_pSymbolHit, PSS_LinkSymbol)))
-    {
-        return;
-    }
-
-    // Retrieve the property set from object
-    ZBPropertySet            PropSet;
-    ZBPropertyAttributes    PropAttributes;
-
-    // Check what symbol clicked
-    if (ISA(m_pSymbolHit, ZBSymbol))
-    {
-        // Retrieve the property set from object
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->FillProperties(PropSet);
-
-        // Copy symbol attributes
-        PropAttributes = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->GetAttributes();
-    }
-    else
-    {
-        // Retrieve the property set from object
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->FillProperties(PropSet);
-
-        // Copy symbol attributes
-        PropAttributes = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetAttributes();
-    }
-
-    // Call the base dialog for attribute selection
-    ZVSelectSymbolAttributeDlg dlg(&PropAttributes, &PropSet);
-    UINT RetValue = dlg.DoModal();
-
-    // Display the wait cursor for this operation.
-    CWaitCursor Cursor;
-
-    // Remove all properties
-    ZBPropertyIterator    i(&PropSet);
-    ZBProperty*            pProp;
-
-    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
-    {
-        delete pProp;
-    }
-
-    PropSet.RemoveAll();
-
-    // Test the return value
-    switch (RetValue)
-    {
-        case IDOK:
-        {
-            if (ISA(m_pSymbolHit, ZBSymbol))
-            {
-                dynamic_cast<ZBSymbol*>(m_pSymbolHit)->OnChangeAttributes(&PropAttributes);
-            }
-            else
-            {
-                dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->OnChangeAttributes(&PropAttributes);
-            }
-
-            break;
-        }
-
-        case ID_APPLYTOALL:
-        {
-            // Run through all elements and sets the new attributes
-            if (GetRootModel())
-            {
-                if (ISA(m_pSymbolHit, ZBSymbol))
-                {
-                    GetRootModel()->PropagateNewSymbolAttributes(&PropAttributes,
-                                                                 dynamic_cast<ZBSymbol*>(m_pSymbolHit)->GetObjectTypeID());
-                }
-                else
-                {
-                    GetRootModel()->PropagateNewSymbolAttributes(&PropAttributes,
-                                                                 dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetObjectTypeID());
-                }
-            }
-
-            break;
-        }
-
-        default:
-        {
-            return;
-        }
-    }
-
-    // If we would like to have these attributes set as the default,
-    // Then copy them to the default properties
-    if (dlg.MustSetAsDefaultToAll())
-    {
-        if (ISA(m_pSymbolHit, ZBSymbol))
-        {
-            ZAModelGlobal::GetGlobalPropertyAttributes(dynamic_cast<ZBSymbol*>(m_pSymbolHit)->GetObjectTypeID()) = PropAttributes;
-        }
-        else
-        {
-            ZAModelGlobal::GetGlobalPropertyAttributes(dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetObjectTypeID()) = PropAttributes;
-        }
-    }
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateSymbolSelectAttributes(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    // Retreive the enable flag
-    BOOL bEnable = FALSE;
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        bEnable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IncludeAttributeArea() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible() &&
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        bEnable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IncludeAttributeArea() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsAttributeAreaVisible() &&
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->UseDynamicArea();
-    }
-
-    pCmdUI->Enable(bEnable);
-}
-
-void ZDProcessGraphModelController::OnDynamicAttributesAdd()
-{
-    ASSERT(GetDocument());
-    ASSERT(ISA(GetDocument(), ZDProcessGraphModelDoc));
-
-    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
-
-    if (!pDoc->HasDynamicPropertiesManager())
-    {
-        pDoc->AllocatePropertiesManager();
-    }
-
-    ASSERT(pDoc->GetDynamicPropertiesManager());
-
-    AssignSymbolHit();
-
-    ZVDynamicAttributesCreation dlg(pDoc, (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) ||
-                                                                    ISA(m_pSymbolHit, PSS_LinkSymbol))) ? true : false);
-
-    if (dlg.DoModal() == IDCANCEL)
-    {
-        return;
-    }
-
-    // Assigns the runtime class and the symbol name and reference if a symbol is selected
-    CRuntimeClass* pRTClass = NULL;
-
-    CString SymbolName;
-
-    int SymbolRef = -1;
-
-    if (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) || ISA(m_pSymbolHit, PSS_LinkSymbol)))
-    {
-        pRTClass = m_pSymbolHit->GetRuntimeClass();
-        SymbolName = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolName();
-        SymbolRef = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolReferenceNumber();
-    }
-
-    ZBProperty*        pProperty = NULL;
-    PSS_StringFormat    ft;
-
-    switch (dlg.GetVisibility())
-    {
-        // Local
-        case 0:
-        {
-            if (m_pSymbolHit)
-            {
-                pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
-                                                                                  dlg.GetAttributeName(),
-                                                                                  dlg.GetAttributeDescription(),
-                                                                                  dlg.GetPropertyType(),
-                                                                                  ft,
-                                                                                  SymbolName,
-                                                                                  SymbolRef);
-
-                // Add the property directly to the symbol
-                dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->
-                    GetDynamicPropertiesManager()->AddDynamicProperty(pProperty->Dup());
-            }
-
-            break;
-        }
-
-        // Same class type
-        case 1:
-        {
-            pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
-                                                                              dlg.GetAttributeName(),
-                                                                              dlg.GetAttributeDescription(),
-                                                                              dlg.GetPropertyType(),
-                                                                              ft,
-                                                                              pRTClass);
-
-            // Add the property to all symbols with the same class type
-            ZUDynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty, pRTClass);
-
-            break;
-        }
-
-        // All symbols
-        case 2:
-        {
-            pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
-                                                                              dlg.GetAttributeName(),
-                                                                              dlg.GetAttributeDescription(),
-                                                                              dlg.GetPropertyType(),
-                                                                              ft);
-
-            // Add the property to all symbols
-            ZUDynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty);
-
-            break;
-        }
-    }
-
-    // JMR-MODIF - Le 22 août 2005 - Ordonne le rafraîchissement de l'affichage après l'ajout d'une propriété.
-    NotifySymbolSelected(m_pSymbolHit);
-}
-
-void ZDProcessGraphModelController::OnUpdateDynamicAttributesAdd(CCmdUI* pCmdUI)
-{
-    // No distinction
-    pCmdUI->Enable(TRUE);
-}
-
-// JMR-MODIF - Le 18 août 2005 - Ajout de la fonction OnDynamicAttributesDuplicate.
-void ZDProcessGraphModelController::OnDynamicAttributesDuplicate()
-{
-    // Teste la validité du document.
-    ASSERT(GetDocument());
-    ASSERT(ISA(GetDocument(), ZDProcessGraphModelDoc));
-
-    // Obtient le pointeur sur le document.
-    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
-
-    // Si le document n'a pas de gestionnaire de propriétés dynamiques, on en crée un par défaut.
-    if (!pDoc->HasDynamicPropertiesManager())
-    {
-        pDoc->AllocatePropertiesManager();
-    }
-
-    // Teste la validité du gestionnaire de propriétés dynamiques.
-    ASSERT(pDoc->GetDynamicPropertiesManager());
-
-    AssignSymbolHit();
-
-    // Crée et affiche la boîte de dialogue pour la duplication.
-    ZVDynamicAttributesDuplication m_Dlg(pDoc, (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) ||
-                                                                         ISA(m_pSymbolHit, PSS_LinkSymbol))) ? true : false);
-
-    if (m_Dlg.DoModal() == IDCANCEL)
-    {
-        return;
-    }
-
-    CString            SymbolName;
-    int                SymbolRef = -1;
-    ZBProperty*        pSrcProperty = NULL;
-    ZBProperty*        pDestProperty = NULL;
-    PSS_StringFormat    ft;
-    ZBPropertySet    PropSet;
-    CStringArray    m_PropList;
-
-    // Retrouve le nom et la référence du symbole propriétaire.
-    if (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) || ISA(m_pSymbolHit, PSS_LinkSymbol)))
-    {
-        SymbolName = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolName();
-        SymbolRef = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->GetSymbolReferenceNumber();
-    }
-
-    // Obtient les propriétés dynamiques contenues dans le symbole. Cela servira pour obtenir les données.
-    if (m_pSymbolHit != NULL)
-    {
-        if (ISA(m_pSymbolHit, ZBSymbol))
-        {
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->FillProperties(PropSet);
-        }
-
-        if (ISA(m_pSymbolHit, PSS_LinkSymbol))
-        {
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->FillProperties(PropSet);
-        }
-    }
-
-    // Obtient la liste des propriétés contenues dans la catégorie choisie.
-    pDoc->GetDynamicPropertiesManager()->CreatePropertyList(m_Dlg.m_Category, m_PropList);
-
-    // Copie les propriétés. A ce stade, seuls les "conteneurs" de propriétés sont copiés, c'est à dire que l'on
-    // obtient des propriétés portant les mêmes noms et descriptions que dans la source de données, mais les
-    // valeurs ne sont pas copiées. La copie des valeurs se fera un peu plus bas dans le code.
-    for (INT_PTR i = 0; i < m_PropList.GetSize(); i++)
-    {
-        CString sProperty = m_PropList.GetAt(i);
-
-        pSrcProperty = pDoc->GetDynamicPropertiesManager()->GetPropertyItem(m_Dlg.m_Category, sProperty);
-        pDestProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(m_Dlg.m_Name,
-                                                                              pSrcProperty->GetLabel(),
-                                                                              pSrcProperty->GetDescription(),
-                                                                              pSrcProperty->GetPTType(),
-                                                                              ft,
-                                                                              SymbolName,
-                                                                              SymbolRef);
-
-        // Si l'option "Copier les valeurs" est cochée dans la boîte de dialogue, on copie les valeurs.
-        if (m_Dlg.m_bDupValuesIsChecked == TRUE)
-        {
-            ZBPropertyIterator    j(&PropSet);
-            ZBProperty*            pProp;
-
-            for (pProp = j.GetFirst(); pProp; pProp = j.GetNext())
-            {
-                if (pProp->GetCategory() == m_Dlg.m_Category &&
-                    pProp->GetLabel() == pSrcProperty->GetLabel())
-                {
-                    pDestProperty->SetStringFormat(pProp->GetStringFormat());
-
-                    switch (pSrcProperty->GetPTValueType())
-                    {
-                        case ZBProperty::PT_DATE:
-                        {
-                            pDestProperty->SetValueDate(pProp->GetValueDate());
-                            break;
-                        }
-
-                        case ZBProperty::PT_DOUBLE:
-                        {
-                            pDestProperty->SetValueDouble(pProp->GetValueDouble());
-                            break;
-                        }
-
-                        case ZBProperty::PT_DURATION:
-                        {
-                            pDestProperty->SetValueDuration(pProp->GetValueDuration());
-                            break;
-                        }
-
-                        case ZBProperty::PT_FLOAT:
-                        {
-                            pDestProperty->SetValueFloat(pProp->GetValueFloat());
-                            break;
-                        }
-
-                        case ZBProperty::PT_STRING:
-                        {
-                            pDestProperty->SetValueString(pProp->GetValueString());
-                            break;
-                        }
-
-                        case ZBProperty::PT_TIMESPAN:
-                        {
-                            pDestProperty->SetValueTimeSpan(pProp->GetValueTimeSpan());
-                            break;
-                        }
-
-                        case ZBProperty::PT_UNKNOWN:
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        // Copie la nouvelle propriété directement dans le symbole.
-        dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit)->
-            GetDynamicPropertiesManager()->AddDynamicProperty(pDestProperty->Dup());
-    }
-
-    // Rafraîchit l'affichage.
-    NotifySymbolSelected(m_pSymbolHit);
-}
-
-// JMR-MODIF - Le 18 août 2005 - Ajout de la fonction OnUpdateDynamicAttributesDuplicate.
-void ZDProcessGraphModelController::OnUpdateDynamicAttributesDuplicate(CCmdUI* pCmdUI)
-{
-    pCmdUI->Enable(TRUE);
-}
-
-void ZDProcessGraphModelController::OnDynamicAttributesDelete()
-{}
-
-void ZDProcessGraphModelController::OnUpdateDynamicAttributesDelete(CCmdUI* pCmdUI)
-{
-    // No distinction
-    pCmdUI->Enable(TRUE);
-}
-
-void ZDProcessGraphModelController::OnRefresh()
-{
-    ASSERT(GetViewport());
-    GetViewport()->UpdateAll();
-
-    // Refresh all symbol attributes
-    ASSERT(GetModel());
-    GetModel()->RefreshSymbolAttributes(true);
-
-    // Refresh also the model tree
-    RefreshModelTree();
-}
-
-// JMR-MODIF - Le 7 juin 2005 - Ajout de la fonction RefreshAllSymbols()
-// Cette fonction permet de rafraîchir tous les symboles présents dans le document courant.
-void ZDProcessGraphModelController::RefreshAllSymbols()
-{
-    ASSERT(GetViewport());
-    GetViewport()->UpdateAll();
-
-    // Refresh all symbol attributes
-    ASSERT(GetRootModel());
-    GetRootModel()->RefreshSymbolAttributes(true);
-
-    // Refresh also the model tree
-    RefreshModelTree();
-}
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::EnsureSymbolVisible(CODComponent* pComp)
-{
-    if (pComp == NULL)
-    {
-        return NULL;
-    }
-
-    ZIProcessGraphModelViewport*    pVp = NULL;
-    CODSymbolComponent*                pSymbol = NULL;
-
-    if (ISA(pComp, ZBSymbol))
-    {
-        pVp = BrowseSymbolModel(reinterpret_cast<ZBSymbol*>(pComp));
-        pSymbol = reinterpret_cast<CODSymbolComponent*>(pComp);
-    }
-    else if (ISA(pComp, PSS_LinkSymbol))
-    {
-        pVp = BrowseLinkSymbolModel(reinterpret_cast<PSS_LinkSymbol*>(pComp));
-        pSymbol = reinterpret_cast<CODSymbolComponent*>(pComp);
-    }
-
-    // When open a new model, unselect all symbols
-    if (pVp && pVp->GetModelController())
-    {
-        pVp->GetModelController()->UnselectAllComponents();
-    }
-
-    // And then animate the symbol
-    if (pSymbol && pVp && pVp->GetModelController())
-    {
-        pVp->GetModelController()->AnimateSymbol(*pSymbol, true, defCOLOR_LTBLUE, 8);
-    }
-
-    // Returns the viewport
-    return pVp;
-}
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::BrowseLocalSymbol(CODComponent* pComp)
-{
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc) ||
-        !((ZDProcessGraphModelDoc*)GetDocument())->GetModel() || !pComp)
-    {
-        return NULL;
-    }
-
-    CODSymbolComponent* pSymbol = NULL;
-
-    if (ISA(pComp, ZBSymbol) && !((ZBSymbol*)pComp)->IsLocal())
-    {
-        // Find local symbol
-        pSymbol = reinterpret_cast<CODSymbolComponent*>(((ZBSymbol*)pComp)->GetLocalSymbol());
-    }
-    else if (ISA(pComp, PSS_LinkSymbol) && !((PSS_LinkSymbol*)pComp)->IsLocal())
-    {
-        // Find local symbol
-        pSymbol = reinterpret_cast<CODSymbolComponent*>(((PSS_LinkSymbol*)pComp)->GetLocalSymbol());
-    }
-
-    // If found, ensure the symbol visible
-    if (pSymbol)
-    {
-        return EnsureSymbolVisible(pSymbol);
-    }
-
-    return NULL;
-}
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::BrowseSymbolModel(ZBSymbol* pSymbol)
-{
-    if (GetDocument())
-    {
-        ZDProcessGraphModelMdl* pSymbolModel = NULL;
-
-        // If can't activate a view with model's name, create a new view
-        if (ISA(GetDocument(), ZDProcessGraphModelDoc))
-        {
-            pSymbolModel = ((ZDProcessGraphModelDoc*)GetDocument())->GetModel()->GetSymbolModel(pSymbol);
-        }
-
-        if (pSymbolModel)
-        {
-            ZIProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
-
-            if (pViewport)
-            {
-                CODComponentSet CompSet;
-                CompSet.Add(pSymbol);
-                pViewport->CenterOnComponents(&CompSet);
-            }
-
-            return reinterpret_cast<ZIProcessGraphModelViewport*>(pViewport);
-        }
-    }
-
-    return NULL;
-}
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol)
-{
-    if (GetDocument())
-    {
-        ZDProcessGraphModelMdl* pSymbolModel = NULL;
-
-        // If can't activate a view with model's name, create a new view
-        if (ISA(GetDocument(), ZDProcessGraphModelDoc))
-        {
-            pSymbolModel = ((ZDProcessGraphModelDoc*)GetDocument())->GetModel()->GetLinkSymbolModel(pSymbol);
-        }
-
-        if (pSymbolModel)
-        {
-            ZIProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
-
-            if (pViewport)
-            {
-                CODComponentSet CompSet;
-                CompSet.Add(pSymbol);
-                pViewport->CenterOnComponents(&CompSet);
-            }
-
-            return reinterpret_cast<ZIProcessGraphModelViewport*>(pViewport);
-        }
-    }
-
-    return NULL;
-}
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::OpenSymbol(CODComponent* pComp)
-{
-    if (pComp != NULL && ISA(pComp, ZBSymbol))
-    {
-        ZBSymbol*                    pSymbol = (ZBSymbol*)pComp;
-        ZIProcessGraphModelView*    pView = GetView();
+        ZIProcessGraphModelView* pView = dynamic_cast<ZIProcessGraphModelView*>(m_pViewport->GetWnd());
 
         if (pView)
+            return pView;
+    }
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+const ZIProcessGraphModelView* PSS_ProcessGraphModelController::GetView() const
+{
+    if (m_pViewport)
+    {
+        ZIProcessGraphModelView* pView = dynamic_cast<ZIProcessGraphModelView*>(m_pViewport->GetWnd());
+
+        if (pView)
+            return pView;
+    }
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::GetViewport()
+{
+    return dynamic_cast<ZIProcessGraphModelViewport*>(m_pViewport);
+}
+//---------------------------------------------------------------------------
+CDocument* PSS_ProcessGraphModelController::GetDocument()
+{
+    ZIProcessGraphModelView* pView = GetView();
+
+    if (pView)
+        return pView->GetDocument();
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+const CDocument* PSS_ProcessGraphModelController::GetDocument() const
+{
+    const ZIProcessGraphModelView* pView = GetView();
+
+    if (pView)
+        return pView->GetDocument();
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+ZDProcessGraphModelMdl* PSS_ProcessGraphModelController::GetModel()
+{
+    if (!m_pViewport)
+        return NULL;
+
+    return dynamic_cast<ZDProcessGraphModelMdl*>(m_pViewport->GetModel());
+}
+//---------------------------------------------------------------------------
+ZDProcessGraphModelMdl* PSS_ProcessGraphModelController::GetRootModel()
+{
+    if (!m_pViewport)
+        return NULL;
+
+    ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(m_pViewport->GetModel());
+
+    if (pModel)
+        return pModel->GetRoot();
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::RefreshModelTree()
+{
+    CWnd* pMainWnd = AfxGetMainWnd();
+
+    if (!pMainWnd)
+        return;
+
+    // send notification message to descendants
+    pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED);
+    pMainWnd->SendMessageToDescendants(UM_UNITMODELHASCHANGED);
+}
+//---------------------------------------------------------------------------
+CMenu* PSS_ProcessGraphModelController::CreateContextMenu()
+{
+    if (m_pRightSubMenu)
+        return m_pRightSubMenu;
+
+    return CODController::CreateContextMenu();
+}
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromModel(ZDProcessGraphModelMdl* pModel,
+                                                                                  ZDProcessGraphModelMdl* pParentModel)
+{
+    ZIProcessGraphModelView* pView = GetView();
+
+    if (!pView)
+        return NULL;
+
+    if (GetBrowseInSameWindow())
+    {
+        // clear the selection
+        ClearSelection();
+
+        // set the model
+        pView->SetModel(pModel, true);
+
+        CDocument* pDocument = pView->GetDocument();
+
+        // refresh the views
+        if (pDocument)
+            pDocument->UpdateAllViews(pView);
+
+        CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+
+        // force the refresh of the active window title
+        if (pFrameWnd && pFrameWnd->GetActiveFrame())
+            pFrameWnd->GetActiveFrame()->OnUpdateFrameTitle(TRUE);
+
+        // set the right controller
+        pModel->SetController(this);
+
+        ZIProcessGraphModelViewport* pViewport = pView->GetViewport();
+
+        // move to [0, 0]
+        if (pViewport)
+            pViewport->SetLogOrigin(0, 0);
+
+        // return the viewport
+        return pViewport;
+    }
+
+    CDocument* pDocument = dynamic_cast<CDocument*>(pView->GetDocument());
+
+    if (!pDocument)
+        return NULL;
+
+    CFrameWnd* pFrame = pDocument->GetDocTemplate()->CreateNewFrame(pDocument, NULL);
+
+    // call IntitialUpdateFrame after creating a new frame with CreateNewFrame. Calling this function causes
+    // the views in that frame window to receive their OnInitialUpdate calls
+    pDocument->GetDocTemplate()->InitialUpdateFrame(pFrame, pDocument);
+
+    ZIProcessGraphModelView* pActiveView = dynamic_cast<ZIProcessGraphModelView*>(pFrame->GetActiveView());
+
+    if (pActiveView)
+    {
+        // set the model
+        pActiveView->SetModel(pModel);
+
+        ZIProcessGraphModelViewport* pActiveViewport = pActiveView->GetViewport();
+
+        // set the right controller
+        if (pActiveViewport)
+            pModel->SetController((CODController*)pActiveViewport->GetModelController());
+
+        // move to [0, 0]
+        pActiveViewport->SetLogOrigin(0, 0);
+
+        pFrame->OnUpdateFrameTitle(TRUE);
+
+        return pActiveViewport;
+    }
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(ZDProcessGraphModelMdl* pModel,
+                                                                          ZDProcessGraphModelMdl* pParentModel)
+{
+    if (!pModel)
+        return NULL;
+
+    ZDProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+
+    // if can't activate a view with model name, create a new view
+    if (pGraphModelDoc)
+    {
+        CView* pView = pGraphModelDoc->ActivateView(pModel->GetAbsolutePath());
+
+        if (!pView)
+            // create a view from the model
+            return CreateViewFromModel(pModel, pParentModel);
+
+        ZIProcessGraphModelView* pGraphModelView = dynamic_cast<ZIProcessGraphModelView*>(pView);
+
+        if (pGraphModelView)
+            return pGraphModelView->GetViewport();
+    }
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProcessGraphPage* pPage)
+{
+    if (!pPage)
+        return NULL;
+
+    ZIProcessGraphModelView* pView = GetView();
+
+    if (pView)
+    {
+        ZDProcessGraphModelMdl* pModel = pPage->GetModel();
+
+        // is there any child model?
+        if (pModel)
         {
-            // Is there any child model
-            if (pSymbol->GetChildModel() == NULL)
-            {
-                pSymbol->CreateEmptyChildModel(GetModel());
-            }
+            ZIProcessGraphModelViewport* pVp = BrowseModel(pModel, pModel->GetParent());
 
-            // End the text edit before going into the new model
-            EndTextEdit(0, m_savedEditPosition);
-
-            ZIProcessGraphModelViewport* pVp =
-                BrowseModel((ZDProcessGraphModelMdl*)pSymbol->GetChildModel(), GetModel());
-
-            // When open a new model, unselect all symbols    
+            // when open a new model, unselect all symbols
             UnselectAllComponents();
 
-            // Returns the viewport
+            // return the viewport
             return pVp;
         }
     }
 
     return NULL;
 }
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::OpenPage(ZDProcessGraphPage* pPage)
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComponent* pComp)
 {
-    if (pPage)
+    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+
+    if (pSymbol)
     {
         ZIProcessGraphModelView* pView = GetView();
 
         if (pView)
         {
-            // Is there any child model
-            if (pPage->GetModel())
-            {
-                ZIProcessGraphModelViewport* pVp =
-                    BrowseModel((ZDProcessGraphModelMdl*)pPage->GetModel(),
-                                reinterpret_cast<ZDProcessGraphModelMdl*>(pPage->GetModel())->GetParent());
+            ZDProcessGraphModelMdl* pModel = GetModel();
 
-                // When open a new model, unselect all symbols    
-                UnselectAllComponents();
+            // is there any child model?
+            if (!pSymbol->GetChildModel())
+                pSymbol->CreateEmptyChildModel(pModel);
 
-                // Returns the viewport
-                return pVp;
-            }
+            // end the text edit before going into the new model
+            EndTextEdit(0, m_SavedEditPosition);
+
+            ZIProcessGraphModelViewport* pVp = BrowseModel((ZDProcessGraphModelMdl*)pSymbol->GetChildModel(), pModel);
+
+            // when open a new model, unselect all symbols
+            UnselectAllComponents();
+
+            // return the viewport
+            return pVp;
         }
     }
 
     return NULL;
 }
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::BrowseModel(ZDProcessGraphModelMdl* pModel,
-                                                                        ZDProcessGraphModelMdl* pParentModel)
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::EnsureSymbolVisible(CODComponent* pComp)
 {
-    if (!GetDocument() || !pModel)
-    {
+    if (!pComp)
         return NULL;
-    }
 
-    // If can't activate a view with model's name, create a new view
-    if (ISA(GetDocument(), ZDProcessGraphModelDoc))
+    ZIProcessGraphModelViewport* pVp     = NULL;
+    CODSymbolComponent*          pSymbol = NULL;
+    ZBSymbol*                    pSym    = dynamic_cast<ZBSymbol*>(pComp);
+
+    if (pSym)
     {
-        CView *pView = ((ZDProcessGraphModelDoc*)GetDocument())->ActivateView(pModel->GetAbsolutePath());
+        pVp     = BrowseSymbolModel(pSym);
+        pSymbol = pSym;
+    }
+    else
+    {
+        PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pComp);
 
-        if (!pView)
+        if (pLinkSym)
         {
-            // From the model, create a view
-            return CreateViewFromModel(pModel, pParentModel);
-        }
-        else
-        {
-            if (ISA(pView, ZIProcessGraphModelView))
-            {
-                return reinterpret_cast<ZIProcessGraphModelView*>(pView)->GetViewport();
-            }
+            pVp     = BrowseLinkSymbolModel(pLinkSym);
+            pSymbol = pLinkSym;
         }
     }
+
+    if (pVp)
+    {
+        PSS_ProcessGraphModelController* pModelCtrl = pVp->GetModelController();
+
+        // when open a new model, unselect all symbols
+        if (pModelCtrl)
+            pModelCtrl->UnselectAllComponents();
+
+        // animate the symbol
+        if (pSymbol && pModelCtrl)
+            pModelCtrl->AnimateSymbol(*pSymbol, true, defCOLOR_LTBLUE, 8);
+    }
+
+    // return the viewport
+    return pVp;
+}
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLocalSymbol(CODComponent* pComp)
+{
+    if (!pComp)
+        return NULL;
+
+    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+
+    if (!pDocument || !pDocument->GetModel())
+        return NULL;
+
+    CODSymbolComponent* pSymbol = NULL;
+    ZBSymbol*           pSym    = dynamic_cast<ZBSymbol*>(pComp);
+
+    if (pSym && !pSym->IsLocal())
+        // find local symbol
+        pSymbol = dynamic_cast<CODSymbolComponent*>(pSym->GetLocalSymbol());
+    else
+    {
+        PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pLinkSym && !pLinkSym->IsLocal())
+            // find local symbol
+            pSymbol = dynamic_cast<CODSymbolComponent*>(pLinkSym->GetLocalSymbol());
+    }
+
+    // if found, ensure that the symbol is visible
+    if (pSymbol)
+        return EnsureSymbolVisible(pSymbol);
 
     return NULL;
 }
-
-ZIProcessGraphModelViewport* ZDProcessGraphModelController::CreateViewFromModel(ZDProcessGraphModelMdl* pModel,
-                                                                                ZDProcessGraphModelMdl* pParentModel)
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelController::AcceptDropItemToModel(CObject* pObj, const CPoint& point)
 {
-    ZIProcessGraphModelView* pView = GetView();
+    if (!pObj)
+        return false;
 
-    if (pView)
+    // is a symbol?
+    if (ISA(pObj, ZBSymbol))
+        return true;
+
+    // is a link symbol?
+    if (ISA(pObj, PSS_LinkSymbol))
+        return true;
+
+    return false;
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelController::DropItemToModel(CObject* pObj, const CPoint& point)
+{
+    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pObj);
+
+    if (pSymbol)
     {
-        if (BrowseInSameWindow())
-        {
-            // Clear the selection
-            ClearSelection();
+        m_pInsert = pSymbol->Dup();
 
-            // Set the model
-            pView->SetModel(pModel, true);
+        ClearSelectionToSet();
+        m_CopySet.Add(m_pInsert);
 
-            // Refresh the views
-            pView->GetDocument()->UpdateAllViews(pView);
+        CPoint pt = point;
 
-            // Force the refresh of the active window title
-            if (AfxGetMainWnd() && ISA(AfxGetMainWnd(), CFrameWnd) &&
-                dynamic_cast<CFrameWnd*>(AfxGetMainWnd())->GetActiveFrame())
-            {
-                dynamic_cast<CFrameWnd*>(AfxGetMainWnd())->GetActiveFrame()->OnUpdateFrameTitle(TRUE);
-            }
+        VpLPtoDP(&pt);
+        InsertSymbol(0, pt);
 
-            // Sets the right controller
-            pModel->SetController(this);
-
-            // Move to 0,0
-            pView->GetViewport()->SetLogOrigin(0, 0);
-
-            // Return the viewport
-            return pView->GetViewport();
-        }
-        else
-        {
-            CFrameWnd* pFrame =
-                pView->GetDocument()->GetDocTemplate()->CreateNewFrame((CDocument*)pView->GetDocument(), NULL);
-
-            // Call IntitialUpdateFrame after creating a new frame with CreateNewFrame. 
-            // Calling this function causes the views in that frame window to receive 
-            // their OnInitialUpdate calls. 
-            pView->GetDocument()->GetDocTemplate()->InitialUpdateFrame(pFrame, (CDocument*)pView->GetDocument());
-
-            if (pFrame->GetActiveView() && ISA(pFrame->GetActiveView(), ZIProcessGraphModelView))
-            {
-                // Set the model
-                ((ZIProcessGraphModelView*)pFrame->GetActiveView())->SetModel(pModel);
-
-                // Sets the right controller
-                if (reinterpret_cast<ZIProcessGraphModelView*>(pFrame->GetActiveView())->GetViewport())
-                {
-                    pModel->SetController(reinterpret_cast<ZIProcessGraphModelView*>(pFrame->GetActiveView())->GetViewport()->GetModelController());
-                }
-
-                // Move to 0,0
-                pView->GetViewport()->SetLogOrigin(0, 0);
-
-                pFrame->OnUpdateFrameTitle(TRUE);
-
-                return reinterpret_cast<ZIProcessGraphModelView*>(pFrame->GetActiveView())->GetViewport();
-            }
-        }
+        return true;
     }
 
-    return NULL;
+    PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pObj);
+
+    if (pLinkSymbol)
+    {
+        m_pInsert = pLinkSymbol->Dup();
+
+        ClearSelectionToSet();
+        m_CopySet.Add(m_pInsert);
+
+        CPoint pt = point;
+
+        VpLPtoDP(&pt);
+        InsertSymbol(0, pt);
+
+        return true;
+    }
+
+    return false;
 }
-
-void ZDProcessGraphModelController::RefreshModelTree()
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelController::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    // Send notification message
-    AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED);
-    AfxGetMainWnd()->SendMessageToDescendants(UM_UNITMODELHASCHANGED);
+    // no object to drop?
+    if (!pObj)
+        return false;
+
+    CPoint pt = point;
+    VpDPtoLP(&pt);
+
+    CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(pt);
+
+    // if no object hit, test the drop on the model
+    if (!pCompHit)
+        return AcceptDropItemToModel(pObj, pt);
+
+    CODLabelComponent* pLabelHit = dynamic_cast<CODLabelComponent*>(pCompHit);
+
+    // if it's a label, assign the right owner symbol
+    if (pLabelHit)
+        // select the symbol behind
+        pCompHit = pLabelHit->GetOwner();
+
+    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompHit);
+
+    if (pSymbol)
+        return pSymbol->AcceptDropItem(pObj, pt);
+
+    PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+    if (pLinkSymbol)
+        return pLinkSymbol->AcceptDropItem(pObj, pt);
+
+    return false;
 }
-
-void ZDProcessGraphModelController::ReDrawComponent(CODComponent& Comp)
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelController::DropItem(CObject* pObj, const CPoint& point)
 {
-    // Update symbols
-    CODComponentSet CompSet;
-    CompSet.Add(&Comp);
-    GetCanvasVp()->UpdateComponents(&CompSet);
+    // no object to drop?
+    if (!pObj)
+        return false;
+
+    CPoint pt(point);
+    CPoint ptInView(point);
+    VpDPtoLP(&ptInView);
+
+    CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(ptInView);
+
+    // if no object hit, drag symbol on the model
+    if (!pCompHit)
+        return DropItemToModel(pObj, pt);
+
+    CODLabelComponent* pLabel = dynamic_cast<CODLabelComponent*>(pCompHit);
+
+    // if it's a label, assign the right owner symbol
+    if (pLabel)
+        // select the symbol behind
+        pCompHit = pLabel->GetOwner();
+
+    UnselectAllComponents();
+
+    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompHit);
+    bool      result = false;
+
+    if (pSymbol)
+        result = pSymbol->DropItem(pObj, pt);
+    else
+    {
+        PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+        if (pLinkSymbol)
+            result = pLinkSymbol->DropItem(pObj, pt);
+    }
+
+    // select the drag&dropped symbol
+    SelectComponent(*pCompHit);
+    NotifySymbolSelected(pCompHit);
+
+    // update the symbol
+    CODComponentSet compSet;
+    compSet.Add(pCompHit);
+    GetVp()->DrawComponents(&compSet);
+
+    return result;
 }
-
-void ZDProcessGraphModelController::ReDrawComponentSet(CODComponentSet& Set)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::EditName(CODComponent* pCompToEdit)
 {
-    // Update symbols
-    GetCanvasVp()->UpdateComponents(&Set);
+    ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompToEdit);
+    PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompToEdit);
+
+    if (!pSymbol && !pLinkSymbol)
+    {
+        m_pSymbolHit = NULL;
+        return;
+    }
+
+    m_pSymbolHit                       = static_cast<CODSymbolComponent*>(pCompToEdit);
+    CODEditProperties* pEditProps      = static_cast<CODEditProperties*>(pCompToEdit->GetProperty(OD_PROP_EDIT));
+    CODEditProperties* pModelEditProps = static_cast<CODEditProperties*>(GetCanvasModel()->GetProperty(OD_PROP_EDIT));
+
+    // check if the symbol can be edited
+    if ((pSymbol && pSymbol->SymbolNameTextEditReadOnly()) || (pLinkSymbol && pLinkSymbol->SymbolNameTextEditReadOnly()))
+        return;
+
+    if (GetCanvasModel()->GetDesignMode() || (!pEditProps->IsReadOnly() && !pModelEditProps->IsReadOnly()))
+    {
+        CODTextComponent* pTextComp = NULL;
+
+        if (pSymbol)
+            pTextComp = pSymbol->GetSymbolNameTextEdit();
+        else
+        if (pLinkSymbol)
+            pTextComp = pLinkSymbol->GetSymbolNameTextEdit();
+
+        // already editing?
+        if (pTextComp && !pTextComp->IsEditing())
+        {
+            CODEditProperties* pEditProps = static_cast<CODEditProperties*>(pTextComp->GetProperty(OD_PROP_EDIT));
+            ASSERT_VALID(pEditProps);
+
+            if (pEditProps->IsReadOnly())
+                return;
+
+            CODComponentSet setUpdate;
+            setUpdate.Add(pCompToEdit);
+
+            if (pTextComp != m_pTextEdit)
+            {
+                EndTextEdit(0, m_SavedEditPosition);
+
+                m_pTextEdit = pTextComp;
+                m_pTextEdit->AddRef();
+
+                // set the text edition flag
+                m_IsEditingSymbolName = true;
+
+                if (m_pTextEdit->BeginEdit(GetCanvasVp()))
+                    GetCanvasVp()->UpdateComponents(&setUpdate);
+            }
+        }
+
+        CDocument* pDocument = GetDocument();
+
+        // set the modification flag
+        if (pDocument)
+            pDocument->SetModifiedFlag(TRUE);
+    }
 }
-
-void ZDProcessGraphModelController::SelectAllComponents()
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::EditComment(CODComponent* pCompToEdit)
 {
-    // Run trough all components and change the select all flag
-    // Process the model components
-    CODComponentSet* pSet = GetModel()->GetComponents();
+    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompToEdit);
 
+    if (!pSymbol)
+    {
+        m_pSymbolHit = NULL;
+        return;
+    }
+
+    m_pSymbolHit                       = static_cast<ZBSymbol*>(pCompToEdit);
+    CODEditProperties* pEditProps      = static_cast<CODEditProperties*>(m_pSymbolHit->GetProperty(OD_PROP_EDIT));
+    CODEditProperties* pModelEditProps = static_cast<CODEditProperties*>(GetCanvasModel()->GetProperty(OD_PROP_EDIT));
+
+    // Check if the symbol can be edited
+    if (pSymbol->CommentTextEditReadOnly())
+        return;
+
+    if (GetCanvasModel()->GetDesignMode() || (!pEditProps->IsReadOnly() && !pModelEditProps->IsReadOnly()))
+    {
+        CODTextComponent* pTextComp = ((ZBSymbol*)pCompToEdit)->GetCommentTextEdit();
+
+        // already editing?
+        if (pTextComp && !pTextComp->IsEditing())
+        {
+            CODEditProperties* pEditProps = static_cast<CODEditProperties*>(pTextComp->GetProperty(OD_PROP_EDIT));
+            ASSERT_VALID(pEditProps);
+
+            if (pEditProps->IsReadOnly())
+                return;
+
+            CODComponentSet setUpdate;
+            setUpdate.Add(m_pCompHit);
+
+            if (pTextComp != m_pTextEdit)
+            {
+                EndTextEdit(0, m_SavedEditPosition);
+
+                m_pTextEdit = pTextComp;
+                m_pTextEdit->AddRef();
+
+                // set the comment edition flag
+                m_IsEditingSymbolComment = true;
+
+                if (m_pTextEdit->BeginEdit(GetCanvasVp()))
+                    GetCanvasVp()->UpdateComponents(&setUpdate);
+            }
+        }
+
+        CDocument* pDocument = GetDocument();
+
+        // set the modification flag
+        if (pDocument)
+            pDocument->SetModifiedFlag(TRUE);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ViewZoomIn()
+{
+    CSize magnification = GetCanvasVp()->GetMagnification();
+    magnification.cx   += 25;
+    magnification.cy   += 25;
+
+    GetCanvasVp()->SetMagnification(magnification.cx, magnification.cy);
+
+    UpdateTextEdit();
+
+    GetCanvasVp()->Invalidate();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ViewZoomOut()
+{
+    CSize magnification = GetCanvasVp()->GetMagnification();
+    magnification.cx -= 25;
+    magnification.cy -= 25;
+
+    GetCanvasVp()->SetMagnification(magnification.cx, magnification.cy);
+
+    UpdateTextEdit();
+
+    GetCanvasVp()->Invalidate();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::RedrawComponent(CODComponent& comp)
+{
+    // update symbols
+    CODComponentSet compSet;
+    compSet.Add(&comp);
+
+    RedrawComponentSet(compSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::RedrawComponentSet(CODComponentSet& set)
+{
+    // update symbols
+    GetCanvasVp()->UpdateComponents(&set);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::SelectAllComponents()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    CODComponentSet* pSet = pModel->GetComponents();
+
+    // iterate through all components and change the select all flag
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
         CODComponent* pComp = pSet->GetAt(i);
 
-        // Let select the symbol
-        CODEditProperties* pPropEdit = (CODEditProperties*)pComp->GetProperty(OD_PROP_EDIT);
+        // select the symbol
+        CODEditProperties* pPropEdit = static_cast<CODEditProperties*>(pComp->GetProperty(OD_PROP_EDIT));
 
         if (pPropEdit)
         {
-            CODEditProperties PropEdit(*pPropEdit);
-            PropEdit.SetCanSelect(TRUE);
-            pComp->SetProperty(&PropEdit);
+            CODEditProperties editProps(*pPropEdit);
+            editProps.SetCanSelect(TRUE);
+            pComp->SetProperty(&editProps);
         }
     }
 
-    // Just call the select all function
     SelectAll();
     NotifySymbolSelected(NULL);
 }
-
-void ZDProcessGraphModelController::UnselectAllComponents()
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::UnselectAllComponents()
 {
-    /* Clear selection list. */
+    // clear selection list
     ClearSelection();
 
-    // Update the viewport
+    // update the viewport
     ASSERT(GetCanvasVp());
     GetCanvasVp()->UpdateAll();
 
     NotifySymbolSelected(NULL);
 }
-
-void ZDProcessGraphModelController::SelectComponent(CODComponent& Comp)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::SelectComponent(CODComponent& comp)
 {
-    m_setSelection.Add(&Comp);
-    ReDrawComponent(Comp);
-    NotifySymbolSelected(&Comp);
+    m_setSelection.Add(&comp);
+    RedrawComponent(comp);
+    NotifySymbolSelected(&comp);
 }
-
-void ZDProcessGraphModelController::SelectComponentSet(CODComponentSet& Set)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::SelectComponentSet(CODComponentSet& set)
 {
-    CODComponentIterator    i(&Set);
-    CODComponent*            pComp;
+    CODComponentIterator it(&set);
 
-    for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-    {
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
         m_setSelection.Add(pComp);
-    }
 
-    ReDrawComponentSet(Set);
+    RedrawComponentSet(set);
 }
-
-void ZDProcessGraphModelController::UnselectComponent(CODComponent& Comp)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::UnselectComponent(CODComponent& comp)
 {
-    CODComponentSet Set;
-    Set.Add(&Comp);
-    Deselect(&Set);
+    CODComponentSet set;
+    set.Add(&comp);
+    Deselect(&set);
 
-    // Update the viewport
+    // update the viewport
     ASSERT(GetCanvasVp());
     GetCanvasVp()->UpdateAll();
 
     NotifySymbolSelected(NULL);
 }
-
-void ZDProcessGraphModelController::UnselectComponentSet(CODComponentSet& Set)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::UnselectComponentSet(CODComponentSet& set)
 {
-    Deselect(&Set);
+    Deselect(&set);
 }
-
-bool ZDProcessGraphModelController::IsComponentSelected(CODComponent& Comp)
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelController::IsComponentSelected(CODComponent& comp)
 {
-    CODComponentIterator    i(&m_setSelection);
-    CODComponent*            pComp;
+    CODComponentIterator it(&m_setSelection);
 
-    for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-    {
-        if (pComp == &Comp)
-        {
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+        if (pComp == &comp)
             return true;
-        }
-    }
 
     return false;
 }
-
-void ZDProcessGraphModelController::CopySelectionToSet()
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelController::GetBrowseInSameWindow() const
 {
-    ClearSelectionToSet();
+    const ZDProcessGraphModelDoc* pDocument = dynamic_cast<const ZDProcessGraphModelDoc*>(GetDocument());
 
-    CODComponentIterator    IterSelection(&m_setSelection);
-    CODComponent*            pSrcComp;
-
-    for (pSrcComp = IterSelection.GetFirst(); pSrcComp != NULL; pSrcComp = IterSelection.GetNext())
-    {
-        m_setCopy.Add(pSrcComp);
-    }
-}
-
-// Proceed the drop of an object to the model
-bool ZDProcessGraphModelController::DropItemToModel(CObject* pObj, CPoint pt)
-{
-    if (pObj && ISA(pObj, ZBSymbol))
-    {
-        // Set the insert symbol to a duplicate of the
-        m_pInsert = ((ZBSymbol*)pObj)->Dup();
-
-        ClearSelectionToSet();
-        m_setCopy.Add(m_pInsert);
-
-        VpLPtoDP(&pt);
-        InsertSymbol(0, pt);
-
-        return true;
-    }
-    else if (pObj && ISA(pObj, PSS_LinkSymbol))
-    {
-        // Set the insert symbol to a duplicate of the
-        m_pInsert = ((PSS_LinkSymbol*)pObj)->Dup();
-
-        ClearSelectionToSet();
-        m_setCopy.Add(m_pInsert);
-
-        VpLPtoDP(&pt);
-        InsertSymbol(0, pt);
-
-        return true;
-    }
+    if (pDocument)
+        return pDocument->BrowseInSameWindow();
 
     return false;
 }
-
-// Check if the drop can be done successfuly on the model
-bool ZDProcessGraphModelController::AcceptDropItemToModel(CObject* pObj, CPoint pt)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::SetBrowseInSameWindow(bool value)
 {
-    // If it is a symbol
-    if (pObj && ISA(pObj, ZBSymbol))
-    {
-        return true;
-    }
+    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
 
-    // If it is a link symbol
-    if (pObj && ISA(pObj, PSS_LinkSymbol))
-    {
-        return true;
-    }
-
-    return false;
+    if (pDocument)
+        pDocument->SetBrowseInSameWindow(value);
 }
-
-// Proceed the drop of an object
-bool ZDProcessGraphModelController::DropItem(CObject* pObj, CPoint pt)
+//---------------------------------------------------------------------------
+CODComponent* PSS_ProcessGraphModelController::InsertSymbol(CODComponent* pComp,
+                                                            UINT          flags,
+                                                            const CPoint& point,
+                                                            bool          includePostCreation)
 {
-    // If an object to drop
-    if (pObj)
-    {
-        CPoint point(pt);
-        VpDPtoLP(&point);
+    CODController::InsertSymbol(flags, point);
 
-        CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(point);
+    CDocument* pDocument = GetDocument();
 
-        // If no object hit, drag symbol on the model
-        if (!pCompHit)
-        {
-            return DropItemToModel(pObj, pt);
-        }
+    // set the modified flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
 
-        // If it is a label, assign the right owner symbol
-        if (ISA(pCompHit, CODLabelComponent))
-        {
-            // Select the symbol behind
-            // JMR-MODIF - Le 2 juin 2005 - Conversion explicite remplace le cast. La conversion explicite
-            // donne un résultat identique sur l'objet casté en classe de base, tandis que l'ancienne
-            // implémentation (dynamic_cast) provoque une exception dans le compilateur VC.NET
-            CODLabelComponent* m_pTmpCompHit = (CODLabelComponent*)pCompHit;
-            pCompHit = m_pTmpCompHit->GetOwner();
-            //            pCompHit = dynamic_cast<CODLabelComponent*>(pCompHit)->GetOwner();
-        }
-
-        bool Result = false;
-
-        // ***************************************************************************************************
-        // JMR-MODIF - Le 29 novembre 2006 - Désélectionne tous les symboles plutôt que le symbole unique.
-
-/*        // First, unselect the symbol if selected
-        bool UnselectSymbol = false;
-
-        if ( IsComponentSelected( *pCompHit ) )
-        {
-            UnselectSymbol = true;
-            UnselectComponent( *pCompHit );
-        }*/
-
-        UnselectAllComponents();
-        // ***************************************************************************************************
-
-        if (ISA(pCompHit, ZBSymbol))
-        {
-            Result = ((ZBSymbol*)pCompHit)->DropItem(pObj, pt);
-        }
-        else if (ISA(pCompHit, PSS_LinkSymbol))
-        {
-            Result = ((PSS_LinkSymbol*)pCompHit)->DropItem(pObj, pt);
-        }
-
-        // ***************************************************************************************************
-        // JMR-MODIF - Le 29 novembre 2006 - Sélectionne uniquement le symbole concerné par le glisser-coller.
-
-/*        // Second, reselect the same symbol if necessary
-        if ( UnselectSymbol )
-        {
-            SelectComponent( *pCompHit );
-        }*/
-
-        SelectComponent(*pCompHit);
-        NotifySymbolSelected(pCompHit);
-        // ***************************************************************************************************
-
-        // Update the symbol
-        CODComponentSet CompSet;
-        CompSet.Add(pCompHit);
-        GetVp()->DrawComponents(&CompSet);
-
-        return Result;
-    }
-
-    return false;
-}
-
-// Check if the drop can be done successfuly
-bool ZDProcessGraphModelController::AcceptDropItem(CObject* pObj, CPoint pt)
-{
-    // If an object to drop
-    if (pObj)
-    {
-        VpDPtoLP(&pt);
-        CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(pt);
-
-        // If no object hit, test the drop on the model
-        if (!pCompHit)
-        {
-            return AcceptDropItemToModel(pObj, pt);
-        }
-
-        // If it is a label, assign the right owner symbol
-        if (ISA(pCompHit, CODLabelComponent))
-        {
-            // Select the symbol behind
-            // JMR-MODIF - Le 2 juin 2005 - Conversion explicite remplace le cast. La conversion explicite
-            // donne un résultat identique sur l'objet casté en classe de base, tandis que l'ancienne
-            // implémentation (dynamic_cast) provoque une exception dans le compilateur VC.NET
-            CODLabelComponent* m_pTmpCompHit = (CODLabelComponent*)pCompHit;
-            pCompHit = m_pTmpCompHit->GetOwner();
-            //            pCompHit = dynamic_cast<CODLabelComponent*>(pCompHit)->GetOwner();
-        }
-
-        if (pCompHit && ISA(pCompHit, ZBSymbol))
-        {
-            return ((ZBSymbol*)pCompHit)->AcceptDropItem(pObj, pt);
-        }
-        else if (pCompHit && ISA(pCompHit, PSS_LinkSymbol))
-        {
-            return ((PSS_LinkSymbol*)pCompHit)->AcceptDropItem(pObj, pt);
-        }
-    }
-
-    return false;
-}
-
-void ZDProcessGraphModelController::DeleteComponents(CODComponentSet* pCompSet)
-{
-    if (pCompSet)
-    {
-        CODComponentSet            setUpdate;
-        CODComponentIterator    i(pCompSet);
-        CODComponent            *pComp;
-
-        for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-        {
-            // Retrieve the owner model
-            CODComponent* pParentComp = pComp->GetParent();
-            CODModel* pOwnerModel = NULL;
-
-            while (pParentComp)
-            {
-                // If a model, return it
-                if (pParentComp && ISA(pParentComp, CODModel))
-                {
-                    pOwnerModel = dynamic_cast<CODModel*>(pParentComp);
-                    break;
-                }
-
-                // Otherwise retreive its parent
-                pParentComp = pParentComp->GetParent();
-            }
-
-            // If no owner model, next component
-            if (!pOwnerModel)
-            {
-                continue;
-            }
-
-            // Process the remove of a component
-            CODComponentSet set;
-            set.Add(pComp);
-            RemoveReferenceSymbol(&set);
-
-            // Remove the child first
-            pOwnerModel->RemoveChild(pComp);
-        }
-
-        // Advise on the selection change
-        if (setUpdate.GetSize() > 0)
-        {
-            OnSelectionChange(&setUpdate);
-        }
-
-        // Update the entire viewport
-        GetViewport()->UpdateAll();
-    }
-}
-
-void ZDProcessGraphModelController::DeleteComponent(CODComponent* pComp)
-{
-    if (pComp)
-    {
-        // Add it to the set
-        CODComponentSet set;
-        set.Add(pComp);
-
-        // Call the delete component function for a set
-        DeleteComponents(&set);
-    }
-}
-
-void ZDProcessGraphModelController::EndLink(UINT nFlags, CPoint ptDev)
-{
-    // Save the inserted component pointer
-    CODComponent* pComp = m_pInsert;
-
-    CODController::EndLink(nFlags, ptDev);
-
-    // Reset the current command id
+    // reset the current command id
     m_CurrentCommandID = 0;
 
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
+    ZDProcessGraphModelMdl* pModel = GetModel();
 
-    if (pComp && ISA(pComp, PSS_LinkSymbol))
-    {
-        // Assign the path
-        ((PSS_LinkSymbol*)pComp)->SetAbsolutePath(GetModel()->GetAbsolutePath());
+    if (!pModel)
+        return NULL;
 
-        // Assign by default the unique reference number
+    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+
+    if (pSymbol)
+    {
+        // assign the path
+        pSymbol->SetAbsolutePath(pModel->GetAbsolutePath());
+
+        // by default, assign the unique reference number
         if (GetRootModel())
         {
-            // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-            int RefNumber = GetRootModel()->GetNextAvailableReferenceNumber();
+            const int refNumber = GetRootModel()->GetNextAvailableReferenceNumber();
 
-            // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-//            ( (PSS_LinkSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
-            ((PSS_LinkSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
+            pSymbol->SetSymbolReferenceNumber(refNumber);
 
-            // Retreive the next available name
-            ZUBuildSymbolNewName BuildNewName;
-
-            // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-            ((PSS_LinkSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
-                                                                                          RefNumber));
-        }
-
-        // Call for the PostCreation
-        if (!((PSS_LinkSymbol*)pComp)->OnPostCreation(GetModel(), this))
-        {
-            // Destroy the object
-            CancelLink(nFlags, ptDev);
-            return;
-        }
-
-        // Refresh the attribute area and redraw the symbol
-        ((PSS_LinkSymbol*)pComp)->RefreshAttributeTextArea(true);
-
-        if (m_NewSymbolCreated && ((PSS_LinkSymbol*)pComp)->IsLocal())
-        {
-            // Save the position first
-            m_savedEditPosition = ptDev;
-
-            // Edit name directly
-            EditName(pComp);
-        }
-
-        // Notify new selection
-        NotifySymbolSelected(pComp);
-
-        // Call the virtual method on symbol added
-        OnSymbolAdded(&m_setSymbolAddedSet);
-
-        // Reset the creation flag
-        m_NewSymbolCreated = false;
-    }
-}
-
-// Insert a new symbol
-void ZDProcessGraphModelController::InsertSymbol(UINT nFlags, CPoint ptDev)
-{
-    if (m_pInsert)
-    {
-        ZDProcessGraphModelController::InsertSymbol(m_pInsert, nFlags, ptDev, true);
-    }
-}
-
-// Insert a new symbol
-CODComponent* ZDProcessGraphModelController::InsertSymbol(UINT nFlags, CPoint ptDev, bool IncludePostCreation)
-{
-    return ZDProcessGraphModelController::InsertSymbol(m_pInsert, nFlags, ptDev, IncludePostCreation);
-}
-
-// Insert a new symbol
-CODComponent* ZDProcessGraphModelController::InsertSymbol(CODComponent*    pComp,
-                                                          UINT                nFlags,
-                                                          CPoint            ptDev,
-                                                          bool                IncludePostCreation)
-{
-    CODController::InsertSymbol(nFlags, ptDev);
-
-    // Set flag for modification
-    if (GetDocument())
-    {
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-
-    // Reset the current command id
-    m_CurrentCommandID = 0;
-
-    if (pComp && ISA(pComp, ZBSymbol))
-    {
-        // Assign the path
-        ((ZBSymbol*)pComp)->SetAbsolutePath(GetModel()->GetAbsolutePath());
-
-        // Assign by default the unique reference number
-        if (GetRootModel())
-        {
-            // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-            int RefNumber = GetRootModel()->GetNextAvailableReferenceNumber();
-
-            // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-//            ( (ZBSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
-            ((ZBSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
-
-            // JMR-MODIF - Le 22 mars 2006 - Teste si le symbole est un symbole générique.
-            if (((ZBSymbol*)pComp)->IsGeneric() == TRUE)
+            // is the symbol generic?
+            if (pSymbol->IsGeneric())
             {
-                // JMR-MODIF - Le 22 mars 2006 - Si le symbole est générique, attribue un autre type de nom.
-                ZUBuildGenericSymbolNewName BuildNewName;
-                ((ZBSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel()));
+                ZUBuildGenericSymbolNewName buildNewName;
+
+                // if the symbol is generic, set another name
+                pSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel()));
             }
             else
             {
-                // Retreive the next available name
-                ZUBuildSymbolNewName BuildNewName;
+                ZUBuildSymbolNewName buildNewName;
 
-                // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-                ((ZBSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
-                                                                                          RefNumber));
+                // get the next available name
+                pSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
             }
         }
 
-        if (IncludePostCreation)
-        {
-            // Call for the PostCreation
-            if (!((ZBSymbol*)pComp)->OnPostCreation(GetModel(), this))
+        if (includePostCreation)
+            // notify about the post-creation
+            if (!pSymbol->OnPostCreation(pModel, this))
             {
-                // Remove the object
+                // delete the object
                 DeleteComponent(pComp);
 
-                // Cancel the selection on the old object
+                // cancel the selection on the old object
                 UnselectAllComponents();
                 ClearSymbolAddedSet();
                 ClearSelectionToSet();
 
                 return NULL;
             }
-        }
 
-        // Refresh the attribute area and redraw the symbol
-        ((ZBSymbol*)pComp)->RefreshAttributeTextArea(true);
+        // refresh the attribute area and redraw the symbol
+        pSymbol->RefreshAttributeTextArea(true);
 
-        if (m_NewSymbolCreated && ((ZBSymbol*)pComp)->IsLocal())
+        if (m_NewSymbolCreated && pSymbol->IsLocal())
         {
-            // Save the position first
-            m_savedEditPosition = ptDev;
+            // save the position first
+            m_SavedEditPosition = point;
 
-            // Edit name directly
+            // edit the name directly
             EditName(pComp);
         }
 
-        // Notify new selection
+        // notify about the new selection
         NotifySymbolSelected(pComp);
 
-        // Call the virtual method on symbol added
-        OnSymbolAdded(&m_setSymbolAddedSet);
+        // call the virtual method on added symbol
+        OnSymbolAdded(&m_SymbolAddedSet);
 
-        // Reset the creation flag
+        // reset the creation flag
         m_NewSymbolCreated = false;
+
+        return pComp;
     }
-    // JMR-MODIF - Le 4 avril 2006 - Code de gestion des zones de textes.
-    else if (pComp && ISA(pComp, ZBTextZone))
+
+    ZBTextZone* pTextZone = dynamic_cast<ZBTextZone*>(pComp);
+
+    if (pTextZone)
     {
-        // Initialise le style de la zone de texte.
-        ((ZBTextZone*)pComp)->InitializeStyle();
+        // initialize the text zone
+        pTextZone->InitializeStyle();
 
-        // Redessine la zone de texte.
-        CODComponent* pMdlComp = ((ZBTextZone*)pComp)->GetParent();
+        ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(pTextZone->GetParent());
 
-        if (pMdlComp && ISA(pMdlComp, ZDProcessGraphModelMdl))
-        {
-            dynamic_cast<ZDProcessGraphModelMdl*>(pMdlComp)->ReDrawComponent(*((ZBTextZone*)pComp));
-        }
+        // redraw the text zone
+        if (pModel)
+            pModel->ReDrawComponent(*pTextZone);
 
-        // Notifie la nouvelle sélection.
+        // notify about the new selection
         NotifySymbolSelected(pComp);
 
-        // Appelle la méthode virtuelle OnSymbolAdded.
-        OnSymbolAdded(&m_setSymbolAddedSet);
+        // call the OnSymbolAdded function
+        OnSymbolAdded(&m_SymbolAddedSet);
 
         m_NewSymbolCreated = false;
     }
 
     return pComp;
 }
-
-CODDeleteCommand* ZDProcessGraphModelController::ExecuteDeleteCommand(CODComponentSet* pCompSet)
+//---------------------------------------------------------------------------
+CODComponent* PSS_ProcessGraphModelController::InsertSymbol(UINT flags, const CPoint& point, bool includePostCreation)
 {
-    if (pCompSet && CutCommand == false)
-    {
-        // First, run through all components and call the PreDelete method
-        // If return false, remove the component from the set
-        for (int i = 0; i < pCompSet->GetSize(); ++i)
-        {
-            CODComponent* pComp = pCompSet->GetAt(i);
-
-            // Test if a symbol
-            if (pComp && ISA(pComp, ZBSymbol))
-            {
-                // Test if predelete returns nok
-                if (!dynamic_cast<ZBSymbol*>(pComp)->OnPreDelete(GetModel(), this))
-                {
-                    // Remove component from the set
-                    pCompSet->RemoveAt(i);
-                    --i;
-                }
-            }
-            // Test if a linksymbol
-            else if (pComp && ISA(pComp, PSS_LinkSymbol))
-            {
-                // Test if predelete returns nok
-                if (!dynamic_cast<PSS_LinkSymbol*>(pComp)->OnPreDelete(GetModel(), this))
-                {
-                    // Remove component from the set
-                    pCompSet->RemoveAt(i);
-                    --i;
-                }
-            }
-        }
-
-        // Now, we have only the symbol we really want to delete
-        CODComponentSet* setCopy = GetSelection();
-        RemoveReferenceSymbol(setCopy);
-    }
-
-    return CODController::ExecuteDeleteCommand(pCompSet);
+    return InsertSymbol(m_pInsert, flags, point, includePostCreation);
 }
-
-CODInsertCommand* ZDProcessGraphModelController::ExecuteInsertCommand(CODComponent*    pComp,
-                                                                      const BOOL        bAllowDuplicates /*= TRUE*/)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::DeleteComponent(CODComponent* pComp)
 {
-    // Copy selected components first if something
-    if (m_setSelection.GetSize() != 0)
-    {
-        CopySelectionToSet();
-    }
-
-    CODInsertCommand* pCmd = CODController::ExecuteInsertCommand(pComp, bAllowDuplicates);
-
-    ClearSymbolAddedSet();
-    CopySymbolToSymbolAddedSet(pComp);
-
-    return pCmd;
-}
-
-CODInsertCommand* ZDProcessGraphModelController::ExecuteInsertCommand(CODComponentSet*    pCompSet,
-                                                                      const BOOL        bAllowDuplicates /*= TRUE*/)
-{
-    // Copy selected components first if something
-    if (m_setSelection.GetSize() != 0)
-    {
-        CopySelectionToSet();
-    }
-
-    CODInsertCommand* pCmd = CODController::ExecuteInsertCommand(pCompSet, bAllowDuplicates);
-
-    ClearSymbolAddedSet();
-    CopySymbolsToSymbolAddedSet(pCompSet);
-
-    return pCmd;
-}
-
-CODLinkCommand* ZDProcessGraphModelController::ExecuteLinkCommand(const CODPointArray&    pointArray,
-                                                                  CODPortComponent*    pSourcePort,
-                                                                  CODPortComponent*    pTargetPort,
-                                                                  CODEndpoint*            pSourceEndpoint /*= NULL*/,
-                                                                  CODEndpoint*            pTargetEndpoint /*= NULL*/)
-{
-    CODLinkCommand* pCmd = CODController::ExecuteLinkCommand(pointArray,
-                                                             pSourcePort,
-                                                             pTargetPort,
-                                                             pSourceEndpoint,
-                                                             pTargetEndpoint);
-
-    return pCmd;
-}
-
-CODLinkCommand* ZDProcessGraphModelController::ExecuteLinkCommand(CODLinkComponent*    pLinkComp,
-                                                                  const CODPointArray&    pointArray,
-                                                                  CODPortComponent*    pSourcePort,
-                                                                  CODPortComponent*    pTargetPort)
-{
-    CODLinkCommand* pCmd = CODController::ExecuteLinkCommand(pLinkComp, pointArray, pSourcePort, pTargetPort);
-
-    ClearSymbolAddedSet();
-    CopySymbolToSymbolAddedSet(pLinkComp);
-
-    return pCmd;
-}
-
-CODLinkCommand* ZDProcessGraphModelController::ExecuteLinkCommand(CODLinkComponent* pLinkComp,
-                                                                  CODPortComponent* pSourcePort,
-                                                                  CODPortComponent* pTargetPort)
-{
-    CODLinkCommand* pCmd = CODController::ExecuteLinkCommand(pLinkComp, pSourcePort, pTargetPort);
-
-    ClearSymbolAddedSet();
-    CopySymbolToSymbolAddedSet(pLinkComp);
-
-    return pCmd;
-}
-
-void ZDProcessGraphModelController::DetermineReferencedSymbol(CODComponentSet* pCompSet)
-{
-    ASSERT(GetModel()->GetRoot());
-
-    // For each symbol coming from the source of copy
-    // Locate the symbol copied
-    CODComponentIterator srcSymbolIter(&m_setCopy);
-    CODComponent* pSrcComp;
-
-    for (pSrcComp = srcSymbolIter.GetFirst(); pSrcComp != NULL; pSrcComp = srcSymbolIter.GetNext())
-    {
-        if (pSrcComp && ISA(pSrcComp, ZBSymbol))
-        {
-            CODComponentIterator i(pCompSet);
-            CODComponent* pComp;
-
-            for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-            {
-                if (pComp && ISA(pComp, ZBSymbol))
-                {
-                    if (!((ZBSymbol*)pSrcComp)->GetSymbolName().IsEmpty() &&
-                        ((ZBSymbol*)pSrcComp)->GetSymbolName() == ((ZBSymbol*)pComp)->GetSymbolName())
-                    {
-                        ((ZBSymbol*)pComp)->CopySymbolDefinitionFrom((ZBSymbol&)*pSrcComp);
-
-                        // Sets a new reference number
-                        ((ZBSymbol*)pComp)->SetSymbolReferenceNumber(GetModel()->GetRoot()->GetNextAvailableReferenceNumber());
-
-                        // Assign the reference
-                        ((ZBSymbol*)pComp)->AssignReferenceSymbol((ZBSymbol*)pSrcComp);
-
-                        // JMR-MODIF - Le 7 février 2006 - Ajout du code de marquage des copies.
-                        ((ZBSymbol*)pComp)->SetIsCopy();
-                    }
-                }
-            }
-        }
-        else if (pSrcComp && ISA(pSrcComp, PSS_LinkSymbol))
-        {
-            CODComponentIterator i(pCompSet);
-            CODComponent* pComp;
-
-            for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-            {
-                if (pComp && ISA(pComp, PSS_LinkSymbol))
-                {
-                    if (!((PSS_LinkSymbol*)pSrcComp)->GetSymbolName().IsEmpty() &&
-                        ((PSS_LinkSymbol*)pSrcComp)->GetSymbolName() == ((PSS_LinkSymbol*)pComp)->GetSymbolName())
-                    {
-                        ((PSS_LinkSymbol*)pComp)->CopySymbolDefinitionFrom((PSS_LinkSymbol&)*pSrcComp);
-
-                        // Sets a new reference number
-                        ((PSS_LinkSymbol*)pComp)->SetSymbolReferenceNumber(GetModel()->GetRoot()->GetNextAvailableReferenceNumber());
-
-                        // Assign the reference
-                        ((PSS_LinkSymbol*)pComp)->AssignReferenceSymbol((PSS_LinkSymbol*)pSrcComp);
-
-                        // JMR-MODIF - Le 7 février 2006 - Ajout du code de marquage des copies.
-                        ((PSS_LinkSymbol*)pComp)->SetIsCopy();
-                    }
-                }
-            }
-        }
-    }
-
-    // Update symbols
-    GetVp()->DrawComponents(pCompSet);
-}
-
-void ZDProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCompSet)
-{
-    // Call RemoveReferenceSymbol to detach observers
-    CODComponentIterator i(pCompSet);
-    CODComponent* pComp;
-
-    for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-    {
-        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol)))
-        {
-            if (ISA(pComp, ZBSymbol))
-            {
-                ((ZBSymbol*)pComp)->RemoveReferenceSymbol();
-            }
-            else if (ISA(pComp, PSS_LinkSymbol))
-            {
-                ((PSS_LinkSymbol*)pComp)->RemoveReferenceSymbol();
-            }
-
-            // Build the message
-            ZBDocObserverMsg DocMsg(ZBDocObserverMsg::RemoveElement, NULL, GetModel(), (ZBSymbol*)pComp);
-            AfxGetMainWnd()->SendMessageToDescendants(UM_ELEMENTREMOVEDDOCUMENTMODEL, 0, (LPARAM)&DocMsg);
-        }
-    }
-}
-
-void ZDProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
-{
-    DetermineReferencedSymbol(pCompSet);
-
-    ASSERT(GetDocument());
-    ASSERT(ISA(GetDocument(), ZDProcessGraphModelDoc));
-
-    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
-
-    // Notify observers for all added symbols
-    CODComponentIterator i(pCompSet);
-    CODComponent* pComp;
-
-    for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
-    {
-        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol)))
-        {
-            // Build the message
-            ZBDocObserverMsg DocMsg(ZBDocObserverMsg::AddElement,
-                                    NULL,
-                                    GetModel(),
-                                    reinterpret_cast<CODSymbolComponent*>(pComp));
-
-            AfxGetMainWnd()->SendMessageToDescendants(UM_ELEMENTADDEDDOCUMENTMODEL, 0, (LPARAM)&DocMsg);
-
-            // Call the utility class for manipulating dynamic attributes
-            // and assign required dynamic properties on new symbol
-            if (pDoc->HasDynamicPropertiesManager())
-            {
-                if (ISA(pComp, ZBSymbol))
-                {
-                    ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(), dynamic_cast<ZBSymbol*>(pComp));
-                }
-                else
-                {
-                    ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(), dynamic_cast<PSS_LinkSymbol*>(pComp));
-                }
-            }
-        }
-    }
-}
-
-void ZDProcessGraphModelController::OnSymbolDuplicated(CODComponentSet* pCompSet)
-{
-    // Run through added elements and change their names.
-    // If symbols have child components, then asks the user to duplicate sub-components
-    // Notify observers for all added symbols
-    CODComponentIterator    i(pCompSet);
-    CODComponent*            pComp;
-
-    int iPos = 0;
-    int CountCopySet = m_setCopy.GetSize();
-
-    for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext(), ++iPos)
-    {
-        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol)))
-        {
-            if (ISA(pComp, ZBSymbol))
-            {
-                if (CountCopySet > iPos)
-                {
-                    // Retreive the corresponding source symbol
-                    CODComponent* pSrcComp = m_setCopy.GetAt(iPos);
-
-                    if (pSrcComp && ISA(pSrcComp, ZBSymbol))
-                    {
-                        ((ZBSymbol*)pComp)->CopySymbolDefinitionFrom(*((ZBSymbol*)pSrcComp));
-                    }
-                }
-
-                // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-                int RefNumber = GetRootModel()->GetNextAvailableReferenceNumber();
-
-                // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-//                ( (ZBSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
-                ((ZBSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
-
-                // Retreive the next available name
-                ZUBuildSymbolNewName BuildNewName(((ZBSymbol*)pComp)->GetSymbolName());
-
-                // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-                ((ZBSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
-                                                                                          RefNumber));
-            }
-            else if (ISA(pComp, PSS_LinkSymbol))
-            {
-                if (CountCopySet > iPos)
-                {
-                    // Retreive the corresponding source symbol
-                    CODComponent* pSrcComp = m_setCopy.GetAt(iPos);
-
-                    if (pSrcComp && ISA(pSrcComp, PSS_LinkSymbol))
-                    {
-                        ((PSS_LinkSymbol*)pComp)->CopySymbolDefinitionFrom(*((PSS_LinkSymbol*)pSrcComp));
-                    }
-                }
-
-                // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-                int RefNumber = GetRootModel()->GetNextAvailableReferenceNumber();
-
-                // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-//                ( (PSS_LinkSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
-                ((PSS_LinkSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
-
-                // Retreive the next available name
-                ZUBuildSymbolNewName BuildNewName(((PSS_LinkSymbol*)pComp)->GetSymbolName());
-
-                // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-                ((PSS_LinkSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
-                                                                                              RefNumber));
-            }
-        }
-    }
-}
-
-// **********************************************************************************************************
-// *                                 ZDProcessGraphModelController message handlers                            *
-// **********************************************************************************************************
-
-void ZDProcessGraphModelController::ApplyFormatToSymbol(CODComponent* pComp)
-{
-    // No object to format
     if (!pComp)
-    {
         return;
-    }
 
-    // Not to the same object
-    if (pComp == m_pFormatPainterSymbol)
-    {
+    // add the component to the set
+    CODComponentSet set;
+    set.Add(pComp);
+
+    // call the delete component function for a set
+    DeleteComponents(&set);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::DeleteComponents(CODComponentSet* pCompSet)
+{
+    if (!pCompSet)
         return;
-    }
 
-    if (pComp && ISA(pComp, ZBSymbol))
-    {
-        dynamic_cast<ZBSymbol*>(pComp)->ApplyFormatFromObject(*m_pFormatPainterSymbol);
-    }
-    else if (pComp && ISA(pComp, PSS_LinkSymbol))
-    {
-        dynamic_cast<PSS_LinkSymbol*>(pComp)->ApplyFormatFromObject(*m_pFormatPainterSymbol);
-    }
-}
+    CODComponentSet      setUpdate;
+    CODComponentIterator it(pCompSet);
 
-CMenu* ZDProcessGraphModelController::CreateContextMenu()
-{
-    if (m_pRightSubMenu)
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        return m_pRightSubMenu;
-    }
+        // get the owner model
+        CODComponent* pParentComp = pComp->GetParent();
+        CODModel*     pOwnerModel = NULL;
 
-    return CODController::CreateContextMenu();
-}
-
-// JMR-MODIF - Le 24 décembre 2006 - Permet de rafraîchir l'affichage des propriétés des éléments sélectionnés.
-void ZDProcessGraphModelController::RefreshSelectionProperties()
-{
-    // L'opération n'est possible que si un seul symbole est sélectionné.
-    if (GetSelection()->GetSize() == 1)
-    {
-        if (GetSelection()->GetAt(0) != NULL)
+        while (pParentComp)
         {
-            NotifySymbolSelected(GetSelection()->GetAt(0));
-        }
-    }
-}
+            pOwnerModel = dynamic_cast<CODModel*>(pParentComp);
 
-void ZDProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
-{
-    // If we are in FormatPainter, then forward the process to the ApplyFormatToSymbol function
-    if (m_IsInFormatPainter)
-    {
-        ApplyFormatToSymbol(pComp);
-
-        return;
-    }
-
-    CDocument* pDoc = GetDocument();
-
-    if (pComp && ISA(pComp, ZBSymbol))
-    {
-        ZBSymbolObserverMsg        SymMsg(ZBSymbolObserverMsg::ElementSelected, dynamic_cast<ZBSymbol*>(pComp));
-        ZBPropertyObserverMsg    Msg(dynamic_cast<ZBSymbol*>(pComp));
-
-        // Notify direct observers first
-        NotifyAllObservers(&Msg);
-        NotifyAllObservers(&SymMsg);
-
-        // And then document notify all observers
-        if (ISA(pDoc, ZDProcessGraphModelDoc))
-        {
-            reinterpret_cast<ZDProcessGraphModelDoc*>(pDoc)->NotifyAllObservers(&Msg);
-            reinterpret_cast<ZDProcessGraphModelDoc*>(pDoc)->NotifyAllObservers(&SymMsg);
-        }
-    }
-    else if (pComp && ISA(pComp, PSS_LinkSymbol))
-    {
-        ZBSymbolObserverMsg        SymMsg(ZBSymbolObserverMsg::ElementSelected, dynamic_cast<PSS_LinkSymbol*>(pComp));
-        ZBPropertyObserverMsg    Msg(dynamic_cast<PSS_LinkSymbol*>(pComp));
-
-        // Notify direct observers first
-        NotifyAllObservers(&Msg);
-        NotifyAllObservers(&SymMsg);
-
-        // And then document notify all observers
-        if (ISA(pDoc, ZDProcessGraphModelDoc))
-        {
-            reinterpret_cast<ZDProcessGraphModelDoc*>(pDoc)->NotifyAllObservers(&Msg);
-            reinterpret_cast<ZDProcessGraphModelDoc*>(pDoc)->NotifyAllObservers(&SymMsg);
-        }
-    }
-    else
-    {
-        ZBSymbolObserverMsg        SymMsg(ZBSymbolObserverMsg::ElementSelected, NULL);
-        ZBPropertyObserverMsg    Msg(NULL);
-
-        // Notify direct observers first
-        NotifyAllObservers(&Msg);
-        NotifyAllObservers(&SymMsg);
-
-        // And then document notify all observers
-        if (ISA(pDoc, ZDProcessGraphModelDoc))
-        {
-            reinterpret_cast<ZDProcessGraphModelDoc*>(pDoc)->NotifyAllObservers(&Msg);
-            reinterpret_cast<ZDProcessGraphModelDoc*>(pDoc)->NotifyAllObservers(&SymMsg);
-        }
-    }
-}
-
-void ZDProcessGraphModelController::OnSelectionChange(CODComponentSet* pChangedSet)
-{
-    CODController::OnSelectionChange(pChangedSet);
-
-    // Flag to indicate that the selection has changed
-    m_SelectionChanged = true;
-
-    // Used to keep the last selected element
-    // We can therefore determine if the user wants to edit the label
-    if (GetSelection()->GetSize() == 1)
-    {
-        if (ISA(GetSelection()->GetAt(0), CODSymbolComponent))
-        {
-            m_LastSelectedElement = reinterpret_cast<CODSymbolComponent*>(GetSelection()->GetAt(0));
-        }
-        else if (ISA(GetSelection()->GetAt(0), CODLabelComponent))
-        {
-            m_LastSelectedElement =
-                reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(GetSelection()->GetAt(0))->GetOwner());
-        }
-        else
-        {
-            m_LastSelectedElement = NULL;
-        }
-    }
-    else
-    {
-        m_LastSelectedElement = NULL;
-    }
-}
-
-void ZDProcessGraphModelController::OnLButtonDblClk(UINT nFlags, CPoint point)
-{
-    bool bHandle = false;
-
-    if (m_pViewport)
-    {
-        // Handle the tooltip
-        CPoint pt(point);
-        VpDPtoLP(&pt);
-        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
-
-        // If a label, reassign the hit symbol
-        if (pCompHit && ISA(pCompHit, CODLabelComponent))
-        {
-            pCompHit =
-                reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
-        }
-
-        if (pCompHit && (ISA(pCompHit, ZBSymbol) || ISA(pCompHit, PSS_LinkSymbol)))
-        {
-            // Call the symbol OnMouseMove function to check if necessary do something
-            if (ISA(pCompHit, ZBSymbol))
-            {
-                if (dynamic_cast<ZBSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<ZBSymbol*>(pCompHit)->OnLButtonDblClk(nFlags, pt, *this);
-                }
-            }
-            else
-            {
-                if (dynamic_cast<PSS_LinkSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<PSS_LinkSymbol*>(pCompHit)->OnLButtonDblClk(nFlags, pt, *this);
-                }
-            }
-        }
-    }
-
-    // If the double click has been handle, don't continue
-    if (bHandle)
-    {
-        return;
-    }
-
-    // If not handle, do the work
-    CODComponent* pComp = NULL;
-
-    AssignSymbolHit();
-
-    // If the symbol has a child model, open it
-    if (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) &&
-        (reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->GetChildModel() ||
-         reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->CanContainChildModel())))
-    {
-        OpenSymbol(m_pSymbolHit);
-
-        // Call the symbol OnPostDoubleClick function 
-        if (ISA(m_pSymbolHit, ZBSymbol))
-        {
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->OnPostDoubleClick(GetModel(), this);
-        }
-    }
-    // If the symbol is a reference, browse the local symbol
-    else if (m_pSymbolHit != NULL &&
-        ((ISA(m_pSymbolHit, ZBSymbol) &&
-          reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->IsLocal() == false) ||
-          (ISA(m_pSymbolHit, PSS_LinkSymbol) &&
-           reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsLocal() == false)))
-    {
-        BrowseLocalSymbol(m_pSymbolHit);
-
-        // Select local symbol
-        SelectComponent(*m_pSymbolHit);
-
-        // Call the symbol OnPostDoubleClick function
-        if (ISA(m_pSymbolHit, ZBSymbol))
-        {
-            dynamic_cast<ZBSymbol*>(m_pSymbolHit)->OnPostDoubleClick(GetModel(), this);
-        }
-        else
-        {
-            dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->OnPostDoubleClick(GetModel(), this);
-        }
-    }
-    else
-    {
-        CODController::OnLButtonDblClk(nFlags, point);
-    }
-}
-
-void ZDProcessGraphModelController::OnLButtonDown(UINT nFlags, CPoint point)
-{
-    bool bHandle = false;
-
-    if (m_pViewport)
-    {
-        // Handle the tooltip
-        CPoint pt(point);
-        VpDPtoLP(&pt);
-        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
-
-        // JMR-MODIF - Le 5 mai 2006 - Réinitialise le curseur.
-        SetStandardCursor(IDC_ARROW);
-        m_CurrentCursor = 0;
-
-        // *******************************************************************************************************
-        // JMR-MODIF - Le 3 mai 2006 - Ajout du code pour la prise en charge du pinceau de style.
-        if (m_pFormatPainterSymbol != NULL && pCompHit != NULL && m_IsInFormatPainter == true)
-        {
-            if (ISA(m_pFormatPainterSymbol, ZBSymbol) && ISA(pCompHit, ZBSymbol))
-            {
-                ZBSymbol* m_SrcSymbol = reinterpret_cast<ZBSymbol*>(m_pFormatPainterSymbol);
-                ZBSymbol* m_DstSymbol = reinterpret_cast<ZBSymbol*>(pCompHit);
-
-                if (m_SrcSymbol != NULL && m_DstSymbol != NULL)
-                {
-                    if ((m_SrcSymbol->IsProcess() && m_DstSymbol->IsProcess()) ||
-                        (m_SrcSymbol->IsProcedure() && m_DstSymbol->IsProcedure()) ||
-                        (m_SrcSymbol->IsStart() && m_DstSymbol->IsStart()) ||
-                        (m_SrcSymbol->IsStop() && m_DstSymbol->IsStop()) ||
-                        (m_SrcSymbol->IsDoor() && m_DstSymbol->IsDoor()) ||
-                        (m_SrcSymbol->IsPage() && m_DstSymbol->IsPage()) ||
-                        (m_SrcSymbol->IsPackage() && m_DstSymbol->IsPackage()))
-                    {
-                        if (ZUODSymbolManipulator::CopySymbolStyle(m_SrcSymbol, m_DstSymbol) == FALSE)
-                        {
-                            return;
-                        }
-
-                        m_DstSymbol->RedrawSymbol();
-
-                        // JMR-MODIF - Le 3 septembre 2006 - Copie aussi le nouveau style sur le symbole jumeau.
-                        if (m_DstSymbol->IsDoor() || m_DstSymbol->IsPage())
-                        {
-                            m_DstSymbol->DuplicateStyleOnTwinSymbol();
-                        }
-
-                        if (GetDocument() != NULL)
-                        {
-                            GetDocument()->SetModifiedFlag(TRUE);
-                        }
-                    }
-                }
-            }
-            else if (ISA(m_pFormatPainterSymbol, PSS_LinkSymbol) && ISA(pCompHit, PSS_LinkSymbol))
-            {
-                CODComponent* m_SrcSymbol =
-                    ZUODSymbolManipulator::FindSymbol(dynamic_cast<PSS_LinkSymbol*>(m_pFormatPainterSymbol),
-                                                      M_SymbolNameComponentControlLabel);
-
-                CODComponent* m_DstSymbol =
-                    ZUODSymbolManipulator::FindSymbol(dynamic_cast<PSS_LinkSymbol*>(pCompHit),
-                                                      M_SymbolNameComponentControlLabel);
-
-                if (m_SrcSymbol != NULL && m_DstSymbol != NULL)
-                {
-                    ZUODSymbolManipulator::CopySymbolStyle(m_SrcSymbol, m_DstSymbol);
-                    reinterpret_cast<PSS_LinkSymbol*>(pCompHit)->RedrawSymbol();
-
-                    if (GetDocument() != NULL)
-                    {
-                        GetDocument()->SetModifiedFlag(TRUE);
-                    }
-                }
-            }
-            else if (ISA(m_pFormatPainterSymbol, PSS_LinkSymbol) && ISA(pCompHit, CODLabelComponent))
-            {
-                CODComponent* m_SrcSymbol =
-                    ZUODSymbolManipulator::FindSymbol(dynamic_cast<PSS_LinkSymbol*>(m_pFormatPainterSymbol),
-                                                      M_SymbolNameComponentControlLabel);
-
-                if (m_SrcSymbol != NULL && pCompHit != NULL)
-                {
-                    ZUODSymbolManipulator::CopySymbolStyle(m_SrcSymbol, pCompHit);
-                    RefreshAllSymbols();
-
-                    if (GetDocument() != NULL)
-                    {
-                        GetDocument()->SetModifiedFlag(TRUE);
-                    }
-                }
-            }
-
-            m_pFormatPainterSymbol = NULL;
-        }
-
-        m_IsInFormatPainter = false;
-        // *******************************************************************************************************
-
-        // If a label, reassign the hit symbol
-        if (pCompHit && ISA(pCompHit, CODLabelComponent))
-        {
-            pCompHit =
-                reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
-        }
-
-        if (pCompHit && (ISA(pCompHit, ZBSymbol) || ISA(pCompHit, PSS_LinkSymbol)))
-        {
-            // Call the symbol OnMouseMove function to check if necessary do something
-            if (ISA(pCompHit, ZBSymbol))
-            {
-                if (dynamic_cast<ZBSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<ZBSymbol*>(pCompHit)->OnLButtonDown(nFlags, pt, *this);
-                }
-            }
-            else
-            {
-                if (dynamic_cast<PSS_LinkSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<PSS_LinkSymbol*>(pCompHit)->OnLButtonDown(nFlags, pt, *this);
-                }
-            }
-        }
-    }
-
-    // If the double click has been handle, don't continue
-    if (bHandle)
-    {
-        return;
-    }
-
-    // If not handle, do the work
-    // Saves the previous element
-    CODSymbolComponent* OldSymbolClicked = m_LastSelectedElement;
-
-    CODController::OnLButtonDown(nFlags, point);
-
-    CDocument* pDoc = GetDocument();
-
-    // Notify selection of component
-    NotifySymbolSelected(m_LastSelectedElement);
-
-    // Check if necessary to edit the symbol selected
-    if (m_SelectionChanged == true && m_LastSelectedElement)
-    {
-        // If the user click a second time on the same symbol,
-        // assume he'd like edit its name
-        if (OldSymbolClicked == m_LastSelectedElement)
-        {
-            bool IsLocal = false;
-
-            if (m_LastSelectedElement != NULL && ISA(m_LastSelectedElement, ZBSymbol))
-            {
-                IsLocal = dynamic_cast<ZBSymbol*>(m_LastSelectedElement)->IsLocal();
-            }
-            else if (m_LastSelectedElement != NULL && ISA(m_LastSelectedElement, PSS_LinkSymbol))
-            {
-                IsLocal = dynamic_cast<PSS_LinkSymbol*>(m_LastSelectedElement)->IsLocal();
-            }
-
-            // Save the position first
-            m_savedEditPosition = point;
-
-            // Edit the element only if the symbol is local
-            if (IsLocal)
-            {
-                EditName(m_LastSelectedElement);
-            }
-        }
-
-        // Set back the selection changed flag
-        m_SelectionChanged = false;
-    }
-}
-
-void ZDProcessGraphModelController::OnLButtonUp(UINT nFlags, CPoint point)
-{
-    bool bHandle = false;
-
-    if (m_pViewport)
-    {
-        // Handle the tooltip
-        CPoint pt(point);
-        VpDPtoLP(&pt);
-        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
-
-        // If a label, reassign the hit symbol
-        if (pCompHit && ISA(pCompHit, CODLabelComponent))
-        {
-            pCompHit =
-                reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
-        }
-
-        if (pCompHit && (ISA(pCompHit, ZBSymbol) || ISA(pCompHit, PSS_LinkSymbol)))
-        {
-            // Call the symbol OnMouseMove function to check if necessary do something
-            if (ISA(pCompHit, ZBSymbol))
-            {
-                if (dynamic_cast<ZBSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<ZBSymbol*>(pCompHit)->OnLButtonUp(nFlags, pt, *this);
-                }
-            }
-            else
-            {
-                if (dynamic_cast<PSS_LinkSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<PSS_LinkSymbol*>(pCompHit)->OnLButtonUp(nFlags, pt, *this);
-                }
-            }
-        }
-    }
-
-    // If the double click has been handle, don't continue
-    if (bHandle)
-    {
-        return;
-    }
-
-    // If not handle, do the work
-    CODController::OnLButtonUp(nFlags, point);
-}
-
-void ZDProcessGraphModelController::OnRButtonUp(UINT nFlags, CPoint point)
-{
-    bool bHandle = false;
-
-    if (m_pViewport)
-    {
-        // Handle the tooltip
-        CPoint pt(point);
-        VpDPtoLP(&pt);
-        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
-
-        // If a label, reassign the hit symbol
-        if (pCompHit && ISA(pCompHit, CODLabelComponent))
-        {
-            pCompHit =
-                reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
-        }
-
-        if (pCompHit && (ISA(pCompHit, ZBSymbol) || ISA(pCompHit, PSS_LinkSymbol)))
-        {
-            // Call the symbol OnMouseMove function to check if necessary do something
-            if (ISA(pCompHit, ZBSymbol))
-            {
-                if (dynamic_cast<ZBSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<ZBSymbol*>(pCompHit)->OnRButtonUp(nFlags, pt, *this);
-                }
-            }
-            else
-            {
-                if (dynamic_cast<PSS_LinkSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<PSS_LinkSymbol*>(pCompHit)->OnRButtonUp(nFlags, pt, *this);
-                }
-            }
-        }
-    }
-
-    // If the double click has been handle, don't continue
-    if (bHandle)
-    {
-        return;
-    }
-
-    // If not handle, do the work
-    AssignSymbolHit();
-
-    if (m_pSymbolHit != NULL)
-    {
-        if (ISA(m_pSymbolHit, ZBSymbol))
-        {
-            // No sub-menu defined, return
-            if (reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->GetRightSubMenu() == -1)
-            {
-                return;
-            }
-
-            if (reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->IsLocal())
-            {
-                m_pRightSubMenu =
-                    m_SymbolRightMainMenu.GetSubMenu(reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->GetRightSubMenu());
-            }
-            else
-            {
-                m_pRightSubMenu =
-                    m_SymbolRefRightMainMenu.GetSubMenu(reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->GetRightSubMenu());
-            }
-        }
-        else
-        {
-            // No sub-menu defined, return
-            if (reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetRightSubMenu() == -1)
-            {
-                return;
-            }
-
-            if (reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->IsLocal())
-            {
-                m_pRightSubMenu =
-                    m_SymbolRightMainMenu.GetSubMenu(reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetRightSubMenu());
-            }
-            else
-            {
-                m_pRightSubMenu =
-                    m_SymbolRefRightMainMenu.GetSubMenu(reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->GetRightSubMenu());
-            }
-        }
-    }
-    else if (GetSelection()->GetSize() >= 1)
-    {
-        m_pRightSubMenu = m_SymbolRightMainMenu.GetSubMenu(0);
-        m_pSymbolHit = NULL;
-    }
-    else
-    {
-        m_pRightSubMenu = NULL;
-        m_pSymbolHit = NULL;
-    }
-
-    CODController::OnRButtonUp(nFlags, point);
-}
-
-void ZDProcessGraphModelController::OnMouseMove(UINT nFlags, CPoint point)
-{
-    // JMR-MODIF - Le 17 mai 2006 - Ajout des variables m_OldCursor, m_BadCursor, m_CurCursor.
-    static HCURSOR    m_OldCursor = NULL;
-    static HCURSOR    m_BadCursor = NULL;
-
-    HCURSOR            m_CurCursor = GetCursor();
-
-    bool            bHandle = false;
-
-    if (m_pViewport)
-    {
-        // Handle the tooltip
-        CPoint pt(point);
-        VpDPtoLP(&pt);
-        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
-
-        // If a label, reassign the hit symbol
-        if (pCompHit && ISA(pCompHit, CODLabelComponent))
-        {
-            pCompHit =
-                reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
-        }
-
-        if (pCompHit && (ISA(pCompHit, ZBSymbol) || ISA(pCompHit, PSS_LinkSymbol)))
-        {
-            // Call the symbol OnMouseMove function to check if necessary do something
-            if (ISA(pCompHit, ZBSymbol))
-            {
-                if (dynamic_cast<ZBSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<ZBSymbol*>(pCompHit)->OnMouseMove(nFlags, pt, *this);
-                }
-            }
-            else
-            {
-                if (dynamic_cast<PSS_LinkSymbol*>(pCompHit)->AcceptMouseInteraction())
-                {
-                    bHandle = dynamic_cast<PSS_LinkSymbol*>(pCompHit)->OnMouseMove(nFlags, pt, *this);
-                }
-            }
-
-            // Use Activate() to show the tooltip.
-            if (::IsWindow(GetView()->GetToolTip().m_hWnd))
-            {
-                GetView()->GetToolTip().Activate(TRUE);
-            }
-
-            // JMR-MODIF - Le 17 mai 2006 - La gestion des curseurs se fait maintenant ci-dessous.
-/*            if ( !bHandle )
-            {
-                // Change the cursor shape
-                SetStandardCursor( IDC_ARROW );
-            }
-*/
-        }
-        else
-        {
-            if (::IsWindow(GetView()->GetToolTip().m_hWnd))
-            {
-                // Use Activate() to hide the tooltip.
-                GetView()->GetToolTip().Activate(FALSE);
-            }
-
-            // JMR-MODIF - Le 17 mai 2006 - La gestion des curseurs se fait maintenant ci-dessous.
-            // JMR-MODIF - Le 5 mai 2006 - Ajout du code pour remettre en place le curseur précédent.
-/*            if ( m_CurrentCursor != 0 )
-            {
-                SetCustomCursor( m_CurrentCursor );
-            }
-*/
-        }
-    }
-
-    // JMR-MODIF - Le 17 mai 2006 - Nouvelle gestion du curseur.
-    if (m_CurrentCursor != 0)
-    {
-        SetCustomCursor(m_CurrentCursor);
-    }
-    else
-    {
-        if (m_CurCursor != GetCursor())
-        {
-            m_BadCursor = GetCursor();
-        }
-
-        if (!bHandle)
-        {
-            if (GetCursor() != m_BadCursor)
-            {
-                m_OldCursor = GetCursor();
-            }
-
-            if (m_OldCursor != NULL)
-            {
-                SetCursor(m_OldCursor);
-            }
-        }
-    }
-
-    if (!bHandle)
-    {
-        CODController::OnMouseMove(nFlags, point);
-    }
-}
-
-void ZDProcessGraphModelController::EditName(CODComponent* pCompToEdit)
-{
-    BOOL                bEditing = FALSE;
-    CODTextComponent*    pTextComp = NULL;
-
-    if (pCompToEdit != NULL && (ISA(pCompToEdit, ZBSymbol) || ISA(pCompToEdit, PSS_LinkSymbol)))
-    {
-        m_pSymbolHit = static_cast<CODSymbolComponent*>(pCompToEdit);
-
-        CODEditProperties*    pEditProps = (CODEditProperties*)pCompToEdit->GetProperty(OD_PROP_EDIT);
-        CODEditProperties*    pModelEditProps = (CODEditProperties*)GetCanvasModel()->GetProperty(OD_PROP_EDIT);
-        BOOL                bDesignMode = GetCanvasModel()->GetDesignMode();
-
-        // Check if the symbol can be edited
-        if (ISA(m_pSymbolHit, ZBSymbol) && reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->SymbolNameTextEditReadOnly())
-        {
-            return;
-        }
-
-        if (ISA(m_pSymbolHit, PSS_LinkSymbol) && reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->SymbolNameTextEditReadOnly())
-        {
-            return;
-        }
-
-        if (bDesignMode || (!pEditProps->IsReadOnly() && !pModelEditProps->IsReadOnly()))
-        {
-            if (ISA(pCompToEdit, ZBSymbol))
-            {
-                pTextComp = ((ZBSymbol*)pCompToEdit)->GetSymbolNameTextEdit();
-            }
-            else if (ISA(pCompToEdit, PSS_LinkSymbol))
-            {
-                pTextComp = ((PSS_LinkSymbol*)pCompToEdit)->GetSymbolNameTextEdit();
-            }
-
-            if (pTextComp != NULL && pTextComp->IsEditing() != TRUE)
-            {
-                CODEditProperties* pEditProps = (CODEditProperties*)pTextComp->GetProperty(OD_PROP_EDIT);
-                ASSERT_VALID(pEditProps);
-
-                if (pEditProps->IsReadOnly())
-                {
-                    return;
-                }
-
-                CODComponentSet setUpdate;
-                setUpdate.Add(pCompToEdit);
-
-                if (pTextComp != m_pTextEdit)
-                {
-                    EndTextEdit(0, m_savedEditPosition);
-
-                    m_pTextEdit = pTextComp;
-                    m_pTextEdit->AddRef();
-
-                    bEditing = m_pTextEdit->BeginEdit(GetCanvasVp());
-
-                    // Set the flag for text edition
-                    m_IsEditingSymbolName = true;
-
-                    if (bEditing)
-                    {
-                        GetCanvasVp()->UpdateComponents(&setUpdate);
-                    }
-                }
-            }
-
-            // Set flag for modification
-            if (GetDocument())
-            {
-                GetDocument()->SetModifiedFlag(TRUE);
-            }
-        }
-    }
-    else
-    {
-        m_pSymbolHit = NULL;
-    }
-}
-
-void ZDProcessGraphModelController::EditComment(CODComponent* pCompToEdit)
-{
-    BOOL                bEditing = FALSE;
-    CODTextComponent*    pTextComp = NULL;
-
-    if (pCompToEdit != NULL && ISA(pCompToEdit, ZBSymbol))
-    {
-        // If it is not our symbol type, call the base class
-        m_pSymbolHit = static_cast<ZBSymbol*>(pCompToEdit);
-
-        CODEditProperties*    pEditProps = (CODEditProperties*)m_pSymbolHit->GetProperty(OD_PROP_EDIT);
-        CODEditProperties*    pModelEditProps = (CODEditProperties*)GetCanvasModel()->GetProperty(OD_PROP_EDIT);
-        BOOL                bDesignMode = GetCanvasModel()->GetDesignMode();
-
-        // Check if the symbol can be edited
-        if (ISA(m_pSymbolHit, ZBSymbol) && reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->CommentTextEditReadOnly())
-        {
-            return;
-        }
-
-        if (ISA(m_pSymbolHit, PSS_LinkSymbol) && reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->CommentTextEditReadOnly())
-        {
-            return;
-        }
-
-        if (bDesignMode || (!pEditProps->IsReadOnly() && !pModelEditProps->IsReadOnly()))
-        {
-            if (ISA(pCompToEdit, ZBSymbol))
-            {
-                pTextComp = ((ZBSymbol*)pCompToEdit)->GetCommentTextEdit();
-            }
-            else if (ISA(pCompToEdit, PSS_LinkSymbol))
-            {
-                pTextComp = ((PSS_LinkSymbol*)pCompToEdit)->GetCommentTextEdit();
-            }
-
-            if (pTextComp != NULL && pTextComp->IsEditing() != TRUE)
-            {
-                CODEditProperties* pEditProps = (CODEditProperties*)pTextComp->GetProperty(OD_PROP_EDIT);
-                ASSERT_VALID(pEditProps);
-
-                if (pEditProps->IsReadOnly())
-                {
-                    return;
-                }
-
-                CODComponentSet setUpdate;
-                setUpdate.Add(m_pCompHit);
-
-                if (pTextComp != m_pTextEdit)
-                {
-                    EndTextEdit(0, m_savedEditPosition);
-
-                    m_pTextEdit = pTextComp;
-                    m_pTextEdit->AddRef();
-
-                    bEditing = m_pTextEdit->BeginEdit(GetCanvasVp());
-
-                    // Set the flag for comment edition
-                    m_IsEditingSymbolComment = true;
-
-                    if (bEditing)
-                    {
-                        GetCanvasVp()->UpdateComponents(&setUpdate);
-                    }
-                }
-            }
-
-            // Set flag for modification
-            if (GetDocument())
-            {
-                GetDocument()->SetModifiedFlag(TRUE);
-            }
-        }
-    }
-    else m_pSymbolHit = NULL;
-}
-
-BOOL ZDProcessGraphModelController::StartTextEdit(UINT nFlags, CPoint ptDev)
-{
-    nFlags; // unused
-
-    BOOL                bEditing = FALSE;
-    CODTextComponent*    pTextComp = NULL;
-
-    CPoint ptLog = ptDev;
-    VpDPtoLP(&ptLog);
-
-    m_pCompHit = GetCanvasVp()->ComponentHitTest(ptLog);
-
-    if (m_pCompHit != NULL && (ISA(m_pCompHit, ZBSymbol) || ISA(m_pCompHit, PSS_LinkSymbol)))
-    {
-        CODEditProperties*    pEditProps = (CODEditProperties*)m_pCompHit->GetProperty(OD_PROP_EDIT);
-        CODEditProperties*    pModelEditProps = (CODEditProperties*)GetCanvasModel()->GetProperty(OD_PROP_EDIT);
-        BOOL                bDesignMode = GetCanvasModel()->GetDesignMode();
-
-        if (bDesignMode || (!pEditProps->IsReadOnly() && !pModelEditProps->IsReadOnly()))
-        {
-            // If it is not our symbol type, call the base class
-            m_pSymbolHit = static_cast<CODSymbolComponent*>(m_pCompHit);
-
-            // Check if the symbol can be edited
-            if (ISA(m_pSymbolHit, ZBSymbol) && reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->SymbolNameTextEditReadOnly())
-            {
-                return bEditing;
-            }
-
-            if (ISA(m_pSymbolHit, PSS_LinkSymbol) && reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->SymbolNameTextEditReadOnly())
-            {
-                return bEditing;
-            }
-
-            // Can be edited
-            if (ISA(m_pSymbolHit, ZBSymbol))
-            {
-                pTextComp = ((ZBSymbol*)m_pSymbolHit)->GetSymbolNameTextEdit();
-            }
-            else if (ISA(m_pSymbolHit, PSS_LinkSymbol))
-            {
-                pTextComp = ((PSS_LinkSymbol*)m_pSymbolHit)->GetSymbolNameTextEdit();
-            }
-
-            // Test if in region
-            if (pTextComp)
-            {
-                CODRgn rgn;
-                rgn = pTextComp->GetRgn();
-
-                // Not in region, reset pTextComp
-                if (!rgn.PtInRegion(ptDev, 4))
-                {
-                    pTextComp = NULL;
-                }
-            }
-
-            if (!pTextComp)
-            {
-                // Check if the symbol can be edited
-                if (ISA(m_pSymbolHit, ZBSymbol) &&
-                    reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->CommentTextEditReadOnly())
-                {
-                    return bEditing;
-                }
-
-                if (ISA(m_pSymbolHit, PSS_LinkSymbol) &&
-                    reinterpret_cast<PSS_LinkSymbol*>(m_pSymbolHit)->CommentTextEditReadOnly())
-                {
-                    return bEditing;
-                }
-
-                // Can be edited
-                if (ISA(m_pSymbolHit, ZBSymbol))
-                {
-                    pTextComp = ((ZBSymbol*)m_pSymbolHit)->GetCommentTextEdit();
-                }
-                else if (ISA(m_pSymbolHit, PSS_LinkSymbol))
-                {
-                    pTextComp = ((PSS_LinkSymbol*)m_pSymbolHit)->GetCommentTextEdit();
-                }
-            }
-
-            // Test if in region
-            if (pTextComp)
-            {
-                CODRgn rgn;
-                rgn = pTextComp->GetRgn();
-
-                // Not in region, reset pTextComp
-                if (!rgn.PtInRegion(ptDev, 4))
-                {
-                    pTextComp = NULL;
-                }
-            }
-        }
-    }
-    else
-    {
-        m_pSymbolHit = NULL;
-        return CODController::StartTextEdit(nFlags, ptDev);
-    }
-
-    if (pTextComp != NULL && pTextComp->IsEditing() != TRUE)
-    {
-        CODEditProperties* pEditProps = (CODEditProperties*)pTextComp->GetProperty(OD_PROP_EDIT);
-        ASSERT_VALID(pEditProps);
-
-        if (pEditProps->IsReadOnly())
-        {
-            return FALSE;
-        }
-
-        CODComponentSet setUpdate;
-        setUpdate.Add(m_pCompHit);
-
-        if (pTextComp != m_pTextEdit)
-        {
-            EndTextEdit(0, m_savedEditPosition);
-
-            m_pTextEdit = pTextComp;
-            m_pTextEdit->AddRef();
-
-            bEditing = m_pTextEdit->BeginEdit(GetCanvasVp());
-
-            if (bEditing)
-            {
-                GetCanvasVp()->UpdateComponents(&setUpdate);
-            }
-        }
-    }
-
-    return bEditing;
-}
-
-
-void ZDProcessGraphModelController::EndTextEdit(UINT nFlags, CPoint ptDev)
-{
-    CString value;
-    bool IsNameValid = true;
-
-    if (m_pTextEdit)
-    {
-        value = m_pTextEdit->GetEditText();
-
-        // Retreive the label or edit text owner
-        CODComponent* pOwner = NULL;
-
-        // first check label component, because he derives from text component
-        if (ISA(m_pTextEdit, CODLabelComponent))
-        {
-            pOwner = reinterpret_cast<CODLabelComponent*>(m_pTextEdit)->GetOwner();
-        }
-        else if (ISA(m_pTextEdit, CODTextComponent))
-        {
-            pOwner = reinterpret_cast<CODTextComponent*>(m_pTextEdit)->GetParent();
-        }
-
-        if (pOwner && (ISA(pOwner, ZBSymbol) || ISA(pOwner, PSS_LinkSymbol)))
-        {
-            if (m_IsEditingSymbolName)
-            {
-                if (value.IsEmpty())
-                {
-                    PSS_MsgBox mBox;
-                    mBox.Show(IDS_SYMBOLNAME_EMPTY, MB_OK);
-                    IsNameValid = false;
-                }
-
-                ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
-
-                if (pRoot)
-                {
-                    if (ISA(pOwner, ZBSymbol) && ((ZBSymbol*)pOwner)->GetSymbolName() != value)
-                    {
-                        // Check if new name is valid
-                        if (!((ZBSymbol*)pOwner)->IsNewNameValid(value))
-                        {
-                            IsNameValid = false;
-                        }
-                        else ((ZBSymbol*)pOwner)->SetSymbolName(value);
-                    }
-                    else if (ISA(pOwner, PSS_LinkSymbol) && ((PSS_LinkSymbol*)pOwner)->GetSymbolName() != value)
-                    {
-                        // Check if new name is valid
-                        if (!((PSS_LinkSymbol*)pOwner)->IsNewNameValid(value))
-                        {
-                            IsNameValid = false;
-                        }
-                        else ((PSS_LinkSymbol*)pOwner)->SetSymbolName(value);
-                    }
-                }
-            }
-            else if (m_IsEditingSymbolComment)
-            {
-                if (ISA(pOwner, ZBSymbol))
-                {
-                    ((ZBSymbol*)pOwner)->SetSymbolComment(value);
-                }
-                else
-                {
-                    ((PSS_LinkSymbol*)pOwner)->SetSymbolComment(value);
-                }
-            }
-
-            // Reset edition flag only if the name is valid
-            // and we know that we will leave the edition control
-            if (IsNameValid)
-            {
-                // Reset edition flag
-                m_IsEditingSymbolName = false;
-                m_IsEditingSymbolComment = false;
-            }
-        }
-    }
-
-    // Call the base class if the new name is valid
-    if (IsNameValid)
-    {
-        CODController::EndTextEdit(nFlags, ptDev);
-    }
-}
-
-void ZDProcessGraphModelController::OnTimer(SEC_UINT nIDEvent)
-{
-    if (nIDEvent == ANIMATE_TIMER)
-    {
-        if (m_AnimatedUseColor)
-        {
-            // It still time for animation
-            if ((m_StartTimeOfTimer + COleDateTimeSpan(0, 0, 0, m_nAnimateCounter)) >= PSS_Date::GetCurrentTime())
-            {
-                if (!m_TimerInitialized)
-                {
-                    if (m_animateNodes.GetSize() > 0)
-                    {
-                        _ChangeColorNodes();
-                    }
-
-                    if (m_animateEdges.GetSize() > 0)
-                    {
-                        _ChangeColorEdges();
-                    }
-
-                    if (m_animateComponents.GetSize() > 0)
-                    {
-                        _ChangeColorSymbols();
-                    }
-
-                    m_TimerInitialized = true;
-                }
-            }
-            else _EndAnimateTimer();
-        }
-        else
-        {
-            if (m_nAnimateCounter > 0)
-            {
-                if (m_animateNodes.GetSize() > 0)
-                {
-                    _AnimateNodes();
-                }
-
-                if (m_animateEdges.GetSize() > 0)
-                {
-                    _AnimateEdges();
-                }
-
-                if (m_animateComponents.GetSize() > 0)
-                {
-                    _AnimateSymbols();
-                }
-
-                --m_nAnimateCounter;
-            }
-            else _EndAnimateTimer();
-        }
-    }
-
-    CODController::OnTimer(nIDEvent);
-}
-
-void ZDProcessGraphModelController::_EndAnimateTimer()
-{
-    KillTimer(m_nTimer);
-    m_nTimer = 0;
-
-    if (m_AnimatedUseColor)
-    {
-        if (m_animateNodes.GetSize() > 0)
-        {
-            _ChangeBackColorNodes();
-        }
-
-        if (m_animateEdges.GetSize() > 0)
-        {
-            _ChangeBackColorEdges();
-        }
-
-        if (m_animateComponents.GetSize() > 0)
-        {
-            _ChangeBackColorSymbols();
-        }
-    }
-
-    m_animateNodes.RemoveAll();
-    m_animateEdges.RemoveAll();
-    m_animateComponents.RemoveAll();
-    m_nAnimateCounter = 0;
-    m_TimerInitialized = false;
-}
-
-void ZDProcessGraphModelController::OnChangeTextEdit()
-{
-    // If not a symbol selected, call the base class
-    if (m_pSymbolHit == NULL)
-    {
-        CODController::OnChangeTextEdit();
-    }
-
-    if (m_pTextEdit == NULL)
-    {
-        return;
-    }
-
-    sfl::MvcViewport::DC dc(GetCanvasVp(), TRUE);
-
-    CODComponentSet setUpdate;
-
-    setUpdate.Add(m_pTextEdit);
-
-    if (ISA(m_pTextEdit, CODLabelComponent))
-    {
-        CODLabelComponent*    pLabel = static_cast<CODLabelComponent*>(m_pTextEdit);
-        CODSymbolComponent*    pOwner = pLabel->GetOwner();
-
-        if (pOwner != NULL)
-        {
-            setUpdate.Add(pOwner);
-        }
-    }
-
-    GetCanvasVp()->UpdateComponents(&setUpdate);
-}
-
-void ZDProcessGraphModelController::OnGoinSymbol()
-{
-    AssignSymbolHit();
-
-    if (m_pSymbolHit != NULL && (ISA(m_pSymbolHit, ZBSymbol) &&
-        (reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->GetChildModel() ||
-         reinterpret_cast<ZBSymbol*>(m_pSymbolHit)->CanContainChildModel())))
-    {
-        OpenSymbol(m_pSymbolHit);
-    }
-}
-
-void ZDProcessGraphModelController::OnSelectSymbol()
-{
-    AssignSymbolHit();
-
-    if (m_pSymbolHit)
-    {
-        EnsureSymbolVisible(m_pSymbolHit);
-        SelectComponent(*m_pSymbolHit);
-    }
-}
-
-void ZDProcessGraphModelController::OnGoParentModel()
-{
-    ZDProcessGraphModelMdl* pModel = GetModel();
-
-    if (pModel && pModel->GetParent())
-    {
-        BrowseModel(pModel->GetParent(), pModel->GetParent()->GetParent());
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateGoParentModel(CCmdUI* pCmdUI)
-{
-    ZDProcessGraphModelMdl* pModel = GetModel();
-    pCmdUI->Enable(pModel && pModel->GetParent());
-}
-
-void ZDProcessGraphModelController::OnBrowseSourceSymbol()
-{
-    AssignSymbolHit();
-
-    if (GetDocument() && ISA(GetDocument(), ZDProcessGraphModelDoc) &&
-        ((ZDProcessGraphModelDoc*)GetDocument())->GetModel() && m_pSymbolHit    &&
-        ISA(m_pSymbolHit, ZBSymbol) && !((ZBSymbol*)m_pSymbolHit)->IsLocal())
-    {
-        BrowseLocalSymbol((ZBSymbol*)m_pSymbolHit);
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateBrowseSourceSymbol(CCmdUI* pCmdUI)
-{
-    AssignSymbolHit();
-
-    pCmdUI->Enable(m_pSymbolHit && ISA(m_pSymbolHit, ZBSymbol) && !((ZBSymbol*)m_pSymbolHit)->IsLocal());
-}
-
-void ZDProcessGraphModelController::OnFindSymbol()
-{
-    ZDProcessGraphModelMdl* pModel = GetModel();
-
-    if (!pModel)
-    {
-        return;
-    }
-
-    CWaitCursor wait;
-
-    ZBPropertySet Set;
-    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(GetModel(), Set);
-
-    ZBPropertyAttributes PropAttributes;
-
-    ZVFindSymbolExtDlg FindSymbolDlg(&PropAttributes, &Set);
-
-    if (FindSymbolDlg.DoModal() == IDOK)
-    {
-        if (FindSymbolDlg.GetInAllModels())
-        {
-            pModel = pModel->GetRoot();
-        }
-
-        // It is necessary to call Restore here in order
-        // to change the cursor back to the wait cursor.
-        wait.Restore();
-
-        PSS_Log* pLog = NULL;
-
-        if (pModel->GetDocument() && ISA(pModel->GetDocument(), ZDProcessGraphModelDoc))
-        {
-            pLog = dynamic_cast<ZDProcessGraphModelDoc*>(pModel->GetDocument())->GetSearchOutputLog();
-
-            // Asks to activate the search log tab
-            PSS_ToolbarObserverMsg Msg(UM_ACTIVATE_LOGSEARCH_TAB);
-            dynamic_cast<ZDProcessGraphModelDoc*>(pModel->GetDocument())->NotifyAllObservers(&Msg);
-        }
-
-        // Now launch the find 
-        pModel->Find(FindSymbolDlg.GetWhat(),
-                     pLog,
-                     &PropAttributes,
-                     FindSymbolDlg.GetInAllModels(),
-                     FindSymbolDlg.GetCaseSensitive(),
-                     FindSymbolDlg.GetPartialSearch());
-    }
-
-    // Remove all properties
-    ZBPropertyIterator i(&Set);
-    ZBProperty* pProp;
-
-    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
-    {
-        delete pProp;
-    }
-
-    Set.RemoveAll();
-}
-
-void ZDProcessGraphModelController::OnInsertPage()
-{
-    ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
-
-    if (!pRoot)
-    {
-        return;
-    }
-
-    ZVInsertModelNewPageDlg Dlg(pRoot, pRoot->GetValidNextPageName(), pRoot->GetExistingPageNameArray());
-
-    if (Dlg.DoModal() == IDOK)
-    {
-        ZDProcessGraphModelMdl*    pModel = pRoot->CreateEmptyModel(Dlg.GetPageName(), Dlg.GetParentModel());
-        ZDProcessGraphPage*        pPage = pRoot->CreateNewPage(pModel, Dlg.GetPageName(), Dlg.GetParentModel());
-
-        BrowseModel(pModel, Dlg.GetParentModel());
-
-        // Build the message
-        ZBDocObserverMsg DocMsg;
-        AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
-
-        // Set flag for modification
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnRenamePage()
-{
-    ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
-
-    if (!pRoot)
-    {
-        return;
-    }
-
-    CString NewPage = pRoot->GetValidNextPageName();
-
-    ZVRenameModelPageDlg Dlg(pRoot, pRoot->GetExistingPageNameArray());
-
-    if (Dlg.DoModal() == IDOK)
-    {
-        ZDProcessGraphPage* pPage = Dlg.GetSelectedPage();
-
-        if (pPage)
-        {
-            // Keeps the old page name
-            CString OldPageName = pPage->GetPageName();
-
-            // Rename the page
-            pPage->SetPageName(Dlg.GetPageName());
-
-            // Advise the owner model of page changes
-            pRoot->OnPageNameChanged(pPage, OldPageName);
-        }
-
-        // Build the message
-        ZBDocObserverMsg DocMsg;
-        AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
-
-        // Set flag for modification
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnRenameCurrentPage()
-{
-    ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
-
-    if (!pRoot)
-    {
-        return;
-    }
-
-    CString NewPage = pRoot->GetValidNextPageName();
-
-    // Find the current page
-    ZDProcessGraphPage* pCurrentPage = pRoot->FindModelPage(GetModel(), true);
-
-    // Keeps the old page name
-    CString OldPageName = pCurrentPage->GetPageName();
-
-    ZVRenameModelPageDlg Dlg(pRoot, pRoot->GetExistingPageNameArray(), pCurrentPage);
-
-    if (Dlg.DoModal() == IDOK)
-    {
-        ZDProcessGraphPage* pPage = Dlg.GetSelectedPage();
-
-        if (pPage)
-        {
-            pPage->SetPageName(Dlg.GetPageName());
-
-            // Advise the owner model of page changes
-            pRoot->OnPageNameChanged(pPage, OldPageName);
-        }
-
-        // Build the message
-        ZBDocObserverMsg DocMsg;
-        AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
-
-        // Set flag for modification
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnDeletePage()
-{
-    if (!GetModel()->GetRoot())
-    {
-        return;
-    }
-
-    ZVDeleteModelPageDlg Dlg(GetModel()->GetRoot());
-
-    if (Dlg.DoModal() == IDOK)
-    {
-        ZDProcessGraphPage* pPage = Dlg.GetSelectedPage();
-
-        if (pPage)
-        {
-            // First, move to the root model
-            BrowseModel(GetModel()->GetRoot(), GetModel()->GetRoot()->GetParent());
-
-            // Delete the page and its associated model
-            GetModel()->GetRoot()->DeletePage(pPage->GetPageName(), true);
-
-            // Build the message
-            ZBDocObserverMsg DocMsg;
-            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
-
-            // Set flag for modification
-            GetDocument()->SetModifiedFlag(TRUE);
-        }
-    }
-}
-
-void ZDProcessGraphModelController::OnDeleteCurrentPage()
-{
-    if (!GetModel()->GetRoot())
-    {
-        return;
-    }
-
-    // Retreive the root page
-    ZDProcessGraphPage* pRootPage = GetModel()->GetRoot()->FindModelPage(GetModel()->GetRoot(), true);
-
-    // Find the current page
-    ZDProcessGraphPage* pCurrentPage = GetModel()->GetRoot()->FindModelPage(GetModel(), true);
-
-    if (GetModel()->HasPageSet() &&
-        GetModel()->GetPageSet() &&
-        GetModel()->GetPageSet()->GetAt(0) == pCurrentPage)
-    {
-        // Display warning message
-        PSS_MsgBox mBox;
-        mBox.Show(IDS_CANNOTDELETE_ROOTPAGE, MB_OK);
-
-        return;
-    }
-
-    // First, move to the root model
-    BrowseModel(GetModel()->GetRoot(), GetModel()->GetRoot()->GetParent());
-
-    if (pCurrentPage)
-    {
-        GetModel()->GetRoot()->NotifyDeletePage(pCurrentPage);
-
-        // Delete the page and its associated model
-        GetModel()->GetRoot()->DeletePage(pCurrentPage->GetPageName(), true);
-
-        // Build the message
-        ZBDocObserverMsg DocMsg;
-        AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
-
-        // Set flag for modification
-        GetDocument()->SetModifiedFlag(TRUE);
-    }
-}
-
-void ZDProcessGraphModelController::OnOdMeasurements()
-{
-    // Call the base class
-    CODController::OnMeasurements();
-
-    if (!GetDocument() || !GetCanvasVp()->GetRuler())
-    {
-        return;
-    }
-
-    // Set flag for modification
-    GetDocument()->SetModifiedFlag(TRUE);
-
-    if (ISA(GetDocument(), ZDProcessGraphModelDoc))
-    {
-        ((ZDProcessGraphModelDoc*)GetDocument())->SetPageUnits(*(GetCanvasVp()->GetRuler()));
-    }
-}
-
-void ZDProcessGraphModelController::ViewZoomIn()
-{
-    BOOL    bDesignMode = GetCanvasModel()->GetDesignMode();
-    CSize    szMag = GetCanvasVp()->GetMagnification();
-
-    szMag.cx += 25;
-    szMag.cy += 25;
-
-    GetCanvasVp()->SetMagnification(szMag.cx, szMag.cy);
-
-    UpdateTextEdit();
-
-    GetCanvasVp()->Invalidate();
-}
-
-void ZDProcessGraphModelController::ViewZoomOut()
-{
-    BOOL    bDesignMode = GetCanvasModel()->GetDesignMode();
-    CSize    szMag = GetCanvasVp()->GetMagnification();
-
-    szMag.cx -= 25;
-    szMag.cy -= 25;
-
-    GetCanvasVp()->SetMagnification(szMag.cx, szMag.cy);
-
-    UpdateTextEdit();
-
-    GetCanvasVp()->Invalidate();
-}
-
-void ZDProcessGraphModelController::OnViewZoomIn()
-{
-    ViewZoomIn();
-}
-
-void ZDProcessGraphModelController::OnViewZoomOut()
-{
-    ViewZoomOut();
-}
-
-void ZDProcessGraphModelController::OnAddNewExtApp()
-{
-    AssignSymbolHit();
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->DoInsertExtApp();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->DoInsertExtApp();
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateAddNewExtApp(CCmdUI* pCmdUI)
-{
-    bool Enable = false;
-
-    AssignSymbolHit();
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        Enable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->AcceptExtApp();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        Enable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->AcceptExtApp();
-    }
-
-    pCmdUI->Enable(Enable);
-}
-
-void ZDProcessGraphModelController::OnAddNewExtFile()
-{
-    AssignSymbolHit();
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        dynamic_cast<ZBSymbol*>(m_pSymbolHit)->DoInsertExtFile();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->DoInsertExtFile();
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateAddNewExtFile(CCmdUI* pCmdUI)
-{
-    bool Enable = false;
-
-    AssignSymbolHit();
-
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
-    {
-        Enable = dynamic_cast<ZBSymbol*>(m_pSymbolHit)->AcceptExtFile();
-    }
-    else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
-    {
-        Enable = dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit)->AcceptExtFile();
-    }
-
-    pCmdUI->Enable(Enable);
-}
-
-void ZDProcessGraphModelController::OnShowModelBorder()
-{
-    ZDProcessGraphModelMdl* pModel = GetRootModel();
-    ASSERT(pModel);
-
-    pModel->SetShowPageBorder(!pModel->GetShowPageBorder());
-
-    // JMR-MODIF - Le 14 juillet 2005 - Modifié l'appel à UpdatePageLook
-    // pour tenir compte de la nouvelle implémentation.
-    if (GetViewport())
-    {
-        if (GetView())
-        {
-            GetViewport()->UpdatePageLook(GetView()->GetPrinterPageSize());
-        }
-    }
-}
-
-void ZDProcessGraphModelController::OnUpdateShowModelBorder(CCmdUI* pCmdUI)
-{
-    ZDProcessGraphModelMdl* pModel = GetRootModel();
-    ASSERT(pModel);
-
-    pCmdUI->SetCheck(pModel->GetShowPageBorder());
-}
-
-void ZDProcessGraphModelController::OnModelDocumentHasChanged()
-{
-    // Check if we have one element selected
-    // If it is the case, do nothing
-    if (GetSelection()->GetSize() > 0)
-    {
-        return;
-    }
-
-    // Otherwise, check if we are at the root of the model
-    if (GetModel() != GetRootModel())
-    {
-        return;
-    }
-
-    // Unselect all components to avoid problems
-    UnselectAllComponents();
-
-    return;
-}
-
-void ZDProcessGraphModelController::OnAdviseStartPropertyEdition()
-{
-    if (m_IsEditingSymbolName || m_IsEditingSymbolComment)
-    {
-        EndTextEdit(0, m_savedEditPosition);
-    }
-
-    return;
-}
-
-void ZDProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
-{
-    if (pMsg && ISA(pMsg, ZBSymbolLogObserverMsg))
-    {
-        CODComponentSet* pSet = GetModel()->GetRoot()->FindSymbol(dynamic_cast<ZBSymbolLogObserverMsg*>(pMsg)->GetErrorLine().GetSymbolName(),
-                                                                  dynamic_cast<ZBSymbolLogObserverMsg*>(pMsg)->GetErrorLine().GetSymbolPath(),
-                                                                  true,
-                                                                  true,
-                                                                  true);
-        if (pSet && pSet->GetSize() > 0)
-        {
-            COLORREF AnimatedColor;
-
-            if (dynamic_cast<ZBSymbolLogObserverMsg*>(pMsg)->GetErrorLine().GetErrorType() == 1)
-            {
-                AnimatedColor = defCOLOR_RED;
-            }
-            else
-            {
-                AnimatedColor = defCOLOR_GREEN;
-            }
-
-            // Ensure the first symbol visible at least
-            EnsureSymbolVisible(pSet->GetAt(0));
-            AnimateSymbols(*pSet, true, AnimatedColor, 10);
-        }
-        else
-        {
-            PSS_MsgBox mBox;
-            mBox.Show(IDS_SYMBOLNOTFOUND_USESEARCH, MB_OK);
-        }
-    }
-    else if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
-             dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument() == GetDocument() &&
-             ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), ZDProcessGraphModelDoc))
-    {
-        // Check about document close, detach observer
-        switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
-        {
-            case UM_FRAMEHASBEENACTIVATED:
-            {
-                AssignSymbolHit();
-
-                // Notify new selection
-                NotifySymbolSelected(m_pSymbolHit);
+            // if a model, return it
+            if (pOwnerModel)
                 break;
-            }
-        }
-    }
-    else NotifyAllObservers(pMsg);
 
-    // JMR-MODIF - Le 5 août 2005 - Ajout du code de mise à jour de la trame de fond.
-    if (GetModel() != NULL)
+            // otherwise get its parent
+            pParentComp = pParentComp->GetParent();
+        }
+
+        // if no owner model, get the next component
+        if (!pOwnerModel)
+            continue;
+
+        // remove the component
+        CODComponentSet set;
+        set.Add(pComp);
+        RemoveReferenceSymbol(&set);
+
+        // remove the child component
+        pOwnerModel->RemoveChild(pComp);
+    }
+
+    // notify about the selection change
+    if (setUpdate.GetSize() > 0)
+        OnSelectionChange(&setUpdate);
+
+    ZIProcessGraphModelViewport* pViewport = GetViewport();
+
+    // update the whole viewport
+    if (pViewport)
+        pViewport->UpdateAll();
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessGraphModelController::ValidateCutCopyOperations()
+{
+    CODComponentIterator it(GetSelection());
+
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        if (GetModel()->GetRoot()->IsBkGndMustBeRestored() == TRUE)
+        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+
+        if (pSymbol)
         {
-            CString bkGndFileName = GetModel()->GetRoot()->GetBkGndFileName();
+            if (!pSymbol->IsDoor() && !pSymbol->IsPackage() && !pSymbol->IsPage() && pSymbol->IsLocal())
+                return TRUE;
 
-            if (bkGndFileName != _T(""))
+            continue;
+        }
+
+        PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pLinkSymbol)
+        {
+            if (pLinkSymbol->IsLocal())
+                return TRUE;
+
+            continue;
+        }
+
+        ZBTextZone* pTextZone = dynamic_cast<ZBTextZone*>(pComp);
+
+        // allows the copy if the element is a text zone
+        if (pTextZone)
+            return TRUE;
+
+        CODComponent* pComponent = dynamic_cast<CODComponent*>(pComp);
+
+        // allow the copy if the selected element is a kind of component. This includes all
+        // the Mercutio symbols, however the sensitive elements were already filtered above,
+        // and thus will be rejected before the application reaches this point
+        if (pComponent)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessGraphModelController::FilterSelection(BOOL modifyFlag)
+{
+    CODComponentIterator it(GetSelection());
+    BOOL                 selectionIsModified = modifyFlag;
+
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+    {
+        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+
+        if (pSymbol)
+        {
+            if (pSymbol->IsDoor() || pSymbol->IsPackage() || pSymbol->IsPage() || !pSymbol->IsLocal())
             {
-                SetImage(bkGndFileName, GetModel()->GetRoot()->IsLogo());
+                GetSelection()->Remove(it.Get());
+                return FilterSelection(TRUE);
             }
 
-            GetModel()->GetRoot()->ResetBkGndMustBeRestored();
+            continue;
+        }
+
+        PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pLinkSymbol)
+        {
+            if (!pLinkSymbol->IsLocal())
+            {
+                GetSelection()->Remove(it.Get());
+                return FilterSelection(TRUE);
+            }
+
+            continue;
+        }
+
+        CODLabelComponent* pLabel = dynamic_cast<CODLabelComponent*>(pComp);
+
+        if (pLabel)
+        {
+            GetSelection()->Remove(it.Get());
+            return FilterSelection(selectionIsModified);
         }
     }
+
+    return selectionIsModified;
 }
-
-bool ZDProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoint& point, ZBSymbol::IEToolTipMode mode)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::RefreshSelectionProperties()
 {
-    CPoint pt(point);
-    VpDPtoLP(&pt);
-    CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(pt);
+    // refresh only if one symbol is selected
+    if (GetSelection()->GetSize() == 1)
+        if (GetSelection()->GetAt(0))
+            NotifySymbolSelected(GetSelection()->GetAt(0));
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::RefreshAllSymbols()
+{
+    ZIProcessGraphModelViewport* pViewport = GetViewport();
 
-    // If a label, reassign the hit symbol
-    if (pCompHit && ISA(pCompHit, CODLabelComponent))
-        pCompHit = reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
+    ASSERT(pViewport);
+    pViewport->UpdateAll();
 
-    if (pCompHit && ISA(pCompHit, ZBSymbol))
-        return ((ZBSymbol*)pCompHit)->OnToolTip(toolTipText, pt, mode);
+    // refresh all symbol attributes
+    ASSERT(GetRootModel());
+    GetRootModel()->RefreshSymbolAttributes(true);
+
+    // refresh also the model tree
+    RefreshModelTree();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ReleaseClipboard()
+{
+    OpenClipboard();
+    EmptyClipboard();
+    CloseClipboard();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::SetImage(const CString& fileName, BOOL isLogo)
+{
+    ZDProcessGraphModelMdl* pModel = GetRootModel();
+    ASSERT(pModel);
+
+    std::unique_ptr<SECImage> pImage(ZIProcessGraphModelView::LoadImageFromFile(fileName));
+
+    // allow the user to reset the file if it was modified, deleted or corrupted
+    if (!pImage)
+    {
+        CString message = _T("");
+        message.Format(IDS_WARN_IMGFILECORRUPTED, fileName);
+
+        const int result = AfxMessageBox(message, MB_YESNO);
+
+        if (result == 7)
+        {
+            pModel->SetBkGndFileName(_T(""));
+            return;
+        }
+        else
+        if (!isLogo)
+            OnSetBackgroundImage();
+        else
+            OnAddWatermarkModelLogo();
+
+        return;
+    }
+
+    std::unique_ptr<SECDib> pDibImage(new SECDib());
+    ASSERT(pDibImage.get());
+
+    pDibImage->ConvertImage(pImage.get());
+
+    if (!isLogo)
+    {
+        // create the component
+        CODImageComponent square;
+
+        if (square.Load(*pDibImage, FALSE))
+        {
+            square.SetType(_T("Square"));
+            square.SetSize(pDibImage->dwGetWidth(), pDibImage->dwGetHeight());
+
+            pModel->SetBackgroundComponent(square, true, true);
+            pModel->SetIsLogo(FALSE);
+        }
+    }
     else
-    if (pCompHit && ISA(pCompHit, PSS_LinkSymbol))
-        return ((PSS_LinkSymbol*)pCompHit)->OnToolTip(toolTipText, pt, mode);
-
-    return false;
-}
-
-// ******************************************************************************************************************
-// *                                Fonctions de gestion des logos et trames de fond                                *
-// ******************************************************************************************************************
-
-// **************************************** Fonctions de gestion des événements *************************************
-
-// Cette fonction est appelée lorsque l'utilisateur désire ajouter un logo a ses pages.
-void ZDProcessGraphModelController::OnAddWatermarkModelLogo()
-{
-    CString fileName;
-
-    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction AskImageFileName.
-    if (AskImageFileName(fileName) != TRUE)
     {
-        return;
+        // create the component
+        CODImageComponent logo;
+
+        if (logo.Load(*pDibImage, TRUE))
+        {
+            logo.SetType(_T("Logo"));
+            logo.SetSize(pDibImage->dwGetWidth(), pDibImage->dwGetHeight());
+            logo.MoveOrigin(10, 10);
+
+            pModel->SetBackgroundComponent(logo, true, false);
+            pModel->SetIsLogo(TRUE);
+        }
     }
 
-    // JMR-MODIF - Le 6 octobre 2005 - Dorénavant, la suite de la fonction se trouve dans SetImage.
-    SetImage(fileName, TRUE);
+    pModel->SetBkGndFileName(fileName);
+
+    // refresh the viewport
+    ASSERT(GetViewport());
+    GetViewport()->UpdateAll();
 }
-
-// Cette fonction est appelée lorsque l'entrée "Ajouter un logo" du menu doit être mise à jour.
-void ZDProcessGraphModelController::OnUpdateAddWatermarkModelLogo(CCmdUI* pCmdUI)
-{}
-
-// Cette fonction est appelée lorsque l'utilisateur désire ajouter une trame de fond a ses pages.
-void ZDProcessGraphModelController::OnSetBackgroundImage()
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ClearImage()
 {
-    CString fileName;
+    ZDProcessGraphModelMdl* pModel = GetRootModel();
+    ASSERT(pModel);
 
-    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction AskImageFileName.
-    if (AskImageFileName(fileName) != TRUE)
-    {
-        return;
-    }
+    pModel->ClearBackgroundComponent(true);
+    pModel->SetBkGndFileName(_T(""));
 
-    // JMR-MODIF - Le 20 juillet 2005 - Dorénavant, la suite de la fonction se trouve dans SetImage.
-    SetImage(fileName, FALSE);
+    // refresh the viewport
+    ASSERT(GetViewport());
+    GetViewport()->UpdateAll();
 }
-
-// Cette fonction est appelée lorsque l'entrée "Ajouter une trame de fond" du menu doit être mise à jour.
-void ZDProcessGraphModelController::OnUpdateSetBackgroundImage(CCmdUI* pCmdUI)
-{}
-
-// Cette fonction est appelée lorsque l'utilisateur désire supprimer le logo dans ses pages.
-void ZDProcessGraphModelController::OnClearWatermarkModelLogo()
-{
-    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction ClearImage.
-    ClearImage();
-}
-
-// Cette fonction est appelée lorsque l'utilisateur désire supprimer le logo dans ses pages.
-void ZDProcessGraphModelController::OnClearBackgroundImage()
-{
-    // JMR-MODIF - Le 7 octobre 2005 - Le corps de la fonction est déplaçé dans la fonction ClearImage.
-    ClearImage();
-}
-
-// ***************************************** Fonctions de gestion des fichiers **************************************
-
-// JMR-MODIF - Le 7 octobre 2005 -
-// Cette fonction permet à l'utilisateur de choisir le fichier d'image à travers une boîte de dialogue.
-BOOL ZDProcessGraphModelController::AskImageFileName(CString& fileName)
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessGraphModelController::GetImageFileName(CString& fileName)
 {
     CString title;
     VERIFY(title.LoadString(IDS_IMAGEFILE_CHOOSETITLE));
 
-    CString strRes;
-    CString strFilter;
+    CString name;
+    CString filter;
 
-    // append the "*.jpg" files filter
-    VERIFY(strRes.LoadString(IDS_EXPORTFILE_FILTERJPEG));
-    strFilter += strRes;
-    strFilter += (char)'\0';        // next string please
-    strFilter += _T("*.jpg");
-    strFilter += (char)'\0';        // last string
+    // set the "*.jpg" files filter
+    VERIFY(name.LoadString(IDS_EXPORTFILE_FILTERJPEG));
+    filter += name;
+    filter += char('\0');
+    filter += _T("*.jpg");
+    filter += char('\0');
 
-    // set the "*.gif" files filter
-    VERIFY(strRes.LoadString(IDS_EXPORTFILE_FILTERGIF));
-    strFilter += strRes;
-    strFilter += (char)'\0';        // next string please
-    strFilter += _T("*.gif");
-    strFilter += (char)'\0';        // last string
+    // append the "*.gif" files filter
+    VERIFY(name.LoadString(IDS_EXPORTFILE_FILTERGIF));
+    filter += name;
+    filter += char('\0');
+    filter += _T("*.gif");
+    filter += char('\0');
 
     // append the "*.pcx" files filter
-    VERIFY(strRes.LoadString(IDS_EXPORTFILE_FILTERPCX));
-    strFilter += strRes;
-    strFilter += (char)'\0';        // next string please
-    strFilter += _T("*.pcx");
-    strFilter += (char)'\0';        // last string
+    VERIFY(name.LoadString(IDS_EXPORTFILE_FILTERPCX));
+    filter += name;
+    filter += char('\0');
+    filter += _T("*.pcx");
+    filter += char('\0');
 
     // append the "*.dib" files filter
-    VERIFY(strRes.LoadString(IDS_EXPORTFILE_FILTERDIB));
-    strFilter += strRes;
-    strFilter += (char)'\0';        // next string please
-    strFilter += _T("*.dib");
-    strFilter += (char)'\0';        // last string
+    VERIFY(name.LoadString(IDS_EXPORTFILE_FILTERDIB));
+    filter += name;
+    filter += char('\0');
+    filter += _T("*.dib");
+    filter += char('\0');
 
     // append the "*.tga" files filter
-    VERIFY(strRes.LoadString(IDS_EXPORTFILE_FILTERTGA));
-    strFilter += strRes;
-    strFilter += (char)'\0';        // next string please
-    strFilter += _T("*.tga");
-    strFilter += (char)'\0';        // last string
+    VERIFY(name.LoadString(IDS_EXPORTFILE_FILTERTGA));
+    filter += name;
+    filter += char('\0');
+    filter += _T("*.tga");
+    filter += char('\0');
 
     // append the "*.tif" files filter
-    VERIFY(strRes.LoadString(IDS_EXPORTFILE_FILTERTIF));
-    strFilter += strRes;
-    strFilter += (char)'\0';        // next string please
-    strFilter += _T("*.tif");
-    strFilter += (char)'\0';        // last string
+    VERIFY(name.LoadString(IDS_EXPORTFILE_FILTERTIF));
+    filter += name;
+    filter += char('\0');
+    filter += _T("*.tif");
+    filter += char('\0');
 
-    PSS_FileDialog fileDialog(title, strFilter, 6, _T(""));
+    PSS_FileDialog fileDialog(title, filter, 6, _T(""));
 
     if (fileDialog.DoModal() == IDCANCEL)
     {
@@ -5421,103 +1355,3686 @@ BOOL ZDProcessGraphModelController::AskImageFileName(CString& fileName)
     fileName = fileDialog.GetFileName();
     return TRUE;
 }
-
-// ******************************************* Fonctions de gestion des images **************************************
-
-// JMR-MODIF - Le 20 juillet 2005 - Ajout de la fonction SetImage, afin de pouvoir inclure la trame de fond.
-void ZDProcessGraphModelController::SetImage(CString fileName, BOOL IsLogo)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateNode(IODNode&    node,
+                                                  bool        useColor,
+                                                  COLORREF    color,
+                                                  std::size_t animateCounter)
 {
-    ZDProcessGraphModelMdl* pModel = GetRootModel();
-    ASSERT(pModel);
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
 
-    SECImage* pImage = ZIProcessGraphModelView::LoadImageFromFile(fileName);
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
 
-    // JMR-MODIF - Le 5 août 2005 - Ajout du code pour permettre à l'utilisateur de réattribuer le fichier si celui-ci
-    // a été déplaçé, supprimé ou endommagé.
-    if (!pImage)
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    // add the component
+    m_AnimatedNodes.Add(&node);
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateNodes(CODNodeArray& nodes,
+                                                   bool          useColor,
+                                                   COLORREF      color,
+                                                   std::size_t   animateCounter)
+{
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
+
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
+
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    const int nodeCount = nodes.GetSize();
+
+    // add the components
+    for (int i = 0; i < nodeCount; ++i)
+        m_AnimatedNodes.Add(nodes.GetAt(i));
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateEdge(IODEdge&    edge,
+                                                  bool        useColor,
+                                                  COLORREF    color,
+                                                  std::size_t animateCounter)
+{
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
+
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
+
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    // add the component
+    m_AnimatedEdges.Add(&edge);
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateEdges(CODEdgeArray& edges,
+                                                   bool          useColor,
+                                                   COLORREF      color,
+                                                   std::size_t   animateCounter)
+{
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
+
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
+
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    const int edgeCount = edges.GetSize();
+
+    // add the components
+    for (int i = 0; i < edgeCount; ++i)
+        m_AnimatedEdges.Add(edges.GetAt(i));
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateSymbol(CODSymbolComponent& symbol,
+                                                  bool                  useColor,
+                                                  COLORREF              color,
+                                                  size_t                animateCounter)
+{
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
+
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
+
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    // add the component
+    m_AnimatedComponents.Add(&symbol);
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateSymbols(CODComponentSet& set,
+                                                     bool             useColor,
+                                                     COLORREF         color,
+                                                     std::size_t      animateCounter)
+{
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
+
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
+
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    // copy symbol to set
+    CODComponentIterator it(&set);
+
+    for (CODComponent* pSrcComp = it.GetFirst(); pSrcComp; pSrcComp = it.GetNext())
+        m_AnimatedComponents.Add(pSrcComp);
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateLink(CODLinkComponent& link,
+                                                  bool              useColor,
+                                                  COLORREF          color,
+                                                  std::size_t       animateCounter)
+{
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
+
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
+
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    // add the component
+    m_AnimatedComponents.Add(&link);
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateLinks(CODComponentSet& set,
+                                                   bool             useColor,
+                                                   COLORREF         color,
+                                                   std::size_t      animateCounter)
+{
+    if (useColor)
+        m_AnimateSeconds = animateCounter;
+    else
+        m_AnimateCounter = animateCounter;
+
+    m_AnimatedUseColor = useColor;
+    m_AnimatedColor    = color;
+
+    // kill the timer if necessary
+    if (m_Timer)
+        EndAnimateTimer();
+
+    m_TimerStartTime = PSS_Date::GetCurrentTime();
+
+    // copy symbol to set
+    CODComponentIterator it(&set);
+
+    for (CODComponent* pSrcComp = it.GetFirst(); pSrcComp; pSrcComp = it.GetNext())
+        m_AnimatedComponents.Add(pSrcComp);
+
+    // start the timer
+    m_Timer = SetTimer(ANIMATE_TIMER, 50, NULL);
+}
+//---------------------------------------------------------------------------
+CODDeleteCommand* PSS_ProcessGraphModelController::ExecuteDeleteCommand(CODComponentSet* pCompSet)
+{
+    if (pCompSet && !m_CutCommand)
     {
-        CString m_StrMsg = _T("");
-        m_StrMsg.Format(IDS_WARN_IMGFILECORRUPTED, fileName);
+        ZDProcessGraphModelMdl* pModel = GetModel();
 
-        int myResult = AfxMessageBox(m_StrMsg, MB_YESNO);
+        // iterate through all components and call the PreDelete method.
+        // If return false, remove the component from the set
+        for (int i = 0; i < pCompSet->GetSize(); ++i)
+        {
+            CODComponent* pComp   = pCompSet->GetAt(i);
+            ZBSymbol*     pSymbol = dynamic_cast<ZBSymbol*>(pComp);
 
-        if (myResult == 7)
-        {
-            pModel->SetBkGndFileName(_T(""));
-            return;
-        }
-        else
-        {
-            if (!IsLogo)
+            // is a symbol?
+            if (pSymbol)
             {
-                OnSetBackgroundImage();
+                // check if pre-delete returns ok
+                if (!pSymbol->OnPreDelete(pModel, this))
+                {
+                    // remove component from the set
+                    pCompSet->RemoveAt(i);
+                    --i;
+                }
+
+                continue;
+            }
+
+            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+            // is a link symbol?
+            if (pLinkSymbol)
+                // check if pre-delete returns ok
+                if (!pLinkSymbol->OnPreDelete(pModel, this))
+                {
+                    // remove component from the set
+                    pCompSet->RemoveAt(i);
+                    --i;
+                }
+        }
+
+        // delete the remaining symbols
+        CODComponentSet* setCopy = GetSelection();
+        RemoveReferenceSymbol(setCopy);
+    }
+
+    return CODController::ExecuteDeleteCommand(pCompSet);
+}
+//---------------------------------------------------------------------------
+CODInsertCommand* PSS_ProcessGraphModelController::ExecuteInsertCommand(CODComponent* pComp, const BOOL allowDuplicates)
+{
+    // copy selected components
+    if (m_setSelection.GetSize())
+        CopySelectionToSet();
+
+    CODInsertCommand* pCmd = CODController::ExecuteInsertCommand(pComp, allowDuplicates);
+
+    ClearSymbolAddedSet();
+    CopySymbolToSymbolAddedSet(pComp);
+
+    return pCmd;
+}
+//---------------------------------------------------------------------------
+CODInsertCommand* PSS_ProcessGraphModelController::ExecuteInsertCommand(CODComponentSet* pCompSet,
+                                                                        const BOOL       allowDuplicates)
+{
+    // copy selected components
+    if (m_setSelection.GetSize())
+        CopySelectionToSet();
+
+    CODInsertCommand* pCmd = CODController::ExecuteInsertCommand(pCompSet, allowDuplicates);
+
+    ClearSymbolAddedSet();
+    CopySymbolsToSymbolAddedSet(pCompSet);
+
+    return pCmd;
+}
+//---------------------------------------------------------------------------
+CODLinkCommand* PSS_ProcessGraphModelController::ExecuteLinkCommand(const CODPointArray& pointArray,
+                                                                    CODPortComponent*    pSourcePort,
+                                                                    CODPortComponent*    pTargetPort,
+                                                                    CODEndpoint*         pSourceEndpoint,
+                                                                    CODEndpoint*         pTargetEndpoint)
+{
+    CODLinkCommand* pCmd = CODController::ExecuteLinkCommand(pointArray,
+                                                             pSourcePort,
+                                                             pTargetPort,
+                                                             pSourceEndpoint,
+                                                             pTargetEndpoint);
+
+    return pCmd;
+}
+//---------------------------------------------------------------------------
+CODLinkCommand* PSS_ProcessGraphModelController::ExecuteLinkCommand(CODLinkComponent*    pLinkComp,
+                                                                    const CODPointArray& pointArray,
+                                                                    CODPortComponent*    pSourcePort,
+                                                                    CODPortComponent*    pTargetPort)
+{
+    CODLinkCommand* pCmd = CODController::ExecuteLinkCommand(pLinkComp, pointArray, pSourcePort, pTargetPort);
+
+    ClearSymbolAddedSet();
+    CopySymbolToSymbolAddedSet(pLinkComp);
+
+    return pCmd;
+}
+//---------------------------------------------------------------------------
+CODLinkCommand* PSS_ProcessGraphModelController::ExecuteLinkCommand(CODLinkComponent* pLinkComp,
+                                                                    CODPortComponent* pSourcePort,
+                                                                    CODPortComponent* pTargetPort)
+{
+    CODLinkCommand* pCmd = CODController::ExecuteLinkCommand(pLinkComp, pSourcePort, pTargetPort);
+
+    ClearSymbolAddedSet();
+    CopySymbolToSymbolAddedSet(pLinkComp);
+
+    return pCmd;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnInitialUpdate()
+{
+    ReleaseClipboard();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnModelDocumentHasChanged()
+{
+    // if an element is selected, do nothing
+    if (GetSelection()->GetSize() > 0)
+        return;
+
+    // is the root model?
+    if (GetModel() != GetRootModel())
+        return;
+
+    // unselect all components to avoid problems
+    UnselectAllComponents();
+
+    return;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnStartEditProperty()
+{
+    if (m_IsEditingSymbolName || m_IsEditingSymbolComment)
+        EndTextEdit(0, m_SavedEditPosition);
+
+    return;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSelectionChange(CODComponentSet* pChangedSet)
+{
+    CODController::OnSelectionChange(pChangedSet);
+
+    // indicate that the selection has changed
+    m_SelectionChanged = true;
+
+    // used to keep the last selected element. The user can therefore determine if he wants to edit the label
+    if (GetSelection()->GetSize() == 1)
+    {
+        if (ISA(GetSelection()->GetAt(0), CODSymbolComponent))
+            m_LastSelectedElement = static_cast<CODSymbolComponent*>(GetSelection()->GetAt(0));
+        else
+        if (ISA(GetSelection()->GetAt(0), CODLabelComponent))
+            m_LastSelectedElement = static_cast<CODLabelComponent*>(GetSelection()->GetAt(0))->GetOwner();
+        else
+            m_LastSelectedElement = NULL;
+
+        return;
+    }
+
+    m_LastSelectedElement = NULL;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
+{
+    ZDProcessGraphModelMdl* pModel          = GetModel();
+    ZBSymbolLogObserverMsg* pLogObserverMsg = dynamic_cast<ZBSymbolLogObserverMsg*>(pMsg);
+
+    if (pLogObserverMsg)
+    {
+        if (pModel)
+        {
+            CODComponentSet* pSet = pModel->GetRoot()->FindSymbol(pLogObserverMsg->GetErrorLine().GetSymbolName(),
+                                                                  pLogObserverMsg->GetErrorLine().GetSymbolPath(),
+                                                                  true,
+                                                                  true,
+                                                                  true);
+
+            if (pSet && pSet->GetSize() > 0)
+            {
+                COLORREF AnimatedColor;
+
+                if (pLogObserverMsg->GetErrorLine().GetErrorType() == 1)
+                    AnimatedColor = defCOLOR_RED;
+                else
+                    AnimatedColor = defCOLOR_GREEN;
+
+                // certify that the first symbol is visible at least
+                EnsureSymbolVisible(pSet->GetAt(0));
+                AnimateSymbols(*pSet, true, AnimatedColor, 10);
             }
             else
             {
-                OnAddWatermarkModelLogo();
+                PSS_MsgBox mBox;
+                mBox.Show(IDS_SYMBOLNOTFOUND_USESEARCH, MB_OK);
             }
+        }
+    }
+    else
+    {
+        PSS_DocumentObserverMsg* pDocObserverMsg = dynamic_cast<PSS_DocumentObserverMsg*>(pMsg);
+
+        if (pDocObserverMsg)
+        {
+            ZDProcessGraphModelDoc* pObserverDocument =
+                    dynamic_cast<ZDProcessGraphModelDoc*>(pDocObserverMsg->GetDocument());
+
+            if (pObserverDocument && pObserverDocument == GetDocument())
+                switch (pDocObserverMsg->GetMessageID())
+                {
+                    case UM_FRAMEHASBEENACTIVATED:
+                        AssignSymbolHit();
+
+                        // notify about the new selection
+                        NotifySymbolSelected(m_pSymbolHit);
+                        break;
+                }
+            else
+                NotifyAllObservers(pMsg);
+        }
+    }
+
+    // update the background image
+    if (pModel)
+    {
+        ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+
+        if (pRoot && pRoot->IsBkGndMustBeRestored())
+        {
+            const CString fileName = pRoot->GetBkGndFileName();
+
+            if (!fileName.IsEmpty())
+                SetImage(fileName, pRoot->IsLogo());
+
+            pRoot->ResetBkGndMustBeRestored();
+        }
+    }
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoint& point, ZBSymbol::IEToolTipMode mode)
+{
+    CPoint pt(point);
+    VpDPtoLP(&pt);
+
+    CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(pt);
+
+    // if a label, reassign the hit symbol
+    if (pCompHit && ISA(pCompHit, CODLabelComponent))
+        pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
+
+    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompHit);
+
+    if (pSymbol)
+        return pSymbol->OnToolTip(toolTipText, pt, mode);
+
+    PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+    if (pLinkSymbol)
+        return pLinkSymbol->OnToolTip(toolTipText, pt, mode);
+
+    return false;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
+{
+    // if in format painter, forward the process to the ApplyFormatToSymbol function
+    if (m_IsInFormatPainter)
+    {
+        ApplyFormatToSymbol(pComp);
+        return;
+    }
+
+    ZDProcessGraphModelDoc* pDoc    = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    ZBSymbol*               pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+
+    if (pSymbol)
+    {
+        ZBPropertyObserverMsg msg   (pSymbol);
+        ZBSymbolObserverMsg   symMsg(ZBSymbolObserverMsg::ElementSelected, pSymbol);
+
+        // notify direct observers
+        NotifyAllObservers(&msg);
+        NotifyAllObservers(&symMsg);
+
+        // notify all document observers
+        if (pDoc)
+        {
+            pDoc->NotifyAllObservers(&msg);
+            pDoc->NotifyAllObservers(&symMsg);
         }
 
         return;
     }
 
-    SECDib* pDibImage = new SECDib();
-    ASSERT(pDibImage);
+    PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
 
-    pDibImage->ConvertImage(pImage);
-
-    if (!IsLogo)
+    if (pLinkSymbol)
     {
-        //Create the component
-        CODImageComponent Square;
+        ZBPropertyObserverMsg msg   (pLinkSymbol);
+        ZBSymbolObserverMsg   symMsg(ZBSymbolObserverMsg::ElementSelected, pLinkSymbol);
 
-        if (Square.Load(*pDibImage, FALSE))
+        // notify direct observers
+        NotifyAllObservers(&msg);
+        NotifyAllObservers(&symMsg);
+
+        // notify all document observers
+        if (pDoc)
         {
-            Square.SetType(_T("Square"));
-            Square.SetSize(pDibImage->dwGetWidth(), pDibImage->dwGetHeight());
+            pDoc->NotifyAllObservers(&msg);
+            pDoc->NotifyAllObservers(&symMsg);
+        }
 
-            pModel->SetBackgroundComponent(Square, true, true);
-            pModel->SetIsLogo(FALSE);
+        return;
+    }
+
+    ZBPropertyObserverMsg msg   (NULL);
+    ZBSymbolObserverMsg   symMsg(ZBSymbolObserverMsg::ElementSelected, NULL);
+
+    // Notify direct observers
+    NotifyAllObservers(&msg);
+    NotifyAllObservers(&symMsg);
+
+    // notify all document observers
+    if (pDoc)
+    {
+        pDoc->NotifyAllObservers(&msg);
+        pDoc->NotifyAllObservers(&symMsg);
+    }
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessGraphModelController::StartTextEdit(UINT flags, CPoint point)
+{
+    CPoint ptLog = point;
+    VpDPtoLP(&ptLog);
+
+    m_pCompHit                    = GetCanvasVp()->ComponentHitTest(ptLog);
+    ZBSymbol*         pSymbol     =                  dynamic_cast<ZBSymbol*>(m_pCompHit);
+    PSS_LinkSymbol*   pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pCompHit);
+    CODTextComponent* pTextComp   = NULL;
+
+    if (pSymbol || pLinkSymbol)
+    {
+        CODEditProperties* pEditProps      = static_cast<CODEditProperties*>(m_pCompHit->GetProperty(OD_PROP_EDIT));
+        CODEditProperties* pModelEditProps = static_cast<CODEditProperties*>(GetCanvasModel()->GetProperty(OD_PROP_EDIT));
+
+        if (GetCanvasModel()->GetDesignMode() || (!pEditProps->IsReadOnly() && !pModelEditProps->IsReadOnly()))
+        {
+            m_pSymbolHit = static_cast<CODSymbolComponent*>(m_pCompHit);
+
+            if (pSymbol)
+            {
+                // can the symbol name be edited?
+                if (pSymbol->SymbolNameTextEditReadOnly())
+                    return FALSE;
+
+                // edit the symbol name
+                pTextComp = pSymbol->GetSymbolNameTextEdit();
+            }
+            else
+            if (pLinkSymbol)
+            {
+                // can the symbol name be edited?
+                if (pLinkSymbol->SymbolNameTextEditReadOnly())
+                    return FALSE;
+
+                // edit the symbol name
+                pTextComp = pLinkSymbol->GetSymbolNameTextEdit();
+            }
+
+            // is in the name region?
+            if (pTextComp)
+            {
+                CODRgn rgn = pTextComp->GetRgn();
+
+                // not in region, reset pTextComp
+                if (!rgn.PtInRegion(point, 4))
+                    pTextComp = NULL;
+            }
+
+            if (!pTextComp)
+                if (pSymbol)
+                {
+                    // can the symbol comment be edited?
+                    if (pSymbol->CommentTextEditReadOnly())
+                        return FALSE;
+
+                    // edit the symbol comment
+                    pTextComp = pSymbol->GetCommentTextEdit();
+                }
+                else
+                if (pLinkSymbol)
+                {
+                    // can the symbol comment be edited?
+                    if (pLinkSymbol->CommentTextEditReadOnly())
+                        return FALSE;
+
+                    // edit the symbol comment
+                    pTextComp = pLinkSymbol->GetCommentTextEdit();
+                }
+
+            // is in the comment region?
+            if (pTextComp)
+            {
+                CODRgn rgn = pTextComp->GetRgn();
+
+                // not in region, reset pTextComp
+                if (!rgn.PtInRegion(point, 4))
+                    pTextComp = NULL;
+            }
         }
     }
     else
     {
-        //Create the component
-        CODImageComponent Logo;
+        m_pSymbolHit = NULL;
+        return CODController::StartTextEdit(flags, point);
+    }
 
-        if (Logo.Load(*pDibImage, TRUE))
+    BOOL editing = FALSE;
+
+    // found a component to edit, and not already editing it?
+    if (pTextComp && !pTextComp->IsEditing())
+    {
+        CODEditProperties* pEditProps = static_cast<CODEditProperties*>(pTextComp->GetProperty(OD_PROP_EDIT));
+        ASSERT_VALID(pEditProps);
+
+        if (pEditProps->IsReadOnly())
+            return FALSE;
+
+        CODComponentSet setUpdate;
+        setUpdate.Add(m_pCompHit);
+
+        if (pTextComp != m_pTextEdit)
         {
-            Logo.SetType(_T("Logo"));
-            Logo.SetSize(pDibImage->dwGetWidth(), pDibImage->dwGetHeight());
-            Logo.MoveOrigin(10, 10);
+            EndTextEdit(0, m_SavedEditPosition);
 
-            pModel->SetBackgroundComponent(Logo, true, false);
-            pModel->SetIsLogo(TRUE);
+            m_pTextEdit = pTextComp;
+            m_pTextEdit->AddRef();
+
+            editing = m_pTextEdit->BeginEdit(GetCanvasVp());
+
+            if (editing)
+                GetCanvasVp()->UpdateComponents(&setUpdate);
         }
     }
 
-    delete pDibImage;
-    delete pImage;
-
-    // JMR-MODIF - Le 5 août 2005 - Ajout du code d'initialisation du nom du fichier de tramage.
-    pModel->SetBkGndFileName(fileName);
-
-    // Refresh the viewport
-    ASSERT(GetViewport());
-    GetViewport()->UpdateAll();
+    return editing;
 }
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::EndTextEdit(UINT nFlags, CPoint point)
+{
+    bool isNameValid = true;
 
-// JMR-MODIF - Le 7 octobre 2005 - Cette fonction permet de nettoyer l'arrière plan.
-void ZDProcessGraphModelController::ClearImage()
+    if (m_pTextEdit)
+    {
+        const CString value = m_pTextEdit->GetEditText();
+
+        // get the label or edit text owner
+        CODComponent* pOwner = NULL;
+
+        // check label component, because it derives from text component
+        if (ISA(m_pTextEdit, CODLabelComponent))
+            pOwner = static_cast<CODLabelComponent*>(m_pTextEdit)->GetOwner();
+        else
+        if (ISA(m_pTextEdit, CODTextComponent))
+            pOwner = static_cast<CODTextComponent*>(m_pTextEdit)->GetParent();
+
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pOwner);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pOwner);
+
+        if (pSymbol || pLinkSymbol)
+        {
+            if (m_IsEditingSymbolName)
+            {
+                if (value.IsEmpty())
+                {
+                    PSS_MsgBox mBox;
+                    mBox.Show(IDS_SYMBOLNAME_EMPTY, MB_OK);
+                    isNameValid = false;
+                }
+
+                ZDProcessGraphModelMdl* pModel = GetModel();
+                ZDProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
+
+                if (pRoot)
+                    if (pSymbol && pSymbol->GetSymbolName() != value)
+                    {
+                        // check if new name is valid
+                        if (pSymbol->IsNewNameValid(value))
+                            pSymbol->SetSymbolName(value);
+                        else
+                            isNameValid = false;
+                    }
+                    else
+                    if (pLinkSymbol && pLinkSymbol->GetSymbolName() != value)
+                        // check if new name is valid
+                        if (pLinkSymbol->IsNewNameValid(value))
+                            pLinkSymbol->SetSymbolName(value);
+                        else
+                            isNameValid = false;
+            }
+            else
+            if (m_IsEditingSymbolComment)
+                if (pSymbol)
+                    pSymbol->SetSymbolComment(value);
+                else
+                    pLinkSymbol->SetSymbolComment(value);
+
+            // if the name is valid and the edition control will be left, close the editor
+            if (isNameValid)
+            {
+                m_IsEditingSymbolName    = false;
+                m_IsEditingSymbolComment = false;
+            }
+        }
+    }
+
+    // call the base class if the new name is valid
+    if (isNameValid)
+        CODController::EndTextEdit(nFlags, point);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::InsertSymbol(UINT flags, CPoint point)
+{
+    if (m_pInsert)
+        InsertSymbol(m_pInsert, flags, point, true);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::EndLink(UINT flags, CPoint point)
+{
+    // save the inserted component pointer
+    CODComponent* pComp = m_pInsert;
+
+    CODController::EndLink(flags, point);
+
+    // reset the current command identifier
+    m_CurrentCommandID = 0;
+
+    CDocument* pDocument = GetDocument();
+
+    // set modified flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+
+    PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+    if (pLinkSymbol)
+    {
+        ZDProcessGraphModelMdl* pModel = GetModel();
+
+        // assign the path
+        if (pModel)
+            pLinkSymbol->SetAbsolutePath(pModel->GetAbsolutePath());
+
+        // assign by default the unique reference number
+        if (GetRootModel())
+        {
+            const int refNumber = GetRootModel()->GetNextAvailableReferenceNumber();
+            pLinkSymbol->SetSymbolReferenceNumber(refNumber);
+
+            ZUBuildSymbolNewName buildNewName;
+
+            // get the next available name
+            pLinkSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
+        }
+
+        // call for the post-creation
+        if (!pLinkSymbol->OnPostCreation(pModel, this))
+        {
+            // delete the object
+            CancelLink(flags, point);
+            return;
+        }
+
+        // refresh the attribute area and redraw the symbol
+        pLinkSymbol->RefreshAttributeTextArea(true);
+
+        if (m_NewSymbolCreated && pLinkSymbol->IsLocal())
+        {
+            // save the position
+            m_SavedEditPosition = point;
+
+            // edit name directly
+            EditName(pComp);
+        }
+
+        // notify new selection
+        NotifySymbolSelected(pComp);
+
+        // notify that a symbol was added
+        OnSymbolAdded(&m_SymbolAddedSet);
+
+        // reset the creation flag
+        m_NewSymbolCreated = false;
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
+{
+    DetermineReferencedSymbol(pCompSet);
+
+    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    ASSERT(pDoc);
+
+    // notify observers for all added symbols
+    CODComponentIterator it(pCompSet);
+
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+    {
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pSymbol || pLinkSymbol)
+        {
+            // build the message
+            ZBDocObserverMsg docMsg(ZBDocObserverMsg::AddElement,
+                                    NULL,
+                                    GetModel(),
+                                    static_cast<CODSymbolComponent*>(pComp));
+
+            CWnd* pMainWnd = AfxGetMainWnd();
+            ASSERT(pMainWnd);
+            pMainWnd->SendMessageToDescendants(UM_ELEMENTADDEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
+
+            // call the utility class for manipulating dynamic attributes and
+            // assign required dynamic properties on new symbol
+            if (pDoc->HasDynamicPropertiesManager())
+                if (pSymbol)
+                    ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(),
+                                                                                  pSymbol);
+                else
+                    ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(),
+                                                                                  pLinkSymbol);
+        }
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSymbolDuplicated(CODComponentSet* pCompSet)
+{
+    int                  index        = 0;
+    int                  copySetCount = m_CopySet.GetSize();
+    CODComponentIterator it(pCompSet);
+
+    // iterate through added elements and change their names. If symbols have child components,
+    // asks the user to duplicate sub-components. Notify observers for all added symbols
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext(), ++index)
+    {
+        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+
+        if (pSymbol)
+        {
+            if (copySetCount > index)
+            {
+                // get the matching source symbol
+                ZBSymbol* pSrcSymbol = dynamic_cast<ZBSymbol*>(m_CopySet.GetAt(index));
+
+                if (pSrcSymbol)
+                    pSymbol->CopySymbolDefinitionFrom(*pSrcSymbol);
+            }
+
+            const int refNumber = GetRootModel()->GetNextAvailableReferenceNumber();
+            pSymbol->SetSymbolReferenceNumber(refNumber);
+
+            ZUBuildSymbolNewName buildNewName(pSymbol->GetSymbolName());
+
+            // get the next available name
+            pSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
+
+            continue;
+        }
+
+        PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pLinkSymbol)
+        {
+            if (copySetCount > index)
+            {
+                // get the matching source symbol
+                PSS_LinkSymbol* pSrcLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(m_CopySet.GetAt(index));
+
+                if (pSrcLinkSymbol)
+                    pLinkSymbol->CopySymbolDefinitionFrom(*pSrcLinkSymbol);
+            }
+
+            const int refNumber = GetRootModel()->GetNextAvailableReferenceNumber();
+            pLinkSymbol->SetSymbolReferenceNumber(refNumber);
+
+            ZUBuildSymbolNewName buildNewName(pLinkSymbol->GetSymbolName());
+
+            // get the next available name
+            pLinkSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
+        }
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnPostCutPasteOperation(CODComponentSet* pCompSet)
+{}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AssignSymbolHit()
+{
+    CODComponentSet* pSelection = GetSelection();
+
+    if (!pSelection || pSelection->GetSize() != 1)
+    {
+        m_pSymbolHit = NULL;
+        return;
+    }
+
+    if (ISA(pSelection->GetAt(0), ZBSymbol) || ISA(pSelection->GetAt(0), PSS_LinkSymbol))
+        m_pSymbolHit = static_cast<CODSymbolComponent*>(pSelection->GetAt(0));
+    else
+    if (ISA(pSelection->GetAt(0), CODLabelComponent))
+        // select the symbol behind
+        m_pSymbolHit = static_cast<CODLabelComponent*>(GetSelection()->GetAt(0))->GetOwner();
+    else
+        m_pSymbolHit = NULL;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AssignLabelHit()
+{
+    CODComponentSet* pSelection = GetSelection();
+
+    if (!pSelection || pSelection->GetSize() != 1)
+    {
+        m_pSymbolHit = NULL;
+        return;
+    }
+
+    if (ISA(pSelection->GetAt(0), CODLabelComponent))
+    {
+        m_pLabelHit = static_cast<CODLabelComponent*>(GetSelection()->GetAt(0));
+
+        // select the symbol behind
+        m_pSymbolHit = m_pLabelHit->GetOwner();
+    }
+    else
+        m_pLabelHit = NULL;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::DetermineReferencedSymbol(CODComponentSet* pCompSet)
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+    ZDProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
+    ASSERT(pRoot);
+
+    CODComponentIterator it(&m_CopySet);
+
+    // for each symbol coming from the copy source, locate the copied symbol
+    for (CODComponent* pSrcComp = it.GetFirst(); pSrcComp; pSrcComp = it.GetNext())
+    {
+        ZBSymbol* pSrcSymbol = dynamic_cast<ZBSymbol*>(pSrcComp);
+
+        if (pSrcSymbol)
+        {
+            CODComponentIterator itSym(pCompSet);
+
+            for (CODComponent* pComp = itSym.GetFirst(); pComp; pComp = itSym.GetNext())
+            {
+                ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+
+                if (pSymbol)
+                    if (!pSrcSymbol->GetSymbolName().IsEmpty() &&
+                         pSrcSymbol->GetSymbolName() == pSymbol->GetSymbolName())
+                    {
+                        pSymbol->CopySymbolDefinitionFrom(*pSrcSymbol);
+
+                        // set a new reference number
+                        pSymbol->SetSymbolReferenceNumber(pRoot->GetNextAvailableReferenceNumber());
+
+                        // assign the reference
+                        pSymbol->AssignReferenceSymbol(pSrcSymbol);
+
+                        // set symbol as a copy
+                        pSymbol->SetIsCopy();
+                    }
+            }
+
+            continue;
+        }
+
+        PSS_LinkSymbol* pSrcLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pSrcComp);
+
+        if (pSrcLinkSymbol)
+        {
+            CODComponentIterator itSym(pCompSet);
+
+            for (CODComponent* pComp = itSym.GetFirst(); pComp; pComp = itSym.GetNext())
+            {
+                PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+                if (pLinkSymbol)
+                    if (!pSrcLinkSymbol->GetSymbolName().IsEmpty() &&
+                         pSrcLinkSymbol->GetSymbolName() == pLinkSymbol->GetSymbolName())
+                    {
+                        pLinkSymbol->CopySymbolDefinitionFrom(*pSrcLinkSymbol);
+
+                        // set a new reference number
+                        pLinkSymbol->SetSymbolReferenceNumber(pRoot->GetNextAvailableReferenceNumber());
+
+                        // assign the reference
+                        pLinkSymbol->AssignReferenceSymbol(pSrcLinkSymbol);
+
+                        // set symbol as a copy
+                        pLinkSymbol->SetIsCopy();
+                    }
+            }
+        }
+    }
+
+    // update symbols
+    GetVp()->DrawComponents(pCompSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCompSet)
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+    CODComponentIterator    it(pCompSet);
+
+    // iterate through components and detach symbol observers
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+    {
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pSymbol || pLinkSymbol)
+        {
+            if (pSymbol)
+                pSymbol->RemoveReferenceSymbol();
+            else
+            if (pLinkSymbol)
+                pLinkSymbol->RemoveReferenceSymbol();
+
+            CWnd* pMainWnd = AfxGetMainWnd();
+            ASSERT(pMainWnd);
+
+            // build the message
+            ZBDocObserverMsg docMsg(ZBDocObserverMsg::RemoveElement, NULL, pModel, static_cast<CODSymbolComponent*>(pComp));
+            pMainWnd->SendMessageToDescendants(UM_ELEMENTREMOVEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
+        }
+    }
+}
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(ZBSymbol* pSymbol)
+{
+    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+
+    if (pDocument)
+    {
+        ZDProcessGraphModelMdl* pModel       = pDocument->GetModel();
+        ZDProcessGraphModelMdl* pSymbolModel = pModel ? pModel->GetSymbolModel(pSymbol) : NULL;
+
+        // if can't activate a view with model name, create a new view
+        if (pSymbolModel)
+        {
+            ZIProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
+
+            if (pViewport)
+            {
+                CODComponentSet compSet;
+                compSet.Add(pSymbol);
+                pViewport->CenterOnComponents(&compSet);
+            }
+
+            return pViewport;
+        }
+    }
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol)
+{
+    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+
+    if (pDocument)
+    {
+        ZDProcessGraphModelMdl* pModel       = pDocument->GetModel();
+        ZDProcessGraphModelMdl* pSymbolModel = pModel ? pModel->GetLinkSymbolModel(pSymbol) : NULL;
+
+        // if can't activate a view with model name, create a new view
+        if (pSymbolModel)
+        {
+            ZIProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
+
+            if (pViewport)
+            {
+                CODComponentSet compSet;
+                compSet.Add(pSymbol);
+                pViewport->CenterOnComponents(&compSet);
+            }
+
+            return pViewport;
+        }
+    }
+
+    return NULL;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::CopySelectionToSet()
+{
+    ClearSelectionToSet();
+
+    CODComponentIterator it(&m_setSelection);
+
+    for (CODComponent* pSrcComp = it.GetFirst(); pSrcComp; pSrcComp = it.GetNext())
+        m_CopySet.Add(pSrcComp);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::CopySymbolsToSymbolAddedSet(CODComponentSet* pCompSet)
+{
+    if (!pCompSet)
+        return;
+
+    CODComponentIterator it(pCompSet);
+
+    // copy all pointers
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+        CopySymbolToSymbolAddedSet(pComp);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::CopyToClipboardSet(CODComponentSet* pCompSet)
+{
+    ASSERT(pCompSet);
+
+    if (pCompSet && pCompSet->GetSize() > 0)
+    {
+        EmptyClipboardSet();
+
+        // copy selected components to clipboard using custom clipboard format
+        StoreComponentsToSet(*pCompSet);
+
+        OpenClipboard();
+        EmptyClipboard();
+
+        CSharedFile file;
+        CArchive    ar(&file, CArchive::store);
+
+        StoreComponents(ar, *pCompSet);
+
+        ar.Close();
+
+        ::SetClipboardData(m_cfCanvas, file.Detach());
+
+        // copy selected components to clipboard in enhanced metafile format
+        if (ClipboardEnhMetafileEnabled())
+        {
+            std::unique_ptr<CMetaFileDC> pMetaDC(GetCanvasVp()->CreateMetafile(*pCompSet));
+
+            if (pMetaDC.get())
+            {
+                HENHMETAFILE hMetaFile = pMetaDC->CloseEnhanced();
+                ::SetClipboardData(CF_ENHMETAFILE, hMetaFile);
+            }
+        }
+
+        CloseClipboard();
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::EmptyClipboardSet()
+{
+    m_CutSet.RemoveAll();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::StoreComponentsToSet(const CODComponentSet& compSet)
+{
+    CODComponentSet primarySet;
+    primarySet.Append(compSet);
+
+    const int compCount = compSet.GetSize();
+
+    // include labels and contained objects
+    for (int i = 0; i < compCount; ++i)
+    {
+        CODComponent* pComp = compSet.GetAt(i);
+
+        switch (m_state)
+        {
+            case OD_MOVE_START:
+            case OD_MOVING:       pComp->GetTranslateSet(primarySet); break;
+            case OD_ROTATE_START:
+            case OD_ROTATING:     pComp->GetRotateSet(primarySet);    break;
+            case OD_SCALE_START:
+            case OD_SCALING:      pComp->GetScaleSet(primarySet);     break;
+        }
+    }
+
+    CODConnectionSet movingConnectionSet;
+    const int        primaryCount = primarySet.GetSize();
+
+    // get all connections affected by symbols that are moving
+    for (int i = 0; i < primaryCount; ++i)
+    {
+        CODSymbolComponent* pSymbol = dynamic_cast<CODSymbolComponent*>(primarySet.GetAt(i));
+
+        if (pSymbol)
+            pSymbol->GetMovingConnections(movingConnectionSet);
+    }
+
+    CODComponentSet dependentSet;
+    const int       movingConnectionCount = movingConnectionSet.GetSize();
+
+    // check moving connections and extract the symbols. Affected Symbols which
+    // are not already included in the primary set are added to the dependent
+    // symbol set
+    for (int connectIndex = 0; connectIndex < movingConnectionCount; ++connectIndex)
+    {
+        CODConnection* pConnection = movingConnectionSet.GetAt(connectIndex);
+        ASSERT(pConnection);
+
+        ASSERT_VALID(pConnection->GetSourcePort());
+        CODSymbolComponent* pSourceSymbol = pConnection->GetSourcePort()->GetOwner();
+
+        ASSERT_VALID(pConnection->GetTargetPort());
+        CODSymbolComponent* pTargetSymbol = pConnection->GetTargetPort()->GetOwner();
+
+        BOOL sourceFound = FALSE;
+        BOOL targetFound = FALSE;
+
+        for (int i = 0; i < primaryCount && (!sourceFound || !targetFound); ++i)
+        {
+            CODComponent* pComp = primarySet.GetAt(i);
+
+            if (pSourceSymbol == pComp || pComp->IsChild(pSourceSymbol))
+                sourceFound = TRUE;
+
+            if (pTargetSymbol == pComp || pComp->IsChild(pTargetSymbol))
+                targetFound = TRUE;
+        }
+
+        const int dependentCount = dependentSet.GetSize();
+
+        for (int j = 0; j < dependentCount && (!sourceFound || !targetFound); ++j)
+        {
+            CODComponent* pDepComp = dependentSet.GetAt(j);
+
+            if (pSourceSymbol == pDepComp || pDepComp->IsChild(pSourceSymbol))
+                sourceFound = TRUE;
+
+            if (pTargetSymbol == pDepComp || pDepComp->IsChild(pTargetSymbol))
+                targetFound = TRUE;
+        }
+
+        if (!sourceFound)
+        {
+            //dependentSet.Add(pSourceSymbol);
+        }
+
+        if (!targetFound)
+        {
+            //dependentSet.Add(pTargetSymbol);
+        }
+    }
+
+    // iterate through the primary set and dependent set and serialize the components
+    CODComponentSet* pCurSet = &dependentSet;
+
+    for (int setCount = 1; setCount <= 2; ++setCount)
+    {
+        const int curSetCount = pCurSet->GetSize();
+
+        for (int i = 0; i < curSetCount; ++i)
+        {
+            CODComponent*       pComp   = pCurSet->GetAt(i);
+            CODSymbolComponent* pSymbol = dynamic_cast<CODSymbolComponent*>(pComp);
+            CODConnectionSet    detachedSet;
+
+            if (pSymbol)
+            {
+                CODConnectionSet connectionSet;
+
+                // any connections to symbols that are not going to be serialized
+                // must be detached. This eliminates dangling references
+                pSymbol->GetAllConnections(connectionSet);
+
+                const int connectionCount = connectionSet.GetSize();
+
+                for (int connectIndex = 0; connectIndex < connectionCount; ++connectIndex)
+                {
+                    CODConnection* pConnection = connectionSet.GetAt(connectIndex);
+
+                    if (movingConnectionSet.FindIndex(pConnection) == -1)
+                    {
+                        pSymbol->Detach(pConnection);
+                        detachedSet.Add(pConnection);
+                    }
+                }
+            }
+
+            // keep the component
+            m_CutSet.Add(pComp);
+
+            // Concatenate all parent transformations and store them with the component.
+            // This is necessary because the parent isn't being saved with the component,
+            // but the component is still wanted to be rendered in the same place. When
+            // read back in, the parent transform matrix is concatenated with the component
+            // transform matrix
+            CODTransform parentXform;
+
+            pComp->ConcatParentTransforms(parentXform);
+
+            if (pSymbol)
+            {
+                const int detachedCount = detachedSet.GetSize();
+
+                // re-attach previously detached connections
+                for (int connectIndex = 0; connectIndex < detachedCount; ++connectIndex)
+                {
+                    CODConnection* pConnection = detachedSet.GetAt(connectIndex);
+                    pSymbol->Attach(pConnection);
+                }
+            }
+        }
+
+        pCurSet = &primarySet;
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ApplyFormatToSymbol(CODComponent* pComp)
+{
+    // no object to format
+    if (!pComp)
+        return;
+
+    // not to the same object
+    if (pComp == m_pFormatPainterSymbol)
+        return;
+
+    ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+    PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+    if (pSymbol)
+        pSymbol->ApplyFormatFromObject(*m_pFormatPainterSymbol);
+    else
+    if (pLinkSymbol)
+        pLinkSymbol->ApplyFormatFromObject(*m_pFormatPainterSymbol);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnMouseMove(UINT flags, CPoint point)
+{
+    static HCURSOR oldCursor = NULL;
+    static HCURSOR badCursor = NULL;
+           HCURSOR curCursor = ::GetCursor();
+           bool    handled   = false;
+
+    if (m_pViewport)
+    {
+        // handle the tooltip
+        CPoint pt(point);
+        VpDPtoLP(&pt);
+
+        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
+
+        // if a label, reassign the hit symbol
+        if (pCompHit && ISA(pCompHit, CODLabelComponent))
+            pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
+
+        ZIProcessGraphModelView* pView       = GetView();
+        ZBSymbol*                pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_LinkSymbol*          pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+        if (pSymbol || pLinkSymbol)
+        {
+            // call the symbol OnMouseMove function to check if it's necessary to do something
+            if (pSymbol && pSymbol->AcceptMouseInteraction())
+                handled = pSymbol->OnMouseMove(flags, pt, *this);
+            else
+            if (pLinkSymbol && pLinkSymbol->AcceptMouseInteraction())
+                handled = pLinkSymbol->OnMouseMove(flags, pt, *this);
+
+            if (pView)
+                // show the tooltip
+                if (::IsWindow(pView->GetToolTip().m_hWnd))
+                    pView->GetToolTip().Activate(TRUE);
+        }
+        else
+        if (pView)
+            // hide the tooltip
+            if (::IsWindow(pView->GetToolTip().m_hWnd))
+                pView->GetToolTip().Activate(FALSE);
+    }
+
+    if (m_CurrentCursor)
+        SetCustomCursor(m_CurrentCursor);
+    else
+    {
+        if (curCursor != ::GetCursor())
+            badCursor = ::GetCursor();
+
+        if (!handled)
+            if (::GetCursor() != badCursor)
+                oldCursor = ::GetCursor();
+
+            if (oldCursor)
+                ::SetCursor(oldCursor);
+    }
+
+    if (!handled)
+        CODController::OnMouseMove(flags, point);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnLButtonDblClk(UINT flags, CPoint point)
+{
+    bool handled = false;
+
+    if (m_pViewport)
+    {
+        // handle the tooltip
+        CPoint pt(point);
+        VpDPtoLP(&pt);
+
+        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
+
+        // if a label, reassign the hit symbol
+        if (pCompHit && ISA(pCompHit, CODLabelComponent))
+            pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
+
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+        // call the symbol OnLButtonDblClk function to check if it's necessary to do something
+        if (pSymbol && pSymbol->AcceptMouseInteraction())
+            handled = pSymbol->OnLButtonDblClk(flags, pt, *this);
+        else
+        if (pLinkSymbol && pLinkSymbol->AcceptMouseInteraction())
+            handled = pLinkSymbol->OnLButtonDblClk(flags, pt, *this);
+    }
+
+    // don't continue if the double click was already handled
+    if (handled)
+        return;
+
+    // if not handled, do the work
+    CODComponent* pComp = NULL;
+
+    AssignSymbolHit();
+
+    ZDProcessGraphModelMdl* pModel         = GetModel();
+    ZBSymbol*               pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol*         pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    // If the symbol has a child model, open it
+    if (pSymbolHit && (pSymbolHit->GetChildModel() || pSymbolHit->CanContainChildModel()))
+    {
+        OpenSymbol(m_pSymbolHit);
+
+        if (m_pSymbolHit != pSymbolHit)
+            pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+
+        // call the OnPostDoubleClick function on the symbol
+        if (pSymbolHit)
+            pSymbolHit->OnPostDoubleClick(pModel, this);
+    }
+    else
+    // if the symbol is a reference, browse the local symbol
+    if ((pSymbolHit && !pSymbolHit->IsLocal()) || (pLinkSymbolHit && !pLinkSymbolHit->IsLocal()))
+    {
+        BrowseLocalSymbol(m_pSymbolHit);
+
+        // select the local symbol
+        SelectComponent(*m_pSymbolHit);
+
+        if ((pSymbolHit && m_pSymbolHit != pSymbolHit) || (pLinkSymbolHit && m_pSymbolHit != pLinkSymbolHit))
+        {
+            pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+            pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+        }
+
+        // call the OnPostDoubleClick function on the symbol
+        if (pSymbolHit)
+            pSymbolHit->OnPostDoubleClick(pModel, this);
+        else
+            pLinkSymbolHit->OnPostDoubleClick(pModel, this);
+    }
+    else
+        CODController::OnLButtonDblClk(flags, point);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnLButtonDown(UINT flags, CPoint point)
+{
+    bool handled = false;
+
+    if (m_pViewport)
+    {
+        // handle the tooltip
+        CPoint pt(point);
+        VpDPtoLP(&pt);
+
+        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
+
+        SetStandardCursor(IDC_ARROW);
+        m_CurrentCursor = 0;
+
+        // process the style brush
+        if (m_pFormatPainterSymbol && pCompHit && m_IsInFormatPainter)
+        {
+            ZBSymbol*       pSrcSymbol     =                     dynamic_cast<ZBSymbol*>(m_pFormatPainterSymbol);
+            PSS_LinkSymbol* pSrcLinkSymbol = pSrcSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pFormatPainterSymbol);
+            ZBSymbol*       pDstSymbol     =                     dynamic_cast<ZBSymbol*>(pCompHit);
+            PSS_LinkSymbol* pDstLinkSymbol = pDstSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+            if (pSrcSymbol && pDstSymbol)
+            {
+                if ((pSrcSymbol->IsProcess()   && pDstSymbol->IsProcess())   ||
+                    (pSrcSymbol->IsProcedure() && pDstSymbol->IsProcedure()) ||
+                    (pSrcSymbol->IsStart()     && pDstSymbol->IsStart())     ||
+                    (pSrcSymbol->IsStop()      && pDstSymbol->IsStop())      ||
+                    (pSrcSymbol->IsDoor()      && pDstSymbol->IsDoor())      ||
+                    (pSrcSymbol->IsPage()      && pDstSymbol->IsPage())      ||
+                    (pSrcSymbol->IsPackage()   && pDstSymbol->IsPackage()))
+                {
+                    if (!ZUODSymbolManipulator::CopySymbolStyle(pSrcSymbol, pDstSymbol))
+                        return;
+
+                    pDstSymbol->RedrawSymbol();
+
+                    // also copy the new style on the twin symbol
+                    if (pDstSymbol->IsDoor() || pDstSymbol->IsPage())
+                        pDstSymbol->DuplicateStyleOnTwinSymbol();
+
+                    CDocument* pDocument = GetDocument();
+
+                    if (pDocument)
+                        pDocument->SetModifiedFlag(TRUE);
+                }
+            }
+            else
+            if (pSrcLinkSymbol && pDstLinkSymbol)
+            {
+                CODComponent* pSrcComp = ZUODSymbolManipulator::FindSymbol(pSrcLinkSymbol,
+                                                                           M_SymbolNameComponentControlLabel);
+                CODComponent* pDstComp = ZUODSymbolManipulator::FindSymbol(pDstLinkSymbol,
+                                                                           M_SymbolNameComponentControlLabel);
+
+                if (pSrcComp && pDstComp)
+                {
+                    ZUODSymbolManipulator::CopySymbolStyle(pSrcComp, pDstComp);
+                    pDstLinkSymbol->RedrawSymbol();
+
+                    CDocument* pDocument = GetDocument();
+
+                    if (pDocument)
+                        pDocument->SetModifiedFlag(TRUE);
+                }
+            }
+            else
+            if (pSrcLinkSymbol && ISA(pCompHit, CODLabelComponent))
+            {
+                CODComponent* pSrcComp = ZUODSymbolManipulator::FindSymbol(pSrcLinkSymbol,
+                                                                           M_SymbolNameComponentControlLabel);
+
+                if (pSrcComp && pCompHit)
+                {
+                    ZUODSymbolManipulator::CopySymbolStyle(pSrcComp, pCompHit);
+                    RefreshAllSymbols();
+
+                    CDocument* pDocument = GetDocument();
+
+                    if (pDocument)
+                        pDocument->SetModifiedFlag(TRUE);
+                }
+            }
+
+            m_pFormatPainterSymbol = NULL;
+        }
+
+        m_IsInFormatPainter = false;
+
+        // if a label, reassign the hit symbol
+        if (pCompHit && ISA(pCompHit, CODLabelComponent))
+            pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
+
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+        // call the symbol OnLButtonDown function to check if it's necessary to do something
+        if (pSymbol && pSymbol->AcceptMouseInteraction())
+            handled = pSymbol->OnLButtonDown(flags, pt, *this);
+        else
+        if (pLinkSymbol && pLinkSymbol->AcceptMouseInteraction())
+            handled = pLinkSymbol->OnLButtonDown(flags, pt, *this);
+    }
+
+    // don't continue if the left button down was already handled
+    if (handled)
+        return;
+
+    // if not handle, do the work. Saves the previous element
+    CODSymbolComponent* pOldSymbolClicked = m_LastSelectedElement;
+
+    CODController::OnLButtonDown(flags, point);
+
+    CDocument* pDoc = GetDocument();
+
+    // notify about the component selection
+    NotifySymbolSelected(m_LastSelectedElement);
+
+    // check if selected symbol should be edited
+    if (m_SelectionChanged && m_LastSelectedElement)
+    {
+        // if the user clicked a second time on the same symbol, assume he want to edit its name
+        if (pOldSymbolClicked == m_LastSelectedElement)
+        {
+            bool isLocal = false;
+
+            ZBSymbol*       pLastSelSymbol     =                         dynamic_cast<ZBSymbol*>(m_LastSelectedElement);
+            PSS_LinkSymbol* pLastSelLinkSymbol = pLastSelSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_LastSelectedElement);
+
+            if (pLastSelSymbol)
+                isLocal = pLastSelSymbol->IsLocal();
+            else
+            if (pLastSelLinkSymbol)
+                isLocal = pLastSelLinkSymbol->IsLocal();
+
+            // save the position first
+            m_SavedEditPosition = point;
+
+            // edit the element only if the symbol is local
+            if (isLocal)
+                EditName(m_LastSelectedElement);
+        }
+
+        // set back the selection changed flag
+        m_SelectionChanged = false;
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnLButtonUp(UINT flags, CPoint point)
+{
+    bool handled = false;
+
+    if (m_pViewport)
+    {
+        // handle the tooltip
+        CPoint pt(point);
+        VpDPtoLP(&pt);
+
+        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
+
+        // if a label, reassign the hit symbol
+        if (pCompHit && ISA(pCompHit, CODLabelComponent))
+            pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
+
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+        // call the symbol OnLButtonUp function to check if it's necessary to do something
+        if (pSymbol && pSymbol->AcceptMouseInteraction())
+            handled = pSymbol->OnLButtonUp(flags, pt, *this);
+        else
+        if (pLinkSymbol && pLinkSymbol->AcceptMouseInteraction())
+            handled = pLinkSymbol->OnLButtonUp(flags, pt, *this);
+    }
+
+    // don't continue if the double click was handled
+    if (handled)
+        return;
+
+    // if not handle, do the work
+    CODController::OnLButtonUp(flags, point);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnRButtonUp(UINT flags, CPoint point)
+{
+    bool handled = false;
+
+    if (m_pViewport)
+    {
+        // handle the tooltip
+        CPoint pt(point);
+        VpDPtoLP(&pt);
+
+        CODComponent* pCompHit = m_pViewport->ComponentHitTest(pt);
+
+        // if a label, reassign the hit symbol
+        if (pCompHit && ISA(pCompHit, CODLabelComponent))
+            pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
+
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+
+        // call the symbol OnRButtonUp function to check if it's necessary to do something
+        if (pSymbol && pSymbol->AcceptMouseInteraction())
+            handled = pSymbol->OnRButtonUp(flags, pt, *this);
+        else
+        if (pLinkSymbol && pLinkSymbol->AcceptMouseInteraction())
+            handled = pLinkSymbol->OnRButtonUp(flags, pt, *this);
+    }
+
+    // don't continue if the double click was handled
+    if (handled)
+        return;
+
+    // if not handled, do the work
+    AssignSymbolHit();
+
+    if (m_pSymbolHit)
+    {
+        ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+        PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+        if (pSymbolHit)
+        {
+            // no sub-menu defined, return
+            if (pSymbolHit->GetRightSubMenu() == -1)
+                return;
+
+            if (pSymbolHit->IsLocal())
+                m_pRightSubMenu = m_SymbolRightMainMenu.GetSubMenu(pSymbolHit->GetRightSubMenu());
+            else
+                m_pRightSubMenu = m_SymbolRefRightMainMenu.GetSubMenu(pSymbolHit->GetRightSubMenu());
+        }
+        else
+        if (pLinkSymbolHit)
+        {
+            // no sub-menu defined, return
+            if (pLinkSymbolHit->GetRightSubMenu() == -1)
+                return;
+
+            if (pLinkSymbolHit->IsLocal())
+                m_pRightSubMenu = m_SymbolRightMainMenu.GetSubMenu(pLinkSymbolHit->GetRightSubMenu());
+            else
+                m_pRightSubMenu = m_SymbolRefRightMainMenu.GetSubMenu(pLinkSymbolHit->GetRightSubMenu());
+        }
+    }
+    else
+    if (GetSelection()->GetSize() >= 1)
+    {
+        m_pRightSubMenu = m_SymbolRightMainMenu.GetSubMenu(0);
+        m_pSymbolHit    = NULL;
+    }
+    else
+    {
+        m_pRightSubMenu = NULL;
+        m_pSymbolHit    = NULL;
+    }
+
+    CODController::OnRButtonUp(flags, point);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnTimer(SEC_UINT eventID)
+{
+    if (eventID == ANIMATE_TIMER)
+        if (m_AnimatedUseColor)
+        {
+            // it's still time for animation
+            if ((m_TimerStartTime + COleDateTimeSpan(0, 0, 0, m_AnimateCounter)) >= PSS_Date::GetCurrentTime())
+            {
+                if (!m_TimerInitialized)
+                {
+                    if (m_AnimatedNodes.GetSize() > 0)
+                        ChangeColorNodes();
+
+                    if (m_AnimatedEdges.GetSize() > 0)
+                        ChangeColorEdges();
+
+                    if (m_AnimatedComponents.GetSize() > 0)
+                        ChangeColorSymbols();
+
+                    m_TimerInitialized = true;
+                }
+            }
+            else
+                EndAnimateTimer();
+        }
+        else
+        if (m_AnimateCounter > 0)
+        {
+            if (m_AnimatedNodes.GetSize() > 0)
+                AnimateNodes();
+
+            if (m_AnimatedEdges.GetSize() > 0)
+                AnimateEdges();
+
+            if (m_AnimatedComponents.GetSize() > 0)
+                AnimateSymbols();
+
+            --m_AnimateCounter;
+        }
+        else
+            EndAnimateTimer();
+
+    CODController::OnTimer(eventID);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSelectAll()
+{
+    SelectAllComponents();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditClear()
+{
+    m_CutCommand = false;
+
+    AssignSymbolHit();
+
+    // call the base class
+    CODController::OnEditClear();
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditCopy()
+{
+    // clear the clipboard before strating a new copy
+    ReleaseClipboard();
+
+    // filter the selection before starting to copy
+    if (FilterSelection())
+    {
+        RefreshAllSymbols();
+
+        PSS_MsgBox mBox;
+
+        CString str = _T("");
+        str.Format(IDS_WARNING_COPY_SELECTION);
+        mBox.Show(str, MB_OK);
+    }
+
+    CopySelectionToSet();
+
+    // call the base class
+    CODController::OnEditCopy();
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+
+    m_CutCommand = false;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateEditCopy(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(ValidateCutCopyOperations());
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditCut()
+{
+    // empty the clipboard before beginning a new cut
+    ReleaseClipboard();
+
+    ClearSelectionToSet();
+    RemoveReferenceSymbol(GetSelection());
+
+    // filter the selection before allowing to cut
+    if (FilterSelection())
+    {
+        RefreshAllSymbols();
+
+        PSS_MsgBox mBox;
+
+        CString s = _T("");
+        s.Format(IDS_WARNING_CUT_SELECTION);
+        mBox.Show(s, MB_OK);
+    }
+
+    if (m_pTextEdit && m_pTextEdit->IsEditing())
+    {
+        CEdit* pEdit = m_pTextEdit->GetEditControl();
+        ASSERT(pEdit);
+        pEdit->Cut();
+        return;
+    }
+
+    ZDProcessGraphModelMdl* pRootModel = GetRootModel();
+    ASSERT(pRootModel);
+    pRootModel->SetInCutOperation(true);
+
+    CODComponentSet* pSelection = GetSelection();
+
+    // copy the selection to the clipboard set
+    CopyToClipboardSet(pSelection);
+    ExecuteDeleteCommand(pSelection);
+
+    pRootModel->SetInCutOperation(false);
+
+    CODViewport* pViewport = GetCanvasVp();
+
+    // reset the paste insertion point
+    if (pViewport)
+        pViewport->SetPasteInsertionPoint(CPoint(0, 0));
+
+    // refresh the tree
+    RefreshModelTree();
+
+    CDocument* pDocument = GetDocument();
+
+    // set flag for modification
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+
+    m_CutCommand = true;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateEditCut(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(ValidateCutCopyOperations());
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditPaste()
+{
+    if (m_CutCommand)
+    {
+        ASSERT(GetRootModel());
+        GetRootModel()->SetInCutOperation(true);
+
+        CODComponent*        pComp = NULL;
+        CODComponentIterator it(&m_CutSet);
+
+        // remove labels from the set
+        for (pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+        {
+            CODLabelComponent* pLabel = dynamic_cast<CODLabelComponent*>(pComp);
+
+            if (pLabel)
+            {
+                it.Remove();
+                pComp->Release();
+                it.GetPrev();
+            }
+        }
+
+        CMap<CODComponent*, CODComponent*, int, int> translateSetMap;
+        int                                          pos = 0;
+        BOOL                                         added;
+
+        for (pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+            if (!translateSetMap.Lookup(pComp, added))
+            {
+                translateSetMap.SetAt(pComp, pos);
+                ++pos;
+            }
+
+        CODComponentSet translateSet;
+
+        for (pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+        {
+            pComp->GetTranslateSet(translateSet);
+
+            if (translateSet.GetSize() > 0)
+            {
+                CODComponentIterator itTransSet(&translateSet);
+
+                for (CODComponent* pTranslateComp = itTransSet.GetFirst(); pTranslateComp; pTranslateComp = itTransSet.GetNext())
+                    if (!translateSetMap.Lookup(pTranslateComp, added))
+                    {
+                        ASSERT_VALID(pTranslateComp);
+                        translateSetMap.SetAt(pTranslateComp, pos);
+                        pTranslateComp->AddRef();
+                        ++pos;
+                    }
+            }
+
+            translateSet.SetSize(0);
+        }
+
+        translateSet.SetSize(translateSetMap.GetCount());
+
+        for (POSITION pPos = translateSetMap.GetStartPosition(); pPos;)
+        {
+            translateSetMap.GetNextAssoc(pPos, pComp, pos);
+            ASSERT_VALID(pCurComp);
+            translateSet.SetAt(pos, pComp);
+        }
+
+        CODComponentIterator itTranslate(&translateSet);
+        CRect                allCompRect;
+        BOOL                 firstComp = TRUE;
+
+        // find bounding rectangle for all components
+        for (pComp = itTranslate.GetFirst(); pComp; pComp = itTranslate.GetNext())
+        {
+            const CPoint compOrigin = pComp->GetOrigin();
+            const CSize  compSize   = pComp->GetSize();
+
+            CRect compRect;
+            compRect.SetRect(compOrigin.x, compOrigin.y, compOrigin.x + compSize.cx, compOrigin.y + compSize.cy);
+
+            if (firstComp)
+            {
+                allCompRect = compRect;
+                firstComp   = FALSE;
+            }
+            else
+                allCompRect = CODGlobal::UnionRect(allCompRect, compRect);
+        }
+
+        CODViewport* pCanvasViewport = GetCanvasVp();
+        ASSERT(pCanvasViewport);
+
+        // get the current paste insertion point
+        CPoint insertPoint     = pCanvasViewport->GetPasteInsertionPoint();
+        CPoint holdInsertPoint = insertPoint;
+
+        int moveX = int(insertPoint.x - allCompRect.TopLeft().x);
+        int moveY = int(insertPoint.y - allCompRect.TopLeft().y);
+
+        if ((moveX < 5) && (moveY < 5) && (moveX > -5) && (moveY > -5))
+        {
+            moveX = 5;
+            moveY = 5;
+        }
+
+        CODModel* pCanvasModel = GetCanvasModel();
+        ASSERT(pCanvasModel);
+
+        // make sure components will be inserted inside the model
+        pCanvasModel->FindValidMove(m_CutSet, moveX, moveY, &allCompRect);
+        insertPoint.x = LONG(moveX);
+        insertPoint.y = LONG(moveY);
+
+        CODTransform translate;
+
+        // translate the components
+        translate.Translate(insertPoint.x, insertPoint.y);
+
+        // translate the components to the new insertion point
+        for (pComp = itTranslate.GetFirst(); pComp; pComp = itTranslate.GetNext())
+        {
+            CODTransform* pCompTransform = pComp->GetTransform();
+
+            if (pCompTransform)
+                *pCompTransform = translate * (*pCompTransform);
+            else
+                pComp->SetTransform(new CODTransform(translate));
+
+            pComp->UpdateRgn();
+
+            CODSymbolComponent* pSymbolComp = dynamic_cast< CODSymbolComponent*>(pComp);
+
+            // hide the ports
+            if (pSymbolComp)
+                pSymbolComp->SetPortsVisible(FALSE);
+        }
+
+        // get current viewport visible region info
+        allCompRect.OffsetRect(insertPoint);
+
+        CPoint       vpOriginPoint    = pCanvasViewport->GetLogOrigin();
+        const CPoint oldVpOriginPoint = vpOriginPoint;
+        const CSize  vpSize           = pCanvasViewport->GetLogSize();
+
+        // if new components bottom right corner extends beyond the visible area, pan the viewport so it is visible
+        if (vpOriginPoint.x + vpSize.cx < allCompRect.right || vpOriginPoint.y + vpSize.cy < allCompRect.bottom)
+        {
+            if (vpOriginPoint.x + vpSize.cx < allCompRect.right)
+                vpOriginPoint.x = allCompRect.right - vpSize.cx;
+
+            if (vpOriginPoint.y + vpSize.cy < allCompRect.bottom)
+                vpOriginPoint.y = allCompRect.bottom - vpSize.cy;
+
+            pCanvasViewport->Pan(vpOriginPoint.x - oldVpOriginPoint.x, vpOriginPoint.y - oldVpOriginPoint.y);
+            pCanvasViewport->Invalidate();
+        }
+
+        OnPostCutPasteOperation(&m_CutSet);
+
+        // insert the components
+        ExecuteInsertCommand(&m_CutSet);
+
+        float gridSpacingLogX;
+        float gridSpacingLogY;
+
+        // find new viewport paste insertion point
+        pCanvasViewport->GetRuler()->MeasureToLog(pCanvasViewport->GetHorizontalGridSpacing(),
+                                                  gridSpacingLogX,
+                                                  FALSE);
+        pCanvasViewport->GetRuler()->MeasureToLog(pCanvasViewport->GetVerticalGridSpacing(),
+                                                  gridSpacingLogY,
+                                                  TRUE);
+
+        insertPoint.x += LONG(gridSpacingLogX + 0.5f);
+        insertPoint.y += LONG(gridSpacingLogY + 0.5f);
+
+        // set the new viewport paste insertion point
+        holdInsertPoint.x += LONG(gridSpacingLogX + 0.5f);
+        holdInsertPoint.y += LONG(gridSpacingLogY + 0.5f);
+
+        pCanvasViewport->SetPasteInsertionPoint(holdInsertPoint);
+
+        ZDProcessGraphModelMdl* pRootModel = GetRootModel();
+
+        ASSERT(pRootModel);
+        pRootModel->SetInCutOperation(false);
+
+        // recalculate all references
+        pRootModel->RecalculateParentPtr();
+        pRootModel->RecalculateAbsolutePath();
+    }
+    else
+    {
+        // call the base class
+        CODController::OnEditPaste();
+
+        // call the virtual method on symbol added
+        OnSymbolAdded(&m_setSelection);
+    }
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+
+    RefreshAllSymbols();
+
+    // cleanup the clipboard
+    ReleaseClipboard();
+
+    m_CutCommand = false;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditDuplicate()
+{
+    CWaitCursor cursor;
+
+    // call the base class
+    CODController::OnEditPaste();
+
+    // call the virtual method on added symbol
+    OnSymbolDuplicated(&m_setSelection);
+
+    RefreshAllSymbols();
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+
+    // cleanup the clipboard
+    ReleaseClipboard();
+
+    m_CutCommand = false;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateEditDuplicate(CCmdUI* pCmdUI)
+{
+    // allow duplicates only if the selection set contains at least one object
+    pCmdUI->Enable(m_CopySet.GetSize() > 0 && CanDuplicateObject(&m_CopySet));
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditRedo()
+{
+    // call the base class
+    CODController::OnEditRedo();
+
+    // refresh the tree
+    RefreshModelTree();
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditUndo()
+{
+    // call the base class
+    CODController::OnEditUndo();
+
+    CODComponentSet* pSelection = GetSelection();
+
+    if (pSelection)
+    {
+        const SEC_INT selectionCount = pSelection->GetSize();
+
+        // if the last deleted item was a deliverable, refresh it. This allows the old model symbols
+        // to be displayed correctly after an undo command
+        for (SEC_INT i = 0; i < selectionCount; ++i)
+        {
+            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pSelection->GetAt(i));
+
+            if (pLinkSymbol)
+            {
+                pLinkSymbol->UpdateRgn(TRUE);
+                pLinkSymbol->RedrawSymbol();
+            }
+        }
+    }
+
+    // refresh the tree
+    RefreshModelTree();
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditName()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    bool            isLocal        = false;
+
+    // check if is local
+    if (pSymbolHit)
+        isLocal = pSymbolHit->IsLocal();
+    else
+    if (pLinkSymbolHit)
+        isLocal = pLinkSymbolHit->IsLocal();
+
+    if (isLocal)
+        EditName(m_pSymbolHit);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateEditName(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    BOOL            enable         = FALSE;
+
+    // get the enable flag
+    if (pSymbolHit)
+        enable = (pSymbolHit->IncludeNameArea() &&
+                  pSymbolHit->UseDynamicArea()  &&
+                  pSymbolHit->IsNameAreaVisible());
+    else
+    if (pLinkSymbolHit)
+        enable = (pLinkSymbolHit->IncludeNameArea() &&
+                  pLinkSymbolHit->UseDynamicArea()  &&
+                  pLinkSymbolHit->IsNameAreaVisible());
+
+    pCmdUI->Enable(enable);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnEditComment()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    bool            isLocal        = false;
+
+    // check if symbol is local
+    if (pSymbolHit)
+        isLocal = pSymbolHit->IsLocal();
+    else
+    if (pLinkSymbolHit)
+        isLocal = pLinkSymbolHit->IsLocal();
+
+    if (isLocal)
+        EditComment(m_pSymbolHit);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateEditComment(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    BOOL            enable         = FALSE;
+
+    // get the enable flag
+    if (pSymbolHit)
+        enable = (pSymbolHit->IncludeDescriptionArea() &&
+                  pSymbolHit->UseDynamicArea()         &&
+                  pSymbolHit->IsDescriptionsAreaVisible());
+    else
+    if (pLinkSymbolHit)
+        enable = (pLinkSymbolHit->IncludeDescriptionArea() &&
+                  pLinkSymbolHit->UseDynamicArea()         &&
+                  pLinkSymbolHit->IsDescriptionsAreaVisible());
+
+    pCmdUI->Enable(enable);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnChangeTextEdit()
+{
+    // if no symbol selected, call the base class
+    if (!m_pSymbolHit)
+        CODController::OnChangeTextEdit();
+
+    if (!m_pTextEdit)
+        return;
+
+    CODViewport*         pCanvasViewport = GetCanvasVp();
+    sfl::MvcViewport::DC dc(pCanvasViewport, TRUE);
+
+    CODComponentSet updateSet;
+
+    updateSet.Add(m_pTextEdit);
+
+    if (ISA(m_pTextEdit, CODLabelComponent))
+    {
+        CODSymbolComponent* pOwner = static_cast<CODLabelComponent*>(m_pTextEdit)->GetOwner();
+
+        if (pOwner)
+            updateSet.Add(pOwner);
+    }
+
+    pCanvasViewport->UpdateComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnGoParentModel()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (pModel)
+    {
+        ZDProcessGraphModelMdl* pParentModel = pModel->GetParent();
+
+        if (pParentModel)
+            BrowseModel(pParentModel, pParentModel->GetParent());
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateGoParentModel(CCmdUI* pCmdUI)
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+    pCmdUI->Enable(pModel && pModel->GetParent());
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnBrowseSourceSymbol()
+{
+    AssignSymbolHit();
+
+    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+
+    if (pDocument && pDocument->GetModel())
+    {
+        ZBSymbol* pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+
+        if (pSymbolHit && !pSymbolHit->IsLocal())
+            BrowseLocalSymbol(pSymbolHit);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateBrowseSourceSymbol(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol* pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+
+    pCmdUI->Enable(pSymbolHit && !pSymbolHit->IsLocal());
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnFindSymbol()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    CWaitCursor waitCursor;
+
+    ZBPropertySet propSet;
+    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
+
+    ZBPropertyAttributes propAttributes;
+    ZVFindSymbolExtDlg   findSymbolDlg(&propAttributes, &propSet);
+
+    if (findSymbolDlg.DoModal() == IDOK)
+    {
+        if (findSymbolDlg.GetInAllModels())
+            pModel = pModel->GetRoot();
+
+        // it's necessary to call Restore() here in order to change the cursor back to the wait cursor
+        waitCursor.Restore();
+
+        PSS_Log* pLog = NULL;
+
+        ZDProcessGraphModelDoc* pModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(pModel->GetDocument());
+
+        if (pModelDoc)
+        {
+            pLog = pModelDoc->GetSearchOutputLog();
+
+            // notify about the search log tab activation
+            PSS_ToolbarObserverMsg msg(UM_ACTIVATE_LOGSEARCH_TAB);
+            pModelDoc->NotifyAllObservers(&msg);
+        }
+
+        // start the search
+        pModel->Find(findSymbolDlg.GetWhat(),
+                     pLog,
+                     &propAttributes,
+                     findSymbolDlg.GetInAllModels(),
+                     findSymbolDlg.GetCaseSensitive(),
+                     findSymbolDlg.GetPartialSearch());
+    }
+
+    ZBPropertyIterator it(&propSet);
+
+    // remove all properties
+    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        delete pProp;
+
+    propSet.RemoveAll();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnInsertPage()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+
+    if (!pRoot)
+        return;
+
+    ZVInsertModelNewPageDlg dlg(pRoot, pRoot->GetValidNextPageName(), pRoot->GetExistingPageNameArray());
+
+    if (dlg.DoModal() == IDOK)
+    {
+        ZDProcessGraphModelMdl* pEmptyModel = pRoot->CreateEmptyModel(dlg.GetPageName(), dlg.GetParentModel());
+        ZDProcessGraphPage*     pPage       = pRoot->CreateNewPage(pEmptyModel, dlg.GetPageName(), dlg.GetParentModel());
+
+        BrowseModel(pEmptyModel, dlg.GetParentModel());
+
+        CWnd* pMainWnd = AfxGetMainWnd();
+        ASSERT(pMainWnd);
+
+        // build the message
+        ZBDocObserverMsg docMsg;
+        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+
+        CDocument* pDocument = GetDocument();
+        ASSERT(pDocument);
+
+        // set the modification flag
+        pDocument->SetModifiedFlag(TRUE);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnRenamePage()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+
+    if (!pRoot)
+        return;
+
+    ZVRenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray());
+
+    if (dlg.DoModal() == IDOK)
+    {
+        ZDProcessGraphPage* pPage = dlg.GetSelectedPage();
+
+        if (pPage)
+        {
+            // keep the old page name
+            const CString oldPageName = pPage->GetPageName();
+
+            // Rename the page
+            pPage->SetPageName(dlg.GetPageName());
+
+            // notify the owner model about the page changes
+            pRoot->OnPageNameChanged(pPage, oldPageName);
+        }
+
+        CWnd* pMainWnd = AfxGetMainWnd();
+        ASSERT(pMainWnd);
+
+        // build the message
+        ZBDocObserverMsg docMsg;
+        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+
+        // set the modification flag
+        GetDocument()->SetModifiedFlag(TRUE);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnDeletePage()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+
+    if (!pRoot)
+        return;
+
+    ZVDeleteModelPageDlg dlg(GetModel()->GetRoot());
+
+    if (dlg.DoModal() == IDOK)
+    {
+        ZDProcessGraphPage* pPage = dlg.GetSelectedPage();
+
+        if (pPage)
+        {
+            // todo -cCheck -oJean: Not sure if the BrowseModel() function may change the current model and current
+            //                      root model, but if it's the case the code below may not work as expected. This
+            //                      should be well tested and validated
+            // move to the root model
+            BrowseModel(pRoot, pRoot->GetParent());
+
+            // delete the page and its associated model
+            pRoot->DeletePage(pPage->GetPageName(), true);
+
+            CWnd* pMainWnd = AfxGetMainWnd();
+            ASSERT(pMainWnd);
+
+            // build the message
+            ZBDocObserverMsg docMsg;
+            pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+
+            CDocument* pDocument = GetDocument();
+
+            // set the modification flag
+            if (pDocument)
+                pDocument->SetModifiedFlag(TRUE);
+        }
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnRenameCurrentPage()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+
+    if (!pRoot)
+        return;
+
+    // get the current page
+    ZDProcessGraphPage* pCurrentPage = pRoot->FindModelPage(pModel, true);
+
+    // keep the old page name
+    const CString oldPageName = pCurrentPage->GetPageName();
+
+    ZVRenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray(), pCurrentPage);
+
+    if (dlg.DoModal() == IDOK)
+    {
+        ZDProcessGraphPage* pPage = dlg.GetSelectedPage();
+
+        if (pPage)
+        {
+            pPage->SetPageName(dlg.GetPageName());
+
+            // notify the owner model about the page changes
+            pRoot->OnPageNameChanged(pPage, oldPageName);
+        }
+
+        CWnd* pMainWnd = AfxGetMainWnd();
+        ASSERT(pMainWnd);
+
+        // build the message
+        ZBDocObserverMsg docMsg;
+        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+
+        CDocument* pDocument = GetDocument();
+
+        // set the modification flag
+        if (pDocument)
+            pDocument->SetModifiedFlag(TRUE);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnDeleteCurrentPage()
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+
+    if (!pRoot)
+        return;
+
+    // get the root page
+    ZDProcessGraphPage* pRootPage = pRoot->FindModelPage(pRoot, true);
+
+    // get the current page
+    ZDProcessGraphPage* pCurrentPage = pRoot->FindModelPage(pModel, true);
+
+    if (pModel->HasPageSet())
+    {
+        ZBProcessGraphPageSet* pPageSet = pModel->GetPageSet();
+
+        if (pPageSet && pPageSet->GetAt(0) == pCurrentPage)
+        {
+            // show warning message
+            PSS_MsgBox mBox;
+            mBox.Show(IDS_CANNOTDELETE_ROOTPAGE, MB_OK);
+            return;
+        }
+    }
+
+    // todo -cCheck -oJean: Not sure if the BrowseModel() function may change the current model and current
+    //                      root model, but if it's the case the code below may not work as expected. This
+    //                      should be well tested and validated
+    // move to the root model
+    BrowseModel(pRoot, pRoot->GetParent());
+
+    if (pCurrentPage)
+    {
+        pRoot->NotifyDeletePage(pCurrentPage);
+
+        // delete the page and its associated model
+        pRoot->DeletePage(pCurrentPage->GetPageName(), true);
+
+        CWnd* pMainWnd = AfxGetMainWnd();
+        ASSERT(pMainWnd);
+
+        // build the message
+        ZBDocObserverMsg docMsg;
+        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+
+        CDocument* pDocument = GetDocument();
+
+        // set the modification flag
+        if (pDocument)
+            pDocument->SetModifiedFlag(TRUE);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnGoInSymbol()
+{
+    AssignSymbolHit();
+
+    ZBSymbol* pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+
+    if (pSymbolHit && (pSymbolHit->GetChildModel() || pSymbolHit->CanContainChildModel()))
+        OpenSymbol(m_pSymbolHit);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSelectSymbol()
+{
+    AssignSymbolHit();
+
+    if (m_pSymbolHit)
+    {
+        EnsureSymbolVisible(m_pSymbolHit);
+        SelectComponent(*m_pSymbolHit);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnOdMeasurements()
+{
+    // call the base class
+    CODController::OnMeasurements();
+
+    CDocument*   pDocument       = GetDocument();
+    CODViewport* pCanvasViewport = GetCanvasVp();
+
+    if (!pDocument || !pCanvasViewport)
+        return;
+
+    CODRuler* pRuler = pCanvasViewport->GetRuler();
+
+    if (!pRuler)
+        return;
+        
+    // set the modification flag
+    pDocument->SetModifiedFlag(TRUE);
+
+    ZDProcessGraphModelDoc* pGraphModelDoc = dynamic_cast< ZDProcessGraphModelDoc*>(pDocument);
+
+    if (pGraphModelDoc)
+        pGraphModelDoc->SetPageUnits(*pRuler);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnViewZoomIn()
+{
+    ViewZoomIn();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnViewZoomOut()
+{
+    ViewZoomOut();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnAddNewExtApp()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    if (pSymbolHit)
+        pSymbolHit->DoInsertExtApp();
+    else
+    if (pLinkSymbolHit)
+        pLinkSymbolHit->DoInsertExtApp();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateAddNewExtApp(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    bool            enable         = false;
+
+    if (pSymbolHit)
+        enable = pSymbolHit->AcceptExtApp();
+    else
+    if (pLinkSymbolHit)
+        enable = pLinkSymbolHit->AcceptExtApp();
+
+    pCmdUI->Enable(enable);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnAddNewExtFile()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    if (pSymbolHit)
+        pSymbolHit->DoInsertExtFile();
+    else
+    if (pLinkSymbolHit)
+        pLinkSymbolHit->DoInsertExtFile();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateAddNewExtFile(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    bool            enable         = false;
+
+    if (pSymbolHit)
+        enable = pSymbolHit->AcceptExtFile();
+    else
+    if (pLinkSymbolHit)
+        enable = pLinkSymbolHit->AcceptExtFile();
+
+    pCmdUI->Enable(enable);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSetBackgroundImage()
+{
+    CString fileName;
+
+    if (!GetImageFileName(fileName))
+        return;
+
+    SetImage(fileName, FALSE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateSetBackgroundImage(CCmdUI* pCmdUI)
+{}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnClearBackgroundImage()
+{
+    ClearImage();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnShowModelBorder()
 {
     ZDProcessGraphModelMdl* pModel = GetRootModel();
     ASSERT(pModel);
-    pModel->ClearBackgroundComponent(true);
 
-    // JMR-MODIF - Le 5 août 2005 - Ajout du code de réinitialisation du nom du fichier de tramage.
-    pModel->SetBkGndFileName(_T(""));
+    pModel->SetShowPageBorder(!pModel->GetShowPageBorder());
 
-    // Refresh the viewport
-    ASSERT(GetViewport());
-    GetViewport()->UpdateAll();
+    ZIProcessGraphModelViewport* pViewport = GetViewport();
+
+    if (pViewport)
+    {
+        ZIProcessGraphModelView* pView = GetView();
+
+        if (pView)
+            pViewport->UpdatePageLook(pView->GetPrinterPageSize());
+    }
 }
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateShowModelBorder(CCmdUI* pCmdUI)
+{
+    ZDProcessGraphModelMdl* pModel = GetRootModel();
+    ASSERT(pModel);
+    pCmdUI->SetCheck(pModel->GetShowPageBorder());
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnAddWatermarkModelLogo()
+{
+    CString fileName;
+
+    if (!GetImageFileName(fileName))
+        return;
+
+    SetImage(fileName, TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateAddWatermarkModelLogo(CCmdUI* pCmdUI)
+{}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnClearWatermarkModelLogo()
+{
+    ClearImage();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSymbolShowNameArea()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    // change the flag
+    if (pSymbolHit)
+    {
+        pSymbolHit->DisplayNameArea(!pSymbolHit->IsNameAreaVisible());
+
+        // adjust the area element position
+        pSymbolHit->AdjustAreaPosition();
+    }
+    else
+    if (pLinkSymbolHit)
+    {
+        pLinkSymbolHit->DisplayNameArea(!pLinkSymbolHit->IsNameAreaVisible());
+
+        // adjust the area element position
+        pLinkSymbolHit->AdjustAreaPosition();
+    }
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateSymbolShowNameArea(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    BOOL            enable         = FALSE;
+
+    // get the enable flag
+    if (pSymbolHit)
+        enable = pSymbolHit->IncludeNameArea() && pSymbolHit->UseDynamicArea();
+    else
+    if (pLinkSymbolHit)
+        enable = pLinkSymbolHit->IncludeNameArea() && pLinkSymbolHit->UseDynamicArea();
+
+    pCmdUI->Enable(enable);
+
+    // if enabled, get the checked flag
+    if (enable)
+    {
+        BOOL checked = FALSE;
+
+        if (pSymbolHit)
+            checked = pSymbolHit->IsNameAreaVisible();
+        else
+        if (pLinkSymbolHit)
+            checked = pLinkSymbolHit->IsNameAreaVisible();
+
+        pCmdUI->SetCheck(checked);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSymbolShowDescriptionArea()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    // Change the flag
+    if (pSymbolHit)
+    {
+        pSymbolHit->DisplayDescriptionArea(!pSymbolHit->IsDescriptionsAreaVisible());
+
+        // adjust the area element position
+        pSymbolHit->AdjustAreaPosition();
+    }
+    else
+    if (pLinkSymbolHit)
+    {
+        pLinkSymbolHit->DisplayDescriptionArea(!pLinkSymbolHit->IsDescriptionsAreaVisible());
+
+        // adjust the area element position
+        pLinkSymbolHit->AdjustAreaPosition();
+    }
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateSymbolShowDescriptionArea(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    BOOL            enable         = FALSE;
+
+    // get the enable flag
+    if (pSymbolHit)
+        enable = (pSymbolHit->IncludeDescriptionArea() && pSymbolHit->UseDynamicArea());
+    else
+    if (pLinkSymbolHit)
+        enable = (pLinkSymbolHit->IncludeDescriptionArea() && pLinkSymbolHit->UseDynamicArea());
+
+    pCmdUI->Enable(enable);
+
+    // if enabled, get the checked flag
+    if (enable)
+    {
+        BOOL checked = FALSE;
+
+        if (pSymbolHit)
+            checked = pSymbolHit->IsDescriptionsAreaVisible();
+        else
+        if (pLinkSymbolHit)
+            checked = pLinkSymbolHit->IsDescriptionsAreaVisible();
+
+        pCmdUI->SetCheck(checked);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSymbolShowAttributeArea()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    // change the flag
+    if (pSymbolHit)
+    {
+        pSymbolHit->DisplayAttributeArea(!pSymbolHit->IsAttributeAreaVisible());
+
+        // if visible, refresh the attribute area
+        if (pSymbolHit->IsAttributeAreaVisible())
+            pSymbolHit->RefreshAttributeTextArea();
+
+        // adjust the area element position
+        pSymbolHit->AdjustAreaPosition();
+    }
+    else
+    if (pLinkSymbolHit)
+    {
+        pLinkSymbolHit->DisplayAttributeArea(!pLinkSymbolHit->IsAttributeAreaVisible());
+
+        // if visible, refresh the attribute area
+        if (pLinkSymbolHit->IsAttributeAreaVisible())
+            pLinkSymbolHit->RefreshAttributeTextArea();
+
+        // adjust the area element position
+        pLinkSymbolHit->AdjustAreaPosition();
+    }
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateSymbolShowAttributeArea(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    BOOL            enable         = FALSE;
+
+    // get the enable flag
+    if (pSymbolHit)
+        enable = (pSymbolHit->IncludeAttributeArea() && pSymbolHit->UseDynamicArea());
+    else
+    if (pLinkSymbolHit)
+        enable = (pLinkSymbolHit->IncludeAttributeArea() && pLinkSymbolHit->UseDynamicArea());
+
+    pCmdUI->Enable(enable);
+
+    // if enabled, get the checked flag
+    if (enable)
+    {
+        BOOL checked = FALSE;
+
+        if (pSymbolHit)
+            checked = pSymbolHit->IsAttributeAreaVisible();
+        else
+        if (pLinkSymbolHit)
+            checked = pLinkSymbolHit->IsAttributeAreaVisible();
+
+        pCmdUI->SetCheck(checked);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSymbolShowLabelAttributes()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    // change the flag
+    if (pSymbolHit)
+        pSymbolHit->SetDisplayTitleText(!pSymbolHit->GetDisplayTitleText());
+    else
+    if (pLinkSymbolHit)
+        pLinkSymbolHit->SetShowTitleText(!pLinkSymbolHit->GetShowTitleText());
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateSymbolShowLabelAttributes(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    BOOL            enable         = FALSE;
+
+    // get the enable flag
+    if (pSymbolHit)
+        enable = (pSymbolHit->IncludeAttributeArea()   &&
+                  pSymbolHit->IsAttributeAreaVisible() &&
+                  pSymbolHit->UseDynamicArea());
+    else
+    if (pLinkSymbolHit)
+        enable = (pLinkSymbolHit->IncludeAttributeArea()   &&
+                  pLinkSymbolHit->IsAttributeAreaVisible() &&
+                  pLinkSymbolHit->UseDynamicArea());
+
+    pCmdUI->Enable(enable);
+
+    // if enabled, get the checked flag
+    if (enable)
+    {
+        BOOL checked = FALSE;
+
+        if (pSymbolHit)
+            checked = pSymbolHit->GetDisplayTitleText();
+        else
+        if (pLinkSymbolHit)
+            checked = pLinkSymbolHit->GetShowTitleText();
+
+        pCmdUI->SetCheck(checked);
+    }
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    if (!pSymbolHit && !pLinkSymbolHit)
+        return;
+
+    ZBPropertySet        propSet;
+    ZBPropertyAttributes propAttributes;
+
+    // check what kind of symbol was clicked
+    if (pSymbolHit)
+    {
+        // get the object property set
+        pSymbolHit->FillProperties(propSet);
+
+        // copy the symbol attributes
+        propAttributes = pSymbolHit->GetAttributes();
+    }
+    else
+    {
+        // get the object property set
+        pLinkSymbolHit->FillProperties(propSet);
+
+        // copy the symbol attributes
+        propAttributes = pLinkSymbolHit->GetAttributes();
+    }
+
+    // call the base dialog for attribute selection
+    ZVSelectSymbolAttributeDlg dlg(&propAttributes, &propSet);
+    const UINT                 result = dlg.DoModal();
+
+    // show the wait cursor for this operation
+    CWaitCursor waitCursor;
+
+    ZBPropertyIterator it(&propSet);
+
+    // remove all properties
+    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        delete pProp;
+
+    propSet.RemoveAll();
+
+    // check the return value
+    switch (result)
+    {
+        case IDOK:
+            if (pSymbolHit)
+                pSymbolHit->OnChangeAttributes(&propAttributes);
+            else
+                pLinkSymbolHit->OnChangeAttributes(&propAttributes);
+
+            break;
+
+        case ID_APPLYTOALL:
+        {
+            ZDProcessGraphModelMdl* pRoot = GetRootModel();
+
+            // iterate through all elements and sets the new attributes
+            if (pRoot)
+                if (pSymbolHit)
+                    pRoot->PropagateNewSymbolAttributes(&propAttributes, pSymbolHit->GetObjectTypeID());
+                else
+                    pRoot->PropagateNewSymbolAttributes(&propAttributes, pLinkSymbolHit->GetObjectTypeID());
+
+            break;
+        }
+
+        default:
+            return;
+    }
+
+    // to set this attribute set as the default one, copy its content to the default properties
+    if (dlg.MustSetAsDefaultToAll())
+        if (pSymbolHit)
+            ZAModelGlobal::GetGlobalPropertyAttributes(pSymbolHit->GetObjectTypeID()) = propAttributes;
+        else
+            ZAModelGlobal::GetGlobalPropertyAttributes(pLinkSymbolHit->GetObjectTypeID()) = propAttributes;
+
+    CDocument* pDocument = GetDocument();
+
+    // set the modification flag
+    if (pDocument)
+        pDocument->SetModifiedFlag(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateSymbolSelectAttributes(CCmdUI* pCmdUI)
+{
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    BOOL            enable         = FALSE;
+
+    // get the enable flag
+    if (pSymbolHit)
+        enable = (pSymbolHit->IncludeAttributeArea()   &&
+                  pSymbolHit->IsAttributeAreaVisible() &&
+                  pSymbolHit->UseDynamicArea());
+    else
+    if (pLinkSymbolHit)
+        enable = (pLinkSymbolHit->IncludeAttributeArea()   &&
+                  pLinkSymbolHit->IsAttributeAreaVisible() &&
+                  pLinkSymbolHit->UseDynamicArea());
+
+    pCmdUI->Enable(enable);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
+{
+    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    ASSERT(pDoc);
+
+    if (!pDoc->HasDynamicPropertiesManager())
+        pDoc->AllocatePropertiesManager();
+
+    ASSERT(pDoc->GetDynamicPropertiesManager());
+
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    ZVDynamicAttributesCreation dlg(pDoc, (pSymbolHit || pLinkSymbolHit));
+
+    if (dlg.DoModal() == IDCANCEL)
+        return;
+
+    // if a symbol is selected, assign the runtime class and the symbol name and reference
+    CRuntimeClass* pRTClass  = NULL;
+    CString        symbolName;
+    int            symbolRef = -1;
+
+    PSS_BasicSymbol* pBasicSymbol = dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit);
+
+    if (pBasicSymbol)
+    {
+        pRTClass   = m_pSymbolHit->GetRuntimeClass();
+        symbolName = pBasicSymbol->GetSymbolName();
+        symbolRef  = pBasicSymbol->GetSymbolReferenceNumber();
+    }
+
+    ZBProperty*      pProperty = NULL;
+    PSS_StringFormat ft;
+
+    switch (dlg.GetVisibility())
+    {
+        // local
+        case 0:
+            if (pBasicSymbol)
+            {
+                pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
+                                                                                  dlg.GetAttributeName(),
+                                                                                  dlg.GetAttributeDescription(),
+                                                                                  dlg.GetPropertyType(),
+                                                                                  ft,
+                                                                                  symbolName,
+                                                                                  symbolRef);
+
+                // add the property directly to the symbol
+                pBasicSymbol->GetDynamicPropertiesManager()->AddDynamicProperty(pProperty->Dup());
+            }
+
+            break;
+
+        // same class type
+        case 1:
+        {
+            pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
+                                                                              dlg.GetAttributeName(),
+                                                                              dlg.GetAttributeDescription(),
+                                                                              dlg.GetPropertyType(),
+                                                                              ft,
+                                                                              pRTClass);
+
+            // add the property to all symbols with the same class type
+            ZUDynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty, pRTClass);
+
+            break;
+        }
+
+        // all symbols
+        case 2:
+        {
+            pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
+                                                                              dlg.GetAttributeName(),
+                                                                              dlg.GetAttributeDescription(),
+                                                                              dlg.GetPropertyType(),
+                                                                              ft);
+
+            // add the property to all symbols
+            ZUDynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty);
+
+            break;
+        }
+    }
+
+    NotifySymbolSelected(m_pSymbolHit);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesAdd(CCmdUI* pCmdUI)
+{
+    // no distinction
+    pCmdUI->Enable(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
+{
+    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+
+    // if the document doesn't contain a dynamic properties manager, creates a default one
+    if (!pDoc->HasDynamicPropertiesManager())
+        pDoc->AllocatePropertiesManager();
+
+    ZBDynamicPropertiesManager* pPropMgr = pDoc->GetDynamicPropertiesManager();
+    ASSERT(pPropMgr);
+
+    AssignSymbolHit();
+
+    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+
+    // create and show the duplicate dialog box
+    ZVDynamicAttributesDuplication dlg(pDoc, (pSymbolHit || pLinkSymbolHit));
+
+    if (dlg.DoModal() == IDCANCEL)
+        return;
+
+    PSS_StringFormat ft;
+    ZBPropertySet    propSet;
+    CStringArray     propList;
+    CString          symbolName;
+    int              symbolRef     = -1;
+    ZBProperty*      pSrcProperty  =  NULL;
+    ZBProperty*      pDestProperty =  NULL;
+    PSS_BasicSymbol* pBasicSymbol  =  dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit);
+
+    // get the owning symbol name and reference
+    if (pBasicSymbol)
+    {
+        symbolName = pBasicSymbol->GetSymbolName();
+        symbolRef  = pBasicSymbol->GetSymbolReferenceNumber();
+    }
+
+    // Obtient les propriétés dynamiques contenues dans le symbole. Cela servira pour obtenir les données.
+    if (pSymbolHit)
+        pSymbolHit->FillProperties(propSet);
+    else
+    if (pLinkSymbolHit)
+        pLinkSymbolHit->FillProperties(propSet);
+
+    // get the properties matching with the selected category
+    pPropMgr->CreatePropertyList(dlg.m_Category, propList);
+
+    const INT_PTR propCount = propList.GetSize();
+
+    // copy the properties. Here only the property containers are copied, i.e the properties with the same
+    // name and description as in the source, however the values aren't copied, instead they will be copied later
+    for (INT_PTR i = 0; i < propCount; ++i)
+    {
+        const CString propName = propList.GetAt(i);
+
+        pSrcProperty  = pPropMgr->GetPropertyItem(dlg.m_Category, propName);
+        pDestProperty = pPropMgr->RegisterProperty(dlg.m_Name,
+                                                   pSrcProperty->GetLabel(),
+                                                   pSrcProperty->GetDescription(),
+                                                   pSrcProperty->GetPTType(),
+                                                   ft,
+                                                   symbolName,
+                                                   symbolRef);
+
+        // do copy the values?
+        if (dlg.m_bDupValuesIsChecked)
+        {
+            ZBPropertyIterator it(&propSet);
+
+            for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+                if (pProp->GetCategory() == dlg.m_Category && pProp->GetLabel() == pSrcProperty->GetLabel())
+                {
+                    pDestProperty->SetStringFormat(pProp->GetStringFormat());
+
+                    switch (pSrcProperty->GetPTValueType())
+                    {
+                        case ZBProperty::PT_DATE:     pDestProperty->SetValueDate(pProp->GetValueDate());         break;
+                        case ZBProperty::PT_DOUBLE:   pDestProperty->SetValueDouble(pProp->GetValueDouble());     break;
+                        case ZBProperty::PT_DURATION: pDestProperty->SetValueDuration(pProp->GetValueDuration()); break;
+                        case ZBProperty::PT_FLOAT:    pDestProperty->SetValueFloat(pProp->GetValueFloat());       break;
+                        case ZBProperty::PT_STRING:   pDestProperty->SetValueString(pProp->GetValueString());     break;
+                        case ZBProperty::PT_TIMESPAN: pDestProperty->SetValueTimeSpan(pProp->GetValueTimeSpan()); break;
+                        case ZBProperty::PT_UNKNOWN:                                                              break;
+                    }
+                }
+        }
+
+        // copy the new property in the symbol
+        if (pBasicSymbol)
+            pBasicSymbol->GetDynamicPropertiesManager()->AddDynamicProperty(pDestProperty->Dup());
+    }
+
+    // refresh the symbol
+    NotifySymbolSelected(m_pSymbolHit);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesDuplicate(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnDynamicAttributesDelete()
+{}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesDelete(CCmdUI* pCmdUI)
+{
+    // no distinction
+    pCmdUI->Enable(TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::OnRefresh()
+{
+    ZIProcessGraphModelViewport* pViewport = GetViewport();
+    ASSERT(pViewport);
+
+    pViewport->UpdateAll();
+
+    ZDProcessGraphModelMdl* pModel = GetModel();
+    ASSERT(pModel);
+
+    // refresh all symbol attributes
+    pModel->RefreshSymbolAttributes(true);
+
+    // also refresh the model tree
+    RefreshModelTree();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateNodes()
+{
+    CODComponentSet updateSet;
+    const int       nodeCount = m_AnimatedNodes.GetSize();
+
+    for (int nodeIndex = 0; nodeIndex < nodeCount; ++nodeIndex)
+    {
+        IODNode*            pINode = m_AnimatedNodes.GetAt(nodeIndex);
+        CODSymbolComponent* pComp  = static_cast<CODSymbolComponent*>(pINode);
+        const BOOL          flag   = !(m_AnimateCounter % 2);
+
+        pComp->SetTracking(flag);
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateEdges()
+{
+    CODComponentSet updateSet;
+    const int       nodeCount = m_AnimatedEdges.GetSize();
+
+    for (int edgeIndex = 0; edgeIndex < nodeCount; ++edgeIndex)
+    {
+        IODEdge*          pIEdge = m_AnimatedEdges.GetAt(edgeIndex);
+        CODLinkComponent* pComp  = static_cast<CODLinkComponent*>(pIEdge);
+        const BOOL        flag   = !(m_AnimateCounter % 2);
+
+        pComp->SetTracking(flag);
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::AnimateSymbols()
+{
+    CODComponentSet      updateSet;
+    CODComponentIterator it(&m_AnimatedComponents);
+
+    for (CODComponent* pSrcComp = it.GetFirst(); pSrcComp; pSrcComp = it.GetNext())
+    {
+        pSrcComp->SetTracking(!(m_AnimateCounter % 2));
+        updateSet.Add(pSrcComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ChangeColorNodes()
+{
+    CODComponentSet updateSet;
+    const int       nodeCount = m_AnimatedNodes.GetSize();
+
+    for (int nodeIndex = 0; nodeIndex < nodeCount; ++nodeIndex)
+    {
+        IODNode*            pINode = m_AnimatedNodes.GetAt(nodeIndex);
+        CODSymbolComponent* pComp  = static_cast<CODSymbolComponent*>(pINode);
+
+        if (pComp)
+        {
+            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
+            ZUODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
+        }
+
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ChangeColorEdges()
+{
+    CODComponentSet updateSet;
+    const int       nodeCount = m_AnimatedEdges.GetSize();
+
+    for (int edgeIndex = 0; edgeIndex < nodeCount; ++edgeIndex)
+    {
+        IODEdge*          pIEdge = m_AnimatedEdges.GetAt(edgeIndex);
+        CODLinkComponent* pComp  = static_cast<CODLinkComponent*>(pIEdge);
+
+        if (pComp)
+        {
+            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
+            ZUODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
+        }
+
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ChangeColorSymbols()
+{
+    CODComponentSet      updateSet;
+    CODComponentIterator it(&m_AnimatedComponents);
+
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+    {
+        if (pComp)
+        {
+            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
+            ZUODSymbolManipulator::ChangeLabelLineColor(static_cast<CODSymbolComponent*>(pComp), m_AnimatedColor);
+        }
+
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ChangeBackColorNodes()
+{
+    CODComponentSet updateSet;
+    const int       nodeCount = m_AnimatedNodes.GetSize();
+
+    for (int nodeIndex = 0; nodeIndex < nodeCount; ++nodeIndex)
+    {
+        IODNode*          pINode      = m_AnimatedNodes.GetAt(nodeIndex);
+        CODLinkComponent* pComp       =                  static_cast<CODLinkComponent*>(pINode);
+        ZBSymbol*         pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_LinkSymbol*   pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pSymbol)
+        {
+            ZUODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
+            ZUODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
+        }
+        else
+        if (pLinkSymbol)
+        {
+            ZUODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
+            ZUODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
+        }
+
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ChangeBackColorEdges()
+{
+    CODComponentSet updateSet;
+    const int       nodeCount = m_AnimatedEdges.GetSize();
+
+    for (int edgeIndex = 0; edgeIndex < nodeCount; ++edgeIndex)
+    {
+        IODEdge*          pIEdge      = m_AnimatedEdges.GetAt(edgeIndex);
+        CODLinkComponent* pComp       =                  static_cast<CODLinkComponent*>(pIEdge);
+        ZBSymbol*         pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_LinkSymbol*   pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pSymbol)
+        {
+            ZUODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
+            ZUODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
+        }
+        else
+        if (pLinkSymbol)
+        {
+            ZUODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
+            ZUODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
+        }
+
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::ChangeBackColorSymbols()
+{
+    CODComponentSet      updateSet;
+    CODComponentIterator it(&m_AnimatedComponents);
+
+    for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
+    {
+        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
+
+        if (pSymbol)
+        {
+            ZUODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
+            ZUODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
+        }
+        else
+        if (pLinkSymbol)
+        {
+            ZUODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
+            ZUODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
+        }
+
+        updateSet.Add(pComp);
+    }
+
+    CODViewport* pViewport = GetVp();
+
+    if (pViewport)
+        pViewport->DrawComponents(&updateSet);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelController::EndAnimateTimer()
+{
+    KillTimer(m_Timer);
+    m_Timer = 0;
+
+    if (m_AnimatedUseColor)
+    {
+        if (m_AnimatedNodes.GetSize() > 0)
+            ChangeBackColorNodes();
+
+        if (m_AnimatedEdges.GetSize() > 0)
+            ChangeBackColorEdges();
+
+        if (m_AnimatedComponents.GetSize() > 0)
+            ChangeBackColorSymbols();
+    }
+
+    m_AnimatedNodes.RemoveAll();
+    m_AnimatedEdges.RemoveAll();
+    m_AnimatedComponents.RemoveAll();
+
+    m_AnimateCounter   = 0;
+    m_TimerInitialized = false;
+}
+//---------------------------------------------------------------------------

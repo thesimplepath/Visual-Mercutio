@@ -559,7 +559,7 @@ void ZBBPDoorSymbol::OnPostDoubleClick(CODModel* pModel /*= NULL*/, CODControlle
         // ensure the symbol visible
         if (pModel && ISA(pModel, ZDProcessGraphModelMdl)) // Check the model type to be able to cast the controller
         {
-            dynamic_cast<ZDProcessGraphModelController*>(pCtrl)->EnsureSymbolVisible(GetTwinDoorSymbol());
+            dynamic_cast<PSS_ProcessGraphModelController*>(pCtrl)->EnsureSymbolVisible(GetTwinDoorSymbol());
         }
     }
 }

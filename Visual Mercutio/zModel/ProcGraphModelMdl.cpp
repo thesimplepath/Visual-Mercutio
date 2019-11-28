@@ -262,7 +262,7 @@ CDocument* ZDProcessGraphModelMdl::GetDocument() const
 {
     if (m_pCtlr)
     {
-        return dynamic_cast<ZDProcessGraphModelController*>(m_pCtlr)->GetDocument();
+        return dynamic_cast<PSS_ProcessGraphModelController*>(m_pCtlr)->GetDocument();
     }
 
     return NULL;
@@ -272,7 +272,7 @@ const CDocument* ZDProcessGraphModelMdl::GetDocumentConst() const
 {
     if (m_pCtlr)
     {
-        return dynamic_cast<ZDProcessGraphModelController*>(m_pCtlr)->GetDocumentConstPtr();
+        return dynamic_cast<PSS_ProcessGraphModelController*>(m_pCtlr)->GetDocument();
     }
 
     return NULL;
@@ -382,9 +382,9 @@ void ZDProcessGraphModelMdl::SetShowPageBorder(bool value)
     }
 }
 
-ZDProcessGraphModelController* ZDProcessGraphModelMdl::CreateController(ZIProcessGraphModelViewport* pVp)
+PSS_ProcessGraphModelController* ZDProcessGraphModelMdl::CreateController(ZIProcessGraphModelViewport* pVp)
 {
-    return new ZDProcessGraphModelController(pVp);
+    return new PSS_ProcessGraphModelController(pVp);
 }
 
 ZDProcessGraphModelMdl* ZDProcessGraphModelMdl::GetRoot()
@@ -2225,7 +2225,7 @@ void ZDProcessGraphModelMdl::SelectAllComponents()
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->SelectAllComponents();
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->SelectAllComponents();
     }
 }
 
@@ -2233,7 +2233,7 @@ void ZDProcessGraphModelMdl::UnselectAllComponents()
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->UnselectAllComponents();
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->UnselectAllComponents();
     }
 }
 
@@ -2241,7 +2241,7 @@ void ZDProcessGraphModelMdl::SelectComponent(CODComponent& Comp)
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->SelectComponent(Comp);
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->SelectComponent(Comp);
     }
 }
 
@@ -2249,7 +2249,7 @@ void ZDProcessGraphModelMdl::SelectComponentSet(CODComponentSet& Set)
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->SelectComponentSet(Set);
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->SelectComponentSet(Set);
     }
 }
 
@@ -2257,7 +2257,7 @@ void ZDProcessGraphModelMdl::UnselectComponent(CODComponent& Comp)
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->UnselectComponent(Comp);
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->UnselectComponent(Comp);
     }
 }
 
@@ -2265,13 +2265,13 @@ void ZDProcessGraphModelMdl::UnselectComponentSet(CODComponentSet& Set)
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->UnselectComponentSet(Set);
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->UnselectComponentSet(Set);
     }
 }
 
 bool ZDProcessGraphModelMdl::IsComponentSelected(CODComponent& Comp)
 {
-    return (GetController()) ? dynamic_cast<ZDProcessGraphModelController*>(GetController())->IsComponentSelected(Comp) :
+    return (GetController()) ? dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->IsComponentSelected(Comp) :
         false;
 }
 
@@ -2279,7 +2279,7 @@ void ZDProcessGraphModelMdl::DeleteComponents(CODComponentSet* pCompSet)
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->DeleteComponents(pCompSet);
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->DeleteComponents(pCompSet);
     }
 }
 
@@ -2287,7 +2287,7 @@ void ZDProcessGraphModelMdl::DeleteComponent(CODComponent* pComp)
 {
     if (GetController())
     {
-        dynamic_cast<ZDProcessGraphModelController*>(GetController())->DeleteComponent(pComp);
+        dynamic_cast<PSS_ProcessGraphModelController*>(GetController())->DeleteComponent(pComp);
     }
 }
 

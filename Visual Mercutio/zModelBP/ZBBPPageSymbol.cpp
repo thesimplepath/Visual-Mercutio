@@ -623,7 +623,7 @@ void ZBBPPageSymbol::OnPostDoubleClick(CODModel* pModel /*= NULL*/, CODControlle
         // Ensure the symbol visible, and check the model type to be able to cast the controller
         if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {
-            dynamic_cast<ZDProcessGraphModelController*>(pCtrl)->EnsureSymbolVisible(GetTwinPageSymbol());
+            dynamic_cast<PSS_ProcessGraphModelController*>(pCtrl)->EnsureSymbolVisible(GetTwinPageSymbol());
         }
     }
 }

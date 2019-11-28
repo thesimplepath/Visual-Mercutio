@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////
 // Forward class declaration
 class ZDProcessGraphModelMdl;
-class ZDProcessGraphModelController;
+class PSS_ProcessGraphModelController;
 class PSS_Server;
 
 #ifdef _ZMODELEXPORT
@@ -38,54 +38,54 @@ class AFX_EXT_CLASS ZBInfoModelGraphicGeneration
 {
 public:
 
-    ZBInfoModelGraphicGeneration( ZDProcessGraphModelMdl*            pModel                    = NULL,
-                                  ZDProcessGraphModelController*    pCtlr                    = NULL,
-                                  const CString                        URLName                    = _T( "" ),
-                                  bool                                AbsolutePath            = true,
-                                  bool                                IncludeConceptor        = true,
-                                  bool                                IncludeProcessReport    = true,
-                                  bool                                IncludeRuleBook            = true,
-                                  const                                CString imageFileName    = _T( "" ),
-                                  const                                CString HyperLink        = _T( "" ),
-                                  CDC*                                pDC                        = NULL,
-                                 PSS_Server*                          pServer                    = NULL);
+    ZBInfoModelGraphicGeneration(ZDProcessGraphModelMdl*            pModel = NULL,
+                                 PSS_ProcessGraphModelController*    pCtlr = NULL,
+                                 const CString                        URLName = _T(""),
+                                 bool                                AbsolutePath = true,
+                                 bool                                IncludeConceptor = true,
+                                 bool                                IncludeProcessReport = true,
+                                 bool                                IncludeRuleBook = true,
+                                 const                                CString imageFileName = _T(""),
+                                 const                                CString HyperLink = _T(""),
+                                 CDC*                                pDC = NULL,
+                                 PSS_Server*                          pServer = NULL);
 
     virtual ~ZBInfoModelGraphicGeneration();
 
     ZDProcessGraphModelMdl* GetModel() const;
-    void SetModel( ZDProcessGraphModelMdl* value );
-    
-    ZDProcessGraphModelController* GetCtlr() const;
-    void SetCtlr( ZDProcessGraphModelController* value );
-    
+    void SetModel(ZDProcessGraphModelMdl* value);
+
+    PSS_ProcessGraphModelController* GetCtlr() const;
+    void SetCtlr(PSS_ProcessGraphModelController* value);
+
     CString GetURLName() const;
-    void SetURLName( CString value );
+    void SetURLName(CString value);
 
     bool GetAbsolutePath() const;
-    void SetAbsolutePath( bool value );
+    void SetAbsolutePath(bool value);
 
     bool GetIncludeConceptor() const;
-    void SetIncludeConceptor( bool value );
+    void SetIncludeConceptor(bool value);
 
     // JMR-MODIF - Le 2 mars 2006 - Ajout des fonctions de gestion de la génération du rapport processus.
     bool GetIncludeProcessReport() const;
-    void SetIncludeProcessReport( bool value );
+    void SetIncludeProcessReport(bool value);
 
     // JMR-MODIF - Le 16 janvier 2007 - Ajout des fonctions de gestion de la génération du livre des règles.
     bool GetIncludeRuleBook() const;
-    void SetIncludeRuleBook( bool value );
+    void SetIncludeRuleBook(bool value);
 
     CString GetImageFileName() const;
-    void SetImageFileName( CString value );
+    void SetImageFileName(CString value);
 
     CString GetHyperLink() const;
-    void SetHyperLink( CString value );
+    void SetHyperLink(CString value);
 
     CDC* GetDC() const;
-    void SetDC( CDC* value );
+    void SetDC(CDC* value);
 
     PSS_Server* GetServer() const;
-    void SetServer(PSS_Server* value );
+    void SetServer(PSS_Server* value);
 
 private:
 
@@ -104,7 +104,7 @@ private:
 
     ZDProcessGraphModelMdl*            m_pModel;
 
-    ZDProcessGraphModelController*    m_pCtlr;
+    PSS_ProcessGraphModelController*    m_pCtlr;
 
     PSS_Server*                        m_pServer;
 };
@@ -114,17 +114,17 @@ inline ZDProcessGraphModelMdl* ZBInfoModelGraphicGeneration::GetModel() const
     return m_pModel;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetModel( ZDProcessGraphModelMdl* value )
+inline void ZBInfoModelGraphicGeneration::SetModel(ZDProcessGraphModelMdl* value)
 {
     m_pModel = value;
 }
 
-inline ZDProcessGraphModelController* ZBInfoModelGraphicGeneration::GetCtlr() const
+inline PSS_ProcessGraphModelController* ZBInfoModelGraphicGeneration::GetCtlr() const
 {
     return m_pCtlr;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetCtlr( ZDProcessGraphModelController* value )
+inline void ZBInfoModelGraphicGeneration::SetCtlr(PSS_ProcessGraphModelController* value)
 {
     m_pCtlr = value;
 }
@@ -134,7 +134,7 @@ inline CString ZBInfoModelGraphicGeneration::GetURLName() const
     return m_URLName;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetURLName( CString value )
+inline void ZBInfoModelGraphicGeneration::SetURLName(CString value)
 {
     m_URLName = value;
 }
@@ -144,7 +144,7 @@ inline bool ZBInfoModelGraphicGeneration::GetAbsolutePath() const
     return m_AbsolutePath;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetAbsolutePath( bool value )
+inline void ZBInfoModelGraphicGeneration::SetAbsolutePath(bool value)
 {
     m_AbsolutePath = value;
 }
@@ -154,7 +154,7 @@ inline bool ZBInfoModelGraphicGeneration::GetIncludeConceptor() const
     return m_IncludeConceptor;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetIncludeConceptor( bool value )
+inline void ZBInfoModelGraphicGeneration::SetIncludeConceptor(bool value)
 {
     m_IncludeConceptor = value;
 }
@@ -166,7 +166,7 @@ inline bool ZBInfoModelGraphicGeneration::GetIncludeProcessReport() const
 }
 
 // JMR-MODIF - Le 2 mars 2006 - Ajout de la fonction SetIncludeProcessReport.
-inline void ZBInfoModelGraphicGeneration::SetIncludeProcessReport( bool value )
+inline void ZBInfoModelGraphicGeneration::SetIncludeProcessReport(bool value)
 {
     m_IncludeProcessReport = value;
 }
@@ -178,7 +178,7 @@ inline bool ZBInfoModelGraphicGeneration::GetIncludeRuleBook() const
 }
 
 // JMR-MODIF - Le 16 janvier 2007 - Ajout de la fonction SetIncludeRuleBook.
-inline void ZBInfoModelGraphicGeneration::SetIncludeRuleBook( bool value )
+inline void ZBInfoModelGraphicGeneration::SetIncludeRuleBook(bool value)
 {
     m_IncludeRuleBook = value;
 }
@@ -188,7 +188,7 @@ inline CString ZBInfoModelGraphicGeneration::GetImageFileName() const
     return m_ImageFileName;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetImageFileName( CString value )
+inline void ZBInfoModelGraphicGeneration::SetImageFileName(CString value)
 {
     m_ImageFileName = value;
 }
@@ -198,7 +198,7 @@ inline CString ZBInfoModelGraphicGeneration::GetHyperLink() const
     return m_HyperLink;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetHyperLink( CString value )
+inline void ZBInfoModelGraphicGeneration::SetHyperLink(CString value)
 {
     m_HyperLink = value;
 }
@@ -208,7 +208,7 @@ inline CDC* ZBInfoModelGraphicGeneration::GetDC() const
     return m_pDC;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetDC( CDC* value )
+inline void ZBInfoModelGraphicGeneration::SetDC(CDC* value)
 {
     m_pDC = value;
 }
@@ -218,9 +218,9 @@ inline PSS_Server* ZBInfoModelGraphicGeneration::GetServer() const
     return m_pServer;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetServer(PSS_Server* value )
+inline void ZBInfoModelGraphicGeneration::SetServer(PSS_Server* value)
 {
     m_pServer = value;
 }
 
-#endif // !defined(AFX_ZBINFOMODELGRAPHICGENERATION_H__05209965_C481_4C8E_AA5F_E813CF9C313F__INCLUDED_)
+#endif

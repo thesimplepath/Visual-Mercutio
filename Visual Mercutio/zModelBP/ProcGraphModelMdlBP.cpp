@@ -73,7 +73,7 @@ ZDProcessGraphModelMdlBP::~ZDProcessGraphModelMdlBP()
     }
 }
 
-ZDProcessGraphModelController* ZDProcessGraphModelMdlBP::CreateController(ZIProcessGraphModelViewport* pVp)
+PSS_ProcessGraphModelController* ZDProcessGraphModelMdlBP::CreateController(ZIProcessGraphModelViewport* pVp)
 {
     return new ZDProcessGraphModelControllerBP(pVp);
 }

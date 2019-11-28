@@ -47,7 +47,7 @@ class PSS_Log;
 class ZDProcessGraphModelDoc;
 class ZIProcessGraphModelViewport;
 class ZIProcessGraphModelView;
-class ZDProcessGraphModelController;
+class PSS_ProcessGraphModelController;
 class ZDProcessGraphPage;
 class ZBUserGroupEntity;
 class ZBPropertyAttributes;
@@ -111,7 +111,7 @@ public:
                                                                           ZDProcessGraphModelDoc*        m_pDocument);
 
     // This method creates the associated controller
-    virtual ZDProcessGraphModelController*    CreateController(ZIProcessGraphModelViewport* pVp);
+    virtual PSS_ProcessGraphModelController* CreateController(ZIProcessGraphModelViewport* pVp);
 
     // This method creates the method associated viewport
     virtual ZIProcessGraphModelViewport*    CreateViewport(ZIProcessGraphModelView* pView);

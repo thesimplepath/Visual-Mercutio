@@ -27,7 +27,7 @@
 
 // forward class declarations
 class ZDProcessGraphModelMdl;
-class ZDProcessGraphModelController;
+class PSS_ProcessGraphModelController;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -138,7 +138,7 @@ protected: // create from serialization only
 // Attributes
 public:
 
-    virtual ZDProcessGraphModelController* GetModelController();
+    virtual PSS_ProcessGraphModelController* GetModelController();
 
     void    SetModel( ZDProcessGraphModelMdl* pModel, bool SizeViewport = true );
     virtual ZDProcessGraphModelMdl* GetModel();

@@ -777,7 +777,7 @@ void ZAApp::DoRefreshSymbolsAndProperties()
         CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
         ZDProcessGraphModelDoc*    m_pGraphModelDoc = (ZDProcessGraphModelDoc*)m_pDoc;
         ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
-        ZDProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
+        PSS_ProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
         m_pModelController->RefreshAllSymbols();
         m_pModelController->RefreshSelectionProperties();
@@ -795,7 +795,7 @@ void ZAApp::DoRefreshProperties()
         CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
         ZDProcessGraphModelDoc*    m_pGraphModelDoc = (ZDProcessGraphModelDoc*)m_pDoc;
         ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
-        ZDProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
+        PSS_ProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
         m_pModelController->RefreshSelectionProperties();
     }

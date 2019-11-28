@@ -44,7 +44,7 @@ public:
     virtual ~ZDProcessGraphModelMdlBP();
 
     // This method creates the associated controller
-    virtual ZDProcessGraphModelController* CreateController(ZIProcessGraphModelViewport* pVp);
+    virtual PSS_ProcessGraphModelController* CreateController(ZIProcessGraphModelViewport* pVp);
 
     virtual void            SetDefaultWkfProperty(bool RedefineOnExisting = false);
     virtual void            DeleteAllActivitiesLinkedToWorkflow();

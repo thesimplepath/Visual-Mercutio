@@ -29,10 +29,8 @@ class ZBBPStartSymbol;
 class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
 class ZDProcessGraphModelMdl;
-// JMR-MODIF - Le 2 octobre 2006 - Ajout de la classe ZDProcessGraphModelMdlBP dans les déclarations.
 class ZDProcessGraphModelMdlBP;
-// JMR-MODIF - Le 2 octobre 2006 - Ajout de la classe ZDProcessGraphModelController dans les déclarations.
-class ZDProcessGraphModelController;
+class PSS_ProcessGraphModelController;
 
 // JMR-MODIF - Le 2 octobre 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 

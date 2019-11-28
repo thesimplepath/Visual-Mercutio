@@ -42,7 +42,7 @@
 // scope symbols in stingray foundation library
 using namespace sfl;
 
-class AFX_EXT_CLASS ZDProcessGraphModelControllerBP : public ZDProcessGraphModelController
+class AFX_EXT_CLASS ZDProcessGraphModelControllerBP : public PSS_ProcessGraphModelController
 {
 public:
 

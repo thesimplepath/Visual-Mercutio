@@ -496,7 +496,7 @@ BOOL ZIProcessGraphModelView::PreCreateWindow(CREATESTRUCT& cs)
     return PSS_DropScrollView::PreCreateWindow(cs);
 }
 
-ZDProcessGraphModelController* ZIProcessGraphModelView::GetModelController()
+PSS_ProcessGraphModelController* ZIProcessGraphModelView::GetModelController()
 {
     if (GetViewport())
     {
@@ -764,7 +764,7 @@ void ZIProcessGraphModelView::OnInitialUpdate()
 // Drag and drop functions
 bool ZIProcessGraphModelView::DropItem(CObject* pObj, CPoint pt)
 {
-    ZDProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
+    PSS_ProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
 
     if (pCtrl)
     {
@@ -776,7 +776,7 @@ bool ZIProcessGraphModelView::DropItem(CObject* pObj, CPoint pt)
 
 bool ZIProcessGraphModelView::AcceptDropItem(CObject* pObj, CPoint pt)
 {
-    ZDProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
+    PSS_ProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
 
     if (pCtrl)
     {
@@ -947,7 +947,7 @@ afx_msg LRESULT ZIProcessGraphModelView::OnRefreshSymbol(WPARAM wParam, LPARAM l
 
         if (pModelMsg->GetElement())
         {
-            ZIProcessGraphModelViewport::GetModelController()->ReDrawComponent(*pModelMsg->GetElement());
+            ZIProcessGraphModelViewport::GetModelController()->RedrawComponent(*pModelMsg->GetElement());
             return 1;
         }
     }
@@ -970,7 +970,7 @@ afx_msg LRESULT ZIProcessGraphModelView::OnRefreshSymbolSet(WPARAM wParam, LPARA
 
         if (pModelMsg->GetElementSet())
         {
-            ZIProcessGraphModelViewport::GetModelController()->ReDrawComponentSet(*pModelMsg->GetElementSet());
+            ZIProcessGraphModelViewport::GetModelController()->RedrawComponentSet(*pModelMsg->GetElementSet());
             return 1;
         }
     }
@@ -1088,7 +1088,7 @@ LRESULT ZIProcessGraphModelView::OnAdviseStartPropertyEdition(WPARAM wParam, LPA
         return 0;
     }
 
-    ZIProcessGraphModelViewport::GetModelController()->OnAdviseStartPropertyEdition();
+    ZIProcessGraphModelViewport::GetModelController()->OnStartEditProperty();
 
     return 0;
 }

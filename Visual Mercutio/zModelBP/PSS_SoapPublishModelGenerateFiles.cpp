@@ -153,8 +153,8 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
 
     ASSERT(m_pInfo);
 
-    ZDProcessGraphModelController* pCtrl = m_pInfo->GetCtlr();
-    CDC*                           pDC   = m_pInfo->GetDC();
+    PSS_ProcessGraphModelController* pCtrl = m_pInfo->GetCtlr();
+    CDC*                             pDC   = m_pInfo->GetDC();
 
     if (!pDC || !pCtrl)
         return false;

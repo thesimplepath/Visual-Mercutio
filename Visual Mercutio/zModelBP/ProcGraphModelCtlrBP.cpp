@@ -61,7 +61,7 @@ static char THIS_FILE[] = __FILE__;
 SECCustomToolBar*    ZDProcessGraphModelControllerBP::m_pwndModelisationBar = NULL;
 SECCustomToolBar*    ZDProcessGraphModelControllerBP::m_pwndModelGenerationBar = NULL;
 
-BEGIN_MESSAGE_MAP(ZDProcessGraphModelControllerBP, ZDProcessGraphModelController)
+BEGIN_MESSAGE_MAP(ZDProcessGraphModelControllerBP, PSS_ProcessGraphModelController)
     //{{AFX_MSG_MAP(ZDProcessGraphModelControllerBP)
     ON_COMMAND(ID_INS_BP_PROCEDURE, OnInsProcedure)
     ON_UPDATE_COMMAND_UI(ID_INS_BP_PROCEDURE, OnUpdateInsProcedure)
@@ -162,7 +162,7 @@ END_MESSAGE_MAP()
 // ZDProcessGraphModelControllerBP
 
 ZDProcessGraphModelControllerBP::ZDProcessGraphModelControllerBP(ZIProcessGraphModelViewport* pViewport)
-    : ZDProcessGraphModelController(pViewport)
+    : PSS_ProcessGraphModelController(pViewport)
 {
     // Load the right main menu for components
     m_SymbolRightMainMenu.LoadMenu(IDR_SYMBOL_RIGHTMENU_BP);
@@ -176,28 +176,28 @@ ZDProcessGraphModelControllerBP::~ZDProcessGraphModelControllerBP()
 bool ZDProcessGraphModelControllerBP::DropItemToModel(CObject* pObj, CPoint pt)
 {
     // Call the base class
-    return ZDProcessGraphModelController::DropItemToModel(pObj, pt);
+    return PSS_ProcessGraphModelController::DropItemToModel(pObj, pt);
 }
 
 // Check if the drop can be done successfuly on the model
 bool ZDProcessGraphModelControllerBP::AcceptDropItemToModel(CObject* pObj, CPoint pt)
 {
     // Call the base class
-    return ZDProcessGraphModelController::AcceptDropItemToModel(pObj, pt);
+    return PSS_ProcessGraphModelController::AcceptDropItemToModel(pObj, pt);
 }
 
 // Proceed the drop of an object
 bool ZDProcessGraphModelControllerBP::DropItem(CObject* pObj, CPoint pt)
 {
     // Call the base class
-    return ZDProcessGraphModelController::DropItem(pObj, pt);
+    return PSS_ProcessGraphModelController::DropItem(pObj, pt);
 }
 
 // Check if the drop can be done successfuly
 bool ZDProcessGraphModelControllerBP::AcceptDropItem(CObject* pObj, CPoint pt)
 {
     // Call the base class
-    return ZDProcessGraphModelController::AcceptDropItem(pObj, pt);
+    return PSS_ProcessGraphModelController::AcceptDropItem(pObj, pt);
 }
 
 void ZDProcessGraphModelControllerBP::InsertPageSymbol()
@@ -1113,7 +1113,7 @@ bool ZDProcessGraphModelControllerBP::CanDuplicateObject(CODComponentSet* pCompS
 void ZDProcessGraphModelControllerBP::OnSymbolDuplicated(CODComponentSet* pCompSet)
 {
     // Call the base class method to duplicate simple object
-    ZDProcessGraphModelController::OnSymbolDuplicated(pCompSet);
+    PSS_ProcessGraphModelController::OnSymbolDuplicated(pCompSet);
 
     // Run through added elements and change their names.
     // If symbols have child components, then asks the user to duplicate sub-components
@@ -1122,7 +1122,7 @@ void ZDProcessGraphModelControllerBP::OnSymbolDuplicated(CODComponentSet* pCompS
     CODComponent* pComp;
 
     int iPos = 0;
-    int CountCopySet = m_setCopy.GetSize();
+    int CountCopySet = m_CopySet.GetSize();
 
     for (pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext(), ++iPos)
     {

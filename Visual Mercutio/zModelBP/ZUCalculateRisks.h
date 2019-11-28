@@ -35,7 +35,7 @@ class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
 class ZDProcessGraphModelMdl;
 class ZDProcessGraphModelMdlBP;
-class ZDProcessGraphModelController;
+class PSS_ProcessGraphModelController;
 
 class ZUCalculateRisks : public PSS_BasicSymbolVisitor
 {
