@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "ProcGraphModelView.h"
 #include "PSS_ProcessGraphChildFrame.h"
-#include "ProcGraphModelCtlr.h"
+#include "PSS_ProcessGraphModelController.h"
 #include "ZBDocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
 #include "ZBLogicalSystemEntity.h"

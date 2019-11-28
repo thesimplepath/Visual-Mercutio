@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "ProcGraphModelVp.h"
-#include "ProcGraphModelCtlr.h"
+#include "PSS_ProcessGraphModelController.h"
 #include "ProcGraphModelView.h"
 #include "ProcGraphModelMdl.h"
 

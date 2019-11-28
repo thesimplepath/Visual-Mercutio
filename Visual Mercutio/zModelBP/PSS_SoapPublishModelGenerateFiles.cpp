@@ -17,7 +17,7 @@
 #include "zConversion\PSS_StringTools.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
-#include "zModel\ProcGraphModelCtlr.h"
+#include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\PSS_LinkSymbol.h"

@@ -19,7 +19,7 @@
 #include "ProcGraphModelMdlBP.h"
 
 // JMR-MODIF - Le 2 octobre 2006 - Ajout de l'en-tête ProcGraphModelCtlr.h
-#include "zModel\ProcGraphModelCtlr.h"
+#include "zModel\PSS_ProcessGraphModelController.h"
 
 #include "ZUCheckValidUnit.h"
 

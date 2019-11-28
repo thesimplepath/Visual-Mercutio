@@ -14,7 +14,7 @@
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zModel\ProcGraphModelMdl.h"
-#include "zModel\ProcGraphModelCtlr.h"
+#include "zModel\PSS_ProcessGraphModelController.h"
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ProcGraphModelView.h"

@@ -5,7 +5,7 @@
 #include "ZBInfoModelGraphicGeneration.h"
 
 #include "ProcGraphModelMdl.h"
-#include "ProcGraphModelCtlr.h"
+#include "PSS_ProcessGraphModelController.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

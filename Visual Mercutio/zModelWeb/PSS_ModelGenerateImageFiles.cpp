@@ -16,7 +16,7 @@
 #include "zBaseLib\PSS_Global.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
-#include "zModel\ProcGraphModelCtlr.h"
+#include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\ZDProcessGraphPage.h"
 #include "zModel\ZUExtractModelUnitGroupAssigned.h"
 #include "zModel\ZUExtractModelLogicalSystemAssigned.h"
