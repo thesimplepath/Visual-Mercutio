@@ -145,6 +145,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PSS_MathHelper.cpp" />
     <ClCompile Include="PSS_StatusBar.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -1347,6 +1348,7 @@
     <ResourceCompile Include="zBaseLib.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PSS_MathHelper.h" />
     <ClInclude Include="PSS_StatusBar.h" />
     <ClInclude Include="PSS_ApplicationOption.h" />
     <ClInclude Include="PSS_BaseDocument.h" />
