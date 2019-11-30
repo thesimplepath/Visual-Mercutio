@@ -390,7 +390,7 @@ void ZAApp::Release()
 
     // Désallocation des objets statiques.
     PSS_Global::Release();
-    ZAModelGlobal::Release();
+    PSS_ModelGlobal::Release();
     PSS_ObjectUtility::Release();
     PSS_ResourceManager::Release();
     PSS_FloatingToolBar::Release();
@@ -501,7 +501,7 @@ BOOL ZAApp::PostInitAppl()
     }
 
     // Initialize the global state for model
-    ZAModelGlobal::LoadStateGlobalPropertyAttributes(m_pszProfileName);
+    PSS_ModelGlobal::SetGlobalPropertyAttributesFileName(m_pszProfileName);
 
     // Attach the necessary observers
     if (GetProcessWorkspace())
@@ -687,7 +687,8 @@ BOOL ZAApp::ExitAppl()
     }
 
     // Saves the global state for model
-    ZAModelGlobal::SaveStateGlobalPropertyAttributes(m_pszProfileName);
+    PSS_ModelGlobal::SetGlobalPropertyAttributesFileName(m_pszProfileName);
+    PSS_ModelGlobal::SaveGlobalPropertyAttributes();
 
     // Close the current workspace
     if (!CloseCurrentWorkspace())
@@ -2663,7 +2664,8 @@ void ZAApp::OnFileSaveAll()
     }
 
     // Saves the global state for model
-    ZAModelGlobal::SaveStateGlobalPropertyAttributes(m_pszProfileName);
+    PSS_ModelGlobal::SetGlobalPropertyAttributesFileName(m_pszProfileName);
+    PSS_ModelGlobal::SaveGlobalPropertyAttributes();
 
     // Finally, saves the application options
     if (!GetApplicationOptions().SaveOption())

@@ -4,9 +4,9 @@
 #include "stdafx.h"
 #include "ZVUserGroupInfoDlg.h"
 
-#include "ZBUserGroupEntity.h"
-
+// processsoft
 #include "zBaseLib\PSS_MsgBox.h"
+#include "ZBUserGroupEntity.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

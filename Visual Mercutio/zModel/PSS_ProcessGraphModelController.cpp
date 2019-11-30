@@ -4526,9 +4526,9 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
     // to set this attribute set as the default one, copy its content to the default properties
     if (dlg.MustSetAsDefaultToAll())
         if (pSymbolHit)
-            ZAModelGlobal::GetGlobalPropertyAttributes(pSymbolHit->GetObjectTypeID()) = propAttributes;
+            PSS_ModelGlobal::GetGlobalPropertyAttributes(pSymbolHit->GetObjectTypeID()) = propAttributes;
         else
-            ZAModelGlobal::GetGlobalPropertyAttributes(pLinkSymbolHit->GetObjectTypeID()) = propAttributes;
+            PSS_ModelGlobal::GetGlobalPropertyAttributes(pLinkSymbolHit->GetObjectTypeID()) = propAttributes;
 
     CDocument* pDocument = GetDocument();
 

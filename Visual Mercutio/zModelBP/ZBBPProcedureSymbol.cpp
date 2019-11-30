@@ -161,9 +161,9 @@ bool ZBBPProcedureSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttribu
     }
 
     // If global attributes have been defined, then copy them
-    if (ZAModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID()).GetAttributeCount() > 0)
+    if (PSS_ModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID()).GetAttributeCount() > 0)
     {
-        *pAttributes = ZAModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID());
+        *pAttributes = PSS_ModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID());
     }
     else
     {

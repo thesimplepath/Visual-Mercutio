@@ -1,14 +1,18 @@
-// ZAModelGlobal.h: interface for the ZAModelGlobal class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_ModelGlobal -----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the model global property attributes              *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZAMODELGLOBAL_H__EE1AEA1E_DC05_4884_BD63_36A1EC1EEC87__INCLUDED_)
-#define AFX_ZAMODELGLOBAL_H__EE1AEA1E_DC05_4884_BD63_36A1EC1EEC87__INCLUDED_
+#ifndef PSS_ModelGlobalH
+#define PSS_ModelGlobalH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -20,53 +24,67 @@
 #include "zProperty\ZBPropertyAttributes.h"
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-// JMR-MODIF - Le 25 décembre 2006 - Ajout des décorations unicode _T(), nettoyage du code inutile. (En commentaires)
 
 using namespace sfl;
 
-//@type ZBPropertyAttributesSet | An array of ZBPropertyAttributes pointers.
-//@iex typedef CCArray_T<ZBPropertyAttributes*,ZBPropertyAttributes*> ZBPropertyAttributesSet;
-typedef CCArray_T<ZBPropertyAttributes*, ZBPropertyAttributes*> ZBPropertyAttributesSet;
-
-//@type ZBPropertyAttributesIterator | An iterator for ZBPropertyAttributesSet collections.
-//@iex typedef Iterator_T<ZBPropertyAttributes*> ZBPropertyAttributesIterator;
-typedef Iterator_T<ZBPropertyAttributes*> ZBPropertyAttributesIterator;
-
-class AFX_EXT_CLASS ZAModelGlobal
+/**
+* Model global property attributes
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ModelGlobal
 {
-public:
+    public:
+        PSS_ModelGlobal();
+        virtual ~PSS_ModelGlobal();
 
-    ZAModelGlobal();
-    virtual ~ZAModelGlobal();
+        /**
+        * Loads the global property attributes from a file
+        *@param fileName - the file name
+        *@return true on success, otherwise false
+        */
+        static inline void SetGlobalPropertyAttributesFileName(const CString& fileName);
 
-    static bool LoadStateGlobalPropertyAttributes( const CString fileName )
-    {
-        // Only save the file name
-        m_FileName = fileName;
-        return true;
-    };
+        /**
+        * Saves the global property attributes to a file
+        *@return true on success, otherwise false
+        */
+        static bool SaveGlobalPropertyAttributes();
 
-    static bool SaveStateGlobalPropertyAttributes( const CString fileName );
+        /**
+        * Gets the global property attributes
+        *@param objectID - the attributes object identifier to get
+        *@return the attributes, NULL if not found or on error
+        */
+        static ZBPropertyAttributes& GetGlobalPropertyAttributes(int ObjectID);
 
-    static ZBPropertyAttributes& GetGlobalPropertyAttributes( int ObjectID );
+        /**
+        * Releases the global property attributes
+        */
+        static void Release();
 
-    // JMR-MODIF - Le 31 août 2005 - Ajout de la fonction Release.
-    static void Release();
+    private:
+        typedef CCArray_T <ZBPropertyAttributes*, ZBPropertyAttributes*> IPropertyAttributesSet;
+        typedef Iterator_T<ZBPropertyAttributes*>                        IPropertyAttributesIterator;
 
-private:
-
-    static ZBPropertyAttributesSet    m_Set;
-
-    static CString                    m_FileName;
+        static IPropertyAttributesSet m_Set;
+        static CString                m_FileName;
 };
 
-#endif // !defined(AFX_ZAMODELGLOBAL_H__EE1AEA1E_DC05_4884_BD63_36A1EC1EEC87__INCLUDED_)
+//---------------------------------------------------------------------------
+// PSS_ModelGlobal
+//---------------------------------------------------------------------------
+void PSS_ModelGlobal::SetGlobalPropertyAttributesFileName(const CString& fileName)
+{
+    m_FileName = fileName;
+}
+//---------------------------------------------------------------------------
+
+#endif
