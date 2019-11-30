@@ -18,7 +18,7 @@
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zFormsRes\zFormsRes.h"
 #include "ProcGraphModelVp.h"
-#include "ProcGraphModelDoc.h"
+#include "PSS_ProcessGraphModelDoc.h"
 #include "ProcGraphModelView.h"
 #include "ZUODSymbolManipulator.h"
 #include "ZBDocObserverMsg.h"

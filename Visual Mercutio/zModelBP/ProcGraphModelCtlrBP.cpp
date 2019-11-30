@@ -10,7 +10,7 @@
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
 #undef _ZMODELEXPORT

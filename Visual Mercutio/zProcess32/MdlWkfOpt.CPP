@@ -6,7 +6,7 @@
 // processsoft
 #include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"

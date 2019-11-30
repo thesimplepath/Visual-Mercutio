@@ -7,7 +7,7 @@
 #include "Resource.h"
 
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 

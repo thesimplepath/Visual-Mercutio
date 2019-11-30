@@ -30,7 +30,7 @@
 #include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_Tokenizer.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBLogicalPrestationsEntity.h"
 #include "zModel\ZDProcessGraphPage.h"
 

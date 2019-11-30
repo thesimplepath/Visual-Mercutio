@@ -17,7 +17,7 @@
 // JMR-MODIF - Le 29 juillet 2007 - Ajout de l'en-tête ZAGlobal.h
 #include "zBaseLib\PSS_Global.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
 #include "zBaseLib\PSS_MsgBox.h"
 

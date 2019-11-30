@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "ZBBasicProp.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 
 // Resource include
 #include "PSS_ResIDs.h"

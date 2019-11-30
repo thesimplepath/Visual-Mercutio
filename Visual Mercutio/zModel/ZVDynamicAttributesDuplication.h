@@ -25,7 +25,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_WizardDialog.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\zModelRes.h"
 
 #include "zProperty\ZBDynamicPropertiesManager.h"

@@ -9,7 +9,7 @@
 #include "zBaseLib\PSS_SystemOption.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Global.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
 #undef _ZMODELEXPORT

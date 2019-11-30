@@ -11,7 +11,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"

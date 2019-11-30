@@ -24,7 +24,7 @@
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_ProcessGraphChildFrame.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
 #undef _ZMODELEXPORT

@@ -5,7 +5,7 @@
 #include "zBaseSym\zBaseSymRes.h"
 #include "ZBBPProcessSymbol.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 
 // JMR-MODIF - Le 26 mai 2005 - Définition de _ZMODELEXPORT, pour éviter une erreur interne du compilateur.
 #define _ZMODELEXPORT

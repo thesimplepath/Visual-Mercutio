@@ -6,7 +6,7 @@
 #include "ZAApp.h"
 
 #include "ZCProcessModelDocument.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModelBP\ProcGraphModelCtlrBP.h"
 
 #include "zBaseLib\PSS_MsgBox.h"

@@ -12,7 +12,7 @@
 // processsoft
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBLogicalSystemEntity.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "ZBPublishMessengerModelInformation.h"

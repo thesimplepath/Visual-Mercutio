@@ -9,7 +9,7 @@
 #include "ZBDistributionAttributes.h"
 
 #include "zProperty\ZBDynamicPropertiesManager.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "ProcGraphModelMdlBP.h"
 
 #include "zModel\ZBUserGroupEntity.h"

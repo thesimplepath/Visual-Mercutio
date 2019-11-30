@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVProcessWorkspace.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBUnitObserverMsg.h"
 #include "zModel\ZBDocObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"

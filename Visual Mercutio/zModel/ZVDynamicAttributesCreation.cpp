@@ -11,7 +11,7 @@
 
 #include "ZUDynamicAttributesManipulator.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 
 #include "zBaseLib\PSS_Tokenizer.h"

@@ -24,7 +24,7 @@
 
 // Global for model
 #include "zModel\ZAModelGlobal.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
 #include "zBaseLib\PSS_MsgBox.h"
 

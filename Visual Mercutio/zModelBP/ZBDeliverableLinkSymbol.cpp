@@ -10,7 +10,7 @@
 #include "ZBDeliverableLinkSymbol.h"
 
 #include "ProcGraphModelMdlBP.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 
 #include "ZBBPRuleListProp.h"
 #include "ZBBPTextItemListProp.h"

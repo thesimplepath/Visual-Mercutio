@@ -12,7 +12,7 @@
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
-#include "ProcGraphModelDoc.h"
+#include "PSS_ProcessGraphModelDoc.h"
 #include "ProcGraphModelView.h"
 #include "ZDProcessGraphPage.h"
 

@@ -16,7 +16,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "Resource.h"
 
 #ifdef _DEBUG

@@ -24,7 +24,7 @@
 // processsoft
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBLogicalPrestationsEntity.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapPublisher_Prestations.h"
 #include "ZBPublishMessengerModelInformation.h"

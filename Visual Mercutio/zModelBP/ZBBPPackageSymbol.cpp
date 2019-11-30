@@ -7,7 +7,7 @@
 // processsoft
 #include "zBaseLib\PSS_File.h"
 #include "zBaseSym\zBaseSymRes.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "ProcGraphModelMdlBP.h"
 
 // resources

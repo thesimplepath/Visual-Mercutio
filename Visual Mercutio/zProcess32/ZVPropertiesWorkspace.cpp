@@ -7,7 +7,7 @@
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBDocObserverMsg.h"
 
 #include "zBaseLib\PSS_SpanView.h"

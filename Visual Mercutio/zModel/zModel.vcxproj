@@ -159,7 +159,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcGraphModelDoc.cpp">
+    <ClCompile Include="PSS_ProcessGraphModelDoc.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -755,7 +755,7 @@
     <ClInclude Include="PSS_ObjectCollections.h" />
     <ClInclude Include="PSS_ProcessGraphChildFrame.h" />
     <ClInclude Include="PSS_ProcessGraphModelController.h" />
-    <ClInclude Include="ProcGraphModelDoc.h" />
+    <ClInclude Include="PSS_ProcessGraphModelDoc.h" />
     <ClInclude Include="ProcGraphModelMdl.h" />
     <ClInclude Include="ProcGraphModelView.h" />
     <ClInclude Include="ProcGraphModelVp.h" />

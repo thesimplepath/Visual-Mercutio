@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "ZBModelObserverMsg.h"
-#include "ProcGraphModelDoc.h"
+#include "PSS_ProcessGraphModelDoc.h"
 #include "ZDProcessGraphPage.h"
 
 #ifdef _DEBUG

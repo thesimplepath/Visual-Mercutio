@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZBDocObserverMsg.h"
 #include "ZBSymbol.h"
-#include "ProcGraphModelDoc.h"
+#include "PSS_ProcessGraphModelDoc.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

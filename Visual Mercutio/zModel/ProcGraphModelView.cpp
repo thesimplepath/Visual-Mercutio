@@ -5,7 +5,7 @@
 #include "ProcGraphModelMdl.h"
 #include "PSS_ProcessGraphModelController.h"
 
-#include "ProcGraphModelDoc.h"
+#include "PSS_ProcessGraphModelDoc.h"
 #include "ProcGraphModelView.h"
 #include "zBaseLib\PSS_SpanWnd.h"
 

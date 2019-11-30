@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZBConceptorReportGenerator.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModel\ZDProcessGraphPage.h"
 #include "zReport\ZDGridDoc.h"

@@ -23,7 +23,7 @@
 
 #include "PSS_Constants.h"
 
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZDProcessGraphPage.h"

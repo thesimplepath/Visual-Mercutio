@@ -11,7 +11,7 @@
 #include "ZVUserGroupInfoDlg.h"
 
 // RS-MODIF 12.12.04 we need doc informations
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 
 #ifdef _DEBUG
 #include "zFormsRes\zFormsRes.h"

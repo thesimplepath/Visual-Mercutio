@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\PSS_LinkSymbol.h"

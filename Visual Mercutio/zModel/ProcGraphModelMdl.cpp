@@ -4,7 +4,7 @@
 #include "ProcGraphModelMdl.h"
 
 #include "PSS_ProcessGraphModelController.h"
-#include "ProcGraphModelDoc.h"
+#include "PSS_ProcessGraphModelDoc.h"
 #include "ProcGraphModelVp.h"
 
 #include "ZDProcessGraphPage.h"

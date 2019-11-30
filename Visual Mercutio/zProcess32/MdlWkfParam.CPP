@@ -7,7 +7,7 @@
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zWinUtil32\PSS_TemplateCopyDialog.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

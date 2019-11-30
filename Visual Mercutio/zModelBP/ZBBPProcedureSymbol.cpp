@@ -32,7 +32,7 @@
 // Global for model
 #include "zModel\ZAModelGlobal.h"
 #include "zModel\ZBUserGroupEntity.h"
-#include "zModel\ProcGraphModelDoc.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
 #include "zModel\ZUODSymbolManipulator.h"
 

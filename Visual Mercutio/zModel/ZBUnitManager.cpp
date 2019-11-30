@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "ZBUnitManager.h"
-#include "ProcGraphModelDoc.h"
+#include "PSS_ProcessGraphModelDoc.h"
 #include "ZBModelSet.h"
 
 #ifdef _DEBUG
