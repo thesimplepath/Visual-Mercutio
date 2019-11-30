@@ -58,7 +58,7 @@ bool PSS_SoapPublishModelAttributes::OnFinish()
         return false;
 
     // get the model main document
-    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(m_pModel->GetDocument());
+    PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(m_pModel->GetDocument());
 
     // found it?
     if (!pDoc)

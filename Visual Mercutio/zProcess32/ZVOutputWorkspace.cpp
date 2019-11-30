@@ -180,7 +180,7 @@ void ZVOutputWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     // Check about document close
     // Detach observer
     if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
-        ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), ZDProcessGraphModelDoc))
+        ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), PSS_ProcessGraphModelDoc))
     {
         switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
         {
@@ -192,8 +192,8 @@ void ZVOutputWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 
             case UM_CLOSEDOCUMENT:
             {
-                ZDProcessGraphModelDoc* pDoc =
-                    dynamic_cast<ZDProcessGraphModelDoc*>(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument());
+                PSS_ProcessGraphModelDoc* pDoc =
+                    dynamic_cast<PSS_ProcessGraphModelDoc*>(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument());
 
                 DetachObserver(pDoc);
                 break;
@@ -239,8 +239,8 @@ void ZVOutputWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     bool IsMessenger = false;
     bool IsSesterces = false;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {

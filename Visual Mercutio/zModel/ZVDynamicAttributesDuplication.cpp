@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesDuplication.
-ZVDynamicAttributesDuplication::ZVDynamicAttributesDuplication(ZDProcessGraphModelDoc*    pModelDoc,
+ZVDynamicAttributesDuplication::ZVDynamicAttributesDuplication(PSS_ProcessGraphModelDoc*    pModelDoc,
                                                                bool                    SymbolSelected) :
     PSS_WizardDialog(ZVDynamicAttributesDuplication::IDD,
                      IDB_WZBMP1,

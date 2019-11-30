@@ -38,11 +38,10 @@ class AFX_EXT_CLASS ZUPublishReportToHTML
 {
 public:
 
-    ZUPublishReportToHTML                ();
-    ~ZUPublishReportToHTML                ();
+    ZUPublishReportToHTML();
+    ~ZUPublishReportToHTML();
 
-    static bool ExportReportToHTMLFile    ( ZDProcessGraphModelDoc*    pDoc,
-                                          ZUPublishReportInfo*        ReportInfo );
+    static bool ExportReportToHTMLFile(PSS_ProcessGraphModelDoc* pDoc, ZUPublishReportInfo* pReportInfo);
 };
 
-#endif // !defined(AFX_ZVPUBLISHREPORTTOHTML_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
+#endif

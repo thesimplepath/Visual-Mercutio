@@ -10,8 +10,13 @@
 
 #include "Resource.h"
 
-// Forward declaration
-class ZDProcessGraphModelDoc;
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelDoc;
 class PSS_TemplateManager;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -21,7 +26,7 @@ class ZVModelWorkflowParameters
 {
 // Construction
 public:
-    ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, PSS_TemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent = NULL);    // standard constructor
+    ZVModelWorkflowParameters(BOOL Modify, PSS_ProcessGraphModelDoc* pDoc, PSS_TemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent = NULL);    // standard constructor
 
     // Get methods
     PSS_FolderStamp&    GetFolderStamp() { return m_FolderStamp; };
@@ -32,7 +37,7 @@ public:
     int        DoModal();
 
 private:
-    ZDProcessGraphModelDoc* m_pDoc;
+    PSS_ProcessGraphModelDoc* m_pDoc;
     BOOL                    m_Modify;
     PSS_TemplateManager*        m_pTemplateManager;
     CString                    m_FileExtension;
@@ -88,7 +93,7 @@ class ZVModelWorkflowParametersOptions : public PSS_WizardDialog
 {
 // Construction
 public:
-    ZVModelWorkflowParametersOptions(BOOL Modify, ZDProcessGraphModelDoc& Doc, CWnd* pParent = NULL);    // standard constructor
+    ZVModelWorkflowParametersOptions(BOOL Modify, PSS_ProcessGraphModelDoc& Doc, CWnd* pParent = NULL);    // standard constructor
     virtual ~ZVModelWorkflowParametersOptions(); // standard destructor
 
     BOOL    GetCheckConsistency() const { return m_CheckConsistency; };
@@ -115,7 +120,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZDProcessGraphModelDoc& m_Doc;
+    PSS_ProcessGraphModelDoc& m_Doc;
     BOOL m_Modify;
 };
 

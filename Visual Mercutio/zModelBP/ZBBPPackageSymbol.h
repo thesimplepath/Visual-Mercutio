@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -21,19 +21,24 @@
 #include "zBaseLib\PSS_Bitmap.h"
 #include "zModel\ZBSymbol.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
 // Forward declaration
 class PSS_ProcessModelDocTmpl;
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class ZDProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - Le 3 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -87,8 +92,8 @@ public:
     virtual bool OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
 
     // Drag and drop methods
-    virtual bool AcceptDropItem(CObject* pObj, CPoint pt);
-    virtual bool DropItem(CObject* pObj, CPoint pt);
+    virtual bool AcceptDropItem(CObject* pObj, const CPoint& pt);
+    virtual bool DropItem(CObject* pObj, const CPoint& pt);
 
     /* Creates the symbol component. */
     BOOL Create(const CString Name = _T(""), const CString fileName = _T(""));
@@ -98,7 +103,7 @@ public:
         return m_pPackageDoc != NULL;
     }
 
-    ZDProcessGraphModelDoc* GetPackageDocumentPtr()
+    PSS_ProcessGraphModelDoc* GetPackageDocumentPtr()
     {
         return m_pPackageDoc;
     }
@@ -189,7 +194,7 @@ private:
 
     // Used to link the package to a file name
     CString                    m_FileNameLinkedTo;
-    ZDProcessGraphModelDoc*    m_pPackageDoc;
+    PSS_ProcessGraphModelDoc*    m_pPackageDoc;
 
     // Bitmap resource
     static PSS_Bitmap          m_LinkedToFileBitmap;

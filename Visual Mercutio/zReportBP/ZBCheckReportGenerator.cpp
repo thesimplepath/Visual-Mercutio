@@ -38,7 +38,7 @@ IMPLEMENT_SERIAL(ZBCheckReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
 
 ZBCheckReportGenerator::ZBCheckReportGenerator( ZDGridDocument*                pDoc        /*= NULL*/,
                                                 ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
-                                                ZDProcessGraphModelDoc*        pSourceDoc    /*= NULL*/ )
+                                               PSS_ProcessGraphModelDoc*        pSourceDoc    /*= NULL*/ )
     : ZBModelBPReportGenerator( pDoc, pModel, pSourceDoc )
 {
 }

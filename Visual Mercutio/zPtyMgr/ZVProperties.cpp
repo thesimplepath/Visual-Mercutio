@@ -237,7 +237,7 @@ void ZVProperties::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     // Check about document close
     else if (pMsg                                    &&
              ISA(pMsg, PSS_DocumentObserverMsg) &&
-             ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), ZDProcessGraphModelDoc))
+             ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), PSS_ProcessGraphModelDoc))
     {
         switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
         {

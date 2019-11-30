@@ -19,9 +19,14 @@
 
 #include "zBaseLib\PSS_ObserverMsg.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
 // forward declarations
 class ZBSymbol;
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class ZDProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
@@ -55,10 +60,10 @@ public:
 
 public:
 
-    ZBDocObserverMsg(MessageActionType            ActionType = NoAction,
-                     ZDProcessGraphModelDoc*    pDoc = NULL,
-                     ZDProcessGraphModelMdl*    pModel = NULL,
-                     CODSymbolComponent*        pElement = NULL);
+    ZBDocObserverMsg(MessageActionType         actionType = NoAction,
+                     PSS_ProcessGraphModelDoc* pDoc = NULL,
+                     ZDProcessGraphModelMdl*   pModel = NULL,
+                     CODSymbolComponent*       pElement = NULL);
 
     virtual ~ZBDocObserverMsg();
 
@@ -72,12 +77,12 @@ public:
         m_ActionType = value;
     };
 
-    ZDProcessGraphModelDoc* GetDoc() const
+    PSS_ProcessGraphModelDoc* GetDoc() const
     {
         return m_pDoc;
     };
 
-    void SetDoc(ZDProcessGraphModelDoc* value)
+    void SetDoc(PSS_ProcessGraphModelDoc* value)
     {
         m_pDoc = value;
     };
@@ -103,10 +108,10 @@ public:
     };
 
 private:
-    ZDProcessGraphModelDoc* m_pDoc;
-    ZDProcessGraphModelMdl* m_pModel;
-    CODSymbolComponent*     m_pElement;
-    MessageActionType       m_ActionType;
+    PSS_ProcessGraphModelDoc* m_pDoc;
+    ZDProcessGraphModelMdl*   m_pModel;
+    CODSymbolComponent*       m_pElement;
+    MessageActionType         m_ActionType;
 };
 
 #endif

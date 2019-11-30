@@ -132,8 +132,8 @@ ZDProcessGraphModelMdl::~ZDProcessGraphModelMdl()
 // Fonctions de nettoyage
 
 // JMR-MODIF - Le 3 octobre 2005 - Cette fonction permet de supprimer les observers de la hiérarchie de modèles.
-void ZDProcessGraphModelMdl::DetachAllObserversInHierarchy(ZIProcessGraphModelViewport*    m_pViewport,
-                                                           ZDProcessGraphModelDoc*            m_pDocument)
+void ZDProcessGraphModelMdl::DetachAllObserversInHierarchy(ZIProcessGraphModelViewport* pViewport,
+                                                           PSS_ProcessGraphModelDoc*    pDocument)
 {
     // Recherche tous les composants du modèle.
     CODComponentSet* pSet = GetComponents();
@@ -149,7 +149,7 @@ void ZDProcessGraphModelMdl::DetachAllObserversInHierarchy(ZIProcessGraphModelVi
             reinterpret_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)pComp)->GetChildModel())->HasPageSet())
         {
             reinterpret_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)pComp)->
-                                                      GetChildModel())->DetachAllObserversInHierarchy(m_pViewport, m_pDocument);
+                                                      GetChildModel())->DetachAllObserversInHierarchy(pViewport, pDocument);
         }
     }
 
@@ -161,12 +161,12 @@ void ZDProcessGraphModelMdl::DetachAllObserversInHierarchy(ZIProcessGraphModelVi
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage; pPage = i.GetNext())
             // Ne pas effectuer de modifications sur le même modèle.
             if (pPage->GetModel() && pPage->GetModel() != this)
-                pPage->GetModel()->DetachAllObserversInHierarchy(m_pViewport, m_pDocument);
+                pPage->GetModel()->DetachAllObserversInHierarchy(pViewport, pDocument);
     }
 
     // Nettoie les liens sur les observeurs du modèle.
-    RemoveObserver(m_pViewport);
-    DetachObserver(m_pDocument);
+    RemoveObserver(pViewport);
+    DetachObserver(pDocument);
 
     // Réinitialise le drapeau de modification.
     SetModifiedFlag(FALSE);
@@ -284,9 +284,9 @@ bool ZDProcessGraphModelMdl::GetCheckConsistency() const
 
     const CDocument* pDoc = const_cast<ZDProcessGraphModelMdl*>(this)->GetRoot()->GetDocumentConst();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        return dynamic_cast<const ZDProcessGraphModelDoc*>(pDoc)->GetCheckConsistency();
+        return dynamic_cast<const PSS_ProcessGraphModelDoc*>(pDoc)->GetCheckConsistency();
     }
 
     return false;
@@ -298,9 +298,9 @@ void ZDProcessGraphModelMdl::SetCheckConsistency(bool value)
 
     CDocument* pDoc = GetRoot()->GetDocument();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetCheckConsistency(value);
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetCheckConsistency(value);
     }
 }
 
@@ -310,9 +310,9 @@ bool ZDProcessGraphModelMdl::GetIntegrateCostSimulation() const
 
     const CDocument* pDoc = const_cast<ZDProcessGraphModelMdl*>(this)->GetRoot()->GetDocumentConst();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        return dynamic_cast<const ZDProcessGraphModelDoc*>(pDoc)->GetIntegrateCostSimulation();
+        return dynamic_cast<const PSS_ProcessGraphModelDoc*>(pDoc)->GetIntegrateCostSimulation();
     }
 
     return false;
@@ -324,9 +324,9 @@ void ZDProcessGraphModelMdl::SetIntegrateCostSimulation(bool value)
 
     CDocument* pDoc = GetRoot()->GetDocument();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetIntegrateCostSimulation(value);
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetIntegrateCostSimulation(value);
     }
 }
 
@@ -336,9 +336,9 @@ bool ZDProcessGraphModelMdl::GetUseWorkflow() const
 
     const CDocument* pDoc = const_cast<ZDProcessGraphModelMdl*>(this)->GetRoot()->GetDocumentConst();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        return dynamic_cast<const ZDProcessGraphModelDoc*>(pDoc)->GetUseWorkflow();
+        return dynamic_cast<const PSS_ProcessGraphModelDoc*>(pDoc)->GetUseWorkflow();
     }
 
     return false;
@@ -350,9 +350,9 @@ void ZDProcessGraphModelMdl::SetUseWorkflow(bool value)
 
     CDocument* pDoc = GetRoot()->GetDocument();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetUseWorkflow(value);
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetUseWorkflow(value);
     }
 }
 
@@ -362,9 +362,9 @@ bool ZDProcessGraphModelMdl::GetShowPageBorder() const
 
     const CDocument* pDoc = const_cast<ZDProcessGraphModelMdl*>(this)->GetRoot()->GetDocumentConst();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        return dynamic_cast<const ZDProcessGraphModelDoc*>(pDoc)->GetShowPageBorder();
+        return dynamic_cast<const PSS_ProcessGraphModelDoc*>(pDoc)->GetShowPageBorder();
     }
 
     return false;
@@ -376,9 +376,9 @@ void ZDProcessGraphModelMdl::SetShowPageBorder(bool value)
 
     CDocument* pDoc = GetRoot()->GetDocument();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetShowPageBorder(value);
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetShowPageBorder(value);
     }
 }
 

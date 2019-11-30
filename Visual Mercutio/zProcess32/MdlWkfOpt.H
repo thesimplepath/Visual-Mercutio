@@ -7,10 +7,13 @@
 #include "zWinUtil32\PSS_LanguageComboBox.h"
 #include "Resource.h"
 
-// JMR-MODIF - Le 18 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 
-// Forward declaration
-class ZDProcessGraphModelDoc;
+// forward class declaration
+class PSS_ProcessGraphModelDoc;
 
 // Dialogs' data
 typedef struct _ModelOptionData
@@ -38,7 +41,7 @@ class ZVModelWorkflowOptions
 public:
 
     // standard constructor
-    ZVModelWorkflowOptions( BOOL Modify, ZDProcessGraphModelDoc* pDoc, CWnd* pParent = NULL );
+    ZVModelWorkflowOptions( BOOL Modify, PSS_ProcessGraphModelDoc* pDoc, CWnd* pParent = NULL );
 
     // Get methods
     ELanguage GetLanguage() const
@@ -50,9 +53,9 @@ public:
 
 private:
 
-    ZDProcessGraphModelDoc* m_pDoc;
-    BOOL                    m_Modify;
-    MODELOPTIONDATA            m_Data;
+    PSS_ProcessGraphModelDoc* m_pDoc;
+    BOOL                      m_Modify;
+    MODELOPTIONDATA           m_Data;
 };
 
 /////////////////////////////////////////////////////////////////////////////

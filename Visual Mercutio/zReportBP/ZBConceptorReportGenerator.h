@@ -44,7 +44,7 @@ public:
 
     ZBConceptorReportGenerator( ZDGridDocument*                pDoc                    = NULL,
                                 ZDProcessGraphModelMdlBP*    pModel                    = NULL,
-                                ZDProcessGraphModelDoc*        pSourceDoc                = NULL,
+                               PSS_ProcessGraphModelDoc*        pSourceDoc                = NULL,
                                 BOOL                        bIncludeSynthesis        = TRUE,
                                 BOOL                        bIncludeDetail            = TRUE,
                                 BOOL                        bIncludeDeliverables    = TRUE );
@@ -56,7 +56,7 @@ public:
     
     virtual void Initialize( ZDGridDocument*            pDoc,
                              ZDProcessGraphModelMdlBP*    pModel,
-                             ZDProcessGraphModelDoc*    pSourceDoc,
+                            PSS_ProcessGraphModelDoc*    pSourceDoc,
                              BOOL                        bIncludeSynthesis        = TRUE,
                              BOOL                        bIncludeDetail            = TRUE,
                              BOOL                        bIncludeDeliverables    = TRUE );

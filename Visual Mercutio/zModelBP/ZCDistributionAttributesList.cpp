@@ -224,7 +224,7 @@ ZBDistributionRule*    ZCDistributionAttributesList::GetSelectedDistributionRule
 }
 
 
-void ZCDistributionAttributesList::DocumentActivated(ZDProcessGraphModelDoc* pDoc)
+void ZCDistributionAttributesList::DocumentActivated(PSS_ProcessGraphModelDoc* pDoc)
 {
     if (!pDoc)
         Empty();
@@ -282,7 +282,7 @@ void ZCDistributionAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverM
     else
         // Check about document close
         if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
-            ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), ZDProcessGraphModelDoc))
+            ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), PSS_ProcessGraphModelDoc))
         {
             switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
             {
@@ -296,7 +296,7 @@ void ZCDistributionAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverM
                 }
                 case UM_FRAMEHASBEENACTIVATED:
                 {
-                    DocumentActivated(dynamic_cast<ZDProcessGraphModelDoc*>(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument()));
+                    DocumentActivated(dynamic_cast<PSS_ProcessGraphModelDoc*>(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument()));
                 }
 
             }

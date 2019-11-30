@@ -431,7 +431,7 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile(bool DisplayDialog /*= true*/)
 }
 
 // Drag and drop methods
-bool ZBExtFilePropertyMgr::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZBExtFilePropertyMgr::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     // Accept drop of file, scriptor template file and URL only
     if (pObj && ISA(pObj, PSS_TemplateFile) ||
@@ -465,7 +465,7 @@ bool ZBExtFilePropertyMgr::AcceptDropItem(CObject* pObj, CPoint pt)
     return false;
 }
 
-bool ZBExtFilePropertyMgr::DropItem(CObject* pObj, CPoint pt)
+bool ZBExtFilePropertyMgr::DropItem(CObject* pObj, const CPoint& pt)
 {
     if (pObj && ISA(pObj, PSS_TemplateFile) ||
         (ISA(pObj, PSS_NetResourceWrapper) && !((PSS_NetResourceWrapper*)pObj)->GetFileName().IsEmpty() &&

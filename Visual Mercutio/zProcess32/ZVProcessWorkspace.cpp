@@ -586,11 +586,11 @@ afx_msg LRESULT ZVProcessWorkspace::OnDocumentHasBeenSelected(WPARAM wParam, LPA
 
     PSS_BaseDocument* pDoc = (PSS_BaseDocument*)lParam;
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
         ZBModelSet DocumentModelSet;
 
-        DocumentModelSet.AddModel(((ZDProcessGraphModelDoc*)pDoc)->GetModel());
+        DocumentModelSet.AddModel(((PSS_ProcessGraphModelDoc*)pDoc)->GetModel());
         InitializeModelDocumentTree(&DocumentModelSet);
     }
 

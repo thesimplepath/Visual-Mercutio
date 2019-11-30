@@ -44,7 +44,7 @@ public:
 
     ZBCheckReportGenerator( ZDGridDocument*                pDoc        = NULL,
                             ZDProcessGraphModelMdlBP*    pModel        = NULL,
-                            ZDProcessGraphModelDoc*        pSourceDoc    = NULL );
+                           PSS_ProcessGraphModelDoc*        pSourceDoc    = NULL );
 
     virtual ~ZBCheckReportGenerator();
 

@@ -322,7 +322,7 @@ CString ZBBPDoorSymbol::BuildSymbolName()
 }
 
 // Drag and drop methods
-bool ZBBPDoorSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZBBPDoorSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     // JMR-MODIF - Le 19 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
     if (!IsLocal())
@@ -333,7 +333,7 @@ bool ZBBPDoorSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
     return ZBSymbol::AcceptDropItem(pObj, pt);
 }
 
-bool ZBBPDoorSymbol::DropItem(CObject* pObj, CPoint pt)
+bool ZBBPDoorSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
     return ZBSymbol::DropItem(pObj, pt);
 }

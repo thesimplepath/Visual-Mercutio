@@ -46,7 +46,7 @@ public:
 
     ZBSesterceUnitReportGenerator( ZDGridDocument*                pDoc                = NULL,
                                    ZDProcessGraphModelMdlBP*    pModel                = NULL,
-                                   ZDProcessGraphModelDoc*        pSourceDoc            = NULL,
+                                  PSS_ProcessGraphModelDoc*        pSourceDoc            = NULL,
                                    bool                            IncludeMonthDetail    = true );
 
     virtual ~ZBSesterceUnitReportGenerator();

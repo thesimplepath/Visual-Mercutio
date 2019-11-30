@@ -28,10 +28,15 @@
 #include "PSS_LinkSymbol.h"
 #include "ZVDynamicAttributesDuplication.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
 // forward class definition
 class ZIProcessGraphModelViewport;
 class ZIProcessGraphModelView;
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class ZDProcessGraphModelMdl;
 class ZDProcessGraphPage;
 

@@ -240,7 +240,7 @@ ZBInputAttribute*    ZCInputAttributesList::GetSelectedInputAttribute()
 }
 
 
-void ZCInputAttributesList::DocumentActivated(ZDProcessGraphModelDoc* pDoc)
+void ZCInputAttributesList::DocumentActivated(PSS_ProcessGraphModelDoc* pDoc)
 {
     m_pDoc = pDoc;
     if (!pDoc)
@@ -289,7 +289,7 @@ void ZCInputAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
     else
         // Check about document close
         if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
-            ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), ZDProcessGraphModelDoc))
+            ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), PSS_ProcessGraphModelDoc))
         {
             switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
             {
@@ -303,7 +303,7 @@ void ZCInputAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
                 }
                 case UM_FRAMEHASBEENACTIVATED:
                 {
-                    DocumentActivated(dynamic_cast<ZDProcessGraphModelDoc*>(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument()));
+                    DocumentActivated(dynamic_cast<PSS_ProcessGraphModelDoc*>(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument()));
                 }
 
             }

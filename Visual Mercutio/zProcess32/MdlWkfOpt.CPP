@@ -21,7 +21,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowOptions class
 
-ZVModelWorkflowOptions::ZVModelWorkflowOptions(BOOL Modify, ZDProcessGraphModelDoc* pDoc, CWnd* pParent /*=NULL*/)
+ZVModelWorkflowOptions::ZVModelWorkflowOptions(BOOL Modify, PSS_ProcessGraphModelDoc* pDoc, CWnd* pParent /*=NULL*/)
     : m_Modify(Modify),
     m_pDoc(pDoc)
 {}
@@ -67,7 +67,7 @@ int ZVModelWorkflowOptions::DoModal()
         }
 
         m_Data.m_IntegrateCostSimulation = m_pDoc->GetIntegrateCostSimulation();
-        m_Data.m_BrowseInSameModel = m_pDoc->BrowseInSameWindow();
+        m_Data.m_BrowseInSameModel = m_pDoc->GetBrowseInSameWindow();
         m_Data.m_HourPerDay = m_pDoc->GetHourPerDay();
         m_Data.m_DayPerWeek = m_pDoc->GetDayPerWeek();
         m_Data.m_DayPerMonth = m_pDoc->GetDayPerMonth();

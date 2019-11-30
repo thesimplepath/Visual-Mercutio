@@ -27,16 +27,19 @@
 
 #include "DocWrite.h"
 
-// JMR-MODIF - Le 7 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commenatires)
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 
-// Forward declaration
+// forward class declaration
 class ZIMainFrame;
 class ZVOutputWorkspace;
 class ZVProcessWorkspace;
 class ZVPropertiesWorkspace;
 class PSS_WorkspaceEnvDocument;
 class PSS_WorkspaceEnv;
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class PSS_WorkspaceWizardTemplateManager;
 class ZDUserEntityDocument;
 class ZBUserGroupEntity;
@@ -161,7 +164,7 @@ public:
     BOOL LoadProbabilityRiskFile();
     // ********************************************************************************
 
-    ZDProcessGraphModelDoc* FileNewModel();
+    PSS_ProcessGraphModelDoc* FileNewModel();
 
     // View functions
     PSS_View* GetMainView()

@@ -20,8 +20,13 @@
 // processsoft
 #include "zBaseLib\PSS_ProcessModelDocTmpl.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
 // forward class declaration
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -49,7 +54,7 @@ public:
 
     bool    IsLoaded() const { return m_pUnitDoc != NULL; };
 
-    ZDProcessGraphModelDoc* GetUnitDocumentPtr() { return m_pUnitDoc; };
+    PSS_ProcessGraphModelDoc* GetUnitDocumentPtr() { return m_pUnitDoc; };
 
     CString GetName() const { return m_Name; };
     void SetName( CString value ) { m_Name = value; };
@@ -72,10 +77,10 @@ private:
     ZBUnit& operator=(const ZBUnit& right);
 
 protected:
-    ZDProcessGraphModelDoc* m_pUnitDoc;
+    PSS_ProcessGraphModelDoc* m_pUnitDoc;
     CString m_Name;
     CString m_Key;
     CString m_FileName;
 };
 
-#endif // !defined(AFX_ZBUNIT_H__C267AE1B_E6C2_4678_A8D8_CD5CA2644DC7__INCLUDED_)
+#endif

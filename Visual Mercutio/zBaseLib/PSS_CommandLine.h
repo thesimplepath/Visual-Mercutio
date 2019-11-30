@@ -104,7 +104,7 @@ class AFX_EXT_CLASS PSS_CommandLine : public CObject
         * Gets the command line
         *@return the command line
         */
-        virtual inline const CString GetCommandLine () const;
+        virtual inline const CString GetCommandLine() const;
 
         /**
         * Sets the command line

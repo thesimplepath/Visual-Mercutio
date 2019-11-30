@@ -21,7 +21,7 @@ IMPLEMENT_DYNAMIC(ZBModelObserverMsg, PSS_ObserverMsg)
 //////////////////////////////////////////////////////////////////////
 
 ZBModelObserverMsg::ZBModelObserverMsg(MessageActionType        ActionType    /*= NoAction*/,
-                                       ZDProcessGraphModelDoc*    pDoc        /*= NULL*/,
+                                       PSS_ProcessGraphModelDoc*    pDoc        /*= NULL*/,
                                        ZDProcessGraphModelMdl*    pModel        /*= NULL*/,
                                        CODComponent*            pElement    /*= NULL*/) :
     PSS_ObserverMsg(),
@@ -34,7 +34,7 @@ ZBModelObserverMsg::ZBModelObserverMsg(MessageActionType        ActionType    /*
 {}
 
 ZBModelObserverMsg::ZBModelObserverMsg(MessageActionType        ActionType,
-                                       ZDProcessGraphModelDoc*    pDoc,
+                                       PSS_ProcessGraphModelDoc*    pDoc,
                                        ZDProcessGraphModelMdl*    pModel,
                                        CODComponentSet*        pElementSet) :
     PSS_ObserverMsg(),
@@ -47,7 +47,7 @@ ZBModelObserverMsg::ZBModelObserverMsg(MessageActionType        ActionType,
 {}
 
 ZBModelObserverMsg::ZBModelObserverMsg(MessageActionType        ActionType,
-                                       ZDProcessGraphModelDoc*    pDoc,
+                                       PSS_ProcessGraphModelDoc*    pDoc,
                                        ZDProcessGraphModelMdl*    pModel,
                                        ZDProcessGraphPage*        pPage) :
     PSS_ObserverMsg(),

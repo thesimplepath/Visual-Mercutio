@@ -43,7 +43,7 @@ IMPLEMENT_SERIAL(ZBConceptorReportGenerator, ZBModelBPReportGenerator, g_DefVers
 
 ZBConceptorReportGenerator::ZBConceptorReportGenerator( ZDGridDocument*                pDoc                    /*= NULL*/,
                                                         ZDProcessGraphModelMdlBP*    pModel                    /*= NULL*/,
-                                                        ZDProcessGraphModelDoc*        pSourceDoc                /*= NULL*/,
+                                                       PSS_ProcessGraphModelDoc*        pSourceDoc                /*= NULL*/,
                                                         BOOL                        bIncludeSynthesis        /*= TRUE*/,
                                                         BOOL                        bIncludeDetail            /*= TRUE*/,
                                                         BOOL                        bIncludeDeliverables    /*= TRUE*/ )
@@ -63,7 +63,7 @@ ZBConceptorReportGenerator::~ZBConceptorReportGenerator()
 
 void ZBConceptorReportGenerator::Initialize( ZDGridDocument*            pDoc,
                                              ZDProcessGraphModelMdlBP*    pModel,
-                                             ZDProcessGraphModelDoc*    pSourceDoc,
+                                            PSS_ProcessGraphModelDoc*    pSourceDoc,
                                              BOOL                        bIncludeSynthesis        /*= TRUE*/,
                                              BOOL                        bIncludeDetail            /*= TRUE*/,
                                              BOOL                        bIncludeDeliverables    /*= TRUE*/ )
@@ -377,7 +377,7 @@ void ZBConceptorReportGenerator::OnPostRead( CArchive& ar )
 {
     if ( m_pSourceDoc == NULL && !m_FileName.IsEmpty() )
     {
-        m_pSourceDoc = new ZDProcessGraphModelDoc();
+        m_pSourceDoc = new PSS_ProcessGraphModelDoc();
 
         // If the document is valid, assign the right model pointer
         if ( m_pSourceDoc                                &&

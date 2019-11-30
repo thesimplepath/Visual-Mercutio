@@ -10,7 +10,7 @@ ZUPublishReportToHTML::~ZUPublishReportToHTML()
 }
 
 // Cette fonction permet l'exportation du rapport Conceptor vers un système de fichiers HTML.
-bool ZUPublishReportToHTML::ExportReportToHTMLFile( ZDProcessGraphModelDoc*    pDoc,
+bool ZUPublishReportToHTML::ExportReportToHTMLFile(PSS_ProcessGraphModelDoc*    pDoc,
                                                     ZUPublishReportInfo*    ReportInfo )
 {
     if ( ReportInfo != NULL )

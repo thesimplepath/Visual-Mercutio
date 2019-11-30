@@ -216,7 +216,7 @@ PSS_Tokenizer ZBBPProcessSymbol::GetPrestationsList()
 }
 
 // Drag and drop methods
-bool ZBBPProcessSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZBBPProcessSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     // JMR-MODIF - Le 21 avril 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
     if (!IsLocal())
@@ -240,7 +240,7 @@ bool ZBBPProcessSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
     return ZBSymbol::AcceptDropItem(pObj, pt);
 }
 
-bool ZBBPProcessSymbol::DropItem(CObject* pObj, CPoint pt)
+bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
     // **********************************************************************************************************
     // JMR-MODIF - Le 25 janvier 2006 - Effectue la modification des données pour les entités de type prestation.
@@ -426,10 +426,10 @@ bool ZBBPProcessSymbol::ProcessExtendedInput(ZBProperty&        Property,
         {
             CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-            if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+            if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             {
                 // Retreive the model's currency symbol
-                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
+                CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
 
@@ -1368,10 +1368,10 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
     {
         CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+        if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // Retreive the model's currency symbol
-            CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
+            CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
         }
     }
 
@@ -1406,10 +1406,10 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                 ZDProcessGraphModelControllerBP* p_Controller =
                     reinterpret_cast<ZDProcessGraphModelControllerBP*>(p_Model->GetController());
 
-                if (p_Controller != NULL && ISA(p_Controller->GetDocument(), ZDProcessGraphModelDoc))
+                if (p_Controller != NULL && ISA(p_Controller->GetDocument(), PSS_ProcessGraphModelDoc))
                 {
-                    ZDProcessGraphModelDoc* p_Document =
-                        reinterpret_cast<ZDProcessGraphModelDoc*>(p_Controller->GetDocument());
+                    PSS_ProcessGraphModelDoc* p_Document =
+                        reinterpret_cast<PSS_ProcessGraphModelDoc*>(p_Controller->GetDocument());
 
                     if (p_Document != NULL && p_Document->GetMainLogicalRules() != NULL)
                     {
@@ -1645,17 +1645,17 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
     {
         CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+        if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
             // Retreive the model's currency symbol
-            //CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+            //CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
 
             // Retreive the standard time definition
-            HourPerDay = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
-            DayPerWeek = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
-            DayPerMonth = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerMonth();
-            DayPerYear = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerYear();
+            HourPerDay = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
+            DayPerWeek = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
+            DayPerMonth = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerMonth();
+            DayPerYear = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerYear();
         }
     }
 

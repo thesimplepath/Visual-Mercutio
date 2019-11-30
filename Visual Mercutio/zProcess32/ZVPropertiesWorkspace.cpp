@@ -177,8 +177,8 @@ void ZVPropertiesWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
     // RS-MODIF 21.12.04 should only appear if messenger
     bool IsMessenger = false;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {
@@ -221,7 +221,7 @@ afx_msg LRESULT ZVPropertiesWorkspace::OnInitializeModelDocument(WPARAM wParam, 
                                         pDocMsg->GetDoc(),
                                         NULL);
 
-            ((ZDProcessGraphModelDoc*)pDocMsg->GetDoc())->NotifyAllObservers(&Msg);
+            ((PSS_ProcessGraphModelDoc*)pDocMsg->GetDoc())->NotifyAllObservers(&Msg);
         }
     }
 

@@ -27,8 +27,13 @@
 #include "ZBPublishMessengerModelInformation.h"
 #include "ZUProcessNavigation.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
 // forward class declaration
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class ZBPublishMessengerModelInformation;
 
 #ifdef _ZMODELBPEXPORT
@@ -124,7 +129,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
     private:
         ZBPublishMessengerModelInformation* m_pInfo;
         PSS_SoapPublisher_Model             m_PubMdl;
-        ZDProcessGraphModelDoc*             m_pDoc;
+        PSS_ProcessGraphModelDoc*           m_pDoc;
         CString                             m_MessengerAddress;
         int                                 m_CounterRow;
 

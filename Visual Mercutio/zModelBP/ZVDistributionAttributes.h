@@ -20,9 +20,13 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "ZCDistributionAttributesList.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZDProcessGraphModelDoc;
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelDoc;
 
 
 #ifdef _ZMODELBPEXPORT
@@ -158,7 +162,7 @@ protected:
 private:
     _ZVFlatToolBarDistributionAttribs    m_FlatToolBar;
     ZCDistributionAttributesList        m_listctrl;
-    ZDProcessGraphModelDoc*                m_pCurrentDoc;
+    PSS_ProcessGraphModelDoc*                m_pCurrentDoc;
     CODComponent*                        m_pSymbol;
 
 };

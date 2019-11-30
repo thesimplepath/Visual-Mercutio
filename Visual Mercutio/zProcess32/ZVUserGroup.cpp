@@ -296,8 +296,8 @@ void _ZIUserGroupFlatToolBar::OnRefreshButton()
     // RS-MODIF 20.12.04 activate or deactivate role button depends on Messenger
     bool IsMessenger = false;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {
@@ -326,8 +326,8 @@ void _ZIUserGroupFlatToolBar::RefreshButtonNow()
     // RS-MODIF 20.12.04 activate or deactivate role button depends on Messenger
     bool IsMessenger = false;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {

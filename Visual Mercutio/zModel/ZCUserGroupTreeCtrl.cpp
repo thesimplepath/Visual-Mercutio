@@ -156,8 +156,8 @@ void ZCUserGroupTreeCtrl::OnUgpNewGroup()
     // RS-MODIF 12.12.04 test if we use sesterces
     bool IsSesterces = false;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {
@@ -232,8 +232,8 @@ void ZCUserGroupTreeCtrl::OnUgpRenameGroup()
     // RS-MODIF 12.12.04 test if we use sesterces
     bool IsSesterces = false;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {
@@ -396,8 +396,8 @@ void ZCUserGroupTreeCtrl::OnUgpProperties()
     // RS-MODIF 12.12.04 test if we use sesterces
     bool IsSesterces = false;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {
@@ -521,8 +521,8 @@ void ZCUserGroupTreeCtrl::ProcessGroup(ZBUserGroupEntity* pGroup, HTREEITEM hPar
     // RS-MODIF 20.12.04 test if we use Messenger
     bool IsMessenger = true;
 
-    ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    PSS_ProcessGraphModelDoc* test =
+        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
     if (test != NULL)
     {

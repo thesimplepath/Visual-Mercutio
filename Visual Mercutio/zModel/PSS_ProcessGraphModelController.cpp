@@ -347,7 +347,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(ZDProc
     if (!pModel)
         return NULL;
 
-    ZDProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     // if can't activate a view with model name, create a new view
     if (pGraphModelDoc)
@@ -473,7 +473,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLocalSymbol(
     if (!pComp)
         return NULL;
 
-    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (!pDocument || !pDocument->GetModel())
         return NULL;
@@ -891,17 +891,17 @@ bool PSS_ProcessGraphModelController::IsComponentSelected(CODComponent& comp)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelController::GetBrowseInSameWindow() const
 {
-    const ZDProcessGraphModelDoc* pDocument = dynamic_cast<const ZDProcessGraphModelDoc*>(GetDocument());
+    const PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<const PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (pDocument)
-        return pDocument->BrowseInSameWindow();
+        return pDocument->GetBrowseInSameWindow();
 
     return false;
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::SetBrowseInSameWindow(bool value)
 {
-    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (pDocument)
         pDocument->SetBrowseInSameWindow(value);
@@ -1787,8 +1787,8 @@ void PSS_ProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_Observ
 
         if (pDocObserverMsg)
         {
-            ZDProcessGraphModelDoc* pObserverDocument =
-                    dynamic_cast<ZDProcessGraphModelDoc*>(pDocObserverMsg->GetDocument());
+            PSS_ProcessGraphModelDoc* pObserverDocument =
+                    dynamic_cast<PSS_ProcessGraphModelDoc*>(pDocObserverMsg->GetDocument());
 
             if (pObserverDocument && pObserverDocument == GetDocument())
                 switch (pDocObserverMsg->GetMessageID())
@@ -1855,8 +1855,8 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
         return;
     }
 
-    ZDProcessGraphModelDoc* pDoc    = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
-    ZBSymbol*               pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+    PSS_ProcessGraphModelDoc* pDoc    = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
+    ZBSymbol*                 pSymbol = dynamic_cast<ZBSymbol*>(pComp);
 
     if (pSymbol)
     {
@@ -2183,7 +2183,7 @@ void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
 {
     DetermineReferencedSymbol(pCompSet);
 
-    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
     ASSERT(pDoc);
 
     // notify observers for all added symbols
@@ -2426,7 +2426,7 @@ void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCo
 //---------------------------------------------------------------------------
 ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(ZBSymbol* pSymbol)
 {
-    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (pDocument)
     {
@@ -2454,7 +2454,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(
 //---------------------------------------------------------------------------
 ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol)
 {
-    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (pDocument)
     {
@@ -3712,7 +3712,7 @@ void PSS_ProcessGraphModelController::OnBrowseSourceSymbol()
 {
     AssignSymbolHit();
 
-    ZDProcessGraphModelDoc* pDocument = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (pDocument && pDocument->GetModel())
     {
@@ -3757,7 +3757,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
 
         PSS_Log* pLog = NULL;
 
-        ZDProcessGraphModelDoc* pModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(pModel->GetDocument());
+        PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pModel->GetDocument());
 
         if (pModelDoc)
         {
@@ -4055,7 +4055,7 @@ void PSS_ProcessGraphModelController::OnOdMeasurements()
     // set the modification flag
     pDocument->SetModifiedFlag(TRUE);
 
-    ZDProcessGraphModelDoc* pGraphModelDoc = dynamic_cast< ZDProcessGraphModelDoc*>(pDocument);
+    PSS_ProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDocument);
 
     if (pGraphModelDoc)
         pGraphModelDoc->SetPageUnits(*pRuler);
@@ -4561,7 +4561,7 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolSelectAttributes(CCmdUI* pCm
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
 {
-    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
     ASSERT(pDoc);
 
     if (!pDoc->HasDynamicPropertiesManager())
@@ -4659,7 +4659,7 @@ void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesAdd(CCmdUI* pCmdU
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
 {
-    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     // if the document doesn't contain a dynamic properties manager, creates a default one
     if (!pDoc->HasDynamicPropertiesManager())

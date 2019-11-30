@@ -162,7 +162,7 @@ public:
 
     ZBPrestationsReportGenerator( ZDGridDocument*            pDoc                = NULL,
                                   ZDProcessGraphModelMdlBP*    pModel                = NULL,
-                                  ZDProcessGraphModelDoc*    pSourceDoc            = NULL,
+                                 PSS_ProcessGraphModelDoc*    pSourceDoc            = NULL,
                                   bool                        IncludeMonthDetails    = true );
 
     virtual ~ZBPrestationsReportGenerator();

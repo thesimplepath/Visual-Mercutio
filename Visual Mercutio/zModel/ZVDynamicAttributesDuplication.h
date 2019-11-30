@@ -13,7 +13,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// Change the definition of AFX_EXT... to make it import
+ // Change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -49,22 +49,25 @@
 // **************************************************************************************************************
 class ZVDynamicAttributesDuplication : public PSS_WizardDialog
 {
-    DECLARE_DYNAMIC( ZVDynamicAttributesDuplication )
+    DECLARE_DYNAMIC(ZVDynamicAttributesDuplication)
 
 public:
 
-    ZVDynamicAttributesDuplication( ZDProcessGraphModelDoc* pModelDoc, bool SymbolSelected );
+    ZVDynamicAttributesDuplication(PSS_ProcessGraphModelDoc* pModelDoc, bool SymbolSelected);
     virtual ~ZVDynamicAttributesDuplication();
 
     // Données de boîte de dialogue
-    enum { IDD = IDD_WZ_DYNAMICATTR_S3 };
+    enum
+    {
+        IDD = IDD_WZ_DYNAMICATTR_S3
+    };
 
 protected:
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVDynamicAttributesCreationS1)
-    virtual void DoDataExchange( CDataExchange* pDX );    // Prise en charge DDX/DDV
+    virtual void DoDataExchange(CDataExchange* pDX);    // Prise en charge DDX/DDV
     //}}AFX_VIRTUAL
 
     // Generated message map functions
@@ -84,7 +87,7 @@ public:
 
 private:
 
-    ZDProcessGraphModelDoc*    m_pModelDoc;
+    PSS_ProcessGraphModelDoc*    m_pModelDoc;
 
     CStringArray            m_StaticAttribArray;
     CStringArray            m_DynamicAttribArray;
@@ -97,4 +100,4 @@ private:
     CButton                    m_cbDuplicateValues;
 };
 
-#endif // !defined(AFX_ZVDYNAMICATTRIBUTESDUPLICATION_H__7CD0522A_A41A_456A_A5A9_52FB2F9B6BA1__INCLUDED_)
+#endif

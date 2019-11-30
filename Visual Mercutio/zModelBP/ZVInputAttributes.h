@@ -20,9 +20,13 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "ZCInputAttributesList.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZDProcessGraphModelDoc;
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelDoc;
 
 
 #ifdef _ZMODELBPEXPORT
@@ -150,7 +154,7 @@ protected:
 private:
     _ZVFlatToolBarInputAttributes    m_FlatToolBar;
     ZCInputAttributesList            m_listctrl;
-    ZDProcessGraphModelDoc*            m_pCurrentDoc;
+    PSS_ProcessGraphModelDoc*            m_pCurrentDoc;
     int                                m_SymbolRef;
 
 };

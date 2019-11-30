@@ -444,13 +444,13 @@ public:
     virtual bool OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
 
     // Drag and drop methods
-    virtual bool AcceptDropItem(CObject* pObj, CPoint pt)
+    virtual bool AcceptDropItem(CObject* pObj, const CPoint& pt)
     {
         return (AcceptExtApp() && ZBExtAppPropertyMgr::AcceptDropItem(pObj, pt)) ||
             (AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, pt));
     }
 
-    virtual bool DropItem(CObject* pObj, CPoint pt)
+    virtual bool DropItem(CObject* pObj, const CPoint& pt)
     {
         return ((AcceptExtApp() && ZBExtAppPropertyMgr::AcceptDropItem(pObj, pt)) ? ZBExtAppPropertyMgr::DropItem(pObj, pt) : false) ||
             ((AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, pt)) ? ZBExtFilePropertyMgr::DropItem(pObj, pt) : false);

@@ -465,7 +465,7 @@ BOOL ZAApp::InitAppl()
     //  serve as the connection between documents, frame windows and views.
     PSS_ProcessModelDocTmpl* pProcessModelDocumentTemplate =
         new PSS_ProcessModelDocTmpl(IDR_MODEL,
-                                    RUNTIME_CLASS(ZDProcessGraphModelDoc),
+                                    RUNTIME_CLASS(PSS_ProcessGraphModelDoc),
                                     RUNTIME_CLASS(PSS_ProcessGraphChildFrame),                // custom MDI child frame
                                     RUNTIME_CLASS(ZIProcessGraphModelView),
                                     ID_FILE_MRU_MODEL1);
@@ -775,7 +775,7 @@ void ZAApp::DoRefreshSymbolsAndProperties()
     while (myPosition != NULL)
     {
         CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
-        ZDProcessGraphModelDoc*    m_pGraphModelDoc = (ZDProcessGraphModelDoc*)m_pDoc;
+        PSS_ProcessGraphModelDoc*    m_pGraphModelDoc = (PSS_ProcessGraphModelDoc*)m_pDoc;
         ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
         PSS_ProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
@@ -793,7 +793,7 @@ void ZAApp::DoRefreshProperties()
     while (myPosition != NULL)
     {
         CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
-        ZDProcessGraphModelDoc*    m_pGraphModelDoc = (ZDProcessGraphModelDoc*)m_pDoc;
+        PSS_ProcessGraphModelDoc*    m_pGraphModelDoc = (PSS_ProcessGraphModelDoc*)m_pDoc;
         ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
         PSS_ProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
@@ -1551,14 +1551,14 @@ void ZAApp::SetVisualToolObject(const CString& sClassName)
 }
 
 // Cette fonction effectue les opérations nécessaires à  la création d'un nouveau modèle
-ZDProcessGraphModelDoc* ZAApp::FileNewModel()
+PSS_ProcessGraphModelDoc* ZAApp::FileNewModel()
 {
     ASSERT(PSS_Global::GetProcessModelDocumentTemplate() != NULL);
 
     CWaitCursor Cursor;
 
-    ZDProcessGraphModelDoc* pNewFile =
-        (ZDProcessGraphModelDoc*)PSS_Global::GetProcessModelDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_ProcessGraphModelDoc* pNewFile =
+        (PSS_ProcessGraphModelDoc*)PSS_Global::GetProcessModelDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (!pNewFile)
     {
@@ -1668,7 +1668,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
 {
     ASSERT(pDoc);
 
-    if (ISA(pDoc, ZDProcessGraphModelDoc))
+    if (ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
         // ******************************************************************************************************
         // JMR-MODIF - Le 24 avril 2006 - Teste si le fichier est en lecture seule.
@@ -1691,7 +1691,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
                         // L'utilisateur souhaite continuer avec un modèle en lecture seule.
                         case IDYES:
                         {
-                            dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
+                            dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
                             break;
                         }
 
@@ -1702,7 +1702,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
 
                             if (mWarnBox.Show(IDS_FILE_WARN_UNLOCK, MB_YESNO) == IDNO)
                             {
-                                dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
+                                dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
                                 pDoc->OnCloseDocument();
 
                                 delete theFile;
@@ -1713,7 +1713,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
                             else
                             {
                                 theFile->SetReadOnly(TRUE);
-                                dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
+                                dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
                             }
 
                             break;
@@ -1723,7 +1723,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
                         default:
                         case IDNO:
                         {
-                            dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
+                            dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
                             pDoc->OnCloseDocument();
 
                             delete theFile;
@@ -1737,12 +1737,12 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
                 {
                     // Sinon, on verrouille le modèle tant que l'utilisateur travaille avec.
                     theFile->SetReadOnly(TRUE);
-                    dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
+                    dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
                 }
             }
             else
             {
-                dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
+                dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
             }
 
             delete theFile;
@@ -1750,29 +1750,29 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
         }
         else
         {
-            dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
+            dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
         }
         // ******************************************************************************************************
 
         // Assigns the Main User Group
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainUserGroup(GetMainUserGroup());
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->AssignMainUserGroup(GetMainUserGroup());
 
         // Assigns the Main Logical System
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainLogicalSystem(GetMainLogicalSystem());
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->AssignMainLogicalSystem(GetMainLogicalSystem());
 
         // JMR-MODIF - Le 2 février 2006 - Ajout du code d'assignement pour les prestations
         // Assigns the Main Prestations
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainLogicalPrestations(GetMainLogicalPrestations());
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->AssignMainLogicalPrestations(GetMainLogicalPrestations());
 
         // JMR-MODIF - Le 19 novembre 2006 - Ajout du code d'assignement pour les règles
         // Assigns the Main Rules
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainLogicalRules(GetMainLogicalRules());
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->AssignMainLogicalRules(GetMainLogicalRules());
 
         // Call the post open document
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->OnPostOpenDocument();
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->OnPostOpenDocument();
 
         // Request the change of the resource language
-        PSS_ResourceManager::ChangeLanguage(dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetLanguage());
+        PSS_ResourceManager::ChangeLanguage(dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetLanguage());
     }
 }
 
@@ -2349,7 +2349,7 @@ void ZAApp::OnNewWorkspace()
 
     if (WksCreation.DoModal() == IDOK)
     {
-        ZDProcessGraphModelDoc* pNewFile = NULL;
+        PSS_ProcessGraphModelDoc* pNewFile = NULL;
         CString modelFileName = _T("");
 
         if (WksCreation.GetWorkspaceName() == _T("Projet vide"))
@@ -2538,7 +2538,7 @@ void ZAApp::OnFileOpenModel()
 
     CWaitCursor Cursor;
 
-    ZDProcessGraphModelDoc* pOpenFile = reinterpret_cast<ZDProcessGraphModelDoc*>(OpenDocumentFile(newName));
+    PSS_ProcessGraphModelDoc* pOpenFile = reinterpret_cast<PSS_ProcessGraphModelDoc*>(OpenDocumentFile(newName));
 
     if (pOpenFile != NULL)
     {
@@ -2571,12 +2571,12 @@ void ZAApp::OnExportModelToHTMLFile()
 
     if (m_pReportInfo != NULL)
     {
-        PSS_PublishModelToHTML::ExportModelToHTMLFile(dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument()),
-                                                      dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument())->GetFirstModelView(),
+        PSS_PublishModelToHTML::ExportModelToHTMLFile(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument()),
+                                                      dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())->GetFirstModelView(),
                                                       m_pReportInfo,
                                                       m_pszProfileName);
 
-        ZUPublishReportToHTML::ExportReportToHTMLFile(dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument()),
+        ZUPublishReportToHTML::ExportReportToHTMLFile(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument()),
                                                       m_pReportInfo);
 
         if (m_pReportInfo->DoLaunchBrowser == TRUE)
@@ -2588,14 +2588,14 @@ void ZAApp::OnExportModelToHTMLFile()
         m_pReportInfo = NULL;
 
         // JMR-MODIF - Le 28 février 2006 - La réattribution du langage d'origine se fait maintenant ici.
-        PSS_ResourceManager::ChangeLanguage(dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument())->GetLanguage());
+        PSS_ResourceManager::ChangeLanguage(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())->GetLanguage());
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Enregistrer en tant que page Web" doit être mise à jour.
 void ZAApp::OnUpdateExportModelToHTMLFile(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Tout enregistrer".
@@ -2843,7 +2843,7 @@ void ZAApp::OnUpdateFilePrint(CCmdUI *pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Propriétés".
 void ZAApp::OnFileProperty()
 {
-    ZVModelWorkflowOptions dlg(true, dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument()));
+    ZVModelWorkflowOptions dlg(true, dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument()));
 
     // If file properties have changed, set the modified flag
     if (dlg.DoModal() == IDOK)
@@ -2859,13 +2859,13 @@ void ZAApp::OnFileProperty()
 // Cette fonction est appelée lorsque l'entrée "Propriétés" doit être mise à jour.
 void ZAApp::OnUpdateFileProperty(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Publier le modèle vers Messenger".
 void ZAApp::OnPublishToMessenger()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -2880,7 +2880,7 @@ void ZAApp::OnPublishToMessenger()
 // Cette fonction est appelée lorsque l'entrée "Publier le modèle vers Messenger" doit être mise à jour.
 void ZAApp::OnUpdatePublishToMessenger(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // **************************************************** Menu Affichage ******************************************
@@ -2888,7 +2888,7 @@ void ZAApp::OnUpdatePublishToMessenger(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Afficher la liste des attributs".
 void ZAApp::OnDynamicAttributesDisplay()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -2925,8 +2925,8 @@ void ZAApp::OnUpdateDynamicAttributesDisplay(CCmdUI* pCmdUI)
     BOOL Enable = FALSE;
     PSS_BaseDocument* pDoc = GetActiveBaseDocument();
 
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc) &&
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->HasDynamicPropertiesManager())
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc) &&
+        dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->HasDynamicPropertiesManager())
     {
         Enable = TRUE;
     }
@@ -3104,7 +3104,7 @@ void ZAApp::OnUpdateWksProperties(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des groupes".
 void ZAApp::OnAssignCurrentUserdef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3115,13 +3115,13 @@ void ZAApp::OnAssignCurrentUserdef()
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des groupes" doit être mise à jour.
 void ZAApp::OnUpdateAssignCurrentUserdef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des systèmes logiques".
 void ZAApp::OnAssignCurrentSystemdef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3132,14 +3132,14 @@ void ZAApp::OnAssignCurrentSystemdef()
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des systèmes logiques" doit être mise à jour.
 void ZAApp::OnUpdateAssignCurrentSystemdef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 2 février 2006 - Ajout de la fonction OnAssignCurrentPrestationsDef.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des prestations".
 void ZAApp::OnAssignCurrentPrestationsDef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3151,14 +3151,14 @@ void ZAApp::OnAssignCurrentPrestationsDef()
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des prestations" doit être mise à jour.
 void ZAApp::OnUpdateAssignCurrentPrestationsDef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 3 décembre 2006 - Ajout de la fonction OnAssignCurrentRulesDef.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des règles".
 void ZAApp::OnAssignCurrentRulesDef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3170,13 +3170,13 @@ void ZAApp::OnAssignCurrentRulesDef()
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des règles" doit être mise à jour.
 void ZAApp::OnUpdateAssignCurrentRulesDef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les groupes aux symboles".
 void ZAApp::OnSymbolReassignUsergroup()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3187,13 +3187,13 @@ void ZAApp::OnSymbolReassignUsergroup()
 // Cette fonction est appelée lorsque l'entrée "Réassigner les groupes aux symboles" doit être mise à jour.
 void ZAApp::OnUpdateSymbolReassignUsergroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les systèmes logiques aux symboles".
 void ZAApp::OnSymbolReassignLogicalsys()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3204,14 +3204,14 @@ void ZAApp::OnSymbolReassignLogicalsys()
 // Cette fonction est appelée lorsque l'entrée "Réassigner les systèmes logiques aux symboles" doit être mise à jour.
 void ZAApp::OnUpdateSymbolReassignLogicalsys(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 2 février 2006 - Ajout de la fonction OnSymbolReassignPrestations.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les prestations aux symboles".
 void ZAApp::OnSymbolReassignPrestations()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3223,14 +3223,14 @@ void ZAApp::OnSymbolReassignPrestations()
 // Cette fonction est appelée lorsque l'entrée "Réassigner les prestations aux symboles" doit être mise à jour.
 void ZAApp::OnUpdateSymbolReassignPrestations(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 3 décembre 2006 - Ajout de la fonction OnSymbolReassignRules.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les règles aux symboles".
 void ZAApp::OnSymbolReassignRules()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (pCurrentDoc)
     {
@@ -3242,7 +3242,7 @@ void ZAApp::OnSymbolReassignRules()
 // Cette fonction est appelée lorsque l'entrée "Réassigner les règles aux symboles" doit être mise à jour.
 void ZAApp::OnUpdateSymbolReassignRules(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport de contrôle".
@@ -3261,7 +3261,7 @@ void ZAApp::OnGenerateCheckReport()
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
     {
@@ -3310,8 +3310,8 @@ void ZAApp::OnGenerateCheckReport()
 void ZAApp::OnUpdateGenerateCheckReport(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(GetActiveBaseDocument() &&
-                   ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc) &&
-                   ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
+                   ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc) &&
+                   ((PSS_ProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Mercutio".
@@ -3332,7 +3332,7 @@ void ZAApp::OnGenerateMercutioReport()
     CWaitCursor Cursor;
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
     {
@@ -3406,8 +3406,8 @@ void ZAApp::OnGenerateMercutioReport()
 void ZAApp::OnUpdateGenerateMercutioReport(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(GetActiveBaseDocument() &&
-                   ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc) &&
-                   ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
+                   ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc) &&
+                   ((PSS_ProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Conceptor".
@@ -3428,7 +3428,7 @@ void ZAApp::OnGenerateConceptorReport()
     CWaitCursor Cursor;
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
     {
@@ -3490,8 +3490,8 @@ void ZAApp::OnGenerateConceptorReport()
 void ZAApp::OnUpdateGenerateConceptorReport(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(GetActiveBaseDocument() &&
-                   ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc) &&
-                   ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
+                   ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc) &&
+                   ((PSS_ProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces".
@@ -3510,7 +3510,7 @@ void ZAApp::OnGenerateSesterceReport()
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     CWaitCursor Cursor;
 
@@ -3552,14 +3552,14 @@ void ZAApp::OnGenerateSesterceReport()
 // Cette fonction est appelée lorsque l'entrée "Générer le rapport Sesterces" doit être mise à jour.
 void ZAApp::OnUpdateGenerateSesterceReport(CCmdUI* pCmdUI)
 {
-    if (!GetActiveBaseDocument() || !ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc))
+    if (!GetActiveBaseDocument() || !ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc))
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetIntegrateCostSimulation() &&
-        ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(((PSS_ProcessGraphModelDoc*)GetActiveBaseDocument())->GetIntegrateCostSimulation() &&
+        ((PSS_ProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Unités".
@@ -3578,7 +3578,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
     ZVReportCreationWizard dlg(true, false);
@@ -3642,7 +3642,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
     ZVReportCreationWizard dlg(true, false);
@@ -3707,7 +3707,7 @@ void ZAApp::OnGeneratePrestationsReport()
 #endif
 
     // Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
     ZVReportCreationWizard dlg(true, false);
@@ -3764,14 +3764,14 @@ void ZAApp::OnGeneratePrestationsReport()
 // Cette fonction est appelée lorsque l'entrée "Générer le rapport Prestations" doit être mise à jour.
 void ZAApp::OnUpdateGeneratePrestationsReport(CCmdUI* pCmdUI)
 {
-    if (!GetActiveBaseDocument() || !ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc))
+    if (!GetActiveBaseDocument() || !ISA(GetActiveBaseDocument(), PSS_ProcessGraphModelDoc))
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetIntegrateCostSimulation() &&
-        ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(((PSS_ProcessGraphModelDoc*)GetActiveBaseDocument())->GetIntegrateCostSimulation() &&
+        ((PSS_ProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // ******************************************************** Menu ? **********************************************

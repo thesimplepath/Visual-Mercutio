@@ -17,7 +17,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowParameters class
 
-ZVModelWorkflowParameters::ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, PSS_TemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent /*=NULL*/)
+ZVModelWorkflowParameters::ZVModelWorkflowParameters(BOOL Modify, PSS_ProcessGraphModelDoc* pDoc, PSS_TemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent /*=NULL*/)
     : m_Modify(Modify),
     m_pDoc(pDoc),
     m_pTemplateManager(pTemplateManager),
@@ -126,7 +126,7 @@ void ZVModelWorkflowParametersWelcome::OnNext()
 // ZVModelWorkflowParametersOptions dialog
 
 
-ZVModelWorkflowParametersOptions::ZVModelWorkflowParametersOptions(BOOL Modify, ZDProcessGraphModelDoc& Doc, CWnd* pParent /*=NULL*/) :
+ZVModelWorkflowParametersOptions::ZVModelWorkflowParametersOptions(BOOL Modify, PSS_ProcessGraphModelDoc& Doc, CWnd* pParent /*=NULL*/) :
     PSS_WizardDialog(ZVModelWorkflowParametersOptions::IDD,
                      IDB_WZBMP1,
                      0,

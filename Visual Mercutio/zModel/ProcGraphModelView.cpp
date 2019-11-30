@@ -707,9 +707,9 @@ ZDProcessGraphModelMdl* ZIProcessGraphModelView::GetModel()
     }
 
     // If can't activate a view with model's name, create a new view
-    if (GetDocument() && ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (GetDocument() && ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
-        return ((ZDProcessGraphModelDoc*)GetDocument())->GetModel();
+        return ((PSS_ProcessGraphModelDoc*)GetDocument())->GetModel();
     }
 
     return NULL;
@@ -722,9 +722,9 @@ void ZIProcessGraphModelView::SizeVpToModel()
         return;
     }
 
-    if (GetDocument() && ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (GetDocument() && ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
-        PSS_DocumentPageSetup* m_pPageSetup = ((ZDProcessGraphModelDoc*)GetDocument())->GetPrinterPageSize();
+        PSS_DocumentPageSetup* m_pPageSetup = ((PSS_ProcessGraphModelDoc*)GetDocument())->GetPrinterPageSize();
 
         ZIProcessGraphModelViewport::SizeVp(m_pPageSetup);
     }
@@ -735,9 +735,9 @@ void ZIProcessGraphModelView::OnInitialUpdate()
     PSS_MvcScrollView::OnInitialUpdate();
 
     // Set the document page units
-    if (GetDocument() && ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (GetDocument() && ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
-        ZIProcessGraphModelViewport::SetPageUnits(((ZDProcessGraphModelDoc*)GetDocument())->GetPageUnits());
+        ZIProcessGraphModelViewport::SetPageUnits(((PSS_ProcessGraphModelDoc*)GetDocument())->GetPageUnits());
     }
 
     // Size the viewport
@@ -761,26 +761,26 @@ void ZIProcessGraphModelView::OnInitialUpdate()
     }
 }
 
-// Drag and drop functions
-bool ZIProcessGraphModelView::DropItem(CObject* pObj, CPoint pt)
-{
-    PSS_ProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
-
-    if (pCtrl)
-    {
-        return pCtrl->DropItem(pObj, pt);
-    }
-
-    return false;
-}
-
-bool ZIProcessGraphModelView::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZIProcessGraphModelView::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     PSS_ProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
 
     if (pCtrl)
     {
         return pCtrl->AcceptDropItem(pObj, pt);
+    }
+
+    return false;
+}
+
+// Drag and drop functions
+bool ZIProcessGraphModelView::DropItem(CObject* pObj, const CPoint& pt)
+{
+    PSS_ProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
+
+    if (pCtrl)
+    {
+        return pCtrl->DropItem(pObj, pt);
     }
 
     return false;

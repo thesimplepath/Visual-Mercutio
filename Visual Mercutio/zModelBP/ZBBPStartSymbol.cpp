@@ -171,7 +171,7 @@ CString ZBBPStartSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) c
 }
 
 // Drag and drop methods
-bool ZBBPStartSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZBBPStartSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     // JMR-MODIF - Le 18 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
     if (!IsLocal())
@@ -195,7 +195,7 @@ bool ZBBPStartSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
     return ZBSymbol::AcceptDropItem(pObj, pt);
 }
 
-bool ZBBPStartSymbol::DropItem(CObject* pObj, CPoint pt)
+bool ZBBPStartSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
     if (pObj && ISA(pObj, ZBUserGroupEntity))
     {
@@ -403,10 +403,10 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
     {
         CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+        if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // Retreive the model's currency symbol
-            CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
+            CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
         }
     }
 
@@ -441,10 +441,10 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
                 ZDProcessGraphModelControllerBP* p_Controller =
                     reinterpret_cast<ZDProcessGraphModelControllerBP*>(p_Model->GetController());
 
-                if (p_Controller != NULL && ISA(p_Controller->GetDocument(), ZDProcessGraphModelDoc))
+                if (p_Controller != NULL && ISA(p_Controller->GetDocument(), PSS_ProcessGraphModelDoc))
                 {
-                    ZDProcessGraphModelDoc* p_Document =
-                        reinterpret_cast<ZDProcessGraphModelDoc*>(p_Controller->GetDocument());
+                    PSS_ProcessGraphModelDoc* p_Document =
+                        reinterpret_cast<PSS_ProcessGraphModelDoc*>(p_Controller->GetDocument());
 
                     if (p_Document != NULL && p_Document->GetMainLogicalRules() != NULL)
                     {
@@ -893,10 +893,10 @@ bool ZBBPStartSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value,
         {
             CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-            if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+            if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             {
                 // Retreive the model's currency symbol
-                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
+                CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
 

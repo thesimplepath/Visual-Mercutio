@@ -20,11 +20,15 @@
 #include "zReport\ZBGenericGridReportGenerator.h"
 #include "zReport\ZBOStreamGrid.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
+// forward class declaration
 class ZDGridDocument;
 class ZDProcessGraphModelMdlBP;
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 
 #ifdef _ZREPORTBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -40,23 +44,23 @@ class ZDProcessGraphModelDoc;
 
 class AFX_EXT_CLASS ZBModelBPReportGenerator : public ZBGenericGridReportGenerator
 {
-    DECLARE_SERIAL( ZBModelBPReportGenerator )
+    DECLARE_SERIAL(ZBModelBPReportGenerator)
 
 public:
 
-    ZBModelBPReportGenerator( ZDGridDocument*            pDoc        = NULL,
-                              ZDProcessGraphModelMdlBP*    pModel        = NULL,
-                              ZDProcessGraphModelDoc*    pSourceDoc    = NULL );
+    ZBModelBPReportGenerator(ZDGridDocument*            pDoc = NULL,
+                             ZDProcessGraphModelMdlBP*    pModel = NULL,
+                             PSS_ProcessGraphModelDoc*    pSourceDoc = NULL);
 
     virtual ~ZBModelBPReportGenerator();
 
-    virtual void Initialize( ZDGridDocument*            pDoc,
-                             ZDProcessGraphModelMdlBP*    pModel,
-                             ZDProcessGraphModelDoc*    pSourceDoc );
+    virtual void Initialize(ZDGridDocument*            pDoc,
+                            ZDProcessGraphModelMdlBP*    pModel,
+                            PSS_ProcessGraphModelDoc*    pSourceDoc);
 
     /////////////////////////////////////////////////////////////////////////////
     // ZIGridReportGenerator methods
-    
+
     // Initialization method
     virtual bool Initialize()
     {
@@ -71,9 +75,9 @@ public:
     };
 
     // Returns the tab name corresponding to the index
-    virtual const CString GetGeneratorTabName( size_t Index )
+    virtual const CString GetGeneratorTabName(size_t Index)
     {
-        return ( Index < GetGeneratorTabCount() ) ? m_TabNameArray.GetAt( Index ) : _T( "" );
+        return (Index < GetGeneratorTabCount()) ? m_TabNameArray.GetAt(Index) : _T("");
     };
 
     // Returns 0. No special ID for this report
@@ -98,23 +102,22 @@ public:
     };
 
     // Serialization call-back
-    virtual void OnPostRead( CArchive& ar );
-    virtual void OnPostWrite( CArchive& ar )
-    {
-    };
+    virtual void OnPostRead(CArchive& ar);
+    virtual void OnPostWrite(CArchive& ar)
+    {};
 
     // Call-back methods
-    virtual void OnPostDataFilled( size_t Index );
+    virtual void OnPostDataFilled(size_t Index);
 
     // Serialization
-    virtual void Serialize( CArchive& ar );
-    
-// Implementation
+    virtual void Serialize(CArchive& ar);
+
+    // Implementation
 public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 protected:
@@ -122,15 +125,14 @@ protected:
     // The derived class must implement this method
     // to fill the tabs.
     virtual void FillTabArray()
-    {
-    };
+    {};
 
 protected:
 
-    ZDProcessGraphModelDoc*        m_pSourceDoc;
+    PSS_ProcessGraphModelDoc*        m_pSourceDoc;
     ZDProcessGraphModelMdlBP*    m_pModel;
     CStringArray                m_TabNameArray;
     bool                        m_InChargeOfClosingFile;
 };
 
-#endif // !defined(AFX_ZBModelBPReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
+#endif

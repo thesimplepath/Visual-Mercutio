@@ -1,14 +1,18 @@
-// ProcGraphModelDoc.h : interface of the ZDProcessGraphModelDoc class
-/////////////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_ProcessGraphModelDoc --------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a process graphic model document                  *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_OBJECTIVDOC_H__037E37C0_6ACE_4FB6_B930_41786C8809CE__INCLUDED_)
-#define AFX_OBJECTIVDOC_H__037E37C0_6ACE_4FB6_B930_41786C8809CE__INCLUDED_
+#ifndef PSS_ProcessGraphModelDocH
+#define PSS_ProcessGraphModelDocH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -16,27 +20,25 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "PSS_Defines.h"
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 
+// processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-
+#include "zBaseLib\PSS_BaseDocument.h"
+#include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "ProcGraphModelMdl.h"
 #include "ZBUnitManager.h"
 #include "ZBModelSet.h"
-
-// BaseDoc
-#include "zBaseLib\PSS_BaseDocument.h"
-
 #include "ZBPageUnits.h"
-
 #include "ZBWorkflowDefinition.h"
-
 #include "PSS_LanguageDefs.h"
+#include "PSS_Defines.h"
 
-#include "zBaseLib\PSS_DocumentPageSetup.h"
-
-// Forward declaration
+// forward class declaration
 class PSS_Log;
 class ZIProcessGraphModelView;
 class ZUUserManager;
@@ -45,669 +47,1242 @@ class ZDTemplateManager;
 class ZBDynamicPropertiesManager;
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZDProcessGraphModelDoc : public PSS_BaseDocument,
-                                             public PSS_Subject,
-                                             public PSS_Observer
+/**
+* Process graphic model document
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
+                                               public PSS_Subject,
+                                               public PSS_Observer
 {
-public:
-
-    DECLARE_SERIAL(ZDProcessGraphModelDoc)
-
-    // Inherited feature
-    typedef PSS_BaseDocument inherited;
-
-    // Can be created to be used with ReadFromFile method
-    ZDProcessGraphModelDoc();
-    virtual ~ZDProcessGraphModelDoc();
-
-    virtual void PreCloseFrame(CFrameWnd* pFrame);
-
-    virtual void Initialize(PSS_Log*           pOutputLog,
-                            PSS_Log*           pAnalyzerLog,
-                            PSS_Log*           pSearchLog,
-                            PSS_Log*           pWorflowLog,
-                            ZUUserManager*     pUserManager,
-                            ZUMail*            pMail,
-                            ZDTemplateManager* pTemplateManager);
-
-    // JMR-MODIF - Le 29 septembre 2005 - Ajout de la fonction IsClosing.
-    BOOL IsClosing();
-
-    virtual ZUUserManager* GetUserManager() const
-    {
-        return m_pUserManager;
-    }
-
-    virtual ZUMail* GetMail() const
-    {
-        return m_pMail;
-    }
-
-    virtual ZDTemplateManager* GetTemplateManager() const
-    {
-        return m_pTemplateManager;
-    }
-
-    // Returns the guid of this file
-    CString GetGUID() const
-    {
-        return m_GUID;
-    }
-
-    // User def guid management methods
-    bool HasUserDefAssigned() const
-    {
-        return (m_UserDefGUID.IsEmpty()) ? false : true;
-    }
-
-    CString    GetUserDefGUID() const;
-    void    AssignUserDefGUID(const CString value);
-    bool    AssignCurrentUserDefGUID();
-    void    ReassignUnit(PSS_Log* pLog = NULL);
-
-    // System def guid management methods
-    bool HasSystemDefAssigned() const
-    {
-        return (m_SystemDefGUID.IsEmpty()) ? false : true;
-    }
-
-    CString    GetSystemDefGUID() const;
-    void    AssignSystemDefGUID(const CString value);
-    bool    AssignCurrentSystemDefGUID();
-    void    ReassignSystem(PSS_Log* pLog = NULL);
-
-    // ********************************************************************************
-    // JMR-MODIF - Le 26 janvier 2006 - Ajout de l'infrastructure pour les prestations.
-    bool HasPrestationsDefsAssigned() const
-    {
-        return (m_PrestationsDefGUID.IsEmpty()) ? false : true;
-    }
-
-    CString    GetPrestationsDefGUID() const;
-    void    AssignPrestationsDefGUID(const CString value);
-    bool    AssignCurrentPrestationsDefGUID();
-    void    ReassignPrestations(PSS_Log* pLog = NULL);
-    // ********************************************************************************
-
-    // ********************************************************************************
-    // JMR-MODIF - Le 19 novembre 2006 - Ajout de l'infrastructure pour les règles.
-    bool HasRulesDefsAssigned() const
-    {
-        return (m_RulesDefGUID.IsEmpty()) ? false : true;
-    }
-
-    CString    GetRulesDefGUID() const;
-    void    AssignRulesDefGUID(const CString value);
-    bool    AssignCurrentRulesDefGUID();
-    void    ReassignRules(PSS_Log* pLog = NULL);
-    // ********************************************************************************
-
-    // Page unit functions
-    virtual ZBPageUnits& GetPageUnits()
-    {
-        return m_PageUnits;
-    }
-
-    virtual void            SetPageUnits(ZBPageUnits& value);
-    virtual void            SetPageUnits(CODRuler& value);
-
-    // Unit functions
-    bool    InsertUnit(const CString fileName);
-    bool    LoadAllUnits();
-    //REM bool    LoadUnit(const CString fileName, ZDProcessGraphModelMdl& Model);
-
-    bool IsUnit()
-    {
-        return GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_LibraryType;
-    }
-
-    bool HasUnit() const
-    {
-        return (m_pUnitManager != NULL) ? true : false;
-    }
-
-    // Notation functions
-    EModelNotation GetNotation() const
-    {
-        return GetModelConst()->GetNotation();
-    }
-
-    void SetNotation(EModelNotation value)
-    {
-        GetModel()->SetNotation(value);
-    }
-
-    bool IsModelInABCNotation() const
-    {
-        return GetModelConst()->IsModelInABCNotation();
-    }
-
-    bool IsModelInUMLNotation() const
-    {
-        return GetModelConst()->IsModelInUMLNotation();
-    }
-
-    bool IsModelInBerylNotation() const
-    {
-        return GetModelConst()->IsModelInBerylNotation();
-    }
-
-    bool IsModelNotationUnknow() const
-    {
-        return GetModelConst()->IsModelNotationUnknow();
-    }
-
-    // JMR-MODIF - Le 5 novembre 2006 - Ajout du paramètre ModelIsClean.
-    bool CheckModelWorkflow(BOOL ModelIsClean);
-    bool GenerateModelWorkflow();
-    void DeleteWorkflowDefinition();
-
-    bool BrowseInSameWindow() const
-    {
-        return m_BrowseInSameWindow;
-    }
-
-    void SetBrowseInSameWindow(bool value)
-    {
-        m_BrowseInSameWindow = value;
-    }
-
-    CString        GetWorkflowFileName() const;
-    void        ClearWorkflowFileName();
-    void        SetWorkflowFileName(CString value);
-
-    PSS_Date*        GetWorkflowLastUpdateDate();
-    void        SetWorkflowLastUpdateDate(PSS_Date value);
-
-    bool        GetCheckConsistency() const;
-    void        SetCheckConsistency(bool value);
-
-    bool        GetIntegrateCostSimulation() const;
-    void        SetIntegrateCostSimulation(bool value);
-
-    bool        GetUseWorkflow() const
-    {
-        return m_UseWorkflow;
-    };
-    void        SetUseWorkflow(bool value);
-
-    int            GetHourPerDay() const;
-    void        SetHourPerDay(int value);
-
-    int            GetDayPerWeek() const;
-    void        SetDayPerWeek(int value);
-
-    int            GetDayPerMonth() const;
-    void        SetDayPerMonth(int value);
-
-    int            GetDayPerYear() const;
-    void        SetDayPerYear(int value);
-
-    CString        GetCurrencySymbol() const;
-    void        SetCurrencySymbol(CString value);
-
-    bool        GetSaveModelInWorkflow() const;
-    void        SetSaveModelInWorkflow(bool value);
-
-    bool        GetShowPageBorder() const;
-    void        SetShowPageBorder(bool value);
-
-    const ELanguage GetLanguage()
-    {
-        return GetModel()->GetLanguage();
-    }
-
-    void SetLanguage(const ELanguage value)
-    {
-        GetModel()->SetLanguage(value);
-    }
-
-    // ****************************************************************************
-    // JMR-MODIF - Le 25 avril 2006 - Ajout des fonctions IsReadOnly et SetReadOnly
-
-    BOOL IsReadOnly()
-    {
-        return b_IsReadOnly;
-    }
-
-    void SetReadOnly(BOOL Value)
-    {
-        b_IsReadOnly = Value;
-    }
-    // ****************************************************************************
-
-    PSS_Log* GetModelOutputLog()
-    {
-        return m_pOutputLog;
-    }
-
-    PSS_Log* GetAnalyzerOutputLog()
-    {
-        return m_pAnalyzerLog;
-    }
-
-    PSS_Log* GetSearchOutputLog()
-    {
-        return m_pSearchLog;
-    }
-
-    PSS_Log* GetWorkflowOutputLog()
-    {
-        return m_pWorflowLog;
-    }
-
-    // Once the doucument is open, the OnPostOpenDocument method is called
-    // from the framework
-    virtual void OnPostOpenDocument();
-
-    ///////////////////////////////////////////////////////
-    // User group Get and Set methods
-    ZBUserGroupEntity* GetMainUserGroup()
-    {
-        return GetModel()->GetMainUserGroup();
-    }
-
-    void AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup)
-    {
-        GetModel()->AssignMainUserGroup(pMainUserGroup);
-    }
-
-    ///////////////////////////////////////////////////////
-    // Logical system Get and Set methods
-    ZBLogicalSystemEntity* GetMainLogicalSystem()
-    {
-        return GetModel()->GetMainLogicalSystem();
-    }
-
-    void AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem)
-    {
-        GetModel()->AssignMainLogicalSystem(pMainLogicalSystem);
-    }
-
-    ///////////////////////////////////////////////////////
-    // JMR-MODIF - Le 26 janvier 2006 - Ajout des fonctions Get and Set pour les prestations.
-    ZBLogicalPrestationsEntity* GetMainLogicalPrestations()
-    {
-        return GetModel()->GetMainLogicalPrestations();
-    }
-
-    void AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations)
-    {
-        GetModel()->AssignMainLogicalPrestations(pMainLogicalPrestations);
-    }
-
-    ///////////////////////////////////////////////////////
-    // JMR-MODIF - Le 19 novembre 2006 - Ajout des fonctions Get and Set pour les règles.
-    ZBLogicalRulesEntity* GetMainLogicalRules()
-    {
-        return GetModel()->GetMainLogicalRules();
-    }
-
-    void AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules)
-    {
-        GetModel()->AssignMainLogicalRules(pMainLogicalRules);
-    }
-
-    // Implementation for ZIModelDocument interface
-
-    // Gets a pointer to the model of the canvas.
-    ZDProcessGraphModelMdl* GetModel();
-    ZDProcessGraphModelMdl* GetModelConst() const;
-    void SetNewModel(ZDProcessGraphModelMdl* pModel);
-
-    virtual CDocTemplate* GetDocTemplate() const;
-    virtual void SetModifiedFlag(BOOL bModified = TRUE);
-
-    // Printer functions
-    PSS_DocumentPageSetup* GetPrinterPageSize();
-
-    // View functions
-    ZIProcessGraphModelView* GetFirstModelView();
-    virtual CView* FindView(const CString Name);
-    virtual CView* ActivateView(const CString Name);
-    CView*    SwitchView(CView* pNewView, size_t Index = 0);
-
-    // Determines if the canvas has been modified.
-    virtual BOOL IsModified();
-
-    bool IsInModelCreation() const
-    {
-        return m_IsInModelCreation;
-    }
-
-    // Dynamic properties manager functions
-    ZBDynamicPropertiesManager* GetDynamicPropertiesManager()
-    {
-        return m_DynamicPropertiesManager;
-    }
-
-    bool HasDynamicPropertiesManager() const
-    {
-        return m_DynamicPropertiesManager != NULL;
-    }
-
-    void AllocatePropertiesManager(bool DeleteFirst = false);
-
-    /////////////////////////////////////////////////////////
-    // Operations
-
-    // Observer call back
-    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZDProcessGraphModelDoc)
-public:
-    virtual BOOL OnNewDocument();
-    virtual void DeleteContents();
-    virtual void OnCloseDocument();
-    virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
-    virtual BOOL OnSaveDocument(const char* pszPathName);
-    //}}AFX_VIRTUAL
-
-    // JMR-MODIF - Le 9 juillet 2006 - Surcharge de la fonction DoFileSave.
-    BOOL DoFileSave();
-
-    // JMR-MODIF - Le 27 avril 2006 - Ajout de la fonction SetFileReadOnly.
-    BOOL SetFileReadOnly(const char* pszPathName, BOOL Value);
-
-    // Reader and Writer methods
-    // These methods don't use the standard MVC framework
-    bool ReadFromFile(const CString fileName);
-    bool SaveToFile(const CString fileName);
-
-    virtual void Serialize(CArchive& ar);
-
-    ////////////////////////////////////////////////////////////
-    // Implementation
-
-#ifdef _DEBUG
-
-    virtual void AssertValid() const;
-    virtual void Dump(CDumpContext& dc) const;
-
-#endif
-
-    // Generated message map functions
-protected:
-
-    //{{AFX_MSG(ZDProcessGraphModelDoc)
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-
-private:
-
-    bool CreateUnitManager();
-
-protected:
-
-    ZDProcessGraphModelMdl        m_EmptyModel;
-
-    // The model for the canvas. The model holds all information about
-    // the canvas, while the viewport actually displays it.
-    ZDProcessGraphModelMdl*        m_pModel;
-
-private:
-
-    // JMR-MODIF - Le 29 septembre 2005 - Ajout de la variable IsDocumentClosing.
-    BOOL                        IsDocumentClosing;
-
-    // JMR-MODIF - Le 25 avril 2006 - Ajout de la variable IsReadOnly.
-    BOOL                        b_IsReadOnly;
-
-    CString                        m_GUID;
-    CString                        m_UserDefGUID;
-    CString                        m_SystemDefGUID;
-    // JMR-MODIF - Le 26 janvier 2006 - Ajout de la variable m_PrestationsDefGUID.
-    CString                        m_PrestationsDefGUID;
-    // JMR-MODIF - Le 19 novembre 2006 - Ajout de la variable m_RulesDefGUID.
-    CString                        m_RulesDefGUID;
-
-    ZBPageUnits                    m_PageUnits;
-    ZUUserManager*                m_pUserManager;
-    ZUMail*                        m_pMail;
-    ZDTemplateManager*            m_pTemplateManager;
-    ZBDynamicPropertiesManager*    m_DynamicPropertiesManager;
-
-    bool                        m_IsInModelCreation;
-    ZBUnitManager*                m_pUnitManager;
-    ZBModelSet                    m_DocumentModelSet;
-    ZBModelSet                    m_UnitModelSet;
-
-    bool                        m_UseWorkflow;
-    bool                        m_BrowseInSameWindow;
-    bool                        m_IntegrateCostSimulation;
-    bool                        m_CheckConsistency;
-
-    // Number of hours per day for cost simulation
-    int                            m_HourPerDay;
-
-    // Number of days per week for cost simulation
-    int                            m_DayPerWeek;
-
-    // Number of days per month for cost simulation
-    int                            m_DayPerMonth;
-
-    // Number of days per year for cost simulation
-    int                            m_DayPerYear;
-
-    // Currency symbol to use for amounts
-    CString                        m_CurrencySymbol;
-
-    // The show page border flag
-    bool                        m_ShowPageBorder;
-
-    CSize                        m_PaperSize;
-    short                        m_StandardSize;
-    short                        m_Orientation;
-
-    ZBWorkflowDefinition*        m_pWorkflowDefinition;
-
-    PSS_Log*                        m_pOutputLog;
-    PSS_Log*                        m_pAnalyzerLog;
-    PSS_Log*                        m_pSearchLog;
-    PSS_Log*                        m_pWorflowLog;
+    DECLARE_SERIAL(PSS_ProcessGraphModelDoc)
+
+    public:
+        typedef PSS_BaseDocument inherited;
+
+        PSS_ProcessGraphModelDoc();
+        virtual ~PSS_ProcessGraphModelDoc();
+
+        /**
+        * Initializes the class
+        *@param pOutputLog - output log
+        *@param pAnalyzerLog - analyser log
+        *@param pSearchLog - search log
+        *@param pWorflowLog - workflow log
+        *@param pUserManager - user manager
+        *@param pMail - email
+        *@param pTemplateManager - template manager
+        */
+        virtual void Initialize(PSS_Log*           pOutputLog,
+                                PSS_Log*           pAnalyzerLog,
+                                PSS_Log*           pSearchLog,
+                                PSS_Log*           pWorflowLog,
+                                ZUUserManager*     pUserManager,
+                                ZUMail*            pMail,
+                                ZDTemplateManager* pTemplateManager);
+
+        /**
+        * Pre-closes the frame
+        *@param pFrame - the frame
+        */
+        virtual void PreCloseFrame(CFrameWnd* pFrame);
+
+        /**
+        * Checks if the frame is closing
+        *@return TRUE if the frame is closing, otherwise FALSE
+        */
+        virtual BOOL IsClosing();
+
+        /**
+        * Gets the user manager
+        *@return the user manager
+        */
+        virtual inline ZUUserManager* GetUserManager() const;
+
+        /**
+        * Gets the email
+        *@return the email
+        */
+        virtual inline ZUMail* GetMail() const;
+
+        /**
+        * Gets the template manager
+        *@return the template manager
+        */
+        virtual inline ZDTemplateManager* GetTemplateManager() const;
+
+        /**
+        * Gets the file guid
+        *@return the file guid
+        */
+        virtual inline CString GetGUID() const;
+
+        /**
+        * Gets if the user def guid is assigned
+        *@return true if the user def guid is assigned, otherwise false
+        */
+        virtual inline bool HasUserDefAssigned() const;
+
+        /**
+        * Gets the user def guid
+        *@return the user def guid
+        */
+        virtual inline CString GetUserDefGUID() const;
+
+        /**
+        * Assigns the user def guid
+        *@param value - the user def guid
+        */
+        virtual inline void AssignUserDefGUID(const CString& value);
+
+        /**
+        * Assigns the current user def guid
+        *@return true on success, otherwise false
+        */
+        virtual bool AssignCurrentUserDefGUID();
+
+        /**
+        * Reassigns the unit
+        *@param pLog - the log
+        */
+        virtual void ReassignUnit(PSS_Log* pLog = NULL);
+
+        /**
+        * Gets if the system def guid is assigned
+        *@return true if the system def guid is assigned, otherwise false
+        */
+        virtual inline bool HasSystemDefAssigned() const;
+
+        /**
+        * Gets the system def guid
+        *@return the system def guid
+        */
+        virtual inline CString GetSystemDefGUID() const;
+
+        /**
+        * Assigns the system def guid
+        *@param value - the system def guid
+        */
+        virtual inline void AssignSystemDefGUID(const CString& value);
+
+        /**
+        * Assigns the current system def guid
+        *@return true on success, otherwise false
+        */
+        virtual bool AssignCurrentSystemDefGUID();
+
+        /**
+        * Reassigns the system
+        *@param pLog - the log
+        */
+        virtual void ReassignSystem(PSS_Log* pLog = NULL);
+
+        /**
+        * Gets if the prestations def guid is assigned
+        *@return true if the prestations def guid is assigned, otherwise false
+        */
+        virtual inline bool HasPrestationsDefsAssigned() const;
+
+        /**
+        * Gets the prestations def guid
+        *@return the prestations def guid
+        */
+        virtual inline CString GetPrestationsDefGUID() const;
+
+        /**
+        * Assigns the prestations def guid
+        *@param value - the prestations def guid
+        */
+        virtual inline void AssignPrestationsDefGUID(const CString& value);
+
+        /**
+        * Assigns the current prestations def guid
+        *@return true on success, otherwise false
+        */
+        virtual bool AssignCurrentPrestationsDefGUID();
+
+        /**
+        * Reassigns the prestations
+        *@param pLog - the log
+        */
+        virtual void ReassignPrestations(PSS_Log* pLog = NULL);
+
+        /**
+        * Gets if the rules def guid is assigned
+        *@return true if the rules def guid is assigned, otherwise false
+        */
+        virtual inline bool HasRulesDefsAssigned() const;
+
+        /**
+        * Gets the rules def guid
+        *@return the rules def guid
+        */
+        virtual inline CString GetRulesDefGUID() const;
+
+        /**
+        * Assigns the rules def guid
+        *@param value - the rules def guid
+        */
+        virtual inline void AssignRulesDefGUID(const CString& value);
+
+        /**
+        * Assigns the current rules def guid
+        *@return true on success, otherwise false
+        */
+        virtual bool AssignCurrentRulesDefGUID();
+
+        /**
+        * Reassigns the rules
+        *@param pLog - the log
+        */
+        virtual void ReassignRules(PSS_Log* pLog = NULL);
+
+        /**
+        * Gets the page units
+        *@return the page units
+        */
+        virtual inline ZBPageUnits& GetPageUnits();
+
+        /**
+        * Sets the page units
+        *@param value - the page units
+        */
+        virtual void SetPageUnits(ZBPageUnits& value);
+        virtual void SetPageUnits(CODRuler&    value);
+
+        /**
+        * Inserts units
+        *@param fileName - units file name
+        *@return true on success, otherwise false
+        */
+        virtual bool InsertUnit(const CString& fileName);
+
+        /**
+        * Loads all the units
+        *@return true on success, otherwise false
+        */
+        virtual bool LoadAllUnits();
+
+        /**
+        * Checks if the document is units
+        *@return true if the document is units, otherwise false
+        */
+        virtual inline bool IsUnit();
+
+        /**
+        * Checks if the document is has units
+        *@return true if the document has units, otherwise false
+        */
+        virtual inline bool HasUnit() const;
+
+        /**
+        * Gets the notation
+        *@return the notation
+        */
+        virtual inline EModelNotation GetNotation() const;
+
+        /**
+        * Sets the notation
+        *@param value - the notation
+        */
+        virtual inline void SetNotation(EModelNotation value);
+
+        /**
+        * Checks if the model is in ABC notation
+        *@return true if the model is in ABC notation, otherwise false
+        */
+        virtual inline bool IsModelInABCNotation() const;
+
+        /**
+        * Checks if the model is in UML notation
+        *@return true if the model is in UML notation, otherwise false
+        */
+        virtual inline bool IsModelInUMLNotation() const;
+
+        /**
+        * Checks if the model is in Beryl notation
+        *@return true if the model is in Beryl notation, otherwise false
+        */
+        virtual inline bool IsModelInBerylNotation() const;
+
+        /**
+        * Checks if the model notation is unknown
+        *@return true if the model notation is unknown, otherwise false
+        */
+        virtual inline bool IsModelNotationUnknow() const;
+
+        /**
+        * Generates the model workflow
+        *@return true on success, otherwise false
+        */
+        virtual bool GenerateModelWorkflow();
+
+        /**
+        * Checks the model workflow
+        *@param modelIsClean - if TRUE, the model is clean
+        *@return true if the model workflow check succeeded, otherwise false
+        */
+        virtual bool CheckModelWorkflow(BOOL modelIsClean);
+
+        /**
+        * Deletes the model workflow definition
+        */
+        virtual void DeleteWorkflowDefinition();
+
+        /**
+        * Gets if do browse in the same window
+        *@return if do browse in the same window, otherwise false
+        */
+        virtual inline bool GetBrowseInSameWindow() const;
+
+        /**
+        * Sets if do browse in the same window
+        *@param value - if true, do browse in the same window
+        */
+        virtual inline void SetBrowseInSameWindow(bool value);
+
+        /**
+        * Gets the workflow file name
+        *@return the workflow file name
+        */
+        virtual inline CString GetWorkflowFileName() const;
+
+        /**
+        * Sets the workflow file name
+        *@param value - the workflow file name
+        */
+        virtual inline void SetWorkflowFileName(const CString& value);
+
+        /**
+        * Clears the workflow file name
+        */
+        virtual inline void ClearWorkflowFileName();
+
+        /**
+        * Gets the workflow last update date
+        *@return the workflow last update date
+        */
+        virtual inline PSS_Date* GetWorkflowLastUpdateDate();
+
+        /**
+        * Sets the workflow last update date
+        *@param value - the workflow last update date
+        */
+        virtual inline void SetWorkflowLastUpdateDate(const PSS_Date& value);
+
+        /**
+        * Gets if the consistency should be checked
+        *@return true if consistency should be checked, otherwise false
+        */
+        virtual inline bool GetCheckConsistency() const;
+
+        /**
+        * Sets if the consistency should be checked
+        *@param value - if true, the consistency should be checked
+        */
+        virtual inline void SetCheckConsistency(bool value);
+
+        /**
+        * Gets if the cost simulation should be integrated
+        *@return true if the cost simulation should be integrated, otherwise false
+        */
+        virtual inline bool GetIntegrateCostSimulation() const;
+
+        /**
+        * Sets if the cost simulation should be integrated
+        *@param value - if true, the cost simulation should be integrated
+        */
+        virtual inline void SetIntegrateCostSimulation(bool value);
+
+        /**
+        * Gets if the workflow should be used
+        *@return true if the workflow should be used, otherwise false
+        */
+        virtual inline bool GetUseWorkflow() const;
+
+        /**
+        * Sets if the workflow should be used
+        *@param value - if true, the workflow should be used
+        */
+        virtual void SetUseWorkflow(bool value);
+
+        /**
+        * Gets the hour per day count
+        *@return the hour per day count
+        */
+        virtual inline int GetHourPerDay() const;
+
+        /**
+        * Sets the hour per day count
+        *@param value - the hour per day count
+        */
+        virtual inline void SetHourPerDay(int value);
+
+        /**
+        * Gets the day per week count
+        *@return the day per week count
+        */
+        virtual inline int GetDayPerWeek() const;
+
+        /**
+        * Sets the day per week count
+        *@param value - the day per week count
+        */
+        virtual inline void SetDayPerWeek(int value);
+
+        /**
+        * Gets the day per month count
+        *@return the day per month count
+        */
+        virtual inline int GetDayPerMonth() const;
+
+        /**
+        * Sets the day per month count
+        *@param value - the day per month count
+        */
+        virtual inline void SetDayPerMonth(int value);
+
+        /**
+        * Gets the day per year count
+        *@return the day per year count
+        */
+        virtual inline int GetDayPerYear() const;
+
+        /**
+        * Sets the day per year count
+        *@param value - the day per year count
+        */
+        virtual inline void SetDayPerYear(int value);
+
+        /**
+        * Gets the currency symbol
+        *@return the currency symbol
+        */
+        virtual inline CString GetCurrencySymbol() const;
+
+        /**
+        * Sets the currency symbol
+        *@param value - the currency symbol
+        */
+        virtual inline void SetCurrencySymbol(const CString& value);
+
+        /**
+        * Gets if the model should be saved in workflow
+        *@return true if the model should be saved in workflow, otherwise false
+        */
+        virtual inline bool GetSaveModelInWorkflow() const;
+
+        /**
+        * Sets if the model should be saved in workflow
+        *@param value - if true, the model should be saved in workflow
+        */
+        virtual inline void SetSaveModelInWorkflow(bool value);
+
+        /**
+        * Gets if the page border should be shown
+        *@return true if the page border should be shown, otherwise false
+        */
+        virtual inline bool GetShowPageBorder() const;
+
+        /**
+        * Sets if the page border should be shown
+        *@param value - if true, the page border should be shown
+        */
+        virtual inline void SetShowPageBorder(bool value);
+
+        /**
+        * Gets the language
+        *@return the language
+        */
+        virtual inline const ELanguage GetLanguage() const;
+
+        /**
+        * Sets the language
+        *@param value - the language
+        */
+        virtual inline void SetLanguage(const ELanguage value);
+
+        /**
+        * Gets if the document is read-only
+        *@return true if the document is read-only, otherwise false
+        */
+        virtual inline BOOL IsReadOnly();
+
+        /**
+        * Sets the document as read-only
+        *@param value - if true, the document will be read-only
+        */
+        virtual inline void SetReadOnly(BOOL value);
+
+        /**
+        * Gets the model output log
+        *@return the model output log
+        */
+        virtual inline PSS_Log* GetModelOutputLog();
+
+        /**
+        * Gets the analyzer output log
+        *@return the analyzer output log
+        */
+        virtual inline PSS_Log* GetAnalyzerOutputLog();
+
+        /**
+        * Gets the search output log
+        *@return the search output log
+        */
+        virtual inline PSS_Log* GetSearchOutputLog();
+
+        /**
+        * Gets the workflow output log
+        *@return the workflow output log
+        */
+        virtual inline PSS_Log* GetWorkflowOutputLog();
+
+        /**
+        * Gets the main user group
+        *@return the main user group
+        */
+        virtual inline ZBUserGroupEntity* GetMainUserGroup();
+
+        /**
+        * Assigns the main user group
+        *@param pMainUserGroup - the main user group
+        */
+        virtual inline void AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup);
+
+        /**
+        * Gets the main logical system
+        *@return the main logical system
+        */
+        virtual inline ZBLogicalSystemEntity* GetMainLogicalSystem();
+
+        /**
+        * Assigns the main logical system
+        *@param pMainLogicalSystem - the main logical system
+        */
+        virtual inline void AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem);
+
+        /**
+        * Gets the main logical prestations
+        *@return the main logical prestations
+        */
+        virtual inline ZBLogicalPrestationsEntity* GetMainLogicalPrestations();
+
+        /**
+        * Assigns the main logical prestations
+        *@param pMainLogicalPrestations - the main logical prestations
+        */
+        virtual inline void AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations);
+
+        /**
+        * Gets the main logical rules
+        *@return the main logical rules
+        */
+        virtual inline ZBLogicalRulesEntity* GetMainLogicalRules();
+
+        /**
+        * Assigns the main logical rules
+        *@param pMainLogicalRules - the main logical rules
+        */
+        virtual inline void AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules);
+
+        /**
+        * Gets the canvas model
+        *@return the canvas model
+        */
+        virtual inline       ZDProcessGraphModelMdl* GetModel();
+        virtual inline const ZDProcessGraphModelMdl* GetModel() const;
+
+        /**
+        * Sets a new model
+        *@param pModel - model to set
+        */
+        virtual void SetNewModel(ZDProcessGraphModelMdl* pModel);
+
+        /**
+        * Gets the document template
+        *@return the document template
+        */
+        virtual inline CDocTemplate* GetDocTemplate() const;
+
+        /**
+        * Sets the modified flag
+        *@param modified - if true, the document was modified
+        */
+        virtual inline void SetModifiedFlag(BOOL modified = TRUE);
+
+        /**
+        * Gets the printer page size
+        *@return the printer page size
+        */
+        virtual PSS_DocumentPageSetup* GetPrinterPageSize();
+
+        /**
+        * Gets the first model view
+        *@return the first model view
+        */
+        virtual ZIProcessGraphModelView* GetFirstModelView();
+
+        /**
+        * Finds the view
+        *@param name - the view name to search
+        *@return the view, NULL if not found or on error
+        */
+        virtual CView* FindView(const CString& name);
+
+        /**
+        * Activates the view
+        *@param name - the view name to search
+        *@return the view, NULL if not found or on error
+        */
+        virtual CView* ActivateView(const CString& name);
+
+        /**
+        * Switches the view
+        *@param pNewView - the view to switch to
+        *@param index - the view index
+        *@return the view, NULL if not found or on error
+        */
+        virtual CView* SwitchView(CView* pNewView, std::size_t index = 0);
+
+        /**
+        * Checks if the canvas was modified
+        *@return TRUE if the canvas was modified, otherwise FALSE
+        */
+        virtual BOOL IsModified();
+
+        /**
+        * Checks if is in model creation
+        *@return true if is in model creation, otherwise false
+        */
+        virtual inline bool IsInModelCreation() const;
+
+        /**
+        * Gets the dynamic properties manager
+        *@return the dynamic properties manager
+        */
+        virtual inline ZBDynamicPropertiesManager* GetDynamicPropertiesManager();
+
+        /**
+        * Checks if the document has dynamic properties manager
+        *@return true if the document has dynamic properties manager, otherwise false
+        */
+        virtual inline bool HasDynamicPropertiesManager() const;
+
+        /**
+        * Allocates the property manager
+        *@param deleteFirst - if true, the previous property manager will be deleted first
+        */
+        virtual void AllocatePropertiesManager(bool deleteFirst = false);
+
+        /**
+        * Deletes the document content
+        */
+        virtual void DeleteContents();
+
+        /**
+        * Checks if the file should be saved
+        *@return TRUE if the file should be saved, otherwise FALSE
+        */
+        virtual BOOL DoFileSave();
+
+        /**
+        * Sets the file as read-only
+        *@param pPathName - the path name
+        *@param value - if TRUE, the file will be written in read-only mode
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL SetFileReadOnly(const char* pPathName, BOOL value);
+
+        /**
+        * Reads the document content from file
+        *@param fileName - the document file name to read from
+        *@return true on success, otherwise false
+        */
+        virtual bool ReadFromFile(const CString& fileName);
+
+        /**
+        * Writes the document content to file
+        *@param fileName - the document file name to write to
+        *@return true on success, otherwise false
+        */
+        virtual bool SaveToFile(const CString& fileName);
+
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
+
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
+
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
+
+        /**
+        * Called after the doucument was opened
+        */
+        virtual void OnPostOpenDocument();
+
+        /**
+        * Called when a new document is created
+        *@return TRUE if the document can be created, otherwise FALSE
+        */
+        virtual BOOL OnNewDocument();
+
+        /**
+        * Called when a document is opened
+        *@param pPathName - the document path name
+        *@return TRUE if the document can be opened, otherwise FALSE
+        */
+        virtual BOOL OnOpenDocument(LPCTSTR pPathName);
+
+        /**
+        * Called when a document is saved
+        *@param pPathName - the document path name
+        *@return TRUE if the document can be saved, otherwise FALSE
+        */
+        virtual BOOL OnSaveDocument(const char* pPathName);
+
+        /**
+        * Called when a new document is closed
+        */
+        virtual void OnCloseDocument();
+
+        /**
+        * Called when the subject sent a message to this observer
+        *@param pSubject - subject which sent the message
+        *@param pMsg - the message
+        */
+        virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
+
+    protected:
+        ZDProcessGraphModelMdl  m_EmptyModel;
+        ZDProcessGraphModelMdl* m_pModel;
+
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_ProcessGraphModelDoc)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
+
+    private:
+        ZBPageUnits                 m_PageUnits;
+        ZUUserManager*              m_pUserManager;
+        ZUMail*                     m_pMail;
+        ZDTemplateManager*          m_pTemplateManager;
+        ZBDynamicPropertiesManager* m_DynamicPropertiesManager;
+        ZBUnitManager*              m_pUnitManager;
+        ZBModelSet                  m_DocumentModelSet;
+        ZBModelSet                  m_UnitModelSet;
+        ZBWorkflowDefinition*       m_pWorkflowDefinition;
+        PSS_Log*                    m_pOutputLog;
+        PSS_Log*                    m_pAnalyzerLog;
+        PSS_Log*                    m_pSearchLog;
+        PSS_Log*                    m_pWorflowLog;
+        CString                     m_GUID;
+        CString                     m_UserDefGUID;
+        CString                     m_SystemDefGUID;
+        CString                     m_PrestationsDefGUID;
+        CString                     m_RulesDefGUID;
+        CString                     m_CurrencySymbol;
+        CSize                       m_PaperSize;
+        int                         m_HourPerDay;
+        int                         m_DayPerWeek;
+        int                         m_DayPerMonth;
+        int                         m_DayPerYear;
+        short                       m_StandardSize;
+        short                       m_Orientation;
+        BOOL                        m_IsDocumentClosing;
+        BOOL                        m_IsReadOnly;
+        bool                        m_IsInModelCreation;
+        bool                        m_UseWorkflow;
+        bool                        m_BrowseInSameWindow;
+        bool                        m_IntegrateCostSimulation;
+        bool                        m_CheckConsistency;
+        bool                        m_ShowPageBorder;
+
+        /**
+        * Creates the unit manager
+        *@return true on success, otherwise false
+        */
+        bool CreateUnitManager();
 };
 
-inline CString ZDProcessGraphModelDoc::GetUserDefGUID() const
+//---------------------------------------------------------------------------
+// PSS_ProcessGraphModelDoc
+//---------------------------------------------------------------------------
+ZUUserManager* PSS_ProcessGraphModelDoc::GetUserManager() const
+{
+    return m_pUserManager;
+}
+//---------------------------------------------------------------------------
+ZUMail* PSS_ProcessGraphModelDoc::GetMail() const
+{
+    return m_pMail;
+}
+//---------------------------------------------------------------------------
+ZDTemplateManager* PSS_ProcessGraphModelDoc::GetTemplateManager() const
+{
+    return m_pTemplateManager;
+}
+//---------------------------------------------------------------------------
+CString PSS_ProcessGraphModelDoc::GetGUID() const
+{
+    return m_GUID;
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::HasUserDefAssigned() const
+{
+    return !m_UserDefGUID.IsEmpty();
+}
+//---------------------------------------------------------------------------
+CString PSS_ProcessGraphModelDoc::GetUserDefGUID() const
 {
     return m_UserDefGUID;
 }
-
-inline void ZDProcessGraphModelDoc::AssignUserDefGUID(const CString value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignUserDefGUID(const CString& value)
 {
     m_UserDefGUID = value;
 }
-
-inline CString ZDProcessGraphModelDoc::GetSystemDefGUID() const
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::HasSystemDefAssigned() const
+{
+    return !m_SystemDefGUID.IsEmpty();
+}
+//---------------------------------------------------------------------------
+CString PSS_ProcessGraphModelDoc::GetSystemDefGUID() const
 {
     return m_SystemDefGUID;
 }
-
-inline void ZDProcessGraphModelDoc::AssignSystemDefGUID(const CString value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignSystemDefGUID(const CString& value)
 {
     m_SystemDefGUID = value;
 }
-
-// JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction GetPrestationsDefGUID.
-inline CString ZDProcessGraphModelDoc::GetPrestationsDefGUID() const
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::HasPrestationsDefsAssigned() const
+{
+    return !m_PrestationsDefGUID.IsEmpty();
+}
+//---------------------------------------------------------------------------
+CString PSS_ProcessGraphModelDoc::GetPrestationsDefGUID() const
 {
     return m_PrestationsDefGUID;
 }
-
-// JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction AssignPrestationsDefGUID.
-inline void ZDProcessGraphModelDoc::AssignPrestationsDefGUID(const CString value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignPrestationsDefGUID(const CString& value)
 {
     m_PrestationsDefGUID = value;
 }
-
-// JMR-MODIF - Le 19 novembre 2006 - Ajout de la fonction GetRulesDefGUID.
-inline CString ZDProcessGraphModelDoc::GetRulesDefGUID() const
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::HasRulesDefsAssigned() const
+{
+    return !m_RulesDefGUID.IsEmpty();
+}
+//---------------------------------------------------------------------------
+CString PSS_ProcessGraphModelDoc::GetRulesDefGUID() const
 {
     return m_RulesDefGUID;
 }
-
-// JMR-MODIF - Le 19 novembre 2006 - Ajout de la fonction AssignRulesDefGUID.
-inline void ZDProcessGraphModelDoc::AssignRulesDefGUID(const CString value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignRulesDefGUID(const CString& value)
 {
     m_RulesDefGUID = value;
 }
-
-inline CString ZDProcessGraphModelDoc::GetWorkflowFileName() const
+//---------------------------------------------------------------------------
+ZBPageUnits& PSS_ProcessGraphModelDoc::GetPageUnits()
 {
-    return (m_pWorkflowDefinition) ? m_pWorkflowDefinition->GetWorkflowFileName() : _T("");
+    return m_PageUnits;
 }
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::IsUnit()
+{
+    return (GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_LibraryType);
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::HasUnit() const
+{
+    return m_pUnitManager;
+}
+//---------------------------------------------------------------------------
+EModelNotation PSS_ProcessGraphModelDoc::GetNotation() const
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
 
-inline void ZDProcessGraphModelDoc::SetWorkflowFileName(CString value)
+    if (!pModel)
+        return E_MN_Unknown;
+
+    return pModel->GetNotation();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetNotation(EModelNotation value)
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    pModel->SetNotation(value);
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::IsModelInABCNotation() const
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return false;
+
+    return pModel->IsModelInABCNotation();
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::IsModelInUMLNotation() const
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return false;
+
+    return pModel->IsModelInUMLNotation();
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::IsModelInBerylNotation() const
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return false;
+
+    return pModel->IsModelInBerylNotation();
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::IsModelNotationUnknow() const
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return false;
+
+    return pModel->IsModelNotationUnknow();
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::GetBrowseInSameWindow() const
+{
+    return m_BrowseInSameWindow;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetBrowseInSameWindow(bool value)
+{
+    m_BrowseInSameWindow = value;
+}
+//---------------------------------------------------------------------------
+CString PSS_ProcessGraphModelDoc::GetWorkflowFileName() const
+{
+    return (m_pWorkflowDefinition ? m_pWorkflowDefinition->GetWorkflowFileName() : _T(""));
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetWorkflowFileName(const CString& value)
 {
     if (m_pWorkflowDefinition)
-    {
         m_pWorkflowDefinition->SetWorkflowFileName(value);
-    }
 }
-
-inline PSS_Date* ZDProcessGraphModelDoc::GetWorkflowLastUpdateDate()
-{
-    return (m_pWorkflowDefinition) ? &m_pWorkflowDefinition->GetWorkflowLastUpdateDate() : NULL;
-}
-
-inline void ZDProcessGraphModelDoc::SetWorkflowLastUpdateDate(PSS_Date value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::ClearWorkflowFileName()
 {
     if (m_pWorkflowDefinition)
-    {
-        m_pWorkflowDefinition->SetWorkflowLastUpdateDate(value);
-    }
+        m_pWorkflowDefinition->ClearWorkflowFileName();
 }
-
-inline bool ZDProcessGraphModelDoc::GetCheckConsistency() const
+//---------------------------------------------------------------------------
+PSS_Date* PSS_ProcessGraphModelDoc::GetWorkflowLastUpdateDate()
+{
+    return (m_pWorkflowDefinition ? &m_pWorkflowDefinition->GetWorkflowLastUpdateDate() : NULL);
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetWorkflowLastUpdateDate(const PSS_Date& value)
+{
+    if (m_pWorkflowDefinition)
+        m_pWorkflowDefinition->SetWorkflowLastUpdateDate(value);
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::GetCheckConsistency() const
 {
     return m_CheckConsistency;
 }
-
-inline void ZDProcessGraphModelDoc::SetCheckConsistency(bool value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetCheckConsistency(bool value)
 {
     m_CheckConsistency = value;
 }
-
-inline bool ZDProcessGraphModelDoc::GetSaveModelInWorkflow() const
-{
-    return (m_pWorkflowDefinition) ? m_pWorkflowDefinition->GetSaveModelInWorkflow() : false;
-}
-
-inline bool ZDProcessGraphModelDoc::GetIntegrateCostSimulation() const
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::GetIntegrateCostSimulation() const
 {
     return m_IntegrateCostSimulation;
 }
-
-inline void ZDProcessGraphModelDoc::SetIntegrateCostSimulation(bool value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetIntegrateCostSimulation(bool value)
 {
     m_IntegrateCostSimulation = value;
 }
-
-inline int ZDProcessGraphModelDoc::GetHourPerDay() const
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::GetUseWorkflow() const
+{
+    return m_UseWorkflow;
+}
+//---------------------------------------------------------------------------
+int PSS_ProcessGraphModelDoc::GetHourPerDay() const
 {
     return m_HourPerDay;
 }
-
-inline void ZDProcessGraphModelDoc::SetHourPerDay(int value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetHourPerDay(int value)
 {
     m_HourPerDay = value;
 }
-
-inline int ZDProcessGraphModelDoc::GetDayPerWeek() const
+//---------------------------------------------------------------------------
+int PSS_ProcessGraphModelDoc::GetDayPerWeek() const
 {
     return m_DayPerWeek;
 }
-
-inline void ZDProcessGraphModelDoc::SetDayPerWeek(int value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetDayPerWeek(int value)
 {
     m_DayPerWeek = value;
 }
-
-inline int ZDProcessGraphModelDoc::GetDayPerMonth() const
+//---------------------------------------------------------------------------
+int PSS_ProcessGraphModelDoc::GetDayPerMonth() const
 {
     return m_DayPerMonth;
 }
-
-inline void ZDProcessGraphModelDoc::SetDayPerMonth(int value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetDayPerMonth(int value)
 {
     m_DayPerMonth = value;
 }
-
-inline int ZDProcessGraphModelDoc::GetDayPerYear() const
+//---------------------------------------------------------------------------
+int PSS_ProcessGraphModelDoc::GetDayPerYear() const
 {
     return m_DayPerYear;
 }
-
-inline void ZDProcessGraphModelDoc::SetDayPerYear(int value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetDayPerYear(int value)
 {
     m_DayPerYear = value;
 }
-
-inline bool ZDProcessGraphModelDoc::GetShowPageBorder() const
-{
-    return m_ShowPageBorder;
-}
-
-inline void ZDProcessGraphModelDoc::SetShowPageBorder(bool value)
-{
-    m_ShowPageBorder = value;
-}
-
-inline CString ZDProcessGraphModelDoc::GetCurrencySymbol() const
+//---------------------------------------------------------------------------
+CString PSS_ProcessGraphModelDoc::GetCurrencySymbol() const
 {
     return m_CurrencySymbol;
 }
-
-inline void ZDProcessGraphModelDoc::SetCurrencySymbol(CString value)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetCurrencySymbol(const CString& value)
 {
     m_CurrencySymbol = value;
 }
-
-inline void ZDProcessGraphModelDoc::SetSaveModelInWorkflow(bool value)
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::GetSaveModelInWorkflow() const
+{
+    return (m_pWorkflowDefinition) ? m_pWorkflowDefinition->GetSaveModelInWorkflow() : false;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetSaveModelInWorkflow(bool value)
 {
     if (m_pWorkflowDefinition)
-    {
         m_pWorkflowDefinition->SetSaveModelInWorkflow(value);
-    }
 }
-
-inline void ZDProcessGraphModelDoc::ClearWorkflowFileName()
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::GetShowPageBorder() const
 {
-    if (m_pWorkflowDefinition)
-    {
-        m_pWorkflowDefinition->ClearWorkflowFileName();
-    }
+    return m_ShowPageBorder;
 }
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetShowPageBorder(bool value)
+{
+    m_ShowPageBorder = value;
+}
+//---------------------------------------------------------------------------
+const ELanguage PSS_ProcessGraphModelDoc::GetLanguage() const
+{
+    ZDProcessGraphModelMdl* pModel = const_cast<ZDProcessGraphModelMdl*>(GetModel());
 
-inline CDocTemplate* ZDProcessGraphModelDoc::GetDocTemplate() const
+    if (!pModel)
+        return E_LN_Unknown;
+
+    return pModel->GetLanguage();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetLanguage(const ELanguage value)
+{
+    ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    pModel->SetLanguage(value);
+}
+//---------------------------------------------------------------------------
+BOOL PSS_ProcessGraphModelDoc::IsReadOnly()
+{
+    return m_IsReadOnly;
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetReadOnly(BOOL value)
+{
+    m_IsReadOnly = value;
+}
+//---------------------------------------------------------------------------
+PSS_Log* PSS_ProcessGraphModelDoc::GetModelOutputLog()
+{
+    return m_pOutputLog;
+}
+//---------------------------------------------------------------------------
+PSS_Log* PSS_ProcessGraphModelDoc::GetAnalyzerOutputLog()
+{
+    return m_pAnalyzerLog;
+}
+//---------------------------------------------------------------------------
+PSS_Log* PSS_ProcessGraphModelDoc::GetSearchOutputLog()
+{
+    return m_pSearchLog;
+}
+//---------------------------------------------------------------------------
+PSS_Log* PSS_ProcessGraphModelDoc::GetWorkflowOutputLog()
+{
+    return m_pWorflowLog;
+}
+//---------------------------------------------------------------------------
+ZBUserGroupEntity* PSS_ProcessGraphModelDoc::GetMainUserGroup()
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return NULL;
+
+    return pModel->GetMainUserGroup();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup)
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    pModel->AssignMainUserGroup(pMainUserGroup);
+}
+//---------------------------------------------------------------------------
+ZBLogicalSystemEntity* PSS_ProcessGraphModelDoc::GetMainLogicalSystem()
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return NULL;
+
+    return pModel->GetMainLogicalSystem();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem)
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    pModel->AssignMainLogicalSystem(pMainLogicalSystem);
+}
+//---------------------------------------------------------------------------
+ZBLogicalPrestationsEntity* PSS_ProcessGraphModelDoc::GetMainLogicalPrestations()
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return NULL;
+
+    return pModel->GetMainLogicalPrestations();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations)
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    pModel->AssignMainLogicalPrestations(pMainLogicalPrestations);
+}
+//---------------------------------------------------------------------------
+ZBLogicalRulesEntity* PSS_ProcessGraphModelDoc::GetMainLogicalRules()
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return NULL;
+
+    return pModel->GetMainLogicalRules();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules)
+{
+    const ZDProcessGraphModelMdl* pModel = GetModel();
+
+    if (!pModel)
+        return;
+
+    pModel->AssignMainLogicalRules(pMainLogicalRules);
+}
+//---------------------------------------------------------------------------
+ZDProcessGraphModelMdl* PSS_ProcessGraphModelDoc::GetModel()
+{
+    return (m_pModel ? m_pModel : &m_EmptyModel);
+}
+//---------------------------------------------------------------------------
+const ZDProcessGraphModelMdl* PSS_ProcessGraphModelDoc::GetModel() const
+{
+    return (m_pModel ? m_pModel : &m_EmptyModel);
+}
+//---------------------------------------------------------------------------
+CDocTemplate* PSS_ProcessGraphModelDoc::GetDocTemplate() const
 {
     return PSS_BaseDocument::GetDocTemplate();
 }
-
-inline void ZDProcessGraphModelDoc::SetModifiedFlag(BOOL bModified /*= TRUE*/)
+//---------------------------------------------------------------------------
+void PSS_ProcessGraphModelDoc::SetModifiedFlag(BOOL modified)
 {
-    PSS_BaseDocument::SetModifiedFlag(bModified);
+    PSS_BaseDocument::SetModifiedFlag(modified);
 }
-
-// Gets a pointer to the model of the canvas.
-inline ZDProcessGraphModelMdl* ZDProcessGraphModelDoc::GetModel()
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::IsInModelCreation() const
 {
-    return (m_pModel) ? m_pModel : &m_EmptyModel;
+    return m_IsInModelCreation;
 }
-
-inline ZDProcessGraphModelMdl* ZDProcessGraphModelDoc::GetModelConst() const
+//---------------------------------------------------------------------------
+ZBDynamicPropertiesManager* PSS_ProcessGraphModelDoc::GetDynamicPropertiesManager()
 {
-    return const_cast<ZDProcessGraphModelMdl*>((m_pModel) ? m_pModel : &m_EmptyModel);
+    return m_DynamicPropertiesManager;
 }
+//---------------------------------------------------------------------------
+bool PSS_ProcessGraphModelDoc::HasDynamicPropertiesManager() const
+{
+    return m_DynamicPropertiesManager != NULL;
+}
+//---------------------------------------------------------------------------
 
 #endif

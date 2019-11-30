@@ -597,7 +597,7 @@ bool ZBExtAppPropertyMgr::DoInsertExtApp(bool displayDialog)
 }
 
 // Drag and drop methods
-bool ZBExtAppPropertyMgr::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZBExtAppPropertyMgr::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     // Accept drop of file executable only
     if (pObj && (ISA(pObj, PSS_NetResourceWrapper) &&
@@ -626,7 +626,7 @@ bool ZBExtAppPropertyMgr::AcceptDropItem(CObject* pObj, CPoint pt)
     return false;
 }
 
-bool ZBExtAppPropertyMgr::DropItem(CObject* pObj, CPoint pt)
+bool ZBExtAppPropertyMgr::DropItem(CObject* pObj, const CPoint& pt)
 {
     // Accept drop of file executable only
     if (pObj && (ISA(pObj, PSS_NetResourceWrapper) &&

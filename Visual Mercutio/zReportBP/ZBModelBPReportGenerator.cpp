@@ -30,7 +30,7 @@ IMPLEMENT_SERIAL(ZBModelBPReportGenerator, ZBGenericGridReportGenerator, g_DefVe
 
 ZBModelBPReportGenerator::ZBModelBPReportGenerator( ZDGridDocument*                pDoc        /*= NULL*/,
                                                     ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
-                                                    ZDProcessGraphModelDoc*        pSourceDoc    /*= NULL*/ )
+                                                   PSS_ProcessGraphModelDoc*        pSourceDoc    /*= NULL*/ )
     : ZBGenericGridReportGenerator    ( pDoc ),
       m_pModel                        ( pModel ),
       m_pSourceDoc                    ( pSourceDoc ),
@@ -59,7 +59,7 @@ ZBModelBPReportGenerator::~ZBModelBPReportGenerator()
 
 void ZBModelBPReportGenerator::Initialize( ZDGridDocument*                pDoc,
                                            ZDProcessGraphModelMdlBP*    pModel,
-                                           ZDProcessGraphModelDoc*        pSourceDoc )
+                                          PSS_ProcessGraphModelDoc*        pSourceDoc )
 {
     m_pDoc            = pDoc;
     m_pModel        = pModel;
@@ -94,7 +94,7 @@ void ZBModelBPReportGenerator::OnPostRead( CArchive& ar )
 {
     if ( m_pSourceDoc == NULL && !m_FileName.IsEmpty() )
     {
-        m_pSourceDoc = new ZDProcessGraphModelDoc();
+        m_pSourceDoc = new PSS_ProcessGraphModelDoc();
 
         // If the document is valid, assign the right model pointer
         if ( m_pSourceDoc &&

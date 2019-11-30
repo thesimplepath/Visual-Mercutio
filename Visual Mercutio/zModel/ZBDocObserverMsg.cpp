@@ -20,12 +20,12 @@ IMPLEMENT_DYNAMIC(ZBDocObserverMsg, PSS_ObserverMsg)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBDocObserverMsg::ZBDocObserverMsg(MessageActionType        ActionType    /*= NoAction*/,
-                                   ZDProcessGraphModelDoc*    pDoc        /*= NULL*/,
+ZBDocObserverMsg::ZBDocObserverMsg(MessageActionType        actionType    /*= NoAction*/,
+                                   PSS_ProcessGraphModelDoc*    pDoc        /*= NULL*/,
                                    ZDProcessGraphModelMdl*    pModel        /*= NULL*/,
                                    CODSymbolComponent*        pElement    /*= NULL*/) :
     PSS_ObserverMsg(),
-    m_ActionType(ActionType),
+    m_ActionType(actionType),
     m_pDoc(pDoc),
     m_pModel(pModel),
     m_pElement(pElement)

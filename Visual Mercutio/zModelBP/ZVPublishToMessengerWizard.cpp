@@ -55,7 +55,7 @@ const CString gPublishMessengerAliasName = _T("Alias");
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZVPublishToMessengerWizard::ZVPublishToMessengerWizard(ZDProcessGraphModelDoc*    pModelDoc,
+ZVPublishToMessengerWizard::ZVPublishToMessengerWizard(PSS_ProcessGraphModelDoc*    pModelDoc,
                                                        PSS_Log*                    pLog            /*= NULL*/,
                                                        const                    CString IniFile    /*= ""*/)
     : m_pModelDoc(pModelDoc),

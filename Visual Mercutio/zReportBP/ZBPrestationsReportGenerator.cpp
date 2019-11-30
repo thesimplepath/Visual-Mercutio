@@ -790,7 +790,7 @@ IMPLEMENT_SERIAL(ZBPrestationsReportGenerator, ZBModelBPReportGenerator, g_DefVe
 // Constructeur par défaut de la classe ZBPrestationsReportGenerator.
 ZBPrestationsReportGenerator::ZBPrestationsReportGenerator( ZDGridDocument*                pDoc                /*= NULL*/,
                                                             ZDProcessGraphModelMdlBP*    pModel                /*= NULL*/,
-                                                            ZDProcessGraphModelDoc*        pSourceDoc            /*= NULL*/,
+                                                           PSS_ProcessGraphModelDoc*        pSourceDoc            /*= NULL*/,
                                                             bool                        IncludeMonthDetails    /*= true*/ )
     : ZBModelBPReportGenerator    ( pDoc, pModel, pSourceDoc ),
       m_IncludeMonthDetail        ( IncludeMonthDetails )

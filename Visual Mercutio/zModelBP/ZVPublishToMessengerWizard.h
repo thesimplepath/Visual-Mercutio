@@ -22,9 +22,13 @@
 #include "zBaseLib\PSS_WizardDialog.h"
 #include "zModelBP\zModelBPRes.h"
 
-//////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZDProcessGraphModelDoc;
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelDoc;
 class ZBPublishMessengerModelInformation;
 class PSS_Log;
 
@@ -46,7 +50,7 @@ class AFX_EXT_CLASS ZVPublishToMessengerWizard
 {
 public:
 
-    ZVPublishToMessengerWizard(ZDProcessGraphModelDoc* pModelDoc,
+    ZVPublishToMessengerWizard(PSS_ProcessGraphModelDoc* pModelDoc,
                                PSS_Log*                    pLog = NULL,
                                const CString            IniFile = _T(""));
 
@@ -56,7 +60,7 @@ public:
 
 private:
 
-    ZDProcessGraphModelDoc* m_pModelDoc;
+    PSS_ProcessGraphModelDoc* m_pModelDoc;
     PSS_Log*                    m_pLog;
     CString                    m_IniFile;
 };

@@ -71,7 +71,7 @@ BOOL ZBBPPackageSymbol::SetSymbolName(const CString value)
 
 
 // Drag and drop methods
-bool ZBBPPackageSymbol::AcceptDropItem( CObject* pObj, CPoint pt )
+bool ZBBPPackageSymbol::AcceptDropItem( CObject* pObj, const CPoint& pt )
 {
     // JMR-MODIF - Le 19 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
     if ( !IsLocal() )
@@ -82,7 +82,7 @@ bool ZBBPPackageSymbol::AcceptDropItem( CObject* pObj, CPoint pt )
     return ZBSymbol::AcceptDropItem( pObj, pt );
 }
 
-bool ZBBPPackageSymbol::DropItem( CObject* pObj, CPoint pt )
+bool ZBBPPackageSymbol::DropItem( CObject* pObj, const CPoint& pt )
 {
     return ZBSymbol::DropItem( pObj, pt );
 }
@@ -154,13 +154,13 @@ bool    ZBBPPackageSymbol::LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProc
             return false;
     }
     CDocument*    pDoc = pDocTmpl->OpenDocumentFile( m_FileNameLinkedTo, FALSE );
-    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+    if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        m_pPackageDoc = (ZDProcessGraphModelDoc*)pDoc;
+        m_pPackageDoc = (PSS_ProcessGraphModelDoc*)pDoc;
         // Assign the name.
-        ZBSymbol::SetSymbolName( ((ZDProcessGraphModelDoc*)pDoc)->GetModel()->GetModelName() );
+        ZBSymbol::SetSymbolName( ((PSS_ProcessGraphModelDoc*)pDoc)->GetModel()->GetModelName() );
         // Assign the pointer to the model
-        m_pModel = ((ZDProcessGraphModelDoc*)pDoc)->GetModel();
+        m_pModel = ((PSS_ProcessGraphModelDoc*)pDoc)->GetModel();
         // Assign the model parent
         if (m_pModel && pParent)
             m_pModel->SetParent( pParent );

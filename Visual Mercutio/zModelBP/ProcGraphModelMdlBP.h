@@ -78,7 +78,7 @@ public:
     // Model generation methods
     // JMR-MODIF - Le 5 novembre 2006 - Ajout du paramètre ModelIsClean.
     virtual bool            CheckModelWorkflow(PSS_Log* pLog, BOOL ModelIsClean);
-    virtual bool            GenerateModelWorkflow(PSS_Log* pLog, ZDProcessGraphModelDoc* pDoc);
+    virtual bool            GenerateModelWorkflow(PSS_Log* pLog, PSS_ProcessGraphModelDoc* pDoc);
 
     ///////////////////////////////////////////////////////
     // ZINavigableModel methods

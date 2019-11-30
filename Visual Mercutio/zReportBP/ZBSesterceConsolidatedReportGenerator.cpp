@@ -50,7 +50,7 @@ IMPLEMENT_SERIAL(ZBSesterceConsolidatedReportGenerator, ZBModelBPReportGenerator
 
 ZBSesterceConsolidatedReportGenerator::ZBSesterceConsolidatedReportGenerator( ZDGridDocument*            pDoc                /*= NULL*/,
                                                                               ZDProcessGraphModelMdlBP*    pModel                /*= NULL*/,
-                                                                              ZDProcessGraphModelDoc*    pSourceDoc            /*= NULL*/,
+                                                                             PSS_ProcessGraphModelDoc*    pSourceDoc            /*= NULL*/,
                                                                               bool                        IncludeMonthDetail    /*= true*/ )
     : ZBModelBPReportGenerator    ( pDoc, pModel, pSourceDoc ),
       m_IncludeMonthDetail        ( IncludeMonthDetail )

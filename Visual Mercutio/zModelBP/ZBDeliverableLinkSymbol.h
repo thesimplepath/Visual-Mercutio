@@ -95,10 +95,10 @@ public:
     //virtual bool DoInsertExtFile();
 
     // JMR-MODIF - Le 19 novembre 2006 - Surcharge de la fonction AcceptDropItem.
-    virtual bool AcceptDropItem(CObject* pObj, CPoint pt);
+    virtual bool AcceptDropItem(CObject* pObj, const CPoint& pt);
 
     // JMR-MODIF - Le 19 novembre 2006 - Surcharge de la fonction DropItem.
-    virtual bool DropItem(CObject* pObj, CPoint pt);
+    virtual bool DropItem(CObject* pObj, const CPoint& pt);
 
     // **********************
     // * Properties methods *

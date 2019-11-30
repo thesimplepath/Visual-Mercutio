@@ -173,28 +173,28 @@ ZDProcessGraphModelControllerBP::~ZDProcessGraphModelControllerBP()
 {}
 
 // Proceed the drop of an object to the model
-bool ZDProcessGraphModelControllerBP::DropItemToModel(CObject* pObj, CPoint pt)
+bool ZDProcessGraphModelControllerBP::DropItemToModel(CObject* pObj, const CPoint& pt)
 {
     // Call the base class
     return PSS_ProcessGraphModelController::DropItemToModel(pObj, pt);
 }
 
 // Check if the drop can be done successfuly on the model
-bool ZDProcessGraphModelControllerBP::AcceptDropItemToModel(CObject* pObj, CPoint pt)
+bool ZDProcessGraphModelControllerBP::AcceptDropItemToModel(CObject* pObj, const CPoint& pt)
 {
     // Call the base class
     return PSS_ProcessGraphModelController::AcceptDropItemToModel(pObj, pt);
 }
 
 // Proceed the drop of an object
-bool ZDProcessGraphModelControllerBP::DropItem(CObject* pObj, CPoint pt)
+bool ZDProcessGraphModelControllerBP::DropItem(CObject* pObj, const CPoint& pt)
 {
     // Call the base class
     return PSS_ProcessGraphModelController::DropItem(pObj, pt);
 }
 
 // Check if the drop can be done successfuly
-bool ZDProcessGraphModelControllerBP::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZDProcessGraphModelControllerBP::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     // Call the base class
     return PSS_ProcessGraphModelController::AcceptDropItem(pObj, pt);
@@ -919,9 +919,9 @@ void ZDProcessGraphModelControllerBP::OnOdMeasurements()
     // Set flag for modification
     GetDocument()->SetModifiedFlag(TRUE);
 
-    if (ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
-        ((ZDProcessGraphModelDoc*)GetDocument())->SetPageUnits(*(GetCanvasVp()->GetRuler()));
+        ((PSS_ProcessGraphModelDoc*)GetDocument())->SetPageUnits(*(GetCanvasVp()->GetRuler()));
     }
 }
 
@@ -1218,13 +1218,13 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl*
 
 void ZDProcessGraphModelControllerBP::OnCheckModel()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc* pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc* pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 
     // JMR-MODIF - Le 9 octobre 2006 - Ajout du test pour vérifier que le pointeur pDoc ne soit pas vide.
     if (pDoc != NULL)
@@ -1266,24 +1266,24 @@ void ZDProcessGraphModelControllerBP::OnCheckModel()
 
 void ZDProcessGraphModelControllerBP::OnUpdateCheckModel(CCmdUI* pCmdUI)
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(((ZDProcessGraphModelDoc*)GetDocument())->GetCheckConsistency());
+    pCmdUI->Enable(((PSS_ProcessGraphModelDoc*)GetDocument())->GetCheckConsistency());
 }
 
 void ZDProcessGraphModelControllerBP::OnRecalculateModelParameters()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc* pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc* pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 
     // Check if cost simulation is set
     if (pDoc->GetIntegrateCostSimulation())
@@ -1317,18 +1317,18 @@ void ZDProcessGraphModelControllerBP::OnRecalculateModelParameters()
 
 void ZDProcessGraphModelControllerBP::OnUpdateRecalculateModelParameters(CCmdUI* pCmdUI)
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(((ZDProcessGraphModelDoc*)GetDocument())->GetIntegrateCostSimulation());
+    pCmdUI->Enable(((PSS_ProcessGraphModelDoc*)GetDocument())->GetIntegrateCostSimulation());
 }
 
 void ZDProcessGraphModelControllerBP::OnRecalculateModelDurations()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
@@ -1339,7 +1339,7 @@ void ZDProcessGraphModelControllerBP::OnRecalculateModelDurations()
     ZBSymbol* pSymbol = dynamic_cast<ZBBPStartSymbol*>(m_pSymbolHit);
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc* pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc* pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 
     // Check if cost simulation is set
     if (pDoc->GetIntegrateCostSimulation())
@@ -1384,8 +1384,8 @@ void ZDProcessGraphModelControllerBP::OnUpdateRecalculateModelDurations(CCmdUI* 
     BOOL bEnable = FALSE;
 
     if (GetDocument() &&
-        ISA(GetDocument(), ZDProcessGraphModelDoc) &&
-        ((ZDProcessGraphModelDoc*)GetDocument())->GetIntegrateCostSimulation() &&
+        ISA(GetDocument(), PSS_ProcessGraphModelDoc) &&
+        ((PSS_ProcessGraphModelDoc*)GetDocument())->GetIntegrateCostSimulation() &&
         m_pSymbolHit != NULL &&
         ISA(m_pSymbolHit, ZBBPStartSymbol))
     {
@@ -1405,10 +1405,10 @@ void ZDProcessGraphModelControllerBP::OnCalculateRisks()
     {
         CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+        if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // Retreive the model's currency symbol
-            CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
+            CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
         }
     }
 
@@ -1418,7 +1418,7 @@ void ZDProcessGraphModelControllerBP::OnCalculateRisks()
     if (riskParametersDlg.DoModal() == IDOK)
     {
         // assign casted pointer
-        ZDProcessGraphModelDoc* pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+        PSS_ProcessGraphModelDoc* pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 
         if (pDoc)
         {
@@ -1444,7 +1444,7 @@ void ZDProcessGraphModelControllerBP::OnCalculateRisks()
 // JMR-MODIF - Le 21 juillet 2007 - Cette fonction mets à jour l'état de la commande de calculation des risques.
 void ZDProcessGraphModelControllerBP::OnUpdateCalculateRisks(CCmdUI* pCmdUI)
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         pCmdUI->Enable(FALSE);
         return;
@@ -1458,13 +1458,13 @@ void ZDProcessGraphModelControllerBP::OnUpdateCalculateRisks(CCmdUI* pCmdUI)
 
 void ZDProcessGraphModelControllerBP::OnPlaySimulation()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc*    pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc*    pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 }
 
 void ZDProcessGraphModelControllerBP::OnUpdatePlaySimulation(CCmdUI* pCmdUI)
@@ -1474,13 +1474,13 @@ void ZDProcessGraphModelControllerBP::OnUpdatePlaySimulation(CCmdUI* pCmdUI)
 
 void ZDProcessGraphModelControllerBP::OnPauseSimulation()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc*    pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc*    pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 }
 
 void ZDProcessGraphModelControllerBP::OnUpdatePauseSimulation(CCmdUI* pCmdUI)
@@ -1490,13 +1490,13 @@ void ZDProcessGraphModelControllerBP::OnUpdatePauseSimulation(CCmdUI* pCmdUI)
 
 void ZDProcessGraphModelControllerBP::OnStopSimulation()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc*    pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc*    pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 }
 
 void ZDProcessGraphModelControllerBP::OnUpdateStopSimulation(CCmdUI* pCmdUI)
@@ -1506,13 +1506,13 @@ void ZDProcessGraphModelControllerBP::OnUpdateStopSimulation(CCmdUI* pCmdUI)
 
 void ZDProcessGraphModelControllerBP::OnRewSimulation()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc*    pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc*    pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 }
 
 void ZDProcessGraphModelControllerBP::OnUpdateRewSimulation(CCmdUI* pCmdUI)
@@ -1522,13 +1522,13 @@ void ZDProcessGraphModelControllerBP::OnUpdateRewSimulation(CCmdUI* pCmdUI)
 
 void ZDProcessGraphModelControllerBP::OnFwdSimulation()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc*    pDoc = (ZDProcessGraphModelDoc*)GetDocument();
+    PSS_ProcessGraphModelDoc*    pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
 }
 
 void ZDProcessGraphModelControllerBP::OnUpdateFwdSimulation(CCmdUI* pCmdUI)
@@ -1538,13 +1538,13 @@ void ZDProcessGraphModelControllerBP::OnUpdateFwdSimulation(CCmdUI* pCmdUI)
 
 void ZDProcessGraphModelControllerBP::OnShowInputAttributes()
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc*    pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc*    pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     ZVInputAttributesSelectionDlg dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes(),
                                       pDoc->GetDynamicPropertiesManager());
@@ -1554,14 +1554,14 @@ void ZDProcessGraphModelControllerBP::OnShowInputAttributes()
 
 void ZDProcessGraphModelControllerBP::OnUpdateShowInputAttributes(CCmdUI* pCmdUI)
 {
-    if (!GetDocument() || !ISA(GetDocument(), ZDProcessGraphModelDoc))
+    if (!GetDocument() || !ISA(GetDocument(), PSS_ProcessGraphModelDoc))
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
     // Assign casted pointer
-    ZDProcessGraphModelDoc*    pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetDocument());
+    PSS_ProcessGraphModelDoc*    pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     pCmdUI->Enable(pDoc->GetDynamicPropertiesManager() &&
                    pDoc->GetModel() &&

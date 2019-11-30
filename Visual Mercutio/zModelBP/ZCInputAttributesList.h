@@ -35,14 +35,16 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_ListCtrl.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// forward class declaration
 class ZBInputAttribute;
 class ZBInputAttributeManager;
 class ZBDynamicPropertiesManager;
-class ZDProcessGraphModelDoc;
-
+class PSS_ProcessGraphModelDoc;
 
 #ifdef _ZMODELBPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -101,7 +103,7 @@ private:
     const    ZCInputAttributesList & operator=(const ZCInputAttributesList &right);
 
     void    BuildColumns();
-    void    DocumentActivated(ZDProcessGraphModelDoc* pDoc);
+    void    DocumentActivated(PSS_ProcessGraphModelDoc* pDoc);
 
 private: //## implementation
     ZBInputAttributeManager*    m_pInputManager;
@@ -110,7 +112,7 @@ private: //## implementation
     int                        m_SymbolRef;
     CODComponent*            m_pComp;
     BOOL                    m_ColumnsBuilt;
-    ZDProcessGraphModelDoc*    m_pDoc;
+    PSS_ProcessGraphModelDoc*    m_pDoc;
 };
 
 #endif

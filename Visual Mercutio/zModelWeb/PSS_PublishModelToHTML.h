@@ -23,8 +23,13 @@
 // processsoft
 #include "zReportWeb\ZUPublishReportInfo.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+
 // forward class declarations
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class ZIProcessGraphModelView;
 class ZDGridReportDocument;
 
@@ -56,10 +61,10 @@ class AFX_EXT_CLASS PSS_PublishModelToHTML
         *@param iniFileName - ini file name
         *@return true on success, otherwise false
         */
-        static bool ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc,
-                                          ZIProcessGraphModelView* pView,
-                                          ZUPublishReportInfo*     pReportInfo,
-                                          const CString&           iniFileName = _T(""));
+        static bool ExportModelToHTMLFile(PSS_ProcessGraphModelDoc* pDoc,
+                                          ZIProcessGraphModelView*  pView,
+                                          ZUPublishReportInfo*      pReportInfo,
+                                          const CString&            iniFileName = _T(""));
 
         /**
         * Launches the browser

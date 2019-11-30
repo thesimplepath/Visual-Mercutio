@@ -41,7 +41,7 @@ IMPLEMENT_SERIAL(ZBSesterceReportGenerator, ZBModelBPReportGenerator, g_DefVersi
 
 ZBSesterceReportGenerator::ZBSesterceReportGenerator( ZDGridDocument*            pDoc        /*= NULL*/,
                                                       ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
-                                                      ZDProcessGraphModelDoc*    pSourceDoc    /*= NULL*/ )
+                                                     PSS_ProcessGraphModelDoc*    pSourceDoc    /*= NULL*/ )
     : ZBModelBPReportGenerator( pDoc, pModel, pSourceDoc )
 {
     // Initialize the style for header cells

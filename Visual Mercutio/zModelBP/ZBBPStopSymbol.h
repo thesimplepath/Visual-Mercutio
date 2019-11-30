@@ -75,8 +75,8 @@ public:
     virtual int GetIconIndex() const;
 
     // Drag and drop methods
-    virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
-    virtual bool DropItem( CObject* pObj, CPoint pt );
+    virtual bool AcceptDropItem( CObject* pObj, const CPoint& pt );
+    virtual bool DropItem( CObject* pObj, const CPoint& pt );
 
     // Call when a new symbol is created
     virtual bool CreateSymbolProperties();

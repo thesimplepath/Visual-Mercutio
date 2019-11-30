@@ -49,11 +49,11 @@ public:
 
     ZDProcessGraphModelControllerBP( ZIProcessGraphModelViewport* pViewport );
 
-    virtual bool    DropItemToModel( CObject* pObj, CPoint pt );
-    virtual bool    AcceptDropItemToModel( CObject* pObj, CPoint pt );
+    virtual bool    DropItemToModel( CObject* pObj, const CPoint& pt );
+    virtual bool    AcceptDropItemToModel( CObject* pObj, const CPoint& pt );
 
-    virtual bool    DropItem( CObject* pObj, CPoint pt );
-    virtual bool    AcceptDropItem( CObject* pObj, CPoint pt );
+    virtual bool    DropItem( CObject* pObj, const CPoint& pt );
+    virtual bool    AcceptDropItem( CObject* pObj, const CPoint& pt );
 
     // Insert symbol methods
     virtual void    InsertPageSymbol();

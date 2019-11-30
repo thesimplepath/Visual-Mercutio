@@ -10,10 +10,10 @@
 #define AFX_ZVDYNAMICATTRIBUTESCREATION_H__7CD0522A_A41A_456A_A5A9_52FB2F9B6BA1__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -21,34 +21,37 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
+#include "zProperty\ZBProperty.h"
 #include "zModel\zModelRes.h"
 
-#include "zProperty\ZBProperty.h"
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 
-// **************************************************************************************************************
-// *                                             Forward class declaration                                        *
-// **************************************************************************************************************
-class ZDProcessGraphModelDoc;
+// forward class declaration
+class PSS_ProcessGraphModelDoc;
 
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // **************************************************************************************************************
 // *                                         Classe ZVDynamicAttributesCreation                                    *
 // **************************************************************************************************************
-class ZVDynamicAttributesCreation  
+class ZVDynamicAttributesCreation
 {
 public:
 
-    ZVDynamicAttributesCreation( ZDProcessGraphModelDoc* pModelDoc, bool SymbolSelected );
+    ZVDynamicAttributesCreation(PSS_ProcessGraphModelDoc* pModelDoc, bool SymbolSelected);
     virtual ~ZVDynamicAttributesCreation();
 
     CString    GetCategoryName() const
@@ -80,7 +83,7 @@ public:
 
 private:
 
-    ZDProcessGraphModelDoc*     m_pModelDoc;
+    PSS_ProcessGraphModelDoc*     m_pModelDoc;
 
     CString                     m_CategoryName;
     CString                     m_AttributeDescription;
@@ -98,10 +101,10 @@ private:
 // **************************************************************************************************************
 class ZVDynamicAttributesCreationS1 : public PSS_WizardDialog
 {
-// Construction
+    // Construction
 public:
 
-    ZVDynamicAttributesCreationS1(ZDProcessGraphModelDoc* pModelDoc, CWnd* pParent = NULL);   // standard constructor
+    ZVDynamicAttributesCreationS1(PSS_ProcessGraphModelDoc* pModelDoc, CWnd* pParent = NULL);   // standard constructor
 
     CString    GetCategoryName() const
     {
@@ -112,7 +115,10 @@ private:
 
     // Dialog Data
     //{{AFX_DATA(ZVDynamicAttributesCreationS1)
-    enum { IDD = IDD_WZ_DYNAMICATTR_S1 };
+    enum
+    {
+        IDD = IDD_WZ_DYNAMICATTR_S1
+    };
     CListBox    m_CategoryList;
     CString    m_CategoryName;
     //}}AFX_DATA
@@ -120,7 +126,7 @@ private:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVDynamicAttributesCreationS1)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -145,7 +151,7 @@ private:
 
     bool                    m_InternalNameChange;
 
-    ZDProcessGraphModelDoc*    m_pModelDoc;
+    PSS_ProcessGraphModelDoc*    m_pModelDoc;
 
     CStringArray            m_StaticAttribArray;
     CStringArray            m_DynamicAttribArray;
@@ -156,13 +162,13 @@ private:
 // **************************************************************************************************************
 class ZVDynamicAttributesCreationS2 : public PSS_WizardDialog
 {
-// Construction
+    // Construction
 public:
 
-    ZVDynamicAttributesCreationS2( ZDProcessGraphModelDoc*    pModelDoc,
-                                   const CString            Category,
-                                   bool                        SymbolSelected,
-                                   CWnd*                    pParent            = NULL );   // standard constructor
+    ZVDynamicAttributesCreationS2(PSS_ProcessGraphModelDoc*    pModelDoc,
+                                  const CString            Category,
+                                  bool                        SymbolSelected,
+                                  CWnd*                    pParent = NULL);   // standard constructor
 
     CString    GetAttributeDescription() const
     {
@@ -188,7 +194,10 @@ private:
 
     // Dialog Data
     //{{AFX_DATA(ZVDynamicAttributesCreationS2)
-    enum { IDD = IDD_WZ_DYNAMICATTR_S2 };
+    enum
+    {
+        IDD = IDD_WZ_DYNAMICATTR_S2
+    };
     CComboBox    m_AttributeVisibility;
     CComboBox    m_AttributeType;
     CString    m_AttributeDescription;
@@ -198,7 +207,7 @@ private:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVDynamicAttributesCreationS2)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -219,7 +228,7 @@ private:
 
 private:
 
-    ZDProcessGraphModelDoc*  m_pModelDoc;
+    PSS_ProcessGraphModelDoc*  m_pModelDoc;
 
     CString                     m_Category;
 
@@ -230,4 +239,4 @@ private:
     bool                     m_SymbolSelected;
 };
 
-#endif // !defined(AFX_ZVDYNAMICATTRIBUTESCREATION_H__7CD0522A_A41A_456A_A5A9_52FB2F9B6BA1__INCLUDED_)
+#endif

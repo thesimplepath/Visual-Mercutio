@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesCreation.
-ZVDynamicAttributesCreation::ZVDynamicAttributesCreation(ZDProcessGraphModelDoc* pModelDoc, bool SymbolSelected)
+ZVDynamicAttributesCreation::ZVDynamicAttributesCreation(PSS_ProcessGraphModelDoc* pModelDoc, bool SymbolSelected)
     : m_pModelDoc(pModelDoc),
     m_SymbolSelected(SymbolSelected)
 {}
@@ -86,7 +86,7 @@ END_MESSAGE_MAP()
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesCreationS1.
-ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1(ZDProcessGraphModelDoc* pModelDoc, CWnd* pParent /*=NULL*/) :
+ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1(PSS_ProcessGraphModelDoc* pModelDoc, CWnd* pParent /*=NULL*/) :
     PSS_WizardDialog(ZVDynamicAttributesCreationS1::IDD,
                      IDB_WZBMP1,
                      0,
@@ -224,7 +224,7 @@ END_MESSAGE_MAP()
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesCreationS2.
-ZVDynamicAttributesCreationS2::ZVDynamicAttributesCreationS2(ZDProcessGraphModelDoc*    pModelDoc,
+ZVDynamicAttributesCreationS2::ZVDynamicAttributesCreationS2(PSS_ProcessGraphModelDoc*    pModelDoc,
                                                              const CString                Category,
                                                              bool                        SymbolSelected,
                                                              CWnd*                        pParent /*=NULL*/) :

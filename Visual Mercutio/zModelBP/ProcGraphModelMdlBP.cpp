@@ -690,7 +690,7 @@ bool ZDProcessGraphModelMdlBP::CheckModelWorkflow(PSS_Log* pLog, BOOL ModelIsCle
     return false;
 }
 
-bool ZDProcessGraphModelMdlBP::GenerateModelWorkflow(PSS_Log* pLog, ZDProcessGraphModelDoc* pDoc)
+bool ZDProcessGraphModelMdlBP::GenerateModelWorkflow(PSS_Log* pLog, PSS_ProcessGraphModelDoc* pDoc)
 {
     ASSERT(FALSE); // TODO : not now implemented
     return false;

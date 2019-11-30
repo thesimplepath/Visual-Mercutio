@@ -33,7 +33,7 @@ IMPLEMENT_SERIAL(ZBMercutioReportGenerator, ZBModelBPReportGenerator, g_DefVersi
 
 ZBMercutioReportGenerator::ZBMercutioReportGenerator( ZDGridDocument*            pDoc        /*= NULL*/,
                                                       ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
-                                                      ZDProcessGraphModelDoc*    pSourceDoc    /*= NULL*/ )
+                                                     PSS_ProcessGraphModelDoc*    pSourceDoc    /*= NULL*/ )
     : ZBModelBPReportGenerator( pDoc, pModel, pSourceDoc )
 {
     // Store the model name
@@ -52,7 +52,7 @@ ZBMercutioReportGenerator::~ZBMercutioReportGenerator()
 
 void ZBMercutioReportGenerator::Initialize( ZDGridDocument*                pDoc,
                                             ZDProcessGraphModelMdlBP*    pModel,
-                                            ZDProcessGraphModelDoc*        pSourceDoc )
+                                           PSS_ProcessGraphModelDoc*        pSourceDoc )
 {
     // Store the model name
     if ( m_pModel )
@@ -207,7 +207,7 @@ void ZBMercutioReportGenerator::OnPostRead( CArchive& ar )
 {
     if ( m_pSourceDoc == NULL && !m_FileName.IsEmpty() )
     {
-        m_pSourceDoc = new ZDProcessGraphModelDoc();
+        m_pSourceDoc = new PSS_ProcessGraphModelDoc();
 
         // If the document is valid, assign the right model pointer
         if ( m_pSourceDoc                                &&

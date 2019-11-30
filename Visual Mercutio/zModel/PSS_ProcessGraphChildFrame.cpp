@@ -78,7 +78,7 @@ void PSS_ProcessGraphChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWn
 
     m_pLastActivatedDocument = GetActiveDocument();
 
-    ZDProcessGraphModelDoc* pLastActivatedModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(m_pLastActivatedDocument);
+    PSS_ProcessGraphModelDoc* pLastActivatedModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(m_pLastActivatedDocument);
 
     if (pLastActivatedModelDoc)
     {
@@ -101,7 +101,7 @@ int PSS_ProcessGraphChildFrame::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest
 {
     const int result = SECMDIChildWnd::OnMouseActivate(pDesktopWnd, nHitTest, message);
 
-    ZDProcessGraphModelDoc* pLastActivatedModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(m_pLastActivatedDocument);
+    PSS_ProcessGraphModelDoc* pLastActivatedModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(m_pLastActivatedDocument);
 
     if (pLastActivatedModelDoc)
     {
@@ -126,7 +126,7 @@ void PSS_ProcessGraphChildFrame::OnUpdateFrameTitle(BOOL addToTitle)
 {
     SECMDIChildWnd::OnUpdateFrameTitle(addToTitle);
 
-    ZDProcessGraphModelDoc* pModelDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveDocument());
+    PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveDocument());
 
     if (!pModelDoc)
         return;

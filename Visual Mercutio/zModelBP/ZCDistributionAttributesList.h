@@ -30,20 +30,23 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeListCtrl.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// forward class declaration
 class ZBDistributionAttribute;
 class ZBDistributionAttributeManager;
 class ZBDistributionRule;
 class ZBDistributionRulesForRole;
 class ZBDynamicPropertiesManager;
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class ZBUserGroupEntity;
 
 
@@ -111,7 +114,7 @@ private:
     const    ZCDistributionAttributesList & operator=(const ZCDistributionAttributesList &right);
 
     void    BuildColumns();
-    void    DocumentActivated(ZDProcessGraphModelDoc* pDoc);
+    void    DocumentActivated(PSS_ProcessGraphModelDoc* pDoc);
     int        InsertDistributionAttribute(ZBDistributionAttribute* pDistributionAttribute, int Level);
 
 private: //## implementation

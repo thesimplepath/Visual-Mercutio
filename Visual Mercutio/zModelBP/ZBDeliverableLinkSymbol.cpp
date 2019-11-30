@@ -460,7 +460,7 @@ void ZBDeliverableLinkSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 // **********************************************************************************************************
 
 // JMR-MODIF - Le 19 novembre 2006 - Détermine la validité d'un objet obtenu par glisser-coller.
-bool ZBDeliverableLinkSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
+bool ZBDeliverableLinkSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
 {
     // JMR-MODIF - Le 19 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
     if (!IsLocal())
@@ -477,7 +477,7 @@ bool ZBDeliverableLinkSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
 }
 
 // JMR-MODIF - Le 19 novembre 2006 - Fonction de réponse à l'ordre de glisser-coller.
-bool ZBDeliverableLinkSymbol::DropItem(CObject* pObj, CPoint pt)
+bool ZBDeliverableLinkSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
     // *********************************************************************************************
     // JMR-MODIF - Le 20 novembre 2006 - Ajout du code pour le traitement des objets de type règles.
@@ -1801,10 +1801,10 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
         {
             CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-            if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+            if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             {
                 // Retreive the model's currency symbol
-                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
+                CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
 
@@ -2199,9 +2199,9 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     {
         CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+        if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             // retreive the model's currency symbol
-            currencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
+            currencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
     }
 
     int     count;
@@ -2243,10 +2243,10 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                 ZDProcessGraphModelControllerBP* pController =
                     reinterpret_cast<ZDProcessGraphModelControllerBP*>(pOwnerModel->GetController());
 
-                if (pController && ISA(pController->GetDocument(), ZDProcessGraphModelDoc))
+                if (pController && ISA(pController->GetDocument(), PSS_ProcessGraphModelDoc))
                 {
-                    ZDProcessGraphModelDoc* pDocument =
-                        reinterpret_cast<ZDProcessGraphModelDoc*>(pController->GetDocument());
+                    PSS_ProcessGraphModelDoc* pDocument =
+                        reinterpret_cast<PSS_ProcessGraphModelDoc*>(pController->GetDocument());
 
                     if (pDocument && pDocument->GetMainLogicalRules())
                         pMainRule = pDocument->GetMainLogicalRules();
@@ -2637,19 +2637,19 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     {
         CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+        if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // FIXME translate comments
             // JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
             // Retreive the model's currency symbol
-            //CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+            //CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
 
             // todo FIXME -cFeature -oJean: please cast once and reuse the same pointer!!!
             // retreive the standard time definition
-            hourPerDay = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
-            dayPerWeek = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
-            dayPerMonth = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerMonth();
-            dayPerYear = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerYear();
+            hourPerDay = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
+            dayPerWeek = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
+            dayPerMonth = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerMonth();
+            dayPerYear = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerYear();
         }
     }
 

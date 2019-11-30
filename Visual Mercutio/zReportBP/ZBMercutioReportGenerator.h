@@ -44,7 +44,7 @@ public:
 
     ZBMercutioReportGenerator( ZDGridDocument*                pDoc        = NULL,
                                ZDProcessGraphModelMdlBP*    pModel        = NULL,
-                               ZDProcessGraphModelDoc*        pSourceDoc    = NULL );
+                              PSS_ProcessGraphModelDoc*        pSourceDoc    = NULL );
 
     virtual ~ZBMercutioReportGenerator();
 
@@ -53,7 +53,7 @@ public:
     
     virtual void Initialize( ZDGridDocument*            pDoc,
                              ZDProcessGraphModelMdlBP*    pModel,
-                             ZDProcessGraphModelDoc*    pSourceDoc );
+                            PSS_ProcessGraphModelDoc*    pSourceDoc );
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation

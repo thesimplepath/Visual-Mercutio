@@ -136,14 +136,14 @@ class AFX_EXT_CLASS PSS_BaseMDIPage : public PSS_BaseTitleMDIPage
         *@param pView - view
         *@return the bottom view, NULL on error
         */
-        virtual CView* SwitchBottomView( CView* pView );
+        virtual CView* SwitchBottomView(CView* pView);
 
         /**
         * Switches the top view
         *@param pView - view
         *@return the top view, NULL on error
         */
-        virtual CView* SwitchTopView( CView* pView );
+        virtual CView* SwitchTopView(CView* pView);
 
         /**
         * Gets the bottom view

@@ -98,12 +98,12 @@ bool ZBUnit::LoadUnit( PSS_ProcessModelDocTmpl* pDocTmpl )
 
     CDocument* pDoc = pDocTmpl->OpenDocumentFile( m_FileName, FALSE );
 
-    if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+    if ( pDoc && ISA( pDoc, PSS_ProcessGraphModelDoc) )
     {
-        m_pUnitDoc = (ZDProcessGraphModelDoc*)pDoc;
+        m_pUnitDoc = (PSS_ProcessGraphModelDoc*)pDoc;
 
         // Assign the name.
-        m_Name = ( (ZDProcessGraphModelDoc*)pDoc )->GetModel()->GetModelName();
+        m_Name = ( (PSS_ProcessGraphModelDoc*)pDoc )->GetModel()->GetModelName();
     }
     else
     {

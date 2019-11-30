@@ -39,12 +39,15 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 
 // forward class declaration
 class ZBSymbol;
 class PSS_LinkSymbol;
 class PSS_Log;
-class ZDProcessGraphModelDoc;
+class PSS_ProcessGraphModelDoc;
 class ZIProcessGraphModelViewport;
 class ZIProcessGraphModelView;
 class PSS_ProcessGraphModelController;
@@ -107,8 +110,7 @@ public:
     void                                    DeleteModelSet();
 
     // JMR-MODIF - Le 3 octobre 2005 - Ajout de la fonction DetachAllObserversInHierarchy.
-    void                                    DetachAllObserversInHierarchy(ZIProcessGraphModelViewport*    m_pViewport,
-                                                                          ZDProcessGraphModelDoc*        m_pDocument);
+    void DetachAllObserversInHierarchy(ZIProcessGraphModelViewport* pViewport, PSS_ProcessGraphModelDoc* pDocument);
 
     // This method creates the associated controller
     virtual PSS_ProcessGraphModelController* CreateController(ZIProcessGraphModelViewport* pVp);
@@ -503,7 +505,7 @@ public:
         return false;
     }
 
-    virtual bool GenerateModelWorkflow(PSS_Log* pLog, ZDProcessGraphModelDoc* pDoc)
+    virtual bool GenerateModelWorkflow(PSS_Log* pLog, PSS_ProcessGraphModelDoc* pDoc)
     {
         return false;
     }
