@@ -9,7 +9,7 @@
 
 #include "ZUODSymbolManipulator.h"
 
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "zBaseLib\PSS_BaseDocument.h"
 
 #include "ZBDocObserverMsg.h"

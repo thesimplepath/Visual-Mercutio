@@ -15,7 +15,7 @@
 #include "zBaseLib\PSS_Server.h"
 #include "zBaseLib\PSS_Log.h"
 #include "zConversion\PSS_StringTools.h"
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"

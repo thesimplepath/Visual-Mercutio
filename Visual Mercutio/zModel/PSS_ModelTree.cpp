@@ -13,7 +13,7 @@
 #include "ZBModelSet.h"
 #include "ZBSymbol.h"
 #include "PSS_LinkSymbol.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
 #include "ZBModelObserverMsg.h"
 

@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVChoosePropertyDlg.h"
 
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\ZUDynamicAttributesManipulator.h"

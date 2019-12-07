@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVDeleteModelPageDlg.h"
 
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
 #include "ZBModelSet.h"
 

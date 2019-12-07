@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "ZUBuildSymbolNewName.h"
 
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 
 #include "ZBSymbol.h"
 #include "PSS_LinkSymbol.h"

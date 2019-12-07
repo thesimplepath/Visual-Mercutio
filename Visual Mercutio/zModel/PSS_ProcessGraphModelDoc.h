@@ -30,7 +30,7 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_BaseDocument.h"
 #include "zBaseLib\PSS_DocumentPageSetup.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZBUnitManager.h"
 #include "ZBModelSet.h"
 #include "ZBPageUnits.h"

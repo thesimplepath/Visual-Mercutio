@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "PSS_MainPathRunnerThread.h"

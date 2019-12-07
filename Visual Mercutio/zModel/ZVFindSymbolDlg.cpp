@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "ZVFindSymbolDlg.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

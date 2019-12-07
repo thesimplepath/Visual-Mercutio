@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zProperty\ZBDynamicProperties.h"
 #include "ZUODSymbolManipulator.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZBBasicProp.h"
 #include "ZBSymbol.h"
 #include "ZBSymbolObserverMsg.h"

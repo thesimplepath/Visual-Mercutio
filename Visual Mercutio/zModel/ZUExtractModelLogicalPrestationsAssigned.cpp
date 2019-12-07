@@ -8,7 +8,7 @@
 // **************************************************************************************************************
 
 #include "stdafx.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZUExtractModelLogicalPrestationsAssigned.h"
 
 #include "ZBPrestationsEntity.h"

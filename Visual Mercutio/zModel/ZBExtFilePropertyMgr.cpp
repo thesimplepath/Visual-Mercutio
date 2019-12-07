@@ -11,7 +11,7 @@
 #include "zBaseLib\PSS_TemplateFile.h"
 #include "zBaseLib\PSS_File.h"
 #include "zWinUtil32\PSS_ReferenceFileDialog.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 
 // resources
 #include "zFormsRes\zFormsRes.h"

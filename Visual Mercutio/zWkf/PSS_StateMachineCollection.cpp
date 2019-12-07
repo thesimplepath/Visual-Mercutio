@@ -10,7 +10,7 @@
 #include "PSS_StateMachineCollection.h"
 
 // processsoft
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "PSS_StateMachine.h"
 
 #ifdef _DEBUG

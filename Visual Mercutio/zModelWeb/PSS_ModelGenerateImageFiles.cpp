@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\PSS_StringFormatter.h"
 #include "zBaseLib\PSS_Global.h"
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\ZDProcessGraphPage.h"

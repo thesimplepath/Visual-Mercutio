@@ -21,7 +21,7 @@
 #include "zWinUtil32\PSS_SystemOptionSheet.h"
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_ProcessGraphChildFrame.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"

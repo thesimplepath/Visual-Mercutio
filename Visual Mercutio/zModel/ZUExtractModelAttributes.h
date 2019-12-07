@@ -22,9 +22,9 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ProcGraphModelMdl.h"
 #include "zModel\ZUModelNavigation.h"
 #include "zProperty\ZBProperty.h"
+#include "PSS_ProcessGraphModelMdl.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again

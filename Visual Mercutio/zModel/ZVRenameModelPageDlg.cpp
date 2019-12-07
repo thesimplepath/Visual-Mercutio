@@ -9,7 +9,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
 #include "ZBModelSet.h"
 

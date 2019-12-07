@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZDProcessGraphPage.h"
 
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 
 // JMR-MODIF - Le 14 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 

@@ -6,7 +6,7 @@
 // **************************************************************************************************************
 
 #include "stdafx.h"
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZUExtractModelLogicalSystemAssigned.h"
 
 #include "ZBSystemEntity.h"

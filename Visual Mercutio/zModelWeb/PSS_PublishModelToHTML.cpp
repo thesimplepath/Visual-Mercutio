@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_FileLauncher.h"
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zProperty\ZBPropertyAttributes.h"
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #define _ZMODELEXPORT
 #include "zModel\PSS_ProcessGraphModelDoc.h"

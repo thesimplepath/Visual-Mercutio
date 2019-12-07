@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZUGridSesterceProcessNavigation.h"
 
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zReport\ZDGridDoc.h"
 
 #include "zModel\ZBSymbol.h"

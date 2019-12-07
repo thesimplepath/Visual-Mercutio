@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ZVInsertModelNewPageDlg.h"
 
-#include "ProcGraphModelMdl.h"
+#include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
 #include "ZBModelSet.h"
 #include "ZBSymbol.h"

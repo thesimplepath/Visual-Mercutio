@@ -9,7 +9,7 @@
 #include "PSS_StateLink.h"
 
 // processsoft
-#include "zModel\ProcGraphModelMdl.h"
+#include "zModel\PSS_ProcessGraphModelMdl.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
