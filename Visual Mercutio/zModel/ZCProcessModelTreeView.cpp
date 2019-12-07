@@ -87,12 +87,12 @@ void ZCProcessModelTreeView::Empty()
     m_ModelTree.Empty();
 }
 
-void ZCProcessModelTreeView::AddModel(ZDProcessGraphModelMdl* pModel)
+void ZCProcessModelTreeView::AddModel(PSS_ProcessGraphModelMdl* pModel)
 {
     m_ModelTree.AddModel(pModel);
 }
 
-void ZCProcessModelTreeView::RemoveModel(ZDProcessGraphModelMdl* pModel)
+void ZCProcessModelTreeView::RemoveModel(PSS_ProcessGraphModelMdl* pModel)
 {
     m_ModelTree.RemoveModel(pModel);
 }
@@ -108,18 +108,18 @@ void ZCProcessModelTreeView::RemoveModelSet(ZBModelSet* pModelSet)
 }
 
 void ZCProcessModelTreeView::AddSymbol(CODSymbolComponent*        pSymbol,
-                                       ZDProcessGraphModelMdl*    pModel,
+                                       PSS_ProcessGraphModelMdl*    pModel,
                                        bool                    CheckUnique)
 {
     m_ModelTree.AddSymbol(pSymbol, pModel, CheckUnique);
 }
 
-void ZCProcessModelTreeView::RemoveSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel)
+void ZCProcessModelTreeView::RemoveSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
     m_ModelTree.RemoveSymbol(pSymbol, pModel);
 }
 
-void ZCProcessModelTreeView::ModifySymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel)
+void ZCProcessModelTreeView::ModifySymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
     m_ModelTree.ModifySymbol(pSymbol, pModel);
 }

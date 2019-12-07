@@ -57,7 +57,7 @@ public:
     virtual void SetEditText(const CString& strText);
     virtual void SetEditText(double dValue);
     virtual void SetEditText(float fValue);
-    // Retreive the text entered
+    // Retrieve the text entered
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function

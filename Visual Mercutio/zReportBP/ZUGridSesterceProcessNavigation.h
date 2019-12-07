@@ -38,14 +38,14 @@ class ZUGridSesterceProcessNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUGridSesterceProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUGridSesterceProcessNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUGridSesterceProcessNavigation();
 
     // Call-back methods
-    virtual bool OnStart                    ();
-    virtual bool OnFinish                    ();
-    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol*        pSymbol );
-    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol*    pSymbol );
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*        pSymbol);
+    virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol*    pSymbol);
 
 private:
 
@@ -71,4 +71,4 @@ private:
     CGXStyle        m_NumericCellStyle;
 };
 
-#endif // !defined(AFX_ZUGridSesterceProcessNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

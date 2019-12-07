@@ -265,7 +265,7 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
             SetProperty(&basicProps);
 
             // notify the owner model about symbol changes
-            ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+            PSS_ProcessGraphModelMdl* pRootModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
             if (pRootModel)
                 pRootModel->OnSymbolNameChanged(*this, oldName);
@@ -433,91 +433,91 @@ bool PSS_LinkSymbol::Match(const CString&        argument,
     return result;
 }
 //---------------------------------------------------------------------------
-CString PSS_LinkSymbol::RetreiveUnitGUID(const CString& name, bool& error) const
+CString PSS_LinkSymbol::RetrieveUnitGUID(const CString& name, bool& error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-            dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
-        return pModel->RetreiveUnitGUID(name, error);
+        return pModel->RetrieveUnitGUID(name, error);
 
     error = true;
 
     return _T("");
 }
 //---------------------------------------------------------------------------
-CString PSS_LinkSymbol::RetreiveUnitName(const CString& guid, bool& error) const
+CString PSS_LinkSymbol::RetrieveUnitName(const CString& guid, bool& error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-            dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
-        return pModel->RetreiveUnitName(guid, error);
+        return pModel->RetrieveUnitName(guid, error);
 
     error = true;
 
     return _T("");
 }
 //---------------------------------------------------------------------------
-CString PSS_LinkSymbol::RetreiveUnitDescription(const CString& guid, bool& error) const
+CString PSS_LinkSymbol::RetrieveUnitDescription(const CString& guid, bool& error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-            dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
-        return pModel->RetreiveUnitDescription(guid, error);
+        return pModel->RetrieveUnitDescription(guid, error);
 
     error = true;
 
     return _T("");
 }
 //---------------------------------------------------------------------------
-float PSS_LinkSymbol::RetreiveUnitCost(const CString& guid, bool& error) const
+float PSS_LinkSymbol::RetrieveUnitCost(const CString& guid, bool& error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-            dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
-        return pModel->RetreiveUnitCost(guid, error);
+        return pModel->RetrieveUnitCost(guid, error);
 
     error = true;
 
     return 0;
 }
 //---------------------------------------------------------------------------
-CString PSS_LinkSymbol::RetreiveLogicalSystemGUID(const CString& name, bool& error) const
+CString PSS_LinkSymbol::RetrieveLogicalSystemGUID(const CString& name, bool& error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-            dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
-        return pModel->RetreiveLogicalSystemGUID(name, error);
+        return pModel->RetrieveLogicalSystemGUID(name, error);
 
     error = true;
 
     return _T("");
 }
 //---------------------------------------------------------------------------
-CString PSS_LinkSymbol::RetreiveLogicalSystemName(const CString& guid, bool& error) const
+CString PSS_LinkSymbol::RetrieveLogicalSystemName(const CString& guid, bool& error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-            dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
-        return pModel->RetreiveLogicalSystemName(guid, error);
+        return pModel->RetrieveLogicalSystemName(guid, error);
 
     error = true;
 
     return _T("");
 }
 //---------------------------------------------------------------------------
-CString PSS_LinkSymbol::RetreiveLogicalSystemDescription(const CString& guid, bool& error) const
+CString PSS_LinkSymbol::RetrieveLogicalSystemDescription(const CString& guid, bool& error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-            dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<PSS_LinkSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
-        return pModel->RetreiveLogicalSystemDescription(guid, error);
+        return pModel->RetrieveLogicalSystemDescription(guid, error);
 
     error = true;
 
@@ -549,7 +549,7 @@ bool PSS_LinkSymbol::IsNewNameValid(const CString& value) const
         return false;
     }
 
-    ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetParent());
+    PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
     if (pModel)
         // if already exists and not the same, show an error message and put back the initial value
@@ -690,7 +690,7 @@ CODComponent* PSS_LinkSymbol::GetLocalSymbol()
     if (IsLocal())
         return NULL;
 
-    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+    PSS_ProcessGraphModelMdl* pRootModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
     if (pRootModel)
     {
@@ -709,7 +709,7 @@ CODComponentSet* PSS_LinkSymbol::GetReferenceSymbols()
     if (!IsLocal())
         return NULL;
 
-    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+    PSS_ProcessGraphModelMdl* pRootModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
     if (pRootModel)
     {
@@ -775,7 +775,7 @@ CODModel* PSS_LinkSymbol::GetOwnerModel()
 
     while (pComp)
     {
-        ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(pComp);
+        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pComp);
 
         // if a model, return it
         if (pModel)
@@ -790,7 +790,7 @@ CODModel* PSS_LinkSymbol::GetOwnerModel()
 //---------------------------------------------------------------------------
 CODModel* PSS_LinkSymbol::GetRootModel()
 {
-    ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel());
 
     // if the model is a graph model, it contains the root, so get and return it
     if (pModel)
@@ -810,10 +810,10 @@ void PSS_LinkSymbol::SetModifiedFlag(BOOL value)
 void PSS_LinkSymbol::RedrawSymbol()
 {
     // if the parent is a model
-    ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetParent());
+    PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
     if (pModel)
-        pModel->ReDrawComponent(*this);
+        pModel->RedrawComponent(*this);
 
     AdjustLinePath();
 }
@@ -1086,7 +1086,7 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
             return false;
 
         // segregation conceptor
-        ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
         // is messenger activated?
         if (pModel && pModel->GetUseWorkflow())
@@ -1194,7 +1194,7 @@ bool PSS_LinkSymbol::CheckPropertyValue(ZBProperty& prop, CString& value, ZBProp
     if (prop.GetCategoryID() == ZS_BP_PROP_BASIC)
         if (prop.GetItemID() == Z_SYMBOL_NUMBER)
         {
-            ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetParent());
+            PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
             // if not the same and already exists, show an error message and restore the initial value
             if (pModel)
@@ -1242,7 +1242,7 @@ bool PSS_LinkSymbol::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPr
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_LinkSymbol::ProcessMenuCommand(int            menuCommand,
+bool PSS_LinkSymbol::ProcessMenuCommand(int            menuCmdID,
                                         ZBProperty&    prop,
                                         CString&       value,
                                         ZBPropertySet& props,
@@ -1251,14 +1251,14 @@ bool PSS_LinkSymbol::ProcessMenuCommand(int            menuCommand,
     bool result = false;
 
     // call the base template class method
-    if (ZBExtAppPropertyMgr::ProcessMenuCommand(menuCommand, prop, value, props, refresh))
+    if (ZBExtAppPropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
         result = true;
 
-    if (ZBExtFilePropertyMgr::ProcessMenuCommand(menuCommand, prop, value, props, refresh))
+    if (ZBExtFilePropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
         result = true;
 
     if (m_DynamicPropManager)
-        if (m_DynamicPropManager->ProcessMenuCommand(menuCommand, prop, value, props, refresh))
+        if (m_DynamicPropManager->ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
             result = true;
 
     return result;
@@ -1349,10 +1349,10 @@ void PSS_LinkSymbol::UpdateGraphicFromRisk(COLORREF color, BOOL italic)
 
     // don't use the RedrawSymbol() function because it recalculates the entire link path,
     // and only a redraw is required here
-    ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetParent());
+    PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
     if (pModel)
-        pModel->ReDrawComponent(*this);
+        pModel->RedrawComponent(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetCurrentLineColor(COLORREF value)

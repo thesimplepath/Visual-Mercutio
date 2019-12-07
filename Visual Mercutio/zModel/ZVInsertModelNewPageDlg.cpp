@@ -26,7 +26,7 @@ BEGIN_MESSAGE_MAP(ZVInsertModelNewPageDlg, PSS_Dialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVInsertModelNewPageDlg::ZVInsertModelNewPageDlg(ZDProcessGraphModelMdl*    pModel,
+ZVInsertModelNewPageDlg::ZVInsertModelNewPageDlg(PSS_ProcessGraphModelMdl*    pModel,
                                                  const CString                NewPageName        /*= ""*/,
                                                  CStringArray*                pArrayPageName    /*= NULL*/,
                                                  PSS_RuntimeClassSet*        pSet            /*= NULL*/,
@@ -54,7 +54,7 @@ void ZVInsertModelNewPageDlg::DoDataExchange(CDataExchange* pDX)
 
 void ZVInsertModelNewPageDlg::CheckControls()
 {
-    ZDProcessGraphModelMdl* pParentModel = m_SymbolTree.GetSelectedOwnerModel();
+    PSS_ProcessGraphModelMdl* pParentModel = m_SymbolTree.GetSelectedOwnerModel();
 
     // If a page is selected, then reset the parent model
     if (m_SymbolTree.GetSelectedPage())

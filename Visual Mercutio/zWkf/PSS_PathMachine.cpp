@@ -25,12 +25,12 @@
 //---------------------------------------------------------------------------
 // PSS_PathMachine
 //---------------------------------------------------------------------------
-PSS_PathMachine::PSS_PathMachine(ZDProcessGraphModelMdl* pModel,
-                                 ZBSymbol*               pSymbol,
-                                 PSS_Log*                pLog,
-                                 int                     maxLoop,
-                                 int                     maxPaused,
-                                 int                     maxWaitingForOtherLinks) :
+PSS_PathMachine::PSS_PathMachine(PSS_ProcessGraphModelMdl* pModel,
+                                 ZBSymbol*                 pSymbol,
+                                 PSS_Log*                  pLog,
+                                 int                       maxLoop,
+                                 int                       maxPaused,
+                                 int                       maxWaitingForOtherLinks) :
     m_pModel(pModel),
     m_pMainThread(NULL),
     m_pSymbol(pSymbol),

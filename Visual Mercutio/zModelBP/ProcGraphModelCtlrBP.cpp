@@ -1128,7 +1128,7 @@ void ZDProcessGraphModelControllerBP::OnSymbolDuplicated(CODComponentSet* pCompS
     {
         if (pComp && ISA(pComp, ZBBPProcessSymbol))
         {
-            DoDuplicateProcess(reinterpret_cast<ZDProcessGraphModelMdl*>(dynamic_cast<ZBBPProcessSymbol*>(pComp)->GetChildModel()));
+            DoDuplicateProcess(reinterpret_cast<PSS_ProcessGraphModelMdl*>(dynamic_cast<ZBBPProcessSymbol*>(pComp)->GetChildModel()));
         }
 
         // If a door symbol, remove the process pointed to
@@ -1145,7 +1145,7 @@ void ZDProcessGraphModelControllerBP::OnSymbolDuplicated(CODComponentSet* pCompS
     }
 }
 
-void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl* pModel)
+void ZDProcessGraphModelControllerBP::DoDuplicateProcess(PSS_ProcessGraphModelMdl* pModel)
 {
     if (pModel == NULL)
     {
@@ -1155,7 +1155,7 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl*
     // Run through all pages if there are
     if (pModel->GetPageSet() != NULL)
     {
-        ZBProcessGraphPageIterator i(pModel->GetPageSet());
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pModel->GetPageSet());
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -1184,7 +1184,7 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl*
 //            ( (ZBSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
             ((ZBSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
 
-            // Retreive the next available name
+            // Retrieve the next available name
             ZUBuildSymbolNewName BuildNewName(((ZBSymbol*)pComp)->GetSymbolName());
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
@@ -1201,7 +1201,7 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl*
 //            ( (PSS_LinkSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
             ((PSS_LinkSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
 
-            // Retreive the next available name
+            // Retrieve the next available name
             ZUBuildSymbolNewName BuildNewName(((PSS_LinkSymbol*)pComp)->GetSymbolName());
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
@@ -1211,7 +1211,7 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(ZDProcessGraphModelMdl*
 
         if (ISA(pComp, ZBSymbol) && ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
         {
-            DoDuplicateProcess(reinterpret_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)pComp)->GetChildModel()));
+            DoDuplicateProcess(reinterpret_cast<PSS_ProcessGraphModelMdl*>(((ZBSymbol*)pComp)->GetChildModel()));
         }
     }
 }
@@ -1380,7 +1380,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateRecalculateModelDurations(CCmdUI* 
 {
     AssignSymbolHit();
 
-    // Retreive the enable flag
+    // Retrieve the enable flag
     BOOL bEnable = FALSE;
 
     if (GetDocument() &&
@@ -1401,13 +1401,13 @@ void ZDProcessGraphModelControllerBP::OnCalculateRisks()
     CODModel*    pModel = GetRootModel();
     CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
-            // Retreive the model's currency symbol
+            // Retrieve the model's currency symbol
             CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
         }
     }
@@ -1649,7 +1649,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateViewModelToolbar(CCmdUI* pCmdUI)
 
 void ZDProcessGraphModelControllerBP::OnInsertPage()
 {
-    ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
 
     if (!pRoot)
     {
@@ -1668,7 +1668,7 @@ void ZDProcessGraphModelControllerBP::OnInsertPage()
 
     if (Dlg.DoModal() == IDOK)
     {
-        ZDProcessGraphModelMdl*    pModel = pRoot->CreateEmptyModel(Dlg.GetPageName(), Dlg.GetParentModel());
+        PSS_ProcessGraphModelMdl*    pModel = pRoot->CreateEmptyModel(Dlg.GetPageName(), Dlg.GetParentModel());
         ZDProcessGraphPage*        pPage = pRoot->CreateNewPage(pModel, Dlg.GetPageName(), Dlg.GetParentModel());
         BrowseModel(pModel, Dlg.GetParentModel());
 
@@ -1683,7 +1683,7 @@ void ZDProcessGraphModelControllerBP::OnInsertPage()
 
 void ZDProcessGraphModelControllerBP::OnRenamePage()
 {
-    ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
 
     if (!pRoot)
     {
@@ -1729,7 +1729,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
     /********************************************************************************************************
     // JMR-MODIF - Le 3 avril 2006 - Le changement de boîte de dialogue implique la réecritue de la fonction.
 
-    ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
 
     if ( !pRoot )
     {
@@ -1785,7 +1785,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
     }
     ********************************************************************************************************/
 
-    ZDProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = GetModel()->GetRoot();
 
     if (!pRoot)
     {

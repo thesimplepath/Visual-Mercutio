@@ -30,7 +30,7 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcessCalculateTotals::ZUProcessCalculateTotals( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUProcessCalculateTotals::ZUProcessCalculateTotals(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                     void*                    pClass    /*= NULL*/ )
     : ZUProcessNavigation( pModel, pClass )
 {
@@ -73,7 +73,7 @@ bool ZUProcessCalculateTotals::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 bool ZUProcessCalculateTotals::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
 {
     // Now initiate the procedure totals for the process
-    ZUProcedureCalculateTotals ProcedureTotals( dynamic_cast<ZDProcessGraphModelMdl*>( pSymbol->GetChildModel() ),
+    ZUProcedureCalculateTotals ProcedureTotals( dynamic_cast<PSS_ProcessGraphModelMdl*>( pSymbol->GetChildModel() ),
                                                 NULL );
 
     if ( ProcedureTotals.Navigate() )

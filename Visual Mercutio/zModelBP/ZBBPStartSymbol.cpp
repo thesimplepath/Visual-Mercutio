@@ -12,7 +12,7 @@
 #include "ZBBPUnitProp.h"
 
 // Global for model
-#include "zModel\ZAModelGlobal.h"
+#include "zModel\PSS_ModelGlobal.h"
 
 // JMR-MODIF - Le 29 juillet 2007 - Ajout de l'en-tête ZAGlobal.h
 #include "zBaseLib\PSS_Global.h"
@@ -202,8 +202,8 @@ bool ZBBPStartSymbol::DropItem(CObject* pObj, const CPoint& pt)
         // First, check if the user group is valid
         CODModel * pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
         {
             // Cannot delete all combinations
             PSS_MsgBox mBox;
@@ -233,8 +233,8 @@ bool ZBBPStartSymbol::DropItem(CObject* pObj, const CPoint& pt)
         // First, check if the rule is valid
         CODModel* pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
         {
             // Cannot delete all rules
             PSS_MsgBox mBox;
@@ -399,13 +399,13 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
     CString CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
-            // Retreive the model's currency symbol
+            // Retrieve the model's currency symbol
             CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
         }
     }
@@ -457,8 +457,8 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
         for (int i = 0; i < m_Rules.GetRulesCount(); i++)
         {
             // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
-            if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+            if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+                dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
             {
                 CString m_SafeName = GetRuleNameByGUID(p_MainRule, m_Rules.GetRuleGUID(i));
 
@@ -671,8 +671,8 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
     bool GroupEnabled = true;
 
     // First, check if the user group is valid
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
     {
         GroupEnabled = false;
     }
@@ -690,7 +690,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
 
     bool Error;
 
-    CString UnitName = RetreiveUnitName(GetUnitGUID(), Error);
+    CString UnitName = RetrieveUnitName(GetUnitGUID(), Error);
     ZBProperty* pUnitName = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                            ZS_BP_PROP_UNIT,
                                            IDS_Z_UNIT_NAME_NAME,
@@ -702,11 +702,11 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
     PropSet.Add(pUnitName);
 
     // RS-MODIF 17.11.04 UnitCost should only appear in Sesterces
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
 
     {
-        float UnitCost = RetreiveUnitCost(GetUnitGUID(), Error);
+        float UnitCost = RetrieveUnitCost(GetUnitGUID(), Error);
         ZBProperty* pUnitCost = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                                ZS_BP_PROP_UNIT,
                                                IDS_Z_UNIT_COST_NAME,
@@ -889,13 +889,13 @@ bool ZBBPStartSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value,
         CODModel*    pModel = GetRootModel();
         CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+            CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
             if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             {
-                // Retreive the model's currency symbol
+                // Retrieve the model's currency symbol
                 CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
@@ -938,10 +938,10 @@ bool ZBBPStartSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value,
 
     if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
     {
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
             ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
-                                     dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                     dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
                                      true,        // Allow group selection
                                      false);    // Doesn't allow role selection
 
@@ -1108,7 +1108,7 @@ bool ZBBPStartSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet&
                 if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
                 {
                     bool Error;
-                    float UnitCost = RetreiveUnitCost(GUID, Error);
+                    float UnitCost = RetrieveUnitCost(GUID, Error);
 
                     if (Error == false)
                     {

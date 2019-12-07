@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractCategoryAttributes::ZUExtractCategoryAttributes(ZDProcessGraphModelMdl*    pModel            /*= NULL*/,
+ZUExtractCategoryAttributes::ZUExtractCategoryAttributes(PSS_ProcessGraphModelMdl*    pModel            /*= NULL*/,
                                                          CStringArray*                pStaticArray    /*= NULL*/,
                                                          CStringArray*                pDynamicArray    /*= NULL*/,
                                                          void*                        pClass            /*= NULL*/)

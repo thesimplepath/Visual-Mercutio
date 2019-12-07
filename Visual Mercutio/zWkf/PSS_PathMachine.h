@@ -29,11 +29,14 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class ZBSymbol;
 class PSS_LinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class PSS_MainPathRunnerThread;
 class PSS_Log;
 
@@ -79,12 +82,12 @@ class AFX_EXT_CLASS PSS_PathMachine
         *@param maxPaused - maximum paused counter, -1 to set to infinite
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
         */
-        PSS_PathMachine(ZDProcessGraphModelMdl* pModel                  =  NULL,
-                        ZBSymbol*               pSymbol                 =  NULL,
-                        PSS_Log*                pLog                    =  NULL,
-                        int                     maxLoop                 = -1,
-                        int                     maxPaused               = -1,
-                        int                     maxWaitingForOtherLinks = -1);
+        PSS_PathMachine(PSS_ProcessGraphModelMdl* pModel                  =  NULL,
+                        ZBSymbol*                 pSymbol                 =  NULL,
+                        PSS_Log*                  pLog                    =  NULL,
+                        int                       maxLoop                 = -1,
+                        int                       maxPaused               = -1,
+                        int                       maxWaitingForOtherLinks = -1);
 
         virtual ~PSS_PathMachine();
 
@@ -92,13 +95,13 @@ class AFX_EXT_CLASS PSS_PathMachine
         * Assigns a model
         *@param pModel - model to assign
         */
-        virtual inline void AssignModel(ZDProcessGraphModelMdl* pModel);
+        virtual inline void AssignModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Gets the model used by the path machine
         *@return the model used by the path machine
         */
-        virtual inline ZDProcessGraphModelMdl* GetModel();
+        virtual inline PSS_ProcessGraphModelMdl* GetModel();
 
         /**
         * Gets the start symbol
@@ -425,7 +428,7 @@ class AFX_EXT_CLASS PSS_PathMachine
     protected:
         PSS_StateMachineCollection m_StateMachineCollection;
         PSS_StateMachineCollection m_FinishedStateMachineCollection;
-        ZDProcessGraphModelMdl*    m_pModel;
+        PSS_ProcessGraphModelMdl*  m_pModel;
 
         /**
         * Copies the node array to the symbol set
@@ -545,13 +548,13 @@ class AFX_EXT_CLASS PSS_PathMachine
 //---------------------------------------------------------------------------
 // PSS_PathMachine
 //---------------------------------------------------------------------------
-void PSS_PathMachine::AssignModel(ZDProcessGraphModelMdl* pModel)
+void PSS_PathMachine::AssignModel(PSS_ProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
     m_StateMachineCollection.AssignModel(pModel);
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_PathMachine::GetModel()
+PSS_ProcessGraphModelMdl* PSS_PathMachine::GetModel()
 {
     return m_pModel;
 }

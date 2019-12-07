@@ -44,7 +44,7 @@ const CString g_ParentImageFile = _T("parent.gif");
 //---------------------------------------------------------------------------
 // PSS_SoapPublishModelGenerateFiles
 //---------------------------------------------------------------------------
-PSS_SoapPublishModelGenerateFiles::PSS_SoapPublishModelGenerateFiles(ZDProcessGraphModelMdl*             pModel,
+PSS_SoapPublishModelGenerateFiles::PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*           pModel,
                                                                      void*                               pClass,
                                                                      ZBPublishMessengerModelInformation* pInfo) :
     ZUModelNavigation(pModel, pClass),
@@ -135,7 +135,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnSymbol(ZBSymbol* pSymbol)
     ASSERT(m_pInfo);
 
     if (pSymbol->GetChildModel() && m_pInfo->GetDC() && m_pInfo->GetCtlr())
-        if (!PublishModel(dynamic_cast<ZDProcessGraphModelMdl*>(pSymbol->GetChildModel())))
+        if (!PublishModel(dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel())))
             return false;
 
     return true;
@@ -146,7 +146,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnLink(PSS_LinkSymbol* pLink)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pModel)
+bool PSS_SoapPublishModelGenerateFiles::PublishModel(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -205,7 +205,7 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFileName(ZDProcessGraphModelMdl* pModel)
+CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFileName(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return _T("");
@@ -218,7 +218,7 @@ CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFileName(ZDProcessGrap
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_SoapPublishModelGenerateFiles::BuildModelHTMLFileName(ZDProcessGraphModelMdl* pModel)
+CString PSS_SoapPublishModelGenerateFiles::BuildModelHTMLFileName(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return _T("");
@@ -236,7 +236,7 @@ CString PSS_SoapPublishModelGenerateFiles::ParseModelName(const CString& modelNa
     return PSS_StringTools::ConvertSpecialChar(modelName);
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString& imageFileName)
+bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pModel, const CString& imageFileName)
 {
     if (!pModel)
         return false;
@@ -349,7 +349,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
         if (pCompSym && pCompSym->GetChildModel())
         {
             // get the html file name for the reference
-            symbolHtmlFileName = BuildModelHTMLFileName(dynamic_cast<ZDProcessGraphModelMdl*>(pCompSym->GetChildModel()));
+            symbolHtmlFileName = BuildModelHTMLFileName(dynamic_cast<PSS_ProcessGraphModelMdl*>(pCompSym->GetChildModel()));
 
             PSS_File symbol(symbolHtmlFileName);
 

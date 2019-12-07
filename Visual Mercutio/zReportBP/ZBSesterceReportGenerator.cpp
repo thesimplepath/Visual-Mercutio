@@ -298,8 +298,8 @@ bool ZBSesterceReportGenerator::FillGridProcess( CGXGridCore& GridCore, size_t I
     // un pointeur nul 1 tab sur 2
     // In case sensitive
     //ZDProcessGraphModelMdl* pModel = m_pModel->FindModel( m_TabNameArray.GetAt( Index ), true ); // In case sensitive
-    ZDProcessGraphModelMdl* pModel =
-        (ZDProcessGraphModelMdl*)m_pModel->FindModel( m_TabNameArray.GetAt( Index ), true );
+    PSS_ProcessGraphModelMdl* pModel =
+        (PSS_ProcessGraphModelMdl*)m_pModel->FindModel( m_TabNameArray.GetAt( Index ), true );
 
     if ( !pModel )
     {

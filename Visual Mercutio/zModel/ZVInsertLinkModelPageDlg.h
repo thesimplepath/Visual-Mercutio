@@ -23,8 +23,13 @@
 // resources
 #include "zModelRes.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
 // forward class declaration
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
 // put the values back to make AFX_EXT_CLASS export again
@@ -47,7 +52,7 @@ class AFX_EXT_CLASS ZVInsertLinkModelPageDlg : public PSS_Dialog
 {
 // Construction
 public:
-    ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pModel,
+    ZVInsertLinkModelPageDlg(PSS_ProcessGraphModelMdl* pModel,
                              const CString NewPageName = "",
                              CStringArray* pArrayPageName = NULL,
                              PSS_RuntimeClassSet* pSet = NULL,
@@ -63,7 +68,7 @@ public:
         return (m_InsertOrLink == 0) ? true : false;
     };
 
-    ZDProcessGraphModelMdl*    GetParentModel() const;
+    PSS_ProcessGraphModelMdl* GetParentModel() const;
     CString GetParentModelFullName() const
     {
         return m_ParentModelFullName;
@@ -108,19 +113,16 @@ private:
     CStringArray* m_pArrayPageName;
     CString m_ParentModelFullName;
     CString m_PageName;
-    ZDProcessGraphModelMdl* m_pModel;
-    ZDProcessGraphModelMdl* m_pParentModel;
+    PSS_ProcessGraphModelMdl* m_pModel;
+    PSS_ProcessGraphModelMdl* m_pParentModel;
 
     // Set of elements that can be displayed in the tree
     PSS_RuntimeClassSet* m_pSet;
 };
 
-inline ZDProcessGraphModelMdl*    ZVInsertLinkModelPageDlg::GetParentModel() const
+inline PSS_ProcessGraphModelMdl* ZVInsertLinkModelPageDlg::GetParentModel() const
 {
     return m_pParentModel;
 }
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVINSERTLINKMODELPAGEDLG_H__BD317299_FA94_4B3D_9AE7_BD95F07744CE__INCLUDED_)
+#endif

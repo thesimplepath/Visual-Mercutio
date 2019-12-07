@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------
 // ZUExtractModelAttributes
 //---------------------------------------------------------------------------
-ZUExtractModelAttributes::ZUExtractModelAttributes(ZDProcessGraphModelMdl* pModel, void* pClass) :
+ZUExtractModelAttributes::ZUExtractModelAttributes(PSS_ProcessGraphModelMdl* pModel, void* pClass) :
     ZUModelNavigation(pModel, pClass)
 {}
 //---------------------------------------------------------------------------

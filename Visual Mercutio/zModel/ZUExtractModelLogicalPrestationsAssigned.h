@@ -42,7 +42,7 @@ class AFX_EXT_CLASS ZUExtractModelLogicalPrestationsAssigned : public ZUModelNav
 {
 public:
 
-    ZUExtractModelLogicalPrestationsAssigned(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    ZUExtractModelLogicalPrestationsAssigned(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUExtractModelLogicalPrestationsAssigned();
 
     CODComponentSet& GetComponentSet()

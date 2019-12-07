@@ -224,7 +224,7 @@ bool ZBPropertyAttributes::Match(ZBPropertySet&    PropSet,
 
         CString Value;
 
-        // Retreive the formatted value
+        // Retrieve the formatted value
         switch (pProp->GetPTValueType())
         {
             case ZBProperty::PT_DOUBLE:
@@ -340,7 +340,7 @@ CString ZBPropertyAttributes::GetString(ZBPropertySet* pPropSet, bool KeepOnlyNo
             Format += _T(": ");
         }
 
-        // Retreive the formatted value
+        // Retrieve the formatted value
         switch (pProp->GetPTValueType())
         {
             case ZBProperty::PT_DOUBLE:

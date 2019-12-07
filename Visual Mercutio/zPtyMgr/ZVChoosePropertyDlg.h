@@ -19,12 +19,14 @@
 #include "ZCPropertyListCtrl.h"
 #include "zPtyMgr\zPtyMgrRes.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
 class ZBDynamicPropertiesManager;
-class ZDProcessGraphModelMdl;
-
-
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZPTYMGREXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -47,13 +49,13 @@ public:
     ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType = 0, bool Selection = true, 
                         bool AllowItemSelection = true, bool AllowCategorySelection = false, 
                         ZBDynamicPropertiesManager* pPropManager = NULL, 
-                        ZDProcessGraphModelMdl* pModel = NULL, 
+                        PSS_ProcessGraphModelMdl* pModel = NULL,
                         CWnd* pParent = NULL);   // standard constructor
 
     ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType = 0, bool Selection = true,  
                         bool AllowItemSelection = true, bool AllowCategorySelection = false, 
                         ZBDynamicPropertiesManager* pPropManager = NULL, 
-                        ZDProcessGraphModelMdl* pModel = NULL, 
+                        PSS_ProcessGraphModelMdl* pModel = NULL,
                         CWnd* pParent = NULL);   // standard constructor
     
 
@@ -109,10 +111,7 @@ private:
     bool m_AllowCategorySelection;
     bool m_Selection;
     ZBDynamicPropertiesManager* m_pPropManager;
-    ZDProcessGraphModelMdl* m_pModel;
+    PSS_ProcessGraphModelMdl* m_pModel;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVCHOOSEPROPERTYDLG_H__D54FCF65_CB5E_4A17_AFE2_651929FCCF12__INCLUDED_)
+#endif

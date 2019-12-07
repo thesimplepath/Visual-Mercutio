@@ -41,7 +41,7 @@ static char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBDurationRecalculationAutomate::ZBDurationRecalculationAutomate(ZBSymbol*                    pSymbol,
-                                                                 ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                                 PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                  PSS_Log*                    pLog    /*= NULL*/)
     : ZBBPAutomate(pSymbol, pModel, pLog),
     m_Pass(0) // Initialize the pass to zero (first pass)
@@ -297,7 +297,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
         {
             ZBBPDoorSymbol* pTwinDoor = pSymbol->GetTwinDoorSymbol();
 
-            // Retreive the leaving edge of the target door
+            // Retrieve the leaving edge of the target door
             // We need to have a link
             CODEdgeArray LeavingEdges;
             size_t LeavingLinkCount = pTwinDoor->GetEdgesLeaving(LeavingEdges);
@@ -530,7 +530,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                                                                         ZBBPProcedureSymbol* pProcedure,
                                                                         PSS_Log*             pLog)
 {
-    // Retreive entering edges
+    // Retrieve entering edges
     // for the maximum duration, the entering deliverables are added 
     // and not used in the maximum
     CODEdgeArray EnteringEdgesRight;
@@ -837,7 +837,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
     // To detect that, we need to check if we have a coming up
     // deliverable.
     // if not, do nothing.
-    // Retreive entering edges for laterals
+    // Retrieve entering edges for laterals
     CODEdgeArray EnteringEdgesRight;
     CODEdgeArray EnteringEdgesLeft;
     pProcedure->GetEdgesEntering_Right(EnteringEdgesRight);

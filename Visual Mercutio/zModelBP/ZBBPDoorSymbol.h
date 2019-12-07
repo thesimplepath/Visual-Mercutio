@@ -18,8 +18,13 @@
 
 #include "zModel\ZBSymbol.h"
 
-// Forward declaration
-class ZDProcessGraphModelMdl;
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -55,13 +60,13 @@ public:
     virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
 
     // Return the model door
-    ZDProcessGraphModelMdl* GetModelDoor();
+    PSS_ProcessGraphModelMdl* GetModelDoor();
 
     // Set a new model to the door
-    bool SetDoorModel(ZDProcessGraphModelMdl* pModel);
+    bool SetDoorModel(PSS_ProcessGraphModelMdl* pModel);
 
     // Recalculate the door reference for a given twin door name
-    void RecalculateTwinDoorReference(ZDProcessGraphModelMdl* pRootModel);
+    void RecalculateTwinDoorReference(PSS_ProcessGraphModelMdl* pRootModel);
 
     int GetTwinDoorReferenceNumber() const
     {

@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUAssignDynamicAttributesToModel::ZUAssignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/,
+ZUAssignDynamicAttributesToModel::ZUAssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel /*= NULL*/,
                                                                    ZBProperty* pProperty /*= NULL*/,
                                                                    CRuntimeClass* pRTClass /*= NULL*/,
                                                                    void* pClass /*= NULL*/)

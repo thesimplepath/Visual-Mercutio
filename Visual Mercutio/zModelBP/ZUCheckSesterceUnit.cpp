@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUCheckSesterceUnit::ZUCheckSesterceUnit(ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
+ZUCheckSesterceUnit::ZUCheckSesterceUnit(PSS_ProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
     : ZUProcessNavigation(pModel, pClass)
 {}
 
@@ -57,8 +57,8 @@ bool ZUCheckSesterceUnit::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
     if (!pSymbol->GetUnitGUID().IsEmpty())
     {
         bool Error;
-        // Retreive the price defined and copy it to the symbol
-        float UnitCost = pSymbol->RetreiveUnitCost(pSymbol->GetUnitGUID(), Error);
+        // Retrieve the price defined and copy it to the symbol
+        float UnitCost = pSymbol->RetrieveUnitCost(pSymbol->GetUnitGUID(), Error);
         if (!Error)
             pSymbol->SetUnitCost(UnitCost);
         else
@@ -84,8 +84,8 @@ bool ZUCheckSesterceUnit::OnStartSymbol(ZBBPStartSymbol* pSymbol)
     if (!pSymbol->GetUnitGUID().IsEmpty())
     {
         bool Error;
-        // Retreive the price defined and copy it to the symbol
-        float UnitCost = pSymbol->RetreiveUnitCost(pSymbol->GetUnitGUID(), Error);
+        // Retrieve the price defined and copy it to the symbol
+        float UnitCost = pSymbol->RetrieveUnitCost(pSymbol->GetUnitGUID(), Error);
         if (!Error)
             pSymbol->SetUnitCost(UnitCost);
         else
@@ -111,8 +111,8 @@ bool ZUCheckSesterceUnit::OnStopSymbol(ZBBPStopSymbol* pSymbol)
     if (!pSymbol->GetUnitGUID().IsEmpty())
     {
         bool Error;
-        // Retreive the price defined and copy it to the symbol
-        float UnitCost = pSymbol->RetreiveUnitCost(pSymbol->GetUnitGUID(), Error);
+        // Retrieve the price defined and copy it to the symbol
+        float UnitCost = pSymbol->RetrieveUnitCost(pSymbol->GetUnitGUID(), Error);
         if (!Error)
             pSymbol->SetUnitCost(UnitCost);
         else

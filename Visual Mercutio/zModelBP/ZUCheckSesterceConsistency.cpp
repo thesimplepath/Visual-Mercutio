@@ -44,7 +44,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUCheckSesterceConsistency::ZUCheckSesterceConsistency(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUCheckSesterceConsistency::ZUCheckSesterceConsistency(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                        PSS_Log*                    pLog    /*= NULL*/)
     : m_pModel(pModel),
     m_pLog(pLog)

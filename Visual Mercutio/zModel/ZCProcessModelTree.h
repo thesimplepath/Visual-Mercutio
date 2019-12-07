@@ -4,10 +4,10 @@
 #define AFX_ZCPROCESSMODELTREE_H__BF391ECD_8805_4220_A368_C992B623A66E__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -19,13 +19,13 @@
 #include "PSS_ModelTree.h"
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - Le 3 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -35,7 +35,7 @@
 
 class AFX_EXT_CLASS ZCProcessModelTree : public PSS_TreeCtrl
 {
-    DECLARE_DYNCREATE( ZCProcessModelTree )
+    DECLARE_DYNCREATE(ZCProcessModelTree)
 
 public:
 
@@ -43,19 +43,19 @@ public:
     ZCProcessModelTree();
     virtual ~ZCProcessModelTree();
 
-// Operations
+    // Operations
 public:
 
-    void Initialize( const CString        ModelName,
-                     ZBModelSet*        pModelSet,
-                     UINT                nIDImageRes,
-                     PSS_RuntimeClassSet*    pSet            = NULL,
-                     bool                EnableMenuItems    = true );
+    void Initialize(const CString        ModelName,
+                    ZBModelSet*        pModelSet,
+                    UINT                nIDImageRes,
+                    PSS_RuntimeClassSet*    pSet = NULL,
+                    bool                EnableMenuItems = true);
 
     void Refresh();
     void Empty();
 
-    ZDProcessGraphModelMdl* GetSelectedModel()
+    PSS_ProcessGraphModelMdl* GetSelectedModel()
     {
         return m_ModelTree.GetSelectedModel();
     };
@@ -70,7 +70,7 @@ public:
         return m_ModelTree.GetSelectedPage();
     };
 
-    ZDProcessGraphModelMdl* GetSelectedOwnerModel()
+    PSS_ProcessGraphModelMdl* GetSelectedOwnerModel()
     {
         return m_ModelTree.GetSelectedOwnerModel();
     };
@@ -85,20 +85,20 @@ public:
         return m_ModelTree.IsDocumentSelected();
     };
 
-    void AddModel( ZDProcessGraphModelMdl* pModel );
-    void RemoveModel( ZDProcessGraphModelMdl* pModel );
+    void AddModel(PSS_ProcessGraphModelMdl* pModel);
+    void RemoveModel(PSS_ProcessGraphModelMdl* pModel);
 
-    void AddModelSet( ZBModelSet* pModelSet );
-    void RemoveModelSet( ZBModelSet* pModelSet );
+    void AddModelSet(ZBModelSet* pModelSet);
+    void RemoveModelSet(ZBModelSet* pModelSet);
 
-    void AddSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL, bool CheckUnique = true );
-    void RemoveSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL );
-    void ModifySymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL );
+    void AddSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL, bool CheckUnique = true);
+    void RemoveSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
+    void ModifySymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
-    virtual int HasContextMenu( CWnd* pWnd, CPoint point );
-    virtual void DisplayContextMenu( CWnd* pWnd, CPoint point );
+    virtual int HasContextMenu(CWnd* pWnd, CPoint point);
+    virtual void DisplayContextMenu(CWnd* pWnd, CPoint point);
 
 protected:
 
@@ -150,9 +150,4 @@ inline int ZCProcessModelTree::GetIndexOfNoDropImage() const
     return 12;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZCPROCESSMODELTREE_H__BF391ECD_8805_4220_A368_C992B623A66E__INCLUDED_)
+#endif

@@ -45,7 +45,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUCheckSymbolConsistency::ZUCheckSymbolConsistency(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUCheckSymbolConsistency::ZUCheckSymbolConsistency(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                    PSS_Log*                    pLog    /*= NULL*/)
     : m_pModel(pModel),
     m_pLog(pLog),
@@ -109,9 +109,9 @@ bool ZUCheckSymbolConsistency::CheckSymbol(CODComponent& Symbol, BOOL ModelIsCle
     {
         dynamic_cast<PSS_LinkSymbol&>(Symbol).AcceptVisitor(*this);
     }
-    else if (ISA(pSymbol, ZDProcessGraphModelMdl))
+    else if (ISA(pSymbol, PSS_ProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl&>(Symbol).AcceptVisitor(*this);
+        dynamic_cast<PSS_ProcessGraphModelMdl&>(Symbol).AcceptVisitor(*this);
     }
 
     // If log required

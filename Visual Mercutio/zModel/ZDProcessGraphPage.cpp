@@ -18,7 +18,7 @@ IMPLEMENT_SERIAL(ZDProcessGraphPage, CObject, g_DefVersion)
 //////////////////////////////////////////////////////////////////////
 
 ZDProcessGraphPage::ZDProcessGraphPage( const CString            PageName    /*= ""*/,
-                                        ZDProcessGraphModelMdl*    pModel        /*= NULL*/ )
+                                       PSS_ProcessGraphModelMdl*    pModel        /*= NULL*/ )
     : m_PageName( PageName ),
       m_pModel    ( pModel )
 {

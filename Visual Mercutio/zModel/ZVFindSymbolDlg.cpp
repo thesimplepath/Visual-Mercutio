@@ -15,7 +15,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVFindSymbolDlg dialog
 
 
-ZVFindSymbolDlg::ZVFindSymbolDlg(ZDProcessGraphModelMdl& Mdl, UINT nIDRes, CWnd* pParent /*=NULL*/)
+ZVFindSymbolDlg::ZVFindSymbolDlg(PSS_ProcessGraphModelMdl& Mdl, UINT nIDRes, CWnd* pParent /*=NULL*/)
     : PSS_Dialog(ZVFindSymbolDlg::IDD, TRUE, pParent),
       m_Model(Mdl),
       m_pSymbol(NULL),
@@ -81,7 +81,7 @@ void ZVFindSymbolDlg::OnFind()
 {
     UpdateData();
     
-    ZDProcessGraphModelMdl* pModel = &m_Model;
+    PSS_ProcessGraphModelMdl* pModel = &m_Model;
     if (m_InAllModels)
         pModel = m_Model.GetRoot();
 

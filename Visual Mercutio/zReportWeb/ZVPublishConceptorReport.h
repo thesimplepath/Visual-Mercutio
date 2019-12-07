@@ -101,7 +101,7 @@ private:
 
 private:
 
-    ZDProcessGraphModelMdl*                m_pRootModel;
+    PSS_ProcessGraphModelMdl*                m_pRootModel;
     ZDProcessGraphModelMdlBP*            m_pModel;
     PSS_ProcessGraphModelDoc*                m_pSourceDoc;
     ZBBPProcessSymbol*                    m_pPreviousProcess;

@@ -25,11 +25,14 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // Forward declaration
 class PSS_ProcessModelDocTmpl;
 class PSS_ProcessGraphModelDoc;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -108,7 +111,7 @@ public:
         return m_pPackageDoc;
     }
 
-    bool LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent = NULL);
+    bool LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, PSS_ProcessGraphModelMdl* pParent = NULL);
     bool UnloadPackage();
 
     bool IsLinkedToFileName() const

@@ -373,7 +373,7 @@ CODComponent* ZBSymbol::GetLocalSymbol()
         return NULL;
     }
 
-    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+    PSS_ProcessGraphModelMdl* pRootModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
     if (pRootModel)
     {
@@ -396,7 +396,7 @@ CODComponentSet* ZBSymbol::GetReferenceSymbols()
         return NULL;
     }
 
-    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+    PSS_ProcessGraphModelMdl* pRootModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
     if (pRootModel)
     {
@@ -456,7 +456,7 @@ CODModel* ZBSymbol::GetOwnerModel()
     while (pComp)
     {
         // If a model, return it
-        if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
+        if (pComp && ISA(pComp, PSS_ProcessGraphModelMdl))
         {
             return dynamic_cast<CODModel*>(pComp);
         }
@@ -473,9 +473,9 @@ CODModel* ZBSymbol::GetRootModel()
     CODModel* pModel = GetOwnerModel();
 
     // If the model is a GraphModel, return the root model
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        return dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetRoot();
+        return dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetRoot();
     }
 
     // Otherwise, return NULL;
@@ -536,14 +536,14 @@ bool ZBSymbol::IsNewNameValid(const CString value) const
 
     CODComponent* pComp = GetParent();
 
-    if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
+    if (pComp && ISA(pComp, PSS_ProcessGraphModelMdl))
     {
         // If not the same and
         // If already exists,
         // display an error message
         // and put back the initial value
         if (value != const_cast<ZBSymbol*>(this)->GetSymbolName() &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pComp)->GetRoot()->SymbolNameAlreadyAllocated(value))
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(pComp)->GetRoot()->SymbolNameAlreadyAllocated(value))
         {
             PSS_MsgBox mBox;
             mBox.Show(IDS_SYMBOLNAME_ALREADYEXIST, MB_OK);
@@ -616,7 +616,7 @@ BOOL ZBSymbol::SetSymbolName(const CString& value)
             SetProperty(&BasicProps);
 
             // Advise the owner model of symbol changes
-            ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+            PSS_ProcessGraphModelMdl* pRootModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
             if (pRootModel)
             {
@@ -631,7 +631,7 @@ BOOL ZBSymbol::SetSymbolName(const CString& value)
             // Build the message
             ZBDocObserverMsg DocMsg(ZBDocObserverMsg::ChangedElement,
                                     NULL,
-                                    dynamic_cast<ZDProcessGraphModelMdl*>(GetOwnerModel()),
+                                    dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel()),
                                     this);
 
             AfxGetMainWnd()->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, (LPARAM)&DocMsg);
@@ -775,14 +775,14 @@ BOOL ZBSymbol::SetSymbolReferenceNumberStr(const CString& value)
     return TRUE;
 }
 
-CString ZBSymbol::RetreiveUnitGUID(const CString Name, bool& Error) const
+CString ZBSymbol::RetrieveUnitGUID(const CString Name, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreiveUnitGUID(Name, Error);
+        return pModel->RetrieveUnitGUID(Name, Error);
     }
 
     Error = true;
@@ -790,14 +790,14 @@ CString ZBSymbol::RetreiveUnitGUID(const CString Name, bool& Error) const
     return _T("");
 }
 
-CString ZBSymbol::RetreiveUnitName(const CString GUID, bool& Error) const
+CString ZBSymbol::RetrieveUnitName(const CString GUID, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreiveUnitName(GUID, Error);
+        return pModel->RetrieveUnitName(GUID, Error);
     }
 
     Error = true;
@@ -805,14 +805,14 @@ CString ZBSymbol::RetreiveUnitName(const CString GUID, bool& Error) const
     return _T("");
 }
 
-CString ZBSymbol::RetreiveUnitDescription(const CString GUID, bool& Error) const
+CString ZBSymbol::RetrieveUnitDescription(const CString GUID, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreiveUnitDescription(GUID, Error);
+        return pModel->RetrieveUnitDescription(GUID, Error);
     }
 
     Error = true;
@@ -820,14 +820,14 @@ CString ZBSymbol::RetreiveUnitDescription(const CString GUID, bool& Error) const
     return _T("");
 }
 
-float ZBSymbol::RetreiveUnitCost(const CString GUID, bool& Error) const
+float ZBSymbol::RetrieveUnitCost(const CString GUID, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreiveUnitCost(GUID, Error);
+        return pModel->RetrieveUnitCost(GUID, Error);
     }
 
     Error = true;
@@ -835,14 +835,14 @@ float ZBSymbol::RetreiveUnitCost(const CString GUID, bool& Error) const
     return 0;
 }
 
-CString ZBSymbol::RetreiveLogicalSystemGUID(const CString Name, bool& Error) const
+CString ZBSymbol::RetrieveLogicalSystemGUID(const CString Name, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreiveLogicalSystemGUID(Name, Error);
+        return pModel->RetrieveLogicalSystemGUID(Name, Error);
     }
 
     Error = true;
@@ -850,14 +850,14 @@ CString ZBSymbol::RetreiveLogicalSystemGUID(const CString Name, bool& Error) con
     return _T("");
 }
 
-CString ZBSymbol::RetreiveLogicalSystemName(const CString GUID, bool& Error) const
+CString ZBSymbol::RetrieveLogicalSystemName(const CString GUID, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreiveLogicalSystemName(GUID, Error);
+        return pModel->RetrieveLogicalSystemName(GUID, Error);
     }
 
     Error = true;
@@ -865,14 +865,14 @@ CString ZBSymbol::RetreiveLogicalSystemName(const CString GUID, bool& Error) con
     return _T("");
 }
 
-CString ZBSymbol::RetreiveLogicalSystemDescription(const CString GUID, bool& Error) const
+CString ZBSymbol::RetrieveLogicalSystemDescription(const CString GUID, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreiveLogicalSystemDescription(GUID, Error);
+        return pModel->RetrieveLogicalSystemDescription(GUID, Error);
     }
 
     Error = true;
@@ -880,15 +880,15 @@ CString ZBSymbol::RetreiveLogicalSystemDescription(const CString GUID, bool& Err
     return _T("");
 }
 
-// JMR-MODIF - Le 27 février 2006 - Ajout de la fonction RetreivePrestationName pour mettre à jour les prestations.
-CString ZBSymbol::RetreivePrestationName(const CString GUID, bool& Error) const
+// JMR-MODIF - Le 27 février 2006 - Ajout de la fonction RetrievePrestationName pour mettre à jour les prestations.
+CString ZBSymbol::RetrievePrestationName(const CString GUID, bool& Error) const
 {
-    ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pModel =
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
     if (pModel)
     {
-        return pModel->RetreivePrestationName(GUID, Error);
+        return pModel->RetrievePrestationName(GUID, Error);
     }
 
     Error = true;
@@ -1043,8 +1043,8 @@ bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= fals
         CODModel * pModel = GetRootModel();
 
         // If messenger activated
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetUseWorkflow())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetUseWorkflow())
         {
             if (!ZBExtAppPropertyMgr::FillPropertiesMessenger(PropSet, NumericValue, GroupValue))
             {
@@ -1064,8 +1064,8 @@ bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= fals
         // RS-MODIF 11.12.04 segregation conceptor
         CODModel * pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetUseWorkflow()) // if messenger activated
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetUseWorkflow()) // if messenger activated
         {
             if (!ZBExtFilePropertyMgr::FillPropertiesMessenger(PropSet, NumericValue, GroupValue))
             {
@@ -1255,14 +1255,14 @@ bool ZBSymbol::CheckPropertyValue(ZBProperty& Property, CString& value, ZBProper
         {
             CODComponent* pComp = GetParent();
 
-            if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
+            if (pComp && ISA(pComp, PSS_ProcessGraphModelMdl))
             {
                 // If not the same and
                 // If already exists,
                 // display an error message
                 // and put back the initial value
                 if (value != GetSymbolReferenceNumberStr() &&
-                    dynamic_cast<ZDProcessGraphModelMdl*>(pComp)->GetRoot()->ReferenceNumberAlreadyAllocated(value))
+                    dynamic_cast<PSS_ProcessGraphModelMdl*>(pComp)->GetRoot()->ReferenceNumberAlreadyAllocated(value))
                 {
                     PSS_MsgBox mBox;
                     mBox.Show(IDS_REFERENCENUMBER_ALREADYEXIST, MB_OK);
@@ -1424,9 +1424,9 @@ void ZBSymbol::RedrawSymbol()
     // If the parent is a model
     CODComponent* pComp = GetParent();
 
-    if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
+    if (pComp && ISA(pComp, PSS_ProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl*>(pComp)->ReDrawComponent(*this);
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pComp)->RedrawComponent(*this);
     }
 }
 
@@ -1929,7 +1929,7 @@ size_t ZBSymbol::GetEdgesLeaving(CODEdgeArray& Edges)
 
 size_t ZBSymbol::GetEdgesLeaving_Name(const CString Name, CODEdgeArray& Edges)
 {
-    // Retreive all leaving edges
+    // Retrieve all leaving edges
     if (GetEdgesLeaving(Edges) == 0)
     {
         return 0;
@@ -2002,7 +2002,7 @@ size_t ZBSymbol::GetEdgesEntering(CODEdgeArray& Edges)
 
 size_t ZBSymbol::GetEdgesEntering_Name(const CString Name, CODEdgeArray& Edges)
 {
-    // Retreive all entering edges
+    // Retrieve all entering edges
     if (GetEdgesEntering(Edges) == 0)
     {
         return 0;
@@ -2099,9 +2099,9 @@ void ZBSymbol::Serialize(CArchive& ar)
             ar << m_Attributes;
 
             // Keep the child model pathname if there is one
-            if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
+            if (m_pModel && ISA(m_pModel, PSS_ProcessGraphModelMdl))
             {
-                ar << dynamic_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetAbsolutePath();
+                ar << dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->GetAbsolutePath();
             }
             else
             {

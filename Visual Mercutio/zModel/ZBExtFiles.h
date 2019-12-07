@@ -110,7 +110,7 @@ public:
 
     // Return true if the extfile already exists
     bool ExtFileExist( const CString fileName ) const;
-    // Retreive the right extfile properties base on the extfile file name
+    // Retrieve the right extfile properties base on the extfile file name
     ZBExtFileProperties* LocateExtFile( const CString fileName ) const;
 
     ZBExtFilePropertiesSet& GetExtFileSet()

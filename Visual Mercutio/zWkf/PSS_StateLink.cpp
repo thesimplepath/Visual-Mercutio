@@ -24,9 +24,9 @@ IMPLEMENT_SERIAL(PSS_StateLink, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_StateLink
 //---------------------------------------------------------------------------
-PSS_StateLink::PSS_StateLink(PSS_LinkSymbol*         pLinkSymbol,
-                             IELinkDirection         direction,
-                             ZDProcessGraphModelMdl* pModel) :
+PSS_StateLink::PSS_StateLink(PSS_LinkSymbol*           pLinkSymbol,
+                             IELinkDirection           direction,
+                             PSS_ProcessGraphModelMdl* pModel) :
     CObject(),
     m_pModel(pModel),
     m_pLinkSymbol(pLinkSymbol),

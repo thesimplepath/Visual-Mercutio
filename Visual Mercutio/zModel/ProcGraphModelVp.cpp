@@ -33,11 +33,11 @@ PSS_ProcessGraphModelController* ZIProcessGraphModelViewport::GetModelController
     return dynamic_cast<PSS_ProcessGraphModelController*>(GetController());
 }
 
-ZDProcessGraphModelMdl*    ZIProcessGraphModelViewport::GetModel()
+PSS_ProcessGraphModelMdl* ZIProcessGraphModelViewport::GetModel()
 {
-    if (GetCanvasModel() && ISA(GetCanvasModel(), ZDProcessGraphModelMdl))
+    if (GetCanvasModel() && ISA(GetCanvasModel(), PSS_ProcessGraphModelMdl))
     {
-        return dynamic_cast<ZDProcessGraphModelMdl*>(GetCanvasModel());
+        return dynamic_cast<PSS_ProcessGraphModelMdl*>(GetCanvasModel());
     }
 
     return NULL;
@@ -70,7 +70,7 @@ void ZIProcessGraphModelViewport::SizeVp(PSS_DocumentPageSetup* PageSetup)
     SetHorizontalGridSpacing(mGridSpacing);
     SetVerticalGridSpacing(mGridSpacing);
 
-    // Retreive the model pointer
+    // Retrieve the model pointer
     CODModel* pModel = GetCanvasModel();
 
     if (pModel != NULL)
@@ -88,8 +88,8 @@ void ZIProcessGraphModelViewport::SizeVp(PSS_DocumentPageSetup* PageSetup)
 // JMR-MODIF - le 18 juillet 2005 - Ajouté la variable PageSetup à la fonction.
 void ZIProcessGraphModelViewport::UpdatePageLook(PSS_DocumentPageSetup* PageSetup)
 {
-    // Retreive the model pointer
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    // Retrieve the model pointer
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (pModel != NULL)
     {
@@ -219,7 +219,7 @@ BOOL ZIProcessGraphModelViewport::CreateController()
 }
 
 BOOL ZIProcessGraphModelViewport::AssignNewController(PSS_ProcessGraphModelController*    pCtlr,
-                                                      ZDProcessGraphModelMdl*            pModel)
+                                                      PSS_ProcessGraphModelMdl*            pModel)
 {
     if (pCtlr)
     {

@@ -22,7 +22,7 @@ IMPLEMENT_DYNAMIC(ZBDocObserverMsg, PSS_ObserverMsg)
 
 ZBDocObserverMsg::ZBDocObserverMsg(MessageActionType        actionType    /*= NoAction*/,
                                    PSS_ProcessGraphModelDoc*    pDoc        /*= NULL*/,
-                                   ZDProcessGraphModelMdl*    pModel        /*= NULL*/,
+                                   PSS_ProcessGraphModelMdl*    pModel        /*= NULL*/,
                                    CODSymbolComponent*        pElement    /*= NULL*/) :
     PSS_ObserverMsg(),
     m_ActionType(actionType),

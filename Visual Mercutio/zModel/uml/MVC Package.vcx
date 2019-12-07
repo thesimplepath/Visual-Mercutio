@@ -2660,7 +2660,7 @@
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>bool GetPrinterPageSize(CSize &amp;PaperSize, short &amp;StandardSize, short &amp;Orientation, bool Retreive = false)</Value>
+                              <Value>bool GetPrinterPageSize(CSize &amp;PaperSize, short &amp;StandardSize, short &amp;Orientation, bool Retrieve = false)</Value>
                             </Tag>
                           </TaggedValues>
                         </MmOperation>
@@ -5380,26 +5380,26 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>RetreiveUnitDescription</Name>
+                      <Name>RetrieveUnitDescription</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString RetreiveUnitDescription(const CString Name, bool &amp;Error)</Value>
+                              <Value>CString RetrieveUnitDescription(const CString Name, bool &amp;Error)</Value>
                             </Tag>
                           </TaggedValues>
                         </MmOperation>
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>RetreiveUnitCost</Name>
+                      <Name>RetrieveUnitCost</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>float RetreiveUnitCost(const CString Name, bool &amp;Error)</Value>
+                              <Value>float RetrieveUnitCost(const CString Name, bool &amp;Error)</Value>
                             </Tag>
                           </TaggedValues>
                         </MmOperation>

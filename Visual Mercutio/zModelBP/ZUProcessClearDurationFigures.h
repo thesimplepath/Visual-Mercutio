@@ -50,7 +50,7 @@
 class AFX_EXT_CLASS ZUProcessClearDurationFigures : public ZUProcessNavigation
 {
 public:
-    ZUProcessClearDurationFigures(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    ZUProcessClearDurationFigures(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUProcessClearDurationFigures();
 
     // Call-back methods

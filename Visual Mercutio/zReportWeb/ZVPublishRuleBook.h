@@ -67,7 +67,7 @@ private:
 
 private:
 
-    ZDProcessGraphModelMdl*                m_pRootModel;
+    PSS_ProcessGraphModelMdl*                m_pRootModel;
 
     PSS_HtmlFile                          HtmlFile;
 

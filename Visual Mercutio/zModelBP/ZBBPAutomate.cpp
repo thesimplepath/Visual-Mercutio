@@ -46,11 +46,11 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBBPAutomate::ZBBPAutomate(ZDProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
+ZBBPAutomate::ZBBPAutomate(PSS_ProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
     : PSS_AutomationMachine(pModel, pLog)
 {}
 
-ZBBPAutomate::ZBBPAutomate(ZBSymbol* pSymbol, ZDProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
+ZBBPAutomate::ZBBPAutomate(ZBSymbol* pSymbol, PSS_ProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
     : PSS_AutomationMachine(pSymbol, pModel, pLog)
 {}
 

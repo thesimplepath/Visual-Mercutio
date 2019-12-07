@@ -23,11 +23,14 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward declarations
 class ZBSymbol;
 class PSS_ProcessGraphModelDoc;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -62,7 +65,7 @@ public:
 
     ZBDocObserverMsg(MessageActionType         actionType = NoAction,
                      PSS_ProcessGraphModelDoc* pDoc = NULL,
-                     ZDProcessGraphModelMdl*   pModel = NULL,
+                     PSS_ProcessGraphModelMdl* pModel = NULL,
                      CODSymbolComponent*       pElement = NULL);
 
     virtual ~ZBDocObserverMsg();
@@ -87,12 +90,12 @@ public:
         m_pDoc = value;
     };
 
-    ZDProcessGraphModelMdl* GetModel() const
+    PSS_ProcessGraphModelMdl* GetModel() const
     {
         return m_pModel;
     };
 
-    void SetModel(ZDProcessGraphModelMdl* value)
+    void SetModel(PSS_ProcessGraphModelMdl* value)
     {
         m_pModel = value;
     };
@@ -109,7 +112,7 @@ public:
 
 private:
     PSS_ProcessGraphModelDoc* m_pDoc;
-    ZDProcessGraphModelMdl*   m_pModel;
+    PSS_ProcessGraphModelMdl* m_pModel;
     CODSymbolComponent*       m_pElement;
     MessageActionType         m_ActionType;
 };

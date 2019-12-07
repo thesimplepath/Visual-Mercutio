@@ -326,11 +326,11 @@ ZBSymbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
     if (m_StartRootModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
@@ -461,11 +461,11 @@ PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
     if (m_StartRootModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
@@ -547,11 +547,11 @@ bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
     if (m_StartRootModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
@@ -603,8 +603,8 @@ bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
 
                                     GenerateHTMLPageHead(ProcessName);
 
-                                    ZDProcessGraphModelMdl* m_pOwnerModel =
-                                        (ZDProcessGraphModelMdl*)m_Process->GetOwnerModel();
+                                    PSS_ProcessGraphModelMdl* m_pOwnerModel =
+                                        (PSS_ProcessGraphModelMdl*)m_Process->GetOwnerModel();
 
                                     ZDProcessGraphPage* pPage = m_pRootModel->FindModelPage(m_pOwnerModel, true);
 
@@ -673,11 +673,11 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
     if (m_ChildModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_ChildModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_ChildModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())

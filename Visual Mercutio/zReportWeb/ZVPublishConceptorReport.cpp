@@ -276,7 +276,7 @@ bool ZVPublishConceptorReport::StartSection( CODNodeArray& Nodes )
 
         if ( m_IncludeDeliverables )
         {
-            // Retreive all leaving down deliverables
+            // Retrieve all leaving down deliverables
             CODEdgeArray Edges;
 
             if ( pStart->GetEdgesLeaving( Edges ) > 0 )
@@ -334,7 +334,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
     // Check if for the same unit
     bool Error;
 
-    CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
+    CString UnitName = pSymbol->RetrieveUnitName( pSymbol->GetUnitGUID(), Error );
 
     if ( m_UnitName == UnitName )
     {
@@ -384,7 +384,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
                     WriteLine( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_1 );
                     WriteLine( IDS_CONCEPTOR_HTML_56 );
 
-                    // Retreive all entering up deliverables
+                    // Retrieve all entering up deliverables
                     CODEdgeArray Edges;
 
                     if ( pSymbol->GetEnteringUpDeliverable( Edges ) > 0 )
@@ -415,7 +415,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
                     WriteLine( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_2 );
                     WriteLine( IDS_CONCEPTOR_HTML_62 );
 
-                    // Retreive all leaving right deliverables
+                    // Retrieve all leaving right deliverables
                     if ( pSymbol->GetEdgesLeaving_Right( Edges ) > 0 )
                     {
                         for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -440,7 +440,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
                         }
                     }
 
-                    // Retreive all leaving left deliverables
+                    // Retrieve all leaving left deliverables
                     if ( pSymbol->GetEdgesLeaving_Left( Edges ) > 0 )
                     {
                         for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -469,7 +469,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
                     WriteLine( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_3 );
                     WriteLine( IDS_CONCEPTOR_HTML_72 );
 
-                    // Retreive all entering right deliverables
+                    // Retrieve all entering right deliverables
                     if ( pSymbol->GetEdgesEntering_Right( Edges ) > 0 )
                     {
                         for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -494,7 +494,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
                         }
                     }
 
-                    // Retreive all entering left deliverables
+                    // Retrieve all entering left deliverables
                     if ( pSymbol->GetEdgesEntering_Left( Edges ) > 0 )
                     {
                         for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -592,7 +592,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
                     WriteLine( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_4 );
                     WriteLine( IDS_CONCEPTOR_HTML_100 );
 
-                    // Retreive all leaving down deliverables
+                    // Retrieve all leaving down deliverables
                     CODEdgeArray Edges;
 
                     if ( pSymbol->GetEdgesLeaving_Down( Edges ) > 0 )
@@ -637,7 +637,7 @@ bool ZVPublishConceptorReport::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
         {
             m_CurrentProcessName = pSymbol->GetSymbolName();
 
-            ZDProcessGraphModelMdl* pOwnerModel = (ZDProcessGraphModelMdl*)pSymbol->GetOwnerModel();
+            PSS_ProcessGraphModelMdl* pOwnerModel = (PSS_ProcessGraphModelMdl*)pSymbol->GetOwnerModel();
 
             if ( pOwnerModel )
             {
@@ -661,7 +661,7 @@ bool ZVPublishConceptorReport::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
             m_pPreviousProcess = pSymbol;
             m_CurrentProcessName = pSymbol->GetSymbolName();
 
-            ZDProcessGraphModelMdl* pOwnerModel = (ZDProcessGraphModelMdl*)pSymbol->GetOwnerModel();
+            PSS_ProcessGraphModelMdl* pOwnerModel = (PSS_ProcessGraphModelMdl*)pSymbol->GetOwnerModel();
 
             if ( pOwnerModel )
             {

@@ -66,11 +66,11 @@ void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, ZDProcessGr
     if (m_StartModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_StartModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_StartModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
@@ -149,11 +149,11 @@ void ZVPublishPrestationsReport::ExploreProcessHierarchy(CString                
     if (m_StartRootModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())

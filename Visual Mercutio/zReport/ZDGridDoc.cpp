@@ -232,10 +232,10 @@ void ZDGridDocument::SetPathName( LPCTSTR lpszPathName, BOOL bAddToMRU /*= TRUE*
     
     if ( pMgr )
     {
-        // Retreive the tab create info pointer array
+        // Retrieve the tab create info pointer array
         CArray<CGXTabCreateInfo*, CGXTabCreateInfo*>* pTabInfoArray = pMgr->GetTabCreateInfoArray();
 
-        // Retreive the size
+        // Retrieve the size
         int Count = pTabInfoArray->GetSize();
 
         for ( int i = 0; i < Count; ++i )

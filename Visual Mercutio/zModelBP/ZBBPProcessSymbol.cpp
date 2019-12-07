@@ -20,7 +20,7 @@
 #include "zProperty\ZBPropertyAttributes.h"
 
 // Global for model
-#include "zModel\ZAModelGlobal.h"
+#include "zModel\PSS_ModelGlobal.h"
 
 // JMR-MODIF - Le 25 janvier 2006 - Ajout des en-têtes pour la gestion des prestations.
 #include "zModel\ZBPrestationsEntity.h"
@@ -249,8 +249,8 @@ bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
         // D'abord, teste si l'entité est valide.
         CODModel * pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalPrestationsIsValid())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalPrestationsIsValid())
         {
             // L'entité n'est pas valide.
             PSS_MsgBox mBox;
@@ -284,8 +284,8 @@ bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
         // First, check if the rule is valid
         CODModel* pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
         {
             // Cannot delete all rules
             PSS_MsgBox mBox;
@@ -344,9 +344,9 @@ void ZBBPProcessSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 BOOL ZBBPProcessSymbol::SetSymbolName(const CString value)
 {
     // Change the model name first
-    if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
+    if (m_pModel && ISA(m_pModel, PSS_ProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl*>(m_pModel)->SetModelName(value);
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->SetModelName(value);
     }
 
     // Then, the symbol name
@@ -393,11 +393,11 @@ bool ZBBPProcessSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODControlle
         CreateEmptyChildModel(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel));
 
         // If a new model is defined, create the first page
-        if (m_pModel && !reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->HasPageSet())
+        if (m_pModel && !reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->HasPageSet())
         {
-            pRootModel->CreateNewPage(reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel),
+            pRootModel->CreateNewPage(reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel),
                                       _T(""),
-                                      reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel));
+                                      reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel));
         }
 
         return true;
@@ -422,13 +422,13 @@ bool ZBBPProcessSymbol::ProcessExtendedInput(ZBProperty&        Property,
         CODModel*    pModel = GetRootModel();
         CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+            CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
             if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             {
-                // Retreive the model's currency symbol
+                // Retrieve the model's currency symbol
                 CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
@@ -855,11 +855,11 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
     if (m_RootModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
@@ -937,11 +937,11 @@ int ZBBPProcessSymbol::GetDeliverablesInChildPages(CString& DeliverablesList)
     if (m_RootChldModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_RootChldModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_RootChldModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
@@ -1220,7 +1220,7 @@ void ZBBPProcessSymbol::UpdateValuesForThisDeliveryProperty(size_t Index)
                 {
                     CString Value;
 
-                    // Retreive the specific indexed token
+                    // Retrieve the specific indexed token
                     if ( Token.GetTokenAt( Index, Value ) )
                     {
                         SetDeliveryMain( Index, Value );
@@ -1364,13 +1364,13 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
     CString CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
-            // Retreive the model's currency symbol
+            // Retrieve the model's currency symbol
             CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
         }
     }
@@ -1422,8 +1422,8 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         for (i = 0; i < m_Rules.GetRulesCount(); i++)
         {
             // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
-            if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+            if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+                dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
             {
                 CString m_SafeName = GetRuleNameByGUID(p_MainRule, m_Rules.GetRuleGUID(i));
 
@@ -1641,17 +1641,17 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
     int DayPerMonth = -1;
     int DayPerYear = -1;
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
-            // Retreive the model's currency symbol
+            // Retrieve the model's currency symbol
             //CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
 
-            // Retreive the standard time definition
+            // Retrieve the standard time definition
             HourPerDay = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
             DayPerWeek = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
             DayPerMonth = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetDayPerMonth();
@@ -1697,7 +1697,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         CString myPropDesc;
         bool Error = false;
 
-        myCurNode->SetPrestationName(RetreivePrestationName(myCurNode->GetPrestationGUID(), Error));
+        myCurNode->SetPrestationName(RetrievePrestationName(myCurNode->GetPrestationGUID(), Error));
 
         myPropTitle.LoadString(IDS_Z_PRESTATIONS_TITLE);
         myPropTitleNbr.Format(_T(" %i"), ++i);
@@ -1741,8 +1741,8 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         PropSet.Add(pPrestations);
 
         // JMR-MODIF - Le 14 mars 2006 - La(les) prestation(s) suivante(s) est(sont) dépendante(s) de Sesterce.
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
         {
             myPropSubTitle.LoadString(IDS_Z_PRESTPROCESS_TITLE);
             myPropDesc.LoadString(IDS_Z_PRESTPROCESS_DESC);
@@ -1783,8 +1783,8 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
     // ***********************************************************************************************************
 
     // JMR-MODIF - Le 14 mars 2006 - La(les) prestation(s) suivante(s) est(sont) dépendante(s) de Sesterce.
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         ZBProperty* pSimProp;
 
@@ -1953,8 +1953,8 @@ PSS_Duration((double)m_WorkloadByDeliveries,
         PropSet.Add(pDelivery);
 
         // JMR-MODIF - Le 14 mars 2006 - La(les) prestation(s) suivante(s) est(sont) dépendante(s) de Sesterce.
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
         {
             PropName.LoadString(IDS_Z_DELIVERY_QUANTITY_NAME);
             PropDesc.LoadString(IDS_Z_DELIVERY_QUANTITY_DESC);

@@ -28,7 +28,7 @@ IMPLEMENT_SERIAL(PSS_StateMachine, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_StateMachine
 //---------------------------------------------------------------------------
-PSS_StateMachine::PSS_StateMachine(ZDProcessGraphModelMdl* pModel) :
+PSS_StateMachine::PSS_StateMachine(PSS_ProcessGraphModelMdl* pModel) :
     CObject(),
     m_pModel(pModel)
 {}
@@ -62,7 +62,7 @@ PSS_StateMachine* PSS_StateMachine::Clone() const
     return new PSS_StateMachine(*this);
 }
 //---------------------------------------------------------------------------
-void PSS_StateMachine::AssignModel(ZDProcessGraphModelMdl* pModel)
+void PSS_StateMachine::AssignModel(PSS_ProcessGraphModelMdl* pModel)
 {
     // assign the model
     m_pModel = pModel;

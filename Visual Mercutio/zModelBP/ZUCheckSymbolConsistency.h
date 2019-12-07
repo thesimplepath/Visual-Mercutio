@@ -15,6 +15,9 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class PSS_Log;
@@ -28,7 +31,7 @@ class ZBBPProcessSymbol;
 class ZBBPStartSymbol;
 class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class ZDProcessGraphModelMdlBP;
 class PSS_ProcessGraphModelController;
 
@@ -38,7 +41,7 @@ class ZUCheckSymbolConsistency : public PSS_BasicSymbolVisitor
 {
 public:
 
-    ZUCheckSymbolConsistency(ZDProcessGraphModelMdl*    pModel = NULL,
+    ZUCheckSymbolConsistency(PSS_ProcessGraphModelMdl*    pModel = NULL,
                              PSS_Log*                    pLog = NULL);
 
     virtual ~ZUCheckSymbolConsistency();
@@ -103,7 +106,7 @@ private:
     int*                    m_pIDArray;
     int                        m_RefIDSize;
 
-    ZDProcessGraphModelMdl*    m_pModel;
+    PSS_ProcessGraphModelMdl*    m_pModel;
 
     size_t                    m_ErrorCounter;
     size_t                    m_WarningCounter;

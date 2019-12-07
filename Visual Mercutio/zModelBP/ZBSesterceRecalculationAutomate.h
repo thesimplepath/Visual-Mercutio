@@ -19,7 +19,7 @@ class ZBSesterceRecalculationAutomate : public ZBBPAutomate
 {
 public:
 
-    ZBSesterceRecalculationAutomate(ZDProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
+    ZBSesterceRecalculationAutomate(PSS_ProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
     virtual ~ZBSesterceRecalculationAutomate();
 
     //////////////////////////////////////////////////////////////////////

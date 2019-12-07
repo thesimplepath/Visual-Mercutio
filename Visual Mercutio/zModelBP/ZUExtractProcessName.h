@@ -35,9 +35,14 @@
 
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
 // forward class declarations
 class ZBBPProcessSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
@@ -56,7 +61,7 @@ class AFX_EXT_CLASS ZUExtractProcessName : public PSS_BasicSymbolVisitor
 {
 public:
 
-    ZUExtractProcessName(ZDProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
+    ZUExtractProcessName(PSS_ProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
     virtual ~ZUExtractProcessName();
 
     // JMR-MODIF - Le 29 mars 2006 - Ajout du paramètre FirstElementToSort.
@@ -80,9 +85,9 @@ private:
 
 private:
 
-    PSS_Log*                m_pLog;
-    ZDProcessGraphModelMdl* m_pModel;
-    CStringArray*           m_pArray;
+    PSS_Log*                  m_pLog;
+    PSS_ProcessGraphModelMdl* m_pModel;
+    CStringArray*             m_pArray;
 };
 
 #endif

@@ -98,7 +98,7 @@ public:
         return m_ExternalApplications.ExtAppExist(CommandTitle);
     }
 
-    // Retreive the right ExtApp properties base on the ExtApp file name
+    // Retrieve the right ExtApp properties base on the ExtApp file name
     ZBExtAppProperties* LocateExtApp(const CString CommandTitle) const
     {
         return m_ExternalApplications.LocateExtApp(CommandTitle);

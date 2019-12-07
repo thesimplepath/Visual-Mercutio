@@ -38,7 +38,7 @@
 #include "ZUBuildGenericSymbolNewName.h"
 #include "ZVDynamicAttributesCreation.h"
 #include "ZUDynamicAttributesManipulator.h"
-#include "ZAModelGlobal.h"
+#include "PSS_ModelGlobal.h"
 
 // resources
 #include "zRes32\zRes.h"
@@ -224,20 +224,20 @@ const CDocument* PSS_ProcessGraphModelController::GetDocument() const
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_ProcessGraphModelController::GetModel()
+PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelController::GetModel()
 {
     if (!m_pViewport)
         return NULL;
 
-    return dynamic_cast<ZDProcessGraphModelMdl*>(m_pViewport->GetModel());
+    return dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pViewport->GetModel());
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_ProcessGraphModelController::GetRootModel()
+PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelController::GetRootModel()
 {
     if (!m_pViewport)
         return NULL;
 
-    ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(m_pViewport->GetModel());
+    PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pViewport->GetModel());
 
     if (pModel)
         return pModel->GetRoot();
@@ -265,8 +265,8 @@ CMenu* PSS_ProcessGraphModelController::CreateContextMenu()
     return CODController::CreateContextMenu();
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromModel(ZDProcessGraphModelMdl* pModel,
-                                                                                  ZDProcessGraphModelMdl* pParentModel)
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromModel(PSS_ProcessGraphModelMdl* pModel,
+                                                                                  PSS_ProcessGraphModelMdl* pParentModel)
 {
     ZIProcessGraphModelView* pView = GetView();
 
@@ -341,8 +341,8 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromMode
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(ZDProcessGraphModelMdl* pModel,
-                                                                          ZDProcessGraphModelMdl* pParentModel)
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(PSS_ProcessGraphModelMdl* pModel,
+                                                                          PSS_ProcessGraphModelMdl* pParentModel)
 {
     if (!pModel)
         return NULL;
@@ -376,7 +376,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProcess
 
     if (pView)
     {
-        ZDProcessGraphModelMdl* pModel = pPage->GetModel();
+        PSS_ProcessGraphModelMdl* pModel = pPage->GetModel();
 
         // is there any child model?
         if (pModel)
@@ -404,7 +404,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComp
 
         if (pView)
         {
-            ZDProcessGraphModelMdl* pModel = GetModel();
+            PSS_ProcessGraphModelMdl* pModel = GetModel();
 
             // is there any child model?
             if (!pSymbol->GetChildModel())
@@ -413,7 +413,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComp
             // end the text edit before going into the new model
             EndTextEdit(0, m_SavedEditPosition);
 
-            ZIProcessGraphModelViewport* pVp = BrowseModel((ZDProcessGraphModelMdl*)pSymbol->GetChildModel(), pModel);
+            ZIProcessGraphModelViewport* pVp = BrowseModel((PSS_ProcessGraphModelMdl*)pSymbol->GetChildModel(), pModel);
 
             // when open a new model, unselect all symbols
             UnselectAllComponents();
@@ -804,7 +804,7 @@ void PSS_ProcessGraphModelController::RedrawComponentSet(CODComponentSet& set)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::SelectAllComponents()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -923,7 +923,7 @@ CODComponent* PSS_ProcessGraphModelController::InsertSymbol(CODComponent* pComp,
     // reset the current command id
     m_CurrentCommandID = 0;
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return NULL;
@@ -1005,11 +1005,11 @@ CODComponent* PSS_ProcessGraphModelController::InsertSymbol(CODComponent* pComp,
         // initialize the text zone
         pTextZone->InitializeStyle();
 
-        ZDProcessGraphModelMdl* pModel = dynamic_cast<ZDProcessGraphModelMdl*>(pTextZone->GetParent());
+        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pTextZone->GetParent());
 
         // redraw the text zone
         if (pModel)
-            pModel->ReDrawComponent(*pTextZone);
+            pModel->RedrawComponent(*pTextZone);
 
         // notify about the new selection
         NotifySymbolSelected(pComp);
@@ -1212,7 +1212,7 @@ void PSS_ProcessGraphModelController::ReleaseClipboard()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::SetImage(const CString& fileName, BOOL isLogo)
 {
-    ZDProcessGraphModelMdl* pModel = GetRootModel();
+    PSS_ProcessGraphModelMdl* pModel = GetRootModel();
     ASSERT(pModel);
 
     std::unique_ptr<SECImage> pImage(ZIProcessGraphModelView::LoadImageFromFile(fileName));
@@ -1283,7 +1283,7 @@ void PSS_ProcessGraphModelController::SetImage(const CString& fileName, BOOL isL
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::ClearImage()
 {
-    ZDProcessGraphModelMdl* pModel = GetRootModel();
+    PSS_ProcessGraphModelMdl* pModel = GetRootModel();
     ASSERT(pModel);
 
     pModel->ClearBackgroundComponent(true);
@@ -1580,7 +1580,7 @@ CODDeleteCommand* PSS_ProcessGraphModelController::ExecuteDeleteCommand(CODCompo
 {
     if (pCompSet && !m_CutCommand)
     {
-        ZDProcessGraphModelMdl* pModel = GetModel();
+        PSS_ProcessGraphModelMdl* pModel = GetModel();
 
         // iterate through all components and call the PreDelete method.
         // If return false, remove the component from the set
@@ -1748,8 +1748,8 @@ void PSS_ProcessGraphModelController::OnSelectionChange(CODComponentSet* pChange
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZDProcessGraphModelMdl* pModel          = GetModel();
-    ZBSymbolLogObserverMsg* pLogObserverMsg = dynamic_cast<ZBSymbolLogObserverMsg*>(pMsg);
+    PSS_ProcessGraphModelMdl* pModel          = GetModel();
+    ZBSymbolLogObserverMsg*   pLogObserverMsg = dynamic_cast<ZBSymbolLogObserverMsg*>(pMsg);
 
     if (pLogObserverMsg)
     {
@@ -1808,7 +1808,7 @@ void PSS_ProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_Observ
     // update the background image
     if (pModel)
     {
-        ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+        PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
 
         if (pRoot && pRoot->IsBkGndMustBeRestored())
         {
@@ -2063,8 +2063,8 @@ void PSS_ProcessGraphModelController::EndTextEdit(UINT nFlags, CPoint point)
                     isNameValid = false;
                 }
 
-                ZDProcessGraphModelMdl* pModel = GetModel();
-                ZDProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
+                PSS_ProcessGraphModelMdl* pModel = GetModel();
+                PSS_ProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
 
                 if (pRoot)
                     if (pSymbol && pSymbol->GetSymbolName() != value)
@@ -2130,7 +2130,7 @@ void PSS_ProcessGraphModelController::EndLink(UINT flags, CPoint point)
 
     if (pLinkSymbol)
     {
-        ZDProcessGraphModelMdl* pModel = GetModel();
+        PSS_ProcessGraphModelMdl* pModel = GetModel();
 
         // assign the path
         if (pModel)
@@ -2323,8 +2323,8 @@ void PSS_ProcessGraphModelController::AssignLabelHit()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::DetermineReferencedSymbol(CODComponentSet* pCompSet)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
-    ZDProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
     ASSERT(pRoot);
 
     CODComponentIterator it(&m_CopySet);
@@ -2397,8 +2397,8 @@ void PSS_ProcessGraphModelController::DetermineReferencedSymbol(CODComponentSet*
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCompSet)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
-    CODComponentIterator    it(pCompSet);
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
+    CODComponentIterator      it(pCompSet);
 
     // iterate through components and detach symbol observers
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
@@ -2430,8 +2430,8 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(
 
     if (pDocument)
     {
-        ZDProcessGraphModelMdl* pModel       = pDocument->GetModel();
-        ZDProcessGraphModelMdl* pSymbolModel = pModel ? pModel->GetSymbolModel(pSymbol) : NULL;
+        PSS_ProcessGraphModelMdl* pModel       = pDocument->GetModel();
+        PSS_ProcessGraphModelMdl* pSymbolModel = pModel ? pModel->GetSymbolModel(pSymbol) : NULL;
 
         // if can't activate a view with model name, create a new view
         if (pSymbolModel)
@@ -2458,8 +2458,8 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLinkSymbolMo
 
     if (pDocument)
     {
-        ZDProcessGraphModelMdl* pModel       = pDocument->GetModel();
-        ZDProcessGraphModelMdl* pSymbolModel = pModel ? pModel->GetLinkSymbolModel(pSymbol) : NULL;
+        PSS_ProcessGraphModelMdl* pModel       = pDocument->GetModel();
+        PSS_ProcessGraphModelMdl* pSymbolModel = pModel ? pModel->GetLinkSymbolModel(pSymbol) : NULL;
 
         // if can't activate a view with model name, create a new view
         if (pSymbolModel)
@@ -2819,9 +2819,9 @@ void PSS_ProcessGraphModelController::OnLButtonDblClk(UINT flags, CPoint point)
 
     AssignSymbolHit();
 
-    ZDProcessGraphModelMdl* pModel         = GetModel();
-    ZBSymbol*               pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
-    PSS_LinkSymbol*         pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
+    PSS_ProcessGraphModelMdl* pModel         = GetModel();
+    ZBSymbol*                 pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_LinkSymbol*           pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // If the symbol has a child model, open it
     if (pSymbolHit && (pSymbolHit->GetChildModel() || pSymbolHit->CanContainChildModel()))
@@ -3252,7 +3252,7 @@ void PSS_ProcessGraphModelController::OnEditCut()
         return;
     }
 
-    ZDProcessGraphModelMdl* pRootModel = GetRootModel();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRootModel();
     ASSERT(pRootModel);
     pRootModel->SetInCutOperation(true);
 
@@ -3468,13 +3468,13 @@ void PSS_ProcessGraphModelController::OnEditPaste()
 
         pCanvasViewport->SetPasteInsertionPoint(holdInsertPoint);
 
-        ZDProcessGraphModelMdl* pRootModel = GetRootModel();
+        PSS_ProcessGraphModelMdl* pRootModel = GetRootModel();
 
         ASSERT(pRootModel);
         pRootModel->SetInCutOperation(false);
 
         // recalculate all references
-        pRootModel->RecalculateParentPtr();
+        pRootModel->RecalculateParent();
         pRootModel->RecalculateAbsolutePath();
     }
     else
@@ -3691,11 +3691,11 @@ void PSS_ProcessGraphModelController::OnChangeTextEdit()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnGoParentModel()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (pModel)
     {
-        ZDProcessGraphModelMdl* pParentModel = pModel->GetParent();
+        PSS_ProcessGraphModelMdl* pParentModel = pModel->GetParent();
 
         if (pParentModel)
             BrowseModel(pParentModel, pParentModel->GetParent());
@@ -3704,7 +3704,7 @@ void PSS_ProcessGraphModelController::OnGoParentModel()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateGoParentModel(CCmdUI* pCmdUI)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     pCmdUI->Enable(pModel && pModel->GetParent());
 }
 //---------------------------------------------------------------------------
@@ -3734,7 +3734,7 @@ void PSS_ProcessGraphModelController::OnUpdateBrowseSourceSymbol(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnFindSymbol()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -3788,12 +3788,12 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnInsertPage()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
 
-    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
 
     if (!pRoot)
         return;
@@ -3802,8 +3802,8 @@ void PSS_ProcessGraphModelController::OnInsertPage()
 
     if (dlg.DoModal() == IDOK)
     {
-        ZDProcessGraphModelMdl* pEmptyModel = pRoot->CreateEmptyModel(dlg.GetPageName(), dlg.GetParentModel());
-        ZDProcessGraphPage*     pPage       = pRoot->CreateNewPage(pEmptyModel, dlg.GetPageName(), dlg.GetParentModel());
+        PSS_ProcessGraphModelMdl* pEmptyModel = pRoot->CreateEmptyModel(dlg.GetPageName(), dlg.GetParentModel());
+        ZDProcessGraphPage*       pPage       = pRoot->CreateNewPage(pEmptyModel, dlg.GetPageName(), dlg.GetParentModel());
 
         BrowseModel(pEmptyModel, dlg.GetParentModel());
 
@@ -3824,12 +3824,12 @@ void PSS_ProcessGraphModelController::OnInsertPage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnRenamePage()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
 
-    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
 
     if (!pRoot)
         return;
@@ -3866,12 +3866,12 @@ void PSS_ProcessGraphModelController::OnRenamePage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnDeletePage()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
 
-    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
 
     if (!pRoot)
         return;
@@ -3911,12 +3911,12 @@ void PSS_ProcessGraphModelController::OnDeletePage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnRenameCurrentPage()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
 
-    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
 
     if (!pRoot)
         return;
@@ -3958,12 +3958,12 @@ void PSS_ProcessGraphModelController::OnRenameCurrentPage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnDeleteCurrentPage()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
 
-    ZDProcessGraphModelMdl* pRoot = pModel->GetRoot();
+    PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
 
     if (!pRoot)
         return;
@@ -3976,7 +3976,7 @@ void PSS_ProcessGraphModelController::OnDeleteCurrentPage()
 
     if (pModel->HasPageSet())
     {
-        ZBProcessGraphPageSet* pPageSet = pModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pPageSet = pModel->GetPageSet();
 
         if (pPageSet && pPageSet->GetAt(0) == pCurrentPage)
         {
@@ -4153,7 +4153,7 @@ void PSS_ProcessGraphModelController::OnClearBackgroundImage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnShowModelBorder()
 {
-    ZDProcessGraphModelMdl* pModel = GetRootModel();
+    PSS_ProcessGraphModelMdl* pModel = GetRootModel();
     ASSERT(pModel);
 
     pModel->SetShowPageBorder(!pModel->GetShowPageBorder());
@@ -4171,7 +4171,7 @@ void PSS_ProcessGraphModelController::OnShowModelBorder()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateShowModelBorder(CCmdUI* pCmdUI)
 {
-    ZDProcessGraphModelMdl* pModel = GetRootModel();
+    PSS_ProcessGraphModelMdl* pModel = GetRootModel();
     ASSERT(pModel);
     pCmdUI->SetCheck(pModel->GetShowPageBorder());
 }
@@ -4507,7 +4507,7 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
 
         case ID_APPLYTOALL:
         {
-            ZDProcessGraphModelMdl* pRoot = GetRootModel();
+            PSS_ProcessGraphModelMdl* pRoot = GetRootModel();
 
             // iterate through all elements and sets the new attributes
             if (pRoot)
@@ -4775,7 +4775,7 @@ void PSS_ProcessGraphModelController::OnRefresh()
 
     pViewport->UpdateAll();
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
 
     // refresh all symbol attributes

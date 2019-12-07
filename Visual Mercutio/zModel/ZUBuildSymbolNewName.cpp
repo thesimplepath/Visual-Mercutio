@@ -97,9 +97,9 @@ void ZUBuildSymbolNewName::_GetNextAvailableSymbolName(CODModel& Model)
 {
     CODModel* pModel = &Model;
 
-    if (ISA(pModel, ZDProcessGraphModelMdl))
+    if (ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl&>(Model).AcceptVisitor(*this);
+        dynamic_cast<PSS_ProcessGraphModelMdl&>(Model).AcceptVisitor(*this);
     }
 }
 

@@ -69,7 +69,7 @@ class PSS_BasicSymbol;
 class AFX_EXT_CLASS ZUDeleteDynamicAttributesToModel : public ZUModelNavigation
 {
 public:
-    ZUDeleteDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL,
+    ZUDeleteDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel = NULL,
                                      ZBProperty* pProperty = NULL,
                                      void* pClass = NULL);
     virtual ~ZUDeleteDynamicAttributesToModel();

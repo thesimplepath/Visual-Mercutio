@@ -21,7 +21,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVInsertLinkModelPageDlg dialog
 
 
-ZVInsertLinkModelPageDlg::ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pModel,
+ZVInsertLinkModelPageDlg::ZVInsertLinkModelPageDlg(PSS_ProcessGraphModelMdl* pModel,
                                                    const CString NewPageName /*= ""*/,
                                                    CStringArray* pArrayPageName /*= NULL*/,
                                                    PSS_RuntimeClassSet* pSet /*= NULL*/,

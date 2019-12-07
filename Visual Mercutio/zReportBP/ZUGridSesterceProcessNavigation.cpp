@@ -39,7 +39,7 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUGridSesterceProcessNavigation::ZUGridSesterceProcessNavigation( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUGridSesterceProcessNavigation::ZUGridSesterceProcessNavigation(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                   void*                        pClass    /*= NULL*/ )
     : ZUProcessNavigation( pModel, pClass )
 {

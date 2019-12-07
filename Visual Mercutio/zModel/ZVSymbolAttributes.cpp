@@ -192,7 +192,7 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
             CODLineComponent* pSplitter1 = new CODLineComponent;
             ASSERT( pSplitter1 );
 
-            // Retreive the edit box area rectangle
+            // Retrieve the edit box area rectangle
             CODComponent* pEditBoxArea = m_pSymbol->GetEditBoxArea();
 
             CODComponentPosition* pCompPosition =
@@ -322,7 +322,7 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
             CODLineComponent* pSplitter2 = new CODLineComponent;
             ASSERT( pSplitter2 );
 
-            // Retreive the edit box area rectangle
+            // Retrieve the edit box area rectangle
             CODComponent* pEditBoxArea = m_pSymbol->GetEditBoxArea();
 
             CODComponentPosition* pCompPosition =
@@ -696,7 +696,7 @@ void ZVSymbolAttributes::AdjustAreaPosition( CODLineComponent* pComp /*= NULL*/,
         ++CounterSplitter;
     }
 
-    // Retreive the component position
+    // Retrieve the component position
     CODComponentPosition* pCompPosition = dynamic_cast<CODComponent*>( m_pSymbol )->GetPosition();
     CRect rectSymbol                    = pCompPosition->GetBounds();
 
@@ -1888,7 +1888,7 @@ bool ZVSymbolAttributes::OnMouseMove( UINT nFlags, CPoint point, CODController& 
     // Tests if we are in splitter moving mode
     if ( gInMoveSplitterMode )
     {
-        // Retreive the device context to draw
+        // Retrieve the device context to draw
         CWnd* pWnd = Ctrl.GetWnd();
 
         if ( !pWnd )
@@ -2182,7 +2182,7 @@ bool ZVSymbolAttributes::OnLButtonUp( UINT nFlags, CPoint point, CODController& 
         Ctrl.ReleaseCapture();
         ::ClipCursor( NULL );
 
-        // Retreive the device context to draw
+        // Retrieve the device context to draw
         CWnd* pWnd = Ctrl.GetWnd();
 
         if ( !pWnd )

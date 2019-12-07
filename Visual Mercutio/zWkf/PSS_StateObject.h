@@ -30,12 +30,15 @@
 #include "PSS_StateLink.h"
 
 // class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
 
 // forward class declaration
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class ZBSymbol;
 class PSS_LinkSymbol;
 class PSS_StateLink;
@@ -69,7 +72,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         PSS_StateObject(ZBSymbol*                      pSymbol = NULL,
                         PSS_LinkSymbol*                pLinkSymbol = NULL,
                         PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_EnteringUp,
-                        ZDProcessGraphModelMdl*        pModel = NULL);
+                        PSS_ProcessGraphModelMdl*      pModel = NULL);
 
         /**
         * Constructor
@@ -77,9 +80,9 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@param pStateLink- state link
         *@param pModel - model
         */
-        PSS_StateObject(ZBSymbol*               pSymbol,
-                        PSS_StateLink*          pStateLink,
-                        ZDProcessGraphModelMdl* pModel = NULL);
+        PSS_StateObject(ZBSymbol*                 pSymbol,
+                        PSS_StateLink*            pStateLink,
+                        PSS_ProcessGraphModelMdl* pModel = NULL);
 
         /**
         * Copy constructor
@@ -105,7 +108,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         * Assigns a model
         *@param pModel - model to assign
         */
-        virtual void AssignModel(ZDProcessGraphModelMdl* pModel);
+        virtual void AssignModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Gets the symbol
@@ -223,9 +226,9 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         #endif
 
     private:
-        ZBSymbol*               m_pSymbol;
-        PSS_StateLinksSet       m_Set;
-        ZDProcessGraphModelMdl* m_pModel;
+        ZBSymbol*                 m_pSymbol;
+        PSS_StateLinksSet         m_Set;
+        PSS_ProcessGraphModelMdl* m_pModel;
 
         /**
         * Assigns the model to the state links

@@ -196,7 +196,7 @@ ZBProperty* ZBDynamicPropertiesManager::RegisterProperty( const CString         
                                                          PSS_StringFormat&            ft,
                                                           CRuntimeClass*            pSelectableClass /*= NULL*/)
 {
-    int CategoryID    = RetreiveCategoryID( Category );
+    int CategoryID    = RetrieveCategoryID( Category );
     int ItemID        = GetNextItemID        ( Category );
 
     ZBProperty* pProp = CreateProperty( Category, CategoryID, Item, ItemID, Description, DataType, ft );
@@ -222,7 +222,7 @@ ZBProperty* ZBDynamicPropertiesManager::RegisterProperty( const CString         
                                                           const CString                SymbolName,
                                                           int                        RefNumber )
 {
-    int CategoryID    = RetreiveCategoryID( Category );
+    int CategoryID    = RetrieveCategoryID( Category );
     int ItemID        = GetNextItemID        ( Category );
 
     ZBProperty* pProp = CreateProperty( Category, CategoryID, Item, ItemID, Description, DataType, ft );
@@ -240,7 +240,7 @@ ZBProperty* ZBDynamicPropertiesManager::RegisterProperty( const CString         
 }
 
 // Cette fonction permet d'obtenir l'ID d'une catégorie donnée, par rapport à son nom.
-int ZBDynamicPropertiesManager::RetreiveCategoryID( const CString Category )
+int ZBDynamicPropertiesManager::RetrieveCategoryID( const CString Category )
 {
     int CategoryID;
 

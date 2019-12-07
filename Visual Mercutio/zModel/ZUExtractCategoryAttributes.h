@@ -55,7 +55,7 @@
 class AFX_EXT_CLASS ZUExtractCategoryAttributes : public ZUModelNavigation, public PSS_KeepStringUsage
 {
 public:
-    ZUExtractCategoryAttributes(ZDProcessGraphModelMdl* pModel = NULL,
+    ZUExtractCategoryAttributes(PSS_ProcessGraphModelMdl* pModel = NULL,
                                 CStringArray* pStaticArray = NULL,
                                 CStringArray* pDynamicArray = NULL,
                                 void* pClass = NULL);

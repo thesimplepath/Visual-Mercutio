@@ -142,7 +142,7 @@ public:
     virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
     // Initialize the edit text value
     virtual void SetEditText(const CString& strText);
-    // Retreive the text entered
+    // Retrieve the text entered
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function

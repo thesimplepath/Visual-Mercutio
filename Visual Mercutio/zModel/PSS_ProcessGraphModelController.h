@@ -32,12 +32,15 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class definition
 class ZIProcessGraphModelViewport;
 class ZIProcessGraphModelView;
 class PSS_ProcessGraphModelDoc;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class ZDProcessGraphPage;
 
 #ifdef _ZMODELEXPORT
@@ -91,13 +94,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         * Gets the model
         *@return the model
         */
-        virtual ZDProcessGraphModelMdl* GetModel();
+        virtual PSS_ProcessGraphModelMdl* GetModel();
 
         /**
         * Gets the root model
         *@return the root model
         */
-        virtual ZDProcessGraphModelMdl* GetRootModel();
+        virtual PSS_ProcessGraphModelMdl* GetRootModel();
 
         /**
         * Refreshes the model tree
@@ -116,8 +119,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param pParentModel - the parent model
         *@return the newly created viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* CreateViewFromModel(ZDProcessGraphModelMdl* pModel,
-                                                                 ZDProcessGraphModelMdl* pParentModel);
+        virtual ZIProcessGraphModelViewport* CreateViewFromModel(PSS_ProcessGraphModelMdl* pModel,
+                                                                 PSS_ProcessGraphModelMdl* pParentModel);
 
         /**
         * Browses the model
@@ -125,8 +128,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param pParentModel - the parent model
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* BrowseModel(ZDProcessGraphModelMdl* pModel,
-                                                         ZDProcessGraphModelMdl* pParentModel);
+        virtual ZIProcessGraphModelViewport* BrowseModel(PSS_ProcessGraphModelMdl* pModel,
+                                                         PSS_ProcessGraphModelMdl* pParentModel);
 
         /**
         * Opens a page

@@ -102,14 +102,14 @@ CODComponent* ZBBPDoorSymbol::Dup() const
     return (new ZBBPDoorSymbol(*this));
 }
 
-ZDProcessGraphModelMdl* ZBBPDoorSymbol::GetModelDoor()
+PSS_ProcessGraphModelMdl* ZBBPDoorSymbol::GetModelDoor()
 {
     ASSERT(ISA(m_pModel, ZDProcessGraphModelMdl));
 
-    return dynamic_cast<ZDProcessGraphModelMdl*>(m_pModel);
+    return dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pModel);
 }
 
-bool ZBBPDoorSymbol::SetDoorModel(ZDProcessGraphModelMdl* pModel)
+bool ZBBPDoorSymbol::SetDoorModel(PSS_ProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
 
@@ -129,7 +129,7 @@ bool ZBBPDoorSymbol::SetDoorModel(ZDProcessGraphModelMdl* pModel)
     return (m_pModel) ? true : false;
 }
 
-void ZBBPDoorSymbol::RecalculateTwinDoorReference(ZDProcessGraphModelMdl* pRootModel)
+void ZBBPDoorSymbol::RecalculateTwinDoorReference(PSS_ProcessGraphModelMdl* pRootModel)
 {
     // Nothing to do
     if (GetTwinDoorReferenceNumber() == -1 || !pRootModel)
@@ -180,10 +180,10 @@ void ZBBPDoorSymbol::RemoveTwinDoorSymbol(bool RemoveTwin /*= true*/)
     // If the parent is a model
     CODComponent* pMdl = GetParent();
 
-    if (pMdl && ISA(pMdl, ZDProcessGraphModelMdl) && dynamic_cast<ZDProcessGraphModelMdl*>(pMdl)->GetRoot())
+    if (pMdl && ISA(pMdl, PSS_ProcessGraphModelMdl) && dynamic_cast<PSS_ProcessGraphModelMdl*>(pMdl)->GetRoot())
     {
         CODComponentSet* pSet =
-            dynamic_cast<ZDProcessGraphModelMdl*>(pMdl)->GetRoot()->FindSymbolByRefNumber(GetTwinDoorReferenceNumber());
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(pMdl)->GetRoot()->FindSymbolByRefNumber(GetTwinDoorReferenceNumber());
 
         if (pSet && pSet->GetSize() > 0)
         {
@@ -304,7 +304,7 @@ void ZBBPDoorSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 CString ZBBPDoorSymbol::BuildSymbolName()
 {
     // If a model is defined
-    if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
+    if (m_pModel && ISA(m_pModel, PSS_ProcessGraphModelMdl))
     {
         // ***************************************************************************************************
         // JMR-MODIF - Le 1er mai 2006 - Suppression des guillemets dans le titre des portes.
@@ -314,7 +314,7 @@ CString ZBBPDoorSymbol::BuildSymbolName()
         return DoorStr;
 */
 
-        return reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetModelName();
+        return reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->GetModelName();
         // ***************************************************************************************************
     }
 
@@ -436,7 +436,7 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         if (Dlg.DoModal() == IDOK)
         {
             ZIProcessGraphModelViewport*    pNewVp = NULL;
-            ZDProcessGraphModelMdl*            pSelectedModel = NULL;
+            PSS_ProcessGraphModelMdl*            pSelectedModel = NULL;
 
             // If a page has been selected
             if (Dlg.GetSelectedPage() && Dlg.GetSelectedPage()->GetModel())
@@ -445,9 +445,9 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             }
 
             // If a a model has been selected
-            if (Dlg.GetSelectedModel() && ISA(Dlg.GetSelectedModel(), ZDProcessGraphModelMdl))
+            if (Dlg.GetSelectedModel() && ISA(Dlg.GetSelectedModel(), PSS_ProcessGraphModelMdl))
             {
-                pSelectedModel = dynamic_cast<ZDProcessGraphModelMdl*>(Dlg.GetSelectedModel());
+                pSelectedModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(Dlg.GetSelectedModel());
             }
 
             if (pSelectedModel)
@@ -539,7 +539,7 @@ bool ZBBPDoorSymbol::OnPreDelete(CODModel* pModel /*= NULL*/, CODController* pCt
             // Request the symbol deletion
             if (pOwnerModel)
             {
-                dynamic_cast<ZDProcessGraphModelMdl*>(pOwnerModel)->DeleteComponent(GetTwinDoorSymbol());
+                dynamic_cast<PSS_ProcessGraphModelMdl*>(pOwnerModel)->DeleteComponent(GetTwinDoorSymbol());
             }
 
             return true;
@@ -557,7 +557,7 @@ void ZBBPDoorSymbol::OnPostDoubleClick(CODModel* pModel /*= NULL*/, CODControlle
     if (GetTwinDoorSymbol())
     {
         // ensure the symbol visible
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl)) // Check the model type to be able to cast the controller
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl)) // Check the model type to be able to cast the controller
         {
             dynamic_cast<PSS_ProcessGraphModelController*>(pCtrl)->EnsureSymbolVisible(GetTwinDoorSymbol());
         }
@@ -582,10 +582,10 @@ BOOL ZBBPDoorSymbol::OnDoubleClick()
 bool ZBBPDoorSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
     // If a model is defined
-    if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
+    if (m_pModel && ISA(m_pModel, PSS_ProcessGraphModelMdl))
     {
         toolTipText.Format(IDS_FS_BPDOOR_TOOLTIP,
-            (const char*)(reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetModelName()));
+            (const char*)(reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->GetModelName()));
     }
     else
         toolTipText.LoadString(IDS_FS_BPDOOR_ERR_TOOLTIP);

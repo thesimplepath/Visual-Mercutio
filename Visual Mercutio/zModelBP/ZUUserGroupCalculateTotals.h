@@ -60,15 +60,14 @@ class AFX_EXT_CLASS ZBUserGroupCalculateTotalsInformation
 {
 public:
 
-    ZBUserGroupCalculateTotalsInformation( bool Consolidated, ZBUserGroupEntity* pGroup = NULL )
+    ZBUserGroupCalculateTotalsInformation(bool Consolidated, ZBUserGroupEntity* pGroup = NULL)
     {
-        m_Consolidated    = Consolidated;
-        m_pGroup        = pGroup;
+        m_Consolidated = Consolidated;
+        m_pGroup = pGroup;
     };
 
     virtual ~ZBUserGroupCalculateTotalsInformation()
-    {
-    };
+    {};
 
 public:
 
@@ -82,19 +81,18 @@ public:
 class _ZBUserGroupTotal
 {
 public:
-    _ZBUserGroupTotal( const CString GroupName = _T( "" ) )
-        : m_GroupName( GroupName )
+    _ZBUserGroupTotal(const CString GroupName = _T(""))
+        : m_GroupName(GroupName)
     {
-        m_ProcedureCost                    = 0;
-        m_ProcedureWorkloadForecast        = 0;
-        m_ProcedureCostForecast            = 0;
-        m_ProcedureWorkloadPerActivity    = 0;
-        m_ProcedureCostPerActivity        = 0;
+        m_ProcedureCost = 0;
+        m_ProcedureWorkloadForecast = 0;
+        m_ProcedureCostForecast = 0;
+        m_ProcedureWorkloadPerActivity = 0;
+        m_ProcedureCostPerActivity = 0;
     };
 
     virtual ~_ZBUserGroupTotal()
-    {
-    };
+    {};
 
 public:
 
@@ -128,27 +126,27 @@ class AFX_EXT_CLASS ZUUserGroupCalculateTotals : public ZUProcessNavigation
 {
 public:
 
-    ZUUserGroupCalculateTotals( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUUserGroupCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUUserGroupCalculateTotals();
 
-    ZBBPAnnualNumberProperties* GetProcedureCost( const CString GroupName );
-    ZBBPAnnualNumberProperties* GetProcedureWorkloadForecast( const CString GroupName );
-    ZBBPAnnualNumberProperties* GetProcedureCostForecast( const CString GroupName );
-    double GetProcedureWorkloadPerActivity( const CString GroupName ) const;
-    double GetProcedureCostPerActivity( const CString GroupName ) const;
+    ZBBPAnnualNumberProperties* GetProcedureCost(const CString GroupName);
+    ZBBPAnnualNumberProperties* GetProcedureWorkloadForecast(const CString GroupName);
+    ZBBPAnnualNumberProperties* GetProcedureCostForecast(const CString GroupName);
+    double GetProcedureWorkloadPerActivity(const CString GroupName) const;
+    double GetProcedureCostPerActivity(const CString GroupName) const;
 
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
 
 
 private:
 
-    void AddProcedureToTotal( ZBBPProcedureSymbol* pSymbol, _ZBUserGroupTotal& Total );
+    void AddProcedureToTotal(ZBBPProcedureSymbol* pSymbol, _ZBUserGroupTotal& Total);
     void CreateInitialGroupSet();
     void EmptySet();
-    _ZBUserGroupTotal* FindTotal( const CString GroupName );
+    _ZBUserGroupTotal* FindTotal(const CString GroupName);
 
 private:
 
@@ -158,4 +156,4 @@ private:
     ZBUserGroupTotalSet    m_TotalSet;
 };
 
-#endif // !defined(AFX_ZUUserGroupCalculateTotals_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

@@ -32,8 +32,13 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "PSS_AutomationCollections.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
 // forward class declaration
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZWKFEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -76,9 +81,9 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         *@param direction - link direction
         *@param pModel - model
         */
-        PSS_StateLink(PSS_LinkSymbol*         pLinkSymbol = NULL,
-                      IELinkDirection         direction   = IE_LD_EnteringUp,
-                      ZDProcessGraphModelMdl* pModel      = NULL);
+        PSS_StateLink(PSS_LinkSymbol*           pLinkSymbol = NULL,
+                      IELinkDirection           direction   = IE_LD_EnteringUp,
+                      PSS_ProcessGraphModelMdl* pModel      = NULL);
 
         /**
         * Copy constructor
@@ -105,7 +110,7 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         * Assigns a model
         *@param pModel - model to assign
         */
-        virtual inline void AssignModel(ZDProcessGraphModelMdl* pModel);
+        virtual inline void AssignModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Gets the link symbol
@@ -167,15 +172,15 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         #endif
 
     private:
-        ZDProcessGraphModelMdl* m_pModel;
+        PSS_ProcessGraphModelMdl* m_pModel;
         PSS_LinkSymbol*           m_pLinkSymbol;
-        IELinkDirection         m_Direction;
+        IELinkDirection           m_Direction;
 };
 
 //---------------------------------------------------------------------------
 // PSS_StateLink
 //---------------------------------------------------------------------------
-void PSS_StateLink::AssignModel(ZDProcessGraphModelMdl* pModel)
+void PSS_StateLink::AssignModel(PSS_ProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
 }

@@ -46,11 +46,11 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZDProcessGraphModelMdlBP
 
-IMPLEMENT_SERIAL(ZDProcessGraphModelMdlBP, ZDProcessGraphModelMdl, g_DefVersion)
+IMPLEMENT_SERIAL(ZDProcessGraphModelMdlBP, PSS_ProcessGraphModelMdl, g_DefVersion)
 
 ZDProcessGraphModelMdlBP::ZDProcessGraphModelMdlBP(const CString                Name    /*= ""*/,
                                                    ZDProcessGraphModelMdlBP*    pParent    /*= NULL*/)
-    : ZDProcessGraphModelMdl(Name, pParent),
+    : PSS_ProcessGraphModelMdl(Name, pParent),
     m_InputAttributes(NULL),
     m_pDistributionAttributes(NULL)
 {
@@ -261,7 +261,7 @@ void ZDProcessGraphModelMdlBP::OnPostOpenDocument(long DocumentVersion)
 void ZDProcessGraphModelMdlBP::MigrateProperties()
 {
     CODComponentSet* pSet = GetComponents();
-    ZDProcessGraphModelMdl* pRootModel = GetRoot();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
@@ -279,7 +279,7 @@ void ZDProcessGraphModelMdlBP::MigrateProperties()
     // Process the page set if there is one
     if (m_pPageSet != NULL)
     {
-        ZBProcessGraphPageIterator i(m_pPageSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -295,7 +295,7 @@ void ZDProcessGraphModelMdlBP::MigrateProperties()
 void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
 {
     CODComponentSet* pSet = GetComponents();
-    ZDProcessGraphModelMdl* pRootModel = GetRoot();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
@@ -308,7 +308,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
             if (!PSS_GUID::GUIDIsValid(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID()))
             {
                 bool bError;
-                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitGUID(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitName(), bError));
+                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitName(), bError));
             }
         }
         else if (pComp && ISA(pComp, ZBBPStopSymbol) &&
@@ -317,7 +317,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
             if (!PSS_GUID::GUIDIsValid(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID()))
             {
                 bool bError;
-                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitGUID(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitName(), bError));
+                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitName(), bError));
             }
         }
         else if (pComp && ISA(pComp, ZBBPProcedureSymbol) &&
@@ -326,7 +326,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
             if (!PSS_GUID::GUIDIsValid(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID()))
             {
                 bool bError;
-                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitGUID(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitName(), bError));
+                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitName(), bError));
             }
         }
 
@@ -342,7 +342,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
     // Process the page set if there is one
     if (m_pPageSet != NULL)
     {
-        ZBProcessGraphPageIterator i(m_pPageSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -358,7 +358,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
 void ZDProcessGraphModelMdlBP::NotifyDeletePage(ZDProcessGraphPage* pPage)
 {
     CODComponentSet* pSet = GetComponents();
-    ZDProcessGraphModelMdl* pRootModel = GetRoot();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
@@ -386,7 +386,7 @@ void ZDProcessGraphModelMdlBP::NotifyDeletePage(ZDProcessGraphPage* pPage)
     // Process the page set if there is one
     if (m_pPageSet != NULL)
     {
-        ZBProcessGraphPageIterator i(m_pPageSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -402,7 +402,7 @@ void ZDProcessGraphModelMdlBP::NotifyDeletePage(ZDProcessGraphPage* pPage)
 void ZDProcessGraphModelMdlBP::ConvertDeliverables()
 {
     CODComponentSet* pSet = GetComponents();
-    ZDProcessGraphModelMdl* pRootModel = GetRoot();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
@@ -461,7 +461,7 @@ void ZDProcessGraphModelMdlBP::ConvertDeliverables()
     // Process the page set if there is one
     if (m_pPageSet != NULL)
     {
-        ZBProcessGraphPageIterator i(m_pPageSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -477,7 +477,7 @@ void ZDProcessGraphModelMdlBP::ConvertDeliverables()
 void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
 {
     CODComponentSet* pSet = GetComponents();
-    ZDProcessGraphModelMdl* pRootModel = GetRoot();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
     bool bError;
 
     for (int i = 0; i < pSet->GetSize(); ++i)
@@ -492,12 +492,12 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         {
             if (dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitName().IsEmpty())
             {
-                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitName(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitCost() <= 0)
             {
-                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitCost(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (pLog)
@@ -515,12 +515,12 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         {
             if (dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitName().IsEmpty())
             {
-                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitName(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitCost() <= 0)
             {
-                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitCost(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (pLog)
@@ -538,12 +538,12 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         {
             if (dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitName().IsEmpty())
             {
-                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitName(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitCost() <= 0)
             {
-                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetreiveUnitCost(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (pLog)
@@ -567,7 +567,7 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
     // Process the page set if there is one
     if (m_pPageSet != NULL)
     {
-        ZBProcessGraphPageIterator i(m_pPageSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -595,7 +595,7 @@ void ZDProcessGraphModelMdlBP::RecalculateSymbolReferences()
 void ZDProcessGraphModelMdlBP::RecalculatePageReference()
 {
     CODComponentSet* pSet = GetComponents();
-    ZDProcessGraphModelMdl* pRootModel = GetRoot();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
@@ -620,7 +620,7 @@ void ZDProcessGraphModelMdlBP::RecalculatePageReference()
     // Process the page set if there is one
     if (m_pPageSet != NULL)
     {
-        ZBProcessGraphPageIterator i(m_pPageSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -636,7 +636,7 @@ void ZDProcessGraphModelMdlBP::RecalculatePageReference()
 void ZDProcessGraphModelMdlBP::RecalculateDoorReference()
 {
     CODComponentSet* pSet = GetComponents();
-    ZDProcessGraphModelMdl* pRootModel = GetRoot();
+    PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
@@ -661,7 +661,7 @@ void ZDProcessGraphModelMdlBP::RecalculateDoorReference()
     // Process the page set if there is one
     if (m_pPageSet != NULL)
     {
-        ZBProcessGraphPageIterator i(m_pPageSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
         for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
@@ -734,7 +734,7 @@ ZBDistributionAttributeManager* ZDProcessGraphModelMdlBP::AllocateDistributionAt
 
 void ZDProcessGraphModelMdlBP::Serialize(CArchive& ar)
 {
-    ZDProcessGraphModelMdl::Serialize(ar);
+    PSS_ProcessGraphModelMdl::Serialize(ar);
 
     if (ar.IsStoring())
     {

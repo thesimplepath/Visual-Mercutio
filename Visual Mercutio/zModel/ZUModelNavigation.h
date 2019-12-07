@@ -41,11 +41,14 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class ZBSymbol;
 class PSS_LinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class PSS_Log;
 
 #ifdef _ZMODELEXPORT
@@ -64,11 +67,11 @@ class AFX_EXT_CLASS ZUModelNavigation : public PSS_BasicSymbolVisitor
 {
 public:
 
-    ZUModelNavigation(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    ZUModelNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUModelNavigation();
 
-    bool Navigate(ZDProcessGraphModelMdl* pModel, void* pClass);
-    bool Navigate(ZDProcessGraphModelMdl* pModel);
+    bool Navigate(PSS_ProcessGraphModelMdl* pModel, void* pClass);
+    bool Navigate(PSS_ProcessGraphModelMdl* pModel);
     bool Navigate();
 
     // Call-back methods
@@ -105,9 +108,9 @@ public:
 
 protected:
 
-    ZDProcessGraphModelMdl* m_pModel;
-    void*                   m_pClass;
-    PSS_Log*                m_pLog;
+    PSS_ProcessGraphModelMdl* m_pModel;
+    void*                     m_pClass;
+    PSS_Log*                  m_pLog;
 };
 
 #endif

@@ -29,7 +29,7 @@ IMPLEMENT_SERIAL(PSS_StateObject, CObject, g_DefVersion)
 PSS_StateObject::PSS_StateObject(ZBSymbol*                      pSymbol,
                                  PSS_LinkSymbol*                pLinkSymbol,
                                  PSS_StateLink::IELinkDirection direction,
-                                 ZDProcessGraphModelMdl*        pModel) :
+                                 PSS_ProcessGraphModelMdl*      pModel) :
     CObject(),
     m_pModel(pModel),
     m_pSymbol(pSymbol)
@@ -38,9 +38,9 @@ PSS_StateObject::PSS_StateObject(ZBSymbol*                      pSymbol,
         AddLink(pLinkSymbol, direction);
 }
 //---------------------------------------------------------------------------
-PSS_StateObject::PSS_StateObject(ZBSymbol*               pSymbol,
-                                 PSS_StateLink*          pStateLink,
-                                 ZDProcessGraphModelMdl* pModel) :
+PSS_StateObject::PSS_StateObject(ZBSymbol*                 pSymbol,
+                                 PSS_StateLink*            pStateLink,
+                                 PSS_ProcessGraphModelMdl* pModel) :
     CObject(),
     m_pModel(pModel),
     m_pSymbol(pSymbol)
@@ -78,7 +78,7 @@ PSS_StateObject* PSS_StateObject::Clone() const
     return new PSS_StateObject(*this);
 }
 //---------------------------------------------------------------------------
-void PSS_StateObject::AssignModel(ZDProcessGraphModelMdl* pModel)
+void PSS_StateObject::AssignModel(PSS_ProcessGraphModelMdl* pModel)
 {
     // assign the model
     m_pModel = pModel;

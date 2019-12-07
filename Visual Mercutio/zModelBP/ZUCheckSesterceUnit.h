@@ -67,7 +67,7 @@ class ZBUserGroupEntity;
 class AFX_EXT_CLASS ZUCheckSesterceUnit : public ZUProcessNavigation
 {
 public:
-    ZUCheckSesterceUnit(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    ZUCheckSesterceUnit(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUCheckSesterceUnit();
 
     // Call-back methods

@@ -64,7 +64,7 @@ class AFX_EXT_CLASS ZUExtractModelLogicalSystemAssigned : public ZUModelNavigati
 {
 public:
 
-    ZUExtractModelLogicalSystemAssigned(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    ZUExtractModelLogicalSystemAssigned(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUExtractModelLogicalSystemAssigned();
 
     CODComponentSet& GetComponentSet()

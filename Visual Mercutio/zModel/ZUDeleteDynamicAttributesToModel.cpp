@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUDeleteDynamicAttributesToModel::ZUDeleteDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/,
+ZUDeleteDynamicAttributesToModel::ZUDeleteDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel /*= NULL*/,
                                                                    ZBProperty* pProperty /*= NULL*/,
                                                                    void* pClass /*= NULL*/)
     : ZUModelNavigation(pModel, pClass),

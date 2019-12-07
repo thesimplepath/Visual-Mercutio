@@ -59,7 +59,7 @@ class AFX_EXT_CLASS ZUCheckValidUnit : public ZUProcessNavigation
 {
 public:
 
-    ZUCheckValidUnit(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    ZUCheckValidUnit(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUCheckValidUnit();
 
     // Call-back methods

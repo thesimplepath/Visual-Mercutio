@@ -32,7 +32,7 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUCheckMessengerValidUnit::ZUCheckMessengerValidUnit( ZDProcessGraphModelMdl*    pModel /*= NULL*/,
+ZUCheckMessengerValidUnit::ZUCheckMessengerValidUnit(PSS_ProcessGraphModelMdl*    pModel /*= NULL*/,
                                                       void*                        pClass /*= NULL*/ )
     : ZUProcessNavigation( pModel, pClass )
 {

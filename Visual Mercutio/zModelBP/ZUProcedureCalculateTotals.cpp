@@ -29,7 +29,7 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcedureCalculateTotals::ZUProcedureCalculateTotals( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUProcedureCalculateTotals::ZUProcedureCalculateTotals(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                         void*                    pClass    /*= NULL*/ )
     : ZUProcessNavigation( pModel, pClass )
 {

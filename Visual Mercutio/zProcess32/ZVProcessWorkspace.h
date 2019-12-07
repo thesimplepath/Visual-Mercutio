@@ -67,24 +67,24 @@ public:
     void EmptyModelDocumentTree();
     void EmptyModelUnitTree();
 
-    void AddModelDocument(ZDProcessGraphModelMdl* pModel);
-    void RemoveModelDocument(ZDProcessGraphModelMdl* pModel);
+    void AddModelDocument(PSS_ProcessGraphModelMdl* pModel);
+    void RemoveModelDocument(PSS_ProcessGraphModelMdl* pModel);
 
     void AddModelDocumentSet(ZBModelSet* pModelSet);
     void RemoveModelDocumentSet(ZBModelSet* pModelSet);
 
-    void AddModelDocumentSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
-    void RemoveModelDocumentSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
-    void ModifyModelDocumentSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
+    void AddModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
+    void RemoveModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
+    void ModifyModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
 
-    void AddModelUnit(ZDProcessGraphModelMdl* pModel);
-    void RemoveModelUnit(ZDProcessGraphModelMdl* pModel);
+    void AddModelUnit(PSS_ProcessGraphModelMdl* pModel);
+    void RemoveModelUnit(PSS_ProcessGraphModelMdl* pModel);
 
     void AddModelUnitSet(ZBModelSet* pModelSet);
     void RemoveModelUnitSet(ZBModelSet* pModelSet);
 
-    void AddModelUnitSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
-    void RemoveModelUnitSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
+    void AddModelUnitSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
+    void RemoveModelUnitSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
 
     ///////////////////////////////////////////////////////////
     // Workspace methods

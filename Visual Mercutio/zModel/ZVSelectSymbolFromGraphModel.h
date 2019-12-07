@@ -23,8 +23,13 @@
 #include "zBaseLib\PSS_ObserverMsg.h"
 #include "ZDefinitionSelectable.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
 // forward class declaration
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
 // put the values back to make AFX_EXT_CLASS export again
@@ -259,25 +264,25 @@ class AFX_EXT_CLASS ZVSelectSymbolFromGraphModel : public PSS_Dialog, public PSS
     // Construction
 public:
 
-    ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+    ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                  const CString                Title = _T(""),
                                  int                        SelectableItem = Selectable_All,
                                  bool                        EnableNavigate = true,
                                  CWnd*                        pParent = NULL);
 
-    ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+    ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                  const CString                Title,
                                  CRuntimeClass*            pSelectableClass,
                                  bool                        EnableNavigate = true,
                                  CWnd*                        pParent = NULL);
 
-    ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+    ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                  UINT                        nIDResTitle,
                                  int                        SelectableItem = Selectable_All,
                                  bool                        EnableNavigate = true,
                                  CWnd*                        pParent = NULL);
 
-    ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+    ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                  UINT                        nIDResTitle,
                                  CRuntimeClass*            pSelectableClass,
                                  bool                        EnableNavigate = true,
@@ -336,7 +341,7 @@ private:
 
 private:
 
-    ZDProcessGraphModelMdl*        m_pModel;
+    PSS_ProcessGraphModelMdl*        m_pModel;
     _ZVSelectSymbolFlatToolBar    m_FlatToolBar;
     _ZVGraphModelWnd            m_wndModelGraph;
     CString                        m_Title;

@@ -20,6 +20,9 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class PSS_Log;
@@ -33,7 +36,7 @@ class ZBBPProcessSymbol;
 class ZBBPStartSymbol;
 class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class ZDProcessGraphModelMdlBP;
 class PSS_ProcessGraphModelController;
 
@@ -52,7 +55,7 @@ public:
                      BOOL                        RedAction,
                      BOOL                        RedNoAction,
                      BOOL                        DefaultColors,
-                     ZDProcessGraphModelMdl*    pModel = NULL,
+                     PSS_ProcessGraphModelMdl*    pModel = NULL,
                      PSS_Log*                    pLog = NULL);
 
     virtual ~ZUCalculateRisks();
@@ -102,7 +105,7 @@ private:
 
     PSS_Log*                    m_pLog;
 
-    ZDProcessGraphModelMdl*    m_pModel;
+    PSS_ProcessGraphModelMdl*    m_pModel;
 
     size_t                    m_OrangeCounter;
     size_t                    m_RedCounter;

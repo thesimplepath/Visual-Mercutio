@@ -210,7 +210,7 @@ private:
     void AddDynamicProperty( ZBProperty* pProperty, CRuntimeClass* pSelectableClass );
     void AddDynamicProperty( ZBProperty* pProperty, const CString SymbolName, int RefNumber );
 
-    int RetreiveCategoryID( const CString Category );
+    int RetrieveCategoryID( const CString Category );
 
     ZBProperty* CreateProperty( const CString                Category,
                                 int                            CategoryID,

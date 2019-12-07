@@ -358,10 +358,10 @@ public:
         return false;
     }
 
-    // Retreive the owner symbol model
+    // Retrieve the owner symbol model
     virtual CODModel* GetOwnerModel();
 
-    // Retreive the root symbol model
+    // Retrieve the root symbol model
     virtual CODModel* GetRootModel();
 
     // JMR-MODIF - Le 2 mars 2006 - La fonction GetModel est changée de protected à public.
@@ -630,19 +630,19 @@ public:
     }
 
     // Unit retreival methods
-    CString RetreiveUnitGUID(const CString Name, bool& Error) const;
-    CString RetreiveUnitName(const CString GUID, bool& Error) const;
-    CString RetreiveUnitDescription(const CString GUID, bool& Error) const;
-    float RetreiveUnitCost(const CString GUID, bool& Error) const;
+    CString RetrieveUnitGUID(const CString Name, bool& Error) const;
+    CString RetrieveUnitName(const CString GUID, bool& Error) const;
+    CString RetrieveUnitDescription(const CString GUID, bool& Error) const;
+    float RetrieveUnitCost(const CString GUID, bool& Error) const;
 
     // Logical system retreival methods
-    CString RetreiveLogicalSystemGUID(const CString Name, bool& Error) const;
-    CString RetreiveLogicalSystemName(const CString GUID, bool& Error) const;
-    CString RetreiveLogicalSystemDescription(const CString GUID, bool& Error) const;
+    CString RetrieveLogicalSystemGUID(const CString Name, bool& Error) const;
+    CString RetrieveLogicalSystemName(const CString GUID, bool& Error) const;
+    CString RetrieveLogicalSystemDescription(const CString GUID, bool& Error) const;
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // JMR-MODIF - Le 27 février 2006 - Ajout des méthodes de recherche pour les prestations.
-    CString RetreivePrestationName(const CString GUID, bool& Error) const;
+    CString RetrievePrestationName(const CString GUID, bool& Error) const;
 
     // JMR-MODIF - Le 22 juillet 2007 - Ajout de la fonction UpdateGraphicFromRisk.
     void UpdateGraphicFromRisk(COLORREF Color, BOOL Italic);

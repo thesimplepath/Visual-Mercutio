@@ -876,11 +876,11 @@ void ZBPrestationsReportGenerator::Associate( ZDProcessGraphModelMdlBP* m_RootMo
     if ( m_RootModel != NULL )
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
 
         if ( pSet != NULL )
         {
-            ZBProcessGraphPageIterator i( pSet );
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i( pSet );
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )

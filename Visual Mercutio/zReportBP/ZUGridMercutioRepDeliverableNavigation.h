@@ -38,7 +38,7 @@ class ZUGridMercutioRepDeliverableNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUGridMercutioRepDeliverableNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUGridMercutioRepDeliverableNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
     virtual ~ZUGridMercutioRepDeliverableNavigation();
 
     // Call-back methods

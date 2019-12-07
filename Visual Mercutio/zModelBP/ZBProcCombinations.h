@@ -120,17 +120,17 @@ public:
     // Return true if a specific deliverable is in the specified string
     bool IsDeliverableInString( const CString Deliverables, const CString Value ) const;
 
-    // Retreive the right combination properties containing a specific deliverable
+    // Retrieve the right combination properties containing a specific deliverable
     ZBBPCombinationProperties* LocateCombinationOfDeliverable( const CString DeliverableName ) const;
 
-    // Retreive the right combination properties index containing a specific deliverable
+    // Retrieve the right combination properties index containing a specific deliverable
     // if not found, return -1
     int LocateCombinationIndexOfDeliverable( const CString DeliverableName ) const;
 
-    // Retreive the right combination properties containing a specific master
+    // Retrieve the right combination properties containing a specific master
     ZBBPCombinationProperties* LocateCombinationOfMaster( const CString Master ) const;
 
-    // Retreive the right combination properties index containing a specific master
+    // Retrieve the right combination properties index containing a specific master
     // if not found, return -1
     int LocateCombinationIndexOfMaster( const CString Master ) const;
 

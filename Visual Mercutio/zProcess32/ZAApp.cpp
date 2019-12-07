@@ -39,7 +39,7 @@
 #include "zModel\ZBLogicalPrestationsObserverMsg.h"
 #include "zModel\ZDLogicalRulesDocument.h"
 #include "zModel\ZBLogicalRulesObserverMsg.h"
-#include "zModel\ZAModelGlobal.h"
+#include "zModel\PSS_ModelGlobal.h"
 #include "zModel\ZBDocObserverMsg.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
@@ -1592,7 +1592,7 @@ PSS_ProcessGraphModelDoc* ZAApp::FileNewModel()
     {
         case E_MN_Beryl:
         {
-            // Retreive the language assigned to the document
+            // Retrieve the language assigned to the document
             ELanguage lang = pNewFile->GetLanguage();
             pNewFile->SetNewModel(new ZDProcessGraphModelMdlBP(pNewFile->GetTitle()));
 

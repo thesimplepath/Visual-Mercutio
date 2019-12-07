@@ -82,7 +82,7 @@ void PSS_ProcessGraphChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWn
 
     if (pLastActivatedModelDoc)
     {
-        ZDProcessGraphModelMdl* pModel = pLastActivatedModelDoc->GetModel();
+        PSS_ProcessGraphModelMdl* pModel = pLastActivatedModelDoc->GetModel();
 
         // switch the context
         if (pModel)
@@ -105,7 +105,7 @@ int PSS_ProcessGraphChildFrame::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest
 
     if (pLastActivatedModelDoc)
     {
-        ZDProcessGraphModelMdl* pModel = pLastActivatedModelDoc->GetModel();
+        PSS_ProcessGraphModelMdl* pModel = pLastActivatedModelDoc->GetModel();
 
         // switch the context
         if (pModel)
@@ -139,7 +139,7 @@ void PSS_ProcessGraphChildFrame::OnUpdateFrameTitle(BOOL addToTitle)
     // is document closing?
     if (!pModelDoc->IsClosing())
     {
-        ZDProcessGraphModelMdl* pModel = pModelView->GetModel();
+        PSS_ProcessGraphModelMdl* pModel = pModelView->GetModel();
 
         if (!pModel)
             return;

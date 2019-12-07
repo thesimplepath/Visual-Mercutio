@@ -18,7 +18,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVDeleteModelPageDlg dialog
 
 
-ZVDeleteModelPageDlg::ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, PSS_RuntimeClassSet* pSet /*= NULL*/, CWnd* pParent /*=NULL*/)
+ZVDeleteModelPageDlg::ZVDeleteModelPageDlg(PSS_ProcessGraphModelMdl* pModel, PSS_RuntimeClassSet* pSet /*= NULL*/, CWnd* pParent /*=NULL*/)
     : PSS_Dialog(ZVDeleteModelPageDlg::IDD, TRUE, pParent),
       m_pModel(pModel),
       m_pSelectedPage(NULL),
@@ -91,7 +91,7 @@ BOOL ZVDeleteModelPageDlg::OnInitDialog()
         ZBModelSet    DocumentModelSet;
         DocumentModelSet.AddModel( m_pModel );
         m_SymbolTree.Initialize( "Document", &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet );
-        // Retreive the root page
+        // Retrieve the root page
         m_pRootPage = m_pModel->GetRoot()->FindModelPage( m_pModel->GetRoot(), true );
         // Set the OK disabled at startup
         if (GetDlgItem(IDOK))

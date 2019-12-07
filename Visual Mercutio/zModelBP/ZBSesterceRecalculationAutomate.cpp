@@ -43,7 +43,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBSesterceRecalculationAutomate::ZBSesterceRecalculationAutomate(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZBSesterceRecalculationAutomate::ZBSesterceRecalculationAutomate(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                  PSS_Log*                    pLog    /*= NULL*/)
     : ZBBPAutomate(pModel, pLog)
 {}
@@ -72,8 +72,8 @@ bool ZBSesterceRecalculationAutomate::OnStart(PSS_Log* pLog)
     SetErrorCounter(Check.GetErrorCounter());
     SetWarningCounter(Check.GetWarningCounter());
 
-    if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(m_pModel)->MainUserGroupIsValid())
+    if (m_pModel && ISA(m_pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->MainUserGroupIsValid())
     {
         // Do a unit check and assignement before lauching the calculation of the model
         ZUCheckSesterceUnit CheckUnit(m_pModel);
@@ -217,7 +217,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
             return false;
         }
 
-        // Retreive from the state machine the object before the current.
+        // Retrieve from the state machine the object before the current.
         // One object before the current
         PSS_StateObject* pStateObjectBefore = pStateMachine->PopStateObjectNoRemove(1);
 

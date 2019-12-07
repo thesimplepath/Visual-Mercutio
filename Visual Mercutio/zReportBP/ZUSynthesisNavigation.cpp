@@ -35,9 +35,9 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUSynthesisNavigation::ZUSynthesisNavigation( ZDProcessGraphModelMdl*    pModel        /*= NULL*/,
+ZUSynthesisNavigation::ZUSynthesisNavigation(PSS_ProcessGraphModelMdl*    pModel        /*= NULL*/,
                                               void*                        pClass        /*= NULL*/,
-                                              ZDProcessGraphModelMdl*    pRootModel    /*= NULL*/,
+                                             PSS_ProcessGraphModelMdl*    pRootModel    /*= NULL*/,
                                               const CString                domainName    /*= ""*/,
                                               const CString                unitName    /*= ""*/ )
     : ZUProcessNavigation    ( pModel, pClass ),
@@ -92,7 +92,7 @@ bool ZUSynthesisNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
     // Check if for the same unit
     bool Error;
 
-    CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
+    CString UnitName = pSymbol->RetrieveUnitName( pSymbol->GetUnitGUID(), Error );
 
     if ( m_UnitName == UnitName )
     {
@@ -119,7 +119,7 @@ bool ZUSynthesisNavigation::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
 {
     m_CurrentProcessName = pSymbol->GetSymbolName();
 
-    ZDProcessGraphModelMdl* pOwnerModel = (ZDProcessGraphModelMdl*)pSymbol->GetOwnerModel();
+    PSS_ProcessGraphModelMdl* pOwnerModel = (PSS_ProcessGraphModelMdl*)pSymbol->GetOwnerModel();
 
     if ( pOwnerModel )
     {

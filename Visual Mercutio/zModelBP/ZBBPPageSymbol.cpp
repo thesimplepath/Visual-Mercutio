@@ -80,12 +80,12 @@ CODComponent* ZBBPPageSymbol::Dup() const
     return (new ZBBPPageSymbol(*this));
 }
 
-ZDProcessGraphModelMdl* ZBBPPageSymbol::GetModelPage()
+PSS_ProcessGraphModelMdl* ZBBPPageSymbol::GetModelPage()
 {
     return (GetPage()) ? GetPage()->GetModel() : NULL;
 }
 
-bool ZBBPPageSymbol::SetPageModel(ZDProcessGraphModelMdl* pModel)
+bool ZBBPPageSymbol::SetPageModel(PSS_ProcessGraphModelMdl* pModel)
 {
     // Find the page corresponding to the model with extending to sub-model
     if (pModel)
@@ -115,7 +115,7 @@ bool ZBBPPageSymbol::SetPageModel(ZDProcessGraphModelMdl* pModel)
     return (m_pPage) ? true : false;
 }
 
-void ZBBPPageSymbol::RecalculateTwinPageReference(ZDProcessGraphModelMdl* pRootModel)
+void ZBBPPageSymbol::RecalculateTwinPageReference(PSS_ProcessGraphModelMdl* pRootModel)
 {
     // First, find the right model pointer
     if (!m_PageName.IsEmpty() && pRootModel && ISA(pRootModel, ZDProcessGraphModelMdlBP))
@@ -174,10 +174,10 @@ void ZBBPPageSymbol::RemoveTwinPageSymbol(bool RemoveTwin /*= true*/)
     // If the parent is a model
     CODComponent* pMdl = GetParent();
 
-    if (pMdl && ISA(pMdl, ZDProcessGraphModelMdl) && dynamic_cast<ZDProcessGraphModelMdl*>(pMdl)->GetRoot())
+    if (pMdl && ISA(pMdl, PSS_ProcessGraphModelMdl) && dynamic_cast<PSS_ProcessGraphModelMdl*>(pMdl)->GetRoot())
     {
         CODComponentSet* pSet =
-            dynamic_cast<ZDProcessGraphModelMdl*>(pMdl)->GetRoot()->FindSymbolByRefNumber(GetTwinPageReferenceNumber());
+            dynamic_cast<PSS_ProcessGraphModelMdl*>(pMdl)->GetRoot()->FindSymbolByRefNumber(GetTwinPageReferenceNumber());
 
         if (pSet && pSet->GetSize() > 0)
         {
@@ -443,7 +443,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         }
 
         // and then get the owner model
-        ZDProcessGraphModelMdl* pOwnerModel = pRootModel->GetOwnerPageModel(pPageFromModel);
+        PSS_ProcessGraphModelMdl* pOwnerModel = pRootModel->GetOwnerPageModel(pPageFromModel);
 
         PSS_RuntimeClassSet rtClasses;
 
@@ -462,8 +462,8 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             // If a new page must be inserted
             if (Dlg.ChooseInsertNewPage())
             {
-                ZDProcessGraphModelMdl* pNewModel =
-                    pRootModel->CreateEmptyModel(Dlg.GetPageName(), reinterpret_cast<ZDProcessGraphModelMdl*>(pModel));
+                PSS_ProcessGraphModelMdl* pNewModel =
+                    pRootModel->CreateEmptyModel(Dlg.GetPageName(), reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
 
                 // Create the new page
                 m_pPage = pRootModel->CreateNewPage(pNewModel, Dlg.GetPageName(), Dlg.GetParentModel());
@@ -492,7 +492,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                 {
                     pNewVp =
                         dynamic_cast<ZDProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(pNewModel,
-                                                                                           reinterpret_cast<ZDProcessGraphModelMdl*>(pModel));
+                                                                                           reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
                 }
             }
             // A link to an existing page is requested
@@ -523,8 +523,8 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                     if (pCtrl)
                     {
                         pNewVp =
-                            dynamic_cast<ZDProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel),
-                                                                                               reinterpret_cast<ZDProcessGraphModelMdl*>(pModel));
+                            dynamic_cast<ZDProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel),
+                                                                                               reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
                     }
                 }
             }
@@ -601,9 +601,9 @@ bool ZBBPPageSymbol::OnPreDelete(CODModel* pModel /*= NULL*/, CODController* pCt
         if (mBox.Show(IDS_DELETEPAGESYM_CONF, MB_YESNO) == IDYES)
         {
             // Request the symbol deletion
-            if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+            if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
             {
-                dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->DeleteComponent(GetTwinPageSymbol());
+                dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->DeleteComponent(GetTwinPageSymbol());
             }
 
             return true;
@@ -621,7 +621,7 @@ void ZBBPPageSymbol::OnPostDoubleClick(CODModel* pModel /*= NULL*/, CODControlle
     if (GetTwinPageSymbol())
     {
         // Ensure the symbol visible, and check the model type to be able to cast the controller
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
             dynamic_cast<PSS_ProcessGraphModelController*>(pCtrl)->EnsureSymbolVisible(GetTwinPageSymbol());
         }
@@ -703,9 +703,9 @@ void ZBBPPageSymbol::Serialize(CArchive& ar)
 
             // If the model is different from the model page,
             // serialize the model name and put null to model
-            if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl) && m_pModel != m_pPage->GetModel())
+            if (m_pModel && ISA(m_pModel, PSS_ProcessGraphModelMdl) && m_pModel != m_pPage->GetModel())
             {
-                ar << reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetAbsolutePath();
+                ar << reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->GetAbsolutePath();
             }
             else
             {

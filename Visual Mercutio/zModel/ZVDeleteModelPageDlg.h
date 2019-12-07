@@ -2,12 +2,10 @@
 #define AFX_ZVDeleteModelPageDlg_H__5CD7AD82_AB75_4CDC_9B1B_0F0808494530__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZVDeleteModelPageDlg.h : header file
-//
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -23,18 +21,22 @@
 // resources
 #include "zModelRes.h"
 
-// Forward declaration
-class ZDProcessGraphModelMdl;
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
+// forward class declaration
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 //#undef  AFX_DATA
@@ -49,7 +51,7 @@ class AFX_EXT_CLASS ZVDeleteModelPageDlg : public PSS_Dialog
 {
 // Construction
 public:
-    ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, PSS_RuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
+    ZVDeleteModelPageDlg(PSS_ProcessGraphModelMdl* pModel, PSS_RuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);
 
     CString    GetPageName() const;
     ZDProcessGraphPage* GetSelectedPage()
@@ -84,7 +86,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZDProcessGraphModelMdl* m_pModel;
+    PSS_ProcessGraphModelMdl* m_pModel;
 
 // Implementation
 private:

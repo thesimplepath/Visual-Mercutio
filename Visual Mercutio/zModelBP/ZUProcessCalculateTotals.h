@@ -55,7 +55,7 @@ class AFX_EXT_CLASS ZUProcessCalculateTotals : public ZUProcessNavigation
 {
 public:
 
-    ZUProcessCalculateTotals( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUProcessCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUProcessCalculateTotals();
 
     double GetProcedureCost() const
@@ -74,15 +74,15 @@ public:
     };
 
     // Call-back methods
-    virtual bool OnStart                    ();
-    virtual bool OnFinish                    ();
-    virtual bool OnDoorSymbol                ( ZBBPDoorSymbol* pSymbol );
-    virtual bool OnPageSymbol                ( ZBBPPageSymbol* pSymbol );
-    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol* pSymbol );
-    virtual bool OnProcessSymbol            ( ZBBPProcessSymbol* pSymbol );
-    virtual bool OnStartSymbol                ( ZBBPStartSymbol* pSymbol );
-    virtual bool OnStopSymbol                ( ZBBPStopSymbol* pSymbol );
-    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol* pSymbol );
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnDoorSymbol(ZBBPDoorSymbol* pSymbol);
+    virtual bool OnPageSymbol(ZBBPPageSymbol* pSymbol);
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    virtual bool OnProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    virtual bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
+    virtual bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
+    virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
 
 private:
 
@@ -91,4 +91,4 @@ private:
     double m_ProcedureCostForecast;
 };
 
-#endif // !defined(AFX_ZUProcessCalculateTotals_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

@@ -303,7 +303,7 @@ public:
         return m_Combinations.LocateCombinationOfDeliverable(DeliverableName);
     }
 
-    // Retreive the right combination properties index containing a specific deliverable
+    // Retrieve the right combination properties index containing a specific deliverable
     // if not found, return -1
     int LocateCombinationIndexOfDeliverable(const CString DeliverableName) const
     {

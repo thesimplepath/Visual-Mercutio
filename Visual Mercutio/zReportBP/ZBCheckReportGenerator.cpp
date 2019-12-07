@@ -279,7 +279,7 @@ bool ZBCheckReportGenerator::FillGridProcess( CGXGridCore& GridCore, size_t Inde
     }
 
     // Find the right process, function of the model name
-    ZDProcessGraphModelMdl* pModel = m_pModel->FindModel( m_TabNameArray.GetAt( Index ), true ); // In case sensitive
+    PSS_ProcessGraphModelMdl* pModel = m_pModel->FindModel( m_TabNameArray.GetAt( Index ), true ); // In case sensitive
 
     if ( !pModel )
     {

@@ -25,8 +25,13 @@
 #include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "ProcGraphModelVp.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
 // forward class declarations
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class PSS_ProcessGraphModelController;
 
 #ifdef _ZMODELEXPORT
@@ -140,8 +145,8 @@ public:
 
     virtual PSS_ProcessGraphModelController* GetModelController();
 
-    void    SetModel(ZDProcessGraphModelMdl* pModel, bool SizeViewport = true);
-    virtual ZDProcessGraphModelMdl* GetModel();
+    void    SetModel(PSS_ProcessGraphModelMdl* pModel, bool SizeViewport = true);
+    virtual PSS_ProcessGraphModelMdl* GetModel();
 
     // Size the viewport to model
     void    SizeVpToModel();
@@ -241,8 +246,7 @@ protected:
     MvcScrollWrapper_T<ZIProcessGraphModelViewport>    m_vpPan;
 
 private:
-
-    ZDProcessGraphModelMdl*                            m_pModelOfView;
+    PSS_ProcessGraphModelMdl* m_pModelOfView;
 };
 
 inline CToolTipCtrl& ZIProcessGraphModelView::GetToolTip()

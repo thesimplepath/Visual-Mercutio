@@ -35,7 +35,7 @@ ZUDynamicAttributesManipulator::ZUDynamicAttributesManipulator()
 ZUDynamicAttributesManipulator::~ZUDynamicAttributesManipulator()
 {}
 
-void ZUDynamicAttributesManipulator::GetCategories(ZDProcessGraphModelMdl*    pModel,
+void ZUDynamicAttributesManipulator::GetCategories(PSS_ProcessGraphModelMdl*    pModel,
                                                    CStringArray&            StaticAttributes,
                                                    CStringArray&            DynamicAttributes)
 {
@@ -43,7 +43,7 @@ void ZUDynamicAttributesManipulator::GetCategories(ZDProcessGraphModelMdl*    pM
     extract.Navigate();
 }
 
-bool ZUDynamicAttributesManipulator::AssignProperty(ZDProcessGraphModelMdl*    pModel,
+bool ZUDynamicAttributesManipulator::AssignProperty(PSS_ProcessGraphModelMdl*    pModel,
                                                     ZBProperty*                pProperty,
                                                     CRuntimeClass*                pRTClass    /*= NULL*/)
 {
@@ -51,19 +51,19 @@ bool ZUDynamicAttributesManipulator::AssignProperty(ZDProcessGraphModelMdl*    p
     return assign.Navigate();
 }
 
-bool ZUDynamicAttributesManipulator::ReassignProperty(ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty)
+bool ZUDynamicAttributesManipulator::ReassignProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty)
 {
     ZUReassignDynamicAttributesToModel assign(pModel, pProperty);
     return assign.Navigate();
 }
 
-bool ZUDynamicAttributesManipulator::DeleteProperty(ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty)
+bool ZUDynamicAttributesManipulator::DeleteProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty)
 {
     ZUDeleteDynamicAttributesToModel assign(pModel, pProperty);
     return assign.Navigate();
 }
 
-void ZUDynamicAttributesManipulator::ExtractUniqueAttributes(ZDProcessGraphModelMdl* pModel, ZBPropertySet& Set)
+void ZUDynamicAttributesManipulator::ExtractUniqueAttributes(PSS_ProcessGraphModelMdl* pModel, ZBPropertySet& Set)
 {
     ZUExtractModelAttributes extract(pModel, &Set);
     extract.Navigate();

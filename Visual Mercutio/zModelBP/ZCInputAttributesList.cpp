@@ -133,7 +133,7 @@ int ZCInputAttributesList::Refresh()
         CString strValues;
         // Data type combo.
         strValues.LoadString(IDS_PROPTYPE_LIST);
-        // Retreive the right type string
+        // Retrieve the right type string
         PSS_Tokenizer token(strValues);
 
         CString s;

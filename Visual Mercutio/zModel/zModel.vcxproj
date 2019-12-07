@@ -191,7 +191,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ZAModelGlobal.cpp">
+    <ClCompile Include="PSS_ModelGlobal.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -760,7 +760,7 @@
     <ClInclude Include="ProcGraphModelView.h" />
     <ClInclude Include="ProcGraphModelVp.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="ZAModelGlobal.h" />
+    <ClInclude Include="PSS_ModelGlobal.h" />
     <ClInclude Include="ZBBasicModelProp.h" />
     <ClInclude Include="ZBBasicProp.h" />
     <ClInclude Include="ZBDashLinkSymbol.h" />

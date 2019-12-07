@@ -30,7 +30,7 @@ BEGIN_MESSAGE_MAP(ZVRenameModelPageDlg, PSS_Dialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVRenameModelPageDlg::ZVRenameModelPageDlg(ZDProcessGraphModelMdl*    pModel,
+ZVRenameModelPageDlg::ZVRenameModelPageDlg(PSS_ProcessGraphModelMdl*    pModel,
                                            CStringArray*            pArrayPageName    /*= NULL*/,
                                            ZDProcessGraphPage*        pPageToRename    /*= NULL*/,
                                            PSS_RuntimeClassSet*        pSet            /*= NULL*/,

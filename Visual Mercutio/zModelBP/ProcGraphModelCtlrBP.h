@@ -47,13 +47,13 @@ class AFX_EXT_CLASS ZDProcessGraphModelControllerBP : public PSS_ProcessGraphMod
 {
 public:
 
-    ZDProcessGraphModelControllerBP( ZIProcessGraphModelViewport* pViewport );
+    ZDProcessGraphModelControllerBP(ZIProcessGraphModelViewport* pViewport);
 
-    virtual bool    DropItemToModel( CObject* pObj, const CPoint& pt );
-    virtual bool    AcceptDropItemToModel( CObject* pObj, const CPoint& pt );
+    virtual bool    DropItemToModel(CObject* pObj, const CPoint& pt);
+    virtual bool    AcceptDropItemToModel(CObject* pObj, const CPoint& pt);
 
-    virtual bool    DropItem( CObject* pObj, const CPoint& pt );
-    virtual bool    AcceptDropItem( CObject* pObj, const CPoint& pt );
+    virtual bool    DropItem(CObject* pObj, const CPoint& pt);
+    virtual bool    AcceptDropItem(CObject* pObj, const CPoint& pt);
 
     // Insert symbol methods
     virtual void    InsertPageSymbol();
@@ -61,10 +61,10 @@ public:
 
     /* Called by the controller, once the symbol has been completely
        duplicated. */
-    virtual void OnSymbolDuplicated( CODComponentSet* pCompSet );
+    virtual void OnSymbolDuplicated(CODComponentSet* pCompSet);
 
     // Return true if the objects contained in the pCompSet can be duplicated
-    virtual bool CanDuplicateObject( CODComponentSet* pCompSet );
+    virtual bool CanDuplicateObject(CODComponentSet* pCompSet);
 
     // Overrides
     // ClassWizard generated virtual function overrides
@@ -173,11 +173,11 @@ protected:
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
-    virtual void OnPostCutPasteOperation( CODComponentSet* pCompSet );
+    virtual void OnPostCutPasteOperation(CODComponentSet* pCompSet);
 
 private:
 
-    void DoDuplicateProcess( ZDProcessGraphModelMdl* pModel );
+    void DoDuplicateProcess(PSS_ProcessGraphModelMdl* pModel);
 
 private:
 
@@ -187,7 +187,4 @@ private:
     static SECCustomToolBar* m_pwndModelGenerationBar;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ProcGraphModelCtlrBP_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_)
+#endif

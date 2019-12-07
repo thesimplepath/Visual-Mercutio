@@ -69,7 +69,7 @@ class PSS_BasicSymbol;
 class AFX_EXT_CLASS ZUAssignDynamicAttributesToModel : public ZUModelNavigation
 {
 public:
-    ZUAssignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL,
+    ZUAssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel = NULL,
                                      ZBProperty* pProperty = NULL,
                                      CRuntimeClass* pRTClass = NULL,
                                      void* pClass = NULL);

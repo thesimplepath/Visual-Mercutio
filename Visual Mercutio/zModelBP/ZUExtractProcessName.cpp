@@ -32,7 +32,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractProcessName::ZUExtractProcessName(ZDProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
+ZUExtractProcessName::ZUExtractProcessName(PSS_ProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
     : m_pModel(pModel),
     m_pLog(pLog),
     m_pArray(NULL)

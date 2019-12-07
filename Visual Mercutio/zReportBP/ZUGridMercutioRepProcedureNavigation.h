@@ -38,13 +38,13 @@ class ZUGridMercutioRepProcedureNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUGridMercutioRepProcedureNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUGridMercutioRepProcedureNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUGridMercutioRepProcedureNavigation();
 
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
 
 private:
 
@@ -60,7 +60,7 @@ private:
 
     CGXStyle        m_BlackBorderStyle;
     CGXStyle        m_LeftOnlyBlackBorderStyle;
-    
+
     CGXStyle        m_PercentFormatStyle;
     CGXStyle        m_NumericCellStyle;
 
@@ -77,4 +77,4 @@ private:
     CString            m_LateralDeliverableLabel;
 };
 
-#endif // !defined(AFX_ZUGridMercutioRepProcedureNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

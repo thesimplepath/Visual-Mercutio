@@ -26,8 +26,13 @@
 
 #include "zModelRes.h"
 
-// Forward declaration
-class ZDProcessGraphModelMdl;
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

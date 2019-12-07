@@ -43,7 +43,7 @@
 class AFX_EXT_CLASS ZUExtractModelAttributes : public ZUModelNavigation  
 {
     public:
-        ZUExtractModelAttributes(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+        ZUExtractModelAttributes(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
         virtual ~ZUExtractModelAttributes();
 
         virtual bool OnStart();

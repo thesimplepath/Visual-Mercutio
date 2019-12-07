@@ -24,8 +24,13 @@
 // resources
 #include "zModelRes.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
 // forward class declaration
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
 // put the values back to make AFX_EXT_CLASS export again
@@ -44,33 +49,33 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZVSelectModelSymbolDlg : public PSS_Dialog
 {
-// Construction
+    // Construction
 public:
 
     // Standard constructor
-    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
-                            const CString                Title                = _T( "" ),
-                            int                            SelectableItem        = Selectable_All,
-                            PSS_RuntimeClassSet*          pSet                = NULL,
-                            CWnd*                        pParent                = NULL);
+    ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*        pModel,
+                           const CString                Title = _T(""),
+                           int                            SelectableItem = Selectable_All,
+                           PSS_RuntimeClassSet*          pSet = NULL,
+                           CWnd*                        pParent = NULL);
 
-    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
-                            const CString                Title,
-                            CRuntimeClass*                pSelectableClass,
-                            PSS_RuntimeClassSet*          pSet                = NULL,
-                            CWnd*                        pParent                = NULL );
+    ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*        pModel,
+                           const CString                Title,
+                           CRuntimeClass*                pSelectableClass,
+                           PSS_RuntimeClassSet*          pSet = NULL,
+                           CWnd*                        pParent = NULL);
 
-    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
-                            UINT                        nIDResTitle,
-                            int                            SelectableItem        = Selectable_All,
-                            PSS_RuntimeClassSet*          pSet                = NULL,
-                            CWnd*                        pParent                = NULL );
+    ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*        pModel,
+                           UINT                        nIDResTitle,
+                           int                            SelectableItem = Selectable_All,
+                           PSS_RuntimeClassSet*          pSet = NULL,
+                           CWnd*                        pParent = NULL);
 
-    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
-                            UINT                        nIDResTitle,
-                            CRuntimeClass*                pSelectableClass,
-                            PSS_RuntimeClassSet*          pSet                = NULL,
-                            CWnd*                        pParent                = NULL );
+    ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*        pModel,
+                           UINT                        nIDResTitle,
+                           CRuntimeClass*                pSelectableClass,
+                           PSS_RuntimeClassSet*          pSet = NULL,
+                           CWnd*                        pParent = NULL);
 
     CODModel* GetSelectedModel()
     {
@@ -99,7 +104,10 @@ public:
 
     // Dialog Data
     //{{AFX_DATA(ZVSelectModelSymbolDlg)
-    enum { IDD = IDD_SELECTSYMBOL };
+    enum
+    {
+        IDD = IDD_SELECTSYMBOL
+    };
     ZCProcessModelTree    m_SymbolTree;
     CString    m_SymbolPath;
     CString    m_SymbolName;
@@ -108,7 +116,7 @@ public:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVSelectModelSymbolDlg)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -126,13 +134,13 @@ protected:
 
 private:
 
-    ZDProcessGraphModelMdl*    m_pModel;
+    PSS_ProcessGraphModelMdl* m_pModel;
     CRuntimeClass*            m_pSelectableClass;
-    CODModel*                m_pSelectedModel;
-    CODSymbolComponent*        m_pSelectedSymbol;
-    ZDProcessGraphPage*        m_pSelectedPage;
-    CString                    m_Title;
-    int                        m_SelectableItem;
+    CODModel*                 m_pSelectedModel;
+    CODSymbolComponent*       m_pSelectedSymbol;
+    ZDProcessGraphPage*       m_pSelectedPage;
+    CString                   m_Title;
+    int                       m_SelectableItem;
 
     // Set of elements that can be displayed in the tree
     PSS_RuntimeClassSet*        m_pSet;

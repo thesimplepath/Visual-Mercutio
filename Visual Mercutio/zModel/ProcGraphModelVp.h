@@ -23,9 +23,14 @@
 #include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "ZBPageUnits.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
 // forward class declaration
 class PSS_ProcessGraphModelController;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 /////////////////////////////////////////////////////////////////////////////
 // scope symbols in stingray foundation library
@@ -69,7 +74,7 @@ public:
     void UpdatePageLook(PSS_DocumentPageSetup* PageSetup);
 
     PSS_ProcessGraphModelController* GetModelController();
-    ZDProcessGraphModelMdl*            GetModel();
+    PSS_ProcessGraphModelMdl* GetModel();
 
     void    SetRuler(CODRuler& Ruler);
     void    SetPageUnits(ZBPageUnits& PageUnits);
@@ -80,7 +85,7 @@ public:
     virtual BOOL CreateController();
     //}}AFX_VIRTUAL
 
-    BOOL AssignNewController(PSS_ProcessGraphModelController* pCtlr, ZDProcessGraphModelMdl* pModel);
+    BOOL AssignNewController(PSS_ProcessGraphModelController* pCtlr, PSS_ProcessGraphModelMdl* pModel);
 
     static SECImage* CreateImageObjectFromFileExtension(const CString fileName);
     static SECImage* LoadImageFromFile(const CString fileName);

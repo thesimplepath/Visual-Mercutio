@@ -19,11 +19,15 @@
 
 #include "ZBModelBPReportGenerator.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
 class ZBUserGroupEntity;
 class ZBUserRoleEntity;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class ZUUserGroupCalculateTotals;
 
 #ifdef _ZREPORTBPEXPORT
@@ -40,23 +44,23 @@ class ZUUserGroupCalculateTotals;
 
 class AFX_EXT_CLASS ZBSesterceUnitReportGenerator : public ZBModelBPReportGenerator
 {
-    DECLARE_SERIAL( ZBSesterceUnitReportGenerator )
+    DECLARE_SERIAL(ZBSesterceUnitReportGenerator)
 
 public:
 
-    ZBSesterceUnitReportGenerator( ZDGridDocument*                pDoc                = NULL,
-                                   ZDProcessGraphModelMdlBP*    pModel                = NULL,
-                                  PSS_ProcessGraphModelDoc*        pSourceDoc            = NULL,
-                                   bool                            IncludeMonthDetail    = true );
+    ZBSesterceUnitReportGenerator(ZDGridDocument*                pDoc = NULL,
+                                  ZDProcessGraphModelMdlBP*    pModel = NULL,
+                                  PSS_ProcessGraphModelDoc*        pSourceDoc = NULL,
+                                  bool                            IncludeMonthDetail = true);
 
     virtual ~ZBSesterceUnitReportGenerator();
 
     /////////////////////////////////////////////////////////////////////////////
     // ZIGridReportGenerator methods
-    
+
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     virtual const CString GetReportTitle() const;
 
@@ -67,16 +71,16 @@ protected:
 private:
 
     void RemoveAllData();
-    void FillGridUnitGroup( ZBUserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream );
-    void FillGridUnitRole( ZBUserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream );
+    void FillGridUnitGroup(ZBUserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
+    void FillGridUnitRole(ZBUserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
 
-    void FillProcessFigures( ZDProcessGraphModelMdl*        pModel,
-                             ZUUserGroupCalculateTotals*    pTotal,
-                             ZBUserGroupEntity*                pGroup,
-                             size_t                            Index,
-                             ZBOStreamGrid                    &ostream );
+    void FillProcessFigures(PSS_ProcessGraphModelMdl*        pModel,
+                            ZUUserGroupCalculateTotals*    pTotal,
+                            ZBUserGroupEntity*                pGroup,
+                            size_t                            Index,
+                            ZBOStreamGrid                    &ostream);
 
-// Implementation
+    // Implementation
 private:
 
     CStringArray    m_ProcessNameArray;
@@ -101,11 +105,11 @@ private:
     CGXStyle        m_NumericCellStyle;
 
 
-//    ZUUserGroupCalculateTotals m_UserGroupTotals;
+    //    ZUUserGroupCalculateTotals m_UserGroupTotals;
     CObArray        m_ModelArray;
     CObArray        m_NavigationTotalArray;
 
     bool            m_IncludeMonthDetail;
 };
 
-#endif // !defined(AFX_ZBSesterceUnitReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
+#endif

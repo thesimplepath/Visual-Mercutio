@@ -28,7 +28,7 @@ BEGIN_MESSAGE_MAP(ZVSelectModelSymbolDlg, PSS_Dialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
+ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*    pModel,
                                                const CString            Title            /*= ""*/,
                                                int                        SelectableItem    /*= Selectable_All*/,
                                                PSS_RuntimeClassSet*        pSet            /*= NULL*/,
@@ -49,7 +49,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel
     //}}AFX_DATA_INIT
 }
 
-ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
+ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*    pModel,
                                                const CString            Title,
                                                CRuntimeClass*            pSelectableClass,
                                                PSS_RuntimeClassSet*        pSet                /*= NULL*/,
@@ -70,7 +70,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel
     //}}AFX_DATA_INIT
 }
 
-ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
+ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*    pModel,
                                                UINT                    nIDResTitle,
                                                int                        SelectableItem    /*= Selectable_All*/,
                                                PSS_RuntimeClassSet*        pSet            /*= NULL*/,
@@ -91,7 +91,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel
     m_Title.LoadString(nIDResTitle);
 }
 
-ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(ZDProcessGraphModelMdl*    pModel,
+ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*    pModel,
                                                UINT                    nIDResTitle,
                                                CRuntimeClass*            pSelectableClass,
                                                PSS_RuntimeClassSet*        pSet                /*= NULL*/,
@@ -218,7 +218,7 @@ void ZVSelectModelSymbolDlg::OnOK()
             }
             // And if contains a model
             if (((ZBSymbol*)m_pSelectedSymbol)->GetChildModel() &&
-                ISA(((ZBSymbol*)m_pSelectedSymbol)->GetChildModel(), ZDProcessGraphModelMdl) &&
+                ISA(((ZBSymbol*)m_pSelectedSymbol)->GetChildModel(), PSS_ProcessGraphModelMdl) &&
                 !((ZBSymbol*)m_pSelectedSymbol)->IsChildModelRef())
             {
                 if (m_SelectableItem & Selectable_Model)
@@ -227,10 +227,10 @@ void ZVSelectModelSymbolDlg::OnOK()
                     m_pSelectedModel = ((ZBSymbol*)m_pSelectedSymbol)->GetChildModel();
 
                     m_SymbolPath =
-                        dynamic_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)m_pSelectedSymbol)->GetChildModel())->GetAbsolutePath();
+                        dynamic_cast<PSS_ProcessGraphModelMdl*>(((ZBSymbol*)m_pSelectedSymbol)->GetChildModel())->GetAbsolutePath();
 
                     m_SymbolName =
-                        dynamic_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)m_pSelectedSymbol)->GetChildModel())->GetModelName();
+                        dynamic_cast<PSS_ProcessGraphModelMdl*>(((ZBSymbol*)m_pSelectedSymbol)->GetChildModel())->GetModelName();
                 }
             }
         }
@@ -318,7 +318,7 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
 
             // And if contains a model
             if (((ZBSymbol*)pSelectedSymbol)->GetChildModel() &&
-                ISA(((ZBSymbol*)pSelectedSymbol)->GetChildModel(), ZDProcessGraphModelMdl) &&
+                ISA(((ZBSymbol*)pSelectedSymbol)->GetChildModel(), PSS_ProcessGraphModelMdl) &&
                 !((ZBSymbol*)pSelectedSymbol)->IsChildModelRef())
             {
                 if (!m_pSelectableClass && (m_SelectableItem & Selectable_Model))
@@ -330,10 +330,10 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
                 pSelectedModel = ((ZBSymbol*)pSelectedSymbol)->GetChildModel();
 
                 m_SymbolPath =
-                    dynamic_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)pSelectedSymbol)->GetChildModel())->GetAbsolutePath();
+                    dynamic_cast<PSS_ProcessGraphModelMdl*>(((ZBSymbol*)pSelectedSymbol)->GetChildModel())->GetAbsolutePath();
 
                 m_SymbolName =
-                    dynamic_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)pSelectedSymbol)->GetChildModel())->GetModelName();
+                    dynamic_cast<PSS_ProcessGraphModelMdl*>(((ZBSymbol*)pSelectedSymbol)->GetChildModel())->GetModelName();
             }
         }
         else if (pSelectedSymbol && ISA(pSelectedSymbol, PSS_LinkSymbol))

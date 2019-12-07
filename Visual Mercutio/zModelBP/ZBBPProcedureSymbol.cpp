@@ -30,7 +30,7 @@
 #include "zBaseLib\PSS_DrawFunctions.h"
 
 // Global for model
-#include "zModel\ZAModelGlobal.h"
+#include "zModel\PSS_ModelGlobal.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
@@ -126,8 +126,8 @@ bool ZBBPProcedureSymbol::AcceptExtApp() const
     // RS-MODIF 17.11.04 ExtApp should appear in Conceptor
 /*    CODModel * pModel = const_cast<ZBBPProcedureSymbol*>( this )->GetRootModel();
 
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
+    if ( pModel && ISA( pModel, PSS_ProcessGraphModelMdl ) &&
+         dynamic_cast<PSS_ProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
     {
         return true;
     }
@@ -142,8 +142,8 @@ bool ZBBPProcedureSymbol::AcceptExtFile() const
     // RS-MODIF 17.11.04 ExtFile should appear in Conceptor
 /*    CODModel * pModel = const_cast<ZBBPProcedureSymbol*>( this )->GetRootModel();
 
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
+    if ( pModel && ISA( pModel, PSS_ProcessGraphModelMdl ) &&
+         dynamic_cast<PSS_ProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
     {
         return true;
     }
@@ -260,7 +260,7 @@ CString ZBBPProcedureSymbol::GetRuleAt(size_t Index)
                                         // and with the default ; as separator
     CString Value;
 
-    // Retreive the specific indexed token
+    // Retrieve the specific indexed token
     if (token.GetTokenAt(Index, Value))
     {
         return Value;
@@ -348,7 +348,7 @@ CString ZBBPProcedureSymbol::GetTaskAt(size_t Index)
 
     CString Value;
 
-    // Retreive the specific indexed token
+    // Retrieve the specific indexed token
     if (token.GetTokenAt(Index, Value))
     {
         return Value;
@@ -436,7 +436,7 @@ CString ZBBPProcedureSymbol::GetDecisionAt(size_t Index)
 
     CString Value;
 
-    // Retreive the specific indexed token
+    // Retrieve the specific indexed token
     if (token.GetTokenAt(Index, Value))
     {
         return Value;
@@ -555,7 +555,7 @@ void ZBBPProcedureSymbol::CheckInitialCombination()
             {
                 CString Value;
 
-                // Retreive the specific indexed token
+                // Retrieve the specific indexed token
                 if (token.GetTokenAt(0, Value))
                 {
                     SetCombinationMaster(0, Value);
@@ -787,9 +787,9 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
 
     // FIXME translate comment
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             // retreive the model's currency symbol
@@ -803,8 +803,8 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     CString propDesc;
     bool    groupEnabled = true;
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
         groupEnabled = false;
 
     // FIXME translate comments
@@ -850,8 +850,8 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         {
             // FIXME translate comments
             // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
-            if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+            if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+                dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
             {
                 CString safeName = GetRuleNameByGUID(pMainRule, m_Rules.GetRuleGUID(i));
 
@@ -1276,15 +1276,15 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     int dayPerMonth = -1;
     int dayPerYear = -1;
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // FIXME translate comments
             // JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
-            // Retreive the model's currency symbol
+            // Retrieve the model's currency symbol
             //CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
 
             // retreive the standard time definition
@@ -1298,8 +1298,8 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     // RS-MODIF 17.11.04 error has to be defined here
     bool error;
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         // FIXME translate comments
         // Propriété "Multiplicateur" du groupe "Procédure"
@@ -1422,7 +1422,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
 
         propSet.Add(pProcessingDurationMax);
 
-        const float unitCost = RetreiveUnitCost(GetUnitGUID(), error);
+        const float unitCost = RetrieveUnitCost(GetUnitGUID(), error);
 
         // FIXME translate comments
         // Propriété "Coût" du groupe "Unité de traitement"
@@ -1483,7 +1483,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
 
     propSet.Add(pUnitGUID);
 
-    const CString unitName = RetreiveUnitName(GetUnitGUID(), error);
+    const CString unitName = RetrieveUnitName(GetUnitGUID(), error);
 
     // Propriété "Unité" du groupe "Unité de traitement"
     ZBProperty* pUnitName = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
@@ -1501,8 +1501,8 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
 
     // FIXME translate comments
     // RS-MODIF 17.11.04 should appear only in Messenger
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         // run through all combination properties
         CString finalPropTitle;
@@ -1590,8 +1590,8 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         }
     }
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         const double dValue = double(CalculateProcedureActivation());
 
@@ -2229,13 +2229,13 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
         CODModel*    pModel = GetRootModel();
         CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+            CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
             if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             {
-                // Retreive the model's currency symbol
+                // Retrieve the model's currency symbol
                 CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
@@ -2278,10 +2278,10 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
 
     if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
     {
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
             ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
-                                     dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                     dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
                                      true,    // Allow group selection
                                      false); // Doesn't allow role selection
 
@@ -2540,7 +2540,7 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBProperty
                 if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
                 {
                     bool Error;
-                    float UnitCost = RetreiveUnitCost(GUID, Error);
+                    float UnitCost = RetrieveUnitCost(GUID, Error);
 
                     if (Error == false)
                     {
@@ -2817,7 +2817,7 @@ float ZBBPProcedureSymbol::GetMaxActivationPerc(const CString Master)
 
     CODEdgeArray Edges;
 
-    // Retreive all entering Up edges of the procedure
+    // Retrieve all entering Up edges of the procedure
     if (GetEnteringUpDeliverable(Edges) > 0)
     {
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
@@ -2876,7 +2876,7 @@ ZBBPAnnualNumberProperties ZBBPProcedureSymbol::CalculateProcedureActivation()
     // First, we need to get all entering deliverables
     CODEdgeArray Edges;
 
-    // Retreive all entering Up edges
+    // Retrieve all entering Up edges
     if (GetEnteringUpDeliverable(Edges) == 0)
     {
         return 0;
@@ -2963,7 +2963,7 @@ int ZBBPProcedureSymbol::GetEnteringUpDeliverable(CString& EnteringDeliverables)
 
 int     ZBBPProcedureSymbol::GetEnteringUpDeliverable(CODEdgeArray& Edges)
 {
-    // Retreive all entering Up edges of the procedure
+    // Retrieve all entering Up edges of the procedure
     GetEdgesEntering_Up(Edges);
 
     // And also from all referenced procedures
@@ -3047,7 +3047,7 @@ int ZBBPProcedureSymbol::GetLeavingDownDeliverable(CString& LeavingDeliverables)
 
 int ZBBPProcedureSymbol::GetLeavingDownDeliverable(CODEdgeArray& Edges)
 {
-    // Retreive all leaving down edges
+    // Retrieve all leaving down edges
     GetEdgesLeaving_Down(Edges);
 
     // And also from all referenced procedures
@@ -3131,7 +3131,7 @@ int     ZBBPProcedureSymbol::GetLeavingRightDeliverable(CString& LeavingDelivera
 
 int     ZBBPProcedureSymbol::GetLeavingRightDeliverable(CODEdgeArray& Edges)
 {
-    // Retreive all leaving right edges
+    // Retrieve all leaving right edges
     GetEdgesLeaving_Right(Edges);
 
     // And also from all referenced procedures
@@ -3215,7 +3215,7 @@ int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable(CString& LeavingDeliverab
 
 int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable(CODEdgeArray& Edges)
 {
-    // Retreive all leaving left edges
+    // Retrieve all leaving left edges
     GetEdgesLeaving_Left(Edges);
 
     // And also from all referenced procedures
@@ -3306,8 +3306,8 @@ bool ZBBPProcedureSymbol::DropItem(CObject* pObj, const CPoint& pt)
         // First, check if the user group is valid
         CODModel* pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
         {
             // Cannot delete all combinations
             PSS_MsgBox mBox;
@@ -3337,8 +3337,8 @@ bool ZBBPProcedureSymbol::DropItem(CObject* pObj, const CPoint& pt)
         // First, check if the rule is valid
         CODModel* pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
         {
             // Cannot delete all rules
             PSS_MsgBox mBox;

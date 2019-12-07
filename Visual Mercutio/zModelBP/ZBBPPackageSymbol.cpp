@@ -141,7 +141,7 @@ void ZBBPPackageSymbol::AdjustElementPosition()
     m_LinkedToFileBitmapPosition.y = SymbolPosition.top;
 }
 
-bool    ZBBPPackageSymbol::LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent)
+bool    ZBBPPackageSymbol::LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, PSS_ProcessGraphModelMdl* pParent)
 {
     // Check if the file exists
     PSS_File File(m_FileNameLinkedTo);
@@ -194,8 +194,8 @@ bool    ZBBPPackageSymbol::UnloadPackage()
 void ZBBPPackageSymbol::OnDraw(CDC* pDC)
 {
     ZBSymbol::OnDraw(pDC);
-//    if (m_pModel && ISA(m_pModel,ZDProcessGraphModelMdl) && m_DisplayPreview)
-//        reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->DrawMetaFile(pDC, m_CommentRect);
+//    if (m_pModel && ISA(m_pModel,PSS_ProcessGraphModelMdl) && m_DisplayPreview)
+//        reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->DrawMetaFile(pDC, m_CommentRect);
     if (IsLinkedToFileName() && m_LinkedToFileBitmap.IsValid())
     {
         ShowBitmap(HBITMAP(m_LinkedToFileBitmap), pDC->m_hDC, AfxGetInstanceHandle(), m_LinkedToFileBitmapPosition.x, m_LinkedToFileBitmapPosition.y);

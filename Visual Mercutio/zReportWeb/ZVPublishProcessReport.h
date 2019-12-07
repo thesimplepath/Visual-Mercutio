@@ -164,7 +164,7 @@ private:
 
     ZBPropertyAttributes*            m_pPropAttributes;
 
-    ZDProcessGraphModelMdl*            m_pRootModel;
+    PSS_ProcessGraphModelMdl*            m_pRootModel;
 
     PSS_HtmlFile                      HtmlFile;
 

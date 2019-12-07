@@ -30,7 +30,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUCheckValidUnit::ZUCheckValidUnit(ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
+ZUCheckValidUnit::ZUCheckValidUnit(PSS_ProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
     : ZUProcessNavigation(pModel, pClass)
 {}
 
@@ -60,8 +60,8 @@ bool ZUCheckValidUnit::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
     {
         bool Error;
 
-        // Retreive the price defined and copy it to the symbol
-        CString UnitName = pSymbol->RetreiveUnitName(pSymbol->GetUnitGUID(), Error);
+        // Retrieve the price defined and copy it to the symbol
+        CString UnitName = pSymbol->RetrieveUnitName(pSymbol->GetUnitGUID(), Error);
 
         if (UnitName.IsEmpty())
         {
@@ -97,8 +97,8 @@ bool ZUCheckValidUnit::OnStartSymbol(ZBBPStartSymbol* pSymbol)
     {
         bool Error;
 
-        // Retreive the price defined and copy it to the symbol
-        CString UnitName = pSymbol->RetreiveUnitName(pSymbol->GetUnitGUID(), Error);
+        // Retrieve the price defined and copy it to the symbol
+        CString UnitName = pSymbol->RetrieveUnitName(pSymbol->GetUnitGUID(), Error);
 
         if (UnitName.IsEmpty())
         {
@@ -134,8 +134,8 @@ bool ZUCheckValidUnit::OnStopSymbol(ZBBPStopSymbol* pSymbol)
     {
         bool Error;
 
-        // Retreive the price defined and copy it to the symbol
-        CString UnitName = pSymbol->RetreiveUnitName(pSymbol->GetUnitGUID(), Error);
+        // Retrieve the price defined and copy it to the symbol
+        CString UnitName = pSymbol->RetrieveUnitName(pSymbol->GetUnitGUID(), Error);
 
         if (UnitName.IsEmpty())
         {

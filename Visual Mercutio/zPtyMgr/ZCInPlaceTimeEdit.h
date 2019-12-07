@@ -59,7 +59,7 @@ public:
     // Initialize the edit text value
     virtual void SetEditText(const CString& strText);
     virtual void SetEditText(PSS_TimeSpan& TimeValue);
-    // Retreive the text entered
+    // Retrieve the text entered
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function

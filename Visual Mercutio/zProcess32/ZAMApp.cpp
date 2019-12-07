@@ -317,7 +317,7 @@ BOOL ZAMainApp::InitInstance()
     // m_pszProfileName variable
     OnChangeWinIniFileName();
 
-    // Retreive the right help file name
+    // Retrieve the right help file name
     m_HelpFile = OnBuildHelpFileName();
 
     // Assigns globally the application directory

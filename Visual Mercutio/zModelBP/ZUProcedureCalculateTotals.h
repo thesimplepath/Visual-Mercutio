@@ -60,18 +60,17 @@ class AFX_EXT_CLASS ZBProcedureCalculateTotalsInformation
 {
 public:
 
-    ZBProcedureCalculateTotalsInformation( const CString        UnitName,
-                                           bool                    Consolidated,
-                                           ZBUserGroupEntity*    pGroup            = NULL )
+    ZBProcedureCalculateTotalsInformation(const CString        UnitName,
+                                          bool                    Consolidated,
+                                          ZBUserGroupEntity*    pGroup = NULL)
     {
-        m_UnitName        = UnitName;
-        m_Consolidated    = Consolidated;
-        m_pGroup        = pGroup;
+        m_UnitName = UnitName;
+        m_Consolidated = Consolidated;
+        m_pGroup = pGroup;
     };
 
     virtual ~ZBProcedureCalculateTotalsInformation()
-    {
-    };
+    {};
 
     CString                m_UnitName;
     bool                m_Consolidated;
@@ -86,7 +85,7 @@ class AFX_EXT_CLASS ZUProcedureCalculateTotals : public ZUProcessNavigation
 {
 public:
 
-    ZUProcedureCalculateTotals( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUProcedureCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUProcedureCalculateTotals();
 
     ZBBPAnnualNumberProperties& GetProcedureCost()
@@ -115,15 +114,15 @@ public:
     };
 
     // Call-back methods
-    virtual bool OnStart                    ();
-    virtual bool OnFinish                    ();
-    virtual bool OnDoorSymbol                ( ZBBPDoorSymbol* pSymbol );
-    virtual bool OnPageSymbol                ( ZBBPPageSymbol* pSymbol );
-    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol* pSymbol );
-    virtual bool OnProcessSymbol            ( ZBBPProcessSymbol* pSymbol );
-    virtual bool OnStartSymbol                ( ZBBPStartSymbol* pSymbol );
-    virtual bool OnStopSymbol                ( ZBBPStopSymbol* pSymbol );
-    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol* pSymbol );
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnDoorSymbol(ZBBPDoorSymbol* pSymbol);
+    virtual bool OnPageSymbol(ZBBPPageSymbol* pSymbol);
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    virtual bool OnProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    virtual bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
+    virtual bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
+    virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
 
 private:
 
@@ -137,4 +136,4 @@ private:
     double                        m_ProcedureCostPerActivity;
 };
 
-#endif // !defined(AFX_ZUProcedureCalculateTotals_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

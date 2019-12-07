@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType /*= 0*/, bool Selection /*= true*/,
                                          bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
                                          ZBDynamicPropertiesManager* pPropManager /*=NULL*/,
-                                         ZDProcessGraphModelMdl* pModel /*=NULL*/,
+                                         PSS_ProcessGraphModelMdl* pModel /*=NULL*/,
                                          CWnd* pParent /*=NULL*/)
     : CDialog(ZVChoosePropertyDlg::IDD, pParent),
     m_pProperties(pProperties),
@@ -47,7 +47,7 @@ ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType
 ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType /*= 0*/, bool Selection /*= true*/,
                                          bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
                                          ZBDynamicPropertiesManager* pPropManager /*=NULL*/,
-                                         ZDProcessGraphModelMdl* pModel /*=NULL*/,
+                                         PSS_ProcessGraphModelMdl* pModel /*=NULL*/,
                                          CWnd* pParent /*=NULL*/)
     : CDialog(ZVChoosePropertyDlg::IDD, pParent),
     m_pPropSet(pPropSet),

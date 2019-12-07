@@ -29,11 +29,14 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class ZBSymbol;
 class PSS_LinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class PSS_MainAutomationRunnerThread;
 class PSS_Log;
 
@@ -78,12 +81,12 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
         *@param allowUncompletePath - if true, a path can be broken when object are waiting on other objects
         */
-        PSS_AutomationMachine(ZDProcessGraphModelMdl* pModel                  =  NULL,
-                              PSS_Log*                pLog                    =  NULL,
-                              int                     maxLoop                 = -1,
-                              int                     maxPaused               = -1,
-                              int                     maxWaitingForOtherLinks = -1,
-                              bool                    allowUncompletePath     =  false);
+        PSS_AutomationMachine(PSS_ProcessGraphModelMdl* pModel                  =  NULL,
+                              PSS_Log*                  pLog                    =  NULL,
+                              int                       maxLoop                 = -1,
+                              int                       maxPaused               = -1,
+                              int                       maxWaitingForOtherLinks = -1,
+                              bool                      allowUncompletePath     =  false);
 
         /**
         * Constructor
@@ -95,13 +98,13 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
         *@param allowUncompletePath - if true, a path can be broken when object are waiting on other objects
         */
-        PSS_AutomationMachine(ZBSymbol*               pSymbol,
-                              ZDProcessGraphModelMdl* pModel                  =  NULL,
-                              PSS_Log*                pLog                    =  NULL,
-                              int                     maxLoop                 = -1,
-                              int                     maxPaused               = -1,
-                              int                     maxWaitingForOtherLinks = -1,
-                              bool                    allowUncompletePath     =  false);
+        PSS_AutomationMachine(ZBSymbol*                 pSymbol,
+                              PSS_ProcessGraphModelMdl* pModel                  =  NULL,
+                              PSS_Log*                  pLog                    =  NULL,
+                              int                       maxLoop                 = -1,
+                              int                       maxPaused               = -1,
+                              int                       maxWaitingForOtherLinks = -1,
+                              bool                      allowUncompletePath     =  false);
 
         virtual ~PSS_AutomationMachine();
 
@@ -109,13 +112,13 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         * Assigns a model
         *@param pModel - model to assign
         */
-        virtual inline void AssignModel(ZDProcessGraphModelMdl* pModel);
+        virtual inline void AssignModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Gets the model used by the automation machine
         *@return the model used by the automation machine
         */
-        virtual inline ZDProcessGraphModelMdl* GetModel() const;
+        virtual inline PSS_ProcessGraphModelMdl* GetModel() const;
 
         /**
         * Gets the start symbol
@@ -493,7 +496,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
     protected:
         PSS_StateMachineCollection m_StateMachineCollection;
         PSS_StateMachineCollection m_FinishedStateMachineCollection;
-        ZDProcessGraphModelMdl*    m_pModel;
+        PSS_ProcessGraphModelMdl*  m_pModel;
 
         /**
         * Copies the node array to the symbol set
@@ -614,13 +617,13 @@ class AFX_EXT_CLASS PSS_AutomationMachine
 //---------------------------------------------------------------------------
 // PSS_AutomationMachine
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::AssignModel(ZDProcessGraphModelMdl* pModel)
+void PSS_AutomationMachine::AssignModel(PSS_ProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
     m_StateMachineCollection.AssignModel(pModel);
 };
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_AutomationMachine::GetModel() const
+PSS_ProcessGraphModelMdl* PSS_AutomationMachine::GetModel() const
 {
     return m_pModel;
 }

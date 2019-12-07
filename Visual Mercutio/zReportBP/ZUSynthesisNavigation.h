@@ -38,9 +38,9 @@ class ZUSynthesisNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUSynthesisNavigation(ZDProcessGraphModelMdl*    pModel = NULL,
+    ZUSynthesisNavigation(PSS_ProcessGraphModelMdl*    pModel = NULL,
                           void*                    pClass = NULL,
-                          ZDProcessGraphModelMdl*    pRootModel = NULL,
+                          PSS_ProcessGraphModelMdl*    pRootModel = NULL,
                           const CString            domainName = _T(""),
                           const CString            unitName = _T(""));
 
@@ -59,7 +59,7 @@ private:
     ZBOStreamGrid*            m_postream;
     CGXStyle                m_BlueStyle;
 
-    ZDProcessGraphModelMdl*    m_pRootModel;
+    PSS_ProcessGraphModelMdl*    m_pRootModel;
 
     CString                    m_DomainName;
     CString                    m_UnitName;

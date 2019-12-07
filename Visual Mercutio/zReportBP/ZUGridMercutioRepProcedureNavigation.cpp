@@ -36,7 +36,7 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUGridMercutioRepProcedureNavigation::ZUGridMercutioRepProcedureNavigation( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUGridMercutioRepProcedureNavigation::ZUGridMercutioRepProcedureNavigation(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                             void*                    pClass    /*= NULL*/ )
     : ZUProcessNavigation( pModel, pClass )
 {
@@ -244,7 +244,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
         *m_postream << _T( "\t" );
     }
 
-    // Now for each deliverables, build the line. Retreive all entering up deliverables
+    // Now for each deliverables, build the line. Retrieve all entering up deliverables
     CODEdgeArray Edges;
 
     if ( pSymbol->GetEnteringUpDeliverable( Edges ) > 0 )
@@ -433,7 +433,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     *m_postream << m_GrayStyle;
     *m_postream << m_BlackBorderStyle;
 
-    // Now for each deliverables, build the line. Retreive all leaving down deliverables
+    // Now for each deliverables, build the line. Retrieve all leaving down deliverables
     if ( pSymbol->GetLeavingDownDeliverable( Edges ) > 0 )
     {
         for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -499,7 +499,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     *m_postream << m_GrayStyle;
     *m_postream << m_BlackBorderStyle;
 
-    // Now for each deliverables, build the line. Retreive all leaving right deliverables
+    // Now for each deliverables, build the line. Retrieve all leaving right deliverables
     if ( pSymbol->GetLeavingRightDeliverable( Edges ) > 0 )
     {
         for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -557,7 +557,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
         }
     }
 
-    // Retreive all leaving left deliverables
+    // Retrieve all leaving left deliverables
     if ( pSymbol->GetLeavingLeftDeliverable( Edges ) > 0 )
     {
         for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )

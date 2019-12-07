@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUGridProcessNavigation::ZUGridProcessNavigation(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUGridProcessNavigation::ZUGridProcessNavigation(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                  void*                        pClass    /*= NULL*/)
     : ZUProcessNavigation(pModel, pClass)
 {}

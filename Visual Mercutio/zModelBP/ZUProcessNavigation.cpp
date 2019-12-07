@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcessNavigation::ZUProcessNavigation(ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
+ZUProcessNavigation::ZUProcessNavigation(PSS_ProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
     : m_pModel(pModel),
     m_pClass(pClass)
 {}
@@ -37,14 +37,14 @@ ZUProcessNavigation::ZUProcessNavigation(ZDProcessGraphModelMdl* pModel /*= NULL
 ZUProcessNavigation::~ZUProcessNavigation()
 {}
 
-bool ZUProcessNavigation::Navigate(ZDProcessGraphModelMdl* pModel, void* pClass)
+bool ZUProcessNavigation::Navigate(PSS_ProcessGraphModelMdl* pModel, void* pClass)
 {
     m_pModel = pModel;
     m_pClass = pClass;
     return ZUProcessNavigation::Navigate();
 }
 
-bool ZUProcessNavigation::Navigate(ZDProcessGraphModelMdl* pModel)
+bool ZUProcessNavigation::Navigate(PSS_ProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
     return ZUProcessNavigation::Navigate();

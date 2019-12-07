@@ -658,7 +658,7 @@ int ZIProcessGraphModelView::OnCreate(LPCREATESTRUCT lpcs)
     }
 
     // Check the model existance
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
     {
@@ -671,7 +671,7 @@ int ZIProcessGraphModelView::OnCreate(LPCREATESTRUCT lpcs)
     return 0;
 }
 
-void ZIProcessGraphModelView::SetModel(ZDProcessGraphModelMdl* pModel, bool SizeViewport /*= true*/)
+void ZIProcessGraphModelView::SetModel(PSS_ProcessGraphModelMdl* pModel, bool SizeViewport /*= true*/)
 {
     m_pModelOfView = pModel;
     GetViewport()->SetModel(pModel);
@@ -699,7 +699,7 @@ void ZIProcessGraphModelView::SetModel(ZDProcessGraphModelMdl* pModel, bool Size
     }
 }
 
-ZDProcessGraphModelMdl* ZIProcessGraphModelView::GetModel()
+PSS_ProcessGraphModelMdl* ZIProcessGraphModelView::GetModel()
 {
     if (m_pModelOfView)
     {

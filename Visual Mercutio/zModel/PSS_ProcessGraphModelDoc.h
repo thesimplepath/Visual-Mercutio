@@ -599,14 +599,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the canvas model
         *@return the canvas model
         */
-        virtual inline       ZDProcessGraphModelMdl* GetModel();
-        virtual inline const ZDProcessGraphModelMdl* GetModel() const;
+        virtual inline       PSS_ProcessGraphModelMdl* GetModel();
+        virtual inline const PSS_ProcessGraphModelMdl* GetModel() const;
 
         /**
         * Sets a new model
         *@param pModel - model to set
         */
-        virtual void SetNewModel(ZDProcessGraphModelMdl* pModel);
+        virtual void SetNewModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Gets the document template
@@ -776,8 +776,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     protected:
-        ZDProcessGraphModelMdl  m_EmptyModel;
-        ZDProcessGraphModelMdl* m_pModel;
+        PSS_ProcessGraphModelMdl  m_EmptyModel;
+        PSS_ProcessGraphModelMdl* m_pModel;
 
         /// Generated message map functions
         //{{AFX_MSG(PSS_ProcessGraphModelDoc)
@@ -927,7 +927,7 @@ bool PSS_ProcessGraphModelDoc::HasUnit() const
 //---------------------------------------------------------------------------
 EModelNotation PSS_ProcessGraphModelDoc::GetNotation() const
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return E_MN_Unknown;
@@ -937,7 +937,7 @@ EModelNotation PSS_ProcessGraphModelDoc::GetNotation() const
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::SetNotation(EModelNotation value)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -947,7 +947,7 @@ void PSS_ProcessGraphModelDoc::SetNotation(EModelNotation value)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::IsModelInABCNotation() const
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return false;
@@ -957,7 +957,7 @@ bool PSS_ProcessGraphModelDoc::IsModelInABCNotation() const
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::IsModelInUMLNotation() const
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return false;
@@ -967,7 +967,7 @@ bool PSS_ProcessGraphModelDoc::IsModelInUMLNotation() const
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::IsModelInBerylNotation() const
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return false;
@@ -977,7 +977,7 @@ bool PSS_ProcessGraphModelDoc::IsModelInBerylNotation() const
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::IsModelNotationUnknow() const
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return false;
@@ -1121,7 +1121,7 @@ void PSS_ProcessGraphModelDoc::SetShowPageBorder(bool value)
 //---------------------------------------------------------------------------
 const ELanguage PSS_ProcessGraphModelDoc::GetLanguage() const
 {
-    ZDProcessGraphModelMdl* pModel = const_cast<ZDProcessGraphModelMdl*>(GetModel());
+    PSS_ProcessGraphModelMdl* pModel = const_cast<PSS_ProcessGraphModelMdl*>(GetModel());
 
     if (!pModel)
         return E_LN_Unknown;
@@ -1131,7 +1131,7 @@ const ELanguage PSS_ProcessGraphModelDoc::GetLanguage() const
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::SetLanguage(const ELanguage value)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -1171,7 +1171,7 @@ PSS_Log* PSS_ProcessGraphModelDoc::GetWorkflowOutputLog()
 //---------------------------------------------------------------------------
 ZBUserGroupEntity* PSS_ProcessGraphModelDoc::GetMainUserGroup()
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return NULL;
@@ -1181,7 +1181,7 @@ ZBUserGroupEntity* PSS_ProcessGraphModelDoc::GetMainUserGroup()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup)
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -1191,7 +1191,7 @@ void PSS_ProcessGraphModelDoc::AssignMainUserGroup(ZBUserGroupEntity* pMainUserG
 //---------------------------------------------------------------------------
 ZBLogicalSystemEntity* PSS_ProcessGraphModelDoc::GetMainLogicalSystem()
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return NULL;
@@ -1201,7 +1201,7 @@ ZBLogicalSystemEntity* PSS_ProcessGraphModelDoc::GetMainLogicalSystem()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem)
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -1211,7 +1211,7 @@ void PSS_ProcessGraphModelDoc::AssignMainLogicalSystem(ZBLogicalSystemEntity* pM
 //---------------------------------------------------------------------------
 ZBLogicalPrestationsEntity* PSS_ProcessGraphModelDoc::GetMainLogicalPrestations()
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return NULL;
@@ -1221,7 +1221,7 @@ ZBLogicalPrestationsEntity* PSS_ProcessGraphModelDoc::GetMainLogicalPrestations(
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations)
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -1231,7 +1231,7 @@ void PSS_ProcessGraphModelDoc::AssignMainLogicalPrestations(ZBLogicalPrestations
 //---------------------------------------------------------------------------
 ZBLogicalRulesEntity* PSS_ProcessGraphModelDoc::GetMainLogicalRules()
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return NULL;
@@ -1241,7 +1241,7 @@ ZBLogicalRulesEntity* PSS_ProcessGraphModelDoc::GetMainLogicalRules()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules)
 {
-    const ZDProcessGraphModelMdl* pModel = GetModel();
+    const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return;
@@ -1249,12 +1249,12 @@ void PSS_ProcessGraphModelDoc::AssignMainLogicalRules(ZBLogicalRulesEntity* pMai
     pModel->AssignMainLogicalRules(pMainLogicalRules);
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_ProcessGraphModelDoc::GetModel()
+PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelDoc::GetModel()
 {
     return (m_pModel ? m_pModel : &m_EmptyModel);
 }
 //---------------------------------------------------------------------------
-const ZDProcessGraphModelMdl* PSS_ProcessGraphModelDoc::GetModel() const
+const PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelDoc::GetModel() const
 {
     return (m_pModel ? m_pModel : &m_EmptyModel);
 }

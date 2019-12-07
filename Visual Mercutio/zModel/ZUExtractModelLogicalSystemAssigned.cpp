@@ -26,7 +26,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractModelLogicalSystemAssigned::ZUExtractModelLogicalSystemAssigned(ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUExtractModelLogicalSystemAssigned::ZUExtractModelLogicalSystemAssigned(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                          void*                        pClass    /*= NULL*/)
     : ZUModelNavigation(pModel, pClass)
 {}

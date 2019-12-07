@@ -31,6 +31,9 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class PSS_Log;
@@ -43,7 +46,7 @@ class ZBBPProcessSymbol;
 class ZBBPStartSymbol;
 class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 // JMR-MODIF - Le 17 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -51,7 +54,7 @@ class ZUCheckSesterceConsistency : public PSS_BasicSymbolVisitor
 {
 public:
 
-    ZUCheckSesterceConsistency(ZDProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
+    ZUCheckSesterceConsistency(PSS_ProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
     virtual ~ZUCheckSesterceConsistency();
 
     bool CheckModel();
@@ -87,10 +90,10 @@ private:
 
 private:
 
-    PSS_Log*                m_pLog;
-    ZDProcessGraphModelMdl* m_pModel;
-    size_t                  m_ErrorCounter;
-    size_t                  m_WarningCounter;
+    PSS_Log*                  m_pLog;
+    PSS_ProcessGraphModelMdl* m_pModel;
+    size_t                    m_ErrorCounter;
+    size_t                    m_WarningCounter;
 };
 
 #endif

@@ -5,10 +5,10 @@
 #define AFX_ZBINFOMODELGRAPHICGENERATION_H__05209965_C481_4C8E_AA5F_E813CF9C313F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -16,20 +16,24 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-//////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZDProcessGraphModelMdl;
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelMdl;
 class PSS_ProcessGraphModelController;
 class PSS_Server;
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - Le 2 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -38,7 +42,7 @@ class AFX_EXT_CLASS ZBInfoModelGraphicGeneration
 {
 public:
 
-    ZBInfoModelGraphicGeneration(ZDProcessGraphModelMdl*            pModel = NULL,
+    ZBInfoModelGraphicGeneration(PSS_ProcessGraphModelMdl*            pModel = NULL,
                                  PSS_ProcessGraphModelController*    pCtlr = NULL,
                                  const CString                        URLName = _T(""),
                                  bool                                AbsolutePath = true,
@@ -52,8 +56,8 @@ public:
 
     virtual ~ZBInfoModelGraphicGeneration();
 
-    ZDProcessGraphModelMdl* GetModel() const;
-    void SetModel(ZDProcessGraphModelMdl* value);
+    PSS_ProcessGraphModelMdl* GetModel() const;
+    void SetModel(PSS_ProcessGraphModelMdl* value);
 
     PSS_ProcessGraphModelController* GetCtlr() const;
     void SetCtlr(PSS_ProcessGraphModelController* value);
@@ -102,19 +106,19 @@ private:
 
     CDC*                            m_pDC;
 
-    ZDProcessGraphModelMdl*            m_pModel;
+    PSS_ProcessGraphModelMdl*            m_pModel;
 
     PSS_ProcessGraphModelController*    m_pCtlr;
 
     PSS_Server*                        m_pServer;
 };
 
-inline ZDProcessGraphModelMdl* ZBInfoModelGraphicGeneration::GetModel() const
+inline PSS_ProcessGraphModelMdl* ZBInfoModelGraphicGeneration::GetModel() const
 {
     return m_pModel;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetModel(ZDProcessGraphModelMdl* value)
+inline void ZBInfoModelGraphicGeneration::SetModel(PSS_ProcessGraphModelMdl* value)
 {
     m_pModel = value;
 }

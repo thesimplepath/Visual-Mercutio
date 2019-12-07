@@ -74,9 +74,9 @@ std::size_t PSS_ModelGenerateImageFiles::m_IndexItem = 0;
 //---------------------------------------------------------------------------
 // PSS_ModelGenerateImageFiles
 //---------------------------------------------------------------------------
-PSS_ModelGenerateImageFiles::PSS_ModelGenerateImageFiles(ZDProcessGraphModelMdl* pModel,
-                                                         void*                   pClass,
-                                                         ZBPropertyAttributes*   pPropAttributes) :
+PSS_ModelGenerateImageFiles::PSS_ModelGenerateImageFiles(PSS_ProcessGraphModelMdl* pModel,
+                                                         void*                     pClass,
+                                                         ZBPropertyAttributes*     pPropAttributes) :
     ZUModelNavigation(pModel, pClass),
     m_pPropAttributes(pPropAttributes)
 {}
@@ -171,7 +171,7 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(ZBSymbol* pSymbol)
     ASSERT(m_pInfo);
 
     // get the html page owner model
-    ZDProcessGraphModelMdl* pOwnerModel = dynamic_cast<ZDProcessGraphModelMdl*>(pSymbol->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetOwnerModel());
 
     // build the html file name
     const CString htmlFileName = BuildSymbolPropertyHTMLFileName(pSymbol, pOwnerModel ? pOwnerModel : m_pModel);
@@ -181,7 +181,7 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(ZBSymbol* pSymbol)
 
     if (pSymbol->GetChildModel() && m_pInfo->GetDC() && m_pInfo->GetCtlr())
     {
-        ZDProcessGraphModelMdl* pChildModel = dynamic_cast<ZDProcessGraphModelMdl*>(pSymbol->GetChildModel());
+        PSS_ProcessGraphModelMdl* pChildModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel());
 
         if (!pChildModel)
             return false;
@@ -189,18 +189,18 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(ZBSymbol* pSymbol)
         if (!GenerateModel(pChildModel))
             return false;
 
-        const ZBProcessGraphPageSet* pPageSet = pChildModel->GetPageSet();
+        const PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pPageSet = pChildModel->GetPageSet();
 
         // generate the html page contained at the model root
         if (pPageSet)
         {
-            ZBProcessGraphPageIterator it(pPageSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pPageSet);
 
             // iterate through pages to process
             for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
             {
                 // get the page model
-                ZDProcessGraphModelMdl* pPageModel = pPage->GetModel();
+                PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
                 if (!pPageModel)
                     continue;
@@ -226,7 +226,7 @@ bool PSS_ModelGenerateImageFiles::OnLink(PSS_LinkSymbol* pLink)
     ASSERT(m_pInfo);
 
     // get the html page owner model
-    ZDProcessGraphModelMdl* pOwnerModel = dynamic_cast<ZDProcessGraphModelMdl*>(pLink->GetOwnerModel());
+    PSS_ProcessGraphModelMdl* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pLink->GetOwnerModel());
 
     // build the html FileName
     const CString htmlFileName = BuildSymbolPropertyHTMLFileName(pLink, pOwnerModel ? pOwnerModel : m_pModel);
@@ -234,7 +234,7 @@ bool PSS_ModelGenerateImageFiles::OnLink(PSS_LinkSymbol* pLink)
     return GeneratePropertyPage(pLink, htmlFileName);
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateModel(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateModel(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -397,7 +397,7 @@ CString PSS_ModelGenerateImageFiles::ReplaceSpecialCharInString(const CString& s
     return s;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString& imageFileName)
+bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pModel, const CString& imageFileName)
 {
     if (!pModel)
         return false;
@@ -525,7 +525,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
 
                 // if no sub-model, just the area for the popup
-                ZDProcessGraphModelMdl* pOwnerModel = dynamic_cast<ZDProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
+                PSS_ProcessGraphModelMdl* pOwnerModel =
+                        dynamic_cast<PSS_ProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
 
                 s.Format(IDS_MODELGENHTML_84, objectCounter);
                 htmlFile << s;
@@ -755,7 +756,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                 // if has a sub-model defined, create a link to enter in the symbol child model
                 if (pSymbol && pSymbol->GetChildModel())
                 {
-                    ZDProcessGraphModelMdl* pSubModel = dynamic_cast<ZDProcessGraphModelMdl*>(pSymbol->GetChildModel());
+                    PSS_ProcessGraphModelMdl* pSubModel =
+                            dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel());
                     ASSERT(pSubModel);
 
                     // retreive the html FileName for the reference
@@ -772,8 +774,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
                     // check if the symbol has more than one page
                     if (pSubModel->GetPageSet())
                     {
-                        ZBProcessGraphPageIterator it(pSubModel->GetPageSet());
-                        ZDProcessGraphPage*        pPage = it.GetFirst();
+                        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pSubModel->GetPageSet());
+                        ZDProcessGraphPage*                                 pPage = it.GetFirst();
 
                         // skip the first page and iterate through the remaining ones
                         if (pPage)
@@ -926,7 +928,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateIndexPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -1022,14 +1024,14 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(ZDProcessGraphModelMdl* pMod
         // write all links to all root pages
         if (pModel->GetPageSet())
         {
-            ZBProcessGraphPageIterator it(pModel->GetPageSet());
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pModel->GetPageSet());
 
             // iterate through all pages if there are
             for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
                 if (pPage->GetModel())
                 {
                     // get page model
-                    ZDProcessGraphModelMdl* pPageModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetModel());
+                    PSS_ProcessGraphModelMdl* pPageModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pPage->GetModel());
                     ASSERT(pPageModel);
 
                     GenerateModel(pPageModel);
@@ -1209,7 +1211,8 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(ZDProcessGraphModelMdl* pMod
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateFrameMainModelPage(ZDProcessGraphModelMdl* pModel, const CString& modelHtmlPage)
+bool PSS_ModelGenerateImageFiles::GenerateFrameMainModelPage(PSS_ProcessGraphModelMdl* pModel,
+                                                             const CString&            modelHtmlPage)
 {
     if (!pModel)
         return false;
@@ -1253,7 +1256,7 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameMainModelPage(ZDProcessGraphModel
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateFrameUserPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateFrameUserPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -1297,7 +1300,7 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameUserPage(ZDProcessGraphModelMdl* 
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateFrameSystemPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateFrameSystemPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -1341,7 +1344,7 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameSystemPage(ZDProcessGraphModelMdl
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateFramePrestationsPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateFramePrestationsPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -1541,7 +1544,7 @@ bool PSS_ModelGenerateImageFiles::GenerateEmptyPropertyPage()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateBannerPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateBannerPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -1637,7 +1640,7 @@ bool PSS_ModelGenerateImageFiles::GenerateBannerPage(ZDProcessGraphModelMdl* pMo
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateUnitGroupPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateUnitGroupPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -1723,7 +1726,7 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupPage(ZDProcessGraphModelMdl* 
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -1808,7 +1811,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(ZDProcessGraphModelM
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(ZDProcessGraphModelMdl* pModel)
+bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(PSS_ProcessGraphModelMdl* pModel)
 {
     if (!pModel)
         return false;
@@ -2051,9 +2054,10 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(ZBUserGroupEntity* pG
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
 
-                CString                 htmlFileNameOwnerModel;
-                CString                 symbolPath(_T("#NA"));
-                ZDProcessGraphModelMdl* pOwnerModel = dynamic_cast<ZDProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
+                CString                   htmlFileNameOwnerModel;
+                CString                   symbolPath(_T("#NA"));
+                PSS_ProcessGraphModelMdl* pOwnerModel =
+                        dynamic_cast<PSS_ProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
 
                 if (pOwnerModel)
                 {
@@ -2211,9 +2215,10 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(ZBLogicalSystemEn
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
 
-                CString                 htmlFileNameOwnerModel;
-                CString                 symbolPath(_T("#NA"));
-                ZDProcessGraphModelMdl* pOwnerModel = dynamic_cast<ZDProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
+                CString                   htmlFileNameOwnerModel;
+                CString                   symbolPath(_T("#NA"));
+                PSS_ProcessGraphModelMdl* pOwnerModel =
+                        dynamic_cast<PSS_ProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
 
                 if (pOwnerModel)
                 {
@@ -2376,9 +2381,10 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(ZBLogicalPre
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
                 ASSERT(pBasicSym);
 
-                CString                 htmlFileNameOwnerModel;
-                CString                 symbolPath(_T("#NA"));
-                ZDProcessGraphModelMdl* pOwnerModel = dynamic_cast<ZDProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
+                CString                   htmlFileNameOwnerModel;
+                CString                   symbolPath(_T("#NA"));
+                PSS_ProcessGraphModelMdl* pOwnerModel =
+                        dynamic_cast<PSS_ProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
 
                 if (pOwnerModel)
                 {
@@ -2551,7 +2557,7 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelImageFileName(ZDProcessGraphModelMdl* pModel) const
+CString PSS_ModelGenerateImageFiles::BuildModelImageFileName(PSS_ProcessGraphModelMdl* pModel) const
 {
     if (!pModel)
         return _T("");
@@ -2564,7 +2570,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelImageFileName(ZDProcessGraphModel
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileName(ZDProcessGraphModelMdl* pModel, const CString& prefix) const
+CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileName(PSS_ProcessGraphModelMdl* pModel, const CString& prefix) const
 {
     if (!pModel)
         return _T("");
@@ -2581,7 +2587,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileName(ZDProcessGraphModelM
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameForPrinter(ZDProcessGraphModelMdl* pModel) const
+CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameForPrinter(PSS_ProcessGraphModelMdl* pModel) const
 {
     if (!pModel)
         return _T("");
@@ -2694,9 +2700,9 @@ CString PSS_ModelGenerateImageFiles::BuildPrestationsReportHTMLFileName(const CS
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildSymbolPropertyHTMLFileName(PSS_BasicSymbol*        pSymbol,
-                                                                     ZDProcessGraphModelMdl* pModel,
-                                                                     const CString&          prefix) const
+CString PSS_ModelGenerateImageFiles::BuildSymbolPropertyHTMLFileName(PSS_BasicSymbol*          pSymbol,
+                                                                     PSS_ProcessGraphModelMdl* pModel,
+                                                                     const CString&            prefix) const
 {
     if (!pSymbol)
         return _T("");

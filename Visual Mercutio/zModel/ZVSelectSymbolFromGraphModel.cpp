@@ -38,7 +38,7 @@ BEGIN_MESSAGE_MAP(ZVSelectSymbolFromGraphModel, PSS_Dialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                                            const CString            Title            /*= ""*/,
                                                            int                        SelectableItem    /*= Selectable_All*/,
                                                            bool                    EnableNavigate    /*= true*/,
@@ -56,7 +56,7 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
     //}}AFX_DATA_INIT
 }
 
-ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                                            const CString            Title,
                                                            CRuntimeClass*            pSelectableClass,
                                                            bool                    EnableNavigate        /*= true*/,
@@ -74,7 +74,7 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
     //}}AFX_DATA_INIT
 }
 
-ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                                            UINT                    nIDResTitle,
                                                            int                        SelectableItem    /*= Selectable_All*/,
                                                            bool                    EnableNavigate    /*= true*/,
@@ -93,7 +93,7 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
     m_Title.LoadString(nIDResTitle);
 }
 
-ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMdl*    pModel,
+ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                                            UINT                    nIDResTitle,
                                                            CRuntimeClass*            pSelectableClass,
                                                            bool                    EnableNavigate        /*= true*/,
@@ -525,15 +525,15 @@ void _ZVGraphModelController::OnGoUp()
     {
         CODModel* pModel = dynamic_cast<CODModel*>(GetModel());
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            if (dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetParent())
+            if (dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetParent())
             {
                 // Clear the selection
                 ClearSelection();
 
                 // Set the model
-                reinterpret_cast<_ZVGraphModelWnd*>(GetVp()->GetWnd())->SetModel(dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetParent());
+                reinterpret_cast<_ZVGraphModelWnd*>(GetVp()->GetWnd())->SetModel(dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetParent());
 
                 // Refresh the view
                 GetVp()->GetWnd()->UpdateWindow();

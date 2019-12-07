@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
         *@param pModel - owning model, can be NULL
         *@param pClass - owning class, can be NULL
         */
-        PSS_SoapPublishModelGenerateFiles(ZDProcessGraphModelMdl*             pModel = NULL,
+        PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*           pModel = NULL,
                                           void*                               pClass = NULL,
                                           ZBPublishMessengerModelInformation* pInfo  = NULL);
 
@@ -100,7 +100,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
         *@param pModel - model from which images should be published
         *@return true on success, otherwise false
         */
-        bool PublishModel(ZDProcessGraphModelMdl* pModel);
+        bool PublishModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Creates a html page from a model
@@ -108,21 +108,21 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
         *@param imageFileName - image file name
         *@return true on success, otherwise false
         */
-        bool CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString& imageFileName);
+        bool CreateHtmlPage(PSS_ProcessGraphModelMdl* pModel, const CString& imageFileName);
 
         /**
         * Builds a file name for the model image
         *@param pModel - model for which file name should be created
         *@return file name, empty string on error
         */
-        CString BuildModelImageFileName(ZDProcessGraphModelMdl* pModel);
+        CString BuildModelImageFileName(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Builds a file name for the model html page
         *@param pModel - model for which html page file name should be created
         *@return file name, empty string on error
         */
-        CString BuildModelHTMLFileName(ZDProcessGraphModelMdl* pModel);
+        CString BuildModelHTMLFileName(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Parses a model file name

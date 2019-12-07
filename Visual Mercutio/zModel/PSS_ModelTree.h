@@ -23,6 +23,9 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class ZDProcessGraphPage;
@@ -30,7 +33,7 @@ class PSS_TreeCtrl;
 class ZBModelSet;
 class ZBSymbol;
 class PSS_LinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -107,7 +110,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param hItem - item handle
         *@return the model
         */
-        virtual ZDProcessGraphModelMdl* GetModel(HTREEITEM hItem);
+        virtual PSS_ProcessGraphModelMdl* GetModel(HTREEITEM hItem);
 
         /**
         * Gets the page
@@ -121,13 +124,13 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param hItem - item handle
         *@return the owner model
         */
-        virtual ZDProcessGraphModelMdl* GetOwnerModel(HTREEITEM hItem);
+        virtual PSS_ProcessGraphModelMdl* GetOwnerModel(HTREEITEM hItem);
 
         /**
         * Gets the selected model
         *@return the selected model
         */
-        virtual ZDProcessGraphModelMdl* GetSelectedModel();
+        virtual PSS_ProcessGraphModelMdl* GetSelectedModel();
 
         /**
         * Gets the selected symbol
@@ -145,7 +148,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         * Gets the selected owner model
         *@return the selected owner model
         */
-        virtual ZDProcessGraphModelMdl* GetSelectedOwnerModel();
+        virtual PSS_ProcessGraphModelMdl* GetSelectedOwnerModel();
 
         /**
         * Checks if the item root is selected
@@ -163,13 +166,13 @@ class AFX_EXT_CLASS PSS_ModelTree
         * Adds a model
         *@param pModel - the model to add
         */
-        virtual void AddModel(ZDProcessGraphModelMdl* pModel);
+        virtual void AddModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Removes a model
         *@param pModel - the model to remove
         */
-        virtual void RemoveModel(ZDProcessGraphModelMdl* pModel);
+        virtual void RemoveModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Adds a model set
@@ -189,23 +192,23 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param pModel - the model
         *@param checkUnique - if true, the symbol will be added only if still not exists in the model
         */
-        virtual void AddSymbol(CODSymbolComponent*     pSymbol,
-                               ZDProcessGraphModelMdl* pModel      = NULL,
-                               bool                    checkUnique = true);
+        virtual void AddSymbol(CODSymbolComponent*       pSymbol,
+                               PSS_ProcessGraphModelMdl* pModel      = NULL,
+                               bool                      checkUnique = true);
 
         /**
         * Removes a symbol
         *@param pSymbol - the symbol to remove
         *@param pModel - the model
         */
-        virtual void RemoveSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
+        virtual void RemoveSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
 
         /**
         * Modifies a symbol
         *@param pSymbol - the symbol to modify
         *@param pModel - the model
         */
-        virtual void ModifySymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
+        virtual void ModifySymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
 
         /**
         * Called when the symbol is selected
@@ -242,21 +245,21 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param pModel - the root model to process
         *@param hParentTreeItem - the parent tree item handle
         */
-        virtual void ProcessRootModel(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
+        virtual void ProcessRootModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
 
         /**
         * Processes the model by page set
         *@param pModel - the model to process
         *@param hParentTreeItem - the parent tree item handle
         */
-        virtual void ProcessModelByPageSet(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
+        virtual void ProcessModelByPageSet(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
 
         /**
         * Processes the model
         *@param pModel - the model to process
         *@param hParentTreeItem - the parent tree item handle
         */
-        virtual void ProcessModel(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
+        virtual void ProcessModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
 
         /**
         * Processes the symbol
@@ -287,7 +290,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param hParentTreeItem - the parent tree item handle
         *@return the newly added item handle, NULL on error
         */
-        virtual HTREEITEM AddModelItem(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
+        virtual HTREEITEM AddModelItem(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem);
 
         /**
         * Adds a symbol item
@@ -319,7 +322,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param hItem - the item handle
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL ModifyModelItem(ZDProcessGraphModelMdl* pModel, HTREEITEM hItem);
+        virtual BOOL ModifyModelItem(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hItem);
 
         /**
         * Modifies a symbol item
@@ -365,13 +368,13 @@ class AFX_EXT_CLASS PSS_ModelTree
                     IE_DT_Unknown
                 };
 
-                IEType                  m_Type;
-                ZBSymbol*               m_pSymbol;
-                PSS_LinkSymbol*         m_pLinkSymbol;
-                ZDProcessGraphPage*     m_pGraphPage;
-                ZDProcessGraphModelMdl* m_pModel;
-                CString                 m_Str;
-                bool                    m_Collapsed;
+                IEType                    m_Type;
+                ZBSymbol*                 m_pSymbol;
+                PSS_LinkSymbol*           m_pLinkSymbol;
+                ZDProcessGraphPage*       m_pGraphPage;
+                PSS_ProcessGraphModelMdl* m_pModel;
+                CString                   m_Str;
+                bool                      m_Collapsed;
 
                 IData();
 
@@ -397,7 +400,7 @@ class AFX_EXT_CLASS PSS_ModelTree
                 * Constructor
                 *@param pModel - model
                 */
-                IData(ZDProcessGraphModelMdl* pModel);
+                IData(PSS_ProcessGraphModelMdl* pModel);
 
                 /**
                 * Constructor
@@ -483,35 +486,35 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param pElement - element to add
         *@return the matching dataset, NULL if not found or on error
         */
-        IData* AddDataToSet(ZBSymbol*               pElement);
-        IData* AddDataToSet(PSS_LinkSymbol*         pElement);
-        IData* AddDataToSet(ZDProcessGraphPage*     pElement);
-        IData* AddDataToSet(ZDProcessGraphModelMdl* pElement);
-        IData* AddDataToSet(const CString&          element);
+        IData* AddDataToSet(ZBSymbol*                 pElement);
+        IData* AddDataToSet(PSS_LinkSymbol*           pElement);
+        IData* AddDataToSet(ZDProcessGraphPage*       pElement);
+        IData* AddDataToSet(PSS_ProcessGraphModelMdl* pElement);
+        IData* AddDataToSet(const CString&            element);
 
         /**
         * Deletes an element from the dataset
         *@param pElement - element to delete
         *@return true on success, otherwise false
         */
-        bool DeleteElementFromDataSet(CODSymbolComponent*     pElement);
-        bool DeleteElementFromDataSet(ZBSymbol*               pElement);
-        bool DeleteElementFromDataSet(PSS_LinkSymbol*         pElement);
-        bool DeleteElementFromDataSet(ZDProcessGraphPage*     pElement);
-        bool DeleteElementFromDataSet(ZDProcessGraphModelMdl* pElement);
-        bool DeleteElementFromDataSet(const CString&          element);
+        bool DeleteElementFromDataSet(CODSymbolComponent*       pElement);
+        bool DeleteElementFromDataSet(ZBSymbol*                 pElement);
+        bool DeleteElementFromDataSet(PSS_LinkSymbol*           pElement);
+        bool DeleteElementFromDataSet(ZDProcessGraphPage*       pElement);
+        bool DeleteElementFromDataSet(PSS_ProcessGraphModelMdl* pElement);
+        bool DeleteElementFromDataSet(const CString&            element);
 
         /**
         * Finds an element from the dataset
         *@param pElement - element to find
         *@return the matching dataset, NULL if not found or on error
         */
-        IData* FindElementFromDataSet(CODSymbolComponent*     pElement);
-        IData* FindElementFromDataSet(ZBSymbol*               pElement);
-        IData* FindElementFromDataSet(PSS_LinkSymbol*         pElement);
-        IData* FindElementFromDataSet(ZDProcessGraphPage*     pElement);
-        IData* FindElementFromDataSet(ZDProcessGraphModelMdl* pElement);
-        IData* FindElementFromDataSet(const CString&          element);
+        IData* FindElementFromDataSet(CODSymbolComponent*       pElement);
+        IData* FindElementFromDataSet(ZBSymbol*                 pElement);
+        IData* FindElementFromDataSet(PSS_LinkSymbol*           pElement);
+        IData* FindElementFromDataSet(ZDProcessGraphPage*       pElement);
+        IData* FindElementFromDataSet(PSS_ProcessGraphModelMdl* pElement);
+        IData* FindElementFromDataSet(const CString&            element);
 };
 
 //---------------------------------------------------------------------------

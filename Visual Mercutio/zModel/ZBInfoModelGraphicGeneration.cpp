@@ -19,7 +19,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBInfoModelGraphicGeneration::ZBInfoModelGraphicGeneration(ZDProcessGraphModelMdl* pModel            /*= NULL*/,
+ZBInfoModelGraphicGeneration::ZBInfoModelGraphicGeneration(PSS_ProcessGraphModelMdl* pModel            /*= NULL*/,
                                                            PSS_ProcessGraphModelController* pCtlr    /*= NULL*/,
                                                            const CString URLName                    /*= ""*/,
                                                            bool AbsolutePath                        /*= true*/,

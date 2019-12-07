@@ -38,7 +38,7 @@ class ZUGridProcessNavigation : public ZUProcessNavigation
 {
 public:
 
-    ZUGridProcessNavigation(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    ZUGridProcessNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUGridProcessNavigation();
 
     // Call-back methods

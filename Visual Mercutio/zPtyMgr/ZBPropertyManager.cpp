@@ -1168,7 +1168,7 @@ void ZBPropertyItemManager::DeleteUnusedTab()
         }
         else
         {
-            // Retreive the next element
+            // Retrieve the next element
             pItemCat = i.GetNext();
         }
     }

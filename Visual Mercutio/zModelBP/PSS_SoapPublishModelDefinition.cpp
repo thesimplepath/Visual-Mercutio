@@ -43,7 +43,7 @@
 // PSS_SoapPublishModelDefinition
 //---------------------------------------------------------------------------
 PSS_SoapPublishModelDefinition::PSS_SoapPublishModelDefinition(ZBPublishMessengerModelInformation* pInfo,
-                                                               ZDProcessGraphModelMdl*             pModel,
+                                                               PSS_ProcessGraphModelMdl*           pModel,
                                                                void*                               pClass) :
     ZUProcessNavigation(pModel, pClass),
     m_pInfo(pInfo),
@@ -56,28 +56,28 @@ PSS_SoapPublishModelDefinition::PSS_SoapPublishModelDefinition(ZBPublishMessenge
 PSS_SoapPublishModelDefinition::~PSS_SoapPublishModelDefinition()
 {}
 //---------------------------------------------------------------------------
-int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*               pSymbol,
-                                                             int                     ParentID,
-                                                             ZDProcessGraphModelMdl* pParentModel)
+int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*                 pSymbol,
+                                                             int                       parentID,
+                                                             PSS_ProcessGraphModelMdl* pParentModel)
 {
     if (!pSymbol)
         return 0;
 
     // no parent model, start from root
     if (!pParentModel)
-        pParentModel = dynamic_cast<ZDProcessGraphModelMdl*>(pSymbol->GetOwnerModel())->GetRoot();
+        pParentModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetOwnerModel())->GetRoot();
 
     // parent model still not found?
     if (!pParentModel)
         return 0;
 
     // get page set from model controller
-    ZBProcessGraphPageSet* pSet = pParentModel->GetPageSet();
+    PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = pParentModel->GetPageSet();
 
     if (!pSet)
         return 0;
 
-    ZBProcessGraphPageIterator it(pSet);
+    PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pSet);
 
     // iterate through model controller children pages
     for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
@@ -126,7 +126,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*          
 
             // if the found component symbol is identical to the given one, return the parent ID
             if (pCompSym && pCompSym->GetSymbolReferenceNumber() == pSymbol->GetSymbolReferenceNumber())
-                return ParentID;
+                return parentID;
         }
     }
 

@@ -40,18 +40,18 @@ class AFX_EXT_CLASS ZDProcessGraphPage : public CObject
 
 public:
 
-    ZDProcessGraphPage(const CString PageName = _T(""), ZDProcessGraphModelMdl* pModel = NULL);
+    ZDProcessGraphPage(const CString PageName = _T(""), PSS_ProcessGraphModelMdl* pModel = NULL);
     virtual ~ZDProcessGraphPage();
 
     CString GetPageName() const;
     void SetPageName(CString value);
 
-    ZDProcessGraphModelMdl* GetModel() const
+    PSS_ProcessGraphModelMdl* GetModel() const
     {
         return m_pModel;
     }
 
-    void SetModel(ZDProcessGraphModelMdl* value)
+    void SetModel(PSS_ProcessGraphModelMdl* value)
     {
         m_pModel = value;
     }
@@ -74,10 +74,9 @@ public:
 #endif // _DEBUG
 
 protected:
-
-    CString                        m_PageName;
-    CString                        m_ModelName;
-    ZDProcessGraphModelMdl*        m_pModel;
+    CString                   m_PageName;
+    CString                   m_ModelName;
+    PSS_ProcessGraphModelMdl* m_pModel;
 };
 
 inline CString ZDProcessGraphPage::GetPageName() const

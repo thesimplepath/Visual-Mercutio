@@ -252,7 +252,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[out] error - if true, an error occurred
         *@return the unit GUID
         */
-        virtual CString RetreiveUnitGUID(const CString& name, bool& error) const;
+        virtual CString RetrieveUnitGUID(const CString& name, bool& error) const;
 
         /**
         * Retrieves the unit name from the GUID
@@ -260,7 +260,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[out] error - if true, an error occurred
         *@return the unit name
         */
-        virtual CString RetreiveUnitName(const CString& guid, bool& error) const;
+        virtual CString RetrieveUnitName(const CString& guid, bool& error) const;
 
         /**
         * Retrieves the unit description from the GUID
@@ -268,7 +268,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[out] error - if true, an error occurred
         *@return the unit description
         */
-        virtual CString RetreiveUnitDescription(const CString& guid, bool& error) const;
+        virtual CString RetrieveUnitDescription(const CString& guid, bool& error) const;
 
         /**
         * Retrieves the unit cost from the GUID
@@ -276,7 +276,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[out] error - if true, an error occurred
         *@return the unit cost
         */
-        virtual float RetreiveUnitCost(const CString& guid, bool& error) const;
+        virtual float RetrieveUnitCost(const CString& guid, bool& error) const;
 
         /**
         * Retrieves the logical system GUID from the name
@@ -284,7 +284,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[out] error - if true, an error occurred
         *@return the logical system GUID
         */
-        virtual CString RetreiveLogicalSystemGUID(const CString& name, bool& error) const;
+        virtual CString RetrieveLogicalSystemGUID(const CString& name, bool& error) const;
 
         /**
         * Retrieves the logical system name from the GUID
@@ -292,7 +292,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[out] error - if true, an error occurred
         *@return the logical system name
         */
-        virtual CString RetreiveLogicalSystemName(const CString& guid, bool& error) const;
+        virtual CString RetrieveLogicalSystemName(const CString& guid, bool& error) const;
 
         /**
         * Retrieves the logical system description from the GUID
@@ -300,7 +300,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[out] error - if true, an error occurred
         *@return the logical system description
         */
-        virtual CString RetreiveLogicalSystemDescription(const CString& guid, bool& error) const;
+        virtual CString RetrieveLogicalSystemDescription(const CString& guid, bool& error) const;
 
         /**
         * Edits the symbol name
@@ -703,14 +703,14 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
 
         /**
         * Processes the menu command for the property value
-        *@param menuCommand - menu command identifier to process
+        *@param menuCmdID - menu command identifier to process
         *@param prop - property
         *@param value - property value
         *@param props - property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessMenuCommand(int            menuCommand,
+        virtual bool ProcessMenuCommand(int            menuCmdID,
                                         ZBProperty&    prop,
                                         CString&       value,
                                         ZBPropertySet& props,
@@ -736,7 +736,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
 
         /**
         * Checks if the object can be visited
-        *@param visitor - visitor
+        *@param visitor - the visitor
         *@return true if the object can be visited, otherwise false
         */
         virtual inline bool AcceptVisitor(PSS_BasicSymbolVisitor& visitor);
@@ -1035,7 +1035,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param dstProperty - the destination property
         *@param top2Down - if true, the drag&drop happens from top to down
         *@param props - the property set at which the drag&dropped properties belong
-        *@return true on success, otherwise false
+        *@return true if item was dropped, otherwise false
         */
         virtual bool OnDropInternalPropertyItem(ZBProperty&    srcProperty,
                                                 ZBProperty&    dstProperty,

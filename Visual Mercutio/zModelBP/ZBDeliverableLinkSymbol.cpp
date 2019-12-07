@@ -486,8 +486,8 @@ bool ZBDeliverableLinkSymbol::DropItem(CObject* pObj, const CPoint& pt)
         // First, check if the rule is valid
         CODModel* pModel = GetRootModel();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+            !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
         {
             // Cannot delete all rules
             PSS_MsgBox mBox;
@@ -1152,7 +1152,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
                 if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
                 {
                     bool Error;
-                    float UnitCost = RetreiveUnitCost(GUID, Error);
+                    float UnitCost = RetrieveUnitCost(GUID, Error);
 
                     if (Error == false)
                     {
@@ -1303,11 +1303,11 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
     if (m_RootModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-        ZBProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
+        PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
 
         if (pSet != NULL)
         {
-            ZBProcessGraphPageIterator i(pSet);
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
             for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
@@ -1358,7 +1358,7 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
 void ZBDeliverableLinkSymbol::CheckDeliverableStatus()
 {
     // Advise the owner model of symbol changes
-    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+    PSS_ProcessGraphModelMdl* pRootModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
     if (pRootModel && pRootModel->IsInCutOperation())
     {
@@ -1758,8 +1758,8 @@ bool ZBDeliverableLinkSymbol::AcceptExtApp() const
 {
     CODModel * pModel = const_cast<ZBDeliverableLinkSymbol*>(this)->GetRootModel();
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetUseWorkflow())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetUseWorkflow())
     {
         return true;
     }
@@ -1772,8 +1772,8 @@ bool ZBDeliverableLinkSymbol::AcceptExtFile() const
 {
     CODModel * pModel = const_cast<ZBDeliverableLinkSymbol*>(this)->GetRootModel();
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetUseWorkflow())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetUseWorkflow())
     {
         return true;
     }
@@ -1797,13 +1797,13 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
         CODModel*    pModel = GetRootModel();
         CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+            CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
             if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             {
-                // Retreive the model's currency symbol
+                // Retrieve the model's currency symbol
                 CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
@@ -1846,10 +1846,10 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
 
     if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
     {
-        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+        if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
             ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
-                                     dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                     dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
                                      true,        // Allow group selection
                                      false);    // Doesn't allow role selection
 
@@ -2195,9 +2195,9 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     // FIXME translate comments
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
             // retreive the model's currency symbol
@@ -2212,8 +2212,8 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     CString propDesc;
     bool    groupEnabled = true;
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
         groupEnabled = false;
 
     // ************************************************************************************************************
@@ -2258,8 +2258,8 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         {
             // FIXME translate comments
             // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
-            if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+            if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+                dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
             {
                 CString safeName = GetRuleNameByGUID(pMainRule, m_Rules.GetRuleGUID(i));
 
@@ -2633,15 +2633,15 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     int dayPerMonth = -1;
     int dayPerYear = -1;
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
+        CDocument* pDoc = dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetDocument();
 
         if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
         {
             // FIXME translate comments
             // JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
-            // Retreive the model's currency symbol
+            // Retrieve the model's currency symbol
             //CurrencySymbol = dynamic_cast<PSS_ProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
 
             // todo FIXME -cFeature -oJean: please cast once and reuse the same pointer!!!
@@ -2653,8 +2653,8 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         }
     }
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         ZBProperty* pTime;
 
@@ -2703,8 +2703,8 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pOutPercent);
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         // FIXME translate comments
         // Propriété "Coût unitaire" du groupe "Livrable"
@@ -3394,8 +3394,8 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+        dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         // add simulation properties
         ZBProperty* pSimProp = NULL;
@@ -3446,7 +3446,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         propSet.Add(pUnitGUID);
 
         bool    error;
-        CString unitName = RetreiveUnitName(GetUnitGUID(), error);
+        CString unitName = RetrieveUnitName(GetUnitGUID(), error);
 
         // FIXME translate comments
         // Propriété "Unité" du groupe "Unité de traitement" (Non visible)
@@ -3460,7 +3460,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                false);
         propSet.Add(pUnitName);
 
-        const float unitCost = RetreiveUnitCost(GetUnitGUID(), error);
+        const float unitCost = RetrieveUnitCost(GetUnitGUID(), error);
 
         // FIXME translate comments
         // Propriété "Coût" du groupe "Unité de traitement" (Non visible)
@@ -4338,7 +4338,7 @@ CString ZBDeliverableLinkSymbol::GetTextItemAt(size_t Index)
 
     CString Value;
 
-    // Retreive the specific indexed token
+    // Retrieve the specific indexed token
     if (token.GetTokenAt(Index, Value))
     {
         return Value;
@@ -4357,7 +4357,7 @@ size_t ZBDeliverableLinkSymbol::GetTextItemCount() const
 
 CString ZBDeliverableLinkSymbol::GetCombinationName() const
 {
-    // Retreive the destination procedure
+    // Retrieve the destination procedure
     ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
 
     if (!pProcedure)
@@ -4399,7 +4399,7 @@ CString ZBDeliverableLinkSymbol::GetRuleAt(size_t Index)
                                         // and with the default ; as separator
     CString Value;
 
-    // Retreive the specific indexed token
+    // Retrieve the specific indexed token
     if (token.GetTokenAt(Index, Value))
     {
         return Value;
@@ -4417,7 +4417,7 @@ size_t ZBDeliverableLinkSymbol::GetRuleCount() const
 
 float ZBDeliverableLinkSymbol::GetCombinationMaxPercentage() const
 {
-    // Retreive the destination procedure
+    // Retrieve the destination procedure
     ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
 
     // Test if it is a local symbol
@@ -4459,7 +4459,7 @@ float ZBDeliverableLinkSymbol::GetCombinationMaxPercentage() const
 
 ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetSourceProcedure() const
 {
-    // Retreive the input procedure name
+    // Retrieve the input procedure name
     CODComponent* pComp = GetSourceComponent();
 
     if (pComp && ISA(pComp, ZBBPProcedureSymbol))
@@ -4531,7 +4531,7 @@ ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetSourceProcedure() const
 
 ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetTargetProcedure() const
 {
-    // Retreive the target connected symbol
+    // Retrieve the target connected symbol
     CODComponent* pComp = GetTargetComponent();
 
     if (pComp && ISA(pComp, ZBBPProcedureSymbol))
@@ -4600,9 +4600,9 @@ ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetTargetProcedure() const
     return NULL;
 }
 
-ZDProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetComingFromModel() const
+PSS_ProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetComingFromModel() const
 {
-    // Retreive the input procedure name
+    // Retrieve the input procedure name
     CODComponent* pComp = GetSourceComponent();
 
     if (pComp && ISA(pComp, ZBBPDoorSymbol))
@@ -4624,17 +4624,17 @@ ZDProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetComingFromModel() const
 
 ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetComingFromProcess() const
 {
-    // Retreive the coming from model
-    ZDProcessGraphModelMdl* pModel = GetComingFromModel();
+    // Retrieve the coming from model
+    PSS_ProcessGraphModelMdl* pModel = GetComingFromModel();
 
     if (pModel)
     {
         CODModel* pRootModel = const_cast<ZBDeliverableLinkSymbol*>(this)->GetRootModel();
 
-        if (pRootModel && ISA(pRootModel, ZDProcessGraphModelMdl))
+        if (pRootModel && ISA(pRootModel, PSS_ProcessGraphModelMdl))
         {
             // Find the symbol pointed by the door model
-            CODComponentSet* pSet = dynamic_cast<ZDProcessGraphModelMdl*>(pRootModel)->FindSymbol(pModel);
+            CODComponentSet* pSet = dynamic_cast<PSS_ProcessGraphModelMdl*>(pRootModel)->FindSymbol(pModel);
 
             if (pSet)
             {
@@ -4656,9 +4656,9 @@ ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetComingFromProcess() const
     return NULL;
 }
 
-ZDProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetGoingToModel() const
+PSS_ProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetGoingToModel() const
 {
-    // Retreive the target connected symbol
+    // Retrieve the target connected symbol
     CODComponent* pComp = GetTargetComponent();
 
     if (pComp && ISA(pComp, ZBBPDoorSymbol))
@@ -4680,17 +4680,17 @@ ZDProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetGoingToModel() const
 
 ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetGoingToProcess() const
 {
-    // Retreive the going to model
-    ZDProcessGraphModelMdl* pModel = GetGoingToModel();
+    // Retrieve the going to model
+    PSS_ProcessGraphModelMdl* pModel = GetGoingToModel();
 
     if (pModel)
     {
         CODModel* pRootModel = const_cast<ZBDeliverableLinkSymbol*>(this)->GetRootModel();
 
-        if (pRootModel && ISA(pRootModel, ZDProcessGraphModelMdl))
+        if (pRootModel && ISA(pRootModel, PSS_ProcessGraphModelMdl))
         {
             // Find the symbol pointed by the door model
-            CODComponentSet* pSet = dynamic_cast<ZDProcessGraphModelMdl*>(pRootModel)->FindSymbol(pModel);
+            CODComponentSet* pSet = dynamic_cast<PSS_ProcessGraphModelMdl*>(pRootModel)->FindSymbol(pModel);
 
             if (pSet)
             {
@@ -4716,7 +4716,7 @@ ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetGoingToProcess() const
 
 bool ZBDeliverableLinkSymbol::IsMasterOfCombination() const
 {
-    // Retreive the destination procedure
+    // Retrieve the destination procedure
     ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
 
     // Test if it is a local symbol
@@ -4757,24 +4757,24 @@ bool ZBDeliverableLinkSymbol::IsMasterOfCombination() const
 
 bool ZBDeliverableLinkSymbol::IsInitial() const
 {
-    // Retreive the source connected symbol
+    // Retrieve the source connected symbol
     CODComponent* pComp = GetSourceComponent();
     return (pComp && ISA(pComp, ZBBPStartSymbol)) ? true : false;
 }
 
 bool ZBDeliverableLinkSymbol::IsFinal() const
 {
-    // Retreive the target connected symbol
+    // Retrieve the target connected symbol
     CODComponent* pComp = GetTargetComponent();
     return (pComp && ISA(pComp, ZBBPStopSymbol)) ? true : false;
 }
 
 bool ZBDeliverableLinkSymbol::IsInterProcess() const
 {
-    // Retreive the source connected symbol
+    // Retrieve the source connected symbol
     CODComponent* pSourceComp = GetSourceComponent();
 
-    // Retreive the target connected symbol
+    // Retrieve the target connected symbol
     CODComponent* pTargetComp = GetTargetComponent();
 
     return ((pSourceComp && ISA(pSourceComp, ZBBPDoorSymbol)) ||

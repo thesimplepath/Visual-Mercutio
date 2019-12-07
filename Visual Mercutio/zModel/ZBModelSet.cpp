@@ -6,7 +6,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -19,44 +19,42 @@ IMPLEMENT_SERIAL(ZBModelSet, CObject, g_DefVersion)
 //////////////////////////////////////////////////////////////////////
 
 ZBModelSet::ZBModelSet()
-{
-}
+{}
 
 ZBModelSet::~ZBModelSet()
-{
-}
+{}
 
 ZBModelSet* ZBModelSet::Clone()
 {
     ZBModelSet* pNewSet = new ZBModelSet;
 
-    for ( size_t i = 0; i < GetModelCount(); ++i )
+    for (size_t i = 0; i < GetModelCount(); ++i)
     {
-        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+        PSS_ProcessGraphModelMdl* pMdl = GetModelAt(i);
 
-        if ( pMdl )
+        if (pMdl)
         {
-            pNewSet->AddModel( pMdl );
+            pNewSet->AddModel(pMdl);
         }
     }
 
     return pNewSet;
 }
 
-ZDProcessGraphModelMdl* ZBModelSet::GetModelAt( size_t Index )
+PSS_ProcessGraphModelMdl* ZBModelSet::GetModelAt(size_t Index)
 {
-    if ( Index < GetModelCount() )
+    if (Index < GetModelCount())
     {
-        return (ZDProcessGraphModelMdl*)m_Set.GetAt( Index );
+        return (PSS_ProcessGraphModelMdl*)m_Set.GetAt(Index);
     }
 
     return NULL;
 }
 
-bool ZBModelSet::AddModel( ZDProcessGraphModelMdl* pModel )
+bool ZBModelSet::AddModel(PSS_ProcessGraphModelMdl* pModel)
 {
     size_t PreviousCount = GetModelCount();
-    m_Set.Add( pModel );
+    m_Set.Add(pModel);
 
     return GetModelCount() > PreviousCount;
 }
@@ -68,11 +66,11 @@ void ZBModelSet::RemoveAllModel()
 
 void ZBModelSet::DeleteAllModel()
 {
-    for ( size_t i = 0; i < GetModelCount(); ++i )
+    for (size_t i = 0; i < GetModelCount(); ++i)
     {
-        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+        PSS_ProcessGraphModelMdl* pMdl = GetModelAt(i);
 
-        if ( pMdl )
+        if (pMdl)
         {
             delete pMdl;
         }
@@ -81,26 +79,26 @@ void ZBModelSet::DeleteAllModel()
     m_Set.RemoveAll();
 }
 
-bool ZBModelSet::RemoveModelAt( size_t Index )
+bool ZBModelSet::RemoveModelAt(size_t Index)
 {
-    if ( Index < GetModelCount() )
+    if (Index < GetModelCount())
     {
-        m_Set.RemoveAt( Index );
+        m_Set.RemoveAt(Index);
         return true;
     }
 
     return false;
 }
 
-bool ZBModelSet::RemoveModel( ZDProcessGraphModelMdl* pModel )
+bool ZBModelSet::RemoveModel(PSS_ProcessGraphModelMdl* pModel)
 {
-    for ( size_t i = 0; i < GetModelCount(); ++i )
+    for (size_t i = 0; i < GetModelCount(); ++i)
     {
-        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+        PSS_ProcessGraphModelMdl* pMdl = GetModelAt(i);
 
-        if ( pMdl == pModel )
+        if (pMdl == pModel)
         {
-            RemoveModelAt( i );
+            RemoveModelAt(i);
             return true;
         }
     }
@@ -108,13 +106,13 @@ bool ZBModelSet::RemoveModel( ZDProcessGraphModelMdl* pModel )
     return false;
 }
 
-ZDProcessGraphModelMdl* ZBModelSet::FindModel( const CString Name )
+PSS_ProcessGraphModelMdl* ZBModelSet::FindModel(const CString Name)
 {
-    for ( size_t i = 0; i < GetModelCount(); ++i )
+    for (size_t i = 0; i < GetModelCount(); ++i)
     {
-        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+        PSS_ProcessGraphModelMdl* pMdl = GetModelAt(i);
 
-        if ( pMdl->GetModelName() == Name )
+        if (pMdl->GetModelName() == Name)
         {
             return pMdl;
         }
@@ -123,13 +121,13 @@ ZDProcessGraphModelMdl* ZBModelSet::FindModel( const CString Name )
     return NULL;
 }
 
-int ZBModelSet::FindModelIndex( ZDProcessGraphModelMdl* pModel )
+int ZBModelSet::FindModelIndex(PSS_ProcessGraphModelMdl* pModel)
 {
-    for ( size_t i = 0; i < GetModelCount(); ++i )
+    for (size_t i = 0; i < GetModelCount(); ++i)
     {
-        ZDProcessGraphModelMdl*    pMdl = GetModelAt( i );
+        PSS_ProcessGraphModelMdl*    pMdl = GetModelAt(i);
 
-        if ( pMdl == pModel )
+        if (pMdl == pModel)
         {
             return i;
         }
@@ -139,7 +137,7 @@ int ZBModelSet::FindModelIndex( ZDProcessGraphModelMdl* pModel )
 }
 
 // Serializes the set
-void ZBModelSet::Serialize( CArchive& ar )
+void ZBModelSet::Serialize(CArchive& ar)
 {
-    m_Set.Serialize( ar );
+    m_Set.Serialize(ar);
 }

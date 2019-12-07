@@ -112,8 +112,8 @@ void ZBConceptorReportGenerator::FillTabArray()
     for ( int Idx = 0; Idx < CountProcess; ++Idx )
     {
         // Find the right process, function of the model name
-        CString                    processName    = m_ProcessNameArray.GetAt( Idx );
-        ZDProcessGraphModelMdl*    pModel        = m_pModel->FindModel( processName, true ); // In case sensitive
+        CString                      processName    = m_ProcessNameArray.GetAt( Idx );
+        PSS_ProcessGraphModelMdl*    pModel        = m_pModel->FindModel( processName, true ); // In case sensitive
 
         if ( !pModel )
         {

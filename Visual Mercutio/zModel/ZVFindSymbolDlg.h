@@ -2,40 +2,42 @@
 #define AFX_ZVFINDSYMBOLDLG_H__A4CA0373_BC42_46A5_8106_AF4418EDAC5B__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZVFindSymbolDlg.h : header file
-//
-
-#ifdef _AFXEXT
-//change the definition of AFX_EXT... to make it import
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_IMPORT
-#define AFX_EXT_API AFX_API_IMPORT
-#define AFX_EXT_DATA AFX_DATA_IMPORT
+    #pragma once
 #endif
 
+#ifdef _AFXEXT
+    // change the definition of AFX_EXT... to make it import
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_IMPORT
+    #define AFX_EXT_API AFX_API_IMPORT
+    #define AFX_EXT_DATA AFX_DATA_IMPORT
+#endif
 
-
+// processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "zModelRes.h"
-
 #include "ZCSymbolList.h"
 
-// Forward declaration
-class ZDProcessGraphModelMdl;
+// resources
+#include "zModelRes.h"
 
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 //#undef  AFX_DATA
@@ -49,7 +51,7 @@ class AFX_EXT_CLASS ZVFindSymbolDlg : public PSS_Dialog
 {
 // Construction
 public:
-    ZVFindSymbolDlg(ZDProcessGraphModelMdl& Mdl, UINT nIDRes, CWnd* pParent = NULL);   // standard constructor
+    ZVFindSymbolDlg(PSS_ProcessGraphModelMdl& Mdl, UINT nIDRes, CWnd* pParent = NULL);
 
     CODSymbolComponent* GetSelectedSymbol() const { return m_pSymbol; };
 
@@ -89,12 +91,9 @@ protected:
     void    CheckControlState();
 
 private:
-    ZDProcessGraphModelMdl&        m_Model;
-    CODSymbolComponent*            m_pSymbol;
-    UINT m_nIDRes;
+    PSS_ProcessGraphModelMdl& m_Model;
+    CODSymbolComponent*       m_pSymbol;
+    UINT                      m_nIDRes;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVFINDSYMBOLDLG_H__A4CA0373_BC42_46A5_8106_AF4418EDAC5B__INCLUDED_)
+#endif

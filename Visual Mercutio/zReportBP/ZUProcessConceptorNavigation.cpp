@@ -35,9 +35,9 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcessConceptorNavigation::ZUProcessConceptorNavigation( ZDProcessGraphModelMdl*    pModel                    /*= NULL*/,
+ZUProcessConceptorNavigation::ZUProcessConceptorNavigation(PSS_ProcessGraphModelMdl*    pModel                    /*= NULL*/,
                                                             void*                    pClass                    /*= NULL*/,
-                                                            ZDProcessGraphModelMdl*    pRootModel                /*= NULL*/,
+                                                           PSS_ProcessGraphModelMdl*    pRootModel                /*= NULL*/,
                                                             const CString            domainName                /*= ""*/,
                                                             const CString            unitName                /*= ""*/,
                                                             BOOL                    bIncludeSynthesis        /*= TRUE*/,
@@ -110,7 +110,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
     // Check if for the same unit
     bool Error;
 
-    CString UnitName = pProcedure->RetreiveUnitName( pProcedure->GetUnitGUID(), Error );
+    CString UnitName = pProcedure->RetrieveUnitName( pProcedure->GetUnitGUID(), Error );
 
     if ( UnitName != m_UnitName )
     {
@@ -166,7 +166,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
         *m_postream << m_GrayStyle;
         *m_postream << _T( "\n" );
 
-        // Retreive all entering up deliverables
+        // Retrieve all entering up deliverables
         CODEdgeArray Edges;
 
         if ( pProcedure->GetEnteringUpDeliverable( Edges ) > 0 )
@@ -213,7 +213,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
         *m_postream << m_GrayStyle;
         *m_postream << _T( "\n" );
 
-        // Retreive all leaving right deliverables
+        // Retrieve all leaving right deliverables
         if ( pProcedure->GetEdgesLeaving_Right( Edges ) > 0 )
         {
             for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -250,7 +250,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
             }
         }
 
-        // Retreive all leaving left deliverables
+        // Retrieve all leaving left deliverables
         if ( pProcedure->GetEdgesLeaving_Left( Edges ) > 0 )
         {
             for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -296,7 +296,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
         *m_postream << m_GrayStyle;
         *m_postream << _T( "\n" );
 
-        // Retreive all entering right deliverables
+        // Retrieve all entering right deliverables
         if ( pProcedure->GetEdgesEntering_Right( Edges ) > 0 )
         {
             for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -333,7 +333,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
             }
         }
 
-        // Retreive all entering left deliverables
+        // Retrieve all entering left deliverables
         if ( pProcedure->GetEdgesEntering_Left( Edges ) > 0 )
         {
             for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
@@ -497,7 +497,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
         *m_postream << m_GrayStyle;
         *m_postream << _T( "\n" );
 
-        // Retreive all leaving down deliverables
+        // Retrieve all leaving down deliverables
         CODEdgeArray Edges;
 
         if ( pProcedure->GetEdgesLeaving_Down( Edges ) > 0 )
@@ -546,7 +546,7 @@ bool ZUProcessConceptorNavigation::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
     m_pPreviousProcess        = pSymbol;
     m_CurrentProcessName    = pSymbol->GetSymbolName();
 
-    ZDProcessGraphModelMdl* pOwnerModel = (ZDProcessGraphModelMdl*)pSymbol->GetOwnerModel();
+    PSS_ProcessGraphModelMdl* pOwnerModel = (PSS_ProcessGraphModelMdl*)pSymbol->GetOwnerModel();
 
     if ( pOwnerModel )
     {
@@ -704,7 +704,7 @@ bool ZUProcessConceptorNavigation::StartSection( CODNodeArray& Nodes )
 
         if ( m_IncludeDeliverables )
         {
-            // Retreive all leaving down deliverables
+            // Retrieve all leaving down deliverables
             CODEdgeArray Edges;
 
             if ( pStart->GetEdgesLeaving( Edges ) > 0 )

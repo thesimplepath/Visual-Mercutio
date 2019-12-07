@@ -57,7 +57,7 @@ void ZVGridReportView::OnInitialUpdate()
     // disable undo mechanism for the following commands
     GetParam()->EnableUndo( FALSE );
 
-    // Retreive the right view index
+    // Retrieve the right view index
     int Index = -1;
 
     // RS-MODIF 15.12.04 doc bug

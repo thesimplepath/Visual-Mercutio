@@ -1106,7 +1106,7 @@ size_t ZUODSymbolManipulator::GetPortName(CODSymbolComponent*    pSymbol,
 {
     ASSERT(pSymbol != NULL);
 
-    // Retreive all ports
+    // Retrieve all ports
     CODPortSet setPorts;
     pSymbol->GetAllPorts(setPorts);
 
@@ -1220,7 +1220,7 @@ bool ZUODSymbolManipulator::HasLinksISA(CODEdgeArray& Edges, const CRuntimeClass
 // Get all the following symbols attached to the port specified as parameter. Copy the pointer to the set.
 size_t ZUODSymbolManipulator::GetPortFollowingSymbols(CODPortComponent& Port, CODComponentSet& Set)
 {
-    // Retreive the owner
+    // Retrieve the owner
     CODSymbolComponent* pComp = Port.GetOwner();
 
     // And then 

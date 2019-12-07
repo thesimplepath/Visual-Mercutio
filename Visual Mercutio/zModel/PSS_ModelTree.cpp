@@ -67,7 +67,7 @@ PSS_ModelTree::IData::IData(ZDProcessGraphPage* pGraphPage) :
     m_Collapsed(false)
 {}
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData::IData(ZDProcessGraphModelMdl* pModel) :
+PSS_ModelTree::IData::IData(PSS_ProcessGraphModelMdl* pModel) :
     m_Type(IE_DT_Model),
     m_pSymbol(NULL),
     m_pLinkSymbol(NULL),
@@ -212,7 +212,7 @@ CODSymbolComponent* PSS_ModelTree::GetSymbol(HTREEITEM hItem)
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_ModelTree::GetModel(HTREEITEM hItem)
+PSS_ProcessGraphModelMdl* PSS_ModelTree::GetModel(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -244,11 +244,11 @@ ZDProcessGraphPage* PSS_ModelTree::GetPage(HTREEITEM hItem)
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_ModelTree::GetOwnerModel(HTREEITEM hItem)
+PSS_ProcessGraphModelMdl* PSS_ModelTree::GetOwnerModel(HTREEITEM hItem)
 {
     if (hItem)
     {
-        ZDProcessGraphModelMdl* pModel = GetModel(hItem);
+        PSS_ProcessGraphModelMdl* pModel = GetModel(hItem);
 
         if (pModel)
             return pModel;
@@ -265,11 +265,11 @@ ZDProcessGraphModelMdl* PSS_ModelTree::GetOwnerModel(HTREEITEM hItem)
 
         if (pSymbol)
         {
-            ZBSymbol*               pSym        = dynamic_cast<ZBSymbol*>(pSymbol);
-            ZDProcessGraphModelMdl* pGraphModel = NULL;
+            ZBSymbol*                 pSym        = dynamic_cast<ZBSymbol*>(pSymbol);
+            PSS_ProcessGraphModelMdl* pGraphModel = NULL;
 
             if (pSym)
-                pGraphModel = dynamic_cast<ZDProcessGraphModelMdl*>(pSym->GetChildModel());
+                pGraphModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSym->GetChildModel());
 
             if (pGraphModel)
                 return pGraphModel;
@@ -281,7 +281,7 @@ ZDProcessGraphModelMdl* PSS_ModelTree::GetOwnerModel(HTREEITEM hItem)
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_ModelTree::GetSelectedModel()
+PSS_ProcessGraphModelMdl* PSS_ModelTree::GetSelectedModel()
 {
     if (m_pTreeCtrl)
         return GetModel(m_pTreeCtrl->GetSelectedItem());
@@ -305,7 +305,7 @@ ZDProcessGraphPage* PSS_ModelTree::GetSelectedPage()
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_ModelTree::GetSelectedOwnerModel()
+PSS_ProcessGraphModelMdl* PSS_ModelTree::GetSelectedOwnerModel()
 {
     if (m_pTreeCtrl)
         return GetOwnerModel(m_pTreeCtrl->GetSelectedItem());
@@ -323,7 +323,7 @@ bool PSS_ModelTree::IsDocumentSelected() const
     return (m_pTreeCtrl && m_pTreeCtrl->GetSelectedItem() == m_hRootDocument);
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::AddModel(ZDProcessGraphModelMdl* pModel)
+void PSS_ModelTree::AddModel(PSS_ProcessGraphModelMdl* pModel)
 {
     // if no model set, create an empty one
     if (!ModelSetExist())
@@ -342,7 +342,7 @@ void PSS_ModelTree::AddModel(ZDProcessGraphModelMdl* pModel)
     ProcessRootModel(pModel, m_hRootDocument);
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::RemoveModel(ZDProcessGraphModelMdl* pModel)
+void PSS_ModelTree::RemoveModel(PSS_ProcessGraphModelMdl* pModel)
 {
     // if no model set, nothing to remove
     if (!ModelSetExist())
@@ -391,7 +391,7 @@ void PSS_ModelTree::RemoveModelSet(ZBModelSet* pModelSet)
     // todo -cFeature -oJean: Implement code here if needed
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::AddSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel, bool checkUnique)
+void PSS_ModelTree::AddSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel, bool checkUnique)
 {
     // if no model set, nothing to remove
     if (!ModelSetExist())
@@ -457,7 +457,7 @@ void PSS_ModelTree::AddSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMd
             HTREEITEM hRootProcess = AddSymbolItem(pSym, hParentItem);
 
             // run the model
-            ProcessModelByPageSet(dynamic_cast<ZDProcessGraphModelMdl*>(pSym->GetChildModel()), hRootProcess);
+            ProcessModelByPageSet(dynamic_cast<PSS_ProcessGraphModelMdl*>(pSym->GetChildModel()), hRootProcess);
 
             // ensure visible, and expand the new branch to make elements visible
             if (hRootProcess)
@@ -475,7 +475,7 @@ void PSS_ModelTree::AddSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMd
     ProcessLinkSymbol(pLinkSym, hParentItem);
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::RemoveSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel)
+void PSS_ModelTree::RemoveSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
     // if no model set, nothing to remove
     if (!ModelSetExist())
@@ -502,7 +502,7 @@ void PSS_ModelTree::RemoveSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphMode
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::ModifySymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel)
+void PSS_ModelTree::ModifySymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
     // if no model set, nothing to remove
     if (!ModelSetExist())
@@ -616,14 +616,14 @@ void PSS_ModelTree::ProcessModelSet(ZBModelSet* pModelSet, HTREEITEM hParentTree
 
     for (std::size_t i = 0; i < pModelSet->GetModelCount(); ++i)
     {
-        ZDProcessGraphModelMdl* pModel = pModelSet->GetModelAt(i);
+        PSS_ProcessGraphModelMdl* pModel = pModelSet->GetModelAt(i);
 
         if (pModel)
             ProcessRootModel(pModel, hParentTreeItem);
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::ProcessRootModel(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
+void PSS_ModelTree::ProcessRootModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
 {
     if (!pModel)
         return;
@@ -639,19 +639,19 @@ void PSS_ModelTree::ProcessRootModel(ZDProcessGraphModelMdl* pModel, HTREEITEM h
     m_pTreeCtrl->ExpandRoot(TRUE);
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::ProcessModelByPageSet(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
+void PSS_ModelTree::ProcessModelByPageSet(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
 {
-    ZBProcessGraphPageSet* pSet = pModel->GetPageSet();
+    PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = pModel->GetPageSet();
 
     if (pSet)
     {
-        ZBProcessGraphPageIterator it(pSet);
+        PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pSet);
 
         for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             // create a root item and get the graphic model
-            HTREEITEM               hRootPage   = AddPageItem(pPage, hParentTreeItem);
-            ZDProcessGraphModelMdl* pGraphModel = dynamic_cast<ZDProcessGraphModelMdl*>(pPage->GetModel());
+            HTREEITEM                 hRootPage   = AddPageItem(pPage, hParentTreeItem);
+            PSS_ProcessGraphModelMdl* pGraphModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pPage->GetModel());
 
             // run the model
             if (pGraphModel)
@@ -664,7 +664,7 @@ void PSS_ModelTree::ProcessModelByPageSet(ZDProcessGraphModelMdl* pModel, HTREEI
     ProcessModel(pModel, hParentTreeItem);
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::ProcessModel(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
+void PSS_ModelTree::ProcessModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
 {
     // no model, return
     if (!pModel)
@@ -695,7 +695,7 @@ void PSS_ModelTree::ProcessModel(ZDProcessGraphModelMdl* pModel, HTREEITEM hPare
                 HTREEITEM hRootProcess = AddSymbolItem(pSym, hParentTreeItem);
 
                 // run the model
-                ProcessModelByPageSet(dynamic_cast<ZDProcessGraphModelMdl*>(pSym->GetChildModel()), hRootProcess);
+                ProcessModelByPageSet(dynamic_cast<PSS_ProcessGraphModelMdl*>(pSym->GetChildModel()), hRootProcess);
                 continue;
             }
 
@@ -761,7 +761,7 @@ HTREEITEM PSS_ModelTree::AddTypeItem(const CString& name, int iconIndex, HTREEIT
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_ModelTree::AddModelItem(ZDProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
+HTREEITEM PSS_ModelTree::AddModelItem(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
 {
     if (!pModel)
         return NULL;
@@ -829,7 +829,7 @@ HTREEITEM PSS_ModelTree::AddPageItem(ZDProcessGraphPage* pPage, HTREEITEM hParen
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ModelTree::ModifyModelItem(ZDProcessGraphModelMdl* pModel, HTREEITEM hItem)
+BOOL PSS_ModelTree::ModifyModelItem(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hItem)
 {
     if (!pModel)
         return FALSE;
@@ -954,7 +954,7 @@ PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(ZDProcessGraphPage* pElement)
     return pData.release();
 }
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(ZDProcessGraphModelMdl* pElement)
+PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(PSS_ProcessGraphModelMdl* pElement)
 {
     std::unique_ptr<IData> pData(new IData(pElement));
     m_DataSet.Add(pData.get());
@@ -1044,7 +1044,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(ZDProcessGraphPage* pElement)
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelTree::DeleteElementFromDataSet(ZDProcessGraphModelMdl* pElement)
+bool PSS_ModelTree::DeleteElementFromDataSet(PSS_ProcessGraphModelMdl* pElement)
 {
     IDataIterator it(&m_DataSet);
 
@@ -1130,7 +1130,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(ZDProcessGraphPage* 
     return NULL;
 }
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(ZDProcessGraphModelMdl* pElement)
+PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_ProcessGraphModelMdl* pElement)
 {
     IDataIterator it(&m_DataSet);
 

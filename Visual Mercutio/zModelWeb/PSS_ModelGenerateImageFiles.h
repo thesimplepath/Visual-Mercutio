@@ -68,9 +68,9 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pClass - model class
         *@param pPropAttributes - model attributes
         */
-        PSS_ModelGenerateImageFiles(ZDProcessGraphModelMdl* pModel          = NULL,
-                                    void*                   pClass          = NULL,
-                                    ZBPropertyAttributes*   pPropAttributes = NULL);
+        PSS_ModelGenerateImageFiles(PSS_ProcessGraphModelMdl* pModel          = NULL,
+                                    void*                     pClass          = NULL,
+                                    ZBPropertyAttributes*     pPropAttributes = NULL);
 
         virtual ~PSS_ModelGenerateImageFiles();
 
@@ -128,7 +128,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         * Generates the model files
         *@return true on success, otherwise false
         */
-        bool GenerateModel(ZDProcessGraphModelMdl* pModel);
+        bool GenerateModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Builds file name and path
@@ -165,42 +165,42 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param imageFileName - model image file name
         *@return true on success, otherwise false
         */
-        bool CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString& imageFileName);
+        bool CreateHtmlPage(PSS_ProcessGraphModelMdl* pModel, const CString& imageFileName);
 
         /**
         * Generates the index page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateIndexPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateIndexPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the model main frame page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateFrameMainModelPage(ZDProcessGraphModelMdl* pModel, const CString& modelHtmlPage);
+        bool GenerateFrameMainModelPage(PSS_ProcessGraphModelMdl* pModel, const CString& modelHtmlPage);
 
         /**
         * Generates the frame user page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateFrameUserPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateFrameUserPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the frame system page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateFrameSystemPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateFrameSystemPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the frame prestations page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateFramePrestationsPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateFramePrestationsPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the frame empty user page
@@ -231,28 +231,28 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateBannerPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateBannerPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the unit group page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateUnitGroupPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateUnitGroupPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the logical system page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateLogicalSystemPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateLogicalSystemPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the logical prestations page
         *@param pModel - model for which the page should be generated
         *@return true on success, otherwise false
         */
-        bool GenerateLogicalPrestationsPage(ZDProcessGraphModelMdl* pModel);
+        bool GenerateLogicalPrestationsPage(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Generates the unit objects
@@ -328,7 +328,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pModel - model owning the file for which the name should be built
         *@return file name
         */
-        CString BuildModelImageFileName(ZDProcessGraphModelMdl* pModel) const;
+        CString BuildModelImageFileName(PSS_ProcessGraphModelMdl* pModel) const;
 
         /**
         * Builds the model html file name
@@ -336,21 +336,21 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param prefix - file name prefix
         *@return file name
         */
-        CString BuildModelHTMLFileName(ZDProcessGraphModelMdl* pModel, const CString& prefix = _T("")) const;
+        CString BuildModelHTMLFileName(PSS_ProcessGraphModelMdl* pModel, const CString& prefix = _T("")) const;
 
         /**
         * Builds the model html file name for printer
         *@param pModel - model owning the file for which the name should be built
         *@return file name
         */
-        CString BuildModelHTMLFileNameForPrinter(ZDProcessGraphModelMdl* pModel) const;
+        CString BuildModelHTMLFileNameForPrinter(PSS_ProcessGraphModelMdl* pModel) const;
 
         /**
         * Builds the main frame model html file name
         *@param pModel - model owning the file for which the name should be built
         *@return file name
         */
-        inline CString BuildModelHTMLFileNameMainFrame(ZDProcessGraphModelMdl* pModel) const;
+        inline CString BuildModelHTMLFileNameMainFrame(PSS_ProcessGraphModelMdl* pModel) const;
 
         /**
         * Builds the html file name for index
@@ -358,7 +358,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@return file name
         */
         inline CString BuildModelHTMLFileNameIndex() const;
-        inline CString BuildModelHTMLFileNameIndex(ZDProcessGraphModelMdl* pModel) const;
+        inline CString BuildModelHTMLFileNameIndex(PSS_ProcessGraphModelMdl* pModel) const;
 
         /**
         * Builds the html file name for banner
@@ -379,21 +379,21 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pModel - model owning the file for which the name should be built
         *@return file name
         */
-        inline CString BuildModelHTMLFileNameUnit(ZDProcessGraphModelMdl* pModel) const;
+        inline CString BuildModelHTMLFileNameUnit(PSS_ProcessGraphModelMdl* pModel) const;
 
         /**
         * Builds the html file name for system
         *@param pModel - model owning the file for which the name should be built
         *@return file name
         */
-        inline CString BuildModelHTMLFileNameSystem(ZDProcessGraphModelMdl* pModel) const;
+        inline CString BuildModelHTMLFileNameSystem(PSS_ProcessGraphModelMdl* pModel) const;
 
         /**
         * Builds the html file name for prestations
         *@param pModel - model owning the file for which the name should be built
         *@return file name
         */
-        inline CString BuildModelHTMLFileNamePrestations(ZDProcessGraphModelMdl* pModel) const;
+        inline CString BuildModelHTMLFileNamePrestations(PSS_ProcessGraphModelMdl* pModel) const;
 
         /**
         * Builds the html file name for logical system
@@ -480,9 +480,9 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param prefix - file name prefix
         *@return file name
         */
-        CString BuildSymbolPropertyHTMLFileName(PSS_BasicSymbol*        pSymbol,
-                                                ZDProcessGraphModelMdl* pModel,
-                                                const CString&          prefix = _T("")) const;
+        CString BuildSymbolPropertyHTMLFileName(PSS_BasicSymbol*          pSymbol,
+                                                PSS_ProcessGraphModelMdl* pModel,
+                                                const CString&            prefix = _T("")) const;
 };
 
 //---------------------------------------------------------------------------
@@ -503,7 +503,7 @@ CString PSS_ModelGenerateImageFiles::ParseModelName(const CString& modelName) co
     return PSS_StringTools::ConvertSpecialChar(modelName);
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameMainFrame(ZDProcessGraphModelMdl* pModel) const
+CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameMainFrame(PSS_ProcessGraphModelMdl* pModel) const
 {
     return BuildModelHTMLFileName(pModel, _T("mainfrm_"));
 }
@@ -514,7 +514,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex() const
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\index.htm");
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex(ZDProcessGraphModelMdl* pModel) const
+CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex(PSS_ProcessGraphModelMdl* pModel) const
 {
     return BuildModelHTMLFileName(pModel, _T("Index_"));
 }
@@ -531,17 +531,17 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameUserMainFrame() const
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\users_mainframe.htm");
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameUnit(ZDProcessGraphModelMdl* pModel) const
+CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameUnit(PSS_ProcessGraphModelMdl* pModel) const
 {
     return BuildModelHTMLFileName(pModel, _T("Unit_"));
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameSystem(ZDProcessGraphModelMdl* pModel) const
+CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameSystem(PSS_ProcessGraphModelMdl* pModel) const
 {
     return BuildModelHTMLFileName(pModel, _T("System_"));
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNamePrestations(ZDProcessGraphModelMdl* pModel) const
+CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNamePrestations(PSS_ProcessGraphModelMdl* pModel) const
 {
     return BuildModelHTMLFileName(pModel, _T("Prestations_"));
 }

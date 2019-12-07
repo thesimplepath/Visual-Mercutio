@@ -107,8 +107,8 @@ bool ZBExtAppPropertyMgr::FillProperties(ZBPropertySet&    PropSet,
             {
                 CODModel * pModel = dynamic_cast<ZBSymbol*>(m_pSymbol)->GetRootModel();
 
-                if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                    !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+                if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+                    !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
                 {
                     SystemIsEnabled = false;
                 }
@@ -117,7 +117,7 @@ bool ZBExtAppPropertyMgr::FillProperties(ZBPropertySet&    PropSet,
             bool Error;
 
             CommandTitle =
-                dynamic_cast<ZBSymbol*>(m_pSymbol)->RetreiveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
+                dynamic_cast<ZBSymbol*>(m_pSymbol)->RetrieveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
                                                                               Error);
 
             CommandLine = CommandTitle;
@@ -295,8 +295,8 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             {
                 CODModel * pModel = dynamic_cast<ZBSymbol*>(m_pSymbol)->GetRootModel();
 
-                if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                    !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+                if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+                    !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
                 {
                     SystemIsEnabled = false;
                 }
@@ -305,7 +305,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             bool Error;
 
             CommandTitle =
-                dynamic_cast<ZBSymbol*>(m_pSymbol)->RetreiveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
+                dynamic_cast<ZBSymbol*>(m_pSymbol)->RetrieveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
                                                                               Error);
 
             CommandLine = CommandTitle;
@@ -676,8 +676,8 @@ bool ZBExtAppPropertyMgr::DropItem(CObject* pObj, const CPoint& pt)
             {
                 CODModel* pModel = dynamic_cast<ZBSymbol*>(m_pSymbol)->GetRootModel();
 
-                if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                    !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+                if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
+                    !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
                 {
                     // Cannot delete all combinations
                     PSS_MsgBox mBox;

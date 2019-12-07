@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public ZUModelNavigation
         *@param pClass - owning class, can be NULL
         */
         PSS_SoapPublishModelAttributes(ZBPublishMessengerModelInformation* pInfo,
-                                       ZDProcessGraphModelMdl*             pModel = NULL,
+                                       PSS_ProcessGraphModelMdl*           pModel = NULL,
                                        void*                               pClass = NULL);
 
         virtual ~PSS_SoapPublishModelAttributes();

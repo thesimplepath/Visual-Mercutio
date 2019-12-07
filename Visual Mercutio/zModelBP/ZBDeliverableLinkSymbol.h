@@ -39,12 +39,17 @@
 #include "ZBBPCostPropDeliverable2.h"
 #include "ZBBPUnitProp2.h"
 
-// Forward declaration
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
 class ZBBPDoorSymbol;
 class ZBBPPageSymbol;
 class ZBBPProcedureSymbol;
 class ZBBPProcessSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -624,11 +629,11 @@ public:
     ZBBPProcedureSymbol* GetTargetProcedure() const;
 
     // Returns the coming from process of this deliverable
-    ZDProcessGraphModelMdl* GetComingFromModel() const;
+    PSS_ProcessGraphModelMdl* GetComingFromModel() const;
     ZBBPProcessSymbol* GetComingFromProcess() const;
 
     // Returns the going to process attached of this deliverable
-    ZDProcessGraphModelMdl* GetGoingToModel() const;
+    PSS_ProcessGraphModelMdl* GetGoingToModel() const;
     ZBBPProcessSymbol* GetGoingToProcess() const;
 
     // Return true if the deliverable is an initial deliverable

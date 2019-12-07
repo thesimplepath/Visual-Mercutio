@@ -25,12 +25,12 @@
 //---------------------------------------------------------------------------
 // PSS_AutomationMachine
 //---------------------------------------------------------------------------
-PSS_AutomationMachine::PSS_AutomationMachine(ZDProcessGraphModelMdl* pModel,
-                                             PSS_Log*                pLog,
-                                             int                     maxLoop,
-                                             int                     maxPaused,
-                                             int                     maxWaitingForOtherLinks,
-                                             bool                    allowUncompletePath) :
+PSS_AutomationMachine::PSS_AutomationMachine(PSS_ProcessGraphModelMdl* pModel,
+                                             PSS_Log*                  pLog,
+                                             int                       maxLoop,
+                                             int                       maxPaused,
+                                             int                       maxWaitingForOtherLinks,
+                                             bool                      allowUncompletePath) :
     m_pModel(pModel),
     m_pMainThread(NULL),
     m_pSymbol(NULL),
@@ -46,13 +46,13 @@ PSS_AutomationMachine::PSS_AutomationMachine(ZDProcessGraphModelMdl* pModel,
     m_StateMachineCollection.AssignModel(m_pModel);
 }
 //---------------------------------------------------------------------------
-PSS_AutomationMachine::PSS_AutomationMachine(ZBSymbol*               pSymbol,
-                                             ZDProcessGraphModelMdl* pModel,
-                                             PSS_Log*                pLog,
-                                             int                     maxLoop,
-                                             int                     maxPaused,
-                                             int                     maxWaitingForOtherLinks,
-                                             bool                    allowUncompletePath) :
+PSS_AutomationMachine::PSS_AutomationMachine(ZBSymbol*                 pSymbol,
+                                             PSS_ProcessGraphModelMdl* pModel,
+                                             PSS_Log*                  pLog,
+                                             int                       maxLoop,
+                                             int                       maxPaused,
+                                             int                       maxWaitingForOtherLinks,
+                                             bool                      allowUncompletePath) :
     m_pModel(pModel),
     m_pMainThread(NULL),
     m_pSymbol(pSymbol),

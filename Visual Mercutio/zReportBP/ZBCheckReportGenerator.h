@@ -38,13 +38,13 @@ class ZBUserRoleEntity;
 
 class AFX_EXT_CLASS ZBCheckReportGenerator : public ZBModelBPReportGenerator
 {
-    DECLARE_SERIAL( ZBCheckReportGenerator )
+    DECLARE_SERIAL(ZBCheckReportGenerator)
 
 public:
 
-    ZBCheckReportGenerator( ZDGridDocument*                pDoc        = NULL,
-                            ZDProcessGraphModelMdlBP*    pModel        = NULL,
-                           PSS_ProcessGraphModelDoc*        pSourceDoc    = NULL );
+    ZBCheckReportGenerator(ZDGridDocument*                pDoc = NULL,
+                           ZDProcessGraphModelMdlBP*    pModel = NULL,
+                           PSS_ProcessGraphModelDoc*        pSourceDoc = NULL);
 
     virtual ~ZBCheckReportGenerator();
 
@@ -53,7 +53,7 @@ public:
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     virtual const CString GetReportTitle() const;
 
@@ -63,10 +63,10 @@ protected:
 
 private:
 
-    bool FillGridUnit        ( CGXGridCore& GridCore );
-    void FillGridUnitGroup    ( ZBUserGroupEntity* pGroup, ZBOStreamGrid &ostream );
-    void FillGridUnitRole    ( ZBUserRoleEntity* pRole, ZBOStreamGrid &ostream );
-    bool FillGridProcess    ( CGXGridCore& GridCore, size_t Index );
+    bool FillGridUnit(CGXGridCore& GridCore);
+    void FillGridUnitGroup(ZBUserGroupEntity* pGroup, ZBOStreamGrid &ostream);
+    void FillGridUnitRole(ZBUserRoleEntity* pRole, ZBOStreamGrid &ostream);
+    bool FillGridProcess(CGXGridCore& GridCore, size_t Index);
 };
 
-#endif // !defined(AFX_ZBCheckReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
+#endif

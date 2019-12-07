@@ -18,9 +18,14 @@
 
 #include "zModel\ZBSymbol.h"
 
-// Forward declaration
+// class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
+
+// forward class declaration
 class ZDProcessGraphPage;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -59,13 +64,13 @@ public:
     }
 
     // Return the model page
-    ZDProcessGraphModelMdl* GetModelPage();
+    PSS_ProcessGraphModelMdl* GetModelPage();
 
     // Set a new model to the page
-    bool SetPageModel(ZDProcessGraphModelMdl* pModel);
+    bool SetPageModel(PSS_ProcessGraphModelMdl* pModel);
 
     // Used to recalculate the twin page reference serialized by its reference number
-    void RecalculateTwinPageReference(ZDProcessGraphModelMdl* pRootModel);
+    void RecalculateTwinPageReference(PSS_ProcessGraphModelMdl* pRootModel);
 
     int GetTwinPageReferenceNumber() const
     {

@@ -38,44 +38,44 @@ class ZBUserRoleEntity;
 
 class AFX_EXT_CLASS ZBConceptorReportGenerator : public ZBModelBPReportGenerator
 {
-    DECLARE_SERIAL( ZBConceptorReportGenerator )
+    DECLARE_SERIAL(ZBConceptorReportGenerator)
 
 public:
 
-    ZBConceptorReportGenerator( ZDGridDocument*                pDoc                    = NULL,
-                                ZDProcessGraphModelMdlBP*    pModel                    = NULL,
-                               PSS_ProcessGraphModelDoc*        pSourceDoc                = NULL,
-                                BOOL                        bIncludeSynthesis        = TRUE,
-                                BOOL                        bIncludeDetail            = TRUE,
-                                BOOL                        bIncludeDeliverables    = TRUE );
+    ZBConceptorReportGenerator(ZDGridDocument*                pDoc = NULL,
+                               ZDProcessGraphModelMdlBP*    pModel = NULL,
+                               PSS_ProcessGraphModelDoc*        pSourceDoc = NULL,
+                               BOOL                        bIncludeSynthesis = TRUE,
+                               BOOL                        bIncludeDetail = TRUE,
+                               BOOL                        bIncludeDeliverables = TRUE);
 
     virtual ~ZBConceptorReportGenerator();
 
     /////////////////////////////////////////////////////////////////////////////
     // ZIGridReportGenerator methods
-    
-    virtual void Initialize( ZDGridDocument*            pDoc,
-                             ZDProcessGraphModelMdlBP*    pModel,
+
+    virtual void Initialize(ZDGridDocument*            pDoc,
+                            ZDProcessGraphModelMdlBP*    pModel,
                             PSS_ProcessGraphModelDoc*    pSourceDoc,
-                             BOOL                        bIncludeSynthesis        = TRUE,
-                             BOOL                        bIncludeDetail            = TRUE,
-                             BOOL                        bIncludeDeliverables    = TRUE );
+                            BOOL                        bIncludeSynthesis = TRUE,
+                            BOOL                        bIncludeDetail = TRUE,
+                            BOOL                        bIncludeDeliverables = TRUE);
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     virtual const CString GetReportTitle() const;
 
     // Serialization call-back
-    virtual void OnPostRead( CArchive& ar );
+    virtual void OnPostRead(CArchive& ar);
 
-// Implementation
+    // Implementation
 public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 protected:
@@ -85,9 +85,9 @@ protected:
 private:
 
     void RemoveAllData();
-    void FillTabUnitGroup( ZBUserGroupEntity* pGroup );
-    bool FillSynthesis( ZBOStreamGrid& ostream, size_t Index );
-    bool FillGridAllProcess( ZBOStreamGrid& ostream, size_t Index );
+    void FillTabUnitGroup(ZBUserGroupEntity* pGroup);
+    bool FillSynthesis(ZBOStreamGrid& ostream, size_t Index);
+    bool FillGridAllProcess(ZBOStreamGrid& ostream, size_t Index);
 
 private:
 
@@ -110,4 +110,4 @@ private:
     CGXStyle        m_BottomOnlyBlackBorderStyle;
 };
 
-#endif // !defined(AFX_ZBConceptorReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
+#endif

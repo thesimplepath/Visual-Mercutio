@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcessClearDurationFigures::ZUProcessClearDurationFigures(ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
+ZUProcessClearDurationFigures::ZUProcessClearDurationFigures(PSS_ProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/)
     : ZUProcessNavigation(pModel, pClass)
 {}
 

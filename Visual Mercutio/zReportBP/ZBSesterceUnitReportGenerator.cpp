@@ -169,7 +169,7 @@ void ZBSesterceUnitReportGenerator::FillTabArray()
     {
         // Find the right process, function of the model name.
         // In case sensitive...
-        ZDProcessGraphModelMdl* pModel = m_pModel->FindModel( m_ProcessNameArray.GetAt( Idx ), true );
+        PSS_ProcessGraphModelMdl* pModel = m_pModel->FindModel( m_ProcessNameArray.GetAt( Idx ), true );
 
         if ( !pModel )
         {
@@ -186,7 +186,7 @@ void ZBSesterceUnitReportGenerator::FillTabArray()
     {
         ZUUserGroupCalculateTotals* pUserGroupTotals = new ZUUserGroupCalculateTotals;
 
-        if ( !pUserGroupTotals->Navigate( ( (ZDProcessGraphModelMdl*)m_ModelArray.GetAt( i ) ),
+        if ( !pUserGroupTotals->Navigate( ( (PSS_ProcessGraphModelMdl*)m_ModelArray.GetAt( i ) ),
              (void*)( static_cast<ZBUserGroupCalculateTotalsInformation*>( &Info ) ) ) )
         {
             return;
@@ -565,7 +565,7 @@ void ZBSesterceUnitReportGenerator::FillGridUnitGroup( ZBUserGroupEntity*    pGr
     ostream << _T( "\t" );
 
     // Fill process figures for the main process
-    FillProcessFigures( ( (ZDProcessGraphModelMdl*)m_ModelArray.GetAt( 0 ) ),
+    FillProcessFigures( ( (PSS_ProcessGraphModelMdl*)m_ModelArray.GetAt( 0 ) ),
                         ( (ZUUserGroupCalculateTotals*)m_NavigationTotalArray.GetAt( 0 ) ),
                         pGroup,
                         Index,
@@ -573,7 +573,7 @@ void ZBSesterceUnitReportGenerator::FillGridUnitGroup( ZBUserGroupEntity*    pGr
 
     for ( int i = 1; i < m_ModelArray.GetSize() && i < m_NavigationTotalArray.GetSize(); ++i )
     {
-        FillProcessFigures( ( (ZDProcessGraphModelMdl*)m_ModelArray.GetAt( i ) ),
+        FillProcessFigures( ( (PSS_ProcessGraphModelMdl*)m_ModelArray.GetAt( i ) ),
                             ( (ZUUserGroupCalculateTotals*)m_NavigationTotalArray.GetAt( i ) ),
                             pGroup,
                             Index,
@@ -618,7 +618,7 @@ void ZBSesterceUnitReportGenerator::FillGridUnitGroup( ZBUserGroupEntity*    pGr
     }
 }
 
-void ZBSesterceUnitReportGenerator::FillProcessFigures( ZDProcessGraphModelMdl*        pModel,
+void ZBSesterceUnitReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*        pModel,
                                                         ZUUserGroupCalculateTotals*    pTotal,
                                                         ZBUserGroupEntity*            pGroup,
                                                         size_t                        Index,

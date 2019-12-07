@@ -21,12 +21,15 @@
 #include "zProperty\ZIProperties.h"
 
 // class name mapping
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
 
 // forward class declaration
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 class ZBProperty;
 class ZBDynamicPropertiesManager;
 class PSS_BasicSymbol;
@@ -52,17 +55,17 @@ public:
     ZUDynamicAttributesManipulator();
     virtual ~ZUDynamicAttributesManipulator();
 
-    static void GetCategories(ZDProcessGraphModelMdl*    pModel,
+    static void GetCategories(PSS_ProcessGraphModelMdl*    pModel,
                               CStringArray&            StaticAttributes,
                               CStringArray&            DynamicAttributes);
 
-    static bool AssignProperty(ZDProcessGraphModelMdl*    pModel,
+    static bool AssignProperty(PSS_ProcessGraphModelMdl*    pModel,
                                ZBProperty*                pProperty,
                                CRuntimeClass*            pRTClass = NULL);
 
-    static bool ReassignProperty(ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty);
-    static bool DeleteProperty(ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty);
-    static void ExtractUniqueAttributes(ZDProcessGraphModelMdl* pModel, ZBPropertySet& Set);
+    static bool ReassignProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty);
+    static bool DeleteProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty);
+    static void ExtractUniqueAttributes(PSS_ProcessGraphModelMdl* pModel, ZBPropertySet& Set);
 
     static bool AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
                                               ZBSymbol*                    pSymbol);

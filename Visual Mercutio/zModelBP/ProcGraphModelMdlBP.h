@@ -7,7 +7,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,24 +17,23 @@
 
 #include "zModel\ProcGraphModelMdl.h"
 
-//////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// forward class declaration
 class ZBInputAttributeManager;
 class ZBDistributionAttributeManager;
 
 #ifdef _ZMODELBPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - Le 27 septembre 2005 - Ajout de la décoration unicode _T( )
 
-class AFX_EXT_CLASS ZDProcessGraphModelMdlBP : public ZDProcessGraphModelMdl
+class AFX_EXT_CLASS ZDProcessGraphModelMdlBP : public PSS_ProcessGraphModelMdl
 {
     DECLARE_SERIAL(ZDProcessGraphModelMdlBP)
 
@@ -50,10 +49,10 @@ public:
     virtual void            DeleteAllActivitiesLinkedToWorkflow();
 
     // Called to create the adequate model
-    virtual ZDProcessGraphModelMdl* CreateEmptyModel(const CString                Name = _T(""),
-                                                     ZDProcessGraphModelMdl*    pParent = NULL)
+    virtual PSS_ProcessGraphModelMdl* CreateEmptyModel(const CString                Name = _T(""),
+                                                       PSS_ProcessGraphModelMdl*    pParent = NULL)
     {
-        return reinterpret_cast<ZDProcessGraphModelMdl*>(new ZDProcessGraphModelMdlBP(Name, reinterpret_cast<ZDProcessGraphModelMdlBP*>(pParent)));
+        return reinterpret_cast<PSS_ProcessGraphModelMdl*>(new ZDProcessGraphModelMdlBP(Name, reinterpret_cast<ZDProcessGraphModelMdlBP*>(pParent)));
     }
 
     // the OnPostOpenDocument method is called once the framework has 

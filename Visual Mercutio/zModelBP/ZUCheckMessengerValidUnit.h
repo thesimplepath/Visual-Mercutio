@@ -59,15 +59,15 @@ class AFX_EXT_CLASS ZUCheckMessengerValidUnit : public ZUProcessNavigation
 {
 public:
 
-    ZUCheckMessengerValidUnit( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUCheckMessengerValidUnit(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUCheckMessengerValidUnit();
 
     // Call-back methods
-    virtual bool OnStart            ();
-    virtual bool OnFinish            ();
-    virtual bool OnProcedureSymbol    ( ZBBPProcedureSymbol* pSymbol );
-    virtual bool OnStartSymbol        ( ZBBPStartSymbol* pSymbol );
-    virtual bool OnStopSymbol        ( ZBBPStopSymbol* pSymbol );
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    virtual bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
+    virtual bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
 };
 
-#endif // !defined(AFX_ZUCheckMessengerValidUnit_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

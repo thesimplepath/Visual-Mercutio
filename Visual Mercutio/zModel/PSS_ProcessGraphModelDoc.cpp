@@ -93,7 +93,7 @@ PSS_ProcessGraphModelDoc::~PSS_ProcessGraphModelDoc()
     // delete the model
     if (m_pModel)
     {
-        ZDProcessGraphModelMdl* pRoot = m_pModel->GetRoot();
+        PSS_ProcessGraphModelMdl* pRoot = m_pModel->GetRoot();
 
         if (pRoot)
             pRoot->DeleteModelSet();
@@ -134,7 +134,7 @@ void PSS_ProcessGraphModelDoc::PreCloseFrame(CFrameWnd* pFrame)
             // also notify all model observers
             m_pModel->NotifyAllObservers(&msg);
 
-            ZDProcessGraphModelMdl* pRoot = m_pModel->GetRoot();
+            PSS_ProcessGraphModelMdl* pRoot = m_pModel->GetRoot();
 
             if (pRoot)
                 pRoot->DetachAllObserversInHierarchy(pView->GetViewport(), this);
@@ -185,7 +185,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentUserDefGUID()
         m_pOutputLog->AddLine(error);
     }
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     // main user group is valid
     if (pModel)
@@ -199,7 +199,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentUserDefGUID()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::ReassignUnit(PSS_Log* pLog)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
 
     if (pLog)
@@ -264,7 +264,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentSystemDefGUID()
         m_pOutputLog->AddLine(error);
     }
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     // main logical system is valid
     if (pModel)
@@ -278,7 +278,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentSystemDefGUID()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::ReassignSystem(PSS_Log* pLog)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
 
     if (pLog)
@@ -343,7 +343,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentPrestationsDefGUID()
         m_pOutputLog->AddLine(error);
     }
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     // main prestation is valid
     if (pModel)
@@ -357,7 +357,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentPrestationsDefGUID()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::ReassignPrestations(PSS_Log* pLog)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
 
     if (pLog)
@@ -422,7 +422,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentRulesDefGUID()
         m_pOutputLog->AddLine(error);
     }
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     // main rule is valid
     if (pModel)
@@ -436,7 +436,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentRulesDefGUID()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::ReassignRules(PSS_Log* pLog /*= NULL*/)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
 
     if (pLog)
@@ -525,14 +525,14 @@ bool PSS_ProcessGraphModelDoc::LoadAllUnits()
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::GenerateModelWorkflow()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
     return pModel->GenerateModelWorkflow(m_pOutputLog, this);
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::CheckModelWorkflow(BOOL ModelIsClean)
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
     return pModel->CheckModelWorkflow(m_pOutputLog, ModelIsClean);
 }
@@ -559,7 +559,7 @@ void PSS_ProcessGraphModelDoc::SetUseWorkflow(bool value)
     m_UseWorkflow = value;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelDoc::SetNewModel(ZDProcessGraphModelMdl* pModel)
+void PSS_ProcessGraphModelDoc::SetNewModel(PSS_ProcessGraphModelMdl* pModel)
 {
     if (m_pModel)
         delete m_pModel;
@@ -925,7 +925,7 @@ void PSS_ProcessGraphModelDoc::Serialize(CArchive& ar)
                 ar >> m_RulesDefGUID;
         }
 
-        ZDProcessGraphModelMdl* pModel = NULL;
+        PSS_ProcessGraphModelMdl* pModel = NULL;
         ar >> pModel;
         ar >> m_pUnitManager;
 
@@ -1003,7 +1003,7 @@ void PSS_ProcessGraphModelDoc::Serialize(CArchive& ar)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
 {
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
     ASSERT(pModel);
 
     // call the PostOpenDocument method
@@ -1170,7 +1170,7 @@ BOOL PSS_ProcessGraphModelDoc::OnNewDocument()
     if (!PSS_BaseDocument::OnNewDocument())
         return FALSE;
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
         return FALSE;
@@ -1281,7 +1281,7 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
     // build the new title, if FALSE do not add to MRU
     SetPathName(pPathName, FALSE);
 
-    ZDProcessGraphModelMdl* pModel = GetModel();
+    PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     // update the model information
     if (pModel)

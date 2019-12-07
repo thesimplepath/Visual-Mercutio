@@ -111,7 +111,7 @@ public:
     // Return true if the ExtApp already exists
     bool ExtAppExist( const CString CommandTitle ) const;
 
-    // Retreive the right ExtApp properties base on the ExtApp file name
+    // Retrieve the right ExtApp properties base on the ExtApp file name
     ZBExtAppProperties* LocateExtApp( const CString CommandTitle ) const;
 
     ZBExtAppPropertiesSet& GetExtAppSet()

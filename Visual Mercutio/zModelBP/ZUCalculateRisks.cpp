@@ -51,7 +51,7 @@ ZUCalculateRisks::ZUCalculateRisks(int                        OrangeSeverity,
                                    BOOL                    RedAction,
                                    BOOL                    RedNoAction,
                                    BOOL                    DefaultColors,
-                                   ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                   PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                    PSS_Log*                    pLog    /*= NULL*/)
     : m_OrangeSeverity(OrangeSeverity),
     m_RedSeverity(RedSeverity),
@@ -99,9 +99,9 @@ bool ZUCalculateRisks::Calculate(CODComponent& Symbol)
     {
         dynamic_cast<PSS_LinkSymbol&>(Symbol).AcceptVisitor(*this);
     }
-    else if (ISA(pSymbol, ZDProcessGraphModelMdl))
+    else if (ISA(pSymbol, PSS_ProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl&>(Symbol).AcceptVisitor(*this);
+        dynamic_cast<PSS_ProcessGraphModelMdl&>(Symbol).AcceptVisitor(*this);
     }
 
     // If log required

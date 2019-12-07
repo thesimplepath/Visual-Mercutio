@@ -36,7 +36,7 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUGridMercutioRepDeliverableNavigation::ZUGridMercutioRepDeliverableNavigation( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+ZUGridMercutioRepDeliverableNavigation::ZUGridMercutioRepDeliverableNavigation(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                                 void*                    pClass    /*= NULL*/ )
     : ZUProcessNavigation( pModel, pClass )
 {
@@ -295,7 +295,7 @@ bool ZUGridMercutioRepDeliverableNavigation::OnDeliverableLinkSymbol( ZBDelivera
     // Empty the process name
     ProcessName.Empty();
 
-    // Retreive the output procedure name
+    // Retrieve the output procedure name
     ZBBPProcedureSymbol* pProcedure = pSymbol->GetTargetProcedure();
     ZBBPProcessSymbol* pProcess = pSymbol->GetComingFromProcess();
 
@@ -356,7 +356,7 @@ bool ZUGridMercutioRepDeliverableNavigation::OnDeliverableLinkSymbol( ZBDelivera
     // Empty the process name
     ProcessName.Empty();
 
-    // Retreive the input procedure name
+    // Retrieve the input procedure name
     pProcedure    = pSymbol->GetSourceProcedure();
     pProcess    = pSymbol->GetComingFromProcess();
 

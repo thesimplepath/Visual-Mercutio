@@ -51,8 +51,8 @@ class AFX_EXT_CLASS ZBBPAutomate : public PSS_AutomationMachine
 {
 public:
 
-    ZBBPAutomate(ZDProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
-    ZBBPAutomate(ZBSymbol* pSymbol, ZDProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
+    ZBBPAutomate(PSS_ProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
+    ZBBPAutomate(ZBSymbol* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
 
     virtual ~ZBBPAutomate();
 

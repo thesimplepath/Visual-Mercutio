@@ -34,10 +34,13 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class PSS_LinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZWKFEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -62,7 +65,7 @@ class AFX_EXT_CLASS PSS_StateMachine : public CObject
         * Constructor
         *@param pModel - model
         */
-        PSS_StateMachine(ZDProcessGraphModelMdl* pModel = NULL);
+        PSS_StateMachine(PSS_ProcessGraphModelMdl* pModel = NULL);
 
         /**
         * Copy constructor
@@ -89,7 +92,7 @@ class AFX_EXT_CLASS PSS_StateMachine : public CObject
         * Assigns a model
         *@param pModel - model to assign
         */
-        virtual void AssignModel(ZDProcessGraphModelMdl* pModel);
+        virtual void AssignModel(PSS_ProcessGraphModelMdl* pModel);
 
         /**
         * Gets the current symbol
@@ -199,8 +202,8 @@ class AFX_EXT_CLASS PSS_StateMachine : public CObject
         #endif
 
     private:
-        PSS_StateObjectSet      m_Set;
-        ZDProcessGraphModelMdl* m_pModel;
+        PSS_StateObjectSet        m_Set;
+        PSS_ProcessGraphModelMdl* m_pModel;
 
         /**
         * Assigns a model to a state object

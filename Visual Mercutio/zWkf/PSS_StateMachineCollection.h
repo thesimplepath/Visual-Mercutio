@@ -34,13 +34,16 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphModelMdl
+    #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
+#endif
 
 // forward class declaration
 class PSS_StateMachine;
 class PSS_StateObject;
 class ZBSymbol;
 class PSS_LinkSymbol;
-class ZDProcessGraphModelMdl;
+class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZWKFEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -65,7 +68,7 @@ public:
     * Constructor
     *@param pModel - model for which state collection should be created
     */
-    PSS_StateMachineCollection(ZDProcessGraphModelMdl* pModel = NULL);
+    PSS_StateMachineCollection(PSS_ProcessGraphModelMdl* pModel = NULL);
 
     /**
     * Copy constructor
@@ -91,7 +94,7 @@ public:
     * Assigns a model
     *@param pModel - model to assign
     */
-    virtual void AssignModel(ZDProcessGraphModelMdl* pModel);
+    virtual void AssignModel(PSS_ProcessGraphModelMdl* pModel);
 
     /**
     * Creates a new state machine
@@ -213,8 +216,8 @@ public:
     #endif
 
 private:
-    PSS_StateMachineSet     m_Set;
-    ZDProcessGraphModelMdl* m_pModel;
+    PSS_StateMachineSet       m_Set;
+    PSS_ProcessGraphModelMdl* m_pModel;
 
     /**
     * Assigns the model to the state machine

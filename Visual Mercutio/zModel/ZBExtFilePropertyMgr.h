@@ -98,7 +98,7 @@ public:
         return m_ExternalFiles.ExtFileExist(fileName);
     }
 
-    // Retreive the right extfile properties base on the extfile file name
+    // Retrieve the right extfile properties base on the extfile file name
     ZBExtFileProperties* LocateExtFile(const CString fileName) const
     {
         return m_ExternalFiles.LocateExtFile(fileName);
