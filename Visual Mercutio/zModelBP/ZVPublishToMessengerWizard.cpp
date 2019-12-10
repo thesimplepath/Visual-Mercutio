@@ -11,7 +11,7 @@
 #include "zBaseLib\PSS_Global.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
-#include "zModel\ProcGraphModelView.h"
+    #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"

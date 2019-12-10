@@ -19,7 +19,7 @@
 #include "zFormsRes\zFormsRes.h"
 #include "ProcGraphModelVp.h"
 #include "PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelView.h"
+#include "PSS_ProcessGraphModelView.h"
 #include "ZUODSymbolManipulator.h"
 #include "ZBDocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"

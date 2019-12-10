@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ProcGraphModelVp.h"
 #include "PSS_ProcessGraphModelController.h"
-#include "ProcGraphModelView.h"
+#include "PSS_ProcessGraphModelView.h"
 #include "PSS_ProcessGraphModelMdl.h"
 
 #include "zBaseLib\PSS_File.h"

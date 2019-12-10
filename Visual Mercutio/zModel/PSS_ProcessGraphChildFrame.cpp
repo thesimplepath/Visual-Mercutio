@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelView.h"
+#include "PSS_ProcessGraphModelView.h"
 #include "ZDProcessGraphPage.h"
 
 #ifdef _DEBUG

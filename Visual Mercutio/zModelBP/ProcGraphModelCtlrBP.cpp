@@ -12,7 +12,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
-#include "zModel\ProcGraphModelView.h"
+    #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
 #include "zModel\ZUBuildSymbolNewName.h"
 #include "zModel\ZDProcessGraphPage.h"

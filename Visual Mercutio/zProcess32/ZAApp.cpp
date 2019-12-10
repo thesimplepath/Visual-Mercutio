@@ -26,7 +26,7 @@
 #include "zModel\PSS_ProcessGraphChildFrame.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
-#include "zModel\ProcGraphModelView.h"
+    #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
 #include "zModel\ZUDynamicAttributesManipulator.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
