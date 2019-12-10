@@ -38,7 +38,7 @@
 
 // forward class definition
 class ZIProcessGraphModelViewport;
-class ZIProcessGraphModelView;
+class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelMdl;
 class ZDProcessGraphPage;
@@ -74,8 +74,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         * Gets the view
         *@return the view
         */
-        virtual       ZIProcessGraphModelView* GetView();
-        virtual const ZIProcessGraphModelView* GetView() const;
+        virtual       PSS_ProcessGraphModelView* GetView();
+        virtual const PSS_ProcessGraphModelView* GetView() const;
 
         /**
         * Gets the viewport

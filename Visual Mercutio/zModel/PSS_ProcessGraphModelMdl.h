@@ -56,7 +56,7 @@ class PSS_LinkSymbol;
 class PSS_Log;
 class PSS_ProcessGraphModelDoc;
 class ZIProcessGraphModelViewport;
-class ZIProcessGraphModelView;
+class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelController;
 class ZDProcessGraphPage;
 class ZBUserGroupEntity;
@@ -128,7 +128,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pView - the view
         *@return the model viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* CreateViewport(ZIProcessGraphModelView* pView);
+        virtual ZIProcessGraphModelViewport* CreateViewport(PSS_ProcessGraphModelView* pView);
 
         /**
         * Gets the owner document

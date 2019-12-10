@@ -30,7 +30,7 @@
 
 // forward class declarations
 class PSS_ProcessGraphModelDoc;
-class ZIProcessGraphModelView;
+class PSS_ProcessGraphModelView;
 class ZDGridReportDocument;
 
 #ifdef _ZMODELWEBEXPORT
@@ -61,10 +61,10 @@ class AFX_EXT_CLASS PSS_PublishModelToHTML
         *@param iniFileName - ini file name
         *@return true on success, otherwise false
         */
-        static bool ExportModelToHTMLFile(PSS_ProcessGraphModelDoc* pDoc,
-                                          ZIProcessGraphModelView*  pView,
-                                          ZUPublishReportInfo*      pReportInfo,
-                                          const CString&            iniFileName = _T(""));
+        static bool ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pDoc,
+                                          PSS_ProcessGraphModelView* pView,
+                                          ZUPublishReportInfo*       pReportInfo,
+                                          const CString&             iniFileName = _T(""));
 
         /**
         * Launches the browser

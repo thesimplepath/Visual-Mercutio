@@ -40,7 +40,7 @@
 
 // forward class declaration
 class PSS_Log;
-class ZIProcessGraphModelView;
+class PSS_ProcessGraphModelView;
 class ZUUserManager;
 class ZUMail;
 class ZDTemplateManager;
@@ -630,7 +630,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the first model view
         *@return the first model view
         */
-        virtual ZIProcessGraphModelView* GetFirstModelView();
+        virtual PSS_ProcessGraphModelView* GetFirstModelView();
 
         /**
         * Finds the view

@@ -131,7 +131,7 @@ void PSS_ProcessGraphChildFrame::OnUpdateFrameTitle(BOOL addToTitle)
     if (!pModelDoc)
         return;
 
-    ZIProcessGraphModelView* pModelView = dynamic_cast<ZIProcessGraphModelView*>(GetActiveView());
+    PSS_ProcessGraphModelView* pModelView = dynamic_cast<PSS_ProcessGraphModelView*>(GetActiveView());
 
     if (!pModelView)
         return;

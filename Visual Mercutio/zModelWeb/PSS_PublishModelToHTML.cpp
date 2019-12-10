@@ -39,10 +39,10 @@ PSS_PublishModelToHTML::PSS_PublishModelToHTML()
 PSS_PublishModelToHTML::~PSS_PublishModelToHTML()
 {}
 //---------------------------------------------------------------------------
-bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc* pDoc,
-                                                   ZIProcessGraphModelView*  pView,
-                                                   ZUPublishReportInfo*      pReportInfo,
-                                                   const CString&            iniFileName)
+bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pDoc,
+                                                   PSS_ProcessGraphModelView* pView,
+                                                   ZUPublishReportInfo*       pReportInfo,
+                                                   const CString&             iniFileName)
 {
     if (!pDoc || !pView)
         return false;

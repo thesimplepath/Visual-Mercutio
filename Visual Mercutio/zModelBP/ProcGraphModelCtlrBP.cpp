@@ -1030,7 +1030,7 @@ void ZDProcessGraphModelControllerBP::OnLoadPackage()
 
         if (pPackage->IsLinkedToFileName() && !pPackage->IsLoaded())
         {
-            ZIProcessGraphModelView*    pView = GetView();
+            PSS_ProcessGraphModelView* pView = GetView();
 
             if (GetDocument() && GetDocument()->GetDocTemplate() &&
                 ISA(GetDocument()->GetDocTemplate(), PSS_ProcessModelDocTmpl))

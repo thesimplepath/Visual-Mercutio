@@ -279,7 +279,7 @@ PSS_ProcessGraphModelController* PSS_ProcessGraphModelMdl::CreateController(ZIPr
     return new PSS_ProcessGraphModelController(pVp);
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelMdl::CreateViewport(ZIProcessGraphModelView* pView)
+ZIProcessGraphModelViewport* PSS_ProcessGraphModelMdl::CreateViewport(PSS_ProcessGraphModelView* pView)
 {
     // create a basic viewport
     return new MvcScrollWrapper_T<ZIProcessGraphModelViewport>();

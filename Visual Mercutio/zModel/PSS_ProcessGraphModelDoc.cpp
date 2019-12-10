@@ -121,7 +121,7 @@ void PSS_ProcessGraphModelDoc::Initialize(PSS_Log*           pOutputLog,
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::PreCloseFrame(CFrameWnd* pFrame)
 {
-    ZIProcessGraphModelView* pView = dynamic_cast<ZIProcessGraphModelView*>(pFrame->GetActiveView());
+    PSS_ProcessGraphModelView* pView = dynamic_cast<PSS_ProcessGraphModelView*>(pFrame->GetActiveView());
 
     if (pView)
     {
@@ -574,7 +574,7 @@ void PSS_ProcessGraphModelDoc::SetNewModel(PSS_ProcessGraphModelMdl* pModel)
         m_pModel->CreateNewPage(m_pModel);
 
     // now create the new associated viewport
-    ZIProcessGraphModelView* pView = GetFirstModelView();
+    PSS_ProcessGraphModelView* pView = GetFirstModelView();
 
     if (pView && m_pModel)
     {
@@ -598,7 +598,7 @@ void PSS_ProcessGraphModelDoc::SetNewModel(PSS_ProcessGraphModelMdl* pModel)
 //---------------------------------------------------------------------------
 PSS_DocumentPageSetup* PSS_ProcessGraphModelDoc::GetPrinterPageSize()
 {
-    ZIProcessGraphModelView* pView = GetFirstModelView();
+    PSS_ProcessGraphModelView* pView = GetFirstModelView();
 
     if (pView)
     {
@@ -614,7 +614,7 @@ PSS_DocumentPageSetup* PSS_ProcessGraphModelDoc::GetPrinterPageSize()
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelView* PSS_ProcessGraphModelDoc::GetFirstModelView()
+PSS_ProcessGraphModelView* PSS_ProcessGraphModelDoc::GetFirstModelView()
 {
     POSITION pPos  = GetFirstViewPosition();
     CView*   pView = GetNextView(pPos);
@@ -622,8 +622,8 @@ ZIProcessGraphModelView* PSS_ProcessGraphModelDoc::GetFirstModelView()
     // iterate through all views
     while (pView)
     {
-        if (ISA(pView, ZIProcessGraphModelView))
-            return static_cast<ZIProcessGraphModelView*>(pView);
+        if (ISA(pView, PSS_ProcessGraphModelView))
+            return static_cast<PSS_ProcessGraphModelView*>(pView);
 
         pView = GetNextView(pPos);
     }
@@ -639,8 +639,8 @@ CView* PSS_ProcessGraphModelDoc::FindView(const CString& name)
     // iterate through all views
     while (pView)
     {
-        if (ISA(pView, ZIProcessGraphModelView))
-            if (static_cast<ZIProcessGraphModelView*>(pView)->GetViewName() == name)
+        if (ISA(pView, PSS_ProcessGraphModelView))
+            if (static_cast<PSS_ProcessGraphModelView*>(pView)->GetViewName() == name)
                 return pView;
 
         pView = GetNextView(pPos);
@@ -886,7 +886,7 @@ void PSS_ProcessGraphModelDoc::Serialize(CArchive& ar)
         ar << m_CurrencySymbol;
         ar << WORD(m_ShowPageBorder);
 
-        ZIProcessGraphModelView* pView = GetFirstModelView();
+        PSS_ProcessGraphModelView* pView = GetFirstModelView();
 
         if (pView)
         {
@@ -1361,7 +1361,7 @@ void PSS_ProcessGraphModelDoc::OnCloseDocument()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZIProcessGraphModelView* pView = GetFirstModelView();
+    PSS_ProcessGraphModelView* pView = GetFirstModelView();
 
     // forward the message to the controller
     if (pView)

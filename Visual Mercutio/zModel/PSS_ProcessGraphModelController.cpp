@@ -173,11 +173,11 @@ PSS_ProcessGraphModelController::~PSS_ProcessGraphModelController()
     m_LastSelectedElement = NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelView* PSS_ProcessGraphModelController::GetView()
+PSS_ProcessGraphModelView* PSS_ProcessGraphModelController::GetView()
 {
     if (m_pViewport)
     {
-        ZIProcessGraphModelView* pView = dynamic_cast<ZIProcessGraphModelView*>(m_pViewport->GetWnd());
+        PSS_ProcessGraphModelView* pView = dynamic_cast<PSS_ProcessGraphModelView*>(m_pViewport->GetWnd());
 
         if (pView)
             return pView;
@@ -186,11 +186,11 @@ ZIProcessGraphModelView* PSS_ProcessGraphModelController::GetView()
     return NULL;
 }
 //---------------------------------------------------------------------------
-const ZIProcessGraphModelView* PSS_ProcessGraphModelController::GetView() const
+const PSS_ProcessGraphModelView* PSS_ProcessGraphModelController::GetView() const
 {
     if (m_pViewport)
     {
-        ZIProcessGraphModelView* pView = dynamic_cast<ZIProcessGraphModelView*>(m_pViewport->GetWnd());
+        PSS_ProcessGraphModelView* pView = dynamic_cast<PSS_ProcessGraphModelView*>(m_pViewport->GetWnd());
 
         if (pView)
             return pView;
@@ -206,7 +206,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::GetViewport()
 //---------------------------------------------------------------------------
 CDocument* PSS_ProcessGraphModelController::GetDocument()
 {
-    ZIProcessGraphModelView* pView = GetView();
+    PSS_ProcessGraphModelView* pView = GetView();
 
     if (pView)
         return pView->GetDocument();
@@ -216,7 +216,7 @@ CDocument* PSS_ProcessGraphModelController::GetDocument()
 //---------------------------------------------------------------------------
 const CDocument* PSS_ProcessGraphModelController::GetDocument() const
 {
-    const ZIProcessGraphModelView* pView = GetView();
+    const PSS_ProcessGraphModelView* pView = GetView();
 
     if (pView)
         return pView->GetDocument();
@@ -268,7 +268,7 @@ CMenu* PSS_ProcessGraphModelController::CreateContextMenu()
 ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromModel(PSS_ProcessGraphModelMdl* pModel,
                                                                                   PSS_ProcessGraphModelMdl* pParentModel)
 {
-    ZIProcessGraphModelView* pView = GetView();
+    PSS_ProcessGraphModelView* pView = GetView();
 
     if (!pView)
         return NULL;
@@ -317,7 +317,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromMode
     // the views in that frame window to receive their OnInitialUpdate calls
     pDocument->GetDocTemplate()->InitialUpdateFrame(pFrame, pDocument);
 
-    ZIProcessGraphModelView* pActiveView = dynamic_cast<ZIProcessGraphModelView*>(pFrame->GetActiveView());
+    PSS_ProcessGraphModelView* pActiveView = dynamic_cast<PSS_ProcessGraphModelView*>(pFrame->GetActiveView());
 
     if (pActiveView)
     {
@@ -358,7 +358,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(PSS_Pr
             // create a view from the model
             return CreateViewFromModel(pModel, pParentModel);
 
-        ZIProcessGraphModelView* pGraphModelView = dynamic_cast<ZIProcessGraphModelView*>(pView);
+        PSS_ProcessGraphModelView* pGraphModelView = dynamic_cast<PSS_ProcessGraphModelView*>(pView);
 
         if (pGraphModelView)
             return pGraphModelView->GetViewport();
@@ -372,7 +372,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProcess
     if (!pPage)
         return NULL;
 
-    ZIProcessGraphModelView* pView = GetView();
+    PSS_ProcessGraphModelView* pView = GetView();
 
     if (pView)
     {
@@ -400,7 +400,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComp
 
     if (pSymbol)
     {
-        ZIProcessGraphModelView* pView = GetView();
+        PSS_ProcessGraphModelView* pView = GetView();
 
         if (pView)
         {
@@ -1215,7 +1215,7 @@ void PSS_ProcessGraphModelController::SetImage(const CString& fileName, BOOL isL
     PSS_ProcessGraphModelMdl* pModel = GetRootModel();
     ASSERT(pModel);
 
-    std::unique_ptr<SECImage> pImage(ZIProcessGraphModelView::LoadImageFromFile(fileName));
+    std::unique_ptr<SECImage> pImage(PSS_ProcessGraphModelView::LoadImageFromFile(fileName));
 
     // allow the user to reset the file if it was modified, deleted or corrupted
     if (!pImage)
@@ -2739,9 +2739,9 @@ void PSS_ProcessGraphModelController::OnMouseMove(UINT flags, CPoint point)
         if (pCompHit && ISA(pCompHit, CODLabelComponent))
             pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
 
-        ZIProcessGraphModelView* pView       = GetView();
-        ZBSymbol*                pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
-        PSS_LinkSymbol*          pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
+        PSS_ProcessGraphModelView* pView       = GetView();
+        ZBSymbol*                  pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_LinkSymbol*            pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
 
         if (pSymbol || pLinkSymbol)
         {
@@ -4162,7 +4162,7 @@ void PSS_ProcessGraphModelController::OnShowModelBorder()
 
     if (pViewport)
     {
-        ZIProcessGraphModelView* pView = GetView();
+        PSS_ProcessGraphModelView* pView = GetView();
 
         if (pView)
             pViewport->UpdatePageLook(pView->GetPrinterPageSize());

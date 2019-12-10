@@ -467,7 +467,7 @@ BOOL ZAApp::InitAppl()
         new PSS_ProcessModelDocTmpl(IDR_MODEL,
                                     RUNTIME_CLASS(PSS_ProcessGraphModelDoc),
                                     RUNTIME_CLASS(PSS_ProcessGraphChildFrame),                // custom MDI child frame
-                                    RUNTIME_CLASS(ZIProcessGraphModelView),
+                                    RUNTIME_CLASS(PSS_ProcessGraphModelView),
                                     ID_FILE_MRU_MODEL1);
 
     AddDocTemplate(pProcessModelDocumentTemplate);
@@ -776,8 +776,8 @@ void ZAApp::DoRefreshSymbolsAndProperties()
     while (myPosition != NULL)
     {
         CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
-        PSS_ProcessGraphModelDoc*    m_pGraphModelDoc = (PSS_ProcessGraphModelDoc*)m_pDoc;
-        ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
+        PSS_ProcessGraphModelDoc*  m_pGraphModelDoc = (PSS_ProcessGraphModelDoc*)m_pDoc;
+        PSS_ProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
         PSS_ProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
         m_pModelController->RefreshAllSymbols();
@@ -794,8 +794,8 @@ void ZAApp::DoRefreshProperties()
     while (myPosition != NULL)
     {
         CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
-        PSS_ProcessGraphModelDoc*    m_pGraphModelDoc = (PSS_ProcessGraphModelDoc*)m_pDoc;
-        ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
+        PSS_ProcessGraphModelDoc*  m_pGraphModelDoc = (PSS_ProcessGraphModelDoc*)m_pDoc;
+        PSS_ProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
         PSS_ProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
         m_pModelController->RefreshSelectionProperties();
