@@ -26,7 +26,7 @@
 // processsoft
 #include "zBaseLib\PSS_DropScrollView.h"
 #include "zBaseLib\PSS_DocumentPageSetup.h"
-#include "ProcGraphModelVp.h"
+#include "PSS_ProcessGraphModelViewport.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelMdl
@@ -53,7 +53,7 @@ class PSS_ProcessGraphModelController;
 *@note See the MvcForm sample for a demonstration of this class
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_MvcScrollView : public PSS_DropScrollView, public MvcWrapper_T<ZIProcessGraphModelViewport>
+class PSS_MvcScrollView : public PSS_DropScrollView, public MvcWrapper_T<PSS_ProcessGraphModelViewport>
 {
     public:
         PSS_MvcScrollView();
@@ -82,7 +82,7 @@ class PSS_MvcScrollView : public PSS_DropScrollView, public MvcWrapper_T<ZIProce
         * Gets the viewport
         *@return the viewport
         */
-        virtual ZIProcessGraphModelViewport* GetViewport();
+        virtual PSS_ProcessGraphModelViewport* GetViewport();
 
         /**
         * Sets the view origin
@@ -312,14 +312,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelView : public PSS_MvcScrollView
         #endif
 
     protected:
-        MvcScrollWrapper_T<ZIProcessGraphModelViewport> m_PanVp;
-        CToolTipCtrl                                    m_ToolTip;
-        CString                                         m_StrToolTip;
-        CPoint                                          m_VirtualOrigin;
-        CSize                                           m_VirtualSize;
-        CSize                                           m_MagOrigin;
-        double                                          m_CurrentRatio;
-        bool                                            m_PanInitialized;
+        MvcScrollWrapper_T<PSS_ProcessGraphModelViewport> m_PanVp;
+        CToolTipCtrl                                      m_ToolTip;
+        CString                                           m_StrToolTip;
+        CPoint                                            m_VirtualOrigin;
+        CSize                                             m_VirtualSize;
+        CSize                                             m_MagOrigin;
+        double                                            m_CurrentRatio;
+        bool                                              m_PanInitialized;
 
         PSS_ProcessGraphModelView();
 

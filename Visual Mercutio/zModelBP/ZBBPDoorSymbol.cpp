@@ -10,7 +10,7 @@
 #include "zBaseSym\zBaseSymRes.h"
 
 #include "zModel\ZDProcessGraphPage.h"
-#include "zModel\ProcGraphModelVp.h"
+#include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
 #include "zModel\ZBDocObserverMsg.h"
 
@@ -435,8 +435,8 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
 
         if (Dlg.DoModal() == IDOK)
         {
-            ZIProcessGraphModelViewport*    pNewVp = NULL;
-            PSS_ProcessGraphModelMdl*            pSelectedModel = NULL;
+            PSS_ProcessGraphModelViewport* pNewVp         = NULL;
+            PSS_ProcessGraphModelMdl*      pSelectedModel = NULL;
 
             // If a page has been selected
             if (Dlg.GetSelectedPage() && Dlg.GetSelectedPage()->GetModel())

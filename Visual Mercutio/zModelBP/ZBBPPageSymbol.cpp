@@ -7,7 +7,7 @@
 
 #include "ProcGraphModelMdlBP.h"
 #include "ProcGraphModelCtlrBP.h"
-#include "zModel\ProcGraphModelVp.h"
+#include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZDProcessGraphPage.h"
 
 #include "zModel\ZVInsertLinkModelPageDlg.h"
@@ -457,7 +457,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
 
         if (Dlg.DoModal() == IDOK)
         {
-            ZIProcessGraphModelViewport* pNewVp = NULL;
+            PSS_ProcessGraphModelViewport* pNewVp = NULL;
 
             // If a new page must be inserted
             if (Dlg.ChooseInsertNewPage())

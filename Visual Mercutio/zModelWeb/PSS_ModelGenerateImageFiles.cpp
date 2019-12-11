@@ -15,8 +15,8 @@
 #include "zBaseLib\PSS_StringFormatter.h"
 #include "zBaseLib\PSS_Global.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
-#include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
+#include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZDProcessGraphPage.h"
 #include "zModel\ZUExtractModelUnitGroupAssigned.h"
 #include "zModel\ZUExtractModelLogicalSystemAssigned.h"
@@ -245,7 +245,7 @@ bool PSS_ModelGenerateImageFiles::GenerateModel(PSS_ProcessGraphModelMdl* pModel
         return false;
 
     // get the viewport
-    ZIProcessGraphModelViewport* pVp = m_pInfo->GetCtlr()->BrowseModel(pModel, pModel->GetParent());
+    PSS_ProcessGraphModelViewport* pVp = m_pInfo->GetCtlr()->BrowseModel(pModel, pModel->GetParent());
 
     if (!pVp)
         return false;

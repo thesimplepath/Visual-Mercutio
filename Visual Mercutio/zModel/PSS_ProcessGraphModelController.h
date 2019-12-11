@@ -37,7 +37,7 @@
 #endif
 
 // forward class definition
-class ZIProcessGraphModelViewport;
+class PSS_ProcessGraphModelViewport;
 class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelMdl;
@@ -68,7 +68,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         * Constructor
         *@param pViewport - viewport
         */
-        PSS_ProcessGraphModelController(ZIProcessGraphModelViewport* pViewport);
+        PSS_ProcessGraphModelController(PSS_ProcessGraphModelViewport* pViewport);
 
         /**
         * Gets the view
@@ -81,7 +81,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         * Gets the viewport
         *@return the viewport
         */
-        virtual ZIProcessGraphModelViewport* GetViewport();
+        virtual PSS_ProcessGraphModelViewport* GetViewport();
 
         /**
         * Gets the document
@@ -119,8 +119,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param pParentModel - the parent model
         *@return the newly created viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* CreateViewFromModel(PSS_ProcessGraphModelMdl* pModel,
-                                                                 PSS_ProcessGraphModelMdl* pParentModel);
+        virtual PSS_ProcessGraphModelViewport* CreateViewFromModel(PSS_ProcessGraphModelMdl* pModel,
+                                                                   PSS_ProcessGraphModelMdl* pParentModel);
 
         /**
         * Browses the model
@@ -128,36 +128,36 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param pParentModel - the parent model
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* BrowseModel(PSS_ProcessGraphModelMdl* pModel,
-                                                         PSS_ProcessGraphModelMdl* pParentModel);
+        virtual PSS_ProcessGraphModelViewport* BrowseModel(PSS_ProcessGraphModelMdl* pModel,
+                                                           PSS_ProcessGraphModelMdl* pParentModel);
 
         /**
         * Opens a page
         *@param pPage - the page to open
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* OpenPage(ZDProcessGraphPage* pPage);
+        virtual PSS_ProcessGraphModelViewport* OpenPage(ZDProcessGraphPage* pPage);
 
         /**
         * Opens a symbol
         *@param pComp - the component
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* OpenSymbol(CODComponent* pComp);
+        virtual PSS_ProcessGraphModelViewport* OpenSymbol(CODComponent* pComp);
 
         /**
         * Ensures a symbol is visible
         *@param pComp - the component
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* EnsureSymbolVisible(CODComponent* pComp);
+        virtual PSS_ProcessGraphModelViewport* EnsureSymbolVisible(CODComponent* pComp);
 
         /**
         * Browses the local symbol
         *@param pComp - the component
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* BrowseLocalSymbol(CODComponent* pComp);
+        virtual PSS_ProcessGraphModelViewport* BrowseLocalSymbol(CODComponent* pComp);
 
         /**
         * Checks if the item to drop is accepted by the model
@@ -662,14 +662,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param pSymbol - the symbol
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* BrowseSymbolModel(ZBSymbol* pSymbol);
+        virtual PSS_ProcessGraphModelViewport* BrowseSymbolModel(ZBSymbol* pSymbol);
 
         /**
         * Browses the link symbol model
         *@param pSymbol - the symbol
         *@return the viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol);
+        virtual PSS_ProcessGraphModelViewport* BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol);
 
         /**
         * Clears the selection to set

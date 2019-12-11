@@ -33,7 +33,7 @@
 //---------------------------------------------------------------------------
 PSS_MvcScrollView::PSS_MvcScrollView() :
     PSS_DropScrollView(),
-    MvcWrapper_T<ZIProcessGraphModelViewport>(),
+    MvcWrapper_T<PSS_ProcessGraphModelViewport>(),
     m_LineScroll(CSize(10, 10)),
     m_UpdateScrollBars(FALSE)
 {}
@@ -61,7 +61,7 @@ BOOL PSS_MvcScrollView::Create(LPCTSTR         pClassName,
 
     if (success)
     {
-        success = ZIProcessGraphModelViewport::Create(this, NULL);
+        success = PSS_ProcessGraphModelViewport::Create(this, NULL);
 
         if (success && m_pCtlr)
             // make sure model is set on controller, because model may have been assigned
@@ -72,42 +72,42 @@ BOOL PSS_MvcScrollView::Create(LPCTSTR         pClassName,
     return success;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_MvcScrollView::GetViewport()
+PSS_ProcessGraphModelViewport* PSS_MvcScrollView::GetViewport()
 {
-    return static_cast<ZIProcessGraphModelViewport*>(this);
+    return static_cast<PSS_ProcessGraphModelViewport*>(this);
 }
 //---------------------------------------------------------------------------
 CPoint PSS_MvcScrollView::SetOrigin(int x, int y)
 {
-    const CPoint point = MvcWrapper_T<ZIProcessGraphModelViewport>::SetOrigin(x, y);
+    const CPoint point = MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetOrigin(x, y);
     UpdateScrollBarPos();
     return point;
 }
 //---------------------------------------------------------------------------
 CPoint PSS_MvcScrollView::SetLogOrigin(int x, int y)
 {
-    const CPoint point = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogOrigin(x, y);
+    const CPoint point = MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetLogOrigin(x, y);
     UpdateScrollBarPos();
     return point;
 }
 //---------------------------------------------------------------------------
 CSize PSS_MvcScrollView::SetExtents(int cx, int cy)
 {
-    const CSize size   = MvcWrapper_T<ZIProcessGraphModelViewport>::SetExtents(cx, cy);
+    const CSize size   = MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetExtents(cx, cy);
     m_UpdateScrollBars = TRUE;
     return size;
 }
 //---------------------------------------------------------------------------
 CSize PSS_MvcScrollView::SetLogExtents(int cx, int cy)
 {
-    const CSize sizeExtents = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogExtents(cx, cy);
+    const CSize sizeExtents = MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetLogExtents(cx, cy);
     m_UpdateScrollBars      = TRUE;
     return sizeExtents;
 }
 //---------------------------------------------------------------------------
 CSize PSS_MvcScrollView::SetSize(int cx, int cy)
 {
-    const CSize size = MvcWrapper_T<ZIProcessGraphModelViewport>::SetSize(cx, cy);
+    const CSize size = MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetSize(cx, cy);
     UpdateScrollBarPos();
     UpdateScrollBarSize();
     return size;
@@ -115,7 +115,7 @@ CSize PSS_MvcScrollView::SetSize(int cx, int cy)
 //---------------------------------------------------------------------------
 CSize PSS_MvcScrollView::SetLogSize(int cx, int cy)
 {
-    const CSize size = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogSize(cx, cy);
+    const CSize size = MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetLogSize(cx, cy);
     UpdateScrollBarPos();
     UpdateScrollBarSize();
     return size;
@@ -123,7 +123,7 @@ CSize PSS_MvcScrollView::SetLogSize(int cx, int cy)
 //---------------------------------------------------------------------------
 CSize PSS_MvcScrollView::SetLogScaling(float fScaleWidth, float fScaleHeight)
 {
-    const CSize sizeExtents = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogScaling(fScaleWidth, fScaleHeight);
+    const CSize sizeExtents = MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetLogScaling(fScaleWidth, fScaleHeight);
     UpdateScrollBarPos();
     UpdateScrollBarSize();
     return sizeExtents;
@@ -131,13 +131,13 @@ CSize PSS_MvcScrollView::SetLogScaling(float fScaleWidth, float fScaleHeight)
 //---------------------------------------------------------------------------
 void PSS_MvcScrollView::SetVirtualOrigin(int x, int y)
 {
-    MvcWrapper_T<ZIProcessGraphModelViewport>::SetVirtualOrigin(x, y);
+    MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetVirtualOrigin(x, y);
     UpdateScrollBarPos();
 }
 //---------------------------------------------------------------------------
 void PSS_MvcScrollView::SetVirtualSize(int cx, int cy)
 {
-    MvcWrapper_T<ZIProcessGraphModelViewport>::SetVirtualSize(cx, cy);
+    MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetVirtualSize(cx, cy);
     UpdateScrollBarPos();
     UpdateScrollBarSize();
 }
@@ -151,8 +151,8 @@ void PSS_MvcScrollView::OnInitialUpdate()
 
     // viewport initialization
     GetClientRect(&rect);
-    MvcWrapper_T<ZIProcessGraphModelViewport>::SetSize(rect.Size());
-    MvcWrapper_T<ZIProcessGraphModelViewport>::OnInitialUpdate();
+    MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetSize(rect.Size());
+    MvcWrapper_T<PSS_ProcessGraphModelViewport>::OnInitialUpdate();
 
     UpdateScrollBarPos();
     UpdateScrollBarSize();
@@ -161,7 +161,7 @@ void PSS_MvcScrollView::OnInitialUpdate()
 void PSS_MvcScrollView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 {
     ASSERT(PSS_DropScrollView::m_nMapMode == MM_TEXT);
-    MvcWrapper_T<ZIProcessGraphModelViewport>::OnPrepareDC(pDC);
+    MvcWrapper_T<PSS_ProcessGraphModelViewport>::OnPrepareDC(pDC);
 
     // for default printing behavior
     CView::OnPrepareDC(pDC, pInfo);
@@ -210,7 +210,7 @@ BOOL PSS_MvcScrollView::OnScrollBy(CSize scrollSize, BOOL doScroll)
 //---------------------------------------------------------------------------
 BOOL PSS_MvcScrollView::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    BOOL handled = ZIProcessGraphModelViewport::OnWndMsg(message, wParam, lParam, pResult);
+    BOOL handled = PSS_ProcessGraphModelViewport::OnWndMsg(message, wParam, lParam, pResult);
 
     if (!handled)
         handled = PSS_DropScrollView::OnWndMsg(message, wParam, lParam, pResult);
@@ -221,7 +221,7 @@ BOOL PSS_MvcScrollView::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRE
         case WM_SIZE:
         {
             // resize the logical viewport rect
-            MvcWrapper_T<ZIProcessGraphModelViewport>::SetSize(LOWORD(lParam), HIWORD(lParam));
+            MvcWrapper_T<PSS_ProcessGraphModelViewport>::SetSize(LOWORD(lParam), HIWORD(lParam));
 
             // viewport scrolling
             int  mapMode;
@@ -280,7 +280,7 @@ BOOL PSS_MvcScrollView::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRE
 //---------------------------------------------------------------------------
 BOOL PSS_MvcScrollView::OnCmdMsg(UINT id, int code, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo)
 {
-    BOOL handled = ZIProcessGraphModelViewport::OnCmdMsg(id, code, pExtra, pHandlerInfo);
+    BOOL handled = PSS_ProcessGraphModelViewport::OnCmdMsg(id, code, pExtra, pHandlerInfo);
 
     if (!handled)
         handled = PSS_DropScrollView::OnCmdMsg(id, code, pExtra, pHandlerInfo);
@@ -291,24 +291,24 @@ BOOL PSS_MvcScrollView::OnCmdMsg(UINT id, int code, void* pExtra, AFX_CMDHANDLER
 void PSS_MvcScrollView::DoScrollViewport(const CPoint& scrollPos)
 {
     CSize logSize(scrollPos.x, scrollPos.y);
-    ZIProcessGraphModelViewport::DPtoLP(&logSize);
+    PSS_ProcessGraphModelViewport::DPtoLP(&logSize);
 
     CPoint newPos;
     newPos.x = logSize.cx;
     newPos.y = logSize.cy;
 
     // same as Pan, except using absolute coordinates, not offsets
-    ZIProcessGraphModelViewport::SetLogOrigin(newPos);
-    ZIProcessGraphModelViewport::InvalidateVisual(this, FALSE, TRUE);
+    PSS_ProcessGraphModelViewport::SetLogOrigin(newPos);
+    PSS_ProcessGraphModelViewport::InvalidateVisual(this, FALSE, TRUE);
 }
 //---------------------------------------------------------------------------
 void PSS_MvcScrollView::UpdateScrollBarPos()
 {
-    const CPoint logOrigin = ZIProcessGraphModelViewport::GetLogOrigin();
+    const CPoint logOrigin = PSS_ProcessGraphModelViewport::GetLogOrigin();
 
     // convert viewport logical origin to device coordinates, which can be used to adjust the scrollbars
     CSize devSize(logOrigin.x, logOrigin.y);
-    ZIProcessGraphModelViewport::LPtoDP(&devSize);
+    PSS_ProcessGraphModelViewport::LPtoDP(&devSize);
     CPoint scrollPos(devSize.cx, devSize.cy);
 
     SetScrollPos(SB_HORZ, scrollPos.x, TRUE);
@@ -320,13 +320,13 @@ void PSS_MvcScrollView::UpdateScrollBarSize()
     // the scroll view mapping mode is always set to MM_TEXT, so device coordinates in the viewport
     // are the same as logical coordinates used by the scrollbars. Logical coordinates in the viewport
     // must be converted to device units before being used to set the scrollbar positions or sizes
-    CSize totalSize = ZIProcessGraphModelViewport::GetVirtualSize();
-    ZIProcessGraphModelViewport::LPtoDP(&totalSize);
+    CSize totalSize = PSS_ProcessGraphModelViewport::GetVirtualSize();
+    PSS_ProcessGraphModelViewport::LPtoDP(&totalSize);
 
     const CSize pageSize(GetBounds().Size());
 
     CRect innerMarginsRect;
-    ZIProcessGraphModelViewport::GetMargins(innerMarginsRect);
+    PSS_ProcessGraphModelViewport::GetMargins(innerMarginsRect);
 
     const CSize innerMarginsSize(innerMarginsRect.left + innerMarginsRect.right,
                                  innerMarginsRect.top  + innerMarginsRect.bottom);
@@ -347,7 +347,7 @@ void PSS_MvcScrollView::OnDraw(CDC* pDC)
         m_UpdateScrollBars = FALSE;
     }
 
-    ZIProcessGraphModelViewport::Draw(pDC);
+    PSS_ProcessGraphModelViewport::Draw(pDC);
 }
 //---------------------------------------------------------------------------
 // Dynamic creation
@@ -392,12 +392,7 @@ PSS_ProcessGraphModelView::~PSS_ProcessGraphModelView()
 //---------------------------------------------------------------------------
 PSS_ProcessGraphModelController* PSS_ProcessGraphModelView::GetModelController()
 {
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
-
-    if (pViewport)
-        return pViewport->GetModelController();
-
-    return NULL;
+    return PSS_ProcessGraphModelViewport::GetModelController();
 }
 //---------------------------------------------------------------------------
 PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelView::GetModel()
@@ -418,15 +413,12 @@ void PSS_ProcessGraphModelView::SetModel(PSS_ProcessGraphModelMdl* pModel, bool 
 {
     m_pViewModel = pModel;
 
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
-
-    if (pViewport)
-        pViewport->SetModel(pModel);
+    PSS_ProcessGraphModelViewport::SetModel(pModel);
 
     if (doSizeVp)
         SizeVpToModel();
 
-    ZIProcessGraphModelViewport::UpdateAll();
+    PSS_ProcessGraphModelViewport::UpdateAll();
 
     // protect here, so callers don't have to
     if (!m_pOverview || !m_PanInitialized)
@@ -442,15 +434,13 @@ void PSS_ProcessGraphModelView::SetModel(PSS_ProcessGraphModelMdl* pModel, bool 
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelView::SizeVpToModel()
 {
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
-
-    if (!::IsWindow(GetSafeHwnd()) || !pViewport || !pViewport->GetWnd())
+    if (!::IsWindow(GetSafeHwnd()) || !PSS_ProcessGraphModelViewport::GetWnd())
         return;
 
     PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (pDocument)
-        ZIProcessGraphModelViewport::SizeVp(pDocument->GetPrinterPageSize());
+        PSS_ProcessGraphModelViewport::SizeVp(pDocument->GetPrinterPageSize());
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelView::AcceptDrop() const
@@ -460,7 +450,7 @@ bool PSS_ProcessGraphModelView::AcceptDrop() const
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelView::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    PSS_ProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
+    PSS_ProcessGraphModelController* pCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
     if (pCtrl)
         return pCtrl->AcceptDropItem(pObj, point);
@@ -470,7 +460,7 @@ bool PSS_ProcessGraphModelView::AcceptDropItem(CObject* pObj, const CPoint& poin
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelView::DropItem(CObject* pObj, const CPoint& point)
 {
-    PSS_ProcessGraphModelController* pCtrl = ZIProcessGraphModelViewport::GetModelController();
+    PSS_ProcessGraphModelController* pCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
     if (pCtrl)
         return pCtrl->DropItem(pObj, point);
@@ -595,7 +585,7 @@ void PSS_ProcessGraphModelView::OnInitialUpdate()
 
     // set the document page units
     if (pDocument)
-        ZIProcessGraphModelViewport::SetPageUnits(pDocument->GetPageUnits());
+        PSS_ProcessGraphModelViewport::SetPageUnits(pDocument->GetPageUnits());
 
     // size the viewport
     SizeVpToModel();
@@ -619,12 +609,12 @@ void PSS_ProcessGraphModelView::OnInitialUpdate()
 void PSS_ProcessGraphModelView::OnDraw(CDC* pDC)
 {
     // update the window with the viewport buffer contents
-    ZIProcessGraphModelViewport::Draw(pDC);
+    PSS_ProcessGraphModelViewport::Draw(pDC);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 {
-    ZIProcessGraphModelViewport::OnPrepareDC(pDC, pInfo);
+    PSS_ProcessGraphModelViewport::OnPrepareDC(pDC, pInfo);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ProcessGraphModelView::PreCreateWindow(CREATESTRUCT& cs)
@@ -657,7 +647,7 @@ void PSS_ProcessGraphModelView::OnEndPrinting(CDC* pDC, CPrintInfo* pInfo)
 void PSS_ProcessGraphModelView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 {
     // print the canvas
-    ZIProcessGraphModelViewport::Print(pDC, pInfo);
+    PSS_ProcessGraphModelViewport::Print(pDC, pInfo);
 }
 //---------------------------------------------------------------------------
 int PSS_ProcessGraphModelView::OnCreate(LPCREATESTRUCT lpcs)
@@ -670,10 +660,7 @@ int PSS_ProcessGraphModelView::OnCreate(LPCREATESTRUCT lpcs)
     if (!pModel)
         return -1;
 
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
-
-    if (pViewport)
-        pViewport->SetModel(pModel);
+    PSS_ProcessGraphModelViewport::SetModel(pModel);
 
     SizeVpToModel();
 
@@ -684,11 +671,9 @@ void PSS_ProcessGraphModelView::OnSize(UINT nType, int cx, int cy)
 {
     PSS_DropScrollView::OnSize(nType, cx, cy);
 
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
-
-    if (pViewport && pViewport->GetWnd())
+    if (PSS_ProcessGraphModelViewport::GetWnd())
         // the canvas viewport takes up entire container
-        pViewport->SetSize(cx, cy);
+        PSS_ProcessGraphModelViewport::SetSize(cx, cy);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ProcessGraphModelView::OnEraseBkgnd(CDC* pDC)
@@ -712,7 +697,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnRefreshSymbol(WPARAM wParam, LPARAM
 
     if (pModelMsg)
     {
-        PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+        PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
         if (pModelCtrl)
         {
@@ -739,7 +724,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnRefreshSymbolSet(WPARAM wParam, LPA
 
     if (pModelMsg)
     {
-        PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+        PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
         if (pModelCtrl)
         {
@@ -766,7 +751,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnBrowseSymbol(WPARAM wParam, LPARAM 
 
     if (pModelMsg)
     {
-        PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+        PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
         if (pModelCtrl)
         {
@@ -791,7 +776,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnOpenModelPage(WPARAM wParam, LPARAM
 
     if (pModelMsg)
     {
-        PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+        PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
         if (pModelCtrl)
         {
@@ -825,7 +810,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnEnsureVisibleSymbol(WPARAM wParam, 
 
     if (pModelMsg)
     {
-        PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+        PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
         if (pModelCtrl)
         {
@@ -848,7 +833,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnEnsureVisibleSymbol(WPARAM wParam, 
 //---------------------------------------------------------------------------
 LRESULT PSS_ProcessGraphModelView::OnModelDocumentHasChanged(WPARAM wParam, LPARAM lParam)
 {
-    PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+    PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
     if (pModelCtrl)
         pModelCtrl->OnModelDocumentHasChanged();
@@ -858,7 +843,7 @@ LRESULT PSS_ProcessGraphModelView::OnModelDocumentHasChanged(WPARAM wParam, LPAR
 //---------------------------------------------------------------------------
 LRESULT PSS_ProcessGraphModelView::OnAdviseStartPropertyEdition(WPARAM wParam, LPARAM lParam)
 {
-    PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+    PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
     if (pModelCtrl)
         pModelCtrl->OnStartEditProperty();
@@ -886,7 +871,7 @@ BOOL PSS_ProcessGraphModelView::OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESU
     {
         m_StrToolTip.Empty();
 
-        PSS_ProcessGraphModelController* pModelCtrl = ZIProcessGraphModelViewport::GetModelController();
+        PSS_ProcessGraphModelController* pModelCtrl = PSS_ProcessGraphModelViewport::GetModelController();
 
         if (pModelCtrl && pModelCtrl->OnToolTip(m_StrToolTip,
                                                 cursorPos,

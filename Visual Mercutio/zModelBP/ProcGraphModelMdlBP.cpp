@@ -4,7 +4,7 @@
 #include "ProcGraphModelMdlBP.h"
 
 #include "ProcGraphModelCtlrBP.h"
-#include "zModel\ProcGraphModelVp.h"
+#include "zModel\PSS_ProcessGraphModelViewport.h"
 
 #include "zBaseLib\PSS_BaseDocument.h"
 
@@ -73,7 +73,7 @@ ZDProcessGraphModelMdlBP::~ZDProcessGraphModelMdlBP()
     }
 }
 
-PSS_ProcessGraphModelController* ZDProcessGraphModelMdlBP::CreateController(ZIProcessGraphModelViewport* pVp)
+PSS_ProcessGraphModelController* ZDProcessGraphModelMdlBP::CreateController(PSS_ProcessGraphModelViewport* pVp)
 {
     return new ZDProcessGraphModelControllerBP(pVp);
 }

@@ -47,7 +47,7 @@ class AFX_EXT_CLASS ZDProcessGraphModelControllerBP : public PSS_ProcessGraphMod
 {
 public:
 
-    ZDProcessGraphModelControllerBP(ZIProcessGraphModelViewport* pViewport);
+    ZDProcessGraphModelControllerBP(PSS_ProcessGraphModelViewport* pViewport);
 
     virtual bool    DropItemToModel(CObject* pObj, const CPoint& pt);
     virtual bool    AcceptDropItemToModel(CObject* pObj, const CPoint& pt);

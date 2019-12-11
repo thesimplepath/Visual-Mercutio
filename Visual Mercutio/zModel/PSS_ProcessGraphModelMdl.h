@@ -5,8 +5,8 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#if !defined(AFX_OBJECTIVMDL_H__720C6641_0BFA_4FCA_A706_6D6312331D23__INCLUDED_)
-#define AFX_OBJECTIVMDL_H__720C6641_0BFA_4FCA_A706_6D6312331D23__INCLUDED_
+#ifndef PSS_ProcessGraphModelMdlH
+#define PSS_ProcessGraphModelMdlH
 
 #if _MSC_VER >= 1000
     #pragma once
@@ -55,7 +55,7 @@ class ZBSymbol;
 class PSS_LinkSymbol;
 class PSS_Log;
 class PSS_ProcessGraphModelDoc;
-class ZIProcessGraphModelViewport;
+class PSS_ProcessGraphModelViewport;
 class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelController;
 class ZDProcessGraphPage;
@@ -113,22 +113,22 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pViewport - the viewport
         *@param pDocument - the model document
         */
-        virtual void DetachAllObserversInHierarchy(ZIProcessGraphModelViewport* pViewport,
-                                                   PSS_ProcessGraphModelDoc*    pDocument);
+        virtual void DetachAllObserversInHierarchy(PSS_ProcessGraphModelViewport* pViewport,
+                                                   PSS_ProcessGraphModelDoc*      pDocument);
 
         /**
         * Creates a controller for the model
         *@param pVp - the viewport
         *@return the model controller, NULL on error
         */
-        virtual PSS_ProcessGraphModelController* CreateController(ZIProcessGraphModelViewport* pVp);
+        virtual PSS_ProcessGraphModelController* CreateController(PSS_ProcessGraphModelViewport* pVp);
 
         /**
         * Creates a viewport for the model
         *@param pView - the view
         *@return the model viewport, NULL on error
         */
-        virtual ZIProcessGraphModelViewport* CreateViewport(PSS_ProcessGraphModelView* pView);
+        virtual PSS_ProcessGraphModelViewport* CreateViewport(PSS_ProcessGraphModelView* pView);
 
         /**
         * Gets the owner document

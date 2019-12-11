@@ -22,12 +22,12 @@
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
-#include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_ProcessGraphChildFrame.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
+#include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZUDynamicAttributesManipulator.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"

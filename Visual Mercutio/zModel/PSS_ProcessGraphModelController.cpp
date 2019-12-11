@@ -17,9 +17,9 @@
 #include "zProperty\ZBDynamicProperties.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zFormsRes\zFormsRes.h"
-#include "ProcGraphModelVp.h"
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelView.h"
+#include "PSS_ProcessGraphModelViewport.h"
 #include "ZUODSymbolManipulator.h"
 #include "ZBDocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
@@ -153,7 +153,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ProcessGraphModelController
 //---------------------------------------------------------------------------
-PSS_ProcessGraphModelController::PSS_ProcessGraphModelController(ZIProcessGraphModelViewport* pViewport) :
+PSS_ProcessGraphModelController::PSS_ProcessGraphModelController(PSS_ProcessGraphModelViewport* pViewport) :
     CODController(pViewport),
     m_pSymbolHit(NULL),
     m_pLabelHit(NULL),
@@ -199,9 +199,9 @@ const PSS_ProcessGraphModelView* PSS_ProcessGraphModelController::GetView() cons
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::GetViewport()
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::GetViewport()
 {
-    return dynamic_cast<ZIProcessGraphModelViewport*>(m_pViewport);
+    return dynamic_cast<PSS_ProcessGraphModelViewport*>(m_pViewport);
 }
 //---------------------------------------------------------------------------
 CDocument* PSS_ProcessGraphModelController::GetDocument()
@@ -265,8 +265,8 @@ CMenu* PSS_ProcessGraphModelController::CreateContextMenu()
     return CODController::CreateContextMenu();
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromModel(PSS_ProcessGraphModelMdl* pModel,
-                                                                                  PSS_ProcessGraphModelMdl* pParentModel)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromModel(PSS_ProcessGraphModelMdl* pModel,
+                                                                                    PSS_ProcessGraphModelMdl* pParentModel)
 {
     PSS_ProcessGraphModelView* pView = GetView();
 
@@ -296,7 +296,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromMode
         // set the right controller
         pModel->SetController(this);
 
-        ZIProcessGraphModelViewport* pViewport = pView->GetViewport();
+        PSS_ProcessGraphModelViewport* pViewport = pView->GetViewport();
 
         // move to [0, 0]
         if (pViewport)
@@ -324,7 +324,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromMode
         // set the model
         pActiveView->SetModel(pModel);
 
-        ZIProcessGraphModelViewport* pActiveViewport = pActiveView->GetViewport();
+        PSS_ProcessGraphModelViewport* pActiveViewport = pActiveView->GetViewport();
 
         // set the right controller
         if (pActiveViewport)
@@ -341,8 +341,8 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromMode
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(PSS_ProcessGraphModelMdl* pModel,
-                                                                          PSS_ProcessGraphModelMdl* pParentModel)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(PSS_ProcessGraphModelMdl* pModel,
+                                                                            PSS_ProcessGraphModelMdl* pParentModel)
 {
     if (!pModel)
         return NULL;
@@ -367,7 +367,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseModel(PSS_Pr
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProcessGraphPage* pPage)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProcessGraphPage* pPage)
 {
     if (!pPage)
         return NULL;
@@ -381,7 +381,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProcess
         // is there any child model?
         if (pModel)
         {
-            ZIProcessGraphModelViewport* pVp = BrowseModel(pModel, pModel->GetParent());
+            PSS_ProcessGraphModelViewport* pVp = BrowseModel(pModel, pModel->GetParent());
 
             // when open a new model, unselect all symbols
             UnselectAllComponents();
@@ -394,7 +394,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProcess
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComponent* pComp)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComponent* pComp)
 {
     ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
 
@@ -413,7 +413,8 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComp
             // end the text edit before going into the new model
             EndTextEdit(0, m_SavedEditPosition);
 
-            ZIProcessGraphModelViewport* pVp = BrowseModel((PSS_ProcessGraphModelMdl*)pSymbol->GetChildModel(), pModel);
+            PSS_ProcessGraphModelViewport* pVp =
+                    BrowseModel((PSS_ProcessGraphModelMdl*)pSymbol->GetChildModel(), pModel);
 
             // when open a new model, unselect all symbols
             UnselectAllComponents();
@@ -426,14 +427,14 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComp
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::EnsureSymbolVisible(CODComponent* pComp)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::EnsureSymbolVisible(CODComponent* pComp)
 {
     if (!pComp)
         return NULL;
 
-    ZIProcessGraphModelViewport* pVp     = NULL;
-    CODSymbolComponent*          pSymbol = NULL;
-    ZBSymbol*                    pSym    = dynamic_cast<ZBSymbol*>(pComp);
+    PSS_ProcessGraphModelViewport* pVp     = NULL;
+    CODSymbolComponent*            pSymbol = NULL;
+    ZBSymbol*                      pSym    = dynamic_cast<ZBSymbol*>(pComp);
 
     if (pSym)
     {
@@ -468,7 +469,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::EnsureSymbolVisibl
     return pVp;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLocalSymbol(CODComponent* pComp)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLocalSymbol(CODComponent* pComp)
 {
     if (!pComp)
         return NULL;
@@ -1084,7 +1085,7 @@ void PSS_ProcessGraphModelController::DeleteComponents(CODComponentSet* pCompSet
     if (setUpdate.GetSize() > 0)
         OnSelectionChange(&setUpdate);
 
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
+    PSS_ProcessGraphModelViewport* pViewport = GetViewport();
 
     // update the whole viewport
     if (pViewport)
@@ -1190,7 +1191,7 @@ void PSS_ProcessGraphModelController::RefreshSelectionProperties()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::RefreshAllSymbols()
 {
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
+    PSS_ProcessGraphModelViewport* pViewport = GetViewport();
 
     ASSERT(pViewport);
     pViewport->UpdateAll();
@@ -2424,7 +2425,7 @@ void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCo
     }
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(ZBSymbol* pSymbol)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(ZBSymbol* pSymbol)
 {
     PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
@@ -2436,7 +2437,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(
         // if can't activate a view with model name, create a new view
         if (pSymbolModel)
         {
-            ZIProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
+            PSS_ProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
 
             if (pViewport)
             {
@@ -2452,7 +2453,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLinkSymbolModel(PSS_LinkSymbol* pSymbol)
 {
     PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
@@ -2464,7 +2465,7 @@ ZIProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLinkSymbolMo
         // if can't activate a view with model name, create a new view
         if (pSymbolModel)
         {
-            ZIProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
+            PSS_ProcessGraphModelViewport* pViewport = BrowseModel(pSymbolModel, pSymbolModel->GetParent());
 
             if (pViewport)
             {
@@ -4158,7 +4159,7 @@ void PSS_ProcessGraphModelController::OnShowModelBorder()
 
     pModel->SetShowPageBorder(!pModel->GetShowPageBorder());
 
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
+    PSS_ProcessGraphModelViewport* pViewport = GetViewport();
 
     if (pViewport)
     {
@@ -4770,7 +4771,7 @@ void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesDelete(CCmdUI* pC
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnRefresh()
 {
-    ZIProcessGraphModelViewport* pViewport = GetViewport();
+    PSS_ProcessGraphModelViewport* pViewport = GetViewport();
     ASSERT(pViewport);
 
     pViewport->UpdateAll();

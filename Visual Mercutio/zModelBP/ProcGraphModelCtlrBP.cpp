@@ -8,12 +8,12 @@
 #include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_FileDialog.h"
-#include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #define _ZMODELEXPORT
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
+#include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZUBuildSymbolNewName.h"
 #include "zModel\ZDProcessGraphPage.h"
 #include "zModel\ZVInsertModelNewPageDlg.h"
@@ -161,7 +161,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZDProcessGraphModelControllerBP
 
-ZDProcessGraphModelControllerBP::ZDProcessGraphModelControllerBP(ZIProcessGraphModelViewport* pViewport)
+ZDProcessGraphModelControllerBP::ZDProcessGraphModelControllerBP(PSS_ProcessGraphModelViewport* pViewport)
     : PSS_ProcessGraphModelController(pViewport)
 {
     // Load the right main menu for components

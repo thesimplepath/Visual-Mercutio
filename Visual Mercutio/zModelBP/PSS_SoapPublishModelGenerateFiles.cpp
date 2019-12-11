@@ -16,8 +16,8 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zConversion\PSS_StringTools.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
-#include "zModel\ProcGraphModelVp.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
+#include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\PSS_LinkSymbol.h"
@@ -160,7 +160,7 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(PSS_ProcessGraphModelMdl* p
         return false;
 
     // get the viewport
-    ZIProcessGraphModelViewport* pVp = pCtrl->BrowseModel(pModel, pModel->GetParent());
+    PSS_ProcessGraphModelViewport* pVp = pCtrl->BrowseModel(pModel, pModel->GetParent());
 
     if (!pVp)
         return false;

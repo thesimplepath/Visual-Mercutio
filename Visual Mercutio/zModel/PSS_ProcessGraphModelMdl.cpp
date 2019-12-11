@@ -16,12 +16,12 @@
 #include "zModel\ZBSearchSymbolLogLine.h"
 #include "PSS_ProcessGraphModelController.h"
 #include "PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelVp.h"
+#include "PSS_ProcessGraphModelViewport.h"
 #include "ZDProcessGraphPage.h"
 #include "ZBSymbol.h"
 #include "PSS_LinkSymbol.h"
 #include "ZBLanguageProp.h"
-#include "ZBBasicModelProp.h"
+#include "PSS_BasicModelProperties.h"
 #include "ZUODSymbolManipulator.h"
 #include "ZBSymbolObserverMsg.h"
 #include "ZBDocObserverMsg.h"
@@ -223,8 +223,8 @@ void PSS_ProcessGraphModelMdl::DeleteModelSet()
     SetModifiedFlag(FALSE);
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::DetachAllObserversInHierarchy(ZIProcessGraphModelViewport* pViewport,
-                                                             PSS_ProcessGraphModelDoc*    pDocument)
+void PSS_ProcessGraphModelMdl::DetachAllObserversInHierarchy(PSS_ProcessGraphModelViewport* pViewport,
+                                                             PSS_ProcessGraphModelDoc*      pDocument)
 {
     // get all the model components
     CODComponentSet* pSet = GetComponents();
@@ -274,15 +274,15 @@ void PSS_ProcessGraphModelMdl::DetachAllObserversInHierarchy(ZIProcessGraphModel
     SetModifiedFlag(FALSE);
 }
 //---------------------------------------------------------------------------
-PSS_ProcessGraphModelController* PSS_ProcessGraphModelMdl::CreateController(ZIProcessGraphModelViewport* pVp)
+PSS_ProcessGraphModelController* PSS_ProcessGraphModelMdl::CreateController(PSS_ProcessGraphModelViewport* pVp)
 {
     return new PSS_ProcessGraphModelController(pVp);
 }
 //---------------------------------------------------------------------------
-ZIProcessGraphModelViewport* PSS_ProcessGraphModelMdl::CreateViewport(PSS_ProcessGraphModelView* pView)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelMdl::CreateViewport(PSS_ProcessGraphModelView* pView)
 {
     // create a basic viewport
-    return new MvcScrollWrapper_T<ZIProcessGraphModelViewport>();
+    return new MvcScrollWrapper_T<PSS_ProcessGraphModelViewport>();
 }
 //---------------------------------------------------------------------------
 CDocument* PSS_ProcessGraphModelMdl::GetDocument()
@@ -1112,7 +1112,7 @@ bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numeric
             return false;
     }
 
-    ZBBasicModelProperties* pBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (!pBasicProps)
         return false;
@@ -1122,7 +1122,7 @@ bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numeric
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_MODEL_BASIC_TITLE,
                                ZS_BP_PROP_MODEL_BASIC,
                                IDS_Z_MODEL_NAME_NAME,
-                               Z_MODEL_NAME,
+                               M_Model_Name_ID,
                                IDS_Z_MODEL_NAME_DESC,
                                pBasicProps->GetModelName(),
                                ZBProperty::PT_EDIT_STRING_READONLY));
@@ -1132,7 +1132,7 @@ bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numeric
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_MODEL_BASIC_TITLE,
                                ZS_BP_PROP_MODEL_BASIC,
                                IDS_Z_MODEL_DESCRIPTION_NAME,
-                               Z_MODEL_DESCRIPTION,
+                               M_Model_Description_ID,
                                IDS_Z_MODEL_DESCRIPTION_DESC,
                                pBasicProps->GetModelDescription()));
     props.Add(pProp.get());
@@ -1143,7 +1143,7 @@ bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numeric
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::SaveProperties(ZBPropertySet& props)
 {
-    ZBBasicModelProperties* pBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (!pBasicProps)
         return false;
@@ -1160,8 +1160,8 @@ bool PSS_ProcessGraphModelMdl::SaveProperties(ZBPropertySet& props)
         if (pProp->GetCategoryID() == ZS_BP_PROP_MODEL_BASIC)
             switch (pProp->GetItemID())
             {
-                case Z_MODEL_NAME:        SetModelName  (pProp->GetValueString()); break;
-                case Z_MODEL_DESCRIPTION: SetDescription(pProp->GetValueString()); break;
+                case M_Model_Name_ID:        SetModelName  (pProp->GetValueString()); break;
+                case M_Model_Description_ID: SetDescription(pProp->GetValueString()); break;
             }
     }
 
@@ -1170,7 +1170,7 @@ bool PSS_ProcessGraphModelMdl::SaveProperties(ZBPropertySet& props)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::FillProperty(ZBProperty& prop)
 {
-    ZBBasicModelProperties* pBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (!pBasicProps)
         return false;
@@ -1178,8 +1178,8 @@ bool PSS_ProcessGraphModelMdl::FillProperty(ZBProperty& prop)
     if (prop.GetCategoryID() == ZS_BP_PROP_MODEL_BASIC)
         switch (prop.GetItemID())
         {
-            case Z_MODEL_NAME:        prop.SetValueString(pBasicProps->GetModelName());        break;
-            case Z_MODEL_DESCRIPTION: prop.SetValueString(pBasicProps->GetModelDescription()); break;
+            case M_Model_Name_ID:        prop.SetValueString(pBasicProps->GetModelName());        break;
+            case M_Model_Description_ID: prop.SetValueString(pBasicProps->GetModelDescription()); break;
         }
 
     return true;
@@ -1187,7 +1187,7 @@ bool PSS_ProcessGraphModelMdl::FillProperty(ZBProperty& prop)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::SaveProperty(ZBProperty& prop)
 {
-    ZBBasicModelProperties* pBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (!pBasicProps)
         return false;
@@ -1195,8 +1195,8 @@ bool PSS_ProcessGraphModelMdl::SaveProperty(ZBProperty& prop)
     if (prop.GetCategoryID() == ZS_BP_PROP_MODEL_BASIC)
         switch (prop.GetItemID())
         {
-            case Z_MODEL_NAME:        SetModelName  (prop.GetValueString()); break;
-            case Z_MODEL_DESCRIPTION: SetDescription(prop.GetValueString()); break;
+            case M_Model_Name_ID:        SetModelName  (prop.GetValueString()); break;
+            case M_Model_Description_ID: SetDescription(prop.GetValueString()); break;
         }
 
     return true;
@@ -1204,7 +1204,7 @@ bool PSS_ProcessGraphModelMdl::SaveProperty(ZBProperty& prop)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
 {
-    if (prop.GetCategoryID() == ZS_BP_PROP_MODEL_BASIC && prop.GetItemID() == Z_MODEL_NAME)
+    if (prop.GetCategoryID() == ZS_BP_PROP_MODEL_BASIC && prop.GetItemID() == M_Model_Name_ID)
     {
         PSS_ProcessGraphModelMdl* pRoot = GetRoot();
 
@@ -1248,11 +1248,11 @@ bool PSS_ProcessGraphModelMdl::ProcessMenuCommand(int            menuCmdID,
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::CreateSymbolProperties()
 {
-    ZBBasicModelProperties propBasic;
-    AddProperty(propBasic);
+    PSS_BasicModelProperties basicProps;
+    AddProperty(basicProps);
 
-    ZBLanguageProp propLanguage;
-    AddProperty(propLanguage);
+    ZBLanguageProp languageProps;
+    AddProperty(languageProps);
 
     return true;
 }
@@ -2202,7 +2202,7 @@ BOOL PSS_ProcessGraphModelMdl::RecalculateAllLinks()
 //---------------------------------------------------------------------------
 const CString PSS_ProcessGraphModelMdl::GetModelName() const
 {
-    ZBBasicModelProperties* pBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (!pBasicProps)
         return _T("");
@@ -2212,8 +2212,8 @@ const CString PSS_ProcessGraphModelMdl::GetModelName() const
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelMdl::SetModelName(const CString& value)
 {
-    ZBBasicModelProperties  basicProps;
-    ZBBasicModelProperties* pCurBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties  basicProps;
+    PSS_BasicModelProperties* pCurBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (pCurBasicProps != NULL)
     {
@@ -2236,7 +2236,7 @@ void PSS_ProcessGraphModelMdl::SetModelName(const CString& value)
 //---------------------------------------------------------------------------
 const CString PSS_ProcessGraphModelMdl::GetDescription() const
 {
-    ZBBasicModelProperties* pBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (!pBasicProps)
         return _T("");
@@ -2246,8 +2246,8 @@ const CString PSS_ProcessGraphModelMdl::GetDescription() const
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelMdl::SetDescription(const CString& value)
 {
-    ZBBasicModelProperties  basicProps;
-    ZBBasicModelProperties* pCurBasicProps = static_cast<ZBBasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
+    PSS_BasicModelProperties  basicProps;
+    PSS_BasicModelProperties* pCurBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (pCurBasicProps)
     {

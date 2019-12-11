@@ -578,14 +578,19 @@ void PSS_ProcessGraphModelDoc::SetNewModel(PSS_ProcessGraphModelMdl* pModel)
 
     if (pView && m_pModel)
     {
-        // create the new associated model controller and assigns it to the viewport
-        pView->GetViewport()->AssignNewController(m_pModel->CreateController(pView->GetViewport()), m_pModel);
+        PSS_ProcessGraphModelViewport* pViewport = pView->GetViewport();
 
-        // set the new model
-        pView->SetModel(m_pModel);
+        if (pViewport)
+        {
+            // create the new associated model controller and assigns it to the viewport
+            pViewport->AssignNewController(m_pModel->CreateController(pView->GetViewport()), m_pModel);
 
-        // initialize the viewport
-        pView->GetViewport()->OnInitialUpdateVp();
+            // set the new model
+            pView->SetModel(m_pModel);
+
+            // initialize the viewport
+            pViewport->OnInitialUpdate();
+        }
 
         // switch the context
         PSS_FloatingToolBar::SwitchContext(m_pModel->GetNotation());

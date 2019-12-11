@@ -177,7 +177,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcGraphModelVp.cpp">
+    <ClCompile Include="PSS_ProcessGraphModelViewport.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -197,7 +197,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBasicModelProp.cpp">
+    <ClCompile Include="PSS_BasicModelProperties.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -758,10 +758,10 @@
     <ClInclude Include="PSS_ProcessGraphModelDoc.h" />
     <ClInclude Include="PSS_ProcessGraphModelMdl.h" />
     <ClInclude Include="PSS_ProcessGraphModelView.h" />
-    <ClInclude Include="ProcGraphModelVp.h" />
+    <ClInclude Include="PSS_ProcessGraphModelViewport.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_ModelGlobal.h" />
-    <ClInclude Include="ZBBasicModelProp.h" />
+    <ClInclude Include="PSS_BasicModelProperties.h" />
     <ClInclude Include="ZBBasicProp.h" />
     <ClInclude Include="ZBDashLinkSymbol.h" />
     <ClInclude Include="ZBDocObserverMsg.h" />
