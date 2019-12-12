@@ -57,7 +57,7 @@ BOOL PSS_BasicModelProperties::operator == (const PSS_BasicModelProperties& othe
     return (GetModelName() == other.GetModelName() && GetModelDescription() == other.GetModelDescription());
 }
 //---------------------------------------------------------------------------
-void PSS_BasicModelProperties::Merge(CODProperty* pProp, IEChangeType changeType)
+void PSS_BasicModelProperties::Merge(CODProperty* pProp, DWORD changeType)
 {
     PSS_BasicModelProperties* pOrientationProp = dynamic_cast<PSS_BasicModelProperties*>(pProp);
 

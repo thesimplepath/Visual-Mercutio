@@ -203,7 +203,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBasicProp.cpp">
+    <ClCompile Include="PSS_BasicProperties.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -762,7 +762,7 @@
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_ModelGlobal.h" />
     <ClInclude Include="PSS_BasicModelProperties.h" />
-    <ClInclude Include="ZBBasicProp.h" />
+    <ClInclude Include="PSS_BasicProperties.h" />
     <ClInclude Include="ZBDashLinkSymbol.h" />
     <ClInclude Include="ZBDocObserverMsg.h" />
     <ClInclude Include="ZBExtAppProp.h" />

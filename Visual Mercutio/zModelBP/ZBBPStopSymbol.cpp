@@ -7,7 +7,7 @@
 
 // JMR-MODIF - Le 26 mai 2005 - Définition de _ZMODELEXPORT, pour éviter une erreur interne du compilateur.
 #define _ZMODELEXPORT
-#include "zModel\ZBBasicProp.h"
+    #include "zModel\PSS_BasicProperties.h"
 #undef _ZMODELEXPORT
 
 // JMR-MODIF - Le 29 juillet 2007 - Ajout de l'en-tête ZAGlobal.h
@@ -155,7 +155,7 @@ bool ZBBPStopSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
     else
     {
         // Add the reference number
-        pAttributes->AddAttribute(ZS_BP_PROP_BASIC, Z_SYMBOL_NUMBER);
+        pAttributes->AddAttribute(ZS_BP_PROP_BASIC, M_Symbol_Number_ID);
 
         // Add the unit name
         pAttributes->AddAttribute(ZS_BP_PROP_UNIT, Z_UNIT_NAME);

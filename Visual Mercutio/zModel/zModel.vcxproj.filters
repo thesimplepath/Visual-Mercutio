@@ -30,9 +30,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBasicProp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBDashLinkSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -357,6 +354,9 @@
     <ClCompile Include="PSS_BasicModelProperties.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_BasicProperties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -457,9 +457,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBasicProp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBDashLinkSymbol.h">
@@ -793,6 +790,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_BasicModelProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BasicProperties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

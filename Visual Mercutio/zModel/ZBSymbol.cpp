@@ -21,7 +21,7 @@
 
 #include "zBaseLib\PSS_MsgBox.h"
 
-#include "ZBBasicProp.h"
+#include "PSS_BasicProperties.h"
 
 #include "Views\OdGuids.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
@@ -585,7 +585,7 @@ BOOL ZBSymbol::Create(UINT nID, HINSTANCE hInst, const CString Name /*= ""*/)
 
 CString ZBSymbol::GetSymbolName() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
     if (!pBasicProps)
     {
@@ -606,8 +606,8 @@ BOOL ZBSymbol::SetSymbolName(const CString& value)
             GetSymbolNameTextEdit()->SetText(value);
         }
 
-        ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties BasicProps;
+        PSS_BasicProperties* pCurBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
         if (pCurBasicProps != NULL)
         {
@@ -649,7 +649,7 @@ BOOL ZBSymbol::SetSymbolName(const CString& value)
 
 CString ZBSymbol::GetSymbolComment() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
     if (!pBasicProps)
     {
@@ -668,8 +668,8 @@ BOOL ZBSymbol::SetSymbolComment(const CString& value)
             GetCommentTextEdit()->SetText(value);
         }
 
-        ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties BasicProps;
+        PSS_BasicProperties* pCurBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
         if (pCurBasicProps != NULL)
         {
@@ -695,7 +695,7 @@ BOOL ZBSymbol::SetSymbolComment(const CString& value)
 
 int ZBSymbol::GetSymbolReferenceNumber() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
     if (!pBasicProps)
     {
@@ -707,7 +707,7 @@ int ZBSymbol::GetSymbolReferenceNumber() const
 
 CString ZBSymbol::GetSymbolReferenceNumberStr() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
     if (!pBasicProps)
     {
@@ -721,8 +721,8 @@ BOOL ZBSymbol::SetSymbolReferenceNumber(int value)
 {
     if (GetSymbolReferenceNumber() != value)
     {
-        ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties BasicProps;
+        PSS_BasicProperties* pCurBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
         if (pCurBasicProps != NULL)
         {
@@ -750,8 +750,8 @@ BOOL ZBSymbol::SetSymbolReferenceNumberStr(const CString& value)
 {
     if (GetSymbolReferenceNumberStr() != value)
     {
-        ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties BasicProps;
+        PSS_BasicProperties* pCurBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
         if (pCurBasicProps != NULL)
         {
@@ -901,7 +901,7 @@ CString ZBSymbol::GetRiskLevel()
 {
     if (IsProcess() || IsProcedure() || IsStart() || IsStop())
     {
-        ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
         return pBasicProps->GetSymbolRiskLevel();
     }
@@ -914,7 +914,7 @@ void ZBSymbol::SetRiskLevel(CString Level)
 {
     if (IsProcess() || IsProcedure() || IsStart() || IsStop())
     {
-        ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
         pBasicProps->SetSymbolRiskLevel(Level);
     }
@@ -922,7 +922,7 @@ void ZBSymbol::SetRiskLevel(CString Level)
 
 bool ZBSymbol::CreateSymbolProperties()
 {
-    ZBBasicProperties propBasic;
+    PSS_BasicProperties propBasic;
     AddProperty(propBasic);
 
     ZBExtAppPropertyMgr::CreateSymbolProperties();
@@ -954,7 +954,7 @@ bool ZBSymbol::CreateSymbolProperties()
 
 bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= false*/, bool GroupValue /*= false*/)
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
     if (!pBasicProps)
     {
@@ -974,7 +974,7 @@ bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= fals
     ZBProperty* pNameProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                            ZS_BP_PROP_BASIC,
                                            IDS_Z_SYMBOL_NAME_NAME,
-                                           Z_SYMBOL_NAME,
+                                           M_Symbol_Name_ID,
                                            IDS_Z_SYMBOL_NAME_DESC,
                                            (NumericValue == true) ? Name : pBasicProps->GetSymbolName(),
                                            (!IsLocal() || SymbolNameTextEditReadOnly()) ? ZBProperty::PT_EDIT_MULTILINE_READONLY : ZBProperty::PT_EDIT_MULTILINE);
@@ -984,7 +984,7 @@ bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= fals
     ZBProperty* pDescProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                            ZS_BP_PROP_BASIC,
                                            IDS_Z_SYMBOL_DESCRIPTION_NAME,
-                                           Z_SYMBOL_DESCRIPTION,
+                                           M_Symbol_Description_ID,
                                            IDS_Z_SYMBOL_DESCRIPTION_DESC,
                                            pBasicProps->GetSymbolDescription(),
                                            (!IsLocal() || CommentTextEditReadOnly()) ? ZBProperty::PT_EDIT_MULTILINE_READONLY : ZBProperty::PT_EDIT_MULTILINE);
@@ -998,7 +998,7 @@ bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= fals
         pNumberProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                      ZS_BP_PROP_BASIC,
                                      IDS_Z_SYMBOL_NUMBER_NAME,
-                                     Z_SYMBOL_NUMBER,
+                                     M_Symbol_Number_ID,
                                      IDS_Z_SYMBOL_NUMBER_DESC,
                                      (double)pBasicProps->GetSymbolNumber(),
                                      IsLocal() ? ZBProperty::PT_EDIT_NUMBER : ZBProperty::PT_EDIT_NUMBER_READONLY);
@@ -1009,7 +1009,7 @@ bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= fals
         pNumberProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                      ZS_BP_PROP_BASIC,
                                      IDS_Z_SYMBOL_NUMBER_NAME,
-                                     Z_SYMBOL_NUMBER,
+                                     M_Symbol_Number_ID,
                                      IDS_Z_SYMBOL_NUMBER_DESC,
                                      pBasicProps->GetSymbolNumberStr(),
                                      IsLocal() ? ZBProperty::PT_EDIT_STRING : ZBProperty::PT_EDIT_STRING_READONLY);
@@ -1024,7 +1024,7 @@ bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= fals
         ZBProperty* pRiskProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                                ZS_BP_PROP_BASIC,
                                                IDS_Z_SYMBOL_RISK_LEVEL_NAME,
-                                               Z_SYMBOL_RISK_LEVEL,
+                                               M_Symbol_Risk_Level_ID,
                                                IDS_Z_SYMBOL_RISK_LEVEL_DESC,
                                                pBasicProps->GetSymbolRiskLevel(),
                                                ZBProperty::PT_EDIT_STRING_READONLY);
@@ -1109,21 +1109,27 @@ bool ZBSymbol::SaveProperties(ZBPropertySet& PropSet)
         {
             switch (pProp->GetItemID())
             {
-                case Z_SYMBOL_NAME:
+                case M_Symbol_Name_ID:
                 {
                     SetSymbolName(pProp->GetValueString());
                     break;
                 }
 
-                case Z_SYMBOL_DESCRIPTION:
+                case M_Symbol_Description_ID:
                 {
                     SetSymbolComment(pProp->GetValueString());
                     break;
                 }
 
-                case Z_SYMBOL_NUMBER:
+                case M_Symbol_Number_ID:
                 {
                     SetSymbolReferenceNumberStr(pProp->GetValueString());
+                    break;
+                }
+
+                case M_Symbol_Risk_Level_ID:
+                {
+                    SetRiskLevel(pProp->GetValueString());
                     break;
                 }
             }
@@ -1148,7 +1154,7 @@ bool ZBSymbol::SaveProperties(ZBPropertySet& PropSet)
 
 bool ZBSymbol::FillProperty(ZBProperty& Property)
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = (PSS_BasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
     if (!pBasicProps)
     {
@@ -1159,21 +1165,27 @@ bool ZBSymbol::FillProperty(ZBProperty& Property)
     {
         switch (Property.GetItemID())
         {
-            case Z_SYMBOL_NAME:
+            case M_Symbol_Name_ID:
             {
                 Property.SetValueString(pBasicProps->GetSymbolName());
                 break;
             }
 
-            case Z_SYMBOL_DESCRIPTION:
+            case M_Symbol_Description_ID:
             {
                 Property.SetValueString(pBasicProps->GetSymbolDescription());
                 break;
             }
 
-            case Z_SYMBOL_NUMBER:
+            case M_Symbol_Number_ID:
             {
                 Property.SetValueString(pBasicProps->GetSymbolNumberStr());
+                break;
+            }
+
+            case M_Symbol_Risk_Level_ID:
+            {
+                Property.SetValueString(pBasicProps->GetSymbolRiskLevel());
                 break;
             }
         }
@@ -1206,21 +1218,27 @@ bool ZBSymbol::SaveProperty(ZBProperty& Property)
     {
         switch (Property.GetItemID())
         {
-            case Z_SYMBOL_NAME:
+            case M_Symbol_Name_ID:
             {
                 SetSymbolName(Property.GetValueString());
                 break;
             }
 
-            case Z_SYMBOL_DESCRIPTION:
+            case M_Symbol_Description_ID:
             {
                 SetSymbolComment(Property.GetValueString());
                 break;
             }
 
-            case Z_SYMBOL_NUMBER:
+            case M_Symbol_Number_ID:
             {
                 SetSymbolReferenceNumberStr(Property.GetValueString());
+                break;
+            }
+
+            case M_Symbol_Risk_Level_ID:
+            {
+                SetRiskLevel(Property.GetValueString());
                 break;
             }
         }
@@ -1251,7 +1269,7 @@ bool ZBSymbol::CheckPropertyValue(ZBProperty& Property, CString& value, ZBProper
     // Check if allowed
     if (Property.GetCategoryID() == ZS_BP_PROP_BASIC)
     {
-        if (Property.GetItemID() == Z_SYMBOL_NUMBER)
+        if (Property.GetItemID() == M_Symbol_Number_ID)
         {
             CODComponent* pComp = GetParent();
 
@@ -1271,7 +1289,7 @@ bool ZBSymbol::CheckPropertyValue(ZBProperty& Property, CString& value, ZBProper
                 }
             }
         }
-        else if (Property.GetItemID() == Z_SYMBOL_NAME)
+        else if (Property.GetItemID() == M_Symbol_Name_ID)
         {
             if (!IsNewNameValid(value))
             {

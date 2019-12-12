@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_BasicModelProperties --------------------------------------------*
+ * ==> PSS_BasicProperties -------------------------------------------------*
  ****************************************************************************
- * Description : Provides the basic model properties                        *
+ * Description : Provides the basic properties                              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_BasicModelPropertiesH
-#define PSS_BasicModelPropertiesH
+#ifndef PSS_BasicPropertiesH
+#define PSS_BasicPropertiesH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_BasicModelProperties
-    #define PSS_BasicModelProperties ZBBasicModelProperties
+#ifndef PSS_BasicProperties
+    #define PSS_BasicProperties ZBBasicProperties
 #endif
 
 // processsoft
@@ -41,22 +41,24 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Model_Name_ID        1
-#define M_Model_Description_ID 2
+#define M_Symbol_Name_ID        1
+#define M_Symbol_Description_ID 2
+#define M_Symbol_Number_ID      3
+#define M_Symbol_Risk_Level_ID  4
 //---------------------------------------------------------------------------
 
 /**
-* Basic model properties (i.e its name and description)
+* Basic properties (i.e the symbol name, description, number and risk level)
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
-                                               public sfl::CPropertyContainer< IODPropertyContainer,
-                                                                               CODPropertyAccessor<PSS_BasicModelProperties> >
+class AFX_EXT_CLASS PSS_BasicProperties : public CODIntProperty,
+                                          public sfl::CPropertyContainer< IODPropertyContainer,
+                                                                          CODPropertyAccessor<PSS_BasicProperties> >
 {
-    DECLARE_SERIAL(PSS_BasicModelProperties)
+    DECLARE_SERIAL(PSS_BasicProperties)
 
     /// Generated guid map
-    BEGIN_GUID_MAP(PSS_BasicModelProperties)
+    BEGIN_GUID_MAP(PSS_BasicProperties)
         GUID_ENTRY(IODPropertyContainer)
         GUID_ENTRY(sfl::IPropertyContainer)
         GUID_CHAIN_ENTRY(CODIntProperty)
@@ -69,38 +71,40 @@ class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Model_Name        = 0x0001,
-            IE_CT_Model_Description = 0x0002,
-            IE_CT_All               = OD_CHANGE_ALL
+            IE_CT_Symbol_Name        = 0x0001,
+            IE_CT_Symbol_Description = 0x0002,
+            IE_CT_Symbol_Number      = 0x0004,
+            IE_CT_Symbol_Risk_Level  = 0x0008,
+            IE_CT_Symbol_All         = OD_CHANGE_ALL
         };
 
         /**
         * Constructor
         *@param id - property identifier
         */
-        PSS_BasicModelProperties(int id = ZS_BP_PROP_MODEL_BASIC);
+        PSS_BasicProperties(int id = ZS_BP_PROP_BASIC);
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_BasicModelProperties(const PSS_BasicModelProperties& other);
+        PSS_BasicProperties(const PSS_BasicProperties& propBasic);
 
-        virtual ~PSS_BasicModelProperties();
+        virtual ~PSS_BasicProperties();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_BasicModelProperties& operator = (const PSS_BasicModelProperties& other);
+        PSS_BasicProperties& operator = (const PSS_BasicProperties& other);
 
         /**
         * Compares two basic model properties
         *@param other - other object to compare with
         *@return TRUE if the objects are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_BasicModelProperties& propBasic) const;
+        BOOL operator == (const PSS_BasicProperties& other) const;
 
         /**
         * Adds a reference to this object
@@ -123,31 +127,67 @@ class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
         *@param pProp - the property set to merge with
         *@param changeFlags - the change flags to apply
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeType = IE_CT_All);
+        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_Symbol_All);
 
         /**
-        * Gets the model name
-        *@return the model name
+        * Gets the symbol name
+        *@return the symbol name
         */
-        virtual inline CString GetModelName() const;
+        virtual inline CString GetSymbolName() const;
 
         /**
-        * Sets the model name
-        *@param value - the model name
+        * Sets the symbol name
+        *@param value - the symbol name
         */
-        virtual inline void SetModelName(const CString value);
+        virtual inline void SetSymbolName(const CString value);
 
         /**
-        * Gets the model description
-        *@return the model description
+        * Gets the symbol description
+        *@return the symbol description
         */
-        virtual inline CString GetModelDescription() const;
+        virtual inline CString GetSymbolDescription() const;
 
         /**
-        * Sets the model description
-        *@param value - the model description
+        * Sets the symbol description
+        *@param value - the symbol description
         */
-        virtual inline void SetModelDescription(const CString value);
+        virtual inline void SetSymbolDescription(const CString value);
+
+        /**
+        * Gets the symbol number
+        *@return the symbol number
+        */
+        virtual inline int GetSymbolNumber() const;
+
+        /**
+        * Gets the symbol number as a string
+        *@return the symbol number as a string
+        */
+        virtual CString GetSymbolNumberStr() const;
+
+        /**
+        * Sets the symbol number
+        *@param value - the symbol number
+        */
+        virtual inline void SetSymbolNumber(const int value);
+
+        /**
+        * Sets the symbol number as a string
+        *@param value - the symbol number as a string
+        */
+        virtual void SetSymbolNumber(const CString value);
+
+        /**
+        * Gets the symbol risk level
+        *@return the symbol risk level
+        */
+        virtual inline CString GetSymbolRiskLevel() const;
+
+        /**
+        * Sets the symbol risk level
+        *@param value - the symbol risk level
+        */
+        virtual inline void SetSymbolRiskLevel(const CString value);
 
         /**
         * Compares the property identifier with another identifier
@@ -208,8 +248,10 @@ class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
         #endif
 
     protected:
-        CString m_ModelName;
-        CString m_ModelDescription;
+        CString m_SymbolName;
+        CString m_SymbolDescription;
+        CString m_SymbolRiskLevel;
+        int     m_SymbolNumber;
 
     private:
         /**
@@ -220,41 +262,61 @@ class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
 };
 
 //---------------------------------------------------------------------------
-// PSS_BasicModelProperties
+// PSS_BasicProperties
 //---------------------------------------------------------------------------
-ULONG PSS_BasicModelProperties::AddRef()
+ULONG PSS_BasicProperties::AddRef()
 {
     return CODIntProperty::AddRef();
 }
 //---------------------------------------------------------------------------
-ULONG PSS_BasicModelProperties::Release()
+ULONG PSS_BasicProperties::Release()
 {
     return CODIntProperty::Release();
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_BasicModelProperties::Dup()
+CODProperty* PSS_BasicProperties::Dup()
 {
-    return new PSS_BasicModelProperties(*this);
+    return new PSS_BasicProperties(*this);
 }
 //---------------------------------------------------------------------------
-CString PSS_BasicModelProperties::GetModelName() const
+CString PSS_BasicProperties::GetSymbolName() const
 {
-    return m_ModelName;
+    return m_SymbolName;
 }
 //---------------------------------------------------------------------------
-void PSS_BasicModelProperties::SetModelName(const CString value)
+void PSS_BasicProperties::SetSymbolName(const CString value)
 {
-    m_ModelName = value;
+    m_SymbolName = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_BasicModelProperties::GetModelDescription() const
+CString PSS_BasicProperties::GetSymbolDescription() const
 {
-    return m_ModelDescription;
+    return m_SymbolDescription;
 }
 //---------------------------------------------------------------------------
-void PSS_BasicModelProperties::SetModelDescription(const CString value)
+void PSS_BasicProperties::SetSymbolDescription(const CString value)
 {
-    m_ModelDescription = value;
+    m_SymbolDescription = value;
+}
+//---------------------------------------------------------------------------
+int PSS_BasicProperties::GetSymbolNumber() const
+{
+    return m_SymbolNumber;
+}
+//---------------------------------------------------------------------------
+void PSS_BasicProperties::SetSymbolNumber(const int value)
+{
+    m_SymbolNumber = value;
+}
+//---------------------------------------------------------------------------
+CString PSS_BasicProperties::GetSymbolRiskLevel() const
+{
+    return m_SymbolRiskLevel;
+}
+//---------------------------------------------------------------------------
+void PSS_BasicProperties::SetSymbolRiskLevel(const CString riskLevel)
+{
+    m_SymbolRiskLevel = riskLevel;
 }
 //---------------------------------------------------------------------------
 

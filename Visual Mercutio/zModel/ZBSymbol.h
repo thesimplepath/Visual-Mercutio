@@ -1,20 +1,29 @@
-// ZBSymbol.h: interface for the ZBSymbol class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_Symbol ----------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a symbol                                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZBSYMBOL_H__2D0F308C_3DD6_402F_9954_202E6053BEB8__INCLUDED_)
-#define AFX_ZBSYMBOL_H__2D0F308C_3DD6_402F_9954_202E6053BEB8__INCLUDED_
+#ifndef PSS_SymbolH
+#define PSS_SymbolH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
+
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 
 // processsoft
 #include "zBaseLib\PSS_Subject.h"
@@ -32,36 +41,36 @@
 #include "zModel\ZBExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
 
-//////////////////////////////////////////////////////////////////////
-// Forward declaration
+// forward class declaration
 class ZBSymbolEdit;
 class ZBPropertyAttributes;
 
 #ifdef _ZMODELEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 27 septembre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-// Each symbol implement the subject and observer interface
+/**
+* Symbol
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZBSymbol : public CODSymbolComponent,
-    public PSS_BasicSymbol,
-    public PSS_ObjectPath,
-    public PSS_NavigableSymbol,
-    public ZIProperties,
-    public ZBExtAppPropertyMgr,
-    public ZBExtFilePropertyMgr,
-    public ZVSymbolAttributes,
-    public PSS_BasicSymbolAcceptVisitor,
-    public PSS_Subject,
-    public PSS_Observer,
-    public PSS_ToolTip
+                                public PSS_BasicSymbol,
+                                public PSS_ObjectPath,
+                                public PSS_NavigableSymbol,
+                                public ZIProperties,
+                                public ZBExtAppPropertyMgr,
+                                public ZBExtFilePropertyMgr,
+                                public ZVSymbolAttributes,
+                                public PSS_BasicSymbolAcceptVisitor,
+                                public PSS_Subject,
+                                public PSS_Observer,
+                                public PSS_ToolTip
 {
     DECLARE_SERIAL(ZBSymbol)
 
@@ -837,6 +846,9 @@ private:
     BOOL                    m_IsCopy;
 };
 
+//---------------------------------------------------------------------------
+// PSS_Symbol
+//---------------------------------------------------------------------------
 inline CString ZBSymbol::GetReferenceName() const
 {
     return m_NameOfReference;

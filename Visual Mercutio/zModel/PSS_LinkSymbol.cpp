@@ -15,7 +15,7 @@
 #include "zProperty\ZBDynamicProperties.h"
 #include "ZUODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZBBasicProp.h"
+#include "PSS_BasicProperties.h"
 #include "ZBSymbol.h"
 #include "ZBSymbolObserverMsg.h"
 #include "ZBDocObserverMsg.h"
@@ -237,7 +237,7 @@ ZBSymbolEdit* PSS_LinkSymbol::CreateAndReplaceEditText(const CString& editName, 
 //---------------------------------------------------------------------------
 CString PSS_LinkSymbol::GetSymbolName() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
     if (!pBasicProps)
         return _T("");
@@ -256,11 +256,11 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
         if (GetSymbolNameTextEdit())
             GetSymbolNameTextEdit()->SetText(value);
 
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties* pCurBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
         if (pCurBasicProps)
         {
-            ZBBasicProperties basicProps = *pCurBasicProps;
+            PSS_BasicProperties basicProps = *pCurBasicProps;
             basicProps.SetSymbolName(value);
             SetProperty(&basicProps);
 
@@ -293,7 +293,7 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
 //---------------------------------------------------------------------------
 CString PSS_LinkSymbol::GetSymbolComment() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
     if (!pBasicProps)
         return _T("");
@@ -308,11 +308,11 @@ BOOL PSS_LinkSymbol::SetSymbolComment(const CString& value)
         if (GetCommentTextEdit())
             GetCommentTextEdit()->SetText(value);
 
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties* pCurBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
         if (pCurBasicProps)
         {
-            ZBBasicProperties basicProps = *pCurBasicProps;
+            PSS_BasicProperties basicProps = *pCurBasicProps;
             basicProps.SetSymbolDescription(value);
             SetProperty(&basicProps);
 
@@ -334,7 +334,7 @@ BOOL PSS_LinkSymbol::SetSymbolComment(const CString& value)
 //---------------------------------------------------------------------------
 int PSS_LinkSymbol::GetSymbolReferenceNumber() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
     if (!pBasicProps)
         return -1;
@@ -344,7 +344,7 @@ int PSS_LinkSymbol::GetSymbolReferenceNumber() const
 //---------------------------------------------------------------------------
 CString PSS_LinkSymbol::GetSymbolReferenceNumberStr() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
     if (!pBasicProps)
         return _T("");
@@ -356,11 +356,11 @@ BOOL PSS_LinkSymbol::SetSymbolReferenceNumber(int value)
 {
     if (GetSymbolReferenceNumber() != value)
     {
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties* pCurBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
         if (pCurBasicProps)
         {
-            ZBBasicProperties basicProps = *pCurBasicProps;
+            PSS_BasicProperties basicProps = *pCurBasicProps;
             basicProps.SetSymbolNumber(value);
             SetProperty(&basicProps);
 
@@ -383,11 +383,11 @@ BOOL PSS_LinkSymbol::SetSymbolReferenceNumberStr(const CString& value)
 {
     if (GetSymbolReferenceNumberStr() != value)
     {
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+        PSS_BasicProperties* pCurBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
         if (pCurBasicProps)
         {
-            ZBBasicProperties basicProps = *pCurBasicProps;
+            PSS_BasicProperties basicProps = *pCurBasicProps;
             basicProps.SetSymbolNumber(value);
             SetProperty(&basicProps);
 
@@ -644,13 +644,13 @@ void PSS_LinkSymbol::SetIsLocal(bool value)
 //---------------------------------------------------------------------------
 CString PSS_LinkSymbol::GetRiskLevel() const
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
     return pBasicProps->GetSymbolRiskLevel();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetRiskLevel(const CString& level)
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
     pBasicProps->SetSymbolRiskLevel(level);
 }
 //---------------------------------------------------------------------------
@@ -1002,7 +1002,7 @@ void PSS_LinkSymbol::AdjustLinePath()
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool groupValue)
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
     if (!pBasicProps)
         return false;
@@ -1022,7 +1022,7 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                ZS_BP_PROP_BASIC,
                                IDS_Z_SYMBOL_NAME_NAME,
-                               Z_SYMBOL_NAME,
+                               M_Symbol_Name_ID,
                                IDS_Z_SYMBOL_NAME_DESC,
                                (numericValue ? name : pBasicProps->GetSymbolName()),
                                (!IsLocal() || SymbolNameTextEditReadOnly() ?
@@ -1034,7 +1034,7 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                ZS_BP_PROP_BASIC,
                                IDS_Z_SYMBOL_DESCRIPTION_NAME,
-                               Z_SYMBOL_DESCRIPTION,
+                               M_Symbol_Description_ID,
                                IDS_Z_SYMBOL_DESCRIPTION_DESC,
                                pBasicProps->GetSymbolDescription(),
                                (!IsLocal() || CommentTextEditReadOnly() ?
@@ -1047,7 +1047,7 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                    ZS_BP_PROP_BASIC,
                                    IDS_Z_SYMBOL_NUMBER_NAME,
-                                   Z_SYMBOL_NUMBER,
+                                   M_Symbol_Number_ID,
                                    IDS_Z_SYMBOL_NUMBER_DESC,
                                    double(pBasicProps->GetSymbolNumber()),
                                    (IsLocal() ? ZBProperty::PT_EDIT_NUMBER : ZBProperty::PT_EDIT_NUMBER_READONLY)));
@@ -1055,7 +1055,7 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                    ZS_BP_PROP_BASIC,
                                    IDS_Z_SYMBOL_NUMBER_NAME,
-                                   Z_SYMBOL_NUMBER,
+                                   M_Symbol_Number_ID,
                                    IDS_Z_SYMBOL_NUMBER_DESC,
                                    pBasicProps->GetSymbolNumberStr(),
                                    (IsLocal() ? ZBProperty::PT_EDIT_STRING : ZBProperty::PT_EDIT_STRING_READONLY)));
@@ -1067,7 +1067,7 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
                                ZS_BP_PROP_BASIC,
                                IDS_Z_SYMBOL_RISK_LEVEL_NAME,
-                               Z_SYMBOL_RISK_LEVEL,
+                               M_Symbol_Risk_Level_ID,
                                IDS_Z_SYMBOL_RISK_LEVEL_DESC,
                                pBasicProps->GetSymbolRiskLevel(),
                                ZBProperty::PT_EDIT_STRING_READONLY));
@@ -1119,9 +1119,10 @@ bool PSS_LinkSymbol::SaveProperties(ZBPropertySet& propSet)
         if (pProp->GetCategoryID() == ZS_BP_PROP_BASIC)
             switch (pProp->GetItemID())
             {
-                case Z_SYMBOL_NAME:        SetSymbolName(pProp->GetValueString());               break;
-                case Z_SYMBOL_DESCRIPTION: SetSymbolComment(pProp->GetValueString());            break;
-                case Z_SYMBOL_NUMBER:      SetSymbolReferenceNumberStr(pProp->GetValueString()); break;
+                case M_Symbol_Name_ID:        SetSymbolName(pProp->GetValueString());               break;
+                case M_Symbol_Description_ID: SetSymbolComment(pProp->GetValueString());            break;
+                case M_Symbol_Number_ID:      SetSymbolReferenceNumberStr(pProp->GetValueString()); break;
+                case M_Symbol_Risk_Level_ID:  SetRiskLevel(pProp->GetValueString());                break;
             }
     }
 
@@ -1137,7 +1138,7 @@ bool PSS_LinkSymbol::SaveProperties(ZBPropertySet& propSet)
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::FillProperty(ZBProperty& prop)
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
+    PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
     if (!pBasicProps)
         return false;
@@ -1145,9 +1146,10 @@ bool PSS_LinkSymbol::FillProperty(ZBProperty& prop)
     if (prop.GetCategoryID() == ZS_BP_PROP_BASIC)
         switch (prop.GetItemID())
         {
-            case Z_SYMBOL_NAME:        prop.SetValueString(pBasicProps->GetSymbolName());        break;
-            case Z_SYMBOL_DESCRIPTION: prop.SetValueString(pBasicProps->GetSymbolDescription()); break;
-            case Z_SYMBOL_NUMBER:      prop.SetValueString(pBasicProps->GetSymbolNumberStr());   break;
+            case M_Symbol_Name_ID:        prop.SetValueString(pBasicProps->GetSymbolName());        break;
+            case M_Symbol_Description_ID: prop.SetValueString(pBasicProps->GetSymbolDescription()); break;
+            case M_Symbol_Number_ID:      prop.SetValueString(pBasicProps->GetSymbolNumberStr());   break;
+            case M_Symbol_Risk_Level_ID:  prop.SetValueString(pBasicProps->GetSymbolRiskLevel());   break;
         }
 
     if (!ZBExtAppPropertyMgr::FillProperty(prop) || !ZBExtFilePropertyMgr::FillProperty(prop))
@@ -1169,9 +1171,10 @@ bool PSS_LinkSymbol::SaveProperty(ZBProperty& prop)
     {
         switch (prop.GetItemID())
         {
-            case Z_SYMBOL_NAME:        SetSymbolName(prop.GetValueString());               break;
-            case Z_SYMBOL_DESCRIPTION: SetSymbolComment(prop.GetValueString());            break;
-            case Z_SYMBOL_NUMBER:      SetSymbolReferenceNumberStr(prop.GetValueString()); break;
+            case M_Symbol_Name_ID:        SetSymbolName(prop.GetValueString());               break;
+            case M_Symbol_Description_ID: SetSymbolComment(prop.GetValueString());            break;
+            case M_Symbol_Number_ID:      SetSymbolReferenceNumberStr(prop.GetValueString()); break;
+            case M_Symbol_Risk_Level_ID:  SetRiskLevel(prop.GetValueString());                break;
         }
 
         // set the modified flag to true
@@ -1192,7 +1195,7 @@ bool PSS_LinkSymbol::CheckPropertyValue(ZBProperty& prop, CString& value, ZBProp
 {
     // do check the reference number?
     if (prop.GetCategoryID() == ZS_BP_PROP_BASIC)
-        if (prop.GetItemID() == Z_SYMBOL_NUMBER)
+        if (prop.GetItemID() == M_Symbol_Number_ID)
         {
             PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
@@ -1207,7 +1210,7 @@ bool PSS_LinkSymbol::CheckPropertyValue(ZBProperty& prop, CString& value, ZBProp
                 }
         }
         else
-        if (prop.GetItemID() == Z_SYMBOL_NAME)
+        if (prop.GetItemID() == M_Symbol_Name_ID)
             if (!IsNewNameValid(value))
             {
                 value = GetSymbolName();
@@ -1266,7 +1269,7 @@ bool PSS_LinkSymbol::ProcessMenuCommand(int            menuCmdID,
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::CreateSymbolProperties()
 {
-    ZBBasicProperties basicProp;
+    PSS_BasicProperties basicProp;
     AddProperty(basicProp);
 
     ZBExtAppPropertyMgr::CreateSymbolProperties();
