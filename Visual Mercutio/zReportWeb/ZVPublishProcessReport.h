@@ -134,7 +134,7 @@ private:
 
     CString GenerateFileName        ( CString Directory, CString ProcessName );
 
-    ZBSymbol* FindSymbol            ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
+    PSS_Symbol* FindSymbol            ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
     PSS_LinkSymbol* FindLinkSymbol    ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
 
     void CreateReport                ( ZBBPProcessSymbol* m_pProcessSymbol );

@@ -876,8 +876,8 @@ BOOL PSS_ProcessGraphModelView::OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESU
         if (pModelCtrl && pModelCtrl->OnToolTip(m_StrToolTip,
                                                 cursorPos,
                                                 PSS_Global::GetType() == PSS_Global::IE_AT_Process ?
-                                                        ZBSymbol::IE_TT_Design :
-                                                        ZBSymbol::IE_TT_Normal))
+                                                        PSS_Symbol::IE_TT_Design :
+                                                        PSS_Symbol::IE_TT_Normal))
         {
             pTTT->hinst    = NULL;
             pTTT->lpszText = m_StrToolTip.GetBuffer(m_StrToolTip.GetLength() + 1);

@@ -254,7 +254,7 @@ void ZVInputAttributes::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
         if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
         {
             if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement() &&
-                (ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement(), ZBSymbol) ||
+                (ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement(), PSS_Symbol) ||
                  ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement(), PSS_LinkSymbol)))
                 m_SymbolRef = dynamic_cast<PSS_BasicSymbol*>(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement())->GetSymbolReferenceNumber();
         }

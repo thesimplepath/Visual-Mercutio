@@ -103,7 +103,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pSymbol - found symbol
         *@return true on success, otherwise false
         */
-        virtual bool OnSymbol(ZBSymbol* pSymbol);
+        virtual bool OnSymbol(PSS_Symbol* pSymbol);
 
         /**
         * Called when the navigation reaches a link and the files should be generated for this link

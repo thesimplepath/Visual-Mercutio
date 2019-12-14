@@ -40,7 +40,7 @@ static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_SERIAL(ZBBPStartSymbol, ZBSymbol, g_DefVersion)
+IMPLEMENT_SERIAL(ZBBPStartSymbol, PSS_Symbol, g_DefVersion)
 
 // JMR-MODIF - Le 18 décembre 2006 - Ajout de la nouvelle variable statique gRulesMenu.
 static CMenu gRulesMenu;
@@ -58,7 +58,7 @@ const size_t _MaxRisksSize = 20;
 
 ZBBPStartSymbol::ZBBPStartSymbol(const CString Name /*= ""*/)
 {
-    ZBSymbol::SetSymbolName(Name);
+    PSS_Symbol::SetSymbolName(Name);
 
     // Change what to show first
     m_DisplayNameArea = true;
@@ -80,7 +80,7 @@ ZBBPStartSymbol::ZBBPStartSymbol(const ZBBPStartSymbol& src)
 ZBBPStartSymbol& ZBBPStartSymbol::operator=(const ZBBPStartSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=((const ZBSymbol&)src);
+    PSS_Symbol::operator=((const PSS_Symbol&)src);
 
     m_UnitProp = src.m_UnitProp;
 
@@ -101,7 +101,7 @@ CODComponent* ZBBPStartSymbol::Dup() const
 void ZBBPStartSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom(src);
+    PSS_Symbol::CopySymbolDefinitionFrom(src);
 
     if (ISA((&src), ZBBPStartSymbol))
     {
@@ -119,7 +119,7 @@ BOOL ZBBPStartSymbol::Create(const CString Name /*= _T( "" )*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create(IDR_BP_START,
+    BOOL RetValue = PSS_Symbol::Create(IDR_BP_START,
                                      AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_START_SYM), _T("Symbol")),
                                      Name);
 
@@ -157,17 +157,17 @@ bool ZBBPStartSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
         pAttributes->SetDisplayTitleText(false);
     }
 
-    return ZBSymbol::OnFillDefaultAttributes(pAttributes);
+    return PSS_Symbol::OnFillDefaultAttributes(pAttributes);
 }
 
 bool ZBBPStartSymbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
 {
-    return ZBSymbol::OnChangeAttributes(pAttributes);
+    return PSS_Symbol::OnChangeAttributes(pAttributes);
 }
 
 CString ZBBPStartSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
 {
-    return ZBSymbol::GetAttributeString(pAttributes);
+    return PSS_Symbol::GetAttributeString(pAttributes);
 }
 
 // Drag and drop methods
@@ -192,7 +192,7 @@ bool ZBBPStartSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
     }
 
     // Otherwise, call the base class
-    return ZBSymbol::AcceptDropItem(pObj, pt);
+    return PSS_Symbol::AcceptDropItem(pObj, pt);
 }
 
 bool ZBBPStartSymbol::DropItem(CObject* pObj, const CPoint& pt)
@@ -261,7 +261,7 @@ bool ZBBPStartSymbol::DropItem(CObject* pObj, const CPoint& pt)
     }
     // **********************************************************************************************************
 
-    return ZBSymbol::DropItem(pObj, pt);
+    return PSS_Symbol::DropItem(pObj, pt);
 }
 
 // JMR-MODIF - Le 25 décembre 2006 - Permet de rechercher le nom original d'une règle en fonction de son GUID.
@@ -312,7 +312,7 @@ BOOL ZBBPStartSymbol::OnDoubleClick()
 
 bool ZBBPStartSymbol::CreateSymbolProperties()
 {
-    if (!ZBSymbol::CreateSymbolProperties())
+    if (!PSS_Symbol::CreateSymbolProperties())
     {
         return false;
     }
@@ -379,7 +379,7 @@ void ZBBPStartSymbol::CheckRulesSync(CStringArray& RulesList)
 
 bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= false*/, bool GroupValue /*= false*/)
 {
-    if (!ZBSymbol::FillProperties(PropSet, NumericValue, GroupValue))
+    if (!PSS_Symbol::FillProperties(PropSet, NumericValue, GroupValue))
     {
         return false;
     }
@@ -723,7 +723,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
 
 bool ZBBPStartSymbol::SaveProperties(ZBPropertySet& PropSet)
 {
-    if (!ZBSymbol::SaveProperties(PropSet))
+    if (!PSS_Symbol::SaveProperties(PropSet))
     {
         return false;
     }
@@ -807,7 +807,7 @@ bool ZBBPStartSymbol::SaveProperties(ZBPropertySet& PropSet)
 
 bool ZBBPStartSymbol::SaveProperty(ZBProperty& Property)
 {
-    if (!ZBSymbol::SaveProperty(Property))
+    if (!PSS_Symbol::SaveProperty(Property))
     {
         return false;
     }
@@ -874,7 +874,7 @@ bool ZBBPStartSymbol::SaveProperty(ZBProperty& Property)
 
 bool ZBBPStartSymbol::CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties)
 {
-    return ZBSymbol::CheckPropertyValue(Property, value, Properties);
+    return PSS_Symbol::CheckPropertyValue(Property, value, Properties);
 }
 
 bool ZBBPStartSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh)
@@ -972,7 +972,7 @@ bool ZBBPStartSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value,
         }
     }
 
-    return ZBSymbol::ProcessExtendedInput(Property, value, Properties, Refresh);
+    return PSS_Symbol::ProcessExtendedInput(Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 18 décembre 2006 - Ajout de la fonction ProcessMenuCommand.
@@ -1035,7 +1035,7 @@ bool ZBBPStartSymbol::ProcessMenuCommand(int                MenuCommand,
         }
     }
 
-    return ZBSymbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
+    return PSS_Symbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnAddNewRisk.
@@ -1126,7 +1126,7 @@ bool ZBBPStartSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet&
     }
 
     if (RetValue == false)
-        return ZBSymbol::OnPostPropertyChanged(Property, Properties, Refresh);
+        return PSS_Symbol::OnPostPropertyChanged(Property, Properties, Refresh);
 
     return RetValue;
 }
@@ -1178,7 +1178,7 @@ bool ZBBPStartSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_T
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (mode == ZBSymbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking
@@ -1191,7 +1191,7 @@ bool ZBBPStartSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_T
 void ZBBPStartSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    ZBSymbol::Serialize(ar);
+    PSS_Symbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
     if (ar.m_pDocument)

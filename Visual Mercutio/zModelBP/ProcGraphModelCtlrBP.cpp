@@ -1175,20 +1175,20 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(PSS_ProcessGraphModelMd
         CODComponent* pComp = pSet->GetAt(i);
 
         // If we found the same reference number, return true
-        if (ISA(pComp, ZBSymbol))
+        if (ISA(pComp, PSS_Symbol))
         {
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
             int RefNumber = GetRootModel()->GetNextAvailableReferenceNumber();
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-//            ( (ZBSymbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
-            ((ZBSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
+//            ( (PSS_Symbol*)pComp )->SetSymbolReferenceNumber( GetRootModel()->GetNextAvailableReferenceNumber() );
+            ((PSS_Symbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
 
             // Retrieve the next available name
-            ZUBuildSymbolNewName BuildNewName(((ZBSymbol*)pComp)->GetSymbolName());
+            ZUBuildSymbolNewName BuildNewName(((PSS_Symbol*)pComp)->GetSymbolName());
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
-            ((ZBSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
+            ((PSS_Symbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
                                                                                       RefNumber));
         }
         // If we found the same reference number, return true
@@ -1209,9 +1209,9 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(PSS_ProcessGraphModelMd
                                                                                           RefNumber));
         }
 
-        if (ISA(pComp, ZBSymbol) && ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (ISA(pComp, PSS_Symbol) && ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
-            DoDuplicateProcess(reinterpret_cast<PSS_ProcessGraphModelMdl*>(((ZBSymbol*)pComp)->GetChildModel()));
+            DoDuplicateProcess(reinterpret_cast<PSS_ProcessGraphModelMdl*>(((PSS_Symbol*)pComp)->GetChildModel()));
         }
     }
 }
@@ -1336,7 +1336,7 @@ void ZDProcessGraphModelControllerBP::OnRecalculateModelDurations()
     AssignSymbolHit();
     ASSERT(m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBBPStartSymbol));
 
-    ZBSymbol* pSymbol = dynamic_cast<ZBBPStartSymbol*>(m_pSymbolHit);
+    PSS_Symbol* pSymbol = dynamic_cast<ZBBPStartSymbol*>(m_pSymbolHit);
 
     // Assign casted pointer
     PSS_ProcessGraphModelDoc* pDoc = (PSS_ProcessGraphModelDoc*)GetDocument();
@@ -1913,9 +1913,9 @@ void ZDProcessGraphModelControllerBP::OnProperties()
 
     if (m_LastSelectedElement != NULL)
     {
-        if (ISA(m_LastSelectedElement, ZBSymbol))
+        if (ISA(m_LastSelectedElement, PSS_Symbol))
         {
-            ZBSymbol* m_Symbol = reinterpret_cast<ZBSymbol*>(m_LastSelectedElement);
+            PSS_Symbol* m_Symbol = reinterpret_cast<PSS_Symbol*>(m_LastSelectedElement);
 
             if (m_Symbol != NULL)
             {
@@ -1929,10 +1929,10 @@ void ZDProcessGraphModelControllerBP::OnProperties()
 void ZDProcessGraphModelControllerBP::OnUpdateFormatPainter(CCmdUI* pCmdUI)
 {
     // Check if symbol clicked allow the format painter
-    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, ZBSymbol))
+    if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_Symbol))
     {
         pCmdUI->Enable(GetSelection()->GetSize() == 1 &&
-                       dynamic_cast<ZBSymbol*>(m_pSymbolHit)->IsGeneric() == FALSE);
+                       dynamic_cast<PSS_Symbol*>(m_pSymbolHit)->IsGeneric() == FALSE);
     }
     else if (m_pSymbolHit != NULL && ISA(m_pSymbolHit, PSS_LinkSymbol))
     {

@@ -48,6 +48,16 @@ IMPLEMENT_SERIAL(PSS_LinkSymbol, CODLinkComponent, g_DefVersion)
 //---------------------------------------------------------------------------
 PSS_LinkSymbol::PSS_LinkSymbol() :
     CODLinkComponent(),
+    PSS_BasicSymbol(),
+    PSS_ObjectPath(),
+    ZIProperties(),
+    ZBExtAppPropertyMgr(),
+    ZBExtFilePropertyMgr(),
+    ZVSymbolAttributes(),
+    PSS_BasicSymbolAcceptVisitor(),
+    PSS_Subject(),
+    PSS_Observer(),
+    PSS_ToolTip(),
     m_pReference(NULL),
     m_DynamicPropManager(NULL),
     m_IsInCreationProcess(false),
@@ -67,7 +77,18 @@ PSS_LinkSymbol::PSS_LinkSymbol() :
     CreateSymbolProperties();
 }
 //---------------------------------------------------------------------------
-PSS_LinkSymbol::PSS_LinkSymbol(const PSS_LinkSymbol& other)
+PSS_LinkSymbol::PSS_LinkSymbol(const PSS_LinkSymbol& other) :
+    CODLinkComponent(),
+    PSS_BasicSymbol(),
+    PSS_ObjectPath(),
+    ZIProperties(),
+    ZBExtAppPropertyMgr(),
+    ZBExtFilePropertyMgr(),
+    ZVSymbolAttributes(),
+    PSS_BasicSymbolAcceptVisitor(),
+    PSS_Subject(),
+    PSS_Observer(),
+    PSS_ToolTip()
 {
     *this = other;
 }
@@ -533,39 +554,46 @@ void PSS_LinkSymbol::EditSymbolName()
         pSymbolLabel = CreateSymbolLabel();
     else
     {
-        CODLabelComponent* pTempLabel;
+        CODLabelComponent* pLabel;
 
         for (int i = 0; i < numLabels; ++i)
-            pTempLabel = GetLabel(i);
+            pLabel = GetLabel(i);
     }
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::IsNewNameValid(const CString& value) const
 {
+    // is new name empty or contains invalid chars?
     if (value.IsEmpty())
     {
         PSS_MsgBox mBox;
         mBox.Show(IDS_SYMBOLNAME_EMPTY, MB_OK);
         return false;
     }
+    else
+    if (value.FindOneOf(_T(";:\\/")) != -1)
+    {
+        PSS_MsgBox mBox;
+        mBox.Show(IDS_SYMBOLNAME_INVALIDCHAR, MB_OK);
+        return false;
+    }
+    else
+    {
+        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
-    PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
+        if (pModel)
+        {
+            PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
 
-    if (pModel)
-        // if already exists and not the same, show an error message and put back the initial value
-        if (value != GetSymbolName() && pModel->GetRoot()->SymbolNameAlreadyAllocated(value))
-        {
-            PSS_MsgBox mBox;
-            mBox.Show(IDS_SYMBOLNAME_ALREADYEXIST, MB_OK);
-            return false;
+            // new name isn't the same as the current one and is already allocated?
+            if (value != GetSymbolName() && pRoot && pRoot->SymbolNameAlreadyAllocated(value))
+            {
+                PSS_MsgBox mBox;
+                mBox.Show(IDS_SYMBOLNAME_ALREADYEXIST, MB_OK);
+                return false;
+            }
         }
-        else
-        if (value.FindOneOf(_T(";:\\/")) != -1)
-        {
-            PSS_MsgBox mBox;
-            mBox.Show(IDS_SYMBOLNAME_INVALIDCHAR, MB_OK);
-            return false;
-        }
+    }
 
     return true;
 }
@@ -697,7 +725,7 @@ CODComponent* PSS_LinkSymbol::GetLocalSymbol()
         CODComponentSet* pSet = pRootModel->FindSymbol(GetSymbolName(), _T(""), true, true, true);
 
         // if found, return it
-        if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0))
+        if (pSet && pSet->GetSize() > 0)
             return pSet->GetAt(0);
     }
 
@@ -777,11 +805,11 @@ CODModel* PSS_LinkSymbol::GetOwnerModel()
     {
         PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pComp);
 
-        // if a model, return it
+        // if a model was found, return it
         if (pModel)
             return pModel;
 
-        // otherwise retreive its parent
+        // get its parent
         pComp = pComp->GetParent();
     }
 
@@ -1074,12 +1102,12 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
     propSet.Add(pProp.get());
     pProp.release();
 
-    // the external link properties in the external links are added by the ZBExtAppPropertyMgr class
+    // the external link properties are added by the external app properties manager itself
     if (IsLocal() && AcceptExtApp())
         if (!ZBExtAppPropertyMgr::FillProperties(propSet, numericValue, groupValue))
             return false;
 
-    // the external file properties are added by the ZBExtFilePropertyMgr class
+    // the external file properties are added by the external file properties manager itself
     if (IsLocal() && AcceptExtFile())
     {
         if (!ZBExtFilePropertyMgr::FillProperties(propSet, numericValue, groupValue))

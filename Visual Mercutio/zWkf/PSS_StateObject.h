@@ -33,13 +33,16 @@
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
 
 // forward class declaration
 class PSS_ProcessGraphModelMdl;
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_StateLink;
 
@@ -69,7 +72,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@param direction - link direction
         *@param pModel - model
         */
-        PSS_StateObject(ZBSymbol*                      pSymbol = NULL,
+        PSS_StateObject(PSS_Symbol*                    pSymbol = NULL,
                         PSS_LinkSymbol*                pLinkSymbol = NULL,
                         PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_EnteringUp,
                         PSS_ProcessGraphModelMdl*      pModel = NULL);
@@ -80,7 +83,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@param pStateLink- state link
         *@param pModel - model
         */
-        PSS_StateObject(ZBSymbol*                 pSymbol,
+        PSS_StateObject(PSS_Symbol*               pSymbol,
                         PSS_StateLink*            pStateLink,
                         PSS_ProcessGraphModelMdl* pModel = NULL);
 
@@ -114,13 +117,13 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         * Gets the symbol
         *@return symbol
         */
-        virtual inline ZBSymbol* GetSymbol() const;
+        virtual inline PSS_Symbol* GetSymbol() const;
 
         /**
         * Sets the symbol
         *@param pSymbol - symbol to set
         */
-        virtual inline void SetSymbol(ZBSymbol* pSymbol);
+        virtual inline void SetSymbol(PSS_Symbol* pSymbol);
 
         /**
         * Checks if object is equals to another one
@@ -226,7 +229,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         #endif
 
     private:
-        ZBSymbol*                 m_pSymbol;
+        PSS_Symbol*               m_pSymbol;
         PSS_StateLinksSet         m_Set;
         PSS_ProcessGraphModelMdl* m_pModel;
 
@@ -246,12 +249,12 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
 //---------------------------------------------------------------------------
 // PSS_StateObject
 //---------------------------------------------------------------------------
-ZBSymbol* PSS_StateObject::GetSymbol() const
+PSS_Symbol* PSS_StateObject::GetSymbol() const
 {
     return m_pSymbol;
 }
 //---------------------------------------------------------------------------
-void PSS_StateObject::SetSymbol(ZBSymbol* value)
+void PSS_StateObject::SetSymbol(PSS_Symbol* value)
 {
     m_pSymbol = value;
 }

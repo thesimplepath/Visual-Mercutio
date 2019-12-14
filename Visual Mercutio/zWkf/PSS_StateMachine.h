@@ -98,7 +98,7 @@ class AFX_EXT_CLASS PSS_StateMachine : public CObject
         * Gets the current symbol
         *@return the current symbol
         */
-        virtual inline ZBSymbol* GetCurrentSymbol() const;
+        virtual inline PSS_Symbol* GetCurrentSymbol() const;
 
         /**
         * Gets the current state object
@@ -126,14 +126,16 @@ class AFX_EXT_CLASS PSS_StateMachine : public CObject
         *@param pLinkSymbol - link symbol to push on the stack
         *@param direction - link direction
         */
-        virtual void PushSymbol(ZBSymbol* pSymbol, PSS_LinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction);
+        virtual void PushSymbol(PSS_Symbol*                    pSymbol,
+                                PSS_LinkSymbol*                pLinkSymbol,
+                                PSS_StateLink::IELinkDirection direction);
 
         /**
         * Pushes a symbol on the stack
         *@param pSymbol - symbol to push on the stack
         *@param pStateLink - state link to push on the stack
         */
-        virtual void PushSymbol(ZBSymbol* pSymbol, PSS_StateLink* pStateLink);
+        virtual void PushSymbol(PSS_Symbol* pSymbol, PSS_StateLink* pStateLink);
 
         /**
         * Pushes state object on the stack
@@ -270,7 +272,7 @@ class AFX_EXT_CLASS PSS_StateMachine : public CObject
 //---------------------------------------------------------------------------
 // PSS_StateMachine
 //---------------------------------------------------------------------------
-ZBSymbol* PSS_StateMachine::GetCurrentSymbol() const
+PSS_Symbol* PSS_StateMachine::GetCurrentSymbol() const
 {
     return (GetCurrentStateObject() ? GetCurrentStateObject()->GetSymbol() : NULL);
 }

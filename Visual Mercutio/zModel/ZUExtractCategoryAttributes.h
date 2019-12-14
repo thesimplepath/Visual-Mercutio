@@ -34,22 +34,20 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zModel\ZUModelNavigation.h"
-
+// processsoft
+#include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBProperty.h"
-#include "zBaseLib\PSS_KeepStringUsage.h"
-
+#include "zModel\ZUModelNavigation.h"
 
 #ifdef _ZMODELEXPORT
-// put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 class AFX_EXT_CLASS ZUExtractCategoryAttributes : public ZUModelNavigation, public PSS_KeepStringUsage
@@ -67,7 +65,7 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
 
-    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnSymbol(PSS_Symbol* pSymbol);
     virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:

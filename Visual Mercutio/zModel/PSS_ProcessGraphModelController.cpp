@@ -396,7 +396,7 @@ PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenPage(ZDProce
 //---------------------------------------------------------------------------
 PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::OpenSymbol(CODComponent* pComp)
 {
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
     if (pSymbol)
     {
@@ -434,7 +434,7 @@ PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::EnsureSymbolVisi
 
     PSS_ProcessGraphModelViewport* pVp     = NULL;
     CODSymbolComponent*            pSymbol = NULL;
-    ZBSymbol*                      pSym    = dynamic_cast<ZBSymbol*>(pComp);
+    PSS_Symbol*                    pSym    = dynamic_cast<PSS_Symbol*>(pComp);
 
     if (pSym)
     {
@@ -480,7 +480,7 @@ PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseLocalSymbo
         return NULL;
 
     CODSymbolComponent* pSymbol = NULL;
-    ZBSymbol*           pSym    = dynamic_cast<ZBSymbol*>(pComp);
+    PSS_Symbol*         pSym    = dynamic_cast<PSS_Symbol*>(pComp);
 
     if (pSym && !pSym->IsLocal())
         // find local symbol
@@ -507,7 +507,7 @@ bool PSS_ProcessGraphModelController::AcceptDropItemToModel(CObject* pObj, const
         return false;
 
     // is a symbol?
-    if (ISA(pObj, ZBSymbol))
+    if (ISA(pObj, PSS_Symbol))
         return true;
 
     // is a link symbol?
@@ -519,7 +519,7 @@ bool PSS_ProcessGraphModelController::AcceptDropItemToModel(CObject* pObj, const
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelController::DropItemToModel(CObject* pObj, const CPoint& point)
 {
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pObj);
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pObj);
 
     if (pSymbol)
     {
@@ -578,7 +578,7 @@ bool PSS_ProcessGraphModelController::AcceptDropItem(CObject* pObj, const CPoint
         // select the symbol behind
         pCompHit = pLabelHit->GetOwner();
 
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompHit);
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pCompHit);
 
     if (pSymbol)
         return pSymbol->AcceptDropItem(pObj, pt);
@@ -616,8 +616,8 @@ bool PSS_ProcessGraphModelController::DropItem(CObject* pObj, const CPoint& poin
 
     UnselectAllComponents();
 
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompHit);
-    bool      result = false;
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pCompHit);
+    bool        result  = false;
 
     if (pSymbol)
         result = pSymbol->DropItem(pObj, pt);
@@ -643,7 +643,7 @@ bool PSS_ProcessGraphModelController::DropItem(CObject* pObj, const CPoint& poin
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::EditName(CODComponent* pCompToEdit)
 {
-    ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompToEdit);
+    PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pCompToEdit);
     PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompToEdit);
 
     if (!pSymbol && !pLinkSymbol)
@@ -707,7 +707,7 @@ void PSS_ProcessGraphModelController::EditName(CODComponent* pCompToEdit)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::EditComment(CODComponent* pCompToEdit)
 {
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompToEdit);
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pCompToEdit);
 
     if (!pSymbol)
     {
@@ -715,7 +715,7 @@ void PSS_ProcessGraphModelController::EditComment(CODComponent* pCompToEdit)
         return;
     }
 
-    m_pSymbolHit                       = static_cast<ZBSymbol*>(pCompToEdit);
+    m_pSymbolHit                       = pSymbol;
     CODEditProperties* pEditProps      = static_cast<CODEditProperties*>(m_pSymbolHit->GetProperty(OD_PROP_EDIT));
     CODEditProperties* pModelEditProps = static_cast<CODEditProperties*>(GetCanvasModel()->GetProperty(OD_PROP_EDIT));
 
@@ -725,7 +725,7 @@ void PSS_ProcessGraphModelController::EditComment(CODComponent* pCompToEdit)
 
     if (GetCanvasModel()->GetDesignMode() || (!pEditProps->IsReadOnly() && !pModelEditProps->IsReadOnly()))
     {
-        CODTextComponent* pTextComp = ((ZBSymbol*)pCompToEdit)->GetCommentTextEdit();
+        CODTextComponent* pTextComp = pSymbol->GetCommentTextEdit();
 
         // already editing?
         if (pTextComp && !pTextComp->IsEditing())
@@ -929,7 +929,7 @@ CODComponent* PSS_ProcessGraphModelController::InsertSymbol(CODComponent* pComp,
     if (!pModel)
         return NULL;
 
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
     if (pSymbol)
     {
@@ -1098,7 +1098,7 @@ BOOL PSS_ProcessGraphModelController::ValidateCutCopyOperations()
 
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
         if (pSymbol)
         {
@@ -1143,7 +1143,7 @@ BOOL PSS_ProcessGraphModelController::FilterSelection(BOOL modifyFlag)
 
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
         if (pSymbol)
         {
@@ -1588,7 +1588,7 @@ CODDeleteCommand* PSS_ProcessGraphModelController::ExecuteDeleteCommand(CODCompo
         for (int i = 0; i < pCompSet->GetSize(); ++i)
         {
             CODComponent* pComp   = pCompSet->GetAt(i);
-            ZBSymbol*     pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+            PSS_Symbol*   pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
             // is a symbol?
             if (pSymbol)
@@ -1823,7 +1823,7 @@ void PSS_ProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_Observ
     }
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoint& point, ZBSymbol::IEToolTipMode mode)
+bool PSS_ProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoint& point, PSS_Symbol::IEToolTipMode mode)
 {
     CPoint pt(point);
     VpDPtoLP(&pt);
@@ -1834,7 +1834,7 @@ bool PSS_ProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoi
     if (pCompHit && ISA(pCompHit, CODLabelComponent))
         pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
 
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompHit);
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pCompHit);
 
     if (pSymbol)
         return pSymbol->OnToolTip(toolTipText, pt, mode);
@@ -1857,7 +1857,7 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
     }
 
     PSS_ProcessGraphModelDoc* pDoc    = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
-    ZBSymbol*                 pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+    PSS_Symbol*               pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
     if (pSymbol)
     {
@@ -1920,7 +1920,7 @@ BOOL PSS_ProcessGraphModelController::StartTextEdit(UINT flags, CPoint point)
     VpDPtoLP(&ptLog);
 
     m_pCompHit                    = GetCanvasVp()->ComponentHitTest(ptLog);
-    ZBSymbol*         pSymbol     =                  dynamic_cast<ZBSymbol*>(m_pCompHit);
+    PSS_Symbol*       pSymbol     =                  dynamic_cast<PSS_Symbol*>(m_pCompHit);
     PSS_LinkSymbol*   pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pCompHit);
     CODTextComponent* pTextComp   = NULL;
 
@@ -2050,7 +2050,7 @@ void PSS_ProcessGraphModelController::EndTextEdit(UINT nFlags, CPoint point)
         if (ISA(m_pTextEdit, CODTextComponent))
             pOwner = static_cast<CODTextComponent*>(m_pTextEdit)->GetParent();
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pOwner);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pOwner);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pOwner);
 
         if (pSymbol || pLinkSymbol)
@@ -2192,7 +2192,7 @@ void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
 
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol || pLinkSymbol)
@@ -2230,14 +2230,14 @@ void PSS_ProcessGraphModelController::OnSymbolDuplicated(CODComponentSet* pCompS
     // asks the user to duplicate sub-components. Notify observers for all added symbols
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext(), ++index)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
         if (pSymbol)
         {
             if (copySetCount > index)
             {
                 // get the matching source symbol
-                ZBSymbol* pSrcSymbol = dynamic_cast<ZBSymbol*>(m_CopySet.GetAt(index));
+                PSS_Symbol* pSrcSymbol = dynamic_cast<PSS_Symbol*>(m_CopySet.GetAt(index));
 
                 if (pSrcSymbol)
                     pSymbol->CopySymbolDefinitionFrom(*pSrcSymbol);
@@ -2291,7 +2291,7 @@ void PSS_ProcessGraphModelController::AssignSymbolHit()
         return;
     }
 
-    if (ISA(pSelection->GetAt(0), ZBSymbol) || ISA(pSelection->GetAt(0), PSS_LinkSymbol))
+    if (ISA(pSelection->GetAt(0), PSS_Symbol) || ISA(pSelection->GetAt(0), PSS_LinkSymbol))
         m_pSymbolHit = static_cast<CODSymbolComponent*>(pSelection->GetAt(0));
     else
     if (ISA(pSelection->GetAt(0), CODLabelComponent))
@@ -2333,7 +2333,7 @@ void PSS_ProcessGraphModelController::DetermineReferencedSymbol(CODComponentSet*
     // for each symbol coming from the copy source, locate the copied symbol
     for (CODComponent* pSrcComp = it.GetFirst(); pSrcComp; pSrcComp = it.GetNext())
     {
-        ZBSymbol* pSrcSymbol = dynamic_cast<ZBSymbol*>(pSrcComp);
+        PSS_Symbol* pSrcSymbol = dynamic_cast<PSS_Symbol*>(pSrcComp);
 
         if (pSrcSymbol)
         {
@@ -2341,7 +2341,7 @@ void PSS_ProcessGraphModelController::DetermineReferencedSymbol(CODComponentSet*
 
             for (CODComponent* pComp = itSym.GetFirst(); pComp; pComp = itSym.GetNext())
             {
-                ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+                PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
                 if (pSymbol)
                     if (!pSrcSymbol->GetSymbolName().IsEmpty() &&
@@ -2404,7 +2404,7 @@ void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCo
     // iterate through components and detach symbol observers
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol || pLinkSymbol)
@@ -2425,7 +2425,7 @@ void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCo
     }
 }
 //---------------------------------------------------------------------------
-PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(ZBSymbol* pSymbol)
+PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::BrowseSymbolModel(PSS_Symbol* pSymbol)
 {
     PSS_ProcessGraphModelDoc* pDocument = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
@@ -2711,7 +2711,7 @@ void PSS_ProcessGraphModelController::ApplyFormatToSymbol(CODComponent* pComp)
     if (pComp == m_pFormatPainterSymbol)
         return;
 
-    ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+    PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
     PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
     if (pSymbol)
@@ -2741,7 +2741,7 @@ void PSS_ProcessGraphModelController::OnMouseMove(UINT flags, CPoint point)
             pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
 
         PSS_ProcessGraphModelView* pView       = GetView();
-        ZBSymbol*                  pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_Symbol*                pSymbol     =                  dynamic_cast<PSS_Symbol*>(pCompHit);
         PSS_LinkSymbol*            pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
 
         if (pSymbol || pLinkSymbol)
@@ -2800,7 +2800,7 @@ void PSS_ProcessGraphModelController::OnLButtonDblClk(UINT flags, CPoint point)
         if (pCompHit && ISA(pCompHit, CODLabelComponent))
             pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pCompHit);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
 
         // call the symbol OnLButtonDblClk function to check if it's necessary to do something
@@ -2821,7 +2821,7 @@ void PSS_ProcessGraphModelController::OnLButtonDblClk(UINT flags, CPoint point)
     AssignSymbolHit();
 
     PSS_ProcessGraphModelMdl* pModel         = GetModel();
-    ZBSymbol*                 pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*               pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol*           pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // If the symbol has a child model, open it
@@ -2830,7 +2830,7 @@ void PSS_ProcessGraphModelController::OnLButtonDblClk(UINT flags, CPoint point)
         OpenSymbol(m_pSymbolHit);
 
         if (m_pSymbolHit != pSymbolHit)
-            pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+            pSymbolHit = dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
 
         // call the OnPostDoubleClick function on the symbol
         if (pSymbolHit)
@@ -2847,7 +2847,7 @@ void PSS_ProcessGraphModelController::OnLButtonDblClk(UINT flags, CPoint point)
 
         if ((pSymbolHit && m_pSymbolHit != pSymbolHit) || (pLinkSymbolHit && m_pSymbolHit != pLinkSymbolHit))
         {
-            pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+            pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
             pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
         }
 
@@ -2879,9 +2879,9 @@ void PSS_ProcessGraphModelController::OnLButtonDown(UINT flags, CPoint point)
         // process the style brush
         if (m_pFormatPainterSymbol && pCompHit && m_IsInFormatPainter)
         {
-            ZBSymbol*       pSrcSymbol     =                     dynamic_cast<ZBSymbol*>(m_pFormatPainterSymbol);
+            PSS_Symbol*     pSrcSymbol     =                     dynamic_cast<PSS_Symbol*>(m_pFormatPainterSymbol);
             PSS_LinkSymbol* pSrcLinkSymbol = pSrcSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pFormatPainterSymbol);
-            ZBSymbol*       pDstSymbol     =                     dynamic_cast<ZBSymbol*>(pCompHit);
+            PSS_Symbol*     pDstSymbol     =                     dynamic_cast<PSS_Symbol*>(pCompHit);
             PSS_LinkSymbol* pDstLinkSymbol = pDstSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
 
             if (pSrcSymbol && pDstSymbol)
@@ -2955,7 +2955,7 @@ void PSS_ProcessGraphModelController::OnLButtonDown(UINT flags, CPoint point)
         if (pCompHit && ISA(pCompHit, CODLabelComponent))
             pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pCompHit);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
 
         // call the symbol OnLButtonDown function to check if it's necessary to do something
@@ -2988,7 +2988,7 @@ void PSS_ProcessGraphModelController::OnLButtonDown(UINT flags, CPoint point)
         {
             bool isLocal = false;
 
-            ZBSymbol*       pLastSelSymbol     =                         dynamic_cast<ZBSymbol*>(m_LastSelectedElement);
+            PSS_Symbol*     pLastSelSymbol     =                         dynamic_cast<PSS_Symbol*>(m_LastSelectedElement);
             PSS_LinkSymbol* pLastSelLinkSymbol = pLastSelSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_LastSelectedElement);
 
             if (pLastSelSymbol)
@@ -3026,7 +3026,7 @@ void PSS_ProcessGraphModelController::OnLButtonUp(UINT flags, CPoint point)
         if (pCompHit && ISA(pCompHit, CODLabelComponent))
             pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pCompHit);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
 
         // call the symbol OnLButtonUp function to check if it's necessary to do something
@@ -3061,7 +3061,7 @@ void PSS_ProcessGraphModelController::OnRButtonUp(UINT flags, CPoint point)
         if (pCompHit && ISA(pCompHit, CODLabelComponent))
             pCompHit = static_cast<CODLabelComponent*>(pCompHit)->GetOwner();
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompHit);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pCompHit);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompHit);
 
         // call the symbol OnRButtonUp function to check if it's necessary to do something
@@ -3081,7 +3081,7 @@ void PSS_ProcessGraphModelController::OnRButtonUp(UINT flags, CPoint point)
 
     if (m_pSymbolHit)
     {
-        ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+        PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
         PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
         if (pSymbolHit)
@@ -3585,7 +3585,7 @@ void PSS_ProcessGraphModelController::OnEditName()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     bool            isLocal        = false;
 
@@ -3604,7 +3604,7 @@ void PSS_ProcessGraphModelController::OnUpdateEditName(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     BOOL            enable         = FALSE;
 
@@ -3626,7 +3626,7 @@ void PSS_ProcessGraphModelController::OnEditComment()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     bool            isLocal        = false;
 
@@ -3645,7 +3645,7 @@ void PSS_ProcessGraphModelController::OnUpdateEditComment(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     BOOL            enable         = FALSE;
 
@@ -3717,7 +3717,7 @@ void PSS_ProcessGraphModelController::OnBrowseSourceSymbol()
 
     if (pDocument && pDocument->GetModel())
     {
-        ZBSymbol* pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+        PSS_Symbol* pSymbolHit = dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
 
         if (pSymbolHit && !pSymbolHit->IsLocal())
             BrowseLocalSymbol(pSymbolHit);
@@ -3728,7 +3728,7 @@ void PSS_ProcessGraphModelController::OnUpdateBrowseSourceSymbol(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBSymbol* pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol* pSymbolHit = dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
 
     pCmdUI->Enable(pSymbolHit && !pSymbolHit->IsLocal());
 }
@@ -4020,7 +4020,7 @@ void PSS_ProcessGraphModelController::OnGoInSymbol()
 {
     AssignSymbolHit();
 
-    ZBSymbol* pSymbolHit = dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol* pSymbolHit = dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
 
     if (pSymbolHit && (pSymbolHit->GetChildModel() || pSymbolHit->CanContainChildModel()))
         OpenSymbol(m_pSymbolHit);
@@ -4076,7 +4076,7 @@ void PSS_ProcessGraphModelController::OnAddNewExtApp()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     if (pSymbolHit)
@@ -4090,7 +4090,7 @@ void PSS_ProcessGraphModelController::OnUpdateAddNewExtApp(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     bool            enable         = false;
 
@@ -4107,7 +4107,7 @@ void PSS_ProcessGraphModelController::OnAddNewExtFile()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     if (pSymbolHit)
@@ -4121,7 +4121,7 @@ void PSS_ProcessGraphModelController::OnUpdateAddNewExtFile(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     bool            enable         = false;
 
@@ -4199,7 +4199,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowNameArea()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // change the flag
@@ -4230,7 +4230,7 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolShowNameArea(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     BOOL            enable         = FALSE;
 
@@ -4262,7 +4262,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowDescriptionArea()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // Change the flag
@@ -4293,7 +4293,7 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolShowDescriptionArea(CCmdUI* 
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     BOOL            enable         = FALSE;
 
@@ -4325,7 +4325,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowAttributeArea()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // change the flag
@@ -4364,7 +4364,7 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolShowAttributeArea(CCmdUI* pC
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     BOOL            enable         = FALSE;
 
@@ -4396,12 +4396,12 @@ void PSS_ProcessGraphModelController::OnSymbolShowLabelAttributes()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // change the flag
     if (pSymbolHit)
-        pSymbolHit->SetDisplayTitleText(!pSymbolHit->GetDisplayTitleText());
+        pSymbolHit->SetShowTitleText(!pSymbolHit->GetShowTitleText());
     else
     if (pLinkSymbolHit)
         pLinkSymbolHit->SetShowTitleText(!pLinkSymbolHit->GetShowTitleText());
@@ -4417,7 +4417,7 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolShowLabelAttributes(CCmdUI* 
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     BOOL            enable         = FALSE;
 
@@ -4440,7 +4440,7 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolShowLabelAttributes(CCmdUI* 
         BOOL checked = FALSE;
 
         if (pSymbolHit)
-            checked = pSymbolHit->GetDisplayTitleText();
+            checked = pSymbolHit->GetShowTitleText();
         else
         if (pLinkSymbolHit)
             checked = pLinkSymbolHit->GetShowTitleText();
@@ -4453,7 +4453,7 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     if (!pSymbolHit && !pLinkSymbolHit)
@@ -4542,7 +4542,7 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolSelectAttributes(CCmdUI* pCm
 {
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
     BOOL            enable         = FALSE;
 
@@ -4572,7 +4572,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
 
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     ZVDynamicAttributesCreation dlg(pDoc, (pSymbolHit || pLinkSymbolHit));
@@ -4671,7 +4671,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
 
     AssignSymbolHit();
 
-    ZBSymbol*       pSymbolHit     =                     dynamic_cast<ZBSymbol*>(m_pSymbolHit);
+    PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // create and show the duplicate dialog box
@@ -4926,7 +4926,7 @@ void PSS_ProcessGraphModelController::ChangeBackColorNodes()
     {
         IODNode*          pINode      = m_AnimatedNodes.GetAt(nodeIndex);
         CODLinkComponent* pComp       =                  static_cast<CODLinkComponent*>(pINode);
-        ZBSymbol*         pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*       pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol*   pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol)
@@ -4959,7 +4959,7 @@ void PSS_ProcessGraphModelController::ChangeBackColorEdges()
     {
         IODEdge*          pIEdge      = m_AnimatedEdges.GetAt(edgeIndex);
         CODLinkComponent* pComp       =                  static_cast<CODLinkComponent*>(pIEdge);
-        ZBSymbol*         pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*       pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol*   pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol)
@@ -4990,7 +4990,7 @@ void PSS_ProcessGraphModelController::ChangeBackColorSymbols()
 
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol)

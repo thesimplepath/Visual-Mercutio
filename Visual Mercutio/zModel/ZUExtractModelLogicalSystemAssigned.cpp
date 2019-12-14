@@ -55,7 +55,7 @@ bool ZUExtractModelLogicalSystemAssigned::OnFinish()
     return true;
 }
 
-bool ZUExtractModelLogicalSystemAssigned::OnSymbol(ZBSymbol* pSymbol)
+bool ZUExtractModelLogicalSystemAssigned::OnSymbol(PSS_Symbol* pSymbol)
 {
     if (pSymbol->ExtAppExist(m_pLogicalSystem->GetEntityName()) ||
         pSymbol->ExtAppExist(m_pLogicalSystem->GetGUID()))

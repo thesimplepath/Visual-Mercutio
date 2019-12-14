@@ -45,7 +45,7 @@
 
 // JMR-MODIF - Le 26 septembre 2005 - Ajout de la décoration unicode _T( ), nettoyage du code inutilisé.
 
-class AFX_EXT_CLASS ZBBPProcessSymbol : public ZBSymbol
+class AFX_EXT_CLASS ZBBPProcessSymbol : public PSS_Symbol
 {
     DECLARE_SERIAL( ZBBPProcessSymbol )
 

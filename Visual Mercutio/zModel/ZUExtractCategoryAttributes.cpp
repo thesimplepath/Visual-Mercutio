@@ -59,7 +59,7 @@ bool ZUExtractCategoryAttributes::OnFinish()
     return true;
 }
 
-bool ZUExtractCategoryAttributes::OnSymbol(ZBSymbol* pSymbol)
+bool ZUExtractCategoryAttributes::OnSymbol(PSS_Symbol* pSymbol)
 {
     ZBPropertySet PropSet;
 

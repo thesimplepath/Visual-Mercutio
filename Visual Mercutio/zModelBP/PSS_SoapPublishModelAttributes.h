@@ -76,7 +76,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public ZUModelNavigation
         *@param pSymbol - symbol for which attributes sould be published
         *@return true on success, otherwise false
         */
-        virtual bool OnSymbol(ZBSymbol* pSymbol);
+        virtual bool OnSymbol(PSS_Symbol* pSymbol);
 
         /**
         * Called when link properties should be added to publication

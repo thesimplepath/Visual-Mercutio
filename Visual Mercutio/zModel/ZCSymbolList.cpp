@@ -31,26 +31,25 @@ END_MESSAGE_MAP()
 
 #include "zRes32\ZRes.h"
 
-static int _gWkfSymbolColText[] = {    IDS_NOCOLUMNHEADER, 
+static int _gWkfSymbolColText[] = {IDS_NOCOLUMNHEADER,
                                     IDS_SYMBOLNAME_COLUMN,
-                                    IDS_SYMBOLCOMMENT_COLUMN, 
-                                    IDS_SYMBOLPATH_COLUMN, 
-                                    IDS_SYMBOLLOCAL_COLUMN };
-static int _gWkfSymbolColSize[] = {    20,
-                                    250, 
-                                    200, 
+                                    IDS_SYMBOLCOMMENT_COLUMN,
+                                    IDS_SYMBOLPATH_COLUMN,
+                                    IDS_SYMBOLLOCAL_COLUMN};
+static int _gWkfSymbolColSize[] = {20,
+                                    250,
                                     200,
-                                    60 };
+                                    200,
+                                    60};
 
-ZCSymbolList::ZCSymbolList ()
- : m_pSet(NULL), m_ColumnsBuilt(FALSE)
-{
-}
+ZCSymbolList::ZCSymbolList()
+    : m_pSet(NULL), m_ColumnsBuilt(FALSE)
+{}
 
 
 ZCSymbolList::~ZCSymbolList()
 {
-    DeleteAllItems( TRUE );
+    DeleteAllItems(TRUE);
 }
 
 
@@ -59,19 +58,19 @@ void    ZCSymbolList::BuildColumns(UINT nIDRes)
     if (m_ColumnsBuilt)
         return;
     // Load images
-    PSS_ListCtrl::LoadImageList( nIDRes, 17, 1, RGB( 255, 255, 255 ) );
-//    m_pImageList = new CImageList();
-//    m_pImageList->Create(nIDRes, 17, 1, RGB( 255, 255, 255 ));
+    PSS_ListCtrl::LoadImageList(nIDRes, 17, 1, RGB(255, 255, 255));
+    //    m_pImageList = new CImageList();
+    //    m_pImageList->Create(nIDRes, 17, 1, RGB( 255, 255, 255 ));
     SetImageList(m_pImageList, LVSIL_SMALL);    /* set extended stlyes*/
 
-    PSS_ListCtrl::BuildColumns(5, _gWkfSymbolColSize, _gWkfSymbolColText );
-    PSS_ListCtrl::SetFullRowSelect( TRUE );
-    PSS_ListCtrl::EnableSort( TRUE );
+    PSS_ListCtrl::BuildColumns(5, _gWkfSymbolColSize, _gWkfSymbolColText);
+    PSS_ListCtrl::SetFullRowSelect(TRUE);
+    PSS_ListCtrl::EnableSort(TRUE);
 
     m_ColumnsBuilt = TRUE;
 }
 
-int ZCSymbolList::Initialize (CODComponentSet* pSet, UINT nIDRes)
+int ZCSymbolList::Initialize(CODComponentSet* pSet, UINT nIDRes)
 {
     m_pSet = pSet;
     ZCSymbolList::BuildColumns(nIDRes);
@@ -79,7 +78,7 @@ int ZCSymbolList::Initialize (CODComponentSet* pSet, UINT nIDRes)
     return ZCSymbolList::Refresh();
 }
 
-int ZCSymbolList::Refresh ()
+int ZCSymbolList::Refresh()
 {
     DeleteAllItems();
 
@@ -93,45 +92,45 @@ int ZCSymbolList::Refresh ()
     {
         CODComponent*    pComp = m_pSet->GetAt(Index);
         // If a symbol
-        if (pComp && 
-            (ISA(pComp,ZBSymbol) || ISA(pComp,PSS_LinkSymbol)))
+        if (pComp &&
+            (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol)))
         {
             // Add the symbol type icon
-            InsertItem( LVIF_IMAGE | LVIF_PARAM, LineCounter, 
-                        NULL,
-                        0, 0, 
-                        GetItemIndex( dynamic_cast<CODSymbolComponent*>(pComp) ), 
-                        (LPARAM)pComp);
+            InsertItem(LVIF_IMAGE | LVIF_PARAM, LineCounter,
+                       NULL,
+                       0, 0,
+                       GetItemIndex(dynamic_cast<CODSymbolComponent*>(pComp)),
+                       (LPARAM)pComp);
             ColumnCounter = 1;
-            if (ISA(pComp,ZBSymbol))
+            if (ISA(pComp, PSS_Symbol))
             {
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((ZBSymbol*)pComp)->GetSymbolName(),
-                         0, 0, 0, 0 );
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((ZBSymbol*)pComp)->GetSymbolComment(),
-                         0, 0, 0, 0 );
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((ZBSymbol*)pComp)->GetAbsolutePath(),
-                         0, 0, 0, 0 );
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         (((ZBSymbol*)pComp)->IsLocal()) ? "1" : "0",
-                         0, 0, 0, 0 );
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    ((PSS_Symbol*)pComp)->GetSymbolName(),
+                        0, 0, 0, 0);
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    ((PSS_Symbol*)pComp)->GetSymbolComment(),
+                        0, 0, 0, 0);
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    ((PSS_Symbol*)pComp)->GetAbsolutePath(),
+                        0, 0, 0, 0);
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    (((PSS_Symbol*)pComp)->IsLocal()) ? "1" : "0",
+                        0, 0, 0, 0);
             }
             else
             {
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((PSS_LinkSymbol*)pComp)->GetSymbolName(),
-                         0, 0, 0, 0 );
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((PSS_LinkSymbol*)pComp)->GetSymbolComment(),
-                         0, 0, 0, 0 );
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         ((PSS_LinkSymbol*)pComp)->GetAbsolutePath(),
-                         0, 0, 0, 0 );
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         (((PSS_LinkSymbol*)pComp)->IsLocal()) ? "1" : "0",
-                         0, 0, 0, 0 );
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    ((PSS_LinkSymbol*)pComp)->GetSymbolName(),
+                        0, 0, 0, 0);
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    ((PSS_LinkSymbol*)pComp)->GetSymbolComment(),
+                        0, 0, 0, 0);
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    ((PSS_LinkSymbol*)pComp)->GetAbsolutePath(),
+                        0, 0, 0, 0);
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    (((PSS_LinkSymbol*)pComp)->IsLocal()) ? "1" : "0",
+                        0, 0, 0, 0);
             }
             // Increment Line counter
             ++LineCounter;
@@ -146,11 +145,11 @@ CODSymbolComponent*    ZCSymbolList::GetSelectedSymbol()
 {
     int    Index;
     POSITION pos = GetFirstSelectedItemPosition();
-    if (pos != NULL)     
+    if (pos != NULL)
     {
-        Index = GetNextSelectedItem( pos );
-        CObject* pObj = (CObject*)GetItemData( Index );
-        if (pObj && ISA(pObj,CODSymbolComponent))
+        Index = GetNextSelectedItem(pos);
+        CObject* pObj = (CObject*)GetItemData(Index);
+        if (pObj && ISA(pObj, CODSymbolComponent))
             return dynamic_cast<CODSymbolComponent*>(pObj);
     }
     return NULL;
@@ -159,10 +158,10 @@ CODSymbolComponent*    ZCSymbolList::GetSelectedSymbol()
 
 
 
-int    ZCSymbolList::GetItemIndex( CODSymbolComponent* pSymbol )
+int    ZCSymbolList::GetItemIndex(CODSymbolComponent* pSymbol)
 {
-    if (ISA(pSymbol, ZBSymbol))
-        return dynamic_cast<ZBSymbol*>(pSymbol)->GetIconIndex();
+    if (ISA(pSymbol, PSS_Symbol))
+        return dynamic_cast<PSS_Symbol*>(pSymbol)->GetIconIndex();
 
     if (ISA(pSymbol, PSS_LinkSymbol))
         return dynamic_cast<PSS_LinkSymbol*>(pSymbol)->GetIconIndex();

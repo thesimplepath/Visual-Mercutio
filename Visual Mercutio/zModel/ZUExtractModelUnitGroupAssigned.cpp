@@ -56,7 +56,7 @@ bool ZUExtractModelUnitGroupAssigned::OnFinish()
     return true;
 }
 
-bool ZUExtractModelUnitGroupAssigned::OnSymbol(ZBSymbol* pSymbol)
+bool ZUExtractModelUnitGroupAssigned::OnSymbol(PSS_Symbol* pSymbol)
 {
     if (pSymbol->HasUnit() && pSymbol->GetUnitName() == m_pUserEntity->GetEntityName())
     {

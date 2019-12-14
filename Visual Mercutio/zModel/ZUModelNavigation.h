@@ -38,6 +38,9 @@
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 // class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
@@ -46,7 +49,7 @@
 #endif
 
 // forward class declaration
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_ProcessGraphModelMdl;
 class PSS_Log;
@@ -85,7 +88,7 @@ public:
         return true;
     };
 
-    virtual bool OnSymbol(ZBSymbol* pSymbol)
+    virtual bool OnSymbol(PSS_Symbol* pSymbol)
     {
         return true;
     };

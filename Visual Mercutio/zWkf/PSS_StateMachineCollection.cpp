@@ -69,7 +69,7 @@ void PSS_StateMachineCollection::AssignModel(PSS_ProcessGraphModelMdl* pModel)
     AssignModelToStateMachines();
 }
 //---------------------------------------------------------------------------
-PSS_StateMachineHandle PSS_StateMachineCollection::CreateNewStateMachine(ZBSymbol*                      pSymbol,
+PSS_StateMachineHandle PSS_StateMachineCollection::CreateNewStateMachine(PSS_Symbol*                    pSymbol,
                                                                          PSS_LinkSymbol*                pLinkSymbol,
                                                                          PSS_StateLink::IELinkDirection direction)
 {
@@ -108,7 +108,7 @@ bool PSS_StateMachineCollection::DeleteStateMachine(PSS_StateMachineHandle hStat
     return true;
 }
 //---------------------------------------------------------------------------
-ZBSymbol* PSS_StateMachineCollection::GetCurrentStateMachineSymbol(PSS_StateMachineHandle hStateMachine)
+PSS_Symbol* PSS_StateMachineCollection::GetCurrentStateMachineSymbol(PSS_StateMachineHandle hStateMachine)
 {
     // handle doesn't exists?
     if (hStateMachine >= int(GetStateMachineCount()))
@@ -131,7 +131,7 @@ PSS_StateObject* PSS_StateMachineCollection::GetCurrentStateMachineObject(PSS_St
 }
 //---------------------------------------------------------------------------
 bool PSS_StateMachineCollection::PushSymbol(PSS_StateMachineHandle         hStateMachine,
-                                            ZBSymbol*                      pSymbol,
+                                            PSS_Symbol*                    pSymbol,
                                             PSS_LinkSymbol*                pLinkSymbol,
                                             PSS_StateLink::IELinkDirection direction)
 {

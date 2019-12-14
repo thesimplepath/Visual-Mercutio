@@ -31,6 +31,9 @@
 #include "PSS_StateLink.h"
 
 // class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
@@ -41,7 +44,7 @@
 // forward class declaration
 class PSS_StateMachine;
 class PSS_StateObject;
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_ProcessGraphModelMdl;
 
@@ -103,7 +106,7 @@ public:
     *@param directiopn - link direction
     *@return newly created state machine handle, -1 on error
     */
-    virtual PSS_StateMachineHandle CreateNewStateMachine(ZBSymbol*                      pSymbol,
+    virtual PSS_StateMachineHandle CreateNewStateMachine(PSS_Symbol*                    pSymbol,
                                                          PSS_LinkSymbol*                pLinkSymbol,
                                                          PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_UnknownDirection);
 
@@ -130,7 +133,7 @@ public:
     *@param hStateMachine - state machine handle
     *@return the component, NULL if not found or on error
     */
-    virtual ZBSymbol* GetCurrentStateMachineSymbol(PSS_StateMachineHandle hStateMachine);
+    virtual PSS_Symbol* GetCurrentStateMachineSymbol(PSS_StateMachineHandle hStateMachine);
 
     /**
     * Gets the current state object of an existing state machine
@@ -147,7 +150,7 @@ public:
     *@return true on success, otherwise false
     */
     virtual bool PushSymbol(PSS_StateMachineHandle         hStateMachine,
-                            ZBSymbol*                      pSymbol,
+                            PSS_Symbol*                    pSymbol,
                             PSS_LinkSymbol*                pLinkSymbol,
                             PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_UnknownDirection);
 

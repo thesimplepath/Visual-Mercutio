@@ -40,7 +40,7 @@ PSS_ModelTree::IData::IData() :
     m_Collapsed(false)
 {}
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData::IData(ZBSymbol* pSymbol) :
+PSS_ModelTree::IData::IData(PSS_Symbol* pSymbol) :
     m_Type(IE_DT_Symbol),
     m_pSymbol(pSymbol),
     m_pLinkSymbol(NULL),
@@ -265,7 +265,7 @@ PSS_ProcessGraphModelMdl* PSS_ModelTree::GetOwnerModel(HTREEITEM hItem)
 
         if (pSymbol)
         {
-            ZBSymbol*                 pSym        = dynamic_cast<ZBSymbol*>(pSymbol);
+            PSS_Symbol*               pSym        = dynamic_cast<PSS_Symbol*>(pSymbol);
             PSS_ProcessGraphModelMdl* pGraphModel = NULL;
 
             if (pSym)
@@ -400,7 +400,7 @@ void PSS_ModelTree::AddSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModel
     if (!m_hRootDocument)
         return;
 
-    ZBSymbol*       pSym     = dynamic_cast<ZBSymbol*>(pSymbol);
+    PSS_Symbol*     pSym     = dynamic_cast<PSS_Symbol*>(pSymbol);
     PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pSymbol);
 
     // symbol component must exist and must be a kind of symbol or link symbol
@@ -485,7 +485,7 @@ void PSS_ModelTree::RemoveSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphMo
         return;
 
     // symbol component must exist and must be a kind of symbol or link symbol
-    if (!pSymbol || (!ISA(pSymbol, ZBSymbol) && !ISA(pSymbol, PSS_LinkSymbol)))
+    if (!pSymbol || (!ISA(pSymbol, PSS_Symbol) && !ISA(pSymbol, PSS_LinkSymbol)))
         return;
 
     IData* pData = FindElementFromDataSet(pSymbol);
@@ -511,7 +511,7 @@ void PSS_ModelTree::ModifySymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphMo
     if (!m_hRootDocument)
         return;
 
-    ZBSymbol*       pSym     = dynamic_cast<ZBSymbol*>(pSymbol);
+    PSS_Symbol*     pSym     = dynamic_cast<PSS_Symbol*>(pSymbol);
     PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pSymbol);
 
     // symbol component must exist and must be a kind of symbol or link symbol
@@ -542,7 +542,7 @@ void PSS_ModelTree::DoSelectSymbol()
 {
     CODSymbolComponent* pComp = GetSelectedSymbol();
 
-    if (pComp && ISA(pComp, ZBSymbol))
+    if (pComp && ISA(pComp, PSS_Symbol))
     {
         // send the message
         ZBModelObserverMsg mdlMsg(ZBModelObserverMsg::SelectElement, NULL, NULL, pComp);
@@ -570,7 +570,7 @@ void PSS_ModelTree::OnDoubleClick()
     ZBModelObserverMsg::MessageActionType actionType = ZBModelObserverMsg::NoAction;
     UINT                                  message    = 0;
 
-    ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(GetSelectedSymbol());
+    PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(GetSelectedSymbol());
 
     if (pSymbol)
     {
@@ -676,7 +676,7 @@ void PSS_ModelTree::ProcessModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hPa
     for (int i = 0; i < componentCount; ++i)
     {
         CODComponent*   pComp    = pSet->GetAt(i);
-        ZBSymbol*       pSym     = dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSym     = dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         // is a kind of symbol?
@@ -713,7 +713,7 @@ void PSS_ModelTree::ProcessModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hPa
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::ProcessSymbol(ZBSymbol* pSymbol, HTREEITEM hParentTreeItem)
+void PSS_ModelTree::ProcessSymbol(PSS_Symbol* pSymbol, HTREEITEM hParentTreeItem)
 {
     if (!pSymbol)
         return;
@@ -778,7 +778,7 @@ HTREEITEM PSS_ModelTree::AddModelItem(PSS_ProcessGraphModelMdl* pModel, HTREEITE
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_ModelTree::AddSymbolItem(ZBSymbol* pSymbol, HTREEITEM hParentTreeItem)
+HTREEITEM PSS_ModelTree::AddSymbolItem(PSS_Symbol* pSymbol, HTREEITEM hParentTreeItem)
 {
     if (!pSymbol)
         return NULL;
@@ -837,7 +837,7 @@ BOOL PSS_ModelTree::ModifyModelItem(PSS_ProcessGraphModelMdl* pModel, HTREEITEM 
     return m_pTreeCtrl->SetItemText(hItem, (char*)((const char*)pModel->GetModelName()));
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ModelTree::ModifySymbolItem(ZBSymbol* pSymbol, HTREEITEM hItem)
+BOOL PSS_ModelTree::ModifySymbolItem(PSS_Symbol* pSymbol, HTREEITEM hItem)
 {
     if (!pSymbol)
         return FALSE;
@@ -933,7 +933,7 @@ void PSS_ModelTree::EmptyDataSet()
     m_DataSet.RemoveAll();
 }
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(ZBSymbol* pElement)
+PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(PSS_Symbol* pElement)
 {
     std::unique_ptr<IData> pData(new IData(pElement));
     m_DataSet.Add(pData.get());
@@ -999,7 +999,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(CODSymbolComponent* pElement)
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelTree::DeleteElementFromDataSet(ZBSymbol* pElement)
+bool PSS_ModelTree::DeleteElementFromDataSet(PSS_Symbol* pElement)
 {
     IDataIterator it(&m_DataSet);
 
@@ -1097,7 +1097,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(CODSymbolComponent* 
     return NULL;
 }
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(ZBSymbol* pElement)
+PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_Symbol* pElement)
 {
     IDataIterator it(&m_DataSet);
 

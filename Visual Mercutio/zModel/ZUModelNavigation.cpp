@@ -69,9 +69,9 @@ bool ZUModelNavigation::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBSymbol))
+    if (ISA(pSymbol, PSS_Symbol))
     {
-        return OnSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
+        return OnSymbol(dynamic_cast<PSS_Symbol*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_LinkSymbol))
     {

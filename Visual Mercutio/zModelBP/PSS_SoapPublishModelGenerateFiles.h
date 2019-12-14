@@ -77,7 +77,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
         *@param pSymbol - symbol for which files sould be added
         *@return true on success, otherwise false
         */
-        virtual bool OnSymbol(ZBSymbol* pSymbol);
+        virtual bool OnSymbol(PSS_Symbol* pSymbol);
 
         /**
         * Called when link files should be added to publication

@@ -49,7 +49,7 @@ bool ZUDeleteDynamicAttributesToModel::OnFinish()
     return true;
 }
 
-bool ZUDeleteDynamicAttributesToModel::OnSymbol(ZBSymbol* pSymbol)
+bool ZUDeleteDynamicAttributesToModel::OnSymbol(PSS_Symbol* pSymbol)
 {
     // If for the symbol has the same property
     // delete the property and assign the new one

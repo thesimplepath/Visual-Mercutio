@@ -97,13 +97,15 @@ bool PSS_StateMachine::IsEqual(PSS_StateMachine* pOther)
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_StateMachine::PushSymbol(ZBSymbol* pSymbol, PSS_LinkSymbol* pLinkSymbol, PSS_StateLink::IELinkDirection direction)
+void PSS_StateMachine::PushSymbol(PSS_Symbol*                    pSymbol,
+                                  PSS_LinkSymbol*                pLinkSymbol,
+                                  PSS_StateLink::IELinkDirection direction)
 {
     PSS_StateObject* pStateObj = new PSS_StateObject(pSymbol, pLinkSymbol, direction, m_pModel);
     AddStateObject(pStateObj);
 }
 //---------------------------------------------------------------------------
-void PSS_StateMachine::PushSymbol(ZBSymbol* pSymbol, PSS_StateLink* pStateLink)
+void PSS_StateMachine::PushSymbol(PSS_Symbol* pSymbol, PSS_StateLink* pStateLink)
 {
     PSS_StateObject* pStateObj = new PSS_StateObject(pSymbol, pStateLink, m_pModel);
     AddStateObject( pStateObj );

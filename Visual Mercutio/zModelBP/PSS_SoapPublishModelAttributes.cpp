@@ -86,7 +86,7 @@ bool PSS_SoapPublishModelAttributes::OnFinish()
     return m_PubMdlAttr.Send();
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelAttributes::OnSymbol(ZBSymbol* pSymbol)
+bool PSS_SoapPublishModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
 {
     if (!pSymbol)
         return false;

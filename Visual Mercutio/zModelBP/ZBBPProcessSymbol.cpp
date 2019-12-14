@@ -78,7 +78,7 @@ const size_t    _MaxRulesSize = 20;
 // JMR-MODIF - Le 3 juin 2007 - Ajout de la constante _MaxRisksSize.
 const size_t    _MaxRisksSize = 20;
 
-IMPLEMENT_SERIAL(ZBBPProcessSymbol, ZBSymbol, g_DefVersion)
+IMPLEMENT_SERIAL(ZBBPProcessSymbol, PSS_Symbol, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -90,7 +90,7 @@ ZBBPProcessSymbol::ZBBPProcessSymbol(const CString Name /*= ""*/)
     m_Deliveries(this),
     m_IsUserModified(false)
 {
-    ZBSymbol::SetSymbolName(Name);
+    PSS_Symbol::SetSymbolName(Name);
     CreateSymbolProperties();
 }
 
@@ -120,7 +120,7 @@ ZBBPProcessSymbol::ZBBPProcessSymbol(const ZBBPProcessSymbol& src)
 ZBBPProcessSymbol& ZBBPProcessSymbol::operator=(const ZBBPProcessSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=((const ZBSymbol&)src);
+    PSS_Symbol::operator=((const PSS_Symbol&)src);
 
     // JMR-MODIF - Le 6 février 2006 - Copie la variable m_PrestProperties.
     m_PrestProperties = src.m_PrestProperties;
@@ -160,22 +160,22 @@ bool ZBBPProcessSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttribute
         pAttributes->AddAttribute(ZS_BP_PROP_BASIC, M_Symbol_Number_ID);
     }
 
-    return ZBSymbol::OnFillDefaultAttributes(pAttributes);
+    return PSS_Symbol::OnFillDefaultAttributes(pAttributes);
 }
 
 bool ZBBPProcessSymbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
 {
-    return ZBSymbol::OnChangeAttributes(pAttributes);
+    return PSS_Symbol::OnChangeAttributes(pAttributes);
 }
 
 CString ZBBPProcessSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
 {
-    return ZBSymbol::GetAttributeString(pAttributes);
+    return PSS_Symbol::GetAttributeString(pAttributes);
 }
 
 bool ZBBPProcessSymbol::CreateSymbolProperties()
 {
-    if (!ZBSymbol::CreateSymbolProperties())
+    if (!PSS_Symbol::CreateSymbolProperties())
     {
         return false;
     }
@@ -237,7 +237,7 @@ bool ZBBPProcessSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
     }
 
     // Call the base class
-    return ZBSymbol::AcceptDropItem(pObj, pt);
+    return PSS_Symbol::AcceptDropItem(pObj, pt);
 }
 
 bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
@@ -312,13 +312,13 @@ bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
     }
     // **********************************************************************************************************
 
-    return ZBSymbol::DropItem(pObj, pt);
+    return PSS_Symbol::DropItem(pObj, pt);
 }
 
 void ZBBPProcessSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom(src);
+    PSS_Symbol::CopySymbolDefinitionFrom(src);
 
     if (ISA((&src), ZBBPProcessSymbol))
     {
@@ -350,7 +350,7 @@ BOOL ZBBPProcessSymbol::SetSymbolName(const CString value)
     }
 
     // Then, the symbol name
-    BOOL bResult = ZBSymbol::SetSymbolName(value);
+    BOOL bResult = PSS_Symbol::SetSymbolName(value);
 
     return bResult;
 }
@@ -359,7 +359,7 @@ BOOL ZBBPProcessSymbol::Create(const CString Name /*= ""*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create(IDR_BP_PROCESS,
+    BOOL RetValue = PSS_Symbol::Create(IDR_BP_PROCESS,
                                      AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PROCESS_SYM), _T("Symbol")),
                                      Name);
 
@@ -375,7 +375,7 @@ BOOL ZBBPProcessSymbol::Create(const CString Name /*= ""*/)
 
 bool ZBBPProcessSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/)
 {
-    if (!ZBSymbol::OnPostCreation(pModel, pCtrl))
+    if (!PSS_Symbol::OnPostCreation(pModel, pCtrl))
     {
         return false;
     }
@@ -515,7 +515,7 @@ bool ZBBPProcessSymbol::ProcessExtendedInput(ZBProperty&        Property,
         }
     }
 
-    return ZBSymbol::ProcessExtendedInput(Property, value, Properties, Refresh);
+    return PSS_Symbol::ProcessExtendedInput(Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 10 février 2006 - Ajout de la fonction de traitement des entrées menus pour les propriétés.
@@ -635,7 +635,7 @@ bool ZBBPProcessSymbol::ProcessMenuCommand(int                MenuCommand,
     }
     // ************************************************************************************************************
 
-    return ZBSymbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
+    return PSS_Symbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 18 décembre 2006 - Cette fonction est appelée lorsque l'utilisateur a tenté de déplaçer une propriété.
@@ -1345,7 +1345,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                        bool            GroupValue        /*= false*/)
 {
     // Les propriétés "Nom", "Description" et "Référence" du groupe "General" sont affichées par la classe de base.
-    if (!ZBSymbol::FillProperties(PropSet, NumericValue, GroupValue))
+    if (!PSS_Symbol::FillProperties(PropSet, NumericValue, GroupValue))
     {
         return false;
     }
@@ -2012,7 +2012,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
 
 bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
 {
-    if (!ZBSymbol::SaveProperties(PropSet))
+    if (!PSS_Symbol::SaveProperties(PropSet))
     {
         return false;
     }
@@ -2250,7 +2250,7 @@ bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
 // JMR-MODIF - Le 15 février 2006 - Ajout de la fonction SaveProperty.
 bool ZBBPProcessSymbol::SaveProperty(ZBProperty& Property)
 {
-    if (!ZBSymbol::SaveProperty(Property))
+    if (!PSS_Symbol::SaveProperty(Property))
     {
         return false;
     }
@@ -2411,7 +2411,7 @@ bool ZBBPProcessSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySe
 
     if (RetValue == false)
     {
-        return ZBSymbol::OnPostPropertyChanged(Property, Properties, Refresh);
+        return PSS_Symbol::OnPostPropertyChanged(Property, Properties, Refresh);
     }
 
     return RetValue;
@@ -2419,12 +2419,12 @@ bool ZBBPProcessSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySe
 
 void ZBBPProcessSymbol::OnDraw(CDC* pDC)
 {
-    ZBSymbol::OnDraw(pDC);
+    PSS_Symbol::OnDraw(pDC);
 }
 
 void ZBBPProcessSymbol::AdjustElementPosition()
 {
-    ZBSymbol::AdjustElementPosition();
+    PSS_Symbol::AdjustElementPosition();
 }
 
 BOOL ZBBPProcessSymbol::CreateEmptyChildModel(CODModel* pParent)
@@ -2451,7 +2451,7 @@ bool ZBBPProcessSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (mode == ZBSymbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking
@@ -2464,7 +2464,7 @@ bool ZBBPProcessSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS
 void ZBBPProcessSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    ZBSymbol::Serialize(ar);
+    PSS_Symbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
     if (ar.m_pDocument)

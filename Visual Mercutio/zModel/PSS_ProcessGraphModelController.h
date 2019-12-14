@@ -556,9 +556,9 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param mode - tooltip mode
         *@return true if tooltip can be shown, otherwise false
         */
-        virtual bool OnToolTip(CString&                toolTipText,
-                               const CPoint&           point,
-                               ZBSymbol::IEToolTipMode mode = ZBSymbol::IE_TT_Normal);
+        virtual bool OnToolTip(CString&                  toolTipText,
+                               const CPoint&             point,
+                               PSS_Symbol::IEToolTipMode mode = PSS_Symbol::IE_TT_Normal);
 
     protected:
         static CODSymbolComponent* m_pFormatPainterSymbol;
@@ -662,7 +662,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param pSymbol - the symbol
         *@return the viewport, NULL on error
         */
-        virtual PSS_ProcessGraphModelViewport* BrowseSymbolModel(ZBSymbol* pSymbol);
+        virtual PSS_ProcessGraphModelViewport* BrowseSymbolModel(PSS_Symbol* pSymbol);
 
         /**
         * Browses the link symbol model

@@ -10,53 +10,52 @@
 #include "stdafx.h"
 #include "ZBBPGenericSymbol.h"
 
-IMPLEMENT_SERIAL(ZBBPGenericSymbol, ZBSymbol, g_DefVersion)
+IMPLEMENT_SERIAL(ZBBPGenericSymbol, PSS_Symbol, g_DefVersion)
 
-ZBBPGenericSymbol::ZBBPGenericSymbol( const CString Name /*= _T( "" )*/ )
+ZBBPGenericSymbol::ZBBPGenericSymbol(const CString Name /*= _T( "" )*/)
 {
-    ZBSymbol::SetSymbolName( Name );
+    PSS_Symbol::SetSymbolName(Name);
 }
 
 ZBBPGenericSymbol::~ZBBPGenericSymbol()
-{
-}
+{}
 
-ZBBPGenericSymbol::ZBBPGenericSymbol( const ZBBPGenericSymbol& src )
+ZBBPGenericSymbol::ZBBPGenericSymbol(const ZBBPGenericSymbol& src)
 {
     *this = src;
 }
 
-ZBBPGenericSymbol& ZBBPGenericSymbol::operator=( const ZBBPGenericSymbol& src )
+ZBBPGenericSymbol& ZBBPGenericSymbol::operator=(const ZBBPGenericSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=( (const ZBSymbol&)src );
+    PSS_Symbol::operator=((const PSS_Symbol&)src);
     return *this;
 }
 
 CODComponent* ZBBPGenericSymbol::Dup() const
 {
-    return ( new ZBBPGenericSymbol( *this ) );
+    return (new ZBBPGenericSymbol(*this));
 }
 
-BOOL ZBBPGenericSymbol::Create( UINT nID, const CString Name /*= _T( "" )*/ )
+BOOL ZBBPGenericSymbol::Create(UINT nID, const CString Name /*= _T( "" )*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create( nID,
-                                      AfxFindResourceHandle( MAKEINTRESOURCE( nID ), _T( "Symbol" ) ),
-                                      Name );
+    BOOL RetValue = PSS_Symbol::Create(nID,
+                                       AfxFindResourceHandle(MAKEINTRESOURCE(nID), _T("Symbol")),
+                                       Name);
 
     m_IsInCreationProcess = false;
 
     return RetValue;
 }
 
-void ZBBPGenericSymbol::Serialize( CArchive& ar )
+void ZBBPGenericSymbol::Serialize(CArchive& ar)
 {
-    TRACE( _T( "ZBBPGenericSymbol::Serialize : Start\n" ) );
+    TRACE(_T("ZBBPGenericSymbol::Serialize : Start\n"));
 
     // Serialize the canvas model.
-    ZBSymbol::Serialize( ar );
+    PSS_Symbol::Serialize(ar);
 
-    TRACE( _T( "ZBBPGenericSymbol::Serialize : End\n" ) );
+    TRACE(_T("ZBBPGenericSymbol::Serialize : End\n"));
 }

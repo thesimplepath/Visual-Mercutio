@@ -51,7 +51,7 @@ bool ZUAssignDynamicAttributesToModel::OnFinish()
     return true;
 }
 
-bool ZUAssignDynamicAttributesToModel::OnSymbol(ZBSymbol* pSymbol)
+bool ZUAssignDynamicAttributesToModel::OnSymbol(PSS_Symbol* pSymbol)
 {
     // If for the whole model
     // or for a specific class name

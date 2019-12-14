@@ -38,7 +38,7 @@ const ZBSymbolEntity& ZBSymbolEntity::operator=( const ZBSymbolEntity &right )
     m_SymbolStamp = right.m_SymbolStamp;
 
     m_Image.CopyImage( const_cast<SECJpeg*>( &( right.m_Image ) ) );
-    m_pSymbol = dynamic_cast<ZBSymbol*>( right.m_pSymbol->Dup() );
+    m_pSymbol = dynamic_cast<PSS_Symbol*>( right.m_pSymbol->Dup() );
 
     return *this;
 }

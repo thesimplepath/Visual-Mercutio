@@ -94,8 +94,8 @@ void PSS_MainAutomationRunnerThread::StartWork()
         for (int nodeIndex = 0; nodeIndex < startSymbolCount; ++nodeIndex)
         {
             // get next symbol
-            IODNode*  pINode  = nodes.GetAt(nodeIndex);
-            ZBSymbol* pSymbol = static_cast<ZBSymbol*>(pINode);
+            IODNode*    pINode  = nodes.GetAt(nodeIndex);
+            PSS_Symbol* pSymbol = static_cast<PSS_Symbol*>(pINode);
 
             if (!pSymbol)
                 continue;

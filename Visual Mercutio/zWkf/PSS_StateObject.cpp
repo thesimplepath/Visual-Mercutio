@@ -26,7 +26,7 @@ IMPLEMENT_SERIAL(PSS_StateObject, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_StateObject
 //---------------------------------------------------------------------------
-PSS_StateObject::PSS_StateObject(ZBSymbol*                      pSymbol,
+PSS_StateObject::PSS_StateObject(PSS_Symbol*                    pSymbol,
                                  PSS_LinkSymbol*                pLinkSymbol,
                                  PSS_StateLink::IELinkDirection direction,
                                  PSS_ProcessGraphModelMdl*      pModel) :
@@ -38,7 +38,7 @@ PSS_StateObject::PSS_StateObject(ZBSymbol*                      pSymbol,
         AddLink(pLinkSymbol, direction);
 }
 //---------------------------------------------------------------------------
-PSS_StateObject::PSS_StateObject(ZBSymbol*                 pSymbol,
+PSS_StateObject::PSS_StateObject(PSS_Symbol*               pSymbol,
                                  PSS_StateLink*            pStateLink,
                                  PSS_ProcessGraphModelMdl* pModel) :
     CObject(),
@@ -246,7 +246,7 @@ void PSS_StateObject::Serialize(CArchive& ar)
             CODComponentSet* pSet      = m_pModel->FindSymbolByRefNumber(refNumber, true);
 
             if (pSet && pSet->GetSize() > 0)
-                m_pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(0));
+                m_pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(0));
         }
 
         // remove all previous existing objects from the set

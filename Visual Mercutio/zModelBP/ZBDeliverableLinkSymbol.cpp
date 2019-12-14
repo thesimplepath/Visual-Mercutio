@@ -582,16 +582,16 @@ bool ZBDeliverableLinkSymbol::OnPreDelete(CODModel* pModel /*= NULL*/, CODContro
     // Before disconnecting the link from the symbol
     CODSymbolComponent* pDst = GetFollowingSymbol();
 
-    if (pDst && ISA(pDst, ZBSymbol))
+    if (pDst && ISA(pDst, PSS_Symbol))
     {
-        dynamic_cast<ZBSymbol*>(pDst)->OnLinkDisconnect(this);
+        dynamic_cast<PSS_Symbol*>(pDst)->OnLinkDisconnect(this);
     }
 
     CODSymbolComponent* pSrc = GetEnteringSymbol();
 
-    if (pSrc && ISA(pSrc, ZBSymbol))
+    if (pSrc && ISA(pSrc, PSS_Symbol))
     {
-        dynamic_cast<ZBSymbol*>(pSrc)->OnLinkDisconnect(this);
+        dynamic_cast<PSS_Symbol*>(pSrc)->OnLinkDisconnect(this);
     }
 
     return true;
@@ -918,17 +918,17 @@ void ZBDeliverableLinkSymbol::OnConnect(CODConnection* pConnection)
     // After connecting the link to the symbol
     CODSymbolComponent* pDst = GetFollowingSymbol();
 
-    if (pDst && ISA(pDst, ZBSymbol) && pDst->GetDependentPortOnConnection(pConnection))
+    if (pDst && ISA(pDst, PSS_Symbol) && pDst->GetDependentPortOnConnection(pConnection))
     {
-        dynamic_cast<ZBSymbol*>(pDst)->OnLinkConnect(this);
+        dynamic_cast<PSS_Symbol*>(pDst)->OnLinkConnect(this);
     }
     else
     {
         CODSymbolComponent* pSrc = GetEnteringSymbol();
 
-        if (pSrc && ISA(pSrc, ZBSymbol) && pSrc->GetDependentPortOnConnection(pConnection))
+        if (pSrc && ISA(pSrc, PSS_Symbol) && pSrc->GetDependentPortOnConnection(pConnection))
         {
-            dynamic_cast<ZBSymbol*>(pSrc)->OnLinkConnect(this);
+            dynamic_cast<PSS_Symbol*>(pSrc)->OnLinkConnect(this);
         }
     }
 
@@ -942,17 +942,17 @@ void ZBDeliverableLinkSymbol::OnDisconnect(CODConnection* pConnection)
     // Before disconnecting the link from the symbol
     CODSymbolComponent* pDst = GetFollowingSymbol();
 
-    if (pDst && ISA(pDst, ZBSymbol) && pDst->GetDependentPortOnConnection(pConnection))
+    if (pDst && ISA(pDst, PSS_Symbol) && pDst->GetDependentPortOnConnection(pConnection))
     {
-        dynamic_cast<ZBSymbol*>(pDst)->OnLinkDisconnect(this);
+        dynamic_cast<PSS_Symbol*>(pDst)->OnLinkDisconnect(this);
     }
     else
     {
         CODSymbolComponent* pSrc = GetEnteringSymbol();
 
-        if (pSrc && ISA(pSrc, ZBSymbol) && pSrc->GetDependentPortOnConnection(pConnection))
+        if (pSrc && ISA(pSrc, PSS_Symbol) && pSrc->GetDependentPortOnConnection(pConnection))
         {
-            dynamic_cast<ZBSymbol*>(pSrc)->OnLinkDisconnect(this);
+            dynamic_cast<PSS_Symbol*>(pSrc)->OnLinkDisconnect(this);
         }
     }
 

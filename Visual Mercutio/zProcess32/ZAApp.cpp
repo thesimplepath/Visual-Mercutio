@@ -3372,7 +3372,7 @@ void ZAApp::OnGenerateMercutioReport()
                 PSS_File file(pCurrentDoc->GetPathName());
 
                 CString fn = file.GetFilePath() +
-                    dynamic_cast<ZBSymbol*>(Dlg.GetSelectedSymbol())->GetSymbolName() +
+                    dynamic_cast<PSS_Symbol*>(Dlg.GetSelectedSymbol())->GetSymbolName() +
                     _T(" - ") +
                     file.GetFileTitle();
 

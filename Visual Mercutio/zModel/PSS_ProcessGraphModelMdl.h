@@ -43,6 +43,9 @@
 #include "PSS_LanguageDefs.h"
 
 // class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
@@ -51,7 +54,7 @@
 #endif
 
 // forward class declaration
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_Log;
 class PSS_ProcessGraphModelDoc;
@@ -802,7 +805,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pSymbolToFind - the symbol to find
         *@return the symbol model, NULL if not found or on error
         */
-        virtual PSS_ProcessGraphModelMdl* GetSymbolModel(ZBSymbol* pSymbolToFind);
+        virtual PSS_ProcessGraphModelMdl* GetSymbolModel(PSS_Symbol* pSymbolToFind);
 
         /**
         * Gets the link symbol model
@@ -1240,7 +1243,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
                 * Constructor
                 *@param pSymbol - the symbol
                 */
-                IComponentRef(ZBSymbol* pSymbol = NULL);
+                IComponentRef(PSS_Symbol* pSymbol = NULL);
 
                 /**
                 * Adds a reference to the component
@@ -1262,10 +1265,10 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
                 * Gets the component reference count
                 *@return the component reference count
                 */
-                ZBSymbol* GetSymbol() const;
+                PSS_Symbol* GetSymbol() const;
         
             private:
-                ZBSymbol*   m_pSymbol;
+                PSS_Symbol* m_pSymbol;
                 std::size_t m_Ref;
         };
 
@@ -1311,7 +1314,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[out] nodes - the node array which will contain the entering symbols
         *@return the found entering symbol count
         */
-        virtual std::size_t GetEnteringSymbols(ZBSymbol* pComp, CODNodeArray& nodes);
+        virtual std::size_t GetEnteringSymbols(PSS_Symbol* pComp, CODNodeArray& nodes);
 
         /**
         * Gets the symbols following a symbol
@@ -1319,7 +1322,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[out] nodes - the node array which will contain the following symbols
         *@return the found following symbol count
         */
-        virtual std::size_t GetFollowingSymbols(ZBSymbol* pComp, CODNodeArray& nodes);
+        virtual std::size_t GetFollowingSymbols(PSS_Symbol* pComp, CODNodeArray& nodes);
 
         /**
         * Gets the symbols entering on the edge of a symbol
@@ -1327,7 +1330,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[out] edges - the edge array which will contain the entering symbols
         *@return the found entering symbol count
         */
-        virtual std::size_t GetEdgesEntering(ZBSymbol* pComp, CODEdgeArray& edges);
+        virtual std::size_t GetEdgesEntering(PSS_Symbol* pComp, CODEdgeArray& edges);
 
         /**
         * Gets the symbols leaving the edge of a symbol
@@ -1335,7 +1338,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[out] edges - the edge array which will contain the leaving symbols
         *@return the found leaving symbol count
         */
-        virtual std::size_t GetEdgesLeaving(ZBSymbol* pComp, CODEdgeArray& edges);
+        virtual std::size_t GetEdgesLeaving(PSS_Symbol* pComp, CODEdgeArray& edges);
 
         /**
         * Gets the symbols entering a generic symbol
@@ -1344,7 +1347,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pClass - the symbol runtime class
         *@return the found entering symbol count
         */
-        virtual std::size_t GetEnteringSymbolsISA(ZBSymbol* pComp, CODNodeArray& nodes, const CRuntimeClass* pClass);
+        virtual std::size_t GetEnteringSymbolsISA(PSS_Symbol* pComp, CODNodeArray& nodes, const CRuntimeClass* pClass);
 
         /**
         * Gets the symbols following a generic symbol
@@ -1353,7 +1356,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pClass - the symbol runtime class
         *@return the found following symbol count
         */
-        virtual std::size_t GetFollowingSymbolsISA(ZBSymbol* pComp, CODNodeArray& nodes, const CRuntimeClass* pClass);
+        virtual std::size_t GetFollowingSymbolsISA(PSS_Symbol* pComp, CODNodeArray& nodes, const CRuntimeClass* pClass);
 
         /**
         * Gets the symbols entering on the edge of a generic symbol
@@ -1362,7 +1365,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pClass - the symbol runtime class
         *@return the found entering symbol count
         */
-        virtual std::size_t GetEdgesEnteringISA(ZBSymbol* pComp, CODEdgeArray& edges, const CRuntimeClass* pClass);
+        virtual std::size_t GetEdgesEnteringISA(PSS_Symbol* pComp, CODEdgeArray& edges, const CRuntimeClass* pClass);
 
         /**
         * Gets the symbols leaving the edge of a generic symbol
@@ -1371,7 +1374,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pClass - the symbol runtime class
         *@return the found leaving symbol count
         */
-        virtual std::size_t GetEdgesLeavingISA(ZBSymbol* pComp, CODEdgeArray& edges, const CRuntimeClass* pClass);
+        virtual std::size_t GetEdgesLeavingISA(PSS_Symbol* pComp, CODEdgeArray& edges, const CRuntimeClass* pClass);
 
         /**
         * Keeps only a kind of generic symbol
@@ -1395,7 +1398,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param nodes - the node array containing the activities to count
         *@return the activity count
         */
-        virtual std::size_t CountActivities(ZBSymbol* pSymbol, const CODNodeArray& nodes);
+        virtual std::size_t CountActivities(PSS_Symbol* pSymbol, const CODNodeArray& nodes);
 
         /**
         * Counts the links connected to a symbol
@@ -1536,14 +1539,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pComp - the symbol to add
         *@return the symbol reference counter
         */
-        virtual std::size_t AddSymbolInParsedArray(ZBSymbol* pComp);
+        virtual std::size_t AddSymbolInParsedArray(PSS_Symbol* pComp);
 
         /**
         * Finds a symbol in the array
         *@param pComp - the symbol to find
         *@return the symbol reference, NULL if not found or on error
         */
-        virtual IComponentRef* FindSymbolInParsedArray(ZBSymbol* pComp);
+        virtual IComponentRef* FindSymbolInParsedArray(PSS_Symbol* pComp);
 
         /**
         * Removes all symbol in parsed array

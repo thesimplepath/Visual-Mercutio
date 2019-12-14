@@ -107,7 +107,7 @@ bool ZUBuildSymbolNewName::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBSymbol) && dynamic_cast<ZBSymbol*>(&Symbol)->GetSymbolName() == m_SymbolName)
+    if (ISA(pSymbol, PSS_Symbol) && dynamic_cast<PSS_Symbol*>(&Symbol)->GetSymbolName() == m_SymbolName)
     {
         m_Found = true;
     }

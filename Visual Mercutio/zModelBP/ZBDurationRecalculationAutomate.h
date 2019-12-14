@@ -21,7 +21,7 @@ class ZBDurationRecalculationAutomate : public ZBBPAutomate
 {
 public:
 
-    ZBDurationRecalculationAutomate(ZBSymbol*                    pSymbol,
+    ZBDurationRecalculationAutomate(PSS_Symbol*                    pSymbol,
                                     PSS_ProcessGraphModelMdl*    pModel = NULL,
                                     PSS_Log*                        pLog = NULL);
 

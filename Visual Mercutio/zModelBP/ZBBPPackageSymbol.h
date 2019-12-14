@@ -46,7 +46,7 @@ class PSS_ProcessGraphModelMdl;
 
 // JMR-MODIF - Le 3 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBBPPackageSymbol : public ZBSymbol
+class AFX_EXT_CLASS ZBBPPackageSymbol : public PSS_Symbol
 {
     DECLARE_SERIAL(ZBBPPackageSymbol)
 
@@ -136,12 +136,12 @@ public:
 
     void SetPackageName(const CString value)
     {
-        ZBSymbol::SetSymbolName(value);
+        PSS_Symbol::SetSymbolName(value);
     }
 
     const CString GetPackageName()
     {
-        return ZBSymbol::GetSymbolName();
+        return PSS_Symbol::GetSymbolName();
     }
 
     bool GetDisplayPreview() const

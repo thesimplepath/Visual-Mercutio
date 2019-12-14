@@ -22,7 +22,7 @@ IMPLEMENT_DYNAMIC(ZBUnitObserverMsg, PSS_ObserverMsg)
 ZBUnitObserverMsg::ZBUnitObserverMsg(MessageActionType ActionType /*= NoAction*/,
                                      ZBUnitManager* pUnitManager /*= NULL*/,
                                      ZBUnit* pUnit /*= NULL*/,
-                                     ZBSymbol* pElement /*= NULL*/) :
+                                     PSS_Symbol* pElement /*= NULL*/) :
     PSS_ObserverMsg(),
     m_ActionType(ActionType),
     m_pUnitManager(pUnitManager),

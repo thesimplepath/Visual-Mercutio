@@ -26,6 +26,9 @@
 #include "PSS_StateObject.h"
 
 // class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
@@ -34,7 +37,7 @@
 #endif
 
 // forward class declaration
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_ProcessGraphModelMdl;
 class PSS_MainPathRunnerThread;
@@ -83,7 +86,7 @@ class AFX_EXT_CLASS PSS_PathMachine
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
         */
         PSS_PathMachine(PSS_ProcessGraphModelMdl* pModel                  =  NULL,
-                        ZBSymbol*                 pSymbol                 =  NULL,
+                        PSS_Symbol*               pSymbol                 =  NULL,
                         PSS_Log*                  pLog                    =  NULL,
                         int                       maxLoop                 = -1,
                         int                       maxPaused               = -1,
@@ -107,7 +110,7 @@ class AFX_EXT_CLASS PSS_PathMachine
         * Gets the start symbol
         *@return start symbol
         */
-        virtual inline ZBSymbol* GetSymbol();
+        virtual inline PSS_Symbol* GetSymbol();
 
         /**
         * Gets the state machine collection
@@ -461,7 +464,7 @@ class AFX_EXT_CLASS PSS_PathMachine
 
     private:
         PSS_MainPathRunnerThread* m_pMainThread;
-        ZBSymbol*                 m_pSymbol;
+        PSS_Symbol*               m_pSymbol;
         PSS_Log*                  m_pLog;
         std::size_t               m_ErrorCounter;
         std::size_t               m_WarningCounter;
@@ -559,7 +562,7 @@ PSS_ProcessGraphModelMdl* PSS_PathMachine::GetModel()
     return m_pModel;
 }
 //---------------------------------------------------------------------------
-ZBSymbol* PSS_PathMachine::GetSymbol()
+PSS_Symbol* PSS_PathMachine::GetSymbol()
 {
     return m_pSymbol;
 }

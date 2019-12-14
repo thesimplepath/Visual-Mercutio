@@ -127,7 +127,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnFinish()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelGenerateFiles::OnSymbol(ZBSymbol* pSymbol)
+bool PSS_SoapPublishModelGenerateFiles::OnSymbol(PSS_Symbol* pSymbol)
 {
     if (!pSymbol)
         return false;
@@ -343,7 +343,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl*
         if (!pComp)
             continue;
 
-        ZBSymbol* pCompSym = dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol* pCompSym = dynamic_cast<PSS_Symbol*>(pComp);
 
         // has a sub-model defined?
         if (pCompSym && pCompSym->GetChildModel())

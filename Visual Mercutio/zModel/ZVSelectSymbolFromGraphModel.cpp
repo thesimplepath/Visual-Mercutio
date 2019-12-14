@@ -134,9 +134,9 @@ void ZVSelectSymbolFromGraphModel::CheckSymbol(CODSymbolComponent* pComp)
     {
         m_SymbolPath = _T("");
     }
-    else if (pComp && ISA(pComp, ZBSymbol))
+    else if (pComp && ISA(pComp, PSS_Symbol))
     {
-        m_SymbolPath = dynamic_cast<ZBSymbol*>(pComp)->GetAbsolutePath();
+        m_SymbolPath = dynamic_cast<PSS_Symbol*>(pComp)->GetAbsolutePath();
     }
     else if (pComp && ISA(pComp, PSS_LinkSymbol))
     {
@@ -169,14 +169,14 @@ void ZVSelectSymbolFromGraphModel::CheckSymbol(CODSymbolComponent* pComp)
         }
         else if (m_SelectableItem & Selectable_Process)
         {
-            if (pComp && ISA(pComp, ZBSymbol))
+            if (pComp && ISA(pComp, PSS_Symbol))
             {
                 m_pSelectedSymbol = pComp;
             }
         }
         else if (m_SelectableItem & Selectable_Symbol)
         {
-            if (pComp && ISA(pComp, ZBSymbol))
+            if (pComp && ISA(pComp, PSS_Symbol))
             {
                 m_pSelectedSymbol = pComp;
             }
@@ -477,7 +477,7 @@ CODSymbolComponent* _ZVGraphModelController::GetSymbolSelected()
     CODSymbolComponent* pComp = NULL;
 
     if (GetSelection()->GetSize() == 1 &&
-        (ISA(GetSelection()->GetAt(0), ZBSymbol) || ISA(GetSelection()->GetAt(0), PSS_LinkSymbol)))
+        (ISA(GetSelection()->GetAt(0), PSS_Symbol) || ISA(GetSelection()->GetAt(0), PSS_LinkSymbol)))
     {
         pComp = (CODSymbolComponent*)GetSelection()->GetAt(0);
     }
@@ -568,14 +568,14 @@ void _ZVGraphModelController::OnLButtonDblClk(UINT nFlags, CPoint point)
 
         // If the symbol has a child model, open it
         if (pComp != NULL &&
-            ISA(pComp, ZBSymbol) &&
-            dynamic_cast<ZBSymbol*>(pComp)->GetChildModel())
+            ISA(pComp, PSS_Symbol) &&
+            dynamic_cast<PSS_Symbol*>(pComp)->GetChildModel())
         {
             // Clear the selection
             ClearSelection();
 
             // Set the model
-            reinterpret_cast<_ZVGraphModelWnd*>(GetVp()->GetWnd())->SetModel(dynamic_cast<ZBSymbol*>(pComp)->GetChildModel());
+            reinterpret_cast<_ZVGraphModelWnd*>(GetVp()->GetWnd())->SetModel(dynamic_cast<PSS_Symbol*>(pComp)->GetChildModel());
 
             // Refresh the view
             GetVp()->GetWnd()->UpdateWindow();

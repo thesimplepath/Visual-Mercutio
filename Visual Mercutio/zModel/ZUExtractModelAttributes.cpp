@@ -49,7 +49,7 @@ bool ZUExtractModelAttributes::OnFinish()
     return true;
 }
 //---------------------------------------------------------------------------
-bool ZUExtractModelAttributes::OnSymbol(ZBSymbol* pSymbol)
+bool ZUExtractModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
 {
     ZBPropertySet propSet;
 

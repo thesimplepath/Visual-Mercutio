@@ -143,11 +143,11 @@ int ZCProcessModelTreeView::HasContextMenu(CWnd* pWnd, CPoint point)
     {
         CODSymbolComponent* pComp = m_ModelTree.GetSymbol(hItem);
 
-        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol)))
+        if (pComp && (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol)))
         {
-            if (ISA(pComp, ZBSymbol))
+            if (ISA(pComp, PSS_Symbol))
             {
-                IdMenu = dynamic_cast<ZBSymbol*>(pComp)->GetRightSubMenu();
+                IdMenu = dynamic_cast<PSS_Symbol*>(pComp)->GetRightSubMenu();
             }
             else if (ISA(pComp, PSS_LinkSymbol))
             {
@@ -186,11 +186,11 @@ void ZCProcessModelTreeView::DisplayContextMenu(CWnd* pWnd, CPoint point)
         bool Local = true;
         CODSymbolComponent* pComp = m_ModelTree.GetSymbol(hItem);
 
-        if (pComp && (ISA(pComp, ZBSymbol) || ISA(pComp, PSS_LinkSymbol)))
+        if (pComp && (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol)))
         {
-            if (ISA(pComp, ZBSymbol))
+            if (ISA(pComp, PSS_Symbol))
             {
-                Local = dynamic_cast<ZBSymbol*>(pComp)->IsLocal();
+                Local = dynamic_cast<PSS_Symbol*>(pComp)->IsLocal();
             }
             else if (ISA(pComp, PSS_LinkSymbol))
             {

@@ -26,7 +26,7 @@
 // PSS_PathMachine
 //---------------------------------------------------------------------------
 PSS_PathMachine::PSS_PathMachine(PSS_ProcessGraphModelMdl* pModel,
-                                 ZBSymbol*                 pSymbol,
+                                 PSS_Symbol*               pSymbol,
                                  PSS_Log*                  pLog,
                                  int                       maxLoop,
                                  int                       maxPaused,
@@ -199,8 +199,8 @@ std::size_t PSS_PathMachine::CopyNodeArrayToSymbolSet(CODNodeArray& nodes, PSS_S
 
     for (std::size_t nodeIndex = 0; nodeIndex < elementCount; ++nodeIndex)
     {
-        IODNode*  pINode  = nodes.GetAt(nodeIndex);
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pINode);
+        IODNode*    pINode  = nodes.GetAt(nodeIndex);
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pINode);
 
         if (!pSymbol)
             continue;

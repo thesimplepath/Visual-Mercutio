@@ -35,7 +35,7 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZBBPGenericSymbol : public ZBSymbol
+class AFX_EXT_CLASS ZBBPGenericSymbol : public PSS_Symbol
 {
     DECLARE_SERIAL( ZBBPGenericSymbol )
 

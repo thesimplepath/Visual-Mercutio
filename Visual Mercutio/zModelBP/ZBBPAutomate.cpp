@@ -50,7 +50,7 @@ ZBBPAutomate::ZBBPAutomate(PSS_ProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log*
     : PSS_AutomationMachine(pModel, pLog)
 {}
 
-ZBBPAutomate::ZBBPAutomate(ZBSymbol* pSymbol, PSS_ProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
+ZBBPAutomate::ZBBPAutomate(PSS_Symbol* pSymbol, PSS_ProcessGraphModelMdl* pModel /*= NULL*/, PSS_Log* pLog /*= NULL*/)
     : PSS_AutomationMachine(pSymbol, pModel, pLog)
 {}
 

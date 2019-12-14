@@ -6,10 +6,10 @@
 #define AFX_ZBSYMBOLENTITY_H__CCE095E4_6B7D_426B_928B_9F990EBB2B95__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,13 +17,19 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBSymbolStamp.h"
-
+// stingray studio
 #include "Foundation/Image/MFC/SECJPEG.H"
 
-// Forward declaration
-class ZBSymbol;
+// processsoft
+#include "ZBSymbolStamp.h"
 
+// class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
+
+// forward class declaration
+class PSS_Symbol;
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -100,8 +106,8 @@ public:
 
     ZBSymbolStamp&    GetSymbolStamp();
     const ZBSymbolStamp&    GetSymbolStampConst() const;
-    ZBSymbol*        GetSymbolPtr();
-    const ZBSymbol*        GetSymbolPtrConst() const;
+    PSS_Symbol*        GetSymbolPtr();
+    const PSS_Symbol*        GetSymbolPtrConst() const;
 
     // Archiving operations ----------------------------------
 
@@ -122,11 +128,10 @@ public:
 
 protected:
     ZBSymbolStamp    m_SymbolStamp;
-    ZBSymbol*        m_pSymbol;
+    PSS_Symbol*      m_pSymbol;
 private:
     SECJpeg m_Image;
 };
-
 
 inline DWORD    ZBSymbolEntity::GetInternalFileVersion() const
 {
@@ -196,7 +201,6 @@ inline void ZBSymbolEntity::SetModificationDate(PSS_Date value )
     m_SymbolStamp.SetModificationDate( value );
 }
 
-
 inline DWORD ZBSymbolEntity::IncrementPublishVersionOfFile (const CString fileName)
 {
     return m_SymbolStamp.IncrementPublishVersionOfFile(fileName);
@@ -214,7 +218,6 @@ inline DWORD ZBSymbolEntity::GetPublishVersionOfFile (const CString fileName)
     return m_SymbolStamp.GetPublishVersionOfFile(fileName);
 }
 
-
 inline ZBSymbolStamp& ZBSymbolEntity::GetSymbolStamp()
 {
     return m_SymbolStamp;
@@ -224,15 +227,14 @@ inline const ZBSymbolStamp& ZBSymbolEntity::GetSymbolStampConst() const
     return m_SymbolStamp;
 }
 
-
-inline ZBSymbol* ZBSymbolEntity::GetSymbolPtr()
+inline PSS_Symbol* ZBSymbolEntity::GetSymbolPtr()
 {
     return m_pSymbol;
 }
 
-inline const ZBSymbol* ZBSymbolEntity::GetSymbolPtrConst() const
+inline const PSS_Symbol* ZBSymbolEntity::GetSymbolPtrConst() const
 {
     return m_pSymbol;
 }
 
-#endif // !defined(AFX_ZBSYMBOLENTITY_H__CCE095E4_6B7D_426B_928B_9F990EBB2B95__INCLUDED_)
+#endif

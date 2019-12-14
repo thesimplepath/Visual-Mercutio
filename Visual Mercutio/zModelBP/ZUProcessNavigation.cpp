@@ -106,9 +106,9 @@ bool ZUProcessNavigation::Visit(CODComponent& Symbol)
     {
         return OnStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBSymbol))
+    else if (ISA(pSymbol, PSS_Symbol))
     {
-        return OnSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
+        return OnSymbol(dynamic_cast<PSS_Symbol*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_LinkSymbol))
     {

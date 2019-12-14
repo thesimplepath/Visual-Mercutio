@@ -51,7 +51,7 @@ public:
     virtual bool OnStartSymbol(ZBBPStartSymbol*            pSymbol);
     virtual bool OnStopSymbol(ZBBPStopSymbol*            pSymbol);
     virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol*    pSymbol);
-    virtual bool OnSymbol(ZBSymbol*                    pSymbol);
+    virtual bool OnSymbol(PSS_Symbol*                    pSymbol);
     virtual bool OnLink(PSS_LinkSymbol*                pLink);
 
 private:

@@ -89,7 +89,7 @@ private:
     bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
     bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
     bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
-    bool OnSymbol(ZBSymbol* pSymbol);
+    bool OnSymbol(PSS_Symbol* pSymbol);
     bool OnLink(PSS_LinkSymbol* pLink);
 
     virtual bool Visit(CODComponent& Symbol);

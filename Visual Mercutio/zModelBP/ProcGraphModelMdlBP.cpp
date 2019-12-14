@@ -268,11 +268,11 @@ void ZDProcessGraphModelMdlBP::MigrateProperties()
         CODComponent*    pComp = pSet->GetAt(i);
 
         // If has child model
-        if (pComp && ISA(pComp, ZBSymbol) &&
-            ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (pComp && ISA(pComp, PSS_Symbol) &&
+            ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
             // and recalculate its model also
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((ZBSymbol*)pComp)->GetChildModel())->MigrateProperties();
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)pComp)->GetChildModel())->MigrateProperties();
         }
     }
 
@@ -308,7 +308,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
             if (!PSS_GUID::GUIDIsValid(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID()))
             {
                 bool bError;
-                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitName(), bError));
+                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitGUID(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitName(), bError));
             }
         }
         else if (pComp && ISA(pComp, ZBBPStopSymbol) &&
@@ -317,7 +317,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
             if (!PSS_GUID::GUIDIsValid(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID()))
             {
                 bool bError;
-                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitName(), bError));
+                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitGUID(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitName(), bError));
             }
         }
         else if (pComp && ISA(pComp, ZBBPProcedureSymbol) &&
@@ -326,16 +326,16 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
             if (!PSS_GUID::GUIDIsValid(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID()))
             {
                 bool bError;
-                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitGUID(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitName(), bError));
+                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitGUID(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitGUID(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitName(), bError));
             }
         }
 
         // If has child model
-        if (pComp && ISA(pComp, ZBSymbol) &&
-            ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (pComp && ISA(pComp, PSS_Symbol) &&
+            ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
             // and recalculate its model also
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((ZBSymbol*)pComp)->GetChildModel())->MigrateUnitGUID();
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)pComp)->GetChildModel())->MigrateUnitGUID();
         }
     }
 
@@ -375,11 +375,11 @@ void ZDProcessGraphModelMdlBP::NotifyDeletePage(ZDProcessGraphPage* pPage)
         }
 
         // If has child model
-        if (pComp && ISA(pComp, ZBSymbol) &&
-            ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (pComp && ISA(pComp, PSS_Symbol) &&
+            ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
             // and recalculate its model also
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((ZBSymbol*)pComp)->GetChildModel())->NotifyDeletePage(pPage);
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)pComp)->GetChildModel())->NotifyDeletePage(pPage);
         }
     }
 
@@ -450,11 +450,11 @@ void ZDProcessGraphModelMdlBP::ConvertDeliverables()
         }
 
         // If has child model
-        if (pComp && ISA(pComp, ZBSymbol) &&
-            ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (pComp && ISA(pComp, PSS_Symbol) &&
+            ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
             // and recalculate its model also
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((ZBSymbol*)pComp)->GetChildModel())->ConvertDeliverables();
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)pComp)->GetChildModel())->ConvertDeliverables();
         }
     }
 
@@ -492,12 +492,12 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         {
             if (dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitName().IsEmpty())
             {
-                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitName(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitCost() <= 0)
             {
-                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStartSymbol*>(pComp)->SetUnitCost(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPStartSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (pLog)
@@ -515,12 +515,12 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         {
             if (dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitName().IsEmpty())
             {
-                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitName(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitCost() <= 0)
             {
-                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPStopSymbol*>(pComp)->SetUnitCost(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPStopSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (pLog)
@@ -538,12 +538,12 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         {
             if (dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitName().IsEmpty())
             {
-                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitName(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitName(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitName(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitCost() <= 0)
             {
-                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitCost(dynamic_cast<ZBSymbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
+                dynamic_cast<ZBBPProcedureSymbol*>(pComp)->SetUnitCost(dynamic_cast<PSS_Symbol*>(pComp)->RetrieveUnitCost(dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetUnitGUID(), bError));
             }
 
             if (pLog)
@@ -556,11 +556,11 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
         }
 
         // If has child model
-        if (pComp && ISA(pComp, ZBSymbol) &&
-            ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (pComp && ISA(pComp, PSS_Symbol) &&
+            ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
             // and recalculate its model also
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((ZBSymbol*)pComp)->GetChildModel())->ReassignUnit(pLog);
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)pComp)->GetChildModel())->ReassignUnit(pLog);
         }
     }
 
@@ -609,11 +609,11 @@ void ZDProcessGraphModelMdlBP::RecalculatePageReference()
         }
 
         // If has child model
-        if (pComp && ISA(pComp, ZBSymbol) &&
-            ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (pComp && ISA(pComp, PSS_Symbol) &&
+            ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
             // and recalculate its model also
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((ZBSymbol*)pComp)->GetChildModel())->RecalculatePageReference();
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)pComp)->GetChildModel())->RecalculatePageReference();
         }
     }
 
@@ -650,11 +650,11 @@ void ZDProcessGraphModelMdlBP::RecalculateDoorReference()
         }
 
         // If has child model
-        if (pComp && ISA(pComp, ZBSymbol) &&
-            ((ZBSymbol*)pComp)->GetChildModel() && !((ZBSymbol*)pComp)->IsChildModelRef())
+        if (pComp && ISA(pComp, PSS_Symbol) &&
+            ((PSS_Symbol*)pComp)->GetChildModel() && !((PSS_Symbol*)pComp)->IsChildModelRef())
         {
             // and recalculate its model also
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((ZBSymbol*)pComp)->GetChildModel())->RecalculateDoorReference();
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)pComp)->GetChildModel())->RecalculateDoorReference();
         }
     }
 

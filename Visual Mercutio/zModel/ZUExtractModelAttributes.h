@@ -11,7 +11,7 @@
 
 #if _MSC_VER > 1000
     #pragma once
-#endif // _MSC_VER > 1000
+#endif
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -49,7 +49,7 @@ class AFX_EXT_CLASS ZUExtractModelAttributes : public ZUModelNavigation
         virtual bool OnStart();
         virtual bool OnFinish();
 
-        virtual bool OnSymbol(ZBSymbol* pSymbol);
+        virtual bool OnSymbol(PSS_Symbol* pSymbol);
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:

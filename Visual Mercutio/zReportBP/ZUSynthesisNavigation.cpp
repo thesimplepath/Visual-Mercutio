@@ -25,7 +25,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -36,31 +36,29 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUSynthesisNavigation::ZUSynthesisNavigation(PSS_ProcessGraphModelMdl*    pModel        /*= NULL*/,
-                                              void*                        pClass        /*= NULL*/,
+                                             void*                        pClass        /*= NULL*/,
                                              PSS_ProcessGraphModelMdl*    pRootModel    /*= NULL*/,
-                                              const CString                domainName    /*= ""*/,
-                                              const CString                unitName    /*= ""*/ )
-    : ZUProcessNavigation    ( pModel, pClass ),
-      m_pRootModel            ( pRootModel ),
-      m_DomainName            ( domainName ),
-      m_UnitName            ( unitName )
-{
-}
+                                             const CString                domainName    /*= ""*/,
+                                             const CString                unitName    /*= ""*/)
+    : ZUProcessNavigation(pModel, pClass),
+    m_pRootModel(pRootModel),
+    m_DomainName(domainName),
+    m_UnitName(unitName)
+{}
 
 ZUSynthesisNavigation::~ZUSynthesisNavigation()
-{
-}
+{}
 
 // Cette fonction est appelée lorsque la navigation démarre.
 bool ZUSynthesisNavigation::OnStart()
 {
     // Start by casting the stream class
-    m_postream = static_cast<ZBOStreamGrid*>( m_pClass );
-    
-    m_BlueStyle.SetTextColor( defCOLOR_BLACK )
-                             .SetInterior( RGB( 0, 128, 255 ) );
+    m_postream = static_cast<ZBOStreamGrid*>(m_pClass);
 
-    return ( m_postream ) ? true : false;
+    m_BlueStyle.SetTextColor(defCOLOR_BLACK)
+        .SetInterior(RGB(0, 128, 255));
+
+    return (m_postream) ? true : false;
 }
 
 // Cette fonction est appelée lorsque la navigation se termine.
@@ -70,82 +68,82 @@ bool ZUSynthesisNavigation::OnFinish()
 }
 
 // Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPProcedureSymbol dans le modèle.
-bool ZUSynthesisNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
+bool ZUSynthesisNavigation::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
 {
     int top;
     int left;
 
     // Check the number of row
     ROWCOL RowCount = m_postream->GetGridCore()->GetRowCount();
-    m_postream->GetCurSel( left, top );
+    m_postream->GetCurSel(left, top);
 
     // If not enough, add 30 rows
-    if ( ( top + 30 ) > (int)RowCount )
+    if ((top + 30) > (int)RowCount)
     {
-        m_postream->GetGridCore()->SetRowCount( RowCount + 30 );
+        m_postream->GetGridCore()->SetRowCount(RowCount + 30);
     }
 
     CGXStyle WrapStyle;
-    WrapStyle.SetWrapText( TRUE );
+    WrapStyle.SetWrapText(TRUE);
 
     // Only for the specific unit
     // Check if for the same unit
     bool Error;
 
-    CString UnitName = pSymbol->RetrieveUnitName( pSymbol->GetUnitGUID(), Error );
+    CString UnitName = pSymbol->RetrieveUnitName(pSymbol->GetUnitGUID(), Error);
 
-    if ( m_UnitName == UnitName )
+    if (m_UnitName == UnitName)
     {
         // Add the symbol line
         *m_postream << m_DomainName;
         *m_postream << m_BlueStyle;
-        *m_postream << _T( "\t" );
+        *m_postream << _T("\t");
 
         *m_postream << m_CurrentProcessName;
         *m_postream << m_BlueStyle;
         *m_postream << WrapStyle;
-        *m_postream << _T( "\t" );
+        *m_postream << _T("\t");
 
         *m_postream << pSymbol->GetSymbolName();
         *m_postream << WrapStyle;
-        *m_postream << _T( "\n" );
+        *m_postream << _T("\n");
     }
 
     return true;
 }
 
 // Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPProcessSymbol dans le modèle.
-bool ZUSynthesisNavigation::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
+bool ZUSynthesisNavigation::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
 {
     m_CurrentProcessName = pSymbol->GetSymbolName();
 
     PSS_ProcessGraphModelMdl* pOwnerModel = (PSS_ProcessGraphModelMdl*)pSymbol->GetOwnerModel();
 
-    if ( pOwnerModel )
+    if (pOwnerModel)
     {
-        ZDProcessGraphPage* pPage = m_pRootModel->FindModelPage( pOwnerModel, true );
+        ZDProcessGraphPage* pPage = m_pRootModel->FindModelPage(pOwnerModel, true);
 
-        if ( pPage )
+        if (pPage)
         {
             m_DomainName = pPage->GetPageName();
         }
         else
         {
-            m_DomainName.LoadString( IDS_SYNTHESYS_NOT_FOUND );
+            m_DomainName.LoadString(IDS_SYNTHESYS_NOT_FOUND);
         }
     }
 
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBSymbol dans le modèle.
-bool ZUSynthesisNavigation::OnSymbol( ZBSymbol* pSymbol )
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_Symbol dans le modèle.
+bool ZUSynthesisNavigation::OnSymbol(PSS_Symbol* pSymbol)
 {
     return true;
 }
 
 // Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_LinkSymbol dans le modèle.
-bool ZUSynthesisNavigation::OnLink( PSS_LinkSymbol* pLink )
+bool ZUSynthesisNavigation::OnLink(PSS_LinkSymbol* pLink)
 {
     return true;
 }

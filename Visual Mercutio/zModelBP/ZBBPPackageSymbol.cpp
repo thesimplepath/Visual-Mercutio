@@ -22,7 +22,7 @@ static char THIS_FILE[]=__FILE__;
 
 PSS_Bitmap ZBBPPackageSymbol::m_LinkedToFileBitmap;
 
-IMPLEMENT_SERIAL(ZBBPPackageSymbol, ZBSymbol, g_DefVersion)
+IMPLEMENT_SERIAL(ZBBPPackageSymbol, PSS_Symbol, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -31,7 +31,7 @@ IMPLEMENT_SERIAL(ZBBPPackageSymbol, ZBSymbol, g_DefVersion)
 ZBBPPackageSymbol::ZBBPPackageSymbol( const CString Name /*= ""*/, const CString fileName /*= ""*/ )
 : m_FileNameLinkedTo(fileName), m_DisplayPreview(false), m_pPackageDoc(NULL)
 {
-    ZBSymbol::SetSymbolName(Name); 
+    PSS_Symbol::SetSymbolName(Name);
     if (!m_LinkedToFileBitmap.IsValid())
         m_LinkedToFileBitmap.LoadBitmap( IDB_LINKTOMODEL );
 
@@ -49,7 +49,7 @@ ZBBPPackageSymbol::ZBBPPackageSymbol(const ZBBPPackageSymbol& src)
 ZBBPPackageSymbol& ZBBPPackageSymbol::operator=(const ZBBPPackageSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=( (const ZBSymbol&)src);
+    PSS_Symbol::operator=( (const PSS_Symbol&)src);
     m_DisplayPreview = src.m_DisplayPreview;
     m_FileNameLinkedTo = src.m_FileNameLinkedTo;
     return *this;
@@ -63,7 +63,7 @@ CODComponent* ZBBPPackageSymbol::Dup() const
 
 BOOL ZBBPPackageSymbol::SetSymbolName(const CString value)
 {
-    BOOL bResult = ZBSymbol::SetSymbolName(value);
+    BOOL bResult = PSS_Symbol::SetSymbolName(value);
     if (m_pModel)
         m_pModel->SetName(value);
     return bResult;
@@ -79,12 +79,12 @@ bool ZBBPPackageSymbol::AcceptDropItem( CObject* pObj, const CPoint& pt )
         return false;
     }
 
-    return ZBSymbol::AcceptDropItem( pObj, pt );
+    return PSS_Symbol::AcceptDropItem( pObj, pt );
 }
 
 bool ZBBPPackageSymbol::DropItem( CObject* pObj, const CPoint& pt )
 {
-    return ZBSymbol::DropItem( pObj, pt );
+    return PSS_Symbol::DropItem( pObj, pt );
 }
 
 
@@ -92,7 +92,7 @@ bool ZBBPPackageSymbol::DropItem( CObject* pObj, const CPoint& pt )
 void ZBBPPackageSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom( src );
+    PSS_Symbol::CopySymbolDefinitionFrom( src );
     if (ISA((&src),ZBBPPackageSymbol))
     {
         m_DisplayPreview = ((ZBBPPackageSymbol&)src).m_DisplayPreview;
@@ -113,7 +113,7 @@ BOOL ZBBPPackageSymbol::Create( const CString Name /*= ""*/, const CString fileN
     if (!fileName.IsEmpty())
         m_FileNameLinkedTo = fileName;
 
-    BOOL RetValue = ZBSymbol::Create( IDR_PACKAGE_SYM, AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")), Name );
+    BOOL RetValue = PSS_Symbol::Create( IDR_PACKAGE_SYM, AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")), Name );
 
     if (!CreateSymbolProperties())
         RetValue = FALSE;
@@ -125,7 +125,7 @@ BOOL ZBBPPackageSymbol::Create( const CString Name /*= ""*/, const CString fileN
 
 void ZBBPPackageSymbol::AdjustElementPosition()
 {
-    ZBSymbol::AdjustElementPosition();
+    PSS_Symbol::AdjustElementPosition();
 /*
     // Recalculate the comment rect
     CODTextComponent* pText = GetCommentTextEdit();
@@ -158,7 +158,7 @@ bool    ZBBPPackageSymbol::LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, PSS_Pr
     {
         m_pPackageDoc = (PSS_ProcessGraphModelDoc*)pDoc;
         // Assign the name.
-        ZBSymbol::SetSymbolName( ((PSS_ProcessGraphModelDoc*)pDoc)->GetModel()->GetModelName() );
+        PSS_Symbol::SetSymbolName( ((PSS_ProcessGraphModelDoc*)pDoc)->GetModel()->GetModelName() );
         // Assign the pointer to the model
         m_pModel = ((PSS_ProcessGraphModelDoc*)pDoc)->GetModel();
         // Assign the model parent
@@ -193,7 +193,7 @@ bool    ZBBPPackageSymbol::UnloadPackage()
 
 void ZBBPPackageSymbol::OnDraw(CDC* pDC)
 {
-    ZBSymbol::OnDraw(pDC);
+    PSS_Symbol::OnDraw(pDC);
 //    if (m_pModel && ISA(m_pModel,PSS_ProcessGraphModelMdl) && m_DisplayPreview)
 //        reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->DrawMetaFile(pDC, m_CommentRect);
     if (IsLinkedToFileName() && m_LinkedToFileBitmap.IsValid())
@@ -208,7 +208,7 @@ void ZBBPPackageSymbol::Serialize(CArchive& ar)
 {
 
     // Serialize the canvas model.
-    ZBSymbol::Serialize(ar);
+    PSS_Symbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
     if (ar.m_pDocument)

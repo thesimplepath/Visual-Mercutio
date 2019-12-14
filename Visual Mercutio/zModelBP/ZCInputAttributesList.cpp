@@ -280,7 +280,7 @@ void ZCInputAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
         {
             m_pComp = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement();
             if (m_pComp &&
-                (ISA(m_pComp, ZBSymbol) || ISA(m_pComp, PSS_LinkSymbol)))
+                (ISA(m_pComp, PSS_Symbol) || ISA(m_pComp, PSS_LinkSymbol)))
                 SetSymbolRef(dynamic_cast<PSS_BasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());
             else
                 SetSymbolRef(-1);

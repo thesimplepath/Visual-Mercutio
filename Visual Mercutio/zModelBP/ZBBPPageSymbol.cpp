@@ -30,7 +30,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 3 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZBBPPageSymbol, ZBSymbol, g_DefVersion)
+IMPLEMENT_SERIAL(ZBBPPageSymbol, PSS_Symbol, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -42,7 +42,7 @@ ZBBPPageSymbol::ZBBPPageSymbol(const CString Name /*= ""*/)
     m_pTwinPageSymbol(NULL),
     m_TwinPageRefNumber(-1)
 {
-    ZBSymbol::SetSymbolName(Name);
+    PSS_Symbol::SetSymbolName(Name);
 
     // ***********************************************************************************************
     // JMR-MODIF - Le 1er mai 2006 - Redimensionne la zone de texte par rapport à la largeur du texte.
@@ -66,7 +66,7 @@ ZBBPPageSymbol::ZBBPPageSymbol(const ZBBPPageSymbol& src)
 ZBBPPageSymbol& ZBBPPageSymbol::operator=(const ZBBPPageSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=((const ZBSymbol&)src);
+    PSS_Symbol::operator=((const PSS_Symbol&)src);
 
     m_DisplayPreview = src.m_DisplayPreview;
     m_TwinPageRefNumber = src.m_TwinPageRefNumber;
@@ -271,7 +271,7 @@ void ZBBPPageSymbol::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString 
 
 void ZBBPPageSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZBSymbol* pSymbol = static_cast<ZBSymbol*>(pSubject);
+    PSS_Symbol* pSymbol = static_cast<PSS_Symbol*>(pSubject);
 
     // If it is a page symbol
     if (pSymbol && ISA(pSymbol, ZBBPPageSymbol))
@@ -316,18 +316,18 @@ bool ZBBPPageSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
         return false;
     }
 
-    return ZBSymbol::AcceptDropItem(pObj, pt);
+    return PSS_Symbol::AcceptDropItem(pObj, pt);
 }
 
 bool ZBBPPageSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
-    return ZBSymbol::DropItem(pObj, pt);
+    return PSS_Symbol::DropItem(pObj, pt);
 }
 
 void ZBBPPageSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom(src);
+    PSS_Symbol::CopySymbolDefinitionFrom(src);
 
     if (ISA((&src), ZBBPPageSymbol))
     {
@@ -346,7 +346,7 @@ void ZBBPPageSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 
 bool ZBBPPageSymbol::CreateSymbolProperties()
 {
-    if (!ZBSymbol::CreateSymbolProperties())
+    if (!PSS_Symbol::CreateSymbolProperties())
     {
         return false;
     }
@@ -358,7 +358,7 @@ bool ZBBPPageSymbol::FillProperties(ZBPropertySet&    PropSet,
                                     bool            NumericValue    /*= false*/,
                                     bool            GroupValue        /*= false*/)
 {
-    if (!ZBSymbol::FillProperties(PropSet, NumericValue, GroupValue))
+    if (!PSS_Symbol::FillProperties(PropSet, NumericValue, GroupValue))
     {
         return false;
     }
@@ -368,7 +368,7 @@ bool ZBBPPageSymbol::FillProperties(ZBPropertySet&    PropSet,
 
 bool ZBBPPageSymbol::SaveProperties(ZBPropertySet& PropSet)
 {
-    if (!ZBSymbol::SaveProperties(PropSet))
+    if (!PSS_Symbol::SaveProperties(PropSet))
     {
         return false;
     }
@@ -382,7 +382,7 @@ BOOL ZBBPPageSymbol::Create(const CString Name /*= ""*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create(IDR_BP_PAGE,
+    BOOL RetValue = PSS_Symbol::Create(IDR_BP_PAGE,
                                      AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
                                      Name);
 
@@ -416,7 +416,7 @@ BOOL ZBBPPageSymbol::Create(const CString Name /*= ""*/)
 
 bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/)
 {
-    if (!ZBSymbol::OnPostCreation(pModel, pCtrl))
+    if (!PSS_Symbol::OnPostCreation(pModel, pCtrl))
     {
         return false;
     }
@@ -630,7 +630,7 @@ void ZBBPPageSymbol::OnPostDoubleClick(CODModel* pModel /*= NULL*/, CODControlle
 
 void ZBBPPageSymbol::AdjustElementPosition()
 {
-    ZBSymbol::AdjustElementPosition();
+    PSS_Symbol::AdjustElementPosition();
 
     // Recalculate the comment rect
     CODTextComponent* pText = GetCommentTextEdit();
@@ -647,7 +647,7 @@ void ZBBPPageSymbol::AdjustElementPosition()
 
 void ZBBPPageSymbol::OnDraw(CDC* pDC)
 {
-    ZBSymbol::OnDraw(pDC);
+    PSS_Symbol::OnDraw(pDC);
 }
 
 BOOL ZBBPPageSymbol::CreateEmptyChildModel(CODModel* pParent)
@@ -674,7 +674,7 @@ bool ZBBPPageSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_To
         toolTipText.LoadString(IDS_FS_BPPAGE_ERR_TOOLTIP);
     }
 
-    if (mode == ZBSymbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking
@@ -687,7 +687,7 @@ bool ZBBPPageSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_To
 void ZBBPPageSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    ZBSymbol::Serialize(ar);
+    PSS_Symbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
     if (ar.m_pDocument)

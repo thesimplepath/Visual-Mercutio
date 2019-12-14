@@ -32,7 +32,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 3 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZBBPDoorSymbol, ZBSymbol, g_DefVersion)
+IMPLEMENT_SERIAL(ZBBPDoorSymbol, PSS_Symbol, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -43,7 +43,7 @@ ZBBPDoorSymbol::ZBBPDoorSymbol(const CString Name /*= ""*/)
     m_pTwinDoorSymbol(NULL),
     m_TwinDoorRefNumber(-1)
 {
-    ZBSymbol::SetSymbolName(Name);
+    PSS_Symbol::SetSymbolName(Name);
 
     // ***********************************************************************************************
     // JMR-MODIF - Le 1er mai 2006 - Redimensionne la zone de texte par rapport à la largeur du texte.
@@ -81,7 +81,7 @@ ZBBPDoorSymbol& ZBBPDoorSymbol::operator=(const ZBBPDoorSymbol& src)
     }
 
     // Call the base class assignement operator
-    ZBSymbol::operator=((const ZBSymbol&)src);
+    PSS_Symbol::operator=((const PSS_Symbol&)src);
 
     m_DisplayPreview = src.m_DisplayPreview;
     m_TwinDoorRefNumber = src.m_TwinDoorRefNumber;
@@ -286,7 +286,7 @@ void ZBBPDoorSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString OldNa
 
 void ZBBPDoorSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZBSymbol* pSymbol = static_cast<ZBSymbol*>(pSubject);
+    PSS_Symbol* pSymbol = static_cast<PSS_Symbol*>(pSubject);
 
     // If it is a door symbol
     if (pSymbol && ISA(pSymbol, ZBBPDoorSymbol))
@@ -330,18 +330,18 @@ bool ZBBPDoorSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
         return false;
     }
 
-    return ZBSymbol::AcceptDropItem(pObj, pt);
+    return PSS_Symbol::AcceptDropItem(pObj, pt);
 }
 
 bool ZBBPDoorSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
-    return ZBSymbol::DropItem(pObj, pt);
+    return PSS_Symbol::DropItem(pObj, pt);
 }
 
 void ZBBPDoorSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom(src);
+    PSS_Symbol::CopySymbolDefinitionFrom(src);
 
     if (ISA((&src), ZBBPDoorSymbol))
     {
@@ -373,7 +373,7 @@ BOOL ZBBPDoorSymbol::Create(const CString Name /*= ""*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create(IDR_BP_DOOR,
+    BOOL RetValue = PSS_Symbol::Create(IDR_BP_DOOR,
                                      AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM),
                                                            _T("Symbol")),
                                      Name);
@@ -408,7 +408,7 @@ BOOL ZBBPDoorSymbol::Create(const CString Name /*= ""*/)
 
 bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/)
 {
-    if (!ZBSymbol::OnPostCreation(pModel, pCtrl))
+    if (!PSS_Symbol::OnPostCreation(pModel, pCtrl))
     {
         return false;
     }
@@ -566,12 +566,12 @@ void ZBBPDoorSymbol::OnPostDoubleClick(CODModel* pModel /*= NULL*/, CODControlle
 
 void ZBBPDoorSymbol::AdjustElementPosition()
 {
-    ZBSymbol::AdjustElementPosition();
+    PSS_Symbol::AdjustElementPosition();
 }
 
 void ZBBPDoorSymbol::OnDraw(CDC* pDC)
 {
-    ZBSymbol::OnDraw(pDC);
+    PSS_Symbol::OnDraw(pDC);
 }
 
 BOOL ZBBPDoorSymbol::OnDoubleClick()
@@ -590,7 +590,7 @@ bool ZBBPDoorSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_To
     else
         toolTipText.LoadString(IDS_FS_BPDOOR_ERR_TOOLTIP);
 
-    if (mode == ZBSymbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IE_TT_Design)
     {
         // todo -cFeature -oJean: do nothing for now, need to implement the result of the control checking
     }
@@ -601,7 +601,7 @@ bool ZBBPDoorSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_To
 void ZBBPDoorSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    ZBSymbol::Serialize(ar);
+    PSS_Symbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
     if (ar.m_pDocument)

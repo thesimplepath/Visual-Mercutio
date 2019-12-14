@@ -56,7 +56,7 @@ PSS_SoapPublishModelDefinition::PSS_SoapPublishModelDefinition(ZBPublishMessenge
 PSS_SoapPublishModelDefinition::~PSS_SoapPublishModelDefinition()
 {}
 //---------------------------------------------------------------------------
-int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*                 pSymbol,
+int PSS_SoapPublishModelDefinition::GetParentSymbolReference(PSS_Symbol*               pSymbol,
                                                              int                       parentID,
                                                              PSS_ProcessGraphModelMdl* pParentModel)
 {
@@ -122,7 +122,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*          
             }
 
             // get symbol
-            ZBSymbol* pCompSym = dynamic_cast<ZBSymbol*>(pComponent);
+            PSS_Symbol* pCompSym = dynamic_cast<PSS_Symbol*>(pComponent);
 
             // if the found component symbol is identical to the given one, return the parent ID
             if (pCompSym && pCompSym->GetSymbolReferenceNumber() == pSymbol->GetSymbolReferenceNumber())
@@ -443,7 +443,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinDoor->GetEnteringSymbols_Up(followingNodes);
 
         const std::size_t followingSymbolCount =
-                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(ZBSymbol));
+                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;
@@ -468,7 +468,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinPage->GetEnteringSymbols_Up(followingNodes);
 
         std::size_t followingSymbolCount =
-                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(ZBSymbol));
+                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;
@@ -498,7 +498,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinDoor->GetFollowingSymbols_Down(followingNodes);
 
         std::size_t followingSymbolCount =
-                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(ZBSymbol));
+                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;
@@ -523,7 +523,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinPage->GetFollowingSymbols_Down(followingNodes);
 
         const std::size_t followingSymbolCount =
-            ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(ZBSymbol));
+            ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;
@@ -536,7 +536,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
     bool lateral          = false;
     int  lateralDirection = 0;
 
-    ZBSymbol* pSrcSymbol = dynamic_cast<ZBSymbol*>(pSrc);
+    PSS_Symbol* pSrcSymbol = dynamic_cast<PSS_Symbol*>(pSrc);
     ASSERT(pSrcSymbol);
 
     // get right edges
@@ -587,8 +587,8 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
 
     // publish the deliverable link symbol
     m_PubMdl.Add(PSS_SoapData_Deliverable(pSymbol->GetSymbolReferenceNumber(),
-                                          dynamic_cast<ZBSymbol*>(pSrc)->GetSymbolReferenceNumber(),
-                                          dynamic_cast<ZBSymbol*>(pDst)->GetSymbolReferenceNumber(),
+                                          dynamic_cast<PSS_Symbol*>(pSrc)->GetSymbolReferenceNumber(),
+                                          dynamic_cast<PSS_Symbol*>(pDst)->GetSymbolReferenceNumber(),
                                           PSS_String16(pSymbol->GetSymbolName()),
                                           lateral ? 1 : 0,
                                           lateralDirection,

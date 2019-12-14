@@ -26,6 +26,9 @@
 #include "PSS_StateObject.h"
 
 // class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
@@ -34,7 +37,7 @@
 #endif
 
 // forward class declaration
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_ProcessGraphModelMdl;
 class PSS_MainAutomationRunnerThread;
@@ -98,7 +101,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
         *@param allowUncompletePath - if true, a path can be broken when object are waiting on other objects
         */
-        PSS_AutomationMachine(ZBSymbol*                 pSymbol,
+        PSS_AutomationMachine(PSS_Symbol*               pSymbol,
                               PSS_ProcessGraphModelMdl* pModel                  =  NULL,
                               PSS_Log*                  pLog                    =  NULL,
                               int                       maxLoop                 = -1,
@@ -124,13 +127,13 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         * Gets the start symbol
         *@return start symbol
         */
-        virtual inline ZBSymbol* GetStartSymbol() const;
+        virtual inline PSS_Symbol* GetStartSymbol() const;
 
         /**
         * Sets the start symbol
         *@param pSymbol - symbol
         */
-        virtual inline void SetStartSymbol(ZBSymbol* pSymbol);
+        virtual inline void SetStartSymbol(PSS_Symbol* pSymbol);
 
         /**
         * Gets the state machine collection
@@ -529,7 +532,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
 
     private:
         PSS_MainAutomationRunnerThread* m_pMainThread;
-        ZBSymbol*                       m_pSymbol;
+        PSS_Symbol*                     m_pSymbol;
         PSS_Log*                        m_pLog;
         std::size_t                     m_ErrorCounter;
         std::size_t                     m_WarningCounter;
@@ -628,12 +631,12 @@ PSS_ProcessGraphModelMdl* PSS_AutomationMachine::GetModel() const
     return m_pModel;
 }
 //---------------------------------------------------------------------------
-ZBSymbol* PSS_AutomationMachine::GetStartSymbol() const
+PSS_Symbol* PSS_AutomationMachine::GetStartSymbol() const
 {
     return m_pSymbol;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetStartSymbol(ZBSymbol* pSymbol)
+void PSS_AutomationMachine::SetStartSymbol(PSS_Symbol* pSymbol)
 {
     m_pSymbol = pSymbol;
 }

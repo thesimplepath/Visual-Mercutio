@@ -307,7 +307,7 @@ void ZVPublishProcessReport::ResetDatas()
 }
 
 // Cette fonction retrouve l'original d'un symbole à travers tout le système de modèles.
-ZBSymbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
+PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
                                              ZDProcessGraphModelMdlBP* m_StartRootModel /* = NULL */)
 {
     // Si le nom est vide, retourne 0.
@@ -411,7 +411,7 @@ ZBSymbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
                             if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
                             {
-                                ZBSymbol* Result = NULL;
+                                PSS_Symbol* Result = NULL;
 
                                 // Convertit le symbole.
                                 ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);

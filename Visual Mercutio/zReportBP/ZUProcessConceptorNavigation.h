@@ -54,7 +54,7 @@ public:
     virtual bool OnFinish();
     virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*    pProcedure);
     virtual bool OnProcessSymbol(ZBBPProcessSymbol*    pSymbol);
-    virtual bool OnSymbol(ZBSymbol*                pSymbol);
+    virtual bool OnSymbol(PSS_Symbol*               pSymbol);
     virtual bool OnLink(PSS_LinkSymbol*            pLink);
 
 private:

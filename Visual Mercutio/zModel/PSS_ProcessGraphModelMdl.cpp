@@ -43,7 +43,7 @@ const std::size_t g_RecursionMaxLoop = 5000;
 //---------------------------------------------------------------------------
 // PSS_ProcessGraphModelMdl::IComponentRef
 //---------------------------------------------------------------------------
-PSS_ProcessGraphModelMdl::IComponentRef::IComponentRef(ZBSymbol* pSymbol) :
+PSS_ProcessGraphModelMdl::IComponentRef::IComponentRef(PSS_Symbol* pSymbol) :
     m_pSymbol(pSymbol),
     m_Ref(1)
 {}
@@ -64,7 +64,7 @@ std::size_t PSS_ProcessGraphModelMdl::IComponentRef::GetRef() const
     return m_Ref;
 }
 //---------------------------------------------------------------------------
-ZBSymbol* PSS_ProcessGraphModelMdl::IComponentRef::GetSymbol() const
+PSS_Symbol* PSS_ProcessGraphModelMdl::IComponentRef::GetSymbol() const
 {
     return m_pSymbol;
 }
@@ -146,7 +146,7 @@ void PSS_ProcessGraphModelMdl::DeleteModelSet()
         for (int i = 0; i < componentCount; ++i)
         {
             // get the next symbol
-            ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+            PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
             // if a sub-model is defined, and not a referenced model, and if it contains a page,
             // iterate through the sub-models in a recursive way
@@ -237,7 +237,7 @@ void PSS_ProcessGraphModelMdl::DetachAllObserversInHierarchy(PSS_ProcessGraphMod
         for (int i = 0; i < componentCount; ++i)
         {
             // get the next symbol
-            ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+            PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
             // if a sub-model is defined, and not a referenced model, and if it contains a page,
             // iterate through the sub-models in a recursive way
@@ -671,7 +671,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(const CString& model
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // if a sub-model exists, and is not a referenced model, and contains a page set
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -723,7 +723,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(PSS_ProcessGraphMode
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // if sub-model exists, not a referenced model, and contains a page set
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -776,7 +776,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindPage(const CString& pageName)
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // if sub-model exists, not a referenced model, and contains a page set
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -896,7 +896,7 @@ bool PSS_ProcessGraphModelMdl::DeletePage(const CString& pageName, bool deleteMo
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // if sub-model exists, not a referenced model, and contains a page set
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -971,7 +971,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetOwnerPageModel(ZDProcessG
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // if sub-model exists, not a referenced model, and contains a page set
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -1004,7 +1004,7 @@ void PSS_ProcessGraphModelMdl::PropagateNewSymbolAttributes(ZBPropertyAttributes
 
         if (pComp)
         {
-            ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+            PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
             PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
             // Notify the change to elements
@@ -1052,7 +1052,7 @@ void PSS_ProcessGraphModelMdl::RefreshSymbolAttributes(bool redraw)
 
         if (pComp)
         {
-            ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+            PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
             PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
             // notify the change to elements
@@ -1276,7 +1276,7 @@ void PSS_ProcessGraphModelMdl::ClearPath()
         if (!pComp)
             continue;
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol)
@@ -1332,7 +1332,7 @@ void PSS_ProcessGraphModelMdl::CalculateAbsolutePath()
         if (!pComp)
             continue;
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol)
@@ -1378,7 +1378,7 @@ bool PSS_ProcessGraphModelMdl::SymbolNameAlreadyAllocated(const CString& symbolN
         if (!pComp)
             continue;
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         // if the same reference number was found, return true
@@ -1430,7 +1430,7 @@ bool PSS_ProcessGraphModelMdl::ReferenceNumberAlreadyAllocated(int refNumber)
         if (!pComp)
             continue;
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         // if the same reference number was found, return true
@@ -1512,7 +1512,7 @@ bool PSS_ProcessGraphModelMdl::AcceptVisitor(PSS_BasicSymbolVisitor& visitor)
         if (!pComp)
             continue;
 
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pComp);
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         if (pSymbol)
@@ -1579,7 +1579,7 @@ void PSS_ProcessGraphModelMdl::RecalculateParent()
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         if (pSymbol && !pSymbol->IsChildModelRef())
         {
@@ -1620,7 +1620,7 @@ void PSS_ProcessGraphModelMdl::RecalculateChildModel()
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         if (pSymbol)
         {
@@ -1659,7 +1659,7 @@ void PSS_ProcessGraphModelMdl::RecalculateReference()
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         // check if the symbol is a reference
@@ -1672,7 +1672,7 @@ void PSS_ProcessGraphModelMdl::RecalculateReference()
 
             if (pSet && pSet->GetSize() > 0)
             {
-                ZBSymbol* pSetSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(0));
+                PSS_Symbol* pSetSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(0));
 
                 if (pSetSymbol)
                     pSymbol->AssignReferenceSymbol(pSetSymbol);
@@ -1723,14 +1723,14 @@ void PSS_ProcessGraphModelMdl::RecalculateReference()
 void PSS_ProcessGraphModelMdl::RecalculateSymbolReferences()
 {}
 //---------------------------------------------------------------------------
-PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetSymbolModel(ZBSymbol* pSymbolToFind)
+PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetSymbolModel(PSS_Symbol* pSymbolToFind)
 {
     CODComponentSet* pSet           = GetComponents();
     const int        componentCount = pSet->GetSize();
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         if (!pSymbol)
             continue;
@@ -1792,7 +1792,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetLinkSymbolModel(PSS_LinkS
         if (pComp == pSymbolToFind && ISA(pComp, PSS_LinkSymbol))
             return this;
 
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // find in sub-model, if exists
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -2096,7 +2096,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::FindModel(const CString&    
                         // iterate through the symbols contained in the model contoller
                         for (int i = 0; i < componentSize; ++i)
                         {
-                            ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pCompSet->GetAt(i));
+                            PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pCompSet->GetAt(i));
 
                             // check if the component is valid and if it's a kind of symbol
                             if (pSymbol)
@@ -2146,7 +2146,7 @@ bool PSS_ProcessGraphModelMdl::SubModelExist(CODModel* pModel)
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // search in sub-model, if exists
         if (pSymbol &&  !pSymbol->IsChildModelRef())
@@ -2174,7 +2174,7 @@ bool PSS_ProcessGraphModelMdl::SubModelExist(const CString& modelName, bool case
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // Find in sub-model if there is
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -2407,7 +2407,7 @@ void PSS_ProcessGraphModelMdl::OnSymbolNameChanged(CODComponent& comp, const CSt
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         if (pSymbol)
@@ -2449,7 +2449,7 @@ void PSS_ProcessGraphModelMdl::OnPageNameChanged(ZDProcessGraphPage* pPage, cons
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         if (pSymbol)
@@ -2491,7 +2491,7 @@ void PSS_ProcessGraphModelMdl::OnUserEntityChanged(ZBUserEntity* pUserEntity, co
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         if (pSymbol)
@@ -2534,7 +2534,7 @@ bool PSS_ProcessGraphModelMdl::DeleteAllPages()
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // if the sub model exists, not a referenced model, and contains a page set
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -2666,7 +2666,7 @@ void PSS_ProcessGraphModelMdl::SerializePageSet(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetEnteringSymbols(ZBSymbol* pComp, CODNodeArray& nodes)
+std::size_t PSS_ProcessGraphModelMdl::GetEnteringSymbols(PSS_Symbol* pComp, CODNodeArray& nodes)
 {
     if (pComp)
         return pComp->GetEnteringSymbols(nodes);
@@ -2674,7 +2674,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetEnteringSymbols(ZBSymbol* pComp, CODNod
     return 0;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetFollowingSymbols(ZBSymbol* pComp, CODNodeArray& nodes)
+std::size_t PSS_ProcessGraphModelMdl::GetFollowingSymbols(PSS_Symbol* pComp, CODNodeArray& nodes)
 {
     if (pComp)
         return pComp->GetFollowingSymbols(nodes);
@@ -2682,7 +2682,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetFollowingSymbols(ZBSymbol* pComp, CODNo
     return 0;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetEdgesEntering(ZBSymbol* pComp, CODEdgeArray& edges)
+std::size_t PSS_ProcessGraphModelMdl::GetEdgesEntering(PSS_Symbol* pComp, CODEdgeArray& edges)
 {
     if (pComp)
         return pComp->GetEdgesEntering(edges);
@@ -2690,7 +2690,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetEdgesEntering(ZBSymbol* pComp, CODEdgeA
     return 0;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetEdgesLeaving(ZBSymbol* pComp, CODEdgeArray& edges)
+std::size_t PSS_ProcessGraphModelMdl::GetEdgesLeaving(PSS_Symbol* pComp, CODEdgeArray& edges)
 {
     if (pComp)
         return pComp->GetEdgesLeaving(edges);
@@ -2698,7 +2698,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetEdgesLeaving(ZBSymbol* pComp, CODEdgeAr
     return 0;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetEnteringSymbolsISA(ZBSymbol*            pComp,
+std::size_t PSS_ProcessGraphModelMdl::GetEnteringSymbolsISA(PSS_Symbol*          pComp,
                                                             CODNodeArray&        nodes,
                                                             const CRuntimeClass* pClass)
 {
@@ -2710,7 +2710,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetEnteringSymbolsISA(ZBSymbol*           
     return KeepOnlySymbolsISA(nodes, pClass);
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetFollowingSymbolsISA(ZBSymbol*            pComp,
+std::size_t PSS_ProcessGraphModelMdl::GetFollowingSymbolsISA(PSS_Symbol*          pComp,
                                                              CODNodeArray&        nodes,
                                                              const CRuntimeClass* pClass)
 {
@@ -2722,7 +2722,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetFollowingSymbolsISA(ZBSymbol*          
     return KeepOnlySymbolsISA(nodes, pClass);
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetEdgesEnteringISA(ZBSymbol*            pComp,
+std::size_t PSS_ProcessGraphModelMdl::GetEdgesEnteringISA(PSS_Symbol*          pComp,
                                                           CODEdgeArray&        edges,
                                                           const CRuntimeClass* pClass)
 {
@@ -2734,7 +2734,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetEdgesEnteringISA(ZBSymbol*            p
     return KeepOnlyLinksISA(edges, pClass);
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::GetEdgesLeavingISA(ZBSymbol*            pComp,
+std::size_t PSS_ProcessGraphModelMdl::GetEdgesLeavingISA(PSS_Symbol*          pComp,
                                                          CODEdgeArray&        edges,
                                                          const CRuntimeClass* pClass)
 {
@@ -2756,7 +2756,7 @@ std::size_t PSS_ProcessGraphModelMdl::KeepOnlyLinksISA(CODEdgeArray& edges, cons
     return ZUODSymbolManipulator::KeepOnlyLinksISA(edges, pClass);
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::CountActivities(ZBSymbol* pSymbol, const CODNodeArray& nodes)
+std::size_t PSS_ProcessGraphModelMdl::CountActivities(PSS_Symbol* pSymbol, const CODNodeArray& nodes)
 {
     std::size_t counter   = 0;
     const int   nodeCount = nodes.GetSize();
@@ -2818,7 +2818,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetSymbolsISA(CODNodeArray&        nodes,
         // if need to go deeper
         if (deep)
         {
-            ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+            PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
             if (pSymbol && !pSymbol->IsChildModelRef())
             {
@@ -2865,7 +2865,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPvt(CODComponent* pCompToFi
 
         if (inSubModel)
         {
-            ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pComp);
+            PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
 
             // search in sub-model, if exists
             if (pSymbol && !pSymbol->IsChildModelRef())
@@ -2903,7 +2903,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPvt(CODModel* pModel, bool 
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // check on symbols only, because there are no child model on deliverables
         if (pSymbol)
@@ -2956,7 +2956,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPvt(const CString& name,
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         // if is a symbol or a link symbol
@@ -3019,7 +3019,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolFromPathPvt(const CString& 
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         // if is a symbol or a link symbol
@@ -3077,7 +3077,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolByRefNumberPvt(int refNumbe
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         // if is a symbol or a link symbol
@@ -3132,7 +3132,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPartialNamePvt(const CStrin
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         // if is a symbol or a link symbol
@@ -3221,7 +3221,7 @@ void PSS_ProcessGraphModelMdl::FindPvt(const CString&        argument,
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         // if is a symbol or a link symbol
@@ -3294,7 +3294,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::FindModelFromPathPvt(const C
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // find in sub-model, if exists
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -3364,7 +3364,7 @@ void PSS_ProcessGraphModelMdl::SetBackgroundComponentToAll(CODComponent& bgComp,
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         if (pSymbol && !pSymbol->IsChildModelRef())
         {
@@ -3412,7 +3412,7 @@ void PSS_ProcessGraphModelMdl::ClearBackgroundComponentToAll()
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         if (pSymbol && !pSymbol->IsChildModelRef())
         {
@@ -3440,7 +3440,7 @@ void PSS_ProcessGraphModelMdl::ClearBackgroundComponentToAll()
     }
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::AddSymbolInParsedArray(ZBSymbol* pComp)
+std::size_t PSS_ProcessGraphModelMdl::AddSymbolInParsedArray(PSS_Symbol* pComp)
 {
     IComponentRef* pRef = FindSymbolInParsedArray(pComp);
 
@@ -3457,7 +3457,7 @@ std::size_t PSS_ProcessGraphModelMdl::AddSymbolInParsedArray(ZBSymbol* pComp)
     return 1;
 }
 //---------------------------------------------------------------------------
-PSS_ProcessGraphModelMdl::IComponentRef* PSS_ProcessGraphModelMdl::FindSymbolInParsedArray(ZBSymbol* pComp)
+PSS_ProcessGraphModelMdl::IComponentRef* PSS_ProcessGraphModelMdl::FindSymbolInParsedArray(PSS_Symbol* pComp)
 {
     std::size_t symbolCount = m_SymbolParsed.GetSize();
 
@@ -3515,7 +3515,7 @@ void PSS_ProcessGraphModelMdl::GetExistingPageNameArray(CStringArray& pageArray)
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
 
         // if a sub-model exists, not a referenced model, and contains a page set
         if (pSymbol && !pSymbol->IsChildModelRef())
@@ -3568,7 +3568,7 @@ int PSS_ProcessGraphModelMdl::GetNextAvailableRefNb(PSS_ProcessGraphModelMdl* pR
         // iterate through model controller symbols
         for (int i = 0; i < componentCount; ++i)
         {
-            ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pCompSet->GetAt(i));
+            PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pCompSet->GetAt(i));
             PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pCompSet->GetAt(i));
 
             // is a symbol?
@@ -3614,7 +3614,7 @@ void PSS_ProcessGraphModelMdl::GetExistingReferenceNumberArray(CStringArray& ref
 
     for (int i = 0; i < componentCount; ++i)
     {
-        ZBSymbol*       pSymbol     =                  dynamic_cast<ZBSymbol*>(pSet->GetAt(i));
+        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSet->GetAt(i));
         PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSet->GetAt(i));
 
         // add the reference number to the array

@@ -49,7 +49,7 @@ bool ZUReassignDynamicAttributesToModel::OnFinish()
     return true;
 }
 
-bool ZUReassignDynamicAttributesToModel::OnSymbol(ZBSymbol* pSymbol)
+bool ZUReassignDynamicAttributesToModel::OnSymbol(PSS_Symbol* pSymbol)
 {
     // If for the symbol has the same property
     // delete the property and assign the new one

@@ -23,11 +23,10 @@
 #define AFX_ZUDeleteDynamicAttributesToModel_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -35,36 +34,23 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zModel\ZUModelNavigation.h"
-
+// processsoft
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBProperty.h"
+#include "zModel\ZUModelNavigation.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// forward class declaration
 class PSS_BasicSymbol;
 
-
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZUDeleteDynamicAttributesToModel
-//
-
-
-
-
 
 class AFX_EXT_CLASS ZUDeleteDynamicAttributesToModel : public ZUModelNavigation
 {
@@ -72,20 +58,18 @@ public:
     ZUDeleteDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel = NULL,
                                      ZBProperty* pProperty = NULL,
                                      void* pClass = NULL);
-    virtual ~ZUDeleteDynamicAttributesToModel();
 
+    virtual ~ZUDeleteDynamicAttributesToModel();
 
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
 
-    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnSymbol(PSS_Symbol* pSymbol);
     virtual bool OnLink(PSS_LinkSymbol* pLink);
-
 
 private:
     ZBProperty* m_pProperty;
-
 };
 
-#endif // !defined(AFX_ZUDeleteDynamicAttributesToModel_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

@@ -17,6 +17,9 @@
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 // class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
@@ -27,7 +30,7 @@
 // forward class declaration
 class PSS_Log;
 class PSS_BasicSymbol;
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_LinkSymbol;
 class ZBBPDoorSymbol;
 class ZBBPPageSymbol;
@@ -84,7 +87,7 @@ private:
     bool CheckStartSymbol(ZBBPStartSymbol* pSymbol);
     bool CheckStopSymbol(ZBBPStopSymbol* pSymbol);
     bool CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
-    bool CheckSymbol(ZBSymbol* pSymbol);
+    bool CheckSymbol(PSS_Symbol* pSymbol);
     bool CheckLink(PSS_LinkSymbol* pLink);
 
 private:

@@ -70,7 +70,7 @@ void ZUDynamicAttributesManipulator::ExtractUniqueAttributes(PSS_ProcessGraphMod
 }
 
 bool ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
-                                                                   ZBSymbol*                    pSymbol)
+                                                                   PSS_Symbol*                    pSymbol)
 {
     // To use the runtime class info
     return ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDynamicPropertiesManager,

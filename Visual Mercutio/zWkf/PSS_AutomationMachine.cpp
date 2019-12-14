@@ -46,7 +46,7 @@ PSS_AutomationMachine::PSS_AutomationMachine(PSS_ProcessGraphModelMdl* pModel,
     m_StateMachineCollection.AssignModel(m_pModel);
 }
 //---------------------------------------------------------------------------
-PSS_AutomationMachine::PSS_AutomationMachine(ZBSymbol*                 pSymbol,
+PSS_AutomationMachine::PSS_AutomationMachine(PSS_Symbol*               pSymbol,
                                              PSS_ProcessGraphModelMdl* pModel,
                                              PSS_Log*                  pLog,
                                              int                       maxLoop,
@@ -259,8 +259,8 @@ std::size_t PSS_AutomationMachine::CopyNodeArrayToSymbolSet(CODNodeArray& nodes,
 
     for (std::size_t nodeIndex = 0; nodeIndex < elementCount; ++nodeIndex)
     {
-        IODNode*  pINode  = nodes.GetAt(nodeIndex);
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pINode);
+        IODNode*    pINode  = nodes.GetAt(nodeIndex);
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pINode);
 
         if (!pSymbol)
             continue;

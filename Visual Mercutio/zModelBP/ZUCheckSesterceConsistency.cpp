@@ -100,9 +100,9 @@ bool ZUCheckSesterceConsistency::Visit(CODComponent& Symbol)
     {
         return CheckStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBSymbol))
+    else if (ISA(pSymbol, PSS_Symbol))
     {
-        return CheckSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
+        return CheckSymbol(dynamic_cast<PSS_Symbol*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_LinkSymbol))
     {
@@ -440,7 +440,7 @@ bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSym
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckSymbol(ZBSymbol* pSymbol)
+bool ZUCheckSesterceConsistency::CheckSymbol(PSS_Symbol* pSymbol)
 {
     ASSERT(pSymbol);
     return true;

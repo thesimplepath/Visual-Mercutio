@@ -41,7 +41,7 @@
 
 // JMR-MODIF - Le 6 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code initile. (En commentaires)
 
-class AFX_EXT_CLASS ZBBPStartSymbol : public ZBSymbol
+class AFX_EXT_CLASS ZBBPStartSymbol : public PSS_Symbol
 {
     DECLARE_SERIAL( ZBBPStartSymbol )
 

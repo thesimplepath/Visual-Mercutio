@@ -20,6 +20,9 @@
 #include "zBaseLib\PSS_ObserverMsg.h"
 
 // class name mapping
+#ifndef PSS_Symbol
+    //#define PSS_Symbol ZBSymbol
+#endif
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
@@ -28,7 +31,7 @@
 #endif
 
 // forward declarations
-class ZBSymbol;
+class PSS_Symbol;
 class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelMdl;
 

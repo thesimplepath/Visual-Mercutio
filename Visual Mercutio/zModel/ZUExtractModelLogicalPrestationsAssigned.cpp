@@ -57,7 +57,7 @@ bool ZUExtractModelLogicalPrestationsAssigned::OnFinish()
     return true;
 }
 
-bool ZUExtractModelLogicalPrestationsAssigned::OnSymbol(ZBSymbol* pSymbol)
+bool ZUExtractModelLogicalPrestationsAssigned::OnSymbol(PSS_Symbol* pSymbol)
 {
     if (pSymbol->HasPrestations())
     {

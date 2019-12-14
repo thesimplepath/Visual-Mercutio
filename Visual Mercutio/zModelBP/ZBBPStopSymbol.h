@@ -39,7 +39,7 @@
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZBBPStopSymbol : public ZBSymbol
+class AFX_EXT_CLASS ZBBPStopSymbol : public PSS_Symbol
 {
     DECLARE_SERIAL( ZBBPStopSymbol )
 

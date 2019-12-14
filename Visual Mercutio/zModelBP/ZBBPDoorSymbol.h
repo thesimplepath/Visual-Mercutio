@@ -38,7 +38,7 @@ class PSS_ProcessGraphModelMdl;
 
 // JMR-MODIF - Le 6 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBBPDoorSymbol : public ZBSymbol
+class AFX_EXT_CLASS ZBBPDoorSymbol : public PSS_Symbol
 {
     DECLARE_SERIAL(ZBBPDoorSymbol)
 

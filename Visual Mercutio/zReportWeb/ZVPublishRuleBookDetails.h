@@ -11,7 +11,7 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+#endif
 
 // Change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS

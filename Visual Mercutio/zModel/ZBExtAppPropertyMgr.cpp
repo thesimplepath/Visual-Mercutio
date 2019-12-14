@@ -99,13 +99,13 @@ bool ZBExtAppPropertyMgr::FillProperties(ZBPropertySet&    PropSet,
         CString CommandLine;
 
         // Check if we have a logical system defined
-        if (m_pSymbol && ISA(m_pSymbol, ZBSymbol) &&
+        if (m_pSymbol && ISA(m_pSymbol, PSS_Symbol) &&
             GetCommandParameters(i).Left(gLogicalSystemKey.GetLength()) == gLogicalSystemKey)
         {
             // Check if system file is inline with the modèle
-            if (m_pSymbol && ISA(m_pSymbol, ZBSymbol))
+            if (m_pSymbol && ISA(m_pSymbol, PSS_Symbol))
             {
-                CODModel * pModel = dynamic_cast<ZBSymbol*>(m_pSymbol)->GetRootModel();
+                CODModel * pModel = dynamic_cast<PSS_Symbol*>(m_pSymbol)->GetRootModel();
 
                 if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
                     !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
@@ -117,7 +117,7 @@ bool ZBExtAppPropertyMgr::FillProperties(ZBPropertySet&    PropSet,
             bool Error;
 
             CommandTitle =
-                dynamic_cast<ZBSymbol*>(m_pSymbol)->RetrieveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
+                dynamic_cast<PSS_Symbol*>(m_pSymbol)->RetrieveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
                                                                               Error);
 
             CommandLine = CommandTitle;
@@ -287,13 +287,13 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
         CString CommandLine;
 
         // Check if we have a logical system defined
-        if (m_pSymbol && ISA(m_pSymbol, ZBSymbol) &&
+        if (m_pSymbol && ISA(m_pSymbol, PSS_Symbol) &&
             GetCommandParameters(i).Left(gLogicalSystemKey.GetLength()) == gLogicalSystemKey)
         {
             // Check if system file is inline with the modèle
-            if (m_pSymbol && ISA(m_pSymbol, ZBSymbol))
+            if (m_pSymbol && ISA(m_pSymbol, PSS_Symbol))
             {
-                CODModel * pModel = dynamic_cast<ZBSymbol*>(m_pSymbol)->GetRootModel();
+                CODModel * pModel = dynamic_cast<PSS_Symbol*>(m_pSymbol)->GetRootModel();
 
                 if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
                     !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
@@ -305,7 +305,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             bool Error;
 
             CommandTitle =
-                dynamic_cast<ZBSymbol*>(m_pSymbol)->RetrieveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
+                dynamic_cast<PSS_Symbol*>(m_pSymbol)->RetrieveLogicalSystemName(GetCommandParameters(i).Right(GetCommandParameters(i).GetLength() - gLogicalSystemKey.GetLength()),
                                                                               Error);
 
             CommandLine = CommandTitle;
@@ -672,9 +672,9 @@ bool ZBExtAppPropertyMgr::DropItem(CObject* pObj, const CPoint& pt)
         else if (ISA(pObj, ZBSystemEntity))
         {
             // Check if system file is inline with the modèle
-            if (m_pSymbol && ISA(m_pSymbol, ZBSymbol))
+            if (m_pSymbol && ISA(m_pSymbol, PSS_Symbol))
             {
-                CODModel* pModel = dynamic_cast<ZBSymbol*>(m_pSymbol)->GetRootModel();
+                CODModel* pModel = dynamic_cast<PSS_Symbol*>(m_pSymbol)->GetRootModel();
 
                 if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl) &&
                     !dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())

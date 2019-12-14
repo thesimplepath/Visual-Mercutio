@@ -40,7 +40,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBDurationRecalculationAutomate::ZBDurationRecalculationAutomate(ZBSymbol*                    pSymbol,
+ZBDurationRecalculationAutomate::ZBDurationRecalculationAutomate(PSS_Symbol*                    pSymbol,
                                                                  PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                  PSS_Log*                    pLog    /*= NULL*/)
     : ZBBPAutomate(pSymbol, pModel, pLog),
@@ -206,10 +206,10 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     }
 
 #ifdef _DEBUG
-    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBSymbol))
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_Symbol))
     {
         TRACE1(_T("OnNextSymbolAfterMoveForward: symbol in the stack is %s\n"),
-               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
+               dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());
     }
 #endif
 
@@ -219,7 +219,7 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPProcedureSymbol))
     {
         TRACE1(_T("OnNextSymbolAfterMoveForward: current Procedure is %s\n"),
-               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
+               dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());
 
         // Normally we should have at least one link only
         if (pState->GetStateLinkCount() == 0)
@@ -259,10 +259,10 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
     }
 
 #ifdef _DEBUG
-    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBSymbol))
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_Symbol))
     {
         TRACE1(_T("OnBeforeMoveForward: symbol in the stack is %s\n"),
-               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
+               dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());
     }
 #endif
 
@@ -270,7 +270,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
     // Calculate Deliverables down Durations
     if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPStartSymbol))
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pState->GetSymbol());
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pState->GetSymbol());
 
         TRACE1(_T("OnBeforeMoveForward: start in the stack is %s\n"), pSymbol->GetSymbolName());
 

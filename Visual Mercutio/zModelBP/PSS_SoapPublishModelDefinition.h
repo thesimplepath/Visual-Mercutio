@@ -140,7 +140,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
         *@param pParentModel - parent model, can be NULL
         *@return the parent symbol reference
         */
-        int GetParentSymbolReference(ZBSymbol* pSymbol, int parentID = 0, PSS_ProcessGraphModelMdl* pParentModel = NULL);
+        int GetParentSymbolReference(PSS_Symbol* pSymbol, int parentID = 0, PSS_ProcessGraphModelMdl* pParentModel = NULL);
 
         /**
         * Publishes the properties

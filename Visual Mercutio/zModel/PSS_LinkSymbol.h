@@ -525,7 +525,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
 
         /**
         * Gets the reference symbol
-        *@return the reference symbol
+        *@return the reference symbol, NULL if not found or on error
         */
         virtual inline CODSymbolComponent* GetSymbolReference() const;
 
@@ -542,18 +542,6 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         virtual inline bool IsChildModelRef() const;
 
         /**
-        * Gets the right sub-menu identifier
-        *@return the right sub-menu identifier, -1 if none
-        */
-        virtual inline int GetRightSubMenu() const;
-
-        /**
-        * Gets the symbol icon identifier
-        *@return the symbol icon identifier
-        */
-        virtual inline int GetIconIndex() const;
-
-        /**
         * Gets the owner symbol model
         *@return the owner symbol model, NULL if not found or on error
         */
@@ -564,6 +552,18 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@return the root symbol model, NULL if not found or on error
         */
         virtual CODModel* GetRootModel();
+
+        /**
+        * Gets the right sub-menu identifier
+        *@return the right sub-menu identifier, -1 if none
+        */
+        virtual inline int GetRightSubMenu() const;
+
+        /**
+        * Gets the symbol icon identifier
+        *@return the symbol icon identifier
+        */
+        virtual inline int GetIconIndex() const;
 
         /**
         * Sets the symbol modified flag
@@ -895,7 +895,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         virtual void Serialize(CArchive& ar);
 
         /**
-        * Called after the object is created and on the desk
+        * Called after the object is created
         *@param pModel - the parent model
         *@param pCtrl - the parent model controller
         *@return true if the object can be created, false if the object must be destroyed immediately

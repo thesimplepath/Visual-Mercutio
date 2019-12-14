@@ -91,9 +91,9 @@ bool ZUCalculateRisks::Calculate(CODComponent& Symbol)
 
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBSymbol))
+    if (ISA(pSymbol, PSS_Symbol))
     {
-        dynamic_cast<ZBSymbol&>(Symbol).AcceptVisitor(*this);
+        dynamic_cast<PSS_Symbol&>(Symbol).AcceptVisitor(*this);
     }
     else if (ISA(pSymbol, PSS_LinkSymbol))
     {
@@ -159,9 +159,9 @@ bool ZUCalculateRisks::Visit(CODComponent& Symbol)
     {
         return CheckStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBSymbol))
+    else if (ISA(pSymbol, PSS_Symbol))
     {
-        return CheckSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
+        return CheckSymbol(dynamic_cast<PSS_Symbol*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_LinkSymbol))
     {
@@ -759,7 +759,7 @@ bool ZUCalculateRisks::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymb
     return true;
 }
 
-bool ZUCalculateRisks::CheckSymbol(ZBSymbol* pSymbol)
+bool ZUCalculateRisks::CheckSymbol(PSS_Symbol* pSymbol)
 {
     ASSERT(pSymbol);
     return true;

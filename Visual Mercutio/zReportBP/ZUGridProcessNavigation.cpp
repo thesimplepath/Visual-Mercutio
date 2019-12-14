@@ -274,7 +274,7 @@ bool ZUGridProcessNavigation::OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* p
     return true;
 }
 
-bool ZUGridProcessNavigation::OnSymbol(ZBSymbol* pSymbol)
+bool ZUGridProcessNavigation::OnSymbol(PSS_Symbol* pSymbol)
 {
     return true;
 }

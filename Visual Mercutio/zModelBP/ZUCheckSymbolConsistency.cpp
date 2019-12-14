@@ -101,9 +101,9 @@ bool ZUCheckSymbolConsistency::CheckSymbol(CODComponent& Symbol, BOOL ModelIsCle
 
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBSymbol))
+    if (ISA(pSymbol, PSS_Symbol))
     {
-        dynamic_cast<ZBSymbol&>(Symbol).AcceptVisitor(*this);
+        dynamic_cast<PSS_Symbol&>(Symbol).AcceptVisitor(*this);
     }
     else if (ISA(pSymbol, PSS_LinkSymbol))
     {
@@ -174,9 +174,9 @@ bool ZUCheckSymbolConsistency::Visit(CODComponent& Symbol)
     {
         return CheckStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBSymbol))
+    else if (ISA(pSymbol, PSS_Symbol))
     {
-        return CheckSymbol(dynamic_cast<ZBSymbol*>(&Symbol));
+        return CheckSymbol(dynamic_cast<PSS_Symbol*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_LinkSymbol))
     {
@@ -1243,7 +1243,7 @@ bool ZUCheckSymbolConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbo
     return true;
 }
 
-bool ZUCheckSymbolConsistency::CheckSymbol(ZBSymbol* pSymbol)
+bool ZUCheckSymbolConsistency::CheckSymbol(PSS_Symbol* pSymbol)
 {
     ASSERT(pSymbol);
 

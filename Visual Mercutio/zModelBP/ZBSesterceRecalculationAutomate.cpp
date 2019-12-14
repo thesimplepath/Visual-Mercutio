@@ -183,10 +183,10 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     }
 
 #ifdef _DEBUG
-    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBSymbol))
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_Symbol))
     {
         TRACE1(_T("OnNextSymbolAfterMoveForward: symbol in the stack is %s\n"),
-               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
+               dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());
     }
 #endif
 
@@ -208,7 +208,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
          ISA(pState->GetSymbol(), ZBBPStopSymbol)))
     {
         TRACE1(_T("OnNextSymbolAfterMoveForward: current symbol is %s\n"),
-               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
+               dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());
 
         // Normally we should have at least one link only
         if (pState->GetStateLinkCount() == 0)
@@ -721,10 +721,10 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
         return false;
 
 #ifdef _DEBUG
-    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBSymbol))
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_Symbol))
     {
         TRACE1(_T("OnBeforeMoveForward: symbol in the stack is %s\n"),
-               dynamic_cast<ZBSymbol*>(pState->GetSymbol())->GetSymbolName());
+               dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());
     }
 #endif
 
