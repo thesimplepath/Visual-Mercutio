@@ -16,7 +16,7 @@
 #include "ZUODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_BasicProperties.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "ZBSymbolObserverMsg.h"
 #include "ZBDocObserverMsg.h"
 

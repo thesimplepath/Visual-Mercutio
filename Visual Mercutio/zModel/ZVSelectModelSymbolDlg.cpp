@@ -7,7 +7,7 @@
 #include "ZDProcessGraphPage.h"
 #include "ZBModelSet.h"
 
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 
 #ifdef _DEBUG

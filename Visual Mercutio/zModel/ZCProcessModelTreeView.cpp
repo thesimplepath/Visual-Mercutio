@@ -5,7 +5,7 @@
 
 #include "zBaseLib\PSS_DropView.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 
 #include "ZDProcessGraphPage.h"

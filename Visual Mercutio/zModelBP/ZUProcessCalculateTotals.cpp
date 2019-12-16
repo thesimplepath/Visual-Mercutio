@@ -7,7 +7,7 @@
 
 #include "ZUProcedureCalculateTotals.h"
 
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
 #include "ZBBPDoorSymbol.h"

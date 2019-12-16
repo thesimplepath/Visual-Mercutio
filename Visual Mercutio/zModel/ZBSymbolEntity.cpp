@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZBSymbolEntity.h"
 
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

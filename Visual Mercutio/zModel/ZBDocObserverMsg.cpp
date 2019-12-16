@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "ZBDocObserverMsg.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "PSS_ProcessGraphModelDoc.h"
 
 #ifdef _DEBUG

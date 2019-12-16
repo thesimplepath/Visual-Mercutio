@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"

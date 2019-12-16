@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "ZBUnitObserverMsg.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "ZBUnit.h"
 
 #ifdef _DEBUG

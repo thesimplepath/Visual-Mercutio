@@ -6,7 +6,7 @@
 #include "ZUGridProcessNavigation.h"
 
 #include "zModel\PSS_ProcessGraphModelMdl.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
 #include "zModelBP\ZBBPDoorSymbol.h"

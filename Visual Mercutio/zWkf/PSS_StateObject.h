@@ -34,7 +34,7 @@
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 #ifndef PSS_Symbol
-    //#define PSS_Symbol ZBSymbol
+    #define PSS_Symbol ZBSymbol
 #endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol

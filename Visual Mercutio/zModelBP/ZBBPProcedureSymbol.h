@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zMediator\PSS_Application.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\ZBLogicalRulesEntity.h"
 #include "ZBProcCombinations.h"
 #include "ZBBPSimPropProcedure.h"

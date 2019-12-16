@@ -25,7 +25,7 @@
 
 // class name mapping
 #ifndef PSS_Symbol
-    //#define PSS_Symbol ZBSymbol
+    #define PSS_Symbol ZBSymbol
 #endif
 
 // forward class declaration

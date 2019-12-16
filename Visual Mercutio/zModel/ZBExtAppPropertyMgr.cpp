@@ -5,7 +5,7 @@
 #include "ZBExtAppPropertyMgr.h"
 
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 
 #include "zWinUtil32\PSS_CommandLineDialog.h"
 

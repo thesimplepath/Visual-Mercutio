@@ -19,7 +19,7 @@
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "ZBPublishMessengerModelInformation.h"

@@ -19,7 +19,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\ZBLogicalRulesEntity.h"
 #include "ZBBPSimPropProcess.h"
 #include "ZBBPPrestationsProperties.h"

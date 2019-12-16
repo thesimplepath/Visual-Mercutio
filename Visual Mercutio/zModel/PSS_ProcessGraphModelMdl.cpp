@@ -18,7 +18,7 @@
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelViewport.h"
 #include "ZDProcessGraphPage.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 #include "ZBLanguageProp.h"
 #include "PSS_BasicModelProperties.h"

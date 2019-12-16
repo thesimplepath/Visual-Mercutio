@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZUCheckValidUnit.h"
 
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"

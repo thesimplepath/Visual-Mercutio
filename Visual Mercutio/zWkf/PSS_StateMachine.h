@@ -26,7 +26,7 @@
 #endif
 
 // processsoft
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "PSS_AutomationCollections.h"
 #include "PSS_StateObject.h"
 

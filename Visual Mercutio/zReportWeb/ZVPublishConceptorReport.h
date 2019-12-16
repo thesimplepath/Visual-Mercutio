@@ -24,7 +24,7 @@
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZDProcessGraphPage.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"

@@ -329,7 +329,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSymbol.cpp">
+    <ClCompile Include="PSS_Symbol.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -788,7 +788,7 @@
     <ClInclude Include="ZBRulesEntity.h" />
     <ClInclude Include="ZBSearchSymbolLogLine.h" />
     <ClInclude Include="ZBSolidLinkSymbol.h" />
-    <ClInclude Include="ZBSymbol.h" />
+    <ClInclude Include="PSS_Symbol.h" />
     <ClInclude Include="ZBSymbolEdit.h" />
     <ClInclude Include="ZBSymbolEntity.h" />
     <ClInclude Include="ZBSymbolLabel.h" />

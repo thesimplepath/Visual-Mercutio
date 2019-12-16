@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "ZUCheckSesterceConsistency.h"
 
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"

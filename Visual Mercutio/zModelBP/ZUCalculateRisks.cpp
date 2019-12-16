@@ -11,7 +11,7 @@
 
 // processsoft
 #include "zMediator\PSS_Application.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\ZUODSymbolManipulator.h"

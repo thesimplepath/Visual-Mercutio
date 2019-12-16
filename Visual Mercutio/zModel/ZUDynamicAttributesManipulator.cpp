@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZUDynamicAttributesManipulator.h"
 
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 
 #include "ZUExtractCategoryAttributes.h"

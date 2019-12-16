@@ -7,7 +7,7 @@
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
 #include "ZBModelSet.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
 

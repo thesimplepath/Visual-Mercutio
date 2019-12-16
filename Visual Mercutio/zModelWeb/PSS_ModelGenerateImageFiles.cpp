@@ -21,7 +21,7 @@
 #include "zModel\ZUExtractModelUnitGroupAssigned.h"
 #include "zModel\ZUExtractModelLogicalSystemAssigned.h"
 #include "zModel\ZUExtractModelLogicalPrestationsAssigned.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"

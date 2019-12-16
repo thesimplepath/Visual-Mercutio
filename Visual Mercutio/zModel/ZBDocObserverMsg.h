@@ -21,7 +21,7 @@
 
 // class name mapping
 #ifndef PSS_Symbol
-    //#define PSS_Symbol ZBSymbol
+    #define PSS_Symbol ZBSymbol
 #endif
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc

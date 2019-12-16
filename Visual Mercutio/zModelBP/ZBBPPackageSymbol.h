@@ -19,7 +19,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Bitmap.h"
-#include "zModel\ZBSymbol.h"
+#include "zModel\PSS_Symbol.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc

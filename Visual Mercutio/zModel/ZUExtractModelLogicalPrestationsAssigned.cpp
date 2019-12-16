@@ -13,7 +13,7 @@
 
 #include "ZBPrestationsEntity.h"
 
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 
 #include "zBaseLib\PSS_Tokenizer.h"

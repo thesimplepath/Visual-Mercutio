@@ -24,7 +24,7 @@
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "ZBSymbol.h"
+#include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 #include "ZVDynamicAttributesDuplication.h"
 
