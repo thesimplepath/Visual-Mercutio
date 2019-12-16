@@ -732,18 +732,16 @@ CODComponentSet* PSS_Symbol::GetReferenceSymbols()
 
     if (pRootModel)
     {
-        CODComponentSet*  pSet = pRootModel->FindSymbol(GetSymbolName(), _T(""), true, true, false);
+        CODComponentSet* pSet = pRootModel->FindSymbol(GetSymbolName(), _T(""), true, true, false);
 
         if (pSet)
         {
             const int compCount = pSet->GetSize();
 
-            for (int i = 0; i < compCount; ++i)
+            // remove own symbol from set
+            for (int i = compCount - 1; i >= 0; --i)
                 if (pSet->GetAt(i) == this)
-                {
                     pSet->RemoveAt(i);
-                    --i;
-                }
         }
 
         return pSet;
