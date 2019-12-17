@@ -728,7 +728,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                     for (std::size_t idx = 0; idx < appCount; ++idx)
                     {
                         // for each link, create a link with a blank target
-                        const ZBExtAppProperties* pAppProperty = pExtAppPropMgr->GetExtAppProperty(idx);
+                        const PSS_ExtAppProperties* pAppProperty = pExtAppPropMgr->GetExtAppProperty(idx);
 
                         if (pAppProperty)
                         {

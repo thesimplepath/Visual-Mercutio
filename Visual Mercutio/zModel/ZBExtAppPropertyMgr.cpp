@@ -133,7 +133,7 @@ bool ZBExtAppPropertyMgr::FillProperties(ZBPropertySet&    PropSet,
         pExtApp = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                  PropName,
-                                 (GroupValue == true) ? Z_COMMAND_TITLE : (Z_COMMAND_TITLE + (i * 40)),
+                                 (GroupValue == true) ? M_Command_Title_ID : (M_Command_Title_ID + (i * 40)),
                                  PropDesc,
                                  CommandTitle,
                                  ZBProperty::PT_EDIT_MENU,
@@ -324,7 +324,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
         pExtApp = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                  PropName,
-                                 (GroupValue == true) ? Z_COMMAND_LINE : (Z_COMMAND_LINE + (i * 40)),
+                                 (GroupValue == true) ? M_Command_Line_ID : (M_Command_Line_ID + (i * 40)),
                                  PropDesc,
                                  CommandLine,
                                  ZBProperty::PT_EDIT_EXTENDED,
@@ -338,7 +338,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
         pExtApp = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                  PropName,
-                                 (GroupValue == true) ? Z_COMMAND_PARAM : (Z_COMMAND_PARAM + (i * 40)),
+                                 (GroupValue == true) ? M_Command_Param_ID : (M_Command_Param_ID + (i * 40)),
                                  PropDesc,
                                  GetCommandParameters(i),
                                  ZBProperty::PT_EDIT_EXTENDED,
@@ -352,7 +352,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
         pExtApp = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                  PropName,
-                                 (GroupValue == true) ? Z_COMMAND_STARTUPDIR : (Z_COMMAND_STARTUPDIR + (i * 40)),
+                                 (GroupValue == true) ? M_Command_StartupDir_ID : (M_Command_StartupDir_ID + (i * 40)),
                                  PropDesc,
                                  GetCommandStartupDirectory(i),
                                  ZBProperty::PT_EDIT_DIRECTORY,
@@ -368,7 +368,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pExtApp = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                      PropName,
-                                     (GroupValue == true) ? Z_PRIORITY_LEVEL : (Z_PRIORITY_LEVEL + (i * 40)),
+                                     (GroupValue == true) ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
                                      PropDesc,
                                      (double)GetPriorityLevel(i),
                                      ZBProperty::PT_EDIT_NUMBER,
@@ -379,7 +379,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pExtApp = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                      PropName,
-                                     (GroupValue == true) ? Z_PRIORITY_LEVEL : (Z_PRIORITY_LEVEL + (i * 40)),
+                                     (GroupValue == true) ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
                                      PropDesc,
                                      PSS_Global::GetJobPriorityString(GetPriorityLevel(i)),
                                      ZBProperty::PT_COMBO_STRING_READONLY,
@@ -398,7 +398,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pExtApp = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                      PropName,
-                                     (GroupValue == true) ? Z_WINDOW_STARTMODE : (Z_WINDOW_STARTMODE + (i * 40)),
+                                     (GroupValue == true) ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
                                      PropDesc,
                                      (double)GetWindowStartMode(i),
                                      ZBProperty::PT_EDIT_NUMBER,
@@ -409,7 +409,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pExtApp = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
                                      PropName,
-                                     (GroupValue == true) ? Z_WINDOW_STARTMODE : (Z_WINDOW_STARTMODE + (i * 40)),
+                                     (GroupValue == true) ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
                                      PropDesc,
                                      PSS_Global::GetWindowModeString(GetWindowStartMode(i)),
                                      ZBProperty::PT_COMBO_STRING_READONLY,
@@ -451,37 +451,37 @@ bool ZBExtAppPropertyMgr::SaveProperty(ZBProperty& Property)
 
         switch (Property.GetItemID() - (i * 40))
         {
-            case Z_COMMAND_TITLE:
+            case M_Command_Title_ID:
             {
                 SetCommandTitle(i, Property.GetValueString());
                 break;
             }
 
-            case Z_COMMAND_LINE:
+            case M_Command_Line_ID:
             {
                 SetCommandLine(i, Property.GetValueString());
                 break;
             }
 
-            case Z_COMMAND_PARAM:
+            case M_Command_Param_ID:
             {
                 SetCommandParameters(i, Property.GetValueString());
                 break;
             }
 
-            case Z_COMMAND_STARTUPDIR:
+            case M_Command_StartupDir_ID:
             {
                 SetCommandStartupDirectory(i, Property.GetValueString());
                 break;
             }
 
-            case Z_PRIORITY_LEVEL:
+            case M_Priority_Level_ID:
             {
                 SetPriorityLevel(i, PSS_Global::GetJobPriority(Property.GetValueString()));
                 break;
             }
 
-            case Z_WINDOW_STARTMODE:
+            case M_Window_StartMode_ID:
             {
                 SetWindowStartMode(i, PSS_Global::GetWindowMode(Property.GetValueString()));
                 break;

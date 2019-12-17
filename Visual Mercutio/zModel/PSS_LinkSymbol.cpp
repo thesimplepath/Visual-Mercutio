@@ -18,7 +18,7 @@
 #include "PSS_BasicProperties.h"
 #include "PSS_Symbol.h"
 #include "ZBSymbolObserverMsg.h"
-#include "ZBDocObserverMsg.h"
+#include "PSS_DocObserverMsg.h"
 
 // resources
 #include "PSS_ResIDs.h"
@@ -296,7 +296,7 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
             NotifyAllObservers(&msg);
 
             // build the message
-            ZBDocObserverMsg docMsg(ZBDocObserverMsg::ChangedElement, NULL, pRootModel, this);
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, pRootModel, this);
 
             AfxGetMainWnd()->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
 

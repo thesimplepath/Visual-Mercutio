@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "ZBExtApps.h"
-#include "ZBExtAppProp.h"
+#include "PSS_ExtAppProperties.h"
 #include "zProperty\ZIProperties.h"
 
 #ifdef _ZMODELEXPORT
@@ -71,7 +71,7 @@ public:
     // Add a new ExtApp, 
     // and return the index of the new added ExtApp
     // Return -1 if the function fails
-    int AddExtApp(ZBExtAppProperties* pProperty)
+    int AddExtApp(PSS_ExtAppProperties* pProperty)
     {
         return m_ExternalApplications.AddExtApp(pProperty);
     }
@@ -87,7 +87,7 @@ public:
         return m_ExternalApplications.DeleteExtApp(CommandTitle);
     }
 
-    bool DeleteExtApp(ZBExtAppProperties* pProperty)
+    bool DeleteExtApp(PSS_ExtAppProperties* pProperty)
     {
         return m_ExternalApplications.DeleteExtApp(pProperty);
     }
@@ -99,12 +99,12 @@ public:
     }
 
     // Retrieve the right ExtApp properties base on the ExtApp file name
-    ZBExtAppProperties* LocateExtApp(const CString CommandTitle) const
+    PSS_ExtAppProperties* LocateExtApp(const CString CommandTitle) const
     {
         return m_ExternalApplications.LocateExtApp(CommandTitle);
     }
 
-    ZBExtAppProperties* GetExtAppProperty(size_t Index) const
+    PSS_ExtAppProperties* GetExtAppProperty(size_t Index) const
     {
         return m_ExternalApplications.GetProperty(Index);
     }
@@ -301,4 +301,4 @@ protected:
     CODSymbolComponent* m_pSymbol;
 };
 
-#endif // !defined(AFX_ZBEXTAPPPROPERTYMGR_H__62413AB0_627B_42E2_8937_E3F47EFE93DB__INCLUDED_)
+#endif

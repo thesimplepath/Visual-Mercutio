@@ -21,7 +21,7 @@
 #include "zModel\ZVRenameModelPageInTreeDlg.h"
 #include "zModel\ZVDeleteModelPageDlg.h"
 #include "zModel\ZBUnitObserverMsg.h"
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
@@ -1673,7 +1673,7 @@ void ZDProcessGraphModelControllerBP::OnInsertPage()
         BrowseModel(pModel, Dlg.GetParentModel());
 
         // Build the message
-        ZBDocObserverMsg DocMsg;
+        PSS_DocObserverMsg DocMsg;
         AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
 
         // Set flag for modification
@@ -1716,7 +1716,7 @@ void ZDProcessGraphModelControllerBP::OnRenamePage()
         }
 
         // Build the message
-        ZBDocObserverMsg DocMsg;
+        PSS_DocObserverMsg DocMsg;
         AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
 
         // Set flag for modification
@@ -1826,7 +1826,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
         }
 
         // Build the message
-        ZBDocObserverMsg DocMsg;
+        PSS_DocObserverMsg DocMsg;
         AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
 
         // Set flag for modification
@@ -1861,7 +1861,7 @@ void ZDProcessGraphModelControllerBP::OnDeletePage()
             GetModel()->GetRoot()->DeletePage(pPage->GetPageName(), true);
 
             // Build the message
-            ZBDocObserverMsg    DocMsg;
+            PSS_DocObserverMsg DocMsg;
             AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
 
             // Set flag for modification

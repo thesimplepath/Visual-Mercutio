@@ -14,11 +14,11 @@
 #include "stdafx.h"
 #include "ZBExtApps.h"
 
-#include "ZBExtAppProp.h"
+#include "PSS_ExtAppProperties.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -34,29 +34,28 @@ IMPLEMENT_SERIAL(ZBExtApps, CObject, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBExtApps::ZBExtApps( CODSymbolComponent* pParent /*= NULL*/ )
-    : m_pParent( pParent )
-{
-}
+ZBExtApps::ZBExtApps(CODSymbolComponent* pParent /*= NULL*/)
+    : m_pParent(pParent)
+{}
 
 ZBExtApps::~ZBExtApps()
 {
     RemoveAllExtApps();
 }
 
-ZBExtApps::ZBExtApps( const ZBExtApps& src )
+ZBExtApps::ZBExtApps(const ZBExtApps& src)
 {
     *this = src;
 }
 
-ZBExtApps& ZBExtApps::operator=( const ZBExtApps& src )
+ZBExtApps& ZBExtApps::operator=(const ZBExtApps& src)
 {
     // Copy the members.
-    ZBExtAppPropertiesIterator i( &const_cast<ZBExtApps&>( src ).GetExtAppSet() );
+    PSS_ExtAppPropertiesIterator i(&const_cast<ZBExtApps&>(src).GetExtAppSet());
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        AddExtApp( pProp->Dup() );
+        AddExtApp(pProp->Dup());
     }
 
     m_pParent = src.m_pParent;
@@ -66,24 +65,24 @@ ZBExtApps& ZBExtApps::operator=( const ZBExtApps& src )
 
 ZBExtApps* ZBExtApps::Dup() const
 {
-    return ( new ZBExtApps( *this ) );
+    return (new ZBExtApps(*this));
 }
 
-void ZBExtApps::SetParent( CODSymbolComponent* pParent )
+void ZBExtApps::SetParent(CODSymbolComponent* pParent)
 {
     m_pParent = pParent;
 }
 
 bool ZBExtApps::CreateInitialProperties()
 {
-    if ( GetExtAppCount() > 0 )
+    if (GetExtAppCount() > 0)
     {
         return true;
     }
 
-    ZBExtAppProperties* pProps = new ZBExtAppProperties;
+    PSS_ExtAppProperties* pProps = new PSS_ExtAppProperties;
 
-    if ( AddExtApp( pProps ) >= 0 )
+    if (AddExtApp(pProps) >= 0)
     {
         return true;
     }
@@ -93,16 +92,16 @@ bool ZBExtApps::CreateInitialProperties()
 
 int ZBExtApps::AddNewExtApp()
 {
-    ZBExtAppProperties* pProps = new ZBExtAppProperties;
+    PSS_ExtAppProperties* pProps = new PSS_ExtAppProperties;
 
-    return AddExtApp( pProps );
+    return AddExtApp(pProps);
 }
 
-int ZBExtApps::AddExtApp( ZBExtAppProperties* pProperty )
+int ZBExtApps::AddExtApp(PSS_ExtAppProperties* pProperty)
 {
-    if ( pProperty )
+    if (pProperty)
     {
-        m_Set.Add( pProperty );
+        m_Set.Add(pProperty);
 
         // Returns the index
         return GetExtAppCount() - 1;
@@ -111,15 +110,15 @@ int ZBExtApps::AddExtApp( ZBExtAppProperties* pProperty )
     return -1;
 }
 
-bool ZBExtApps::DeleteExtApp( size_t Index )
+bool ZBExtApps::DeleteExtApp(size_t Index)
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        ZBExtAppProperties* pProperty = GetProperty( Index );
+        PSS_ExtAppProperties* pProperty = GetProperty(Index);
 
-        if ( pProperty )
+        if (pProperty)
         {
-            m_Set.RemoveAt( Index );
+            m_Set.RemoveAt(Index);
             delete pProperty;
             return true;
         }
@@ -128,14 +127,14 @@ bool ZBExtApps::DeleteExtApp( size_t Index )
     return false;
 }
 
-bool ZBExtApps::DeleteExtApp( const CString CommandTitle )
+bool ZBExtApps::DeleteExtApp(const CString CommandTitle)
 {
     // Run through the set of deliverables and check if found
-    ZBExtAppPropertiesIterator i( &m_Set );
+    PSS_ExtAppPropertiesIterator i(&m_Set);
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCommandTitle() == CommandTitle )
+        if (pProp->GetCommandTitle() == CommandTitle)
         {
             delete pProp;
             i.Remove();
@@ -146,13 +145,13 @@ bool ZBExtApps::DeleteExtApp( const CString CommandTitle )
     return false;
 }
 
-bool ZBExtApps::DeleteExtApp( ZBExtAppProperties* pProperty )
+bool ZBExtApps::DeleteExtApp(PSS_ExtAppProperties* pProperty)
 {
-    ZBExtAppPropertiesIterator i( &m_Set );
+    PSS_ExtAppPropertiesIterator i(&m_Set);
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProperty == pProp )
+        if (pProperty == pProp)
         {
             i.Remove();
             delete pProp;
@@ -166,11 +165,11 @@ bool ZBExtApps::DeleteExtApp( ZBExtAppProperties* pProperty )
 int ZBExtApps::LocateFirstEmptyExtApp() const
 {
     int Idx = 0;
-    ZBExtAppPropertiesIterator i( &m_Set );
+    PSS_ExtAppPropertiesIterator i(&m_Set);
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Idx )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Idx)
     {
-        if ( pProp->IsEmpty() )
+        if (pProp->IsEmpty())
         {
             return Idx;
         }
@@ -181,11 +180,11 @@ int ZBExtApps::LocateFirstEmptyExtApp() const
 
 void ZBExtApps::RemoveAllEmptyExtApps()
 {
-    ZBExtAppPropertiesIterator i( &m_Set );
+    PSS_ExtAppPropertiesIterator i(&m_Set);
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->IsEmpty() )
+        if (pProp->IsEmpty())
         {
             delete pProp;
             i.Remove();
@@ -195,9 +194,9 @@ void ZBExtApps::RemoveAllEmptyExtApps()
 
 void ZBExtApps::RemoveAllExtApps()
 {
-    ZBExtAppPropertiesIterator i( &m_Set );
+    PSS_ExtAppPropertiesIterator i(&m_Set);
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -206,122 +205,122 @@ void ZBExtApps::RemoveAllExtApps()
     m_Set.RemoveAll();
 }
 
-CString ZBExtApps::GetCommandTitle( size_t Index ) const
+CString ZBExtApps::GetCommandTitle(size_t Index) const
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        return m_Set.GetAt( Index )->GetCommandTitle();
+        return m_Set.GetAt(Index)->GetCommandTitle();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBExtApps::SetCommandTitle( size_t Index, CString Value )
+void ZBExtApps::SetCommandTitle(size_t Index, CString Value)
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        m_Set.GetAt( Index )->SetCommandTitle( Value );
-    }
-}
-
-CString ZBExtApps::GetCommandLine( size_t Index ) const
-{
-    if ( Index < GetExtAppCount() )
-    {
-        return m_Set.GetAt( Index )->GetCommandLine();
-    }
-
-    return _T( "" );
-}
-
-void ZBExtApps::SetCommandLine( size_t Index, CString Value )
-{
-    if ( Index < GetExtAppCount() )
-    {
-        m_Set.GetAt( Index )->SetCommandLine( Value );
+        m_Set.GetAt(Index)->SetCommandTitle(Value);
     }
 }
 
-CString ZBExtApps::GetCommandParameters( size_t Index ) const
+CString ZBExtApps::GetCommandLine(size_t Index) const
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        return m_Set.GetAt( Index )->GetCommandParameters();
+        return m_Set.GetAt(Index)->GetCommandLine();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBExtApps::SetCommandParameters( size_t Index, CString Value )
+void ZBExtApps::SetCommandLine(size_t Index, CString Value)
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        m_Set.GetAt( Index )->SetCommandParameters( Value );
-    }
-}
-
-CString ZBExtApps::GetCommandStartupDirectory( size_t Index ) const
-{
-    if ( Index < GetExtAppCount() )
-    {
-        return m_Set.GetAt( Index )->GetCommandStartupDirectory();
-    }
-
-    return _T( "" );
-}
-
-void ZBExtApps::SetCommandStartupDirectory( size_t Index, CString Value )
-{
-    if ( Index < GetExtAppCount() )
-    {
-        m_Set.GetAt( Index )->SetCommandStartupDirectory( Value );
+        m_Set.GetAt(Index)->SetCommandLine(Value);
     }
 }
 
-int ZBExtApps::GetPriorityLevel( size_t Index ) const
+CString ZBExtApps::GetCommandParameters(size_t Index) const
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        return m_Set.GetAt( Index )->GetPriorityLevel();
+        return m_Set.GetAt(Index)->GetCommandParameters();
     }
 
-    return 0;
+    return _T("");
 }
 
-void ZBExtApps::SetPriorityLevel( size_t Index, const int value )
+void ZBExtApps::SetCommandParameters(size_t Index, CString Value)
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        m_Set.GetAt( Index )->SetPriorityLevel( value );
+        m_Set.GetAt(Index)->SetCommandParameters(Value);
     }
 }
 
-int ZBExtApps::GetWindowStartMode( size_t Index ) const
+CString ZBExtApps::GetCommandStartupDirectory(size_t Index) const
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        return m_Set.GetAt( Index )->GetWindowStartMode();
+        return m_Set.GetAt(Index)->GetCommandStartupDirectory();
+    }
+
+    return _T("");
+}
+
+void ZBExtApps::SetCommandStartupDirectory(size_t Index, CString Value)
+{
+    if (Index < GetExtAppCount())
+    {
+        m_Set.GetAt(Index)->SetCommandStartupDirectory(Value);
+    }
+}
+
+int ZBExtApps::GetPriorityLevel(size_t Index) const
+{
+    if (Index < GetExtAppCount())
+    {
+        return m_Set.GetAt(Index)->GetPriorityLevel();
     }
 
     return 0;
 }
 
-void ZBExtApps::SetWindowStartMode( size_t Index, const int value )
+void ZBExtApps::SetPriorityLevel(size_t Index, const int value)
 {
-    if ( Index < GetExtAppCount() )
+    if (Index < GetExtAppCount())
     {
-        m_Set.GetAt( Index )->SetWindowStartMode( value );
+        m_Set.GetAt(Index)->SetPriorityLevel(value);
     }
 }
 
-bool ZBExtApps::ExtAppExist( const CString CommandTitle ) const
+int ZBExtApps::GetWindowStartMode(size_t Index) const
+{
+    if (Index < GetExtAppCount())
+    {
+        return m_Set.GetAt(Index)->GetWindowStartMode();
+    }
+
+    return 0;
+}
+
+void ZBExtApps::SetWindowStartMode(size_t Index, const int value)
+{
+    if (Index < GetExtAppCount())
+    {
+        m_Set.GetAt(Index)->SetWindowStartMode(value);
+    }
+}
+
+bool ZBExtApps::ExtAppExist(const CString CommandTitle) const
 {
     // Run through the set and build the string
-    ZBExtAppPropertiesIterator i( &m_Set );
+    PSS_ExtAppPropertiesIterator i(&m_Set);
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCommandTitle() == CommandTitle )
+        if (pProp->GetCommandTitle() == CommandTitle)
         {
             return true;
         }
@@ -330,14 +329,14 @@ bool ZBExtApps::ExtAppExist( const CString CommandTitle ) const
     return false;
 }
 
-ZBExtAppProperties* ZBExtApps::LocateExtApp( const CString CommandTitle ) const
+PSS_ExtAppProperties* ZBExtApps::LocateExtApp(const CString CommandTitle) const
 {
     // Run through the set of deliverables and check if found
-    ZBExtAppPropertiesIterator i( &m_Set );
+    PSS_ExtAppPropertiesIterator i(&m_Set);
 
-    for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCommandTitle() == CommandTitle )
+        if (pProp->GetCommandTitle() == CommandTitle)
         {
             return pProp;
         }
@@ -346,16 +345,16 @@ ZBExtAppProperties* ZBExtApps::LocateExtApp( const CString CommandTitle ) const
     return NULL;
 }
 
-void ZBExtApps::Serialize( CArchive& ar )
+void ZBExtApps::Serialize(CArchive& ar)
 {
-    if ( ar.IsStoring() )
+    if (ar.IsStoring())
     {
         // Serialize the size of the set
         ar << m_Set.GetSize();
 
-        ZBExtAppPropertiesIterator i( &m_Set );
+        PSS_ExtAppPropertiesIterator i(&m_Set);
 
-        for ( ZBExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (PSS_ExtAppProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
             ar << pProp;
         }
@@ -369,12 +368,12 @@ void ZBExtApps::Serialize( CArchive& ar )
 
         ar >> Count;
 
-        ZBExtAppProperties* pProp;
+        PSS_ExtAppProperties* pProp;
 
-        for ( int i = 0; i < Count; ++i )
+        for (int i = 0; i < Count; ++i)
         {
             ar >> pProp;
-            AddExtApp( pProp );
+            AddExtApp(pProp);
         }
     }
 }

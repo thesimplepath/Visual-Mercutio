@@ -40,7 +40,7 @@
 #include "zModel\ZDLogicalRulesDocument.h"
 #include "zModel\ZBLogicalRulesObserverMsg.h"
 #include "zModel\PSS_ModelGlobal.h"
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ProcGraphModelCtlrBP.h"

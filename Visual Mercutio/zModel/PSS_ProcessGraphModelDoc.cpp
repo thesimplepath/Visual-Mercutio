@@ -20,7 +20,7 @@
 #include "PSS_ProcessGraphModelView.h"
 #include "PSS_ProcessGraphChildFrame.h"
 #include "PSS_ProcessGraphModelController.h"
-#include "ZBDocObserverMsg.h"
+#include "PSS_DocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
 #include "ZBLogicalSystemEntity.h"
 #include "ZBGenericSymbolErrorLine.h"
@@ -596,7 +596,7 @@ void PSS_ProcessGraphModelDoc::SetNewModel(PSS_ProcessGraphModelMdl* pModel)
         PSS_FloatingToolBar::SwitchContext(m_pModel->GetNotation());
 
         // build the message
-        ZBDocObserverMsg docMsg(ZBDocObserverMsg::OpenDocument, this);
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
         AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
     }
 }
@@ -1189,7 +1189,7 @@ BOOL PSS_ProcessGraphModelDoc::OnNewDocument()
     if (!IsUnit() && HasUnit())
     {
         // build the message
-        ZBDocObserverMsg docMsg(ZBDocObserverMsg::OpenDocument, this);
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
         pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
 
         // build the message even if the unit manager is NULL
@@ -1198,7 +1198,7 @@ BOOL PSS_ProcessGraphModelDoc::OnNewDocument()
     }
 
     // build the message even if the unit manager is NULL
-    ZBDocObserverMsg docMsg(ZBDocObserverMsg::OpenDocument, this);
+    PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
     pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
 
     // assign the current system def, user def, prestations def and rules def
@@ -1235,7 +1235,7 @@ BOOL PSS_ProcessGraphModelDoc::OnOpenDocument(LPCTSTR pPathName)
     if (!IsUnit() && HasUnit())
     {
         // build the message
-        ZBDocObserverMsg docMsg(ZBDocObserverMsg::OpenDocument, this);
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
         pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
 
         // build the message even if the unit manager is NULL
@@ -1244,7 +1244,7 @@ BOOL PSS_ProcessGraphModelDoc::OnOpenDocument(LPCTSTR pPathName)
     }
 
     // build the message even if the unit manager is NULL
-    ZBDocObserverMsg docMsg(ZBDocObserverMsg::OpenDocument, this);
+    PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
     pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
 
     return TRUE;
@@ -1331,7 +1331,7 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
     ASSERT(pMainWnd);
 
     // build the message
-    ZBDocObserverMsg docMsg;
+    PSS_DocObserverMsg docMsg;
     pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
 
     // message to notify the file save end

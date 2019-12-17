@@ -24,7 +24,7 @@
 #include "PSS_BasicModelProperties.h"
 #include "ZUODSymbolManipulator.h"
 #include "ZBSymbolObserverMsg.h"
-#include "ZBDocObserverMsg.h"
+#include "PSS_DocObserverMsg.h"
 
 // resources
 #include "zModelRes.h"
@@ -2225,7 +2225,7 @@ void PSS_ProcessGraphModelMdl::SetModelName(const CString& value)
         ASSERT(pMainWnd);
 
         // build the message
-        ZBDocObserverMsg docMsg(ZBDocObserverMsg::ChangedElement, NULL, this);
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, this);
         pMainWnd->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, (LPARAM)&docMsg);
     }
 

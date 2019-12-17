@@ -19,7 +19,7 @@
 #include "ZBSymbolEdit.h"
 #include "ZUODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZBDocObserverMsg.h"
+#include "PSS_DocObserverMsg.h"
 #include "ZBSymbolObserverMsg.h"
 #include "PSS_BasicProperties.h"
 
@@ -253,10 +253,10 @@ BOOL PSS_Symbol::SetSymbolName(const CString& value)
             NotifyAllObservers(&msg);
 
             // build the message
-            ZBDocObserverMsg docMsg(ZBDocObserverMsg::ChangedElement,
-                                    NULL,
-                                    dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel()),
-                                    this);
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement,
+                                      NULL,
+                                      dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel()),
+                                      this);
 
             CWnd* pMainWnd = AfxGetMainWnd();
 

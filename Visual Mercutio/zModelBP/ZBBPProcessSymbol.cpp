@@ -14,7 +14,7 @@
 
 #include "ZBBPProcessProp.h"
 #include "ZBBPSimPropProcess.h"
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 
 // ZBPropertyAttributes
 #include "zProperty\ZBPropertyAttributes.h"

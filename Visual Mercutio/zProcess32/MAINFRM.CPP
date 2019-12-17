@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "Resource.h"
 
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 
 #include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zModel\zModelRes.h"
@@ -1066,9 +1066,9 @@ afx_msg LRESULT ZIMainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
 {
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBDocObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_DocObserverMsg))
     {
-        ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
+        PSS_DocObserverMsg* pDocMsg = (PSS_DocObserverMsg*)pMsg;
 
         if (pDocMsg->GetDoc())
         {

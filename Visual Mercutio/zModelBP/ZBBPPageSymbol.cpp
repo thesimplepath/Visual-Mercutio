@@ -13,7 +13,7 @@
 #include "zModel\ZVInsertLinkModelPageDlg.h"
 #include "ZBBPProcessSymbol.h"
 
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 
 // JMR-MODIF - Le 30 août 2006 - Ajout de l'en-tête ZUODSymbolManipulator.
 #include "zModel\ZUODSymbolManipulator.h"
@@ -583,8 +583,8 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             }
 
             // Build the message
-            ZBDocObserverMsg DocMsg;
-            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
+            PSS_DocObserverMsg docMsg;
+            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&docMsg);
             return true;
         }
     }

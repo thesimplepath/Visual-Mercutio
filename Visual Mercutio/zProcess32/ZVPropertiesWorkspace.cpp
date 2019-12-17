@@ -8,7 +8,7 @@
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 
 #include "zBaseLib\PSS_SpanView.h"
 
@@ -210,9 +210,9 @@ afx_msg LRESULT ZVPropertiesWorkspace::OnInitializeModelDocument(WPARAM wParam, 
 
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBDocObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_DocObserverMsg))
     {
-        ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
+        PSS_DocObserverMsg* pDocMsg = (PSS_DocObserverMsg*)pMsg;
 
         if (pDocMsg->GetDoc())
         {

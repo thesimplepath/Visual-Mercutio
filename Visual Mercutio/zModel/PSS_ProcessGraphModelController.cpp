@@ -21,7 +21,7 @@
 #include "PSS_ProcessGraphModelView.h"
 #include "PSS_ProcessGraphModelViewport.h"
 #include "ZUODSymbolManipulator.h"
-#include "ZBDocObserverMsg.h"
+#include "PSS_DocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
 #include "ZBModelObserverMsg.h"
 #include "ZBSymbolObserverMsg.h"
@@ -2198,10 +2198,10 @@ void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
         if (pSymbol || pLinkSymbol)
         {
             // build the message
-            ZBDocObserverMsg docMsg(ZBDocObserverMsg::AddElement,
-                                    NULL,
-                                    GetModel(),
-                                    static_cast<CODSymbolComponent*>(pComp));
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_AddElement,
+                                      NULL,
+                                      GetModel(),
+                                      static_cast<CODSymbolComponent*>(pComp));
 
             CWnd* pMainWnd = AfxGetMainWnd();
             ASSERT(pMainWnd);
@@ -2419,7 +2419,7 @@ void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCo
             ASSERT(pMainWnd);
 
             // build the message
-            ZBDocObserverMsg docMsg(ZBDocObserverMsg::RemoveElement, NULL, pModel, static_cast<CODSymbolComponent*>(pComp));
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_RemoveElement, NULL, pModel, static_cast<CODSymbolComponent*>(pComp));
             pMainWnd->SendMessageToDescendants(UM_ELEMENTREMOVEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
         }
     }
@@ -3812,7 +3812,7 @@ void PSS_ProcessGraphModelController::OnInsertPage()
         ASSERT(pMainWnd);
 
         // build the message
-        ZBDocObserverMsg docMsg;
+        PSS_DocObserverMsg docMsg;
         pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
 
         CDocument* pDocument = GetDocument();
@@ -3857,7 +3857,7 @@ void PSS_ProcessGraphModelController::OnRenamePage()
         ASSERT(pMainWnd);
 
         // build the message
-        ZBDocObserverMsg docMsg;
+        PSS_DocObserverMsg docMsg;
         pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
 
         // set the modification flag
@@ -3898,7 +3898,7 @@ void PSS_ProcessGraphModelController::OnDeletePage()
             ASSERT(pMainWnd);
 
             // build the message
-            ZBDocObserverMsg docMsg;
+            PSS_DocObserverMsg docMsg;
             pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
 
             CDocument* pDocument = GetDocument();
@@ -3946,7 +3946,7 @@ void PSS_ProcessGraphModelController::OnRenameCurrentPage()
         ASSERT(pMainWnd);
 
         // build the message
-        ZBDocObserverMsg docMsg;
+        PSS_DocObserverMsg docMsg;
         pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
 
         CDocument* pDocument = GetDocument();
@@ -4005,7 +4005,7 @@ void PSS_ProcessGraphModelController::OnDeleteCurrentPage()
         ASSERT(pMainWnd);
 
         // build the message
-        ZBDocObserverMsg docMsg;
+        PSS_DocObserverMsg docMsg;
         pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
 
         CDocument* pDocument = GetDocument();

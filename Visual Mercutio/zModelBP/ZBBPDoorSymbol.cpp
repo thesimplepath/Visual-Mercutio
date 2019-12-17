@@ -12,7 +12,7 @@
 #include "zModel\ZDProcessGraphPage.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 
 #include "ProcGraphModelMdlBP.h"
 #include "ProcGraphModelCtlrBP.h"
@@ -516,8 +516,8 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             }
 
             // Build the message
-            ZBDocObserverMsg DocMsg;
-            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
+            PSS_DocObserverMsg docMsg;
+            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&docMsg);
             return true;
         }
     }

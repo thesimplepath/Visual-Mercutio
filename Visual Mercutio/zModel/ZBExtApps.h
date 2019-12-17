@@ -22,8 +22,8 @@
 #define AFX_ZBExtApps_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 // Change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -32,6 +32,14 @@
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
+
+// old class name mapping
+#ifndef PSS_ExtAppProperties
+    #define PSS_ExtAppProperties ZBExtAppProperties
+#endif
+
+// forward class declaration
+class PSS_ExtAppProperties;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -43,16 +51,6 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 8 juillet 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-
-class ZBExtAppProperties;
-
-/////////////////////////////////////////////////////////////////////////////
-// scope symbols in stingray foundation library
-
 using namespace sfl;
 
 ///////////////////////////////////////////////////////////////////////////
@@ -60,35 +58,35 @@ using namespace sfl;
 
 //@type ZBExtAppPropertiesSet | An array of ZBSymbolEntity pointers.
 //@iex typedef CCArray_T<ZBExtAppProperties*,ZBExtAppProperties*> ZBExtAppPropertiesSet;
-typedef CCArray_T<ZBExtAppProperties*,ZBExtAppProperties*> ZBExtAppPropertiesSet;
+typedef CCArray_T<PSS_ExtAppProperties*, PSS_ExtAppProperties*> PSS_ExtAppPropertiesSet;
 
 //@type ZBExtAppPropertiesIterator | An iterator for ZBExtAppPropertiesSet collections.
 //@iex typedef Iterator_T<ZBExtAppProperties*> ZBExtAppPropertiesIterator;
-typedef Iterator_T<ZBExtAppProperties*> ZBExtAppPropertiesIterator;
+typedef Iterator_T<PSS_ExtAppProperties*> PSS_ExtAppPropertiesIterator;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBExtApps class
 
 class AFX_EXT_CLASS ZBExtApps : public CObject
 {
-    DECLARE_SERIAL( ZBExtApps )
+    DECLARE_SERIAL(ZBExtApps)
 
 public:
 
-    ZBExtApps( CODSymbolComponent* pParent = NULL );
+    ZBExtApps(CODSymbolComponent* pParent = NULL);
     virtual ~ZBExtApps();
 
     /* Copy constructor. */
-    ZBExtApps( const ZBExtApps& src );
+    ZBExtApps(const ZBExtApps& src);
 
     /* Assignment operator. */
-    ZBExtApps& operator=( const ZBExtApps& src );
+    ZBExtApps& operator=(const ZBExtApps& src);
 
     /* Create a duplicate copy of this object. */
     virtual ZBExtApps* Dup() const;
 
     // Sets the parent symbol object
-    void SetParent( CODSymbolComponent* pParent );
+    void SetParent(CODSymbolComponent* pParent);
 
     // Create the initial properties
     bool CreateInitialProperties();
@@ -101,20 +99,20 @@ public:
     // Add a new ExtApp,
     // and return the index of the new added ExtApp
     // Return -1 if the function fails
-    int AddExtApp( ZBExtAppProperties* pProperty );
+    int AddExtApp(PSS_ExtAppProperties* pProperty);
 
     // Delete an ExtApp
-    bool DeleteExtApp( size_t Index );
-    bool DeleteExtApp( const CString CommandTitle );
-    bool DeleteExtApp( ZBExtAppProperties* pProperty );
+    bool DeleteExtApp(size_t Index);
+    bool DeleteExtApp(const CString CommandTitle);
+    bool DeleteExtApp(PSS_ExtAppProperties* pProperty);
 
     // Return true if the ExtApp already exists
-    bool ExtAppExist( const CString CommandTitle ) const;
+    bool ExtAppExist(const CString CommandTitle) const;
 
     // Retrieve the right ExtApp properties base on the ExtApp file name
-    ZBExtAppProperties* LocateExtApp( const CString CommandTitle ) const;
+    PSS_ExtAppProperties* LocateExtApp(const CString CommandTitle) const;
 
-    ZBExtAppPropertiesSet& GetExtAppSet()
+    PSS_ExtAppPropertiesSet& GetExtAppSet()
     {
         return m_Set;
     }
@@ -125,11 +123,11 @@ public:
         return m_Set.GetSize();
     }
 
-    ZBExtAppProperties* GetProperty( size_t Index ) const
+    PSS_ExtAppProperties* GetProperty(size_t Index) const
     {
-        if ( Index < GetExtAppCount() )
+        if (Index < GetExtAppCount())
         {
-            return m_Set.GetAt( Index );
+            return m_Set.GetAt(Index);
         }
 
         return NULL;
@@ -146,59 +144,58 @@ public:
     void RemoveAllExtApps();
 
     /* Gets the file title at the specific Index. */
-    CString GetCommandTitle( size_t Index ) const;
+    CString GetCommandTitle(size_t Index) const;
 
     //@cmember
     /* Sets the file title at the specific Index. */
-    void SetCommandTitle( size_t Index, CString Value );
+    void SetCommandTitle(size_t Index, CString Value);
 
     //@cmember
     /* Gets the file name at the specific Index. */
-    CString GetCommandLine( size_t Index ) const;
+    CString GetCommandLine(size_t Index) const;
 
     //@cmember
     /* Sets the file name at the specific Index. */
-    void SetCommandLine( size_t Index, CString Value );
+    void SetCommandLine(size_t Index, CString Value);
 
     //@cmember
     /* Gets the file name at the specific Index. */
-    CString GetCommandParameters( size_t Index ) const;
+    CString GetCommandParameters(size_t Index) const;
 
     //@cmember
     /* Sets the file name at the specific Index. */
-    void SetCommandParameters( size_t Index, CString Value );
+    void SetCommandParameters(size_t Index, CString Value);
 
     //@cmember
     /* Gets the file name at the specific Index. */
-    CString GetCommandStartupDirectory( size_t Index ) const;
+    CString GetCommandStartupDirectory(size_t Index) const;
 
     //@cmember
     /* Sets the file name at the specific Index. */
-    void SetCommandStartupDirectory( size_t Index, CString Value );
+    void SetCommandStartupDirectory(size_t Index, CString Value);
 
     //@cmember
     /* Gets the insertion type at the specific Index. */
-    int GetPriorityLevel( size_t Index ) const;
+    int GetPriorityLevel(size_t Index) const;
 
     //@cmember
     /* Sets the insertion type at the specific Index. */
-    void SetPriorityLevel( size_t Index, const int value );
+    void SetPriorityLevel(size_t Index, const int value);
 
     //@cmember
     /* Gets the activation type at the specific Index. */
-    int GetWindowStartMode( size_t Index ) const;
+    int GetWindowStartMode(size_t Index) const;
 
     //@cmember
     /* Sets the activation type at the specific Index. */
-    void SetWindowStartMode( size_t Index, const int value );
+    void SetWindowStartMode(size_t Index, const int value);
 
     /* Serializes the combinations. */
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
 private:
-
-    CODSymbolComponent*        m_pParent;
-    ZBExtAppPropertiesSet    m_Set;
+    CODSymbolComponent*     m_pParent;
+    PSS_ExtAppPropertiesSet m_Set;
 };
 
-#endif // !defined(AFX_ZBExtApps_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)
+#endif

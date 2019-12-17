@@ -6,7 +6,7 @@
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZBUnitObserverMsg.h"
-#include "zModel\ZBDocObserverMsg.h"
+#include "zModel\PSS_DocObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zModel\ZBLogicalSystemObserverMsg.h"
 #include "Resource.h"
@@ -606,9 +606,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnInitializeModelDocument(WPARAM wParam, LPA
 
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBDocObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_DocObserverMsg))
     {
-        ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
+        PSS_DocObserverMsg* pDocMsg = (PSS_DocObserverMsg*)pMsg;
 
         if (pDocMsg->GetDoc())
         {
@@ -756,9 +756,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnAddModelDocumentSymbol(WPARAM wParam, LPAR
 
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBDocObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_DocObserverMsg))
     {
-        ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
+        PSS_DocObserverMsg* pDocMsg = (PSS_DocObserverMsg*)pMsg;
 
         if (pDocMsg->GetModel() && pDocMsg->GetElement())
         {
@@ -778,9 +778,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnRemoveModelDocumentSymbol(WPARAM wParam, L
 
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBDocObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_DocObserverMsg))
     {
-        ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
+        PSS_DocObserverMsg* pDocMsg = (PSS_DocObserverMsg*)pMsg;
 
         if (pDocMsg->GetModel() && pDocMsg->GetElement())
         {
@@ -800,9 +800,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnModifyModelDocumentSymbol(WPARAM wParam, L
 
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBDocObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_DocObserverMsg))
     {
-        ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
+        PSS_DocObserverMsg* pDocMsg = (PSS_DocObserverMsg*)pMsg;
 
         if (pDocMsg->GetModel() && pDocMsg->GetElement())
         {
