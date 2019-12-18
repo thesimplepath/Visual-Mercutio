@@ -49,16 +49,6 @@ class PSS_WorkspaceFileEntity;
 using namespace sfl;
 
 /**
-* Workspace entity array
-*/
-typedef CCArray_T<PSS_WorkspaceEntity*, PSS_WorkspaceEntity*> PSS_WorkspaceEntitySet;
-
-/**
-* Workspace entity iterator
-*/
-typedef Iterator_T<PSS_WorkspaceEntity*> PSS_WorkspaceEntityIterator;
-
-/**
 * Workspace group entity
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
@@ -67,6 +57,9 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
     DECLARE_SERIAL(PSS_WorkspaceGroupEntity)
 
     public:
+        typedef CCArray_T<PSS_WorkspaceEntity*, PSS_WorkspaceEntity*> IEntitySet;
+        typedef Iterator_T<PSS_WorkspaceEntity*>                      IEntityIterator;
+
         /**
         * Constructor
         *@param name - name
@@ -112,7 +105,7 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
         * Gets the entity set
         *@return the entity set
         */
-        virtual PSS_WorkspaceEntitySet* GetEntitySet();
+        virtual IEntitySet* GetEntitySet();
 
         /**
         * Clears the extension list
@@ -255,7 +248,7 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
         *@param deeper - if true, the remove will be applied recursively
         *@return the group, NULL if not found or on error
         */
-        virtual PSS_WorkspaceEntitySet* FindGroup(const CString& name, bool deeper = false);
+        virtual IEntitySet* FindGroup(const CString& name, bool deeper = false);
 
         /**
         * Finds a group
@@ -263,7 +256,7 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
         *@param inGroupName - parent group name in which the group will be added
         *@return the group, NULL if not found or on error
         */
-        virtual PSS_WorkspaceEntitySet* FindGroup(const CString& name, const CString& inGroupName);
+        virtual IEntitySet* FindGroup(const CString& name, const CString& inGroupName);
 
         /**
         * Finds a group
@@ -271,7 +264,7 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
         *@param pInGroup - parent group in which the group will be added
         *@return the group, NULL if not found or on error
         */
-        virtual PSS_WorkspaceEntitySet* FindGroup(const CString& name, PSS_WorkspaceGroupEntity* pInGroup);
+        virtual IEntitySet* FindGroup(const CString& name, PSS_WorkspaceGroupEntity* pInGroup);
 
         /**
         * Checks if a group exists
@@ -372,9 +365,9 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
         #endif
 
     protected:
-        static PSS_WorkspaceEntitySet m_FindSet;
-        PSS_WorkspaceEntitySet        m_EntitySet;
-        CStringArray                  m_ExtensionList;
+        static IEntitySet m_FindSet;
+        IEntitySet        m_EntitySet;
+        CStringArray      m_ExtensionList;
 
         /**
         * Finds a group (protected version)
@@ -411,7 +404,7 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
         *@param groupArray - group array/
         *@return true on success, otherwise false
         */
-        virtual bool RemoveGroups(PSS_WorkspaceEntitySet& groupArray);
+        virtual bool RemoveGroups(IEntitySet& groupArray);
 
         /**
         * Recalculates the parent

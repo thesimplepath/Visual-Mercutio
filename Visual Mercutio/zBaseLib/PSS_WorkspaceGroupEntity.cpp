@@ -29,7 +29,7 @@ IMPLEMENT_SERIAL(PSS_WorkspaceGroupEntity, PSS_WorkspaceEntity, g_DefVersion)
 //---------------------------------------------------------------------------
 // Global variables
 //---------------------------------------------------------------------------
-PSS_WorkspaceEntitySet PSS_WorkspaceGroupEntity::m_FindSet;
+PSS_WorkspaceGroupEntity::IEntitySet PSS_WorkspaceGroupEntity::m_FindSet;
 //---------------------------------------------------------------------------
 // PSS_WorkspaceGroupEntity
 //---------------------------------------------------------------------------
@@ -54,10 +54,10 @@ PSS_WorkspaceGroupEntity::~PSS_WorkspaceGroupEntity()
 void PSS_WorkspaceGroupEntity::RemoveAllEntities()
 {
     // set the iterator to the right entity set
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
     // iterate through entities
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
         delete pEnv;
 
     m_EntitySet.RemoveAll();
@@ -78,7 +78,7 @@ PSS_WorkspaceEntity* PSS_WorkspaceGroupEntity::GetEntityAt(std::size_t index)
     return (index < GetEntityCount() ? m_EntitySet.GetAt(index) : NULL);
 }
 //---------------------------------------------------------------------------
-PSS_WorkspaceEntitySet* PSS_WorkspaceGroupEntity::GetEntitySet()
+PSS_WorkspaceGroupEntity::IEntitySet* PSS_WorkspaceGroupEntity::GetEntitySet()
 {
     return &m_EntitySet;
 }
@@ -229,7 +229,7 @@ PSS_WorkspaceGroupEntity* PSS_WorkspaceGroupEntity::AddGroup(const CString&     
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceGroupEntity::RemoveGroup(const CString& name, bool deeper)
 {
-    PSS_WorkspaceEntitySet* pSet = FindGroup(name, deeper);
+    IEntitySet* pSet = FindGroup(name, deeper);
 
     if (pSet && pSet->GetSize() > 0)
         return RemoveGroups(*pSet);
@@ -239,7 +239,7 @@ bool PSS_WorkspaceGroupEntity::RemoveGroup(const CString& name, bool deeper)
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceGroupEntity::RemoveGroup(const CString& name, const CString& inGroupName)
 {
-    PSS_WorkspaceEntitySet* pSet = FindGroup(name, inGroupName);
+    IEntitySet* pSet = FindGroup(name, inGroupName);
 
     if (pSet && pSet->GetSize() > 0)
         return RemoveGroups(*pSet);
@@ -249,7 +249,7 @@ bool PSS_WorkspaceGroupEntity::RemoveGroup(const CString& name, const CString& i
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceGroupEntity::RemoveGroup(const CString& name, PSS_WorkspaceGroupEntity* pInGroup)
 {
-    PSS_WorkspaceEntitySet* pSet = FindGroup(name, pInGroup);
+    IEntitySet* pSet = FindGroup(name, pInGroup);
 
     if (pSet && pSet->GetSize() > 0)
         return RemoveGroups(*pSet);
@@ -260,31 +260,31 @@ bool PSS_WorkspaceGroupEntity::RemoveGroup(const CString& name, PSS_WorkspaceGro
 bool PSS_WorkspaceGroupEntity::RemoveGroup(PSS_WorkspaceGroupEntity* pGroup)
 {
     // set the iterator to the right entity set
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
     // iterate through entities
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
         if (pEnv == pGroup && ISA(pEnv, PSS_WorkspaceGroupEntity))
         {
             // free the memory
             delete pGroup;
 
             // remove the current element
-            i.Remove();
+            it.Remove();
             return true;
         }
 
     return false;
 }
 //---------------------------------------------------------------------------
-PSS_WorkspaceEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString& name, bool deeper)
+PSS_WorkspaceGroupEntity::IEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString& name, bool deeper)
 {
     m_FindSet.RemoveAll();
     FindGroupPvt(name, deeper);
     return &m_FindSet;
 }
 //---------------------------------------------------------------------------
-PSS_WorkspaceEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString& name, const CString& inGroupName)
+PSS_WorkspaceGroupEntity::IEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString& name, const CString& inGroupName)
 {
     PSS_WorkspaceGroupEntity* pGroup = NULL;
 
@@ -295,7 +295,8 @@ PSS_WorkspaceEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString& name,
     return FindGroup(name, pGroup);
 }
 //---------------------------------------------------------------------------
-PSS_WorkspaceEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString& name, PSS_WorkspaceGroupEntity* pInGroup)
+PSS_WorkspaceGroupEntity::IEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString&            name,
+                                                                          PSS_WorkspaceGroupEntity* pInGroup)
 {
     m_FindSet.RemoveAll();
     FindGroupPvt(name, pInGroup);
@@ -305,10 +306,10 @@ PSS_WorkspaceEntitySet* PSS_WorkspaceGroupEntity::FindGroup(const CString& name,
 bool PSS_WorkspaceGroupEntity::GroupExist(const CString& name, bool deeper)
 {
     // set the iterator to the right entity set
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
     // iterate through entities
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_WorkspaceGroupEntity* pEntity = dynamic_cast<PSS_WorkspaceGroupEntity*>(pEnv);
 
@@ -376,10 +377,10 @@ PSS_WorkspaceFileEntity* PSS_WorkspaceGroupEntity::AddFile(const CString& fileNa
 bool PSS_WorkspaceGroupEntity::RemoveFile(PSS_WorkspaceFileEntity* pFile)
 {
     // set the iterator to the right entity set
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
     // iterate through entities
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_WorkspaceFileEntity* pFileEntity = dynamic_cast<PSS_WorkspaceFileEntity*>(pEnv);
 
@@ -389,7 +390,7 @@ bool PSS_WorkspaceGroupEntity::RemoveFile(PSS_WorkspaceFileEntity* pFile)
             delete pEnv;
 
             // remove the current element
-            i.Remove();
+            it.Remove();
             return true;
         }
 
@@ -407,10 +408,10 @@ bool PSS_WorkspaceGroupEntity::RemoveFile(PSS_WorkspaceFileEntity* pFile)
 bool PSS_WorkspaceGroupEntity::RemoveFile(const CString& fileName)
 {
     // set the iterator to the right entity set
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
     // iterate through entities
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_WorkspaceFileEntity* pEntity = dynamic_cast<PSS_WorkspaceFileEntity*>(pEnv);
 
@@ -420,7 +421,7 @@ bool PSS_WorkspaceGroupEntity::RemoveFile(const CString& fileName)
             delete pEnv;
 
             // remove the current element
-            i.Remove();
+            it.Remove();
             return true;
         }
     }
@@ -504,9 +505,9 @@ void PSS_WorkspaceGroupEntity::Serialize(CArchive& ar)
 void PSS_WorkspaceGroupEntity::FindGroupPvt(const CString& name, bool deeper)
 {
     // set the iterator to the right entity set
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_WorkspaceGroupEntity* pEntity = dynamic_cast<PSS_WorkspaceGroupEntity*>(pEnv);
 
@@ -533,9 +534,9 @@ void PSS_WorkspaceGroupEntity::FindGroupPvt(const CString& name, PSS_WorkspaceGr
 //---------------------------------------------------------------------------
 PSS_WorkspaceGroupEntity* PSS_WorkspaceGroupEntity::FindFirstGroup(const CString& name, bool deeper)
 {
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv != NULL; pEnv = it.GetNext())
     {
         PSS_WorkspaceGroupEntity* pEntity = dynamic_cast<PSS_WorkspaceGroupEntity*>(pEnv);
 
@@ -567,7 +568,7 @@ PSS_WorkspaceGroupEntity* PSS_WorkspaceGroupEntity::FindFirstGroup(const CString
     return pInGroup->FindFirstGroup(name, false);
 }
 //---------------------------------------------------------------------------
-bool PSS_WorkspaceGroupEntity::RemoveGroups(PSS_WorkspaceEntitySet& groupArray)
+bool PSS_WorkspaceGroupEntity::RemoveGroups(IEntitySet& groupArray)
 {
     bool result = false;
 
@@ -597,9 +598,9 @@ bool PSS_WorkspaceGroupEntity::RemoveGroups(PSS_WorkspaceEntitySet& groupArray)
 void PSS_WorkspaceGroupEntity::RecalculateParent()
 {
     // set the iterator to the right entity set
-    PSS_WorkspaceEntityIterator i(&m_EntitySet);
+    IEntityIterator it(&m_EntitySet);
 
-    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         pEnv->SetParent(this);
 

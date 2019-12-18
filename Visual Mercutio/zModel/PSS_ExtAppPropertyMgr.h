@@ -23,7 +23,7 @@
 // processsoft
 #include "zProperty\ZIProperties.h"
 #include "PSS_ExtAppProperties.h"
-#include "ZBExtApps.h"
+#include "PSS_ExtApps.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -67,7 +67,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         * Gets the external application object reference
         *@return the external application object reference
         */
-        virtual inline ZBExtApps& GetExtApps();
+        virtual inline PSS_ExtApps& GetExtApps();
 
         /**
         * Gets the external application counter
@@ -110,14 +110,14 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         virtual inline bool DeleteExtApp(PSS_ExtAppProperties* pProp);
 
         /**
-        * Removes the empty external applications
-        */
-        virtual inline void RemoveAllEmptyExtApps();
-
-        /**
         * Removes all the external applications
         */
         virtual inline void RemoveAllExtApps();
+
+        /**
+        * Removes the empty external applications
+        */
+        virtual inline void RemoveAllEmptyExtApps();
 
         /**
         * Checks if an external application exists
@@ -376,13 +376,13 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
 
     protected:
         CODSymbolComponent* m_pSymbol;
-        ZBExtApps           m_ExternalApplications;
+        PSS_ExtApps         m_ExternalApplications;
 };
 
 //---------------------------------------------------------------------------
 // PSS_ExtAppPropertyMgr
 //---------------------------------------------------------------------------
-ZBExtApps& PSS_ExtAppPropertyMgr::GetExtApps()
+PSS_ExtApps& PSS_ExtAppPropertyMgr::GetExtApps()
 {
     return m_ExternalApplications;
 }
@@ -417,14 +417,14 @@ bool PSS_ExtAppPropertyMgr::DeleteExtApp(PSS_ExtAppProperties* pProp)
     return m_ExternalApplications.DeleteExtApp(pProp);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::RemoveAllEmptyExtApps()
-{
-    m_ExternalApplications.RemoveAllEmptyExtApps();
-}
-//---------------------------------------------------------------------------
 void PSS_ExtAppPropertyMgr::RemoveAllExtApps()
 {
     m_ExternalApplications.RemoveAllExtApps();
+}
+//---------------------------------------------------------------------------
+void PSS_ExtAppPropertyMgr::RemoveAllEmptyExtApps()
+{
+    m_ExternalApplications.RemoveAllEmptyExtApps();
 }
 //---------------------------------------------------------------------------
 bool PSS_ExtAppPropertyMgr::ExtAppExist(const CString& commandTitle) const

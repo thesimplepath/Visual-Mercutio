@@ -776,13 +776,13 @@ PSS_TreeCtrl::IData* PSS_TreeCtrl::AddSaveStateDataToSet(const CString& str)
 //---------------------------------------------------------------------------
 bool PSS_TreeCtrl::DeleteElementFromSaveStateDataSet(const CString& str)
 {
-    IDataIterator i(&m_DataSet);
+    IDataIterator it(&m_DataSet);
 
-    for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
+    for (IData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
         if (pElement->m_Str == str)
         {
             delete pElement;
-            i.Remove();
+            it.Remove();
             return true;
         }
 

@@ -131,14 +131,14 @@ bool ZBExtFiles::DeleteExtFile( size_t Index )
 bool ZBExtFiles::DeleteExtFile( const CString fileName )
 {
     // Run through the set of deliverables and check if found
-    ZBExtFilePropertiesIterator i( &m_Set );
+    ZBExtFilePropertiesIterator it( &m_Set );
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for ( ZBExtFileProperties* pProp = it.GetFirst(); pProp; pProp = it.GetNext() )
     {
         if ( pProp->GetFileName() == fileName)
         {
             delete pProp;
-            i.Remove();
+            it.Remove();
             return true;
         }
     }

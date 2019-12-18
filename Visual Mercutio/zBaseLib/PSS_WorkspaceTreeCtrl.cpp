@@ -952,14 +952,13 @@ PSS_WorkspaceTreeCtrl::IData* PSS_WorkspaceTreeCtrl::AddDataToSet(const CString&
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceGroupEntity* pEntity)
 {
-    IDataIterator i(&m_DataSet);
+    IDataIterator it(&m_DataSet);
 
-    for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
+    for (IData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
         if (pElement->m_Type == IData::IE_DT_Group && pElement->m_pGroup == pEntity)
         {
             delete pElement;
-            i.Remove();
-
+            it.Remove();
             return true;
         }
 
@@ -968,14 +967,13 @@ bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceGroupEntity* p
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceFileEntity* pEntity)
 {
-    IDataIterator i(&m_DataSet);
+    IDataIterator it(&m_DataSet);
 
-    for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
+    for (IData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
         if (pElement->m_Type == IData::IE_DT_File && pElement->m_pFile == pEntity)
         {
             delete pElement;
-            i.Remove();
-
+            it.Remove();
             return true;
         }
 
@@ -984,14 +982,13 @@ bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceFileEntity* pE
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(const CString& entity)
 {
-    IDataIterator i(&m_DataSet);
+    IDataIterator it(&m_DataSet);
 
-    for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
+    for (IData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
         if (pElement->m_Type == IData::IE_DT_String && pElement->m_Str == entity)
         {
             delete pElement;
-            i.Remove();
-
+            it.Remove();
             return true;
         }
 
