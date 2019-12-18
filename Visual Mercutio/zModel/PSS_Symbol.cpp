@@ -54,7 +54,7 @@ PSS_Symbol::PSS_Symbol() :
     PSS_ObjectPath(),
     PSS_NavigableSymbol(),
     ZIProperties(),
-    ZBExtAppPropertyMgr(this),
+    PSS_ExtAppPropertyMgr(this),
     ZBExtFilePropertyMgr(),
     ZVSymbolAttributes(),
     PSS_BasicSymbolAcceptVisitor(),
@@ -91,7 +91,7 @@ PSS_Symbol::PSS_Symbol(const PSS_Symbol& other) :
     PSS_ObjectPath(),
     PSS_NavigableSymbol(),
     ZIProperties(),
-    ZBExtAppPropertyMgr(this),
+    PSS_ExtAppPropertyMgr(this),
     ZBExtFilePropertyMgr(),
     ZVSymbolAttributes(),
     PSS_BasicSymbolAcceptVisitor(),
@@ -111,10 +111,10 @@ PSS_Symbol::~PSS_Symbol()
 PSS_Symbol& PSS_Symbol::operator = (const PSS_Symbol& other)
 {
     // Call the base class assignement operator
-    CODSymbolComponent::  operator = ((const CODSymbolComponent&)  other);
-    ZBExtAppPropertyMgr:: operator = ((const ZBExtAppPropertyMgr&) other);
-    ZBExtFilePropertyMgr::operator = ((const ZBExtFilePropertyMgr&)other);
-    ZVSymbolAttributes::  operator = ((const ZVSymbolAttributes&)  other);
+    CODSymbolComponent::   operator = ((const CODSymbolComponent&)  other);
+    PSS_ExtAppPropertyMgr::operator = ((const PSS_ExtAppPropertyMgr&) other);
+    ZBExtFilePropertyMgr:: operator = ((const ZBExtFilePropertyMgr&)other);
+    ZVSymbolAttributes::   operator = ((const ZVSymbolAttributes&)  other);
 
     m_ObjectPath          = other.m_ObjectPath;
     m_pModel              = other.m_pModel;
@@ -918,7 +918,7 @@ bool PSS_Symbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool 
     // the external link properties are added by the external app properties manager itself
     if (IsLocal() && AcceptExtApp())
     {
-        if (!ZBExtAppPropertyMgr::FillProperties(propSet, numericValue, groupValue))
+        if (!PSS_ExtAppPropertyMgr::FillProperties(propSet, numericValue, groupValue))
             return false;
 
         // segregation conceptor
@@ -926,7 +926,7 @@ bool PSS_Symbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool 
 
         // if messenger activated
         if (pModel && pModel->GetUseWorkflow())
-            if (!ZBExtAppPropertyMgr::FillPropertiesMessenger(propSet, numericValue, groupValue))
+            if (!PSS_ExtAppPropertyMgr::FillPropertiesMessenger(propSet, numericValue, groupValue))
                 return false;
     }
 
@@ -977,7 +977,7 @@ bool PSS_Symbol::SaveProperties(ZBPropertySet& propSet)
             }
     }
 
-    if (!ZBExtAppPropertyMgr::SaveProperties(propSet) || !ZBExtFilePropertyMgr::SaveProperties(propSet))
+    if (!PSS_ExtAppPropertyMgr::SaveProperties(propSet) || !ZBExtFilePropertyMgr::SaveProperties(propSet))
         return false;
 
     if (m_pDynamicPropManager)
@@ -1003,7 +1003,7 @@ bool PSS_Symbol::FillProperty(ZBProperty& prop)
             case M_Symbol_Risk_Level_ID:  prop.SetValueString(pBasicProps->GetSymbolRiskLevel());   break;
         }
 
-    if (!ZBExtAppPropertyMgr::FillProperty(prop) || !ZBExtFilePropertyMgr::FillProperty(prop))
+    if (!PSS_ExtAppPropertyMgr::FillProperty(prop) || !ZBExtFilePropertyMgr::FillProperty(prop))
         return false;
 
     if (m_pDynamicPropManager)
@@ -1032,7 +1032,7 @@ bool PSS_Symbol::SaveProperty(ZBProperty& prop)
         SetModifiedFlag();
     }
 
-    if (!ZBExtAppPropertyMgr::SaveProperty(prop) || !ZBExtFilePropertyMgr::SaveProperty(prop))
+    if (!PSS_ExtAppPropertyMgr::SaveProperty(prop) || !ZBExtFilePropertyMgr::SaveProperty(prop))
         return false;
 
     if (m_pDynamicPropManager)
@@ -1072,7 +1072,7 @@ bool PSS_Symbol::CheckPropertyValue(ZBProperty& prop, CString& value, ZBProperty
                 return false;
             }
 
-    if (!ZBExtAppPropertyMgr::CheckPropertyValue(prop, value, props) ||
+    if (!PSS_ExtAppPropertyMgr::CheckPropertyValue(prop, value, props) ||
         !ZBExtFilePropertyMgr::CheckPropertyValue(prop, value, props))
         return false;
 
@@ -1087,7 +1087,7 @@ bool PSS_Symbol::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBProper
 {
     bool result = false;
 
-    if (ZBExtAppPropertyMgr::ProcessExtendedInput(prop, value, props, refresh))
+    if (PSS_ExtAppPropertyMgr::ProcessExtendedInput(prop, value, props, refresh))
         result = true;
 
     if (ZBExtFilePropertyMgr::ProcessExtendedInput(prop, value, props, refresh))
@@ -1109,7 +1109,7 @@ bool PSS_Symbol::ProcessMenuCommand(int            menuCmdID,
     bool result = false;
 
     // call the base template class method
-    if (ZBExtAppPropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
+    if (PSS_ExtAppPropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
         result = true;
 
     if (ZBExtFilePropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
@@ -1127,7 +1127,7 @@ bool PSS_Symbol::CreateSymbolProperties()
     PSS_BasicProperties propBasic;
     AddProperty(propBasic);
 
-    ZBExtAppPropertyMgr::CreateSymbolProperties();
+    PSS_ExtAppPropertyMgr::CreateSymbolProperties();
     ZBExtFilePropertyMgr::CreateSymbolProperties();
 
     // create the empty attributes if needed
@@ -1724,7 +1724,7 @@ void PSS_Symbol::Serialize(CArchive& ar)
     // serialize external applications and files
     if (!m_IsInCreationProcess)
     {
-        ZBExtAppPropertyMgr::Serialize(ar);
+        PSS_ExtAppPropertyMgr::Serialize(ar);
         ZBExtFilePropertyMgr::Serialize(ar);
     }
 
@@ -1848,7 +1848,7 @@ bool PSS_Symbol::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop,
     bool result = true;
 
     // call the base template class method
-    if (!ZBExtAppPropertyMgr::OnPrePropertyChanged(newValue, prop, props))
+    if (!PSS_ExtAppPropertyMgr::OnPrePropertyChanged(newValue, prop, props))
         result = false;
 
     if (!ZBExtFilePropertyMgr::OnPrePropertyChanged(newValue, prop, props))
@@ -1866,7 +1866,7 @@ bool PSS_Symbol::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, b
     bool result = false;
 
     // call the base template class method
-    if (ZBExtAppPropertyMgr::OnPostPropertyChanged(prop, props, refresh))
+    if (PSS_ExtAppPropertyMgr::OnPostPropertyChanged(prop, props, refresh))
         result = true;
 
     if (ZBExtFilePropertyMgr::OnPostPropertyChanged(prop, props, refresh))

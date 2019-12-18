@@ -719,7 +719,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 if ((pSymbol && pLinkSymbol->AcceptExtApp()) || (pLinkSymbol && pLinkSymbol->AcceptExtApp()))
                 {
                     // get external file property manager
-                    const ZBExtAppPropertyMgr* pExtAppPropMgr = dynamic_cast<ZBExtAppPropertyMgr*>(pComp);
+                    const PSS_ExtAppPropertyMgr* pExtAppPropMgr = dynamic_cast<PSS_ExtAppPropertyMgr*>(pComp);
                     ASSERT(pExtAppPropMgr);
 
                     // get link count

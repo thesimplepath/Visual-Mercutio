@@ -104,7 +104,7 @@ class AFX_EXT_CLASS PSS_Application
         *@param other - other instance to copy from
         *@note Private to forbid any copy outside the singleton
         */
-        PSS_Application& operator= (const PSS_Application& other)
+        PSS_Application& operator = (const PSS_Application& other)
         {
             throw new std::runtime_error("Copy of the PSS_Application singleton is prohibited");
         }

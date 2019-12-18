@@ -37,7 +37,7 @@
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBPropertyAttributes.h"
-#include "zModel\ZBExtAppPropertyMgr.h"
+#include "zModel\PSS_ExtAppPropertyMgr.h"
 #include "zModel\ZBExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
 
@@ -63,7 +63,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
                                      public PSS_BasicSymbol,
                                      public PSS_ObjectPath,
                                      public ZIProperties,
-                                     public ZBExtAppPropertyMgr,
+                                     public PSS_ExtAppPropertyMgr,
                                      public ZBExtFilePropertyMgr,
                                      public ZVSymbolAttributes,
                                      public PSS_BasicSymbolAcceptVisitor,
@@ -1331,14 +1331,14 @@ void PSS_LinkSymbol::CalculateAbsolutePath()
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    return (AcceptExtApp()  && ZBExtAppPropertyMgr::AcceptDropItem(pObj, point)) ||
+    return (AcceptExtApp()  && PSS_ExtAppPropertyMgr::AcceptDropItem(pObj, point)) ||
            (AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, point));
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::DropItem(CObject* pObj, const CPoint& point)
 {
-    return ((AcceptExtApp()  && ZBExtAppPropertyMgr::AcceptDropItem(pObj, point))  ? ZBExtAppPropertyMgr::DropItem(pObj, point)  : false) ||
-           ((AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, point)) ? ZBExtFilePropertyMgr::DropItem(pObj, point) : false);
+    return ((AcceptExtApp()  && PSS_ExtAppPropertyMgr::AcceptDropItem(pObj, point)) ? PSS_ExtAppPropertyMgr::DropItem(pObj, point)  : false) ||
+           ((AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, point))  ? ZBExtFilePropertyMgr::DropItem(pObj, point) : false);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::AcceptExtApp() const
@@ -1348,7 +1348,7 @@ bool PSS_LinkSymbol::AcceptExtApp() const
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::DoInsertExtApp(bool showDialog)
 {
-    return ZBExtAppPropertyMgr::DoInsertExtApp(showDialog);
+    return PSS_ExtAppPropertyMgr::DoInsertExtApp(showDialog);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::AcceptExtFile() const

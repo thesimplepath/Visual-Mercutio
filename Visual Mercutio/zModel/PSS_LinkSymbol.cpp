@@ -51,7 +51,7 @@ PSS_LinkSymbol::PSS_LinkSymbol() :
     PSS_BasicSymbol(),
     PSS_ObjectPath(),
     ZIProperties(),
-    ZBExtAppPropertyMgr(),
+    PSS_ExtAppPropertyMgr(),
     ZBExtFilePropertyMgr(),
     ZVSymbolAttributes(),
     PSS_BasicSymbolAcceptVisitor(),
@@ -82,7 +82,7 @@ PSS_LinkSymbol::PSS_LinkSymbol(const PSS_LinkSymbol& other) :
     PSS_BasicSymbol(),
     PSS_ObjectPath(),
     ZIProperties(),
-    ZBExtAppPropertyMgr(),
+    PSS_ExtAppPropertyMgr(),
     ZBExtFilePropertyMgr(),
     ZVSymbolAttributes(),
     PSS_BasicSymbolAcceptVisitor(),
@@ -102,10 +102,10 @@ PSS_LinkSymbol::~PSS_LinkSymbol()
 PSS_LinkSymbol& PSS_LinkSymbol::operator = (const PSS_LinkSymbol& other)
 {
     // call the base class assignment operators
-    CODLinkComponent::operator = ((const CODLinkComponent&)other);
-    ZBExtAppPropertyMgr::operator = ((const ZBExtAppPropertyMgr&)other);
-    ZBExtFilePropertyMgr::operator = ((const ZBExtFilePropertyMgr&)other);
-    ZVSymbolAttributes::operator = ((const ZVSymbolAttributes&)other);
+    CODLinkComponent::     operator = ((const CODLinkComponent&)other);
+    PSS_ExtAppPropertyMgr::operator = ((const PSS_ExtAppPropertyMgr&)other);
+    ZBExtFilePropertyMgr:: operator = ((const ZBExtFilePropertyMgr&)other);
+    ZVSymbolAttributes::   operator = ((const ZVSymbolAttributes&)other);
 
     m_ObjectPath         = other.m_ObjectPath;
     m_DynamicPropManager = other.m_DynamicPropManager->Dup();
@@ -1104,7 +1104,7 @@ bool PSS_LinkSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, b
 
     // the external link properties are added by the external app properties manager itself
     if (IsLocal() && AcceptExtApp())
-        if (!ZBExtAppPropertyMgr::FillProperties(propSet, numericValue, groupValue))
+        if (!PSS_ExtAppPropertyMgr::FillProperties(propSet, numericValue, groupValue))
             return false;
 
     // the external file properties are added by the external file properties manager itself
@@ -1154,7 +1154,7 @@ bool PSS_LinkSymbol::SaveProperties(ZBPropertySet& propSet)
             }
     }
 
-    if (!ZBExtAppPropertyMgr::SaveProperties(propSet) || !ZBExtFilePropertyMgr::SaveProperties(propSet))
+    if (!PSS_ExtAppPropertyMgr::SaveProperties(propSet) || !ZBExtFilePropertyMgr::SaveProperties(propSet))
         return false;
 
     if (m_DynamicPropManager)
@@ -1180,7 +1180,7 @@ bool PSS_LinkSymbol::FillProperty(ZBProperty& prop)
             case M_Symbol_Risk_Level_ID:  prop.SetValueString(pBasicProps->GetSymbolRiskLevel());   break;
         }
 
-    if (!ZBExtAppPropertyMgr::FillProperty(prop) || !ZBExtFilePropertyMgr::FillProperty(prop))
+    if (!PSS_ExtAppPropertyMgr::FillProperty(prop) || !ZBExtFilePropertyMgr::FillProperty(prop))
         return false;
 
     if (m_DynamicPropManager)
@@ -1209,7 +1209,7 @@ bool PSS_LinkSymbol::SaveProperty(ZBProperty& prop)
         SetModifiedFlag();
     }
 
-    if (!ZBExtAppPropertyMgr::SaveProperty(prop) || !ZBExtFilePropertyMgr::SaveProperty(prop))
+    if (!PSS_ExtAppPropertyMgr::SaveProperty(prop) || !ZBExtFilePropertyMgr::SaveProperty(prop))
         return false;
 
     if (m_DynamicPropManager)
@@ -1245,7 +1245,7 @@ bool PSS_LinkSymbol::CheckPropertyValue(ZBProperty& prop, CString& value, ZBProp
                 return false;
             }
 
-    if (!ZBExtAppPropertyMgr::CheckPropertyValue(prop, value, props) ||
+    if (!PSS_ExtAppPropertyMgr::CheckPropertyValue(prop, value, props) ||
         !ZBExtFilePropertyMgr::CheckPropertyValue(prop, value, props))
         return false;
 
@@ -1260,7 +1260,7 @@ bool PSS_LinkSymbol::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPr
 {
     bool result = false;
 
-    if (ZBExtAppPropertyMgr::ProcessExtendedInput(prop, value, props, refresh))
+    if (PSS_ExtAppPropertyMgr::ProcessExtendedInput(prop, value, props, refresh))
         result = true;
 
     if (ZBExtFilePropertyMgr::ProcessExtendedInput(prop, value, props, refresh))
@@ -1282,7 +1282,7 @@ bool PSS_LinkSymbol::ProcessMenuCommand(int            menuCmdID,
     bool result = false;
 
     // call the base template class method
-    if (ZBExtAppPropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
+    if (PSS_ExtAppPropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
         result = true;
 
     if (ZBExtFilePropertyMgr::ProcessMenuCommand(menuCmdID, prop, value, props, refresh))
@@ -1300,7 +1300,7 @@ bool PSS_LinkSymbol::CreateSymbolProperties()
     PSS_BasicProperties basicProp;
     AddProperty(basicProp);
 
-    ZBExtAppPropertyMgr::CreateSymbolProperties();
+    PSS_ExtAppPropertyMgr::CreateSymbolProperties();
     ZBExtFilePropertyMgr::CreateSymbolProperties();
 
     // create the empty attributes if required
@@ -1537,7 +1537,7 @@ void PSS_LinkSymbol::Serialize(CArchive& ar)
         }
 
     // serialize external applications and files
-    ZBExtAppPropertyMgr::Serialize(ar);
+    PSS_ExtAppPropertyMgr::Serialize(ar);
     ZBExtFilePropertyMgr::Serialize(ar);
 
     // once loaded, call the base function to recalculate the embedded element positions
@@ -1676,7 +1676,7 @@ bool PSS_LinkSymbol::OnPrePropertyChanged(const CString& newValue, ZBProperty& p
     bool result = true;
 
     // call the base template class method
-    if (!ZBExtAppPropertyMgr::OnPrePropertyChanged(newValue, prop, props))
+    if (!PSS_ExtAppPropertyMgr::OnPrePropertyChanged(newValue, prop, props))
         result = false;
 
     if (!ZBExtFilePropertyMgr::OnPrePropertyChanged(newValue, prop, props))
@@ -1694,7 +1694,7 @@ bool PSS_LinkSymbol::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& prop
     bool result = false;
 
     // call the base template class method
-    if (ZBExtAppPropertyMgr::OnPostPropertyChanged(prop, props, refresh))
+    if (PSS_ExtAppPropertyMgr::OnPostPropertyChanged(prop, props, refresh))
         result = true;
 
     if (ZBExtFilePropertyMgr::OnPostPropertyChanged(prop, props, refresh))

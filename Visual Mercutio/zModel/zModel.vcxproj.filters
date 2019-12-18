@@ -30,9 +30,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBExtAppPropertyMgr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBExtApps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -357,6 +354,9 @@
     <ClCompile Include="PSS_ExtAppProperties.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ExtAppPropertyMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -457,9 +457,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBExtAppPropertyMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBExtApps.h">
@@ -793,6 +790,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ExtAppProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ExtAppPropertyMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

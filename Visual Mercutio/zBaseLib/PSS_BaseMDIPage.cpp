@@ -295,11 +295,21 @@ void PSS_BaseMDIPage::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pD
 {
     CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
-    AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(GetActiveDocument()));
+    CWnd* pMainWnd = AfxGetMainWnd();
 
-    // send a message to the shema view to specify that current schema has changed
-    PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
-    dynamic_cast<PSS_Subject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
+    if (!pMainWnd)
+        return;
+
+    pMainWnd->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(GetActiveDocument()));
+
+    PSS_Subject* pSubject = dynamic_cast<PSS_Subject*>(pMainWnd);
+
+    if (pSubject)
+    {
+        // send a message to the shema view to specify that current schema has changed
+        PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
+        pSubject->NotifyAllObservers(&msg);
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_BaseMDIPage::OnViewFullScreen()

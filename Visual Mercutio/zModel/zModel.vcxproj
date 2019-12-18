@@ -227,7 +227,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBExtAppPropertyMgr.cpp">
+    <ClCompile Include="PSS_ExtAppPropertyMgr.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -766,7 +766,7 @@
     <ClInclude Include="PSS_DashLinkSymbol.h" />
     <ClInclude Include="PSS_DocObserverMsg.h" />
     <ClInclude Include="PSS_ExtAppProperties.h" />
-    <ClInclude Include="ZBExtAppPropertyMgr.h" />
+    <ClInclude Include="PSS_ExtAppPropertyMgr.h" />
     <ClInclude Include="ZBExtApps.h" />
     <ClInclude Include="ZBExtFileProp.h" />
     <ClInclude Include="ZBExtFilePropertyMgr.h" />
