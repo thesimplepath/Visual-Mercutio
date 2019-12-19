@@ -239,7 +239,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBExtFileProp.cpp">
+    <ClCompile Include="PSS_ExtFileProperties.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -768,7 +768,7 @@
     <ClInclude Include="PSS_ExtAppProperties.h" />
     <ClInclude Include="PSS_ExtAppPropertyMgr.h" />
     <ClInclude Include="PSS_ExtApps.h" />
-    <ClInclude Include="ZBExtFileProp.h" />
+    <ClInclude Include="PSS_ExtFileProperties.h" />
     <ClInclude Include="ZBExtFilePropertyMgr.h" />
     <ClInclude Include="ZBExtFiles.h" />
     <ClInclude Include="ZBGenericSymbolErrorLine.h" />

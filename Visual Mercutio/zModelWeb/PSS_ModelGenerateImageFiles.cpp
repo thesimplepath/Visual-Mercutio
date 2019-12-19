@@ -677,7 +677,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                     for (std::size_t idx = 0; idx < linkCount; ++idx)
                     {
                         // for each link, create a link with a blank target
-                        ZBExtFileProperties* pFileProp = pExtFilePropMgr->GetExtFileProperty(idx);
+                        PSS_ExtFileProperties* pFileProp = pExtFilePropMgr->GetExtFileProperty(idx);
 
                         if (!pFileProp)
                             continue;

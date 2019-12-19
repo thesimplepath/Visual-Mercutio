@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "ZBExtFiles.h"
-#include "ZBExtFileProp.h"
+#include "PSS_ExtFileProperties.h"
 #include "zProperty\ZIProperties.h"
 
 #ifdef _ZMODELEXPORT
@@ -71,7 +71,7 @@ public:
     // Add a new extfile,
     // and return the index of the new added extfile
     // Return -1 if the function fails
-    int AddExtFile(ZBExtFileProperties* pProperty)
+    int AddExtFile(PSS_ExtFileProperties* pProperty)
     {
         return m_ExternalFiles.AddExtFile(pProperty);
     }
@@ -87,7 +87,7 @@ public:
         return m_ExternalFiles.DeleteExtFile(fileName);
     }
 
-    bool DeleteExtFile(ZBExtFileProperties* pProperty)
+    bool DeleteExtFile(PSS_ExtFileProperties* pProperty)
     {
         return m_ExternalFiles.DeleteExtFile(pProperty);
     }
@@ -99,12 +99,12 @@ public:
     }
 
     // Retrieve the right extfile properties base on the extfile file name
-    ZBExtFileProperties* LocateExtFile(const CString fileName) const
+    PSS_ExtFileProperties* LocateExtFile(const CString fileName) const
     {
         return m_ExternalFiles.LocateExtFile(fileName);
     }
 
-    ZBExtFileProperties* GetExtFileProperty(size_t Index) const
+    PSS_ExtFileProperties* GetExtFileProperty(size_t Index) const
     {
         return m_ExternalFiles.GetProperty(Index);
     }

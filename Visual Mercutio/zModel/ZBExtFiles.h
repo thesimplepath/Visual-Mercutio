@@ -22,10 +22,9 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+#endif
 
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -33,10 +32,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping
+#ifndef PSS_ExtFileProperties
+    #define PSS_ExtFileProperties ZBExtFileProperties
+#endif
 
+// forward class declaration
+class PSS_ExtFileProperties;
 
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -44,15 +49,6 @@
 #define AFX_EXT_API AFX_API_EXPORT
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBExtFileProperties;
-
 
 /////////////////////////////////////////////////////////////////////////////
 // scope symbols in stingray foundation library
@@ -65,17 +61,17 @@ using namespace sfl;
 
 //@type ZBExtFilePropertiesSet | An array of ZBSymbolEntity pointers.
 //@iex typedef CCArray_T<ZBExtFileProperties*,ZBExtFileProperties*> ZBExtFilePropertiesSet;
-typedef CCArray_T<ZBExtFileProperties*,ZBExtFileProperties*> ZBExtFilePropertiesSet;
+typedef CCArray_T<PSS_ExtFileProperties*, PSS_ExtFileProperties*> ZBExtFilePropertiesSet;
 
 //@type ZBExtFilePropertiesIterator | An iterator for ZBExtFilePropertiesSet collections.
 //@iex typedef Iterator_T<ZBExtFileProperties*> ZBExtFilePropertiesIterator;
-typedef Iterator_T<ZBExtFileProperties*> ZBExtFilePropertiesIterator;
+typedef Iterator_T<PSS_ExtFileProperties*> ZBExtFilePropertiesIterator;
 
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBExtFiles class
 
-class AFX_EXT_CLASS ZBExtFiles : public CObject  
+class AFX_EXT_CLASS ZBExtFiles : public CObject
 {
     DECLARE_SERIAL(ZBExtFiles)
 public:
@@ -101,17 +97,17 @@ public:
     // Add a new extfile, 
     // and return the index of the new added extfile
     // Return -1 if the function fails
-    int AddExtFile( ZBExtFileProperties* pProperty );
+    int AddExtFile(PSS_ExtFileProperties* pProperty);
 
     // Delete an extfile
-    bool DeleteExtFile( size_t Index );
-    bool DeleteExtFile( const CString fileName );
-    bool DeleteExtFile( ZBExtFileProperties* pProperty );
+    bool DeleteExtFile(size_t Index);
+    bool DeleteExtFile(const CString fileName);
+    bool DeleteExtFile(PSS_ExtFileProperties* pProperty);
 
     // Return true if the extfile already exists
-    bool ExtFileExist( const CString fileName ) const;
+    bool ExtFileExist(const CString fileName) const;
     // Retrieve the right extfile properties base on the extfile file name
-    ZBExtFileProperties* LocateExtFile( const CString fileName ) const;
+    PSS_ExtFileProperties* LocateExtFile(const CString fileName) const;
 
     ZBExtFilePropertiesSet& GetExtFileSet()
     {
@@ -119,12 +115,12 @@ public:
     };
 
     // Return the counter of extfiles
-    size_t    GetExtFileCount() const 
+    size_t    GetExtFileCount() const
     {
         return m_Set.GetSize();
     };
 
-    ZBExtFileProperties* GetProperty( size_t Index ) const
+    PSS_ExtFileProperties* GetProperty(size_t Index) const
     {
         if (Index < GetExtFileCount())
             return m_Set.GetAt(Index);
@@ -178,6 +174,4 @@ private:
     ZBExtFilePropertiesSet m_Set;
 };
 
-
-
-#endif // !defined(AFX_ZBExtFiles_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)
+#endif

@@ -81,7 +81,7 @@ bool ZBExtFilePropertyMgr::FillProperties(ZBPropertySet&    PropSet,
         ZBProperty* pCombination = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
                                                   PropName,
-                                                  (GroupValue == true) ? Z_FILE_TITLE : (Z_FILE_TITLE + (i * 40)),
+                                                  GroupValue ? M_File_Title_ID : (M_File_Title_ID + (i * 40)),
                                                   PropDesc,
                                                   GetFileTitle(i),
                                                   ZBProperty::PT_EDIT_MENU,
@@ -99,7 +99,7 @@ bool ZBExtFilePropertyMgr::FillProperties(ZBPropertySet&    PropSet,
         pCombination = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
                                       PropName,
-                                      (GroupValue == true) ? Z_FILE_NAME : (Z_FILE_NAME + (i * 40)),
+                                      GroupValue ? M_File_Name_ID : (M_File_Name_ID + (i * 40)),
                                       PropDesc,
                                       GetFileName(i),
                                       ZBProperty::PT_EDIT_EXTENDED);
@@ -206,7 +206,7 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pCombination = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
                                           PropName,
-                                          (GroupValue == true) ? Z_INSERTION_TYPE : (Z_INSERTION_TYPE + (i * 40)),
+                                          (GroupValue == true) ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
                                           PropDesc,
                                           (double)GetInsertionType(i),
                                           ZBProperty::PT_EDIT_NUMBER);
@@ -216,7 +216,7 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pCombination = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
                                           PropName,
-                                          (GroupValue == true) ? Z_INSERTION_TYPE : (Z_INSERTION_TYPE + (i * 40)),
+                                          (GroupValue == true) ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
                                           PropDesc,
                                           PSS_Global::GetInsertionTypeString(GetInsertionType(i)),
                                           ZBProperty::PT_COMBO_STRING_READONLY,
@@ -236,7 +236,7 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pCombination = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
                                           PropName,
-                                          (GroupValue == true) ? Z_ACTIVATION_TYPE : (Z_ACTIVATION_TYPE + (i * 40)),
+                                          (GroupValue == true) ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
                                           PropDesc,
                                           (double)GetActivationType(i),
                                           ZBProperty::PT_EDIT_NUMBER);
@@ -246,7 +246,7 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
             pCombination = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
                                           PropName,
-                                          (GroupValue == true) ? Z_ACTIVATION_TYPE : (Z_ACTIVATION_TYPE + (i * 40)),
+                                          (GroupValue == true) ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
                                           PropDesc,
                                           PSS_Global::GetActivationTypeString(GetActivationType(i)),
                                           ZBProperty::PT_COMBO_STRING_READONLY,
@@ -288,25 +288,25 @@ bool ZBExtFilePropertyMgr::SaveProperty(ZBProperty& Property)
 
         switch (Property.GetItemID() - (i * 40))
         {
-            case Z_FILE_TITLE:
+            case M_File_Title_ID:
             {
                 SetFileTitle(i, Property.GetValueString());
                 break;
             }
 
-            case Z_FILE_NAME:
+            case M_File_Name_ID:
             {
                 SetFileName(i, Property.GetValueString());
                 break;
             }
 
-            case Z_INSERTION_TYPE:
+            case M_Insertion_Type_ID:
             {
                 SetInsertionType(i, PSS_Global::GetInsertionType(Property.GetValueString()));
                 break;
             }
 
-            case Z_ACTIVATION_TYPE:
+            case M_Activation_Type_ID:
             {
                 SetActivationType(i, PSS_Global::GetActivationType(Property.GetValueString()));
                 break;

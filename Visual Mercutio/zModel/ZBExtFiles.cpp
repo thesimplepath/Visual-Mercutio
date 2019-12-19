@@ -14,11 +14,12 @@
 #include "stdafx.h"
 #include "ZBExtFiles.h"
 
-#include "ZBExtFileProp.h"
+// processsoft
+#include "PSS_ExtFileProperties.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -34,29 +35,28 @@ IMPLEMENT_SERIAL(ZBExtFiles, CObject, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBExtFiles::ZBExtFiles( CODSymbolComponent* pParent /*= NULL*/ )
-    : m_pParent( pParent )
-{
-}
+ZBExtFiles::ZBExtFiles(CODSymbolComponent* pParent /*= NULL*/)
+    : m_pParent(pParent)
+{}
 
 ZBExtFiles::~ZBExtFiles()
 {
     RemoveAllExtFiles();
 }
 
-ZBExtFiles::ZBExtFiles( const ZBExtFiles& src )
+ZBExtFiles::ZBExtFiles(const ZBExtFiles& src)
 {
     *this = src;
 }
 
-ZBExtFiles& ZBExtFiles::operator=( const ZBExtFiles& src )
+ZBExtFiles& ZBExtFiles::operator=(const ZBExtFiles& src)
 {
     // Copy the members.
-    ZBExtFilePropertiesIterator i( &const_cast<ZBExtFiles&>( src ).GetExtFileSet() );
+    ZBExtFilePropertiesIterator i(&const_cast<ZBExtFiles&>(src).GetExtFileSet());
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        AddExtFile( pProp->Dup() );
+        AddExtFile(pProp->Dup());
     }
 
     m_pParent = src.m_pParent;
@@ -69,21 +69,21 @@ ZBExtFiles* ZBExtFiles::Dup() const
     return (new ZBExtFiles(*this));
 }
 
-void ZBExtFiles::SetParent( CODSymbolComponent* pParent )
+void ZBExtFiles::SetParent(CODSymbolComponent* pParent)
 {
     m_pParent = pParent;
 }
 
 bool ZBExtFiles::CreateInitialProperties()
 {
-    if ( GetExtFileCount() > 0 )
+    if (GetExtFileCount() > 0)
     {
         return true;
     }
 
-    ZBExtFileProperties* pProps = new ZBExtFileProperties;
+    PSS_ExtFileProperties* pProps = new PSS_ExtFileProperties;
 
-    if ( AddExtFile( pProps ) >= 0 )
+    if (AddExtFile(pProps) >= 0)
     {
         return true;
     }
@@ -93,16 +93,16 @@ bool ZBExtFiles::CreateInitialProperties()
 
 int ZBExtFiles::AddNewExtFile()
 {
-    ZBExtFileProperties* pProps = new ZBExtFileProperties;
+    PSS_ExtFileProperties* pProps = new PSS_ExtFileProperties;
 
-    return AddExtFile( pProps );
+    return AddExtFile(pProps);
 }
 
-int ZBExtFiles::AddExtFile( ZBExtFileProperties* pProperty )
+int ZBExtFiles::AddExtFile(PSS_ExtFileProperties* pProperty)
 {
-    if ( pProperty )
+    if (pProperty)
     {
-        m_Set.Add( pProperty );
+        m_Set.Add(pProperty);
 
         // Returns the index
         return GetExtFileCount() - 1;
@@ -111,15 +111,15 @@ int ZBExtFiles::AddExtFile( ZBExtFileProperties* pProperty )
     return -1;
 }
 
-bool ZBExtFiles::DeleteExtFile( size_t Index )
+bool ZBExtFiles::DeleteExtFile(size_t Index)
 {
-    if ( Index < GetExtFileCount() )
+    if (Index < GetExtFileCount())
     {
-        ZBExtFileProperties* pProperty = GetProperty( Index );
+        PSS_ExtFileProperties* pProperty = GetProperty(Index);
 
-        if ( pProperty )
+        if (pProperty)
         {
-            m_Set.RemoveAt( Index );
+            m_Set.RemoveAt(Index);
             delete pProperty;
             return true;
         }
@@ -128,14 +128,14 @@ bool ZBExtFiles::DeleteExtFile( size_t Index )
     return false;
 }
 
-bool ZBExtFiles::DeleteExtFile( const CString fileName )
+bool ZBExtFiles::DeleteExtFile(const CString fileName)
 {
     // Run through the set of deliverables and check if found
-    ZBExtFilePropertiesIterator it( &m_Set );
+    ZBExtFilePropertiesIterator it(&m_Set);
 
-    for ( ZBExtFileProperties* pProp = it.GetFirst(); pProp; pProp = it.GetNext() )
+    for (PSS_ExtFileProperties* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
-        if ( pProp->GetFileName() == fileName)
+        if (pProp->GetFileName() == fileName)
         {
             delete pProp;
             it.Remove();
@@ -146,13 +146,13 @@ bool ZBExtFiles::DeleteExtFile( const CString fileName )
     return false;
 }
 
-bool ZBExtFiles::DeleteExtFile( ZBExtFileProperties* pProperty )
+bool ZBExtFiles::DeleteExtFile(PSS_ExtFileProperties* pProperty)
 {
-    ZBExtFilePropertiesIterator i( &m_Set );
+    ZBExtFilePropertiesIterator i(&m_Set);
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProperty == pProp )
+        if (pProperty == pProp)
         {
             i.Remove();
             delete pProp;
@@ -166,11 +166,11 @@ bool ZBExtFiles::DeleteExtFile( ZBExtFileProperties* pProperty )
 int ZBExtFiles::LocateFirstEmptyExtFile() const
 {
     int Idx = 0;
-    ZBExtFilePropertiesIterator i( &m_Set );
+    ZBExtFilePropertiesIterator i(&m_Set);
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Idx )
+    for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Idx)
     {
-        if ( pProp->IsEmpty() )
+        if (pProp->IsEmpty())
         {
             return Idx;
         }
@@ -181,11 +181,11 @@ int ZBExtFiles::LocateFirstEmptyExtFile() const
 
 void ZBExtFiles::RemoveAllEmptyExtFiles()
 {
-    ZBExtFilePropertiesIterator i( &m_Set );
+    ZBExtFilePropertiesIterator i(&m_Set);
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->IsEmpty() )
+        if (pProp->IsEmpty())
         {
             delete pProp;
             i.Remove();
@@ -195,9 +195,9 @@ void ZBExtFiles::RemoveAllEmptyExtFiles()
 
 void ZBExtFiles::RemoveAllExtFiles()
 {
-    ZBExtFilePropertiesIterator i( &m_Set );
+    ZBExtFilePropertiesIterator i(&m_Set);
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -206,86 +206,86 @@ void ZBExtFiles::RemoveAllExtFiles()
     m_Set.RemoveAll();
 }
 
-CString ZBExtFiles::GetFileTitle( size_t Index ) const
+CString ZBExtFiles::GetFileTitle(size_t Index) const
 {
-    if ( Index < GetExtFileCount() )
+    if (Index < GetExtFileCount())
     {
         return m_Set.GetAt(Index)->GetFileTitle();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBExtFiles::SetFileTitle( size_t Index, CString Value )
+void ZBExtFiles::SetFileTitle(size_t Index, CString Value)
 {
-    if ( Index < GetExtFileCount() )
+    if (Index < GetExtFileCount())
     {
-        m_Set.GetAt(Index)->SetFileTitle( Value );
+        m_Set.GetAt(Index)->SetFileTitle(Value);
     }
 }
 
-CString ZBExtFiles::GetFileName( size_t Index ) const
+CString ZBExtFiles::GetFileName(size_t Index) const
 {
-    if ( Index < GetExtFileCount() )
+    if (Index < GetExtFileCount())
     {
-        return m_Set.GetAt( Index )->GetFileName();
+        return m_Set.GetAt(Index)->GetFileName();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBExtFiles::SetFileName( size_t Index, CString Value )
+void ZBExtFiles::SetFileName(size_t Index, CString Value)
 {
-    if ( Index < GetExtFileCount() )
+    if (Index < GetExtFileCount())
     {
-        m_Set.GetAt( Index )->SetFileName( Value );
-    }
-}
-
-int ZBExtFiles::GetInsertionType( size_t Index ) const
-{
-    if ( Index < GetExtFileCount() )
-    {
-        return m_Set.GetAt( Index )->GetInsertionType();
-    }
-
-    return 0;
-}
-
-void ZBExtFiles::SetInsertionType( size_t Index, const int value )
-{
-    if ( Index < GetExtFileCount() )
-    {
-        m_Set.GetAt( Index )->SetInsertionType( value );
+        m_Set.GetAt(Index)->SetFileName(Value);
     }
 }
 
-int ZBExtFiles::GetActivationType( size_t Index ) const
+int ZBExtFiles::GetInsertionType(size_t Index) const
 {
-    if ( Index < GetExtFileCount() )
+    if (Index < GetExtFileCount())
     {
-        return m_Set.GetAt( Index )->GetActivationType();
+        return m_Set.GetAt(Index)->GetInsertionType();
     }
 
     return 0;
 }
 
-void ZBExtFiles::SetActivationType( size_t Index, const int value )
+void ZBExtFiles::SetInsertionType(size_t Index, const int value)
 {
-    if ( Index < GetExtFileCount() )
+    if (Index < GetExtFileCount())
     {
-        m_Set.GetAt( Index )->SetActivationType( value );
+        m_Set.GetAt(Index)->SetInsertionType(value);
     }
 }
 
-bool ZBExtFiles::ExtFileExist( const CString fileName) const
+int ZBExtFiles::GetActivationType(size_t Index) const
+{
+    if (Index < GetExtFileCount())
+    {
+        return m_Set.GetAt(Index)->GetActivationType();
+    }
+
+    return 0;
+}
+
+void ZBExtFiles::SetActivationType(size_t Index, const int value)
+{
+    if (Index < GetExtFileCount())
+    {
+        m_Set.GetAt(Index)->SetActivationType(value);
+    }
+}
+
+bool ZBExtFiles::ExtFileExist(const CString fileName) const
 {
     // Run through the set and build the string
-    ZBExtFilePropertiesIterator i( &m_Set );
+    ZBExtFilePropertiesIterator i(&m_Set);
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetFileName() == fileName)
+        if (pProp->GetFileName() == fileName)
         {
             return true;
         }
@@ -294,14 +294,14 @@ bool ZBExtFiles::ExtFileExist( const CString fileName) const
     return false;
 }
 
-ZBExtFileProperties* ZBExtFiles::LocateExtFile( const CString fileName) const
+PSS_ExtFileProperties* ZBExtFiles::LocateExtFile(const CString fileName) const
 {
     // Run through the set of deliverables and check if found
-    ZBExtFilePropertiesIterator i( &m_Set );
+    ZBExtFilePropertiesIterator i(&m_Set);
 
-    for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetFileName() == fileName)
+        if (pProp->GetFileName() == fileName)
         {
             return pProp;
         }
@@ -310,15 +310,15 @@ ZBExtFileProperties* ZBExtFiles::LocateExtFile( const CString fileName) const
     return NULL;
 }
 
-void ZBExtFiles::Serialize( CArchive& ar )
+void ZBExtFiles::Serialize(CArchive& ar)
 {
-    if ( ar.IsStoring() )
+    if (ar.IsStoring())
     {
         // Serialize the size of the set
         ar << m_Set.GetSize();
-        ZBExtFilePropertiesIterator i( &m_Set );
+        ZBExtFilePropertiesIterator i(&m_Set);
 
-        for ( ZBExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (PSS_ExtFileProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
             ar << pProp;
         }
@@ -331,12 +331,12 @@ void ZBExtFiles::Serialize( CArchive& ar )
         int Count;
         ar >> Count;
 
-        ZBExtFileProperties* pProp;
+        PSS_ExtFileProperties* pProp;
 
-        for ( int i = 0; i < Count; ++i )
+        for (int i = 0; i < Count; ++i)
         {
             ar >> pProp;
-            AddExtFile( pProp );
+            AddExtFile(pProp);
         }
     }
 }
