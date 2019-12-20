@@ -30,7 +30,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
@@ -66,7 +66,7 @@ bool ZBBPAutomate::OnStart(PSS_Log* pLog)
 
         CString message;
         message.Format(IDS_AL_START, m_pModel->GetModelName());
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -93,7 +93,7 @@ bool ZBBPAutomate::OnStop(PSS_Log* pLog)
             message.LoadString(IDS_AL_STOP);
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -132,7 +132,7 @@ bool ZBBPAutomate::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine*
             message.Format(IDS_AL_SYMB_ISFINISHED_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -155,7 +155,7 @@ bool ZBBPAutomate::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* p
             message.Format(IDS_AL_SYMB_ISPAUSED_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -180,7 +180,7 @@ bool ZBBPAutomate::OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
             message.Format(IDS_AL_SYMB_ISWAITINGONOTHER_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -203,7 +203,7 @@ bool ZBBPAutomate::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_State
             message.Format(IDS_AL_SYMB_REQUESTMOVE_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -226,7 +226,7 @@ bool ZBBPAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_Sta
             message.Format(IDS_AL_SYMB_REACHED_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -249,7 +249,7 @@ bool ZBBPAutomate::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine
             message.Format(IDS_AL_SYMB_BEFOREMOVE_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -272,7 +272,7 @@ bool ZBBPAutomate::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine*
             message.Format(IDS_AL_SYMB_AFTERMOVE_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -305,7 +305,7 @@ bool ZBBPAutomate::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pSta
             message.Format(IDS_AL_SYMB_ISINERROR_DBG, _T("error!!!"));
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -319,7 +319,7 @@ bool ZBBPAutomate::OnReachMaximumLoopCounter(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_MAXIMUMLOOP_REACHED);
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
 
         // Increment the error counter
@@ -336,7 +336,7 @@ bool ZBBPAutomate::OnReachMaximumWaitingForOtherLinksCounter(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_WAITINGFOROTHER_REACHED);
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
 
         // Increment the error counter
@@ -353,7 +353,7 @@ bool ZBBPAutomate::OnReachMaximumInPauseCounter(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_INPAUSECOUNTER_REACHED);
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
 
         // Increment the error counter
@@ -420,7 +420,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardSt
         // Error, no following symbol attached to this start symbol
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath());
             pLog->AddLine(e);
         }
 
@@ -442,7 +442,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardSt
         // Error, no following symbol attached to this start symbol
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_START_INC_3, pStart->GetSymbolName(), pStart->GetAbsolutePath());
             pLog->AddLine(e);
         }
 
@@ -536,9 +536,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
                         // Log error message
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_8,
-                                                       pProcedure->GetSymbolName(),
-                                                       pProcedure->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_8,
+                                                         pProcedure->GetSymbolName(),
+                                                         pProcedure->GetAbsolutePath());
 
                             pLog->AddLine(e);
                         }
@@ -562,9 +562,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
                         // Log error message
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_8,
-                                                       pProcedure->GetSymbolName(),
-                                                       pProcedure->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_8,
+                                                         pProcedure->GetSymbolName(),
+                                                         pProcedure->GetAbsolutePath());
 
                             pLog->AddLine(e);
                         }
@@ -606,9 +606,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
                         // Log error message
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_9,
-                                                       pProcedure->GetSymbolName(),
-                                                       pProcedure->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_9,
+                                                         pProcedure->GetSymbolName(),
+                                                         pProcedure->GetAbsolutePath());
                             pLog->AddLine(e);
                         }
 
@@ -631,9 +631,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
                         // Log error message
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_9,
-                                                       pProcedure->GetSymbolName(),
-                                                       pProcedure->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_9,
+                                                         pProcedure->GetSymbolName(),
+                                                         pProcedure->GetAbsolutePath());
 
                             pLog->AddLine(e);
                         }
@@ -688,9 +688,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
             // Log error message
             if (pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
-                                           pProcedure->GetSymbolName(),
-                                           pProcedure->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
+                                             pProcedure->GetSymbolName(),
+                                             pProcedure->GetAbsolutePath());
 
                 pLog->AddLine(e);
             }
@@ -712,9 +712,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
             // Log error message
             if (pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
-                                           pProcedure->GetSymbolName(),
-                                           pProcedure->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
+                                             pProcedure->GetSymbolName(),
+                                             pProcedure->GetAbsolutePath());
 
                 pLog->AddLine(e);
             }
@@ -747,9 +747,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
         // Log error message
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_3,
-                                       pDoor->GetSymbolName(),
-                                       pDoor->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_3,
+                                         pDoor->GetSymbolName(),
+                                         pDoor->GetAbsolutePath());
 
             pLog->AddLine(e);
         }
@@ -773,9 +773,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
         // Error, no following symbol attached to this start symbol
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
-                                       pTwinDoor->GetSymbolName(),
-                                       pTwinDoor->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
+                                         pTwinDoor->GetSymbolName(),
+                                         pTwinDoor->GetAbsolutePath());
 
             pLog->AddLine(e);
         }
@@ -798,9 +798,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
         // Error, no following symbol attached to this start symbol
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
-                                       pTwinDoor->GetSymbolName(),
-                                       pTwinDoor->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
+                                         pTwinDoor->GetSymbolName(),
+                                         pTwinDoor->GetAbsolutePath());
 
             pLog->AddLine(e);
         }
@@ -829,9 +829,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
         // Log error message
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_3,
-                                       pPage->GetSymbolName(),
-                                       pPage->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_3,
+                                         pPage->GetSymbolName(),
+                                         pPage->GetAbsolutePath());
 
             pLog->AddLine(e);
         }
@@ -855,9 +855,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
         // Error, no following symbol attached to this page symbol
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
-                                       pTwinPage->GetSymbolName(),
-                                       pTwinPage->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
+                                         pTwinPage->GetSymbolName(),
+                                         pTwinPage->GetAbsolutePath());
 
             pLog->AddLine(e);
         }
@@ -880,9 +880,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
         // Error, no following symbol attached to this page symbol
         if (pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
-                                       pTwinPage->GetSymbolName(),
-                                       pTwinPage->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
+                                         pTwinPage->GetSymbolName(),
+                                         pTwinPage->GetAbsolutePath());
 
             pLog->AddLine(e);
         }

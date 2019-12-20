@@ -16,7 +16,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
@@ -56,7 +56,7 @@ bool ZUCheckMessengerValidUnit::OnStart()
         {
             CString message;
             message.LoadString( IDS_ERR_USERGROUP_DIFFMODEL );
-            ZBGenericSymbolErrorLine e( message );
+            PSS_GenericSymbolErrorLine e( message );
             m_pLog->AddLine( e );
         }
 
@@ -71,7 +71,7 @@ bool ZUCheckMessengerValidUnit::OnStart()
         {
             CString message;
             message.LoadString( IDS_ERR_SYSTEMDEFXML_DIFFMODEL );
-            ZBGenericSymbolErrorLine e( message );
+            PSS_GenericSymbolErrorLine e( message );
             m_pLog->AddLine( e );
         }
 
@@ -86,7 +86,7 @@ bool ZUCheckMessengerValidUnit::OnStart()
         {
             CString message;
             message.LoadString( IDS_ERR_PRESTATIONSDEFXML_DIFFMODEL );
-            ZBGenericSymbolErrorLine e( message );
+            PSS_GenericSymbolErrorLine e( message );
             m_pLog->AddLine( e );
         }
 
@@ -115,11 +115,11 @@ bool ZUCheckMessengerValidUnit::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol 
     {
         if ( m_pLog )
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_17,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath(),
-                                        -1,
-                                        1 );
+            PSS_GenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_17,
+                                          pSymbol->GetSymbolName(),
+                                          pSymbol->GetAbsolutePath(),
+                                          -1,
+                                          1 );
 
             m_pLog->AddLine( e );
         }
@@ -144,11 +144,11 @@ bool ZUCheckMessengerValidUnit::OnStartSymbol( ZBBPStartSymbol* pSymbol )
     {
         if ( m_pLog )
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_START_INC_14,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath(),
-                                        -1,
-                                        1 );
+            PSS_GenericSymbolErrorLine e( IDS_AL_START_INC_14,
+                                          pSymbol->GetSymbolName(),
+                                          pSymbol->GetAbsolutePath(),
+                                          -1,
+                                          1 );
 
             m_pLog->AddLine( e );
         }
@@ -173,11 +173,11 @@ bool ZUCheckMessengerValidUnit::OnStopSymbol( ZBBPStopSymbol* pSymbol )
     {
         if ( m_pLog )
         {
-            ZBGenericSymbolErrorLine e( IDS_AL_STOP_INC_7,
-                                        pSymbol->GetSymbolName(),
-                                        pSymbol->GetAbsolutePath(),
-                                        -1,
-                                        1 );
+            PSS_GenericSymbolErrorLine e( IDS_AL_STOP_INC_7,
+                                          pSymbol->GetSymbolName(),
+                                          pSymbol->GetAbsolutePath(),
+                                          -1,
+                                          1 );
 
             m_pLog->AddLine( e );
         }

@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\ZBLogicalSystemEntity.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "ZBPublishMessengerModelInformation.h"
 
@@ -64,7 +64,7 @@ void PSS_SoapPublishLogicalSystem::PublishLogicalSystem(ZBLogicalSystemEntity* p
     {
         CString message;
         message.Format(IDS_AL_PUBLISHLOGICALSYSTEM, (const char*)pSystem->GetEntityName());
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         m_pLog->AddLine(e);
     }
 

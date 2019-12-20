@@ -22,7 +22,7 @@ ZBSymbolLogObserverMsg::ZBSymbolLogObserverMsg() :
     PSS_ObserverMsg()
 {}
 
-ZBSymbolLogObserverMsg::ZBSymbolLogObserverMsg(ZBGenericSymbolErrorLine ErrorLine) :
+ZBSymbolLogObserverMsg::ZBSymbolLogObserverMsg(PSS_GenericSymbolErrorLine ErrorLine) :
     PSS_ObserverMsg(),
     m_ErrorLine(ErrorLine)
 {}

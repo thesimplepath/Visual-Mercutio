@@ -30,7 +30,7 @@
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZUDynamicAttributesManipulator.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zModel\ZDUserEntityDocument.h"
 #include "zModel\ZBUserGroupObserverMsg.h"
 #include "zModel\ZDLogicalSystemDocument.h"
@@ -1826,7 +1826,7 @@ void ZAApp::OnServerHasBeenOpened()
     {
         CString s;
         s.Format(IDS_LOCALSERVER_OPEN, GetServerIniFile());
-        ZBGenericSymbolErrorLine e(s);
+        PSS_GenericSymbolErrorLine e(s);
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 

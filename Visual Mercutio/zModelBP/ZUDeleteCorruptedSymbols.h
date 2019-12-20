@@ -38,7 +38,7 @@
 
 #include "zBaseLib\PSS_Log.h"
 
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again

@@ -257,7 +257,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBGenericSymbolErrorLine.cpp">
+    <ClCompile Include="PSS_GenericSymbolErrorLine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -771,7 +771,7 @@
     <ClInclude Include="PSS_ExtFileProperties.h" />
     <ClInclude Include="PSS_ExtFilePropertyMgr.h" />
     <ClInclude Include="PSS_ExtFiles.h" />
-    <ClInclude Include="ZBGenericSymbolErrorLine.h" />
+    <ClInclude Include="PSS_GenericSymbolErrorLine.h" />
     <ClInclude Include="ZBInfoModelGraphicGeneration.h" />
     <ClInclude Include="ZBLanguageProp.h" />
     <ClInclude Include="PSS_LinkSymbol.h" />

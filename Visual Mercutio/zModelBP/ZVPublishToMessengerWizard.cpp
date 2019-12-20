@@ -14,7 +14,7 @@
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
 #include "zModel\ZBInfoModelGraphicGeneration.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "zSOAP\PSS_SoapPublisher_MessengerInfo.h"
 #include "zSOAP\PSS_SoapException.h"
@@ -81,7 +81,7 @@ int ZVPublishToMessengerWizard::DoModal()
             m_pLog->ClearLog();
             CString message;
             message.LoadString(IDS_AL_START_MESSENGERCHECK);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
 
@@ -104,7 +104,7 @@ int ZVPublishToMessengerWizard::DoModal()
                                CheckUnit.GetErrorCounter() + Check.GetErrorCounter(),
                                CheckUnit.GetWarningCounter() + Check.GetWarningCounter());
 
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -126,7 +126,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 message.LoadString(IDS_ZS_STOP);
             }
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
 
@@ -150,7 +150,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_CANCEL_SOAPPUBLICATION);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -161,7 +161,7 @@ int ZVPublishToMessengerWizard::DoModal()
         {
             CString message;
             message.LoadString(IDS_AL_AUTHENTICATIONOK_SOAPPUBLICATION);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
 
@@ -174,7 +174,7 @@ int ZVPublishToMessengerWizard::DoModal()
         {
             CString message;
             message.Format(IDS_AL_START_SOAPPUBLICATION, m_pModelDoc->GetModel()->GetModelName());
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
 
@@ -183,7 +183,7 @@ int ZVPublishToMessengerWizard::DoModal()
         {
             CString message;
             message.LoadString(IDS_AL_GROUP_MULTIMODELS_CHECK_START);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
 
@@ -202,7 +202,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 {
                     CString message;
                     message.LoadString(IDS_AL_GROUP_MULTIMODELS_CHECK_END);
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     m_pLog->AddLine(e);
                 }
 
@@ -222,7 +222,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_GROUP_MULTIMODELS_CHECK_ERR);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -238,7 +238,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_GROUP_SOAPPUBLICATION_START);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -254,7 +254,7 @@ int ZVPublishToMessengerWizard::DoModal()
                     {
                         CString message;
                         message.LoadString(IDS_AL_GROUP_SOAPPUBLICATION);
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         m_pLog->AddLine(e);
                     }
 
@@ -268,7 +268,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 {
                     CString message;
                     message.LoadString(IDS_AL_GROUP_SOAPPUBLICATION_ERR);
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     m_pLog->AddLine(e);
                 }
             }
@@ -283,7 +283,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_SYSTEM_SOAPPUBLICATION_START);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -299,7 +299,7 @@ int ZVPublishToMessengerWizard::DoModal()
                     {
                         CString message;
                         message.LoadString(IDS_AL_SYSTEM_SOAPPUBLICATION);
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         m_pLog->AddLine(e);
                     }
 
@@ -313,7 +313,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 {
                     CString message;
                     message.LoadString(IDS_AL_SYSTEM_SOAPPUBLICATION_ERR);
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     m_pLog->AddLine(e);
                 }
             }
@@ -330,7 +330,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_PRESTATIONS_SOAPPUBLICATION_START);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -346,7 +346,7 @@ int ZVPublishToMessengerWizard::DoModal()
                     {
                         CString message;
                         message.LoadString(IDS_AL_PRESTATIONS_SOAPPUBLICATION);
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         m_pLog->AddLine(e);
                     }
 
@@ -360,7 +360,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 {
                     CString message;
                     message.LoadString(IDS_AL_PRESTATIONS_SOAPPUBLICATION_ERR);
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     m_pLog->AddLine(e);
                 }
             }
@@ -378,7 +378,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_ATTRIBUTES_SOAPPUBLICATION_START);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -399,7 +399,7 @@ int ZVPublishToMessengerWizard::DoModal()
                     {
                         CString message;
                         message.LoadString(IDS_AL_ATTRIBUTES_SOAPPUBLICATION);
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         m_pLog->AddLine(e);
                     }
 
@@ -413,7 +413,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 {
                     CString message;
                     message.LoadString(IDS_AL_ATTRIBUTES_SOAPPUBLICATION_ERR);
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     m_pLog->AddLine(e);
                 }
             }
@@ -426,7 +426,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_MODEL_SOAPPUBLICATION_START);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -448,7 +448,7 @@ int ZVPublishToMessengerWizard::DoModal()
                     {
                         CString message;
                         message.LoadString(IDS_AL_MODEL_SOAPPUBLICATION);
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         m_pLog->AddLine(e);
                     }
 
@@ -462,7 +462,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 {
                     CString message;
                     message.LoadString(IDS_AL_MODEL_SOAPPUBLICATION_ERR);
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     m_pLog->AddLine(e);
                 }
             }
@@ -475,7 +475,7 @@ int ZVPublishToMessengerWizard::DoModal()
             {
                 CString message;
                 message.LoadString(IDS_AL_MODELHTML_SOAPPUBLICATION_START);
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -508,7 +508,7 @@ int ZVPublishToMessengerWizard::DoModal()
                     {
                         CString message;
                         message.LoadString(IDS_AL_MODELHTML_SOAPPUBLICATION);
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         m_pLog->AddLine(e);
                     }
 
@@ -522,7 +522,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 {
                     CString message;
                     message.LoadString(IDS_AL_MODELHTML_SOAPPUBLICATION_ERR);
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     m_pLog->AddLine(e);
                 }
             }
@@ -538,7 +538,7 @@ int ZVPublishToMessengerWizard::DoModal()
         {
             CString message;
             message.LoadString(IDS_AL_STOP_SOAPPUBLICATION);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
     }
@@ -548,7 +548,7 @@ int ZVPublishToMessengerWizard::DoModal()
         {
             CString message;
             message.LoadString(IDS_AL_MODELHTML_SOAPPUBLICATION_ERR);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
     }

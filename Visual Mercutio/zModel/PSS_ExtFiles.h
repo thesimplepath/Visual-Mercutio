@@ -22,7 +22,7 @@
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_ExtFiles
-    //#define PSS_ExtFiles ZBExtFiles
+    #define PSS_ExtFiles ZBExtFiles
 #endif
 
 // old class name mapping

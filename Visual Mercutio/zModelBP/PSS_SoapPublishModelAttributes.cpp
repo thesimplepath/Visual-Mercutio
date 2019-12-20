@@ -15,7 +15,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 
 // resources
@@ -171,7 +171,7 @@ void PSS_SoapPublishModelAttributes::Publish(const ZBPropertySet& propSet)
                                (const char*)pProp->GetLabel(),
                                pProp->GetPTValueType());
 
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 

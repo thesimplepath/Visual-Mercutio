@@ -27,7 +27,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zBaseLib\PSS_Tokenizer.h"
 
@@ -70,7 +70,7 @@ bool ZUCheckSymbolConsistency::CheckSymbol(CODComponent& Symbol, BOOL ModelIsCle
         m_pLog->ClearLog();
         CString message;
         message.Format(IDS_ZS_START, m_pModel->GetModelName());
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         m_pLog->AddLine(e);
 
         // ********************************************************************************************
@@ -78,7 +78,7 @@ bool ZUCheckSymbolConsistency::CheckSymbol(CODComponent& Symbol, BOOL ModelIsCle
         if (ModelIsClean == TRUE)
         {
             message.Format(IDS_ZS_DELETE_CORRUPED_SYMBOLS, m_pModel->GetModelName());
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
         // ********************************************************************************************
@@ -128,7 +128,7 @@ bool ZUCheckSymbolConsistency::CheckSymbol(CODComponent& Symbol, BOOL ModelIsCle
             message.LoadString(IDS_ZS_STOP);
         }
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         m_pLog->AddLine(e);
     }
 
@@ -209,11 +209,11 @@ bool ZUCheckSymbolConsistency::CheckDoorSymbol(ZBBPDoorSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_DOOR_INC_OUT_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -226,11 +226,11 @@ bool ZUCheckSymbolConsistency::CheckDoorSymbol(ZBBPDoorSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -243,11 +243,11 @@ bool ZUCheckSymbolConsistency::CheckDoorSymbol(ZBBPDoorSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_2,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_2,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -260,11 +260,11 @@ bool ZUCheckSymbolConsistency::CheckDoorSymbol(ZBBPDoorSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_3,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_DOOR_INC_IN_3,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -298,11 +298,11 @@ bool ZUCheckSymbolConsistency::CheckPageSymbol(ZBBPPageSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PAGE_INC_OUT_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -315,11 +315,11 @@ bool ZUCheckSymbolConsistency::CheckPageSymbol(ZBBPPageSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -332,11 +332,11 @@ bool ZUCheckSymbolConsistency::CheckPageSymbol(ZBBPPageSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_2,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_2,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -349,11 +349,11 @@ bool ZUCheckSymbolConsistency::CheckPageSymbol(ZBBPPageSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_3,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PAGE_INC_IN_3,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -384,11 +384,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -407,11 +407,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
         {
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath(),
-                                           -1,
-                                           1);
+                PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath(),
+                                             -1,
+                                             1);
 
                 m_pLog->AddLine(e);
             }
@@ -430,11 +430,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
         {
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath(),
-                                           -1,
-                                           1);
+                PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath(),
+                                             -1,
+                                             1);
 
                 m_pLog->AddLine(e);
             }
@@ -449,9 +449,9 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_2,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_2,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath());
 
             m_pLog->AddLine(e);
         }
@@ -470,11 +470,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
         {
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath(),
-                                           -1,
-                                           1);
+                PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath(),
+                                             -1,
+                                             1);
 
                 m_pLog->AddLine(e);
             }
@@ -493,11 +493,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
         {
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath(),
-                                           -1,
-                                           1);
+                PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath(),
+                                             -1,
+                                             1);
 
                 m_pLog->AddLine(e);
             }
@@ -512,9 +512,9 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_7,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath());
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_7,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath());
 
             m_pLog->AddLine(e);
         }
@@ -531,11 +531,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -549,11 +549,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_6,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_6,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -582,7 +582,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
                 {
                     CString s;
                     s.Format(IDS_EL_PROCEDURE_INC_9, (const char*)Master, pSymbol->GetCombinationName(i));
-                    ZBGenericSymbolErrorLine e(s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1);
+                    PSS_GenericSymbolErrorLine e(s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1);
                     m_pLog->AddLine(e);
                 }
 
@@ -608,7 +608,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
                             (const char*)DelivComb,
                                  pSymbol->GetCombinationName(i));
 
-                        ZBGenericSymbolErrorLine e(s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1);
+                        PSS_GenericSymbolErrorLine e(s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1);
                         m_pLog->AddLine(e);
                     }
 
@@ -632,11 +632,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_3,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -650,11 +650,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_5,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -672,11 +672,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_4,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_4,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -726,11 +726,11 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
                     // Log the error
                     if (m_pLog)
                     {
-                        ZBGenericSymbolErrorLine e(IDS_AL_DELIVERABLE_INC_6,
-                                                   pLink->GetSymbolName(),
-                                                   pLink->GetAbsolutePath(),
-                                                   -1,
-                                                   1);
+                        PSS_GenericSymbolErrorLine e(IDS_AL_DELIVERABLE_INC_6,
+                                                     pLink->GetSymbolName(),
+                                                     pLink->GetAbsolutePath(),
+                                                     -1,
+                                                     1);
 
                         m_pLog->AddLine(e);
                     }
@@ -748,9 +748,9 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
         {
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_8,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(IDS_EL_PROCEDURE_INC_8,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath());
 
                 m_pLog->AddLine(e);
             }
@@ -778,9 +778,9 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol
                 s_RuleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
                 s_RuleWarning += _T(" ") + RulesList.GetAt(i);
 
-                ZBGenericSymbolErrorLine e(s_RuleWarning,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(s_RuleWarning,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath());
 
                 m_pLog->AddLine(e);
             }
@@ -813,11 +813,11 @@ bool ZUCheckSymbolConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCESS_INC_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCESS_INC_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -835,11 +835,11 @@ bool ZUCheckSymbolConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCESS_INC_2,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCESS_INC_2,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -857,11 +857,11 @@ bool ZUCheckSymbolConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCESS_INC_3,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCESS_INC_3,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -880,11 +880,11 @@ bool ZUCheckSymbolConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_PROCESS_INC_4,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_PROCESS_INC_4,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -911,9 +911,9 @@ bool ZUCheckSymbolConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
                 s_RuleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
                 s_RuleWarning += _T(" ") + RulesList.GetAt(i);
 
-                ZBGenericSymbolErrorLine e(s_RuleWarning,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(s_RuleWarning,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath());
 
                 m_pLog->AddLine(e);
             }
@@ -950,11 +950,11 @@ bool ZUCheckSymbolConsistency::CheckStartSymbol(ZBBPStartSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_START_INC_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -968,11 +968,11 @@ bool ZUCheckSymbolConsistency::CheckStartSymbol(ZBBPStartSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_2,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_START_INC_2,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -986,11 +986,11 @@ bool ZUCheckSymbolConsistency::CheckStartSymbol(ZBBPStartSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_START_INC_3,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_START_INC_3,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -1017,9 +1017,9 @@ bool ZUCheckSymbolConsistency::CheckStartSymbol(ZBBPStartSymbol* pSymbol)
                 s_RuleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
                 s_RuleWarning += _T(" ") + RulesList.GetAt(i);
 
-                ZBGenericSymbolErrorLine e(s_RuleWarning,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(s_RuleWarning,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath());
 
                 m_pLog->AddLine(e);
             }
@@ -1056,11 +1056,11 @@ bool ZUCheckSymbolConsistency::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_STOP_INC_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_STOP_INC_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -1074,11 +1074,11 @@ bool ZUCheckSymbolConsistency::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_STOP_INC_2,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_STOP_INC_2,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -1092,11 +1092,11 @@ bool ZUCheckSymbolConsistency::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_STOP_INC_3,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       1);
+            PSS_GenericSymbolErrorLine e(IDS_EL_STOP_INC_3,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         1);
 
             m_pLog->AddLine(e);
         }
@@ -1123,9 +1123,9 @@ bool ZUCheckSymbolConsistency::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
                 s_RuleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
                 s_RuleWarning += _T(" ") + RulesList.GetAt(i);
 
-                ZBGenericSymbolErrorLine e(s_RuleWarning,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(s_RuleWarning,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath());
 
                 m_pLog->AddLine(e);
             }
@@ -1154,11 +1154,11 @@ bool ZUCheckSymbolConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbo
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DELIVERABLE_INC_1,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(IDS_EL_DELIVERABLE_INC_1,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }
@@ -1171,11 +1171,11 @@ bool ZUCheckSymbolConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbo
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_DELIVERABLE_INC_2,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(IDS_EL_DELIVERABLE_INC_2,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }
@@ -1195,11 +1195,11 @@ bool ZUCheckSymbolConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbo
             // Log the error
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_DELIVERABLE_INC_3,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath(),
-                                           -1,
-                                           1);
+                PSS_GenericSymbolErrorLine e(IDS_EL_DELIVERABLE_INC_3,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath(),
+                                             -1,
+                                             1);
 
                 m_pLog->AddLine(e);
             }
@@ -1227,9 +1227,9 @@ bool ZUCheckSymbolConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbo
                 s_RuleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
                 s_RuleWarning += _T(" ") + RulesList.GetAt(i);
 
-                ZBGenericSymbolErrorLine e(s_RuleWarning,
-                                           pSymbol->GetSymbolName(),
-                                           pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(s_RuleWarning,
+                                             pSymbol->GetSymbolName(),
+                                             pSymbol->GetAbsolutePath());
 
                 m_pLog->AddLine(e);
             }
@@ -1282,7 +1282,7 @@ bool ZUCheckSymbolConsistency::CheckInvalidCharInSymbolName(PSS_BasicSymbol* pSy
         {
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_EL_SYMBOL_INC_2, pSymbol->GetSymbolName(), Path, -1, 1);
+                PSS_GenericSymbolErrorLine e(IDS_EL_SYMBOL_INC_2, pSymbol->GetSymbolName(), Path, -1, 1);
 
                 m_pLog->AddLine(e);
             }
@@ -1307,11 +1307,11 @@ bool ZUCheckSymbolConsistency::CheckUniqueRef(PSS_BasicSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(IDS_EL_SYMBOL_INC_1,
-                                       pSymbol->GetSymbolName(),
-                                       _T(""),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(IDS_EL_SYMBOL_INC_1,
+                                         pSymbol->GetSymbolName(),
+                                         _T(""),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }

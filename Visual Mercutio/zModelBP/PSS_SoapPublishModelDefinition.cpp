@@ -15,7 +15,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZUODSymbolManipulator.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "ProcGraphModelMdlBP.h"
@@ -194,7 +194,7 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
                                 pInputAttrib->GetSymbolRef(),
                                 key,
                                 (const char*)pInputAttrib->GetDefaultValue());
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
             }
 
@@ -243,7 +243,7 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
                                            key,
                                            pDistribRule->GetOperator(),
                                            (const char*)pDistribRule->GetValue());
-                            ZBGenericSymbolErrorLine e(message);
+                            PSS_GenericSymbolErrorLine e(message);
                             m_pLog->AddLine(e);
                         }
 
@@ -262,7 +262,7 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
                                            key,
                                            (const char*)pDistribRule->GetValue(),
                                            pDistribRule->GetLogicalOperator());
-                            ZBGenericSymbolErrorLine e(message);
+                            PSS_GenericSymbolErrorLine e(message);
                             m_pLog->AddLine(e);
                         }
 
@@ -654,7 +654,7 @@ void PSS_SoapPublishModelDefinition::Publish(int ref, ZBProperty* pProp)
                        key,
                        (const char*)s,
                        pProp->IsDynamic() ? 0 : 1);
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         m_pLog->AddLine(e);
     }
 

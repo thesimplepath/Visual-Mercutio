@@ -56,7 +56,7 @@ void PSS_SoapPublishPrestations::PublishPrestations(ZBLogicalPrestationsEntity* 
     {
         CString message;
         message.Format(IDS_AL_PUBLISHPRESTATION, (const char*)pPrestations->GetEntityName());
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         m_pLog->AddLine(e);
     }
 

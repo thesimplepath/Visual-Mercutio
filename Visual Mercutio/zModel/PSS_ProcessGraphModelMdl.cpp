@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zModel\ZBSearchSymbolLogLine.h"
 #include "PSS_ProcessGraphModelController.h"
 #include "PSS_ProcessGraphModelDoc.h"
@@ -2038,7 +2038,7 @@ std::size_t PSS_ProcessGraphModelMdl::Find(const CString&        argument,
         pLog->ClearLog();
         CString message;
         message.Format(IDS_AL_START_FINDMATCH, argument, GetModelName());
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 
@@ -2049,7 +2049,7 @@ std::size_t PSS_ProcessGraphModelMdl::Find(const CString&        argument,
     {
         CString message;
         message.Format(IDS_AL_STOP_FINDMATCH, m_FindCounter);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 

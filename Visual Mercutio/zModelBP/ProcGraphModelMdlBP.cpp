@@ -28,7 +28,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zBaseLib\PSS_MessageDlg.h"
 
@@ -504,7 +504,7 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
             {
                 CString message;
                 message.Format(IDS_AL_UNITREASSIGNED, dynamic_cast<ZBBPStartSymbol*>(pComp)->GetSymbolName());
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 pLog->AddLine(e);
             }
         }
@@ -527,7 +527,7 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
             {
                 CString message;
                 message.Format(IDS_AL_UNITREASSIGNED, dynamic_cast<ZBBPStopSymbol*>(pComp)->GetSymbolName());
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 pLog->AddLine(e);
             }
         }
@@ -550,7 +550,7 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
             {
                 CString message;
                 message.Format(IDS_AL_UNITREASSIGNED, dynamic_cast<ZBBPProcedureSymbol*>(pComp)->GetSymbolName());
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 pLog->AddLine(e);
             }
         }

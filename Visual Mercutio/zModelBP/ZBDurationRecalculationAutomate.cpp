@@ -24,7 +24,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
@@ -62,7 +62,7 @@ bool ZBDurationRecalculationAutomate::OnStart(PSS_Log* pLog)
         {
             CString message;
             message.LoadString(IDS_AL_START_DURATIONCALCULATION);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
 
@@ -99,7 +99,7 @@ bool ZBDurationRecalculationAutomate::OnStop(PSS_Log* pLog)
         {
             CString message;
             message.LoadString(IDS_AL_STOP_DURATIONCALCULATION);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
     }
@@ -346,7 +346,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                                    pDstLink->GetCaseDuration(),
                                    pDstLink->GetCaseDurationMax());
 
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     pLog->AddLine(e);
                 }
             }
@@ -417,7 +417,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                                    pDstLink->GetCaseDuration(),
                                    pDstLink->GetCaseDurationMax());
 
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     pLog->AddLine(e);
                 }
             }
@@ -516,7 +516,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfLateralDeliverables(CODEd
                            pLink->GetCaseDuration(),
                            pLink->GetCaseDurationMax());
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
     }
@@ -690,9 +690,9 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                     {
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_ZERO,
-                                                       pDeliverable->GetSymbolName(),
-                                                       pDeliverable->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_ZERO,
+                                                         pDeliverable->GetSymbolName(),
+                                                         pDeliverable->GetAbsolutePath());
 
                             pLog->AddLine(e);
                         }
@@ -719,9 +719,9 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                     {
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_DELIV_NOTDEFINED_COMBINATION,
-                                                       pDeliverable->GetSymbolName(),
-                                                       pDeliverable->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_DELIV_NOTDEFINED_COMBINATION,
+                                                         pDeliverable->GetSymbolName(),
+                                                         pDeliverable->GetAbsolutePath());
 
                             pLog->AddLine(e);
                         }
@@ -744,7 +744,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                                    dValue,
                                    dValueMax);
 
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     pLog->AddLine(e);
 
                     message.Format(IDS_DB_DELIV_INC_5,
@@ -753,7 +753,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                                    dLateralValue,
                                    dLateralValueMax);
 
-                    ZBGenericSymbolErrorLine e2(message);
+                    PSS_GenericSymbolErrorLine e2(message);
                     pLog->AddLine(e2);
                 }
             }
@@ -772,7 +772,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                            pLink->GetCaseDuration(),
                            pLink->GetCaseDurationMax());
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
     }
@@ -818,7 +818,7 @@ bool ZBDurationRecalculationAutomate::SetStartSymbolCaseDurationOfDownDeliverabl
                            pLink->GetCaseDuration(),
                            pLink->GetCaseDurationMax());
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
     }
@@ -938,7 +938,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
                            pLink->GetSymbolName(),
                            val);
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
 
@@ -1013,7 +1013,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
                            ((pLocalDeliverable) ? pLocalDeliverable->GetCaseDurationMax() : pDeliverable->GetCaseDurationMax()),
                            ((pLocalDeliverable) ? (double)pLocalDeliverable->GetQuantity() : (double)pDeliverable->GetQuantity()));
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
     }
@@ -1032,7 +1032,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
                        pProcedure->GetProcessingDuration(),
                        pProcedure->GetProcessingDurationMax());
 
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
 
         message.Format(IDS_DB_PROCEDURE_INC_4,
@@ -1042,7 +1042,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
                        dDelivDurationValue,
                        SumQuantityDeliv);
 
-        ZBGenericSymbolErrorLine e2(message);
+        PSS_GenericSymbolErrorLine e2(message);
         pLog->AddLine(e2);
 
         message.Format(IDS_DB_PROCEDURE_INC_6,
@@ -1052,7 +1052,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
                        dDelivDurationValueMax,
                        SumQuantityDeliv);
 
-        ZBGenericSymbolErrorLine e3(message);
+        PSS_GenericSymbolErrorLine e3(message);
         pLog->AddLine(e3);
     }
 

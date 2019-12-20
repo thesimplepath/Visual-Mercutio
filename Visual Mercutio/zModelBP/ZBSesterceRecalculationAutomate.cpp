@@ -27,7 +27,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
@@ -60,7 +60,7 @@ bool ZBSesterceRecalculationAutomate::OnStart(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_START_SESTERCESCALCULATION);
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -91,7 +91,7 @@ bool ZBSesterceRecalculationAutomate::OnStart(PSS_Log* pLog)
         {
             CString message;
             message.LoadString(IDS_AL_USERGROUP_NOTINLINE);
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
         }
     }
@@ -111,7 +111,7 @@ bool ZBSesterceRecalculationAutomate::OnStop(PSS_Log* pLog)
     {
         CString message;
         message.Format(IDS_AL_START_PROCESSCALCULATION, m_pModel->GetModelName());
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -126,7 +126,7 @@ bool ZBSesterceRecalculationAutomate::OnStop(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_STOP_PROCESSCALCULATION);
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         pLog->AddLine(e);
     }
 
@@ -331,9 +331,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                         // If log 
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_LOCKED,
-                                                       pDeliverable->GetSymbolName(),
-                                                       pDeliverable->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_LOCKED,
+                                                         pDeliverable->GetSymbolName(),
+                                                         pDeliverable->GetAbsolutePath());
 
                             pLog->AddLine(e);
                         }
@@ -350,9 +350,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                         // If log, advise about forcing the equalizer
                         if (pLog)
                         {
-                            ZBGenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_FORCED,
-                                                       pDeliverable->GetSymbolName(),
-                                                       pDeliverable->GetAbsolutePath());
+                            PSS_GenericSymbolErrorLine e(IDS_AL_DELIV_QUANTITY_FORCED,
+                                                         pDeliverable->GetSymbolName(),
+                                                         pDeliverable->GetAbsolutePath());
 
                             pLog->AddLine(e);
                         }
@@ -374,7 +374,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                                        pDeliverable->GetSymbolName(),
                                        (double)pDeliverable->GetQuantity());
 
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         pLog->AddLine(e);
 
                         // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -393,7 +393,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                                        pDeliverable->GetSymbolName(),
                                        (double)pDeliverable->GetWorkloadForecast());
 
-                        ZBGenericSymbolErrorLine e(message);
+                        PSS_GenericSymbolErrorLine e(message);
                         pLog->AddLine(e);
 
                         // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -452,7 +452,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                                    pDeliverable->GetSymbolName(),
                                    (double)pDeliverable->GetCost());
 
-                    ZBGenericSymbolErrorLine e(message);
+                    PSS_GenericSymbolErrorLine e(message);
                     pLog->AddLine(e);
 
                     // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -621,7 +621,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                                    (double)pProcedureBefore->GetProcedureCost());
                 }
 
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 pLog->AddLine(e);
 
                 // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -662,7 +662,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                                    (double)pProcedureBefore->GetProcedureCostForecast());
                 }
 
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 pLog->AddLine(e);
 
                 // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -701,7 +701,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                                pProcedureBefore->GetSymbolName(),
                                value);
 
-                ZBGenericSymbolErrorLine e(message);
+                PSS_GenericSymbolErrorLine e(message);
                 pLog->AddLine(e);
 
                 // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -788,7 +788,7 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                                (double)pProcedure->GetProcedureActivation());
             }
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
 
             // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -852,7 +852,7 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                            pProcedure->GetSymbolName(),
                            dValue);
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
 
             // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.
@@ -893,7 +893,7 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                                (double)pProcedure->GetProcedureWorkloadForecast());
             }
 
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             pLog->AddLine(e);
 
             // JMR-MODIF - Le 21 mars 2006 - Ajout du code d'incrémentation des avertissements.

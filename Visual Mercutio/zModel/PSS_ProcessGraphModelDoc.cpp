@@ -23,7 +23,7 @@
 #include "PSS_DocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
 #include "ZBLogicalSystemEntity.h"
-#include "ZBGenericSymbolErrorLine.h"
+#include "PSS_GenericSymbolErrorLine.h"
 
 // resources
 #include "zModelRes.h"
@@ -167,7 +167,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentUserDefGUID()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_USERGROUP);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -181,7 +181,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentUserDefGUID()
     {
         CString message;
         message.LoadString(IDS_USERGROUP_ASSIGNED);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 
@@ -206,7 +206,7 @@ void PSS_ProcessGraphModelDoc::ReassignUnit(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_UNITREASSIGN_START);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 
@@ -219,7 +219,7 @@ void PSS_ProcessGraphModelDoc::ReassignUnit(PSS_Log* pLog)
         {
             CString message;
             message.LoadString(IDS_AL_UNITCANNOTREASSIGN);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             pLog->AddLine(error);
         }
 
@@ -230,7 +230,7 @@ void PSS_ProcessGraphModelDoc::ReassignUnit(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_UNITREASSIGN_STOP);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 }
@@ -246,7 +246,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentSystemDefGUID()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_SYSTEMDEF);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -260,7 +260,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentSystemDefGUID()
     {
         CString message;
         message.LoadString(IDS_SYSTEMDEFXML_ASSIGNED);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 
@@ -285,7 +285,7 @@ void PSS_ProcessGraphModelDoc::ReassignSystem(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_SYSTEMREASSIGN_START);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 
@@ -298,7 +298,7 @@ void PSS_ProcessGraphModelDoc::ReassignSystem(PSS_Log* pLog)
         {
             CString message;
             message.LoadString(IDS_AL_SYSTEMCANNOTREASSIGN);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             pLog->AddLine(error);
         }
 
@@ -309,7 +309,7 @@ void PSS_ProcessGraphModelDoc::ReassignSystem(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_SYSTEMREASSIGN_STOP);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 }
@@ -325,7 +325,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentPrestationsDefGUID()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_PRESTATIONSDEF);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -339,7 +339,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentPrestationsDefGUID()
     {
         CString message;
         message.LoadString(IDS_PRESTATIONS_ASSIGNED);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 
@@ -364,7 +364,7 @@ void PSS_ProcessGraphModelDoc::ReassignPrestations(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_PRESTATIONSREASSIGN_START);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 
@@ -377,7 +377,7 @@ void PSS_ProcessGraphModelDoc::ReassignPrestations(PSS_Log* pLog)
         {
             CString message;
             message.LoadString(IDS_AL_PRESTATIONSCANNOTREASSIGN);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             pLog->AddLine(error);
         }
 
@@ -388,7 +388,7 @@ void PSS_ProcessGraphModelDoc::ReassignPrestations(PSS_Log* pLog)
     {
         CString message;
         message.LoadString(IDS_AL_PRESTATIONSREASSIGN_STOP);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 }
@@ -404,7 +404,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentRulesDefGUID()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_RULESDEF);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -418,7 +418,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentRulesDefGUID()
     {
         CString message;
         message.LoadString(IDS_RULES_ASSIGNED);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 
@@ -443,7 +443,7 @@ void PSS_ProcessGraphModelDoc::ReassignRules(PSS_Log* pLog /*= NULL*/)
     {
         CString message;
         message.LoadString(IDS_AL_RULESREASSIGN_START);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 
@@ -456,7 +456,7 @@ void PSS_ProcessGraphModelDoc::ReassignRules(PSS_Log* pLog /*= NULL*/)
         {
             CString message;
             message.LoadString(IDS_AL_RULESCANNOTREASSIGN);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             pLog->AddLine(error);
         }
 
@@ -467,7 +467,7 @@ void PSS_ProcessGraphModelDoc::ReassignRules(PSS_Log* pLog /*= NULL*/)
     {
         CString message;
         message.LoadString(IDS_AL_RULESREASSIGN_STOP);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         pLog->AddLine(error);
     }
 }
@@ -1023,7 +1023,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_USERGROUP);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
 
             // main user group is not valid
@@ -1039,7 +1039,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_USERGROUP_DIFFMODEL);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -1059,7 +1059,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_SYSTEMDEF);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
 
             // main logical system is not valid
@@ -1075,7 +1075,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_SYSTEMDEFXML_DIFFMODEL);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -1095,7 +1095,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_PRESTATIONSDEF);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
 
             // main logical prestations is not valid
@@ -1111,7 +1111,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_PRESTATIONSDEFXML_DIFFMODEL);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -1131,7 +1131,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_MISSING_RULESDEF);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
 
             // main logical Rules is not valid
@@ -1147,7 +1147,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         {
             CString message;
             message.LoadString(IDS_ERR_RULESDEFXML_DIFFMODEL);
-            ZBGenericSymbolErrorLine error(message);
+            PSS_GenericSymbolErrorLine error(message);
             m_pOutputLog->AddLine(error);
         }
 
@@ -1163,7 +1163,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
     {
         CString message;
         message.Format(IDS_MSG_OPENMODEL_END, pModel->GetModelName(), GetPathName());
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 }
@@ -1222,7 +1222,7 @@ BOOL PSS_ProcessGraphModelDoc::OnOpenDocument(LPCTSTR pPathName)
     {
         CString message;
         message.Format(IDS_MSG_OPENMODEL_START, pPathName);
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 
@@ -1301,7 +1301,7 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
     {
         CString message;
         message.Format(IDS_MSG_SAVEMODEL_END, pModel ? pModel->GetModelName() : "<#Error>", GetPathName());
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 
@@ -1339,7 +1339,7 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
     {
         CString message;
         message.Format(IDS_MSG_SAVEMODEL_END, pModel->GetModelName(), GetPathName());
-        ZBGenericSymbolErrorLine error(message);
+        PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }
 

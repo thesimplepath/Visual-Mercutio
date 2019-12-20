@@ -15,7 +15,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\ZUODSymbolManipulator.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
@@ -85,7 +85,7 @@ bool ZUCalculateRisks::Calculate(CODComponent& Symbol)
         CString Message = _T("");
         Message.LoadString(IDS_RISK_CALCULATE_START);
 
-        ZBGenericSymbolErrorLine e(Message);
+        PSS_GenericSymbolErrorLine e(Message);
         m_pLog->AddLine(e);
     }
 
@@ -118,7 +118,7 @@ bool ZUCalculateRisks::Calculate(CODComponent& Symbol)
             Message.LoadString(IDS_RISK_CALCULATE_END);
         }
 
-        ZBGenericSymbolErrorLine e(Message);
+        PSS_GenericSymbolErrorLine e(Message);
         m_pLog->AddLine(e);
     }
 
@@ -286,11 +286,11 @@ bool ZUCalculateRisks::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(s_Message,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(s_Message,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }
@@ -401,11 +401,11 @@ bool ZUCalculateRisks::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(s_Message,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(s_Message,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }
@@ -516,11 +516,11 @@ bool ZUCalculateRisks::CheckStartSymbol(ZBBPStartSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(s_Message,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(s_Message,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }
@@ -631,11 +631,11 @@ bool ZUCalculateRisks::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(s_Message,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(s_Message,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }
@@ -746,11 +746,11 @@ bool ZUCalculateRisks::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymb
     {
         if (m_pLog)
         {
-            ZBGenericSymbolErrorLine e(s_Message,
-                                       pSymbol->GetSymbolName(),
-                                       pSymbol->GetAbsolutePath(),
-                                       -1,
-                                       0);
+            PSS_GenericSymbolErrorLine e(s_Message,
+                                         pSymbol->GetSymbolName(),
+                                         pSymbol->GetAbsolutePath(),
+                                         -1,
+                                         0);
 
             m_pLog->AddLine(e);
         }

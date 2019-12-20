@@ -6,7 +6,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -17,23 +17,19 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBSearchSymbolLogLine::ZBSearchSymbolLogLine()
-{
-}
+{}
 
-ZBSearchSymbolLogLine::ZBSearchSymbolLogLine( const CString symbolname,
-                                              const CString symbolpath,
-                                              const CString message        /*= ""*/ )
-    : ZBGenericSymbolErrorLine( message, symbolname, symbolpath, -1, 2 )
-{
-}
+ZBSearchSymbolLogLine::ZBSearchSymbolLogLine(const CString symbolname,
+                                             const CString symbolpath,
+                                             const CString message        /*= ""*/) :
+    PSS_GenericSymbolErrorLine(message, symbolname, symbolpath, -1, 2)
+{}
 
-ZBSearchSymbolLogLine::ZBSearchSymbolLogLine( const CString    symbolname,
-                                              const CString    symbolpath,
-                                              UINT            nIDSmessage )
-    : ZBGenericSymbolErrorLine( nIDSmessage, symbolname, symbolpath, -1, 2 )
-{
-}
+ZBSearchSymbolLogLine::ZBSearchSymbolLogLine(const CString    symbolname,
+                                             const CString    symbolpath,
+                                             UINT            nIDSmessage) :
+    PSS_GenericSymbolErrorLine(nIDSmessage, symbolname, symbolpath, -1, 2)
+{}
 
 ZBSearchSymbolLogLine::~ZBSearchSymbolLogLine()
-{
-}
+{}

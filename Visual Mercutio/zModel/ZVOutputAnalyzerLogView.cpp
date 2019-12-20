@@ -46,7 +46,7 @@ void ZVOutputAnalyzerLogView::OnDoubleClick()
 
     if (GetCurrentItem(s) != -1)
     {
-        ZBGenericSymbolErrorLine ErrorLine;
+        PSS_GenericSymbolErrorLine ErrorLine;
         (PSS_ErrorLine&)ErrorLine = s;
         ZBSymbolLogObserverMsg msg(ErrorLine);
 

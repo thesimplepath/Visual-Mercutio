@@ -21,7 +21,7 @@
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "ZBPublishMessengerModelInformation.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "zWeb\PSS_HtmlFile.h"
@@ -407,7 +407,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl*
     {
         CString message;
         message.Format(IDS_AL_PUBLISHHTMLFILE, (const char*)htmlFileName);
-        ZBGenericSymbolErrorLine e(message);
+        PSS_GenericSymbolErrorLine e(message);
         m_pLog->AddLine(e);
     }
 

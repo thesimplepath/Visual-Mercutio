@@ -13,7 +13,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
@@ -58,7 +58,7 @@ bool ZUProcessClearDurationFigures::OnProcedureSymbol(ZBBPProcedureSymbol* pSymb
         {
             CString message;
             message.Format(IDS_DB_PROCEDURE_INC_1, pSymbol->GetSymbolName());
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
     }
@@ -76,7 +76,7 @@ bool ZUProcessClearDurationFigures::OnDeliverableLinkSymbol(ZBDeliverableLinkSym
         {
             CString message;
             message.Format(IDS_DB_DELIVERABLE_INC_1, pSymbol->GetSymbolName());
-            ZBGenericSymbolErrorLine e(message);
+            PSS_GenericSymbolErrorLine e(message);
             m_pLog->AddLine(e);
         }
     }

@@ -15,7 +15,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\PSS_GenericSymbolErrorLine.h"
 
 #include "zModelBPRes.h"
 
@@ -66,7 +66,7 @@ bool ZUCheckSesterceUnit::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
             // Display warning message
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_15, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(IDS_AL_PROCEDURE_INC_15, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
                 m_pLog->AddLine(e);
             }
             // Increment warning counter
@@ -93,7 +93,7 @@ bool ZUCheckSesterceUnit::OnStartSymbol(ZBBPStartSymbol* pSymbol)
             // Display warning message
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_AL_START_INC_12, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(IDS_AL_START_INC_12, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
                 m_pLog->AddLine(e);
             }
             // Increment warning counter
@@ -120,7 +120,7 @@ bool ZUCheckSesterceUnit::OnStopSymbol(ZBBPStopSymbol* pSymbol)
             // Display warning message
             if (m_pLog)
             {
-                ZBGenericSymbolErrorLine e(IDS_AL_STOP_INC_5, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
+                PSS_GenericSymbolErrorLine e(IDS_AL_STOP_INC_5, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
                 m_pLog->AddLine(e);
             }
             // Increment warning counter
