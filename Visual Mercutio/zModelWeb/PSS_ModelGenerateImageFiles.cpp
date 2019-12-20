@@ -607,13 +607,13 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         htmlFile << s;
 
         // create a dummy object to avoid copyright on the first object
-        s.Format(IDS_MODELGENHTML_55, 0); // allocate the new popup object
+        s.Format(IDS_MODELGENHTML_55, 0);
         htmlFile << s;
         s.Format(IDS_MODELGENHTML_57, 0, _T(""));
         htmlFile << s;
         s.Format(IDS_MODELGENHTML_58, 0, _T(""));
         htmlFile << s;
-        s.Format(IDS_MODELGENHTML_61, 0); // create the new popup object
+        s.Format(IDS_MODELGENHTML_61, 0);
         htmlFile << s;
 
         objectCounter = 1;
@@ -627,8 +627,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             if (!pComp)
                 continue;
 
-            PSS_Symbol*     pSymbol     = dynamic_cast<PSS_Symbol*>(pComp);
-            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+            PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
+            PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
             // for all symbols, create a popup 
             if (pSymbol || pLinkSymbol)
@@ -667,7 +667,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 if ((pSymbol && pSymbol->AcceptExtFile()) || (pLinkSymbol && pLinkSymbol->AcceptExtFile()))
                 {
                     // get external file property manager
-                    const ZBExtFilePropertyMgr* pExtFilePropMgr = dynamic_cast<ZBExtFilePropertyMgr*>(pComp);
+                    const PSS_ExtFilePropertyMgr* pExtFilePropMgr = dynamic_cast<PSS_ExtFilePropertyMgr*>(pComp);
                     ASSERT(pExtFilePropMgr);
 
                     // get link count
@@ -843,8 +843,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             if (!pComp)
                 continue;
 
-            PSS_Symbol*     pSymbol     = dynamic_cast<PSS_Symbol*>(pComp);
-            PSS_LinkSymbol* pLinkSymbol = dynamic_cast<PSS_LinkSymbol*>(pComp);
+            PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
+            PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
             if (pSymbol || pLinkSymbol)
             {

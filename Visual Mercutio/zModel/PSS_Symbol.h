@@ -38,7 +38,7 @@
 #include "zBaseSym\PSS_NavigableSymbol.h"
 #include "zProperty\ZIProperties.h"
 #include "zModel\PSS_ExtAppPropertyMgr.h"
-#include "zModel\ZBExtFilePropertyMgr.h"
+#include "zModel\PSS_ExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
 
 // forward class declaration
@@ -65,7 +65,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
                                  public PSS_NavigableSymbol,
                                  public ZIProperties,
                                  public PSS_ExtAppPropertyMgr,
-                                 public ZBExtFilePropertyMgr,
+                                 public PSS_ExtFilePropertyMgr,
                                  public ZVSymbolAttributes,
                                  public PSS_BasicSymbolAcceptVisitor,
                                  public PSS_Subject,
@@ -1630,13 +1630,13 @@ void PSS_Symbol::CalculateAbsolutePath()
 bool PSS_Symbol::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
     return (AcceptExtApp()  && PSS_ExtAppPropertyMgr::AcceptDropItem (pObj, point)) ||
-           (AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, point));
+           (AcceptExtFile() && PSS_ExtFilePropertyMgr::AcceptDropItem(pObj, point));
 }
 //---------------------------------------------------------------------------
 bool PSS_Symbol::DropItem(CObject* pObj, const CPoint& point)
 {
     return ((AcceptExtApp()  && PSS_ExtAppPropertyMgr::AcceptDropItem (pObj, point)) ? PSS_ExtAppPropertyMgr::DropItem (pObj, point) : false) ||
-           ((AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, point))   ? ZBExtFilePropertyMgr::DropItem(pObj, point) : false);
+           ((AcceptExtFile() && PSS_ExtFilePropertyMgr::AcceptDropItem(pObj, point)) ? PSS_ExtFilePropertyMgr::DropItem(pObj, point) : false);
 }
 //---------------------------------------------------------------------------
 bool PSS_Symbol::AcceptExtApp() const
@@ -1656,7 +1656,7 @@ bool PSS_Symbol::AcceptExtFile() const
 //---------------------------------------------------------------------------
 bool PSS_Symbol::DoInsertExtFile(bool showDialog)
 {
-    return ZBExtFilePropertyMgr::DoInsertExtFile(showDialog);
+    return PSS_ExtFilePropertyMgr::DoInsertExtFile(showDialog);
 }
 //---------------------------------------------------------------------------
 bool PSS_Symbol::HasUnit() const

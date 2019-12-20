@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ExtAppPropertyMgr -----------------------------------------------*
+ * ==> PSS_ExtFilePropertyMgr ----------------------------------------------*
  ****************************************************************************
- * Description : Provides an external application properties manager        *
+ * Description : Provides an external file properties manager               *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ExtAppPropertyMgrH
-#define PSS_ExtAppPropertyMgrH
+#ifndef PSS_ExtFilePropertyMgrH
+#define PSS_ExtFilePropertyMgrH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -22,8 +22,8 @@
 
 // processsoft
 #include "zProperty\ZIProperties.h"
-#include "PSS_ExtAppProperties.h"
-#include "PSS_ExtApps.h"
+#include "PSS_ExtFiles.h"
+#include "PSS_ExtFileProperties.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -39,203 +39,167 @@
 * External application properties manager
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
+class AFX_EXT_CLASS PSS_ExtFilePropertyMgr
 {
     public:
-        /**
-        * Constructor
-        *@param pSymbol - the owning symbol
-        */
-        PSS_ExtAppPropertyMgr(CODSymbolComponent* pSymbol = NULL);
+        PSS_ExtFilePropertyMgr();
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_ExtAppPropertyMgr(const PSS_ExtAppPropertyMgr& other);
+        PSS_ExtFilePropertyMgr(const PSS_ExtFilePropertyMgr& other);
 
-        virtual ~PSS_ExtAppPropertyMgr();
+        virtual ~PSS_ExtFilePropertyMgr();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_ExtAppPropertyMgr& operator = (const PSS_ExtAppPropertyMgr& other);
+        PSS_ExtFilePropertyMgr& operator = (const PSS_ExtFilePropertyMgr& other);
 
         /**
-        * Gets the external application object reference
-        *@return the external application object reference
+        * Gets the external file object reference
+        *@return the external file object reference
         */
-        virtual inline PSS_ExtApps& GetExtApps();
+        virtual inline PSS_ExtFiles& GetExtFiles();
 
         /**
-        * Gets the external application counter
-        *@return the external application counter
+        * Gets the external file counter
+        *@return the external file counter
         */
-        virtual inline std::size_t GetExtAppCount() const;
+        virtual inline std::size_t GetExtFileCount() const;
 
         /**
-        * Adds a new external application
-        *@return the newly added external application, -1 on error
+        * Adds a new external file
+        *@return the newly added external file, -1 on error
         */
-        virtual inline int AddNewExtApp();
+        virtual inline int AddNewExtFile();
 
         /**
-        * Adds an external application
-        *@param pProp - the external application properties to add
-        *@return the newly added external application, -1 on error
+        * Adds an external file
+        *@param pProp - the external file properties to add
+        *@return the newly added external file, -1 on error
         */
-        virtual inline int AddExtApp(PSS_ExtAppProperties* pProp);
+        virtual inline int AddExtFile(PSS_ExtFileProperties* pProp);
 
         /**
-        * Deletes an external application
-        *@param index - the external application index to delete
+        * Deletes an external file
+        *@param index - the external file index to delete
         *@return true on success, otherwise false
         */
-        virtual inline bool DeleteExtApp(std::size_t index);
+        virtual inline bool DeleteExtFile(std::size_t index);
 
         /**
-        * Deletes an external application
-        *@param commandTitle - the command title
+        * Deletes an external file
+        *@param file - the file name
         *@return true on success, otherwise false
         */
-        virtual inline bool DeleteExtApp(const CString& commandTitle);
+        virtual inline bool DeleteExtFile(const CString& fileName);
 
         /**
-        * Deletes an external application
-        *@param pProp - the external application properties
+        * Deletes an external file
+        *@param pProp - the external file properties
         *@return true on success, otherwise false
         */
-        virtual inline bool DeleteExtApp(PSS_ExtAppProperties* pProp);
+        virtual inline bool DeleteExtFile(PSS_ExtFileProperties* pProp);
 
         /**
-        * Removes all the external applications
+        * Removes all the external files
         */
-        virtual inline void RemoveAllExtApps();
+        virtual inline void RemoveAllExtFiles();
 
         /**
-        * Removes the empty external applications
+        * Removes the empty external files
         */
-        virtual inline void RemoveAllEmptyExtApps();
+        virtual inline void RemoveAllEmptyExtFiles();
 
         /**
-        * Checks if an external application exists
-        *@param commandTitle - the command title
+        * Checks if an external file exists
+        *@param fileName - the file name
         *@return true on success, otherwise false
         */
-        virtual inline bool ExtAppExist(const CString& commandTitle) const;
+        virtual inline bool ExtFileExist(const CString& fileName) const;
 
         /**
-        * Locates the external application properties from its command title
-        *@param commandTitle - the command title
-        *@return the application properties, NULL if not found or on error
+        * Locates the external file properties from its file name
+        *@param fileName - the file name
+        *@return the file properties, NULL if not found or on error
         */
-        virtual inline PSS_ExtAppProperties* LocateExtApp(const CString& commandTitle) const;
+        virtual inline PSS_ExtFileProperties* LocateExtFile(const CString& fileName) const;
 
         /**
-        * Gets the external application properties at index
+        * Gets the external file properties at index
         *@param index - the index
-        *@return the application properties, NULL if not found or on error
+        *@return the file properties, NULL if not found or on error
         */
-        virtual inline PSS_ExtAppProperties* GetExtAppProperty(std::size_t index) const;
+        virtual inline PSS_ExtFileProperties* GetExtFileProperty(std::size_t index) const;
 
         /**
         * Locates the first empty element index
         *@return the first empty element index, -1 if not found or on error
         */
-        virtual inline int LocateFirstEmptyExtApp() const;
+        virtual inline int LocateFirstEmptyExtFile() const;
 
         /**
         * Gets the file title at index
-        *@param index - the index
         *@return the file title, empty string if not found or on error
         */
-        virtual inline CString GetCommandTitle(std::size_t index) const;
+        virtual inline CString GetFileTitle(std::size_t index) const;
 
         /**
         * Sets the file title at index
         *@param index - the index
-        *@param value - the file title value
+        *@param value - the file title
         */
-        virtual inline void SetCommandTitle(std::size_t index, const CString& value);
+        virtual inline void SetFileTitle(std::size_t index, const CString& value);
 
         /**
-        * Gets the command line at index
+        * Gets the file name at index
+        *@return the file name, empty string if not found or on error
+        */
+        virtual inline CString GetFileName(std::size_t index) const;
+
+        /**
+        * Sets the file name at index
         *@param index - the index
-        *@return the command line, empty string if not found or on error
+        *@param value - the file name
         */
-        virtual inline CString GetCommandLine(std::size_t index) const;
+        virtual inline void SetFileName(std::size_t index, const CString& value);
 
         /**
-        * Sets the command line at index
+        * Gets the insertion type at index
+        *@return the insertion type, empty string if not found or on error
+        */
+        virtual inline int GetInsertionType(std::size_t index) const;
+
+        /**
+        * Sets the insertion type at index
         *@param index - the index
-        *@param value - the command line value
+        *@param value - the insertion type
         */
-        virtual inline void SetCommandLine(std::size_t index, const CString& value);
+        virtual inline void SetInsertionType(std::size_t index, const int value);
 
         /**
-        * Gets the command parameters at index
+        * Gets the activation type at index
+        *@return the activation type, empty string if not found or on error
+        */
+        virtual inline int GetActivationType(std::size_t index) const;
+
+        /**
+        * Sets the activation type at index
         *@param index - the index
-        *@return the command parameters, empty string if not found or on error
+        *@param value - the activation type
         */
-        virtual inline CString GetCommandParameters(std::size_t index) const;
+        virtual inline void SetActivationType(std::size_t index, const int value);
 
         /**
-        * Sets the command parameters at index
-        *@param index - the index
-        *@param value - the command parameters value
-        */
-        virtual inline void SetCommandParameters(std::size_t index, const CString& value);
-
-        /**
-        * Gets the startup directory at index
-        *@param index - the index
-        *@return the startup directory, empty string if not found or on error
-        */
-        virtual inline CString GetCommandStartupDirectory(std::size_t index) const;
-
-        /**
-        * Sets the command startup directory at index
-        *@param index - the index
-        *@param value - the command startup directory value
-        */
-        virtual inline void SetCommandStartupDirectory(std::size_t index, const CString& value);
-
-        /**
-        * Gets the priority level at index
-        *@param index - the index
-        *@return the priority level at index
-        */
-        virtual inline int GetPriorityLevel(std::size_t index) const;
-
-        /**
-        * Sets the priority level at index
-        *@param index - the index
-        *@param value - the priority level value
-        */
-        virtual inline void SetPriorityLevel(std::size_t index, const int value);
-
-        /**
-        * Gets the window start mode at index
-        *@param index - the index
-        *@return the window start mode at index
-        */
-        virtual inline int GetWindowStartMode(std::size_t index) const;
-
-        /**
-        * Sets the window start mode at index
-        *@param index - the index
-        *@param value - the window start mode value
-        */
-        virtual inline void SetWindowStartMode(std::size_t index, const int value);
-
-        /**
-        * Does a standard external application insertion
+        * Does a standard external file insertion
         *@param showDialog - if true, the insert app dialog may be shown
         *@return true on success, otherwise false
         */
-        virtual bool DoInsertExtApp(bool showDialog = true);
+        virtual bool DoInsertExtFile(bool showDialog = true);
 
         /**
         * Checks if the item to drop is accepted by the manager
@@ -339,22 +303,22 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         virtual void Serialize(CArchive& ar);
 
         /**
-        * Called when a new external application is added
-        *@param prop - the property containing the external application
-        *@param value - the external application value
+        * Called when a new external file is added
+        *@param prop - the property containing the external file
+        *@param value - the external file value
         *@param props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         */
-        virtual void OnAddNewExtApp(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnAddNewExtFile(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
-        * Called when an external application is deleted
-        *@param prop - the property containing the external application
-        *@param value - the external application value
+        * Called when an external file is deleted
+        *@param prop - the property containing the external file
+        *@param value - the external file value
         *@param props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         */
-        virtual void OnDelCurrentExtApp(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelCurrentExtFile(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called before a property changes
@@ -376,135 +340,115 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
 
     protected:
         CODSymbolComponent* m_pSymbol;
-        PSS_ExtApps         m_ExternalApplications;
+        PSS_ExtFiles        m_ExternalFiles;
 };
 
 //---------------------------------------------------------------------------
-// PSS_ExtAppPropertyMgr
+// PSS_ExtFilePropertyMgr
 //---------------------------------------------------------------------------
-PSS_ExtApps& PSS_ExtAppPropertyMgr::GetExtApps()
+PSS_ExtFiles& PSS_ExtFilePropertyMgr::GetExtFiles()
 {
-    return m_ExternalApplications;
+    return m_ExternalFiles;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ExtAppPropertyMgr::GetExtAppCount() const
+std::size_t PSS_ExtFilePropertyMgr::GetExtFileCount() const
 {
-    return m_ExternalApplications.GetExtAppCount();
+    return m_ExternalFiles.GetExtFileCount();
 }
 //---------------------------------------------------------------------------
-int PSS_ExtAppPropertyMgr::AddNewExtApp()
+int PSS_ExtFilePropertyMgr::AddNewExtFile()
 {
-    return m_ExternalApplications.AddNewExtApp();
+    return m_ExternalFiles.AddNewExtFile();
 }
 //---------------------------------------------------------------------------
-int PSS_ExtAppPropertyMgr::AddExtApp(PSS_ExtAppProperties* pProp)
+int PSS_ExtFilePropertyMgr::AddExtFile(PSS_ExtFileProperties* pProp)
 {
-    return m_ExternalApplications.AddExtApp(pProp);
+    return m_ExternalFiles.AddExtFile(pProp);
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::DeleteExtApp(std::size_t index)
+bool PSS_ExtFilePropertyMgr::DeleteExtFile(std::size_t index)
 {
-    return m_ExternalApplications.DeleteExtApp(index);
+    return m_ExternalFiles.DeleteExtFile(index);
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::DeleteExtApp(const CString& commandTitle)
+bool PSS_ExtFilePropertyMgr::DeleteExtFile(const CString& fileName)
 {
-    return m_ExternalApplications.DeleteExtApp(commandTitle);
+    return m_ExternalFiles.DeleteExtFile(fileName);
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::DeleteExtApp(PSS_ExtAppProperties* pProp)
+bool PSS_ExtFilePropertyMgr::DeleteExtFile(PSS_ExtFileProperties* pProp)
 {
-    return m_ExternalApplications.DeleteExtApp(pProp);
+    return m_ExternalFiles.DeleteExtFile(pProp);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::RemoveAllExtApps()
+void PSS_ExtFilePropertyMgr::RemoveAllExtFiles()
 {
-    m_ExternalApplications.RemoveAllExtApps();
+    m_ExternalFiles.RemoveAllExtFiles();
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::RemoveAllEmptyExtApps()
+void PSS_ExtFilePropertyMgr::RemoveAllEmptyExtFiles()
 {
-    m_ExternalApplications.RemoveAllEmptyExtApps();
+    m_ExternalFiles.RemoveAllEmptyExtFiles();
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::ExtAppExist(const CString& commandTitle) const
+bool PSS_ExtFilePropertyMgr::ExtFileExist(const CString& fileName) const
 {
-    return m_ExternalApplications.ExtAppExist(commandTitle);
+    return m_ExternalFiles.ExtFileExist(fileName);
 }
 //---------------------------------------------------------------------------
-PSS_ExtAppProperties* PSS_ExtAppPropertyMgr::LocateExtApp(const CString& commandTitle) const
+PSS_ExtFileProperties* PSS_ExtFilePropertyMgr::LocateExtFile(const CString& fileName) const
 {
-    return m_ExternalApplications.LocateExtApp(commandTitle);
+    return m_ExternalFiles.LocateExtFile(fileName);
 }
 //---------------------------------------------------------------------------
-PSS_ExtAppProperties* PSS_ExtAppPropertyMgr::GetExtAppProperty(std::size_t index) const
+PSS_ExtFileProperties* PSS_ExtFilePropertyMgr::GetExtFileProperty(std::size_t index) const
 {
-    return m_ExternalApplications.GetProperty(index);
+    return m_ExternalFiles.GetProperty(index);
 }
 //---------------------------------------------------------------------------
-int PSS_ExtAppPropertyMgr::LocateFirstEmptyExtApp() const
+int PSS_ExtFilePropertyMgr::LocateFirstEmptyExtFile() const
 {
-    return m_ExternalApplications.LocateFirstEmptyExtApp();
+    return m_ExternalFiles.LocateFirstEmptyExtFile();
 }
 //---------------------------------------------------------------------------
-CString PSS_ExtAppPropertyMgr::GetCommandTitle(std::size_t index) const
+CString PSS_ExtFilePropertyMgr::GetFileTitle(std::size_t index) const
 {
-    return m_ExternalApplications.GetCommandTitle(index);
+    return m_ExternalFiles.GetFileTitle(index);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::SetCommandTitle(std::size_t index, const CString& value)
+void PSS_ExtFilePropertyMgr::SetFileTitle(std::size_t index, const CString& value)
 {
-    m_ExternalApplications.SetCommandTitle(index, value);
+    m_ExternalFiles.SetFileTitle(index, value);
 }
 //---------------------------------------------------------------------------
-CString PSS_ExtAppPropertyMgr::GetCommandLine(std::size_t index) const
+CString PSS_ExtFilePropertyMgr::GetFileName(std::size_t index) const
 {
-    return m_ExternalApplications.GetCommandLine(index);
+    return m_ExternalFiles.GetFileName(index);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::SetCommandLine(std::size_t index, const CString& value)
+void PSS_ExtFilePropertyMgr::SetFileName(std::size_t index, const CString& value)
 {
-    m_ExternalApplications.SetCommandLine(index, value);
+    m_ExternalFiles.SetFileName(index, value);
 }
 //---------------------------------------------------------------------------
-CString PSS_ExtAppPropertyMgr::GetCommandParameters(std::size_t index) const
+int PSS_ExtFilePropertyMgr::GetInsertionType(std::size_t index) const
 {
-    return m_ExternalApplications.GetCommandParameters(index);
+    return m_ExternalFiles.GetInsertionType(index);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::SetCommandParameters(std::size_t index, const CString& value)
+void PSS_ExtFilePropertyMgr::SetInsertionType(std::size_t index, const int value)
 {
-    m_ExternalApplications.SetCommandParameters(index, value);
+    m_ExternalFiles.SetInsertionType(index, value);
 }
 //---------------------------------------------------------------------------
-CString PSS_ExtAppPropertyMgr::GetCommandStartupDirectory(std::size_t index) const
+int PSS_ExtFilePropertyMgr::GetActivationType(std::size_t index) const
 {
-    return m_ExternalApplications.GetCommandStartupDirectory(index);
+    return m_ExternalFiles.GetActivationType(index);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::SetCommandStartupDirectory(std::size_t index, const CString& value)
+void PSS_ExtFilePropertyMgr::SetActivationType(std::size_t index, const int value)
 {
-    m_ExternalApplications.SetCommandStartupDirectory(index, value);
-}
-//---------------------------------------------------------------------------
-int PSS_ExtAppPropertyMgr::GetPriorityLevel(std::size_t index) const
-{
-    return m_ExternalApplications.GetPriorityLevel(index);
-}
-//---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::SetPriorityLevel(std::size_t index, const int value)
-{
-    m_ExternalApplications.SetPriorityLevel(index, value);
-}
-//---------------------------------------------------------------------------
-int PSS_ExtAppPropertyMgr::GetWindowStartMode(std::size_t index) const
-{
-    return m_ExternalApplications.GetWindowStartMode(index);
-}
-//---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::SetWindowStartMode(std::size_t index, const int value)
-{
-    m_ExternalApplications.SetWindowStartMode(index, value);
+    m_ExternalFiles.SetActivationType(index, value);
 }
 //---------------------------------------------------------------------------
 

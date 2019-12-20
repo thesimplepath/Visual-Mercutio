@@ -1,12 +1,16 @@
-// ZBGenericSymbolErrorLine.h: interface for the ZBGenericSymbolErrorLine class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_GenericSymbolErrorLine ------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a generic symbol error line                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZBGenericSymbolErrorLine_H__74469948_01E4_477F_AE8E_F83A38064EE6__INCLUDED_)
-#define AFX_ZBGenericSymbolErrorLine_H__74469948_01E4_477F_AE8E_F83A38064EE6__INCLUDED_
+#ifndef PSS_GenericSymbolErrorLineH
+#define PSS_GenericSymbolErrorLineH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -20,13 +24,13 @@
 #include "zBaseLib\PSS_ErrorLine.h"
 
 #ifdef _ZMODELEXPORT
-// put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - Le 22 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)

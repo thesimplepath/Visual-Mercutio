@@ -54,8 +54,8 @@ class AFX_EXT_CLASS PSS_ExtApps : public CObject
     DECLARE_SERIAL(PSS_ExtApps)
 
     public:
-        typedef CCArray_T<PSS_ExtAppProperties*, PSS_ExtAppProperties*> IPropSet;
-        typedef Iterator_T<PSS_ExtAppProperties*>                       IPropIterator;
+        typedef CCArray_T <PSS_ExtAppProperties*, PSS_ExtAppProperties*> IPropSet;
+        typedef Iterator_T<PSS_ExtAppProperties*>                        IPropIterator;
 
         /**
         * Constructor
@@ -103,8 +103,8 @@ class AFX_EXT_CLASS PSS_ExtApps : public CObject
         virtual int AddNewExtApp();
 
         /**
-        * Adds a new external application
-        *@param pProp - the property containing the external application
+        * Adds an external application
+        *@param pProp - the property containing the external application to add
         *@return the new added external application index, -1 on error
         */
         virtual int AddExtApp(PSS_ExtAppProperties* pProp);

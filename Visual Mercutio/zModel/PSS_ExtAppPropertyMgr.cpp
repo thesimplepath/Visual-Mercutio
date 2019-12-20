@@ -92,96 +92,100 @@ bool PSS_ExtAppPropertyMgr::DoInsertExtApp(bool showDialog)
 //---------------------------------------------------------------------------
 bool PSS_ExtAppPropertyMgr::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    PSS_NetResourceWrapper* pNetResources =                        dynamic_cast<PSS_NetResourceWrapper*>(pObj);
-    ZBSystemEntity*         pSystemEntity = pNetResources ? NULL : dynamic_cast<ZBSystemEntity*>(pObj);
+    ZBSystemEntity* pSystemEntity = dynamic_cast<ZBSystemEntity*>(pObj);
+
+    if (pSystemEntity)
+        return true;
+
+    PSS_NetResourceWrapper* pNetResources = dynamic_cast<PSS_NetResourceWrapper*>(pObj);
 
     // accept drop only if item is an executable file
-    if ((pNetResources && !pNetResources->GetFileName().IsEmpty() && pNetResources->IsFile()) || pSystemEntity)
-        if (pNetResources)
-        {
-            PSS_File      file(pNetResources->GetFileName());
-            const CString ext = file.GetFileExt().MakeLower();
+    if (pNetResources && !pNetResources->GetFileName().IsEmpty() && pNetResources->IsFile())
+    {
+        PSS_File      file(pNetResources->GetFileName());
+        const CString ext = file.GetFileExt().MakeLower();
 
-            // check the file type
-            return (ext == _T(".exe") || ext == _T(".com") || ext == _T(".bat"));
-        }
-        else
-        if (pSystemEntity)
-            return true;
+        // check the file type
+        return (ext == _T(".exe") || ext == _T(".com") || ext == _T(".bat"));
+    }
  
     return false;
 }
 //---------------------------------------------------------------------------
 bool PSS_ExtAppPropertyMgr::DropItem(CObject* pObj, const CPoint& point)
 {
-    PSS_NetResourceWrapper* pNetResources =                        dynamic_cast<PSS_NetResourceWrapper*>(pObj);
-    ZBSystemEntity*         pSystemEntity = pNetResources ? NULL : dynamic_cast<ZBSystemEntity*>(pObj);
+    ZBSystemEntity* pSystemEntity = dynamic_cast<ZBSystemEntity*>(pObj);
+
+    if (pSystemEntity)
+    {
+        PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(m_pSymbol);
+
+        // check if the system file belongs to the model
+        if (pSymbol)
+        {
+            PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetRootModel());
+
+            if (pModel && !pModel->MainUserGroupIsValid())
+            {
+                PSS_MsgBox mBox;
+                mBox.Show(IDS_CANNOTDROP_SYSTEMDEFNOTINLINE, MB_OK);
+                return false;
+            }
+        }
+
+        int index = LocateFirstEmptyExtApp();
+
+        // check if an empty application item is available, if yes, use it. Otherwise creates a new one
+        if (index < 0)
+        {
+            index = AddNewExtApp();
+
+            if (index < 0)
+                return false;
+        }
+
+        SetCommandTitle           (index, pSystemEntity->GetEntityName());
+        SetCommandLine            (index, pSystemEntity->GetEntityName());
+        SetCommandParameters      (index, gLogicalSystemKey + pSystemEntity->GetGUID());
+        SetCommandStartupDirectory(index, _T(""));
+        SetPriorityLevel          (index, THREAD_PRIORITY_NORMAL);
+        SetWindowStartMode        (index, SW_SHOWNORMAL);
+
+        return true;
+    }
+
+    PSS_NetResourceWrapper* pNetResources = dynamic_cast<PSS_NetResourceWrapper*>(pObj);
 
     // accept drop only if item is an executable file
-    if ((pNetResources && !pNetResources->GetFileName().IsEmpty() && pNetResources->IsFile()) || pSystemEntity)
-        if (pNetResources)
+    if (pNetResources && !pNetResources->GetFileName().IsEmpty() && pNetResources->IsFile())
+    {
+        const CString fileName = pNetResources->GetFileName();
+        PSS_File      file(fileName);
+
+        int index = LocateFirstEmptyExtApp();
+
+        // check if an empty application item is available, if yes, use it. Otherwise creates a new one
+        if (index < 0)
         {
-            const CString fileName = pNetResources->GetFileName();
-            PSS_File      file(fileName);
+            index = AddNewExtApp();
 
-            // add a new external application. Check if there is an empty one, and if yes, use it
-            int index = LocateFirstEmptyExtApp();
-
-            if (index == -1)
-                index = AddNewExtApp();
-
-            if (index >= 0)
-            {
-                if (file.Exist())
-                    SetCommandTitle(index, file.GetDisplayName());
-                else
-                    SetCommandTitle(index, fileName);
-
-                SetCommandLine            (index, fileName);
-                SetCommandParameters      (index, _T(""));
-                SetCommandStartupDirectory(index, file.GetFilePath());
-                SetPriorityLevel          (index, THREAD_PRIORITY_NORMAL);
-                SetWindowStartMode        (index, SW_SHOWNORMAL);
-
-                return true;
-            }
+            if (index < 0)
+                return false;
         }
+
+        if (file.Exist())
+            SetCommandTitle(index, file.GetDisplayName());
         else
-        if (pSystemEntity)
-        {
-            PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(m_pSymbol);
+            SetCommandTitle(index, fileName);
 
-            // check if the system file belongs to the model
-            if (pSymbol)
-            {
-                PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetRootModel());
+        SetCommandLine            (index, fileName);
+        SetCommandParameters      (index, _T(""));
+        SetCommandStartupDirectory(index, file.GetFilePath());
+        SetPriorityLevel          (index, THREAD_PRIORITY_NORMAL);
+        SetWindowStartMode        (index, SW_SHOWNORMAL);
 
-                if (pModel && !pModel->MainUserGroupIsValid())
-                {
-                    PSS_MsgBox mBox;
-                    mBox.Show(IDS_CANNOTDROP_SYSTEMDEFNOTINLINE, MB_OK);
-                    return false;
-                }
-            }
-
-            // add a new external application. Check if there is an empty one, if yes, use it
-            int index = LocateFirstEmptyExtApp();
-
-            if (index == -1)
-                index = AddNewExtApp();
-
-            if (index >= 0)
-            {
-                SetCommandTitle           (index, pSystemEntity->GetEntityName());
-                SetCommandLine            (index, pSystemEntity->GetEntityName());
-                SetCommandParameters      (index, gLogicalSystemKey + pSystemEntity->GetGUID());
-                SetCommandStartupDirectory(index, _T(""));
-                SetPriorityLevel          (index, THREAD_PRIORITY_NORMAL);
-                SetWindowStartMode        (index, SW_SHOWNORMAL);
-
-                return true;
-            }
-        }
+        return true;
+    }
 
     return false;
 }
