@@ -31,7 +31,7 @@
 #include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZBLogicalPrestationsEntity.h"
+#include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\ZDProcessGraphPage.h"
 
 #include "zModelBP\ProcGraphModelMdlBP.h"
@@ -49,9 +49,13 @@
 
 #include "ZBModelBPReportGenerator.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBLogicalPrestationsEntity;
+// old class name mapping
+#ifndef PSS_LogicalPrestationsEntity
+    #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
+
+// forward class declaration
+class PSS_LogicalPrestationsEntity;
 
 #ifdef _ZREPORTBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -72,27 +76,27 @@ class AFX_EXT_CLASS _ZBProcessDatas : public CObject
 {
 public:
 
-    _ZBProcessDatas( CString                    ProcessName        = _T( "" ),
-                     ZBBPAnnualNumberProperties    Workload        = 0,
-                     ZBBPAnnualNumberProperties    Cost            = 0,
-                     ZBBPAnnualNumberProperties    CostHMO            = 0,
-                     float                        Percentage        = 0.0f );
+    _ZBProcessDatas(CString                    ProcessName = _T(""),
+                    ZBBPAnnualNumberProperties    Workload = 0,
+                    ZBBPAnnualNumberProperties    Cost = 0,
+                    ZBBPAnnualNumberProperties    CostHMO = 0,
+                    float                        Percentage = 0.0f);
 
     ~_ZBProcessDatas();
 
-    void SetName( CString Name );
+    void SetName(CString Name);
     CString GetName();
 
-    void SetWorkload( ZBBPAnnualNumberProperties Workload );
+    void SetWorkload(ZBBPAnnualNumberProperties Workload);
     ZBBPAnnualNumberProperties GetWorkload();
 
-    void SetCost( ZBBPAnnualNumberProperties Cost );
+    void SetCost(ZBBPAnnualNumberProperties Cost);
     ZBBPAnnualNumberProperties GetCost();
 
-    void SetCostHMO( ZBBPAnnualNumberProperties CostHMO );
+    void SetCostHMO(ZBBPAnnualNumberProperties CostHMO);
     ZBBPAnnualNumberProperties GetCostHMO();
 
-    void SetPercentage( double Percentage );
+    void SetPercentage(double Percentage);
     double GetPercentage();
 
 private:
@@ -109,23 +113,23 @@ class AFX_EXT_CLASS _ZBPrestationsDatas : public CObject
 {
 public:
 
-    _ZBPrestationsDatas( CString PrestationName = _T( "" ) );
+    _ZBPrestationsDatas(CString PrestationName = _T(""));
     ~_ZBPrestationsDatas();
 
-    void SetName( CString Name );
+    void SetName(CString Name);
     CString GetName();
 
-    void GenerateHierarchy( ZBLogicalPrestationsEntity* pPrestations, int Level = 0 );
-    void Associate( ZBBPProcessSymbol* Process );
+    void GenerateHierarchy(PSS_LogicalPrestationsEntity* pPrestations, int Level = 0);
+    void Associate(ZBBPProcessSymbol* Process);
     void UpdateTotals();
 
-    void DisplayDatas( ZBOStreamGrid    &ostream,
-                       CStringArray&    ProcessNameArray,
-                       CGXStyle            DisplayStyle,
-                       CGXStyle            AmountStyle,
-                       CGXStyle            NumericStyle,
-                       int                Index,
-                       bool                IncludeMonthDetails );
+    void DisplayDatas(ZBOStreamGrid    &ostream,
+                      CStringArray&    ProcessNameArray,
+                      CGXStyle            DisplayStyle,
+                      CGXStyle            AmountStyle,
+                      CGXStyle            NumericStyle,
+                      int                Index,
+                      bool                IncludeMonthDetails);
 
     ZBBPAnnualNumberProperties GetTotalWorkload();
     ZBBPAnnualNumberProperties GetTotalCost();
@@ -156,23 +160,23 @@ private:
 
 class AFX_EXT_CLASS ZBPrestationsReportGenerator : public ZBModelBPReportGenerator
 {
-    DECLARE_SERIAL( ZBPrestationsReportGenerator )
+    DECLARE_SERIAL(ZBPrestationsReportGenerator)
 
 public:
 
-    ZBPrestationsReportGenerator( ZDGridDocument*            pDoc                = NULL,
-                                  ZDProcessGraphModelMdlBP*    pModel                = NULL,
-                                 PSS_ProcessGraphModelDoc*    pSourceDoc            = NULL,
-                                  bool                        IncludeMonthDetails    = true );
+    ZBPrestationsReportGenerator(ZDGridDocument*            pDoc = NULL,
+                                 ZDProcessGraphModelMdlBP*    pModel = NULL,
+                                 PSS_ProcessGraphModelDoc*    pSourceDoc = NULL,
+                                 bool                        IncludeMonthDetails = true);
 
     virtual ~ZBPrestationsReportGenerator();
 
     /////////////////////////////////////////////////////////////////////////////
     // ZIGridReportGenerator methods
-    
+
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     virtual const CString GetReportTitle() const;
 
@@ -182,14 +186,14 @@ protected:
 
 private:
 
-    bool FillGridPrestationsReport( CGXGridCore& GridCore, int Index );
-    void FillGridPrestationsHeaders( ZBOStreamGrid &ostream, ZVGridView* pView, int Index );
+    bool FillGridPrestationsReport(CGXGridCore& GridCore, int Index);
+    void FillGridPrestationsHeaders(ZBOStreamGrid &ostream, ZVGridView* pView, int Index);
     void FillPrestationsDatas();
-    void Associate( ZDProcessGraphModelMdlBP* m_RootModel );
+    void Associate(ZDProcessGraphModelMdlBP* m_RootModel);
     void UpdateTotals();
     void RemoveObsoleteDatas();
 
-    CPoint CheckColumn( ZBOStreamGrid &ostream, int Quantity );
+    CPoint CheckColumn(ZBOStreamGrid &ostream, int Quantity);
 
 private:
 
@@ -210,4 +214,4 @@ private:
     bool            m_IncludeMonthDetail;
 };
 
-#endif // !defined(AFX_ZBPrestationsReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
+#endif

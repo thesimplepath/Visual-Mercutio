@@ -20,7 +20,7 @@
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
 #include "zModel\ZUDynamicAttributesManipulator.h"
-#include "zModel\ZBInfoModelGraphicGeneration.h"
+#include "zModel\PSS_InfoModelGraphicGeneration.h"
 #include "PSS_ModelGenerateImageFiles.h"
 #include "PSS_PublishModel.h"
 
@@ -68,17 +68,17 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pD
     {
         pDC = pView->GetDC();
 
-        ZBInfoModelGraphicGeneration modelInfo(pDoc->GetModel(),
-                                               pView->GetModelController(),
-                                               publishModel.GetDir(),
-                                               false,
-                                               publishModel.GetPublishConceptor(),
-                                               publishModel.GetPublishProcess(),
-                                               publishModel.GetPublishRuleBook(),
-                                               publishModel.GetImageFileName(),
-                                               publishModel.GetHyperLink(),
-                                               pDC,
-                                               PSS_Global::GetServer());
+        PSS_InfoModelGraphicGeneration modelInfo(pDoc->GetModel(),
+                                                 pView->GetModelController(),
+                                                 publishModel.GetDir(),
+                                                 false,
+                                                 publishModel.GetPublishConceptor(),
+                                                 publishModel.GetPublishProcess(),
+                                                 publishModel.GetPublishRuleBook(),
+                                                 publishModel.GetImageFileName(),
+                                                 publishModel.GetHyperLink(),
+                                                 pDC,
+                                                 PSS_Global::GetServer());
 
         // set the new language for generation
         PSS_ResourceManager::ChangeLanguage(publishModel.GetLanguage());

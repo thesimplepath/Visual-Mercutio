@@ -35,29 +35,34 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// Forward class declaration
+// old class name mapping
+#ifndef PSS_LogicalPrestationsEntity
+    #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
+
+// forward class declaration
 class ZBPrestationsEntity;
-class ZBLogicalPrestationsEntity;
+class PSS_LogicalPrestationsEntity;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectPrestationDlg dialog
 
 class AFX_EXT_CLASS ZVSelectPrestationDlg : public CDialog
 {
-// Construction
+    // Construction
 public:
 
     // Standard constructor
-    ZVSelectPrestationDlg( const CString                Title                        = _T( "" ),
-                           ZBLogicalPrestationsEntity*    pMainPrestation                = NULL,
-                           bool                            AllowPrestationSelection    = true,
-                           CWnd*                        pParent                        = NULL );
+    ZVSelectPrestationDlg(const CString                Title = _T(""),
+                          PSS_LogicalPrestationsEntity*    pMainPrestation = NULL,
+                          bool                            AllowPrestationSelection = true,
+                          CWnd*                        pParent = NULL);
 
     // Standard constructor
-    ZVSelectPrestationDlg( UINT                            nTitle,
-                           ZBLogicalPrestationsEntity*    pMainPrestation,
-                           bool                            AllowPrestationSelection    = true,
-                           CWnd*                        pParent                        = NULL );
+    ZVSelectPrestationDlg(UINT                            nTitle,
+                          PSS_LogicalPrestationsEntity*    pMainPrestation,
+                          bool                            AllowPrestationSelection = true,
+                          CWnd*                        pParent = NULL);
 
     ~ZVSelectPrestationDlg();
 
@@ -72,14 +77,17 @@ private:
 
     // Dialog Data
     //{{AFX_DATA(ZVSelectPrestationDlg)
-    enum { IDD = IDD_PRESTATION_SELECTION };
+    enum
+    {
+        IDD = IDD_PRESTATION_SELECTION
+    };
     ZCPrestationsTreeCtrl    m_Ctrl;
     //}}AFX_DATA
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVSelectPrestationDlg)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -98,11 +106,8 @@ private:
 
     CString                        m_Title;
     ZBPrestationsEntity*        m_pPrestationEntity;
-    ZBLogicalPrestationsEntity*    m_pMainPrestation;
+    PSS_LogicalPrestationsEntity*    m_pMainPrestation;
     bool                        m_AllowPrestationSelection;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVSELECTPRESTATIONDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)
+#endif

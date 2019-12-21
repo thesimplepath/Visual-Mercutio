@@ -575,13 +575,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the main logical prestations
         *@return the main logical prestations
         */
-        virtual inline ZBLogicalPrestationsEntity* GetMainLogicalPrestations();
+        virtual inline PSS_LogicalPrestationsEntity* GetMainLogicalPrestations();
 
         /**
         * Assigns the main logical prestations
         *@param pMainLogicalPrestations - the main logical prestations
         */
-        virtual inline void AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations);
+        virtual inline void AssignMainLogicalPrestations(PSS_LogicalPrestationsEntity* pMainLogicalPrestations);
 
         /**
         * Gets the main logical rules
@@ -1209,7 +1209,7 @@ void PSS_ProcessGraphModelDoc::AssignMainLogicalSystem(ZBLogicalSystemEntity* pM
     pModel->AssignMainLogicalSystem(pMainLogicalSystem);
 }
 //---------------------------------------------------------------------------
-ZBLogicalPrestationsEntity* PSS_ProcessGraphModelDoc::GetMainLogicalPrestations()
+PSS_LogicalPrestationsEntity* PSS_ProcessGraphModelDoc::GetMainLogicalPrestations()
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
@@ -1219,7 +1219,7 @@ ZBLogicalPrestationsEntity* PSS_ProcessGraphModelDoc::GetMainLogicalPrestations(
     return pModel->GetMainLogicalPrestations();
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelDoc::AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations)
+void PSS_ProcessGraphModelDoc::AssignMainLogicalPrestations(PSS_LogicalPrestationsEntity* pMainLogicalPrestations)
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 

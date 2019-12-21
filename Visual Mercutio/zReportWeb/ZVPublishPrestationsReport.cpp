@@ -289,7 +289,7 @@ void ZVPublishPrestationsReport::FindUnitGroupChilds(ZBUserGroupEntity*    pGrou
 }
 
 // Cette fonction permet de créer le système de fichiers.
-bool ZVPublishPrestationsReport::CreateFileSystem(ZBLogicalPrestationsEntity* pPrestations, CString Directory)
+bool ZVPublishPrestationsReport::CreateFileSystem(PSS_LogicalPrestationsEntity* pPrestations, CString Directory)
 {
     if (pPrestations == NULL)
     {
@@ -337,9 +337,9 @@ bool ZVPublishPrestationsReport::CreateFileSystem(ZBLogicalPrestationsEntity* pP
             }
 
             // Teste si l'objet enfant est bien un objet de type ZBLogicalPrestationsEntity.
-            if (ISA(pEntity, ZBLogicalPrestationsEntity))
+            if (ISA(pEntity, PSS_LogicalPrestationsEntity))
             {
-                CreateFileSystem(dynamic_cast<ZBLogicalPrestationsEntity*>(pEntity), Directory);
+                CreateFileSystem(dynamic_cast<PSS_LogicalPrestationsEntity*>(pEntity), Directory);
             }
         }
     }

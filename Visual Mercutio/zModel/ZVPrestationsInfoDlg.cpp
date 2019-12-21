@@ -10,7 +10,7 @@
 #include "stdafx.h"
 #include "ZVPrestationsInfoDlg.h"
 
-#include "ZBLogicalPrestationsEntity.h"
+#include "PSS_LogicalPrestationsEntity.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -31,7 +31,7 @@ BEGIN_MESSAGE_MAP(ZVPrestationsInfoDlg, CDialog)
 END_MESSAGE_MAP()
 
 ZVPrestationsInfoDlg::ZVPrestationsInfoDlg(UINT                        nTitleID            /*= -1*/,
-                                           ZBLogicalPrestationsEntity*    pLogicalPrestation    /*= NULL*/,
+                                           PSS_LogicalPrestationsEntity*    pLogicalPrestation    /*= NULL*/,
                                            const CString                Name                /*= _T( "" )*/,
                                            const CString                Description            /*= _T( "" )*/,
                                            bool                        ModifyMode            /*= false*/,

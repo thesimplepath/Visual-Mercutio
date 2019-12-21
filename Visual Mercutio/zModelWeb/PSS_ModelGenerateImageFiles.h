@@ -27,18 +27,23 @@
 #include "zConversion\PSS_StringTools.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zModel\ZUModelNavigation.h"
-#include "zModel\ZBInfoModelGraphicGeneration.h"
+#include "zModel\PSS_InfoModelGraphicGeneration.h"
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
+
+// old class name mapping
+#ifndef PSS_LogicalPrestationsEntity
+    #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
 
 // forward class declaration
 class PSS_BasicSymbol;
 class ZIProperties;
-class ZBInfoModelGraphicGeneration;
+class PSS_InfoModelGraphicGeneration;
 class ZBUserGroupEntity;
 class ZBUserRoleEntity;
 class ZBLogicalSystemEntity;
 class ZBSystemEntity;
-class ZBLogicalPrestationsEntity;
+class PSS_LogicalPrestationsEntity;
 class ZBPrestationsEntity;
 class ZBLogicalRulesEntity;
 class ZBRulesEntity;
@@ -113,16 +118,16 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        static std::size_t             m_IndexItem;
-        ZBInfoModelGraphicGeneration*  m_pInfo;
-        ZBPropertyAttributes*          m_pPropAttributes;
-        PSS_PublishModelGenerateDialog m_FileGenerateWindow;
-        CString                        m_RootHtmlFileName;
-        CString                        m_IndexHtmlFileName;
-        CString                        m_RootName;
-        CString                        m_ImageDirectory;
-        CString                        m_IncludeDirectory;
-        CString                        m_InternalLogoFileName;
+        static std::size_t              m_IndexItem;
+        PSS_InfoModelGraphicGeneration* m_pInfo;
+        ZBPropertyAttributes*           m_pPropAttributes;
+        PSS_PublishModelGenerateDialog  m_FileGenerateWindow;
+        CString                         m_RootHtmlFileName;
+        CString                         m_IndexHtmlFileName;
+        CString                         m_RootName;
+        CString                         m_ImageDirectory;
+        CString                         m_IncludeDirectory;
+        CString                         m_InternalLogoFileName;
 
         /**
         * Generates the model files
@@ -311,15 +316,15 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param parentID - parent identifier
         *@return true on success, otherwise false
         */
-        bool GenerateLogicalPrestationsObjects(ZBLogicalPrestationsEntity* pPrestationsEntity, PSS_HtmlFile* pHtmlFile);
-        bool GenerateLogicalPrestationsObjects(ZBLogicalPrestationsEntity* pPrestationsEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
+        bool GenerateLogicalPrestationsObjects(PSS_LogicalPrestationsEntity* pPrestationsEntity, PSS_HtmlFile* pHtmlFile);
+        bool GenerateLogicalPrestationsObjects(PSS_LogicalPrestationsEntity* pPrestationsEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
 
         /**
         * Generates the logical prestations list
         *@param pSystemEntity - logical prestations entity for which the list should be generated
         *@return the logical prestations list, empty string on error
         */
-        CString GenerateLogicalPrestationsList(ZBLogicalPrestationsEntity* pPrestationsEntity);
+        CString GenerateLogicalPrestationsList(PSS_LogicalPrestationsEntity* pPrestationsEntity);
 
         bool GeneratePropertyPage(ZIProperties* pPropertiesObject, const CString& htmlFileName);
 

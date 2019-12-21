@@ -46,7 +46,7 @@ bool PSS_SoapPublishPrestations::Publish()
     return m_Prestations.Send();
 }
 //---------------------------------------------------------------------------
-void PSS_SoapPublishPrestations::PublishPrestations(ZBLogicalPrestationsEntity* pPrestations)
+void PSS_SoapPublishPrestations::PublishPrestations(PSS_LogicalPrestationsEntity* pPrestations)
 {
     if (!pPrestations)
         return;
@@ -84,7 +84,7 @@ void PSS_SoapPublishPrestations::PublishPrestations(ZBLogicalPrestationsEntity* 
             if (!pEntity)
                 continue;
 
-            PublishPrestations(dynamic_cast<ZBLogicalPrestationsEntity*>(pEntity));
+            PublishPrestations(dynamic_cast<PSS_LogicalPrestationsEntity*>(pEntity));
         }
     }
 }

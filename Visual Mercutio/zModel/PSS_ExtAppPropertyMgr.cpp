@@ -20,7 +20,7 @@
 #include "PSS_Symbol.h"
 #include "ZBSystemEntity.h"
 #include "ZBLogicalSystemEntity.h"
-#include "ZBLogicalPrestationsEntity.h"
+#include "PSS_LogicalPrestationsEntity.h"
 
 // resources
 #include "zFormsRes\zFormsRes.h"

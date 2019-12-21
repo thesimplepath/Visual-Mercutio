@@ -13,7 +13,7 @@
 #define _ZMODELEXPORT
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
-#include "zModel\ZBInfoModelGraphicGeneration.h"
+#include "zModel\PSS_InfoModelGraphicGeneration.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "zSOAP\PSS_SoapPublisher_MessengerInfo.h"
@@ -481,19 +481,19 @@ int ZVPublishToMessengerWizard::DoModal()
 
             CDC* pDC = m_pModelDoc->GetFirstModelView()->GetDC();
 
-            ZBInfoModelGraphicGeneration ModelInfo(m_pModelDoc->GetModel(),
-                                                   m_pModelDoc->GetFirstModelView()->GetModelController(),
-                                                   _T(""),
-                                                   FALSE,
-                                                   false,
-                                                   false,        // JMR-MODIF - Rapport pas généré dans Messenger.
-                                                   false,        // JMR-MODIF - Livre des règles pas généré dans Messenger.
-                                                   _T(""),
-                                                   _T(""),
-                                                   pDC,
-                                                   PSS_Global::GetServer());
+            PSS_InfoModelGraphicGeneration modelInfo(m_pModelDoc->GetModel(),
+                                                     m_pModelDoc->GetFirstModelView()->GetModelController(),
+                                                     _T(""),
+                                                     FALSE,
+                                                     false,
+                                                     false,
+                                                     false,
+                                                     _T(""),
+                                                     _T(""),
+                                                     pDC,
+                                                     PSS_Global::GetServer());
 
-            PSS_SoapPublishModelGenerateFiles ModelGen(m_pModelDoc->GetModel(), &ModelInfo, &Info);
+            PSS_SoapPublishModelGenerateFiles ModelGen(m_pModelDoc->GetModel(), &modelInfo, &Info);
 
             // Assigns the log pointer
             ModelGen.SetLog(m_pLog);

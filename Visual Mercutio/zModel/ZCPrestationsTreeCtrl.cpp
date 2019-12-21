@@ -10,7 +10,7 @@
 #include "stdafx.h"
 #include "ZCPrestationsTreeCtrl.h"
 
-#include "ZBLogicalPrestationsEntity.h"
+#include "PSS_LogicalPrestationsEntity.h"
 #include "ZVSelectPrestationDlg.h"
 #include "ZBLogicalPrestationsObserverMsg.h"
 
@@ -42,7 +42,7 @@ _ZInternalPrestationsTreeData::_ZInternalPrestationsTreeData()
     m_Str.Empty();
 }
 
-_ZInternalPrestationsTreeData::_ZInternalPrestationsTreeData(ZBLogicalPrestationsEntity* pLogicalPrestation)
+_ZInternalPrestationsTreeData::_ZInternalPrestationsTreeData(PSS_LogicalPrestationsEntity* pLogicalPrestation)
 {
     m_dtp = ptp_Prestation;
     m_pPrestation = pLogicalPrestation;
@@ -83,7 +83,7 @@ BEGIN_MESSAGE_MAP(ZCPrestationsTreeCtrl, PSS_TreeCtrl)
 END_MESSAGE_MAP()
 
 ZCPrestationsTreeCtrl::ZCPrestationsTreeCtrl(const CString                    RootName                /*= _T( "" )*/,
-                                             ZBLogicalPrestationsEntity*    pLogicalPrestationRoot    /*= NULL*/) :
+                                             PSS_LogicalPrestationsEntity*    pLogicalPrestationRoot    /*= NULL*/) :
     PSS_TreeCtrl(),
     m_RootName(RootName),
     m_pLogicalPrestationRoot(pLogicalPrestationRoot),
@@ -94,7 +94,7 @@ ZCPrestationsTreeCtrl::ZCPrestationsTreeCtrl(const CString                    Ro
 ZCPrestationsTreeCtrl::~ZCPrestationsTreeCtrl()
 {}
 
-void ZCPrestationsTreeCtrl::Initialize(const CString RootName, ZBLogicalPrestationsEntity* pLogicalPrestationRoot)
+void ZCPrestationsTreeCtrl::Initialize(const CString RootName, PSS_LogicalPrestationsEntity* pLogicalPrestationRoot)
 {
     m_RootName = RootName;
     m_pLogicalPrestationRoot = pLogicalPrestationRoot;
@@ -129,10 +129,10 @@ void ZCPrestationsTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
             case UM_INITPRESTATIONS:
             {
                 if (dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity() &&
-                    ISA(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity(), ZBLogicalPrestationsEntity))
+                    ISA(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity(), PSS_LogicalPrestationsEntity))
                 {
-                    ZBLogicalPrestationsEntity* pLogicalPrestation =
-                        dynamic_cast<ZBLogicalPrestationsEntity*>(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity());
+                    PSS_LogicalPrestationsEntity* pLogicalPrestation =
+                        dynamic_cast<PSS_LogicalPrestationsEntity*>(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity());
 
                     Initialize(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetRootName(), pLogicalPrestation);
                 }
@@ -219,7 +219,7 @@ void ZCPrestationsTreeCtrl::LoadTree()
     ExpandRoot(TRUE);
 }
 
-void ZCPrestationsTreeCtrl::ProcessLogicalPrestationsGroup(ZBLogicalPrestationsEntity*    pLogicalPrestation,
+void ZCPrestationsTreeCtrl::ProcessLogicalPrestationsGroup(PSS_LogicalPrestationsEntity*    pLogicalPrestation,
                                                            HTREEITEM                    hParentTreeItem)
 {
     // First, add the item
@@ -238,9 +238,9 @@ void ZCPrestationsTreeCtrl::ProcessLogicalPrestationsGroup(ZBLogicalPrestationsE
                 continue;
             }
 
-            if (ISA(pEntity, ZBLogicalPrestationsEntity))
+            if (ISA(pEntity, PSS_LogicalPrestationsEntity))
             {
-                ProcessLogicalPrestationsGroup(dynamic_cast<ZBLogicalPrestationsEntity*>(pEntity), hGroupItem);
+                ProcessLogicalPrestationsGroup(dynamic_cast<PSS_LogicalPrestationsEntity*>(pEntity), hGroupItem);
             }
         }
     }
@@ -261,7 +261,7 @@ HTREEITEM ZCPrestationsTreeCtrl::AddTypeItem(const CString Name, int IconIndex, 
     return InsertItem(&curTreeItem);
 }
 
-HTREEITEM ZCPrestationsTreeCtrl::AddLogicalPrestationItem(ZBLogicalPrestationsEntity*    pLogicalPrestation,
+HTREEITEM ZCPrestationsTreeCtrl::AddLogicalPrestationItem(PSS_LogicalPrestationsEntity*    pLogicalPrestation,
                                                           HTREEITEM                    hParentTreeItem)
 {
     if (!pLogicalPrestation)
@@ -282,7 +282,7 @@ HTREEITEM ZCPrestationsTreeCtrl::AddLogicalPrestationItem(ZBLogicalPrestationsEn
     return InsertItem(&curTreeItem);
 }
 
-BOOL ZCPrestationsTreeCtrl::ModifyLogicalPrestationItem(ZBLogicalPrestationsEntity*    pLogicalPrestation,
+BOOL ZCPrestationsTreeCtrl::ModifyLogicalPrestationItem(PSS_LogicalPrestationsEntity*    pLogicalPrestation,
                                                         HTREEITEM                        hItem)
 {
     if (!pLogicalPrestation)
@@ -293,8 +293,8 @@ BOOL ZCPrestationsTreeCtrl::ModifyLogicalPrestationItem(ZBLogicalPrestationsEnti
     return SetItemText(hItem, (char*)((const char*)pLogicalPrestation->GetEntityName()));
 }
 
-void ZCPrestationsTreeCtrl::AddPrestation(ZBLogicalPrestationsEntity* pLogicalPrestation,
-                                          ZBLogicalPrestationsEntity* pParentLogicalPrestation /*= NULL*/)
+void ZCPrestationsTreeCtrl::AddPrestation(PSS_LogicalPrestationsEntity* pLogicalPrestation,
+                                          PSS_LogicalPrestationsEntity* pParentLogicalPrestation /*= NULL*/)
 {
     if (!m_hUserGroupRoot || !pLogicalPrestation)
     {
@@ -330,7 +330,7 @@ void ZCPrestationsTreeCtrl::AddPrestation(ZBLogicalPrestationsEntity* pLogicalPr
     ExpandBranch(hParentTreeItem);
 }
 
-void ZCPrestationsTreeCtrl::RemovePrestation(ZBLogicalPrestationsEntity* pLogicalPrestation)
+void ZCPrestationsTreeCtrl::RemovePrestation(PSS_LogicalPrestationsEntity* pLogicalPrestation)
 {
     if (!m_hUserGroupRoot || !pLogicalPrestation)
     {
@@ -351,7 +351,7 @@ void ZCPrestationsTreeCtrl::RemovePrestation(ZBLogicalPrestationsEntity* pLogica
     }
 }
 
-void ZCPrestationsTreeCtrl::ModifyPrestation(ZBLogicalPrestationsEntity* pLogicalPrestation)
+void ZCPrestationsTreeCtrl::ModifyPrestation(PSS_LogicalPrestationsEntity* pLogicalPrestation)
 {
     if (!m_hUserGroupRoot || !pLogicalPrestation)
     {
@@ -392,12 +392,12 @@ ZBPrestationsEntity* ZCPrestationsTreeCtrl::_GetPrestationEntity(HTREEITEM hItem
     return NULL;
 }
 
-ZBLogicalPrestationsEntity* ZCPrestationsTreeCtrl::GetSelectedLogicalPrestation()
+PSS_LogicalPrestationsEntity* ZCPrestationsTreeCtrl::GetSelectedLogicalPrestation()
 {
     return _GetLogicalPrestation(GetSelectedItem());
 }
 
-ZBLogicalPrestationsEntity* ZCPrestationsTreeCtrl::_GetLogicalPrestation(HTREEITEM hItem)
+PSS_LogicalPrestationsEntity* ZCPrestationsTreeCtrl::_GetLogicalPrestation(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -412,24 +412,24 @@ ZBLogicalPrestationsEntity* ZCPrestationsTreeCtrl::_GetLogicalPrestation(HTREEIT
     return NULL;
 }
 
-ZBLogicalPrestationsEntity* ZCPrestationsTreeCtrl::GetSelectedLogicalPrestationOwner()
+PSS_LogicalPrestationsEntity* ZCPrestationsTreeCtrl::GetSelectedLogicalPrestationOwner()
 {
     return _GetOwnerPrestation(GetSelectedItem());
 }
 
-ZBLogicalPrestationsEntity* ZCPrestationsTreeCtrl::_GetOwnerPrestation(HTREEITEM hItem)
+PSS_LogicalPrestationsEntity* ZCPrestationsTreeCtrl::_GetOwnerPrestation(HTREEITEM hItem)
 {
     if (hItem)
     {
-        ZBLogicalPrestationsEntity* pLogicalPrestation = _GetLogicalPrestation(hItem);
+        PSS_LogicalPrestationsEntity* pLogicalPrestation = _GetLogicalPrestation(hItem);
 
         if (pLogicalPrestation)
         {
             // If a parent defined
             if (pLogicalPrestation->GetParent() &&
-                ISA(pLogicalPrestation->GetParent(), ZBLogicalPrestationsEntity))
+                ISA(pLogicalPrestation->GetParent(), PSS_LogicalPrestationsEntity))
             {
-                return dynamic_cast<ZBLogicalPrestationsEntity*>(pLogicalPrestation->GetParent());
+                return dynamic_cast<PSS_LogicalPrestationsEntity*>(pLogicalPrestation->GetParent());
             }
 
             return pLogicalPrestation;
@@ -548,7 +548,7 @@ void ZCPrestationsTreeCtrl::EmptyDataSet()
     m_DataSet.RemoveAll();
 }
 
-_ZInternalPrestationsTreeData* ZCPrestationsTreeCtrl::FindElementFromDataSet(ZBLogicalPrestationsEntity* pLogicalPrestation)
+_ZInternalPrestationsTreeData* ZCPrestationsTreeCtrl::FindElementFromDataSet(PSS_LogicalPrestationsEntity* pLogicalPrestation)
 {
     _ZInternalPrestationsTreeDataIterator i(&m_DataSet);
 
@@ -579,7 +579,7 @@ _ZInternalPrestationsTreeData* ZCPrestationsTreeCtrl::FindElementFromDataSet(CSt
     return NULL;
 }
 
-_ZInternalPrestationsTreeData* ZCPrestationsTreeCtrl::AddDataToSet(ZBLogicalPrestationsEntity* pLogicalPrestation)
+_ZInternalPrestationsTreeData* ZCPrestationsTreeCtrl::AddDataToSet(PSS_LogicalPrestationsEntity* pLogicalPrestation)
 {
     _ZInternalPrestationsTreeData* pData = new _ZInternalPrestationsTreeData(pLogicalPrestation);
     m_DataSet.Add(pData);
@@ -600,7 +600,7 @@ _ZInternalPrestationsTreeData* ZCPrestationsTreeCtrl::AddDataToSet(CString Str)
 
 void ZCPrestationsTreeCtrl::OnNewPrestation()
 {
-    ZBLogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
+    PSS_LogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
 
     // If a group selected
     if (pLogicalPrestation != NULL)
@@ -612,7 +612,7 @@ void ZCPrestationsTreeCtrl::OnNewPrestation()
 
         if (dlg.DoModal() == IDOK)
         {
-            ZBLogicalPrestationsEntity* pNewGroup = m_pLogicalPrestationRoot->AddPrestation(dlg.GetName(),
+            PSS_LogicalPrestationsEntity* pNewGroup = m_pLogicalPrestationRoot->AddPrestation(dlg.GetName(),
                                                                                             dlg.GetDescription(),
                                                                                             pLogicalPrestation);
 
@@ -635,7 +635,7 @@ void ZCPrestationsTreeCtrl::OnDeletePrestation()
         return;
     }
 
-    ZBLogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
+    PSS_LogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
 
     if (pLogicalPrestation != NULL && pLogicalPrestation != m_pLogicalPrestationRoot)
     {
@@ -659,14 +659,14 @@ void ZCPrestationsTreeCtrl::OnRenamePrestation()
         return;
     }
 
-    ZBLogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
+    PSS_LogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
 
     if (pLogicalPrestation != NULL)
     {
         ASSERT(m_pLogicalPrestationRoot != NULL);
 
         ZVPrestationsInfoDlg dlg(IDS_RENAME_PRESTATION_T,
-            (pLogicalPrestation->GetParent() && ISA(pLogicalPrestation->GetParent(), ZBLogicalPrestationsEntity)) ? dynamic_cast<ZBLogicalPrestationsEntity*>(pLogicalPrestation->GetParent()) : pLogicalPrestation,
+            (pLogicalPrestation->GetParent() && ISA(pLogicalPrestation->GetParent(), PSS_LogicalPrestationsEntity)) ? dynamic_cast<PSS_LogicalPrestationsEntity*>(pLogicalPrestation->GetParent()) : pLogicalPrestation,
                                  pLogicalPrestation->GetEntityName(),
                                  pLogicalPrestation->GetEntityDescription());
 
@@ -702,11 +702,11 @@ void ZCPrestationsTreeCtrl::OnMovePrestation()
             // and if it is not the same
             if (dlg.GetSelectedPrestationEntity() &&
                 dlg.GetSelectedPrestationEntity() != pPrestation &&
-                ISA(dlg.GetSelectedPrestationEntity(), ZBLogicalPrestationsEntity))
+                ISA(dlg.GetSelectedPrestationEntity(), PSS_LogicalPrestationsEntity))
             {
                 // Move the element
                 // Assigns the new parent
-                dynamic_cast<ZBLogicalPrestationsEntity*>(dlg.GetSelectedPrestationEntity())->MovePrestation(pPrestation);
+                dynamic_cast<PSS_LogicalPrestationsEntity*>(dlg.GetSelectedPrestationEntity())->MovePrestation(pPrestation);
 
                 // Modified
                 m_pLogicalPrestationRoot->SetModifiedFlag();
@@ -724,11 +724,11 @@ void ZCPrestationsTreeCtrl::OnPrestationProperties()
 
     if (pEntity != NULL)
     {
-        ZBLogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
+        PSS_LogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
         ASSERT(m_pLogicalPrestationRoot != NULL);
 
         ZVPrestationsInfoDlg dlg(IDS_PRESTATION_PROPERTY_T,
-            (pEntity->GetParent() && ISA(pEntity->GetParent(), ZBLogicalPrestationsEntity)) ? dynamic_cast<ZBLogicalPrestationsEntity*>(pEntity->GetParent()) : m_pLogicalPrestationRoot,
+            (pEntity->GetParent() && ISA(pEntity->GetParent(), PSS_LogicalPrestationsEntity)) ? dynamic_cast<PSS_LogicalPrestationsEntity*>(pEntity->GetParent()) : m_pLogicalPrestationRoot,
                                  pEntity->GetEntityName(),
                                  pEntity->GetEntityDescription(),
                                  true);  // ModifyMode

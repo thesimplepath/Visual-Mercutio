@@ -96,7 +96,7 @@ class AFX_EXT_CLASS pPublishPrestations
 {
     public:
         pPublishPrestations();
-        ~pPublishPrestations();
+        virtual ~pPublishPrestations();
 
         /**
         * Resets the data (empty the lists)

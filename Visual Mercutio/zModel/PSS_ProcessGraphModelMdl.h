@@ -36,7 +36,7 @@
 #include "zEvent\PSS_ActivityResources.h"
 #include "ZBUserGroupEntity.h"
 #include "ZBLogicalSystemEntity.h"
-#include "ZBLogicalPrestationsEntity.h"
+#include "PSS_LogicalPrestationsEntity.h"
 #include "ZBLogicalRulesEntity.h"
 
 // resources
@@ -52,6 +52,9 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_LogicalPrestationsEntity
+    #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
 
 // forward class declaration
 class PSS_Symbol;
@@ -66,7 +69,7 @@ class ZBUserGroupEntity;
 class ZBPropertyAttributes;
 class ZBUserEntity;
 class ZBLogicalSystemEntity;
-class ZBLogicalPrestationsEntity;
+class PSS_LogicalPrestationsEntity;
 class ZBPrestationsEntity;
 class ZBLogicalRulesEntity;
 class ZBRulesEntity;
@@ -387,13 +390,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         * Gets the main logical prestations
         *@return the main logical prestations, NULL on error
         */
-        static inline ZBLogicalPrestationsEntity* GetMainLogicalPrestations();
+        static inline PSS_LogicalPrestationsEntity* GetMainLogicalPrestations();
 
         /**
         * Assigns the main logical prestations
         *@param pMainLogicalPrestations - the main logical prestations
         */
-        static inline void AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations);
+        static inline void AssignMainLogicalPrestations(PSS_LogicalPrestationsEntity* pMainLogicalPrestations);
 
         /**
         * Checks if the main logical prestations are valid
@@ -1274,7 +1277,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
 
         static ZBUserGroupEntity*                     m_pMainUserGroup;
         static ZBLogicalSystemEntity*                 m_pMainLogicalSystem;
-        static ZBLogicalPrestationsEntity*            m_pMainLogicalPrestations;
+        static PSS_LogicalPrestationsEntity*          m_pMainLogicalPrestations;
         static ZBLogicalRulesEntity*                  m_pMainLogicalRules;
         static CArray<IComponentRef*, IComponentRef*> m_SymbolParsed;
         static CODComponentSet                        m_FindSet;
@@ -1688,12 +1691,12 @@ void PSS_ProcessGraphModelMdl::SetMainLogicalSystemValid(bool value)
     m_MainLogicalSystemIsValid = value;
 }
 //---------------------------------------------------------------------------
-ZBLogicalPrestationsEntity* PSS_ProcessGraphModelMdl::GetMainLogicalPrestations()
+PSS_LogicalPrestationsEntity* PSS_ProcessGraphModelMdl::GetMainLogicalPrestations()
 {
     return m_pMainLogicalPrestations;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations)
+void PSS_ProcessGraphModelMdl::AssignMainLogicalPrestations(PSS_LogicalPrestationsEntity* pMainLogicalPrestations)
 {
     m_pMainLogicalPrestations = pMainLogicalPrestations;
 }

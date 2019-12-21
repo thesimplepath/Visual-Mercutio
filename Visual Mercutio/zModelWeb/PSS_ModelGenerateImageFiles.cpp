@@ -26,7 +26,7 @@
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
 #include "zModel\ZBLogicalSystemEntity.h"
-#include "zModel\ZBLogicalPrestationsEntity.h"
+#include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\ZBLogicalRulesEntity.h"
 #include "zModel\zModelRes.h"
 #include "zWeb\PSS_HtmlFile.h"
@@ -87,7 +87,7 @@ PSS_ModelGenerateImageFiles::~PSS_ModelGenerateImageFiles()
 bool PSS_ModelGenerateImageFiles::OnStart()
 {
     // get info from model class
-    m_pInfo = static_cast<ZBInfoModelGraphicGeneration*>(m_pClass);
+    m_pInfo = static_cast<PSS_InfoModelGraphicGeneration*>(m_pClass);
     ASSERT(m_pInfo);
 
     // create the window for file generation feedback
@@ -2251,8 +2251,8 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(ZBLogicalSystemEn
     return htmlFileName;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(ZBLogicalPrestationsEntity* pPrestationsEntity,
-                                                                    PSS_HtmlFile*               pHtmlFile)
+bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(PSS_LogicalPrestationsEntity* pPrestationsEntity,
+                                                                    PSS_HtmlFile*                 pHtmlFile)
 {
     if (!pPrestationsEntity || !pHtmlFile)
         return false;
@@ -2262,9 +2262,9 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(ZBLogicalPre
     return GenerateLogicalPrestationsObjects(pPrestationsEntity, pHtmlFile, m_IndexItem);
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(ZBLogicalPrestationsEntity* pPrestationsEntity,
-                                                                    PSS_HtmlFile*               pHtmlFile,
-                                                                    std::size_t                 parentID)
+bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(PSS_LogicalPrestationsEntity* pPrestationsEntity,
+                                                                    PSS_HtmlFile*                 pHtmlFile,
+                                                                    std::size_t                   parentID)
 {
     if (!pPrestationsEntity || !pHtmlFile)
         return false;
@@ -2295,7 +2295,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(ZBLogicalPre
             if (!pEntity)
                 continue;
 
-            ZBLogicalPrestationsEntity* pLogicalEntity = dynamic_cast<ZBLogicalPrestationsEntity*>(pEntity);
+            PSS_LogicalPrestationsEntity* pLogicalEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEntity);
 
             if (pLogicalEntity)
                 GenerateLogicalPrestationsObjects(pLogicalEntity, pHtmlFile, currentItem);
@@ -2305,7 +2305,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(ZBLogicalPre
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(ZBLogicalPrestationsEntity* pPrestationsEntity)
+CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(PSS_LogicalPrestationsEntity* pPrestationsEntity)
 {
     if (!pPrestationsEntity)
         return _T("");

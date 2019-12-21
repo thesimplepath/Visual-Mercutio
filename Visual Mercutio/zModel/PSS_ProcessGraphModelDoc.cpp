@@ -316,7 +316,7 @@ void PSS_ProcessGraphModelDoc::ReassignSystem(PSS_Log* pLog)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::AssignCurrentPrestationsDefGUID()
 {
-    ZBLogicalPrestationsEntity* pPrestations = GetMainLogicalPrestations();
+    PSS_LogicalPrestationsEntity* pPrestations = GetMainLogicalPrestations();
 
     // no prestations, error
     if (!pPrestations)
@@ -1086,7 +1086,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         // main logical system is valid
         pModel->SetMainLogicalSystemValid();
 
-    ZBLogicalPrestationsEntity* pPrestations = GetMainLogicalPrestations();
+    PSS_LogicalPrestationsEntity* pPrestations = GetMainLogicalPrestations();
 
     // no prestations, error
     if (!pPrestations)

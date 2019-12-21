@@ -263,13 +263,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBInfoModelGraphicGeneration.cpp">
+    <ClCompile Include="PSS_InfoModelGraphicGeneration.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBLanguageProp.cpp">
+    <ClCompile Include="PSS_LanguageProperties.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -281,7 +281,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBLogicalPrestationsEntity.cpp" />
+    <ClCompile Include="PSS_LogicalPrestationsEntity.cpp" />
     <ClCompile Include="ZBLogicalPrestationsObserverMsg.cpp" />
     <ClCompile Include="ZBLogicalRulesEntity.cpp" />
     <ClCompile Include="ZBLogicalRulesObserverMsg.cpp" />
@@ -772,10 +772,10 @@
     <ClInclude Include="PSS_ExtFilePropertyMgr.h" />
     <ClInclude Include="PSS_ExtFiles.h" />
     <ClInclude Include="PSS_GenericSymbolErrorLine.h" />
-    <ClInclude Include="ZBInfoModelGraphicGeneration.h" />
-    <ClInclude Include="ZBLanguageProp.h" />
+    <ClInclude Include="PSS_InfoModelGraphicGeneration.h" />
+    <ClInclude Include="PSS_LanguageProperties.h" />
     <ClInclude Include="PSS_LinkSymbol.h" />
-    <ClInclude Include="ZBLogicalPrestationsEntity.h" />
+    <ClInclude Include="PSS_LogicalPrestationsEntity.h" />
     <ClInclude Include="ZBLogicalPrestationsObserverMsg.h" />
     <ClInclude Include="ZBLogicalRulesEntity.h" />
     <ClInclude Include="ZBLogicalRulesObserverMsg.h" />

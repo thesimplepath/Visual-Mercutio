@@ -55,7 +55,7 @@ class AFX_EXT_CLASS PSS_TextAlignButton : public CBitmapButton
                             CWnd*          pParentWnd = NULL,
                             UINT           resID      = 0);
 
-        ~PSS_TextAlignButton();
+        virtual ~PSS_TextAlignButton();
 
         /**
         * Creates the button

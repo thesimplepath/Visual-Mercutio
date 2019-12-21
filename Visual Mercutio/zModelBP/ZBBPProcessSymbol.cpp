@@ -244,7 +244,7 @@ bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
     // **********************************************************************************************************
     // JMR-MODIF - Le 25 janvier 2006 - Effectue la modification des données pour les entités de type prestation.
-    if (pObj && ISA(pObj, ZBLogicalPrestationsEntity))
+    if (pObj && ISA(pObj, PSS_LogicalPrestationsEntity))
     {
         // D'abord, teste si l'entité est valide.
         CODModel * pModel = GetRootModel();
@@ -258,7 +258,7 @@ bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
             return false;
         }
 
-        ZBLogicalPrestationsEntity* pPrestations = dynamic_cast<ZBLogicalPrestationsEntity*>(pObj);
+        PSS_LogicalPrestationsEntity* pPrestations = dynamic_cast<PSS_LogicalPrestationsEntity*>(pObj);
 
         ZBBPPrestationNode* m_Prestation = new ZBBPPrestationNode();
 

@@ -23,14 +23,19 @@
 
 // processsoft
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBLogicalPrestationsEntity.h"
+#include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapPublisher_Prestations.h"
 #include "ZBPublishMessengerModelInformation.h"
 
+// class name mapping
+#ifndef PSS_LogicalPrestationsEntity
+    #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
+
 // forward class declaration
-class ZBLogicalPrestationsEntity;
+class PSS_LogicalPrestationsEntity;
 class ZBPublishMessengerModelInformation;
 
 #ifdef _ZMODELBPEXPORT
@@ -75,7 +80,7 @@ class AFX_EXT_CLASS PSS_SoapPublishPrestations
         *@param pPrestations - prestations to publish
         *@return true on success, otherwise false
         */
-        void PublishPrestations(ZBLogicalPrestationsEntity* pPrestations);
+        void PublishPrestations(PSS_LogicalPrestationsEntity* pPrestations);
 };
 
 #endif

@@ -20,7 +20,7 @@
 #include "ZDProcessGraphPage.h"
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
-#include "ZBLanguageProp.h"
+#include "PSS_LanguageProperties.h"
 #include "PSS_BasicModelProperties.h"
 #include "ZUODSymbolManipulator.h"
 #include "ZBSymbolObserverMsg.h"
@@ -73,7 +73,7 @@ PSS_Symbol* PSS_ProcessGraphModelMdl::IComponentRef::GetSymbol() const
 //---------------------------------------------------------------------------
 ZBUserGroupEntity*                                                                         PSS_ProcessGraphModelMdl::m_pMainUserGroup          = NULL;
 ZBLogicalSystemEntity*                                                                     PSS_ProcessGraphModelMdl::m_pMainLogicalSystem      = NULL;
-ZBLogicalPrestationsEntity*                                                                PSS_ProcessGraphModelMdl::m_pMainLogicalPrestations = NULL;
+PSS_LogicalPrestationsEntity*                                                              PSS_ProcessGraphModelMdl::m_pMainLogicalPrestations = NULL;
 ZBLogicalRulesEntity*                                                                      PSS_ProcessGraphModelMdl::m_pMainLogicalRules       = NULL;
 CArray<PSS_ProcessGraphModelMdl::IComponentRef*, PSS_ProcessGraphModelMdl::IComponentRef*> PSS_ProcessGraphModelMdl::m_SymbolParsed;
 CODComponentSet                                                                            PSS_ProcessGraphModelMdl::m_FindSet;
@@ -403,13 +403,13 @@ void PSS_ProcessGraphModelMdl::SetShowPageBorder(bool value)
 //---------------------------------------------------------------------------
 const ELanguage PSS_ProcessGraphModelMdl::GetLanguage()
 {
-    ZBLanguageProp* pProps = static_cast<ZBLanguageProp*>(GetProperty(ZS_BP_PROP_LANGUAGE));
+    PSS_LanguageProperties* pProps = static_cast<PSS_LanguageProperties*>(GetProperty(ZS_BP_PROP_LANGUAGE));
 
     // not exists? Create it
     if (!pProps)
     {
         CreateSymbolProperties();
-        pProps = static_cast<ZBLanguageProp*>(GetProperty(ZS_BP_PROP_LANGUAGE));
+        pProps = static_cast<PSS_LanguageProperties*>(GetProperty(ZS_BP_PROP_LANGUAGE));
     }
 
     // still not exists? Return unknown as error
@@ -421,16 +421,16 @@ const ELanguage PSS_ProcessGraphModelMdl::GetLanguage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelMdl::SetLanguage(ELanguage value)
 {
-    ZBLanguageProp* pProps = static_cast<ZBLanguageProp*>(GetProperty(ZS_BP_PROP_LANGUAGE));
+    PSS_LanguageProperties* pProps = static_cast<PSS_LanguageProperties*>(GetProperty(ZS_BP_PROP_LANGUAGE));
 
     if (!pProps)
     {
         CreateSymbolProperties();
-        pProps = static_cast<ZBLanguageProp*>(GetProperty(ZS_BP_PROP_LANGUAGE));
+        pProps = static_cast<PSS_LanguageProperties*>(GetProperty(ZS_BP_PROP_LANGUAGE));
     }
     else
     {
-        ZBLanguageProp props = *pProps;
+        PSS_LanguageProperties props = *pProps;
         props.SetLanguage(value);
         SetProperty(&props);
     }
@@ -560,8 +560,8 @@ CString PSS_ProcessGraphModelMdl::RetrievePrestationName(const CString& guid, bo
 
     if (m_pMainLogicalPrestations)
     {
-        ZBLogicalPrestationsEntity* pPrestation =
-                dynamic_cast<ZBLogicalPrestationsEntity*>(m_pMainLogicalPrestations->FindPrestationByGUID(guid, true));
+        PSS_LogicalPrestationsEntity* pPrestation =
+                dynamic_cast<PSS_LogicalPrestationsEntity*>(m_pMainLogicalPrestations->FindPrestationByGUID(guid, true));
 
         if (pPrestation)
             return pPrestation->GetEntityName();
@@ -1097,7 +1097,7 @@ bool PSS_ProcessGraphModelMdl::HasProperties() const
 bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numericValue, bool groupValue)
 {
     // get the language property
-    ZBLanguageProp* pProps = static_cast<ZBLanguageProp*>(GetProperty(ZS_BP_PROP_LANGUAGE));
+    PSS_LanguageProperties* pProps = static_cast<PSS_LanguageProperties*>(GetProperty(ZS_BP_PROP_LANGUAGE));
 
     // if doesn't exist, create the property
     if (!pProps)
@@ -1105,7 +1105,7 @@ bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numeric
         CreateSymbolProperties();
 
         // get the language prop again
-        pProps = static_cast<ZBLanguageProp*>(GetProperty(ZS_BP_PROP_LANGUAGE));
+        pProps = static_cast<PSS_LanguageProperties*>(GetProperty(ZS_BP_PROP_LANGUAGE));
 
         // on problem, return error
         if (!pProps)
@@ -1251,7 +1251,7 @@ bool PSS_ProcessGraphModelMdl::CreateSymbolProperties()
     PSS_BasicModelProperties basicProps;
     AddProperty(basicProps);
 
-    ZBLanguageProp languageProps;
+    PSS_LanguageProperties languageProps;
     AddProperty(languageProps);
 
     return true;

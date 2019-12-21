@@ -18,7 +18,7 @@
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
-#include "zModel\ZBInfoModelGraphicGeneration.h"
+#include "zModel\PSS_InfoModelGraphicGeneration.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
@@ -60,7 +60,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
         return false;
 
     // get class info
-    m_pInfo = static_cast<ZBInfoModelGraphicGeneration*>(m_pClass);
+    m_pInfo = static_cast<PSS_InfoModelGraphicGeneration*>(m_pClass);
     ASSERT(m_pInfo);
 
     // copy the publication address from source info

@@ -1510,7 +1510,7 @@ ZBLogicalSystemEntity* ZAApp::GetMainLogicalSystem()
 
 // JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction GetMainLogicalPrestations.
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des prestations.
-ZBLogicalPrestationsEntity* ZAApp::GetMainLogicalPrestations()
+PSS_LogicalPrestationsEntity* ZAApp::GetMainLogicalPrestations()
 {
     return (m_pPrestationsDocument) ? &m_pPrestationsDocument->GetPrestationsEnvironment() : NULL;
 }

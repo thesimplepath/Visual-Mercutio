@@ -25,9 +25,13 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
+// class name mapping
+#ifndef PSS_LogicalPrestationsEntity
+    #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
 
 // Forward class declaration
-class ZBLogicalPrestationsEntity;
+class PSS_LogicalPrestationsEntity;
 class ZBPrestationsEntity;
 
 #ifdef _ZMODELEXPORT
@@ -53,13 +57,13 @@ public:
     };
 
     _ZInternalPrestationsTreeData();
-    _ZInternalPrestationsTreeData(ZBLogicalPrestationsEntity* pPrestation);
+    _ZInternalPrestationsTreeData(PSS_LogicalPrestationsEntity* pPrestation);
     _ZInternalPrestationsTreeData(CString Str);
     ~_ZInternalPrestationsTreeData();
 
     // Data member
     PrestationsTreeDataType        m_dtp;
-    ZBLogicalPrestationsEntity*    m_pPrestation;
+    PSS_LogicalPrestationsEntity*  m_pPrestation;
     CString                        m_Str;
 };
 
@@ -73,15 +77,15 @@ class AFX_EXT_CLASS ZCPrestationsTreeCtrl : public PSS_TreeCtrl,
     // Construction / Destruction
 public:
 
-    ZCPrestationsTreeCtrl(const CString                RootName = _T(""),
-                          ZBLogicalPrestationsEntity*    pLogicalPrestationRoot = NULL);
+    ZCPrestationsTreeCtrl(const CString                 RootName = _T(""),
+                          PSS_LogicalPrestationsEntity* pLogicalPrestationRoot = NULL);
 
     virtual ~ZCPrestationsTreeCtrl();
 
     //////////////////////////////////////////////////////////////////
     // Operations
 
-    void Initialize(const CString RootName, ZBLogicalPrestationsEntity* pLogicalPrestationsRoot);
+    void Initialize(const CString RootName, PSS_LogicalPrestationsEntity* pLogicalPrestationsRoot);
 
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
@@ -89,15 +93,15 @@ public:
     void Refresh();
 
     ZBPrestationsEntity* GetSelectedPrestationEntity();
-    ZBLogicalPrestationsEntity* GetSelectedLogicalPrestation();
-    ZBLogicalPrestationsEntity* GetSelectedLogicalPrestationOwner();
+    PSS_LogicalPrestationsEntity* GetSelectedLogicalPrestation();
+    PSS_LogicalPrestationsEntity* GetSelectedLogicalPrestationOwner();
     bool IsRootSelected() const;
 
-    void AddPrestation(ZBLogicalPrestationsEntity* pLogicalPrestation,
-                       ZBLogicalPrestationsEntity* pParentLogicalPrestation = NULL);
+    void AddPrestation(PSS_LogicalPrestationsEntity* pLogicalPrestation,
+                       PSS_LogicalPrestationsEntity* pParentLogicalPrestation = NULL);
 
-    void RemovePrestation(ZBLogicalPrestationsEntity* pLogicalPrestation);
-    void ModifyPrestation(ZBLogicalPrestationsEntity* pLogicalPrestation);
+    void RemovePrestation(PSS_LogicalPrestationsEntity* pLogicalPrestation);
+    void ModifyPrestation(PSS_LogicalPrestationsEntity* pLogicalPrestation);
 
     virtual void OnNewPrestation();
     virtual void OnDeletePrestation();
@@ -149,21 +153,21 @@ private:
     void DestroyTree();
     void EmptyDataSet();
 
-    void ProcessLogicalPrestationsGroup(ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem);
+    void ProcessLogicalPrestationsGroup(PSS_LogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem);
 
     HTREEITEM AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
-    HTREEITEM AddLogicalPrestationItem(ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem);
-    BOOL ModifyLogicalPrestationItem(ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hItem);
+    HTREEITEM AddLogicalPrestationItem(PSS_LogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem);
+    BOOL ModifyLogicalPrestationItem(PSS_LogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hItem);
 
     ZBPrestationsEntity*        _GetPrestationEntity(HTREEITEM hItem);
-    ZBLogicalPrestationsEntity*    _GetLogicalPrestation(HTREEITEM hItem);
-    ZBLogicalPrestationsEntity*    _GetOwnerPrestation(HTREEITEM hItem);
+    PSS_LogicalPrestationsEntity*    _GetLogicalPrestation(HTREEITEM hItem);
+    PSS_LogicalPrestationsEntity*    _GetOwnerPrestation(HTREEITEM hItem);
 
     _ZInternalPrestationsTreeData* FindElementFromDataSet(ZBPrestationsEntity* pEntity);
-    _ZInternalPrestationsTreeData* FindElementFromDataSet(ZBLogicalPrestationsEntity* pLogicalPrestation);
+    _ZInternalPrestationsTreeData* FindElementFromDataSet(PSS_LogicalPrestationsEntity* pLogicalPrestation);
     _ZInternalPrestationsTreeData* FindElementFromDataSet(CString Str);
 
-    _ZInternalPrestationsTreeData* AddDataToSet(ZBLogicalPrestationsEntity* pLogicalPrestation);
+    _ZInternalPrestationsTreeData* AddDataToSet(PSS_LogicalPrestationsEntity* pLogicalPrestation);
     _ZInternalPrestationsTreeData* AddDataToSet(CString Str);
 
 private:
@@ -178,8 +182,8 @@ private:
 
     _ZInternalPrestationsTreeDataSet    m_DataSet;
     HTREEITEM                            m_hUserGroupRoot;
-    CString                                m_RootName;
-    ZBLogicalPrestationsEntity*            m_pLogicalPrestationRoot;
+    CString                              m_RootName;
+    PSS_LogicalPrestationsEntity*        m_pLogicalPrestationRoot;
     CMenu                                m_SubMenu;
 
     bool                                m_HasBeenInitialized;

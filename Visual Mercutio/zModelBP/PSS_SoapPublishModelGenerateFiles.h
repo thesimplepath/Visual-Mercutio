@@ -29,7 +29,7 @@
 
 // forward class declaration
 class ZBPublishMessengerModelInformation;
-class ZBInfoModelGraphicGeneration;
+class PSS_InfoModelGraphicGeneration;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -89,7 +89,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
     private:
         PSS_PublishModelGenerateDialog      m_FileGenerateWindow;
         ZBPublishMessengerModelInformation* m_pModelInfo;
-        ZBInfoModelGraphicGeneration*       m_pInfo;
+        PSS_InfoModelGraphicGeneration*     m_pInfo;
         PSS_SoapPublisher_File              m_PubFile;
         CString                             m_RootHtmlFileName;
         CString                             m_RootName;

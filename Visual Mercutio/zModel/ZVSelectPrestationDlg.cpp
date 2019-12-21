@@ -10,7 +10,7 @@
 #include "stdafx.h"
 #include "ZVSelectPrestationDlg.h"
 
-#include "ZBLogicalPrestationsEntity.h"
+#include "PSS_LogicalPrestationsEntity.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,37 +21,37 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectPrestationDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVSelectPrestationDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVSelectPrestationDlg, CDialog)
     //{{AFX_MSG_MAP(ZVSelectPrestationDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_PRESTATIONS_TREE, OnSelchangedPrestationsTree)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVSelectPrestationDlg::ZVSelectPrestationDlg( const CString                    Title                        /*= ""*/,
-                                              ZBLogicalPrestationsEntity*    pMainPrestation                /*= NULL*/,
-                                              bool                            AllowPrestationSelection    /*= true*/,
-                                              CWnd*                            pParent                        /*=NULL*/ )
-    : CDialog                        ( ZVSelectPrestationDlg::IDD, pParent ),
-      m_pPrestationEntity            ( NULL ),
-      m_Title                        ( Title ),
-      m_pMainPrestation                ( pMainPrestation ),
-      m_AllowPrestationSelection    ( AllowPrestationSelection )
+ZVSelectPrestationDlg::ZVSelectPrestationDlg(const CString                    Title                        /*= ""*/,
+                                             PSS_LogicalPrestationsEntity*    pMainPrestation                /*= NULL*/,
+                                             bool                            AllowPrestationSelection    /*= true*/,
+                                             CWnd*                            pParent                        /*=NULL*/)
+    : CDialog(ZVSelectPrestationDlg::IDD, pParent),
+    m_pPrestationEntity(NULL),
+    m_Title(Title),
+    m_pMainPrestation(pMainPrestation),
+    m_AllowPrestationSelection(AllowPrestationSelection)
 {
     //{{AFX_DATA_INIT(ZVSelectPrestationDlg)
         // NOTE: the ClassWizard will add member initialization here
     //}}AFX_DATA_INIT
 }
 
-ZVSelectPrestationDlg::ZVSelectPrestationDlg( UINT                            nTitle,
-                                              ZBLogicalPrestationsEntity*    pMainPrestation,
-                                              bool                            AllowPrestationSelection    /*= true*/,
-                                              CWnd*                            pParent                        /*=NULL*/ )
-    : CDialog                        ( ZVSelectPrestationDlg::IDD, pParent ),
-      m_pPrestationEntity            ( NULL ),
-      m_pMainPrestation                ( pMainPrestation ),
-      m_AllowPrestationSelection    ( AllowPrestationSelection )
+ZVSelectPrestationDlg::ZVSelectPrestationDlg(UINT                            nTitle,
+                                             PSS_LogicalPrestationsEntity*    pMainPrestation,
+                                             bool                            AllowPrestationSelection    /*= true*/,
+                                             CWnd*                            pParent                        /*=NULL*/)
+    : CDialog(ZVSelectPrestationDlg::IDD, pParent),
+    m_pPrestationEntity(NULL),
+    m_pMainPrestation(pMainPrestation),
+    m_AllowPrestationSelection(AllowPrestationSelection)
 {
-    m_Title.LoadString( nTitle );
+    m_Title.LoadString(nTitle);
 }
 
 ZVSelectPrestationDlg::~ZVSelectPrestationDlg()
@@ -65,9 +65,9 @@ void ZVSelectPrestationDlg::Release()
     m_Ctrl.Release();
 }
 
-void ZVSelectPrestationDlg::DoDataExchange( CDataExchange* pDX )
+void ZVSelectPrestationDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVSelectPrestationDlg)
     DDX_Control(pDX, IDC_PRESTATIONS_TREE, m_Ctrl);
     //}}AFX_DATA_MAP
@@ -81,17 +81,17 @@ BOOL ZVSelectPrestationDlg::OnInitDialog()
     CDialog::OnInitDialog();
 
     CString m_Text;
-    m_Text.LoadString ( IDS_PRESTATION_ROOT_T );
-    m_Ctrl.Initialize( m_Text, m_pMainPrestation );
+    m_Text.LoadString(IDS_PRESTATION_ROOT_T);
+    m_Ctrl.Initialize(m_Text, m_pMainPrestation);
 
-    if ( !m_Title.IsEmpty() )
+    if (!m_Title.IsEmpty())
     {
-        SetWindowText( m_Title );
+        SetWindowText(m_Title);
     }
 
-    if ( GetDlgItem( IDOK ) )
+    if (GetDlgItem(IDOK))
     {
-        GetDlgItem( IDOK )->EnableWindow( FALSE );
+        GetDlgItem(IDOK)->EnableWindow(FALSE);
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control
@@ -106,24 +106,24 @@ void ZVSelectPrestationDlg::OnOK()
     CDialog::OnOK();
 }
 
-void ZVSelectPrestationDlg::OnSelchangedPrestationsTree( NMHDR* pNMHDR, LRESULT* pResult )
+void ZVSelectPrestationDlg::OnSelchangedPrestationsTree(NMHDR* pNMHDR, LRESULT* pResult)
 {
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
     BOOL Enable = FALSE;
     ZBPrestationsEntity* pEntity = m_Ctrl.GetSelectedPrestationEntity();
 
-    if ( pEntity )
+    if (pEntity)
     {
-        if ( m_AllowPrestationSelection && ISA( pEntity, ZBLogicalPrestationsEntity ) )
+        if (m_AllowPrestationSelection && ISA(pEntity, PSS_LogicalPrestationsEntity))
         {
             Enable = TRUE;
         }
     }
 
-    if ( GetDlgItem( IDOK ) )
+    if (GetDlgItem(IDOK))
     {
-        GetDlgItem( IDOK )->EnableWindow( Enable );
+        GetDlgItem(IDOK)->EnableWindow(Enable);
     }
 
     *pResult = 0;

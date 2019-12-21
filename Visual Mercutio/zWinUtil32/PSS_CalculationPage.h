@@ -63,7 +63,7 @@ class PSS_CalculationPage : public PSS_GenericPropPage
         */
         PSS_CalculationPage(PSS_ApplicationOption* pAppOptions);
 
-        ~PSS_CalculationPage();
+        virtual ~PSS_CalculationPage();
 
         /**
         * Saves the values to object

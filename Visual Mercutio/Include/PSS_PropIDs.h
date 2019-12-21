@@ -8,32 +8,32 @@
 #ifndef PSS_PropIDsH
 #define PSS_PropIDsH
 
-//@flag ZS_BP_PROP_BASIC            | <c ZBBPBasicProperty> property that contains process values
-//@flag ZS_BP_PROP_PROCESS          | <c ZBBPProcessProperty> property that contains process values
-//@flag ZS_BP_PROP_PROCEDURE        | <c ZBBPProcedureProperty> property that contains procedure values
-//@flag ZS_BP_PROP_DELIVERABLE      | <c ZBBPDeliverableProperty> property that contains deliverable values
-//@flag ZS_BP_PROP_PAGE             | <c ZBBPPageProperty> property that contains page values
-//@flag ZS_BP_PROP_DOOR             | <c ZBBPDoorProperty> property that contains door values
-//@flag ZS_BP_PROP_START            | <c ZBBPStartProperty> property that contains start values
-//@flag ZS_BP_PROP_STOP             | <c ZBBPStopProperty> property that contains stop values
-//@flag ZS_BP_PROP_DOCUMENTATION    | <c ZBBPDocumentationProperty> property that contains documentation values
-//@flag ZS_BP_PROP_COST             | <c ZBBPCostProperty> property that contains cost values
-//@flag ZS_BP_PROP_DELIVERABLE_COST | <c ZBBPCostPropertiesDeliverable> property that contains cost values
-//@flag ZS_BP_PROP_PROCEDURE_COST   | <c ZBBPCostPropertiesDeliverable> property that contains cost values
-//@flag ZS_BP_PROP_EXTFILE          | <c ZBBPFormProperty> property that contains cost values
-//@flag ZS_BP_PROP_MODEL_BASIC      | <c ZBBPBasicModelProperty> property that contains process values
-//@flag ZS_BP_PROP_UNIT             | <c ZBBPUnitProperties> property that contains process values
-//@flag ZS_BP_PROP_QUANTITY         | <c ZBBPBasicModelProperty> property that contains process values
-//@flag ZS_BP_PROP_COMBINATION      | <c ZBBPCombinationProperties> property that contains combination
-//@flag ZS_BP_PROP_SIM_DELIVERABLE  | <c ZBBPSimPropertiesDeliverable> property that contains combination
-//@flag ZS_BP_PROP_SIM_PROCEDURE    | <c ZBBPSimPropertiesProcedure> property that contains combination
-//@flag ZS_BP_PROP_SIM_PROCESS      | <c ZBBPSimPropertiesProcess> property that contains combination
-//@flag ZS_BP_PROP_TASKLIST         | <c ZBBPTaskListProperties> property that contains combination
-//@flag ZS_BP_PROP_DECISIONLIST     | <c ZBBPDecisionListProperties> property that contains combination
-//@flag ZS_BP_PROP_TEXTITEMLIST     | <c ZBBPTextItemListProperties> property that contains combination
-//@flag ZS_BP_PROP_EXTAPP           | <c ZBExtAppProperties> property that contains combination
-//@flag ZS_BP_PROP_LANGUAGE         | <c ZBLanguageProp> property that contains the language
-//@flag ZS_BP_PROP_PRESTATIONS      | <c ZBBPPrestationNode> property that contains prestation
+//@flag ZS_BP_PROP_BASIC            | property that contains process values
+//@flag ZS_BP_PROP_PROCESS          | property that contains process values
+//@flag ZS_BP_PROP_PROCEDURE        | property that contains procedure values
+//@flag ZS_BP_PROP_DELIVERABLE      | property that contains deliverable values
+//@flag ZS_BP_PROP_PAGE             | property that contains page values
+//@flag ZS_BP_PROP_DOOR             | property that contains door values
+//@flag ZS_BP_PROP_START            | property that contains start values
+//@flag ZS_BP_PROP_STOP             | property that contains stop values
+//@flag ZS_BP_PROP_DOCUMENTATION    | property that contains documentation values
+//@flag ZS_BP_PROP_COST             | property that contains cost values
+//@flag ZS_BP_PROP_DELIVERABLE_COST | property that contains cost values
+//@flag ZS_BP_PROP_PROCEDURE_COST   | property that contains cost values
+//@flag ZS_BP_PROP_EXTFILE          | property that contains cost values
+//@flag ZS_BP_PROP_MODEL_BASIC      | property that contains process values
+//@flag ZS_BP_PROP_UNIT             | property that contains process values
+//@flag ZS_BP_PROP_QUANTITY         | property that contains process values
+//@flag ZS_BP_PROP_COMBINATION      | property that contains combination
+//@flag ZS_BP_PROP_SIM_DELIVERABLE  | property that contains combination
+//@flag ZS_BP_PROP_SIM_PROCEDURE    | property that contains combination
+//@flag ZS_BP_PROP_SIM_PROCESS      | property that contains combination
+//@flag ZS_BP_PROP_TASKLIST         | property that contains combination
+//@flag ZS_BP_PROP_DECISIONLIST     | property that contains combination
+//@flag ZS_BP_PROP_TEXTITEMLIST     | property that contains combination
+//@flag ZS_BP_PROP_EXTAPP           | property that contains combination
+//@flag ZS_BP_PROP_LANGUAGE         | property that contains the language
+//@flag ZS_BP_PROP_PRESTATIONS      | property that contains prestation
 #define ZPROP_CUSTOM_PROPERTY_BASE           0x10000
 #define ZS_BP_PROP_BASIC                     (ZPROP_CUSTOM_PROPERTY_BASE + 20)
 #define ZS_BP_PROP_PROCESS                   (ZPROP_CUSTOM_PROPERTY_BASE + 40)

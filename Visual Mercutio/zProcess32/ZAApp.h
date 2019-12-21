@@ -31,6 +31,9 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_LogicalPrestationsEntity
+    #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
 
 // forward class declaration
 class ZIMainFrame;
@@ -48,7 +51,7 @@ class ZBLogicalSystemEntity;
 
 // JMR-MODIF - Le 7 octobre 2005 - Ajout des classes du nouvel espace de travail des prestations.
 class ZDLogicalPrestationsDocument;
-class ZBLogicalPrestationsEntity;
+class PSS_LogicalPrestationsEntity;
 
 // JMR-MODIF - Le 15 novembre 2006 - Ajout des classes du nouvel espace de travail des règles.
 class ZDLogicalRulesDocument;
@@ -117,7 +120,7 @@ public:
     // Fonctions concernant l'espace de travail des prestations
 
     // JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction GetMainLogicalPrestations.
-    ZBLogicalPrestationsEntity* GetMainLogicalPrestations();
+    PSS_LogicalPrestationsEntity* GetMainLogicalPrestations();
 
     // JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction GetPrestationsFileName.
     CString GetPrestationsFileName() const

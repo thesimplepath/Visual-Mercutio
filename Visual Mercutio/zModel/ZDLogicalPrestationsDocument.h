@@ -21,7 +21,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBLogicalPrestationsEntity.h"
+#include "PSS_LogicalPrestationsEntity.h"
 
 // BaseDoc
 #include "zBaseLib\PSS_BaseDocument.h"
@@ -54,7 +54,7 @@ public:
     bool ReadFromFile    ( const CString fileName );
     bool SaveToFile        ( const CString fileName );
 
-    ZBLogicalPrestationsEntity& GetPrestationsEnvironment()
+    PSS_LogicalPrestationsEntity& GetPrestationsEnvironment()
     {
         return m_PrestationsEnvironment;
     }
@@ -108,13 +108,10 @@ private:
     // Unique GUID for this file.
     // Other file using this file can save this GUID
     // to be sure they are using the right file.
-    CString                        m_GUID;
+    CString                      m_GUID;
 
-    ZBLogicalPrestationsEntity    m_PrestationsEnvironment;
-    bool                        m_IsLoaded;
+    PSS_LogicalPrestationsEntity m_PrestationsEnvironment;
+    bool                         m_IsLoaded;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZDPrestationsDocument_H__6325FCF2_2A96_4A88_81CB_EEF32C4B5FE9__INCLUDED_)
+#endif

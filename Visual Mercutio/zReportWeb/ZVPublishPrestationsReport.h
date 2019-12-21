@@ -66,38 +66,38 @@ class AFX_EXT_CLASS ZVPublishPrestationsReport
 {
 public:
 
-    ZVPublishPrestationsReport            ( ZDProcessGraphModelMdlBP* pModel = NULL );
-    virtual ~ZVPublishPrestationsReport    ();
+    ZVPublishPrestationsReport(ZDProcessGraphModelMdlBP* pModel = NULL);
+    virtual ~ZVPublishPrestationsReport();
 
-    bool Publish                        ( CString Directory );
+    bool Publish(CString Directory);
 
 private:
 
-    bool CreateFileSystem                ( ZBLogicalPrestationsEntity* pPrestations, CString Directory );
+    bool CreateFileSystem(PSS_LogicalPrestationsEntity* pPrestations, CString Directory);
 
-    CString GenerateFileName            ( CString Directory, CString PrestationName );
+    CString GenerateFileName(CString Directory, CString PrestationName);
 
-    void CreateReport                    ( CString PrestationName );
-    void GenerateHTMLPageHead            ( CString Title );
-    void GenerateHTMLPageFoot            ();
-    void GenerateHTMLTableHead            ();
-    void GenerateHTMLTableFoot            ();
-    void GenerateHTMLReportTitle        ( CString PrestationName, CString Description );
-    void GenerateHTMLSectionTitle        ();
-    void GenerateHTMLSectionLine        ( CString Group, CString Processus, CString Procedure );
-    void WriteLine                        ( CString Text );
-    void WriteLine                        ( int nID );
-    void FindProcedures                    ( CString ProcessName, ZDProcessGraphModelMdlBP* m_StartModel );
+    void CreateReport(CString PrestationName);
+    void GenerateHTMLPageHead(CString Title);
+    void GenerateHTMLPageFoot();
+    void GenerateHTMLTableHead();
+    void GenerateHTMLTableFoot();
+    void GenerateHTMLReportTitle(CString PrestationName, CString Description);
+    void GenerateHTMLSectionTitle();
+    void GenerateHTMLSectionLine(CString Group, CString Processus, CString Procedure);
+    void WriteLine(CString Text);
+    void WriteLine(int nID);
+    void FindProcedures(CString ProcessName, ZDProcessGraphModelMdlBP* m_StartModel);
 
-    void FindUnitGroupChilds            ( ZBUserGroupEntity*        pGroup,
-                                          CString                    PropertyName,
-                                          CString                    ProcessName,
-                                          CString                    ProcedureName,
-                                          BOOL                        ChildMode        = FALSE,
-                                          int                        ChildLevel        = 0 );
+    void FindUnitGroupChilds(ZBUserGroupEntity*        pGroup,
+                             CString                    PropertyName,
+                             CString                    ProcessName,
+                             CString                    ProcedureName,
+                             BOOL                        ChildMode = FALSE,
+                             int                        ChildLevel = 0);
 
-    void ExploreProcessHierarchy        ( CString                    PrestationName,
-                                          ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL );
+    void ExploreProcessHierarchy(CString                    PrestationName,
+                                 ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL);
 
 private:
 

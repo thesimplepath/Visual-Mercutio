@@ -44,7 +44,7 @@ class AFX_EXT_CLASS PSS_EventLogCtrl : public PSS_ListCtrl
         */
         PSS_EventLogCtrl(PSS_EventManager* pEventManager = NULL);
 
-        ~PSS_EventLogCtrl();
+        virtual ~PSS_EventLogCtrl();
 
         /**
         * Put the event in the event controller
