@@ -235,4 +235,4 @@ protected:
     PSS_BasicSymbol*            m_pSymbol;
 };
 
-#endif // !defined(_ZVSYMBOLATTRIBUTES_H__)
+#endif

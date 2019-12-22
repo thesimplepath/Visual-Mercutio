@@ -44,7 +44,6 @@ class ZBUserGroupEntity;
 
 class AFX_EXT_CLASS ZVSelectUserGroupDlg : public CDialog
 {
-// Construction
 public:
 
     // Standard constructor
@@ -72,25 +71,14 @@ public:
         return m_pUserEntity;
     };
 
-private:
-
-    // Dialog Data
-    //{{AFX_DATA(ZVSelectUserGroupDlg)
-    enum { IDD = IDD_USERGROUP_SELECTION };
-    ZCUserGroupTreeCtrl    m_Ctrl;
-    //}}AFX_DATA
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
+protected:
+    /// ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVSelectUserGroupDlg)
     protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
-// Implementation
-protected:
-
-    // Generated message map functions
+    /// Generated message map functions
     //{{AFX_MSG(ZVSelectUserGroupDlg)
     virtual BOOL OnInitDialog();
     afx_msg void OnSelchangedUsergroupTree(NMHDR* pNMHDR, LRESULT* pResult);
@@ -99,15 +87,20 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
+    /**
+    * Dialog resources
+    */
+    enum
+    {
+        IDD = IDD_USERGROUP_SELECTION
+    };
 
-    CString                m_Title;
-    ZBUserEntity*        m_pUserEntity;
-    ZBUserGroupEntity*    m_pMainUserGroup;
+    ZBUserEntity*       m_pUserEntity;
+    ZBUserGroupEntity*  m_pMainUserGroup;
+    ZCUserGroupTreeCtrl m_Ctrl;
+    CString             m_Title;
     bool                m_AllowGroupSelection;
     bool                m_AllowRoleSelection;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVSELECTUSERGROUPDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)
+#endif
