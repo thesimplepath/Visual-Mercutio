@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "ZVSelectLogicalSystemDlg.h"
 
-#include "ZBLogicalSystemEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -28,7 +28,7 @@ BEGIN_MESSAGE_MAP( ZVSelectLogicalSystemDlg, CDialog )
 END_MESSAGE_MAP()
 
 ZVSelectLogicalSystemDlg::ZVSelectLogicalSystemDlg( const CString            Title                        /*= ""*/,
-                                                    ZBLogicalSystemEntity*    pMainLogicalSystemGroup        /*= NULL*/,
+                                                   PSS_LogicalSystemEntity*    pMainLogicalSystemGroup        /*= NULL*/,
                                                     CWnd*                    pParent                        /*=NULL*/ )
     : CDialog                    ( ZVSelectLogicalSystemDlg::IDD, pParent ),
       m_pSystemEntity            ( NULL ),
@@ -41,7 +41,7 @@ ZVSelectLogicalSystemDlg::ZVSelectLogicalSystemDlg( const CString            Tit
 }
 
 ZVSelectLogicalSystemDlg::ZVSelectLogicalSystemDlg( UINT                    nTitle,
-                                                    ZBLogicalSystemEntity*    pMainLogicalSystemGroup,
+                                                   PSS_LogicalSystemEntity*    pMainLogicalSystemGroup,
                                                     CWnd*                    pParent                    /*=NULL*/ )
     : CDialog                    ( ZVSelectLogicalSystemDlg::IDD, pParent ),
       m_pSystemEntity            ( NULL ),

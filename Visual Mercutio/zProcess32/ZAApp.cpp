@@ -34,11 +34,11 @@
 #include "zModel\ZDUserEntityDocument.h"
 #include "zModel\ZBUserGroupObserverMsg.h"
 #include "zModel\ZDLogicalSystemDocument.h"
-#include "zModel\ZBLogicalSystemObserverMsg.h"
+#include "zModel\PSS_LogicalSystemObserverMsg.h"
 #include "zModel\ZDLogicalPrestationsDocument.h"
 #include "zModel\PSS_LogicalPrestationsObserverMsg.h"
 #include "zModel\ZDLogicalRulesDocument.h"
-#include "zModel\ZBLogicalRulesObserverMsg.h"
+#include "zModel\PSS_LogicalRulesObserverMsg.h"
 #include "zModel\PSS_ModelGlobal.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"
@@ -922,7 +922,7 @@ bool ZAApp::LoadLogicalSystemFile()
         PSS_File file(m_LogicalSystemFileName);
 
         // Notify observers about the logical system initialisation
-        ZBLogicalSystemObserverMsg Msg(UM_INITLOGICALSYSTEM,
+        PSS_LogicalSystemObserverMsg Msg(g_InitLogicalSystem,
                                        &m_pLogicalSystemDocument->GetLogicalSystemEnvironment(),
                                        file.GetFileName());
 
@@ -1091,7 +1091,7 @@ bool ZAApp::LoadRulesFile()
         PSS_File file(m_RulesFileName);
 
         // Notify observers about the user group initialisation
-        ZBLogicalRulesObserverMsg Msg(UM_INITRULES,
+        PSS_LogicalRulesObserverMsg Msg(g_InitRules,
                                       &m_pRulesDocument->GetRulesEnvironment(),
                                       file.GetFileName());
 
@@ -1501,7 +1501,7 @@ ZBUserGroupEntity* ZAApp::GetMainUserGroup()
 // ********************************************** Logical systems ***********************************************
 
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des systèmes logiques.
-ZBLogicalSystemEntity* ZAApp::GetMainLogicalSystem()
+PSS_LogicalSystemEntity* ZAApp::GetMainLogicalSystem()
 {
     return (m_pLogicalSystemDocument) ? &m_pLogicalSystemDocument->GetLogicalSystemEnvironment() : NULL;
 }

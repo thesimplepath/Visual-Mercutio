@@ -23,7 +23,7 @@
 #include "ZUODSymbolManipulator.h"
 #include "PSS_DocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
-#include "ZBModelObserverMsg.h"
+#include "PSS_ModelObserverMsg.h"
 #include "ZBSymbolObserverMsg.h"
 #include "ZBSymbolLogObserverMsg.h"
 #include "PSS_LinkSymbol.h"

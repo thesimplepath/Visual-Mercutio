@@ -8,7 +8,7 @@
 #include "zModel\ZBUnitObserverMsg.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
-#include "zModel\ZBLogicalSystemObserverMsg.h"
+#include "zModel\PSS_LogicalSystemObserverMsg.h"
 #include "Resource.h"
 
 #ifdef _DEBUG

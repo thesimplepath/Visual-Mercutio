@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_LogicalPrestationsObserverMsg -----------------------------------*
+ * ==> PSS_LogicalSystemObserverMsg ----------------------------------------*
  ****************************************************************************
- * Description : Provides a logical prestations observer message            *
+ * Description : Provides a logical system observer message                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_LogicalPrestationsObserverMsgH
-#define PSS_LogicalPrestationsObserverMsgH
+#ifndef PSS_LogicalSystemObserverMsgH
+#define PSS_LogicalSystemObserverMsgH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -23,8 +23,8 @@
 // processsoft
 #include "zBaseLib\PSS_ObserverMsg.h"
 
-// forward class declaration
-class ZBPrestationsEntity;
+// forward class declarations
+class ZBSystemEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -39,19 +39,19 @@ class ZBPrestationsEntity;
 //---------------------------------------------------------------------------
 // Global constants
 //---------------------------------------------------------------------------
-const int g_InitPrestations    = 400;
-const int g_RrefrshPrestations = 401;
-const int g_ClearPrestations   = 402;
-const int g_ClosePrestations   = 403;
+const int g_InitLogicalSystem    = 200;
+const int g_RefreshLogicalSystem = 201;
+const int g_ClearLogicalSystem   = 202;
+const int g_CloseLogicalSystem   = 203;
 //---------------------------------------------------------------------------
 
 /**
-* Logical prestations observer message
+* Logical system observer message
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_LogicalPrestationsObserverMsg : public PSS_ObserverMsg
+class AFX_EXT_CLASS PSS_LogicalSystemObserverMsg : public PSS_ObserverMsg
 {
-    DECLARE_DYNAMIC(PSS_LogicalPrestationsObserverMsg)
+    DECLARE_DYNAMIC(PSS_LogicalSystemObserverMsg)
 
     public:
         /**
@@ -60,11 +60,11 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsObserverMsg : public PSS_ObserverMsg
         *@param pEntity - the entity
         *@param rootName - the root name
         */
-        PSS_LogicalPrestationsObserverMsg(UINT                 messageID = 0,
-                                          ZBPrestationsEntity* pEntity   = NULL,
-                                          const CString&       rootName  = _T(""));
+        PSS_LogicalSystemObserverMsg(UINT            messageID = 0,
+                                     ZBSystemEntity* pEntity   = NULL,
+                                     const CString&  rootName  = _T(""));
 
-        virtual ~PSS_LogicalPrestationsObserverMsg();
+        virtual ~PSS_LogicalSystemObserverMsg();
 
         /**
         * Gets the message identifier
@@ -82,13 +82,13 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsObserverMsg : public PSS_ObserverMsg
         * Gets the entity
         *@return the entity
         */
-        virtual inline ZBPrestationsEntity* GetEntity() const;
+        virtual inline ZBSystemEntity* GetEntity() const;
 
         /**
         * Sets the entity
         *@param pEntity - the entity
         */
-        virtual inline void SetEntity(ZBPrestationsEntity* pEntity);
+        virtual inline void SetEntity(ZBSystemEntity* value);
 
         /**
         * Gets the root name
@@ -100,43 +100,43 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsObserverMsg : public PSS_ObserverMsg
         * Sets the root name
         *@param value - the root name
         */
-        virtual inline void SetRootName(const CString& value);
+        virtual inline void SetRootName(const CString value);
 
     private:
-        ZBPrestationsEntity* m_pEntity;
-        CString              m_RootName;
-        UINT                 m_MessageID;
+        ZBSystemEntity* m_pEntity;
+        CString         m_RootName;
+        UINT            m_MessageID;
 };
 
 //---------------------------------------------------------------------------
-// PSS_LogicalPrestationsObserverMsg
+// PSS_LogicalSystemObserverMsg
 //---------------------------------------------------------------------------
-UINT PSS_LogicalPrestationsObserverMsg::GetMessageID() const
+UINT PSS_LogicalSystemObserverMsg::GetMessageID() const
 {
     return m_MessageID;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsObserverMsg::SetMessageID(UINT value)
+void PSS_LogicalSystemObserverMsg::SetMessageID(UINT value)
 {
     m_MessageID = value;
 }
 //---------------------------------------------------------------------------
-ZBPrestationsEntity* PSS_LogicalPrestationsObserverMsg::GetEntity() const
+ZBSystemEntity* PSS_LogicalSystemObserverMsg::GetEntity() const
 {
     return m_pEntity;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsObserverMsg::SetEntity(ZBPrestationsEntity* pEntity)
+void PSS_LogicalSystemObserverMsg::SetEntity(ZBSystemEntity* value)
 {
-    m_pEntity = pEntity;
+    m_pEntity = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_LogicalPrestationsObserverMsg::GetRootName() const
+CString PSS_LogicalSystemObserverMsg::GetRootName() const
 {
     return m_RootName;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsObserverMsg::SetRootName(const CString& value)
+void PSS_LogicalSystemObserverMsg::SetRootName(const CString value)
 {
     m_RootName = value;
 }

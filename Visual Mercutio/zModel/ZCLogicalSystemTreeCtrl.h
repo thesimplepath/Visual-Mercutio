@@ -17,8 +17,13 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
 
+// old class name mapping
+#ifndef PSS_LogicalSystemEntity
+    #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
+#endif
+
 // Forward class declaration
-class ZBLogicalSystemEntity;
+class PSS_LogicalSystemEntity;
 class ZBSystemEntity;
 
 #ifdef _ZMODELEXPORT
@@ -46,13 +51,13 @@ public:
     };
 
     _ZInternalLogicalSystemTreeData();
-    _ZInternalLogicalSystemTreeData(ZBLogicalSystemEntity* pLogicalSystem);
+    _ZInternalLogicalSystemTreeData(PSS_LogicalSystemEntity* pLogicalSystem);
     _ZInternalLogicalSystemTreeData(CString Str);
     ~_ZInternalLogicalSystemTreeData();
 
     // Data member
     LogicalSystemTreeDataType    m_dtp;
-    ZBLogicalSystemEntity*        m_pLogicalSystem;
+    PSS_LogicalSystemEntity*     m_pLogicalSystem;
     CString                        m_Str;
 };
 
@@ -66,13 +71,13 @@ class AFX_EXT_CLASS ZCLogicalSystemTreeCtrl : public PSS_TreeCtrl,
     // Construction / Destruction
 public:
 
-    ZCLogicalSystemTreeCtrl(const CString RootName = _T(""), ZBLogicalSystemEntity* pLogicalSystemRoot = NULL);
+    ZCLogicalSystemTreeCtrl(const CString RootName = _T(""), PSS_LogicalSystemEntity* pLogicalSystemRoot = NULL);
     virtual ~ZCLogicalSystemTreeCtrl();
 
     //////////////////////////////////////////////////////////////////
     // Operations
 
-    void Initialize(const CString RootName, ZBLogicalSystemEntity* pLogicalSystemRoot);
+    void Initialize(const CString RootName, PSS_LogicalSystemEntity* pLogicalSystemRoot);
 
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
@@ -80,13 +85,13 @@ public:
     void Refresh();
 
     ZBSystemEntity* GetSelectedSystemEntity();
-    ZBLogicalSystemEntity* GetSelectedLogicalSystem();
-    ZBLogicalSystemEntity* GetSelectedLogicalSystemOwner();
+    PSS_LogicalSystemEntity* GetSelectedLogicalSystem();
+    PSS_LogicalSystemEntity* GetSelectedLogicalSystemOwner();
     bool IsRootSelected() const;
 
-    void AddLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem, ZBLogicalSystemEntity* pParentLogicalSystem = NULL);
-    void RemoveLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem);
-    void ModifyLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem);
+    void AddLogicalSystem(PSS_LogicalSystemEntity* pLogicalSystem, PSS_LogicalSystemEntity* pParentLogicalSystem = NULL);
+    void RemoveLogicalSystem(PSS_LogicalSystemEntity* pLogicalSystem);
+    void ModifyLogicalSystem(PSS_LogicalSystemEntity* pLogicalSystem);
 
     virtual void OnNewLogicalSystem();
     virtual void OnDeleteLogicalSystem();
@@ -139,21 +144,21 @@ private:
     void DestroyTree();
     void EmptyDataSet();
 
-    void ProcessLogicalSystemGroup(ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem);
+    void ProcessLogicalSystemGroup(PSS_LogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem);
 
     HTREEITEM AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
-    HTREEITEM AddLogicalSystemItem(ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem);
-    BOOL ModifyLogicalSystemItem(ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hItem);
+    HTREEITEM AddLogicalSystemItem(PSS_LogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem);
+    BOOL ModifyLogicalSystemItem(PSS_LogicalSystemEntity* pLogicalSystem, HTREEITEM hItem);
 
     ZBSystemEntity*            _GetSystemEntity(HTREEITEM hItem);
-    ZBLogicalSystemEntity*    _GetLogicalSystem(HTREEITEM hItem);
-    ZBLogicalSystemEntity*    _GetOwnerSystem(HTREEITEM hItem);
+    PSS_LogicalSystemEntity*    _GetLogicalSystem(HTREEITEM hItem);
+    PSS_LogicalSystemEntity*    _GetOwnerSystem(HTREEITEM hItem);
 
     _ZInternalLogicalSystemTreeData* FindElementFromDataSet(ZBSystemEntity* pEntity);
-    _ZInternalLogicalSystemTreeData* FindElementFromDataSet(ZBLogicalSystemEntity* pLogicalSystem);
+    _ZInternalLogicalSystemTreeData* FindElementFromDataSet(PSS_LogicalSystemEntity* pLogicalSystem);
     _ZInternalLogicalSystemTreeData* FindElementFromDataSet(CString Str);
 
-    _ZInternalLogicalSystemTreeData* AddDataToSet(ZBLogicalSystemEntity* pLogicalSystem);
+    _ZInternalLogicalSystemTreeData* AddDataToSet(PSS_LogicalSystemEntity* pLogicalSystem);
     _ZInternalLogicalSystemTreeData* AddDataToSet(CString Str);
 
 private:
@@ -169,7 +174,7 @@ private:
     _ZInternalLogicalSystemTreeDataSet    m_DataSet;
     HTREEITEM                            m_hUserGroupRoot;
     CString                                m_RootName;
-    ZBLogicalSystemEntity*                m_pLogicalSystemRoot;
+    PSS_LogicalSystemEntity*                m_pLogicalSystemRoot;
     CMenu                                m_SubMenu;
 
     bool                                 m_HasBeenInitialized;

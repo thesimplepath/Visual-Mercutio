@@ -284,20 +284,20 @@
     <ClCompile Include="PSS_LogicalPrestationsEntity.cpp" />
     <ClCompile Include="PSS_LogicalPrestationsObserverMsg.cpp" />
     <ClCompile Include="PSS_LogicalRulesEntity.cpp" />
-    <ClCompile Include="ZBLogicalRulesObserverMsg.cpp" />
-    <ClCompile Include="ZBLogicalSystemEntity.cpp">
+    <ClCompile Include="PSS_LogicalRulesObserverMsg.cpp" />
+    <ClCompile Include="PSS_LogicalSystemEntity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBLogicalSystemObserverMsg.cpp">
+    <ClCompile Include="PSS_LogicalSystemObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBModelObserverMsg.cpp">
+    <ClCompile Include="PSS_ModelObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -778,10 +778,10 @@
     <ClInclude Include="PSS_LogicalPrestationsEntity.h" />
     <ClInclude Include="PSS_LogicalPrestationsObserverMsg.h" />
     <ClInclude Include="PSS_LogicalRulesEntity.h" />
-    <ClInclude Include="ZBLogicalRulesObserverMsg.h" />
-    <ClInclude Include="ZBLogicalSystemEntity.h" />
-    <ClInclude Include="ZBLogicalSystemObserverMsg.h" />
-    <ClInclude Include="ZBModelObserverMsg.h" />
+    <ClInclude Include="PSS_LogicalRulesObserverMsg.h" />
+    <ClInclude Include="PSS_LogicalSystemEntity.h" />
+    <ClInclude Include="PSS_LogicalSystemObserverMsg.h" />
+    <ClInclude Include="PSS_ModelObserverMsg.h" />
     <ClInclude Include="ZBModelSet.h" />
     <ClInclude Include="ZBPageUnits.h" />
     <ClInclude Include="ZBPrestationsEntity.h" />

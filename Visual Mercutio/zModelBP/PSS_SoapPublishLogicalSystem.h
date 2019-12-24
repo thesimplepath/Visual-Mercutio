@@ -24,8 +24,13 @@
 // processsoft
 #include "zSOAP\PSS_SoapPublisher_System.h"
 
+// old class name mapping
+#ifndef PSS_LogicalSystemEntity
+    #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
+#endif
+
 // forward class declaration
-class ZBLogicalSystemEntity;
+class PSS_LogicalSystemEntity;
 class ZBPublishMessengerModelInformation;
 class PSS_Log;
 
@@ -70,7 +75,7 @@ class AFX_EXT_CLASS PSS_SoapPublishLogicalSystem
         * Publishes a logical system
         *@param pSystem - logical system to publish
         */
-        void PublishLogicalSystem(ZBLogicalSystemEntity* pSystem);
+        void PublishLogicalSystem(PSS_LogicalSystemEntity* pSystem);
 };
 
 #endif

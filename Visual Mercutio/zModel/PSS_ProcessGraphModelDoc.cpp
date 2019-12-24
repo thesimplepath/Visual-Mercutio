@@ -22,7 +22,7 @@
 #include "PSS_ProcessGraphModelController.h"
 #include "PSS_DocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
-#include "ZBLogicalSystemEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 #include "PSS_GenericSymbolErrorLine.h"
 
 // resources
@@ -237,7 +237,7 @@ void PSS_ProcessGraphModelDoc::ReassignUnit(PSS_Log* pLog)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::AssignCurrentSystemDefGUID()
 {
-    ZBLogicalSystemEntity* pSystem = GetMainLogicalSystem();
+    PSS_LogicalSystemEntity* pSystem = GetMainLogicalSystem();
 
     // no system, error
     if (!pSystem)
@@ -1050,7 +1050,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         // main user group is valid
         pModel->SetMainUserGroupValid();
 
-    ZBLogicalSystemEntity* pSystem = GetMainLogicalSystem();
+    PSS_LogicalSystemEntity* pSystem = GetMainLogicalSystem();
 
     // no system, error
     if (!pSystem)

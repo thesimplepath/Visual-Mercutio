@@ -15,7 +15,7 @@
 #include "PSS_LinkSymbol.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
-#include "ZBModelObserverMsg.h"
+#include "PSS_ModelObserverMsg.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -545,7 +545,7 @@ void PSS_ModelTree::DoSelectSymbol()
     if (pComp && ISA(pComp, PSS_Symbol))
     {
         // send the message
-        ZBModelObserverMsg mdlMsg(ZBModelObserverMsg::SelectElement, NULL, NULL, pComp);
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_SelectElement, NULL, NULL, pComp);
         AfxGetMainWnd()->SendMessageToDescendants(UM_ENSUREVISIBLE_SYMBOL, 0, LPARAM(&mdlMsg));
         return;
     }
@@ -555,7 +555,7 @@ void PSS_ModelTree::DoSelectSymbol()
     if (pPage)
     {
         // send the message
-        ZBModelObserverMsg mdlMsg(ZBModelObserverMsg::BrowseElement, NULL, NULL, pPage);
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, NULL, pPage);
         AfxGetMainWnd()->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
     }
 }
@@ -567,8 +567,8 @@ void PSS_ModelTree::OnModelChange()
 //---------------------------------------------------------------------------
 void PSS_ModelTree::OnDoubleClick()
 {
-    ZBModelObserverMsg::MessageActionType actionType = ZBModelObserverMsg::NoAction;
-    UINT                                  message    = 0;
+    PSS_ModelObserverMsg::IEActionType actionType = PSS_ModelObserverMsg::IE_AT_None;
+    UINT                               message    = 0;
 
     PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(GetSelectedSymbol());
 
@@ -576,17 +576,17 @@ void PSS_ModelTree::OnDoubleClick()
     {
         if (pSymbol->GetChildModel())
         {
-            actionType = ZBModelObserverMsg::BrowseElement;
+            actionType = PSS_ModelObserverMsg::IE_AT_BrowseElement;
             message    = UM_BROWSE_SYMBOL;
         }
         else
         {
-            actionType = ZBModelObserverMsg::EnsureElementVisible;
+            actionType = PSS_ModelObserverMsg::IE_AT_EnsureElementVisible;
             message    = UM_ENSUREVISIBLE_SYMBOL;
         }
 
         // send the message
-        ZBModelObserverMsg mdlMsg(actionType, NULL, NULL, pSymbol);
+        PSS_ModelObserverMsg mdlMsg(actionType, NULL, NULL, pSymbol);
         AfxGetMainWnd()->SendMessageToDescendants(message, 0, LPARAM(&mdlMsg));
         return;
     }
@@ -596,7 +596,7 @@ void PSS_ModelTree::OnDoubleClick()
     if (pPage)
     {
         // send the message
-        ZBModelObserverMsg mdlMsg(ZBModelObserverMsg::BrowseElement, NULL, NULL, pPage);
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, NULL, pPage);
         AfxGetMainWnd()->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
         return;
     }
@@ -604,7 +604,7 @@ void PSS_ModelTree::OnDoubleClick()
     if (IsRootSelected() && m_pModelSet && m_pModelSet->GetModelAt(0))
     {
         // send the message
-        ZBModelObserverMsg mdlMsg(ZBModelObserverMsg::BrowseElement, NULL, m_pModelSet->GetModelAt(0));
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, m_pModelSet->GetModelAt(0));
         AfxGetMainWnd()->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
     }
 }

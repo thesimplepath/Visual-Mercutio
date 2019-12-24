@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVLogicalSystemInfoDlg.h"
 
-#include "ZBLogicalSystemEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -25,7 +25,7 @@ BEGIN_MESSAGE_MAP(ZVLogicalSystemInfoDlg, CDialog)
 END_MESSAGE_MAP()
 
 ZVLogicalSystemInfoDlg::ZVLogicalSystemInfoDlg(UINT                    nTitleID        /*= -1*/,
-                                               ZBLogicalSystemEntity*    pLogicalSystem    /*= NULL*/,
+                                               PSS_LogicalSystemEntity*    pLogicalSystem    /*= NULL*/,
                                                const CString            Name            /*= _T( "" )*/,
                                                const CString            Description        /*= _T( "" )*/,
                                                bool                    ModifyMode        /*= false*/,

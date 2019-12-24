@@ -13,7 +13,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBLogicalSystemEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 
 // BaseDoc
 #include "zBaseLib\PSS_BaseDocument.h"
@@ -52,7 +52,7 @@ public:
     bool ReadFromFile( const CString fileName );
     bool SaveToFile( const CString fileName );
 
-    ZBLogicalSystemEntity& GetLogicalSystemEnvironment()
+    PSS_LogicalSystemEntity& GetLogicalSystemEnvironment()
     {
         return m_LogicalSystemEnvironment;
     };
@@ -102,17 +102,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    // Unique GUID for this file.
-    // Other file using this file can save this GUID
-    // to be sure they are using the right file.
-    CString                    m_GUID;
-
-    ZBLogicalSystemEntity    m_LogicalSystemEnvironment;
+    PSS_LogicalSystemEntity m_LogicalSystemEnvironment;
+    CString                 m_GUID;
     bool                    m_IsLoaded;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZDLogicalSystemDocument_H__6325FCF2_2A96_4A88_81CB_EEF32C4B5FE9__INCLUDED_)
+#endif

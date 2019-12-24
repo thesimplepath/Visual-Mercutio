@@ -31,6 +31,9 @@
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
 // old class name mapping
+#ifndef PSS_LogicalSystemEntity
+    #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
+#endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
 #endif
@@ -44,7 +47,7 @@ class ZIProperties;
 class PSS_InfoModelGraphicGeneration;
 class ZBUserGroupEntity;
 class ZBUserRoleEntity;
-class ZBLogicalSystemEntity;
+class PSS_LogicalSystemEntity;
 class ZBSystemEntity;
 class PSS_LogicalPrestationsEntity;
 class ZBPrestationsEntity;
@@ -302,15 +305,15 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param parentID - parent identifier
         *@return true on success, otherwise false
         */
-        bool GenerateLogicalSystemObjects(ZBLogicalSystemEntity* pSystemEntity, PSS_HtmlFile* pHtmlFile);
-        bool GenerateLogicalSystemObjects(ZBLogicalSystemEntity* pSystemEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
+        bool GenerateLogicalSystemObjects(PSS_LogicalSystemEntity* pSystemEntity, PSS_HtmlFile* pHtmlFile);
+        bool GenerateLogicalSystemObjects(PSS_LogicalSystemEntity* pSystemEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
 
         /**
         * Generates the logical system list
         *@param pSystemEntity - logical system entity for which the list should be generated
         *@return the logical system list, empty string on error
         */
-        CString GenerateLogicalSystemList(ZBLogicalSystemEntity* pSystemEntity);
+        CString GenerateLogicalSystemList(PSS_LogicalSystemEntity* pSystemEntity);
 
         /**
         * Generates the logical prestations objects

@@ -11,7 +11,7 @@
 
 #include "PSS_LogicalRulesEntity.h"
 #include "ZVSelectRuleDlg.h"
-#include "ZBLogicalRulesObserverMsg.h"
+#include "PSS_LogicalRulesObserverMsg.h"
 
 #include "zBaseLib\zBaseLibRes.h"
 #include "zModel\zModelRes.h"
@@ -121,25 +121,25 @@ void ZCRulesTreeCtrl::Refresh()
 
 void ZCRulesTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBLogicalRulesObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_LogicalRulesObserverMsg))
     {
-        switch (dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_LogicalRulesObserverMsg*>(pMsg)->GetMessageID())
         {
-            case UM_INITRULES:
+            case g_InitRules:
             {
-                if (dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity() &&
-                    ISA(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity(), PSS_LogicalRulesEntity))
+                if (dynamic_cast<PSS_LogicalRulesObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<PSS_LogicalRulesObserverMsg*>(pMsg)->GetEntity(), PSS_LogicalRulesEntity))
                 {
                     PSS_LogicalRulesEntity* pLogicalRule =
-                        dynamic_cast<PSS_LogicalRulesEntity*>(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity());
+                        dynamic_cast<PSS_LogicalRulesEntity*>(dynamic_cast<PSS_LogicalRulesObserverMsg*>(pMsg)->GetEntity());
 
-                    Initialize(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetRootName(), pLogicalRule);
+                    Initialize(dynamic_cast<PSS_LogicalRulesObserverMsg*>(pMsg)->GetRootName(), pLogicalRule);
                 }
 
                 break;
             }
 
-            case UM_CLOSERULES:
+            case g_CloseRules:
             {
                 DestroyTree();
                 break;

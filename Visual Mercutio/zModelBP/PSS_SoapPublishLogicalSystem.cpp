@@ -11,7 +11,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Log.h"
-#include "zModel\ZBLogicalSystemEntity.h"
+#include "zModel\PSS_LogicalSystemEntity.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
@@ -54,7 +54,7 @@ bool PSS_SoapPublishLogicalSystem::Publish()
     return false;
 }
 //---------------------------------------------------------------------------
-void PSS_SoapPublishLogicalSystem::PublishLogicalSystem(ZBLogicalSystemEntity* pSystem)
+void PSS_SoapPublishLogicalSystem::PublishLogicalSystem(PSS_LogicalSystemEntity* pSystem)
 {
     if (!pSystem)
         return;
@@ -100,7 +100,7 @@ void PSS_SoapPublishLogicalSystem::PublishLogicalSystem(ZBLogicalSystemEntity* p
             if (!pEntity)
                 continue;
 
-            ZBLogicalSystemEntity* pLogicalSystemEntity = dynamic_cast<ZBLogicalSystemEntity*>(pEntity);
+            PSS_LogicalSystemEntity* pLogicalSystemEntity = dynamic_cast<PSS_LogicalSystemEntity*>(pEntity);
 
             // is entity belonging to logical system?
             if (pLogicalSystemEntity)

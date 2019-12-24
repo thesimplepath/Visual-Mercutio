@@ -35,14 +35,14 @@
 #include "zProperty\ZIProperties.h"
 #include "zEvent\PSS_ActivityResources.h"
 #include "ZBUserGroupEntity.h"
-#include "ZBLogicalSystemEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 #include "PSS_LogicalPrestationsEntity.h"
 #include "PSS_LogicalRulesEntity.h"
 
 // resources
 #include "PSS_LanguageDefs.h"
 
-// class name mapping
+// old class name mapping
 #ifndef PSS_Symbol
     #define PSS_Symbol ZBSymbol
 #endif
@@ -51,6 +51,9 @@
 #endif
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
+#ifndef PSS_LogicalSystemEntity
+    #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
 #endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
@@ -71,7 +74,7 @@ class ZDProcessGraphPage;
 class ZBUserGroupEntity;
 class ZBPropertyAttributes;
 class ZBUserEntity;
-class ZBLogicalSystemEntity;
+class PSS_LogicalSystemEntity;
 class PSS_LogicalPrestationsEntity;
 class ZBPrestationsEntity;
 class PSS_LogicalRulesEntity;
@@ -339,13 +342,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         * Gets the main logical system
         *@return the main logical system, NULL on error
         */
-        static inline ZBLogicalSystemEntity* GetMainLogicalSystem();
+        static inline PSS_LogicalSystemEntity* GetMainLogicalSystem();
 
         /**
         * Assigns the main logical system
         *@param pMainLogicalSystem - the main logical system
         */
-        static inline void AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem);
+        static inline void AssignMainLogicalSystem(PSS_LogicalSystemEntity* pMainLogicalSystem);
 
         /**
         * Checks if the main logical system is valid
@@ -1279,7 +1282,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         };
 
         static ZBUserGroupEntity*                     m_pMainUserGroup;
-        static ZBLogicalSystemEntity*                 m_pMainLogicalSystem;
+        static PSS_LogicalSystemEntity*               m_pMainLogicalSystem;
         static PSS_LogicalPrestationsEntity*          m_pMainLogicalPrestations;
         static PSS_LogicalRulesEntity*                m_pMainLogicalRules;
         static CArray<IComponentRef*, IComponentRef*> m_SymbolParsed;
@@ -1674,12 +1677,12 @@ void PSS_ProcessGraphModelMdl::SetMainUserGroupValid(bool value)
     m_MainUserGroupIsValid = value;
 }
 //---------------------------------------------------------------------------
-ZBLogicalSystemEntity* PSS_ProcessGraphModelMdl::GetMainLogicalSystem()
+PSS_LogicalSystemEntity* PSS_ProcessGraphModelMdl::GetMainLogicalSystem()
 {
     return m_pMainLogicalSystem;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem)
+void PSS_ProcessGraphModelMdl::AssignMainLogicalSystem(PSS_LogicalSystemEntity* pMainLogicalSystem)
 {
     m_pMainLogicalSystem = pMainLogicalSystem;
 }

@@ -8,7 +8,7 @@
 #include "PSS_LinkSymbol.h"
 
 #include "ZDProcessGraphPage.h"
-#include "ZBModelObserverMsg.h"
+#include "PSS_ModelObserverMsg.h"
 
 #ifdef _DEBUG
 #include "zFormsRes\zFormsRes.h"

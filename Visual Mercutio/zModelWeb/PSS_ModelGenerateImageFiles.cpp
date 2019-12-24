@@ -25,7 +25,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZBUserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
-#include "zModel\ZBLogicalSystemEntity.h"
+#include "zModel\PSS_LogicalSystemEntity.h"
 #include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "zModel\zModelRes.h"
@@ -732,9 +732,9 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
 
                         if (pAppProperty)
                         {
-                            ZBLogicalSystemEntity* pLogicalSystemEntity =
-                                    dynamic_cast<ZBLogicalSystemEntity*>(pModel->GetMainLogicalSystem()->FindSystemByGUID
-                                            (pAppProperty->GetCommandParameters().Right(pAppProperty->GetCommandParameters().GetLength() - gLogicalSystemKey.GetLength()), true));
+                            PSS_LogicalSystemEntity* pLogicalSystemEntity =
+                                    dynamic_cast<PSS_LogicalSystemEntity*>(pModel->GetMainLogicalSystem()->FindSystemByGUID
+                                            (pAppProperty->GetCommandParameters().Right(pAppProperty->GetCommandParameters().GetLength() - g_LogicalSystemKey.GetLength()), true));
 
                             if (pLogicalSystemEntity)
                             {
@@ -2089,7 +2089,8 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(ZBUserGroupEntity* pG
     return htmlFileName;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(ZBLogicalSystemEntity* pSystemEntity, PSS_HtmlFile* pHtmlFile)
+bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(PSS_LogicalSystemEntity* pSystemEntity,
+                                                               PSS_HtmlFile*            pHtmlFile)
 {
     if (!pSystemEntity || !pHtmlFile)
         return false;
@@ -2099,9 +2100,9 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(ZBLogicalSystemEn
     return GenerateLogicalSystemObjects(pSystemEntity, pHtmlFile, m_IndexItem);
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(ZBLogicalSystemEntity* pSystemEntity,
-                                                               PSS_HtmlFile*          pHtmlFile,
-                                                               std::size_t            parentID)
+bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(PSS_LogicalSystemEntity* pSystemEntity,
+                                                               PSS_HtmlFile*            pHtmlFile,
+                                                               std::size_t              parentID)
 {
     if (!pSystemEntity || !pHtmlFile)
         return false;
@@ -2133,7 +2134,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(ZBLogicalSystemEn
             if (!pEntity)
                 continue;
 
-            ZBLogicalSystemEntity* pLogicalEntity = dynamic_cast<ZBLogicalSystemEntity*>(pEntity);
+            PSS_LogicalSystemEntity* pLogicalEntity = dynamic_cast<PSS_LogicalSystemEntity*>(pEntity);
 
             if (pLogicalEntity)
                 GenerateLogicalSystemObjects(pLogicalEntity, pHtmlFile, currentItem);
@@ -2143,7 +2144,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(ZBLogicalSystemEn
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(ZBLogicalSystemEntity* pSystemEntity)
+CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(PSS_LogicalSystemEntity* pSystemEntity)
 {
     if (!pSystemEntity)
         return _T("");

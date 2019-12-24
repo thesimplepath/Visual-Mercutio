@@ -33,29 +33,32 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 27 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
+// old class name mapping
+#ifndef PSS_LogicalSystemEntity
+    #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
+#endif
 
-// Forward class declaration
+// forward class declaration
 class ZBSystemEntity;
-class ZBLogicalSystemEntity;
+class PSS_LogicalSystemEntity;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectLogicalSystemDlg dialog
 
 class AFX_EXT_CLASS ZVSelectLogicalSystemDlg : public CDialog
 {
-// Construction
+    // Construction
 public:
 
     // Standard constructor
-    ZVSelectLogicalSystemDlg( const CString                Title                    = _T( "" ),
-                              ZBLogicalSystemEntity*    pMainLogicalSystemGroup    = NULL,
-                              CWnd*                        pParent                    = NULL );
+    ZVSelectLogicalSystemDlg(const CString                Title = _T(""),
+                             PSS_LogicalSystemEntity*    pMainLogicalSystemGroup = NULL,
+                             CWnd*                        pParent = NULL);
 
     // Standard constructor
-    ZVSelectLogicalSystemDlg( UINT                        nTitle,
-                              ZBLogicalSystemEntity*    pMainLogicalSystemGroup,
-                              CWnd*                        pParent                    = NULL );
+    ZVSelectLogicalSystemDlg(UINT                        nTitle,
+                             PSS_LogicalSystemEntity*    pMainLogicalSystemGroup,
+                             CWnd*                        pParent = NULL);
 
     // JMR-MODIF - Le 27 février 2006 - Nettoyage des memory leaks, ajout du destructeur de l'objet.
     ~ZVSelectLogicalSystemDlg();
@@ -72,7 +75,10 @@ private:
 
     // Dialog Data
     //{{AFX_DATA(ZVSelectLogicalSystemDlg)
-    enum { IDD = IDD_LOGICALSYSTEM_SELECTION };
+    enum
+    {
+        IDD = IDD_LOGICALSYSTEM_SELECTION
+    };
     ZCLogicalSystemTreeCtrl    m_Ctrl;
     //}}AFX_DATA
 
@@ -80,7 +86,7 @@ private:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVSelectLogicalSystemDlg)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -96,13 +102,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    CString                    m_Title;
-    ZBSystemEntity*            m_pSystemEntity;
-    ZBLogicalSystemEntity*    m_pMainLogicalSystemGroup;
+    PSS_LogicalSystemEntity* m_pMainLogicalSystemGroup;
+    ZBSystemEntity*          m_pSystemEntity;
+    CString                  m_Title;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVSelectLogicalSystemDlg_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)
+#endif

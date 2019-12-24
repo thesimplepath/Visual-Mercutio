@@ -40,6 +40,12 @@
 
 using namespace sfl;
 
+//---------------------------------------------------------------------------
+// Global constants
+//---------------------------------------------------------------------------
+const CString g_LogicalRulesKey = _T("$LR=");
+//---------------------------------------------------------------------------
+
 /**
 * Logical rules entity
 *@author Dominique Aigroz, Jean-Milost Reymond

@@ -17,7 +17,7 @@
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_ProcessGraphModelController.h"
 #include "PSS_ProcessGraphModelDoc.h"
-#include "ZBModelObserverMsg.h"
+#include "PSS_ModelObserverMsg.h"
 
 // resources
 #include "zRes32\zRes.h"
@@ -692,8 +692,8 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnRefreshSymbol(WPARAM wParam, LPARAM
     if (!::IsWindow(GetSafeHwnd()))
         return 0;
 
-    PSS_ObserverMsg*    pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
-    ZBModelObserverMsg* pModelMsg = dynamic_cast<ZBModelObserverMsg*>(pMsg);
+    PSS_ObserverMsg*      pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
+    PSS_ModelObserverMsg* pModelMsg = dynamic_cast<PSS_ModelObserverMsg*>(pMsg);
 
     if (pModelMsg)
     {
@@ -719,8 +719,8 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnRefreshSymbolSet(WPARAM wParam, LPA
     if (!::IsWindow(GetSafeHwnd()))
         return 0;
 
-    PSS_ObserverMsg*    pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
-    ZBModelObserverMsg* pModelMsg = dynamic_cast<ZBModelObserverMsg*>(pMsg);
+    PSS_ObserverMsg*      pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
+    PSS_ModelObserverMsg* pModelMsg = dynamic_cast<PSS_ModelObserverMsg*>(pMsg);
 
     if (pModelMsg)
     {
@@ -746,8 +746,8 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnBrowseSymbol(WPARAM wParam, LPARAM 
     if (!::IsWindow(GetSafeHwnd()))
         return 0;
 
-    PSS_ObserverMsg*    pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
-    ZBModelObserverMsg* pModelMsg = dynamic_cast<ZBModelObserverMsg*>(pMsg);
+    PSS_ObserverMsg*      pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
+    PSS_ModelObserverMsg* pModelMsg = dynamic_cast<PSS_ModelObserverMsg*>(pMsg);
 
     if (pModelMsg)
     {
@@ -771,8 +771,8 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnOpenModelPage(WPARAM wParam, LPARAM
     if (!::IsWindow(GetSafeHwnd()))
         return 0;
 
-    PSS_ObserverMsg*    pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
-    ZBModelObserverMsg* pModelMsg = dynamic_cast<ZBModelObserverMsg*>(pMsg);
+    PSS_ObserverMsg*      pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
+    PSS_ModelObserverMsg* pModelMsg = dynamic_cast<PSS_ModelObserverMsg*>(pMsg);
 
     if (pModelMsg)
     {
@@ -805,8 +805,8 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnEnsureVisibleSymbol(WPARAM wParam, 
     if (!::IsWindow(GetSafeHwnd()))
         return 0;
 
-    PSS_ObserverMsg*    pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
-    ZBModelObserverMsg* pModelMsg = dynamic_cast<ZBModelObserverMsg*>(pMsg);
+    PSS_ObserverMsg*      pMsg      = reinterpret_cast<PSS_ObserverMsg*>(lParam);
+    PSS_ModelObserverMsg* pModelMsg = dynamic_cast<PSS_ModelObserverMsg*>(pMsg);
 
     if (pModelMsg)
     {
@@ -820,7 +820,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnEnsureVisibleSymbol(WPARAM wParam, 
                 if (pModelCtrl->EnsureSymbolVisible(pElement))
                 {
                     // process the selection if necessary
-                    if (pModelMsg->GetActionType() == ZBModelObserverMsg::SelectElement)
+                    if (pModelMsg->GetActionType() == PSS_ModelObserverMsg::IE_AT_SelectElement)
                         pModelCtrl->SelectComponent(*pElement);
 
                     return 1;

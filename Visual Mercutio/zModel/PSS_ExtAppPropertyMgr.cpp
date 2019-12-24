@@ -19,7 +19,7 @@
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_Symbol.h"
 #include "ZBSystemEntity.h"
-#include "ZBLogicalSystemEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 #include "PSS_LogicalPrestationsEntity.h"
 
 // resources
@@ -146,7 +146,7 @@ bool PSS_ExtAppPropertyMgr::DropItem(CObject* pObj, const CPoint& point)
 
         SetCommandTitle           (index, pSystemEntity->GetEntityName());
         SetCommandLine            (index, pSystemEntity->GetEntityName());
-        SetCommandParameters      (index, gLogicalSystemKey + pSystemEntity->GetGUID());
+        SetCommandParameters      (index, g_LogicalSystemKey + pSystemEntity->GetGUID());
         SetCommandStartupDirectory(index, _T(""));
         SetPriorityLevel          (index, THREAD_PRIORITY_NORMAL);
         SetWindowStartMode        (index, SW_SHOWNORMAL);
@@ -226,7 +226,7 @@ bool PSS_ExtAppPropertyMgr::FillProperties(ZBPropertySet& propSet, bool numericV
         CString commandLine;
 
         // check if a logical system was defined
-        if (pSymbol && GetCommandParameters(i).Left(gLogicalSystemKey.GetLength()) == gLogicalSystemKey)
+        if (pSymbol && GetCommandParameters(i).Left(g_LogicalSystemKey.GetLength()) == g_LogicalSystemKey)
         {
             PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetRootModel());
 
@@ -237,7 +237,7 @@ bool PSS_ExtAppPropertyMgr::FillProperties(ZBPropertySet& propSet, bool numericV
 
             commandTitle = pSymbol->RetrieveLogicalSystemName(GetCommandParameters(i).Right
                                                                       (GetCommandParameters(i).GetLength() -
-                                                                       gLogicalSystemKey.GetLength()),
+                                                                       g_LogicalSystemKey.GetLength()),
                                                               error);
 
             commandLine = commandTitle;
@@ -294,7 +294,7 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
         CString commandLine;
 
         // check if a logical system was defined
-        if (pSymbol && GetCommandParameters(i).Left(gLogicalSystemKey.GetLength()) == gLogicalSystemKey)
+        if (pSymbol && GetCommandParameters(i).Left(g_LogicalSystemKey.GetLength()) == g_LogicalSystemKey)
         {
             PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetRootModel());
 
@@ -305,7 +305,7 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
 
             commandTitle = pSymbol->RetrieveLogicalSystemName(GetCommandParameters(i).Right
                                                                       (GetCommandParameters(i).GetLength() -
-                                                                       gLogicalSystemKey.GetLength()),
+                                                                       g_LogicalSystemKey.GetLength()),
                                                               error);
 
             commandLine = commandTitle;

@@ -3,10 +3,10 @@
 #include "stdafx.h"
 #include "ZCLogicalSystemTreeCtrl.h"
 
-#include "ZBLogicalSystemEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 // JMR-MODIF - Le 27 février 2006 - Ajout de l'en-tête ZVSelectLogicalSystemDlg.h
 #include "ZVSelectLogicalSystemDlg.h"
-#include "ZBLogicalSystemObserverMsg.h"
+#include "PSS_LogicalSystemObserverMsg.h"
 
 #include "zModel\zModelRes.h"
 #include "ZVLogicalSystemInfoDlg.h"
@@ -40,7 +40,7 @@ _ZInternalLogicalSystemTreeData::_ZInternalLogicalSystemTreeData()
     m_Str.Empty();
 }
 
-_ZInternalLogicalSystemTreeData::_ZInternalLogicalSystemTreeData(ZBLogicalSystemEntity* pLogicalSystem)
+_ZInternalLogicalSystemTreeData::_ZInternalLogicalSystemTreeData(PSS_LogicalSystemEntity* pLogicalSystem)
 {
     m_dtp = lstp_LogicalSystem;
     m_pLogicalSystem = pLogicalSystem;
@@ -81,7 +81,7 @@ BEGIN_MESSAGE_MAP(ZCLogicalSystemTreeCtrl, PSS_TreeCtrl)
 END_MESSAGE_MAP()
 
 ZCLogicalSystemTreeCtrl::ZCLogicalSystemTreeCtrl(const CString                RootName            /*= _T( "" )*/,
-                                                 ZBLogicalSystemEntity*    pLogicalSystemRoot    /*= NULL*/) :
+                                                 PSS_LogicalSystemEntity*    pLogicalSystemRoot    /*= NULL*/) :
     PSS_TreeCtrl(),
     m_RootName(RootName),
     m_pLogicalSystemRoot(pLogicalSystemRoot),
@@ -92,7 +92,7 @@ ZCLogicalSystemTreeCtrl::ZCLogicalSystemTreeCtrl(const CString                Ro
 ZCLogicalSystemTreeCtrl::~ZCLogicalSystemTreeCtrl()
 {}
 
-void ZCLogicalSystemTreeCtrl::Initialize(const CString RootName, ZBLogicalSystemEntity* pLogicalSystemRoot)
+void ZCLogicalSystemTreeCtrl::Initialize(const CString RootName, PSS_LogicalSystemEntity* pLogicalSystemRoot)
 {
     m_RootName = RootName;
     m_pLogicalSystemRoot = pLogicalSystemRoot;
@@ -121,25 +121,25 @@ void ZCLogicalSystemTreeCtrl::Refresh()
 
 void ZCLogicalSystemTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBLogicalSystemObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_LogicalSystemObserverMsg))
     {
-        switch (dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_LogicalSystemObserverMsg*>(pMsg)->GetMessageID())
         {
-            case UM_INITLOGICALSYSTEM:
+            case g_InitLogicalSystem:
             {
-                if (dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetEntity() &&
-                    ISA(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetEntity(), ZBLogicalSystemEntity))
+                if (dynamic_cast<PSS_LogicalSystemObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<PSS_LogicalSystemObserverMsg*>(pMsg)->GetEntity(), PSS_LogicalSystemEntity))
                 {
-                    ZBLogicalSystemEntity* pLogicalSystem =
-                        dynamic_cast<ZBLogicalSystemEntity*>(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetEntity());
+                    PSS_LogicalSystemEntity* pLogicalSystem =
+                        dynamic_cast<PSS_LogicalSystemEntity*>(dynamic_cast<PSS_LogicalSystemObserverMsg*>(pMsg)->GetEntity());
 
-                    Initialize(dynamic_cast<ZBLogicalSystemObserverMsg*>(pMsg)->GetRootName(), pLogicalSystem);
+                    Initialize(dynamic_cast<PSS_LogicalSystemObserverMsg*>(pMsg)->GetRootName(), pLogicalSystem);
                 }
 
                 break;
             }
 
-            case UM_CLOSELOGICALSYSTEM:
+            case g_CloseLogicalSystem:
             {
                 DestroyTree();
                 break;
@@ -218,7 +218,7 @@ void ZCLogicalSystemTreeCtrl::LoadTree()
     ExpandRoot(TRUE);
 }
 
-void ZCLogicalSystemTreeCtrl::ProcessLogicalSystemGroup(ZBLogicalSystemEntity*    pLogicalSystem,
+void ZCLogicalSystemTreeCtrl::ProcessLogicalSystemGroup(PSS_LogicalSystemEntity*    pLogicalSystem,
                                                         HTREEITEM                hParentTreeItem)
 {
     // First, add the item
@@ -237,9 +237,9 @@ void ZCLogicalSystemTreeCtrl::ProcessLogicalSystemGroup(ZBLogicalSystemEntity*  
                 continue;
             }
 
-            if (ISA(pEntity, ZBLogicalSystemEntity))
+            if (ISA(pEntity, PSS_LogicalSystemEntity))
             {
-                ProcessLogicalSystemGroup(dynamic_cast<ZBLogicalSystemEntity*>(pEntity), hGroupItem);
+                ProcessLogicalSystemGroup(dynamic_cast<PSS_LogicalSystemEntity*>(pEntity), hGroupItem);
             }
         }
     }
@@ -262,7 +262,7 @@ HTREEITEM ZCLogicalSystemTreeCtrl::AddTypeItem(const CString    Name,
     return InsertItem(&curTreeItem);
 }
 
-HTREEITEM ZCLogicalSystemTreeCtrl::AddLogicalSystemItem(ZBLogicalSystemEntity*    pLogicalSystem,
+HTREEITEM ZCLogicalSystemTreeCtrl::AddLogicalSystemItem(PSS_LogicalSystemEntity*    pLogicalSystem,
                                                         HTREEITEM                    hParentTreeItem)
 {
     if (!pLogicalSystem)
@@ -283,7 +283,7 @@ HTREEITEM ZCLogicalSystemTreeCtrl::AddLogicalSystemItem(ZBLogicalSystemEntity*  
     return InsertItem(&curTreeItem);
 }
 
-BOOL ZCLogicalSystemTreeCtrl::ModifyLogicalSystemItem(ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hItem)
+BOOL ZCLogicalSystemTreeCtrl::ModifyLogicalSystemItem(PSS_LogicalSystemEntity* pLogicalSystem, HTREEITEM hItem)
 {
     if (!pLogicalSystem)
     {
@@ -293,8 +293,8 @@ BOOL ZCLogicalSystemTreeCtrl::ModifyLogicalSystemItem(ZBLogicalSystemEntity* pLo
     return SetItemText(hItem, (char*)((const char*)pLogicalSystem->GetEntityName()));
 }
 
-void ZCLogicalSystemTreeCtrl::AddLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem,
-                                               ZBLogicalSystemEntity* pParentLogicalSystem /*= NULL*/)
+void ZCLogicalSystemTreeCtrl::AddLogicalSystem(PSS_LogicalSystemEntity* pLogicalSystem,
+                                               PSS_LogicalSystemEntity* pParentLogicalSystem /*= NULL*/)
 {
     if (!m_hUserGroupRoot || !pLogicalSystem)
     {
@@ -330,7 +330,7 @@ void ZCLogicalSystemTreeCtrl::AddLogicalSystem(ZBLogicalSystemEntity* pLogicalSy
     ExpandBranch(hParentTreeItem);
 }
 
-void ZCLogicalSystemTreeCtrl::RemoveLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem)
+void ZCLogicalSystemTreeCtrl::RemoveLogicalSystem(PSS_LogicalSystemEntity* pLogicalSystem)
 {
     if (!m_hUserGroupRoot || !pLogicalSystem)
     {
@@ -351,7 +351,7 @@ void ZCLogicalSystemTreeCtrl::RemoveLogicalSystem(ZBLogicalSystemEntity* pLogica
     }
 }
 
-void ZCLogicalSystemTreeCtrl::ModifyLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem)
+void ZCLogicalSystemTreeCtrl::ModifyLogicalSystem(PSS_LogicalSystemEntity* pLogicalSystem)
 {
     if (!m_hUserGroupRoot || !pLogicalSystem)
     {
@@ -392,12 +392,12 @@ ZBSystemEntity* ZCLogicalSystemTreeCtrl::_GetSystemEntity(HTREEITEM hItem)
     return NULL;
 }
 
-ZBLogicalSystemEntity* ZCLogicalSystemTreeCtrl::GetSelectedLogicalSystem()
+PSS_LogicalSystemEntity* ZCLogicalSystemTreeCtrl::GetSelectedLogicalSystem()
 {
     return _GetLogicalSystem(GetSelectedItem());
 }
 
-ZBLogicalSystemEntity* ZCLogicalSystemTreeCtrl::_GetLogicalSystem(HTREEITEM hItem)
+PSS_LogicalSystemEntity* ZCLogicalSystemTreeCtrl::_GetLogicalSystem(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -412,23 +412,23 @@ ZBLogicalSystemEntity* ZCLogicalSystemTreeCtrl::_GetLogicalSystem(HTREEITEM hIte
     return NULL;
 }
 
-ZBLogicalSystemEntity* ZCLogicalSystemTreeCtrl::GetSelectedLogicalSystemOwner()
+PSS_LogicalSystemEntity* ZCLogicalSystemTreeCtrl::GetSelectedLogicalSystemOwner()
 {
     return _GetOwnerSystem(GetSelectedItem());
 }
 
-ZBLogicalSystemEntity* ZCLogicalSystemTreeCtrl::_GetOwnerSystem(HTREEITEM hItem)
+PSS_LogicalSystemEntity* ZCLogicalSystemTreeCtrl::_GetOwnerSystem(HTREEITEM hItem)
 {
     if (hItem)
     {
-        ZBLogicalSystemEntity* pLogicalSystem = _GetLogicalSystem(hItem);
+        PSS_LogicalSystemEntity* pLogicalSystem = _GetLogicalSystem(hItem);
 
         if (pLogicalSystem)
         {
             // If a parent defined
-            if (pLogicalSystem->GetParent() && ISA(pLogicalSystem->GetParent(), ZBLogicalSystemEntity))
+            if (pLogicalSystem->GetParent() && ISA(pLogicalSystem->GetParent(), PSS_LogicalSystemEntity))
             {
-                return dynamic_cast<ZBLogicalSystemEntity*>(pLogicalSystem->GetParent());
+                return dynamic_cast<PSS_LogicalSystemEntity*>(pLogicalSystem->GetParent());
             }
 
             return pLogicalSystem;
@@ -547,7 +547,7 @@ void ZCLogicalSystemTreeCtrl::EmptyDataSet()
     m_DataSet.RemoveAll();
 }
 
-_ZInternalLogicalSystemTreeData* ZCLogicalSystemTreeCtrl::FindElementFromDataSet(ZBLogicalSystemEntity* pLogicalSystem)
+_ZInternalLogicalSystemTreeData* ZCLogicalSystemTreeCtrl::FindElementFromDataSet(PSS_LogicalSystemEntity* pLogicalSystem)
 {
     _ZInternalLogicalSystemTreeDataIterator i(&m_DataSet);
 
@@ -578,7 +578,7 @@ _ZInternalLogicalSystemTreeData* ZCLogicalSystemTreeCtrl::FindElementFromDataSet
     return NULL;
 }
 
-_ZInternalLogicalSystemTreeData* ZCLogicalSystemTreeCtrl::AddDataToSet(ZBLogicalSystemEntity* pLogicalSystem)
+_ZInternalLogicalSystemTreeData* ZCLogicalSystemTreeCtrl::AddDataToSet(PSS_LogicalSystemEntity* pLogicalSystem)
 {
     _ZInternalLogicalSystemTreeData* pData = new _ZInternalLogicalSystemTreeData(pLogicalSystem);
     m_DataSet.Add(pData);
@@ -599,7 +599,7 @@ _ZInternalLogicalSystemTreeData* ZCLogicalSystemTreeCtrl::AddDataToSet(CString S
 
 void ZCLogicalSystemTreeCtrl::OnNewLogicalSystem()
 {
-    ZBLogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
+    PSS_LogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
 
     // If a group selected
     if (pLogicalSystem != NULL)
@@ -611,7 +611,7 @@ void ZCLogicalSystemTreeCtrl::OnNewLogicalSystem()
 
         if (dlg.DoModal() == IDOK)
         {
-            ZBLogicalSystemEntity* pNewGroup = m_pLogicalSystemRoot->AddSystem(dlg.GetName(),
+            PSS_LogicalSystemEntity* pNewGroup = m_pLogicalSystemRoot->AddSystem(dlg.GetName(),
                                                                                dlg.GetDescription(),
                                                                                pLogicalSystem);
 
@@ -634,7 +634,7 @@ void ZCLogicalSystemTreeCtrl::OnDeleteLogicalSystem()
         return;
     }
 
-    ZBLogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
+    PSS_LogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
 
     if (pLogicalSystem != NULL && pLogicalSystem != m_pLogicalSystemRoot)
     {
@@ -658,14 +658,14 @@ void ZCLogicalSystemTreeCtrl::OnRenameLogicalSystem()
         return;
     }
 
-    ZBLogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
+    PSS_LogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
 
     if (pLogicalSystem != NULL)
     {
         ASSERT(m_pLogicalSystemRoot != NULL);
 
         ZVLogicalSystemInfoDlg dlg(IDS_RENAME_LOGICALSYSTEM_T,
-            (pLogicalSystem->GetParent() && ISA(pLogicalSystem->GetParent(), ZBLogicalSystemEntity)) ? dynamic_cast<ZBLogicalSystemEntity*>(pLogicalSystem->GetParent()) : pLogicalSystem,
+            (pLogicalSystem->GetParent() && ISA(pLogicalSystem->GetParent(), PSS_LogicalSystemEntity)) ? dynamic_cast<PSS_LogicalSystemEntity*>(pLogicalSystem->GetParent()) : pLogicalSystem,
                                    pLogicalSystem->GetEntityName(),
                                    pLogicalSystem->GetEntityDescription());
 
@@ -686,7 +686,7 @@ void ZCLogicalSystemTreeCtrl::OnRenameLogicalSystem()
 // JMR-MODIF - Le 27 février 2006 - Ajout de la fonction OnMoveLogicalSystem.
 void ZCLogicalSystemTreeCtrl::OnMoveLogicalSystem()
 {
-    ZBLogicalSystemEntity* pSystem = GetSelectedLogicalSystem();
+    PSS_LogicalSystemEntity* pSystem = GetSelectedLogicalSystem();
 
     if (pSystem != NULL)
     {
@@ -701,11 +701,11 @@ void ZCLogicalSystemTreeCtrl::OnMoveLogicalSystem()
             // and if it is not the same
             if (dlg.GetSelectedSystemEntity() &&
                 dlg.GetSelectedSystemEntity() != pSystem &&
-                ISA(dlg.GetSelectedSystemEntity(), ZBLogicalSystemEntity))
+                ISA(dlg.GetSelectedSystemEntity(), PSS_LogicalSystemEntity))
             {
                 // Move the element
                 // Assigns the new parent
-                dynamic_cast<ZBLogicalSystemEntity*>(dlg.GetSelectedSystemEntity())->MoveSystem(pSystem);
+                dynamic_cast<PSS_LogicalSystemEntity*>(dlg.GetSelectedSystemEntity())->MoveSystem(pSystem);
 
                 // Modified
                 m_pLogicalSystemRoot->SetModifiedFlag();
@@ -723,11 +723,11 @@ void ZCLogicalSystemTreeCtrl::OnLogicalSystemProperties()
 
     if (pEntity != NULL)
     {
-        ZBLogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
+        PSS_LogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
         ASSERT(m_pLogicalSystemRoot != NULL);
 
         ZVLogicalSystemInfoDlg dlg(IDS_LOGICALSYSTEM_PROPERTY_T,
-            (pEntity->GetParent() && ISA(pEntity->GetParent(), ZBLogicalSystemEntity)) ? dynamic_cast<ZBLogicalSystemEntity*>(pEntity->GetParent()) : m_pLogicalSystemRoot,
+            (pEntity->GetParent() && ISA(pEntity->GetParent(), PSS_LogicalSystemEntity)) ? dynamic_cast<PSS_LogicalSystemEntity*>(pEntity->GetParent()) : m_pLogicalSystemRoot,
                                    pEntity->GetEntityName(),
                                    pEntity->GetEntityDescription(),
                                    true);    // ModifyMode

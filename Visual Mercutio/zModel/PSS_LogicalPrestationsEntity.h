@@ -40,6 +40,12 @@
 
 using namespace sfl;
 
+//---------------------------------------------------------------------------
+// Global constants
+//---------------------------------------------------------------------------
+const CString g_LogicalPrestationsKey = _T("$LP=");
+//---------------------------------------------------------------------------
+
 /**
 * Logical prestations entity
 *@author Dominique Aigroz, Jean-Milost Reymond
@@ -89,14 +95,14 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         virtual inline IEntitySet* GetEntitySet();
 
         /**
-        * Checks if the entities were modified
-        *@return TRUE if the entities were modified, otherwise FALSE
+        * Checks if the entity was modified
+        *@return TRUE if the entity was modified, otherwise FALSE
         */
         virtual inline BOOL IsModified();
 
         /**
-        * Sets the entities as modified
-        *@param value - if TRUE, the entities were modified
+        * Sets the entity as modified
+        *@param value - if TRUE, the entity was modified
         */
         virtual inline void SetModifiedFlag(BOOL modified = TRUE);
 

@@ -563,13 +563,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the main logical system
         *@return the main logical system
         */
-        virtual inline ZBLogicalSystemEntity* GetMainLogicalSystem();
+        virtual inline PSS_LogicalSystemEntity* GetMainLogicalSystem();
 
         /**
         * Assigns the main logical system
         *@param pMainLogicalSystem - the main logical system
         */
-        virtual inline void AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem);
+        virtual inline void AssignMainLogicalSystem(PSS_LogicalSystemEntity* pMainLogicalSystem);
 
         /**
         * Gets the main logical prestations
@@ -1189,7 +1189,7 @@ void PSS_ProcessGraphModelDoc::AssignMainUserGroup(ZBUserGroupEntity* pMainUserG
     pModel->AssignMainUserGroup(pMainUserGroup);
 }
 //---------------------------------------------------------------------------
-ZBLogicalSystemEntity* PSS_ProcessGraphModelDoc::GetMainLogicalSystem()
+PSS_LogicalSystemEntity* PSS_ProcessGraphModelDoc::GetMainLogicalSystem()
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
@@ -1199,7 +1199,7 @@ ZBLogicalSystemEntity* PSS_ProcessGraphModelDoc::GetMainLogicalSystem()
     return pModel->GetMainLogicalSystem();
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelDoc::AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem)
+void PSS_ProcessGraphModelDoc::AssignMainLogicalSystem(PSS_LogicalSystemEntity* pMainLogicalSystem)
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 

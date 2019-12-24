@@ -28,6 +28,9 @@
 #ifndef PSS_WorkspaceWizardTemplateManager
     #define PSS_WorkspaceWizardTemplateManager ZBWorkspaceWizardTemplateMg
 #endif
+#ifndef PSS_LogicalSystemEntity
+    #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
+#endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
 #endif
@@ -47,7 +50,7 @@ class PSS_WorkspaceWizardTemplateManager;
 class ZDUserEntityDocument;
 class ZBUserGroupEntity;
 class ZDLogicalSystemDocument;
-class ZBLogicalSystemEntity;
+class PSS_LogicalSystemEntity;
 class ZDLogicalPrestationsDocument;
 class PSS_LogicalPrestationsEntity;
 class ZDLogicalRulesDocument;
@@ -103,7 +106,7 @@ public:
     }
 
     // Logical system functions
-    ZBLogicalSystemEntity* GetMainLogicalSystem();
+    PSS_LogicalSystemEntity* GetMainLogicalSystem();
 
     CString GetLogicalSystemFileName() const
     {

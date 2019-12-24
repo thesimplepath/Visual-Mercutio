@@ -14,10 +14,6 @@
 #endif
 
 //---------------------------------------------------------------------------
-// Global constants
-//---------------------------------------------------------------------------
-const CString g_LogicalPrestationsKey = _T("$LP=");
-//---------------------------------------------------------------------------
 // Static members
 //---------------------------------------------------------------------------
 PSS_LogicalPrestationsEntity::IEntitySet PSS_LogicalPrestationsEntity::m_FindSet;
@@ -238,13 +234,15 @@ bool PSS_LogicalPrestationsEntity::PrestationExist(const CString& name, PSS_Logi
 //---------------------------------------------------------------------------
 bool PSS_LogicalPrestationsEntity::MovePrestation(ZBPrestationsEntity* pPrestation)
 {
-    ZBPrestationsEntity*          pParent       = pPrestation->GetParent();
-    PSS_LogicalPrestationsEntity* pEntity       = dynamic_cast<PSS_LogicalPrestationsEntity*>(pPrestation);
-    PSS_LogicalPrestationsEntity* pParentEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pParent);
+    if (!pPrestation)
+        return false;
+
+    PSS_LogicalPrestationsEntity* pEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pPrestation);
+    PSS_LogicalPrestationsEntity* pParent = dynamic_cast<PSS_LogicalPrestationsEntity*>(pPrestation->GetParent());
 
     // remove the entity from the old group
-    if (pEntity && pParentEntity)
-        if (!pParentEntity->RemovePrestationFromSet(pEntity))
+    if (pEntity && pParent)
+        if (!pParent->RemovePrestationFromSet(pEntity))
             return false;
 
     // add the entity to the new group
