@@ -12,7 +12,7 @@
 
 #include "PSS_LogicalPrestationsEntity.h"
 #include "ZVSelectPrestationDlg.h"
-#include "ZBLogicalPrestationsObserverMsg.h"
+#include "PSS_LogicalPrestationsObserverMsg.h"
 
 #include "zBaseLib\zBaseLibRes.h"
 #include "zModel\zModelRes.h"
@@ -122,25 +122,25 @@ void ZCPrestationsTreeCtrl::Refresh()
 
 void ZCPrestationsTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBLogicalPrestationsObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_LogicalPrestationsObserverMsg))
     {
-        switch (dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_LogicalPrestationsObserverMsg*>(pMsg)->GetMessageID())
         {
-            case UM_INITPRESTATIONS:
+            case g_InitPrestations:
             {
-                if (dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity() &&
-                    ISA(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity(), PSS_LogicalPrestationsEntity))
+                if (dynamic_cast<PSS_LogicalPrestationsObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<PSS_LogicalPrestationsObserverMsg*>(pMsg)->GetEntity(), PSS_LogicalPrestationsEntity))
                 {
                     PSS_LogicalPrestationsEntity* pLogicalPrestation =
-                        dynamic_cast<PSS_LogicalPrestationsEntity*>(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetEntity());
+                        dynamic_cast<PSS_LogicalPrestationsEntity*>(dynamic_cast<PSS_LogicalPrestationsObserverMsg*>(pMsg)->GetEntity());
 
-                    Initialize(dynamic_cast<ZBLogicalPrestationsObserverMsg*>(pMsg)->GetRootName(), pLogicalPrestation);
+                    Initialize(dynamic_cast<PSS_LogicalPrestationsObserverMsg*>(pMsg)->GetRootName(), pLogicalPrestation);
                 }
 
                 break;
             }
 
-            case UM_CLOSEPRESTATIONS:
+            case g_ClosePrestations:
             {
                 DestroyTree();
                 break;

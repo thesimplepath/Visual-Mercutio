@@ -9,7 +9,8 @@
 #include "stdafx.h"
 #include "ZVSelectRuleDlg.h"
 
-#include "ZBLogicalRulesEntity.h"
+// processsoft
+#include "PSS_LogicalRulesEntity.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,37 +21,37 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectRuleDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVSelectRuleDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVSelectRuleDlg, CDialog)
     //{{AFX_MSG_MAP(ZVSelectRuleDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_RULES_TREE, OnSelchangedRulesTree)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVSelectRuleDlg::ZVSelectRuleDlg( const CString            Title                /*= ""*/,
-                                  ZBLogicalRulesEntity*    pMainRule            /*= NULL*/,
-                                  bool                    AllowRuleSelection    /*= true*/,
-                                  CWnd*                    pParent                /*=NULL*/ )
-    : CDialog                ( ZVSelectRuleDlg::IDD, pParent ),
-      m_pRuleEntity            ( NULL ),
-      m_Title                ( Title ),
-      m_pMainRule            ( pMainRule ),
-      m_AllowRuleSelection    ( AllowRuleSelection )
+ZVSelectRuleDlg::ZVSelectRuleDlg(const CString            Title                /*= ""*/,
+                                 PSS_LogicalRulesEntity*    pMainRule            /*= NULL*/,
+                                 bool                    AllowRuleSelection    /*= true*/,
+                                 CWnd*                    pParent                /*=NULL*/)
+    : CDialog(ZVSelectRuleDlg::IDD, pParent),
+    m_pRuleEntity(NULL),
+    m_Title(Title),
+    m_pMainRule(pMainRule),
+    m_AllowRuleSelection(AllowRuleSelection)
 {
     //{{AFX_DATA_INIT(ZVSelectRuleDlg)
         // NOTE: the ClassWizard will add member initialization here
     //}}AFX_DATA_INIT
 }
 
-ZVSelectRuleDlg::ZVSelectRuleDlg( UINT                    nTitle,
-                                  ZBLogicalRulesEntity*    pMainRule,
-                                  bool                    AllowRuleSelection    /*= true*/,
-                                  CWnd*                    pParent                /*=NULL*/ )
-    : CDialog                ( ZVSelectRuleDlg::IDD, pParent ),
-      m_pRuleEntity            ( NULL ),
-      m_pMainRule            ( pMainRule ),
-      m_AllowRuleSelection    ( AllowRuleSelection )
+ZVSelectRuleDlg::ZVSelectRuleDlg(UINT                    nTitle,
+                                 PSS_LogicalRulesEntity*    pMainRule,
+                                 bool                    AllowRuleSelection    /*= true*/,
+                                 CWnd*                    pParent                /*=NULL*/)
+    : CDialog(ZVSelectRuleDlg::IDD, pParent),
+    m_pRuleEntity(NULL),
+    m_pMainRule(pMainRule),
+    m_AllowRuleSelection(AllowRuleSelection)
 {
-    m_Title.LoadString( nTitle );
+    m_Title.LoadString(nTitle);
 }
 
 ZVSelectRuleDlg::~ZVSelectRuleDlg()
@@ -64,9 +65,9 @@ void ZVSelectRuleDlg::Release()
     m_Ctrl.Release();
 }
 
-void ZVSelectRuleDlg::DoDataExchange( CDataExchange* pDX )
+void ZVSelectRuleDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVSelectRuleDlg)
     DDX_Control(pDX, IDC_RULES_TREE, m_Ctrl);
     //}}AFX_DATA_MAP
@@ -80,17 +81,17 @@ BOOL ZVSelectRuleDlg::OnInitDialog()
     CDialog::OnInitDialog();
 
     CString m_Text;
-    m_Text.LoadString ( IDS_RULE_ROOT_T );
-    m_Ctrl.Initialize( m_Text, m_pMainRule );
+    m_Text.LoadString(IDS_RULE_ROOT_T);
+    m_Ctrl.Initialize(m_Text, m_pMainRule);
 
-    if ( !m_Title.IsEmpty() )
+    if (!m_Title.IsEmpty())
     {
-        SetWindowText( m_Title );
+        SetWindowText(m_Title);
     }
 
-    if ( GetDlgItem( IDOK ) )
+    if (GetDlgItem(IDOK))
     {
-        GetDlgItem( IDOK )->EnableWindow( FALSE );
+        GetDlgItem(IDOK)->EnableWindow(FALSE);
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control
@@ -105,24 +106,24 @@ void ZVSelectRuleDlg::OnOK()
     CDialog::OnOK();
 }
 
-void ZVSelectRuleDlg::OnSelchangedRulesTree( NMHDR* pNMHDR, LRESULT* pResult )
+void ZVSelectRuleDlg::OnSelchangedRulesTree(NMHDR* pNMHDR, LRESULT* pResult)
 {
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
     BOOL Enable = FALSE;
     ZBRulesEntity* pEntity = m_Ctrl.GetSelectedRuleEntity();
 
-    if ( pEntity )
+    if (pEntity)
     {
-        if ( m_AllowRuleSelection && ISA( pEntity, ZBLogicalRulesEntity ) )
+        if (m_AllowRuleSelection && ISA(pEntity, PSS_LogicalRulesEntity))
         {
             Enable = TRUE;
         }
     }
 
-    if ( GetDlgItem( IDOK ) )
+    if (GetDlgItem(IDOK))
     {
-        GetDlgItem( IDOK )->EnableWindow( Enable );
+        GetDlgItem(IDOK)->EnableWindow(Enable);
     }
 
     *pResult = 0;

@@ -587,13 +587,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the main logical rules
         *@return the main logical rules
         */
-        virtual inline ZBLogicalRulesEntity* GetMainLogicalRules();
+        virtual inline PSS_LogicalRulesEntity* GetMainLogicalRules();
 
         /**
         * Assigns the main logical rules
         *@param pMainLogicalRules - the main logical rules
         */
-        virtual inline void AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules);
+        virtual inline void AssignMainLogicalRules(PSS_LogicalRulesEntity* pMainLogicalRules);
 
         /**
         * Gets the canvas model
@@ -1229,7 +1229,7 @@ void PSS_ProcessGraphModelDoc::AssignMainLogicalPrestations(PSS_LogicalPrestatio
     pModel->AssignMainLogicalPrestations(pMainLogicalPrestations);
 }
 //---------------------------------------------------------------------------
-ZBLogicalRulesEntity* PSS_ProcessGraphModelDoc::GetMainLogicalRules()
+PSS_LogicalRulesEntity* PSS_ProcessGraphModelDoc::GetMainLogicalRules()
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
@@ -1239,7 +1239,7 @@ ZBLogicalRulesEntity* PSS_ProcessGraphModelDoc::GetMainLogicalRules()
     return pModel->GetMainLogicalRules();
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelDoc::AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules)
+void PSS_ProcessGraphModelDoc::AssignMainLogicalRules(PSS_LogicalRulesEntity* pMainLogicalRules)
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 

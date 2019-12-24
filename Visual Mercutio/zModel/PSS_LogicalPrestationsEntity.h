@@ -65,11 +65,6 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         virtual ~PSS_LogicalPrestationsEntity();
 
         /**
-        * Removes all the prestations entities
-        */
-        virtual void RemoveAllPrestationsEntities();
-
-        /**
         * Checks if this object contains an entity
         *@return true if this object contains an entity, otherwise false
         */
@@ -165,6 +160,11 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         *@return true on success, otherwise false
         */
         virtual bool RemovePrestation(PSS_LogicalPrestationsEntity* pPrestation);
+
+        /**
+        * Removes all the prestations entities
+        */
+        virtual void RemoveAllPrestationsEntities();
 
         /**
         * Finds a prestation from its guid
@@ -263,7 +263,7 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         virtual inline bool AddPrestation(ZBPrestationsEntity* pPrestation);
 
         /**
-        * Removes a prestation
+        * Removes a prestation from the prestation set
         *@param pPrestation - the prestation to remove
         *@return true on success, otherwise false
         */

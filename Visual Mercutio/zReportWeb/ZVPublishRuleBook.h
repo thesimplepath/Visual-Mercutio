@@ -44,26 +44,26 @@ class AFX_EXT_CLASS ZVPublishRuleBook
 {
 public:
 
-    ZVPublishRuleBook                    ( ZDProcessGraphModelMdlBP* pModel = NULL );
-    virtual ~ZVPublishRuleBook            ();
+    ZVPublishRuleBook(ZDProcessGraphModelMdlBP* pModel = NULL);
+    virtual ~ZVPublishRuleBook();
 
-    bool Publish                        ( CString Directory );
+    bool Publish(CString Directory);
 
 private:
 
-    bool CreateFileSystem                ( ZBLogicalRulesEntity* pRules, CString Directory );
+    bool CreateFileSystem(PSS_LogicalRulesEntity* pRules, CString Directory);
 
-    CString GenerateFileName            ( CString Directory );
+    CString GenerateFileName(CString Directory);
 
-    void CreateReport                    ( ZBLogicalRulesEntity* pRules );
-    void GenerateHTMLPageHead            ( CString Title );
-    void GenerateHTMLPageFoot            ();
-    void GenerateHTMLDocumentHeader        ( CString RuleName, CString RuleDesc );
-    void GenerateHTMLTable1                ( CString RuleName, CString RuleDesc );
-    void GenerateHTMLTable2                ( CString RuleName, CString RuleDesc );
-    void GenerateHTMLTable3                ( CString RuleName, CString RuleDesc );
-    void WriteLine                        ( CString Text );
-    void WriteLine                        ( int nID );
+    void CreateReport(PSS_LogicalRulesEntity* pRules);
+    void GenerateHTMLPageHead(CString Title);
+    void GenerateHTMLPageFoot();
+    void GenerateHTMLDocumentHeader(CString RuleName, CString RuleDesc);
+    void GenerateHTMLTable1(CString RuleName, CString RuleDesc);
+    void GenerateHTMLTable2(CString RuleName, CString RuleDesc);
+    void GenerateHTMLTable3(CString RuleName, CString RuleDesc);
+    void WriteLine(CString Text);
+    void WriteLine(int nID);
 
 private:
 
@@ -79,4 +79,4 @@ private:
     int                                    Lvl3Counter;
 };
 
-#endif // !defined(AFX_ZVPUBLISHRULEBOOK_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
+#endif

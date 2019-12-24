@@ -37,7 +37,7 @@
 #include "ZBUserGroupEntity.h"
 #include "ZBLogicalSystemEntity.h"
 #include "PSS_LogicalPrestationsEntity.h"
-#include "ZBLogicalRulesEntity.h"
+#include "PSS_LogicalRulesEntity.h"
 
 // resources
 #include "PSS_LanguageDefs.h"
@@ -55,6 +55,9 @@
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
 #endif
+#ifndef PSS_LogicalRulesEntity
+    #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
+#endif
 
 // forward class declaration
 class PSS_Symbol;
@@ -71,7 +74,7 @@ class ZBUserEntity;
 class ZBLogicalSystemEntity;
 class PSS_LogicalPrestationsEntity;
 class ZBPrestationsEntity;
-class ZBLogicalRulesEntity;
+class PSS_LogicalRulesEntity;
 class ZBRulesEntity;
 
 #ifdef _ZMODELEXPORT
@@ -428,13 +431,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         * Gets the main logical rules
         *@return the main logical rules, NULL on error
         */
-        static inline ZBLogicalRulesEntity* GetMainLogicalRules();
+        static inline PSS_LogicalRulesEntity* GetMainLogicalRules();
 
         /**
         * Assigns the main logical rules
         *@param pMainLogicalRules - the main logical rules
         */
-        static inline void AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules);
+        static inline void AssignMainLogicalRules(PSS_LogicalRulesEntity* pMainLogicalRules);
 
         /**
         * Checks if the main logical rules are valid
@@ -1278,7 +1281,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         static ZBUserGroupEntity*                     m_pMainUserGroup;
         static ZBLogicalSystemEntity*                 m_pMainLogicalSystem;
         static PSS_LogicalPrestationsEntity*          m_pMainLogicalPrestations;
-        static ZBLogicalRulesEntity*                  m_pMainLogicalRules;
+        static PSS_LogicalRulesEntity*                m_pMainLogicalRules;
         static CArray<IComponentRef*, IComponentRef*> m_SymbolParsed;
         static CODComponentSet                        m_FindSet;
         static int                                    m_RecursionCounter;
@@ -1711,12 +1714,12 @@ void PSS_ProcessGraphModelMdl::SetMainLogicalPrestationsValid(bool value)
     m_MainLogicalPrestationsIsValid = value;
 }
 //---------------------------------------------------------------------------
-ZBLogicalRulesEntity* PSS_ProcessGraphModelMdl::GetMainLogicalRules()
+PSS_LogicalRulesEntity* PSS_ProcessGraphModelMdl::GetMainLogicalRules()
 {
     return m_pMainLogicalRules;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules)
+void PSS_ProcessGraphModelMdl::AssignMainLogicalRules(PSS_LogicalRulesEntity* pMainLogicalRules)
 {
     m_pMainLogicalRules = pMainLogicalRules;
 }

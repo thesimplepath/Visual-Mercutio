@@ -74,7 +74,7 @@ PSS_Symbol* PSS_ProcessGraphModelMdl::IComponentRef::GetSymbol() const
 ZBUserGroupEntity*                                                                         PSS_ProcessGraphModelMdl::m_pMainUserGroup          = NULL;
 ZBLogicalSystemEntity*                                                                     PSS_ProcessGraphModelMdl::m_pMainLogicalSystem      = NULL;
 PSS_LogicalPrestationsEntity*                                                              PSS_ProcessGraphModelMdl::m_pMainLogicalPrestations = NULL;
-ZBLogicalRulesEntity*                                                                      PSS_ProcessGraphModelMdl::m_pMainLogicalRules       = NULL;
+PSS_LogicalRulesEntity*                                                                    PSS_ProcessGraphModelMdl::m_pMainLogicalRules       = NULL;
 CArray<PSS_ProcessGraphModelMdl::IComponentRef*, PSS_ProcessGraphModelMdl::IComponentRef*> PSS_ProcessGraphModelMdl::m_SymbolParsed;
 CODComponentSet                                                                            PSS_ProcessGraphModelMdl::m_FindSet;
 int                                                                                        PSS_ProcessGraphModelMdl::m_RecursionCounter        = 0;
@@ -580,8 +580,8 @@ CString PSS_ProcessGraphModelMdl::RetrieveRuleName(const CString guid, bool& err
 
     if (m_pMainLogicalRules)
     {
-        ZBLogicalRulesEntity* pRule =
-                dynamic_cast<ZBLogicalRulesEntity*>(m_pMainLogicalRules->FindRuleByGUID(guid, true));
+        PSS_LogicalRulesEntity* pRule =
+                dynamic_cast<PSS_LogicalRulesEntity*>(m_pMainLogicalRules->FindRuleByGUID(guid, true));
 
         if (pRule)
             return pRule->GetEntityName();

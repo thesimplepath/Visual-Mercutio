@@ -36,7 +36,7 @@
 #include "zModel\ZDLogicalSystemDocument.h"
 #include "zModel\ZBLogicalSystemObserverMsg.h"
 #include "zModel\ZDLogicalPrestationsDocument.h"
-#include "zModel\ZBLogicalPrestationsObserverMsg.h"
+#include "zModel\PSS_LogicalPrestationsObserverMsg.h"
 #include "zModel\ZDLogicalRulesDocument.h"
 #include "zModel\ZBLogicalRulesObserverMsg.h"
 #include "zModel\PSS_ModelGlobal.h"
@@ -1006,7 +1006,7 @@ bool ZAApp::LoadPrestationsFile()
         PSS_File file(m_PrestationsFileName);
 
         // Notify observers about the user group initialisation
-        ZBLogicalPrestationsObserverMsg Msg(UM_INITPRESTATIONS,
+        PSS_LogicalPrestationsObserverMsg Msg(g_InitPrestations,
                                             &m_pPrestationsDocument->GetPrestationsEnvironment(),
                                             file.GetFileName());
 
@@ -1519,7 +1519,7 @@ PSS_LogicalPrestationsEntity* ZAApp::GetMainLogicalPrestations()
 
 // JMR-MODIF - Le 19 novembre 2006 - Ajout de la fonction GetMainLogicalRules.
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des règles.
-ZBLogicalRulesEntity* ZAApp::GetMainLogicalRules()
+PSS_LogicalRulesEntity* ZAApp::GetMainLogicalRules()
 {
     return (m_pRulesDocument) ? &m_pRulesDocument->GetRulesEnvironment() : NULL;
 }

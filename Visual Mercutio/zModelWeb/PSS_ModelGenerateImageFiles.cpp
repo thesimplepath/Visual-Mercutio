@@ -27,7 +27,7 @@
 #include "zModel\ZBUserRoleEntity.h"
 #include "zModel\ZBLogicalSystemEntity.h"
 #include "zModel\PSS_LogicalPrestationsEntity.h"
-#include "zModel\ZBLogicalRulesEntity.h"
+#include "zModel\PSS_LogicalRulesEntity.h"
 #include "zModel\zModelRes.h"
 #include "zWeb\PSS_HtmlFile.h"
 

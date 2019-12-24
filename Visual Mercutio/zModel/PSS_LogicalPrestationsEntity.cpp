@@ -41,16 +41,6 @@ PSS_LogicalPrestationsEntity::~PSS_LogicalPrestationsEntity()
     PSS_LogicalPrestationsEntity::RemoveAllPrestationsEntities();
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsEntity::RemoveAllPrestationsEntities()
-{
-    IEntityIterator it(&m_EntitySet);
-
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
-        delete pEnv;
-
-    m_EntitySet.RemoveAll();
-}
-//---------------------------------------------------------------------------
 PSS_LogicalPrestationsEntity* PSS_LogicalPrestationsEntity::AddPrestation(const CString& name,
                                                                           const CString& description)
 {
@@ -141,6 +131,16 @@ bool PSS_LogicalPrestationsEntity::RemovePrestation(PSS_LogicalPrestationsEntity
     }
 
     return false;
+}
+//---------------------------------------------------------------------------
+void PSS_LogicalPrestationsEntity::RemoveAllPrestationsEntities()
+{
+    IEntityIterator it(&m_EntitySet);
+
+    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+        delete pEnv;
+
+    m_EntitySet.RemoveAll();
 }
 //---------------------------------------------------------------------------
 ZBPrestationsEntity* PSS_LogicalPrestationsEntity::FindPrestationByGUID(const CString& guid, bool deeper)

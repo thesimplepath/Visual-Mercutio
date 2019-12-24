@@ -395,7 +395,7 @@ void PSS_ProcessGraphModelDoc::ReassignPrestations(PSS_Log* pLog)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::AssignCurrentRulesDefGUID()
 {
-    ZBLogicalRulesEntity* pRules = GetMainLogicalRules();
+    PSS_LogicalRulesEntity* pRules = GetMainLogicalRules();
 
     // no Rules, error
     if (!pRules)
@@ -1122,7 +1122,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
         // main logical prestations is valid
         pModel->SetMainLogicalPrestationsValid();
 
-    ZBLogicalRulesEntity* pRules = GetMainLogicalRules();
+    PSS_LogicalRulesEntity* pRules = GetMainLogicalRules();
 
     // no rules, error
     if (!pRules)

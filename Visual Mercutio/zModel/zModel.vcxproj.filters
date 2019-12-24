@@ -30,12 +30,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBLogicalPrestationsObserverMsg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBLogicalRulesEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBLogicalRulesObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,9 +276,6 @@
     <ClCompile Include="ZVSymbolAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZVUserGroupInfoDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_LinkSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -355,6 +346,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_LogicalPrestationsEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserGroupInfoDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_LogicalPrestationsObserverMsg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_LogicalRulesEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -457,12 +457,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBLogicalPrestationsObserverMsg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBLogicalRulesEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBLogicalRulesObserverMsg.h">
@@ -717,9 +711,6 @@
     <ClInclude Include="ZVSymbolAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZVUserGroupInfoDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PSS_LinkSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -793,6 +784,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_LogicalPrestationsEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserGroupInfoDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LogicalPrestationsObserverMsg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LogicalRulesEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

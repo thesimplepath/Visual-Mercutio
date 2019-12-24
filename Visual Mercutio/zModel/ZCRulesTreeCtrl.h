@@ -25,8 +25,13 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
 
-// Forward class declaration
-class ZBLogicalRulesEntity;
+// class name mapping
+#ifndef PSS_LogicalRulesEntity
+    #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
+#endif
+
+// forward class declaration
+class PSS_LogicalRulesEntity;
 class ZBRulesEntity;
 
 #ifdef _ZMODELEXPORT
@@ -52,13 +57,13 @@ public:
     };
 
     _ZInternalRulesTreeData();
-    _ZInternalRulesTreeData(ZBLogicalRulesEntity* pRule);
+    _ZInternalRulesTreeData(PSS_LogicalRulesEntity* pRule);
     _ZInternalRulesTreeData(CString Str);
     ~_ZInternalRulesTreeData();
 
     // Data member
     RulesTreeDataType        m_dtp;
-    ZBLogicalRulesEntity*    m_pRule;
+    PSS_LogicalRulesEntity*    m_pRule;
     CString                    m_Str;
 };
 
@@ -66,21 +71,21 @@ public:
 // ZCRulesTreeCtrl window
 
 class AFX_EXT_CLASS ZCRulesTreeCtrl : public PSS_TreeCtrl,
-                                      public PSS_Subject,
-                                      public PSS_Observer
+    public PSS_Subject,
+    public PSS_Observer
 {
     // Construction / Destruction
 public:
 
     ZCRulesTreeCtrl(const CString            RootName = _T(""),
-                    ZBLogicalRulesEntity*    pLogicalRuleRoot = NULL);
+                    PSS_LogicalRulesEntity*    pLogicalRuleRoot = NULL);
 
     virtual ~ZCRulesTreeCtrl();
 
     //////////////////////////////////////////////////////////////////
     // Operations
 
-    void Initialize(const CString RootName, ZBLogicalRulesEntity* pLogicalRulesRoot);
+    void Initialize(const CString RootName, PSS_LogicalRulesEntity* pLogicalRulesRoot);
 
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
@@ -88,15 +93,15 @@ public:
     void Refresh();
 
     ZBRulesEntity* GetSelectedRuleEntity();
-    ZBLogicalRulesEntity* GetSelectedLogicalRule();
-    ZBLogicalRulesEntity* GetSelectedLogicalRuleOwner();
+    PSS_LogicalRulesEntity* GetSelectedLogicalRule();
+    PSS_LogicalRulesEntity* GetSelectedLogicalRuleOwner();
     bool IsRootSelected() const;
 
-    void AddRule(ZBLogicalRulesEntity* pLogicalRule,
-                 ZBLogicalRulesEntity* pParentLogicalRule = NULL);
+    void AddRule(PSS_LogicalRulesEntity* pLogicalRule,
+                 PSS_LogicalRulesEntity* pParentLogicalRule = NULL);
 
-    void RemoveRule(ZBLogicalRulesEntity* pLogicalRule);
-    void ModifyRule(ZBLogicalRulesEntity* pLogicalRule);
+    void RemoveRule(PSS_LogicalRulesEntity* pLogicalRule);
+    void ModifyRule(PSS_LogicalRulesEntity* pLogicalRule);
 
     virtual void OnNewRule();
     virtual void OnDeleteRule();
@@ -148,21 +153,21 @@ private:
     void DestroyTree();
     void EmptyDataSet();
 
-    void ProcessLogicalRulesGroup(ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem);
+    void ProcessLogicalRulesGroup(PSS_LogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem);
 
     HTREEITEM AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
-    HTREEITEM AddLogicalRuleItem(ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem);
-    BOOL ModifyLogicalRuleItem(ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hItem);
+    HTREEITEM AddLogicalRuleItem(PSS_LogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem);
+    BOOL ModifyLogicalRuleItem(PSS_LogicalRulesEntity* pLogicalRule, HTREEITEM hItem);
 
     ZBRulesEntity*            _GetRuleEntity(HTREEITEM hItem);
-    ZBLogicalRulesEntity*    _GetLogicalRule(HTREEITEM hItem);
-    ZBLogicalRulesEntity*    _GetOwnerRule(HTREEITEM hItem);
+    PSS_LogicalRulesEntity*    _GetLogicalRule(HTREEITEM hItem);
+    PSS_LogicalRulesEntity*    _GetOwnerRule(HTREEITEM hItem);
 
     _ZInternalRulesTreeData* FindElementFromDataSet(ZBRulesEntity* pEntity);
-    _ZInternalRulesTreeData* FindElementFromDataSet(ZBLogicalRulesEntity* pLogicalRule);
+    _ZInternalRulesTreeData* FindElementFromDataSet(PSS_LogicalRulesEntity* pLogicalRule);
     _ZInternalRulesTreeData* FindElementFromDataSet(CString Str);
 
-    _ZInternalRulesTreeData* AddDataToSet(ZBLogicalRulesEntity* pLogicalRule);
+    _ZInternalRulesTreeData* AddDataToSet(PSS_LogicalRulesEntity* pLogicalRule);
     _ZInternalRulesTreeData* AddDataToSet(CString Str);
 
 private:
@@ -178,7 +183,7 @@ private:
     _ZInternalRulesTreeDataSet    m_DataSet;
     HTREEITEM                    m_hUserGroupRoot;
     CString                        m_RootName;
-    ZBLogicalRulesEntity*        m_pLogicalRuleRoot;
+    PSS_LogicalRulesEntity*        m_pLogicalRuleRoot;
     CMenu                        m_SubMenu;
 
     bool                        m_HasBeenInitialized;

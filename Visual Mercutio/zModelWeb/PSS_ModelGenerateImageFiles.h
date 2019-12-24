@@ -34,6 +34,9 @@
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
 #endif
+#ifndef PSS_LogicalRulesEntity
+    #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
+#endif
 
 // forward class declaration
 class PSS_BasicSymbol;
@@ -45,7 +48,7 @@ class ZBLogicalSystemEntity;
 class ZBSystemEntity;
 class PSS_LogicalPrestationsEntity;
 class ZBPrestationsEntity;
-class ZBLogicalRulesEntity;
+class PSS_LogicalRulesEntity;
 class ZBRulesEntity;
 class ZBUserEntity;
 class PSS_HtmlFile;

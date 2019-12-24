@@ -282,8 +282,8 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_LogicalPrestationsEntity.cpp" />
-    <ClCompile Include="ZBLogicalPrestationsObserverMsg.cpp" />
-    <ClCompile Include="ZBLogicalRulesEntity.cpp" />
+    <ClCompile Include="PSS_LogicalPrestationsObserverMsg.cpp" />
+    <ClCompile Include="PSS_LogicalRulesEntity.cpp" />
     <ClCompile Include="ZBLogicalRulesObserverMsg.cpp" />
     <ClCompile Include="ZBLogicalSystemEntity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -702,7 +702,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVUserGroupInfoDlg.cpp">
+    <ClCompile Include="PSS_UserGroupInfoDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -776,8 +776,8 @@
     <ClInclude Include="PSS_LanguageProperties.h" />
     <ClInclude Include="PSS_LinkSymbol.h" />
     <ClInclude Include="PSS_LogicalPrestationsEntity.h" />
-    <ClInclude Include="ZBLogicalPrestationsObserverMsg.h" />
-    <ClInclude Include="ZBLogicalRulesEntity.h" />
+    <ClInclude Include="PSS_LogicalPrestationsObserverMsg.h" />
+    <ClInclude Include="PSS_LogicalRulesEntity.h" />
     <ClInclude Include="ZBLogicalRulesObserverMsg.h" />
     <ClInclude Include="ZBLogicalSystemEntity.h" />
     <ClInclude Include="ZBLogicalSystemObserverMsg.h" />
@@ -863,7 +863,7 @@
     <ClInclude Include="ZVSelectSymbolFromGraphModel.h" />
     <ClInclude Include="ZVSelectUserGroupDlg.h" />
     <ClInclude Include="ZVSymbolAttributes.h" />
-    <ClInclude Include="ZVUserGroupInfoDlg.h" />
+    <ClInclude Include="PSS_UserGroupInfoDlg.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\attrib_s.ico" />

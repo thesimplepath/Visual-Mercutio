@@ -5,7 +5,7 @@
 #define AFX_ZBBPPROCESSSYMBOL_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_
 
 #if _MSC_VER > 1000
-    #pragma once
+#pragma once
 #endif
 
 // change the definition of AFX_EXT... to make it import
@@ -20,7 +20,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\PSS_Symbol.h"
-#include "zModel\ZBLogicalRulesEntity.h"
+#include "zModel\PSS_LogicalRulesEntity.h"
 #include "ZBBPSimPropProcess.h"
 #include "ZBBPPrestationsProperties.h"
 #include "ZBProcDeliveries.h"
@@ -35,30 +35,30 @@
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
-    #undef AFX_EXT_CLASS
-    #undef AFX_EXT_API
-    #undef AFX_EXT_DATA
-    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
-    #define AFX_EXT_API AFX_API_EXPORT
-    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#undef AFX_EXT_CLASS
+#undef AFX_EXT_API
+#undef AFX_EXT_DATA
+#define AFX_EXT_CLASS AFX_CLASS_EXPORT
+#define AFX_EXT_API AFX_API_EXPORT
+#define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - Le 26 septembre 2005 - Ajout de la décoration unicode _T( ), nettoyage du code inutilisé.
 
 class AFX_EXT_CLASS ZBBPProcessSymbol : public PSS_Symbol
 {
-    DECLARE_SERIAL( ZBBPProcessSymbol )
+    DECLARE_SERIAL(ZBBPProcessSymbol)
 
 public:
 
-    ZBBPProcessSymbol( const CString Name = _T( "" ) );
+    ZBBPProcessSymbol(const CString Name = _T(""));
     virtual ~ZBBPProcessSymbol();
 
     /* Copy constructor. */
-    ZBBPProcessSymbol( const ZBBPProcessSymbol& src );
+    ZBBPProcessSymbol(const ZBBPProcessSymbol& src);
 
     /* Assignment operator. */
-    ZBBPProcessSymbol& operator=( const ZBBPProcessSymbol& src );
+    ZBBPProcessSymbol& operator=(const ZBBPProcessSymbol& src);
 
     /* Create a duplicate copy of this object. */
     virtual CODComponent* Dup() const;
@@ -70,11 +70,11 @@ public:
     }
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
+    virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
 
     // Overloaded to be able to modify the activity name
     // and description
-    virtual BOOL SetSymbolName( const CString value );
+    virtual BOOL SetSymbolName(const CString value);
 
     // Return true if the symbol can contain a child model
     virtual bool CanContainChildModel() const
@@ -86,22 +86,22 @@ public:
     virtual bool CreateSymbolProperties();
 
     // Call to retreive properties for the object
-    virtual bool FillProperties( ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false );
+    virtual bool FillProperties(ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false);
 
     // Call to save new changes to object's properties
-    virtual bool SaveProperties( ZBPropertySet& PropSet );
+    virtual bool SaveProperties(ZBPropertySet& PropSet);
 
     // JMR-MODIF - Le 15 février 2006 - Ajout de la fonction SaveProperty.
-    bool SaveProperty( ZBProperty& Property );
+    bool SaveProperty(ZBProperty& Property);
 
     // JMR-MODIF - Le 15 février 2006 - Ajout de la fonction OnPostPropertyChanged.
-    bool OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh );
+    bool OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh);
 
     //////////////////////////////////////////////////////////////////////
     // Attributes management methods
-    virtual bool OnFillDefaultAttributes( ZBPropertyAttributes* pAttributes );
-    virtual bool OnChangeAttributes( ZBPropertyAttributes* pAttributes );
-    virtual CString GetAttributeString( ZBPropertyAttributes* pAttributes ) const;
+    virtual bool OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes);
+    virtual bool OnChangeAttributes(ZBPropertyAttributes* pAttributes);
+    virtual CString GetAttributeString(ZBPropertyAttributes* pAttributes) const;
 
     /**
     * Called when a tooltip is required
@@ -113,23 +113,23 @@ public:
     virtual bool OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
 
     // Drag and drop methods
-    virtual bool AcceptDropItem( CObject* pObj, const CPoint& pt );
-    virtual bool DropItem( CObject* pObj, const CPoint& pt );
+    virtual bool AcceptDropItem(CObject* pObj, const CPoint& pt);
+    virtual bool DropItem(CObject* pObj, const CPoint& pt);
 
     /* Creates the symbol component. */
-    BOOL Create( const CString Name = _T( "" ) );
+    BOOL Create(const CString Name = _T(""));
 
-    /* Called after the object is created and on the desk 
+    /* Called after the object is created and on the desk
        return true if the object can be created or false if the
        object must be destroyed immediatly */
-    virtual bool OnPostCreation( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    virtual bool OnPostCreation(CODModel* pModel = NULL, CODController* pCtrl = NULL);
 
     bool GetDisplayPreview() const
     {
         return m_DisplayPreview;
     }
 
-    void SetDisplayPreview( bool value )
+    void SetDisplayPreview(bool value)
     {
         m_DisplayPreview = value;
     }
@@ -148,10 +148,10 @@ public:
         return true;
     }
 
-    virtual bool CreateWorkflowActivity( bool DefaultProp = true );
+    virtual bool CreateWorkflowActivity(bool DefaultProp = true);
     virtual bool SetDefaultPropertyToWorkflowActivity();
 
-    virtual void OnDraw( CDC* pDC );
+    virtual void OnDraw(CDC* pDC);
 
     ULONG STDMETHODCALLTYPE AddRef()
     {
@@ -170,10 +170,10 @@ public:
     }
 
     // Creation of a new child model
-    virtual BOOL CreateEmptyChildModel( CODModel* pParent );
+    virtual BOOL CreateEmptyChildModel(CODModel* pParent);
 
     /* Serializes the symbol. */
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
     virtual int GetRightSubMenu() const;
     virtual int GetIconIndex() const;
@@ -186,8 +186,8 @@ public:
 
     //@cmember
     /* Sets the process workload forecast. */
-    void SetProcessWorkloadForecast( const double value );
-    void SetProcessWorkloadForecast( ZBBPAnnualNumberProperties& AnnualNumberProp );
+    void SetProcessWorkloadForecast(const double value);
+    void SetProcessWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp);
 
     //@cmember
     /* Gets the process cost forecast. */
@@ -195,15 +195,15 @@ public:
 
     //@cmember
     /* Sets the process cost forecast. */
-    void SetProcessCostForecast( const double value );
-    void SetProcessCostForecast( ZBBPAnnualNumberProperties& AnnualNumberProp );
+    void SetProcessCostForecast(const double value);
+    void SetProcessCostForecast(ZBBPAnnualNumberProperties& AnnualNumberProp);
 
     // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction GetProcessCost pour la prise en charge des coûts HMO.
     ZBBPAnnualNumberProperties& GetProcessCost();
 
     // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction SetProcessCost pour la prise en charge des coûts HMO.
-    void SetProcessCost( const double value );
-    void SetProcessCost( ZBBPAnnualNumberProperties& AnnualNumberProp );
+    void SetProcessCost(const double value);
+    void SetProcessCost(ZBBPAnnualNumberProperties& AnnualNumberProp);
 
     // ************************************************************************************************************
     // JMR-MODIF - Le 20 février 2006 - Ajout des fonctions cadres propres aux prestations.
@@ -214,10 +214,10 @@ public:
 
     virtual PSS_Tokenizer GetPrestationsList();
 
-    void OnDelCurrentPrestation( ZBProperty&    Property,
-                                 CString&        value,
-                                 ZBPropertySet&    Properties,
-                                 bool&            Refresh );
+    void OnDelCurrentPrestation(ZBProperty&    Property,
+                                CString&        value,
+                                ZBPropertySet&    Properties,
+                                bool&            Refresh);
     // ************************************************************************************************************
 
     // ************************************************************************************************************
@@ -230,33 +230,33 @@ public:
     }
 
     // Obtient le nom du risque, en spécifiant son index.
-    CString GetRiskName( size_t Index ) const
+    CString GetRiskName(size_t Index) const
     {
-        return m_Risks.GetRiskName( Index );
+        return m_Risks.GetRiskName(Index);
     }
 
     // Inscrit le nom du risque, en spécifiant son index.
-    void SetRiskName( size_t Index, CString Value )
+    void SetRiskName(size_t Index, CString Value)
     {
-        m_Risks.SetRiskName( Index, Value );
+        m_Risks.SetRiskName(Index, Value);
     }
 
     // Obtient la description du risque, en spécifiant son index.
-    CString GetRiskDesc( size_t Index ) const
+    CString GetRiskDesc(size_t Index) const
     {
-        return m_Risks.GetRiskDesc( Index );
+        return m_Risks.GetRiskDesc(Index);
     }
 
     // Inscrit la description du risque, en spécifiant son index.
-    void SetRiskDesc( size_t Index, CString Value )
+    void SetRiskDesc(size_t Index, CString Value)
     {
-        m_Risks.SetRiskDesc( Index, Value );
+        m_Risks.SetRiskDesc(Index, Value);
     }
 
     // Obtient le type du risque, en spécifiant son index.
     CString GetRiskType(std::size_t index) const
     {
-        int     count    = PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetElementCount();
+        int     count = PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetElementCount();
         CString riskType = m_Risks.GetRiskType(index);
 
         for (int i = 0; i < count; ++i)
@@ -267,88 +267,88 @@ public:
     }
 
     // Inscrit le type du risque, en spécifiant son index.
-    void SetRiskType( size_t Index, CString Value )
+    void SetRiskType(size_t Index, CString Value)
     {
-        m_Risks.SetRiskType( Index, Value );
+        m_Risks.SetRiskType(Index, Value);
     }
 
     // Obtient l'impact du risque, en spécifiant son index.
-    int GetRiskImpact( size_t Index ) const
+    int GetRiskImpact(size_t Index) const
     {
-        return m_Risks.GetRiskImpact( Index );
+        return m_Risks.GetRiskImpact(Index);
     }
 
     // Inscrit l'impact du risque, en spécifiant son index.
-    void SetRiskImpact( size_t Index, int Value )
+    void SetRiskImpact(size_t Index, int Value)
     {
-        m_Risks.SetRiskImpact( Index, Value );
+        m_Risks.SetRiskImpact(Index, Value);
     }
 
     // Obtient la probabilité du risque, en spécifiant son index.
-    int GetRiskProbability( size_t Index ) const
+    int GetRiskProbability(size_t Index) const
     {
-        return m_Risks.GetRiskProbability( Index );
+        return m_Risks.GetRiskProbability(Index);
     }
 
     // Inscrit la probabilité du risque, en spécifiant son index.
-    void SetRiskProbability( size_t Index, int Value )
+    void SetRiskProbability(size_t Index, int Value)
     {
-        m_Risks.SetRiskProbability( Index, Value );
+        m_Risks.SetRiskProbability(Index, Value);
     }
 
     // Obtient la sévérité du risque, en spécifiant son index.
-    int GetRiskSeverity( size_t Index ) const
+    int GetRiskSeverity(size_t Index) const
     {
-        return m_Risks.GetRiskSeverity( Index );
+        return m_Risks.GetRiskSeverity(Index);
     }
 
     // Inscrit la sévérité du risque, en spécifiant son index.
-    void SetRiskSeverity( size_t Index, int Value )
+    void SetRiskSeverity(size_t Index, int Value)
     {
-        m_Risks.SetRiskSeverity( Index, Value );
+        m_Risks.SetRiskSeverity(Index, Value);
     }
 
     // Obtient l'estimation unitaire du risque, en spécifiant son index.
-    float GetRiskUE( size_t Index ) const
+    float GetRiskUE(size_t Index) const
     {
-        return m_Risks.GetRiskUE( Index );
+        return m_Risks.GetRiskUE(Index);
     }
 
     // Inscrit l'estimation unitaire du risque, en spécifiant son index.
-    void SetRiskUE( size_t Index, float Value )
+    void SetRiskUE(size_t Index, float Value)
     {
-        m_Risks.SetRiskUE( Index, Value );
+        m_Risks.SetRiskUE(Index, Value);
     }
 
     // Obtient la perte operationnelle annuelle du risque, en spécifiant son index.
-    float GetRiskPOA( size_t Index ) const
+    float GetRiskPOA(size_t Index) const
     {
-        return m_Risks.GetRiskPOA( Index );
+        return m_Risks.GetRiskPOA(Index);
     }
 
     // Inscrit la perte operationnelle annuelle du risque, en spécifiant son index.
-    void SetRiskPOA( size_t Index, float Value )
+    void SetRiskPOA(size_t Index, float Value)
     {
-        m_Risks.SetRiskPOA( Index, Value );
+        m_Risks.SetRiskPOA(Index, Value);
     }
 
     // Obtient l'action du risque, en spécifiant son index.
-    bool GetRiskAction( size_t Index ) const
+    bool GetRiskAction(size_t Index) const
     {
-        return m_Risks.GetRiskAction( Index );
+        return m_Risks.GetRiskAction(Index);
     }
 
     // Inscrit l'action du risque, en spécifiant son index.
-    void SetRiskAction( size_t Index, bool Value )
+    void SetRiskAction(size_t Index, bool Value)
     {
-        m_Risks.SetRiskAction( Index, Value );
+        m_Risks.SetRiskAction(Index, Value);
     }
     // ************************************************************************************************************
 
     // ************************************************************************************************************
     // JMR-MODIF - Le 6 février 2006 - Ajout des fonctions nécessaires à la gestion des livraisons.
 
-    void OnDeliverableNameChange( CString OldName, CString NewName );
+    void OnDeliverableNameChange(CString OldName, CString NewName);
 
     ZBProcDeliveries& GetDeliveries()
     {
@@ -360,99 +360,99 @@ public:
         return m_Deliveries.GetDeliveriesCount();
     }
 
-    ZBBPDeliveriesProperties* GetDeliveryProperty( size_t Index ) const
+    ZBBPDeliveriesProperties* GetDeliveryProperty(size_t Index) const
     {
-        return m_Deliveries.GetProperty( Index );
+        return m_Deliveries.GetProperty(Index);
     }
 
-    CString GetDeliveryName( size_t Index ) const
+    CString GetDeliveryName(size_t Index) const
     {
-        return m_Deliveries.GetDeliveryName( Index );
+        return m_Deliveries.GetDeliveryName(Index);
     }
 
-    void SetDeliveryName( size_t Index, CString Value )
+    void SetDeliveryName(size_t Index, CString Value)
     {
-        m_Deliveries.SetDeliveryName( Index, Value );
+        m_Deliveries.SetDeliveryName(Index, Value);
     }
 
-    CString GetDeliveryDeliverables( size_t Index ) const
+    CString GetDeliveryDeliverables(size_t Index) const
     {
-        return m_Deliveries.GetDeliveryDeliverables( Index );
+        return m_Deliveries.GetDeliveryDeliverables(Index);
     }
 
-    void SetDeliveryDeliverables( size_t Index, CString Value )
+    void SetDeliveryDeliverables(size_t Index, CString Value)
     {
-        m_Deliveries.SetDeliveryDeliverables( Index, Value );
+        m_Deliveries.SetDeliveryDeliverables(Index, Value);
     }
 
-    bool AddDeliveryDeliverable( size_t Index, CString Value )
+    bool AddDeliveryDeliverable(size_t Index, CString Value)
     {
-        return m_Deliveries.AddDeliveryDeliverable( Index, Value );
+        return m_Deliveries.AddDeliveryDeliverable(Index, Value);
     }
 
-    bool RemoveDeliveryDeliverable( size_t Index, CString Value )
+    bool RemoveDeliveryDeliverable(size_t Index, CString Value)
     {
-        return m_Deliveries.RemoveDeliveryDeliverable( Index, Value );
+        return m_Deliveries.RemoveDeliveryDeliverable(Index, Value);
     }
 
-    bool RemoveAllDeliveryDeliverable( size_t Index )
+    bool RemoveAllDeliveryDeliverable(size_t Index)
     {
-        return m_Deliveries.RemoveAllDeliveryDeliverable( Index );
+        return m_Deliveries.RemoveAllDeliveryDeliverable(Index);
     }
 
-    float GetDeliveryQuantity( size_t Index ) const
+    float GetDeliveryQuantity(size_t Index) const
     {
-        return m_Deliveries.GetDeliveryQuantity( Index );
+        return m_Deliveries.GetDeliveryQuantity(Index);
     }
 
-    void SetDeliveryQuantity( size_t Index, const float value )
+    void SetDeliveryQuantity(size_t Index, const float value)
     {
-        m_Deliveries.SetDeliveryQuantity( Index, value );
+        m_Deliveries.SetDeliveryQuantity(Index, value);
     }
 
-    float GetDeliveryPercentage( size_t Index ) const
+    float GetDeliveryPercentage(size_t Index) const
     {
-        return m_Deliveries.GetDeliveryPercentage( Index );
+        return m_Deliveries.GetDeliveryPercentage(Index);
     }
 
-    void SetDeliveryPercentage( size_t Index, const float value )
+    void SetDeliveryPercentage(size_t Index, const float value)
     {
-        m_Deliveries.SetDeliveryPercentage( Index, value );
+        m_Deliveries.SetDeliveryPercentage(Index, value);
     }
 
-    CString GetDeliveryMain( size_t Index ) const
+    CString GetDeliveryMain(size_t Index) const
     {
-        return m_Deliveries.GetDeliveryMain( Index );
+        return m_Deliveries.GetDeliveryMain(Index);
     }
 
-    void SetDeliveryMain( size_t Index, CString Value )
+    void SetDeliveryMain(size_t Index, CString Value)
     {
-        m_Deliveries.SetDeliveryMain( Index, Value );
+        m_Deliveries.SetDeliveryMain(Index, Value);
     }
     // ************************************************************************************************************
 
-    bool ProcessExtendedInput( ZBProperty&        Property,
-                               CString&            value,
-                               ZBPropertySet&    Properties,
-                               bool&            Refresh );
+    bool ProcessExtendedInput(ZBProperty&        Property,
+                              CString&            value,
+                              ZBPropertySet&    Properties,
+                              bool&            Refresh);
 
-    bool ProcessMenuCommand( int            MenuCommand,
-                             ZBProperty&    Property,
-                             CString&        value,
-                             ZBPropertySet&    Properties,
-                             bool&            Refresh );
+    bool ProcessMenuCommand(int            MenuCommand,
+                            ZBProperty&    Property,
+                            CString&        value,
+                            ZBPropertySet&    Properties,
+                            bool&            Refresh);
 
     // JMR-MODIF - Le 18 décembre 2006 - Ajout de la fonction OnDropInternalPropertyItem.
-    virtual bool OnDropInternalPropertyItem( ZBProperty&    SrcProperty,
-                                             ZBProperty&    DstProperty,
-                                             bool            Top2Down,
-                                             ZBPropertySet&    Properties );
+    virtual bool OnDropInternalPropertyItem(ZBProperty&    SrcProperty,
+                                            ZBProperty&    DstProperty,
+                                            bool            Top2Down,
+                                            ZBPropertySet&    Properties);
 
     // JMR-MODIF - Le 26 avril 2007 - Ajout de la fonction ContainsRule.
-    BOOL ContainsRule( CString RuleName );
+    BOOL ContainsRule(CString RuleName);
 
     // JMR-MODIF - Le 9 octobre 2007 - Ajout de la fonction CheckRulesSync.
-    void CheckRulesSync( CStringArray& RulesList );
+    void CheckRulesSync(CStringArray& RulesList);
 
 protected:
 
@@ -463,80 +463,80 @@ private:
     // ************************************************************************************************************
     // JMR-MODIF - Le 10 juin 2007 - Ajout des fonctions nécesaires à la gestion des risques.
 
-    void OnAddNewRisk( ZBProperty&        Property,
-                       CString&            value,
-                       ZBPropertySet&    Properties,
-                       bool&            Refresh );
+    void OnAddNewRisk(ZBProperty&        Property,
+                      CString&            value,
+                      ZBPropertySet&    Properties,
+                      bool&            Refresh);
 
-    void OnDelCurrentRisk( ZBProperty&        Property,
-                           CString&            value,
-                           ZBPropertySet&    Properties,
-                           bool&            Refresh );
+    void OnDelCurrentRisk(ZBProperty&        Property,
+                          CString&            value,
+                          ZBPropertySet&    Properties,
+                          bool&            Refresh);
 
     int AddNewRisk()
     {
         return m_Risks.AddNewRisk();
     }
 
-    bool DeleteRisk( size_t Index )
+    bool DeleteRisk(size_t Index)
     {
-        return m_Risks.DeleteRisk( Index );
+        return m_Risks.DeleteRisk(Index);
     }
     // ************************************************************************************************************
 
     // ************************************************************************************************************
     // JMR-MODIF - Le 10 février 2006 - Ajout des fonctions nécessaires à la gestion des livraisons.
 
-    void OnAddNewDelivery( ZBProperty&        Property,
-                           CString&            value,
-                           ZBPropertySet&    Properties,
-                           bool&            Refresh );
+    void OnAddNewDelivery(ZBProperty&        Property,
+                          CString&            value,
+                          ZBPropertySet&    Properties,
+                          bool&            Refresh);
 
-    void OnDelCurrentDelivery( ZBProperty&        Property,
-                               CString&            value,
-                               ZBPropertySet&    Properties,
-                               bool&            Refresh );
+    void OnDelCurrentDelivery(ZBProperty&        Property,
+                              CString&            value,
+                              ZBPropertySet&    Properties,
+                              bool&            Refresh);
 
     int AddNewDelivery()
     {
         return m_Deliveries.AddNewDelivery();
     }
 
-    bool DeleteDelivery( size_t Index )
+    bool DeleteDelivery(size_t Index)
     {
-        return m_Deliveries.DeleteDelivery( Index );
+        return m_Deliveries.DeleteDelivery(Index);
     }
 
-    CString GetPossibleListOfMainDeliverables( ZBPropertySet& PropSet, int nCatID );
-    CString GetAvailableDeliverables( ZBPropertySet& PropSet );
-    CString CheckMainDeliverable( int Index );
-    CString CheckDeliverables( int Index );
+    CString GetPossibleListOfMainDeliverables(ZBPropertySet& PropSet, int nCatID);
+    CString GetAvailableDeliverables(ZBPropertySet& PropSet);
+    CString CheckMainDeliverable(int Index);
+    CString CheckDeliverables(int Index);
 
-    void UpdateValuesForThisDeliveryProperty( size_t Index );
+    void UpdateValuesForThisDeliveryProperty(size_t Index);
 
-    int GetDeliverablesInChildPages( CString& DeliverablesList );
+    int GetDeliverablesInChildPages(CString& DeliverablesList);
 
-    float FindQuantity( const CString Main, ZDProcessGraphModelMdlBP* m_RootModel = NULL );
+    float FindQuantity(const CString Main, ZDProcessGraphModelMdlBP* m_RootModel = NULL);
 
-    float CalculateDeliveryPercentage( float Quantity )
+    float CalculateDeliveryPercentage(float Quantity)
     {
         float m_SumOfDeliveries = CalculateSumOfDeliveries();
 
-        if ( m_SumOfDeliveries == 0.0f )
+        if (m_SumOfDeliveries == 0.0f)
         {
             return 0.0f;
         }
 
-        return ( Quantity / m_SumOfDeliveries );
+        return (Quantity / m_SumOfDeliveries);
     }
 
     float CalculateSumOfDeliveries()
     {
         float m_SumOfDeliveries = 0.0f;
 
-        for ( int i = 0; i < GetDeliveriesCount(); i++ )
+        for (int i = 0; i < GetDeliveriesCount(); i++)
         {
-            m_SumOfDeliveries += GetDeliveryQuantity( i );
+            m_SumOfDeliveries += GetDeliveryQuantity(i);
         }
 
         return m_SumOfDeliveries;
@@ -544,7 +544,7 @@ private:
     // ************************************************************************************************************
 
     // JMR-MODIF - Le 25 décembre 2006 - Ajout de la fonction GetRuleNameByGUID.
-    CString GetRuleNameByGUID( ZBLogicalRulesEntity* p_Rule, CString RuleGUID );
+    CString GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, CString RuleGUID);
 
 private:
 
@@ -573,12 +573,12 @@ inline ZBBPAnnualNumberProperties& ZBBPProcessSymbol::GetProcessWorkloadForecast
     return m_SimProperties.GetProcessWorkloadForecast();
 }
 
-inline void ZBBPProcessSymbol::SetProcessWorkloadForecast( const double value )
+inline void ZBBPProcessSymbol::SetProcessWorkloadForecast(const double value)
 {
-    m_SimProperties.SetProcessWorkloadForecast( value );
+    m_SimProperties.SetProcessWorkloadForecast(value);
 }
 
-inline void ZBBPProcessSymbol::SetProcessWorkloadForecast( ZBBPAnnualNumberProperties& AnnualNumberProp )
+inline void ZBBPProcessSymbol::SetProcessWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp)
 {
     m_SimProperties.GetProcessWorkloadForecast() = AnnualNumberProp;
 }
@@ -588,12 +588,12 @@ inline ZBBPAnnualNumberProperties& ZBBPProcessSymbol::GetProcessCostForecast()
     return m_SimProperties.GetProcessCostForecast();
 }
 
-inline void ZBBPProcessSymbol::SetProcessCostForecast( const double value )
+inline void ZBBPProcessSymbol::SetProcessCostForecast(const double value)
 {
-    m_SimProperties.SetProcessCostForecast( value );
+    m_SimProperties.SetProcessCostForecast(value);
 }
 
-inline void ZBBPProcessSymbol::SetProcessCostForecast( ZBBPAnnualNumberProperties& AnnualNumberProp )
+inline void ZBBPProcessSymbol::SetProcessCostForecast(ZBBPAnnualNumberProperties& AnnualNumberProp)
 {
     m_SimProperties.GetProcessCostForecast() = AnnualNumberProp;
 }
@@ -605,13 +605,13 @@ inline ZBBPAnnualNumberProperties& ZBBPProcessSymbol::GetProcessCost()
 }
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction SetProcessCost pour la prise en charge des coûts HMO.
-inline void ZBBPProcessSymbol::SetProcessCost( const double value )
+inline void ZBBPProcessSymbol::SetProcessCost(const double value)
 {
-    m_SimProperties.SetProcessCost( value );
+    m_SimProperties.SetProcessCost(value);
 }
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction SetProcessCost pour la prise en charge des coûts HMO.
-inline void ZBBPProcessSymbol::SetProcessCost( ZBBPAnnualNumberProperties& AnnualNumberProp )
+inline void ZBBPProcessSymbol::SetProcessCost(ZBBPAnnualNumberProperties& AnnualNumberProp)
 {
     m_SimProperties.GetProcessCost() = AnnualNumberProp;
 }
@@ -623,7 +623,7 @@ inline int ZBBPProcessSymbol::GetRightSubMenu() const
 
 inline int ZBBPProcessSymbol::GetIconIndex() const
 {
-    return ( IsLocal() ) ? 5 : 13;
+    return (IsLocal()) ? 5 : 13;
 }
 
-#endif // !defined(AFX_ZBBPPROCESSSYMBOL_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)
+#endif

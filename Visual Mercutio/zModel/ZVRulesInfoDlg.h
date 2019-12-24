@@ -16,24 +16,29 @@
 
 #include "zModelRes.h"
 
+// class name mapping
+#ifndef PSS_LogicalRulesEntity
+    #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
+#endif
+
 // forward class declaration
-class ZBLogicalRulesEntity;
+class PSS_LogicalRulesEntity;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVRulesInfoDlg dialog
 
 class ZVRulesInfoDlg : public CDialog
 {
-// Construction
+    // Construction
 public:
 
     // Standard constructor
-    ZVRulesInfoDlg( UINT                    nTitleID        = -1,
-                    ZBLogicalRulesEntity*    pLogicalRule    = NULL,
-                    const CString            Name            = _T( "" ),
-                    const CString            Description        = _T( "" ),
-                    bool                    ModifyMode        = false,
-                    CWnd*                    pParent            = NULL );
+    ZVRulesInfoDlg(UINT                    nTitleID = -1,
+                   PSS_LogicalRulesEntity*    pLogicalRule = NULL,
+                   const CString            Name = _T(""),
+                   const CString            Description = _T(""),
+                   bool                    ModifyMode = false,
+                   CWnd*                    pParent = NULL);
 
     ~ZVRulesInfoDlg();
 
@@ -47,11 +52,14 @@ public:
         return m_Name;
     };
 
-// Dialog Data
+    // Dialog Data
 private:
 
     //{{AFX_DATA(ZVRulesInfoDlg)
-    enum { IDD = IDD_RULES_INFO };
+    enum
+    {
+        IDD = IDD_RULES_INFO
+    };
     CString m_Description;
     CString m_Name;
     //}}AFX_DATA
@@ -59,7 +67,7 @@ private:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVRulesInfoDlg)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -74,13 +82,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    ZBLogicalRulesEntity*    m_pRule;
-    CString                    m_Title;
+    PSS_LogicalRulesEntity* m_pRule;
+    CString                 m_Title;
     bool                    m_ModifyMode;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVRulesInfoDlg_H__5CDA1CC0_FE18_47C1_BBCB_4FF3CA656F62__INCLUDED_)
+#endif

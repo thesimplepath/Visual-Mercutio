@@ -14,25 +14,25 @@
 #ifndef ZAApp_h
 #define ZAApp_h 1
 
+// processsoft
+#include "ZAMApp.h"
+#include "DocWrite.h"
+
 // class name mapping
 #ifndef PSS_WorkspaceEnv
     #define PSS_WorkspaceEnv ZBWorkspaceEnv
 #endif
-#ifndef PSS_WorkspaceWizardTemplateManager
-    #define PSS_WorkspaceWizardTemplateManager ZBWorkspaceWizardTemplateMg
-#endif
-
-// ZAMApp
-#include "ZAMApp.h"
-
-#include "DocWrite.h"
-
-// class name mapping
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_WorkspaceWizardTemplateManager
+    #define PSS_WorkspaceWizardTemplateManager ZBWorkspaceWizardTemplateMg
+#endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
+#ifndef PSS_LogicalRulesEntity
+    #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
 #endif
 
 // forward class declaration
@@ -48,16 +48,10 @@ class ZDUserEntityDocument;
 class ZBUserGroupEntity;
 class ZDLogicalSystemDocument;
 class ZBLogicalSystemEntity;
-
-// JMR-MODIF - Le 7 octobre 2005 - Ajout des classes du nouvel espace de travail des prestations.
 class ZDLogicalPrestationsDocument;
 class PSS_LogicalPrestationsEntity;
-
-// JMR-MODIF - Le 15 novembre 2006 - Ajout des classes du nouvel espace de travail des règles.
 class ZDLogicalRulesDocument;
-class ZBLogicalRulesEntity;
-
-// JMR-MODIF - Le 8 juillet 2007 - Ajout des classes de la nouvelle propriété Risques.
+class PSS_LogicalRulesEntity;
 class ZVRiskTypeContainer;
 class ZVRiskImpactContainer;
 class ZVRiskProbabilityContainer;
@@ -133,7 +127,7 @@ public:
     // Fonctions concernant l'espace de travail des règles
 
     // JMR-MODIF - Le 19 novembre 2006 - Ajout de la fonction GetMainLogicalRules.
-    ZBLogicalRulesEntity* GetMainLogicalRules();
+    PSS_LogicalRulesEntity* GetMainLogicalRules();
 
     // JMR-MODIF - Le 19 novembre 2006 - Ajout de la fonction GetRulesFileName.
     CString GetRulesFileName() const

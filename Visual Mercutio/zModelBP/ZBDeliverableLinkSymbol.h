@@ -24,7 +24,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zModel\ZDProcessGraphPage.h"
-#include "zModel\ZBLogicalRulesEntity.h"
+#include "zModel\PSS_LogicalRulesEntity.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "ProcGraphModelMdlBP.h"
 #include "ZBProcRules.h"
@@ -844,7 +844,7 @@ private:
     void AdjustPoints();
 
     // JMR-MODIF - Le 25 décembre 2006 - Ajout de la fonction GetRuleNameByGUID.
-    CString GetRuleNameByGUID(ZBLogicalRulesEntity* p_Rule, CString RuleGUID);
+    CString GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, CString RuleGUID);
 
 private:
 

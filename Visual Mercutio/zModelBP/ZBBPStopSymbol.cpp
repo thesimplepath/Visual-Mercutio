@@ -193,7 +193,7 @@ bool ZBBPStopSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
     }
 
     // JMR-MODIF - Le 18 décembre 2006 - Détermine si l'objet reçu est un objet de type règle.
-    if (pObj && ISA(pObj, ZBLogicalRulesEntity))
+    if (pObj && ISA(pObj, PSS_LogicalRulesEntity))
     {
         return true;
     }
@@ -236,7 +236,7 @@ bool ZBBPStopSymbol::DropItem(CObject* pObj, const CPoint& pt)
 
     // **********************************************************************************************************
     // JMR-MODIF - Le 18 décembre 2006 - Ajout du code pour le traitement des objets de type règles.
-    if (pObj && ISA(pObj, ZBLogicalRulesEntity))
+    if (pObj && ISA(pObj, PSS_LogicalRulesEntity))
     {
         // First, check if the rule is valid
         CODModel* pModel = GetRootModel();
@@ -250,7 +250,7 @@ bool ZBBPStopSymbol::DropItem(CObject* pObj, const CPoint& pt)
             return false;
         }
 
-        ZBLogicalRulesEntity* pRule = dynamic_cast<ZBLogicalRulesEntity*>(pObj);
+        PSS_LogicalRulesEntity* pRule = dynamic_cast<PSS_LogicalRulesEntity*>(pObj);
 
         ZBBPRulesProperties* m_NewRule = new ZBBPRulesProperties();
 
@@ -273,7 +273,7 @@ bool ZBBPStopSymbol::DropItem(CObject* pObj, const CPoint& pt)
 }
 
 // JMR-MODIF - Le 25 décembre 2006 - Permet de rechercher le nom original d'une règle en fonction de son GUID.
-CString ZBBPStopSymbol::GetRuleNameByGUID(ZBLogicalRulesEntity* p_Rule, CString RuleGUID)
+CString ZBBPStopSymbol::GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, CString RuleGUID)
 {
     if (p_Rule == NULL)
     {
@@ -298,9 +298,9 @@ CString ZBBPStopSymbol::GetRuleNameByGUID(ZBLogicalRulesEntity* p_Rule, CString 
                 continue;
             }
 
-            if (ISA(pEntity, ZBLogicalRulesEntity))
+            if (ISA(pEntity, PSS_LogicalRulesEntity))
             {
-                CString m_Name = GetRuleNameByGUID(dynamic_cast<ZBLogicalRulesEntity*>(pEntity), RuleGUID);
+                CString m_Name = GetRuleNameByGUID(dynamic_cast<PSS_LogicalRulesEntity*>(pEntity), RuleGUID);
 
                 if (!m_Name.IsEmpty())
                 {
@@ -360,7 +360,7 @@ void ZBBPStopSymbol::CheckRulesSync(CStringArray& RulesList)
 
     if (m_Rules.GetRulesCount() > 0)
     {
-        ZBLogicalRulesEntity* p_MainRule = NULL;
+        PSS_LogicalRulesEntity* p_MainRule = NULL;
 
         if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
         {
@@ -436,7 +436,7 @@ bool ZBBPStopSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*
         RuleSectionTitle.LoadString(IDS_Z_RULES_TITLE);
         RuleDesc.LoadString(IDS_Z_RULES_DESC);
 
-        ZBLogicalRulesEntity* p_MainRule = NULL;
+        PSS_LogicalRulesEntity* p_MainRule = NULL;
 
         if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
         {

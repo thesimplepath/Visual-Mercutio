@@ -21,7 +21,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBLogicalRulesEntity.h"
+#include "PSS_LogicalRulesEntity.h"
 
 // BaseDoc
 #include "zBaseLib\PSS_BaseDocument.h"
@@ -38,7 +38,7 @@
 
 class AFX_EXT_CLASS ZDLogicalRulesDocument : public PSS_BaseDocument
 {
-    DECLARE_DYNCREATE( ZDLogicalRulesDocument )
+    DECLARE_DYNCREATE(ZDLogicalRulesDocument)
 
 public:
 
@@ -48,13 +48,13 @@ public:
     ZDLogicalRulesDocument();
     ~ZDLogicalRulesDocument();
 
-// Operations
+    // Operations
 public:
 
-    bool ReadFromFile    ( const CString fileName );
-    bool SaveToFile        ( const CString fileName );
+    bool ReadFromFile(const CString fileName);
+    bool SaveToFile(const CString fileName);
 
-    ZBLogicalRulesEntity& GetRulesEnvironment()
+    PSS_LogicalRulesEntity& GetRulesEnvironment()
     {
         return m_RulesEnvironment;
     }
@@ -64,7 +64,7 @@ public:
         return m_IsLoaded;
     }
 
-    void SetLoaded( bool value = true )
+    void SetLoaded(bool value = true)
     {
         m_IsLoaded = value;
     }
@@ -74,18 +74,18 @@ public:
         return CDocument::IsModified() || m_RulesEnvironment.IsModified();
     }
 
-    virtual void SetModifiedFlag( BOOL bModified = TRUE )
+    virtual void SetModifiedFlag(BOOL bModified = TRUE)
     {
-        CDocument::SetModifiedFlag( bModified );
-        m_RulesEnvironment.SetModifiedFlag( bModified );
+        CDocument::SetModifiedFlag(bModified);
+        m_RulesEnvironment.SetModifiedFlag(bModified);
     }
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZDRulesDocument)
-    public:
+public:
     virtual void Serialize(CArchive& ar);   // overridden for document i/o
-    protected:
+protected:
     virtual BOOL OnNewDocument();
     //}}AFX_VIRTUAL
 
@@ -93,10 +93,10 @@ public:
 public:
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(ZDRulesDocument)
@@ -104,17 +104,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    // Unique GUID for this file.
-    // Other file using this file can save this GUID
-    // to be sure they are using the right file.
-    CString                    m_GUID;
-
-    ZBLogicalRulesEntity    m_RulesEnvironment;
-    bool                    m_IsLoaded;
+    PSS_LogicalRulesEntity m_RulesEnvironment;
+    CString                m_GUID;
+    bool                   m_IsLoaded;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZDRulesDocument_H__6325FCF2_2A96_4A88_81CB_EEF32C4B5FE9__INCLUDED_)
+#endif

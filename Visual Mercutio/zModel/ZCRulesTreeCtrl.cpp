@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZCRulesTreeCtrl.h"
 
-#include "ZBLogicalRulesEntity.h"
+#include "PSS_LogicalRulesEntity.h"
 #include "ZVSelectRuleDlg.h"
 #include "ZBLogicalRulesObserverMsg.h"
 
@@ -41,7 +41,7 @@ _ZInternalRulesTreeData::_ZInternalRulesTreeData()
     m_Str.Empty();
 }
 
-_ZInternalRulesTreeData::_ZInternalRulesTreeData(ZBLogicalRulesEntity* pLogicalRule)
+_ZInternalRulesTreeData::_ZInternalRulesTreeData(PSS_LogicalRulesEntity* pLogicalRule)
 {
     m_dtp = ptp_Rule;
     m_pRule = pLogicalRule;
@@ -82,7 +82,7 @@ BEGIN_MESSAGE_MAP(ZCRulesTreeCtrl, PSS_TreeCtrl)
 END_MESSAGE_MAP()
 
 ZCRulesTreeCtrl::ZCRulesTreeCtrl(const CString            RootName            /*= _T( "" )*/,
-                                 ZBLogicalRulesEntity*    pLogicalRuleRoot    /*= NULL*/) :
+                                 PSS_LogicalRulesEntity*    pLogicalRuleRoot    /*= NULL*/) :
     PSS_TreeCtrl(),
     m_RootName(RootName),
     m_pLogicalRuleRoot(pLogicalRuleRoot),
@@ -93,7 +93,7 @@ ZCRulesTreeCtrl::ZCRulesTreeCtrl(const CString            RootName            /*
 ZCRulesTreeCtrl::~ZCRulesTreeCtrl()
 {}
 
-void ZCRulesTreeCtrl::Initialize(const CString RootName, ZBLogicalRulesEntity* pLogicalRuleRoot)
+void ZCRulesTreeCtrl::Initialize(const CString RootName, PSS_LogicalRulesEntity* pLogicalRuleRoot)
 {
     m_RootName = RootName;
     m_pLogicalRuleRoot = pLogicalRuleRoot;
@@ -128,10 +128,10 @@ void ZCRulesTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
             case UM_INITRULES:
             {
                 if (dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity() &&
-                    ISA(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity(), ZBLogicalRulesEntity))
+                    ISA(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity(), PSS_LogicalRulesEntity))
                 {
-                    ZBLogicalRulesEntity* pLogicalRule =
-                        dynamic_cast<ZBLogicalRulesEntity*>(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity());
+                    PSS_LogicalRulesEntity* pLogicalRule =
+                        dynamic_cast<PSS_LogicalRulesEntity*>(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetEntity());
 
                     Initialize(dynamic_cast<ZBLogicalRulesObserverMsg*>(pMsg)->GetRootName(), pLogicalRule);
                 }
@@ -218,7 +218,7 @@ void ZCRulesTreeCtrl::LoadTree()
     ExpandRoot(TRUE);
 }
 
-void ZCRulesTreeCtrl::ProcessLogicalRulesGroup(ZBLogicalRulesEntity*    pLogicalRule,
+void ZCRulesTreeCtrl::ProcessLogicalRulesGroup(PSS_LogicalRulesEntity*    pLogicalRule,
                                                HTREEITEM                hParentTreeItem)
 {
     // First, add the item
@@ -237,9 +237,9 @@ void ZCRulesTreeCtrl::ProcessLogicalRulesGroup(ZBLogicalRulesEntity*    pLogical
                 continue;
             }
 
-            if (ISA(pEntity, ZBLogicalRulesEntity))
+            if (ISA(pEntity, PSS_LogicalRulesEntity))
             {
-                ProcessLogicalRulesGroup(dynamic_cast<ZBLogicalRulesEntity*>(pEntity), hGroupItem);
+                ProcessLogicalRulesGroup(dynamic_cast<PSS_LogicalRulesEntity*>(pEntity), hGroupItem);
             }
         }
     }
@@ -260,7 +260,7 @@ HTREEITEM ZCRulesTreeCtrl::AddTypeItem(const CString Name, int IconIndex, HTREEI
     return InsertItem(&curTreeItem);
 }
 
-HTREEITEM ZCRulesTreeCtrl::AddLogicalRuleItem(ZBLogicalRulesEntity*    pLogicalRule,
+HTREEITEM ZCRulesTreeCtrl::AddLogicalRuleItem(PSS_LogicalRulesEntity*    pLogicalRule,
                                               HTREEITEM                hParentTreeItem)
 {
     if (!pLogicalRule)
@@ -281,7 +281,7 @@ HTREEITEM ZCRulesTreeCtrl::AddLogicalRuleItem(ZBLogicalRulesEntity*    pLogicalR
     return InsertItem(&curTreeItem);
 }
 
-BOOL ZCRulesTreeCtrl::ModifyLogicalRuleItem(ZBLogicalRulesEntity*    pLogicalRule,
+BOOL ZCRulesTreeCtrl::ModifyLogicalRuleItem(PSS_LogicalRulesEntity*    pLogicalRule,
                                             HTREEITEM                hItem)
 {
     if (!pLogicalRule)
@@ -292,8 +292,8 @@ BOOL ZCRulesTreeCtrl::ModifyLogicalRuleItem(ZBLogicalRulesEntity*    pLogicalRul
     return SetItemText(hItem, (char*)((const char*)pLogicalRule->GetEntityName()));
 }
 
-void ZCRulesTreeCtrl::AddRule(ZBLogicalRulesEntity* pLogicalRule,
-                              ZBLogicalRulesEntity* pParentLogicalRule /*= NULL*/)
+void ZCRulesTreeCtrl::AddRule(PSS_LogicalRulesEntity* pLogicalRule,
+                              PSS_LogicalRulesEntity* pParentLogicalRule /*= NULL*/)
 {
     if (!m_hUserGroupRoot || !pLogicalRule)
     {
@@ -329,7 +329,7 @@ void ZCRulesTreeCtrl::AddRule(ZBLogicalRulesEntity* pLogicalRule,
     ExpandBranch(hParentTreeItem);
 }
 
-void ZCRulesTreeCtrl::RemoveRule(ZBLogicalRulesEntity* pLogicalRule)
+void ZCRulesTreeCtrl::RemoveRule(PSS_LogicalRulesEntity* pLogicalRule)
 {
     if (!m_hUserGroupRoot || !pLogicalRule)
     {
@@ -350,7 +350,7 @@ void ZCRulesTreeCtrl::RemoveRule(ZBLogicalRulesEntity* pLogicalRule)
     }
 }
 
-void ZCRulesTreeCtrl::ModifyRule(ZBLogicalRulesEntity* pLogicalRule)
+void ZCRulesTreeCtrl::ModifyRule(PSS_LogicalRulesEntity* pLogicalRule)
 {
     if (!m_hUserGroupRoot || !pLogicalRule)
     {
@@ -391,12 +391,12 @@ ZBRulesEntity* ZCRulesTreeCtrl::_GetRuleEntity(HTREEITEM hItem)
     return NULL;
 }
 
-ZBLogicalRulesEntity* ZCRulesTreeCtrl::GetSelectedLogicalRule()
+PSS_LogicalRulesEntity* ZCRulesTreeCtrl::GetSelectedLogicalRule()
 {
     return _GetLogicalRule(GetSelectedItem());
 }
 
-ZBLogicalRulesEntity* ZCRulesTreeCtrl::_GetLogicalRule(HTREEITEM hItem)
+PSS_LogicalRulesEntity* ZCRulesTreeCtrl::_GetLogicalRule(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -411,24 +411,24 @@ ZBLogicalRulesEntity* ZCRulesTreeCtrl::_GetLogicalRule(HTREEITEM hItem)
     return NULL;
 }
 
-ZBLogicalRulesEntity* ZCRulesTreeCtrl::GetSelectedLogicalRuleOwner()
+PSS_LogicalRulesEntity* ZCRulesTreeCtrl::GetSelectedLogicalRuleOwner()
 {
     return _GetOwnerRule(GetSelectedItem());
 }
 
-ZBLogicalRulesEntity* ZCRulesTreeCtrl::_GetOwnerRule(HTREEITEM hItem)
+PSS_LogicalRulesEntity* ZCRulesTreeCtrl::_GetOwnerRule(HTREEITEM hItem)
 {
     if (hItem)
     {
-        ZBLogicalRulesEntity* pLogicalRule = _GetLogicalRule(hItem);
+        PSS_LogicalRulesEntity* pLogicalRule = _GetLogicalRule(hItem);
 
         if (pLogicalRule)
         {
             // If a parent defined
             if (pLogicalRule->GetParent() &&
-                ISA(pLogicalRule->GetParent(), ZBLogicalRulesEntity))
+                ISA(pLogicalRule->GetParent(), PSS_LogicalRulesEntity))
             {
-                return dynamic_cast<ZBLogicalRulesEntity*>(pLogicalRule->GetParent());
+                return dynamic_cast<PSS_LogicalRulesEntity*>(pLogicalRule->GetParent());
             }
 
             return pLogicalRule;
@@ -547,7 +547,7 @@ void ZCRulesTreeCtrl::EmptyDataSet()
     m_DataSet.RemoveAll();
 }
 
-_ZInternalRulesTreeData* ZCRulesTreeCtrl::FindElementFromDataSet(ZBLogicalRulesEntity* pLogicalRule)
+_ZInternalRulesTreeData* ZCRulesTreeCtrl::FindElementFromDataSet(PSS_LogicalRulesEntity* pLogicalRule)
 {
     _ZInternalRulesTreeDataIterator i(&m_DataSet);
 
@@ -578,7 +578,7 @@ _ZInternalRulesTreeData* ZCRulesTreeCtrl::FindElementFromDataSet(CString Str)
     return NULL;
 }
 
-_ZInternalRulesTreeData* ZCRulesTreeCtrl::AddDataToSet(ZBLogicalRulesEntity* pLogicalRule)
+_ZInternalRulesTreeData* ZCRulesTreeCtrl::AddDataToSet(PSS_LogicalRulesEntity* pLogicalRule)
 {
     _ZInternalRulesTreeData* pData = new _ZInternalRulesTreeData(pLogicalRule);
     m_DataSet.Add(pData);
@@ -599,7 +599,7 @@ _ZInternalRulesTreeData* ZCRulesTreeCtrl::AddDataToSet(CString Str)
 
 void ZCRulesTreeCtrl::OnNewRule()
 {
-    ZBLogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
+    PSS_LogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
 
     // If a group selected
     if (pLogicalRule != NULL)
@@ -611,7 +611,7 @@ void ZCRulesTreeCtrl::OnNewRule()
 
         if (dlg.DoModal() == IDOK)
         {
-            ZBLogicalRulesEntity* pNewGroup = m_pLogicalRuleRoot->AddRule(dlg.GetName(),
+            PSS_LogicalRulesEntity* pNewGroup = m_pLogicalRuleRoot->AddRule(dlg.GetName(),
                                                                           dlg.GetDescription(),
                                                                           pLogicalRule);
 
@@ -634,7 +634,7 @@ void ZCRulesTreeCtrl::OnDeleteRule()
         return;
     }
 
-    ZBLogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
+    PSS_LogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
 
     if (pLogicalRule != NULL && pLogicalRule != m_pLogicalRuleRoot)
     {
@@ -658,14 +658,14 @@ void ZCRulesTreeCtrl::OnRenameRule()
         return;
     }
 
-    ZBLogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
+    PSS_LogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
 
     if (pLogicalRule != NULL)
     {
         ASSERT(m_pLogicalRuleRoot != NULL);
 
         ZVRulesInfoDlg dlg(IDS_RENAME_RULE_T,
-            (pLogicalRule->GetParent() && ISA(pLogicalRule->GetParent(), ZBLogicalRulesEntity)) ? dynamic_cast<ZBLogicalRulesEntity*>(pLogicalRule->GetParent()) : pLogicalRule,
+            (pLogicalRule->GetParent() && ISA(pLogicalRule->GetParent(), PSS_LogicalRulesEntity)) ? dynamic_cast<PSS_LogicalRulesEntity*>(pLogicalRule->GetParent()) : pLogicalRule,
                            pLogicalRule->GetEntityName(),
                            pLogicalRule->GetEntityDescription());
 
@@ -701,11 +701,11 @@ void ZCRulesTreeCtrl::OnMoveRule()
             // and if it is not the same
             if (dlg.GetSelectedRuleEntity() &&
                 dlg.GetSelectedRuleEntity() != pRule &&
-                ISA(dlg.GetSelectedRuleEntity(), ZBLogicalRulesEntity))
+                ISA(dlg.GetSelectedRuleEntity(), PSS_LogicalRulesEntity))
             {
                 // Move the element
                 // Assigns the new parent
-                dynamic_cast<ZBLogicalRulesEntity*>(dlg.GetSelectedRuleEntity())->MoveRule(pRule);
+                dynamic_cast<PSS_LogicalRulesEntity*>(dlg.GetSelectedRuleEntity())->MoveRule(pRule);
 
                 // Modified
                 m_pLogicalRuleRoot->SetModifiedFlag();
@@ -723,11 +723,11 @@ void ZCRulesTreeCtrl::OnRuleProperties()
 
     if (pEntity != NULL)
     {
-        ZBLogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
+        PSS_LogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
         ASSERT(m_pLogicalRuleRoot != NULL);
 
         ZVRulesInfoDlg dlg(IDS_RULE_PROPERTY_T,
-            (pEntity->GetParent() && ISA(pEntity->GetParent(), ZBLogicalRulesEntity)) ? dynamic_cast<ZBLogicalRulesEntity*>(pEntity->GetParent()) : m_pLogicalRuleRoot,
+            (pEntity->GetParent() && ISA(pEntity->GetParent(), PSS_LogicalRulesEntity)) ? dynamic_cast<PSS_LogicalRulesEntity*>(pEntity->GetParent()) : m_pLogicalRuleRoot,
                            pEntity->GetEntityName(),
                            pEntity->GetEntityDescription(),
                            true);        // ModifyMode

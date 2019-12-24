@@ -34,29 +34,34 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// Forward class declaration
+// class name mapping
+#ifndef PSS_LogicalRulesEntity
+    #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
+#endif
+
+// forward class declaration
 class ZBRulesEntity;
-class ZBLogicalRulesEntity;
+class PSS_LogicalRulesEntity;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectRuleDlg dialog
 
 class AFX_EXT_CLASS ZVSelectRuleDlg : public CDialog
 {
-// Construction
+    // Construction
 public:
 
     // Standard constructor
-    ZVSelectRuleDlg( const CString                    Title                = _T( "" ),
-                           ZBLogicalRulesEntity*    pMainRule            = NULL,
-                           bool                        AllowRuleSelection    = true,
-                           CWnd*                    pParent                = NULL );
+    ZVSelectRuleDlg(const CString                    Title = _T(""),
+                    PSS_LogicalRulesEntity*    pMainRule = NULL,
+                    bool                        AllowRuleSelection = true,
+                    CWnd*                    pParent = NULL);
 
     // Standard constructor
-    ZVSelectRuleDlg( UINT                    nTitle,
-                     ZBLogicalRulesEntity*    pMainRule,
-                     bool                    AllowRuleSelection    = true,
-                     CWnd*                    pParent                = NULL );
+    ZVSelectRuleDlg(UINT                    nTitle,
+                    PSS_LogicalRulesEntity*    pMainRule,
+                    bool                    AllowRuleSelection = true,
+                    CWnd*                    pParent = NULL);
 
     ~ZVSelectRuleDlg();
 
@@ -71,14 +76,17 @@ private:
 
     // Dialog Data
     //{{AFX_DATA(ZVSelectRuleDlg)
-    enum { IDD = IDD_RULE_SELECTION };
+    enum
+    {
+        IDD = IDD_RULE_SELECTION
+    };
     ZCRulesTreeCtrl m_Ctrl;
     //}}AFX_DATA
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVSelectRuleDlg)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -94,14 +102,10 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    CString                    m_Title;
-    ZBRulesEntity*            m_pRuleEntity;
-    ZBLogicalRulesEntity*    m_pMainRule;
+    CString                 m_Title;
+    ZBRulesEntity*          m_pRuleEntity;
+    PSS_LogicalRulesEntity* m_pMainRule;
     bool                    m_AllowRuleSelection;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVSELECTRULEDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)
+#endif

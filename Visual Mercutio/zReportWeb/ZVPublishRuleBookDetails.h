@@ -50,33 +50,33 @@ class AFX_EXT_CLASS ZVPublishRuleBookDetails
 {
 public:
 
-    ZVPublishRuleBookDetails            ( ZDProcessGraphModelMdlBP* pModel = NULL );
-    virtual ~ZVPublishRuleBookDetails    ();
+    ZVPublishRuleBookDetails(ZDProcessGraphModelMdlBP* pModel = NULL);
+    virtual ~ZVPublishRuleBookDetails();
 
-    bool Publish                        ( CString Directory );
+    bool Publish(CString Directory);
 
 private:
 
-    bool CreateFileSystem                ( ZBLogicalRulesEntity* pRules, CString Directory );
+    bool CreateFileSystem(PSS_LogicalRulesEntity* pRules, CString Directory);
 
-    CString GenerateFileName            ( CString Directory );
+    CString GenerateFileName(CString Directory);
 
-    void CreateReport                    ( ZBLogicalRulesEntity* pRules );
-    void GenerateHTMLPageHead            ( CString Title );
-    void GenerateHTMLPageFoot            ();
-    void GenerateHTMLDocumentHeader        ();
-    void WriteLine                        ( CString Text );
-    void WriteLine                        ( int nID );
+    void CreateReport(PSS_LogicalRulesEntity* pRules);
+    void GenerateHTMLPageHead(CString Title);
+    void GenerateHTMLPageFoot();
+    void GenerateHTMLDocumentHeader();
+    void WriteLine(CString Text);
+    void WriteLine(int nID);
 
-    void GenerateSection                ( CString RuleNumber,
-                                          CString RuleName,
-                                          CString ObjType,
-                                          CString ObjName,
-                                          CString UnitName );
+    void GenerateSection(CString RuleNumber,
+                         CString RuleName,
+                         CString ObjType,
+                         CString ObjName,
+                         CString UnitName);
 
-    void ExploreProcessHierarchy        ( CString                    RuleNumber,
-                                          CString                    RuleName,
-                                          ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL );
+    void ExploreProcessHierarchy(CString                    RuleNumber,
+                                 CString                    RuleName,
+                                 ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL);
 
 private:
 
@@ -92,4 +92,4 @@ private:
     int                                    Lvl3Counter;
 };
 
-#endif // !defined(AFX_ZVPUBLISHRULEBOOKDETAILS_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
+#endif

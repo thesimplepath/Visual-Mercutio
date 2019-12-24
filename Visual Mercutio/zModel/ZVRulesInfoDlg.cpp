@@ -10,11 +10,10 @@
 #include "stdafx.h"
 #include "ZVRulesInfoDlg.h"
 
-#include "ZBLogicalRulesEntity.h"
-
+// processsoft
 #include "zBaseLib\PSS_MsgBox.h"
-
 #include "zBaseLib\zBaseLibRes.h"
+#include "PSS_LogicalRulesEntity.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,7 +30,7 @@ BEGIN_MESSAGE_MAP(ZVRulesInfoDlg, CDialog)
 END_MESSAGE_MAP()
 
 ZVRulesInfoDlg::ZVRulesInfoDlg(UINT                    nTitleID        /*= -1*/,
-                               ZBLogicalRulesEntity*    pLogicalRule    /*= NULL*/,
+                               PSS_LogicalRulesEntity* pLogicalRule    /*= NULL*/,
                                const CString            Name            /*= _T( "" )*/,
                                const CString            Description        /*= _T( "" )*/,
                                bool                    ModifyMode        /*= false*/,

@@ -19,7 +19,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zModel\PSS_Symbol.h"
-#include "zModel\ZBLogicalRulesEntity.h"
+#include "zModel\PSS_LogicalRulesEntity.h"
 #include "ZBBPUnitProp2.h"
 #include "ZBProcRules.h"
 #include "ZBBPRulesProp.h"
@@ -358,7 +358,7 @@ protected:
 private:
 
     // JMR-MODIF - Le 25 décembre 2006 - Ajout de la fonction GetRuleNameByGUID.
-    CString GetRuleNameByGUID( ZBLogicalRulesEntity* p_Rule, CString RuleGUID );
+    CString GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, CString RuleGUID );
 
 private:
 

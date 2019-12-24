@@ -8,7 +8,7 @@
 #include "ZBUserGroupObserverMsg.h"
 
 #include "zBaseLib\zBaseLibRes.h"
-#include "ZVUserGroupInfoDlg.h"
+#include "PSS_UserGroupInfoDlg.h"
 
 // RS-MODIF 12.12.04 we need doc informations
 #include "zModel\PSS_ProcessGraphModelDoc.h"
@@ -171,7 +171,7 @@ void ZCUserGroupTreeCtrl::OnUgpNewGroup()
 
         // Asks for the name
         // RS-MODIF 12.12.04
-        ZVUserGroupInfoDlg dlg(IDS_UGP_NEWGROUP_T,
+        PSS_UserGroupInfoDlg dlg(IDS_UGP_NEWGROUP_T,
                                pGroup,
                                _T(""),
                                _T(""),
@@ -249,7 +249,7 @@ void ZCUserGroupTreeCtrl::OnUgpRenameGroup()
     {
         ASSERT(m_pUserGroupRoot != NULL);
 
-        ZVUserGroupInfoDlg dlg(IDS_UGP_RENAMEGROUP_T,
+        PSS_UserGroupInfoDlg dlg(IDS_UGP_RENAMEGROUP_T,
             (pGroup->GetParent() && ISA(pGroup->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pGroup->GetParent()) : pGroup,
                                pGroup->GetEntityName(),
                                pGroup->GetEntityDescription(),
@@ -280,7 +280,7 @@ void ZCUserGroupTreeCtrl::OnUgpAddRole()
     if (pGroup != NULL)
     {
         // Asks for the name
-        ZVUserGroupInfoDlg dlg(IDS_UGP_NEWROLE_T,
+        PSS_UserGroupInfoDlg dlg(IDS_UGP_NEWROLE_T,
                                pGroup,
                                _T(""),
                                _T(""),
@@ -330,7 +330,7 @@ void ZCUserGroupTreeCtrl::OnUgpRenameRole()
     {
         ASSERT(m_pUserGroupRoot != NULL);
 
-        ZVUserGroupInfoDlg dlg(IDS_UGP_RENAMEROLE_T,
+        PSS_UserGroupInfoDlg dlg(IDS_UGP_RENAMEROLE_T,
             (pRole->GetParent() && ISA(pRole->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pRole->GetParent()) : m_pUserGroupRoot,
                                pRole->GetEntityName(),
                                pRole->GetEntityDescription(),
@@ -412,7 +412,7 @@ void ZCUserGroupTreeCtrl::OnUgpProperties()
         ZBUserGroupEntity* pGroup = GetSelectedGroup();
         ASSERT(m_pUserGroupRoot != NULL);
 
-        ZVUserGroupInfoDlg dlg(IDS_UGP_PROPERTY_T,
+        PSS_UserGroupInfoDlg dlg(IDS_UGP_PROPERTY_T,
             (pEntity->GetParent() && ISA(pEntity->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pEntity->GetParent()) : m_pUserGroupRoot,
                                pEntity->GetEntityName(),
                                pEntity->GetEntityDescription(),
