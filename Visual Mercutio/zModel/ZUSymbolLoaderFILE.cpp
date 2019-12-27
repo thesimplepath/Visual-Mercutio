@@ -9,7 +9,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -18,33 +18,26 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUSymbolLoaderFILE::ZUSymbolLoaderFILE()
-{
-
-}
+{}
 
 ZUSymbolLoaderFILE::~ZUSymbolLoaderFILE()
-{
+{}
 
-}
-
-
-int ZUSymbolLoaderFILE::LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet )
+int ZUSymbolLoaderFILE::LoadSymbol(const CString Location, PSS_SymbolEntity::IEntitySet& CompSet)
 {
     // Check the existence of file
     if (!PSS_File::Exist(Location))
         return 0;
 
-    ZBSymbolEntity    Entity;
-    if (!Entity.ReadFromFile( Location ))
+    PSS_SymbolEntity entity;
+    if (!entity.ReadFromFile(Location))
         return 0;
-    CompSet.Add( Entity.Clone() );
+
+    CompSet.Add(entity.Clone());
     return CompSet.GetSize();
 }
 
-
-int ZUSymbolLoaderFILE::LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders /*= false*/ )
+int ZUSymbolLoaderFILE::LoadSymbols(const CString Location, PSS_SymbolEntity::IEntitySet& CompSet, bool LoadSubFolders /*= false*/)
 {
     return 0;
 }
-
-

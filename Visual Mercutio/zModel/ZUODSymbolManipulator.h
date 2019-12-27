@@ -16,8 +16,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-// Forward declaration
-class ZBSymbolEdit;
+// class name mapping
+#ifndef PSS_SymbolEdit
+    #define PSS_SymbolEdit ZBSymbolEdit
+#endif
+
+// forward class declaration
+class PSS_SymbolEdit;
 class ZBSymbolLabel;
 
 #ifdef _ZMODELEXPORT
@@ -43,12 +48,12 @@ public:
 // Manipulation functions
 public:
 
-    static ZBSymbolEdit* CreateEditText(CODComponent*  pSymbol,
+    static PSS_SymbolEdit* CreateEditText(CODComponent*  pSymbol,
                                         const CString& AreaName,
                                         const CString& EditName,
                                         CODComponent*  pParent = NULL);
 
-    static ZBSymbolEdit* CreateAndReplaceEditText( CODComponent*    pSymbol,
+    static PSS_SymbolEdit* CreateAndReplaceEditText( CODComponent*    pSymbol,
                                                    const CString    EditName,
                                                    CODComponent*    pParent        = NULL );
 

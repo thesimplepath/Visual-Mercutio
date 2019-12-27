@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
-#include "zModel\ZBSearchSymbolLogLine.h"
+#include "zModel\PSS_SearchSymbolLogLine.h"
 #include "PSS_ProcessGraphModelController.h"
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelViewport.h"
@@ -3233,7 +3233,7 @@ void PSS_ProcessGraphModelMdl::FindPvt(const CString&        argument,
                 // add to the log
                 if (pLog)
                 {
-                    ZBSearchSymbolLogLine line(pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
+                    PSS_SearchSymbolLogLine line(pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath());
                     pLog->AddLine(line);
                 }
 
@@ -3249,7 +3249,7 @@ void PSS_ProcessGraphModelMdl::FindPvt(const CString&        argument,
                 // add to the log
                 if (pLog)
                 {
-                    ZBSearchSymbolLogLine line(pLinkSymbol->GetSymbolName(), pLinkSymbol->GetAbsolutePath());
+                    PSS_SearchSymbolLogLine line(pLinkSymbol->GetSymbolName(), pLinkSymbol->GetAbsolutePath());
                     pLog->AddLine(line);
                 }
 

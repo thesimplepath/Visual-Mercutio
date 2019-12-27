@@ -16,7 +16,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
 #include "zProperty\ZBDynamicProperties.h"
-#include "ZBSymbolEdit.h"
+#include "PSS_SymbolEdit.h"
 #include "ZUODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_DocObserverMsg.h"
@@ -204,12 +204,12 @@ void PSS_Symbol::SetShowTitleText(bool value)
     }
 }
 //---------------------------------------------------------------------------
-ZBSymbolEdit* PSS_Symbol::CreateEditText(const CString& areaName, const CString& editName, CODComponent* pParent)
+PSS_SymbolEdit* PSS_Symbol::CreateEditText(const CString& areaName, const CString& editName, CODComponent* pParent)
 {
     return ZUODSymbolManipulator::CreateEditText(this, areaName, editName, pParent);
 }
 //---------------------------------------------------------------------------
-ZBSymbolEdit* PSS_Symbol::CreateAndReplaceEditText(const CString& editName, CODComponent* pParent)
+PSS_SymbolEdit* PSS_Symbol::CreateAndReplaceEditText(const CString& editName, CODComponent* pParent)
 {
     return ZUODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
 }

@@ -95,6 +95,4 @@ inline void ZBSymbolLabel::OnMove()
     }
 }
 
-#endif // !defined(AFX_ZBSymbolLabel_H__86F89ED1_2090_4F65_8977_AA7C1277980E__INCLUDED_)
-
-
+#endif

@@ -56,7 +56,7 @@ using namespace sfl;
 ///////////////////////////////////////////////////////////////////////////
 // Collection definitions
 
-//@type ZBBPCombinationPropertiesSet | An array of ZBSymbolEntity pointers.
+//@type ZBBPCombinationPropertiesSet | An array of ZBBPCombinationProperties pointers.
 //@iex typedef CCArray_T<ZBBPCombinationProperties*,ZBBPCombinationProperties*> ZBBPCombinationPropertiesSet;
 typedef CCArray_T<ZBBPCombinationProperties*, ZBBPCombinationProperties*> ZBBPCombinationPropertiesSet;
 

@@ -7,7 +7,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -16,25 +16,17 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUSymbolLoaderHTTP::ZUSymbolLoaderHTTP()
-{
-
-}
+{}
 
 ZUSymbolLoaderHTTP::~ZUSymbolLoaderHTTP()
-{
+{}
 
-}
-
-
-int ZUSymbolLoaderHTTP::LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet )
+int ZUSymbolLoaderHTTP::LoadSymbol(const CString Location, PSS_SymbolEntity::IEntitySet& CompSet)
 {
     return 0;
 }
 
-
-int ZUSymbolLoaderHTTP::LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders /*= false*/ )
+int ZUSymbolLoaderHTTP::LoadSymbols(const CString Location, PSS_SymbolEntity::IEntitySet& CompSet, bool LoadSubFolders /*= false*/)
 {
     return 0;
 }
-
-

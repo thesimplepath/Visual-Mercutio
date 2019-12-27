@@ -41,8 +41,13 @@
 #include "zModel\PSS_ExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
 
+// class name mapping
+#ifndef PSS_SymbolEdit
+    #define PSS_SymbolEdit ZBSymbolEdit
+#endif
+
 // forward class declaration
-class ZBSymbolEdit;
+class PSS_SymbolEdit;
 class ZBPropertyAttributes;
 
 #ifdef _ZMODELEXPORT
@@ -151,9 +156,9 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         *@param pParent - the parent component
         *@return the newly created text editor, NULL on error
         */
-        virtual ZBSymbolEdit* CreateEditText(const CString& areaName,
-                                             const CString& editName,
-                                             CODComponent*  pParent = NULL);
+        virtual PSS_SymbolEdit* CreateEditText(const CString& areaName,
+                                               const CString& editName,
+                                               CODComponent*  pParent = NULL);
 
         /**
         * Creates a new text editor and replaces the existing one
@@ -161,7 +166,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         *@param pParent - the parent component
         *@return the newly created text editor, NULL on error
         */
-        virtual ZBSymbolEdit* CreateAndReplaceEditText(const CString& editName, CODComponent* pParent = NULL);
+        virtual PSS_SymbolEdit* CreateAndReplaceEditText(const CString& editName, CODComponent* pParent = NULL);
 
         /**
         * Gets the symbol name

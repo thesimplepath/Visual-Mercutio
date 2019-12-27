@@ -246,12 +246,12 @@ void PSS_LinkSymbol::SetShowTitleText(bool value)
     }
 }
 //---------------------------------------------------------------------------
-ZBSymbolEdit* PSS_LinkSymbol::CreateEditText(const CString& areaName, const CString& editName, CODComponent* pParent)
+PSS_SymbolEdit* PSS_LinkSymbol::CreateEditText(const CString& areaName, const CString& editName, CODComponent* pParent)
 {
     return ZUODSymbolManipulator::CreateEditText(this, areaName, editName, pParent);
 }
 //---------------------------------------------------------------------------
-ZBSymbolEdit* PSS_LinkSymbol::CreateAndReplaceEditText(const CString& editName, CODComponent* pParent)
+PSS_SymbolEdit* PSS_LinkSymbol::CreateAndReplaceEditText(const CString& editName, CODComponent* pParent)
 {
     return ZUODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
 }

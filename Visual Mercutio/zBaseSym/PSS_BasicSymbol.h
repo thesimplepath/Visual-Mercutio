@@ -21,13 +21,16 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // class name mapping
+#ifndef PSS_SymbolEdit
+    #define PSS_SymbolEdit ZBSymbolEdit
+#endif
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
 #endif
 
 // forward class definition
 class ZBPropertyAttributes;
-class ZBSymbolEdit;
+class PSS_SymbolEdit;
 class ZDProcessGraphPage;
 class PSS_UserEntity;
 class ZBDynamicProperties;
@@ -134,9 +137,9 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         *@param pParent - parent window, can be NULL
         *@return the text editor, NULL on error
         */
-        virtual ZBSymbolEdit* CreateEditText(const CString& areaName,
-                                             const CString& editName,
-                                             CODComponent*  pParent = NULL) = 0;
+        virtual PSS_SymbolEdit* CreateEditText(const CString& areaName,
+                                               const CString& editName,
+                                               CODComponent*  pParent = NULL) = 0;
 
         /**
         * Creates a new text editor and replaces the existing one
@@ -144,7 +147,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         *@param pParent - parent window, can be NULL
         *@return the text editor, NULL on error
         */
-        virtual ZBSymbolEdit* CreateAndReplaceEditText(const CString& editName, CODComponent* pParent = NULL) = 0;
+        virtual PSS_SymbolEdit* CreateAndReplaceEditText(const CString& editName, CODComponent* pParent = NULL) = 0;
 
         /**
         * Checks if the symbol accepts the dynamic attributes

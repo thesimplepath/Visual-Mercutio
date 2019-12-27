@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZUODSymbolManipulator.h"
 
-#include "ZBSymbolEdit.h"
+#include "PSS_SymbolEdit.h"
 #include "ZBSymbolLabel.h"
 #include "zBaseSym\PSS_BasicSymbol.h"
 
@@ -29,10 +29,10 @@ ZUODSymbolManipulator::ZUODSymbolManipulator()
 ZUODSymbolManipulator::~ZUODSymbolManipulator()
 {}
 //---------------------------------------------------------------------------
-ZBSymbolEdit* ZUODSymbolManipulator::CreateEditText(CODComponent*  pSymbol,
-                                                    const CString& AreaName,
-                                                    const CString& EditName,
-                                                    CODComponent*  pParent)
+PSS_SymbolEdit* ZUODSymbolManipulator::CreateEditText(CODComponent*  pSymbol,
+                                                      const CString& AreaName,
+                                                      const CString& EditName,
+                                                      CODComponent*  pParent)
 {
     CODComponent* pAreaComp = ZUODSymbolManipulator::FindSymbol(pSymbol, AreaName);
 
@@ -51,9 +51,9 @@ ZBSymbolEdit* ZUODSymbolManipulator::CreateEditText(CODComponent*  pSymbol,
     return NULL;
 }
 
-ZBSymbolEdit* ZUODSymbolManipulator::CreateAndReplaceEditText(CODComponent*    pSymbol,
-                                                              const CString    EditName,
-                                                              CODComponent*    pParent        /*= NULL*/)
+PSS_SymbolEdit* ZUODSymbolManipulator::CreateAndReplaceEditText(CODComponent*    pSymbol,
+                                                                const CString    EditName,
+                                                                CODComponent*    pParent        /*= NULL*/)
 {
     CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(pSymbol, EditName);
 
@@ -66,7 +66,7 @@ ZBSymbolEdit* ZUODSymbolManipulator::CreateAndReplaceEditText(CODComponent*    p
     }
 
     // Create the new symbol
-    ZBSymbolEdit* pEdit = new ZBSymbolEdit;
+    PSS_SymbolEdit* pEdit = new PSS_SymbolEdit;
 
     // Set its size
     pEdit->Create((pComp) ? pComp->GetBounds() : pSymbol->GetBounds(), NULL);
