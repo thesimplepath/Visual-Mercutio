@@ -20,6 +20,9 @@
 #include "PSS_ObjectCollections.h"
 
 // class name mapping
+#ifndef PSS_ModelSet
+    #define PSS_ModelSet ZBModelSet
+#endif
 #ifndef PSS_Symbol
     #define PSS_Symbol ZBSymbol
 #endif
@@ -33,7 +36,7 @@
 // forward class declaration
 class ZDProcessGraphPage;
 class PSS_TreeCtrl;
-class ZBModelSet;
+class PSS_ModelSet;
 class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_ProcessGraphModelMdl;
@@ -65,7 +68,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         */
         PSS_ModelTree(PSS_TreeCtrl*        pTreeCtrl  =  NULL,
                       const CString&       rootName   =  _T(""),
-                      ZBModelSet*          pModelSet  =  NULL,
+                      PSS_ModelSet*        pModelSet  =  NULL,
                       UINT                 imageResID = -1,
                       PSS_RuntimeClassSet* pSet       =  NULL);
 
@@ -81,7 +84,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         */
         virtual void Initialize(PSS_TreeCtrl*        pTreeCtrl,
                                 const CString&       rootName   =  _T(""),
-                                ZBModelSet*          pModelSet  =  NULL,
+                                PSS_ModelSet*        pModelSet  =  NULL,
                                 UINT                 imageResID = -1,
                                 PSS_RuntimeClassSet* pSet       =  NULL);
 
@@ -181,13 +184,13 @@ class AFX_EXT_CLASS PSS_ModelTree
         * Adds a model set
         *@param pModelSet - the model set to add
         */
-        virtual void AddModelSet(ZBModelSet* pModelSet);
+        virtual void AddModelSet(PSS_ModelSet* pModelSet);
 
         /**
         * Removes a model
         *@param pModelSet - the model set to remove
         */
-        virtual void RemoveModelSet(ZBModelSet* pModelSet);
+        virtual void RemoveModelSet(PSS_ModelSet* pModelSet);
 
         /**
         * Adds a symbol
@@ -230,7 +233,7 @@ class AFX_EXT_CLASS PSS_ModelTree
 
     protected:
         HTREEITEM     m_hRootDocument;
-        ZBModelSet*   m_pModelSet;
+        PSS_ModelSet* m_pModelSet;
         PSS_TreeCtrl* m_pTreeCtrl;
         CString       m_RootName;
         UINT          m_ImageResID;
@@ -241,7 +244,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param pModelSet - the model set to process
         *@param hParentTreeItem - the parent tree item handle
         */
-        virtual void ProcessModelSet(ZBModelSet* pModelSet, HTREEITEM hParentTreeItem);
+        virtual void ProcessModelSet(PSS_ModelSet* pModelSet, HTREEITEM hParentTreeItem);
 
         /**
         * Processes the root model

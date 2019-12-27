@@ -111,7 +111,7 @@ void ZVSelectPrestationDlg::OnSelchangedPrestationsTree(NMHDR* pNMHDR, LRESULT* 
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
     BOOL Enable = FALSE;
-    ZBPrestationsEntity* pEntity = m_Ctrl.GetSelectedPrestationEntity();
+    PSS_PrestationsEntity* pEntity = m_Ctrl.GetSelectedPrestationEntity();
 
     if (pEntity)
     {

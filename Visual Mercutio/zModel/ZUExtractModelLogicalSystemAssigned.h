@@ -41,9 +41,13 @@
 
 #include "zModel\ZUModelNavigation.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBSystemEntity;
+// class name mapping
+#ifndef PSS_SystemEntity
+    #define PSS_SystemEntity ZBSystemEntity
+#endif
+
+// forward class declaration
+class PSS_SystemEntity;
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -80,9 +84,8 @@ public:
     virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:
-
-    ZBSystemEntity*    m_pLogicalSystem;
-    CODComponentSet    m_Set;
+    PSS_SystemEntity* m_pLogicalSystem;
+    CODComponentSet   m_Set;
 };
 
 #endif

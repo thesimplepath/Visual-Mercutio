@@ -31,11 +31,23 @@
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
 // old class name mapping
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
+#ifndef PSS_SystemEntity
+    #define PSS_SystemEntity ZBSystemEntity
+#endif
 #ifndef PSS_LogicalSystemEntity
     #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
 #endif
+#ifndef PSS_PrestationsEntity
+    #define PSS_PrestationsEntity ZBPrestationsEntity
+#endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
+#ifndef PSS_RulesEntity
+    #define PSS_RulesEntity ZBRulesEntity
 #endif
 #ifndef PSS_LogicalRulesEntity
     #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
@@ -45,15 +57,15 @@
 class PSS_BasicSymbol;
 class ZIProperties;
 class PSS_InfoModelGraphicGeneration;
+class PSS_UserEntity;
 class ZBUserGroupEntity;
 class ZBUserRoleEntity;
+class PSS_SystemEntity;
 class PSS_LogicalSystemEntity;
-class ZBSystemEntity;
+class PSS_PrestationsEntity;
 class PSS_LogicalPrestationsEntity;
-class ZBPrestationsEntity;
+class PSS_RulesEntity;
 class PSS_LogicalRulesEntity;
-class ZBRulesEntity;
-class ZBUserEntity;
 class PSS_HtmlFile;
 
 #ifdef _ZMODELWEBEXPORT
@@ -411,21 +423,21 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pSystemEntity - system entity owning the file for which the name should be built
         *@return file name
         */
-        CString BuildHTMLFileNameLogicalSystem(ZBSystemEntity* pSystemEntity) const;
+        CString BuildHTMLFileNameLogicalSystem(PSS_SystemEntity* pSystemEntity) const;
 
         /**
         * Builds the html file name for logical prestations
         *@param pPrestationsEntity - prestations entity owning the file for which the name should be built
         *@return file name
         */
-        CString BuildHTMLFileNameLogicalPrestations(ZBPrestationsEntity* pPrestationsEntity) const;
+        CString BuildHTMLFileNameLogicalPrestations(PSS_PrestationsEntity* pPrestationsEntity) const;
 
         /**
         * Builds the html file name for user
         *@param pUserEntity - user entity owning the file for which the name should be built
         *@return file name
         */
-        CString BuildHTMLFileNameUser(ZBUserEntity* pUserEntity) const;
+        CString BuildHTMLFileNameUser(PSS_UserEntity* pUserEntity) const;
 
         /**
         * Builds the html file name for the system main frame

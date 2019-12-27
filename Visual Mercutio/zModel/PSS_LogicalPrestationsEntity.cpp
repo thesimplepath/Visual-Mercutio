@@ -21,14 +21,14 @@ BOOL                                     PSS_LogicalPrestationsEntity::m_Modifie
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_LogicalPrestationsEntity, ZBPrestationsEntity, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_LogicalPrestationsEntity, PSS_PrestationsEntity, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_LogicalPrestationsEntity
 //---------------------------------------------------------------------------
-PSS_LogicalPrestationsEntity::PSS_LogicalPrestationsEntity(const CString&       name,
-                                                           const CString&       description,
-                                                           ZBPrestationsEntity* pParent) :
-    ZBPrestationsEntity(name, description, pParent)
+PSS_LogicalPrestationsEntity::PSS_LogicalPrestationsEntity(const CString&         name,
+                                                           const CString&         description,
+                                                           PSS_PrestationsEntity* pParent) :
+    PSS_PrestationsEntity(name, description, pParent)
 {}
 //---------------------------------------------------------------------------
 PSS_LogicalPrestationsEntity::~PSS_LogicalPrestationsEntity()
@@ -103,7 +103,7 @@ bool PSS_LogicalPrestationsEntity::RemovePrestation(PSS_LogicalPrestationsEntity
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalPrestationsEntity* pPrestationEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEnv);
 
@@ -133,13 +133,13 @@ void PSS_LogicalPrestationsEntity::RemoveAllPrestationsEntities()
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
         delete pEnv;
 
     m_EntitySet.RemoveAll();
 }
 //---------------------------------------------------------------------------
-ZBPrestationsEntity* PSS_LogicalPrestationsEntity::FindPrestationByGUID(const CString& guid, bool deeper)
+PSS_PrestationsEntity* PSS_LogicalPrestationsEntity::FindPrestationByGUID(const CString& guid, bool deeper)
 {
     // check if the main group matches with the requested guid, add it to the find set if yes
     if (GetGUID() == guid)
@@ -194,7 +194,7 @@ bool PSS_LogicalPrestationsEntity::PrestationExist(const CString& name, bool dee
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalPrestationsEntity* pPrestationsEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEnv);
 
@@ -232,7 +232,7 @@ bool PSS_LogicalPrestationsEntity::PrestationExist(const CString& name, PSS_Logi
     return pInPrestation->PrestationExist(name, false);
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsEntity::MovePrestation(ZBPrestationsEntity* pPrestation)
+bool PSS_LogicalPrestationsEntity::MovePrestation(PSS_PrestationsEntity* pPrestation)
 {
     if (!pPrestation)
         return false;
@@ -256,7 +256,7 @@ bool PSS_LogicalPrestationsEntity::MovePrestation(ZBPrestationsEntity* pPrestati
 //---------------------------------------------------------------------------
 void PSS_LogicalPrestationsEntity::Serialize(CArchive& ar)
 {
-    ZBPrestationsEntity::Serialize(ar);
+    PSS_PrestationsEntity::Serialize(ar);
 
     if (ar.IsStoring())
     {
@@ -266,7 +266,7 @@ void PSS_LogicalPrestationsEntity::Serialize(CArchive& ar)
         // write the elements
         for (int i = 0; i < entityCount; ++i)
         {
-            ZBPrestationsEntity* pEntity = GetEntityAt(i);
+            PSS_PrestationsEntity* pEntity = GetEntityAt(i);
             ar << pEntity;
         }
     }
@@ -278,7 +278,7 @@ void PSS_LogicalPrestationsEntity::Serialize(CArchive& ar)
         int count;
         ar >> count;
 
-        ZBPrestationsEntity* pEntity;
+        PSS_PrestationsEntity* pEntity;
 
         // read the elements
         for (int i = 0; i < count; ++i)
@@ -293,22 +293,22 @@ void PSS_LogicalPrestationsEntity::Serialize(CArchive& ar)
 #ifdef _DEBUG
     void PSS_LogicalPrestationsEntity::AssertValid() const
     {
-        ZBPrestationsEntity::AssertValid();
+        PSS_PrestationsEntity::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_LogicalPrestationsEntity::Dump(CDumpContext& dc) const
     {
-        ZBPrestationsEntity::Dump(dc);
+        PSS_PrestationsEntity::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsEntity::RemovePrestationFromSet(ZBPrestationsEntity* pPrestation)
+bool PSS_LogicalPrestationsEntity::RemovePrestationFromSet(PSS_PrestationsEntity* pPrestation)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
         if (pEnv == pPrestation)
         {
             // remove the current element
@@ -319,11 +319,11 @@ bool PSS_LogicalPrestationsEntity::RemovePrestationFromSet(ZBPrestationsEntity* 
     return false;
 }
 //---------------------------------------------------------------------------
-ZBPrestationsEntity* PSS_LogicalPrestationsEntity::FindPrestationByGUIDPvt(const CString& guid, bool deeper)
+PSS_PrestationsEntity* PSS_LogicalPrestationsEntity::FindPrestationByGUIDPvt(const CString& guid, bool deeper)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalPrestationsEntity* pEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEnv);
 
@@ -337,7 +337,7 @@ ZBPrestationsEntity* PSS_LogicalPrestationsEntity::FindPrestationByGUIDPvt(const
         // continue to search recursively in the children
         if (deeper && pEntity->ContainEntity())
         {
-            ZBPrestationsEntity* pFoundEnv = pEntity->FindPrestationByGUIDPvt(guid, deeper);
+            PSS_PrestationsEntity* pFoundEnv = pEntity->FindPrestationByGUIDPvt(guid, deeper);
 
             if (pFoundEnv)
                 return pFoundEnv;
@@ -351,7 +351,7 @@ void PSS_LogicalPrestationsEntity::FindPrestationPvt(const CString& name, bool d
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalPrestationsEntity* pEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEnv);
 
@@ -380,7 +380,7 @@ PSS_LogicalPrestationsEntity* PSS_LogicalPrestationsEntity::FindFirstPrestation(
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalPrestationsEntity* pEntity = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEnv);
 
@@ -446,7 +446,7 @@ void PSS_LogicalPrestationsEntity::RecalculateParent()
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBPrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_PrestationsEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         // set the parent pointer
         pEnv->SetParent(this);

@@ -11,7 +11,7 @@
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZUExtractModelLogicalPrestationsAssigned.h"
 
-#include "ZBPrestationsEntity.h"
+#include "PSS_PrestationsEntity.h"
 
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
@@ -38,7 +38,7 @@ ZUExtractModelLogicalPrestationsAssigned::~ZUExtractModelLogicalPrestationsAssig
 
 bool ZUExtractModelLogicalPrestationsAssigned::OnStart()
 {
-    m_pPrestationsEntity = static_cast<ZBPrestationsEntity*>(m_pClass);
+    m_pPrestationsEntity = static_cast<PSS_PrestationsEntity*>(m_pClass);
 
     if (!m_pPrestationsEntity)
     {

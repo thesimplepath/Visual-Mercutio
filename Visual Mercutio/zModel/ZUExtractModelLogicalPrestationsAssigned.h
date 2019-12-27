@@ -25,8 +25,13 @@
 // processsoft
 #include "zModel\ZUModelNavigation.h"
 
+// class name mapping
+#ifndef PSS_PrestationsEntity
+    #define PSS_PrestationsEntity ZBPrestationsEntity
+#endif
+
 // forward class declaration
-class ZBPrestationsEntity;
+class PSS_PrestationsEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -58,9 +63,8 @@ public:
     virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:
-
-    ZBPrestationsEntity*    m_pPrestationsEntity;
-    CODComponentSet            m_Set;
+    PSS_PrestationsEntity* m_pPrestationsEntity;
+    CODComponentSet        m_Set;
 };
 
 #endif

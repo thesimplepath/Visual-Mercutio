@@ -9,7 +9,7 @@
 #include "PSS_LogicalSystemObserverMsg.h"
 
 // processsoft
-#include "ZBSystemEntity.h"
+#include "PSS_SystemEntity.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -24,9 +24,9 @@ IMPLEMENT_DYNAMIC(PSS_LogicalSystemObserverMsg, PSS_ObserverMsg)
 //---------------------------------------------------------------------------
 // PSS_LogicalSystemObserverMsg
 //---------------------------------------------------------------------------
-PSS_LogicalSystemObserverMsg::PSS_LogicalSystemObserverMsg(UINT            messageID,
-                                                           ZBSystemEntity* pEntity,
-                                                           const CString&  rootName) :
+PSS_LogicalSystemObserverMsg::PSS_LogicalSystemObserverMsg(UINT              messageID,
+                                                           PSS_SystemEntity* pEntity,
+                                                           const CString&    rootName) :
     PSS_ObserverMsg(),
     m_pEntity(pEntity),
     m_RootName(rootName),

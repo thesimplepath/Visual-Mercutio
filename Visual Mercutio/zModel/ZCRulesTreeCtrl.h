@@ -26,13 +26,16 @@
 #include "zBaseLib\PSS_TreeCtrl.h"
 
 // class name mapping
+#ifndef PSS_RulesEntity
+    #define PSS_RulesEntity ZBRulesEntity
+#endif
 #ifndef PSS_LogicalRulesEntity
     #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
 #endif
 
 // forward class declaration
+class PSS_RulesEntity;
 class PSS_LogicalRulesEntity;
-class ZBRulesEntity;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -92,7 +95,7 @@ public:
 
     void Refresh();
 
-    ZBRulesEntity* GetSelectedRuleEntity();
+    PSS_RulesEntity* GetSelectedRuleEntity();
     PSS_LogicalRulesEntity* GetSelectedLogicalRule();
     PSS_LogicalRulesEntity* GetSelectedLogicalRuleOwner();
     bool IsRootSelected() const;
@@ -159,11 +162,11 @@ private:
     HTREEITEM AddLogicalRuleItem(PSS_LogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem);
     BOOL ModifyLogicalRuleItem(PSS_LogicalRulesEntity* pLogicalRule, HTREEITEM hItem);
 
-    ZBRulesEntity*            _GetRuleEntity(HTREEITEM hItem);
+    PSS_RulesEntity*            _GetRuleEntity(HTREEITEM hItem);
     PSS_LogicalRulesEntity*    _GetLogicalRule(HTREEITEM hItem);
     PSS_LogicalRulesEntity*    _GetOwnerRule(HTREEITEM hItem);
 
-    _ZInternalRulesTreeData* FindElementFromDataSet(ZBRulesEntity* pEntity);
+    _ZInternalRulesTreeData* FindElementFromDataSet(PSS_RulesEntity* pEntity);
     _ZInternalRulesTreeData* FindElementFromDataSet(PSS_LogicalRulesEntity* pLogicalRule);
     _ZInternalRulesTreeData* FindElementFromDataSet(CString Str);
 

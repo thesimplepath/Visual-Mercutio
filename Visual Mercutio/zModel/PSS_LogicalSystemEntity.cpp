@@ -22,14 +22,14 @@ BOOL                                PSS_LogicalSystemEntity::m_Modified = FALSE;
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_LogicalSystemEntity, ZBSystemEntity, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_LogicalSystemEntity, PSS_SystemEntity, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_LogicalSystemEntity
 //---------------------------------------------------------------------------
-PSS_LogicalSystemEntity::PSS_LogicalSystemEntity(const CString&  name,
-                                                 const CString&  description,
-                                                 ZBSystemEntity* pParent) :
-    ZBSystemEntity(name, description, pParent)
+PSS_LogicalSystemEntity::PSS_LogicalSystemEntity(const CString&    name,
+                                                 const CString&    description,
+                                                 PSS_SystemEntity* pParent) :
+    PSS_SystemEntity(name, description, pParent)
 {}
 //---------------------------------------------------------------------------
 PSS_LogicalSystemEntity::~PSS_LogicalSystemEntity()
@@ -102,7 +102,7 @@ bool PSS_LogicalSystemEntity::RemoveSystem(PSS_LogicalSystemEntity* pSystem)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalSystemEntity* pEntity = dynamic_cast<PSS_LogicalSystemEntity*>(pEnv);
 
@@ -132,13 +132,13 @@ void PSS_LogicalSystemEntity::RemoveAllSystemEntities()
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
         delete pEnv;
 
     m_EntitySet.RemoveAll();
 }
 //---------------------------------------------------------------------------
-ZBSystemEntity* PSS_LogicalSystemEntity::FindSystemByGUID(const CString& guid, bool deeper)
+PSS_SystemEntity* PSS_LogicalSystemEntity::FindSystemByGUID(const CString& guid, bool deeper)
 {
     // check if the main group matches with the guid to find, add it to the resulting set if yes
     if (GetGUID() == guid)
@@ -191,7 +191,7 @@ bool PSS_LogicalSystemEntity::SystemExist(const CString& name, bool deeper)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalSystemEntity* pEntity = dynamic_cast<PSS_LogicalSystemEntity*>(pEnv);
 
@@ -229,7 +229,7 @@ bool PSS_LogicalSystemEntity::SystemExist(const CString& name, PSS_LogicalSystem
     return pInSystem->SystemExist(name, false);
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalSystemEntity::MoveSystem(ZBSystemEntity* pSystem)
+bool PSS_LogicalSystemEntity::MoveSystem(PSS_SystemEntity* pSystem)
 {
     if (!pSystem)
         return false;
@@ -253,7 +253,7 @@ bool PSS_LogicalSystemEntity::MoveSystem(ZBSystemEntity* pSystem)
 //---------------------------------------------------------------------------
 void PSS_LogicalSystemEntity::Serialize(CArchive& ar)
 {
-    ZBSystemEntity::Serialize(ar);
+    PSS_SystemEntity::Serialize(ar);
 
     if (ar.IsStoring())
     {
@@ -263,7 +263,7 @@ void PSS_LogicalSystemEntity::Serialize(CArchive& ar)
         // write the elements
         for (int index = 0; index < count; ++index)
         {
-            ZBSystemEntity* pEntity = GetEntityAt(index);
+            PSS_SystemEntity* pEntity = GetEntityAt(index);
             ar << pEntity;
         }
     }
@@ -275,7 +275,7 @@ void PSS_LogicalSystemEntity::Serialize(CArchive& ar)
         int count;
         ar >> count;
 
-        ZBSystemEntity* pEntity;
+        PSS_SystemEntity* pEntity;
 
         // read the elements
         for (int i = 0; i < count; ++i)
@@ -290,22 +290,22 @@ void PSS_LogicalSystemEntity::Serialize(CArchive& ar)
 #ifdef _DEBUG
     void PSS_LogicalSystemEntity::AssertValid() const
     {
-        ZBSystemEntity::AssertValid();
+        PSS_SystemEntity::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_LogicalSystemEntity::Dump(CDumpContext& dc) const
     {
-        ZBSystemEntity::Dump(dc);
+        PSS_SystemEntity::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------
-bool PSS_LogicalSystemEntity::RemoveSystemFromSet(ZBSystemEntity* pSystem)
+bool PSS_LogicalSystemEntity::RemoveSystemFromSet(PSS_SystemEntity* pSystem)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         if (pEnv == pSystem)
         {
@@ -318,11 +318,11 @@ bool PSS_LogicalSystemEntity::RemoveSystemFromSet(ZBSystemEntity* pSystem)
     return false;
 }
 //---------------------------------------------------------------------------
-ZBSystemEntity* PSS_LogicalSystemEntity::FindSystemByGUIDPvt(const CString& guid, bool deeper)
+PSS_SystemEntity* PSS_LogicalSystemEntity::FindSystemByGUIDPvt(const CString& guid, bool deeper)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalSystemEntity* pEntity = dynamic_cast<PSS_LogicalSystemEntity*>(pEnv);
 
@@ -336,7 +336,7 @@ ZBSystemEntity* PSS_LogicalSystemEntity::FindSystemByGUIDPvt(const CString& guid
         // continue to search recursively
         if (deeper && pEntity->ContainEntity())
         {
-            ZBSystemEntity* pFoundEnv = pEntity->FindSystemByGUIDPvt(guid, deeper);
+            PSS_SystemEntity* pFoundEnv = pEntity->FindSystemByGUIDPvt(guid, deeper);
 
             if (pFoundEnv)
                 return pFoundEnv;
@@ -350,7 +350,7 @@ void PSS_LogicalSystemEntity::FindSystemPvt(const CString& name, bool deeper)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalSystemEntity* pEntity = dynamic_cast<PSS_LogicalSystemEntity*>(pEnv);
 
@@ -379,7 +379,7 @@ PSS_LogicalSystemEntity* PSS_LogicalSystemEntity::FindFirstSystem(const CString&
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalSystemEntity* pEntity = dynamic_cast<PSS_LogicalSystemEntity*>(pEnv);
 
@@ -444,7 +444,7 @@ void PSS_LogicalSystemEntity::RecalculateParent()
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBSystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_SystemEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         // set the paren
         pEnv->SetParent(this);

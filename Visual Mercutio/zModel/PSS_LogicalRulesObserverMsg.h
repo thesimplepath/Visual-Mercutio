@@ -23,8 +23,13 @@
 // processsoft
 #include "zBaseLib\PSS_ObserverMsg.h"
 
+// class name mapping
+#ifndef PSS_RulesEntity
+    #define PSS_RulesEntity ZBRulesEntity
+#endif
+
 // forward class declarations
-class ZBRulesEntity;
+class PSS_RulesEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -60,9 +65,9 @@ class AFX_EXT_CLASS PSS_LogicalRulesObserverMsg : public PSS_ObserverMsg
         *@param pEntity - the entity
         *@param rootName - the root name
         */
-        PSS_LogicalRulesObserverMsg(UINT           messageID = 0,
-                                    ZBRulesEntity* pEntity   = NULL,
-                                    const CString& rootName  = _T(""));
+        PSS_LogicalRulesObserverMsg(UINT             messageID = 0,
+                                    PSS_RulesEntity* pEntity   = NULL,
+                                    const CString&   rootName  = _T(""));
 
         virtual ~PSS_LogicalRulesObserverMsg();
 
@@ -82,13 +87,13 @@ class AFX_EXT_CLASS PSS_LogicalRulesObserverMsg : public PSS_ObserverMsg
         * Gets the entity
         *@return the entity
         */
-        virtual inline ZBRulesEntity* GetEntity() const;
+        virtual inline PSS_RulesEntity* GetEntity() const;
 
         /**
         * Sets the entity
         *@param pEntity - the entity
         */
-        virtual inline void SetEntity(ZBRulesEntity* pEntity);
+        virtual inline void SetEntity(PSS_RulesEntity* pEntity);
 
         /**
         * Gets the root name
@@ -103,9 +108,9 @@ class AFX_EXT_CLASS PSS_LogicalRulesObserverMsg : public PSS_ObserverMsg
         virtual inline void SetRootName(const CString& value);
 
     private:
-        ZBRulesEntity* m_pEntity;
-        CString        m_RootName;
-        UINT           m_MessageID;
+        PSS_RulesEntity* m_pEntity;
+        CString          m_RootName;
+        UINT             m_MessageID;
 };
 
 //---------------------------------------------------------------------------
@@ -121,12 +126,12 @@ void PSS_LogicalRulesObserverMsg::SetMessageID(UINT value)
     m_MessageID = value;
 }
 //---------------------------------------------------------------------------
-ZBRulesEntity* PSS_LogicalRulesObserverMsg::GetEntity() const
+PSS_RulesEntity* PSS_LogicalRulesObserverMsg::GetEntity() const
 {
     return m_pEntity;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalRulesObserverMsg::SetEntity(ZBRulesEntity* pEntity)
+void PSS_LogicalRulesObserverMsg::SetEntity(PSS_RulesEntity* pEntity)
 {
     m_pEntity = pEntity;
 }

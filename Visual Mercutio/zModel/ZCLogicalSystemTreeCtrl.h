@@ -17,14 +17,17 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
 
-// old class name mapping
+// class name mapping
+#ifndef PSS_SystemEntity
+    #define PSS_SystemEntity ZBSystemEntity
+#endif
 #ifndef PSS_LogicalSystemEntity
     #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
 #endif
 
 // Forward class declaration
+class PSS_SystemEntity;
 class PSS_LogicalSystemEntity;
-class ZBSystemEntity;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -84,7 +87,7 @@ public:
 
     void Refresh();
 
-    ZBSystemEntity* GetSelectedSystemEntity();
+    PSS_SystemEntity* GetSelectedSystemEntity();
     PSS_LogicalSystemEntity* GetSelectedLogicalSystem();
     PSS_LogicalSystemEntity* GetSelectedLogicalSystemOwner();
     bool IsRootSelected() const;
@@ -150,11 +153,11 @@ private:
     HTREEITEM AddLogicalSystemItem(PSS_LogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem);
     BOOL ModifyLogicalSystemItem(PSS_LogicalSystemEntity* pLogicalSystem, HTREEITEM hItem);
 
-    ZBSystemEntity*            _GetSystemEntity(HTREEITEM hItem);
+    PSS_SystemEntity*            _GetSystemEntity(HTREEITEM hItem);
     PSS_LogicalSystemEntity*    _GetLogicalSystem(HTREEITEM hItem);
     PSS_LogicalSystemEntity*    _GetOwnerSystem(HTREEITEM hItem);
 
-    _ZInternalLogicalSystemTreeData* FindElementFromDataSet(ZBSystemEntity* pEntity);
+    _ZInternalLogicalSystemTreeData* FindElementFromDataSet(PSS_SystemEntity* pEntity);
     _ZInternalLogicalSystemTreeData* FindElementFromDataSet(PSS_LogicalSystemEntity* pLogicalSystem);
     _ZInternalLogicalSystemTreeData* FindElementFromDataSet(CString Str);
 

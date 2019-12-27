@@ -26,7 +26,7 @@
 #endif
 
 // processsoft
-#include "ZBRulesEntity.h"
+#include "PSS_RulesEntity.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -47,16 +47,16 @@ const CString g_LogicalRulesKey = _T("$LR=");
 //---------------------------------------------------------------------------
 
 /**
-* Logical rules entity
+* Logical rules entity. An entity is a kind of group containing properties of a specific type
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_LogicalRulesEntity : public ZBRulesEntity
+class AFX_EXT_CLASS PSS_LogicalRulesEntity : public PSS_RulesEntity
 {
     DECLARE_SERIAL(PSS_LogicalRulesEntity)
 
     public:
-        typedef CCArray_T <ZBRulesEntity*, ZBRulesEntity*> IEntitySet;
-        typedef Iterator_T<ZBRulesEntity*>                 IEntityIterator;
+        typedef CCArray_T <PSS_RulesEntity*, PSS_RulesEntity*> IEntitySet;
+        typedef Iterator_T<PSS_RulesEntity*>                   IEntityIterator;
 
         /**
         * Constructor
@@ -64,9 +64,9 @@ class AFX_EXT_CLASS PSS_LogicalRulesEntity : public ZBRulesEntity
         *@param description - the entity description
         *@param pParent - the parent entity to add in, root entity if NULL
         */
-        PSS_LogicalRulesEntity(const CString& name        = _T(""),
-                               const CString& description = _T(""),
-                               ZBRulesEntity* pParent     = NULL);
+        PSS_LogicalRulesEntity(const CString&   name        = _T(""),
+                               const CString&   description = _T(""),
+                               PSS_RulesEntity* pParent     = NULL);
 
         virtual ~PSS_LogicalRulesEntity();
 
@@ -87,7 +87,7 @@ class AFX_EXT_CLASS PSS_LogicalRulesEntity : public ZBRulesEntity
         *@param index - the index
         *@return the entity, NULL if not found or on error
         */
-        virtual inline ZBRulesEntity* GetEntityAt(std::size_t index);
+        virtual inline PSS_RulesEntity* GetEntityAt(std::size_t index);
 
         /**
         * Gets the entity set
@@ -179,7 +179,7 @@ class AFX_EXT_CLASS PSS_LogicalRulesEntity : public ZBRulesEntity
         *@param deeper - if true, the search will continue recursively in rule children
         *@return the rule, NULL if not found or on error
         */
-        virtual ZBRulesEntity* FindRuleByGUID(const CString& guid, bool deeper = false);
+        virtual PSS_RulesEntity* FindRuleByGUID(const CString& guid, bool deeper = false);
 
         /**
         * Finds a rule
@@ -234,7 +234,7 @@ class AFX_EXT_CLASS PSS_LogicalRulesEntity : public ZBRulesEntity
         *@param pRule - the rule to move
         *@return true on success, otherwise false
         */
-        bool MoveRule(ZBRulesEntity* pRule);
+        bool MoveRule(PSS_RulesEntity* pRule);
 
         /**
         * Serializes the class content to an archive
@@ -263,14 +263,14 @@ class AFX_EXT_CLASS PSS_LogicalRulesEntity : public ZBRulesEntity
         *@param pRule - the rule to add
         *@return true on success, otherwise false
         */
-        virtual inline bool AddRule(ZBRulesEntity* pRule);
+        virtual inline bool AddRule(PSS_RulesEntity* pRule);
 
         /**
         * Removes a rule from the rule set
         *@param pRule - the rule to remove
         *@return true on success, otherwise false
         */
-        virtual bool RemoveRuleFromSet(ZBRulesEntity* pRule);
+        virtual bool RemoveRuleFromSet(PSS_RulesEntity* pRule);
 
         /**
         * Finds a rule from its guid
@@ -278,7 +278,7 @@ class AFX_EXT_CLASS PSS_LogicalRulesEntity : public ZBRulesEntity
         *@param deeper - if true, the search will continue recursively in rule children
         *@return the rule, NULL if not found or on error
         */
-        virtual ZBRulesEntity* FindRuleByGUIDPvt(const CString& guid, bool deeper = false);
+        virtual PSS_RulesEntity* FindRuleByGUIDPvt(const CString& guid, bool deeper = false);
 
         /**
         * Finds a rule
@@ -343,7 +343,7 @@ std::size_t PSS_LogicalRulesEntity::GetEntityCount() const
     return m_EntitySet.GetSize();
 }
 //---------------------------------------------------------------------------
-ZBRulesEntity* PSS_LogicalRulesEntity::GetEntityAt(std::size_t index)
+PSS_RulesEntity* PSS_LogicalRulesEntity::GetEntityAt(std::size_t index)
 {
     return (index < GetEntityCount() ? m_EntitySet.GetAt(index) : NULL);
 }
@@ -363,7 +363,7 @@ void PSS_LogicalRulesEntity::SetModifiedFlag(BOOL modified)
     m_Modified = modified;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalRulesEntity::AddRule(ZBRulesEntity* pRule)
+bool PSS_LogicalRulesEntity::AddRule(PSS_RulesEntity* pRule)
 {
     m_EntitySet.Add(pRule);
     return true;

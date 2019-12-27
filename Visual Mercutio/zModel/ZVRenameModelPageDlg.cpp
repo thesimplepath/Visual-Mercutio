@@ -11,7 +11,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
-#include "ZBModelSet.h"
+#include "PSS_ModelSet.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,7 +72,7 @@ BOOL ZVRenameModelPageDlg::OnInitDialog()
 
     if (m_pModel)
     {
-        ZBModelSet DocumentModelSet;
+        PSS_ModelSet DocumentModelSet;
         DocumentModelSet.AddModel(m_pModel);
 
         m_SymbolTree.Initialize(_T("Document"), &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);

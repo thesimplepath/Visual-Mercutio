@@ -111,7 +111,7 @@ void ZVSelectRuleDlg::OnSelchangedRulesTree(NMHDR* pNMHDR, LRESULT* pResult)
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
     BOOL Enable = FALSE;
-    ZBRulesEntity* pEntity = m_Ctrl.GetSelectedRuleEntity();
+    PSS_RulesEntity* pEntity = m_Ctrl.GetSelectedRuleEntity();
 
     if (pEntity)
     {

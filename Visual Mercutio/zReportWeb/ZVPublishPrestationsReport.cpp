@@ -260,7 +260,7 @@ void ZVPublishPrestationsReport::FindUnitGroupChilds(ZBUserGroupEntity*    pGrou
 
         for (int j = 0; j < Count; ++j)
         {
-            ZBUserEntity* pEntity = pGroup->GetEntityAt(j);
+            PSS_UserEntity* pEntity = pGroup->GetEntityAt(j);
 
             if (!pEntity)
             {
@@ -329,7 +329,7 @@ bool ZVPublishPrestationsReport::CreateFileSystem(PSS_LogicalPrestationsEntity* 
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBPrestationsEntity* pEntity = pPrestations->GetEntityAt(i);
+            PSS_PrestationsEntity* pEntity = pPrestations->GetEntityAt(i);
 
             if (!pEntity)
             {

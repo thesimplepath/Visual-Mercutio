@@ -23,7 +23,7 @@
 #include "zModel\PSS_ModelGlobal.h"
 
 // JMR-MODIF - Le 25 janvier 2006 - Ajout des en-têtes pour la gestion des prestations.
-#include "zModel\ZBPrestationsEntity.h"
+#include "zModel\PSS_PrestationsEntity.h"
 
 // JMR-MODIF - Le 6 février 2006 - Ajout des en-têtes pour la gestion des livraisons.
 #include "ZBBPDeliveriesProp.h"
@@ -225,7 +225,7 @@ bool ZBBPProcessSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
     }
 
     // JMR-MODIF - Le 25 janvier 2006 - Teste s'il s'agit d'une entité de type prestation.
-    if (pObj && ISA(pObj, ZBPrestationsEntity))
+    if (pObj && ISA(pObj, PSS_PrestationsEntity))
     {
         return true;
     }
@@ -1257,7 +1257,7 @@ CString ZBBPProcessSymbol::GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, CSt
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBRulesEntity* pEntity = p_Rule->GetEntityAt(i);
+            PSS_RulesEntity* pEntity = p_Rule->GetEntityAt(i);
 
             if (!pEntity)
             {

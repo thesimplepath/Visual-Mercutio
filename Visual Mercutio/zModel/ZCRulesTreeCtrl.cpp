@@ -230,7 +230,7 @@ void ZCRulesTreeCtrl::ProcessLogicalRulesGroup(PSS_LogicalRulesEntity*    pLogic
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBRulesEntity* pEntity = pLogicalRule->GetEntityAt(i);
+            PSS_RulesEntity* pEntity = pLogicalRule->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -371,12 +371,12 @@ void ZCRulesTreeCtrl::ModifyRule(PSS_LogicalRulesEntity* pLogicalRule)
     }
 }
 
-ZBRulesEntity* ZCRulesTreeCtrl::GetSelectedRuleEntity()
+PSS_RulesEntity* ZCRulesTreeCtrl::GetSelectedRuleEntity()
 {
     return _GetRuleEntity(GetSelectedItem());
 }
 
-ZBRulesEntity* ZCRulesTreeCtrl::_GetRuleEntity(HTREEITEM hItem)
+PSS_RulesEntity* ZCRulesTreeCtrl::_GetRuleEntity(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -685,7 +685,7 @@ void ZCRulesTreeCtrl::OnRenameRule()
 
 void ZCRulesTreeCtrl::OnMoveRule()
 {
-    ZBRulesEntity* pRule = GetSelectedLogicalRule();
+    PSS_RulesEntity* pRule = GetSelectedLogicalRule();
 
     if (pRule != NULL)
     {
@@ -719,7 +719,7 @@ void ZCRulesTreeCtrl::OnMoveRule()
 
 void ZCRulesTreeCtrl::OnRuleProperties()
 {
-    ZBRulesEntity* pEntity = GetSelectedRuleEntity();
+    PSS_RulesEntity* pEntity = GetSelectedRuleEntity();
 
     if (pEntity != NULL)
     {

@@ -58,8 +58,8 @@ public:
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
 
-    void InitializeModelDocumentTree(ZBModelSet* pModelSet);
-    void InitializeModelUnitTree(ZBModelSet* pModelSet);
+    void InitializeModelDocumentTree(PSS_ModelSet* pModelSet);
+    void InitializeModelUnitTree(PSS_ModelSet* pModelSet);
 
     void RefreshModelDocumentTree();
     void RefreshModelUnitTree();
@@ -70,8 +70,8 @@ public:
     void AddModelDocument(PSS_ProcessGraphModelMdl* pModel);
     void RemoveModelDocument(PSS_ProcessGraphModelMdl* pModel);
 
-    void AddModelDocumentSet(ZBModelSet* pModelSet);
-    void RemoveModelDocumentSet(ZBModelSet* pModelSet);
+    void AddModelDocumentSet(PSS_ModelSet* pModelSet);
+    void RemoveModelDocumentSet(PSS_ModelSet* pModelSet);
 
     void AddModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
     void RemoveModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
@@ -80,8 +80,8 @@ public:
     void AddModelUnit(PSS_ProcessGraphModelMdl* pModel);
     void RemoveModelUnit(PSS_ProcessGraphModelMdl* pModel);
 
-    void AddModelUnitSet(ZBModelSet* pModelSet);
-    void RemoveModelUnitSet(ZBModelSet* pModelSet);
+    void AddModelUnitSet(PSS_ModelSet* pModelSet);
+    void RemoveModelUnitSet(PSS_ModelSet* pModelSet);
 
     void AddModelUnitSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
     void RemoveModelUnitSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);

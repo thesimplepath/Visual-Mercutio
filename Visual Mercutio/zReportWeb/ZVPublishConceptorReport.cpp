@@ -101,7 +101,7 @@ bool ZVPublishConceptorReport::CreateFileSystem(ZBUserGroupEntity* pGroup, CStri
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBUserEntity* pEntity = pGroup->GetEntityAt(i);
+            PSS_UserEntity* pEntity = pGroup->GetEntityAt(i);
 
             if (!pEntity)
             {

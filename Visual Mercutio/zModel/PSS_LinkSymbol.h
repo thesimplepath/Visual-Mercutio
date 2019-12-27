@@ -1061,7 +1061,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param pUserEntity - the user entity on which the name is changing
         *@param oldName - the changing old name
         */
-        virtual void OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString& oldName);
+        virtual void OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName);
 
         /**
         * Called when a tooltip is required

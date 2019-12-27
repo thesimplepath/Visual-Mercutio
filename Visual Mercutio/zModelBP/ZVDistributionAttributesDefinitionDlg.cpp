@@ -148,7 +148,7 @@ BOOL ZVDistributionAttributesDefinitionDlg::OnInitDialog()
         }
 
         // First level is the role name
-        ZBUserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(m_pDistributionAttr->GetUserGroupGUID(), true);
+        PSS_UserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(m_pDistributionAttr->GetUserGroupGUID(), true);
         m_GroupName = (pEntity) ? pEntity->GetEntityName() : _T("");
 
         // When starting, check the distribution role for a given distribution attribute
@@ -213,7 +213,7 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
                                 false);    // Allow role selection
     if (choose.DoModal() == IDOK)
     {
-        ZBUserEntity* pEntity = choose.GetSelectedUserEntity();
+        PSS_UserEntity* pEntity = choose.GetSelectedUserEntity();
         if (pEntity &&
             ISA(pEntity, ZBUserGroupEntity))
         {
@@ -226,7 +226,7 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
             bool FoundCount = false;
             for (int i = 0; i < Size; ++i)
             {
-                ZBUserEntity* pUserEntity = dynamic_cast<ZBUserGroupEntity*>(pEntity)->GetEntityAt(i);
+                PSS_UserEntity* pUserEntity = dynamic_cast<ZBUserGroupEntity*>(pEntity)->GetEntityAt(i);
 
                 if (ISA(pUserEntity, ZBUserRoleEntity))
                 {

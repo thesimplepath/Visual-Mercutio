@@ -25,7 +25,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_DocumentPageSetup.h"
-#include "ZBPageUnits.h"
+#include "PSS_PageUnits.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelMdl
@@ -93,7 +93,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelViewport : public CODBufferedRulerViewp
         * Sets the page units
         *@param pageUnits - the page units
         */
-        virtual void SetPageUnits(const ZBPageUnits& pageUnits);
+        virtual void SetPageUnits(const PSS_PageUnits& pageUnits);
 
         /**
         * Assigns a new controller

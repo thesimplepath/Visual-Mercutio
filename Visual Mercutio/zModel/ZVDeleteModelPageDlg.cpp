@@ -6,7 +6,7 @@
 
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
-#include "ZBModelSet.h"
+#include "PSS_ModelSet.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -88,7 +88,7 @@ BOOL ZVDeleteModelPageDlg::OnInitDialog()
     
     if (m_pModel)
     {
-        ZBModelSet    DocumentModelSet;
+        PSS_ModelSet DocumentModelSet;
         DocumentModelSet.AddModel( m_pModel );
         m_SymbolTree.Initialize( "Document", &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet );
         // Retrieve the root page

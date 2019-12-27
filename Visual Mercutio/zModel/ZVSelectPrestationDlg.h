@@ -36,12 +36,15 @@
 #endif
 
 // old class name mapping
+#ifndef PSS_PrestationsEntity
+#define PSS_PrestationsEntity ZBPrestationsEntity
+#endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
 #endif
 
 // forward class declaration
-class ZBPrestationsEntity;
+class PSS_PrestationsEntity;
 class PSS_LogicalPrestationsEntity;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -68,7 +71,7 @@ public:
 
     void Release();
 
-    ZBPrestationsEntity* GetSelectedPrestationEntity() const
+    PSS_PrestationsEntity* GetSelectedPrestationEntity() const
     {
         return m_pPrestationEntity;
     };
@@ -103,11 +106,10 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    CString                        m_Title;
-    ZBPrestationsEntity*        m_pPrestationEntity;
-    PSS_LogicalPrestationsEntity*    m_pMainPrestation;
-    bool                        m_AllowPrestationSelection;
+    PSS_PrestationsEntity*        m_pPrestationEntity;
+    PSS_LogicalPrestationsEntity* m_pMainPrestation;
+    CString                       m_Title;
+    bool                          m_AllowPrestationSelection;
 };
 
 #endif

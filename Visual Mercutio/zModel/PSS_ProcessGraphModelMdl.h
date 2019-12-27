@@ -52,11 +52,20 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
 #ifndef PSS_LogicalSystemEntity
     #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
 #endif
+#ifndef PSS_PrestationsEntity
+    #define PSS_PrestationsEntity ZBPrestationsEntity
+#endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
+#endif
+#ifndef PSS_RulesEntity
+    #define PSS_RulesEntity ZBRulesEntity
 #endif
 #ifndef PSS_LogicalRulesEntity
     #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
@@ -71,14 +80,14 @@ class PSS_ProcessGraphModelViewport;
 class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelController;
 class ZDProcessGraphPage;
-class ZBUserGroupEntity;
 class ZBPropertyAttributes;
-class ZBUserEntity;
+class PSS_UserEntity;
+class ZBUserGroupEntity;
 class PSS_LogicalSystemEntity;
+class PSS_PrestationsEntity;
 class PSS_LogicalPrestationsEntity;
-class ZBPrestationsEntity;
+class PSS_RulesEntity;
 class PSS_LogicalRulesEntity;
-class ZBRulesEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -1239,7 +1248,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pUserEntity - the user entity on which the name is changing
         *@param oldName - the changing old name
         */
-        virtual void OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString& oldName);
+        virtual void OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName);
 
     protected:
         /**

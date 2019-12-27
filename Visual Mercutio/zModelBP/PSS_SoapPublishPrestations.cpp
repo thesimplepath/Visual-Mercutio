@@ -79,7 +79,7 @@ void PSS_SoapPublishPrestations::PublishPrestations(PSS_LogicalPrestationsEntity
 
         for (int i = 0; i < count; ++i)
         {
-            ZBPrestationsEntity* pEntity = pPrestations->GetEntityAt(i);
+            PSS_PrestationsEntity* pEntity = pPrestations->GetEntityAt(i);
 
             if (!pEntity)
                 continue;

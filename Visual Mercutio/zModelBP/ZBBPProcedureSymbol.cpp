@@ -472,7 +472,7 @@ CString ZBBPProcedureSymbol::GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, C
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBRulesEntity* pEntity = p_Rule->GetEntityAt(i);
+            PSS_RulesEntity* pEntity = p_Rule->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -2287,7 +2287,7 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
 
             if (dlg.DoModal() == IDOK)
             {
-                ZBUserEntity* pUserEntity = dlg.GetSelectedUserEntity();
+                PSS_UserEntity* pUserEntity = dlg.GetSelectedUserEntity();
 
                 if (pUserEntity)
                 {

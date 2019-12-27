@@ -40,7 +40,7 @@ public:
 
     // Operations
 public:
-    void Initialize(const CString ModelName, ZBModelSet* pModelSet, UINT nIDImageRes, PSS_RuntimeClassSet* pSet = NULL, bool EnableMenuItems = true);
+    void Initialize(const CString ModelName, PSS_ModelSet* pModelSet, UINT nIDImageRes, PSS_RuntimeClassSet* pSet = NULL, bool EnableMenuItems = true);
     void Refresh();
     void Empty();
     PSS_ProcessGraphModelMdl* GetSelectedModel()
@@ -72,8 +72,8 @@ public:
     void AddModel(PSS_ProcessGraphModelMdl* pModel);
     void RemoveModel(PSS_ProcessGraphModelMdl* pModel);
 
-    void AddModelSet(ZBModelSet* pModelSet);
-    void RemoveModelSet(ZBModelSet* pModelSet);
+    void AddModelSet(PSS_ModelSet* pModelSet);
+    void RemoveModelSet(PSS_ModelSet* pModelSet);
 
     void AddSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL, bool CheckUnique = true);
     void RemoveSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel = NULL);
@@ -126,7 +126,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 protected:
-    ZBModelSet*   m_pModelSet;
+    PSS_ModelSet* m_pModelSet;
     PSS_ModelTree m_ModelTree;
 
 private:

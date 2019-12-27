@@ -135,7 +135,7 @@ void PSS_ProcessGraphModelViewport::SetRuler(const CODRuler& ruler)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelViewport::SetPageUnits(const ZBPageUnits& pageUnits)
+void PSS_ProcessGraphModelViewport::SetPageUnits(const PSS_PageUnits& pageUnits)
 {
     CODRuler* pRuler = GetRuler();
 
@@ -145,14 +145,14 @@ void PSS_ProcessGraphModelViewport::SetPageUnits(const ZBPageUnits& pageUnits)
 
         CODMeasure logXUnit;
         CODMeasure logYUnit;
-        const_cast<ZBPageUnits&>(pageUnits).GetLogicalUnitMeasure(logXUnit, logYUnit);
+        const_cast<PSS_PageUnits&>(pageUnits).GetLogicalUnitMeasure(logXUnit, logYUnit);
 
         if (float(logXUnit) || float(logYUnit))
             pRuler->SetLogicalUnitMeasure(logXUnit, logYUnit);
 
         CODMeasure scaleFrom;
         CODMeasure scaleTo;
-        const_cast<ZBPageUnits&>(pageUnits).GetMeasurementScale(scaleFrom, scaleTo);
+        const_cast<PSS_PageUnits&>(pageUnits).GetMeasurementScale(scaleFrom, scaleTo);
 
         if (float(scaleFrom) || float(scaleTo))
             pRuler->SetMeasurementScale(scaleFrom, scaleTo);

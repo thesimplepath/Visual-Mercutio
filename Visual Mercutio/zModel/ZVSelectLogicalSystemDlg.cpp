@@ -109,7 +109,7 @@ void ZVSelectLogicalSystemDlg::OnSelchangedLogicalSystemTree( NMHDR* pNMHDR, LRE
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
     BOOL Enable = FALSE;
-    ZBSystemEntity* pEntity = m_Ctrl.GetSelectedSystemEntity();
+    PSS_SystemEntity* pEntity = m_Ctrl.GetSelectedSystemEntity();
 
     if ( pEntity )
     {

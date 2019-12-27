@@ -33,10 +33,13 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 27 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
+// class name mapping
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
 
-// Forward class declaration
-class ZBUserEntity;
+// forward class declaration
+class PSS_UserEntity;
 class ZBUserGroupEntity;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +69,7 @@ public:
     // JMR-MODIF - Le 27 février 2006 - Nettoyage des memory leaks, ajout de la fonction Release.
     void Release();
 
-    ZBUserEntity* GetSelectedUserEntity() const
+    PSS_UserEntity* GetSelectedUserEntity() const
     {
         return m_pUserEntity;
     };
@@ -95,7 +98,7 @@ private:
         IDD = IDD_USERGROUP_SELECTION
     };
 
-    ZBUserEntity*       m_pUserEntity;
+    PSS_UserEntity*     m_pUserEntity;
     ZBUserGroupEntity*  m_pMainUserGroup;
     ZCUserGroupTreeCtrl m_Ctrl;
     CString             m_Title;

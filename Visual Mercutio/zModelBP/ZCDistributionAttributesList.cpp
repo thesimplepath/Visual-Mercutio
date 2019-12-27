@@ -125,7 +125,7 @@ int ZCDistributionAttributesList::Refresh()
                 pAttrib->GetSymbolRef() == m_SymbolRef)
             {
                 // Find the usergroup name
-                ZBUserEntity* pEntity = (m_pMainUserGroup) ? m_pMainUserGroup->FindGroupByGUID(pAttrib->GetUserGroupGUID(), true) : NULL;
+                PSS_UserEntity* pEntity = (m_pMainUserGroup) ? m_pMainUserGroup->FindGroupByGUID(pAttrib->GetUserGroupGUID(), true) : NULL;
                 int iItem = AddItem((pEntity) ? pEntity->GetEntityName() : _T(""), 4, Level, (LPARAM)pAttrib);
 
                 ZBProperty* pProp = (m_pPropManager) ? m_pPropManager->GetPropertyItem(pAttrib->GetCategoryID(), pAttrib->GetItemID()) : NULL;
@@ -150,7 +150,7 @@ int ZCDistributionAttributesList::InsertDistributionAttribute(ZBDistributionAttr
     {
 
         // First level is the role name
-        ZBUserEntity* pEntity = m_pMainUserGroup->FindRoleByGUID(pRole->GetRoleGUID(), true);
+        PSS_UserEntity* pEntity = m_pMainUserGroup->FindRoleByGUID(pRole->GetRoleGUID(), true);
         AddItem((pEntity) ? pEntity->GetEntityName() : _T(""), 2, Level, (LPARAM)pRole);
         // Increment Line counter
         ++LineCounter;

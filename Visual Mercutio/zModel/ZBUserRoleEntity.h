@@ -18,10 +18,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-#include "ZBUserEntity.h"
-
+// processsoft
+#include "PSS_UserEntity.h"
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -38,11 +36,11 @@
 
 
 
-class AFX_EXT_CLASS ZBUserRoleEntity : public ZBUserEntity  
+class AFX_EXT_CLASS ZBUserRoleEntity : public PSS_UserEntity
 {
     DECLARE_SERIAL(ZBUserRoleEntity)
 public:
-    ZBUserRoleEntity(const CString Name = "", const CString Description = "", ZBUserEntity* pParent = NULL);
+    ZBUserRoleEntity(const CString Name = "", const CString Description = "", PSS_UserEntity* pParent = NULL);
     virtual ~ZBUserRoleEntity();
 
     /* Copy constructor. */
@@ -50,7 +48,7 @@ public:
     /* Assignment operator. */
     ZBUserRoleEntity& operator=(const ZBUserRoleEntity& src);
     /* Create a duplicate copy of this object. */
-    virtual ZBUserEntity* Clone() const;
+    virtual PSS_UserEntity* Clone() const;
 
     virtual bool DisplayProperties();
 

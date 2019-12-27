@@ -20,11 +20,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// class name mapping
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
+
 // forward class definition
 class ZBPropertyAttributes;
 class ZBSymbolEdit;
 class ZDProcessGraphPage;
-class ZBUserEntity;
+class PSS_UserEntity;
 class ZBDynamicProperties;
 
 #ifdef _ZBASESYMEXPORT
@@ -585,7 +590,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         *@param comp - the user entity
         *@param oldName - the old name
         */
-        virtual void OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString& oldName) = 0;
+        virtual void OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName) = 0;
 
     protected:
         /**

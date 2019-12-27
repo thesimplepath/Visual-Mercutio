@@ -20,7 +20,7 @@
 #include "ZBInputAttributes.h"
 #include "ZBDistributionAttributes.h"
 
-#include "zModel\ZBUserEntity.h"
+#include "zModel\PSS_UserEntity.h"
 
 #include "zBaseLib\PSS_GUID.h"
 

@@ -1897,7 +1897,7 @@ void PSS_Symbol::OnSymbolNameChanged(CODComponent& comp, const CString& oldName)
 void PSS_Symbol::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
-void PSS_Symbol::OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString& oldName)
+void PSS_Symbol::OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
 void PSS_Symbol::OnDeleteSymbol()

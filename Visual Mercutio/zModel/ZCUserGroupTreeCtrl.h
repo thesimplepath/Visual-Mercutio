@@ -17,11 +17,16 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
 
-// Forward class declaration
+// class name mapping
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
+
+// forward class declaration
 class ZBWorkspaceEnv;
+class PSS_UserEntity;
 class ZBUserRoleEntity;
 class ZBUserGroupEntity;
-class ZBUserEntity;
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -78,7 +83,7 @@ public:
     void                Release                    ();
     void                Refresh                    ();
 
-    ZBUserEntity*        GetSelectedEntity        ();
+    PSS_UserEntity*        GetSelectedEntity        ();
     ZBUserGroupEntity*    GetSelectedGroup        ();
     ZBUserRoleEntity*    GetSelectedRole            ();
     ZBUserGroupEntity*    GetSelectedOwnerGroup    ();
@@ -159,12 +164,12 @@ private:
     BOOL                ModifyGroupItem            ( ZBUserGroupEntity* pGroup, HTREEITEM hItem );
     BOOL                ModifyRoleItem            ( ZBUserRoleEntity* pRole, HTREEITEM hItem );
 
-    ZBUserEntity*        _GetEntity                ( HTREEITEM hItem );
+    PSS_UserEntity*        _GetEntity                ( HTREEITEM hItem );
     ZBUserGroupEntity*    _GetGroup                ( HTREEITEM hItem );
     ZBUserRoleEntity*    _GetRole                ( HTREEITEM hItem );
     ZBUserGroupEntity*    _GetOwnerGroup            ( HTREEITEM hItem );
       
-    _ZInternalUserGroupTreeData* FindElementFromDataSet( ZBUserEntity* pEntity );
+    _ZInternalUserGroupTreeData* FindElementFromDataSet(PSS_UserEntity* pEntity );
     _ZInternalUserGroupTreeData* FindElementFromDataSet( ZBUserGroupEntity* pGroup );
     _ZInternalUserGroupTreeData* FindElementFromDataSet( ZBUserRoleEntity* pRole );
     _ZInternalUserGroupTreeData* FindElementFromDataSet( CString Str );

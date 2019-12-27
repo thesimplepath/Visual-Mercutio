@@ -320,7 +320,7 @@ void ZVProcessWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 }
 
 // Initialize functions
-void ZVProcessWorkspace::InitializeModelDocumentTree(ZBModelSet* pModelSet)
+void ZVProcessWorkspace::InitializeModelDocumentTree(PSS_ModelSet* pModelSet)
 {
     ZCProcessModelDocument* pTree = GetModelDocumentTree();
 
@@ -330,7 +330,7 @@ void ZVProcessWorkspace::InitializeModelDocumentTree(ZBModelSet* pModelSet)
     }
 }
 
-void ZVProcessWorkspace::InitializeModelUnitTree(ZBModelSet* pModelSet)
+void ZVProcessWorkspace::InitializeModelUnitTree(PSS_ModelSet* pModelSet)
 {
     AddModelUnitSet(pModelSet);
 }
@@ -397,7 +397,7 @@ void ZVProcessWorkspace::RemoveModelDocument(PSS_ProcessGraphModelMdl* pModel)
     }
 }
 
-void ZVProcessWorkspace::AddModelDocumentSet(ZBModelSet* pModelSet)
+void ZVProcessWorkspace::AddModelDocumentSet(PSS_ModelSet* pModelSet)
 {
     ZCProcessModelDocument* pTree = GetModelDocumentTree();
 
@@ -407,7 +407,7 @@ void ZVProcessWorkspace::AddModelDocumentSet(ZBModelSet* pModelSet)
     }
 }
 
-void ZVProcessWorkspace::RemoveModelDocumentSet(ZBModelSet* pModelSet)
+void ZVProcessWorkspace::RemoveModelDocumentSet(PSS_ModelSet* pModelSet)
 {
     ZCProcessModelDocument* pTree = GetModelDocumentTree();
 
@@ -468,7 +468,7 @@ void ZVProcessWorkspace::RemoveModelUnit(PSS_ProcessGraphModelMdl* pModel)
     }
 }
 
-void ZVProcessWorkspace::AddModelUnitSet(ZBModelSet* pModelSet)
+void ZVProcessWorkspace::AddModelUnitSet(PSS_ModelSet* pModelSet)
 {
     ZCProcessModelDocument* pTree = GetModelDocumentTree();
 
@@ -478,7 +478,7 @@ void ZVProcessWorkspace::AddModelUnitSet(ZBModelSet* pModelSet)
     }
 }
 
-void ZVProcessWorkspace::RemoveModelUnitSet(ZBModelSet* pModelSet)
+void ZVProcessWorkspace::RemoveModelUnitSet(PSS_ModelSet* pModelSet)
 {
     ZCProcessModelDocument* pTree = GetModelDocumentTree();
 
@@ -588,7 +588,7 @@ afx_msg LRESULT ZVProcessWorkspace::OnDocumentHasBeenSelected(WPARAM wParam, LPA
 
     if (pDoc && ISA(pDoc, PSS_ProcessGraphModelDoc))
     {
-        ZBModelSet DocumentModelSet;
+        PSS_ModelSet DocumentModelSet;
 
         DocumentModelSet.AddModel(((PSS_ProcessGraphModelDoc*)pDoc)->GetModel());
         InitializeModelDocumentTree(&DocumentModelSet);
@@ -612,7 +612,7 @@ afx_msg LRESULT ZVProcessWorkspace::OnInitializeModelDocument(WPARAM wParam, LPA
 
         if (pDocMsg->GetDoc())
         {
-            ZBModelSet DocumentModelSet;
+            PSS_ModelSet DocumentModelSet;
 
             DocumentModelSet.AddModel(pDocMsg->GetDoc()->GetModel());
             InitializeModelDocumentTree(&DocumentModelSet);
@@ -659,7 +659,7 @@ afx_msg LRESULT ZVProcessWorkspace::OnInitializeModelUnit(WPARAM wParam, LPARAM 
 
         if (pUnitMsg->GetUnitManager())
         {
-            ZBModelSet UnitModelSet;
+            PSS_ModelSet UnitModelSet;
 
             pUnitMsg->GetUnitManager()->FillModelSet(UnitModelSet);
             InitializeModelUnitTree(&UnitModelSet);

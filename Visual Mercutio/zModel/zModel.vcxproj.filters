@@ -30,18 +30,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBModelSet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBPageUnits.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBPrestationsEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBRulesEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBSearchSymbolLogLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,9 +54,6 @@
     <ClCompile Include="ZBSymbolStamp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBSystemEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBTextZone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,9 +64,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBUnitObserverMsg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBUserEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBUserGroupEntity.cpp">
@@ -357,6 +339,24 @@
     <ClCompile Include="PSS_ModelObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ModelSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PageUnits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SystemEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_RulesEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PrestationsEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -459,18 +459,6 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBModelSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBPageUnits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBPrestationsEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBRulesEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZBSearchSymbolLogLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -495,9 +483,6 @@
     <ClInclude Include="ZBSymbolStamp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBSystemEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZBTextZone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -508,9 +493,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBUnitObserverMsg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBUserEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBUserGroupEntity.h">
@@ -793,6 +775,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ModelObserverMsg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ModelSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PageUnits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SystemEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RulesEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PrestationsEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

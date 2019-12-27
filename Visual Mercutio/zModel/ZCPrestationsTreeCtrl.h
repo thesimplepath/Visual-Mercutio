@@ -22,17 +22,22 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
+
 // class name mapping
+#ifndef PSS_PrestationsEntity
+    #define PSS_PrestationsEntity ZBPrestationsEntity
+#endif
 #ifndef PSS_LogicalPrestationsEntity
     #define PSS_LogicalPrestationsEntity ZBLogicalPrestationsEntity
 #endif
 
 // Forward class declaration
+class PSS_PrestationsEntity;
 class PSS_LogicalPrestationsEntity;
-class ZBPrestationsEntity;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -92,7 +97,7 @@ public:
 
     void Refresh();
 
-    ZBPrestationsEntity* GetSelectedPrestationEntity();
+    PSS_PrestationsEntity* GetSelectedPrestationEntity();
     PSS_LogicalPrestationsEntity* GetSelectedLogicalPrestation();
     PSS_LogicalPrestationsEntity* GetSelectedLogicalPrestationOwner();
     bool IsRootSelected() const;
@@ -159,11 +164,11 @@ private:
     HTREEITEM AddLogicalPrestationItem(PSS_LogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem);
     BOOL ModifyLogicalPrestationItem(PSS_LogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hItem);
 
-    ZBPrestationsEntity*        _GetPrestationEntity(HTREEITEM hItem);
+    PSS_PrestationsEntity*        _GetPrestationEntity(HTREEITEM hItem);
     PSS_LogicalPrestationsEntity*    _GetLogicalPrestation(HTREEITEM hItem);
     PSS_LogicalPrestationsEntity*    _GetOwnerPrestation(HTREEITEM hItem);
 
-    _ZInternalPrestationsTreeData* FindElementFromDataSet(ZBPrestationsEntity* pEntity);
+    _ZInternalPrestationsTreeData* FindElementFromDataSet(PSS_PrestationsEntity* pEntity);
     _ZInternalPrestationsTreeData* FindElementFromDataSet(PSS_LogicalPrestationsEntity* pLogicalPrestation);
     _ZInternalPrestationsTreeData* FindElementFromDataSet(CString Str);
 

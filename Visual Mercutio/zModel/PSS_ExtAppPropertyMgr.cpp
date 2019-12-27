@@ -18,7 +18,7 @@
 #include "zWinUtil32\PSS_CommandLineDialog.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_Symbol.h"
-#include "ZBSystemEntity.h"
+#include "PSS_SystemEntity.h"
 #include "PSS_LogicalSystemEntity.h"
 #include "PSS_LogicalPrestationsEntity.h"
 
@@ -92,7 +92,7 @@ bool PSS_ExtAppPropertyMgr::DoInsertExtApp(bool showDialog)
 //---------------------------------------------------------------------------
 bool PSS_ExtAppPropertyMgr::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    ZBSystemEntity* pSystemEntity = dynamic_cast<ZBSystemEntity*>(pObj);
+    PSS_SystemEntity* pSystemEntity = dynamic_cast<PSS_SystemEntity*>(pObj);
 
     if (pSystemEntity)
         return true;
@@ -114,7 +114,7 @@ bool PSS_ExtAppPropertyMgr::AcceptDropItem(CObject* pObj, const CPoint& point)
 //---------------------------------------------------------------------------
 bool PSS_ExtAppPropertyMgr::DropItem(CObject* pObj, const CPoint& point)
 {
-    ZBSystemEntity* pSystemEntity = dynamic_cast<ZBSystemEntity*>(pObj);
+    PSS_SystemEntity* pSystemEntity = dynamic_cast<PSS_SystemEntity*>(pObj);
 
     if (pSystemEntity)
     {

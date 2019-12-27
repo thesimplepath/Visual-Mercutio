@@ -291,7 +291,7 @@ CString ZBBPStopSymbol::GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, CStrin
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBRulesEntity* pEntity = p_Rule->GetEntityAt(i);
+            PSS_RulesEntity* pEntity = p_Rule->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -956,7 +956,7 @@ bool ZBBPStopSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value, 
 
             if (dlg.DoModal() == IDOK)
             {
-                ZBUserEntity* pUserEntity = dlg.GetSelectedUserEntity();
+                PSS_UserEntity* pUserEntity = dlg.GetSelectedUserEntity();
 
                 if (pUserEntity)
                 {

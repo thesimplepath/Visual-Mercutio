@@ -458,7 +458,7 @@ CString PSS_ProcessGraphModelMdl::RetrieveUnitName(const CString& guid, bool& er
 
     if (m_pMainUserGroup)
     {
-        ZBUserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(guid, true);
+        PSS_UserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(guid, true);
 
         if (pEntity)
             return pEntity->GetEntityName();
@@ -474,7 +474,7 @@ CString PSS_ProcessGraphModelMdl::RetrieveUnitDescription(const CString& guid, b
 
     if (m_pMainUserGroup)
     {
-        ZBUserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(guid, true);
+        PSS_UserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(guid, true);
 
         if (pEntity)
             return pEntity->GetEntityDescription();
@@ -490,7 +490,7 @@ float PSS_ProcessGraphModelMdl::RetrieveUnitCost(const CString& guid, bool& erro
 
     if (m_pMainUserGroup)
     {
-        ZBUserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(guid, true);
+        PSS_UserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(guid, true);
 
         if (pEntity)
             return pEntity->GetEntityCost();
@@ -525,7 +525,7 @@ CString PSS_ProcessGraphModelMdl::RetrieveLogicalSystemName(const CString& guid,
 
     if (m_pMainLogicalSystem)
     {
-        ZBSystemEntity* pEntity = m_pMainLogicalSystem->FindSystemByGUID(guid, true);
+        PSS_SystemEntity* pEntity = m_pMainLogicalSystem->FindSystemByGUID(guid, true);
 
         if (pEntity)
             return pEntity->GetEntityName();
@@ -541,7 +541,7 @@ CString PSS_ProcessGraphModelMdl::RetrieveLogicalSystemDescription(const CString
 
     if (m_pMainLogicalSystem)
     {
-        ZBSystemEntity* pEntity = m_pMainLogicalSystem->FindSystemByGUID(guid, true);
+        PSS_SystemEntity* pEntity = m_pMainLogicalSystem->FindSystemByGUID(guid, true);
 
         if (pEntity)
             return pEntity->GetEntityDescription();
@@ -2484,7 +2484,7 @@ void PSS_ProcessGraphModelMdl::OnPageNameChanged(ZDProcessGraphPage* pPage, cons
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString& oldName)
+void PSS_ProcessGraphModelMdl::OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName)
 {
     CODComponentSet* pSet           = GetComponents();
     const int        componentCount = pSet->GetSize();

@@ -88,7 +88,7 @@ void PSS_SoapPublishUserGroup::PublishUserGroup(ZBUserGroupEntity* pGroup)
 
         for (int i = 0; i < count; ++i)
         {
-            ZBUserEntity* pEntity = pGroup->GetEntityAt(i);
+            PSS_UserEntity* pEntity = pGroup->GetEntityAt(i);
 
             if (!pEntity)
                 continue;

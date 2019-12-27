@@ -21,12 +21,14 @@ BOOL                               PSS_LogicalRulesEntity::m_Modified = FALSE;
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_LogicalRulesEntity, ZBRulesEntity, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_LogicalRulesEntity, PSS_RulesEntity, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_LogicalRulesEntity
 //---------------------------------------------------------------------------
-PSS_LogicalRulesEntity::PSS_LogicalRulesEntity(const CString& name, const CString& description, ZBRulesEntity* pParent) :
-    ZBRulesEntity(name, description, pParent)
+PSS_LogicalRulesEntity::PSS_LogicalRulesEntity(const CString&   name,
+                                               const CString&   description,
+                                               PSS_RulesEntity* pParent) :
+    PSS_RulesEntity(name, description, pParent)
 {}
 //---------------------------------------------------------------------------
 PSS_LogicalRulesEntity::~PSS_LogicalRulesEntity()
@@ -99,7 +101,7 @@ bool PSS_LogicalRulesEntity::RemoveRule(PSS_LogicalRulesEntity* pRule)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalRulesEntity* pCurRule = dynamic_cast<PSS_LogicalRulesEntity*>(pEnv);
 
@@ -129,13 +131,13 @@ void PSS_LogicalRulesEntity::RemoveAllRulesEntities()
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
         delete pEnv;
 
     m_EntitySet.RemoveAll();
 }
 //---------------------------------------------------------------------------
-ZBRulesEntity* PSS_LogicalRulesEntity::FindRuleByGUID(const CString& guid, bool deeper)
+PSS_RulesEntity* PSS_LogicalRulesEntity::FindRuleByGUID(const CString& guid, bool deeper)
 {
     // check if the main group matches with the guid to find, add it to the find set if yes
     if (GetGUID() == guid)
@@ -188,7 +190,7 @@ bool PSS_LogicalRulesEntity::RuleExist(const CString& name, bool deeper)
 {
     PSS_LogicalRulesEntity::IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalRulesEntity* pEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pEnv);
 
@@ -226,7 +228,7 @@ bool PSS_LogicalRulesEntity::RuleExist(const CString& name, PSS_LogicalRulesEnti
     return pInRule->RuleExist(name, false);
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalRulesEntity::MoveRule(ZBRulesEntity* pRule)
+bool PSS_LogicalRulesEntity::MoveRule(PSS_RulesEntity* pRule)
 {
     if (!pRule)
         return false;
@@ -250,7 +252,7 @@ bool PSS_LogicalRulesEntity::MoveRule(ZBRulesEntity* pRule)
 //---------------------------------------------------------------------------
 void PSS_LogicalRulesEntity::Serialize(CArchive& ar)
 {
-    ZBRulesEntity::Serialize(ar);
+    PSS_RulesEntity::Serialize(ar);
 
     // if something else to serialize, do it below
     if (ar.IsStoring())
@@ -260,7 +262,7 @@ void PSS_LogicalRulesEntity::Serialize(CArchive& ar)
 
         for (int index = 0; index < int(GetEntityCount()); ++index)
         {
-            ZBRulesEntity* pEntity = GetEntityAt(index);
+            PSS_RulesEntity* pEntity = GetEntityAt(index);
             ar << pEntity;
         }
     }
@@ -272,7 +274,7 @@ void PSS_LogicalRulesEntity::Serialize(CArchive& ar)
         int count;
         ar >> count;
 
-        ZBRulesEntity* pEntity;
+        PSS_RulesEntity* pEntity;
 
         // read the elements
         for (int i = 0; i < count; ++i)
@@ -287,22 +289,22 @@ void PSS_LogicalRulesEntity::Serialize(CArchive& ar)
 #ifdef _DEBUG
     void PSS_LogicalRulesEntity::AssertValid() const
     {
-        ZBRulesEntity::AssertValid();
+        PSS_RulesEntity::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_LogicalRulesEntity::Dump(CDumpContext& dc) const
     {
-        ZBRulesEntity::Dump(dc);
+        PSS_RulesEntity::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------
-bool PSS_LogicalRulesEntity::RemoveRuleFromSet(ZBRulesEntity* pRule)
+bool PSS_LogicalRulesEntity::RemoveRuleFromSet(PSS_RulesEntity* pRule)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
         if (pEnv == pRule)
         {
             // remove the current element
@@ -313,11 +315,11 @@ bool PSS_LogicalRulesEntity::RemoveRuleFromSet(ZBRulesEntity* pRule)
     return false;
 }
 //---------------------------------------------------------------------------
-ZBRulesEntity* PSS_LogicalRulesEntity::FindRuleByGUIDPvt(const CString& guid, bool deeper)
+PSS_RulesEntity* PSS_LogicalRulesEntity::FindRuleByGUIDPvt(const CString& guid, bool deeper)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalRulesEntity* pEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pEnv);
 
@@ -331,7 +333,7 @@ ZBRulesEntity* PSS_LogicalRulesEntity::FindRuleByGUIDPvt(const CString& guid, bo
         // continue to search recursively
         if (deeper && pEntity->ContainEntity())
         {
-            ZBRulesEntity* pFoundEnv = pEntity->FindRuleByGUIDPvt(guid, deeper);
+            PSS_RulesEntity* pFoundEnv = pEntity->FindRuleByGUIDPvt(guid, deeper);
 
             if (pFoundEnv)
                 return pFoundEnv;
@@ -345,7 +347,7 @@ void PSS_LogicalRulesEntity::FindRulePvt(const CString& name, bool deeper)
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalRulesEntity* pEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pEnv);
 
@@ -374,7 +376,7 @@ PSS_LogicalRulesEntity* PSS_LogicalRulesEntity::FindFirstRule(const CString& nam
 {
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         PSS_LogicalRulesEntity* pEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pEnv);
 
@@ -441,7 +443,7 @@ void PSS_LogicalRulesEntity::RecalculateParent()
     // Sets the iterator to the right entity set
     IEntityIterator it(&m_EntitySet);
 
-    for (ZBRulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
+    for (PSS_RulesEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
         // set the parent
         pEnv->SetParent(this);

@@ -118,7 +118,7 @@ void ZVSelectUserGroupDlg::OnSelchangedUsergroupTree( NMHDR* pNMHDR, LRESULT* pR
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
     BOOL Enable = FALSE;
-    ZBUserEntity* pEntity = m_Ctrl.GetSelectedEntity();
+    PSS_UserEntity* pEntity = m_Ctrl.GetSelectedEntity();
 
     if ( pEntity )
     {

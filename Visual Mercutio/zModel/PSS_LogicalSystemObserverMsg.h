@@ -23,8 +23,13 @@
 // processsoft
 #include "zBaseLib\PSS_ObserverMsg.h"
 
+// class name mapping
+#ifndef PSS_SystemEntity
+    #define PSS_SystemEntity ZBSystemEntity
+#endif
+
 // forward class declarations
-class ZBSystemEntity;
+class PSS_SystemEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -60,9 +65,9 @@ class AFX_EXT_CLASS PSS_LogicalSystemObserverMsg : public PSS_ObserverMsg
         *@param pEntity - the entity
         *@param rootName - the root name
         */
-        PSS_LogicalSystemObserverMsg(UINT            messageID = 0,
-                                     ZBSystemEntity* pEntity   = NULL,
-                                     const CString&  rootName  = _T(""));
+        PSS_LogicalSystemObserverMsg(UINT              messageID = 0,
+                                     PSS_SystemEntity* pEntity   = NULL,
+                                     const CString&    rootName  = _T(""));
 
         virtual ~PSS_LogicalSystemObserverMsg();
 
@@ -82,13 +87,13 @@ class AFX_EXT_CLASS PSS_LogicalSystemObserverMsg : public PSS_ObserverMsg
         * Gets the entity
         *@return the entity
         */
-        virtual inline ZBSystemEntity* GetEntity() const;
+        virtual inline PSS_SystemEntity* GetEntity() const;
 
         /**
         * Sets the entity
         *@param pEntity - the entity
         */
-        virtual inline void SetEntity(ZBSystemEntity* value);
+        virtual inline void SetEntity(PSS_SystemEntity* value);
 
         /**
         * Gets the root name
@@ -103,9 +108,9 @@ class AFX_EXT_CLASS PSS_LogicalSystemObserverMsg : public PSS_ObserverMsg
         virtual inline void SetRootName(const CString value);
 
     private:
-        ZBSystemEntity* m_pEntity;
-        CString         m_RootName;
-        UINT            m_MessageID;
+        PSS_SystemEntity* m_pEntity;
+        CString           m_RootName;
+        UINT              m_MessageID;
 };
 
 //---------------------------------------------------------------------------
@@ -121,12 +126,12 @@ void PSS_LogicalSystemObserverMsg::SetMessageID(UINT value)
     m_MessageID = value;
 }
 //---------------------------------------------------------------------------
-ZBSystemEntity* PSS_LogicalSystemObserverMsg::GetEntity() const
+PSS_SystemEntity* PSS_LogicalSystemObserverMsg::GetEntity() const
 {
     return m_pEntity;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalSystemObserverMsg::SetEntity(ZBSystemEntity* value)
+void PSS_LogicalSystemObserverMsg::SetEntity(PSS_SystemEntity* value)
 {
     m_pEntity = value;
 }

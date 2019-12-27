@@ -9,7 +9,7 @@
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZUExtractModelLogicalSystemAssigned.h"
 
-#include "ZBSystemEntity.h"
+#include "PSS_SystemEntity.h"
 
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
@@ -36,7 +36,7 @@ ZUExtractModelLogicalSystemAssigned::~ZUExtractModelLogicalSystemAssigned()
 
 bool ZUExtractModelLogicalSystemAssigned::OnStart()
 {
-    m_pLogicalSystem = static_cast<ZBSystemEntity*>(m_pClass);
+    m_pLogicalSystem = static_cast<PSS_SystemEntity*>(m_pClass);
 
     if (!m_pLogicalSystem)
     {

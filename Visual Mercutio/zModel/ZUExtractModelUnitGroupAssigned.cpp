@@ -10,7 +10,7 @@
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZUExtractModelUnitGroupAssigned.h"
 
-#include "ZBUserEntity.h"
+#include "PSS_UserEntity.h"
 
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
@@ -37,7 +37,7 @@ ZUExtractModelUnitGroupAssigned::~ZUExtractModelUnitGroupAssigned()
 
 bool ZUExtractModelUnitGroupAssigned::OnStart()
 {
-    m_pUserEntity = static_cast<ZBUserEntity*>(m_pClass);
+    m_pUserEntity = static_cast<PSS_UserEntity*>(m_pClass);
 
     if (!m_pUserEntity)
     {

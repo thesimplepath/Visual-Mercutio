@@ -1931,7 +1931,7 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(ZBUserGroupEntity* pG
 
         for (int i = 0; i < count; ++i)
         {
-            ZBUserEntity* pEntity = pGroupEntity->GetEntityAt(i);
+            PSS_UserEntity* pEntity = pGroupEntity->GetEntityAt(i);
 
             if (!pEntity)
                 continue;
@@ -2129,7 +2129,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(PSS_LogicalSystem
         for (int i = 0; i < count; ++i)
         {
             // get entity
-            ZBSystemEntity* pEntity = pSystemEntity->GetEntityAt(i);
+            PSS_SystemEntity* pEntity = pSystemEntity->GetEntityAt(i);
 
             if (!pEntity)
                 continue;
@@ -2291,7 +2291,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(PSS_LogicalP
         for (int i = 0; i < count; ++i)
         {
             // get entity
-            ZBPrestationsEntity* pEntity = pPrestationsEntity->GetEntityAt(i);
+            PSS_PrestationsEntity* pEntity = pPrestationsEntity->GetEntityAt(i);
 
             if (!pEntity)
                 continue;
@@ -2602,7 +2602,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameForPrinter(PSS_Proces
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalSystem(ZBSystemEntity* pSystemEntity) const
+CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalSystem(PSS_SystemEntity* pSystemEntity) const
 {
     if (!pSystemEntity)
         return _T("");
@@ -2626,7 +2626,7 @@ CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalSystem(ZBSystemEnti
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalPrestations(ZBPrestationsEntity* pPrestationsEntity) const
+CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalPrestations(PSS_PrestationsEntity* pPrestationsEntity) const
 {
     if (!pPrestationsEntity)
         return _T("");
@@ -2650,7 +2650,7 @@ CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalPrestations(ZBPrest
     return fileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameUser(ZBUserEntity* pUserEntity) const
+CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameUser(PSS_UserEntity* pUserEntity) const
 {
     if (!pUserEntity)
         return _T("");

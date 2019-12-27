@@ -12,15 +12,15 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_SERIAL(ZBUserRoleEntity, ZBUserEntity, g_DefVersion)
+IMPLEMENT_SERIAL(ZBUserRoleEntity, PSS_UserEntity, g_DefVersion)
 
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBUserRoleEntity::ZBUserRoleEntity( const CString Name /*= ""*/, const CString Description /*= ""*/, ZBUserEntity* pParent /*= NULL*/ )
-: ZBUserEntity(Name, Description, 0, pParent)
+ZBUserRoleEntity::ZBUserRoleEntity( const CString Name /*= ""*/, const CString Description /*= ""*/, PSS_UserEntity* pParent /*= NULL*/ )
+: PSS_UserEntity(Name, Description, 0, pParent)
 {
 }
 
@@ -37,12 +37,12 @@ ZBUserRoleEntity::ZBUserRoleEntity(const ZBUserRoleEntity& src)
 ZBUserRoleEntity& ZBUserRoleEntity::operator=(const ZBUserRoleEntity& src)
 {
     // Call the base class assignement operator
-    ZBUserEntity::operator=( (const ZBUserEntity&)src);
+    PSS_UserEntity::operator=( (const PSS_UserEntity&)src);
 
     return *this;
 }
 
-ZBUserEntity* ZBUserRoleEntity::Clone() const
+PSS_UserEntity* ZBUserRoleEntity::Clone() const
 {
     return new ZBUserRoleEntity(*this);
 }
@@ -57,7 +57,7 @@ bool ZBUserRoleEntity::DisplayProperties()
 
 void ZBUserRoleEntity::Serialize (CArchive& ar)
 {
-    ZBUserEntity::Serialize(ar);
+    PSS_UserEntity::Serialize(ar);
     if (ar.IsStoring())
     {    // Write the elements
     }
@@ -73,11 +73,11 @@ void ZBUserRoleEntity::Serialize (CArchive& ar)
 #ifdef _DEBUG
 void ZBUserRoleEntity::AssertValid() const
 {
-    ZBUserEntity::AssertValid();
+    PSS_UserEntity::AssertValid();
 }
 
 void ZBUserRoleEntity::Dump(CDumpContext& dc) const
 {
-    ZBUserEntity::Dump(dc);
+    PSS_UserEntity::Dump(dc);
 }
 #endif //_DEBUG

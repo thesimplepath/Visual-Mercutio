@@ -9,7 +9,7 @@
 #include "PSS_LogicalRulesObserverMsg.h"
 
 // processsoft
-#include "ZBRulesEntity.h"
+#include "PSS_RulesEntity.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -24,9 +24,9 @@ IMPLEMENT_DYNAMIC(PSS_LogicalRulesObserverMsg, PSS_ObserverMsg)
 //---------------------------------------------------------------------------
 // PSS_LogicalRulesObserverMsg
 //---------------------------------------------------------------------------
-PSS_LogicalRulesObserverMsg::PSS_LogicalRulesObserverMsg(UINT           messageID,
-                                                         ZBRulesEntity* pEntity,
-                                                         const CString& rootName) :
+PSS_LogicalRulesObserverMsg::PSS_LogicalRulesObserverMsg(UINT             messageID,
+                                                         PSS_RulesEntity* pEntity,
+                                                         const CString&   rootName) :
     PSS_ObserverMsg(),
     m_pEntity(pEntity),
     m_RootName(rootName),

@@ -39,11 +39,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "zModel\ZUModelNavigation.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBUserEntity;
+// class name mapping
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
+
+// forward class declaration
+class PSS_UserEntity;
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -80,9 +85,8 @@ public:
     virtual bool OnLink(PSS_LinkSymbol* pLink);
 
 private:
-
-    ZBUserEntity*    m_pUserEntity;
-    CODComponentSet    m_Set;
+    PSS_UserEntity* m_pUserEntity;
+    CODComponentSet m_Set;
 };
 
-#endif // !defined(AFX_ZUExtractModelUnitGroupAssigned_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

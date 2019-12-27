@@ -26,7 +26,7 @@
 #endif
 
 // processsoft
-#include "ZBSystemEntity.h"
+#include "PSS_SystemEntity.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -47,16 +47,16 @@ const CString g_LogicalSystemKey = _T("$LS=");
 //---------------------------------------------------------------------------
 
 /**
-* Logical system entity
+* Logical system entity. An entity is a kind of group containing properties of a specific type
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_LogicalSystemEntity : public ZBSystemEntity
+class AFX_EXT_CLASS PSS_LogicalSystemEntity : public PSS_SystemEntity
 {
     DECLARE_SERIAL(PSS_LogicalSystemEntity)
 
     public:
-        typedef CCArray_T <ZBSystemEntity*, ZBSystemEntity*> IEntitySet;
-        typedef Iterator_T<ZBSystemEntity*>                  IEntityIterator;
+        typedef CCArray_T <PSS_SystemEntity*, PSS_SystemEntity*> IEntitySet;
+        typedef Iterator_T<PSS_SystemEntity*>                    IEntityIterator;
 
         /**
         * Constructor
@@ -64,9 +64,9 @@ class AFX_EXT_CLASS PSS_LogicalSystemEntity : public ZBSystemEntity
         *@param description - the entity description
         *@param pParent - the parent
         */
-        PSS_LogicalSystemEntity(const CString&  name        = _T(""),
-                                const CString&  description = _T(""),
-                                ZBSystemEntity* pParent     = NULL);
+        PSS_LogicalSystemEntity(const CString&    name        = _T(""),
+                                const CString&    description = _T(""),
+                                PSS_SystemEntity* pParent     = NULL);
 
         virtual ~PSS_LogicalSystemEntity();
 
@@ -86,7 +86,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemEntity : public ZBSystemEntity
         * Gets the entity at index
         *@return the entity at index, NULL if not found or on error
         */
-        virtual inline ZBSystemEntity* GetEntityAt(std::size_t index);
+        virtual inline PSS_SystemEntity* GetEntityAt(std::size_t index);
 
         /**
         * Gets the entity set
@@ -178,7 +178,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemEntity : public ZBSystemEntity
         *@param deeper - if true, the search will continue recursively in system children
         *@return the system, NULL if not found or on error
         */
-        virtual ZBSystemEntity* FindSystemByGUID(const CString& guid, bool deeper = false);
+        virtual PSS_SystemEntity* FindSystemByGUID(const CString& guid, bool deeper = false);
 
         /**
         * Finds a system
@@ -233,7 +233,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemEntity : public ZBSystemEntity
         *@param pPrestation - the prestation to move
         *@return true on success, otherwise false
         */
-        virtual bool MoveSystem(ZBSystemEntity* pSystem);
+        virtual bool MoveSystem(PSS_SystemEntity* pSystem);
 
         /**
         * Serializes the class content to an archive
@@ -266,14 +266,14 @@ class AFX_EXT_CLASS PSS_LogicalSystemEntity : public ZBSystemEntity
         *@param pSystem - the system to add
         *@return true on success, otherwise false
         */
-        virtual inline bool AddSystem(ZBSystemEntity* pSystem);
+        virtual inline bool AddSystem(PSS_SystemEntity* pSystem);
 
         /**
         * Removes a system from the system set
         *@param pSystem - the system to remove
         *@return true on success, otherwise false
         */
-        virtual bool RemoveSystemFromSet(ZBSystemEntity* pSystem);
+        virtual bool RemoveSystemFromSet(PSS_SystemEntity* pSystem);
 
         /**
         * Finds a system from its guid
@@ -281,7 +281,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemEntity : public ZBSystemEntity
         *@param deeper - if true, the search will continue recursively in system children
         *@return the system, NULL if not found or on error
         */
-        virtual ZBSystemEntity* FindSystemByGUIDPvt(const CString& guid, bool deeper = false);
+        virtual PSS_SystemEntity* FindSystemByGUIDPvt(const CString& guid, bool deeper = false);
 
         /**
         * Finds a system
@@ -341,7 +341,7 @@ std::size_t PSS_LogicalSystemEntity::GetEntityCount() const
     return m_EntitySet.GetSize();
 }
 //---------------------------------------------------------------------------
-ZBSystemEntity* PSS_LogicalSystemEntity::GetEntityAt(std::size_t index)
+PSS_SystemEntity* PSS_LogicalSystemEntity::GetEntityAt(std::size_t index)
 {
     return (index < GetEntityCount() ? m_EntitySet.GetAt(index) : NULL);
 }
@@ -361,7 +361,7 @@ void PSS_LogicalSystemEntity::SetModifiedFlag(BOOL modified)
     m_Modified = modified;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalSystemEntity::AddSystem(ZBSystemEntity* pSystem)
+bool PSS_LogicalSystemEntity::AddSystem(PSS_SystemEntity* pSystem)
 {
     m_EntitySet.Add(pSystem);
     return true;

@@ -26,7 +26,7 @@
 #endif
 
 // processsoft
-#include "ZBPrestationsEntity.h"
+#include "PSS_PrestationsEntity.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -47,16 +47,16 @@ const CString g_LogicalPrestationsKey = _T("$LP=");
 //---------------------------------------------------------------------------
 
 /**
-* Logical prestations entity
+* Logical prestations entity. An entity is a kind of group containing properties of a specific type
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
+class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public PSS_PrestationsEntity
 {
     DECLARE_SERIAL(PSS_LogicalPrestationsEntity)
 
     public:
-        typedef CCArray_T <ZBPrestationsEntity*, ZBPrestationsEntity*> IEntitySet;
-        typedef Iterator_T<ZBPrestationsEntity*>                       IEntityIterator;
+        typedef CCArray_T <PSS_PrestationsEntity*, PSS_PrestationsEntity*> IEntitySet;
+        typedef Iterator_T<PSS_PrestationsEntity*>                         IEntityIterator;
 
         /**
         * Constructor
@@ -64,9 +64,9 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         *@param description - the entity description
         *@param pParent - the parent
         */
-        PSS_LogicalPrestationsEntity(const CString&       name        = _T(""),
-                                     const CString&       description = _T(""),
-                                     ZBPrestationsEntity* pParent     = NULL);
+        PSS_LogicalPrestationsEntity(const CString&         name        = _T(""),
+                                     const CString&         description = _T(""),
+                                     PSS_PrestationsEntity* pParent     = NULL);
 
         virtual ~PSS_LogicalPrestationsEntity();
 
@@ -86,7 +86,7 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         * Gets the entity at index
         *@return the entity at index, NULL if not found or on error
         */
-        virtual inline ZBPrestationsEntity* GetEntityAt(std::size_t index);
+        virtual inline PSS_PrestationsEntity* GetEntityAt(std::size_t index);
 
         /**
         * Gets the entity set
@@ -178,7 +178,7 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         *@param deeper - if true, the search will continue recursively in prestation children
         *@return the prestation, NULL if not found or on error
         */
-        virtual ZBPrestationsEntity* FindPrestationByGUID(const CString& guid, bool deeper = false);
+        virtual PSS_PrestationsEntity* FindPrestationByGUID(const CString& guid, bool deeper = false);
 
         /**
         * Finds a prestation
@@ -233,7 +233,7 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         *@param pPrestation - the prestation to move
         *@return true on success, otherwise false
         */
-        virtual bool MovePrestation(ZBPrestationsEntity* pPrestation);
+        virtual bool MovePrestation(PSS_PrestationsEntity* pPrestation);
 
         /**
         * Serializes the class content to an archive
@@ -266,14 +266,14 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         *@param pPrestation - the prestation to add
         *@return true on success, otherwise false
         */
-        virtual inline bool AddPrestation(ZBPrestationsEntity* pPrestation);
+        virtual inline bool AddPrestation(PSS_PrestationsEntity* pPrestation);
 
         /**
         * Removes a prestation from the prestation set
         *@param pPrestation - the prestation to remove
         *@return true on success, otherwise false
         */
-        virtual bool RemovePrestationFromSet(ZBPrestationsEntity* pPrestation);
+        virtual bool RemovePrestationFromSet(PSS_PrestationsEntity* pPrestation);
 
         /**
         * Finds a prestation from its guid
@@ -281,7 +281,7 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsEntity : public ZBPrestationsEntity
         *@param deeper - if true, the search will continue recursively in prestation children
         *@return the prestation, NULL if not found or on error
         */
-        virtual ZBPrestationsEntity* FindPrestationByGUIDPvt(const CString& guid, bool deeper = false);
+        virtual PSS_PrestationsEntity* FindPrestationByGUIDPvt(const CString& guid, bool deeper = false);
 
         /**
         * Finds a prestation
@@ -342,7 +342,7 @@ std::size_t PSS_LogicalPrestationsEntity::GetEntityCount() const
     return m_EntitySet.GetSize();
 }
 //---------------------------------------------------------------------------
-ZBPrestationsEntity* PSS_LogicalPrestationsEntity::GetEntityAt(std::size_t index)
+PSS_PrestationsEntity* PSS_LogicalPrestationsEntity::GetEntityAt(std::size_t index)
 {
     return (index < GetEntityCount() ? m_EntitySet.GetAt(index) : NULL);
 }
@@ -362,7 +362,7 @@ void PSS_LogicalPrestationsEntity::SetModifiedFlag(BOOL modified)
     m_Modified = modified;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsEntity::AddPrestation(ZBPrestationsEntity* pPrestation)
+bool PSS_LogicalPrestationsEntity::AddPrestation(PSS_PrestationsEntity* pPrestation)
 {
     m_EntitySet.Add(pPrestation);
     return true;

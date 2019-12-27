@@ -19,8 +19,13 @@
 
 #include "zBaseLib\PSS_ObserverMsg.h"
 
-// forward declarations
-class ZBUserEntity;
+// class name mapping
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
+
+// forward class declarations
+class PSS_UserEntity;
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -45,7 +50,7 @@ class AFX_EXT_CLASS ZBUserGroupObserverMsg : public PSS_ObserverMsg
 
 public:
 
-    ZBUserGroupObserverMsg(UINT MessageID = 0, ZBUserEntity* pEntity = NULL, const CString RootName = _T(""));
+    ZBUserGroupObserverMsg(UINT MessageID = 0, PSS_UserEntity* pEntity = NULL, const CString RootName = _T(""));
     virtual ~ZBUserGroupObserverMsg();
 
     UINT GetMessageID() const
@@ -58,7 +63,7 @@ public:
         m_MessageID = value;
     };
 
-    ZBUserEntity* GetEntity() const
+    PSS_UserEntity* GetEntity() const
     {
         return m_pEntity;
     };
@@ -79,9 +84,9 @@ public:
     };
 
 private:
-    ZBUserEntity* m_pEntity;
-    CString       m_RootName;
-    UINT          m_MessageID;
+    PSS_UserEntity* m_pEntity;
+    CString         m_RootName;
+    UINT            m_MessageID;
 };
 
 #endif

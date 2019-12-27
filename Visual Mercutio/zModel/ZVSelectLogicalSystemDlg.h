@@ -34,12 +34,15 @@
 #endif
 
 // old class name mapping
+#ifndef PSS_SystemEntity
+    #define PSS_SystemEntity ZBSystemEntity
+#endif
 #ifndef PSS_LogicalSystemEntity
     #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
 #endif
 
 // forward class declaration
-class ZBSystemEntity;
+class PSS_SystemEntity;
 class PSS_LogicalSystemEntity;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +69,7 @@ public:
     // JMR-MODIF - Le 27 février 2006 - Nettoyage des memory leaks, ajout de la fonction Release.
     void Release();
 
-    ZBSystemEntity* GetSelectedSystemEntity() const
+    PSS_SystemEntity* GetSelectedSystemEntity() const
     {
         return m_pSystemEntity;
     };
@@ -103,7 +106,7 @@ protected:
 
 private:
     PSS_LogicalSystemEntity* m_pMainLogicalSystemGroup;
-    ZBSystemEntity*          m_pSystemEntity;
+    PSS_SystemEntity*        m_pSystemEntity;
     CString                  m_Title;
 };
 

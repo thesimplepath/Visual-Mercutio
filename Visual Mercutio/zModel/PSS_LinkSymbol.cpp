@@ -1725,7 +1725,7 @@ void PSS_LinkSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString& oldN
 void PSS_LinkSymbol::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
-void PSS_LinkSymbol::OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString& oldName)
+void PSS_LinkSymbol::OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)

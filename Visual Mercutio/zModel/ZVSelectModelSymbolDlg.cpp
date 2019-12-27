@@ -5,7 +5,7 @@
 
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
-#include "ZBModelSet.h"
+#include "PSS_ModelSet.h"
 
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
@@ -400,7 +400,7 @@ BOOL ZVSelectModelSymbolDlg::OnInitDialog()
 
     if (m_pModel)
     {
-        ZBModelSet DocumentModelSet;
+        PSS_ModelSet DocumentModelSet;
         DocumentModelSet.AddModel(m_pModel);
         m_SymbolTree.Initialize(_T("Document"), &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);
     }

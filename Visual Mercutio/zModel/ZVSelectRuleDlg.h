@@ -35,12 +35,15 @@
 #endif
 
 // class name mapping
+#ifndef PSS_RulesEntity
+    #define PSS_RulesEntity ZBRulesEntity
+#endif
 #ifndef PSS_LogicalRulesEntity
     #define PSS_LogicalRulesEntity ZBLogicalRulesEntity
 #endif
 
 // forward class declaration
-class ZBRulesEntity;
+class PSS_RulesEntity;
 class PSS_LogicalRulesEntity;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +70,7 @@ public:
 
     void Release();
 
-    ZBRulesEntity* GetSelectedRuleEntity() const
+    PSS_RulesEntity* GetSelectedRuleEntity() const
     {
         return m_pRuleEntity;
     };
@@ -103,7 +106,7 @@ protected:
 
 private:
     CString                 m_Title;
-    ZBRulesEntity*          m_pRuleEntity;
+    PSS_RulesEntity*        m_pRuleEntity;
     PSS_LogicalRulesEntity* m_pMainRule;
     bool                    m_AllowRuleSelection;
 };

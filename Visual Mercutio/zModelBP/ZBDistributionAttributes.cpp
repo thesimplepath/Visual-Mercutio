@@ -473,7 +473,7 @@ bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttrib
     if ( !pDistributionAttribute || !pMainUserGroup ) // || !Exist( pDistributionAttribute ) )
         return false;
 
-    ZBUserEntity* pEntity = pMainUserGroup->FindGroupByGUID( pDistributionAttribute->GetUserGroupGUID(), true );
+    PSS_UserEntity* pEntity = pMainUserGroup->FindGroupByGUID( pDistributionAttribute->GetUserGroupGUID(), true );
 
     if ( !pEntity || !ISA(pEntity,ZBUserGroupEntity) )
         return false;
@@ -503,11 +503,11 @@ bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttrib
     }
 
     // Now run through roles and check if exists for this distribution attribute
-    size_t Size = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityCount();
+    std::size_t Size = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityCount();
 
     for ( int i = 0; i < Size; ++i )
     {
-        ZBUserEntity* pRole = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityAt( i );
+        PSS_UserEntity* pRole = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityAt( i );
 
         if ( pRole && ISA( pRole, ZBUserRoleEntity ) )
         {

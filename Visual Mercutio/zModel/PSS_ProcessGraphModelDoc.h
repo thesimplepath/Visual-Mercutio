@@ -32,8 +32,8 @@
 #include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZBUnitManager.h"
-#include "ZBModelSet.h"
-#include "ZBPageUnits.h"
+#include "PSS_ModelSet.h"
+#include "PSS_PageUnits.h"
 #include "ZBWorkflowDefinition.h"
 #include "PSS_LanguageDefs.h"
 #include "PSS_Defines.h"
@@ -250,14 +250,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the page units
         *@return the page units
         */
-        virtual inline ZBPageUnits& GetPageUnits();
+        virtual inline PSS_PageUnits& GetPageUnits();
 
         /**
         * Sets the page units
         *@param value - the page units
         */
-        virtual void SetPageUnits(ZBPageUnits& value);
-        virtual void SetPageUnits(CODRuler&    value);
+        virtual void SetPageUnits(PSS_PageUnits& value);
+        virtual void SetPageUnits(CODRuler&      value);
 
         /**
         * Inserts units
@@ -785,14 +785,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBPageUnits                 m_PageUnits;
+        PSS_PageUnits               m_PageUnits;
         ZUUserManager*              m_pUserManager;
         ZUMail*                     m_pMail;
         ZDTemplateManager*          m_pTemplateManager;
         ZBDynamicPropertiesManager* m_DynamicPropertiesManager;
         ZBUnitManager*              m_pUnitManager;
-        ZBModelSet                  m_DocumentModelSet;
-        ZBModelSet                  m_UnitModelSet;
+        PSS_ModelSet                m_DocumentModelSet;
+        PSS_ModelSet                m_UnitModelSet;
         ZBWorkflowDefinition*       m_pWorkflowDefinition;
         PSS_Log*                    m_pOutputLog;
         PSS_Log*                    m_pAnalyzerLog;
@@ -910,7 +910,7 @@ void PSS_ProcessGraphModelDoc::AssignRulesDefGUID(const CString& value)
     m_RulesDefGUID = value;
 }
 //---------------------------------------------------------------------------
-ZBPageUnits& PSS_ProcessGraphModelDoc::GetPageUnits()
+PSS_PageUnits& PSS_ProcessGraphModelDoc::GetPageUnits()
 {
     return m_PageUnits;
 }

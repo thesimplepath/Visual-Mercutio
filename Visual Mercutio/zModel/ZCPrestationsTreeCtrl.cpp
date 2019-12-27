@@ -231,7 +231,7 @@ void ZCPrestationsTreeCtrl::ProcessLogicalPrestationsGroup(PSS_LogicalPrestation
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBPrestationsEntity* pEntity = pLogicalPrestation->GetEntityAt(i);
+            PSS_PrestationsEntity* pEntity = pLogicalPrestation->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -372,12 +372,12 @@ void ZCPrestationsTreeCtrl::ModifyPrestation(PSS_LogicalPrestationsEntity* pLogi
     }
 }
 
-ZBPrestationsEntity* ZCPrestationsTreeCtrl::GetSelectedPrestationEntity()
+PSS_PrestationsEntity* ZCPrestationsTreeCtrl::GetSelectedPrestationEntity()
 {
     return _GetPrestationEntity(GetSelectedItem());
 }
 
-ZBPrestationsEntity* ZCPrestationsTreeCtrl::_GetPrestationEntity(HTREEITEM hItem)
+PSS_PrestationsEntity* ZCPrestationsTreeCtrl::_GetPrestationEntity(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -720,7 +720,7 @@ void ZCPrestationsTreeCtrl::OnMovePrestation()
 
 void ZCPrestationsTreeCtrl::OnPrestationProperties()
 {
-    ZBPrestationsEntity* pEntity = GetSelectedPrestationEntity();
+    PSS_PrestationsEntity* pEntity = GetSelectedPrestationEntity();
 
     if (pEntity != NULL)
     {

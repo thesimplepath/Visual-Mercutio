@@ -352,7 +352,7 @@ void ZVPublishRuleBookDetails::CreateReport(PSS_LogicalRulesEntity* pRules)
 
             for (int i = 0; i < Count; ++i)
             {
-                ZBRulesEntity* pEntity = pRules->GetEntityAt(i);
+                PSS_RulesEntity* pEntity = pRules->GetEntityAt(i);
 
                 if (!pEntity)
                 {

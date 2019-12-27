@@ -598,7 +598,7 @@ void ZBSesterceUnitReportGenerator::FillGridUnitGroup( ZBUserGroupEntity*    pGr
 
         for ( int i = 0; i < Count; ++i )
         {
-            ZBUserEntity* pEntity = pGroup->GetEntityAt( i );
+            PSS_UserEntity* pEntity = pGroup->GetEntityAt( i );
 
             if ( !pEntity )
             {

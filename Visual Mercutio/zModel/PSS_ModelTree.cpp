@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_TreeCtrl.h"
-#include "ZBModelSet.h"
+#include "PSS_ModelSet.h"
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 #include "PSS_ProcessGraphModelMdl.h"
@@ -93,7 +93,7 @@ PSS_ModelTree::IData::~IData()
 //---------------------------------------------------------------------------
 PSS_ModelTree::PSS_ModelTree(PSS_TreeCtrl*        pTreeCtrl,
                              const CString&       rootName,
-                             ZBModelSet*          pModelSet,
+                             PSS_ModelSet*        pModelSet,
                              UINT                 imageResID,
                              PSS_RuntimeClassSet* pSet) :
     m_hRootDocument(NULL),
@@ -126,7 +126,7 @@ const PSS_ModelTree& PSS_ModelTree::operator = (const PSS_ModelTree& other)
 //---------------------------------------------------------------------------
 void PSS_ModelTree::Initialize(PSS_TreeCtrl*        pTreeCtrl,
                                const CString&       rootName,
-                               ZBModelSet*          pModelSet,
+                               PSS_ModelSet*        pModelSet,
                                UINT                 imageResID,
                                PSS_RuntimeClassSet* pSet)
 {
@@ -370,7 +370,7 @@ void PSS_ModelTree::RemoveModel(PSS_ProcessGraphModelMdl* pModel)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::AddModelSet(ZBModelSet* pModelSet)
+void PSS_ModelTree::AddModelSet(PSS_ModelSet* pModelSet)
 {
     // if no model set, create an empty one
     if (!ModelSetExist())
@@ -382,7 +382,7 @@ void PSS_ModelTree::AddModelSet(ZBModelSet* pModelSet)
     ProcessModelSet(pModelSet, m_hRootDocument);
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::RemoveModelSet(ZBModelSet* pModelSet)
+void PSS_ModelTree::RemoveModelSet(PSS_ModelSet* pModelSet)
 {
     // if no model set, nothing to remove
     if (!ModelSetExist())
@@ -609,7 +609,7 @@ void PSS_ModelTree::OnDoubleClick()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ModelTree::ProcessModelSet(ZBModelSet* pModelSet, HTREEITEM hParentTreeItem)
+void PSS_ModelTree::ProcessModelSet(PSS_ModelSet* pModelSet, HTREEITEM hParentTreeItem)
 {
     if (!pModelSet)
         return;
@@ -897,7 +897,7 @@ bool PSS_ModelTree::CreateEmptyModelSet()
 {
     FreeModelSet();
 
-    m_pModelSet = new ZBModelSet;
+    m_pModelSet = new PSS_ModelSet;
 
     return m_pModelSet;
 }

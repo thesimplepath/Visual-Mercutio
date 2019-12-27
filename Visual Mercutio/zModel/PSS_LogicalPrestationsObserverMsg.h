@@ -23,8 +23,13 @@
 // processsoft
 #include "zBaseLib\PSS_ObserverMsg.h"
 
+// class name mapping
+#ifndef PSS_PrestationsEntity
+    #define PSS_PrestationsEntity ZBPrestationsEntity
+#endif
+
 // forward class declaration
-class ZBPrestationsEntity;
+class PSS_PrestationsEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -60,9 +65,9 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsObserverMsg : public PSS_ObserverMsg
         *@param pEntity - the entity
         *@param rootName - the root name
         */
-        PSS_LogicalPrestationsObserverMsg(UINT                 messageID = 0,
-                                          ZBPrestationsEntity* pEntity   = NULL,
-                                          const CString&       rootName  = _T(""));
+        PSS_LogicalPrestationsObserverMsg(UINT                   messageID = 0,
+                                          PSS_PrestationsEntity* pEntity   = NULL,
+                                          const CString&         rootName  = _T(""));
 
         virtual ~PSS_LogicalPrestationsObserverMsg();
 
@@ -82,13 +87,13 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsObserverMsg : public PSS_ObserverMsg
         * Gets the entity
         *@return the entity
         */
-        virtual inline ZBPrestationsEntity* GetEntity() const;
+        virtual inline PSS_PrestationsEntity* GetEntity() const;
 
         /**
         * Sets the entity
         *@param pEntity - the entity
         */
-        virtual inline void SetEntity(ZBPrestationsEntity* pEntity);
+        virtual inline void SetEntity(PSS_PrestationsEntity* pEntity);
 
         /**
         * Gets the root name
@@ -103,9 +108,9 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsObserverMsg : public PSS_ObserverMsg
         virtual inline void SetRootName(const CString& value);
 
     private:
-        ZBPrestationsEntity* m_pEntity;
-        CString              m_RootName;
-        UINT                 m_MessageID;
+        PSS_PrestationsEntity* m_pEntity;
+        CString                m_RootName;
+        UINT                   m_MessageID;
 };
 
 //---------------------------------------------------------------------------
@@ -121,12 +126,12 @@ void PSS_LogicalPrestationsObserverMsg::SetMessageID(UINT value)
     m_MessageID = value;
 }
 //---------------------------------------------------------------------------
-ZBPrestationsEntity* PSS_LogicalPrestationsObserverMsg::GetEntity() const
+PSS_PrestationsEntity* PSS_LogicalPrestationsObserverMsg::GetEntity() const
 {
     return m_pEntity;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsObserverMsg::SetEntity(ZBPrestationsEntity* pEntity)
+void PSS_LogicalPrestationsObserverMsg::SetEntity(PSS_PrestationsEntity* pEntity)
 {
     m_pEntity = pEntity;
 }

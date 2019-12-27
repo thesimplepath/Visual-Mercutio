@@ -62,7 +62,7 @@ ZCProcessModelTreeView::~ZCProcessModelTreeView()
 {}
 
 void ZCProcessModelTreeView::Initialize(const CString        ModelName,
-                                        ZBModelSet*        pModelSet,
+                                        PSS_ModelSet*        pModelSet,
                                         UINT                nIDImageRes,
                                         PSS_RuntimeClassSet*    pSet            /*= NULL*/,
                                         bool                EnableMenuItems    /*= true*/)
@@ -97,12 +97,12 @@ void ZCProcessModelTreeView::RemoveModel(PSS_ProcessGraphModelMdl* pModel)
     m_ModelTree.RemoveModel(pModel);
 }
 
-void ZCProcessModelTreeView::AddModelSet(ZBModelSet* pModelSet)
+void ZCProcessModelTreeView::AddModelSet(PSS_ModelSet* pModelSet)
 {
     m_ModelTree.AddModelSet(pModelSet);
 }
 
-void ZCProcessModelTreeView::RemoveModelSet(ZBModelSet* pModelSet)
+void ZCProcessModelTreeView::RemoveModelSet(PSS_ModelSet* pModelSet)
 {
     m_ModelTree.RemoveModelSet(pModelSet);
 }

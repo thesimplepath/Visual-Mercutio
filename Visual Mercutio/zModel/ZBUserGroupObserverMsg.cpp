@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZBUserGroupObserverMsg.h"
 
-#include "ZBUserEntity.h"
+#include "PSS_UserEntity.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -22,8 +22,8 @@ IMPLEMENT_DYNAMIC(ZBUserGroupObserverMsg, PSS_ObserverMsg)
 //////////////////////////////////////////////////////////////////////
 
 ZBUserGroupObserverMsg::ZBUserGroupObserverMsg(UINT            MessageID    /*= 0*/,
-                                               ZBUserEntity*    pEntity        /*= NULL*/,
-                                               const CString    RootName    /*= _T( "" )*/) :
+                                               PSS_UserEntity* pEntity        /*= NULL*/,
+                                               const CString   RootName    /*= _T( "" )*/) :
     PSS_ObserverMsg(),
     m_MessageID(MessageID),
     m_pEntity(pEntity),

@@ -303,20 +303,20 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBModelSet.cpp">
+    <ClCompile Include="PSS_ModelSet.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPageUnits.cpp">
+    <ClCompile Include="PSS_PageUnits.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPrestationsEntity.cpp" />
-    <ClCompile Include="ZBRulesEntity.cpp" />
+    <ClCompile Include="PSS_PrestationsEntity.cpp" />
+    <ClCompile Include="PSS_RulesEntity.cpp" />
     <ClCompile Include="ZBSearchSymbolLogLine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -371,7 +371,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSystemEntity.cpp">
+    <ClCompile Include="PSS_SystemEntity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -396,7 +396,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBUserEntity.cpp">
+    <ClCompile Include="PSS_UserEntity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -782,10 +782,10 @@
     <ClInclude Include="PSS_LogicalSystemEntity.h" />
     <ClInclude Include="PSS_LogicalSystemObserverMsg.h" />
     <ClInclude Include="PSS_ModelObserverMsg.h" />
-    <ClInclude Include="ZBModelSet.h" />
-    <ClInclude Include="ZBPageUnits.h" />
-    <ClInclude Include="ZBPrestationsEntity.h" />
-    <ClInclude Include="ZBRulesEntity.h" />
+    <ClInclude Include="PSS_ModelSet.h" />
+    <ClInclude Include="PSS_PageUnits.h" />
+    <ClInclude Include="PSS_PrestationsEntity.h" />
+    <ClInclude Include="PSS_RulesEntity.h" />
     <ClInclude Include="ZBSearchSymbolLogLine.h" />
     <ClInclude Include="ZBSolidLinkSymbol.h" />
     <ClInclude Include="PSS_Symbol.h" />
@@ -795,12 +795,12 @@
     <ClInclude Include="ZBSymbolLogObserverMsg.h" />
     <ClInclude Include="ZBSymbolObserverMsg.h" />
     <ClInclude Include="ZBSymbolStamp.h" />
-    <ClInclude Include="ZBSystemEntity.h" />
+    <ClInclude Include="PSS_SystemEntity.h" />
     <ClInclude Include="ZBTextZone.h" />
     <ClInclude Include="ZBUnit.h" />
     <ClInclude Include="ZBUnitManager.h" />
     <ClInclude Include="ZBUnitObserverMsg.h" />
-    <ClInclude Include="ZBUserEntity.h" />
+    <ClInclude Include="PSS_UserEntity.h" />
     <ClInclude Include="ZBUserGroupEntity.h" />
     <ClInclude Include="ZBUserGroupObserverMsg.h" />
     <ClInclude Include="ZBUserRoleEntity.h" />

@@ -6,7 +6,7 @@
 
 #include "PSS_ProcessGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
-#include "ZBModelSet.h"
+#include "PSS_ModelSet.h"
 #include "PSS_Symbol.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -162,7 +162,7 @@ BOOL ZVInsertLinkModelPageDlg::OnInitDialog()
     if (m_pModel)
     {
         m_pParentModel = m_pModel;
-        ZBModelSet    DocumentModelSet;
+        PSS_ModelSet DocumentModelSet;
         DocumentModelSet.AddModel(m_pModel);
 
         // Initialize symbol model tree

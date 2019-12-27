@@ -95,7 +95,7 @@ void PSS_SoapPublishLogicalSystem::PublishLogicalSystem(PSS_LogicalSystemEntity*
         for (int i = 0; i < count; ++i)
         {
             // get next entity
-            ZBSystemEntity* pEntity = pSystem->GetEntityAt(i);
+            PSS_SystemEntity* pEntity = pSystem->GetEntityAt(i);
 
             if (!pEntity)
                 continue;

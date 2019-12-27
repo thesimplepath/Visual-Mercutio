@@ -472,7 +472,7 @@ void PSS_ProcessGraphModelDoc::ReassignRules(PSS_Log* pLog /*= NULL*/)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelDoc::SetPageUnits(ZBPageUnits& value)
+void PSS_ProcessGraphModelDoc::SetPageUnits(PSS_PageUnits& value)
 {
     m_PageUnits = value;
 }

@@ -230,7 +230,7 @@ void ZCLogicalSystemTreeCtrl::ProcessLogicalSystemGroup(PSS_LogicalSystemEntity*
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBSystemEntity* pEntity = pLogicalSystem->GetEntityAt(i);
+            PSS_SystemEntity* pEntity = pLogicalSystem->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -372,12 +372,12 @@ void ZCLogicalSystemTreeCtrl::ModifyLogicalSystem(PSS_LogicalSystemEntity* pLogi
     }
 }
 
-ZBSystemEntity* ZCLogicalSystemTreeCtrl::GetSelectedSystemEntity()
+PSS_SystemEntity* ZCLogicalSystemTreeCtrl::GetSelectedSystemEntity()
 {
     return _GetSystemEntity(GetSelectedItem());
 }
 
-ZBSystemEntity* ZCLogicalSystemTreeCtrl::_GetSystemEntity(HTREEITEM hItem)
+PSS_SystemEntity* ZCLogicalSystemTreeCtrl::_GetSystemEntity(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -719,7 +719,7 @@ void ZCLogicalSystemTreeCtrl::OnMoveLogicalSystem()
 
 void ZCLogicalSystemTreeCtrl::OnLogicalSystemProperties()
 {
-    ZBSystemEntity* pEntity = GetSelectedSystemEntity();
+    PSS_SystemEntity* pEntity = GetSelectedSystemEntity();
 
     if (pEntity != NULL)
     {

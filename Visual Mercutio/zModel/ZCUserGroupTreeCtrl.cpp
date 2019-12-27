@@ -353,7 +353,7 @@ void ZCUserGroupTreeCtrl::OnUgpRenameRole()
 
 void ZCUserGroupTreeCtrl::OnUgpMove()
 {
-    ZBUserEntity* pEntity = GetSelectedEntity();
+    PSS_UserEntity* pEntity = GetSelectedEntity();
 
     if (pEntity != NULL)
     {
@@ -391,7 +391,7 @@ void ZCUserGroupTreeCtrl::OnUgpMove()
 
 void ZCUserGroupTreeCtrl::OnUgpProperties()
 {
-    ZBUserEntity* pEntity = GetSelectedEntity();
+    PSS_UserEntity* pEntity = GetSelectedEntity();
 
     // RS-MODIF 12.12.04 test if we use sesterces
     bool IsSesterces = false;
@@ -541,7 +541,7 @@ void ZCUserGroupTreeCtrl::ProcessGroup(ZBUserGroupEntity* pGroup, HTREEITEM hPar
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBUserEntity* pEntity = pGroup->GetEntityAt(i);
+            PSS_UserEntity* pEntity = pGroup->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -799,12 +799,12 @@ void ZCUserGroupTreeCtrl::ModifyRole(ZBUserRoleEntity* pRole)
     }
 }
 
-ZBUserEntity* ZCUserGroupTreeCtrl::GetSelectedEntity()
+PSS_UserEntity* ZCUserGroupTreeCtrl::GetSelectedEntity()
 {
     return _GetEntity(GetSelectedItem());
 }
 
-ZBUserEntity* ZCUserGroupTreeCtrl::_GetEntity(HTREEITEM hItem)
+PSS_UserEntity* ZCUserGroupTreeCtrl::_GetEntity(HTREEITEM hItem)
 {
     if (hItem)
     {

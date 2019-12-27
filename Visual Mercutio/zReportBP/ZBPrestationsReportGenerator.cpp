@@ -220,7 +220,7 @@ void _ZBPrestationsDatas::GenerateHierarchy(PSS_LogicalPrestationsEntity* pPrest
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBPrestationsEntity* pEntity = pPrestations->GetEntityAt(i);
+            PSS_PrestationsEntity* pEntity = pPrestations->GetEntityAt(i);
 
             if (!pEntity)
             {

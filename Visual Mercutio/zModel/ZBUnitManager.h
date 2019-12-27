@@ -6,7 +6,7 @@
 #define AFX_ZBUNITMANAGER_H__B10D7C0F_7F60_408B_80A8_803A62263396__INCLUDED_
 
 #if _MSC_VER > 1000
-    #pragma once
+#pragma once
 #endif
 
 // change the definition of AFX_EXT... to make it import
@@ -21,19 +21,24 @@
 #include "zBaseLib\PSS_ProcessModelDocTmpl.h"
 #include "ZBUnit.h"
 
-class ZBModelSet;
-
-#ifdef _ZMODELEXPORT
-    // put the values back to make AFX_EXT_CLASS export again
-    #undef AFX_EXT_CLASS
-    #undef AFX_EXT_API
-    #undef AFX_EXT_DATA
-    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
-    #define AFX_EXT_API AFX_API_EXPORT
-    #define AFX_EXT_DATA AFX_DATA_EXPORT
+// class name mapping
+#ifndef PSS_ModelSet
+    #define PSS_ModelSet ZBModelSet
 #endif
 
-class AFX_EXT_CLASS ZBUnitManager : public CObject  
+class PSS_ModelSet;
+
+#ifdef _ZMODELEXPORT
+// put the values back to make AFX_EXT_CLASS export again
+#undef AFX_EXT_CLASS
+#undef AFX_EXT_API
+#undef AFX_EXT_DATA
+#define AFX_EXT_CLASS AFX_CLASS_EXPORT
+#define AFX_EXT_API AFX_API_EXPORT
+#define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
+
+class AFX_EXT_CLASS ZBUnitManager : public CObject
 {
     DECLARE_SERIAL(ZBUnitManager)
 
@@ -43,34 +48,34 @@ public:
 
     void    Initialize(PSS_ProcessModelDocTmpl* pDocTmpl);
 
-    size_t    FillModelSet( ZBModelSet& Set );
+    std::size_t FillModelSet(PSS_ModelSet& set);
 
     bool    LoadAllUnits();
-    bool    LoadUnit( ZBUnit* pUnit );
-    bool    LoadUnit( const CString Name );
-    bool    LoadUnitByKey( const CString Key );
+    bool    LoadUnit(ZBUnit* pUnit);
+    bool    LoadUnit(const CString Name);
+    bool    LoadUnitByKey(const CString Key);
 
     bool    UnloadAllUnits();
-    bool    UnloadUnit( ZBUnit* pUnit );
-    bool    UnloadUnit( const CString Name );
-    bool    UnloadUnitByKey( const CString Key );
+    bool    UnloadUnit(ZBUnit* pUnit);
+    bool    UnloadUnit(const CString Name);
+    bool    UnloadUnitByKey(const CString Key);
 
     void    RemoveAllUnits();
-    bool    RemoveUnitAt( size_t Index );
-    bool    RemoveUnit( ZBUnit* pUnit );
-    bool    RemoveUnit( const CString Name );
-    bool    RemoveUnitByKey( const CString Key );
+    bool    RemoveUnitAt(size_t Index);
+    bool    RemoveUnit(ZBUnit* pUnit);
+    bool    RemoveUnit(const CString Name);
+    bool    RemoveUnitByKey(const CString Key);
 
-    ZBUnit*    FindUnit( const CString Name );
-    ZBUnit*    FindUnitByKey( const CString Key );
-    int        FindUnitIndex( const CString Name );
-    int        FindUnitIndexByKey( const CString Key );
+    ZBUnit*    FindUnit(const CString Name);
+    ZBUnit*    FindUnitByKey(const CString Key);
+    int        FindUnitIndex(const CString Name);
+    int        FindUnitIndexByKey(const CString Key);
 
 
     size_t    GetUnitCount() const;
-    ZBUnit*    GetUnitAt( size_t Index );
-    bool    AddUnit( ZBUnit* pUnit );
-    ZBUnit*    CreateNewUnit( const CString Name, const CString fileName = "" );
+    ZBUnit*    GetUnitAt(size_t Index);
+    bool    AddUnit(ZBUnit* pUnit);
+    ZBUnit*    CreateNewUnit(const CString Name, const CString fileName = "");
 
     // Serializes the unit manager
     virtual void Serialize(CArchive& ar);
@@ -87,9 +92,9 @@ private:
 
 };
 
-inline size_t ZBUnitManager::GetUnitCount() const
+inline std::size_t ZBUnitManager::GetUnitCount() const
 {
-    return (size_t)m_UnitSet.GetSize();
+    return std::size_t(m_UnitSet.GetSize());
 }
 
-#endif // !defined(AFX_ZBUNITMANAGER_H__B10D7C0F_7F60_408B_80A8_803A62263396__INCLUDED_)
+#endif
