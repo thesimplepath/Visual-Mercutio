@@ -492,7 +492,7 @@ bool PSS_ProcessGraphModelDoc::InsertUnit(const CString& fileName)
     if (!m_pUnitManager)
         CreateUnitManager();
 
-    ZBUnit* pUnit = m_pUnitManager->CreateNewUnit(_T(""), fileName);
+    PSS_Unit* pUnit = m_pUnitManager->CreateNewUnit(_T(""), fileName);
 
     if (!pUnit)
         return false;

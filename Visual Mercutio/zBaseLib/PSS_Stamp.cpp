@@ -365,7 +365,10 @@ LONG PSS_Stamp::DecrementPublishVersionOfFile(const CString& fileName)
         return -1;
 
     // decrement the file version
-    --m_PublishVersion;
+    if (m_PublishVersion)
+        --m_PublishVersion;
+    else
+        return -1;
 
     // write the new version to the file. If unable to write file, return error
     if (!WriteToFile(fileName))

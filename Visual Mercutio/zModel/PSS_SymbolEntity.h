@@ -29,7 +29,7 @@
 #include "Foundation/Image/MFC/SECJPEG.H"
 
 // processsoft
-#include "ZBSymbolStamp.h"
+#include "PSS_SymbolStamp.h"
 
 // class name mapping
 #ifndef PSS_Symbol
@@ -180,8 +180,8 @@ class AFX_EXT_CLASS PSS_SymbolEntity : public CObject
         * Gets the symbol stamp
         *@return the symbol stamp
         */
-        virtual inline ZBSymbolStamp&       GetSymbolStamp();
-        virtual inline const ZBSymbolStamp& GetSymbolStamp() const;
+        virtual inline PSS_SymbolStamp&       GetSymbolStamp();
+        virtual inline const PSS_SymbolStamp& GetSymbolStamp() const;
 
         /**
         * Gets the symbol
@@ -240,8 +240,8 @@ class AFX_EXT_CLASS PSS_SymbolEntity : public CObject
         virtual inline BOOL SetPublishVersionOfFile(const CString& fileName, DWORD version);
 
     protected:
-        ZBSymbolStamp m_SymbolStamp;
-        PSS_Symbol*   m_pSymbol;
+        PSS_SymbolStamp m_SymbolStamp;
+        PSS_Symbol*     m_pSymbol;
 
     private:
         SECJpeg m_Image;
@@ -325,12 +325,12 @@ void PSS_SymbolEntity::SetSymbolVersion(DWORD value)
     m_SymbolStamp.SetSymbolVersion(value);
 }
 //---------------------------------------------------------------------------
-ZBSymbolStamp& PSS_SymbolEntity::GetSymbolStamp()
+PSS_SymbolStamp& PSS_SymbolEntity::GetSymbolStamp()
 {
     return m_SymbolStamp;
 }
 //---------------------------------------------------------------------------
-const ZBSymbolStamp& PSS_SymbolEntity::GetSymbolStamp() const
+const PSS_SymbolStamp& PSS_SymbolEntity::GetSymbolStamp() const
 {
     return m_SymbolStamp;
 }

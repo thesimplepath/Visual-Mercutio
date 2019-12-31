@@ -10,10 +10,10 @@
 #define AFX_ZBBPTextZone_H__F5100AAD_5FFF_4817_BE12_0A6B0BA8A8D4__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -21,10 +21,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zModel\ZBTextZone.h"
+// processsoft
+#include "zModel\PSS_TextZone.h"
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -33,20 +34,32 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZBBPTextZone : public ZBTextZone
+class AFX_EXT_CLASS ZBBPTextZone : public PSS_TextZone
 {
-    DECLARE_SERIAL( ZBBPTextZone )
+    DECLARE_SERIAL(ZBBPTextZone)
 
-public:
+    public:
+        ZBBPTextZone();
+        virtual ~ZBBPTextZone();
 
-    ZBBPTextZone();
-    ~ZBBPTextZone();
+        /**
+        * Creates a text zone
+        *@param ptLog - the log point
+        *@param pDC - the device context
+        */
+        virtual void Create(const CPoint& ptLog, CClientDC* pDC);
 
-    void Create( CPoint ptLog, CClientDC* dc );
+        /**
+        * Initializes the style
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL InitializeStyle();
 
-    virtual BOOL InitializeStyle();
-
-    virtual void Serialize( CArchive& ar );
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
 };
 
-#endif // AFX_ZBBPTextZone_H__F5100AAD_5FFF_4817_BE12_0A6B0BA8A8D4__INCLUDED_
+#endif

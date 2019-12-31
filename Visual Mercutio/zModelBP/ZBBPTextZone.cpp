@@ -11,36 +11,32 @@
 
 #include "zModelBPRes.h"
 
-IMPLEMENT_SERIAL(ZBBPTextZone, ZBTextZone, g_DefVersion)
+IMPLEMENT_SERIAL(ZBBPTextZone, PSS_TextZone, g_DefVersion)
 
 ZBBPTextZone::ZBBPTextZone()
-{
-}
+{}
 
 ZBBPTextZone::~ZBBPTextZone()
-{
-}
+{}
 
 // Cette fonction permet la création de la zone de texte.
-void ZBBPTextZone::Create( CPoint ptLog, CClientDC* dc )
+void ZBBPTextZone::Create(const CPoint& ptLog, CClientDC* pDC)
 {
-    CODTextComponent::Create( ptLog, dc );
+    CODTextComponent::Create(ptLog, pDC);
 
-    // Change le texte par défaut.
-    CString s_Default = _T( "" );
-    s_Default.LoadString( IDS_TEXTZONE );
-    SetText( s_Default );
+    // load the default text
+    CString str = _T("");
+    str.LoadString(IDS_TEXTZONE);
+    SetText(str);
 
     SizeToText();
 
-    CRect m_BoxDim    = GetTextBox();
-
-    m_BoxDim.top    -= 25;
-    m_BoxDim.left    -= 70;
-    m_BoxDim.bottom    += 25;
-    m_BoxDim.right    += 70;
-
-    SetTextBox( m_BoxDim );
+    CRect boxDim   = GetTextBox();
+    boxDim.top    -= 25;
+    boxDim.left   -= 70;
+    boxDim.bottom += 25;
+    boxDim.right  += 70;
+    SetTextBox(boxDim);
 }
 
 // Cette fonction permet d'initialiser le style de la zone de texte.
@@ -48,30 +44,30 @@ BOOL ZBBPTextZone::InitializeStyle()
 {
     BOOL Result = FALSE;
 
-    Result = SetLineTransparent( TRUE );
+    Result = SetLineTransparent(TRUE);
 
-    if ( Result == FALSE )
+    if (Result == FALSE)
     {
         return FALSE;
     }
 
-    Result = SetFillColor( TEXTZONE_COLOR );
+    Result = SetFillColor(M_TextZoneColor);
 
-    if ( Result == FALSE )
+    if (Result == FALSE)
     {
         return FALSE;
     }
 
     Result = SetFont();
 
-    if ( Result == FALSE )
+    if (Result == FALSE)
     {
         return FALSE;
     }
 
-    Result = SetMultiline( TRUE );
+    Result = SetMultiline(TRUE);
 
-    if ( Result == FALSE )
+    if (Result == FALSE)
     {
         return FALSE;
     }
@@ -79,11 +75,9 @@ BOOL ZBBPTextZone::InitializeStyle()
     return TRUE;
 }
 
-void ZBBPTextZone::Serialize( CArchive& ar )
+void ZBBPTextZone::Serialize(CArchive& ar)
 {
-    TRACE( _T( "ZBBPTextZone::Serialize : Start\n" ) );
-
-    ZBTextZone::Serialize( ar );
-
-    TRACE( _T( "ZBBPTextZone::Serialize : End\n" ) );
+    TRACE(_T("ZBBPTextZone::Serialize : Start\n"));
+    PSS_TextZone::Serialize(ar);
+    TRACE(_T("ZBBPTextZone::Serialize : End\n"));
 }

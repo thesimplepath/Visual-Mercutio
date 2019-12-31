@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZBUnitObserverMsg.h"
 #include "PSS_Symbol.h"
-#include "ZBUnit.h"
+#include "PSS_Unit.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -21,7 +21,7 @@ IMPLEMENT_DYNAMIC(ZBUnitObserverMsg, PSS_ObserverMsg)
 
 ZBUnitObserverMsg::ZBUnitObserverMsg(MessageActionType ActionType /*= NoAction*/,
                                      ZBUnitManager* pUnitManager /*= NULL*/,
-                                     ZBUnit* pUnit /*= NULL*/,
+                                     PSS_Unit* pUnit /*= NULL*/,
                                      PSS_Symbol* pElement /*= NULL*/) :
     PSS_ObserverMsg(),
     m_ActionType(ActionType),

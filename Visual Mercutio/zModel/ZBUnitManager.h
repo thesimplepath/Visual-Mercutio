@@ -19,7 +19,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_ProcessModelDocTmpl.h"
-#include "ZBUnit.h"
+#include "PSS_Unit.h"
 
 // class name mapping
 #ifndef PSS_ModelSet
@@ -51,31 +51,31 @@ public:
     std::size_t FillModelSet(PSS_ModelSet& set);
 
     bool    LoadAllUnits();
-    bool    LoadUnit(ZBUnit* pUnit);
+    bool    LoadUnit(PSS_Unit* pUnit);
     bool    LoadUnit(const CString Name);
     bool    LoadUnitByKey(const CString Key);
 
     bool    UnloadAllUnits();
-    bool    UnloadUnit(ZBUnit* pUnit);
+    bool    UnloadUnit(PSS_Unit* pUnit);
     bool    UnloadUnit(const CString Name);
     bool    UnloadUnitByKey(const CString Key);
 
     void    RemoveAllUnits();
     bool    RemoveUnitAt(size_t Index);
-    bool    RemoveUnit(ZBUnit* pUnit);
+    bool    RemoveUnit(PSS_Unit* pUnit);
     bool    RemoveUnit(const CString Name);
     bool    RemoveUnitByKey(const CString Key);
 
-    ZBUnit*    FindUnit(const CString Name);
-    ZBUnit*    FindUnitByKey(const CString Key);
+    PSS_Unit*    FindUnit(const CString Name);
+    PSS_Unit*    FindUnitByKey(const CString Key);
     int        FindUnitIndex(const CString Name);
     int        FindUnitIndexByKey(const CString Key);
 
 
     size_t    GetUnitCount() const;
-    ZBUnit*    GetUnitAt(size_t Index);
-    bool    AddUnit(ZBUnit* pUnit);
-    ZBUnit*    CreateNewUnit(const CString Name, const CString fileName = "");
+    PSS_Unit*    GetUnitAt(size_t Index);
+    bool    AddUnit(PSS_Unit* pUnit);
+    PSS_Unit*    CreateNewUnit(const CString Name, const CString fileName = "");
 
     // Serializes the unit manager
     virtual void Serialize(CArchive& ar);

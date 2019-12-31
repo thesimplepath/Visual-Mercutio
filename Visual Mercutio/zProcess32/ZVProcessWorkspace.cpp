@@ -728,9 +728,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnAddModelUnit(WPARAM wParam, LPARAM lParam)
     {
         ZBUnitObserverMsg* pUnitMsg = (ZBUnitObserverMsg*)pMsg;
 
-        if (pUnitMsg->GetUnit() && pUnitMsg->GetUnit()->GetUnitDocumentPtr())
+        if (pUnitMsg->GetUnit() && pUnitMsg->GetUnit()->GetUnitDocument())
         {
-            AddModelUnit(pUnitMsg->GetUnit()->GetUnitDocumentPtr()->GetModel());
+            AddModelUnit(pUnitMsg->GetUnit()->GetUnitDocument()->GetModel());
         }
     }
 

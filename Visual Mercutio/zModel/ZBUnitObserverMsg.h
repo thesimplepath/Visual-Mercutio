@@ -24,10 +24,13 @@
 #ifndef PSS_Symbol
     #define PSS_Symbol ZBSymbol
 #endif
+#ifndef PSS_Unit
+    #define PSS_Unit ZBUnit
+#endif
 
 // forward class declarations
 class PSS_Symbol;
-class ZBUnit;
+class PSS_Unit;
 class ZBUnitManager;
 
 #ifdef _ZMODELEXPORT
@@ -56,7 +59,7 @@ public:
 public:
     ZBUnitObserverMsg(MessageActionType ActionType = NoAction,
                       ZBUnitManager*    pUnitManager = NULL,
-                      ZBUnit*           pUnit = NULL,
+                      PSS_Unit*         pUnit = NULL,
                       PSS_Symbol*       pElement = NULL);
 
     virtual ~ZBUnitObserverMsg();
@@ -79,11 +82,11 @@ public:
         m_pUnitManager = value;
     };
 
-    ZBUnit* GetUnit() const
+    PSS_Unit* GetUnit() const
     {
         return m_pUnit;
     };
-    void SetUnit(ZBUnit* value)
+    void SetUnit(PSS_Unit* value)
     {
         m_pUnit = value;
     };
@@ -100,7 +103,7 @@ public:
 private:
     MessageActionType m_ActionType;
     ZBUnitManager*    m_pUnitManager;
-    ZBUnit*           m_pUnit;
+    PSS_Unit*         m_pUnit;
     PSS_Symbol*       m_pElement;
 };
 

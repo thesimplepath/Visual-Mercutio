@@ -27,7 +27,7 @@
 #include "PSS_SymbolObserverMsg.h"
 #include "PSS_SymbolLogObserverMsg.h"
 #include "PSS_LinkSymbol.h"
-#include "ZBTextZone.h"
+#include "PSS_TextZone.h"
 #include "ZDProcessGraphPage.h"
 #include "ZVInsertModelNewPageDlg.h"
 #include "ZVRenameModelPageDlg.h"
@@ -999,7 +999,7 @@ CODComponent* PSS_ProcessGraphModelController::InsertSymbol(CODComponent* pComp,
         return pComp;
     }
 
-    ZBTextZone* pTextZone = dynamic_cast<ZBTextZone*>(pComp);
+    PSS_TextZone* pTextZone = dynamic_cast<PSS_TextZone*>(pComp);
 
     if (pTextZone)
     {
@@ -1118,7 +1118,7 @@ BOOL PSS_ProcessGraphModelController::ValidateCutCopyOperations()
             continue;
         }
 
-        ZBTextZone* pTextZone = dynamic_cast<ZBTextZone*>(pComp);
+        PSS_TextZone* pTextZone = dynamic_cast<PSS_TextZone*>(pComp);
 
         // allows the copy if the element is a text zone
         if (pTextZone)
