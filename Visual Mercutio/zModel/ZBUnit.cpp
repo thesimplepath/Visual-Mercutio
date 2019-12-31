@@ -1,125 +1,120 @@
-// ZBUnit.cpp: implementation of the ZBUnit class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_Unit ------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a document unit                                   *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZBUnit.h"
-#include "PSS_ProcessGraphModelDoc.h"
+
+// processsoft
 #include "zBaseLib\PSS_File.h"
+#include "PSS_ProcessGraphModelDoc.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[]=__FILE__;
+    #define new DEBUG_NEW
 #endif
 
-// JMR-MODIF - Le 21 octobre 2007 - Ajout des décorations unicode _T( ), nettoyage du code nutile. (En commentaires)
-
-IMPLEMENT_SERIAL(ZBUnit, CObject, g_DefVersion)
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZBUnit::ZBUnit( const CString Name /*= ""*/, const CString fileName /*= ""*/ )
-    : m_Name        ( Name ),
-      m_FileName    (fileName),
-      m_pUnitDoc    ( NULL )
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_SERIAL(PSS_Unit, CObject, g_DefVersion)
+//---------------------------------------------------------------------------
+// PSS_Unit
+//---------------------------------------------------------------------------
+PSS_Unit::PSS_Unit(const CString& name, const CString& fileName) :
+    CObject(),
+    m_pUnitDoc(NULL),
+    m_Name(name),
+    m_FileName(fileName)
+{}
+//---------------------------------------------------------------------------
+PSS_Unit::PSS_Unit(const PSS_Unit& other)
 {
+    THROW("Copy constructor isn't allowed for this class");
 }
-
-ZBUnit::~ZBUnit()
+//---------------------------------------------------------------------------
+PSS_Unit::~PSS_Unit()
+{}
+//---------------------------------------------------------------------------
+PSS_Unit& PSS_Unit::operator = (const PSS_Unit& other)
 {
-    // Do not delete the document pointer,
-    // Unload will do it.
+    THROW("Copy operator isn't allowed for this class");
 }
-
-bool ZBUnit::Create( const CString Name )
+//---------------------------------------------------------------------------
+bool PSS_Unit::Create(const CString& name)
 {
-    m_Name = Name;
-    m_Key = CreateUniqueKey();
+    m_Name = name;
+    m_Key  = CreateUniqueKey();
 
-    if ( m_Key.IsEmpty() )
+    return !m_Key.IsEmpty();
+}
+//---------------------------------------------------------------------------
+bool PSS_Unit::Create(const CString& name, const CString& fileName)
+{
+    m_Name     = name;
+    m_FileName = fileName;
+    m_Key      = CreateUniqueKey();
+
+    return !m_Key.IsEmpty();
+}
+//---------------------------------------------------------------------------
+CString PSS_Unit::CreateUniqueKey()
+{
+    GUID    guid;
+    HRESULT result = ::CoCreateGuid(&guid);
+
+    if (result == S_OK)
     {
+        CString key;
+        key.Format(_T("%d-%d"), guid.Data1, guid.Data2);
+        return key;
+    }
+
+    return _T("");
+}
+//---------------------------------------------------------------------------
+bool PSS_Unit::LoadUnit(PSS_ProcessModelDocTmpl* pDocTmpl)
+{
+    // check if the file exists
+    PSS_File file(m_FileName);
+
+    if (!file.Exist())
         return false;
-    }
 
-    return true;
-}
-
-bool ZBUnit::Create( const CString Name, const CString fileName)
-{
-    m_Name        = Name;
-    m_FileName    = fileName;
-    m_Key        = CreateUniqueKey();
-
-    if ( m_Key.IsEmpty() )
-    {
-        return false;
-    }
-
-    return true;
-}
-
-CString    ZBUnit::CreateUniqueKey()
-{
-    GUID guid;
-
-    HRESULT Result = CoCreateGuid( &guid );
-
-    if ( Result == S_OK )
-    {
-        CString Key;
-        Key.Format( _T( "%d-%d" ), guid.Data1, guid.Data2 );
-
-        return Key;
-    }
-
-    // Problem in the creation
-    return _T( "" );
-}
-
-bool ZBUnit::LoadUnit( PSS_ProcessModelDocTmpl* pDocTmpl )
-{
-    // Check if the file exists
-    PSS_File File( m_FileName );
-
-    if ( !File.Exist() )
-    {
-        return false;
-    }
-
-    if ( m_pUnitDoc )
-    {
-        if ( !UnloadUnit() )
-        {
+    if (m_pUnitDoc)
+        if (!UnloadUnit())
             return false;
-        }
-    }
 
-    CDocument* pDoc = pDocTmpl->OpenDocumentFile( m_FileName, FALSE );
+    CDocument*                pDoc      = pDocTmpl->OpenDocumentFile(m_FileName, FALSE);
+    PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc);
 
-    if ( pDoc && ISA( pDoc, PSS_ProcessGraphModelDoc) )
+    if (pModelDoc)
     {
-        m_pUnitDoc = (PSS_ProcessGraphModelDoc*)pDoc;
+        m_pUnitDoc = pModelDoc;
 
-        // Assign the name.
-        m_Name = ( (PSS_ProcessGraphModelDoc*)pDoc )->GetModel()->GetModelName();
+        ZDProcessGraphModelMdl* pModel = pModelDoc->GetModel();
+
+        // assign the name
+        if (pModel)
+            m_Name = pModel->GetModelName();
     }
     else
+    if (pDoc)
     {
-        if ( pDoc )
-        {
-            pDoc->OnCloseDocument();
-            delete pDoc;
-        }
+        pDoc->OnCloseDocument();
+        delete pDoc;
     }
 
-    return m_pUnitDoc != NULL;
+    return m_pUnitDoc;
 }
-
-bool ZBUnit::UnloadUnit()
+//---------------------------------------------------------------------------
+bool PSS_Unit::UnloadUnit()
 {
-    if ( m_pUnitDoc )
+    if (m_pUnitDoc)
     {
         m_pUnitDoc->OnCloseDocument();
         delete m_pUnitDoc;
@@ -130,11 +125,10 @@ bool ZBUnit::UnloadUnit()
 
     return false;
 }
-
-// Serializes the unit
-void ZBUnit::Serialize( CArchive& ar )
+//---------------------------------------------------------------------------
+void PSS_Unit::Serialize(CArchive& ar)
 {
-    if ( ar.IsStoring() )
+    if (ar.IsStoring())
     {
         ar << m_Key;
         ar << m_Name;
@@ -147,3 +141,4 @@ void ZBUnit::Serialize( CArchive& ar )
         ar >> m_FileName;
     }
 }
+//---------------------------------------------------------------------------
