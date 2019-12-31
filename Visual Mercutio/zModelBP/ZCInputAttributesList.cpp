@@ -13,7 +13,7 @@
 #include "ProcGraphModelMdlBP.h"
 
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
-#include "zModel\ZBSymbolObserverMsg.h"
+#include "zModel\PSS_SymbolObserverMsg.h"
 
 #include "zModelBPRes.h"
 #include "zModel\zModelRes.h"
@@ -274,11 +274,11 @@ void ZCInputAttributesList::DocumentActivated(PSS_ProcessGraphModelDoc* pDoc)
 
 void ZCInputAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBSymbolObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_SymbolObserverMsg))
     {
-        if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
+        if (dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetActionType() == PSS_SymbolObserverMsg::IE_AT_ElementSelected)
         {
-            m_pComp = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement();
+            m_pComp = dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetElement();
             if (m_pComp &&
                 (ISA(m_pComp, PSS_Symbol) || ISA(m_pComp, PSS_LinkSymbol)))
                 SetSymbolRef(dynamic_cast<PSS_BasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());

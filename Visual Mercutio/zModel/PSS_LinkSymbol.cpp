@@ -17,7 +17,7 @@
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_BasicProperties.h"
 #include "PSS_Symbol.h"
-#include "ZBSymbolObserverMsg.h"
+#include "PSS_SymbolObserverMsg.h"
 #include "PSS_DocObserverMsg.h"
 
 // resources
@@ -292,7 +292,7 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
                 pRootModel->OnSymbolNameChanged(*this, oldName);
 
             // the symbol has changed, notify all refences
-            ZBSymbolObserverMsg msg(ZBSymbolObserverMsg::NameHasChanged, this);
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_NameHasChanged, this);
             NotifyAllObservers(&msg);
 
             // build the message
@@ -338,7 +338,7 @@ BOOL PSS_LinkSymbol::SetSymbolComment(const CString& value)
             SetProperty(&basicProps);
 
             // the symbol has changed, notify all refences
-            ZBSymbolObserverMsg msg(ZBSymbolObserverMsg::DescriptionHasChanged, this);
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged, this);
             NotifyAllObservers(&msg);
 
             // redraw the symbol
@@ -1562,22 +1562,22 @@ bool PSS_LinkSymbol::OnPreDelete(CODModel* pModel, CODController* pCtrl)
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZBSymbolObserverMsg* pObserverMsg = dynamic_cast<ZBSymbolObserverMsg*>(pMsg);
+    PSS_SymbolObserverMsg* pObserverMsg = dynamic_cast<PSS_SymbolObserverMsg*>(pMsg);
 
     if (pSubject && pSubject != this && pObserverMsg)
     {
         switch (pObserverMsg->GetActionType())
         {
-            case ZBSymbolObserverMsg::ElementHasChanged:
-            case ZBSymbolObserverMsg::NoAction:
+            case PSS_SymbolObserverMsg::IE_AT_ElementHasChanged:
+            case PSS_SymbolObserverMsg::IE_AT_None:
                 CopySymbolDefinitionFrom((PSS_LinkSymbol&)*pSubject);
                 break;
 
-            case ZBSymbolObserverMsg::NameHasChanged:
+            case PSS_SymbolObserverMsg::IE_AT_NameHasChanged:
                 SetSymbolName(dynamic_cast<PSS_LinkSymbol*>(pSubject)->GetSymbolName());
                 break;
 
-            case ZBSymbolObserverMsg::DescriptionHasChanged:
+            case PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged:
                 SetSymbolComment(dynamic_cast<PSS_LinkSymbol*>(pSubject)->GetSymbolComment());
                 break;
         }

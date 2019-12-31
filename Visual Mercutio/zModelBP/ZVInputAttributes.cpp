@@ -13,7 +13,7 @@
 #include "ZVInputAttributesDefinitionDlg.h"
 #include "ZBInputAttributes.h"
 
-#include "zModel\ZBSymbolObserverMsg.h"
+#include "zModel\PSS_SymbolObserverMsg.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
@@ -249,14 +249,14 @@ void ZVInputAttributes::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     // Forward the message to the property control
     m_listctrl.OnUpdate(pSubject, pMsg);
 
-    if (pMsg && ISA(pMsg, ZBSymbolObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_SymbolObserverMsg))
     {
-        if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
+        if (dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetActionType() == PSS_SymbolObserverMsg::IE_AT_ElementSelected)
         {
-            if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement() &&
-                (ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement(), PSS_Symbol) ||
-                 ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement(), PSS_LinkSymbol)))
-                m_SymbolRef = dynamic_cast<PSS_BasicSymbol*>(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement())->GetSymbolReferenceNumber();
+            if (dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetElement() &&
+                (ISA(dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetElement(), PSS_Symbol) ||
+                 ISA(dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetElement(), PSS_LinkSymbol)))
+                m_SymbolRef = dynamic_cast<PSS_BasicSymbol*>(dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetElement())->GetSymbolReferenceNumber();
         }
     }
     else

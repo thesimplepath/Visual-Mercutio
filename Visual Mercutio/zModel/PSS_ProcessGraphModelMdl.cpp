@@ -23,7 +23,7 @@
 #include "PSS_LanguageProperties.h"
 #include "PSS_BasicModelProperties.h"
 #include "ZUODSymbolManipulator.h"
-#include "ZBSymbolObserverMsg.h"
+#include "PSS_SymbolObserverMsg.h"
 #include "PSS_DocObserverMsg.h"
 
 // resources

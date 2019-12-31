@@ -20,7 +20,7 @@
 #include "ZUODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_DocObserverMsg.h"
-#include "ZBSymbolObserverMsg.h"
+#include "PSS_SymbolObserverMsg.h"
 #include "PSS_BasicProperties.h"
 
 // resources
@@ -249,7 +249,7 @@ BOOL PSS_Symbol::SetSymbolName(const CString& value)
                 pRootModel->OnSymbolNameChanged(*this, oldName);
 
             // the symbol has changed, notify all refences
-            ZBSymbolObserverMsg msg(ZBSymbolObserverMsg::NameHasChanged, this);
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_NameHasChanged, this);
             NotifyAllObservers(&msg);
 
             // build the message
@@ -301,7 +301,7 @@ BOOL PSS_Symbol::SetSymbolComment(const CString& value)
             SetProperty(&basicProps);
 
             // the symbol has changed, notify all refences
-            ZBSymbolObserverMsg msg(ZBSymbolObserverMsg::DescriptionHasChanged, this);
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged, this);
             NotifyAllObservers(&msg);
 
             // redraw the symbol
@@ -349,7 +349,7 @@ BOOL PSS_Symbol::SetSymbolReferenceNumber(int value)
             SetProperty(&basicProps);
 
             // the symbol has changed, notify all refences
-            ZBSymbolObserverMsg msg(ZBSymbolObserverMsg::ElementHasChanged, this);
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_ElementHasChanged, this);
             NotifyAllObservers(&msg);
 
             // Redraw the symbol
@@ -377,8 +377,8 @@ BOOL PSS_Symbol::SetSymbolReferenceNumberStr(const CString& value)
             SetProperty(&basicProps);
 
             // the symbol has changed, notify all refences
-            ZBSymbolObserverMsg Msg(ZBSymbolObserverMsg::ElementHasChanged, this);
-            NotifyAllObservers(&Msg);
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_ElementHasChanged, this);
+            NotifyAllObservers(&msg);
 
             // redraw the symbol
             RedrawSymbol();
@@ -1750,7 +1750,7 @@ bool PSS_Symbol::OnPreDelete(CODModel* pModel, CODController* pCtrl)
 //---------------------------------------------------------------------------
 void PSS_Symbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZBSymbolObserverMsg* pObserverMsg = dynamic_cast<ZBSymbolObserverMsg*>(pMsg);
+    PSS_SymbolObserverMsg* pObserverMsg = dynamic_cast<PSS_SymbolObserverMsg*>(pMsg);
 
     if (pSubject && pSubject != this && pObserverMsg)
     {
@@ -1759,10 +1759,10 @@ void PSS_Symbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
         if (pSymbol)
             switch (pObserverMsg->GetActionType())
             {
-                case ZBSymbolObserverMsg::ElementHasChanged:
-                case ZBSymbolObserverMsg::NoAction:              CopySymbolDefinitionFrom((PSS_Symbol&)*pSymbol); break;
-                case ZBSymbolObserverMsg::NameHasChanged:        SetSymbolName(pSymbol->GetSymbolName());         break;
-                case ZBSymbolObserverMsg::DescriptionHasChanged: SetSymbolComment(pSymbol->GetSymbolComment());   break;
+                case PSS_SymbolObserverMsg::IE_AT_ElementHasChanged:
+                case PSS_SymbolObserverMsg::IE_AT_None:                  CopySymbolDefinitionFrom((PSS_Symbol&)*pSymbol); break;
+                case PSS_SymbolObserverMsg::IE_AT_NameHasChanged:        SetSymbolName(pSymbol->GetSymbolName());         break;
+                case PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged: SetSymbolComment(pSymbol->GetSymbolComment());   break;
             }
 
         // finalize the symbol element positions

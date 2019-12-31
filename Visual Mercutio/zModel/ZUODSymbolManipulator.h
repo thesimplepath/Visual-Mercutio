@@ -20,10 +20,13 @@
 #ifndef PSS_SymbolEdit
     #define PSS_SymbolEdit ZBSymbolEdit
 #endif
+#ifndef PSS_SymbolLabel
+    #define PSS_SymbolLabel ZBSymbolLabel
+#endif
 
 // forward class declaration
 class PSS_SymbolEdit;
-class ZBSymbolLabel;
+class PSS_SymbolLabel;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -57,7 +60,7 @@ public:
                                                    const CString    EditName,
                                                    CODComponent*    pParent        = NULL );
 
-    static ZBSymbolLabel* CreateAndReplaceLabelText( CODComponent*    pSymbol,
+    static PSS_SymbolLabel* CreateAndReplaceLabelText( CODComponent*    pSymbol,
                                                      const CString    EditName,
                                                      bool            NotifyParent,
                                                      CODComponent*    pParent            = NULL );

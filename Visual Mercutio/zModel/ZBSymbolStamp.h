@@ -191,4 +191,4 @@ inline void ZBSymbolStamp::SetModificationDate(PSS_Date value )
     m_ModificationDate = value;
 }
 
-#endif // !defined(AFX_ZBSymbolStamp_H__94F5F0FA_6E0F_4610_A385_D361D5B1F2B8__INCLUDED_)
+#endif

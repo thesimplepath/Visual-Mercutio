@@ -14,7 +14,7 @@
 
 #include "ZBDistributionAttributes.h"
 
-#include "zModel\ZBSymbolObserverMsg.h"
+#include "zModel\PSS_SymbolObserverMsg.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
@@ -214,11 +214,11 @@ void ZVDistributionAttributes::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* 
     // Forward the message to the property control
     m_listctrl.OnUpdate(pSubject, pMsg);
 
-    if (pMsg && ISA(pMsg, ZBSymbolObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_SymbolObserverMsg))
     {
-        if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
+        if (dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetActionType() == PSS_SymbolObserverMsg::IE_AT_ElementSelected)
         {
-            m_pSymbol = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetElement();
+            m_pSymbol = dynamic_cast<PSS_SymbolObserverMsg*>(pMsg)->GetElement();
         }
     }
     else

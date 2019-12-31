@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVOutputWorkflowLogView.h"
 
-#include "ZBSymbolLogObserverMsg.h"
+#include "PSS_SymbolLogObserverMsg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,7 +48,7 @@ void ZVOutputWorkflowLogView::OnDoubleClick()
     {
         PSS_GenericSymbolErrorLine ErrorLine;
         (PSS_ErrorLine&)ErrorLine = s;
-        ZBSymbolLogObserverMsg msg(ErrorLine);
+        PSS_SymbolLogObserverMsg msg(ErrorLine);
 
         NotifyAllObservers(&msg);
     }

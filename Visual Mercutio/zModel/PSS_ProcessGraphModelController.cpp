@@ -24,8 +24,8 @@
 #include "PSS_DocObserverMsg.h"
 #include "ZBUnitObserverMsg.h"
 #include "PSS_ModelObserverMsg.h"
-#include "ZBSymbolObserverMsg.h"
-#include "ZBSymbolLogObserverMsg.h"
+#include "PSS_SymbolObserverMsg.h"
+#include "PSS_SymbolLogObserverMsg.h"
 #include "PSS_LinkSymbol.h"
 #include "ZBTextZone.h"
 #include "ZDProcessGraphPage.h"
@@ -1750,7 +1750,7 @@ void PSS_ProcessGraphModelController::OnSelectionChange(CODComponentSet* pChange
 void PSS_ProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     PSS_ProcessGraphModelMdl* pModel          = GetModel();
-    ZBSymbolLogObserverMsg*   pLogObserverMsg = dynamic_cast<ZBSymbolLogObserverMsg*>(pMsg);
+    PSS_SymbolLogObserverMsg* pLogObserverMsg = dynamic_cast<PSS_SymbolLogObserverMsg*>(pMsg);
 
     if (pLogObserverMsg)
     {
@@ -1862,7 +1862,7 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
     if (pSymbol)
     {
         ZBPropertyObserverMsg msg   (pSymbol);
-        ZBSymbolObserverMsg   symMsg(ZBSymbolObserverMsg::ElementSelected, pSymbol);
+        PSS_SymbolObserverMsg symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pSymbol);
 
         // notify direct observers
         NotifyAllObservers(&msg);
@@ -1883,7 +1883,7 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
     if (pLinkSymbol)
     {
         ZBPropertyObserverMsg msg   (pLinkSymbol);
-        ZBSymbolObserverMsg   symMsg(ZBSymbolObserverMsg::ElementSelected, pLinkSymbol);
+        PSS_SymbolObserverMsg symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pLinkSymbol);
 
         // notify direct observers
         NotifyAllObservers(&msg);
@@ -1900,7 +1900,7 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
     }
 
     ZBPropertyObserverMsg msg   (NULL);
-    ZBSymbolObserverMsg   symMsg(ZBSymbolObserverMsg::ElementSelected, NULL);
+    PSS_SymbolObserverMsg symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, NULL);
 
     // Notify direct observers
     NotifyAllObservers(&msg);

@@ -347,19 +347,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSymbolLabel.cpp">
+    <ClCompile Include="PSS_SymbolLabel.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSymbolLogObserverMsg.cpp">
+    <ClCompile Include="PSS_SymbolLogObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSymbolObserverMsg.cpp">
+    <ClCompile Include="PSS_SymbolObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -791,9 +791,9 @@
     <ClInclude Include="PSS_Symbol.h" />
     <ClInclude Include="PSS_SymbolEdit.h" />
     <ClInclude Include="PSS_SymbolEntity.h" />
-    <ClInclude Include="ZBSymbolLabel.h" />
-    <ClInclude Include="ZBSymbolLogObserverMsg.h" />
-    <ClInclude Include="ZBSymbolObserverMsg.h" />
+    <ClInclude Include="PSS_SymbolLabel.h" />
+    <ClInclude Include="PSS_SymbolLogObserverMsg.h" />
+    <ClInclude Include="PSS_SymbolObserverMsg.h" />
     <ClInclude Include="ZBSymbolStamp.h" />
     <ClInclude Include="PSS_SystemEntity.h" />
     <ClInclude Include="ZBTextZone.h" />

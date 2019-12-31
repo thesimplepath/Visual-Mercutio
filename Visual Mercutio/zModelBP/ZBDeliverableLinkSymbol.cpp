@@ -25,7 +25,7 @@
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 
-#include "zModel\ZBSymbolLabel.h"
+#include "zModel\PSS_SymbolLabel.h"
 #include <Views\OdLineOrientation.h>
 
 #include "zModel\ZUODSymbolManipulator.h"
@@ -210,7 +210,7 @@ CODLabelComponent* ZBDeliverableLinkSymbol::CreateLabel(const LPCTSTR           
 {
     if (UseDynamicArea())
     {
-        CODLabelComponent* pLabelComp = new ZBSymbolLabel(ctlPoint, true);
+        CODLabelComponent* pLabelComp = new PSS_SymbolLabel(ctlPoint, true);
         pLabelComp->SetText(lpszText);
 
         if (pLabelComp->Create(pDC))

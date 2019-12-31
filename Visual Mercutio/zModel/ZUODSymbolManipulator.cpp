@@ -5,7 +5,7 @@
 #include "ZUODSymbolManipulator.h"
 
 #include "PSS_SymbolEdit.h"
-#include "ZBSymbolLabel.h"
+#include "PSS_SymbolLabel.h"
 #include "zBaseSym\PSS_BasicSymbol.h"
 
 // JMR-MODIF - Le 10 mai 2006 - Ajout de l'en-tête MsgBox.h
@@ -153,7 +153,7 @@ PSS_SymbolEdit* ZUODSymbolManipulator::CreateAndReplaceEditText(CODComponent*   
     return pEdit;
 }
 
-ZBSymbolLabel* ZUODSymbolManipulator::CreateAndReplaceLabelText(CODComponent*    pSymbol,
+PSS_SymbolLabel* ZUODSymbolManipulator::CreateAndReplaceLabelText(CODComponent*    pSymbol,
                                                                 const CString    EditName,
                                                                 bool            NotifyParent,
                                                                 CODComponent*    pParent            /*= NULL*/)
@@ -169,7 +169,7 @@ ZBSymbolLabel* ZUODSymbolManipulator::CreateAndReplaceLabelText(CODComponent*   
     }
 
     // Create the new symbol
-    ZBSymbolLabel* pEdit = new ZBSymbolLabel(NotifyParent);
+    PSS_SymbolLabel* pEdit = new PSS_SymbolLabel(NotifyParent);
 
     // Set its size
     dynamic_cast<CODTextComponent*>(pEdit)->Create((pComp) ? pComp->GetBounds() : pSymbol->GetBounds(), NULL);
