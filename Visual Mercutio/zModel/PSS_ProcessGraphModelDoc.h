@@ -31,7 +31,7 @@
 #include "zBaseLib\PSS_BaseDocument.h"
 #include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZBUnitManager.h"
+#include "PSS_UnitManager.h"
 #include "PSS_ModelSet.h"
 #include "PSS_PageUnits.h"
 #include "ZBWorkflowDefinition.h"
@@ -790,7 +790,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         ZUMail*                     m_pMail;
         ZDTemplateManager*          m_pTemplateManager;
         ZBDynamicPropertiesManager* m_DynamicPropertiesManager;
-        ZBUnitManager*              m_pUnitManager;
+        PSS_UnitManager*            m_pUnitManager;
         PSS_ModelSet                m_DocumentModelSet;
         PSS_ModelSet                m_UnitModelSet;
         ZBWorkflowDefinition*       m_pWorkflowDefinition;

@@ -20,7 +20,7 @@
 #include "zModel\ZVRenameModelPageDlg.h"
 #include "zModel\ZVRenameModelPageInTreeDlg.h"
 #include "zModel\ZVDeleteModelPageDlg.h"
-#include "zModel\ZBUnitObserverMsg.h"
+#include "zModel\PSS_UnitObserverMsg.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"

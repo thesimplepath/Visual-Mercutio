@@ -384,13 +384,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBUnitManager.cpp">
+    <ClCompile Include="PSS_UnitManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBUnitObserverMsg.cpp">
+    <ClCompile Include="PSS_UnitObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -798,8 +798,8 @@
     <ClInclude Include="PSS_SystemEntity.h" />
     <ClInclude Include="PSS_TextZone.h" />
     <ClInclude Include="PSS_Unit.h" />
-    <ClInclude Include="ZBUnitManager.h" />
-    <ClInclude Include="ZBUnitObserverMsg.h" />
+    <ClInclude Include="PSS_UnitManager.h" />
+    <ClInclude Include="PSS_UnitObserverMsg.h" />
     <ClInclude Include="PSS_UserEntity.h" />
     <ClInclude Include="ZBUserGroupEntity.h" />
     <ClInclude Include="ZBUserGroupObserverMsg.h" />

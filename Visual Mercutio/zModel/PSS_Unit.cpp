@@ -40,7 +40,7 @@ PSS_Unit::PSS_Unit(const PSS_Unit& other)
 PSS_Unit::~PSS_Unit()
 {}
 //---------------------------------------------------------------------------
-PSS_Unit& PSS_Unit::operator = (const PSS_Unit& other)
+const PSS_Unit& PSS_Unit::operator = (const PSS_Unit& other)
 {
     THROW("Copy operator isn't allowed for this class");
 }

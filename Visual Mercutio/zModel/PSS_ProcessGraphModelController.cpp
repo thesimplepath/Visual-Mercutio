@@ -22,7 +22,7 @@
 #include "PSS_ProcessGraphModelViewport.h"
 #include "ZUODSymbolManipulator.h"
 #include "PSS_DocObserverMsg.h"
-#include "ZBUnitObserverMsg.h"
+#include "PSS_UnitObserverMsg.h"
 #include "PSS_ModelObserverMsg.h"
 #include "PSS_SymbolObserverMsg.h"
 #include "PSS_SymbolLogObserverMsg.h"

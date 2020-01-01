@@ -1,6 +1,11 @@
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
+/****************************************************************************
+ * ==> StdAfx --------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Include file for standard system include files, or project *
+ *               specific include files that are used frequently, but are   *
+ *               changed infrequently                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #if !defined(AFX_STDAFX_H__345101E9_12FD_11D4_970C_0000B45D7C6F__INCLUDED_)
 #define AFX_STDAFX_H__345101E9_12FD_11D4_970C_0000B45D7C6F__INCLUDED_

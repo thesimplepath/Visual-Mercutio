@@ -21,7 +21,7 @@
 #include "PSS_ProcessGraphChildFrame.h"
 #include "PSS_ProcessGraphModelController.h"
 #include "PSS_DocObserverMsg.h"
-#include "ZBUnitObserverMsg.h"
+#include "PSS_UnitObserverMsg.h"
 #include "PSS_LogicalSystemEntity.h"
 #include "PSS_GenericSymbolErrorLine.h"
 
@@ -506,8 +506,8 @@ bool PSS_ProcessGraphModelDoc::InsertUnit(const CString& fileName)
     ASSERT(pMainWnd);
 
     // build the message
-    ZBUnitObserverMsg UnitMsg(ZBUnitObserverMsg::OpenUnit, NULL, pUnit);
-    pMainWnd->SendMessageToDescendants(UM_ADDUNITMODEL, 0, LPARAM(&UnitMsg));
+    PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, NULL, pUnit);
+    pMainWnd->SendMessageToDescendants(UM_ADDUNITMODEL, 0, LPARAM(&unitMsg));
 
     // model has been modified
     SetModifiedFlag();
@@ -1193,7 +1193,7 @@ BOOL PSS_ProcessGraphModelDoc::OnNewDocument()
         pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
 
         // build the message even if the unit manager is NULL
-        ZBUnitObserverMsg unitMsg(ZBUnitObserverMsg::OpenUnit, m_pUnitManager);
+        PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
         pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
     }
 
@@ -1239,7 +1239,7 @@ BOOL PSS_ProcessGraphModelDoc::OnOpenDocument(LPCTSTR pPathName)
         pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
 
         // build the message even if the unit manager is NULL
-        ZBUnitObserverMsg unitMsg(ZBUnitObserverMsg::OpenUnit, m_pUnitManager);
+        PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
         pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
     }
 
@@ -1380,7 +1380,7 @@ void PSS_ProcessGraphModelDoc::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* 
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::CreateUnitManager()
 {
-    m_pUnitManager = new ZBUnitManager;
+    m_pUnitManager = new PSS_UnitManager;
 
     if (!m_pUnitManager)
         return false;

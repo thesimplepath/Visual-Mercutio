@@ -5,7 +5,7 @@
 #include "ZVProcessWorkspace.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZBUnitObserverMsg.h"
+#include "zModel\PSS_UnitObserverMsg.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zModel\PSS_LogicalSystemObserverMsg.h"
@@ -653,9 +653,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnInitializeModelUnit(WPARAM wParam, LPARAM 
 
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBUnitObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_UnitObserverMsg))
     {
-        ZBUnitObserverMsg* pUnitMsg = (ZBUnitObserverMsg*)pMsg;
+        PSS_UnitObserverMsg* pUnitMsg = (PSS_UnitObserverMsg*)pMsg;
 
         if (pUnitMsg->GetUnitManager())
         {
@@ -724,9 +724,9 @@ afx_msg LRESULT ZVProcessWorkspace::OnAddModelUnit(WPARAM wParam, LPARAM lParam)
 
     PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if (pMsg && ISA(pMsg, ZBUnitObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_UnitObserverMsg))
     {
-        ZBUnitObserverMsg* pUnitMsg = (ZBUnitObserverMsg*)pMsg;
+        PSS_UnitObserverMsg* pUnitMsg = (PSS_UnitObserverMsg*)pMsg;
 
         if (pUnitMsg->GetUnit() && pUnitMsg->GetUnit()->GetUnitDocument())
         {

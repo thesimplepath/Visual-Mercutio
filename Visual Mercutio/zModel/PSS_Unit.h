@@ -170,7 +170,7 @@ class AFX_EXT_CLASS PSS_Unit : public CObject
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_Unit& operator = (const PSS_Unit& other);
+        const PSS_Unit& operator = (const PSS_Unit& other);
 };
 
 //---------------------------------------------------------------------------
