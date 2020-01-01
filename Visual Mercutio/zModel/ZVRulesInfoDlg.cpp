@@ -1,11 +1,9 @@
-// ******************************************************************************************************************
-// *                                        Classe ZVRulesInfoDlg                                                    *
-// ******************************************************************************************************************
-// * JMR-MODIF - Le 15 novembre 2006 - Ajout de la classe ZVRulesInfoDlg.                                            *
-// ******************************************************************************************************************
-// * Cette classe représente une boîte de dialogue personnalisée pour les messages en provenance du gestionnaire de    *
-// * données des règles.                                                                                            *
-// ******************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_RulesInfoDlg ----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a rules information dialog box                    *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVRulesInfoDlg.h"
@@ -16,92 +14,83 @@
 #include "PSS_LogicalRulesEntity.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZVRulesInfoDlg dialog
-
-BEGIN_MESSAGE_MAP(ZVRulesInfoDlg, CDialog)
-    //{{AFX_MSG_MAP(ZVRulesInfoDlg)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_RulesInfoDlg, CDialog)
+    //{{AFX_MSG_MAP(PSS_RulesInfoDlg)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-ZVRulesInfoDlg::ZVRulesInfoDlg(UINT                    nTitleID        /*= -1*/,
-                               PSS_LogicalRulesEntity* pLogicalRule    /*= NULL*/,
-                               const CString            Name            /*= _T( "" )*/,
-                               const CString            Description        /*= _T( "" )*/,
-                               bool                    ModifyMode        /*= false*/,
-                               CWnd*                    pParent            /*=NULL*/)
-    : CDialog(ZVRulesInfoDlg::IDD, pParent),
+//---------------------------------------------------------------------------
+// PSS_RulesInfoDlg
+//---------------------------------------------------------------------------
+PSS_RulesInfoDlg::PSS_RulesInfoDlg(UINT                    titleID,
+                                   PSS_LogicalRulesEntity* pLogicalRule,
+                                   const CString&          name,
+                                   const CString&          description,
+                                   bool                    modifyMode,
+                                   CWnd*                   pParent) :
+    CDialog(PSS_RulesInfoDlg::IDD, pParent),
     m_pRule(pLogicalRule),
-    m_ModifyMode(ModifyMode)
+    m_Name(name),
+    m_Description(description),
+    m_ModifyMode(modifyMode)
 {
-    //{{AFX_DATA_INIT(ZVRulesInfoDlg)
-    m_Description = Description;
-    m_Name = Name;
-    //}}AFX_DATA_INIT
-
-    // Assigns also the initial cost
-    if (nTitleID != -1)
-    {
-        m_Title.LoadString(nTitleID);
-    }
+    // set the title
+    if (titleID != -1)
+        m_Title.LoadString(titleID);
 }
-
-ZVRulesInfoDlg::~ZVRulesInfoDlg()
+//---------------------------------------------------------------------------
+PSS_RulesInfoDlg::~PSS_RulesInfoDlg()
 {}
-
-void ZVRulesInfoDlg::DoDataExchange(CDataExchange* pDX)
+//---------------------------------------------------------------------------
+void PSS_RulesInfoDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
 
-    //{{AFX_DATA_MAP(ZVRulesInfoDlg)
+    //{{AFX_DATA_MAP(PSS_RulesInfoDlg)
+    DDX_Text(pDX, IDC_RULE_NAME,        m_Name);
     DDX_Text(pDX, IDC_RULE_DESCRIPTION, m_Description);
-    DDX_Text(pDX, IDC_RULE_NAME, m_Name);
     //}}AFX_DATA_MAP
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVRulesInfoDlg message handlers
-
-void ZVRulesInfoDlg::OnOK()
-{
-    UpdateData(TRUE);
-
-    if (!m_ModifyMode)
-    {
-        if (m_pRule && m_pRule->RuleExist(m_Name))
-        {
-            // Already exists
-            PSS_MsgBox mBox;
-            mBox.Show(IDS_RULE_ALREADYEXIST, MB_OK);
-            return;
-        }
-    }
-
-    CDialog::OnOK();
-}
-
-BOOL ZVRulesInfoDlg::OnInitDialog()
+//---------------------------------------------------------------------------
+BOOL PSS_RulesInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
     if (!m_Title.IsEmpty())
-    {
         SetWindowText(m_Title);
-    }
 
     if (m_ModifyMode)
     {
-        if (GetDlgItem(IDC_RULE_NAME))
-        {
-            GetDlgItem(IDC_RULE_NAME)->EnableWindow(FALSE);
-        }
+        CWnd* pItem = GetDlgItem(IDC_RULE_NAME);
+
+        if (pItem)
+            pItem->EnableWindow(FALSE);
     }
 
-    return TRUE;    // return TRUE unless you set the focus to a control
-                    // EXCEPTION: OCX Property Pages should return FALSE
+    // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
+    return TRUE;
 }
+//---------------------------------------------------------------------------
+void PSS_RulesInfoDlg::OnOK()
+{
+    UpdateData(TRUE);
+
+    if (!m_ModifyMode)
+        if (m_pRule && m_pRule->RuleExist(m_Name))
+        {
+            // already exists
+            PSS_MsgBox mBox;
+            mBox.Show(IDS_RULE_ALREADYEXIST, MB_OK);
+            return;
+        }
+
+    CDialog::OnOK();
+}
+//---------------------------------------------------------------------------
