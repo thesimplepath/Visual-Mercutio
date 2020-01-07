@@ -29,7 +29,7 @@
 #include <Views\OdLineOrientation.h>
 
 #include "zModel\ZUODSymbolManipulator.h"
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
 
 // JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h

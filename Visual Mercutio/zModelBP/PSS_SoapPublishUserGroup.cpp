@@ -12,7 +12,7 @@
 // processsoft
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
@@ -52,7 +52,7 @@ bool PSS_SoapPublishUserGroup::Publish()
     return m_PubWorkgroup.Send();
 }
 //---------------------------------------------------------------------------
-void PSS_SoapPublishUserGroup::PublishUserGroup(ZBUserGroupEntity* pGroup)
+void PSS_SoapPublishUserGroup::PublishUserGroup(PSS_UserGroupEntity* pGroup)
 {
     if (!pGroup)
         return;
@@ -93,7 +93,7 @@ void PSS_SoapPublishUserGroup::PublishUserGroup(ZBUserGroupEntity* pGroup)
             if (!pEntity)
                 continue;
 
-            PublishUserGroup(dynamic_cast<ZBUserGroupEntity*>(pEntity));
+            PublishUserGroup(dynamic_cast<PSS_UserGroupEntity*>(pEntity));
         }
     }
 }

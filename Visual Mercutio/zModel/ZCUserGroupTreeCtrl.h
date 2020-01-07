@@ -21,12 +21,15 @@
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
 #endif
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
 
 // forward class declaration
 class ZBWorkspaceEnv;
 class PSS_UserEntity;
 class ZBUserRoleEntity;
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -44,16 +47,18 @@ class ZBUserGroupEntity;
 class _ZInternalUserGroupTreeData : public CObject
 {
 public:
-
-    enum UserGroupTreeDataType { wktp_Group,
-                                 wktp_Role,
-                                 wktp_String,
-                                 wktp_Unknown };
+    enum UserGroupTreeDataType
+    {
+        wktp_Group,
+        wktp_Role,
+        wktp_String,
+        wktp_Unknown
+    };
 
     _ZInternalUserGroupTreeData();
-    _ZInternalUserGroupTreeData( ZBUserGroupEntity* pGroup );
-    _ZInternalUserGroupTreeData( ZBUserRoleEntity* pRole );
-    _ZInternalUserGroupTreeData( CString Str );
+    _ZInternalUserGroupTreeData(PSS_UserGroupEntity* pGroup);
+    _ZInternalUserGroupTreeData(ZBUserRoleEntity* pRole);
+    _ZInternalUserGroupTreeData(CString Str);
     ~_ZInternalUserGroupTreeData();
 
     // Data member
@@ -67,63 +72,63 @@ public:
 // ZCUserGroupTreeCtrl window
 
 class AFX_EXT_CLASS ZCUserGroupTreeCtrl : public PSS_TreeCtrl,
-                                          public PSS_Subject,
-                                          public PSS_Observer
+    public PSS_Subject,
+    public PSS_Observer
 {
-// Construction
+    // Construction
 public:
 
-    ZCUserGroupTreeCtrl( const CString RootName = _T( "" ), ZBUserGroupEntity* pUserGroupRoot = NULL );
+    ZCUserGroupTreeCtrl(const CString RootName = _T(""), PSS_UserGroupEntity* pUserGroupRoot = NULL);
     virtual ~ZCUserGroupTreeCtrl();
 
-// Operations
+    // Operations
 public:
 
-    void                Initialize                ( const CString RootName, ZBUserGroupEntity* pUserGroupRoot );
-    void                Release                    ();
-    void                Refresh                    ();
+    void                Initialize(const CString RootName, PSS_UserGroupEntity* pUserGroupRoot);
+    void                Release();
+    void                Refresh();
 
-    PSS_UserEntity*        GetSelectedEntity        ();
-    ZBUserGroupEntity*    GetSelectedGroup        ();
-    ZBUserRoleEntity*    GetSelectedRole            ();
-    ZBUserGroupEntity*    GetSelectedOwnerGroup    ();
-    bool                IsRootSelected            () const;
+    PSS_UserEntity*        GetSelectedEntity();
+    PSS_UserGroupEntity*    GetSelectedGroup();
+    ZBUserRoleEntity*    GetSelectedRole();
+    PSS_UserGroupEntity*    GetSelectedOwnerGroup();
+    bool                IsRootSelected() const;
 
-    void                AddGroup                ( ZBUserGroupEntity* pGroup, ZBUserGroupEntity* pParentGroup = NULL );
-    void                RemoveGroup                ( ZBUserGroupEntity* pGroup );
-    void                ModifyGroup                ( ZBUserGroupEntity* pGroup );
-    void                AddRole                    ( ZBUserRoleEntity* pRole, ZBUserGroupEntity* pParentGroup );
-    void                RemoveRole                ( ZBUserRoleEntity* pRole );
-    void                ModifyRole                ( ZBUserRoleEntity* pRole );
+    void                AddGroup(PSS_UserGroupEntity* pGroup, PSS_UserGroupEntity* pParentGroup = NULL);
+    void                RemoveGroup(PSS_UserGroupEntity* pGroup);
+    void                ModifyGroup(PSS_UserGroupEntity* pGroup);
+    void                AddRole(ZBUserRoleEntity* pRole, PSS_UserGroupEntity* pParentGroup);
+    void                RemoveRole(ZBUserRoleEntity* pRole);
+    void                ModifyRole(ZBUserRoleEntity* pRole);
 
-    virtual void        OnUgpNewGroup            ();
-    virtual void        OnUgpDeleteGroup        ();
-    virtual void        OnUgpRenameGroup        ();
-    virtual void        OnUgpAddRole            ();
-    virtual void        OnUgpDeleteRole            ();
-    virtual void        OnUgpRenameRole            ();
-    virtual void        OnUgpMove                ();
-    virtual void        OnUgpProperties            ();
+    virtual void        OnUgpNewGroup();
+    virtual void        OnUgpDeleteGroup();
+    virtual void        OnUgpRenameGroup();
+    virtual void        OnUgpAddRole();
+    virtual void        OnUgpDeleteRole();
+    virtual void        OnUgpRenameRole();
+    virtual void        OnUgpMove();
+    virtual void        OnUgpProperties();
 
-    virtual bool        CanUgpNewGroup            ();
-    virtual bool        CanUgpDeleteGroup        ();
-    virtual bool        CanUgpRenameGroup        ();
-    virtual bool        CanUgpAddRole            ();
-    virtual bool        CanUgpDeleteRole        ();
-    virtual bool        CanUgpRenameRole        ();
-    virtual bool        CanUgpMove                ();
-    virtual bool        CanUgpProperties        ();
+    virtual bool        CanUgpNewGroup();
+    virtual bool        CanUgpDeleteGroup();
+    virtual bool        CanUgpRenameGroup();
+    virtual bool        CanUgpAddRole();
+    virtual bool        CanUgpDeleteRole();
+    virtual bool        CanUgpRenameRole();
+    virtual bool        CanUgpMove();
+    virtual bool        CanUgpProperties();
 
     ////////////////////////////////////////////////////////////////////
     // ZIObserver call back
-    virtual void        OnUpdate                ( PSS_Subject* pSubject, PSS_ObserverMsg* pMsg );
+    virtual void        OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
-    virtual int            HasContextMenu            ( CWnd* pWnd, CPoint point );
-    virtual void        DisplayContextMenu        ( CWnd* pWnd, CPoint point );
+    virtual int            HasContextMenu(CWnd* pWnd, CPoint point);
+    virtual void        DisplayContextMenu(CWnd* pWnd, CPoint point);
 
-// Overrides
+    // Overrides
 protected:
 
     // ClassWizard generated virtual function overrides
@@ -145,38 +150,38 @@ protected:
 
 protected:
 
-    virtual int            GetIndexOfNoDropImage    () const;
-    virtual CObject*    GetDragObject            ( HTREEITEM DragItem );
+    virtual int            GetIndexOfNoDropImage() const;
+    virtual CObject*    GetDragObject(HTREEITEM DragItem);
 
 private:
 
-    void                CreateTree                ();
-    void                LoadTree                ();
-    void                DestroyTree                ();
-    void                EmptyDataSet            ();
-    void                ProcessGroup            ( ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem );
-    void                ProcessRole                ( ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem );
+    void                CreateTree();
+    void                LoadTree();
+    void                DestroyTree();
+    void                EmptyDataSet();
+    void                ProcessGroup(PSS_UserGroupEntity* pGroup, HTREEITEM hParentTreeItem);
+    void                ProcessRole(ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem);
 
-    HTREEITEM            AddTypeItem                ( const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL );
-    HTREEITEM            AddGroupItem            ( ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem );
-    HTREEITEM            AddRoleItem                ( ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem );
+    HTREEITEM            AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
+    HTREEITEM            AddGroupItem(PSS_UserGroupEntity* pGroup, HTREEITEM hParentTreeItem);
+    HTREEITEM            AddRoleItem(ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem);
 
-    BOOL                ModifyGroupItem            ( ZBUserGroupEntity* pGroup, HTREEITEM hItem );
-    BOOL                ModifyRoleItem            ( ZBUserRoleEntity* pRole, HTREEITEM hItem );
+    BOOL                ModifyGroupItem(PSS_UserGroupEntity* pGroup, HTREEITEM hItem);
+    BOOL                ModifyRoleItem(ZBUserRoleEntity* pRole, HTREEITEM hItem);
 
-    PSS_UserEntity*        _GetEntity                ( HTREEITEM hItem );
-    ZBUserGroupEntity*    _GetGroup                ( HTREEITEM hItem );
-    ZBUserRoleEntity*    _GetRole                ( HTREEITEM hItem );
-    ZBUserGroupEntity*    _GetOwnerGroup            ( HTREEITEM hItem );
-      
-    _ZInternalUserGroupTreeData* FindElementFromDataSet(PSS_UserEntity* pEntity );
-    _ZInternalUserGroupTreeData* FindElementFromDataSet( ZBUserGroupEntity* pGroup );
-    _ZInternalUserGroupTreeData* FindElementFromDataSet( ZBUserRoleEntity* pRole );
-    _ZInternalUserGroupTreeData* FindElementFromDataSet( CString Str );
+    PSS_UserEntity*        _GetEntity(HTREEITEM hItem);
+    PSS_UserGroupEntity*    _GetGroup(HTREEITEM hItem);
+    ZBUserRoleEntity*    _GetRole(HTREEITEM hItem);
+    PSS_UserGroupEntity*    _GetOwnerGroup(HTREEITEM hItem);
 
-    _ZInternalUserGroupTreeData* AddDataToSet( ZBUserGroupEntity* pGroup );
-    _ZInternalUserGroupTreeData* AddDataToSet( ZBUserRoleEntity* pRole );
-    _ZInternalUserGroupTreeData* AddDataToSet( CString Str );
+    _ZInternalUserGroupTreeData* FindElementFromDataSet(PSS_UserEntity* pEntity);
+    _ZInternalUserGroupTreeData* FindElementFromDataSet(PSS_UserGroupEntity* pGroup);
+    _ZInternalUserGroupTreeData* FindElementFromDataSet(ZBUserRoleEntity* pRole);
+    _ZInternalUserGroupTreeData* FindElementFromDataSet(CString Str);
+
+    _ZInternalUserGroupTreeData* AddDataToSet(PSS_UserGroupEntity* pGroup);
+    _ZInternalUserGroupTreeData* AddDataToSet(ZBUserRoleEntity* pRole);
+    _ZInternalUserGroupTreeData* AddDataToSet(CString Str);
 
 private:
 
@@ -196,7 +201,7 @@ private:
 
     CString                            m_RootName;
 
-    ZBUserGroupEntity*                m_pUserGroupRoot;
+    PSS_UserGroupEntity*                m_pUserGroupRoot;
 
     CMenu                            m_SubMenu;
 
@@ -208,8 +213,4 @@ inline int ZCUserGroupTreeCtrl::GetIndexOfNoDropImage() const
     return 4;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZCUserGroupTreeCtrl_H__2F41F061_F558_4A24_BDE9_D472E36F653E__INCLUDED_)
+#endif

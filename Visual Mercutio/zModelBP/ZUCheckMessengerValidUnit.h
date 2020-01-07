@@ -34,11 +34,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "ZUProcessNavigation.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBUserGroupEntity;
+// class name mapping
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
+
+// forward class declaration
+class PSS_UserGroupEntity;
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

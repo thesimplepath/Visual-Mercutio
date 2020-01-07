@@ -37,10 +37,13 @@
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
 #endif
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
 
 // forward class declaration
 class PSS_UserEntity;
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectUserGroupDlg dialog
@@ -50,18 +53,18 @@ class AFX_EXT_CLASS ZVSelectUserGroupDlg : public CDialog
 public:
 
     // Standard constructor
-    ZVSelectUserGroupDlg( const CString            Title                = _T( "" ),
-                          ZBUserGroupEntity*    pMainUserGroup        = NULL,
-                          bool                    AllowGroupSelection    = true,
-                          bool                    AllowRoleSelection    = true,
-                          CWnd*                    pParent                = NULL);
+    ZVSelectUserGroupDlg(const CString            Title = _T(""),
+                         PSS_UserGroupEntity*    pMainUserGroup = NULL,
+                         bool                    AllowGroupSelection = true,
+                         bool                    AllowRoleSelection = true,
+                         CWnd*                    pParent = NULL);
 
     // Standard constructor
-    ZVSelectUserGroupDlg( UINT                    nTitle,
-                          ZBUserGroupEntity*    pMainUserGroup,
-                          bool                    AllowGroupSelection    = true,
-                          bool                    AllowRoleSelection    = true,
-                          CWnd*                    pParent                = NULL);
+    ZVSelectUserGroupDlg(UINT                    nTitle,
+                         PSS_UserGroupEntity*    pMainUserGroup,
+                         bool                    AllowGroupSelection = true,
+                         bool                    AllowRoleSelection = true,
+                         CWnd*                    pParent = NULL);
 
     // JMR-MODIF - Le 27 février 2006 - Nettoyage des memory leaks, ajout du destructeur de l'objet.
     ~ZVSelectUserGroupDlg();
@@ -77,7 +80,7 @@ public:
 protected:
     /// ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVSelectUserGroupDlg)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -98,12 +101,12 @@ private:
         IDD = IDD_USERGROUP_SELECTION
     };
 
-    PSS_UserEntity*     m_pUserEntity;
-    ZBUserGroupEntity*  m_pMainUserGroup;
-    ZCUserGroupTreeCtrl m_Ctrl;
-    CString             m_Title;
-    bool                m_AllowGroupSelection;
-    bool                m_AllowRoleSelection;
+    PSS_UserEntity*      m_pUserEntity;
+    PSS_UserGroupEntity* m_pMainUserGroup;
+    ZCUserGroupTreeCtrl  m_Ctrl;
+    CString              m_Title;
+    bool                 m_AllowGroupSelection;
+    bool                 m_AllowRoleSelection;
 };
 
 #endif

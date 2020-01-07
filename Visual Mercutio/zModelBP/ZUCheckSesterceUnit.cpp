@@ -11,7 +11,7 @@
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"

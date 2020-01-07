@@ -108,7 +108,7 @@ public:
     // Operations
     void Initialize(ZBDistributionAttributeManager* pDistributionManager,
                     ZBDynamicPropertiesManager* pPropManager,
-                    ZBUserGroupEntity* pMainUserGroup,
+                    PSS_UserGroupEntity* pMainUserGroup,
                     ZBDistributionAttribute* pDistributionAttribute = NULL,
                     bool ShowAll = false, int SymbolRef = -1)
     {

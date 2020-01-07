@@ -21,12 +21,15 @@
 #include "zModelBP\ZUUserGroupCalculateTotals.h"
 
 // class name mapping
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declaration
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 class ZBUserRoleEntity;
 class PSS_ProcessGraphModelMdl;
 class ZUUserGroupCalculateTotals;
@@ -72,12 +75,12 @@ protected:
 private:
 
     void RemoveAllData();
-    void FillGridUnitGroup(ZBUserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
+    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
     void FillGridUnitRole(ZBUserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
 
     void FillProcessFigures(PSS_ProcessGraphModelMdl*        pModel,
                             ZUUserGroupCalculateTotals*    pTotal,
-                            ZBUserGroupEntity*                pGroup,
+                            PSS_UserGroupEntity*                pGroup,
                             size_t                            Index,
                             ZBOStreamGrid                    &ostream);
 

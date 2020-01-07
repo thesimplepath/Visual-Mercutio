@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
-#include "ZBUserGroupEntity.h"
+#include "PSS_UserGroupEntity.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -28,14 +28,14 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_UserGroupInfoDlg
 //---------------------------------------------------------------------------
-PSS_UserGroupInfoDlg::PSS_UserGroupInfoDlg(UINT               titleID,
-                                           ZBUserGroupEntity* pGroup,
-                                           const CString&     name,
-                                           const CString&     description,
-                                           const float        cost,
-                                           bool               isRole,
-                                           bool               modifyMode,
-                                           CWnd*              pParent) :
+PSS_UserGroupInfoDlg::PSS_UserGroupInfoDlg(UINT                 titleID,
+                                           PSS_UserGroupEntity* pGroup,
+                                           const CString&       name,
+                                           const CString&       description,
+                                           const float          cost,
+                                           bool                 isRole,
+                                           bool                 modifyMode,
+                                           CWnd*                pParent) :
     CDialog(PSS_UserGroupInfoDlg::IDD, pParent),
     m_pGroup(pGroup),
     m_Name(name),

@@ -13,10 +13,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBUserGroupEntity.h"
-
-// BaseDoc
+// processsoft
 #include "zBaseLib\PSS_BaseDocument.h"
+#include "PSS_UserGroupEntity.h"
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -51,7 +50,7 @@ public:
     bool ReadFromFile    ( const CString fileName );
     bool SaveToFile        ( const CString fileName );
 
-    ZBUserGroupEntity& GetUserGroupEnvironment()
+    PSS_UserGroupEntity& GetUserGroupEnvironment()
     {
         return m_UserGroupEnvironment;
     };
@@ -106,8 +105,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    ZBUserGroupEntity    m_UserGroupEnvironment;
+    PSS_UserGroupEntity m_UserGroupEnvironment;
     bool                m_IsLoaded;
 
     // Unique GUID for this file.
@@ -121,7 +119,4 @@ private:
     bool                m_Beta1Format;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZDUserEntityDocument_H__6325FCF2_2A96_4A88_81CB_EEF32C4B5FE9__INCLUDED_)
+#endif

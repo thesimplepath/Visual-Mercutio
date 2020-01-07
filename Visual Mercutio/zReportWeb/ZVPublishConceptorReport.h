@@ -23,7 +23,7 @@
 // processsoft
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\ZDProcessGraphPage.h"
@@ -79,7 +79,7 @@ private:
 
     void GeneratePageFile(CString Name, CString Description);
 
-    bool CreateFileSystem(ZBUserGroupEntity* pGroup, CString Directory);
+    bool CreateFileSystem(PSS_UserGroupEntity* pGroup, CString Directory);
     bool CreateProcess();
     bool StartSection(CODNodeArray& Nodes);
     bool OnDoorSymbol(ZBBPDoorSymbol* pSymbol);

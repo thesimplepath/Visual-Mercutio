@@ -34,7 +34,7 @@
 #include "zBaseSym\PSS_NavigableModel.h"
 #include "zProperty\ZIProperties.h"
 #include "zEvent\PSS_ActivityResources.h"
-#include "ZBUserGroupEntity.h"
+#include "PSS_UserGroupEntity.h"
 #include "PSS_LogicalSystemEntity.h"
 #include "PSS_LogicalPrestationsEntity.h"
 #include "PSS_LogicalRulesEntity.h"
@@ -54,6 +54,9 @@
 #endif
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
+#endif
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
 #ifndef PSS_LogicalSystemEntity
     #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
@@ -82,7 +85,7 @@ class PSS_ProcessGraphModelController;
 class ZDProcessGraphPage;
 class ZBPropertyAttributes;
 class PSS_UserEntity;
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 class PSS_LogicalSystemEntity;
 class PSS_PrestationsEntity;
 class PSS_LogicalPrestationsEntity;
@@ -289,13 +292,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         * Gets the main user group
         *@return the main user group, NULL on error
         */
-        static inline ZBUserGroupEntity* GetMainUserGroup();
+        static inline PSS_UserGroupEntity* GetMainUserGroup();
 
         /**
         * Assigns the main user group
         *@param pMainUserGroup - the main user group
         */
-        static inline void AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup);
+        static inline void AssignMainUserGroup(PSS_UserGroupEntity* pMainUserGroup);
 
         /**
         * Checks if the main user group is valid
@@ -1290,7 +1293,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
                 std::size_t m_Ref;
         };
 
-        static ZBUserGroupEntity*                     m_pMainUserGroup;
+        static PSS_UserGroupEntity*                   m_pMainUserGroup;
         static PSS_LogicalSystemEntity*               m_pMainLogicalSystem;
         static PSS_LogicalPrestationsEntity*          m_pMainLogicalPrestations;
         static PSS_LogicalRulesEntity*                m_pMainLogicalRules;
@@ -1666,12 +1669,12 @@ UINT PSS_ProcessGraphModelMdl::GetSymbolImageIDRes() const
     return -1;
 }
 //---------------------------------------------------------------------------
-ZBUserGroupEntity* PSS_ProcessGraphModelMdl::GetMainUserGroup()
+PSS_UserGroupEntity* PSS_ProcessGraphModelMdl::GetMainUserGroup()
 {
     return m_pMainUserGroup;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup)
+void PSS_ProcessGraphModelMdl::AssignMainUserGroup(PSS_UserGroupEntity* pMainUserGroup)
 {
     m_pMainUserGroup = pMainUserGroup;
 }

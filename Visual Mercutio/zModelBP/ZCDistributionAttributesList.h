@@ -39,6 +39,9 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
 
 // forward class declaration
 class ZBDistributionAttribute;
@@ -47,7 +50,7 @@ class ZBDistributionRule;
 class ZBDistributionRulesForRole;
 class ZBDynamicPropertiesManager;
 class PSS_ProcessGraphModelDoc;
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 
 
 #ifdef _ZMODELBPEXPORT
@@ -80,7 +83,7 @@ public:
 
     int    Initialize(ZBDistributionAttributeManager* pDistributionManager,
                       ZBDynamicPropertiesManager* pPropManager,
-                      ZBUserGroupEntity* pMainUserGroup,
+                      PSS_UserGroupEntity* pMainUserGroup,
                       ZBDistributionAttribute* pDistributionAttribute = NULL,
                       bool ShowAll = false, int SymbolRef = -1);
     void  ShowAll(bool value = true, bool bRefresh = true)
@@ -121,7 +124,7 @@ private: //## implementation
     ZBDistributionAttribute* m_pDistributionAttribute;
     ZBDistributionAttributeManager*    m_pDistributionManager;
     ZBDynamicPropertiesManager* m_pPropManager;
-    ZBUserGroupEntity* m_pMainUserGroup;
+    PSS_UserGroupEntity* m_pMainUserGroup;
     bool                    m_ShowAll;
     int                        m_SymbolRef;
     CODComponent*            m_pComp;

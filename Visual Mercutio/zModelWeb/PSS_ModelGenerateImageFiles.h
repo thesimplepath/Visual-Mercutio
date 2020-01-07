@@ -34,6 +34,9 @@
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
 #endif
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
 #ifndef PSS_SystemEntity
     #define PSS_SystemEntity ZBSystemEntity
 #endif
@@ -58,7 +61,7 @@ class PSS_BasicSymbol;
 class ZIProperties;
 class PSS_InfoModelGraphicGeneration;
 class PSS_UserEntity;
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 class ZBUserRoleEntity;
 class PSS_SystemEntity;
 class PSS_LogicalSystemEntity;
@@ -283,7 +286,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pHtmlFile - html file to add to
         *@return true on success, otherwise false
         */
-        bool GenerateUnitObjects(ZBUserGroupEntity* pGroupEntity, PSS_HtmlFile* pHtmlFile);
+        bool GenerateUnitObjects(PSS_UserGroupEntity* pGroupEntity, PSS_HtmlFile* pHtmlFile);
 
         /**
         * Generates the unit group objects
@@ -292,7 +295,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param parentID - parent identifier
         *@return true on success, otherwise false
         */
-        bool GenerateUnitGroupObjects(ZBUserGroupEntity* pGroupEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
+        bool GenerateUnitGroupObjects(PSS_UserGroupEntity* pGroupEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
 
         /**
         * Generates the unit role objects
@@ -308,7 +311,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param pGroupEntity - group entity for which the list should be generated
         *@return the user group list, empty string on error
         */
-        CString GenerateUserGroupList(ZBUserGroupEntity* pGroupEntity);
+        CString GenerateUserGroupList(PSS_UserGroupEntity* pGroupEntity);
 
         /**
         * Generates the logical system objects

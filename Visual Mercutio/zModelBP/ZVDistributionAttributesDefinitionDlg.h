@@ -16,18 +16,22 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "zModelBP\ZCDistributionAttributesList.h"
 #include "zModelBP\zModelBPRes.h"
 #include "zProperty\ZIProperties.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// class name mapping
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
+
+// forward class declaration
 class ZBDistributionAttributeManager;
 class ZBDynamicPropertiesManager;
 class ZBDistributionAttribute;
 class ZBDistributionRulesForRole;
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 
 
 #ifdef _ZMODELBPEXPORT
@@ -52,7 +56,7 @@ public:
     ZVDistributionAttributesDefinitionDlg(ZBDistributionAttributeManager* pDistributionManager, 
                                           ZBDynamicPropertiesManager* pPropManager, 
                                           ZBPropertySet* pSet, 
-                                          ZBUserGroupEntity* pMainUserGroup,
+                                          PSS_UserGroupEntity* pMainUserGroup,
                                           const CString GroupGUID = "",
                                           ZBDistributionAttribute* pDistributionAttr = NULL, 
                                           CWnd* pParent = NULL);   // standard constructor
@@ -129,7 +133,7 @@ private:
     ZBDistributionAttributeManager* m_pDistributionManager;
     ZBDynamicPropertiesManager* m_pPropManager;
     ZBPropertySet* m_pSet;
-    ZBUserGroupEntity* m_pMainUserGroup;
+    PSS_UserGroupEntity* m_pMainUserGroup;
     ZBDistributionAttribute* m_pDistributionAttr;
 
     int m_CategoryID;

@@ -229,8 +229,8 @@ class AFX_EXT_CLASS PSS_LogicalSystemEntity : public PSS_SystemEntity
         virtual bool SystemExist(const CString& name, PSS_LogicalSystemEntity* pInSystem);
 
         /**
-        * Moves a prestation
-        *@param pPrestation - the prestation to move
+        * Moves a system
+        *@param pSystem - the system to move
         *@return true on success, otherwise false
         */
         virtual bool MoveSystem(PSS_SystemEntity* pSystem);

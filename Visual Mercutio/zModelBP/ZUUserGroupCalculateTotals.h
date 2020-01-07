@@ -34,12 +34,17 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "ZUProcessNavigation.h"
 #include "ZBBPAnnualNumberProp.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBUserGroupEntity;
+// class name mapping
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
+
+// forward class declaration
+class PSS_UserGroupEntity;
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -60,7 +65,7 @@ class AFX_EXT_CLASS ZBUserGroupCalculateTotalsInformation
 {
 public:
 
-    ZBUserGroupCalculateTotalsInformation(bool Consolidated, ZBUserGroupEntity* pGroup = NULL)
+    ZBUserGroupCalculateTotalsInformation(bool Consolidated, PSS_UserGroupEntity* pGroup = NULL)
     {
         m_Consolidated = Consolidated;
         m_pGroup = pGroup;
@@ -71,8 +76,8 @@ public:
 
 public:
 
-    bool                m_Consolidated;
-    ZBUserGroupEntity*    m_pGroup;
+    bool                 m_Consolidated;
+    PSS_UserGroupEntity* m_pGroup;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -150,10 +155,10 @@ private:
 
 private:
 
-    CString                m_UnitName;
-    bool                m_Consolidated;
-    ZBUserGroupEntity*    m_pGroup;
-    ZBUserGroupTotalSet    m_TotalSet;
+    CString              m_UnitName;
+    bool                 m_Consolidated;
+    PSS_UserGroupEntity* m_pGroup;
+    ZBUserGroupTotalSet  m_TotalSet;
 };
 
 #endif

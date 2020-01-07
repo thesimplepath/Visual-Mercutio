@@ -46,11 +46,13 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 21 juillet 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
+// class name mapping
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBUserGroupEntity;
+// forward class declaration
+class PSS_UserGroupEntity;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZUCheckValidUnit

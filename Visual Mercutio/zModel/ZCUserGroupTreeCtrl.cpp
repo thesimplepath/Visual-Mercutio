@@ -5,7 +5,7 @@
 
 #include "ZBUserRoleEntity.h"
 #include "ZVSelectUserGroupDlg.h"
-#include "ZBUserGroupObserverMsg.h"
+#include "PSS_UserGroupObserverMsg.h"
 
 #include "zBaseLib\zBaseLibRes.h"
 #include "PSS_UserGroupInfoDlg.h"
@@ -45,7 +45,7 @@ BEGIN_MESSAGE_MAP(ZCUserGroupTreeCtrl, PSS_TreeCtrl)
 END_MESSAGE_MAP()
 
 ZCUserGroupTreeCtrl::ZCUserGroupTreeCtrl(const CString            RootName /*= _T( "" )*/,
-                                         ZBUserGroupEntity*    pUserGroupRoot /*= NULL*/) :
+                                         PSS_UserGroupEntity* pUserGroupRoot /*= NULL*/) :
     PSS_TreeCtrl(),
     m_RootName(RootName),
     m_pUserGroupRoot(pUserGroupRoot),
@@ -59,7 +59,7 @@ ZCUserGroupTreeCtrl::~ZCUserGroupTreeCtrl()
     Release();
 }
 
-void ZCUserGroupTreeCtrl::Initialize(const CString RootName, ZBUserGroupEntity* pUserGroupRoot)
+void ZCUserGroupTreeCtrl::Initialize(const CString RootName, PSS_UserGroupEntity* pUserGroupRoot)
 {
     m_RootName = RootName;
     m_pUserGroupRoot = pUserGroupRoot;
@@ -108,24 +108,24 @@ int ZCUserGroupTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void ZCUserGroupTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBUserGroupObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_UserGroupObserverMsg))
     {
-        switch (dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_UserGroupObserverMsg*>(pMsg)->GetMessageID())
         {
-            case UM_INITUSERGROUP:
+            case g_InitUserGroup:
             {
-                if (dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetEntity() &&
-                    ISA(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetEntity(), ZBUserGroupEntity))
+                if (dynamic_cast<PSS_UserGroupObserverMsg*>(pMsg)->GetEntity() &&
+                    ISA(dynamic_cast<PSS_UserGroupObserverMsg*>(pMsg)->GetEntity(), PSS_UserGroupEntity))
                 {
-                    ZBUserGroupEntity* pGroup =
-                        dynamic_cast<ZBUserGroupEntity*>(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetEntity());
+                    PSS_UserGroupEntity* pGroup =
+                        dynamic_cast<PSS_UserGroupEntity*>(dynamic_cast<PSS_UserGroupObserverMsg*>(pMsg)->GetEntity());
 
-                    Initialize(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetRootName(), pGroup);
+                    Initialize(dynamic_cast<PSS_UserGroupObserverMsg*>(pMsg)->GetRootName(), pGroup);
                 }
                 break;
             }
 
-            case UM_CLOSEUSERGROUP:
+            case g_CloseUserGroup:
             {
                 DestroyTree();
                 break;
@@ -151,7 +151,7 @@ void ZCUserGroupTreeCtrl::OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult)
 
 void ZCUserGroupTreeCtrl::OnUgpNewGroup()
 {
-    ZBUserGroupEntity* pGroup = GetSelectedGroup();
+    PSS_UserGroupEntity* pGroup = GetSelectedGroup();
 
     // RS-MODIF 12.12.04 test if we use sesterces
     bool IsSesterces = false;
@@ -180,10 +180,10 @@ void ZCUserGroupTreeCtrl::OnUgpNewGroup()
 
         if (dlg.DoModal() == IDOK)
         {
-            ZBUserGroupEntity* pNewGroup = m_pUserGroupRoot->AddGroup(dlg.GetName(),
-                                                                      dlg.GetDescription(),
-                                                                      dlg.GetCost(),
-                                                                      pGroup);
+            PSS_UserGroupEntity* pNewGroup = m_pUserGroupRoot->AddGroup(dlg.GetName(),
+                                                                        dlg.GetDescription(),
+                                                                        dlg.GetCost(),
+                                                                        pGroup);
 
             if (pNewGroup)
             {
@@ -204,7 +204,7 @@ void ZCUserGroupTreeCtrl::OnUgpDeleteGroup()
         return;
     }
 
-    ZBUserGroupEntity* pGroup = GetSelectedGroup();
+    PSS_UserGroupEntity* pGroup = GetSelectedGroup();
 
     if (pGroup != NULL && pGroup != m_pUserGroupRoot)
     {
@@ -243,14 +243,14 @@ void ZCUserGroupTreeCtrl::OnUgpRenameGroup()
         }
     }
 
-    ZBUserGroupEntity* pGroup = GetSelectedGroup();
+    PSS_UserGroupEntity* pGroup = GetSelectedGroup();
 
     if (pGroup != NULL)
     {
         ASSERT(m_pUserGroupRoot != NULL);
 
         PSS_UserGroupInfoDlg dlg(IDS_UGP_RENAMEGROUP_T,
-            (pGroup->GetParent() && ISA(pGroup->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pGroup->GetParent()) : pGroup,
+            (pGroup->GetParent() && ISA(pGroup->GetParent(), PSS_UserGroupEntity)) ? dynamic_cast<PSS_UserGroupEntity*>(pGroup->GetParent()) : pGroup,
                                pGroup->GetEntityName(),
                                pGroup->GetEntityDescription(),
                                pGroup->GetEntityCost(),
@@ -274,7 +274,7 @@ void ZCUserGroupTreeCtrl::OnUgpRenameGroup()
 
 void ZCUserGroupTreeCtrl::OnUgpAddRole()
 {
-    ZBUserGroupEntity* pGroup = GetSelectedGroup();
+    PSS_UserGroupEntity* pGroup = GetSelectedGroup();
 
     // If a group selected
     if (pGroup != NULL)
@@ -331,7 +331,7 @@ void ZCUserGroupTreeCtrl::OnUgpRenameRole()
         ASSERT(m_pUserGroupRoot != NULL);
 
         PSS_UserGroupInfoDlg dlg(IDS_UGP_RENAMEROLE_T,
-            (pRole->GetParent() && ISA(pRole->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pRole->GetParent()) : m_pUserGroupRoot,
+            (pRole->GetParent() && ISA(pRole->GetParent(), PSS_UserGroupEntity)) ? dynamic_cast<PSS_UserGroupEntity*>(pRole->GetParent()) : m_pUserGroupRoot,
                                pRole->GetEntityName(),
                                pRole->GetEntityDescription(),
                                0,
@@ -358,7 +358,7 @@ void ZCUserGroupTreeCtrl::OnUgpMove()
     if (pEntity != NULL)
     {
         // JMR-MODIF - Le 27 février 2006 - La ligne ci-dessous ne sert à rien => Supprimée.
-//        ZBUserGroupEntity* pGroup = GetSelectedGroup();
+//        PSS_UserGroupEntity* pGroup = GetSelectedGroup();
 
         ASSERT(m_pUserGroupRoot != NULL);
 
@@ -373,11 +373,11 @@ void ZCUserGroupTreeCtrl::OnUgpMove()
             // and if it is not the same
             if (dlg.GetSelectedUserEntity() &&
                 dlg.GetSelectedUserEntity() != pEntity &&
-                ISA(dlg.GetSelectedUserEntity(), ZBUserGroupEntity))
+                ISA(dlg.GetSelectedUserEntity(), PSS_UserGroupEntity))
             {
                 // Move the element
                 // Assigns the new parent
-                dynamic_cast<ZBUserGroupEntity*>(dlg.GetSelectedUserEntity())->MoveEntity(pEntity);
+                dynamic_cast<PSS_UserGroupEntity*>(dlg.GetSelectedUserEntity())->MoveEntity(pEntity);
 
                 // Modified
                 m_pUserGroupRoot->SetModifiedFlag();
@@ -409,11 +409,11 @@ void ZCUserGroupTreeCtrl::OnUgpProperties()
 
     if (pEntity != NULL)
     {
-        ZBUserGroupEntity* pGroup = GetSelectedGroup();
+        PSS_UserGroupEntity* pGroup = GetSelectedGroup();
         ASSERT(m_pUserGroupRoot != NULL);
 
         PSS_UserGroupInfoDlg dlg(IDS_UGP_PROPERTY_T,
-            (pEntity->GetParent() && ISA(pEntity->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pEntity->GetParent()) : m_pUserGroupRoot,
+            (pEntity->GetParent() && ISA(pEntity->GetParent(), PSS_UserGroupEntity)) ? dynamic_cast<PSS_UserGroupEntity*>(pEntity->GetParent()) : m_pUserGroupRoot,
                                pEntity->GetEntityName(),
                                pEntity->GetEntityDescription(),
                                (pGroup != NULL) ? pGroup->GetEntityCost() : 0,
@@ -516,7 +516,7 @@ void ZCUserGroupTreeCtrl::DestroyTree()
     EmptyDataSet();
 }
 
-void ZCUserGroupTreeCtrl::ProcessGroup(ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem)
+void ZCUserGroupTreeCtrl::ProcessGroup(PSS_UserGroupEntity* pGroup, HTREEITEM hParentTreeItem)
 {
     // RS-MODIF 20.12.04 test if we use Messenger
     bool IsMessenger = true;
@@ -548,9 +548,9 @@ void ZCUserGroupTreeCtrl::ProcessGroup(ZBUserGroupEntity* pGroup, HTREEITEM hPar
                 continue;
             }
 
-            if (ISA(pEntity, ZBUserGroupEntity))
+            if (ISA(pEntity, PSS_UserGroupEntity))
             {
-                ProcessGroup(dynamic_cast<ZBUserGroupEntity*>(pEntity), hGroupItem);
+                ProcessGroup(dynamic_cast<PSS_UserGroupEntity*>(pEntity), hGroupItem);
             }
 
             // RS-MODIF 20.12.04 only if Messenger roles are displayed
@@ -584,7 +584,7 @@ HTREEITEM ZCUserGroupTreeCtrl::AddTypeItem(const CString Name, int IconIndex, HT
     return InsertItem(&curTreeItem);
 }
 
-HTREEITEM ZCUserGroupTreeCtrl::AddGroupItem(ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem)
+HTREEITEM ZCUserGroupTreeCtrl::AddGroupItem(PSS_UserGroupEntity* pGroup, HTREEITEM hParentTreeItem)
 {
     if (!pGroup)
     {
@@ -604,7 +604,7 @@ HTREEITEM ZCUserGroupTreeCtrl::AddGroupItem(ZBUserGroupEntity* pGroup, HTREEITEM
     return InsertItem(&curTreeItem);
 }
 
-BOOL ZCUserGroupTreeCtrl::ModifyGroupItem(ZBUserGroupEntity* pGroup, HTREEITEM hItem)
+BOOL ZCUserGroupTreeCtrl::ModifyGroupItem(PSS_UserGroupEntity* pGroup, HTREEITEM hItem)
 {
     if (!pGroup)
     {
@@ -644,7 +644,7 @@ BOOL ZCUserGroupTreeCtrl::ModifyRoleItem(ZBUserRoleEntity* pRole, HTREEITEM hIte
     return SetItemText(hItem, (char*)((const char*)pRole->GetEntityName()));
 }
 
-void ZCUserGroupTreeCtrl::AddGroup(ZBUserGroupEntity* pGroup, ZBUserGroupEntity* pParentGroup /*= NULL*/)
+void ZCUserGroupTreeCtrl::AddGroup(PSS_UserGroupEntity* pGroup, PSS_UserGroupEntity* pParentGroup /*= NULL*/)
 {
     if (!m_hUserGroupRoot || !pGroup)
     {
@@ -680,7 +680,7 @@ void ZCUserGroupTreeCtrl::AddGroup(ZBUserGroupEntity* pGroup, ZBUserGroupEntity*
     ExpandBranch(hParentTreeItem);
 }
 
-void ZCUserGroupTreeCtrl::RemoveGroup(ZBUserGroupEntity* pGroup)
+void ZCUserGroupTreeCtrl::RemoveGroup(PSS_UserGroupEntity* pGroup)
 {
     if (!m_hUserGroupRoot || !pGroup)
     {
@@ -701,7 +701,7 @@ void ZCUserGroupTreeCtrl::RemoveGroup(ZBUserGroupEntity* pGroup)
     }
 }
 
-void ZCUserGroupTreeCtrl::ModifyGroup(ZBUserGroupEntity* pGroup)
+void ZCUserGroupTreeCtrl::ModifyGroup(PSS_UserGroupEntity* pGroup)
 {
     if (!m_hUserGroupRoot || !pGroup)
     {
@@ -722,7 +722,7 @@ void ZCUserGroupTreeCtrl::ModifyGroup(ZBUserGroupEntity* pGroup)
     }
 }
 
-void ZCUserGroupTreeCtrl::AddRole(ZBUserRoleEntity* pRole, ZBUserGroupEntity* pParentGroup)
+void ZCUserGroupTreeCtrl::AddRole(ZBUserRoleEntity* pRole, PSS_UserGroupEntity* pParentGroup)
 {
     if (!m_hUserGroupRoot || !pRole || !pParentGroup)
     {
@@ -824,12 +824,12 @@ PSS_UserEntity* ZCUserGroupTreeCtrl::_GetEntity(HTREEITEM hItem)
     return NULL;
 }
 
-ZBUserGroupEntity* ZCUserGroupTreeCtrl::GetSelectedGroup()
+PSS_UserGroupEntity* ZCUserGroupTreeCtrl::GetSelectedGroup()
 {
     return _GetGroup(GetSelectedItem());
 }
 
-ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetGroup(HTREEITEM hItem)
+PSS_UserGroupEntity* ZCUserGroupTreeCtrl::_GetGroup(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -864,23 +864,23 @@ ZBUserRoleEntity* ZCUserGroupTreeCtrl::_GetRole(HTREEITEM hItem)
     return NULL;
 }
 
-ZBUserGroupEntity* ZCUserGroupTreeCtrl::GetSelectedOwnerGroup()
+PSS_UserGroupEntity* ZCUserGroupTreeCtrl::GetSelectedOwnerGroup()
 {
     return _GetOwnerGroup(GetSelectedItem());
 }
 
-ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetOwnerGroup(HTREEITEM hItem)
+PSS_UserGroupEntity* ZCUserGroupTreeCtrl::_GetOwnerGroup(HTREEITEM hItem)
 {
     if (hItem)
     {
-        ZBUserGroupEntity* pGroup = _GetGroup(hItem);
+        PSS_UserGroupEntity* pGroup = _GetGroup(hItem);
 
         if (pGroup)
         {
             // If a parent defined
-            if (pGroup->GetParent() && ISA(pGroup->GetParent(), ZBUserGroupEntity))
+            if (pGroup->GetParent() && ISA(pGroup->GetParent(), PSS_UserGroupEntity))
             {
-                return dynamic_cast<ZBUserGroupEntity*>(pGroup->GetParent());
+                return dynamic_cast<PSS_UserGroupEntity*>(pGroup->GetParent());
             }
 
             return pGroup;
@@ -889,9 +889,9 @@ ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetOwnerGroup(HTREEITEM hItem)
         // Now, try to check if a file is selected
         ZBUserRoleEntity* pRole = _GetRole(hItem);
 
-        if (pRole && pRole->GetParent() && ISA(pRole->GetParent(), ZBUserGroupEntity))
+        if (pRole && pRole->GetParent() && ISA(pRole->GetParent(), PSS_UserGroupEntity))
         {
-            return dynamic_cast<ZBUserGroupEntity*>(pRole->GetParent());
+            return dynamic_cast<PSS_UserGroupEntity*>(pRole->GetParent());
         }
     }
 
@@ -1002,7 +1002,7 @@ _ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData()
     m_Str.Empty();
 }
 
-_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData(ZBUserGroupEntity* pGroup)
+_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData(PSS_UserGroupEntity* pGroup)
 {
     m_dtp = wktp_Group;
     m_pGroup = pGroup;
@@ -1038,7 +1038,7 @@ _ZInternalUserGroupTreeData::~_ZInternalUserGroupTreeData()
     m_Str.Empty();
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet(ZBUserGroupEntity* pGroup)
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet(PSS_UserGroupEntity* pGroup)
 {
     _ZInternalUserGroupTreeDataIterator i(&m_DataSet);
 
@@ -1083,7 +1083,7 @@ _ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet(CString
     return NULL;
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet(ZBUserGroupEntity* pGroup)
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet(PSS_UserGroupEntity* pGroup)
 {
     _ZInternalUserGroupTreeData* pData = new _ZInternalUserGroupTreeData(pGroup);
     m_DataSet.Add(pData);

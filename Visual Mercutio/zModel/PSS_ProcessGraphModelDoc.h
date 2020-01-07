@@ -551,13 +551,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the main user group
         *@return the main user group
         */
-        virtual inline ZBUserGroupEntity* GetMainUserGroup();
+        virtual inline PSS_UserGroupEntity* GetMainUserGroup();
 
         /**
         * Assigns the main user group
         *@param pMainUserGroup - the main user group
         */
-        virtual inline void AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup);
+        virtual inline void AssignMainUserGroup(PSS_UserGroupEntity* pMainUserGroup);
 
         /**
         * Gets the main logical system
@@ -1169,7 +1169,7 @@ PSS_Log* PSS_ProcessGraphModelDoc::GetWorkflowOutputLog()
     return m_pWorflowLog;
 }
 //---------------------------------------------------------------------------
-ZBUserGroupEntity* PSS_ProcessGraphModelDoc::GetMainUserGroup()
+PSS_UserGroupEntity* PSS_ProcessGraphModelDoc::GetMainUserGroup()
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
@@ -1179,7 +1179,7 @@ ZBUserGroupEntity* PSS_ProcessGraphModelDoc::GetMainUserGroup()
     return pModel->GetMainUserGroup();
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelDoc::AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup)
+void PSS_ProcessGraphModelDoc::AssignMainUserGroup(PSS_UserGroupEntity* pMainUserGroup)
 {
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 

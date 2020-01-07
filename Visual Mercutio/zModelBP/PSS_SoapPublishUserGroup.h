@@ -24,8 +24,13 @@
 // processsoft
 #include "zSOAP\PSS_SoapPublisher_Workgroup.h"
 
+// old class name mapping
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
+
 // forward class declaration
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 class ZBUserRoleEntity;
 class ZBPublishMessengerModelInformation;
 class PSS_Log;
@@ -72,7 +77,7 @@ class AFX_EXT_CLASS PSS_SoapPublishUserGroup
         *@param pGroup - user groups to publish
         *@return true on success, otherwise false
         */
-        void PublishUserGroup(ZBUserGroupEntity* pGroup);
+        void PublishUserGroup(PSS_UserGroupEntity* pGroup);
 };
 
 #endif

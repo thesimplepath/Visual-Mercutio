@@ -402,13 +402,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBUserGroupEntity.cpp">
+    <ClCompile Include="PSS_UserGroupEntity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBUserGroupObserverMsg.cpp">
+    <ClCompile Include="PSS_UserGroupObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -801,8 +801,8 @@
     <ClInclude Include="PSS_UnitManager.h" />
     <ClInclude Include="PSS_UnitObserverMsg.h" />
     <ClInclude Include="PSS_UserEntity.h" />
-    <ClInclude Include="ZBUserGroupEntity.h" />
-    <ClInclude Include="ZBUserGroupObserverMsg.h" />
+    <ClInclude Include="PSS_UserGroupEntity.h" />
+    <ClInclude Include="PSS_UserGroupObserverMsg.h" />
     <ClInclude Include="ZBUserRoleEntity.h" />
     <ClInclude Include="ZBWorkflowDefinition.h" />
     <ClInclude Include="ZCLogicalSystemTreeCtrl.h" />

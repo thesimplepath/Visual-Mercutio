@@ -89,7 +89,7 @@ private:
     void WriteLine(int nID);
     void FindProcedures(CString ProcessName, ZDProcessGraphModelMdlBP* m_StartModel);
 
-    void FindUnitGroupChilds(ZBUserGroupEntity*        pGroup,
+    void FindUnitGroupChilds(PSS_UserGroupEntity*        pGroup,
                              CString                    PropertyName,
                              CString                    ProcessName,
                              CString                    ProcedureName,

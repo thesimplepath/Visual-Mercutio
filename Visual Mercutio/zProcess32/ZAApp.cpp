@@ -32,7 +32,7 @@
 #include "zModel\ZVSelectModelSymbolDlg.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zModel\ZDUserEntityDocument.h"
-#include "zModel\ZBUserGroupObserverMsg.h"
+#include "zModel\PSS_UserGroupObserverMsg.h"
 #include "zModel\ZDLogicalSystemDocument.h"
 #include "zModel\PSS_LogicalSystemObserverMsg.h"
 #include "zModel\ZDLogicalPrestationsDocument.h"
@@ -838,11 +838,11 @@ bool ZAApp::LoadUserGroupFile()
         PSS_File file(m_UserGroupFileName);
 
         // Notify observers about the user group initialisation
-        ZBUserGroupObserverMsg Msg(UM_INITUSERGROUP,
-                                   &m_pUserEntityDocument->GetUserGroupEnvironment(),
-                                   file.GetFileName());
+        PSS_UserGroupObserverMsg msg(g_InitUserGroup,
+                                     &m_pUserEntityDocument->GetUserGroupEnvironment(),
+                                     file.GetFileName());
 
-        NotifyAllObservers(&Msg);
+        NotifyAllObservers(&msg);
 
         return true;
     }
@@ -1493,7 +1493,7 @@ PSS_TipOfDayBar* ZAApp::GetwndTipOfDayBar()
 // ************************************************ User Groups *************************************************
 
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des utilisateurs.
-ZBUserGroupEntity* ZAApp::GetMainUserGroup()
+PSS_UserGroupEntity* ZAApp::GetMainUserGroup()
 {
     return (m_pUserEntityDocument) ? &m_pUserEntityDocument->GetUserGroupEnvironment() : NULL;
 }

@@ -122,87 +122,87 @@ class AFX_EXT_CLASS PSS_File : public CObject
         /**
         * Rebuilds the file name
         */
-        void Rebuild();
+        virtual void Rebuild();
 
         /**
         * Gets the complete file name
         *@return the complete file name
         */
-        CString GetCompleteFileName() const;
+        virtual CString GetCompleteFileName() const;
 
         /**
         * Sets the complete file name
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        void SetCompleteFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
+        virtual void SetCompleteFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
 
         /**
         * Gets the file name
         *@return the file name
         */
-        CString GetFileName() const;
+        virtual CString GetFileName() const;
 
         /**
         * Sets the file name and rebuild the complete file name
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        void SetFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
+        virtual void SetFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
 
         /**
         * Gets the file name path
         *@return the file name path
         */
-        CString GetFilePath() const;
+        virtual CString GetFilePath() const;
 
         /**
         * Sets the file name path and rebuild the complete file name
         *@param path - path
         */
-        void SetFilePath(const CString& path);
+        virtual void SetFilePath(const CString& path);
 
         /**
         * Gets the file name drive
         *@return the file name drive
         */
-        const char GetFileDrive() const;
+        virtual const char GetFileDrive() const;
 
         /**
         * Sets the file name drive and rebuild the complete file name
         *@param drive - file name drive
         */
-        void SetFileDrive(const char fileName);
+        virtual void SetFileDrive(const char fileName);
 
         /**
         * Gets the display name
         *@return the display name
         */
-        CString GetDisplayName() const;
+        virtual CString GetDisplayName() const;
 
         /**
         * Gets the icon index
         *@return the icon index
         */
-        int GetIconIndex() const;
+        virtual int GetIconIndex() const;
 
         /**
         * Gets the file title
         *@return the file title
         */
-        CString GetFileTitle() const;
+        virtual CString GetFileTitle() const;
 
         /**
         * Gets the file extension
         *@return the file extension
         */
-        CString GetFileExt() const;
+        virtual CString GetFileExt() const;
 
         /**
         * Gets the file description
         *@return the file description
         */
-        CString GetDescription() const;
+        virtual CString GetDescription() const;
 
         /**
         * Checks if file exists
@@ -215,33 +215,33 @@ class AFX_EXT_CLASS PSS_File : public CObject
         * Checks if file exists
         *@return TRUE if file exists, otherwise FALSE
         */
-        BOOL Exist() const;
+        virtual BOOL Exist() const;
 
         /**
         * Checks if file is opened in read-only mode
         *@return TRUE if file is opened in read-only mode, otherwise FALSE
         */
-        BOOL IsReadOnly() const;
+        virtual BOOL IsReadOnly() const;
 
         /**
         * Sets the read-only flag, dependent of the parameter
         *@param readOnly - if TRUE, file is read-only
         *@return TRUE on success, otherwise FALSE
         */
-        BOOL SetReadOnly(BOOL ReadOnly = TRUE);
+        virtual BOOL SetReadOnly(BOOL ReadOnly = TRUE);
 
         /**
         * Checks if the file is an archive
         *@return TRUE if the file is an archive, otherwise FALSE
         */
-        BOOL IsArchive() const;
+        virtual BOOL IsArchive() const;
 
         /**
         * Sets the file as archive
         *@param archive - if TRUE the file is an archive
         *@return TRUE on success, otherwise FALSE
         */
-        BOOL SetArchive(BOOL Archive = TRUE);
+        virtual BOOL SetArchive(BOOL Archive = TRUE);
 
         /**
         * Gets the last write time
@@ -256,7 +256,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param[out] tm - last write time on function ends, on success
         *@return TRUE on success, otherwise FALSE
         */
-        BOOL GetLastWriteTime(SYSTEMTIME& tm) const;
+        virtual BOOL GetLastWriteTime(SYSTEMTIME& tm) const;
 
         /**
         * Gets the attachment type

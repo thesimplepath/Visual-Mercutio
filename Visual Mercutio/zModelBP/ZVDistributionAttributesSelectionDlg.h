@@ -40,7 +40,7 @@ class AFX_EXT_CLASS ZVDistributionAttributesSelectionDlg : public CDialog
 public:
     ZVDistributionAttributesSelectionDlg(ZBDistributionAttributeManager* pDistribManager, 
                                          ZBDynamicPropertiesManager* pPropManager, 
-                                         ZBUserGroupEntity* pMainUserGroup,
+                                         PSS_UserGroupEntity* pMainUserGroup,
                                          CWnd* pParent = NULL);   // standard constructor
 
     ZBDistributionAttribute* GetSelectedDistributionAttribute()
@@ -86,10 +86,7 @@ private:
 private:
     ZBDistributionAttributeManager* m_pDistribManager;
     ZBDynamicPropertiesManager* m_pPropManager;
-    ZBUserGroupEntity* m_pMainUserGroup;
+    PSS_UserGroupEntity* m_pMainUserGroup;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVINPUTATTRIBUTESSELECTIONDLG_H__B7A96F15_086F_49FF_B844_8C441C3CB68A__INCLUDED_)
+#endif

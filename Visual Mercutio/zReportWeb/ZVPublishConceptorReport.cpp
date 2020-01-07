@@ -108,9 +108,9 @@ bool ZVPublishConceptorReport::CreateFileSystem(ZBUserGroupEntity* pGroup, CStri
                 continue;
             }
 
-            if (ISA(pEntity, ZBUserGroupEntity))
+            if (ISA(pEntity, PSS_UserGroupEntity))
             {
-                if (!CreateFileSystem(dynamic_cast<ZBUserGroupEntity*>(pEntity), Directory))
+                if (!CreateFileSystem(dynamic_cast<PSS_UserGroupEntity*>(pEntity), Directory))
                 {
                     return false;
                 }

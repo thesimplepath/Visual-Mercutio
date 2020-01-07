@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_Global.h"
 
 #include "ZBBPUnitProp.h"
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 
 // ZBPropertyAttributes
 #include "zProperty\ZBPropertyAttributes.h"
@@ -187,7 +187,7 @@ bool ZBBPStopSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
     }
 
     // If a user entity
-    if (pObj && ISA(pObj, ZBUserGroupEntity))
+    if (pObj && ISA(pObj, PSS_UserGroupEntity))
     {
         return true;
     }
@@ -204,7 +204,7 @@ bool ZBBPStopSymbol::AcceptDropItem(CObject* pObj, const CPoint& pt)
 
 bool ZBBPStopSymbol::DropItem(CObject* pObj, const CPoint& pt)
 {
-    if (pObj && ISA(pObj, ZBUserGroupEntity))
+    if (pObj && ISA(pObj, PSS_UserGroupEntity))
     {
         // First, check if the user group is valid
         CODModel * pModel = GetRootModel();
@@ -218,7 +218,7 @@ bool ZBBPStopSymbol::DropItem(CObject* pObj, const CPoint& pt)
             return false;
         }
 
-        ZBUserGroupEntity* pGroup = dynamic_cast<ZBUserGroupEntity*>(pObj);
+        PSS_UserGroupEntity* pGroup = dynamic_cast<PSS_UserGroupEntity*>(pObj);
         SetUnitGUID(pGroup->GetGUID());
         SetUnitName(pGroup->GetEntityName());
 

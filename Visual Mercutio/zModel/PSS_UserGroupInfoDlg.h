@@ -23,8 +23,13 @@
 // resources
 #include "zModelRes.h"
 
+// old class name mapping
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
+
 // forward class declaration
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -54,14 +59,14 @@ class PSS_UserGroupInfoDlg : public CDialog
         *@param modifyMode - if true, the modify mode will be enabled
         *@param pParent - parent window, can be NULL
         */
-        PSS_UserGroupInfoDlg(UINT               titleID     = -1,
-                             ZBUserGroupEntity* pGroup      = NULL,
-                             const CString&     name        = "",
-                             const CString&     description = "",
-                             const float        cost        = 0,
-                             bool               isRole      = false,
-                             bool               modifyMode  = false,
-                             CWnd*              pParent     = NULL);
+        PSS_UserGroupInfoDlg(UINT                 titleID     = -1,
+                             PSS_UserGroupEntity* pGroup      = NULL,
+                             const CString&       name        = "",
+                             const CString&       description = "",
+                             const float          cost        = 0,
+                             bool                 isRole      = false,
+                             bool                 modifyMode  = false,
+                             CWnd*                pParent     = NULL);
 
         /**
         * Gets the name
@@ -103,14 +108,14 @@ class PSS_UserGroupInfoDlg : public CDialog
             IDD = IDD_UGP_INFO
         };
 
-        ZBUserGroupEntity* m_pGroup;
-        CString            m_Title;
-        CString            m_Name;
-        CString            m_Description;
-        CString            m_CostStr;
-        float              m_Cost;
-        bool               m_IsRole;
-        bool               m_ModifyMode;
+        PSS_UserGroupEntity* m_pGroup;
+        CString              m_Title;
+        CString              m_Name;
+        CString              m_Description;
+        CString              m_CostStr;
+        float                m_Cost;
+        bool                 m_IsRole;
+        bool                 m_ModifyMode;
 };
 
 //---------------------------------------------------------------------------

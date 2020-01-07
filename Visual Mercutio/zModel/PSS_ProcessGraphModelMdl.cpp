@@ -71,7 +71,7 @@ PSS_Symbol* PSS_ProcessGraphModelMdl::IComponentRef::GetSymbol() const
 //---------------------------------------------------------------------------
 // Static members
 //---------------------------------------------------------------------------
-ZBUserGroupEntity*                                                                         PSS_ProcessGraphModelMdl::m_pMainUserGroup          = NULL;
+PSS_UserGroupEntity*                                                                       PSS_ProcessGraphModelMdl::m_pMainUserGroup          = NULL;
 PSS_LogicalSystemEntity*                                                                   PSS_ProcessGraphModelMdl::m_pMainLogicalSystem      = NULL;
 PSS_LogicalPrestationsEntity*                                                              PSS_ProcessGraphModelMdl::m_pMainLogicalPrestations = NULL;
 PSS_LogicalRulesEntity*                                                                    PSS_ProcessGraphModelMdl::m_pMainLogicalRules       = NULL;
@@ -442,7 +442,7 @@ CString PSS_ProcessGraphModelMdl::RetrieveUnitGUID(const CString& name, bool& er
 
     if (m_pMainUserGroup)
     {
-        ZBUserEntitySet* pSet = m_pMainUserGroup->FindGroup(name, true);
+        PSS_UserGroupEntity::IEntitySet* pSet = m_pMainUserGroup->FindGroup(name, true);
 
         if (pSet && pSet->GetSize() > 0)
             return pSet->GetAt(0)->GetGUID();

@@ -7,7 +7,7 @@
 #include "ZUUserGroupCalculateTotals.h"
 
 #include "zModelBP\ZBBPProcedureSymbol.h"
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -97,7 +97,7 @@ bool ZUUserGroupCalculateTotals::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol
                     if ( pElement != pTotal )
                     {
                         // Locate the group pointed by the element's unit
-                        ZBUserGroupEntity* pSymbolGroup = m_pGroup->FindFirstGroup( pElement->m_GroupName, true );
+                        PSS_UserGroupEntity* pSymbolGroup = m_pGroup->FindFirstGroup( pElement->m_GroupName, true );
 
                         // If found and if the unit name pointed by the symbol is 
                         // part of the group, then add the procedure total also

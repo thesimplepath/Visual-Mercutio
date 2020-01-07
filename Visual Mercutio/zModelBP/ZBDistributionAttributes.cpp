@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZBDistributionAttributes.h"
 
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
 
 #ifdef _DEBUG
@@ -466,7 +466,7 @@ bool ZBDistributionAttributeManager::DeleteDistributionRule( ZBDistributionRule*
 }
 
 bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttribute*    pDistributionAttribute,
-                                                            ZBUserGroupEntity*            pMainUserGroup )
+                                                           PSS_UserGroupEntity*            pMainUserGroup )
 {
     // Check if the distribution attribute exists
     // and a main usergroup defined
@@ -475,7 +475,7 @@ bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttrib
 
     PSS_UserEntity* pEntity = pMainUserGroup->FindGroupByGUID( pDistributionAttribute->GetUserGroupGUID(), true );
 
-    if ( !pEntity || !ISA(pEntity,ZBUserGroupEntity) )
+    if ( !pEntity || !ISA(pEntity, PSS_UserGroupEntity) )
         return false;
 
     // Check role against rule only if the distribution attribute
@@ -494,7 +494,7 @@ bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttrib
 
             // If the role is not found in the group hierarchy,
             // then delete it.
-            if ( !dynamic_cast<ZBUserGroupEntity*>(pEntity)->FindRoleByGUID( pRole->GetRoleGUID(), false ) )
+            if ( !dynamic_cast<PSS_UserGroupEntity*>(pEntity)->FindRoleByGUID( pRole->GetRoleGUID(), false ) )
             {
                 pDistributionAttribute->DeleteDistributionRulesForRoleAt( i );
                 --i;
@@ -503,11 +503,11 @@ bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttrib
     }
 
     // Now run through roles and check if exists for this distribution attribute
-    std::size_t Size = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityCount();
+    std::size_t Size = dynamic_cast<PSS_UserGroupEntity*>( pEntity )->GetEntityCount();
 
     for ( int i = 0; i < Size; ++i )
     {
-        PSS_UserEntity* pRole = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityAt( i );
+        PSS_UserEntity* pRole = dynamic_cast<PSS_UserGroupEntity*>( pEntity )->GetEntityAt( i );
 
         if ( pRole && ISA( pRole, ZBUserRoleEntity ) )
         {

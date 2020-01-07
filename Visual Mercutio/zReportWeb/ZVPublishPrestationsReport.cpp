@@ -216,7 +216,7 @@ void ZVPublishPrestationsReport::ExploreProcessHierarchy(CString                
 // JMR-MODIF - Le 28 mars 2006 - !!! Cette fonction n'est plus utilisée depuis ce jour, car abandon de la
 // publication des enfants. Voir dans le futur si cette fonction pouuvait être utile, sinon la supprimer.
 // Cette fonction permet de retrouver les groupes enfants associés au groupe demandé, et de les intégere au rapport.
-void ZVPublishPrestationsReport::FindUnitGroupChilds(ZBUserGroupEntity*    pGroup,
+void ZVPublishPrestationsReport::FindUnitGroupChilds(PSS_UserGroupEntity*    pGroup,
                                                      CString                PropertyName,
                                                      CString                ProcessName,
                                                      CString                ProcedureName,
@@ -268,7 +268,7 @@ void ZVPublishPrestationsReport::FindUnitGroupChilds(ZBUserGroupEntity*    pGrou
             }
 
             // Teste si l'objet enfant est bien un objet de type ZBLogicalPrestationsEntity.
-            if (ISA(pEntity, ZBUserGroupEntity))
+            if (ISA(pEntity, PSS_UserGroupEntity))
             {
                 int ChildLevelCount = ChildLevel;
 
@@ -277,7 +277,7 @@ void ZVPublishPrestationsReport::FindUnitGroupChilds(ZBUserGroupEntity*    pGrou
                     ChildLevelCount++;
                 }
 
-                FindUnitGroupChilds(dynamic_cast<ZBUserGroupEntity*>(pEntity),
+                FindUnitGroupChilds(dynamic_cast<PSS_UserGroupEntity*>(pEntity),
                                     PropertyName,
                                     ProcessName,
                                     ProcedureName,

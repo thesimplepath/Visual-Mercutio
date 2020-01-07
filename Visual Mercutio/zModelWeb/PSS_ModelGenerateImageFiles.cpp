@@ -23,7 +23,7 @@
 #include "zModel\ZUExtractModelLogicalPrestationsAssigned.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
 #include "zModel\PSS_LogicalSystemEntity.h"
 #include "zModel\PSS_LogicalPrestationsEntity.h"
@@ -696,8 +696,8 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 // if has a unit defined, insert the unit link
                 if ((pSymbol && pSymbol->HasUnit()) || (pLinkSymbol && pLinkSymbol->HasUnit()))
                 {
-                    ZBUserGroupEntity* pUserGroupEntity =
-                            dynamic_cast<ZBUserGroupEntity*>
+                    PSS_UserGroupEntity* pUserGroupEntity =
+                            dynamic_cast<PSS_UserGroupEntity*>
                                     (pModel->GetMainUserGroup()->FindGroupByGUID(pBasicSym->GetUnitGUID(), true));
                     ASSERT(pUserGroupEntity);
 
@@ -1896,7 +1896,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(PSS_ProcessGrap
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateUnitObjects(ZBUserGroupEntity* pGroupEntity, PSS_HtmlFile* pHtmlFile)
+bool PSS_ModelGenerateImageFiles::GenerateUnitObjects(PSS_UserGroupEntity* pGroupEntity, PSS_HtmlFile* pHtmlFile)
 {
     if (!pGroupEntity || !pHtmlFile)
         return false;
@@ -1906,9 +1906,9 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitObjects(ZBUserGroupEntity* pGroupE
     return GenerateUnitGroupObjects(pGroupEntity, pHtmlFile, m_IndexItem);
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(ZBUserGroupEntity* pGroupEntity,
-                                                           PSS_HtmlFile*      pHtmlFile,
-                                                           std::size_t        parentID)
+bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(PSS_UserGroupEntity* pGroupEntity,
+                                                           PSS_HtmlFile*        pHtmlFile,
+                                                           std::size_t          parentID)
 {
     ++m_IndexItem;
 
@@ -1936,7 +1936,7 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(ZBUserGroupEntity* pG
             if (!pEntity)
                 continue;
 
-            ZBUserGroupEntity* pUserGroupEntity = dynamic_cast<ZBUserGroupEntity*>(pEntity);
+            PSS_UserGroupEntity* pUserGroupEntity = dynamic_cast<PSS_UserGroupEntity*>(pEntity);
 
             if (pUserGroupEntity)
                 GenerateUnitGroupObjects(pUserGroupEntity, pHtmlFile, currentItem);
@@ -1969,7 +1969,7 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitRoleObjects(ZBUserRoleEntity* pRol
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(ZBUserGroupEntity* pGroupEntity)
+CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(PSS_UserGroupEntity* pGroupEntity)
 {
     if (!pGroupEntity)
         return _T("");

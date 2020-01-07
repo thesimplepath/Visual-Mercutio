@@ -7,7 +7,7 @@
 #include "ZBDistributionAttributes.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\ZBUserRoleEntity.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
 
@@ -32,7 +32,7 @@ static char THIS_FILE[] = __FILE__;
 ZVDistributionAttributesDefinitionDlg::ZVDistributionAttributesDefinitionDlg(ZBDistributionAttributeManager* pDistributionManager,
                                                                              ZBDynamicPropertiesManager* pPropManager,
                                                                              ZBPropertySet* pSet,
-                                                                             ZBUserGroupEntity* pMainUserGroup,
+                                                                             PSS_UserGroupEntity* pMainUserGroup,
                                                                              const CString GroupGUID /*= ""*/,
                                                                              ZBDistributionAttribute* pDistributionAttr /*= NULL*/,
                                                                              CWnd* pParent /*=NULL*/)
@@ -215,18 +215,18 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
     {
         PSS_UserEntity* pEntity = choose.GetSelectedUserEntity();
         if (pEntity &&
-            ISA(pEntity, ZBUserGroupEntity))
+            ISA(pEntity, PSS_UserGroupEntity))
         {
             m_GroupName = pEntity->GetEntityName();
             m_GroupGUID = pEntity->GetGUID();
             m_pDistributionAttr->SetUserGroupGUID(m_GroupGUID);
 
 
-            int Size = dynamic_cast<ZBUserGroupEntity*>(pEntity)->GetEntityCount();
+            int Size = dynamic_cast<PSS_UserGroupEntity*>(pEntity)->GetEntityCount();
             bool FoundCount = false;
             for (int i = 0; i < Size; ++i)
             {
-                PSS_UserEntity* pUserEntity = dynamic_cast<ZBUserGroupEntity*>(pEntity)->GetEntityAt(i);
+                PSS_UserEntity* pUserEntity = dynamic_cast<PSS_UserGroupEntity*>(pEntity)->GetEntityAt(i);
 
                 if (ISA(pUserEntity, ZBUserRoleEntity))
                 {

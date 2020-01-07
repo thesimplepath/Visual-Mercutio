@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "ZVSelectUserGroupDlg.h"
 
-#include "ZBUserGroupEntity.h"
+#include "PSS_UserGroupEntity.h"
 #include "ZBUserRoleEntity.h"
 
 #ifdef _DEBUG
@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP( ZVSelectUserGroupDlg, CDialog )
 END_MESSAGE_MAP()
 
 ZVSelectUserGroupDlg::ZVSelectUserGroupDlg( const CString        Title                /*= ""*/,
-                                            ZBUserGroupEntity*    pMainUserGroup        /*= NULL*/,
+                                           PSS_UserGroupEntity*    pMainUserGroup        /*= NULL*/,
                                             bool                AllowGroupSelection    /*= true*/,
                                             bool                AllowRoleSelection    /*= true*/,
                                             CWnd*                pParent                /*=NULL*/ )
@@ -46,7 +46,7 @@ ZVSelectUserGroupDlg::ZVSelectUserGroupDlg( const CString        Title          
 }
 
 ZVSelectUserGroupDlg::ZVSelectUserGroupDlg( UINT                nTitle,
-                                            ZBUserGroupEntity*    pMainUserGroup,
+                                           PSS_UserGroupEntity*    pMainUserGroup,
                                             bool                AllowGroupSelection    /*= true*/,
                                             bool                AllowRoleSelection    /*= true*/,
                                             CWnd*                pParent                /*=NULL*/ )
@@ -122,7 +122,7 @@ void ZVSelectUserGroupDlg::OnSelchangedUsergroupTree( NMHDR* pNMHDR, LRESULT* pR
 
     if ( pEntity )
     {
-        if ( m_AllowGroupSelection && ISA( pEntity, ZBUserGroupEntity ) )
+        if ( m_AllowGroupSelection && ISA( pEntity, PSS_UserGroupEntity) )
         {
             Enable = TRUE;
         }

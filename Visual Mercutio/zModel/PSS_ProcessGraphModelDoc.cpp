@@ -158,7 +158,7 @@ BOOL PSS_ProcessGraphModelDoc::IsClosing()
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::AssignCurrentUserDefGUID()
 {
-    ZBUserGroupEntity* pUserGroup = GetMainUserGroup();
+    PSS_UserGroupEntity* pUserGroup = GetMainUserGroup();
 
     // no user group, error
     if (!pUserGroup)
@@ -1015,7 +1015,7 @@ void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
     pModel->OnPostOpenDocument(GetDocumentStamp().GetInternalVersion());
 
     // check if the right GUID was found for the SystemDef, the UserDef, the PrestationsDef and the RulesDef
-    ZBUserGroupEntity* pUserGroup = GetMainUserGroup();
+    PSS_UserGroupEntity* pUserGroup = GetMainUserGroup();
 
     if (!pUserGroup)
     {

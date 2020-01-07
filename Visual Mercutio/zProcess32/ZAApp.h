@@ -28,6 +28,9 @@
 #ifndef PSS_WorkspaceWizardTemplateManager
     #define PSS_WorkspaceWizardTemplateManager ZBWorkspaceWizardTemplateMg
 #endif
+#ifndef PSS_UserGroupEntity
+    #define PSS_UserGroupEntity ZBUserGroupEntity
+#endif
 #ifndef PSS_LogicalSystemEntity
     #define PSS_LogicalSystemEntity ZBLogicalSystemEntity
 #endif
@@ -48,7 +51,7 @@ class PSS_WorkspaceEnv;
 class PSS_ProcessGraphModelDoc;
 class PSS_WorkspaceWizardTemplateManager;
 class ZDUserEntityDocument;
-class ZBUserGroupEntity;
+class PSS_UserGroupEntity;
 class ZDLogicalSystemDocument;
 class PSS_LogicalSystemEntity;
 class ZDLogicalPrestationsDocument;
@@ -98,7 +101,7 @@ public:
     bool                    SaveCurrentWorkspace();
 
     // User group functions
-    ZBUserGroupEntity* GetMainUserGroup();
+    PSS_UserGroupEntity* GetMainUserGroup();
 
     CString GetUserGroupFileName() const
     {

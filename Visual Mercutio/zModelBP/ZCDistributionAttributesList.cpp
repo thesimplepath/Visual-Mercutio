@@ -12,7 +12,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "ProcGraphModelMdlBP.h"
 
-#include "zModel\ZBUserGroupEntity.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zModel\PSS_SymbolObserverMsg.h"
 
@@ -85,7 +85,7 @@ void    ZCDistributionAttributesList::BuildColumns()
 
 int ZCDistributionAttributesList::Initialize(ZBDistributionAttributeManager* pDistributionManager,
                                              ZBDynamicPropertiesManager* pPropManager,
-                                             ZBUserGroupEntity* pMainUserGroup,
+                                             PSS_UserGroupEntity* pMainUserGroup,
                                              ZBDistributionAttribute* pDistributionAttribute /*= NULL*/,
                                              bool ShowAll /*= false*/, int SymbolRef /*= -1*/)
 {
