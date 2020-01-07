@@ -24,10 +24,12 @@ IMPLEMENT_SERIAL(PSS_File, CObject, g_DefVersion)
 // PSS_File
 //---------------------------------------------------------------------------
 PSS_File::PSS_File() :
+    CObject(),
     m_AttachmentType(IE_AT_InsertedFile)
 {}
 //---------------------------------------------------------------------------
 PSS_File::PSS_File(const CString& fileName, IEAttachmentType attachment) :
+    CObject(),
     m_FileName(fileName),
     m_AttachmentType(attachment)
 {
