@@ -15,7 +15,7 @@
 
 #include "zBaseLib\zBaseLibRes.h"
 #include "zModel\zModelRes.h"
-#include "ZVRulesInfoDlg.h"
+#include "PSS_RulesInfoDlg.h"
 
 #ifdef _DEBUG
 #include "zFormsRes\zFormsRes.h"
@@ -607,7 +607,7 @@ void ZCRulesTreeCtrl::OnNewRule()
         ASSERT(m_pLogicalRuleRoot != NULL);
 
         // Asks for the name
-        ZVRulesInfoDlg dlg(IDS_NEW_RULE_T, pLogicalRule);
+        PSS_RulesInfoDlg dlg(IDS_NEW_RULE_T, pLogicalRule);
 
         if (dlg.DoModal() == IDOK)
         {
@@ -664,7 +664,7 @@ void ZCRulesTreeCtrl::OnRenameRule()
     {
         ASSERT(m_pLogicalRuleRoot != NULL);
 
-        ZVRulesInfoDlg dlg(IDS_RENAME_RULE_T,
+        PSS_RulesInfoDlg dlg(IDS_RENAME_RULE_T,
             (pLogicalRule->GetParent() && ISA(pLogicalRule->GetParent(), PSS_LogicalRulesEntity)) ? dynamic_cast<PSS_LogicalRulesEntity*>(pLogicalRule->GetParent()) : pLogicalRule,
                            pLogicalRule->GetEntityName(),
                            pLogicalRule->GetEntityDescription());
@@ -726,7 +726,7 @@ void ZCRulesTreeCtrl::OnRuleProperties()
         PSS_LogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
         ASSERT(m_pLogicalRuleRoot != NULL);
 
-        ZVRulesInfoDlg dlg(IDS_RULE_PROPERTY_T,
+        PSS_RulesInfoDlg dlg(IDS_RULE_PROPERTY_T,
             (pEntity->GetParent() && ISA(pEntity->GetParent(), PSS_LogicalRulesEntity)) ? dynamic_cast<PSS_LogicalRulesEntity*>(pEntity->GetParent()) : m_pLogicalRuleRoot,
                            pEntity->GetEntityName(),
                            pEntity->GetEntityDescription(),

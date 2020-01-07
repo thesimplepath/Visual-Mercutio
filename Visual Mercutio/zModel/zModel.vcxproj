@@ -663,7 +663,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="ZVRenameModelPageInTreeDlg.cpp" />
-    <ClCompile Include="ZVRulesInfoDlg.cpp" />
+    <ClCompile Include="PSS_RulesInfoDlg.cpp" />
     <ClCompile Include="ZVSelectLogicalSystemDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -854,7 +854,7 @@
     <ClInclude Include="ZVPrestationsInfoDlg.h" />
     <ClInclude Include="ZVRenameModelPageDlg.h" />
     <ClInclude Include="ZVRenameModelPageInTreeDlg.h" />
-    <ClInclude Include="ZVRulesInfoDlg.h" />
+    <ClInclude Include="PSS_RulesInfoDlg.h" />
     <ClInclude Include="ZVSelectLogicalSystemDlg.h" />
     <ClInclude Include="ZVSelectModelSymbolDlg.h" />
     <ClInclude Include="ZVSelectPrestationDlg.h" />

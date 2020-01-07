@@ -177,9 +177,6 @@
     <ClCompile Include="ZVRenameModelPageInTreeDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZVRulesInfoDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZVSelectLogicalSystemDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -355,6 +352,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_UserGroupObserverMsg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_RulesInfoDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -612,9 +612,6 @@
     <ClInclude Include="ZVRenameModelPageInTreeDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZVRulesInfoDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZVSelectLogicalSystemDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -793,6 +790,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_UserGroupObserverMsg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RulesInfoDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
