@@ -22,7 +22,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZCPrestationsTreeCtrl.h"
+#include "PSS_PrestationsTreeCtrl.h"
 #include "zModelRes.h"
 
 #ifdef _ZMODELEXPORT
@@ -84,7 +84,7 @@ private:
     {
         IDD = IDD_PRESTATION_SELECTION
     };
-    ZCPrestationsTreeCtrl    m_Ctrl;
+    PSS_PrestationsTreeCtrl    m_Ctrl;
     //}}AFX_DATA
 
     // Overrides

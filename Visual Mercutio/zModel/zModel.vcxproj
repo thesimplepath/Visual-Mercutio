@@ -426,13 +426,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCLogicalSystemTreeCtrl.cpp">
+    <ClCompile Include="PSS_LogicalSystemTreeCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCPrestationsTreeCtrl.cpp" />
+    <ClCompile Include="PSS_PrestationsTreeCtrl.cpp" />
     <ClCompile Include="ZCProcessModelTree.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -445,7 +445,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCRulesTreeCtrl.cpp" />
+    <ClCompile Include="PSS_RulesTreeCtrl.cpp" />
     <ClCompile Include="ZCSymbolAttributesTreeCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -805,11 +805,11 @@
     <ClInclude Include="PSS_UserGroupObserverMsg.h" />
     <ClInclude Include="PSS_UserRoleEntity.h" />
     <ClInclude Include="PSS_WorkflowDefinition.h" />
-    <ClInclude Include="ZCLogicalSystemTreeCtrl.h" />
-    <ClInclude Include="ZCPrestationsTreeCtrl.h" />
+    <ClInclude Include="PSS_LogicalSystemTreeCtrl.h" />
+    <ClInclude Include="PSS_PrestationsTreeCtrl.h" />
     <ClInclude Include="ZCProcessModelTree.h" />
     <ClInclude Include="ZCProcessModelTreeView.h" />
-    <ClInclude Include="ZCRulesTreeCtrl.h" />
+    <ClInclude Include="PSS_RulesTreeCtrl.h" />
     <ClInclude Include="ZCSymbolAttributesTreeCtrl.h" />
     <ClInclude Include="ZCSymbolList.h" />
     <ClInclude Include="ZCUserGroupTreeCtrl.h" />

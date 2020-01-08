@@ -21,7 +21,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZCRulesTreeCtrl.h"
+#include "PSS_RulesTreeCtrl.h"
 #include "zModelRes.h"
 
 #ifdef _ZMODELEXPORT
@@ -83,7 +83,7 @@ private:
     {
         IDD = IDD_RULE_SELECTION
     };
-    ZCRulesTreeCtrl m_Ctrl;
+    PSS_RulesTreeCtrl m_Ctrl;
     //}}AFX_DATA
 
     // Overrides

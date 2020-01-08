@@ -28,7 +28,7 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 
-#include "zModel\ZCLogicalSystemTreeCtrl.h"
+#include "zModel\PSS_LogicalSystemTreeCtrl.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // _ZILogicalSystemFlatToolBar window
@@ -136,9 +136,9 @@ protected:
 
 private:
 
-    _ZILogicalSystemFlatToolBar        m_FlatToolBar;
-    ZCLogicalSystemTreeCtrl            m_Ctrl;
-    COLORREF                        m_clrBtnFace;
+    _ZILogicalSystemFlatToolBar m_FlatToolBar;
+    PSS_LogicalSystemTreeCtrl   m_Ctrl;
+    COLORREF                    m_clrBtnFace;
 };
 
 #endif

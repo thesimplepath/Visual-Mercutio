@@ -16,7 +16,7 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 
-#include "zModel\ZCRulesTreeCtrl.h"
+#include "zModel\PSS_RulesTreeCtrl.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // _ZIRulesFlatToolBar window
@@ -121,7 +121,7 @@ protected:
 private:
 
     _ZIRulesFlatToolBar    m_FlatToolBar;
-    ZCRulesTreeCtrl        m_Ctrl;
+    PSS_RulesTreeCtrl        m_Ctrl;
     COLORREF            m_clrBtnFace;
 };
 

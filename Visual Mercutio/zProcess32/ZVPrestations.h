@@ -16,7 +16,7 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 
-#include "zModel\ZCPrestationsTreeCtrl.h"
+#include "zModel\PSS_PrestationsTreeCtrl.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // _ZIPrestationsFlatToolBar window
@@ -122,7 +122,7 @@ protected:
 private:
 
     _ZIPrestationsFlatToolBar        m_FlatToolBar;
-    ZCPrestationsTreeCtrl            m_Ctrl;
+    PSS_PrestationsTreeCtrl            m_Ctrl;
     COLORREF                        m_clrBtnFace;
 };
 

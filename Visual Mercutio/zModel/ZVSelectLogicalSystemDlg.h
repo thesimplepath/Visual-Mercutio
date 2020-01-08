@@ -9,10 +9,10 @@
 #define AFX_ZVSelectLogicalSystemDlg_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -20,11 +20,14 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZCLogicalSystemTreeCtrl.h"
+// processsoft
+#include "PSS_LogicalSystemTreeCtrl.h"
+
+// resources
 #include "zModelRes.h"
 
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -75,18 +78,16 @@ public:
     };
 
 private:
-
-    // Dialog Data
-    //{{AFX_DATA(ZVSelectLogicalSystemDlg)
+    /**
+    * Dialog Data
+    */
     enum
     {
         IDD = IDD_LOGICALSYSTEM_SELECTION
     };
-    ZCLogicalSystemTreeCtrl    m_Ctrl;
-    //}}AFX_DATA
 
+    PSS_LogicalSystemTreeCtrl m_Ctrl;
 
-    // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVSelectLogicalSystemDlg)
 protected:
