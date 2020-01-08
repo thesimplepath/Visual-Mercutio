@@ -34,7 +34,7 @@
 #include "PSS_UnitManager.h"
 #include "PSS_ModelSet.h"
 #include "PSS_PageUnits.h"
-#include "ZBWorkflowDefinition.h"
+#include "PSS_WorkflowDefinition.h"
 #include "PSS_LanguageDefs.h"
 #include "PSS_Defines.h"
 
@@ -793,7 +793,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         PSS_UnitManager*            m_pUnitManager;
         PSS_ModelSet                m_DocumentModelSet;
         PSS_ModelSet                m_UnitModelSet;
-        ZBWorkflowDefinition*       m_pWorkflowDefinition;
+        PSS_WorkflowDefinition*     m_pWorkflowDefinition;
         PSS_Log*                    m_pOutputLog;
         PSS_Log*                    m_pAnalyzerLog;
         PSS_Log*                    m_pSearchLog;

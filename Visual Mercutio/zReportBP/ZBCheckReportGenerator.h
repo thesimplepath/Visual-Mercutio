@@ -24,10 +24,13 @@
 #ifndef PSS_UserGroupEntity
     #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
+#ifndef PSS_UserRoleEntity
+    #define PSS_UserRoleEntity ZBUserRoleEntity
+#endif
 
 // forward class declaration
 class PSS_UserGroupEntity;
-class ZBUserRoleEntity;
+class PSS_UserRoleEntity;
 
 #ifdef _ZREPORTBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -70,7 +73,7 @@ private:
 
     bool FillGridUnit(CGXGridCore& GridCore);
     void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOStreamGrid &ostream);
-    void FillGridUnitRole(ZBUserRoleEntity* pRole, ZBOStreamGrid &ostream);
+    void FillGridUnitRole(PSS_UserRoleEntity* pRole, ZBOStreamGrid &ostream);
     bool FillGridProcess(CGXGridCore& GridCore, size_t Index);
 };
 

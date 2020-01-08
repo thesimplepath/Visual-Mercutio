@@ -37,6 +37,9 @@
 #ifndef PSS_UserGroupEntity
     #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
+#ifndef PSS_UserRoleEntity
+    #define PSS_UserRoleEntity ZBUserRoleEntity
+#endif
 #ifndef PSS_SystemEntity
     #define PSS_SystemEntity ZBSystemEntity
 #endif
@@ -62,7 +65,7 @@ class ZIProperties;
 class PSS_InfoModelGraphicGeneration;
 class PSS_UserEntity;
 class PSS_UserGroupEntity;
-class ZBUserRoleEntity;
+class PSS_UserRoleEntity;
 class PSS_SystemEntity;
 class PSS_LogicalSystemEntity;
 class PSS_PrestationsEntity;
@@ -304,7 +307,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         *@param parentID - parent identifier
         *@return true on success, otherwise false
         */
-        bool GenerateUnitRoleObjects(ZBUserRoleEntity* pRoleEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
+        bool GenerateUnitRoleObjects(PSS_UserRoleEntity* pRoleEntity, PSS_HtmlFile* pHtmlFile, std::size_t parentID);
 
         /**
         * Generates the user group list

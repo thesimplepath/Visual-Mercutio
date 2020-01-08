@@ -6,7 +6,7 @@
 #include "ZBDistributionAttributes.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\ZBUserRoleEntity.h"
+#include "zModel\PSS_UserRoleEntity.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -509,7 +509,7 @@ bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttrib
     {
         PSS_UserEntity* pRole = dynamic_cast<PSS_UserGroupEntity*>( pEntity )->GetEntityAt( i );
 
-        if ( pRole && ISA( pRole, ZBUserRoleEntity ) )
+        if ( pRole && ISA( pRole, PSS_UserRoleEntity) )
         {
             // If no distribution rule exist for
             // this role, then create an empty one

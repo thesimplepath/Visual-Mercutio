@@ -131,14 +131,14 @@ public:
 
 private:
 
-    CString                        m_UnitName;
-    bool                        m_Consolidated;
-    ZBUserGroupEntity*            m_pGroup;
-    ZBBPAnnualNumberProperties    m_ProcedureCost;
-    ZBBPAnnualNumberProperties    m_ProcedureWorkloadForecast;
-    ZBBPAnnualNumberProperties    m_ProcedureCostForecast;
-    double                        m_ProcedureWorkloadPerActivity;
-    double                        m_ProcedureCostPerActivity;
+    CString                    m_UnitName;
+    bool                       m_Consolidated;
+    PSS_UserGroupEntity*       m_pGroup;
+    ZBBPAnnualNumberProperties m_ProcedureCost;
+    ZBBPAnnualNumberProperties m_ProcedureWorkloadForecast;
+    ZBBPAnnualNumberProperties m_ProcedureCostForecast;
+    double                     m_ProcedureWorkloadPerActivity;
+    double                     m_ProcedureCostPerActivity;
 };
 
 #endif

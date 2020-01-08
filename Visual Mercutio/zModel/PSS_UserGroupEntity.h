@@ -28,8 +28,13 @@
 // processsoft
 #include "PSS_UserEntity.h"
 
+// class name mapping
+#ifndef PSS_UserRoleEntity
+    #define PSS_UserRoleEntity ZBUserRoleEntity
+#endif
+
 // forward class declaration
-class ZBUserRoleEntity;
+class PSS_UserRoleEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -265,7 +270,7 @@ class AFX_EXT_CLASS PSS_UserGroupEntity : public PSS_UserEntity
         *@param description - the role description
         *@return the newly added role, NULL on error
         */
-        virtual ZBUserRoleEntity* AddRole(const CString& name, const CString& description);
+        virtual PSS_UserRoleEntity* AddRole(const CString& name, const CString& description);
 
         /**
         * Adds a role
@@ -274,7 +279,7 @@ class AFX_EXT_CLASS PSS_UserGroupEntity : public PSS_UserEntity
         *@param inGroupName - the group entity name in which this role should be added
         *@return the newly added role, NULL on error
         */
-        virtual ZBUserRoleEntity* AddRole(const CString& name, const CString& description, const CString& inGroupName);
+        virtual PSS_UserRoleEntity* AddRole(const CString& name, const CString& description, const CString& inGroupName);
 
         /**
         * Adds a role
@@ -283,7 +288,7 @@ class AFX_EXT_CLASS PSS_UserGroupEntity : public PSS_UserEntity
         *@param pInGroup - the group entity in which this role should be added
         *@return the newly added role, NULL on error
         */
-        virtual ZBUserRoleEntity* AddRole(const CString& name, const CString& description, PSS_UserGroupEntity* pInGroup);
+        virtual PSS_UserRoleEntity* AddRole(const CString& name, const CString& description, PSS_UserGroupEntity* pInGroup);
 
         /**
         * Removes a role
@@ -313,7 +318,7 @@ class AFX_EXT_CLASS PSS_UserGroupEntity : public PSS_UserEntity
         *@param pRole - the role to remove
         *@return true on success, otherwise false
         */
-        virtual bool RemoveRole(ZBUserRoleEntity* pRole);
+        virtual bool RemoveRole(PSS_UserRoleEntity* pRole);
 
         /**
         * Finds a role from its guid

@@ -56,7 +56,7 @@ class ZDProcessGraphPage;
 /**
 * Process graphic model controller. This class processes global operations on model,
 * like e.g the cut/copy/paste operations, the background image management, the page
-* management (addig a new page, ...), the zoom/pan effects, ...
+* management (adding a new page, ...), the zoom/pan effects, ...
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
 class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,

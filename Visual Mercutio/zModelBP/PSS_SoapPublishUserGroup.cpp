@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_Log.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\ZBUserRoleEntity.h"
+#include "zModel\PSS_UserRoleEntity.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "ZBPublishMessengerModelInformation.h"

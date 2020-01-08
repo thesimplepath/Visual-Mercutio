@@ -23,13 +23,16 @@
 #ifndef PSS_UserGroupEntity
     #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
+#ifndef PSS_UserRoleEntity
+    #define PSS_UserRoleEntity ZBUserRoleEntity
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declaration
 class PSS_UserGroupEntity;
-class ZBUserRoleEntity;
+class PSS_UserRoleEntity;
 class PSS_ProcessGraphModelMdl;
 class ZUUserGroupCalculateTotals;
 
@@ -75,7 +78,7 @@ private:
 
     void RemoveAllData();
     void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
-    void FillGridUnitRole(ZBUserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
+    void FillGridUnitRole(PSS_UserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
 
     void FillProcessFigures(PSS_ProcessGraphModelMdl*        pModel,
                             ZUUserGroupCalculateTotals*    pTotal,

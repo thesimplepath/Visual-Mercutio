@@ -24,7 +24,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\ZBUserRoleEntity.h"
+#include "zModel\PSS_UserRoleEntity.h"
 #include "zModel\PSS_LogicalSystemEntity.h"
 #include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
@@ -1941,7 +1941,7 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(PSS_UserGroupEntity* 
             if (pUserGroupEntity)
                 GenerateUnitGroupObjects(pUserGroupEntity, pHtmlFile, currentItem);
 
-            ZBUserRoleEntity* pUserRoleEntity = dynamic_cast<ZBUserRoleEntity*>(pEntity);
+            PSS_UserRoleEntity* pUserRoleEntity = dynamic_cast<PSS_UserRoleEntity*>(pEntity);
 
             if (pUserRoleEntity)
                 GenerateUnitRoleObjects(pUserRoleEntity, pHtmlFile, currentItem);
@@ -1951,9 +1951,9 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(PSS_UserGroupEntity* 
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GenerateUnitRoleObjects(ZBUserRoleEntity* pRoleEntity,
-                                                          PSS_HtmlFile*     pHtmlFile,
-                                                          std::size_t       parentID)
+bool PSS_ModelGenerateImageFiles::GenerateUnitRoleObjects(PSS_UserRoleEntity* pRoleEntity,
+                                                          PSS_HtmlFile*       pHtmlFile,
+                                                          std::size_t         parentID)
 {
     ++m_IndexItem;
 

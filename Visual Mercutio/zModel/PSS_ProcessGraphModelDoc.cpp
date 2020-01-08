@@ -550,7 +550,7 @@ void PSS_ProcessGraphModelDoc::SetUseWorkflow(bool value)
     if (value)
     {
         if (!m_pWorkflowDefinition)
-            m_pWorkflowDefinition = new ZBWorkflowDefinition;
+            m_pWorkflowDefinition = new PSS_WorkflowDefinition;
     }
     else
         // delete the workflow definition object to clear the workflow usage

@@ -78,7 +78,7 @@ bool ZVPublishConceptorReport::Publish(CString Directory)
 // ******************************************************************************************************
 
 // Cette fonction permet de créer le système de fichiers.
-bool ZVPublishConceptorReport::CreateFileSystem(ZBUserGroupEntity* pGroup, CString Directory)
+bool ZVPublishConceptorReport::CreateFileSystem(PSS_UserGroupEntity* pGroup, CString Directory)
 {
     CString sEntityName = pGroup->GetEntityName();
     CString sEntityDescription = pGroup->GetEntityDescription().IsEmpty() ? _T(" ") : pGroup->GetEntityDescription();

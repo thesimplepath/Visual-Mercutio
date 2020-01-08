@@ -28,10 +28,13 @@
 #ifndef PSS_UserGroupEntity
     #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
+#ifndef PSS_UserRoleEntity
+    #define PSS_UserRoleEntity ZBUserRoleEntity
+#endif
 
 // forward class declaration
 class PSS_UserGroupEntity;
-class ZBUserRoleEntity;
+class PSS_UserRoleEntity;
 class ZBPublishMessengerModelInformation;
 class PSS_Log;
 

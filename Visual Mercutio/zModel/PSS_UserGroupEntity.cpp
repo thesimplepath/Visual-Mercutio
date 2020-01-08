@@ -9,7 +9,7 @@
 #include "PSS_UserGroupEntity.h"
 
 // processsoft
-#include "ZBUserRoleEntity.h"
+#include "PSS_UserRoleEntity.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -298,14 +298,14 @@ std::size_t PSS_UserGroupEntity::FillGroupNameArray(CStringArray& nameArray)
     return nameArray.GetSize();
 }
 //---------------------------------------------------------------------------
-ZBUserRoleEntity* PSS_UserGroupEntity::AddRole(const CString& name, const CString& description)
+PSS_UserRoleEntity* PSS_UserGroupEntity::AddRole(const CString& name, const CString& description)
 {
-    std::unique_ptr<ZBUserRoleEntity> pNewRole(new ZBUserRoleEntity(name, description, this));
+    std::unique_ptr<PSS_UserRoleEntity> pNewRole(new PSS_UserRoleEntity(name, description, this));
     m_EntitySet.Add(pNewRole.get());
     return pNewRole.release();
 }
 //---------------------------------------------------------------------------
-ZBUserRoleEntity* PSS_UserGroupEntity::AddRole(const CString& name, const CString& description, const CString& inGroupName)
+PSS_UserRoleEntity* PSS_UserGroupEntity::AddRole(const CString& name, const CString& description, const CString& inGroupName)
 {
     PSS_UserGroupEntity* pGroup = NULL;
 
@@ -316,7 +316,7 @@ ZBUserRoleEntity* PSS_UserGroupEntity::AddRole(const CString& name, const CStrin
     return AddRole(name, description, pGroup);
 }
 //---------------------------------------------------------------------------
-ZBUserRoleEntity* PSS_UserGroupEntity::AddRole(const CString& name, const CString& description, PSS_UserGroupEntity* pInGroup)
+PSS_UserRoleEntity* PSS_UserGroupEntity::AddRole(const CString& name, const CString& description, PSS_UserGroupEntity* pInGroup)
 {
     if (!pInGroup)
         pInGroup = this;
@@ -330,7 +330,7 @@ bool PSS_UserGroupEntity::RemoveRole(const CString& name)
 
     for (PSS_UserEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
-        ZBUserRoleEntity* pEntity = dynamic_cast<ZBUserRoleEntity*>(pEnv);
+        PSS_UserRoleEntity* pEntity = dynamic_cast<PSS_UserRoleEntity*>(pEnv);
 
         if (pEntity && pEntity->GetEntityName() == name)
         {
@@ -366,13 +366,13 @@ bool PSS_UserGroupEntity::RemoveRole(const CString& name, PSS_UserGroupEntity* p
     return pInGroup->RemoveRole(name);
 }
 //---------------------------------------------------------------------------
-bool PSS_UserGroupEntity::RemoveRole(ZBUserRoleEntity* pRole)
+bool PSS_UserGroupEntity::RemoveRole(PSS_UserRoleEntity* pRole)
 {
     IEntityIterator it(&m_EntitySet);
 
     for (PSS_UserEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
-        ZBUserRoleEntity* pRoleEntity = dynamic_cast<ZBUserRoleEntity*>(pEnv);
+        PSS_UserRoleEntity* pRoleEntity = dynamic_cast<PSS_UserRoleEntity*>(pEnv);
 
         if (pRoleEntity && pRoleEntity == pRole)
         {
@@ -601,7 +601,7 @@ PSS_UserEntity* PSS_UserGroupEntity::FindRoleByGUIDPvt(const CString& guid, bool
 
     for (PSS_UserEntity* pEnv = it.GetFirst(); pEnv; pEnv = it.GetNext())
     {
-        ZBUserRoleEntity* pRoleEntity = dynamic_cast<ZBUserRoleEntity*>(pEnv);
+        PSS_UserRoleEntity* pRoleEntity = dynamic_cast<PSS_UserRoleEntity*>(pEnv);
 
         if (pRoleEntity)
         {

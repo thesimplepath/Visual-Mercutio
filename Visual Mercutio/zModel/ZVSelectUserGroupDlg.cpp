@@ -9,7 +9,7 @@
 #include "ZVSelectUserGroupDlg.h"
 
 #include "PSS_UserGroupEntity.h"
-#include "ZBUserRoleEntity.h"
+#include "PSS_UserRoleEntity.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,41 +22,41 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectUserGroupDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVSelectUserGroupDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVSelectUserGroupDlg, CDialog)
     //{{AFX_MSG_MAP(ZVSelectUserGroupDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_USERGROUP_TREE, OnSelchangedUsergroupTree)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVSelectUserGroupDlg::ZVSelectUserGroupDlg( const CString        Title                /*= ""*/,
+ZVSelectUserGroupDlg::ZVSelectUserGroupDlg(const CString        Title                /*= ""*/,
                                            PSS_UserGroupEntity*    pMainUserGroup        /*= NULL*/,
-                                            bool                AllowGroupSelection    /*= true*/,
-                                            bool                AllowRoleSelection    /*= true*/,
-                                            CWnd*                pParent                /*=NULL*/ )
-    : CDialog                ( ZVSelectUserGroupDlg::IDD, pParent ),
-      m_pUserEntity            ( NULL ),
-      m_Title                ( Title ),
-      m_pMainUserGroup        ( pMainUserGroup ),
-      m_AllowGroupSelection    ( AllowGroupSelection ),
-      m_AllowRoleSelection    ( AllowRoleSelection )
+                                           bool                AllowGroupSelection    /*= true*/,
+                                           bool                AllowRoleSelection    /*= true*/,
+                                           CWnd*                pParent                /*=NULL*/)
+    : CDialog(ZVSelectUserGroupDlg::IDD, pParent),
+    m_pUserEntity(NULL),
+    m_Title(Title),
+    m_pMainUserGroup(pMainUserGroup),
+    m_AllowGroupSelection(AllowGroupSelection),
+    m_AllowRoleSelection(AllowRoleSelection)
 {
     //{{AFX_DATA_INIT(ZVSelectUserGroupDlg)
         // NOTE: the ClassWizard will add member initialization here
     //}}AFX_DATA_INIT
 }
 
-ZVSelectUserGroupDlg::ZVSelectUserGroupDlg( UINT                nTitle,
+ZVSelectUserGroupDlg::ZVSelectUserGroupDlg(UINT                nTitle,
                                            PSS_UserGroupEntity*    pMainUserGroup,
-                                            bool                AllowGroupSelection    /*= true*/,
-                                            bool                AllowRoleSelection    /*= true*/,
-                                            CWnd*                pParent                /*=NULL*/ )
-    : CDialog                ( ZVSelectUserGroupDlg::IDD, pParent ),
-      m_pUserEntity            ( NULL ),
-      m_pMainUserGroup        ( pMainUserGroup ),
-      m_AllowGroupSelection    ( AllowGroupSelection ),
-      m_AllowRoleSelection    ( AllowRoleSelection )
+                                           bool                AllowGroupSelection    /*= true*/,
+                                           bool                AllowRoleSelection    /*= true*/,
+                                           CWnd*                pParent                /*=NULL*/)
+    : CDialog(ZVSelectUserGroupDlg::IDD, pParent),
+    m_pUserEntity(NULL),
+    m_pMainUserGroup(pMainUserGroup),
+    m_AllowGroupSelection(AllowGroupSelection),
+    m_AllowRoleSelection(AllowRoleSelection)
 {
-    m_Title.LoadString( nTitle );
+    m_Title.LoadString(nTitle);
 }
 
 // JMR-MODIF - Le 27 février 2006 - Nettoyage des Memory Leaks, ajout du destructeur pour l'objet.
@@ -72,9 +72,9 @@ void ZVSelectUserGroupDlg::Release()
     m_Ctrl.Release();
 }
 
-void ZVSelectUserGroupDlg::DoDataExchange( CDataExchange* pDX )
+void ZVSelectUserGroupDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVSelectUserGroupDlg)
     DDX_Control(pDX, IDC_USERGROUP_TREE, m_Ctrl);
     //}}AFX_DATA_MAP
@@ -88,17 +88,17 @@ BOOL ZVSelectUserGroupDlg::OnInitDialog()
     CDialog::OnInitDialog();
 
     CString m_Text;
-    m_Text.LoadString ( IDS_USERGROUP_ROOT_T );
-    m_Ctrl.Initialize( m_Text, m_pMainUserGroup );
+    m_Text.LoadString(IDS_USERGROUP_ROOT_T);
+    m_Ctrl.Initialize(m_Text, m_pMainUserGroup);
 
-    if ( !m_Title.IsEmpty() )
+    if (!m_Title.IsEmpty())
     {
-        SetWindowText( m_Title );
+        SetWindowText(m_Title);
     }
 
-    if ( GetDlgItem( IDOK ) )
+    if (GetDlgItem(IDOK))
     {
-        GetDlgItem( IDOK )->EnableWindow( FALSE );
+        GetDlgItem(IDOK)->EnableWindow(FALSE);
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control
@@ -113,28 +113,28 @@ void ZVSelectUserGroupDlg::OnOK()
     CDialog::OnOK();
 }
 
-void ZVSelectUserGroupDlg::OnSelchangedUsergroupTree( NMHDR* pNMHDR, LRESULT* pResult )
+void ZVSelectUserGroupDlg::OnSelchangedUsergroupTree(NMHDR* pNMHDR, LRESULT* pResult)
 {
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
     BOOL Enable = FALSE;
     PSS_UserEntity* pEntity = m_Ctrl.GetSelectedEntity();
 
-    if ( pEntity )
+    if (pEntity)
     {
-        if ( m_AllowGroupSelection && ISA( pEntity, PSS_UserGroupEntity) )
+        if (m_AllowGroupSelection && ISA(pEntity, PSS_UserGroupEntity))
         {
             Enable = TRUE;
         }
-        else if ( m_AllowRoleSelection && ISA( pEntity, ZBUserRoleEntity ) )
+        else if (m_AllowRoleSelection && ISA(pEntity, PSS_UserRoleEntity))
         {
             Enable = TRUE;
         }
     }
 
-    if ( GetDlgItem( IDOK ) )
+    if (GetDlgItem(IDOK))
     {
-        GetDlgItem( IDOK )->EnableWindow( Enable );
+        GetDlgItem(IDOK)->EnableWindow(Enable);
     }
 
     *pResult = 0;

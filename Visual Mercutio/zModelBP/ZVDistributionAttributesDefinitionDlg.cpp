@@ -8,7 +8,7 @@
 #include "zProperty\ZBDynamicPropertiesManager.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\ZBUserRoleEntity.h"
+#include "zModel\PSS_UserRoleEntity.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
 
 #include "ZVDistributionRuleDef.h"
@@ -228,7 +228,7 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
             {
                 PSS_UserEntity* pUserEntity = dynamic_cast<PSS_UserGroupEntity*>(pEntity)->GetEntityAt(i);
 
-                if (ISA(pUserEntity, ZBUserRoleEntity))
+                if (ISA(pUserEntity, PSS_UserRoleEntity))
                 {
                     FoundCount = true;
                     break;

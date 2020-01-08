@@ -172,7 +172,7 @@ class AFX_EXT_CLASS PSS_UserEntity : public CObject
         * Checks if the properties are shown
         *@return true if the properties are shown, otherwise false
         */
-        virtual inline bool ShowProperties();
+        virtual inline bool ShowProperties() const;
 
         /**
         * Serializes the class content to an archive
@@ -290,7 +290,7 @@ bool PSS_UserEntity::ContainThisRole(const CString& role)
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_UserEntity::ShowProperties()
+bool PSS_UserEntity::ShowProperties() const
 {
     return false;
 }

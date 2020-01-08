@@ -24,10 +24,13 @@
 #ifndef PSS_UserGroupEntity
     #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
+#ifndef PSS_UserRoleEntity
+    #define PSS_UserRoleEntity ZBUserRoleEntity
+#endif
 
 // forward class declaration
 class PSS_UserGroupEntity;
-class ZBUserRoleEntity;
+class PSS_UserRoleEntity;
 
 #ifdef _ZREPORTBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -43,22 +46,22 @@ class ZBUserRoleEntity;
 
 class AFX_EXT_CLASS ZBSesterceReportGenerator : public ZBModelBPReportGenerator
 {
-    DECLARE_SERIAL( ZBSesterceReportGenerator )
+    DECLARE_SERIAL(ZBSesterceReportGenerator)
 
 public:
 
-    ZBSesterceReportGenerator( ZDGridDocument*                pDoc        = NULL,
-                               ZDProcessGraphModelMdlBP*    pModel        = NULL,
-                              PSS_ProcessGraphModelDoc*        pSourceDoc    = NULL );
+    ZBSesterceReportGenerator(ZDGridDocument*                pDoc = NULL,
+                              ZDProcessGraphModelMdlBP*    pModel = NULL,
+                              PSS_ProcessGraphModelDoc*        pSourceDoc = NULL);
 
     virtual ~ZBSesterceReportGenerator();
 
     /////////////////////////////////////////////////////////////////////////////
     // ZIGridReportGenerator methods
-    
+
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     virtual const CString GetReportTitle() const;
 
@@ -68,10 +71,10 @@ protected:
 
 private:
 
-    bool FillGridUnit        ( CGXGridCore& GridCore );
-    void FillGridUnitGroup    (PSS_UserGroupEntity* pGroup, ZBOStreamGrid &ostream );
-    void FillGridUnitRole    ( ZBUserRoleEntity* pRole, ZBOStreamGrid &ostream );
-    bool FillGridProcess    ( CGXGridCore& GridCore, size_t Index );
+    bool FillGridUnit(CGXGridCore& GridCore);
+    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOStreamGrid &ostream);
+    void FillGridUnitRole(PSS_UserRoleEntity* pRole, ZBOStreamGrid &ostream);
+    bool FillGridProcess(CGXGridCore& GridCore, size_t Index);
 
 private:
 
@@ -79,4 +82,4 @@ private:
     CGXStyle m_NormalStyle;
 };
 
-#endif // !defined(AFX_ZBSesterceReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
+#endif

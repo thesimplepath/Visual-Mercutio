@@ -18,7 +18,7 @@
 #include "zModelBP\ZBBPProcessSymbol.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\ZBUserRoleEntity.h"
+#include "zModel\PSS_UserRoleEntity.h"
 
 #include "zReport\ZVGridView.h"
 #include "zReport\ZCGridGroup.h"
@@ -610,9 +610,9 @@ void ZBSesterceUnitReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity*    pG
                 FillGridUnitGroup(dynamic_cast<PSS_UserGroupEntity*>(pEntity), Index, ostream);
             }
 
-            if (ISA(pEntity, ZBUserRoleEntity))
+            if (ISA(pEntity, PSS_UserRoleEntity))
             {
-                FillGridUnitRole(dynamic_cast<ZBUserRoleEntity*>(pEntity), Index, ostream);
+                FillGridUnitRole(dynamic_cast<PSS_UserRoleEntity*>(pEntity), Index, ostream);
             }
         }
     }
@@ -754,7 +754,7 @@ void ZBSesterceUnitReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*
     }
 }
 
-void ZBSesterceUnitReportGenerator::FillGridUnitRole(ZBUserRoleEntity*    pRole,
+void ZBSesterceUnitReportGenerator::FillGridUnitRole(PSS_UserRoleEntity*    pRole,
                                                      size_t            Index,
                                                      ZBOStreamGrid        &ostream)
 {

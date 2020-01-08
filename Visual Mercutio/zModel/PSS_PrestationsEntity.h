@@ -132,7 +132,7 @@ class AFX_EXT_CLASS PSS_PrestationsEntity : public CObject
         * Checks if the properties are shown
         *@return true if the properties are shown, otherwise false
         */
-        virtual inline bool ShowProperties();
+        virtual inline bool ShowProperties() const;
 
         /**
         * Serializes the class content to an archive
@@ -234,7 +234,7 @@ void PSS_PrestationsEntity::SetEntityDescription(const CString& value)
     m_EntityDescription = value;
 }
 //---------------------------------------------------------------------------
-bool PSS_PrestationsEntity::ShowProperties()
+bool PSS_PrestationsEntity::ShowProperties() const
 {
     return false;
 }

@@ -15,7 +15,7 @@
 #include "zModelBP\ZBBPProcessSymbol.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\ZBUserRoleEntity.h"
+#include "zModel\PSS_UserRoleEntity.h"
 
 #include "zBaseLib\PSS_Global.h"
 
@@ -236,15 +236,15 @@ void ZBCheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOS
                 FillGridUnitGroup(dynamic_cast<PSS_UserGroupEntity*>(pEntity), ostream);
             }
 
-            if (ISA(pEntity, ZBUserRoleEntity))
+            if (ISA(pEntity, PSS_UserRoleEntity))
             {
-                FillGridUnitRole(dynamic_cast<ZBUserRoleEntity*>(pEntity), ostream);
+                FillGridUnitRole(dynamic_cast<PSS_UserRoleEntity*>(pEntity), ostream);
             }
         }
     }
 }
 
-void ZBCheckReportGenerator::FillGridUnitRole(ZBUserRoleEntity* pRole, ZBOStreamGrid &ostream)
+void ZBCheckReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, ZBOStreamGrid &ostream)
 {
     // add the role line
     ostream << _T("\n");

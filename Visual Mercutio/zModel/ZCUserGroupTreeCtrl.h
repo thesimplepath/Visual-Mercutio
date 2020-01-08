@@ -24,12 +24,15 @@
 #ifndef PSS_UserGroupEntity
     #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
+#ifndef PSS_UserRoleEntity
+    #define PSS_UserRoleEntity ZBUserRoleEntity
+#endif
 
 // forward class declaration
 class ZBWorkspaceEnv;
 class PSS_UserEntity;
-class ZBUserRoleEntity;
 class PSS_UserGroupEntity;
+class PSS_UserRoleEntity;
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -57,15 +60,15 @@ public:
 
     _ZInternalUserGroupTreeData();
     _ZInternalUserGroupTreeData(PSS_UserGroupEntity* pGroup);
-    _ZInternalUserGroupTreeData(ZBUserRoleEntity* pRole);
+    _ZInternalUserGroupTreeData(PSS_UserRoleEntity* pRole);
     _ZInternalUserGroupTreeData(CString Str);
     ~_ZInternalUserGroupTreeData();
 
     // Data member
-    UserGroupTreeDataType    m_dtp;
-    ZBUserGroupEntity*        m_pGroup;
-    ZBUserRoleEntity*        m_pRole;
-    CString                    m_Str;
+    UserGroupTreeDataType m_dtp;
+    PSS_UserGroupEntity*  m_pGroup;
+    PSS_UserRoleEntity*   m_pRole;
+    CString               m_Str;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -90,16 +93,16 @@ public:
 
     PSS_UserEntity*        GetSelectedEntity();
     PSS_UserGroupEntity*    GetSelectedGroup();
-    ZBUserRoleEntity*    GetSelectedRole();
+    PSS_UserRoleEntity*    GetSelectedRole();
     PSS_UserGroupEntity*    GetSelectedOwnerGroup();
     bool                IsRootSelected() const;
 
     void                AddGroup(PSS_UserGroupEntity* pGroup, PSS_UserGroupEntity* pParentGroup = NULL);
     void                RemoveGroup(PSS_UserGroupEntity* pGroup);
     void                ModifyGroup(PSS_UserGroupEntity* pGroup);
-    void                AddRole(ZBUserRoleEntity* pRole, PSS_UserGroupEntity* pParentGroup);
-    void                RemoveRole(ZBUserRoleEntity* pRole);
-    void                ModifyRole(ZBUserRoleEntity* pRole);
+    void                AddRole(PSS_UserRoleEntity* pRole, PSS_UserGroupEntity* pParentGroup);
+    void                RemoveRole(PSS_UserRoleEntity* pRole);
+    void                ModifyRole(PSS_UserRoleEntity* pRole);
 
     virtual void        OnUgpNewGroup();
     virtual void        OnUgpDeleteGroup();
@@ -160,27 +163,27 @@ private:
     void                DestroyTree();
     void                EmptyDataSet();
     void                ProcessGroup(PSS_UserGroupEntity* pGroup, HTREEITEM hParentTreeItem);
-    void                ProcessRole(ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem);
+    void                ProcessRole(PSS_UserRoleEntity* pRole, HTREEITEM hParentTreeItem);
 
     HTREEITEM            AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
     HTREEITEM            AddGroupItem(PSS_UserGroupEntity* pGroup, HTREEITEM hParentTreeItem);
-    HTREEITEM            AddRoleItem(ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem);
+    HTREEITEM            AddRoleItem(PSS_UserRoleEntity* pRole, HTREEITEM hParentTreeItem);
 
     BOOL                ModifyGroupItem(PSS_UserGroupEntity* pGroup, HTREEITEM hItem);
-    BOOL                ModifyRoleItem(ZBUserRoleEntity* pRole, HTREEITEM hItem);
+    BOOL                ModifyRoleItem(PSS_UserRoleEntity* pRole, HTREEITEM hItem);
 
     PSS_UserEntity*        _GetEntity(HTREEITEM hItem);
     PSS_UserGroupEntity*    _GetGroup(HTREEITEM hItem);
-    ZBUserRoleEntity*    _GetRole(HTREEITEM hItem);
+    PSS_UserRoleEntity*    _GetRole(HTREEITEM hItem);
     PSS_UserGroupEntity*    _GetOwnerGroup(HTREEITEM hItem);
 
     _ZInternalUserGroupTreeData* FindElementFromDataSet(PSS_UserEntity* pEntity);
     _ZInternalUserGroupTreeData* FindElementFromDataSet(PSS_UserGroupEntity* pGroup);
-    _ZInternalUserGroupTreeData* FindElementFromDataSet(ZBUserRoleEntity* pRole);
+    _ZInternalUserGroupTreeData* FindElementFromDataSet(PSS_UserRoleEntity* pRole);
     _ZInternalUserGroupTreeData* FindElementFromDataSet(CString Str);
 
     _ZInternalUserGroupTreeData* AddDataToSet(PSS_UserGroupEntity* pGroup);
-    _ZInternalUserGroupTreeData* AddDataToSet(ZBUserRoleEntity* pRole);
+    _ZInternalUserGroupTreeData* AddDataToSet(PSS_UserRoleEntity* pRole);
     _ZInternalUserGroupTreeData* AddDataToSet(CString Str);
 
 private:
