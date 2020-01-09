@@ -94,7 +94,7 @@ void ZVFindSymbolExtDlg::OnChangeSymbolName()
 
 void ZVFindSymbolExtDlg::OnOK() 
 {
-    m_AttributeText.FillCorrespondingCheckedItems();
+    m_AttributeText.FillMatchingCheckedItems();
 
     PSS_Dialog::OnOK();
 }

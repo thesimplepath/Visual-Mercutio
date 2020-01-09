@@ -36,16 +36,19 @@ const int g_LogicalSystemTreeItem     = 1;
 // PSS_LogicalSystemTreeCtrl::ITreeData
 //---------------------------------------------------------------------------
 PSS_LogicalSystemTreeCtrl::ITreeData::ITreeData() :
+    CObject(),
     m_pLogicalSystem(NULL),
     m_Type(IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_LogicalSystemTreeCtrl::ITreeData::ITreeData(PSS_LogicalSystemEntity* pLogicalSystem) :
+    CObject(),
     m_pLogicalSystem(pLogicalSystem),
     m_Type(IE_DT_LogicalSystem)
 {}
 //---------------------------------------------------------------------------
 PSS_LogicalSystemTreeCtrl::ITreeData::ITreeData(const CString& str) :
+    CObject(),
     m_pLogicalSystem(NULL),
     m_Type(IE_DT_String),
     m_Str(str)

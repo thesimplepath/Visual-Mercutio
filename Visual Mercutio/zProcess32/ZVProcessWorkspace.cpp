@@ -259,7 +259,7 @@ void ZVProcessWorkspace::OnContextMenu(CWnd* pWnd, CPoint point)
     {
         if (GetModelDocumentTree()->HasContextMenu(pWnd, point) != -1)
         {
-            GetModelDocumentTree()->DisplayContextMenu(pWnd, point);
+            GetModelDocumentTree()->ShowContextMenu(pWnd, point);
 
             // Done
             return;

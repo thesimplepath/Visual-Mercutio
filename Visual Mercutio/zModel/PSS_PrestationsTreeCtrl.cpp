@@ -36,16 +36,19 @@ const int g_PrestationsTreeItem     = 1;
 // PSS_PrestationsTreeCtrl::ITreeData
 //---------------------------------------------------------------------------
 PSS_PrestationsTreeCtrl::ITreeData::ITreeData() :
+    CObject(),
     m_pPrestation(NULL),
     m_Type(IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_PrestationsTreeCtrl::ITreeData::ITreeData(PSS_LogicalPrestationsEntity* pLogicalPrestation) :
+    CObject(),
     m_pPrestation(pLogicalPrestation),
     m_Type(IE_DT_Prestation)
 {}
 //---------------------------------------------------------------------------
 PSS_PrestationsTreeCtrl::ITreeData::ITreeData(const CString& str) :
+    CObject(),
     m_pPrestation(NULL),
     m_Type(IE_DT_String),
     m_Str(str)

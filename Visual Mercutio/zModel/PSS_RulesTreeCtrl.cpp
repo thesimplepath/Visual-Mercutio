@@ -36,16 +36,19 @@ const int g_RulesTreeItem     = 1;
 // PSS_RulesTreeCtrl::ITreeData
 //---------------------------------------------------------------------------
 PSS_RulesTreeCtrl::ITreeData::ITreeData() :
+    CObject(),
     m_pRule(NULL),
     m_Type(IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_RulesTreeCtrl::ITreeData::ITreeData(PSS_LogicalRulesEntity* pLogicalRule) :
+    CObject(),
     m_pRule(pLogicalRule),
     m_Type(IE_DT_Rule)
 {}
 //---------------------------------------------------------------------------
 PSS_RulesTreeCtrl::ITreeData::ITreeData(const CString& str) :
+    CObject(),
     m_pRule(NULL),
     m_Type(IE_DT_String),
     m_Str(str)

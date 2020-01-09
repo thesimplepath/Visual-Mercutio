@@ -19,7 +19,7 @@
 #include "zBaseLib\PSS_Dialog.h"
 #include "PSS_ObjectCollections.h"
 #include "ZDefinitionSelectable.h"
-#include "ZCProcessModelTree.h"
+#include "PSS_ProcessModelTree.h"
 
 // resources
 #include "zModelRes.h"
@@ -108,7 +108,7 @@ public:
     {
         IDD = IDD_SELECTSYMBOL
     };
-    ZCProcessModelTree    m_SymbolTree;
+    PSS_ProcessModelTree    m_SymbolTree;
     CString    m_SymbolPath;
     CString    m_SymbolName;
     //}}AFX_DATA

@@ -387,7 +387,7 @@ void ZVSelectModelSymbolDlg::OnContextMenu(CWnd* pWnd, CPoint point)
 {
     if (m_SymbolTree.HasContextMenu(pWnd, point) != -1)
     {
-        m_SymbolTree.DisplayContextMenu(pWnd, point);
+        m_SymbolTree.ShowContextMenu(pWnd, point);
 
         // Done
         return;

@@ -433,20 +433,20 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_PrestationsTreeCtrl.cpp" />
-    <ClCompile Include="ZCProcessModelTree.cpp">
+    <ClCompile Include="PSS_ProcessModelTree.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCProcessModelTreeView.cpp">
+    <ClCompile Include="PSS_ProcessModelTreeView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_RulesTreeCtrl.cpp" />
-    <ClCompile Include="ZCSymbolAttributesTreeCtrl.cpp">
+    <ClCompile Include="PSS_SymbolAttributesTreeCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -458,7 +458,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCUserGroupTreeCtrl.cpp">
+    <ClCompile Include="PSS_UserGroupTreeCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -807,12 +807,12 @@
     <ClInclude Include="PSS_WorkflowDefinition.h" />
     <ClInclude Include="PSS_LogicalSystemTreeCtrl.h" />
     <ClInclude Include="PSS_PrestationsTreeCtrl.h" />
-    <ClInclude Include="ZCProcessModelTree.h" />
-    <ClInclude Include="ZCProcessModelTreeView.h" />
+    <ClInclude Include="PSS_ProcessModelTree.h" />
+    <ClInclude Include="PSS_ProcessModelTreeView.h" />
     <ClInclude Include="PSS_RulesTreeCtrl.h" />
-    <ClInclude Include="ZCSymbolAttributesTreeCtrl.h" />
+    <ClInclude Include="PSS_SymbolAttributesTreeCtrl.h" />
     <ClInclude Include="ZCSymbolList.h" />
-    <ClInclude Include="ZCUserGroupTreeCtrl.h" />
+    <ClInclude Include="PSS_UserGroupTreeCtrl.h" />
     <ClInclude Include="ZDefinitionSelectable.h" />
     <ClInclude Include="ZDLogicalPrestationsDocument.h" />
     <ClInclude Include="ZDLogicalRulesDocument.h" />

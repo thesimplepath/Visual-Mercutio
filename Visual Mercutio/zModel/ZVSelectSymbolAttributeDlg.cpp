@@ -62,7 +62,7 @@ void ZVSelectSymbolAttributeDlg::OnApplyToAll()
 
     // Asks the control to fill the corresponding
     // checked items
-    m_AttributeTree.FillCorrespondingCheckedItems();
+    m_AttributeTree.FillMatchingCheckedItems();
     if (m_pPropAttributes)
         m_pPropAttributes->SetDisplayTitleText( m_ShowLabel );
 
@@ -76,7 +76,7 @@ void ZVSelectSymbolAttributeDlg::OnOK()
 
     // Asks the control to fill the corresponding
     // checked items
-    m_AttributeTree.FillCorrespondingCheckedItems();
+    m_AttributeTree.FillMatchingCheckedItems();
     if (m_pPropAttributes)
         m_pPropAttributes->SetDisplayTitleText( m_ShowLabel );
 

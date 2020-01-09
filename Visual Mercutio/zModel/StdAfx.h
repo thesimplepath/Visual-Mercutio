@@ -11,7 +11,7 @@
 #define AFX_STDAFX_H__345101E9_12FD_11D4_970C_0000B45D7C6F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+    #pragma once
 #endif
 
 // exclude rarely-used stuff from Windows headers

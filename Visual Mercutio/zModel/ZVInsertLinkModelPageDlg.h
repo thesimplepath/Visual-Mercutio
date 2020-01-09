@@ -18,7 +18,7 @@
 //processsoft
 #include "zBaseLib\PSS_Dialog.h"
 #include "PSS_ObjectCollections.h"
-#include "ZCProcessModelTree.h"
+#include "PSS_ProcessModelTree.h"
 
 // resources
 #include "zModelRes.h"
@@ -78,8 +78,8 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZVInsertLinkModelPageDlg)
     enum { IDD = IDD_INSERTORLINK_MODELPAGE };
-    ZCProcessModelTree    m_ExistingPages;
-    ZCProcessModelTree    m_SymbolTree;
+    PSS_ProcessModelTree    m_ExistingPages;
+    PSS_ProcessModelTree    m_SymbolTree;
     CString            m_NewPageName;
     int                m_InsertOrLink;
     //}}AFX_DATA

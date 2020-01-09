@@ -22,7 +22,7 @@
 // processsoft
 #include "zBaseLib\PSS_Dialog.h"
 #include "PSS_ObjectCollections.h"
-#include "ZCProcessModelTree.h"
+#include "PSS_ProcessModelTree.h"
 
 // resources
 #include "zModelRes.h"
@@ -75,7 +75,7 @@ public:
     {
         IDD = IDD_RENAME_MODELPAGE
     };
-    ZCProcessModelTree m_SymbolTree;
+    PSS_ProcessModelTree m_SymbolTree;
     CString m_PageName;
     //}}AFX_DATA
 

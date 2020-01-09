@@ -27,7 +27,7 @@
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zModel\ZCUserGroupTreeCtrl.h"
+#include "zModel\PSS_UserGroupTreeCtrl.h"
 
 // JMR-MODIF - Le 14 juin 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -148,7 +148,7 @@ protected:
 
 private:
     _ZIUserGroupFlatToolBar        m_FlatToolBar;
-    ZCUserGroupTreeCtrl            m_Ctrl;
+    PSS_UserGroupTreeCtrl            m_Ctrl;
     COLORREF                    m_clrBtnFace;
 };
 

@@ -8,14 +8,14 @@
 #endif // _MSC_VER > 1000
 
 #include "zBaseLib\PSS_Observer.h"
-#include "zModel\ZCProcessModelTree.h"
+#include "zModel\PSS_ProcessModelTree.h"
 
 // JMR-MODIF - Le 14 juin 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCProcessModelDocument view
 
-class ZCProcessModelDocument : public ZCProcessModelTree, public PSS_Observer
+class ZCProcessModelDocument : public PSS_ProcessModelTree, public PSS_Observer
 {
 public:
 

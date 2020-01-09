@@ -323,7 +323,7 @@ class AFX_EXT_CLASS PSS_RulesTreeCtrl : public PSS_TreeCtrl,
         * Modifies the logical rule item
         *@param pLogicalRule - the logical rule to modify
         *@param hItem - the item handle
-        *@return the newly added logical rule item handle, NULL on error
+        *@return TRUE on success, otherwise FALSE
         */
         BOOL ModifyLogicalRuleItem(PSS_LogicalRulesEntity* pLogicalRule, HTREEITEM hItem);
 

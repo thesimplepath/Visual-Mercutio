@@ -16,9 +16,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZCProcessModelDocument
 
-IMPLEMENT_DYNCREATE(ZCProcessModelDocument, ZCProcessModelTree)
+IMPLEMENT_DYNCREATE(ZCProcessModelDocument, PSS_ProcessModelTree)
 
-BEGIN_MESSAGE_MAP(ZCProcessModelDocument, ZCProcessModelTree)
+BEGIN_MESSAGE_MAP(ZCProcessModelDocument, PSS_ProcessModelTree)
     //{{AFX_MSG_MAP(ZCProcessModelDocument)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()

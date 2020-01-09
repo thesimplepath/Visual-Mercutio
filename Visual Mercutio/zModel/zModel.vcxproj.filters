@@ -30,19 +30,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZCProcessModelTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZCProcessModelTreeView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZCSymbolAttributesTreeCtrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZCSymbolList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZCUserGroupTreeCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZDLogicalPrestationsDocument.cpp">
@@ -357,6 +345,18 @@
     <ClCompile Include="PSS_RulesTreeCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ProcessModelTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessModelTreeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SymbolAttributesTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserGroupTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -459,19 +459,7 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZCProcessModelTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCProcessModelTreeView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCSymbolAttributesTreeCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZCSymbolList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCUserGroupTreeCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZDefinitionSelectable.h">
@@ -793,6 +781,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_RulesTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessModelTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessModelTreeView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SymbolAttributesTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserGroupTreeCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

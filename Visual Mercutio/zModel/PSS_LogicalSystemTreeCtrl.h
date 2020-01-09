@@ -323,7 +323,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemTreeCtrl : public PSS_TreeCtrl,
         * Modifies the logical system item
         *@param pLogicalSystem - the logical system to modify
         *@param hItem - the item handle
-        *@return the newly added logical system item handle, NULL on error
+        *@return TRUE on success, otherwise FALSE
         */
         BOOL ModifyLogicalSystemItem(PSS_LogicalSystemEntity* pLogicalSystem, HTREEITEM hItem);
 

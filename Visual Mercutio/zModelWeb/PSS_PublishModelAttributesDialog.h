@@ -13,14 +13,33 @@
     #pragma once
 #endif
 
+// change the definition of AFX_EXT... to make it import
+#undef AFX_EXT_CLASS
+#undef AFX_EXT_API
+#undef AFX_EXT_DATA
+#define AFX_EXT_CLASS AFX_CLASS_IMPORT
+#define AFX_EXT_API AFX_API_IMPORT
+#define AFX_EXT_DATA AFX_DATA_IMPORT
+
+// processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zModel\ZCSymbolAttributesTreeCtrl.h"
+#include "zModel\PSS_SymbolAttributesTreeCtrl.h"
 
 // resources
 #include "zModelWebRes.h"
 
 // forward declaration
 class ZBPropertyAttributes;
+
+#ifdef _ZMODELWEBEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
 
 /**
 * Dialog box to select the model attributes to publish
@@ -61,9 +80,9 @@ class PSS_PublishModelAttributesDialog : public PSS_WizardDialog
             IDD = IDD_WZPUBMODEL_ATTRIBUTE
         };
 
-        ZCSymbolAttributesTreeCtrl m_Attributes;
-        ZBPropertyAttributes*      m_pPropAttributes;
-        ZBPropertySet*             m_pPropSet;
+        PSS_SymbolAttributesTreeCtrl m_Attributes;
+        ZBPropertyAttributes*        m_pPropAttributes;
+        ZBPropertySet*               m_pPropSet;
 };
 
 #endif

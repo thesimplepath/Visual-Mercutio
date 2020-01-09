@@ -7,11 +7,11 @@
 // ZVSelectSymbolAttributeDlg.h : header file
 //
 
-// ZCSymbolAttributesTreeCtrl
-#include "ZCSymbolAttributesTreeCtrl.h"
-// ZIProperties
+// processsoft
 #include "zProperty\ZIProperties.h"
+#include "PSS_SymbolAttributesTreeCtrl.h"
 
+// resources
 #include "zModelRes.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZVSelectSymbolAttributeDlg)
     enum { IDD = IDD_SYMBOLATTRIBUTE_SELECTION };
-    ZCSymbolAttributesTreeCtrl    m_AttributeTree;
+    PSS_SymbolAttributesTreeCtrl    m_AttributeTree;
     BOOL    m_SetAsDefaultToAll;
     BOOL    m_ShowLabel;
     //}}AFX_DATA

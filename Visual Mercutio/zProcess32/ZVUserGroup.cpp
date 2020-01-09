@@ -462,7 +462,7 @@ void ZVUserGroup::DisplayContextMenu(CWnd* pWnd, CPoint point)
 {
     if (::IsWindow(m_Ctrl.GetSafeHwnd()))
     {
-        m_Ctrl.DisplayContextMenu(pWnd, point);
+        m_Ctrl.ShowContextMenu(pWnd, point);
     }
 }
 

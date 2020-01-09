@@ -65,7 +65,7 @@ BOOL PSS_PublishModelAttributesDialog::OnInitDialog()
 void PSS_PublishModelAttributesDialog::OnOK()
 {
     UpdateData();
-    m_Attributes.FillCorrespondingCheckedItems();
+    m_Attributes.FillMatchingCheckedItems();
 
     PSS_WizardDialog::OnOK();
 }

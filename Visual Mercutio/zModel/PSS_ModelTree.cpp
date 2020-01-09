@@ -400,8 +400,8 @@ void PSS_ModelTree::AddSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModel
     if (!m_hRootDocument)
         return;
 
-    PSS_Symbol*     pSym     = dynamic_cast<PSS_Symbol*>(pSymbol);
-    PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pSymbol);
+    PSS_Symbol*     pSym     =               dynamic_cast<PSS_Symbol*>(pSymbol);
+    PSS_LinkSymbol* pLinkSym = pSym ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSymbol);
 
     // symbol component must exist and must be a kind of symbol or link symbol
     if (!pSym && !pLinkSym)
@@ -511,8 +511,8 @@ void PSS_ModelTree::ModifySymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphMo
     if (!m_hRootDocument)
         return;
 
-    PSS_Symbol*     pSym     = dynamic_cast<PSS_Symbol*>(pSymbol);
-    PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pSymbol);
+    PSS_Symbol*     pSym     =               dynamic_cast<PSS_Symbol*>(pSymbol);
+    PSS_LinkSymbol* pLinkSym = pSym ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSymbol);
 
     // symbol component must exist and must be a kind of symbol or link symbol
     if (!pSym && !pLinkSym)
@@ -676,8 +676,8 @@ void PSS_ModelTree::ProcessModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hPa
     for (int i = 0; i < componentCount; ++i)
     {
         CODComponent*   pComp    = pSet->GetAt(i);
-        PSS_Symbol*     pSym     = dynamic_cast<PSS_Symbol*>(pComp);
-        PSS_LinkSymbol* pLinkSym = dynamic_cast<PSS_LinkSymbol*>(pComp);
+        PSS_Symbol*     pSym     =               dynamic_cast<PSS_Symbol*>(pComp);
+        PSS_LinkSymbol* pLinkSym = pSym ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
         // is a kind of symbol?
         if (!pSym && !pLinkSym)

@@ -20,7 +20,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZCUserGroupTreeCtrl.h"
+// processsoft
+#include "PSS_UserGroupTreeCtrl.h"
+
+// resources
 #include "zModelRes.h"
 
 #ifdef _ZMODELEXPORT
@@ -101,12 +104,12 @@ private:
         IDD = IDD_USERGROUP_SELECTION
     };
 
-    PSS_UserEntity*      m_pUserEntity;
-    PSS_UserGroupEntity* m_pMainUserGroup;
-    ZCUserGroupTreeCtrl  m_Ctrl;
-    CString              m_Title;
-    bool                 m_AllowGroupSelection;
-    bool                 m_AllowRoleSelection;
+    PSS_UserEntity*       m_pUserEntity;
+    PSS_UserGroupEntity*  m_pMainUserGroup;
+    PSS_UserGroupTreeCtrl m_Ctrl;
+    CString               m_Title;
+    bool                  m_AllowGroupSelection;
+    bool                  m_AllowRoleSelection;
 };
 
 #endif

@@ -7,26 +7,22 @@
 // ZVFindSymbolExtDlg.h : header file
 //
 
-#ifdef _AFXEXT
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
-#endif
 
-
-
+// processsoft
 #include "zBaseLib\PSS_Dialog.h"
+#include "PSS_SymbolAttributesTreeCtrl.h"
+
+// resources
 #include "zModelRes.h"
 
-// ZCSymbolAttributesTreeCtrl
-#include "ZCSymbolAttributesTreeCtrl.h"
-
-/////////////////////////////////////////////////////////////////////////////
-// Forward declaration
+// forward class declaration
 class ZBPropertyAttributes;
 
 
@@ -76,13 +72,12 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZVFindSymbolExtDlg)
     enum { IDD = IDD_FIND_SYMBOL_EXT };
-    ZCSymbolAttributesTreeCtrl    m_AttributeText;
+    PSS_SymbolAttributesTreeCtrl    m_AttributeText;
     BOOL                        m_InAllModels;
     BOOL                        m_CaseSensitive;
     BOOL                        m_PartialSearch;
     CString                        m_What;
     //}}AFX_DATA
-
 
 // Overrides
     // ClassWizard generated virtual function overrides

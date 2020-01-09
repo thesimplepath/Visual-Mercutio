@@ -324,7 +324,7 @@ class AFX_EXT_CLASS PSS_PrestationsTreeCtrl : public PSS_TreeCtrl,
         * Modifies the logical prestation item
         *@param pLogicalPrestation - the logical prestation to modify
         *@param hItem - the item handle
-        *@return the newly added logical prestation item handle, NULL on error
+        *@return TRUE on success, otherwise FALSE
         */
         BOOL ModifyLogicalPrestationItem(PSS_LogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hItem);
 
