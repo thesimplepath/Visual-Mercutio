@@ -40,73 +40,122 @@ class AFX_EXT_CLASS ZDLogicalRulesDocument : public PSS_BaseDocument
 {
     DECLARE_DYNCREATE(ZDLogicalRulesDocument)
 
-public:
+    public:
+        typedef PSS_BaseDocument inherited;
 
-    // Inherited feature
-    typedef PSS_BaseDocument inherited;
+        ZDLogicalRulesDocument();
+        virtual ~ZDLogicalRulesDocument();
 
-    ZDLogicalRulesDocument();
-    ~ZDLogicalRulesDocument();
+        /**
+        * Gets the logical rules environment
+        *@return the logical rules environment
+        */
+        virtual inline PSS_LogicalRulesEntity& GetRulesEnvironment();
 
-    // Operations
-public:
+        /**
+        * Checks if the document is loaded
+        *@return true if the document is loaded, otherwise false
+        */
+        virtual inline bool IsLoaded() const;
 
-    bool ReadFromFile(const CString fileName);
-    bool SaveToFile(const CString fileName);
+        /**
+        * Sets the document as loaded
+        *@param value - if true, the document is loaded
+        */
+        virtual inline void SetLoaded(bool value = true);
 
-    PSS_LogicalRulesEntity& GetRulesEnvironment()
-    {
-        return m_RulesEnvironment;
-    }
+        /**
+        * Checks if the document is modified
+        *@return TRUE if the document is modified, otherwise FALSE
+        */
+        virtual inline virtual BOOL IsModified();
 
-    bool IsLoaded() const
-    {
-        return m_IsLoaded;
-    }
+        /**
+        * Sets the document as modified
+        *@param value - if TRUE, the document is modified
+        */
+        virtual inline void SetModifiedFlag(BOOL value = TRUE);
 
-    void SetLoaded(bool value = true)
-    {
-        m_IsLoaded = value;
-    }
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
 
-    virtual BOOL IsModified()
-    {
-        return CDocument::IsModified() || m_RulesEnvironment.IsModified();
-    }
+        /**
+        * Reads the document from a file
+        *@param fileName - the file name
+        *@return true on success, otherwise false
+        */
+        virtual bool ReadFromFile(const CString& fileName);
 
-    virtual void SetModifiedFlag(BOOL bModified = TRUE)
-    {
-        CDocument::SetModifiedFlag(bModified);
-        m_RulesEnvironment.SetModifiedFlag(bModified);
-    }
+        /**
+        * Saves the document to a file
+        *@param fileName - the file name
+        *@return true on success, otherwise false
+        */
+        virtual bool SaveToFile(const CString& fileName);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZDRulesDocument)
-public:
-    virtual void Serialize(CArchive& ar);   // overridden for document i/o
-protected:
-    virtual BOOL OnNewDocument();
-    //}}AFX_VIRTUAL
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
 
-// Implementation
-public:
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump(CDumpContext& dc) const;
-#endif
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
 
-    // Generated message map functions
-protected:
+    protected:
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_LogicalRulesDocument)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    //{{AFX_MSG(ZDRulesDocument)
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+        /**
+        * Called when a new document is created
+        */
+        virtual BOOL OnNewDocument();
 
-private:
-    PSS_LogicalRulesEntity m_RulesEnvironment;
-    CString                m_GUID;
-    bool                   m_IsLoaded;
+    private:
+        PSS_LogicalRulesEntity m_RulesEnvironment;
+        CString                m_GUID;
+        bool                   m_IsLoaded;
 };
+
+//---------------------------------------------------------------------------
+// PSS_LogicalRulesDocument
+//---------------------------------------------------------------------------
+PSS_LogicalRulesEntity& ZDLogicalRulesDocument::GetRulesEnvironment()
+{
+    return m_RulesEnvironment;
+}
+//---------------------------------------------------------------------------
+bool ZDLogicalRulesDocument::IsLoaded() const
+{
+    return m_IsLoaded;
+}
+//---------------------------------------------------------------------------
+void ZDLogicalRulesDocument::SetLoaded(bool value)
+{
+    m_IsLoaded = value;
+}
+//---------------------------------------------------------------------------
+BOOL ZDLogicalRulesDocument::IsModified()
+{
+    return (CDocument::IsModified() || m_RulesEnvironment.IsModified());
+}
+//---------------------------------------------------------------------------
+void ZDLogicalRulesDocument::SetModifiedFlag(BOOL value)
+{
+    CDocument::SetModifiedFlag(value);
+    m_RulesEnvironment.SetModifiedFlag(value);
+}
+//---------------------------------------------------------------------------
 
 #endif

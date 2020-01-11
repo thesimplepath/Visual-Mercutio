@@ -430,7 +430,7 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
 
         ZVSelectModelSymbolDlg Dlg(pRootModel,
                                    ISD_DOOR_SELECTMODEL,
-                                   Selectable_Model | Selectable_GraphPage,
+                                   g_Selectable_Model | g_Selectable_GraphPage,
                                    &rtClasses);
 
         if (Dlg.DoModal() == IDOK)

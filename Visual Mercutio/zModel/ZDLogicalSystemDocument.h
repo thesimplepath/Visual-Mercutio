@@ -35,76 +35,124 @@
 
 class AFX_EXT_CLASS ZDLogicalSystemDocument : public PSS_BaseDocument
 {
-    DECLARE_DYNCREATE( ZDLogicalSystemDocument )
+    DECLARE_DYNCREATE(ZDLogicalSystemDocument)
 
-public:
-
-    // Inherited feature
-    typedef PSS_BaseDocument inherited;
-
-    // Public constructor since not used by dynamic creation
-    ZDLogicalSystemDocument();
-    virtual ~ZDLogicalSystemDocument();
-
-// Operations
-public:
-
-    bool ReadFromFile( const CString fileName );
-    bool SaveToFile( const CString fileName );
-
-    PSS_LogicalSystemEntity& GetLogicalSystemEnvironment()
-    {
-        return m_LogicalSystemEnvironment;
-    };
-
-    bool IsLoaded() const
-    {
-        return m_IsLoaded;
-    };
-
-    void SetLoaded( bool value = true )
-    {
-        m_IsLoaded = value;
-    };
-
-    virtual BOOL IsModified()
-    {
-        return CDocument::IsModified() || m_LogicalSystemEnvironment.IsModified();
-    };
-
-    virtual void SetModifiedFlag( BOOL bModified = TRUE )
-    {
-        CDocument::SetModifiedFlag( bModified );
-        m_LogicalSystemEnvironment.SetModifiedFlag( bModified );
-    };
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZDLogicalSystemDocument)
     public:
-    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+        typedef PSS_BaseDocument inherited;
+
+        ZDLogicalSystemDocument();
+        virtual ~ZDLogicalSystemDocument();
+
+        /**
+        * Gets the logical system environment
+        *@return the logical system environment
+        */
+        virtual inline PSS_LogicalSystemEntity& GetLogicalSystemEnvironment();
+
+        /**
+        * Checks if the document is loaded
+        *@return true if the document is loaded, otherwise false
+        */
+        virtual inline bool IsLoaded() const;
+
+        /**
+        * Sets the document as loaded
+        *@param value - if true, the document is loaded
+        */
+        virtual inline void SetLoaded(bool value = true);
+
+        /**
+        * Checks if the document is modified
+        *@return TRUE if the document is modified, otherwise FALSE
+        */
+        virtual inline BOOL IsModified();
+
+        /**
+        * Sets the document as modified
+        *@param value - if TRUE, the document is modified
+        */
+        virtual inline void SetModifiedFlag(BOOL value = TRUE);
+
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
+
+        /**
+        * Reads the document from a file
+        *@param fileName - the file name
+        *@return true on success, otherwise false
+        */
+        virtual bool ReadFromFile(const CString& fileName);
+
+        /**
+        * Saves the document to a file
+        *@param fileName - the file name
+        *@return true on success, otherwise false
+        */
+        virtual bool SaveToFile(const CString& fileName);
+
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
+
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
+
     protected:
-    virtual BOOL OnNewDocument();
-    //}}AFX_VIRTUAL
+        /// Generated message map functions
+        //{{AFX_MSG(ZDLogicalSystemDocument)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-// Implementation
-public:
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
-#endif
+        /**
+        * Called when a new document is created
+        */
+        virtual BOOL OnNewDocument();
 
-// Generated message map functions
-protected:
-
-    //{{AFX_MSG(ZDLogicalSystemDocument)
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-
-private:
-    PSS_LogicalSystemEntity m_LogicalSystemEnvironment;
-    CString                 m_GUID;
-    bool                    m_IsLoaded;
+    private:
+        PSS_LogicalSystemEntity m_LogicalSystemEnvironment;
+        CString                 m_GUID;
+        bool                    m_IsLoaded;
 };
+
+//---------------------------------------------------------------------------
+// PSS_LogicalSystemDocument
+//---------------------------------------------------------------------------
+PSS_LogicalSystemEntity& ZDLogicalSystemDocument::GetLogicalSystemEnvironment()
+{
+    return m_LogicalSystemEnvironment;
+}
+//---------------------------------------------------------------------------
+bool ZDLogicalSystemDocument::IsLoaded() const
+{
+    return m_IsLoaded;
+}
+//---------------------------------------------------------------------------
+void ZDLogicalSystemDocument::SetLoaded(bool value)
+{
+    m_IsLoaded = value;
+}
+//---------------------------------------------------------------------------
+BOOL ZDLogicalSystemDocument::IsModified()
+{
+    return (CDocument::IsModified() || m_LogicalSystemEnvironment.IsModified());
+}
+//---------------------------------------------------------------------------
+void ZDLogicalSystemDocument::SetModifiedFlag(BOOL value)
+{
+    CDocument::SetModifiedFlag(value);
+    m_LogicalSystemEnvironment.SetModifiedFlag(value);
+}
+//---------------------------------------------------------------------------
 
 #endif

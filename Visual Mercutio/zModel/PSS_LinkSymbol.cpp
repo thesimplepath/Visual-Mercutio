@@ -256,6 +256,11 @@ PSS_SymbolEdit* PSS_LinkSymbol::CreateAndReplaceEditText(const CString& editName
     return ZUODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
 }
 //---------------------------------------------------------------------------
+bool PSS_LinkSymbol::CanEditNonDynamicName() const
+{
+    return false;
+}
+//---------------------------------------------------------------------------
 CString PSS_LinkSymbol::GetSymbolName() const
 {
     PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));

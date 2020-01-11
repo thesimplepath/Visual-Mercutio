@@ -154,7 +154,7 @@ void ZVSelectModelSymbolDlg::OnOK()
         }
         else
         {
-            if (m_SelectableItem & Selectable_GraphPage)
+            if (m_SelectableItem & g_Selectable_GraphPage)
             {
                 m_pSelectedPage = m_SymbolTree.GetSelectedPage();
                 m_pSelectedModel = NULL;
@@ -211,7 +211,7 @@ void ZVSelectModelSymbolDlg::OnOK()
         }
         else if (m_pSelectedSymbol && ISA(m_pSelectedSymbol, PSS_Symbol))
         {
-            if (m_SelectableItem & Selectable_Symbol)
+            if (m_SelectableItem & g_Selectable_Symbol)
             {
                 m_SymbolPath = ((PSS_Symbol*)m_pSelectedSymbol)->GetAbsolutePath();
                 m_SymbolName = ((PSS_Symbol*)m_pSelectedSymbol)->GetSymbolName();
@@ -221,7 +221,7 @@ void ZVSelectModelSymbolDlg::OnOK()
                 ISA(((PSS_Symbol*)m_pSelectedSymbol)->GetChildModel(), PSS_ProcessGraphModelMdl) &&
                 !((PSS_Symbol*)m_pSelectedSymbol)->IsChildModelRef())
             {
-                if (m_SelectableItem & Selectable_Model)
+                if (m_SelectableItem & g_Selectable_Model)
                 {
                     // Assign the model pointer
                     m_pSelectedModel = ((PSS_Symbol*)m_pSelectedSymbol)->GetChildModel();
@@ -236,7 +236,7 @@ void ZVSelectModelSymbolDlg::OnOK()
         }
         else if (m_pSelectedSymbol && ISA(m_pSelectedSymbol, PSS_LinkSymbol))
         {
-            if (m_SelectableItem & Selectable_LinkSymbol)
+            if (m_SelectableItem & g_Selectable_LinkSymbol)
             {
                 m_SymbolPath = ((PSS_LinkSymbol*)m_pSelectedSymbol)->GetAbsolutePath();
                 m_SymbolName = ((PSS_LinkSymbol*)m_pSelectedSymbol)->GetSymbolName();
@@ -275,7 +275,7 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
                 Enable = true;
             }
         }
-        else if (m_SelectableItem & Selectable_GraphPage)
+        else if (m_SelectableItem & g_Selectable_GraphPage)
         {
             Enable = true;
         }
@@ -308,7 +308,7 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
                     Enable = true;
                 }
             }
-            else if (m_SelectableItem & Selectable_Symbol)
+            else if (m_SelectableItem & g_Selectable_Symbol)
             {
                 Enable = true;
             }
@@ -321,7 +321,7 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
                 ISA(((PSS_Symbol*)pSelectedSymbol)->GetChildModel(), PSS_ProcessGraphModelMdl) &&
                 !((PSS_Symbol*)pSelectedSymbol)->IsChildModelRef())
             {
-                if (!m_pSelectableClass && (m_SelectableItem & Selectable_Model))
+                if (!m_pSelectableClass && (m_SelectableItem & g_Selectable_Model))
                 {
                     Enable = true;
                 }
@@ -346,7 +346,7 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
                     Enable = true;
                 }
             }
-            else if (m_SelectableItem & Selectable_LinkSymbol)
+            else if (m_SelectableItem & g_Selectable_LinkSymbol)
             {
                 Enable = true;
             }
@@ -358,14 +358,14 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
         {
             if (!m_pSelectableClass &&
                 m_SymbolTree.IsDocumentSelected() &&
-                (m_SelectableItem & Selectable_Document))
+                (m_SelectableItem & g_Selectable_Document))
             {
                 Enable = true;
             }
 
             if (!m_pSelectableClass &&
                 m_SymbolTree.IsRootSelected() &&
-                (m_SelectableItem & Selectable_RootModel))
+                (m_SelectableItem & g_Selectable_RootModel))
             {
                 Enable = true;
             }

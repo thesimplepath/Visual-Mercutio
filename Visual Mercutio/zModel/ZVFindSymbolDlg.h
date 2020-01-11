@@ -17,7 +17,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "ZCSymbolList.h"
+#include "PSS_SymbolListCtrl.h"
 
 // resources
 #include "zModelRes.h"
@@ -59,7 +59,7 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZVFindSymbolDlg)
     enum { IDD = IDD_FIND_SYMBOL };
-    ZCSymbolList    m_ResultList;
+    PSS_SymbolListCtrl m_ResultList;
     CString    m_SymbolName;
     BOOL    m_InAllModels;
     BOOL    m_CaseSensitive;

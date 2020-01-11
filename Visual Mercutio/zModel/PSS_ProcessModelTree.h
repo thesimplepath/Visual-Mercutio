@@ -176,6 +176,8 @@ class AFX_EXT_CLASS PSS_ProcessModelTree : public PSS_TreeCtrl
         CMenu*        m_pPopupSubMenu;
         bool          m_EnableMenuItems;
 
+        // todo FIXME -cBug -oJean: On the right symbol list, several popup menu entries, like "Add an external app...",
+        //                          doesn't work. Please check and fix
         /// Generated message map functions
         //{{AFX_MSG(PSS_ProcessModelTree)
         afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);

@@ -18,8 +18,8 @@
 // processsoft
 #include "zBaseLib\PSS_Dialog.h"
 #include "PSS_ObjectCollections.h"
-#include "ZDefinitionSelectable.h"
 #include "PSS_ProcessModelTree.h"
+#include "PSS_SelectableDefs.h"
 
 // resources
 #include "zModelRes.h"
@@ -55,7 +55,7 @@ public:
     // Standard constructor
     ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*        pModel,
                            const CString                Title = _T(""),
-                           int                            SelectableItem = Selectable_All,
+                           int                            SelectableItem = g_Selectable_All,
                            PSS_RuntimeClassSet*          pSet = NULL,
                            CWnd*                        pParent = NULL);
 
@@ -67,7 +67,7 @@ public:
 
     ZVSelectModelSymbolDlg(PSS_ProcessGraphModelMdl*        pModel,
                            UINT                        nIDResTitle,
-                           int                            SelectableItem = Selectable_All,
+                           int                            SelectableItem = g_Selectable_All,
                            PSS_RuntimeClassSet*          pSet = NULL,
                            CWnd*                        pParent = NULL);
 

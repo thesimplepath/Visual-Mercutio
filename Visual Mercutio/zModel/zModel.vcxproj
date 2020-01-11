@@ -452,7 +452,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCSymbolList.cpp">
+    <ClCompile Include="PSS_SymbolListCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -464,7 +464,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDLogicalPrestationsDocument.cpp" />
+    <ClCompile Include="PSS_LogicalPrestationsDocument.cpp" />
     <ClCompile Include="ZDLogicalRulesDocument.cpp" />
     <ClCompile Include="ZDLogicalSystemDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -811,10 +811,10 @@
     <ClInclude Include="PSS_ProcessModelTreeView.h" />
     <ClInclude Include="PSS_RulesTreeCtrl.h" />
     <ClInclude Include="PSS_SymbolAttributesTreeCtrl.h" />
-    <ClInclude Include="ZCSymbolList.h" />
+    <ClInclude Include="PSS_SymbolListCtrl.h" />
     <ClInclude Include="PSS_UserGroupTreeCtrl.h" />
-    <ClInclude Include="ZDefinitionSelectable.h" />
-    <ClInclude Include="ZDLogicalPrestationsDocument.h" />
+    <ClInclude Include="PSS_SelectableDefs.h" />
+    <ClInclude Include="PSS_LogicalPrestationsDocument.h" />
     <ClInclude Include="ZDLogicalRulesDocument.h" />
     <ClInclude Include="ZDLogicalSystemDocument.h" />
     <ClInclude Include="ZDProcessGraphPage.h" />
@@ -881,9 +881,6 @@
     <Image Include="res\ref_file.ico" />
     <Image Include="res\simulati.bmp" />
     <Image Include="res\toolbar1.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">

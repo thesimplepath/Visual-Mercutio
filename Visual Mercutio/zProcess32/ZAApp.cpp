@@ -35,7 +35,7 @@
 #include "zModel\PSS_UserGroupObserverMsg.h"
 #include "zModel\ZDLogicalSystemDocument.h"
 #include "zModel\PSS_LogicalSystemObserverMsg.h"
-#include "zModel\ZDLogicalPrestationsDocument.h"
+#include "zModel\PSS_LogicalPrestationsDocument.h"
 #include "zModel\PSS_LogicalPrestationsObserverMsg.h"
 #include "zModel\ZDLogicalRulesDocument.h"
 #include "zModel\PSS_LogicalRulesObserverMsg.h"
@@ -992,7 +992,7 @@ bool ZAApp::LoadPrestationsFile()
         delete m_pPrestationsDocument;
     }
 
-    m_pPrestationsDocument = new ZDLogicalPrestationsDocument();
+    m_pPrestationsDocument = new PSS_LogicalPrestationsDocument();
 
     if (m_pPrestationsDocument)
     {
@@ -3357,7 +3357,7 @@ void ZAApp::OnGenerateMercutioReport()
 
         ZVSelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                    IDS_MERCUTIOREP_SELECTPROCESS,
-                                   Selectable_Model | Selectable_GraphPage,
+                                   g_Selectable_Model | g_Selectable_GraphPage,
                                    &rtClasses);
 
         if (Dlg.DoModal() == IDOK)

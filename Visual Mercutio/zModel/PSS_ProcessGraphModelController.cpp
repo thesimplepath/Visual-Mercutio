@@ -3611,12 +3611,13 @@ void PSS_ProcessGraphModelController::OnUpdateEditName(CCmdUI* pCmdUI)
     // get the enable flag
     if (pSymbolHit)
         enable = (pSymbolHit->IncludeNameArea() &&
-                  pSymbolHit->UseDynamicArea()  &&
+                  pSymbolHit->UseDynamicArea() &&
                   pSymbolHit->IsNameAreaVisible());
     else
     if (pLinkSymbolHit)
-        enable = (pLinkSymbolHit->IncludeNameArea() &&
-                  pLinkSymbolHit->UseDynamicArea()  &&
+        // todo -cBug -oJean: Added CanEditNonDynamicName() as a workaround, but check why a link symbol cannot be dynamic
+        enable = (pLinkSymbolHit->IncludeNameArea()                                            &&
+                 (pLinkSymbolHit->UseDynamicArea() || pLinkSymbolHit->CanEditNonDynamicName()) &&
                   pLinkSymbolHit->IsNameAreaVisible());
 
     pCmdUI->Enable(enable);

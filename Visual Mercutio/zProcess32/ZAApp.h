@@ -54,7 +54,7 @@ class ZDUserEntityDocument;
 class PSS_UserGroupEntity;
 class ZDLogicalSystemDocument;
 class PSS_LogicalSystemEntity;
-class ZDLogicalPrestationsDocument;
+class PSS_LogicalPrestationsDocument;
 class PSS_LogicalPrestationsEntity;
 class ZDLogicalRulesDocument;
 class PSS_LogicalRulesEntity;
@@ -484,7 +484,7 @@ private:
     ZDLogicalSystemDocument*        m_pLogicalSystemDocument;
 
     // JMR-MODIF - Le 7 octobre 2005 - Ajout de la variable m_pPrestationsDocument.
-    ZDLogicalPrestationsDocument*    m_pPrestationsDocument;
+    PSS_LogicalPrestationsDocument*    m_pPrestationsDocument;
 
     // JMR-MODIF - 15 novembre 2006 - Ajout de la variable m_pRulesDocument.
     ZDLogicalRulesDocument*            m_pRulesDocument;

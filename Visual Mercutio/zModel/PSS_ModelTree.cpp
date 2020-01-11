@@ -542,7 +542,7 @@ void PSS_ModelTree::DoSelectSymbol()
 {
     CODSymbolComponent* pComp = GetSelectedSymbol();
 
-    if (pComp && ISA(pComp, PSS_Symbol))
+    if (pComp && (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol)))
     {
         // send the message
         PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_SelectElement, NULL, NULL, pComp);

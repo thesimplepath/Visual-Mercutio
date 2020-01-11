@@ -88,6 +88,12 @@ public:
     BOOL Create(int nStyle = -1, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1);
     BOOL CreateOrthogonal(int nStyle = -1, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1);
 
+    /**
+    * Check if the name may be edited even if the dynamic area aren't enabled on the symbol
+    *@return true if the name may be edited even if the dynamic area aren't enabled on the symbol, otherwise false
+    */
+    virtual bool CanEditNonDynamicName() const;
+
     // External file and external application methods
     virtual bool AcceptExtApp() const;
 

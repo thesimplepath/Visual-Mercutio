@@ -21,7 +21,7 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_ObserverMsg.h"
-#include "ZDefinitionSelectable.h"
+#include "PSS_SelectableDefs.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelMdl
@@ -266,7 +266,7 @@ public:
 
     ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                  const CString                Title = _T(""),
-                                 int                        SelectableItem = Selectable_All,
+                                 int                        SelectableItem = g_Selectable_All,
                                  bool                        EnableNavigate = true,
                                  CWnd*                        pParent = NULL);
 
@@ -278,7 +278,7 @@ public:
 
     ZVSelectSymbolFromGraphModel(PSS_ProcessGraphModelMdl*    pModel,
                                  UINT                        nIDResTitle,
-                                 int                        SelectableItem = Selectable_All,
+                                 int                        SelectableItem = g_Selectable_All,
                                  bool                        EnableNavigate = true,
                                  CWnd*                        pParent = NULL);
 

@@ -156,25 +156,25 @@ void ZVSelectSymbolFromGraphModel::CheckSymbol(CODSymbolComponent* pComp)
     }
     else
     {
-        if (m_SelectableItem & Selectable_All)
+        if (m_SelectableItem & g_Selectable_All)
         {
             m_pSelectedSymbol = pComp;
         }
-        else if (m_SelectableItem & Selectable_LinkSymbol)
+        else if (m_SelectableItem & g_Selectable_LinkSymbol)
         {
             if (pComp && ISA(pComp, PSS_LinkSymbol))
             {
                 m_pSelectedSymbol = pComp;
             }
         }
-        else if (m_SelectableItem & Selectable_Process)
+        else if (m_SelectableItem & g_Selectable_Process)
         {
             if (pComp && ISA(pComp, PSS_Symbol))
             {
                 m_pSelectedSymbol = pComp;
             }
         }
-        else if (m_SelectableItem & Selectable_Symbol)
+        else if (m_SelectableItem & g_Selectable_Symbol)
         {
             if (pComp && ISA(pComp, PSS_Symbol))
             {

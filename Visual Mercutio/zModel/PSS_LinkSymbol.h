@@ -189,6 +189,12 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         virtual PSS_SymbolEdit* CreateAndReplaceEditText(const CString& editName, CODComponent* pParent = NULL);
 
         /**
+        * Check if the name may be edited even if the dynamic area aren't enabled on the symbol
+        *@return true if the name may be edited even if the dynamic area aren't enabled on the symbol, otherwise false
+        */
+        virtual bool CanEditNonDynamicName() const;
+
+        /**
         * Gets the symbol name
         *@return the symbol name
         */

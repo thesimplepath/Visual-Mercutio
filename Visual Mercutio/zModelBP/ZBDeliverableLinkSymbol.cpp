@@ -86,7 +86,7 @@ const size_t _MaxRisksSize = 20;
 // Constructeur par défaut de l'objet.
 ZBDeliverableLinkSymbol::ZBDeliverableLinkSymbol()
 {
-    // Don't use dynamic area
+    // don't use dynamic area
     SetUseDynamicArea(false);
     CreateSymbolProperties();
 }
@@ -1754,6 +1754,11 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
     return true;
 }
 
+bool ZBDeliverableLinkSymbol::CanEditNonDynamicName() const
+{
+    return true;
+
+}
 bool ZBDeliverableLinkSymbol::AcceptExtApp() const
 {
     CODModel * pModel = const_cast<ZBDeliverableLinkSymbol*>(this)->GetRootModel();

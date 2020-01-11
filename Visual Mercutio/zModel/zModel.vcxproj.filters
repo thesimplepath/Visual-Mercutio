@@ -30,12 +30,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZCSymbolList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDLogicalPrestationsDocument.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZDLogicalRulesDocument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -357,6 +351,12 @@
     <ClCompile Include="PSS_UserGroupTreeCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_SymbolListCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_LogicalPrestationsDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -457,15 +457,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCSymbolList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDefinitionSelectable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDLogicalPrestationsDocument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZDLogicalRulesDocument.h">
@@ -795,6 +786,15 @@
     <ClInclude Include="PSS_UserGroupTreeCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PSS_SymbolListCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectableDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LogicalPrestationsDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\attrib_s.ico">
@@ -842,9 +842,6 @@
     <Image Include="res\toolbar1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="zModel.def">
