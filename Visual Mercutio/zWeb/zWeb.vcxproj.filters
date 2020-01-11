@@ -13,10 +13,6 @@
       <UniqueIdentifier>{56f4efe4-8782-48cf-ae0b-a48de4a15145}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{8a4a4c69-f57d-4fe1-8a8a-bcfe96c56cf6}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -47,9 +43,6 @@
   <ItemGroup>
     <None Include="res\ZWeb.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Uml\ZWeb.vcp">
-      <Filter>Packages</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

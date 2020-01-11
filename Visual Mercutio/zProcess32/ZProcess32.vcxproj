@@ -597,8 +597,6 @@
     <None Include="res\support_conceptor_02.htm" />
     <None Include="res\tips.htm" />
     <None Include="res\Wizard.cur" />
-    <None Include="Uml\ZProcess32.vcp" />
-    <None Include="Uml\ZProcess32.vcw" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ZProcess32.rc" />

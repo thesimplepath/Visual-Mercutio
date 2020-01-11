@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -1301,42 +1301,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
     <None Include="res\clicktoc.cur" />
     <None Include="res\cur27363.cur" />
     <None Include="res\cursor1.cur" />
     <None Include="res\SELECTOR.CUR" />
     <None Include="res\ZBaseLib.rc2" />
-    <None Include="Uml\Basic Interfaces.vcx" />
-    <None Include="Uml\Basic Views Class Diagram.vcd" />
-    <None Include="Uml\Controls Package.vcx" />
-    <None Include="Uml\Document classes.vcd" />
-    <None Include="Uml\Document.vcx" />
-    <None Include="Uml\Edit Controls Classes.vcd" />
-    <None Include="Uml\Field Repository.vcd" />
-    <None Include="Uml\Form Objects.vcd" />
-    <None Include="Uml\Frame Class Diagram.vcd" />
-    <None Include="Uml\Input Scenarios classes.vcd" />
-    <None Include="Uml\Input Scenarios.vcx" />
-    <None Include="Uml\Log Class Diagram.vcd" />
-    <None Include="Uml\Log package.vcx" />
-    <None Include="Uml\Objects.vcx" />
-    <None Include="Uml\Properties Class Diagram.vcd" />
-    <None Include="Uml\Properties Package.vcx" />
-    <None Include="Uml\Server Options.vcd" />
-    <None Include="Uml\Server.vcx" />
-    <None Include="Uml\User and Group Management.vcd" />
-    <None Include="Uml\User Package.vcx" />
-    <None Include="Uml\UserGroup Business Classes.vcd" />
-    <None Include="Uml\UserGroup Package.vcx" />
-    <None Include="Uml\Views Classes.vcd" />
-    <None Include="Uml\Views Package.vcx" />
-    <None Include="Uml\Windows Controls Classes.vcd" />
-    <None Include="Uml\Workspace Business Classes.vcd" />
-    <None Include="Uml\Workspace Control Class Diagram.vcd" />
-    <None Include="Uml\Workspace Package.vcx" />
-    <None Include="Uml\ZBaseLib.vcp" />
-    <None Include="Uml\ZBaseLib.vcw" />
     <CustomBuild Include="zBaseLib.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

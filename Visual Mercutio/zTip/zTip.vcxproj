@@ -173,7 +173,6 @@
   <ItemGroup>
     <None Include="res\tips.htm" />
     <None Include="res\ztip.rc2" />
-    <None Include="Uml\ztip.vcp" />
     <CustomBuild Include="zTip.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

@@ -13,14 +13,6 @@
       <UniqueIdentifier>{24328b1f-371a-4dee-9f00-e5022733e273}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{66d7fd57-cdec-4de5-a8a0-a80c0cf1d1fe}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{923c57a1-4674-4dfe-81e8-18be1d3fe5ef}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -622,97 +614,6 @@
     <None Include="res\ZBaseLib.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Uml\Basic Interfaces.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Controls Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Document.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Input Scenarios.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Log package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Objects.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Properties Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Server.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\User Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\UserGroup Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Views Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Workspace Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\ZBaseLib.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\ZBaseLib.vcw">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Basic Views Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Document classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Edit Controls Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Field Repository.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Form Objects.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Frame Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Input Scenarios classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Log Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Properties Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Server Options.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\User and Group Management.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\UserGroup Business Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Views Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Windows Controls Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Workspace Business Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Workspace Control Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">

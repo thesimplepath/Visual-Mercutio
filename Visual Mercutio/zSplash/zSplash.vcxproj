@@ -185,7 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zSplash.rc2" />
-    <None Include="uml\zSplash.vcp" />
     <CustomBuild Include="zSplash.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

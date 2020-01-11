@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -728,18 +728,6 @@
     <None Include="res\UML_End.sym" />
     <None Include="res\UML_Start.sym" />
     <None Include="res\zModel.rc2" />
-    <None Include="Uml\Basic Symbols Class Diagram.vcd" />
-    <None Include="Uml\Model MVC.vcd" />
-    <None Include="Uml\Model Window Control Class Diagram.vcd" />
-    <None Include="Uml\MVC Package.vcx" />
-    <None Include="Uml\Symbol Loader Class Diagram.vcd" />
-    <None Include="Uml\Symbol Package.vcx" />
-    <None Include="Uml\UserGroup Business Classes.vcd" />
-    <None Include="Uml\UserGroup Package.vcx" />
-    <None Include="Uml\UserGroup Window Controls Class Diagram.vcd" />
-    <None Include="Uml\Window Control Diagram.vcx" />
-    <None Include="Uml\zModel.vcp" />
-    <None Include="Uml\zModel.vcw" />
     <CustomBuild Include="zModel.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

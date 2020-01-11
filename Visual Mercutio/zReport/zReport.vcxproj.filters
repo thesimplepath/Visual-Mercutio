@@ -13,18 +13,6 @@
       <UniqueIdentifier>{94ad8145-7d6c-4dbb-81e7-ca75ef21f0d9}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{5a856f0e-1dce-4e15-805d-29e729ea1168}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{49e1c78a-c38c-42a1-b695-b9dc41153edd}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
-    <Filter Include="Diagrams No. 1">
-      <UniqueIdentifier>{3662c7bb-ed9b-450a-a4f2-6f996bbf1351}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -82,24 +70,6 @@
   <ItemGroup>
     <None Include="res\zReport.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Uml\IO Grid Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\MVC Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Report Generator Interfaces.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\zReport Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zReport.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zReport.vcw">
-      <Filter>Packages</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +137,6 @@
     <Image Include="check_gr.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="zReport.def">

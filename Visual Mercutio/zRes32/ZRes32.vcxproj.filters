@@ -13,10 +13,6 @@
       <UniqueIdentifier>{db9a777b-b95c-4366-a4be-6bc6b1c39334}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{ac01b823-d9a7-4e1a-bd7f-ef9aa345a836}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -141,11 +137,12 @@
     <None Include="res\ZRes32.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Uml\ZRes32.vcp">
-      <Filter>Packages</Filter>
+    <None Include="Res\Download.avi">
+      <Filter>Resource Files</Filter>
     </None>
-    <None Include="Res\Download.avi" />
-    <None Include="Res\Filemove.avi" />
+    <None Include="Res\Filemove.avi">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">

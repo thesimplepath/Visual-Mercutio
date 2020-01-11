@@ -152,7 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ZSplRes.rc2" />
-    <None Include="Uml\ZSplRes.vcp" />
     <CustomBuild Include="zSplRes.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

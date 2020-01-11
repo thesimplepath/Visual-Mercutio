@@ -186,7 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ZWeb.rc2" />
-    <None Include="Uml\ZWeb.vcp" />
     <CustomBuild Include="ZWeb.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

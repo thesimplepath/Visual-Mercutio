@@ -53,8 +53,12 @@
     <None Include="res\zModelWeb.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\Download.avi" />
-    <None Include="res\Filemove.avi" />
+    <None Include="res\Download.avi">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Filemove.avi">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zModelWeb.rc">

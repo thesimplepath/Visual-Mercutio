@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -580,14 +580,6 @@
     <None Include="res\ins_6.cur" />
     <None Include="res\ins_7.cur" />
     <None Include="res\zModelBP.rc2" />
-    <None Include="Uml\BP Log Class Diagram.vcd" />
-    <None Include="Uml\BP Model Symbol Class Diagram.vcd" />
-    <None Include="Uml\BP MVC Class Diagram.vcd" />
-    <None Include="Uml\BP Sesterce Diagram.vcd" />
-    <None Include="Uml\Combination Class Diagram.vcd" />
-    <None Include="Uml\Properties Class Diagram.vcd" />
-    <None Include="Uml\zModelBP.vcp" />
-    <None Include="Uml\zModelBP.vcw" />
     <CustomBuild Include="zModelBP.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

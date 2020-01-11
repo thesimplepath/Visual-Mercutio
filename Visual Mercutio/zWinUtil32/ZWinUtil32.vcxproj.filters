@@ -13,10 +13,6 @@
       <UniqueIdentifier>{733c445f-849c-42cd-a36b-e7a26e715cb1}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{dd7c02f8-733e-4c95-80f8-faaf4888f81f}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -344,9 +340,6 @@
     </None>
     <None Include="res\ZWinUtil32.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Uml\ZWinUtil32.vcp">
-      <Filter>Packages</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

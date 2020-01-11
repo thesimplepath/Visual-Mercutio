@@ -17,14 +17,6 @@
       <UniqueIdentifier>{1340eea3-9604-4657-be3b-e14e46d88488}</UniqueIdentifier>
       <Extensions>sym</Extensions>
     </Filter>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{a7e03bb1-b23c-42c8-9160-832a1e1549ae}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{1e451c5a-5d53-462c-ae66-077f9472ae0f}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -148,18 +140,6 @@
     </None>
     <None Include="res\Validé.sym">
       <Filter>Symbols</Filter>
-    </None>
-    <None Include="Uml\Base Symbol Interfaces Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Symbol Interfaces.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zBaseSym.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zBaseSym.vcw">
-      <Filter>Packages</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

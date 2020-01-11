@@ -13,14 +13,6 @@
       <UniqueIdentifier>{789697c8-3161-4550-bf74-2e6ea14634a7}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{3a7d99c4-e6ec-4a9f-91f0-698987a4f344}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{824c8d8c-636f-478a-8be1-751db4e369b0}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -45,24 +37,6 @@
   <ItemGroup>
     <None Include="res\zDB.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Uml\Database controls package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Database utility package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zDB.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Database controls.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Database manipulator.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\zDB.vcw">
-      <Filter>Packages</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -214,13 +214,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zWkf.rc2" />
-    <None Include="Uml\Automation Machine Objects.vcd" />
-    <None Include="Uml\Automation Machine Package.vcx" />
-    <None Include="Uml\Interfaces Package.vcx" />
-    <None Include="Uml\State Business Objects.vcd" />
-    <None Include="Uml\State Machine Package.vcx" />
-    <None Include="Uml\zWkf.vcp" />
-    <None Include="Uml\zWkf.vcw" />
     <CustomBuild Include="zWkf.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

@@ -13,10 +13,6 @@
       <UniqueIdentifier>{c186db5b-8138-4624-b6ac-201c027515e1}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{6e28fc7a-e101-4b22-a06c-6e9c9adf7a80}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -39,10 +35,9 @@
     <None Include="res\ztip.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Uml\ztip.vcp">
-      <Filter>Packages</Filter>
+    <None Include="res\tips.htm">
+      <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\tips.htm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">

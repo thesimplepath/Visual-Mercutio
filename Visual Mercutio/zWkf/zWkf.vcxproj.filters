@@ -13,18 +13,6 @@
       <UniqueIdentifier>{bf30eded-b19e-4007-953b-7bdefec5b890}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{4969f895-d790-4d7f-ba7e-a1670610b3a0}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{3c89a198-26e8-45da-b851-5d7c50489af3}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
-    <Filter Include="Diagrams No. 1">
-      <UniqueIdentifier>{1092a469-0a0e-40b6-ad91-8b169db81ef2}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -67,27 +55,6 @@
   <ItemGroup>
     <None Include="res\zWkf.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Uml\Automation Machine Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Interfaces Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\State Machine Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zWkf.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Automation Machine Objects.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\State Business Objects.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\zWkf.vcw">
-      <Filter>Packages</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

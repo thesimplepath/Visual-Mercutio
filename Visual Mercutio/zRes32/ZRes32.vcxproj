@@ -193,7 +193,6 @@
     <None Include="Res\SELECTOR.CUR" />
     <None Include="Res\taborder.cur" />
     <None Include="res\ZRes32.rc2" />
-    <None Include="Uml\ZRes32.vcp" />
     <CustomBuild Include="zRes32.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

@@ -44,7 +44,6 @@
     <None Include="res\zScty.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zScty.rc">

@@ -952,22 +952,10 @@
     <None Include="res\Wizard.cur">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Uml\ZProcess32.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\ZProcess32.vcw">
-      <Filter>Packages</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{2ec25e9f-1e33-4109-8ca8-16d03e05629c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{33f18a43-1965-4f2d-8ba1-fa0e2452410d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{9b53112d-0c6c-4eeb-9873-57b6a58e8817}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{59943ace-a00a-4d8b-a600-aa20ec36c932}</UniqueIdentifier>

@@ -151,9 +151,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="zReportBP.def">
       <Filter>Source Files</Filter>
     </CustomBuild>

@@ -19,14 +19,6 @@
       <UniqueIdentifier>{987b3182-5d4d-4567-a6f3-56a5a6ccc2e0}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{75ebcb9a-126d-466a-b2d2-32f719003346}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{b034d5bb-947a-42d1-ba47-94540063da6a}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProcGraphModelCtlrBP.cpp">
@@ -375,30 +367,6 @@
     </None>
     <None Include="res\zModelBP.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Uml\zModelBP.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zModelBP.vcw">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\BP Log Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\BP Model Symbol Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\BP MVC Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\BP Sesterce Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Combination Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Properties Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

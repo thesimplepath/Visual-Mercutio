@@ -244,12 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zReport.rc2" />
-    <None Include="Uml\IO Grid Classes.vcd" />
-    <None Include="Uml\MVC Classes.vcd" />
-    <None Include="Uml\Report Generator Interfaces.vcd" />
-    <None Include="Uml\zReport Package.vcx" />
-    <None Include="Uml\zReport.vcp" />
-    <None Include="Uml\zReport.vcw" />
     <CustomBuild Include="zReport.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
@@ -282,9 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="check_gr.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">

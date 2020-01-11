@@ -13,18 +13,6 @@
       <UniqueIdentifier>{3431547d-b07b-495d-9456-f581a13d9bac}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;sym</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{8fde0e2b-13ab-4d1f-85bc-88cba884bd45}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
-    <Filter Include="Diagrams">
-      <UniqueIdentifier>{969db81e-1b3e-4853-9810-a3a0260d26dd}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
-    <Filter Include="Diagrams No. 1">
-      <UniqueIdentifier>{396bb57b-ca6f-40cf-9498-cc16f37ecd06}</UniqueIdentifier>
-      <Extensions>vcd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -412,42 +400,6 @@
     </None>
     <None Include="res\zModel.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Uml\MVC Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Symbol Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\UserGroup Package.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Window Control Diagram.vcx">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zModel.vcp">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\zModel.vcw">
-      <Filter>Packages</Filter>
-    </None>
-    <None Include="Uml\Basic Symbols Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Model MVC.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Model Window Control Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\Symbol Loader Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\UserGroup Business Classes.vcd">
-      <Filter>Diagrams</Filter>
-    </None>
-    <None Include="Uml\UserGroup Window Controls Class Diagram.vcd">
-      <Filter>Diagrams</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

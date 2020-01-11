@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -180,12 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zDB.rc2" />
-    <None Include="Uml\Database controls package.vcx" />
-    <None Include="Uml\Database controls.vcd" />
-    <None Include="Uml\Database manipulator.vcd" />
-    <None Include="Uml\Database utility package.vcx" />
-    <None Include="Uml\zDB.vcp" />
-    <None Include="Uml\zDB.vcw" />
     <CustomBuild Include="zDB.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>

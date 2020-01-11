@@ -13,10 +13,6 @@
       <UniqueIdentifier>{844bafbc-c0c7-4a8c-a162-4d5de03523d5}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{222bbac1-7180-4fcc-8ff4-b2cfe8c707eb}</UniqueIdentifier>
-      <Extensions>vcx;vcp;vcw</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -42,9 +38,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="uml\zSplash.vcp">
-      <Filter>Packages</Filter>
-    </None>
     <None Include="res\zSplash.rc2">
       <Filter>Resource Files</Filter>
     </None>
