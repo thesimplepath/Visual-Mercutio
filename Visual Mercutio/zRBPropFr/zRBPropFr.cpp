@@ -30,7 +30,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-        {
             TRACE0("ZRBPROPFR.DLL Initializing!\n");
 
             // extension DLL one-time initialization
@@ -46,17 +45,14 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             new CDynLinkLibrary(g_zRBPropFrDLL);
 
             break;
-        }
 
         case DLL_PROCESS_DETACH:
-        {
             TRACE0("ZRBPROPFR.DLL Terminating!\n");
 
             // terminate the library before destructors are called
             AfxTermExtensionModule(g_zRBPropFrDLL);
 
             break;
-        }
     }
 
     return 1;

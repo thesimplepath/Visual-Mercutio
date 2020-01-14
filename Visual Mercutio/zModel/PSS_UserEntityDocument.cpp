@@ -1,14 +1,13 @@
 /****************************************************************************
- * ==> PSS_LogicalPrestationsDocument --------------------------------------*
+ * ==> PSS_UserEntityDocument ----------------------------------------------*
  ****************************************************************************
- * Description : Provides a logical prestations document                    *
+ * Description : Provides an user entity document                           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_LogicalPrestationsDocument.h"
+#include "PSS_UserEntityDocument.h"
 
-// processsoft
 #include "zBaseLib\PSS_GUID.h"
 
 #ifdef _DEBUG
@@ -20,43 +19,47 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_LogicalPrestationsDocument, PSS_BaseDocument)
+IMPLEMENT_DYNCREATE(PSS_UserEntityDocument, PSS_BaseDocument)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_LogicalPrestationsDocument, PSS_BaseDocument)
-    //{{AFX_MSG_MAP(PSS_LogicalPrestationsDocument)
+BEGIN_MESSAGE_MAP(PSS_UserEntityDocument, PSS_BaseDocument)
+    //{{AFX_MSG_MAP(PSS_UserEntityDocument)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_LogicalPrestationsDocument
+// PSS_UserEntityDocument
 //---------------------------------------------------------------------------
-PSS_LogicalPrestationsDocument::PSS_LogicalPrestationsDocument() :
+PSS_UserEntityDocument::PSS_UserEntityDocument() :
     PSS_BaseDocument(),
-    m_IsLoaded(false)
+    m_IsLoaded(false),
+    m_Beta1Format(false)
 {
     m_GUID = PSS_GUID::CreateNewGUID();
 }
 //---------------------------------------------------------------------------
-PSS_LogicalPrestationsDocument::~PSS_LogicalPrestationsDocument()
+PSS_UserEntityDocument::~PSS_UserEntityDocument()
 {}
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsDocument::Serialize(CArchive& ar)
+void PSS_UserEntityDocument::Serialize(CArchive& ar)
 {
-    // serialize the stamp and base information
-    PSS_BaseDocument::Serialize(ar);
+    // if not beta 1 format and the file is reading
+    if ((ar.IsLoading() && !IsBeta1Format()) || ar.IsStoring())
+        // serialize stamp and base information
+        PSS_BaseDocument::Serialize(ar);
 
-    // serialize the environement
-    m_PrestationsEnvironment.Serialize(ar);
+    // serialize the environment
+    m_UserGroupEnvironment.Serialize(ar);
 
     // if some other information to serialize, do it below
     if (ar.IsStoring())
         ar << m_GUID;
     else
+    if (!IsBeta1Format())
         ar >> m_GUID;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsDocument::ReadFromFile(const CString& fileName)
+bool PSS_UserEntityDocument::ReadFromFile(const CString& fileName)
 {
     CFile          file;
     CFileException fe;
@@ -77,12 +80,38 @@ bool PSS_LogicalPrestationsDocument::ReadFromFile(const CString& fileName)
     }
     CATCH (CArchiveException, e)
     {
-        result = false;
+        // if failed to load the file, then try to load the beta 1 format
+        m_Beta1Format = true;
     }
     END_CATCH
 
     loadArchive.Close();
     file.Close();
+
+    if (m_Beta1Format)
+    {
+        if (!file.Open(fileName, CFile::modeRead | CFile::shareDenyWrite, &fe))
+            return FALSE;
+
+        CArchive loadArchiveBeta1(&file, CArchive::load | CArchive::bNoFlushOnDelete);
+        loadArchiveBeta1.m_pDocument  = this;
+        loadArchiveBeta1.m_bForceFlat = FALSE;
+
+        TRY
+        {
+            Serialize(loadArchiveBeta1);
+            result = TRUE;
+        }
+        CATCH (CArchiveException, e)
+        {
+            result = FALSE;
+        }
+        END_CATCH
+
+        // close all files
+        loadArchiveBeta1.Close();
+        file.Close();
+    }
 
     if (result)
         SetPathName(fileName, FALSE);
@@ -92,7 +121,7 @@ bool PSS_LogicalPrestationsDocument::ReadFromFile(const CString& fileName)
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsDocument::SaveToFile(const CString& fileName)
+bool PSS_UserEntityDocument::SaveToFile(const CString& fileName)
 {
     CFile          file;
     CFileException fe;
@@ -127,20 +156,20 @@ bool PSS_LogicalPrestationsDocument::SaveToFile(const CString& fileName)
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
-    void PSS_LogicalPrestationsDocument::AssertValid() const
+    void PSS_UserEntityDocument::AssertValid() const
     {
         PSS_BaseDocument::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
-    void PSS_LogicalPrestationsDocument::Dump(CDumpContext& dc) const
+    void PSS_UserEntityDocument::Dump(CDumpContext& dc) const
     {
         PSS_BaseDocument::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------
-BOOL PSS_LogicalPrestationsDocument::OnNewDocument()
+BOOL PSS_UserEntityDocument::OnNewDocument()
 {
     ASSERT(FALSE);
     return FALSE;

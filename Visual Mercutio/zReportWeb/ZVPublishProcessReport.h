@@ -26,7 +26,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPDoorSymbol.h"

@@ -4,7 +4,7 @@
 #include "ZVSelectModelSymbolDlg.h"
 
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 #include "PSS_ModelSet.h"
 
 #include "PSS_Symbol.h"
@@ -258,10 +258,10 @@ void ZVSelectModelSymbolDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pRes
 {
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
-    bool                Enable = false;
-    CODModel*            pSelectedModel;
-    CODSymbolComponent* pSelectedSymbol;
-    ZDProcessGraphPage* pSelectedPage;
+    bool                  Enable = false;
+    CODModel*             pSelectedModel;
+    CODSymbolComponent*   pSelectedSymbol;
+    PSS_ProcessGraphPage* pSelectedPage;
 
     if (m_SymbolTree.GetSelectedPage() != NULL)
     {

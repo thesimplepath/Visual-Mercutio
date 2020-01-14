@@ -18,22 +18,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZDLogicalRulesDocument.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDLogicalSystemDocument.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDProcessGraphPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDUserEntityDocument.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUAssignDynamicAttributesToModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZUBuildGenericSymbolNewName.cpp">
@@ -345,6 +330,21 @@
     <ClCompile Include="PSS_LogicalPrestationsDocument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_LogicalRulesDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_LogicalSystemDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessGraphPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserEntityDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_AssignDynamicAttributesToModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -411,25 +411,10 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZDLogicalRulesDocument.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDLogicalSystemDocument.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDProcessGraphPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDUserEntityDocument.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="zModelLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zModelRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUAssignDynamicAttributesToModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUBuildGenericSymbolNewName.h">
@@ -745,6 +730,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_LogicalPrestationsDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LogicalRulesDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LogicalSystemDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessGraphPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserEntityDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_AssignDynamicAttributesToModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

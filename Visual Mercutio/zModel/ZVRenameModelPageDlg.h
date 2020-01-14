@@ -58,13 +58,13 @@ public:
     // Standard constructor
     ZVRenameModelPageDlg(PSS_ProcessGraphModelMdl*    pModel,
                          CStringArray*                pArrayPageName = NULL,
-                         ZDProcessGraphPage*        pPageToRename = NULL,
+                         PSS_ProcessGraphPage*        pPageToRename = NULL,
                          PSS_RuntimeClassSet*       pSet = NULL,
                          CWnd*                        pParent = NULL);
 
     CString GetPageName() const;
 
-    ZDProcessGraphPage* GetSelectedPage()
+    PSS_ProcessGraphPage* GetSelectedPage()
     {
         return m_pSelectedPage;
     };
@@ -103,8 +103,8 @@ private:
     PSS_ProcessGraphModelMdl*    m_pModel;
     CStringArray*            m_pArrayPageName;
 
-    ZDProcessGraphPage*        m_pSelectedPage;
-    ZDProcessGraphPage*        m_pPageToRename;
+    PSS_ProcessGraphPage*        m_pSelectedPage;
+    PSS_ProcessGraphPage*        m_pPageToRename;
 
     // Set of elements that can be displayed in the tree
     PSS_RuntimeClassSet*        m_pSet;

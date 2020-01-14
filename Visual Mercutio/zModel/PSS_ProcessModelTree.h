@@ -86,7 +86,7 @@ class AFX_EXT_CLASS PSS_ProcessModelTree : public PSS_TreeCtrl
         * Gets the selected page
         *@return the selected page, NULL if no selection or on error
         */
-        virtual inline ZDProcessGraphPage* GetSelectedPage();
+        virtual inline PSS_ProcessGraphPage* GetSelectedPage();
 
         /**
         * Gets the selected owner model
@@ -227,7 +227,7 @@ CODSymbolComponent* PSS_ProcessModelTree::GetSelectedSymbol()
     return m_ModelTree.GetSelectedSymbol();
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ProcessModelTree::GetSelectedPage()
+PSS_ProcessGraphPage* PSS_ProcessModelTree::GetSelectedPage()
 {
     return m_ModelTree.GetSelectedPage();
 }

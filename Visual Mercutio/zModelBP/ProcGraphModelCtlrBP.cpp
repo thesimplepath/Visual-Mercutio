@@ -15,7 +15,7 @@
 #undef _ZMODELEXPORT
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZUBuildSymbolNewName.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\ZVInsertModelNewPageDlg.h"
 #include "zModel\ZVRenameModelPageDlg.h"
 #include "zModel\ZVRenameModelPageInTreeDlg.h"
@@ -1157,7 +1157,7 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(PSS_ProcessGraphModelMd
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pModel->GetPageSet());
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not check for itself
             if (pPage->GetModel() && pPage->GetModel() != pModel)
@@ -1669,7 +1669,7 @@ void ZDProcessGraphModelControllerBP::OnInsertPage()
     if (Dlg.DoModal() == IDOK)
     {
         PSS_ProcessGraphModelMdl*    pModel = pRoot->CreateEmptyModel(Dlg.GetPageName(), Dlg.GetParentModel());
-        ZDProcessGraphPage*        pPage = pRoot->CreateNewPage(pModel, Dlg.GetPageName(), Dlg.GetParentModel());
+        PSS_ProcessGraphPage*        pPage = pRoot->CreateNewPage(pModel, Dlg.GetPageName(), Dlg.GetParentModel());
         BrowseModel(pModel, Dlg.GetParentModel());
 
         // Build the message
@@ -1701,7 +1701,7 @@ void ZDProcessGraphModelControllerBP::OnRenamePage()
 
     if (Dlg.DoModal() == IDOK)
     {
-        ZDProcessGraphPage* pPage = Dlg.GetSelectedPage();
+        PSS_ProcessGraphPage* pPage = Dlg.GetSelectedPage();
 
         if (pPage)
         {
@@ -1739,7 +1739,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
     CString NewPage = pRoot->GetValidNextPageName();
 
     // Find the current page
-    ZDProcessGraphPage* pCurrentPage = pRoot->FindModelPage( GetModel(), true );
+    PSS_ProcessGraphPage* pCurrentPage = pRoot->FindModelPage( GetModel(), true );
 
     if ( !pCurrentPage )
     {
@@ -1758,7 +1758,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
 
     if ( Dlg.DoModal() == IDOK )
     {
-        ZDProcessGraphPage* pPage = Dlg.GetSelectedPage();
+        PSS_ProcessGraphPage* pPage = Dlg.GetSelectedPage();
 
         if ( pPage )
         {
@@ -1795,7 +1795,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
     CString NewPage = pRoot->GetValidNextPageName();
 
     // Find the current page
-    ZDProcessGraphPage* pCurrentPage = pRoot->FindModelPage(GetModel(), true);
+    PSS_ProcessGraphPage* pCurrentPage = pRoot->FindModelPage(GetModel(), true);
 
     if (!pCurrentPage)
     {
@@ -1850,7 +1850,7 @@ void ZDProcessGraphModelControllerBP::OnDeletePage()
 
     if (Dlg.DoModal() == IDOK)
     {
-        ZDProcessGraphPage* pPage = Dlg.GetSelectedPage();
+        PSS_ProcessGraphPage* pPage = Dlg.GetSelectedPage();
 
         if (pPage)
         {

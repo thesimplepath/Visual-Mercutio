@@ -24,6 +24,9 @@
 #ifndef PSS_SymbolEdit
     #define PSS_SymbolEdit ZBSymbolEdit
 #endif
+#ifndef PSS_ProcessGraphPage
+    #define PSS_ProcessGraphPage ZDProcessGraphPage
+#endif
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
 #endif
@@ -31,7 +34,7 @@
 // forward class definition
 class ZBPropertyAttributes;
 class PSS_SymbolEdit;
-class ZDProcessGraphPage;
+class PSS_ProcessGraphPage;
 class PSS_UserEntity;
 class ZBDynamicProperties;
 
@@ -586,7 +589,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         *@param pPage - the page
         *@param oldName - the old name
         */
-        virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName) = 0;
+        virtual void OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName) = 0;
 
         /**
         * Called when the user entity changed

@@ -50,13 +50,13 @@ class PSS_WorkspaceEnvDocument;
 class PSS_WorkspaceEnv;
 class PSS_ProcessGraphModelDoc;
 class PSS_WorkspaceWizardTemplateManager;
-class ZDUserEntityDocument;
+class PSS_UserEntityDocument;
 class PSS_UserGroupEntity;
-class ZDLogicalSystemDocument;
+class PSS_LogicalSystemDocument;
 class PSS_LogicalSystemEntity;
 class PSS_LogicalPrestationsDocument;
 class PSS_LogicalPrestationsEntity;
-class ZDLogicalRulesDocument;
+class PSS_LogicalRulesDocument;
 class PSS_LogicalRulesEntity;
 class ZVRiskTypeContainer;
 class ZVRiskImpactContainer;
@@ -479,15 +479,15 @@ private:
 
     PSS_WorkspaceWizardTemplateManager* m_pWorkspaceTemplateManager;
 
-    ZDUserEntityDocument*            m_pUserEntityDocument;
+    PSS_UserEntityDocument*            m_pUserEntityDocument;
 
-    ZDLogicalSystemDocument*        m_pLogicalSystemDocument;
+    PSS_LogicalSystemDocument*        m_pLogicalSystemDocument;
 
     // JMR-MODIF - Le 7 octobre 2005 - Ajout de la variable m_pPrestationsDocument.
     PSS_LogicalPrestationsDocument*    m_pPrestationsDocument;
 
     // JMR-MODIF - 15 novembre 2006 - Ajout de la variable m_pRulesDocument.
-    ZDLogicalRulesDocument*            m_pRulesDocument;
+    PSS_LogicalRulesDocument*            m_pRulesDocument;
 
     // JMR-MODIF - Le 8 juillet 2007 - Ajout de la variable m_RiskTypeContainer.
     ZVRiskTypeContainer*            m_pRiskTypeContainer;

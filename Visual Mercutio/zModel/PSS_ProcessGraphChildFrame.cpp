@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelView.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -151,7 +151,7 @@ void PSS_ProcessGraphChildFrame::OnUpdateFrameTitle(BOOL addToTitle)
             // if has a page set, add the page name
             if (pModel->HasPageSet())
             {
-                ZDProcessGraphPage* pPage = pModel->FindModelPage(pModel);
+                PSS_ProcessGraphPage* pPage = pModel->FindModelPage(pModel);
 
                 if (pPage)
                     wndText += _T("[") + pPage->GetPageName() + _T("]");

@@ -9,7 +9,7 @@
 
 #include "zBaseSym\zBaseSymRes.h"
 
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
 #include "zModel\PSS_DocObserverMsg.h"

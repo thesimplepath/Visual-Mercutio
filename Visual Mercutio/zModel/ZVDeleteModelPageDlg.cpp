@@ -5,7 +5,7 @@
 #include "ZVDeleteModelPageDlg.h"
 
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 #include "PSS_ModelSet.h"
 
 #ifdef _DEBUG

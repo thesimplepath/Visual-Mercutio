@@ -1065,7 +1065,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param pPage - the page on which the name is changing
         *@param oldName - the changing old name
         */
-        virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName);
+        virtual void OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName);
 
         /**
         * Called when the user entity name changed

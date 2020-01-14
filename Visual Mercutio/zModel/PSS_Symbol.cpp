@@ -1894,7 +1894,7 @@ bool PSS_Symbol::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
 void PSS_Symbol::OnSymbolNameChanged(CODComponent& comp, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
-void PSS_Symbol::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName)
+void PSS_Symbol::OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
 void PSS_Symbol::OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName)

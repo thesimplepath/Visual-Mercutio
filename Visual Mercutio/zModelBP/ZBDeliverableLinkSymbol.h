@@ -23,7 +23,7 @@
 
 // processsoft
 #include "zMediator\PSS_Application.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "ProcGraphModelMdlBP.h"

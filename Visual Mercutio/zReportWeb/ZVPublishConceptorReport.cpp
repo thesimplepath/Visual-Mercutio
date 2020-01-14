@@ -640,7 +640,7 @@ bool ZVPublishConceptorReport::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
 
             if (pOwnerModel)
             {
-                ZDProcessGraphPage* pPage = m_pRootModel->FindModelPage(pOwnerModel, true);
+                PSS_ProcessGraphPage* pPage = m_pRootModel->FindModelPage(pOwnerModel, true);
 
                 if (pPage)
                 {
@@ -664,7 +664,7 @@ bool ZVPublishConceptorReport::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
 
             if (pOwnerModel)
             {
-                ZDProcessGraphPage* pPage = m_pRootModel->FindModelPage(pOwnerModel, true);
+                PSS_ProcessGraphPage* pPage = m_pRootModel->FindModelPage(pOwnerModel, true);
 
                 if (pPage)
                 {

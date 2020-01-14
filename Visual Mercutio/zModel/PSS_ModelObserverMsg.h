@@ -30,11 +30,14 @@
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
+#ifndef PSS_ProcessGraphPage
+    #define PSS_ProcessGraphPage ZDProcessGraphPage
+#endif
 
 // forward declarations
 class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelMdl;
-class ZDProcessGraphPage;
+class PSS_ProcessGraphPage;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -94,7 +97,7 @@ class AFX_EXT_CLASS PSS_ModelObserverMsg : public PSS_ObserverMsg
         PSS_ModelObserverMsg(IEActionType              actionType,
                              PSS_ProcessGraphModelDoc* pDoc,
                              PSS_ProcessGraphModelMdl* pModel,
-                             ZDProcessGraphPage*       pPage);
+                             PSS_ProcessGraphPage*     pPage);
 
         /**
         * Constructor
@@ -174,20 +177,20 @@ class AFX_EXT_CLASS PSS_ModelObserverMsg : public PSS_ObserverMsg
         * Gets the page
         *@return the page
         */
-        virtual inline ZDProcessGraphPage* GetPage() const;
+        virtual inline PSS_ProcessGraphPage* GetPage() const;
 
         /**
         * Sets the page
         *@param pPage - the page
         */
-        virtual inline void SetPage(ZDProcessGraphPage* pPage);
+        virtual inline void SetPage(PSS_ProcessGraphPage* pPage);
 
     private:
         PSS_ProcessGraphModelDoc* m_pDoc;
         PSS_ProcessGraphModelMdl* m_pModel;
+        PSS_ProcessGraphPage*     m_pPage;
         CODComponent*             m_pElement;
         CODComponentSet*          m_pElementSet;
-        ZDProcessGraphPage*       m_pPage;
         IEActionType              m_ActionType;
 };
 
@@ -244,12 +247,12 @@ void PSS_ModelObserverMsg::SetElementSet(CODComponentSet* pSet)
     m_pElementSet = pSet;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ModelObserverMsg::GetPage() const
+PSS_ProcessGraphPage* PSS_ModelObserverMsg::GetPage() const
 {
     return m_pPage;
 }
 //---------------------------------------------------------------------------
-void PSS_ModelObserverMsg::SetPage(ZDProcessGraphPage* pPage)
+void PSS_ModelObserverMsg::SetPage(PSS_ProcessGraphPage* pPage)
 {
     m_pPage = pPage;
 }

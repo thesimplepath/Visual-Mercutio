@@ -89,7 +89,7 @@ public:
     virtual void ReassignUnit(PSS_Log* pLog = NULL);
     virtual void ReassignSystem(PSS_Log* pLog = NULL);
 
-    virtual void NotifyDeletePage(ZDProcessGraphPage* pPage);
+    virtual void NotifyDeletePage(PSS_ProcessGraphPage* pPage);
 
     // Input attribute accessors
     bool HasInputAttributes()

@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_LogicalPrestationsDocument --------------------------------------*
+ * ==> PSS_UserEntityDocument ----------------------------------------------*
  ****************************************************************************
- * Description : Provides a logical prestations document                    *
+ * Description : Provides an user entity document                           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_LogicalPrestationsDocumentH
-#define PSS_LogicalPrestationsDocumentH
+#ifndef PSS_UserEntityDocumentH
+#define PSS_UserEntityDocumentH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_BaseDocument.h"
-#include "PSS_LogicalPrestationsEntity.h"
+#include "PSS_UserGroupEntity.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -35,24 +35,24 @@
 #endif
 
 /**
-* Logical prestations document
+* User entity document
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_LogicalPrestationsDocument : public PSS_BaseDocument
+class AFX_EXT_CLASS PSS_UserEntityDocument : public PSS_BaseDocument
 {
-    DECLARE_DYNCREATE(PSS_LogicalPrestationsDocument)
+    DECLARE_DYNCREATE(PSS_UserEntityDocument)
 
     public:
         typedef PSS_BaseDocument inherited;
 
-        PSS_LogicalPrestationsDocument();
-        virtual ~PSS_LogicalPrestationsDocument();
+        PSS_UserEntityDocument();
+        virtual ~PSS_UserEntityDocument();
 
         /**
-        * Gets the prestations environment
-        *@return the prestations environment
+        * Gets the user group environment
+        *@return the user group environment
         */
-        virtual inline PSS_LogicalPrestationsEntity& GetPrestationsEnvironment();
+        virtual inline PSS_UserGroupEntity& GetUserGroupEnvironment();
 
         /**
         * Checks if the document is loaded
@@ -68,19 +68,25 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsDocument : public PSS_BaseDocument
 
         /**
         * Checks if the document is modified
-        *@return TRUE if the document is modified, otherwise FALSE
+        *@return true if the document is modified, otherwise false
         */
         virtual inline BOOL IsModified();
 
         /**
         * Sets the document as modified
-        *@param value - if TRUE, the document is modified
+        *@param value - if true, the document is modified
         */
         virtual inline void SetModifiedFlag(BOOL value = TRUE);
 
         /**
-        * Serializes the class content to an archive
-        *@param ar - archive
+        * Checks if the document content is matching with the beta 1 version
+        *@return true if the document content is matching with the beta 1 version, otherwise false
+        */
+        virtual inline bool IsBeta1Format() const;
+
+        /**
+        * Checks if the file is an archive
+        *@return TRUE if the file is an archive, otherwise FALSE
         */
         virtual void Serialize(CArchive& ar);
 
@@ -115,7 +121,7 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsDocument : public PSS_BaseDocument
 
     protected:
         /// Generated message map functions
-        //{{AFX_MSG(PSS_LogicalPrestationsDocument)
+        //{{AFX_MSG(PSS_UserEntityDocument)
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -125,38 +131,44 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsDocument : public PSS_BaseDocument
         virtual BOOL OnNewDocument();
 
     private:
-        PSS_LogicalPrestationsEntity m_PrestationsEnvironment;
-        CString                      m_GUID;
-        bool                         m_IsLoaded;
+        PSS_UserGroupEntity m_UserGroupEnvironment;
+        CString             m_GUID;
+        bool                m_IsLoaded;
+        bool                m_Beta1Format;
 };
 
 //---------------------------------------------------------------------------
-// PSS_LogicalPrestationsDocument
+// PSS_UserEntityDocument
 //---------------------------------------------------------------------------
-PSS_LogicalPrestationsEntity& PSS_LogicalPrestationsDocument::GetPrestationsEnvironment()
+PSS_UserGroupEntity& PSS_UserEntityDocument::GetUserGroupEnvironment()
 {
-    return m_PrestationsEnvironment;
+    return m_UserGroupEnvironment;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsDocument::IsLoaded() const
+bool PSS_UserEntityDocument::IsLoaded() const
 {
     return m_IsLoaded;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsDocument::SetLoaded(bool value)
+void PSS_UserEntityDocument::SetLoaded(bool value)
 {
     m_IsLoaded = value;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_LogicalPrestationsDocument::IsModified()
+BOOL PSS_UserEntityDocument::IsModified()
 {
-    return (CDocument::IsModified() || m_PrestationsEnvironment.IsModified());
+    return (CDocument::IsModified() || m_UserGroupEnvironment.IsModified());
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsDocument::SetModifiedFlag(BOOL value)
+void PSS_UserEntityDocument::SetModifiedFlag(BOOL value)
 {
     CDocument::SetModifiedFlag(value);
-    m_PrestationsEnvironment.SetModifiedFlag(value);
+    m_UserGroupEnvironment.SetModifiedFlag(value);
+}
+//---------------------------------------------------------------------------
+bool PSS_UserEntityDocument::IsBeta1Format() const
+{
+    return m_Beta1Format;
 }
 //---------------------------------------------------------------------------
 

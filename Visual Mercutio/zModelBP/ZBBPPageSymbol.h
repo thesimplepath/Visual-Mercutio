@@ -19,12 +19,15 @@
 #include "zModel\PSS_Symbol.h"
 
 // class name mapping
+#ifndef PSS_ProcessGraphPage
+    #define PSS_ProcessGraphPage ZDProcessGraphPage
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declaration
-class ZDProcessGraphPage;
+class PSS_ProcessGraphPage;
 class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
@@ -58,7 +61,7 @@ public:
     virtual CODComponent* Dup() const;
 
     // Return the page pointer
-    ZDProcessGraphPage* GetPage()
+    PSS_ProcessGraphPage* GetPage()
     {
         return m_pPage;
     }
@@ -104,7 +107,7 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Call-back on symbols
-    virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString OldName);
+    virtual void OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString OldName);
 
     // Update mecanism for symbol change
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
@@ -240,7 +243,7 @@ protected:
 
 protected:
 
-    ZDProcessGraphPage*        m_pPage;
+    PSS_ProcessGraphPage*        m_pPage;
 
 private:
 

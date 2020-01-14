@@ -30,7 +30,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-        {
             TRACE0("ZDB.DLL Initializing!\n");
 
             // extension DLL one-time initialization
@@ -46,17 +45,14 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             new CDynLinkLibrary(g_zDBDLL);
 
             break;
-        }
 
         case DLL_PROCESS_DETACH:
-        {
             TRACE0("ZDB.DLL Terminating!\n");
 
             // terminate the library before destructors are called
             AfxTermExtensionModule(g_zDBDLL);
 
             break;
-        }
     }
 
     return 1;

@@ -39,7 +39,7 @@
 #include "ZVChooseMainDeliverable.h"
 
 // JMR-MODIF - Le 15 février 2006 - Ajout de l'en-tête pour la prise en charge des modèles de pages.
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 
 // JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
 #include "ProcGraphModelCtlrBP.h"
@@ -862,7 +862,7 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
             PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
-            for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+            for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
                 ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
@@ -944,7 +944,7 @@ int ZBBPProcessSymbol::GetDeliverablesInChildPages(CString& DeliverablesList)
             PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
-            for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+            for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
                 ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());

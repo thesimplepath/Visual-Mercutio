@@ -14,7 +14,7 @@
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 #include "PSS_ModelObserverMsg.h"
 
 #ifdef _DEBUG
@@ -58,7 +58,7 @@ PSS_ModelTree::IData::IData(PSS_LinkSymbol* pLinkSymbol) :
     m_Collapsed(false)
 {}
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData::IData(ZDProcessGraphPage* pGraphPage) :
+PSS_ModelTree::IData::IData(PSS_ProcessGraphPage* pGraphPage) :
     m_Type(IE_DT_GraphPage),
     m_pSymbol(NULL),
     m_pLinkSymbol(NULL),
@@ -228,7 +228,7 @@ PSS_ProcessGraphModelMdl* PSS_ModelTree::GetModel(HTREEITEM hItem)
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ModelTree::GetPage(HTREEITEM hItem)
+PSS_ProcessGraphPage* PSS_ModelTree::GetPage(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -254,7 +254,7 @@ PSS_ProcessGraphModelMdl* PSS_ModelTree::GetOwnerModel(HTREEITEM hItem)
             return pModel;
 
         // check if a page is selected
-        ZDProcessGraphPage* pPage = GetPage(hItem);
+        PSS_ProcessGraphPage* pPage = GetPage(hItem);
 
         // if yes, return the model
         if (pPage)
@@ -297,7 +297,7 @@ CODSymbolComponent* PSS_ModelTree::GetSelectedSymbol()
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ModelTree::GetSelectedPage()
+PSS_ProcessGraphPage* PSS_ModelTree::GetSelectedPage()
 {
     if (m_pTreeCtrl)
         return GetPage(m_pTreeCtrl->GetSelectedItem());
@@ -426,7 +426,7 @@ void PSS_ModelTree::AddSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModel
                 return;
         }
 
-        ZDProcessGraphPage* pPage = NULL;
+        PSS_ProcessGraphPage* pPage = NULL;
 
         if (pModel->GetRoot())
             pPage = pModel->GetRoot()->FindModelPage(pModel);
@@ -550,7 +550,7 @@ void PSS_ModelTree::DoSelectSymbol()
         return;
     }
 
-    ZDProcessGraphPage* pPage = GetSelectedPage();
+    PSS_ProcessGraphPage* pPage = GetSelectedPage();
 
     if (pPage)
     {
@@ -591,7 +591,7 @@ void PSS_ModelTree::OnDoubleClick()
         return;
     }
 
-    ZDProcessGraphPage* pPage = GetSelectedPage();
+    PSS_ProcessGraphPage* pPage = GetSelectedPage();
 
     if (pPage)
     {
@@ -647,7 +647,7 @@ void PSS_ModelTree::ProcessModelByPageSet(PSS_ProcessGraphModelMdl* pModel, HTRE
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             // create a root item and get the graphic model
             HTREEITEM                 hRootPage   = AddPageItem(pPage, hParentTreeItem);
@@ -812,7 +812,7 @@ HTREEITEM PSS_ModelTree::AddLinkSymbolItem(PSS_LinkSymbol* pSymbol, HTREEITEM hP
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_ModelTree::AddPageItem(ZDProcessGraphPage* pPage, HTREEITEM hParentTreeItem)
+HTREEITEM PSS_ModelTree::AddPageItem(PSS_ProcessGraphPage* pPage, HTREEITEM hParentTreeItem)
 {
     if (!pPage)
         return NULL;
@@ -853,7 +853,7 @@ BOOL PSS_ModelTree::ModifyLinkSymbolItem(PSS_LinkSymbol* pSymbol, HTREEITEM hIte
     return m_pTreeCtrl->SetItemText(hItem, (char*)((const char*)pSymbol->GetSymbolName()));
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ModelTree::ModifyPageItem(ZDProcessGraphPage* pPage, HTREEITEM hItem)
+BOOL PSS_ModelTree::ModifyPageItem(PSS_ProcessGraphPage* pPage, HTREEITEM hItem)
 {
     if (!pPage)
         return FALSE;
@@ -947,7 +947,7 @@ PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(PSS_LinkSymbol* pElement)
     return pData.release();
 }
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(ZDProcessGraphPage* pElement)
+PSS_ModelTree::IData* PSS_ModelTree::AddDataToSet(PSS_ProcessGraphPage* pElement)
 {
     std::unique_ptr<IData> pData(new IData(pElement));
     m_DataSet.Add(pData.get());
@@ -1029,7 +1029,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(PSS_LinkSymbol* pElement)
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelTree::DeleteElementFromDataSet(ZDProcessGraphPage* pElement)
+bool PSS_ModelTree::DeleteElementFromDataSet(PSS_ProcessGraphPage* pElement)
 {
     IDataIterator it(&m_DataSet);
 
@@ -1119,7 +1119,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_LinkSymbol* pEle
     return NULL;
 }
 //---------------------------------------------------------------------------
-PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(ZDProcessGraphPage* pElement)
+PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_ProcessGraphPage* pElement)
 {
     IDataIterator it(&m_DataSet);
 

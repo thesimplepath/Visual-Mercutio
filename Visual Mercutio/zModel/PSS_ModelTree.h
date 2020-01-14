@@ -29,16 +29,19 @@
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
 #endif
+#ifndef PSS_ProcessGraphPage
+    #define PSS_ProcessGraphPage ZDProcessGraphPage
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declaration
-class ZDProcessGraphPage;
 class PSS_TreeCtrl;
 class PSS_ModelSet;
 class PSS_Symbol;
 class PSS_LinkSymbol;
+class PSS_ProcessGraphPage;
 class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELEXPORT
@@ -123,7 +126,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param hItem - item handle
         *@return the page
         */
-        virtual ZDProcessGraphPage* GetPage(HTREEITEM hItem);
+        virtual PSS_ProcessGraphPage* GetPage(HTREEITEM hItem);
 
         /**
         * Gets the owner model
@@ -148,7 +151,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         * Gets the selected page
         *@return the selected page
         */
-        virtual ZDProcessGraphPage* GetSelectedPage();
+        virtual PSS_ProcessGraphPage* GetSelectedPage();
 
         /**
         * Gets the selected owner model
@@ -320,7 +323,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param hParentTreeItem - the parent tree item handle
         *@return the newly added item handle, NULL on error
         */
-        virtual HTREEITEM AddPageItem(ZDProcessGraphPage* pPage, HTREEITEM hParentTreeItem);
+        virtual HTREEITEM AddPageItem(PSS_ProcessGraphPage* pPage, HTREEITEM hParentTreeItem);
 
         /**
         * Modifies a model item
@@ -352,7 +355,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         *@param hItem - the item handle
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL ModifyPageItem(ZDProcessGraphPage* pPage, HTREEITEM hItem);
+        virtual BOOL ModifyPageItem(PSS_ProcessGraphPage* pPage, HTREEITEM hItem);
 
     private:
         /**
@@ -377,7 +380,7 @@ class AFX_EXT_CLASS PSS_ModelTree
                 IEType                    m_Type;
                 PSS_Symbol*               m_pSymbol;
                 PSS_LinkSymbol*           m_pLinkSymbol;
-                ZDProcessGraphPage*       m_pGraphPage;
+                PSS_ProcessGraphPage*     m_pGraphPage;
                 PSS_ProcessGraphModelMdl* m_pModel;
                 CString                   m_Str;
                 bool                      m_Collapsed;
@@ -400,7 +403,7 @@ class AFX_EXT_CLASS PSS_ModelTree
                 * Constructor
                 *@param pGraphPage - graphic page
                 */
-                IData(ZDProcessGraphPage* pGraphPage);
+                IData(PSS_ProcessGraphPage* pGraphPage);
 
                 /**
                 * Constructor
@@ -494,7 +497,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         */
         IData* AddDataToSet(PSS_Symbol*               pElement);
         IData* AddDataToSet(PSS_LinkSymbol*           pElement);
-        IData* AddDataToSet(ZDProcessGraphPage*       pElement);
+        IData* AddDataToSet(PSS_ProcessGraphPage*     pElement);
         IData* AddDataToSet(PSS_ProcessGraphModelMdl* pElement);
         IData* AddDataToSet(const CString&            element);
 
@@ -506,7 +509,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         bool DeleteElementFromDataSet(CODSymbolComponent*       pElement);
         bool DeleteElementFromDataSet(PSS_Symbol*               pElement);
         bool DeleteElementFromDataSet(PSS_LinkSymbol*           pElement);
-        bool DeleteElementFromDataSet(ZDProcessGraphPage*       pElement);
+        bool DeleteElementFromDataSet(PSS_ProcessGraphPage*     pElement);
         bool DeleteElementFromDataSet(PSS_ProcessGraphModelMdl* pElement);
         bool DeleteElementFromDataSet(const CString&            element);
 
@@ -518,7 +521,7 @@ class AFX_EXT_CLASS PSS_ModelTree
         IData* FindElementFromDataSet(CODSymbolComponent*       pElement);
         IData* FindElementFromDataSet(PSS_Symbol*               pElement);
         IData* FindElementFromDataSet(PSS_LinkSymbol*           pElement);
-        IData* FindElementFromDataSet(ZDProcessGraphPage*       pElement);
+        IData* FindElementFromDataSet(PSS_ProcessGraphPage*     pElement);
         IData* FindElementFromDataSet(PSS_ProcessGraphModelMdl* pElement);
         IData* FindElementFromDataSet(const CString&            element);
 };

@@ -465,20 +465,20 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_LogicalPrestationsDocument.cpp" />
-    <ClCompile Include="ZDLogicalRulesDocument.cpp" />
-    <ClCompile Include="ZDLogicalSystemDocument.cpp">
+    <ClCompile Include="PSS_LogicalRulesDocument.cpp" />
+    <ClCompile Include="PSS_LogicalSystemDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDProcessGraphPage.cpp">
+    <ClCompile Include="PSS_ProcessGraphPage.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDUserEntityDocument.cpp">
+    <ClCompile Include="PSS_UserEntityDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -490,7 +490,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUAssignDynamicAttributesToModel.cpp">
+    <ClCompile Include="PSS_AssignDynamicAttributesToModel.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -803,13 +803,13 @@
     <ClInclude Include="PSS_UserGroupTreeCtrl.h" />
     <ClInclude Include="PSS_SelectableDefs.h" />
     <ClInclude Include="PSS_LogicalPrestationsDocument.h" />
-    <ClInclude Include="ZDLogicalRulesDocument.h" />
-    <ClInclude Include="ZDLogicalSystemDocument.h" />
-    <ClInclude Include="ZDProcessGraphPage.h" />
-    <ClInclude Include="ZDUserEntityDocument.h" />
+    <ClInclude Include="PSS_LogicalRulesDocument.h" />
+    <ClInclude Include="PSS_LogicalSystemDocument.h" />
+    <ClInclude Include="PSS_ProcessGraphPage.h" />
+    <ClInclude Include="PSS_UserEntityDocument.h" />
     <ClInclude Include="zModelLib.h" />
     <ClInclude Include="zModelRes.h" />
-    <ClInclude Include="ZUAssignDynamicAttributesToModel.h" />
+    <ClInclude Include="PSS_AssignDynamicAttributesToModel.h" />
     <ClInclude Include="ZUBuildGenericSymbolNewName.h" />
     <ClInclude Include="ZUBuildSymbolNewName.h" />
     <ClInclude Include="ZUDeleteDynamicAttributesToModel.h" />

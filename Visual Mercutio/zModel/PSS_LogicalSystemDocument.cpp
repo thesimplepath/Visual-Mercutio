@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_LogicalPrestationsDocument --------------------------------------*
+ * ==> PSS_LogicalSystemDocument -------------------------------------------*
  ****************************************************************************
- * Description : Provides a logical prestations document                    *
+ * Description : Provides a logical system document                         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_LogicalPrestationsDocument.h"
+#include "PSS_LogicalSystemDocument.h"
 
 // processsoft
 #include "zBaseLib\PSS_GUID.h"
@@ -20,34 +20,34 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_LogicalPrestationsDocument, PSS_BaseDocument)
+IMPLEMENT_DYNCREATE(PSS_LogicalSystemDocument, PSS_BaseDocument)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_LogicalPrestationsDocument, PSS_BaseDocument)
-    //{{AFX_MSG_MAP(PSS_LogicalPrestationsDocument)
+BEGIN_MESSAGE_MAP(PSS_LogicalSystemDocument, PSS_BaseDocument)
+    //{{AFX_MSG_MAP(PSS_LogicalSystemDocument)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_LogicalPrestationsDocument
+// PSS_LogicalSystemDocument
 //---------------------------------------------------------------------------
-PSS_LogicalPrestationsDocument::PSS_LogicalPrestationsDocument() :
+PSS_LogicalSystemDocument::PSS_LogicalSystemDocument() :
     PSS_BaseDocument(),
     m_IsLoaded(false)
 {
     m_GUID = PSS_GUID::CreateNewGUID();
 }
 //---------------------------------------------------------------------------
-PSS_LogicalPrestationsDocument::~PSS_LogicalPrestationsDocument()
+PSS_LogicalSystemDocument::~PSS_LogicalSystemDocument()
 {}
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsDocument::Serialize(CArchive& ar)
+void PSS_LogicalSystemDocument::Serialize(CArchive& ar)
 {
-    // serialize the stamp and base information
+    // serialize stamp and base information
     PSS_BaseDocument::Serialize(ar);
 
     // serialize the environement
-    m_PrestationsEnvironment.Serialize(ar);
+    m_LogicalSystemEnvironment.Serialize(ar);
 
     // if some other information to serialize, do it below
     if (ar.IsStoring())
@@ -56,7 +56,7 @@ void PSS_LogicalPrestationsDocument::Serialize(CArchive& ar)
         ar >> m_GUID;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsDocument::ReadFromFile(const CString& fileName)
+bool PSS_LogicalSystemDocument::ReadFromFile(const CString& fileName)
 {
     CFile          file;
     CFileException fe;
@@ -92,7 +92,7 @@ bool PSS_LogicalPrestationsDocument::ReadFromFile(const CString& fileName)
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsDocument::SaveToFile(const CString& fileName)
+bool PSS_LogicalSystemDocument::SaveToFile(const CString& fileName)
 {
     CFile          file;
     CFileException fe;
@@ -127,20 +127,20 @@ bool PSS_LogicalPrestationsDocument::SaveToFile(const CString& fileName)
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
-    void PSS_LogicalPrestationsDocument::AssertValid() const
+    void PSS_LogicalSystemDocument::AssertValid() const
     {
         PSS_BaseDocument::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
-    void PSS_LogicalPrestationsDocument::Dump(CDumpContext& dc) const
+    void PSS_LogicalSystemDocument::Dump(CDumpContext& dc) const
     {
         PSS_BaseDocument::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------
-BOOL PSS_LogicalPrestationsDocument::OnNewDocument()
+BOOL PSS_LogicalSystemDocument::OnNewDocument()
 {
     ASSERT(FALSE);
     return FALSE;

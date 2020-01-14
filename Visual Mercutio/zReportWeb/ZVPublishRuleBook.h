@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 
 #include "zModelBP\ProcGraphModelMdlBP.h"
 

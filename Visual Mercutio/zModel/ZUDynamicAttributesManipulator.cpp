@@ -9,7 +9,7 @@
 #include "PSS_LinkSymbol.h"
 
 #include "ZUExtractCategoryAttributes.h"
-#include "ZUAssignDynamicAttributesToModel.h"
+#include "PSS_AssignDynamicAttributesToModel.h"
 #include "ZUReassignDynamicAttributesToModel.h"
 #include "ZUDeleteDynamicAttributesToModel.h"
 #include "ZUExtractModelAttributes.h"
@@ -47,7 +47,7 @@ bool ZUDynamicAttributesManipulator::AssignProperty(PSS_ProcessGraphModelMdl*   
                                                     ZBProperty*                pProperty,
                                                     CRuntimeClass*                pRTClass    /*= NULL*/)
 {
-    ZUAssignDynamicAttributesToModel assign(pModel, pProperty, pRTClass);
+    PSS_AssignDynamicAttributesToModel assign(pModel, pProperty, pRTClass);
     return assign.Navigate();
 }
 

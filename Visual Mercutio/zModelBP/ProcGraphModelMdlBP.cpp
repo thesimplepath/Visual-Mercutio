@@ -15,7 +15,7 @@
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 
 #include "ZBInputAttributes.h"
 #include "ZBDistributionAttributes.h"
@@ -281,7 +281,7 @@ void ZDProcessGraphModelMdlBP::MigrateProperties()
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
             if (pPage->GetModel() && pPage->GetModel() != this)
@@ -344,7 +344,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
             if (pPage->GetModel() && pPage->GetModel() != this)
@@ -355,7 +355,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
     }
 }
 
-void ZDProcessGraphModelMdlBP::NotifyDeletePage(ZDProcessGraphPage* pPage)
+void ZDProcessGraphModelMdlBP::NotifyDeletePage(PSS_ProcessGraphPage* pPage)
 {
     CODComponentSet* pSet = GetComponents();
     PSS_ProcessGraphModelMdl* pRootModel = GetRoot();
@@ -388,7 +388,7 @@ void ZDProcessGraphModelMdlBP::NotifyDeletePage(ZDProcessGraphPage* pPage)
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
             if (pPage->GetModel() && pPage->GetModel() != this)
@@ -463,7 +463,7 @@ void ZDProcessGraphModelMdlBP::ConvertDeliverables()
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
             if (pPage->GetModel() && pPage->GetModel() != this)
@@ -569,7 +569,7 @@ void ZDProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog /*= NULL*/)
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
             if (pPage->GetModel() && pPage->GetModel() != this)
@@ -622,7 +622,7 @@ void ZDProcessGraphModelMdlBP::RecalculatePageReference()
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
             if (pPage->GetModel() && pPage->GetModel() != this)
@@ -663,7 +663,7 @@ void ZDProcessGraphModelMdlBP::RecalculateDoorReference()
     {
         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
+        for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
         {
             // Do not recalculate page reference of itself
             if (pPage->GetModel() && pPage->GetModel() != this)

@@ -11,118 +11,116 @@
 #include "ZUDeleteCorruptedSymbols.h"
 
 ZUDeleteCorruptedSymbols::ZUDeleteCorruptedSymbols()
-{
-}
+{}
 
 ZUDeleteCorruptedSymbols::~ZUDeleteCorruptedSymbols()
-{
-}
+{}
 
-void ZUDeleteCorruptedSymbols::CheckModel( ZDProcessGraphModelMdlBP* m_StartRootModel )
+void ZUDeleteCorruptedSymbols::CheckModel(ZDProcessGraphModelMdlBP* m_StartRootModel)
 {
-    if ( m_StartRootModel != NULL )
+    if (m_StartRootModel != NULL)
     {
         // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
         PSS_ProcessGraphModelMdl::IProcessGraphPageSet* pSet = m_StartRootModel->GetPageSet();
 
-        if ( pSet != NULL )
+        if (pSet != NULL)
         {
-            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i( pSet );
+            PSS_ProcessGraphModelMdl::IProcessGraphPageIterator i(pSet);
 
             // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
-            for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )
+            for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
                 ZDProcessGraphModelMdlBP* m_CurModel =
-                    dynamic_cast<ZDProcessGraphModelMdlBP*>( pPage->GetModel() );
+                    dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
 
-                if ( m_CurModel != NULL )
+                if (m_CurModel != NULL)
                 {
                     // Obtient l'ensemble des symboles contenus dans le contrôleur de modèles.
                     CODComponentSet* pCompSet = m_CurModel->GetComponents();
 
-                    if ( pCompSet != NULL )
+                    if (pCompSet != NULL)
                     {
                         // On passe en revue toutes les symboles contenus dans le contrôleur de modèles.
-                        for ( int j = 0; j < pCompSet->GetSize(); ++j )
+                        for (int j = 0; j < pCompSet->GetSize(); ++j)
                         {
-                            CODComponent* pComponent = pCompSet->GetAt( j );
+                            CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une procédure.
-                            if ( pComponent && ISA( pComponent, ZBBPProcedureSymbol ) )
+                            if (pComponent && ISA(pComponent, ZBBPProcedureSymbol))
                             {
-                                ZBBPProcedureSymbol* m_Procedure = dynamic_cast<ZBBPProcedureSymbol*>( pComponent );
+                                ZBBPProcedureSymbol* m_Procedure = dynamic_cast<ZBBPProcedureSymbol*>(pComponent);
 
-                                if ( IsCorrupted( m_Procedure ) )
+                                if (IsCorrupted(m_Procedure))
                                 {
-                                    CorruptedSymbols.Add( m_Procedure );
+                                    CorruptedSymbols.Add(m_Procedure);
                                 }
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point start.
-                            if ( pComponent && ISA( pComponent, ZBBPStartSymbol ) )
+                            if (pComponent && ISA(pComponent, ZBBPStartSymbol))
                             {
-                                ZBBPStartSymbol* m_Start = dynamic_cast<ZBBPStartSymbol*>( pComponent );
+                                ZBBPStartSymbol* m_Start = dynamic_cast<ZBBPStartSymbol*>(pComponent);
 
-                                if ( IsCorrupted( m_Start ) )
+                                if (IsCorrupted(m_Start))
                                 {
-                                    CorruptedSymbols.Add( m_Start );
+                                    CorruptedSymbols.Add(m_Start);
                                 }
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point stop.
-                            if ( pComponent && ISA( pComponent, ZBBPStopSymbol ) )
+                            if (pComponent && ISA(pComponent, ZBBPStopSymbol))
                             {
-                                ZBBPStopSymbol* m_Stop = dynamic_cast<ZBBPStopSymbol*>( pComponent );
+                                ZBBPStopSymbol* m_Stop = dynamic_cast<ZBBPStopSymbol*>(pComponent);
 
-                                if ( IsCorrupted( m_Stop ) )
+                                if (IsCorrupted(m_Stop))
                                 {
-                                    CorruptedSymbols.Add( m_Stop );
+                                    CorruptedSymbols.Add(m_Stop);
                                 }
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une porte.
-                            if ( pComponent && ISA( pComponent, ZBBPDoorSymbol ) )
+                            if (pComponent && ISA(pComponent, ZBBPDoorSymbol))
                             {
-                                ZBBPDoorSymbol* m_Door = dynamic_cast<ZBBPDoorSymbol*>( pComponent );
+                                ZBBPDoorSymbol* m_Door = dynamic_cast<ZBBPDoorSymbol*>(pComponent);
 
-                                if ( IsCorrupted( m_Door ) )
+                                if (IsCorrupted(m_Door))
                                 {
-                                    CorruptedSymbols.Add( m_Door );
+                                    CorruptedSymbols.Add(m_Door);
                                 }
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un lien.
-                            if ( pComponent && ISA( pComponent, ZBDeliverableLinkSymbol ) )
+                            if (pComponent && ISA(pComponent, ZBDeliverableLinkSymbol))
                             {
                                 ZBDeliverableLinkSymbol* m_Link =
-                                    dynamic_cast<ZBDeliverableLinkSymbol*>( pComponent );
+                                    dynamic_cast<ZBDeliverableLinkSymbol*>(pComponent);
 
-                                if ( IsCorrupted( m_Link ) )
+                                if (IsCorrupted(m_Link))
                                 {
-                                    CorruptedSymbols.Add( m_Link );
+                                    CorruptedSymbols.Add(m_Link);
                                 }
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if ( pComponent && ISA( pComponent, ZBBPProcessSymbol ) )
+                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
                             {
                                 // Convertit le symbole.
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>( pComponent );
+                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
 
-                                if ( IsCorrupted( m_Process ) )
+                                if (IsCorrupted(m_Process))
                                 {
-                                    CorruptedSymbols.Add( m_Process );
+                                    CorruptedSymbols.Add(m_Process);
                                 }
                                 else
                                 {
                                     // Obtient le contrôleur de modèle du processus.
                                     ZDProcessGraphModelMdlBP* m_ChildModel =
-                                        dynamic_cast<ZDProcessGraphModelMdlBP*>( m_Process->GetModel() );
+                                        dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                     // Appel récursif à CheckModel, jusqu'à ce que toutes les pages des processus
                                     // enfants aient été visitées.
-                                    CheckModel( m_ChildModel );
+                                    CheckModel(m_ChildModel);
                                 }
                             }
                         }
@@ -134,18 +132,18 @@ void ZUDeleteCorruptedSymbols::CheckModel( ZDProcessGraphModelMdlBP* m_StartRoot
 }
 
 // Contrôle que les propriétés du symbole processus donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPProcessSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPProcessSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }
@@ -155,18 +153,18 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPProcessSymbol* m_Symbol )
 }
 
 // Contrôle que les propriétés du symbole procédure donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPProcedureSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPProcedureSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }
@@ -176,18 +174,18 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPProcedureSymbol* m_Symbol )
 }
 
 // Contrôle que les propriétés du symbole start donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPStartSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPStartSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }
@@ -197,18 +195,18 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPStartSymbol* m_Symbol )
 }
 
 // Contrôle que les propriétés du symbole stop donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPStopSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPStopSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }
@@ -218,18 +216,18 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPStopSymbol* m_Symbol )
 }
 
 // Contrôle que les propriétés du symbole porte donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPDoorSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPDoorSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }
@@ -237,14 +235,14 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPDoorSymbol* m_Symbol )
 
     // Si une porte ne peut plus retrouver son jumeau, c'est que celui-ci a été effacé.
     // Dans ce cas, le symbole est corrompu, car une porte ne peut pas exister sans jumeau.
-    if ( m_Symbol->GetTwinDoorSymbol() == NULL )
+    if (m_Symbol->GetTwinDoorSymbol() == NULL)
     {
         return TRUE;
     }
 
     // Si la porte jumelle d'un symbole contient un pointeur sur une porte qui ne correspond pas au symbole de départ,
     // alors la porte est considérée comme corrompue.
-    if ( m_Symbol->GetTwinDoorSymbol() != NULL && m_Symbol->GetTwinDoorSymbol()->GetTwinDoorSymbol() != m_Symbol )
+    if (m_Symbol->GetTwinDoorSymbol() != NULL && m_Symbol->GetTwinDoorSymbol()->GetTwinDoorSymbol() != m_Symbol)
     {
         return TRUE;
     }
@@ -253,18 +251,18 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPDoorSymbol* m_Symbol )
 }
 
 // Contrôle que les propriétés du symbole page donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPPageSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPPageSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }
@@ -272,7 +270,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPPageSymbol* m_Symbol )
 
     // Si une page ne peut plus retrouver son jumeau, c'est que celui-ci a été effacé.
     // Dans ce cas, le symbole est corrompu, car une porte ne peut pas exister sans jumeau.
-    if ( m_Symbol->GetTwinPageSymbol() == NULL )
+    if (m_Symbol->GetTwinPageSymbol() == NULL)
     {
         return TRUE;
     }
@@ -281,18 +279,18 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPPageSymbol* m_Symbol )
 }
 
 // Contrôle que les propriétés du symbole package donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPPackageSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPPackageSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }
@@ -302,18 +300,18 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBBPPackageSymbol* m_Symbol )
 }
 
 // Contrôle que les propriétés du symbole de lien donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted( ZBDeliverableLinkSymbol* m_Symbol )
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBDeliverableLinkSymbol* m_Symbol)
 {
-    if ( m_Symbol == NULL )
+    if (m_Symbol == NULL)
     {
         return FALSE;
     }
 
     // Si le symbole est une copie, il doit pouvoir retrouver son symbole original.
     // Si ce n'est pas possible, alors l'original a été effaçé, donc le symbole est corrompu.
-    if ( !m_Symbol->IsLocal() )
+    if (!m_Symbol->IsLocal())
     {
-        if ( m_Symbol->GetLocalSymbol() == NULL )
+        if (m_Symbol->GetLocalSymbol() == NULL)
         {
             return TRUE;
         }

@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_TreeCtrl.h"
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 #include "PSS_ModelObserverMsg.h"
 
 // resources

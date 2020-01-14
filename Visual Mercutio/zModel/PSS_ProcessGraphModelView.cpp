@@ -780,7 +780,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnOpenModelPage(WPARAM wParam, LPARAM
 
         if (pModelCtrl)
         {
-            ZDProcessGraphPage*       pPage = pModelMsg->GetPage();
+            PSS_ProcessGraphPage*     pPage  = pModelMsg->GetPage();
             PSS_ProcessGraphModelMdl* pModel = pModelMsg->GetModel();
 
             // if a page specified

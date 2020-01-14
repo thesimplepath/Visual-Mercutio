@@ -31,7 +31,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-        {
             TRACE0("ZWEB.DLL Initializing!\n");
 
             // extension DLL one-time initialization
@@ -47,17 +46,14 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             new CDynLinkLibrary(g_zWebDLL);
 
             break;
-        }
 
         case DLL_PROCESS_DETACH:
-        {
             TRACE0("ZWEB.DLL Terminating!\n");
 
             // terminate the library before destructors are called
             AfxTermExtensionModule(g_zWebDLL);
 
             break;
-        }
     }
 
     return 1;

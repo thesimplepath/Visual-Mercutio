@@ -10,7 +10,7 @@
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 #include "PSS_ModelSet.h"
 
 #ifdef _DEBUG
@@ -32,7 +32,7 @@ END_MESSAGE_MAP()
 
 ZVRenameModelPageDlg::ZVRenameModelPageDlg(PSS_ProcessGraphModelMdl*    pModel,
                                            CStringArray*            pArrayPageName    /*= NULL*/,
-                                           ZDProcessGraphPage*        pPageToRename    /*= NULL*/,
+                                           PSS_ProcessGraphPage*      pPageToRename    /*= NULL*/,
                                            PSS_RuntimeClassSet*        pSet            /*= NULL*/,
                                            CWnd*                    pParent            /*= NULL*/)
     : PSS_Dialog(ZVRenameModelPageDlg::IDD, TRUE, pParent),

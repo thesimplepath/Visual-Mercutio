@@ -30,7 +30,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-        {
             TRACE0("ZSPLRES.DLL Initializing!\n");
 
             // extension DLL one-time initialization
@@ -38,24 +37,21 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
                 return 0;
 
             break;
-        }
 
         case DLL_PROCESS_DETACH:
-        {
             TRACE0("ZSPLRES.DLL Terminating!\n");
 
             // terminate the library before destructors are called
             AfxTermExtensionModule(g_zSplResDLL);
 
             break;
-        }
     }
 
     return 1;
 }
 //---------------------------------------------------------------------------
 /// Exported DLL initialization is run in context of application or Regular DLL
-extern "C" void WINAPI InitZSplResDLL()   
+extern "C" void WINAPI InitZSplResDLL()
 {
     TRACE0("ZSPLRES.DLL initialization started\n");
 

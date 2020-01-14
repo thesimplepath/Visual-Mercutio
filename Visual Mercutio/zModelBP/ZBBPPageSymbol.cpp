@@ -8,7 +8,7 @@
 #include "ProcGraphModelMdlBP.h"
 #include "ProcGraphModelCtlrBP.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 
 #include "zModel\ZVInsertLinkModelPageDlg.h"
 #include "ZBBPProcessSymbol.h"
@@ -245,7 +245,7 @@ BOOL ZBBPPageSymbol::DuplicateStyleOnTwinSymbol()
     return FALSE;
 }
 
-void ZBBPPageSymbol::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString OldName)
+void ZBBPPageSymbol::OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString OldName)
 {
     if (pPage == GetPage())
     {
@@ -434,7 +434,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         CString NewPage = pRootModel->GetValidNextPageName();
 
         // Get the page of this model
-        ZDProcessGraphPage* pPageFromModel =
+        PSS_ProcessGraphPage* pPageFromModel =
             pRootModel->FindModelPage(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel), true);
 
         if (!pPageFromModel)

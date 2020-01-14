@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_LogicalPrestationsDocument --------------------------------------*
+ * ==> PSS_LogicalSystemDocument -------------------------------------------*
  ****************************************************************************
- * Description : Provides a logical prestations document                    *
+ * Description : Provides a logical system document                         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_LogicalPrestationsDocumentH
-#define PSS_LogicalPrestationsDocumentH
+#ifndef PSS_LogicalSystemDocumentH
+#define PSS_LogicalSystemDocumentH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_BaseDocument.h"
-#include "PSS_LogicalPrestationsEntity.h"
+#include "PSS_LogicalSystemEntity.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -35,24 +35,24 @@
 #endif
 
 /**
-* Logical prestations document
+* Logical system document
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_LogicalPrestationsDocument : public PSS_BaseDocument
+class AFX_EXT_CLASS PSS_LogicalSystemDocument : public PSS_BaseDocument
 {
-    DECLARE_DYNCREATE(PSS_LogicalPrestationsDocument)
+    DECLARE_DYNCREATE(PSS_LogicalSystemDocument)
 
     public:
         typedef PSS_BaseDocument inherited;
 
-        PSS_LogicalPrestationsDocument();
-        virtual ~PSS_LogicalPrestationsDocument();
+        PSS_LogicalSystemDocument();
+        virtual ~PSS_LogicalSystemDocument();
 
         /**
-        * Gets the prestations environment
-        *@return the prestations environment
+        * Gets the logical system environment
+        *@return the logical system environment
         */
-        virtual inline PSS_LogicalPrestationsEntity& GetPrestationsEnvironment();
+        virtual inline PSS_LogicalSystemEntity& GetLogicalSystemEnvironment();
 
         /**
         * Checks if the document is loaded
@@ -115,7 +115,7 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsDocument : public PSS_BaseDocument
 
     protected:
         /// Generated message map functions
-        //{{AFX_MSG(PSS_LogicalPrestationsDocument)
+        //{{AFX_MSG(PSS_LogicalSystemDocument)
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -125,38 +125,38 @@ class AFX_EXT_CLASS PSS_LogicalPrestationsDocument : public PSS_BaseDocument
         virtual BOOL OnNewDocument();
 
     private:
-        PSS_LogicalPrestationsEntity m_PrestationsEnvironment;
-        CString                      m_GUID;
-        bool                         m_IsLoaded;
+        PSS_LogicalSystemEntity m_LogicalSystemEnvironment;
+        CString                 m_GUID;
+        bool                    m_IsLoaded;
 };
 
 //---------------------------------------------------------------------------
-// PSS_LogicalPrestationsDocument
+// PSS_LogicalSystemDocument
 //---------------------------------------------------------------------------
-PSS_LogicalPrestationsEntity& PSS_LogicalPrestationsDocument::GetPrestationsEnvironment()
+PSS_LogicalSystemEntity& PSS_LogicalSystemDocument::GetLogicalSystemEnvironment()
 {
-    return m_PrestationsEnvironment;
+    return m_LogicalSystemEnvironment;
 }
 //---------------------------------------------------------------------------
-bool PSS_LogicalPrestationsDocument::IsLoaded() const
+bool PSS_LogicalSystemDocument::IsLoaded() const
 {
     return m_IsLoaded;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsDocument::SetLoaded(bool value)
+void PSS_LogicalSystemDocument::SetLoaded(bool value)
 {
     m_IsLoaded = value;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_LogicalPrestationsDocument::IsModified()
+BOOL PSS_LogicalSystemDocument::IsModified()
 {
-    return (CDocument::IsModified() || m_PrestationsEnvironment.IsModified());
+    return (CDocument::IsModified() || m_LogicalSystemEnvironment.IsModified());
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalPrestationsDocument::SetModifiedFlag(BOOL value)
+void PSS_LogicalSystemDocument::SetModifiedFlag(BOOL value)
 {
     CDocument::SetModifiedFlag(value);
-    m_PrestationsEnvironment.SetModifiedFlag(value);
+    m_LogicalSystemEnvironment.SetModifiedFlag(value);
 }
 //---------------------------------------------------------------------------
 

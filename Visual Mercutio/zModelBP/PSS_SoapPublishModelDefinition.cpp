@@ -80,7 +80,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(PSS_Symbol*        
     PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pSet);
 
     // iterate through model controller children pages
-    for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+    for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
     {
         // get page model
         ZDProcessGraphModelMdlBP* pPageModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());

@@ -30,7 +30,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-        {
             TRACE0("ZSOAP.DLL Initializing!\n");
 
             // extension DLL one-time initialization
@@ -46,17 +45,14 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             new CDynLinkLibrary(g_zSOAPDLL);
 
             break;
-        }
 
         case DLL_PROCESS_DETACH:
-        {
             TRACE0("ZSOAP.DLL Terminating!\n");
 
             // terminate the library before destructors are called
             AfxTermExtensionModule(g_zSOAPDLL);
 
             break;
-        }
     }
 
     return 1;

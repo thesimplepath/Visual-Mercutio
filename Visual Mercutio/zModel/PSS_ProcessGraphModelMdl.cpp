@@ -17,7 +17,7 @@
 #include "PSS_ProcessGraphModelController.h"
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelViewport.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 #include "PSS_LanguageProperties.h"
@@ -165,7 +165,7 @@ void PSS_ProcessGraphModelMdl::DeleteModelSet()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pPage->GetModel());
 
@@ -199,7 +199,7 @@ void PSS_ProcessGraphModelMdl::DeleteModelSet()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pModel = pPage->GetModel();
 
@@ -256,7 +256,7 @@ void PSS_ProcessGraphModelMdl::DetachAllObserversInHierarchy(PSS_ProcessGraphMod
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pModel = pPage->GetModel();
 
@@ -612,13 +612,13 @@ PSS_ProcessGraphModelMdl::IProcessGraphPageSet* PSS_ProcessGraphModelMdl::Alloca
     return m_pPageSet;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ProcessGraphModelMdl::GetRootMainModelPage()
+PSS_ProcessGraphPage* PSS_ProcessGraphModelMdl::GetRootMainModelPage()
 {
     IProcessGraphPageSet* pPageSet = GetMainPageSet();
     return (pPageSet && pPageSet->GetSize() > 0 ? pPageSet->GetAt(0) : NULL);
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::SetRootMainModelPage(ZDProcessGraphPage* pPage)
+void PSS_ProcessGraphModelMdl::SetRootMainModelPage(PSS_ProcessGraphPage* pPage)
 {
     IProcessGraphPageSet* pSet = GetMainPageSet();
 
@@ -629,13 +629,13 @@ void PSS_ProcessGraphModelMdl::SetRootMainModelPage(ZDProcessGraphPage* pPage)
             pSet->Add(pPage);
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ProcessGraphModelMdl::GetMainModelPage()
+PSS_ProcessGraphPage* PSS_ProcessGraphModelMdl::GetMainModelPage()
 {
     IProcessGraphPageSet* pPageSet = GetPageSet();
     return (pPageSet && pPageSet->GetSize() > 0 ? pPageSet->GetAt(0) : NULL);
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::SetMainModelPage(ZDProcessGraphPage* pPage)
+void PSS_ProcessGraphModelMdl::SetMainModelPage(PSS_ProcessGraphPage* pPage)
 {
     IProcessGraphPageSet* pSet = GetPageSet();
 
@@ -646,13 +646,13 @@ void PSS_ProcessGraphModelMdl::SetMainModelPage(ZDProcessGraphPage* pPage)
             pSet->Add(pPage);
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(const CString& modelName, bool inSubModel)
+PSS_ProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(const CString& modelName, bool inSubModel)
 {
     if (m_pPageSet)
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pModel = pPage->GetModel();
 
@@ -681,7 +681,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(const CString& model
             if (pChildModel && pChildModel->HasPageSet())
             {
                 // recursively call the same method
-                ZDProcessGraphPage* pPage = pChildModel->FindModelPage(modelName, inSubModel);
+                PSS_ProcessGraphPage* pPage = pChildModel->FindModelPage(modelName, inSubModel);
 
                 if (pPage)
                     return pPage;
@@ -693,13 +693,13 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(const CString& model
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(PSS_ProcessGraphModelMdl* pModel, bool inSubModel)
+PSS_ProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(PSS_ProcessGraphModelMdl* pModel, bool inSubModel)
 {
     if (m_pPageSet)
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -709,7 +709,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(PSS_ProcessGraphMode
             // do not check for itself
             if (pPageModel && pPageModel != this)
             {
-                ZDProcessGraphPage* pSubPage = pPageModel->FindModelPage(pModel, inSubModel);
+                PSS_ProcessGraphPage* pSubPage = pPageModel->FindModelPage(pModel, inSubModel);
 
                 if (pSubPage)
                     return pSubPage;
@@ -733,7 +733,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(PSS_ProcessGraphMode
             if (pChildModel && pChildModel->HasPageSet())
             {
                 // recursively call the same method
-                ZDProcessGraphPage* pPage = pChildModel->FindModelPage(pModel, inSubModel);
+                PSS_ProcessGraphPage* pPage = pChildModel->FindModelPage(pModel, inSubModel);
 
                 if (pPage)
                     return pPage;
@@ -745,13 +745,13 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindModelPage(PSS_ProcessGraphMode
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindPage(const CString& pageName)
+PSS_ProcessGraphPage* PSS_ProcessGraphModelMdl::FindPage(const CString& pageName)
 {
     if (m_pPageSet)
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             // if the right page was found
             if (pPage->GetPageName() == pageName)
@@ -762,7 +762,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindPage(const CString& pageName)
             // do not process the same model
             if (pModel && pModel != this)
             {
-                ZDProcessGraphPage* pChildPage = pModel->FindPage(pageName);
+                PSS_ProcessGraphPage* pChildPage = pModel->FindPage(pageName);
 
                 if (pChildPage)
                     return pChildPage;
@@ -786,7 +786,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::FindPage(const CString& pageName)
             if (pModel && pModel->HasPageSet())
             {
                 // recursively call the same method
-                ZDProcessGraphPage* pPage = pModel->FindPage(pageName);
+                PSS_ProcessGraphPage* pPage = pModel->FindPage(pageName);
 
                 if (pPage)
                     return pPage;
@@ -803,9 +803,9 @@ bool PSS_ProcessGraphModelMdl::PageExist(const CString& pageName)
     return FindPage(pageName);
 }
 //---------------------------------------------------------------------------
-ZDProcessGraphPage* PSS_ProcessGraphModelMdl::CreateNewPage(PSS_ProcessGraphModelMdl* pModel,
-                                                            const CString&            pageName,
-                                                            PSS_ProcessGraphModelMdl* pInModel)
+PSS_ProcessGraphPage* PSS_ProcessGraphModelMdl::CreateNewPage(PSS_ProcessGraphModelMdl* pModel,
+                                                              const CString&            pageName,
+                                                              PSS_ProcessGraphModelMdl* pInModel)
 {
     m_BgFlag = TRUE;
 
@@ -829,7 +829,7 @@ ZDProcessGraphPage* PSS_ProcessGraphModelMdl::CreateNewPage(PSS_ProcessGraphMode
     if (name.IsEmpty())
         name = GetRoot()->GetValidNextPageName();
 
-    std::unique_ptr<ZDProcessGraphPage> pNewPage(new ZDProcessGraphPage(name, pModel));
+    std::unique_ptr<PSS_ProcessGraphPage> pNewPage(new PSS_ProcessGraphPage(name, pModel));
     pSet->Add(pNewPage.get());
 
     return pNewPage.release();
@@ -914,7 +914,7 @@ bool PSS_ProcessGraphModelMdl::DeletePage(const CString& pageName, bool deleteMo
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             TRACE(_T("Page checked for delete : "));
             TRACE(pPage->GetPageName());
@@ -951,16 +951,16 @@ bool PSS_ProcessGraphModelMdl::DeletePage(const CString& pageName, bool deleteMo
     return false;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::NotifyDeletePage(ZDProcessGraphPage* pPage)
+void PSS_ProcessGraphModelMdl::NotifyDeletePage(PSS_ProcessGraphPage* pPage)
 {}
 //---------------------------------------------------------------------------
-PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetOwnerPageModel(ZDProcessGraphPage* pLookForPage)
+PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetOwnerPageModel(PSS_ProcessGraphPage* pLookForPage)
 {
     if (m_pPageSet)
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
             if (pPage && pPage == pLookForPage)
                 return this;
     }
@@ -1030,7 +1030,7 @@ void PSS_ProcessGraphModelMdl::PropagateNewSymbolAttributes(ZBPropertyAttributes
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1078,7 +1078,7 @@ void PSS_ProcessGraphModelMdl::RefreshSymbolAttributes(bool redraw)
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1299,7 +1299,7 @@ void PSS_ProcessGraphModelMdl::ClearPath()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1355,7 +1355,7 @@ void PSS_ProcessGraphModelMdl::CalculateAbsolutePath()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1403,7 +1403,7 @@ bool PSS_ProcessGraphModelMdl::SymbolNameAlreadyAllocated(const CString& symbolN
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1455,7 +1455,7 @@ bool PSS_ProcessGraphModelMdl::ReferenceNumberAlreadyAllocated(int refNumber)
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1535,7 +1535,7 @@ bool PSS_ProcessGraphModelMdl::AcceptVisitor(PSS_BasicSymbolVisitor& visitor)
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1598,7 +1598,7 @@ void PSS_ProcessGraphModelMdl::RecalculateParent()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1641,7 +1641,7 @@ void PSS_ProcessGraphModelMdl::RecalculateChildModel()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1709,7 +1709,7 @@ void PSS_ProcessGraphModelMdl::RecalculateReference()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1758,7 +1758,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetSymbolModel(PSS_Symbol* p
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -1813,7 +1813,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetLinkSymbolModel(PSS_LinkS
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2079,7 +2079,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::FindModel(const CString&    
             IProcessGraphPageIterator it(pSet);
 
             // iterate through the children pages contained in the model controller
-            for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+            for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
             {
                 // get the current page model controller
                 PSS_ProcessGraphModelMdl* pCurModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pPage->GetModel());
@@ -2430,7 +2430,7 @@ void PSS_ProcessGraphModelMdl::OnSymbolNameChanged(CODComponent& comp, const CSt
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2442,7 +2442,7 @@ void PSS_ProcessGraphModelMdl::OnSymbolNameChanged(CODComponent& comp, const CSt
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName)
+void PSS_ProcessGraphModelMdl::OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName)
 {
     CODComponentSet* pSet           = GetComponents();
     const int        componentCount = pSet->GetSize();
@@ -2472,7 +2472,7 @@ void PSS_ProcessGraphModelMdl::OnPageNameChanged(ZDProcessGraphPage* pPage, cons
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pGraphPage = it.GetFirst(); pGraphPage; pGraphPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pGraphPage = it.GetFirst(); pGraphPage; pGraphPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2514,7 +2514,7 @@ void PSS_ProcessGraphModelMdl::OnUserEntityChanged(PSS_UserEntity* pUserEntity, 
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2551,7 +2551,7 @@ bool PSS_ProcessGraphModelMdl::DeleteAllPages()
     {
         IProcessGraphPageIterator it(m_pPageSet);
 
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2574,7 +2574,7 @@ bool PSS_ProcessGraphModelMdl::DeleteAllPageInSet()
 
     IProcessGraphPageIterator it(m_pPageSet);
 
-    for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+    for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         delete pPage;
 
     // remove all elements
@@ -2598,7 +2598,7 @@ void PSS_ProcessGraphModelMdl::SerializePageSet(CArchive& ar)
             // serialize the item count
             ar << m_pPageSet->GetSize();
 
-            for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+            for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
             {
                 ar << pPage->GetPageName();
 
@@ -2653,7 +2653,7 @@ void PSS_ProcessGraphModelMdl::SerializePageSet(CArchive& ar)
 
                         if (pModelFound)
                         {
-                            std::unique_ptr<ZDProcessGraphPage> pPage(new ZDProcessGraphPage(pageName, pModelFound));
+                            std::unique_ptr<PSS_ProcessGraphPage> pPage(new PSS_ProcessGraphPage(pageName, pModelFound));
                             m_pPageSet->Add(pPage.get());
                             pPage.release();
                         }
@@ -2837,7 +2837,7 @@ std::size_t PSS_ProcessGraphModelMdl::GetSymbolsISA(CODNodeArray&        nodes,
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages, if exists
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2883,7 +2883,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPvt(CODComponent* pCompToFi
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2932,7 +2932,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPvt(CODModel* pModel, bool 
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -2996,7 +2996,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPvt(const CString& name,
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3057,7 +3057,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolFromPathPvt(const CString& 
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3109,7 +3109,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolByRefNumberPvt(int refNumbe
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3196,7 +3196,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPartialNamePvt(const CStrin
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3273,7 +3273,7 @@ void PSS_ProcessGraphModelMdl::FindPvt(const CString&        argument,
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3316,7 +3316,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::FindModelFromPathPvt(const C
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3381,7 +3381,7 @@ void PSS_ProcessGraphModelMdl::SetBackgroundComponentToAll(CODComponent& bgComp,
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3429,7 +3429,7 @@ void PSS_ProcessGraphModelMdl::ClearBackgroundComponentToAll()
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 
@@ -3495,7 +3495,7 @@ void PSS_ProcessGraphModelMdl::GetExistingPageNameArray(CStringArray& pageArray)
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             // if a page exists
             if (pPage)
@@ -3549,7 +3549,7 @@ int PSS_ProcessGraphModelMdl::GetNextAvailableRefNb(PSS_ProcessGraphModelMdl* pR
     IProcessGraphPageIterator it(pSet);
 
     // iterate through the model controller children pages
-    for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+    for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
     {
         // get the model controller current page
         PSS_ProcessGraphModelMdl* pCurModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pPage->GetModel());
@@ -3639,7 +3639,7 @@ void PSS_ProcessGraphModelMdl::GetExistingReferenceNumberArray(CStringArray& ref
         IProcessGraphPageIterator it(m_pPageSet);
 
         // iterate through all pages
-        for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+        for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 

@@ -4,7 +4,7 @@
 #include "ZVInsertModelNewPageDlg.h"
 
 #include "PSS_ProcessGraphModelMdl.h"
-#include "ZDProcessGraphPage.h"
+#include "PSS_ProcessGraphPage.h"
 #include "PSS_ModelSet.h"
 #include "PSS_Symbol.h"
 #include "zBaseLib\PSS_MsgBox.h"

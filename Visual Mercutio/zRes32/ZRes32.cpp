@@ -30,7 +30,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-        {
             TRACE0("ZRES32.DLL Initializing!\n");
 
             // extension DLL one-time initialization
@@ -38,17 +37,14 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
                 return 0;
 
             break;
-        }
 
         case DLL_PROCESS_DETACH:
-        {
             TRACE0("ZRES32.DLL Terminating!\n");
 
             // terminate the library before destructors are called
             AfxTermExtensionModule(g_zRes32DLL);
 
             break;
-        }
     }
 
     return 1;

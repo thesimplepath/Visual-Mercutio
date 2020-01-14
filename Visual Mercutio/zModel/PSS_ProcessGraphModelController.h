@@ -35,13 +35,16 @@
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
+#ifndef PSS_ProcessGraphPage
+    #define PSS_ProcessGraphPage ZDProcessGraphPage
+#endif
 
 // forward class definition
 class PSS_ProcessGraphModelViewport;
 class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelMdl;
-class ZDProcessGraphPage;
+class PSS_ProcessGraphPage;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -136,7 +139,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         *@param pPage - the page to open
         *@return the viewport, NULL on error
         */
-        virtual PSS_ProcessGraphModelViewport* OpenPage(ZDProcessGraphPage* pPage);
+        virtual PSS_ProcessGraphModelViewport* OpenPage(PSS_ProcessGraphPage* pPage);
 
         /**
         * Opens a symbol

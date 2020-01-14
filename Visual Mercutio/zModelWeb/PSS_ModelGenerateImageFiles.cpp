@@ -17,7 +17,7 @@
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\ZUExtractModelUnitGroupAssigned.h"
 #include "zModel\ZUExtractModelLogicalSystemAssigned.h"
 #include "zModel\ZUExtractModelLogicalPrestationsAssigned.h"
@@ -197,7 +197,7 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(PSS_Symbol* pSymbol)
             PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pPageSet);
 
             // iterate through pages to process
-            for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+            for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
             {
                 // get the page model
                 PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
@@ -775,7 +775,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                     if (pSubModel->GetPageSet())
                     {
                         PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pSubModel->GetPageSet());
-                        ZDProcessGraphPage*                                 pPage = it.GetFirst();
+                        PSS_ProcessGraphPage*                               pPage = it.GetFirst();
 
                         // skip the first page and iterate through the remaining ones
                         if (pPage)
@@ -1027,7 +1027,7 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
             PSS_ProcessGraphModelMdl::IProcessGraphPageIterator it(pModel->GetPageSet());
 
             // iterate through all pages if there are
-            for (ZDProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
+            for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
                 if (pPage->GetModel())
                 {
                     // get page model

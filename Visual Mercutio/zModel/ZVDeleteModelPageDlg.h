@@ -54,7 +54,7 @@ public:
     ZVDeleteModelPageDlg(PSS_ProcessGraphModelMdl* pModel, PSS_RuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);
 
     CString    GetPageName() const;
-    ZDProcessGraphPage* GetSelectedPage()
+    PSS_ProcessGraphPage* GetSelectedPage()
     {
         return m_pSelectedPage;
     };
@@ -90,8 +90,8 @@ private:
 
 // Implementation
 private:
-    ZDProcessGraphPage* m_pSelectedPage;
-    ZDProcessGraphPage* m_pRootPage;
+    PSS_ProcessGraphPage* m_pSelectedPage;
+    PSS_ProcessGraphPage* m_pRootPage;
     // Set of elements that can be displayed in the tree
     PSS_RuntimeClassSet* m_pSet;
 };

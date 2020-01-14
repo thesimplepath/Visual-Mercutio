@@ -32,7 +32,7 @@
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_LogicalPrestationsEntity.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"

@@ -52,6 +52,9 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_ProcessGraphPage
+    #define PSS_ProcessGraphPage ZDProcessGraphPage
+#endif
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
 #endif
@@ -82,7 +85,7 @@ class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelViewport;
 class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelController;
-class ZDProcessGraphPage;
+class PSS_ProcessGraphPage;
 class ZBPropertyAttributes;
 class PSS_UserEntity;
 class PSS_UserGroupEntity;
@@ -115,8 +118,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
     DECLARE_SERIAL(PSS_ProcessGraphModelMdl)
 
     public:
-        typedef CCArray_T<ZDProcessGraphPage*, ZDProcessGraphPage*> IProcessGraphPageSet;
-        typedef Iterator_T<ZDProcessGraphPage*>                     IProcessGraphPageIterator;
+        typedef CCArray_T <PSS_ProcessGraphPage*, PSS_ProcessGraphPage*> IProcessGraphPageSet;
+        typedef Iterator_T<PSS_ProcessGraphPage*>                        IProcessGraphPageIterator;
 
         /**
         * Constructor
@@ -520,25 +523,25 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         * Gets the root main model page
         *@return the root main model page, NULL on error
         */
-        virtual ZDProcessGraphPage* GetRootMainModelPage();
+        virtual PSS_ProcessGraphPage* GetRootMainModelPage();
 
         /**
         * Gets the root main model page
         *@param pPage - the root main model page
         */
-        virtual void SetRootMainModelPage(ZDProcessGraphPage* pPage);
+        virtual void SetRootMainModelPage(PSS_ProcessGraphPage* pPage);
 
         /**
         * Gets the main model page
         *@return the main model page, NULL on error
         */
-        virtual ZDProcessGraphPage* GetMainModelPage();
+        virtual PSS_ProcessGraphPage* GetMainModelPage();
 
         /**
         * Sets the main model page
         *@param pPage - the main model page
         */
-        virtual void SetMainModelPage(ZDProcessGraphPage* pPage);
+        virtual void SetMainModelPage(PSS_ProcessGraphPage* pPage);
 
         /**
         * Finds the model page
@@ -546,7 +549,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param inSubModel - if true, the search should be extended to sub-models
         *@return the model page, NULL if not found or on error
         */
-        virtual ZDProcessGraphPage* FindModelPage(const CString& modelName, bool inSubModel = false);
+        virtual PSS_ProcessGraphPage* FindModelPage(const CString& modelName, bool inSubModel = false);
 
         /**
         * Finds the model page
@@ -554,14 +557,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param inSubModel - if true, the search should be extended to sub-models
         *@return the model page, NULL if not found or on error
         */
-        virtual ZDProcessGraphPage* FindModelPage(PSS_ProcessGraphModelMdl* pModel, bool inSubModel = false);
+        virtual PSS_ProcessGraphPage* FindModelPage(PSS_ProcessGraphModelMdl* pModel, bool inSubModel = false);
 
         /**
         * Finds the page
         *@param pageName - the page name to search
         *@return the page, NULL if not found or on error
         */
-        virtual ZDProcessGraphPage* FindPage(const CString& pageName);
+        virtual PSS_ProcessGraphPage* FindPage(const CString& pageName);
 
         /**
         * Checks if a page exists
@@ -577,9 +580,9 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pInModel - in model
         *@return the newly created page, NULL on error
         */
-        virtual ZDProcessGraphPage* CreateNewPage(PSS_ProcessGraphModelMdl* pModel,
-                                                  const CString&            pageName = _T(""),
-                                                  PSS_ProcessGraphModelMdl* pInModel = NULL);
+        virtual PSS_ProcessGraphPage* CreateNewPage(PSS_ProcessGraphModelMdl* pModel,
+                                                    const CString&            pageName = _T(""),
+                                                    PSS_ProcessGraphModelMdl* pInModel = NULL);
 
         /**
         * Gets the valid next page name
@@ -605,14 +608,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         * Notifies about the page deletion
         *@param pPage - the deleting page
         */
-        virtual void NotifyDeletePage(ZDProcessGraphPage* pPage);
+        virtual void NotifyDeletePage(PSS_ProcessGraphPage* pPage);
 
         /**
         * Gets the owner page model
         *@param pLookForPage - the page which should be looked for
         *@return the owner page model, NULL on error
         */
-        virtual PSS_ProcessGraphModelMdl* GetOwnerPageModel(ZDProcessGraphPage* pLookForPage);
+        virtual PSS_ProcessGraphModelMdl* GetOwnerPageModel(PSS_ProcessGraphPage* pLookForPage);
 
         /**
         * Propagates the new symbol attributes
@@ -1244,7 +1247,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pPage - the page on which the name is changing
         *@param oldName - the changing old name
         */
-        virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString& oldName);
+        virtual void OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName);
 
         /**
         * Called when the user entity name changed

@@ -87,7 +87,7 @@ public:
         return m_pSelectedSymbol;
     };
 
-    ZDProcessGraphPage* GetSelectedPage()
+    PSS_ProcessGraphPage* GetSelectedPage()
     {
         return m_pSelectedPage;
     };
@@ -133,12 +133,11 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
     PSS_ProcessGraphModelMdl* m_pModel;
-    CRuntimeClass*            m_pSelectableClass;
+    PSS_ProcessGraphPage*     m_pSelectedPage;
     CODModel*                 m_pSelectedModel;
     CODSymbolComponent*       m_pSelectedSymbol;
-    ZDProcessGraphPage*       m_pSelectedPage;
+    CRuntimeClass*            m_pSelectableClass;
     CString                   m_Title;
     int                       m_SelectableItem;
 

@@ -8,7 +8,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
-#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\PSS_ProcessGraphPage.h"
 
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
@@ -121,7 +121,7 @@ bool ZUSynthesisNavigation::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
 
     if (pOwnerModel)
     {
-        ZDProcessGraphPage* pPage = m_pRootModel->FindModelPage(pOwnerModel, true);
+        PSS_ProcessGraphPage* pPage = m_pRootModel->FindModelPage(pOwnerModel, true);
 
         if (pPage)
         {

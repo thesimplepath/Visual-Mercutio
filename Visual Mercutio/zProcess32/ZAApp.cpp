@@ -31,13 +31,13 @@
 #include "zModel\ZUDynamicAttributesManipulator.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
-#include "zModel\ZDUserEntityDocument.h"
+#include "zModel\PSS_UserEntityDocument.h"
 #include "zModel\PSS_UserGroupObserverMsg.h"
-#include "zModel\ZDLogicalSystemDocument.h"
+#include "zModel\PSS_LogicalSystemDocument.h"
 #include "zModel\PSS_LogicalSystemObserverMsg.h"
 #include "zModel\PSS_LogicalPrestationsDocument.h"
 #include "zModel\PSS_LogicalPrestationsObserverMsg.h"
-#include "zModel\ZDLogicalRulesDocument.h"
+#include "zModel\PSS_LogicalRulesDocument.h"
 #include "zModel\PSS_LogicalRulesObserverMsg.h"
 #include "zModel\PSS_ModelGlobal.h"
 #include "zModel\PSS_DocObserverMsg.h"
@@ -817,7 +817,7 @@ bool ZAApp::LoadUserGroupFile()
         delete m_pUserEntityDocument;
     }
 
-    m_pUserEntityDocument = new ZDUserEntityDocument();
+    m_pUserEntityDocument = new PSS_UserEntityDocument();
 
     if (m_pUserEntityDocument)
     {
@@ -908,7 +908,7 @@ bool ZAApp::LoadLogicalSystemFile()
         delete m_pLogicalSystemDocument;
     }
 
-    m_pLogicalSystemDocument = new ZDLogicalSystemDocument();
+    m_pLogicalSystemDocument = new PSS_LogicalSystemDocument();
 
     if (m_pLogicalSystemDocument)
     {
@@ -1077,7 +1077,7 @@ bool ZAApp::LoadRulesFile()
         delete m_pRulesDocument;
     }
 
-    m_pRulesDocument = new ZDLogicalRulesDocument();
+    m_pRulesDocument = new PSS_LogicalRulesDocument();
 
     if (m_pRulesDocument)
     {
