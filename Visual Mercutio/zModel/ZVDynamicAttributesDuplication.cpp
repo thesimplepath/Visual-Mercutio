@@ -70,7 +70,7 @@ BOOL ZVDynamicAttributesDuplication::OnInitDialog()
         m_pModelDoc->GetModel() &&
         m_pModelDoc->GetDynamicPropertiesManager())
     {
-        ZUDynamicAttributesManipulator::GetCategories(m_pModelDoc->GetModel(),
+        PSS_DynamicAttributesManipulator::GetCategories(m_pModelDoc->GetModel(),
                                                       m_StaticAttribArray,
                                                       m_DynamicAttribArray);
 

@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZVDynamicAttributesCreation.h"
 
-#include "ZUDynamicAttributesManipulator.h"
+#include "PSS_DynamicAttributesManipulator.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
@@ -150,7 +150,7 @@ BOOL ZVDynamicAttributesCreationS1::OnInitDialog()
         m_pModelDoc->GetModel() &&
         m_pModelDoc->GetDynamicPropertiesManager())
     {
-        ZUDynamicAttributesManipulator::GetCategories(m_pModelDoc->GetModel(),
+        PSS_DynamicAttributesManipulator::GetCategories(m_pModelDoc->GetModel(),
                                                       m_StaticAttribArray,
                                                       m_DynamicAttribArray);
 

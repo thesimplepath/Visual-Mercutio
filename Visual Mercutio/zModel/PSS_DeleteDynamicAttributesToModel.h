@@ -1,13 +1,13 @@
 /****************************************************************************
- * ==> PSS_AssignDynamicAttributesToModel ----------------------------------*
+ * ==> PSS_DeleteDynamicAttributesToModel ----------------------------------*
  ****************************************************************************
  * Description : Provides a navigator which navigates through the model and *
- *               assigns the property object to symbols                     *
+ *               deletes the property object to all symbols                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_AssignDynamicAttributesToModelH
-#define PSS_AssignDynamicAttributesToModelH
+#ifndef PSS_DeleteDynamicAttributesToModelH
+#define PSS_DeleteDynamicAttributesToModelH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -40,25 +40,23 @@ class PSS_BasicSymbol;
 #endif
 
 /**
-* Navigates through the model and assigns the property object to symbols
+* Navigates through the model and deletes the property object to all symbols
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public ZUModelNavigation
+class AFX_EXT_CLASS PSS_DeleteDynamicAttributesToModel : public ZUModelNavigation
 {
     public:
         /**
         * Constructor
         *@param pModel - the model
         *@param pProperty - the property
-        *@param pRTClass - the runtime class
         *@param pClass - the class
         */
-        PSS_AssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel    = NULL,
+        PSS_DeleteDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel    = NULL,
                                            ZBProperty*               pProperty = NULL,
-                                           CRuntimeClass*            pRTClass  = NULL,
                                            void*                     pClass    = NULL);
 
-        virtual ~PSS_AssignDynamicAttributesToModel();
+        virtual ~PSS_DeleteDynamicAttributesToModel();
 
         /**
         * Called when the navigation starts
@@ -87,8 +85,7 @@ class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public ZUModelNavigatio
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        ZBProperty*    m_pProperty;
-        CRuntimeClass* m_pRTClass;
+        ZBProperty* m_pProperty;
 };
 
 #endif

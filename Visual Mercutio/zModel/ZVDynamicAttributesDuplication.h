@@ -32,7 +32,7 @@
 #include "zProperty\ZBProperty.h"
 
 #include "afxwin.h"
-#include "ZUDynamicAttributesManipulator.h"
+#include "PSS_DynamicAttributesManipulator.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

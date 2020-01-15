@@ -1,13 +1,13 @@
 /****************************************************************************
- * ==> PSS_AssignDynamicAttributesToModel ----------------------------------*
+ * ==> PSS_DeleteDynamicAttributesToModel ----------------------------------*
  ****************************************************************************
  * Description : Provides a navigator which navigates through the model and *
- *               assigns the property object to symbols                     *
+ *               deletes the property object to all symbols                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_AssignDynamicAttributesToModel.h"
+#include "PSS_DeleteDynamicAttributesToModel.h"
 
 // processsoft
 #include "zProperty\ZBDynamicProperties.h"
@@ -22,21 +22,19 @@
 #endif
 
 //---------------------------------------------------------------------------
-// PSS_AssignDynamicAttributesToModel
+// PSS_DeleteDynamicAttributesToModel
 //---------------------------------------------------------------------------
-PSS_AssignDynamicAttributesToModel::PSS_AssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel,
+PSS_DeleteDynamicAttributesToModel::PSS_DeleteDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel,
                                                                        ZBProperty*               pProperty,
-                                                                       CRuntimeClass*            pRTClass,
                                                                        void*                     pClass) :
     ZUModelNavigation(pModel, pClass),
-    m_pProperty(pProperty),
-    m_pRTClass(pRTClass)
+    m_pProperty(pProperty)
 {}
 //---------------------------------------------------------------------------
-PSS_AssignDynamicAttributesToModel::~PSS_AssignDynamicAttributesToModel()
+PSS_DeleteDynamicAttributesToModel::~PSS_DeleteDynamicAttributesToModel()
 {}
 //---------------------------------------------------------------------------
-bool PSS_AssignDynamicAttributesToModel::OnStart()
+bool PSS_DeleteDynamicAttributesToModel::OnStart()
 {
     if (!m_pProperty)
         return false;
@@ -45,26 +43,24 @@ bool PSS_AssignDynamicAttributesToModel::OnStart()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AssignDynamicAttributesToModel::OnFinish()
+bool PSS_DeleteDynamicAttributesToModel::OnFinish()
 {
     // send it to the soap server
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AssignDynamicAttributesToModel::OnSymbol(PSS_Symbol* pSymbol)
+bool PSS_DeleteDynamicAttributesToModel::OnSymbol(PSS_Symbol* pSymbol)
 {
-    // if for the whole model or for a specific class name
-    if (!m_pRTClass || (m_pRTClass && m_pRTClass->m_lpszClassName == pSymbol->GetRuntimeClass()->m_lpszClassName))
-        pSymbol->GetDynamicPropertiesManager()->AddDynamicProperty(m_pProperty->Dup());
+    // if the symbol contains the same property, delete it and assign a new one
+    pSymbol->GetDynamicPropertiesManager()->DeleteProperty(m_pProperty);
 
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AssignDynamicAttributesToModel::OnLink(PSS_LinkSymbol* pLink)
+bool PSS_DeleteDynamicAttributesToModel::OnLink(PSS_LinkSymbol* pLink)
 {
-    // if for the whole model or for a specific class name
-    if (!m_pRTClass || (m_pRTClass && m_pRTClass->m_lpszClassName == pLink->GetRuntimeClass()->m_lpszClassName))
-        pLink->GetDynamicPropertiesManager()->AddDynamicProperty(m_pProperty->Dup());
+    // if the symbol contains the same property, delete it and assign a new one
+    pLink->GetDynamicPropertiesManager()->DeleteProperty(m_pProperty);
 
     return true;
 }

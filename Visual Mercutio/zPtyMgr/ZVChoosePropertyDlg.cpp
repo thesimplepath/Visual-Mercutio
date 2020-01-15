@@ -7,7 +7,7 @@
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 
 #include "zProperty\ZBDynamicPropertiesManager.h"
-#include "zModel\ZUDynamicAttributesManipulator.h"
+#include "zModel\PSS_DynamicAttributesManipulator.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_InputValue.h"
@@ -200,7 +200,7 @@ void ZVChoosePropertyDlg::OnDeleteAttribute()
             //            m_PropertyList.DeletePropertyItem( pItem );
             //            m_PropertyList.Refresh();
                         // Reassign the property to all symbols
-            ZUDynamicAttributesManipulator::DeleteProperty(m_pModel, pProperty);
+            PSS_DynamicAttributesManipulator::DeleteProperty(m_pModel, pProperty);
             // Finally, unregister the property
             m_pPropManager->UnregisterProperty(pProp->GetCategoryID(), pProp->GetItemID());
             // Close the dialog
@@ -234,7 +234,7 @@ void ZVChoosePropertyDlg::OnRenameAttribute()
                 //                pItem->SetName( InputValue.GetValue() );
                 //                m_PropertyList.Refresh();
                                 // Reassign the property to all symbols
-                ZUDynamicAttributesManipulator::ReassignProperty(m_pModel, pProperty);
+                PSS_DynamicAttributesManipulator::ReassignProperty(m_pModel, pProperty);
                 // Close the dialog
                 CDialog::EndDialog(IDOK);
 

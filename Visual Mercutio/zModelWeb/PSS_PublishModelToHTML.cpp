@@ -19,7 +19,7 @@
     #include "zModel\PSS_ProcessGraphModelDoc.h"
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
-#include "zModel\ZUDynamicAttributesManipulator.h"
+#include "zModel\PSS_DynamicAttributesManipulator.h"
 #include "zModel\PSS_InfoModelGraphicGeneration.h"
 #include "PSS_ModelGenerateImageFiles.h"
 #include "PSS_PublishModel.h"
@@ -48,7 +48,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pD
         return false;
 
     ZBPropertySet propSet;
-    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(pDoc->GetModel(), propSet);
+    PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pDoc->GetModel(), propSet);
 
     ZBPropertyAttributes propAttributes;
 

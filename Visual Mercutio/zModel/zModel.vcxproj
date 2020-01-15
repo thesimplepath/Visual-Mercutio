@@ -496,32 +496,32 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUBuildGenericSymbolNewName.cpp" />
-    <ClCompile Include="ZUBuildSymbolNewName.cpp">
+    <ClCompile Include="PSS_BuildGenericSymbolNewName.cpp" />
+    <ClCompile Include="PSS_BuildSymbolNewName.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUDeleteDynamicAttributesToModel.cpp">
+    <ClCompile Include="PSS_DeleteDynamicAttributesToModel.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUDynamicAttributesManipulator.cpp">
+    <ClCompile Include="PSS_DynamicAttributesManipulator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUExtractCategoryAttributes.cpp">
+    <ClCompile Include="PSS_ExtractCategoryAttributes.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUExtractModelAttributes.cpp">
+    <ClCompile Include="PSS_ExtractModelAttributes.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -810,12 +810,12 @@
     <ClInclude Include="zModelLib.h" />
     <ClInclude Include="zModelRes.h" />
     <ClInclude Include="PSS_AssignDynamicAttributesToModel.h" />
-    <ClInclude Include="ZUBuildGenericSymbolNewName.h" />
-    <ClInclude Include="ZUBuildSymbolNewName.h" />
-    <ClInclude Include="ZUDeleteDynamicAttributesToModel.h" />
-    <ClInclude Include="ZUDynamicAttributesManipulator.h" />
-    <ClInclude Include="ZUExtractCategoryAttributes.h" />
-    <ClInclude Include="ZUExtractModelAttributes.h" />
+    <ClInclude Include="PSS_BuildGenericSymbolNewName.h" />
+    <ClInclude Include="PSS_BuildSymbolNewName.h" />
+    <ClInclude Include="PSS_DeleteDynamicAttributesToModel.h" />
+    <ClInclude Include="PSS_DynamicAttributesManipulator.h" />
+    <ClInclude Include="PSS_ExtractCategoryAttributes.h" />
+    <ClInclude Include="PSS_ExtractModelAttributes.h" />
     <ClInclude Include="ZUExtractModelLogicalPrestationsAssigned.h" />
     <ClInclude Include="ZUExtractModelLogicalSystemAssigned.h" />
     <ClInclude Include="ZUExtractModelUnitGroupAssigned.h" />

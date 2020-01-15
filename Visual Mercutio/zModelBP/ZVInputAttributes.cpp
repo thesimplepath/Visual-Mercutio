@@ -17,7 +17,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
-#include "zModel\ZUDynamicAttributesManipulator.h"
+#include "zModel\PSS_DynamicAttributesManipulator.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -404,7 +404,7 @@ void ZVInputAttributes::OnAddInputAttribute()
         return;
 
     ZBPropertySet Set;
-    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), Set);
+    PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), Set);
 
 
     ZVInputAttributesDefinitionDlg dlg(m_pCurrentDoc->GetDynamicPropertiesManager(), &Set);

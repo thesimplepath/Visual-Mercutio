@@ -15,7 +15,7 @@
 
 // Symbol Properties
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
-#include "zModel\ZUDynamicAttributesManipulator.h"
+#include "zModel\PSS_DynamicAttributesManipulator.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 

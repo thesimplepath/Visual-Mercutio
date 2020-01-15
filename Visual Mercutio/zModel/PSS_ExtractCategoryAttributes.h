@@ -1,13 +1,13 @@
 /****************************************************************************
- * ==> PSS_AssignDynamicAttributesToModel ----------------------------------*
+ * ==> PSS_ExtractCategoryAttributes ---------------------------------------*
  ****************************************************************************
  * Description : Provides a navigator which navigates through the model and *
- *               assigns the property object to symbols                     *
+ *               extracts unique attribute categories                       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_AssignDynamicAttributesToModelH
-#define PSS_AssignDynamicAttributesToModelH
+#ifndef PSS_ExtractCategoryAttributesH
+#define PSS_ExtractCategoryAttributesH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -22,12 +22,10 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
+#include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBProperty.h"
 #include "zModel\ZUModelNavigation.h"
-
-// forward class declaration
-class PSS_BasicSymbol;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -40,25 +38,26 @@ class PSS_BasicSymbol;
 #endif
 
 /**
-* Navigates through the model and assigns the property object to symbols
+* Navigates through the model and extracts unique attribute categories
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public ZUModelNavigation
+class AFX_EXT_CLASS PSS_ExtractCategoryAttributes : public ZUModelNavigation,
+                                                    public PSS_KeepStringUsage
 {
     public:
         /**
         * Constructor
         *@param pModel - the model
-        *@param pProperty - the property
-        *@param pRTClass - the runtime class
+        *@param pStaticArray - the static array
+        *@param pDynamicArray - the dynamic array
         *@param pClass - the class
         */
-        PSS_AssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel    = NULL,
-                                           ZBProperty*               pProperty = NULL,
-                                           CRuntimeClass*            pRTClass  = NULL,
-                                           void*                     pClass    = NULL);
+        PSS_ExtractCategoryAttributes(PSS_ProcessGraphModelMdl* pModel        = NULL,
+                                      CStringArray*             pStaticArray  = NULL,
+                                      CStringArray*             pDynamicArray = NULL,
+                                      void*                     pClass        = NULL);
 
-        virtual ~PSS_AssignDynamicAttributesToModel();
+        virtual ~PSS_ExtractCategoryAttributes();
 
         /**
         * Called when the navigation starts
@@ -87,8 +86,14 @@ class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public ZUModelNavigatio
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        ZBProperty*    m_pProperty;
-        CRuntimeClass* m_pRTClass;
+        CStringArray* m_pDynamicArray;
+        CStringArray* m_pStaticArray;
+
+        /**
+        * Fills the attribute category
+        *@param[out] propSet - the property set to populate with the result
+        */
+        void FillAttribCategory(ZBPropertySet& propSet);
 };
 
 #endif

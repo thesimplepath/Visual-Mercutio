@@ -14,7 +14,7 @@
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
 #include "zModel\PSS_ProcessGraphModelViewport.h"
-#include "zModel\ZUBuildSymbolNewName.h"
+#include "zModel\PSS_BuildSymbolNewName.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\ZVInsertModelNewPageDlg.h"
 #include "zModel\ZVRenameModelPageDlg.h"
@@ -1185,7 +1185,7 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(PSS_ProcessGraphModelMd
             ((PSS_Symbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
 
             // Retrieve the next available name
-            ZUBuildSymbolNewName BuildNewName(((PSS_Symbol*)pComp)->GetSymbolName());
+            PSS_BuildSymbolNewName BuildNewName(((PSS_Symbol*)pComp)->GetSymbolName());
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
             ((PSS_Symbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),
@@ -1202,7 +1202,7 @@ void ZDProcessGraphModelControllerBP::DoDuplicateProcess(PSS_ProcessGraphModelMd
             ((PSS_LinkSymbol*)pComp)->SetSymbolReferenceNumber(RefNumber);
 
             // Retrieve the next available name
-            ZUBuildSymbolNewName BuildNewName(((PSS_LinkSymbol*)pComp)->GetSymbolName());
+            PSS_BuildSymbolNewName BuildNewName(((PSS_LinkSymbol*)pComp)->GetSymbolName());
 
             // JMR-MODIF - Le 23 mai 2006 - La génération du nom et la ref. interne utilisent le même paramètre.
             ((PSS_LinkSymbol*)pComp)->SetSymbolName(BuildNewName.GetNextAvailableSymbolName(*GetRootModel(),

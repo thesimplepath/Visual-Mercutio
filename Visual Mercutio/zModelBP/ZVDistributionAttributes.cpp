@@ -22,7 +22,7 @@
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 
-#include "zModel\ZUDynamicAttributesManipulator.h"
+#include "zModel\PSS_DynamicAttributesManipulator.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -392,7 +392,7 @@ void ZVDistributionAttributes::OnAddDistributionAttrib()
     //        return;
 
     ZBPropertySet Set;
-    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), Set);
+    PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), Set);
 
 
     ZVDistributionAttributesDefinitionDlg dlg(pDistribManager, pDynPropMgr, &Set, m_pCurrentDoc->GetMainUserGroup(), UnitGUID);
@@ -491,7 +491,7 @@ void ZVDistributionAttributes::OnModifyDistributionAttrib()
     //        return;
 
     ZBPropertySet Set;
-    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), Set);
+    PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), Set);
 
     ZVDistributionAttributesDefinitionDlg dlg(pDistribManager, m_pCurrentDoc->GetDynamicPropertiesManager(), &Set, m_pCurrentDoc->GetMainUserGroup(), UnitGUID, pDistributionAttrib);
     if (dlg.DoModal() == IDOK)

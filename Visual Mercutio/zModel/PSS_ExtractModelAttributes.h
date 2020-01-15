@@ -1,13 +1,14 @@
 /****************************************************************************
- * ==> PSS_AssignDynamicAttributesToModel ----------------------------------*
+ * ==> PSS_ExtractModelAttributes ------------------------------------------*
  ****************************************************************************
  * Description : Provides a navigator which navigates through the model and *
- *               assigns the property object to symbols                     *
+ *               extract unique symbol                                      *
+ *               attributes                                                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_AssignDynamicAttributesToModelH
-#define PSS_AssignDynamicAttributesToModelH
+#ifndef PSS_ExtractModelAttributesH
+#define PSS_ExtractModelAttributesH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -22,12 +23,9 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zProperty\ZIProperties.h"
-#include "zProperty\ZBProperty.h"
 #include "zModel\ZUModelNavigation.h"
-
-// forward class declaration
-class PSS_BasicSymbol;
+#include "zProperty\ZBProperty.h"
+#include "PSS_ProcessGraphModelMdl.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -40,25 +38,20 @@ class PSS_BasicSymbol;
 #endif
 
 /**
-* Navigates through the model and assigns the property object to symbols
+* Navigates through the model and extract unique symbol attributes
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public ZUModelNavigation
+class AFX_EXT_CLASS PSS_ExtractModelAttributes : public ZUModelNavigation
 {
     public:
         /**
         * Constructor
         *@param pModel - the model
-        *@param pProperty - the property
-        *@param pRTClass - the runtime class
         *@param pClass - the class
         */
-        PSS_AssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel    = NULL,
-                                           ZBProperty*               pProperty = NULL,
-                                           CRuntimeClass*            pRTClass  = NULL,
-                                           void*                     pClass    = NULL);
+        PSS_ExtractModelAttributes(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
-        virtual ~PSS_AssignDynamicAttributesToModel();
+        virtual ~PSS_ExtractModelAttributes();
 
         /**
         * Called when the navigation starts
@@ -87,8 +80,21 @@ class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public ZUModelNavigatio
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        ZBProperty*    m_pProperty;
-        CRuntimeClass* m_pRTClass;
+        ZBPropertySet* m_pPropertySet;
+        int            m_IDArray[500];
+
+        /**
+        * Processes the attributes
+        *@param[out] propSet - the property set to populate with the result
+        */
+        void ProcessAttrib(ZBPropertySet& propSet);
+
+        /**
+        * Checks if a key exists
+        *@param key - the key to check
+        *@return true if the key exists, otherwise false
+        */
+        bool KeyExist(int key);
 };
 
 #endif

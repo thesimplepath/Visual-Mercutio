@@ -34,10 +34,10 @@
 #include "ZVDeleteModelPageDlg.h"
 #include "ZVSelectSymbolAttributeDlg.h"
 #include "ZVFindSymbolExtDlg.h"
-#include "ZUBuildSymbolNewName.h"
-#include "ZUBuildGenericSymbolNewName.h"
+#include "PSS_BuildSymbolNewName.h"
+#include "PSS_BuildGenericSymbolNewName.h"
 #include "ZVDynamicAttributesCreation.h"
-#include "ZUDynamicAttributesManipulator.h"
+#include "PSS_DynamicAttributesManipulator.h"
 #include "PSS_ModelGlobal.h"
 
 // resources
@@ -946,14 +946,14 @@ CODComponent* PSS_ProcessGraphModelController::InsertSymbol(CODComponent* pComp,
             // is the symbol generic?
             if (pSymbol->IsGeneric())
             {
-                ZUBuildGenericSymbolNewName buildNewName;
+                PSS_BuildGenericSymbolNewName buildNewName;
 
                 // if the symbol is generic, set another name
                 pSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel()));
             }
             else
             {
-                ZUBuildSymbolNewName buildNewName;
+                PSS_BuildSymbolNewName buildNewName;
 
                 // get the next available name
                 pSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
@@ -2143,7 +2143,7 @@ void PSS_ProcessGraphModelController::EndLink(UINT flags, CPoint point)
             const int refNumber = GetRootModel()->GetNextAvailableReferenceNumber();
             pLinkSymbol->SetSymbolReferenceNumber(refNumber);
 
-            ZUBuildSymbolNewName buildNewName;
+            PSS_BuildSymbolNewName buildNewName;
 
             // get the next available name
             pLinkSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
@@ -2211,11 +2211,11 @@ void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
             // assign required dynamic properties on new symbol
             if (pDoc->HasDynamicPropertiesManager())
                 if (pSymbol)
-                    ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(),
-                                                                                  pSymbol);
+                    PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(),
+                                                                                    pSymbol);
                 else
-                    ZUDynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(),
-                                                                                  pLinkSymbol);
+                    PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(pDoc->GetDynamicPropertiesManager(),
+                                                                                    pLinkSymbol);
         }
     }
 }
@@ -2246,7 +2246,7 @@ void PSS_ProcessGraphModelController::OnSymbolDuplicated(CODComponentSet* pCompS
             const int refNumber = GetRootModel()->GetNextAvailableReferenceNumber();
             pSymbol->SetSymbolReferenceNumber(refNumber);
 
-            ZUBuildSymbolNewName buildNewName(pSymbol->GetSymbolName());
+            PSS_BuildSymbolNewName buildNewName(pSymbol->GetSymbolName());
 
             // get the next available name
             pSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
@@ -2270,7 +2270,7 @@ void PSS_ProcessGraphModelController::OnSymbolDuplicated(CODComponentSet* pCompS
             const int refNumber = GetRootModel()->GetNextAvailableReferenceNumber();
             pLinkSymbol->SetSymbolReferenceNumber(refNumber);
 
-            ZUBuildSymbolNewName buildNewName(pLinkSymbol->GetSymbolName());
+            PSS_BuildSymbolNewName buildNewName(pLinkSymbol->GetSymbolName());
 
             // get the next available name
             pLinkSymbol->SetSymbolName(buildNewName.GetNextAvailableSymbolName(*GetRootModel(), refNumber));
@@ -3744,7 +3744,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
     CWaitCursor waitCursor;
 
     ZBPropertySet propSet;
-    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
+    PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
 
     ZBPropertyAttributes propAttributes;
     ZVFindSymbolExtDlg   findSymbolDlg(&propAttributes, &propSet);
@@ -4620,7 +4620,6 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
 
         // same class type
         case 1:
-        {
             pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
                                                                               dlg.GetAttributeName(),
                                                                               dlg.GetAttributeDescription(),
@@ -4629,14 +4628,12 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
                                                                               pRTClass);
 
             // add the property to all symbols with the same class type
-            ZUDynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty, pRTClass);
+            PSS_DynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty, pRTClass);
 
             break;
-        }
 
         // all symbols
         case 2:
-        {
             pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
                                                                               dlg.GetAttributeName(),
                                                                               dlg.GetAttributeDescription(),
@@ -4644,10 +4641,9 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
                                                                               ft);
 
             // add the property to all symbols
-            ZUDynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty);
+            PSS_DynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty);
 
             break;
-        }
     }
 
     NotifySymbolSelected(m_pSymbolHit);

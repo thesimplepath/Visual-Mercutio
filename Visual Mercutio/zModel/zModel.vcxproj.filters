@@ -21,24 +21,6 @@
     <ClCompile Include="zModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUBuildGenericSymbolNewName.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUBuildSymbolNewName.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUDeleteDynamicAttributesToModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUDynamicAttributesManipulator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUExtractCategoryAttributes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUExtractModelAttributes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZUExtractModelLogicalPrestationsAssigned.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -345,6 +327,24 @@
     <ClCompile Include="PSS_AssignDynamicAttributesToModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_BuildGenericSymbolNewName.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_BuildSymbolNewName.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DeleteDynamicAttributesToModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DynamicAttributesManipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ExtractCategoryAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ExtractModelAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -415,24 +415,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zModelRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUBuildGenericSymbolNewName.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUBuildSymbolNewName.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUDeleteDynamicAttributesToModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUDynamicAttributesManipulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUExtractCategoryAttributes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUExtractModelAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUExtractModelLogicalPrestationsAssigned.h">
@@ -745,6 +727,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_AssignDynamicAttributesToModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BuildGenericSymbolNewName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BuildSymbolNewName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DeleteDynamicAttributesToModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DynamicAttributesManipulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ExtractCategoryAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ExtractModelAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

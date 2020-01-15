@@ -28,7 +28,7 @@
     #include "zModel\PSS_ProcessGraphModelView.h"
 #undef _ZMODELEXPORT
 #include "zModel\PSS_ProcessGraphModelViewport.h"
-#include "zModel\ZUDynamicAttributesManipulator.h"
+#include "zModel\PSS_DynamicAttributesManipulator.h"
 #include "zModel\ZVSelectModelSymbolDlg.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zModel\PSS_UserEntityDocument.h"
@@ -2895,7 +2895,7 @@ void ZAApp::OnDynamicAttributesDisplay()
     if (pCurrentDoc)
     {
         ZBPropertySet Set;
-        ZUDynamicAttributesManipulator::ExtractUniqueAttributes(pCurrentDoc->GetModel(), Set);
+        PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pCurrentDoc->GetModel(), Set);
 
         ZVChoosePropertyDlg choose(&Set,
                                    2,
