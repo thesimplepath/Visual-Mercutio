@@ -23,7 +23,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_KeepStringUsage.h"
-#include "zModel\ZUModelNavigation.h"
+#include "zModel\PSS_ModelNavigation.h"
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 #include "zSOAP\PSS_SoapPublisher_File.h"
 
@@ -45,14 +45,15 @@ class PSS_InfoModelGraphicGeneration;
 * Publish the model generated files to Messenger through a SOAP protocol
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation, public PSS_KeepStringUsage
+class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public PSS_ModelNavigation,
+                                                        public PSS_KeepStringUsage
 {
     public:
         /**
         * Constructor
-        *@param pInfo - info to publish
-        *@param pModel - owning model, can be NULL
-        *@param pClass - owning class, can be NULL
+        *@param pInfo - the info to publish
+        *@param pModel - the model to navigate, can be NULL
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*           pModel = NULL,
                                           void*                               pClass = NULL,

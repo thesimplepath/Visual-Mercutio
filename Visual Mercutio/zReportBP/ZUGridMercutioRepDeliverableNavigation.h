@@ -37,7 +37,7 @@ class ZBOStreamGrid;
 class ZUGridMercutioRepDeliverableNavigation : public ZUProcessNavigation
 {
 public:
-
+    //*@param pClass - the custom data class, can be NULL
     ZUGridMercutioRepDeliverableNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
     virtual ~ZUGridMercutioRepDeliverableNavigation();
 

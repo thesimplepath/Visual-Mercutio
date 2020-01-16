@@ -57,12 +57,9 @@ class AFX_EXT_CLASS PSS_BuildGenericSymbolNewName : public PSS_BasicSymbolVisito
         virtual CString GetNextAvailableSymbolName(CODModel& model);
 
         /**
-        * Visits a symbol
-        *@param symbol - the symbol component to visit
-        *@return true if the visit process should continue to next symbol, false if should be stopped
-        *@note Each concrete derived ZIBasicSymbolVisitor class must implement the Visit() function
-        *      to implement the appropriate algorithm. In the current class Visit() will check if the
-        *      BasicSymbol() passes as an argument
+        * Visits the target symbol
+        *@param symbol - target symbol to visit
+        *@return true if visit succeeded, otherwise false
         */
         virtual bool Visit(CODComponent& symbol);
 

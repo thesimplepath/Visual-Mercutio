@@ -55,9 +55,9 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
     public:
         /**
         * Constructor
-        *@param pInfo - info to publish
-        *@param pModel - owning model, can be NULL
-        *@param pClass - owning class, can be NULL
+        *@param pInfo - the info to publish
+        *@param pModel - the model to navigate, can be NULL
+        *@param pClass - thecustom data class, can be NULL
         */
         PSS_SoapPublishModelDefinition(ZBPublishMessengerModelInformation* pInfo,
                                        PSS_ProcessGraphModelMdl*           pModel = NULL,

@@ -25,7 +25,7 @@ static char THIS_FILE[] = __FILE__;
 ZUReassignDynamicAttributesToModel::ZUReassignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel /*= NULL*/,
                                                                        ZBProperty* pProperty /*= NULL*/,
                                                                        void* pClass /*= NULL*/)
-    : ZUModelNavigation(pModel, pClass),
+    : PSS_ModelNavigation(pModel, pClass),
     m_pProperty(pProperty)
 {}
 

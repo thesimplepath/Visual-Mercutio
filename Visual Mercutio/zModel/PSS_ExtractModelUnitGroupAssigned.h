@@ -1,13 +1,15 @@
 /****************************************************************************
- * ==> PSS_ExtractCategoryAttributes ---------------------------------------*
+ * ==> PSS_ExtractModelUnitGroupAssigned -----------------------------------*
  ****************************************************************************
  * Description : Provides a navigator which navigates through the model and *
- *               extracts unique attribute categories                       *
+ *               determines which unit group is attributed to which symbol. *
+ *               From this list it's possible to rebuild the existing link  *
+ *               hierarchy between the symbols and the unit groups          *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ExtractCategoryAttributesH
-#define PSS_ExtractCategoryAttributesH
+#ifndef PSS_ExtractModelUnitGroupAssignedH
+#define PSS_ExtractModelUnitGroupAssignedH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -22,13 +24,18 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\PSS_KeepStringUsage.h"
-#include "zProperty\ZIProperties.h"
-#include "zProperty\ZBProperty.h"
 #include "zModel\PSS_ModelNavigation.h"
 
+// class name mapping
+#ifndef PSS_UserEntity
+    #define PSS_UserEntity ZBUserEntity
+#endif
+
+// forward class declaration
+class PSS_UserEntity;
+
 #ifdef _ZMODELEXPORT
-    // put the values back to make AFX_EXT_CLASS export again
+    //put the values back to make AFX_EXT_CLASS export again
     #undef AFX_EXT_CLASS
     #undef AFX_EXT_API
     #undef AFX_EXT_DATA
@@ -38,26 +45,26 @@
 #endif
 
 /**
-* Navigates through the model and extracts unique attribute categories
+* Navigates through the model and determines which unit group is attributed to which symbol
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ExtractCategoryAttributes : public PSS_ModelNavigation,
-                                                    public PSS_KeepStringUsage
+class AFX_EXT_CLASS PSS_ExtractModelUnitGroupAssigned : public PSS_ModelNavigation
 {
     public:
         /**
         * Constructor
         *@param pModel - the model to navigate, can be NULL
-        *@param pStaticArray - the static array, can be NULL
-        *@param pDynamicArray - the dynamic array, can be NULL
         *@param pClass - the custom data class, can be NULL
         */
-        PSS_ExtractCategoryAttributes(PSS_ProcessGraphModelMdl* pModel        = NULL,
-                                      CStringArray*             pStaticArray  = NULL,
-                                      CStringArray*             pDynamicArray = NULL,
-                                      void*                     pClass        = NULL);
+        PSS_ExtractModelUnitGroupAssigned(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
-        virtual ~PSS_ExtractCategoryAttributes();
+        virtual ~PSS_ExtractModelUnitGroupAssigned();
+
+        /**
+        * Gets the component set
+        *@return the component set
+        */
+        virtual inline CODComponentSet& GetComponentSet();
 
         /**
         * Called when the navigation starts
@@ -74,26 +81,29 @@ class AFX_EXT_CLASS PSS_ExtractCategoryAttributes : public PSS_ModelNavigation,
         /**
         * Called when a symbol is visited
         *@param pSymbol - the symbol to visit
-        *@return true if the symbol is allowed to be visited, otherwise false
+        *@return true if visit succeeded, otherwise false
         */
         virtual bool OnSymbol(PSS_Symbol* pSymbol);
 
         /**
         * Called when a link symbol is visited
         *@param pLink - the link symbol to visit
-        *@return true if the symbol is allowed to be visited, otherwise false
+        *@return true if visit succeeded, otherwise false
         */
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        CStringArray* m_pDynamicArray;
-        CStringArray* m_pStaticArray;
-
-        /**
-        * Fills the attribute category
-        *@param[out] propSet - the property set to populate with the result
-        */
-        void FillAttribCategory(ZBPropertySet& propSet);
+        PSS_UserEntity* m_pUserEntity;
+        CODComponentSet m_Set;
 };
+
+//---------------------------------------------------------------------------
+// PSS_ExtractModelUnitGroupAssigned
+//---------------------------------------------------------------------------
+CODComponentSet& PSS_ExtractModelUnitGroupAssigned::GetComponentSet()
+{
+    return m_Set;
+}
+//---------------------------------------------------------------------------
 
 #endif

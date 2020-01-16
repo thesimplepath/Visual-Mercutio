@@ -90,6 +90,7 @@ class AFX_EXT_CLASS ZUProcedureCalculateTotals : public ZUProcessNavigation
 {
 public:
 
+    //*@param pClass - the custom data class, can be NULL
     ZUProcedureCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUProcedureCalculateTotals();
 

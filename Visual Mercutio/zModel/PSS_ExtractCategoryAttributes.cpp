@@ -27,7 +27,7 @@ PSS_ExtractCategoryAttributes::PSS_ExtractCategoryAttributes(PSS_ProcessGraphMod
                                                              CStringArray*             pStaticArray,
                                                              CStringArray*             pDynamicArray,
                                                              void*                     pClass) :
-    ZUModelNavigation(pModel, pClass),
+    PSS_ModelNavigation(pModel, pClass),
     m_pDynamicArray(pDynamicArray),
     m_pStaticArray(pStaticArray)
 {}

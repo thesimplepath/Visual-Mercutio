@@ -37,7 +37,7 @@ class ZBOStreamGrid;
 class ZUSynthesisNavigation : public ZUProcessNavigation
 {
 public:
-
+    //*@param pClass - the custom data class, can be NULL
     ZUSynthesisNavigation(PSS_ProcessGraphModelMdl*    pModel = NULL,
                           void*                    pClass = NULL,
                           PSS_ProcessGraphModelMdl*    pRootModel = NULL,

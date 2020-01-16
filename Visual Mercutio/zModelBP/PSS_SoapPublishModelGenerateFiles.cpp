@@ -47,7 +47,7 @@ const CString g_ParentImageFile = _T("parent.gif");
 PSS_SoapPublishModelGenerateFiles::PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*           pModel,
                                                                      void*                               pClass,
                                                                      ZBPublishMessengerModelInformation* pInfo) :
-    ZUModelNavigation(pModel, pClass),
+    PSS_ModelNavigation(pModel, pClass),
     m_pModelInfo(pInfo)
 {}
 //---------------------------------------------------------------------------

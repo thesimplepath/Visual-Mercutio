@@ -37,7 +37,7 @@ class ZBOStreamGrid;
 class ZUGridSesterceProcessNavigation : public ZUProcessNavigation
 {
 public:
-
+    //*@param pClass - the custom data class, can be NULL
     ZUGridSesterceProcessNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUGridSesterceProcessNavigation();
 

@@ -26,7 +26,7 @@
 #include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zConversion\PSS_StringTools.h"
 #include "zProperty\ZBPropertyAttributes.h"
-#include "zModel\ZUModelNavigation.h"
+#include "zModel\PSS_ModelNavigation.h"
 #include "zModel\PSS_InfoModelGraphicGeneration.h"
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
@@ -88,14 +88,15 @@ class PSS_HtmlFile;
 * Navigates through the processes and generates the images files
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, public PSS_KeepStringUsage
+class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public PSS_ModelNavigation,
+                                                  public PSS_KeepStringUsage
 {
     public:
         /**
         * Constructor
-        *@param pModel - model for which images files should be generated
-        *@param pClass - model class
-        *@param pPropAttributes - model attributes
+        *@param pModel - the model for which images files should be generated, can be NULL
+        *@param pClass - the custom data class, can be NULL
+        *@param pPropAttributes - the model attributes, can be NULL
         */
         PSS_ModelGenerateImageFiles(PSS_ProcessGraphModelMdl* pModel          = NULL,
                                     void*                     pClass          = NULL,

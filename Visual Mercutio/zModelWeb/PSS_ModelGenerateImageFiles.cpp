@@ -18,9 +18,9 @@
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\PSS_ProcessGraphPage.h"
-#include "zModel\ZUExtractModelUnitGroupAssigned.h"
-#include "zModel\ZUExtractModelLogicalSystemAssigned.h"
-#include "zModel\ZUExtractModelLogicalPrestationsAssigned.h"
+#include "zModel\PSS_ExtractModelUnitGroupAssigned.h"
+#include "zModel\PSS_ExtractModelLogicalSystemAssigned.h"
+#include "zModel\PSS_ExtractModelLogicalPrestationsAssigned.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_UserGroupEntity.h"
@@ -28,10 +28,10 @@
 #include "zModel\PSS_LogicalSystemEntity.h"
 #include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
-#include "zModel\zModelRes.h"
 #include "zWeb\PSS_HtmlFile.h"
 
 // resources
+#include "zModel\zModelRes.h"
 #include "PSS_ModelResIDs.h"
 
 #ifdef _DEBUG
@@ -77,7 +77,7 @@ std::size_t PSS_ModelGenerateImageFiles::m_IndexItem = 0;
 PSS_ModelGenerateImageFiles::PSS_ModelGenerateImageFiles(PSS_ProcessGraphModelMdl* pModel,
                                                          void*                     pClass,
                                                          ZBPropertyAttributes*     pPropAttributes) :
-    ZUModelNavigation(pModel, pClass),
+    PSS_ModelNavigation(pModel, pClass),
     m_pPropAttributes(pPropAttributes)
 {}
 //---------------------------------------------------------------------------
@@ -1975,7 +1975,7 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(PSS_UserGroupEntity* 
         return _T("");
 
     // extract the symbols for which this user group is assigned to
-    ZUExtractModelUnitGroupAssigned extract(m_pModel, pGroupEntity);
+    PSS_ExtractModelUnitGroupAssigned extract(m_pModel, pGroupEntity);
     extract.Navigate();
 
     // build the html FileName
@@ -2150,7 +2150,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(PSS_LogicalSystem
         return _T("");
 
     // extract the symbols for which this logical system is assigned to
-    ZUExtractModelLogicalSystemAssigned extract(m_pModel, pSystemEntity);
+    PSS_ExtractModelLogicalSystemAssigned extract(m_pModel, pSystemEntity);
     extract.Navigate();
 
     // build the html FileName
@@ -2312,7 +2312,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(PSS_LogicalP
         return _T("");
 
     // get the symbols for which this prestation is assigned
-    ZUExtractModelLogicalPrestationsAssigned extract(m_pModel, pPrestationsEntity);
+    PSS_ExtractModelLogicalPrestationsAssigned extract(m_pModel, pPrestationsEntity);
     extract.Navigate();
 
     // build the html file name

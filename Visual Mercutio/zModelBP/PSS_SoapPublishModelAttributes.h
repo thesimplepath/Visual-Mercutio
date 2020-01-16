@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zModel\ZUModelNavigation.h"
+#include "zModel\PSS_ModelNavigation.h"
 #include "zProperty\ZBProperty.h"
 #include "zSOAP\PSS_SoapPublisher_ModelAttributes.h"
 #include "ZBPublishMessengerModelInformation.h"
@@ -44,14 +44,14 @@ class ZBPublishMessengerModelInformation;
 * Publish the model attributes to Messenger through a SOAP protocol
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public ZUModelNavigation
+class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public PSS_ModelNavigation
 {
     public:
         /**
         * Constructor
-        *@param pInfo - info to publish
-        *@param pModel - owning model, can be NULL
-        *@param pClass - owning class, can be NULL
+        *@param pInfo - the info to publish
+        *@param pModel - the model to navigate, can be NULL
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_SoapPublishModelAttributes(ZBPublishMessengerModelInformation* pInfo,
                                        PSS_ProcessGraphModelMdl*           pModel = NULL,

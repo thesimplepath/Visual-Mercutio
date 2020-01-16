@@ -23,7 +23,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zModel\ZUModelNavigation.h"
+#include "zModel\PSS_ModelNavigation.h"
 #include "zProperty\ZBProperty.h"
 #include "PSS_ProcessGraphModelMdl.h"
 
@@ -41,13 +41,13 @@
 * Navigates through the model and extract unique symbol attributes
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ExtractModelAttributes : public ZUModelNavigation
+class AFX_EXT_CLASS PSS_ExtractModelAttributes : public PSS_ModelNavigation
 {
     public:
         /**
         * Constructor
-        *@param pModel - the model
-        *@param pClass - the class
+        *@param pModel - the model to navigate, can be NULL
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_ExtractModelAttributes(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 

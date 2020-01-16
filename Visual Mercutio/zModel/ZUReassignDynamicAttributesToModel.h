@@ -37,7 +37,7 @@
 // processsoft
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBProperty.h"
-#include "zModel\ZUModelNavigation.h"
+#include "zModel\PSS_ModelNavigation.h"
 
 // forward class declaration
 class PSS_BasicSymbol;
@@ -52,7 +52,7 @@ class PSS_BasicSymbol;
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZUReassignDynamicAttributesToModel : public ZUModelNavigation
+class AFX_EXT_CLASS ZUReassignDynamicAttributesToModel : public PSS_ModelNavigation
 {
 public:
     ZUReassignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel = NULL,

@@ -24,7 +24,7 @@
 // processsoft
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBProperty.h"
-#include "zModel\ZUModelNavigation.h"
+#include "zModel\PSS_ModelNavigation.h"
 
 // forward class declaration
 class PSS_BasicSymbol;
@@ -43,15 +43,15 @@ class PSS_BasicSymbol;
 * Navigates through the model and assigns the property object to symbols
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public ZUModelNavigation
+class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public PSS_ModelNavigation
 {
     public:
         /**
         * Constructor
-        *@param pModel - the model
-        *@param pProperty - the property
-        *@param pRTClass - the runtime class
-        *@param pClass - the class
+        *@param pModel - the model to navigate, can be NULL
+        *@param pProperty - the property to assign, can be NULL
+        *@param pRTClass - the runtime class, can be NULL
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_AssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel    = NULL,
                                            ZBProperty*               pProperty = NULL,

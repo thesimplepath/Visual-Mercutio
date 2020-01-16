@@ -28,7 +28,7 @@ PSS_AssignDynamicAttributesToModel::PSS_AssignDynamicAttributesToModel(PSS_Proce
                                                                        ZBProperty*               pProperty,
                                                                        CRuntimeClass*            pRTClass,
                                                                        void*                     pClass) :
-    ZUModelNavigation(pModel, pClass),
+    PSS_ModelNavigation(pModel, pClass),
     m_pProperty(pProperty),
     m_pRTClass(pRTClass)
 {}

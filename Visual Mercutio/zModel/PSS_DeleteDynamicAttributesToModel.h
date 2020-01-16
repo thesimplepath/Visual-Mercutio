@@ -24,7 +24,7 @@
 // processsoft
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBProperty.h"
-#include "zModel\ZUModelNavigation.h"
+#include "zModel\PSS_ModelNavigation.h"
 
 // forward class declaration
 class PSS_BasicSymbol;
@@ -43,14 +43,14 @@ class PSS_BasicSymbol;
 * Navigates through the model and deletes the property object to all symbols
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_DeleteDynamicAttributesToModel : public ZUModelNavigation
+class AFX_EXT_CLASS PSS_DeleteDynamicAttributesToModel : public PSS_ModelNavigation
 {
     public:
         /**
         * Constructor
-        *@param pModel - the model
-        *@param pProperty - the property
-        *@param pClass - the class
+        *@param pModel - the model to navigate, can be NULL
+        *@param pProperty - the property to find and delete, can be NULL
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_DeleteDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel    = NULL,
                                            ZBProperty*               pProperty = NULL,

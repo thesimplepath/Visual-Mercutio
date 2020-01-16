@@ -1,13 +1,15 @@
 /****************************************************************************
- * ==> PSS_ExtractCategoryAttributes ---------------------------------------*
+ * ==> PSS_ExtractModelLogicalPrestationsAssigned --------------------------*
  ****************************************************************************
  * Description : Provides a navigator which navigates through the model and *
- *               extracts unique attribute categories                       *
+ *               determines which prestation is attributed to which symbol. *
+ *               From this list it's possible to rebuild the existing link  *
+ *               hierarchy between the symbols and the prestations          *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ExtractCategoryAttributesH
-#define PSS_ExtractCategoryAttributesH
+#ifndef PSS_ExtractModelLogicalPrestationsAssignedH
+#define PSS_ExtractModelLogicalPrestationsAssignedH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -22,10 +24,15 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\PSS_KeepStringUsage.h"
-#include "zProperty\ZIProperties.h"
-#include "zProperty\ZBProperty.h"
 #include "zModel\PSS_ModelNavigation.h"
+
+// class name mapping
+#ifndef PSS_PrestationsEntity
+    #define PSS_PrestationsEntity ZBPrestationsEntity
+#endif
+
+// forward class declaration
+class PSS_PrestationsEntity;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -38,26 +45,26 @@
 #endif
 
 /**
-* Navigates through the model and extracts unique attribute categories
+* Navigates through the model and determines which prestation is attributed to which symbol
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ExtractCategoryAttributes : public PSS_ModelNavigation,
-                                                    public PSS_KeepStringUsage
+class AFX_EXT_CLASS PSS_ExtractModelLogicalPrestationsAssigned : public PSS_ModelNavigation
 {
     public:
         /**
         * Constructor
         *@param pModel - the model to navigate, can be NULL
-        *@param pStaticArray - the static array, can be NULL
-        *@param pDynamicArray - the dynamic array, can be NULL
         *@param pClass - the custom data class, can be NULL
         */
-        PSS_ExtractCategoryAttributes(PSS_ProcessGraphModelMdl* pModel        = NULL,
-                                      CStringArray*             pStaticArray  = NULL,
-                                      CStringArray*             pDynamicArray = NULL,
-                                      void*                     pClass        = NULL);
+        PSS_ExtractModelLogicalPrestationsAssigned(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
-        virtual ~PSS_ExtractCategoryAttributes();
+        virtual ~PSS_ExtractModelLogicalPrestationsAssigned();
+
+        /**
+        * Gets the component set
+        *@return the component set
+        */
+        virtual inline CODComponentSet& GetComponentSet();
 
         /**
         * Called when the navigation starts
@@ -86,14 +93,17 @@ class AFX_EXT_CLASS PSS_ExtractCategoryAttributes : public PSS_ModelNavigation,
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        CStringArray* m_pDynamicArray;
-        CStringArray* m_pStaticArray;
-
-        /**
-        * Fills the attribute category
-        *@param[out] propSet - the property set to populate with the result
-        */
-        void FillAttribCategory(ZBPropertySet& propSet);
+        PSS_PrestationsEntity* m_pPrestationsEntity;
+        CODComponentSet        m_Set;
 };
+
+//---------------------------------------------------------------------------
+// PSS_ExtractModelLogicalPrestationsAssigned
+//---------------------------------------------------------------------------
+CODComponentSet& PSS_ExtractModelLogicalPrestationsAssigned::GetComponentSet()
+{
+    return m_Set;
+}
+//---------------------------------------------------------------------------
 
 #endif

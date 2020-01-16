@@ -24,7 +24,7 @@
 // PSS_ExtractModelAttributes
 //---------------------------------------------------------------------------
 PSS_ExtractModelAttributes::PSS_ExtractModelAttributes(PSS_ProcessGraphModelMdl* pModel, void* pClass) :
-    ZUModelNavigation(pModel, pClass)
+    PSS_ModelNavigation(pModel, pClass)
 {}
 //---------------------------------------------------------------------------
 PSS_ExtractModelAttributes::~PSS_ExtractModelAttributes()

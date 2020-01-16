@@ -130,7 +130,7 @@ typedef Iterator_T<_ZBUserGroupTotal*> ZBUserGroupTotalIterator;
 class AFX_EXT_CLASS ZUUserGroupCalculateTotals : public ZUProcessNavigation
 {
 public:
-
+    //*@param pClass - the custom data class, can be NULL
     ZUUserGroupCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUUserGroupCalculateTotals();
 

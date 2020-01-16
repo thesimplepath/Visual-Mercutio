@@ -67,12 +67,12 @@ public:
     // JMR-MODIF - Le 29 mars 2006 - Ajout du paramètre FirstElementToSort.
     bool FillProcessNameArray(CStringArray* pArray, int FirstElementToSort = 0);
 
-    /* Each concrete derived ZIBasicSymbolVisitor class
-       must implement Visit to implement the appropriate
-       algorithm
-       In this concrete class the Visit will check the
-       BasicSymbol passes as an argument */
-    virtual bool Visit(CODComponent& Symbol);
+    /**
+    * Visits the target symbol
+    *@param symbol - target symbol to visit
+    *@return true if visit succeeded, otherwise false
+    */
+    virtual bool Visit(CODComponent& symbol);
 
 private:
 

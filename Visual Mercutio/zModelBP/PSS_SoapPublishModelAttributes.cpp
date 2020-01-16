@@ -33,7 +33,7 @@
 PSS_SoapPublishModelAttributes::PSS_SoapPublishModelAttributes(ZBPublishMessengerModelInformation* pInfo,
                                                                PSS_ProcessGraphModelMdl*           pModel,
                                                                void*                               pClass) :
-    ZUModelNavigation(pModel, pClass),
+    PSS_ModelNavigation(pModel, pClass),
     m_pInfo(pInfo)
 {}
 //---------------------------------------------------------------------------

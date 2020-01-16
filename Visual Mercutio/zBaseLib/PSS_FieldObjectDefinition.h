@@ -85,13 +85,13 @@ class AFX_EXT_CLASS PSS_FieldObjectDefinition : public CObject
 
         /**
         * Gets the class name
-        *@return the class nae
+        *@return the class name
         */
         virtual inline const CString GetClassName() const;
 
         /**
         * Sets the class name
-        *@param value - the class nae
+        *@param value - the class name
         */
         virtual inline void SetClassName(const CString& value);
 

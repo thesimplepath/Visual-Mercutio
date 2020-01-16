@@ -527,20 +527,20 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUExtractModelLogicalPrestationsAssigned.cpp" />
-    <ClCompile Include="ZUExtractModelLogicalSystemAssigned.cpp">
+    <ClCompile Include="PSS_ExtractModelLogicalPrestationsAssigned.cpp" />
+    <ClCompile Include="PSS_ExtractModelLogicalSystemAssigned.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUExtractModelUnitGroupAssigned.cpp">
+    <ClCompile Include="PSS_ExtractModelUnitGroupAssigned.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUModelNavigation.cpp">
+    <ClCompile Include="PSS_ModelNavigation.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -816,10 +816,10 @@
     <ClInclude Include="PSS_DynamicAttributesManipulator.h" />
     <ClInclude Include="PSS_ExtractCategoryAttributes.h" />
     <ClInclude Include="PSS_ExtractModelAttributes.h" />
-    <ClInclude Include="ZUExtractModelLogicalPrestationsAssigned.h" />
-    <ClInclude Include="ZUExtractModelLogicalSystemAssigned.h" />
-    <ClInclude Include="ZUExtractModelUnitGroupAssigned.h" />
-    <ClInclude Include="ZUModelNavigation.h" />
+    <ClInclude Include="PSS_ExtractModelLogicalPrestationsAssigned.h" />
+    <ClInclude Include="PSS_ExtractModelLogicalSystemAssigned.h" />
+    <ClInclude Include="PSS_ExtractModelUnitGroupAssigned.h" />
+    <ClInclude Include="PSS_ModelNavigation.h" />
     <ClInclude Include="ZUODSymbolManipulator.h" />
     <ClInclude Include="ZUReassignDynamicAttributesToModel.h" />
     <ClInclude Include="ZUSerializeODMeasure.h" />
