@@ -19,8 +19,8 @@
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPPageSymbol.h"
 
-// JMR-MODIF - Le 30 août 2006 - Ajout de l'en-tête ZUODSymbolManipulator.
-#include "zModel\ZUODSymbolManipulator.h"
+// JMR-MODIF - Le 30 août 2006 - Ajout de l'en-tête PSS_ODSymbolManipulator.
+#include "zModel\PSS_ODSymbolManipulator.h"
 
 #include "zModelBPRes.h"
 
@@ -253,7 +253,7 @@ BOOL ZBBPDoorSymbol::DuplicateStyleOnTwinSymbol()
 
     if (m_TwinSymbol != NULL)
     {
-        return ZUODSymbolManipulator::CopySymbolStyle(this, m_TwinSymbol);
+        return PSS_ODSymbolManipulator::CopySymbolStyle(this, m_TwinSymbol);
     }
 
     return FALSE;

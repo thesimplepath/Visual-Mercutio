@@ -19,7 +19,7 @@
 #include "zModel\ZVInsertModelNewPageDlg.h"
 #include "zModel\ZVRenameModelPageDlg.h"
 #include "zModel\ZVRenameModelPageInTreeDlg.h"
-#include "zModel\ZVDeleteModelPageDlg.h"
+#include "zModel\PSS_DeleteModelPageDlg.h"
 #include "zModel\PSS_UnitObserverMsg.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
@@ -1846,7 +1846,7 @@ void ZDProcessGraphModelControllerBP::OnDeletePage()
     rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-    ZVDeleteModelPageDlg Dlg(GetModel()->GetRoot(), &rtClasses);
+    PSS_DeleteModelPageDlg Dlg(GetModel()->GetRoot(), &rtClasses);
 
     if (Dlg.DoModal() == IDOK)
     {

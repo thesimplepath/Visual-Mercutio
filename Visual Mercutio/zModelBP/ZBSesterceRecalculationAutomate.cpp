@@ -23,7 +23,7 @@
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 
-#include "zModel\ZUODSymbolManipulator.h"
+#include "zModel\PSS_ODSymbolManipulator.h"
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"

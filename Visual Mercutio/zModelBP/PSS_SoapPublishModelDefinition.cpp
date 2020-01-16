@@ -14,7 +14,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zModel\ZUODSymbolManipulator.h"
+#include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
@@ -443,7 +443,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinDoor->GetEnteringSymbols_Up(followingNodes);
 
         const std::size_t followingSymbolCount =
-                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
+                PSS_ODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;
@@ -468,7 +468,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinPage->GetEnteringSymbols_Up(followingNodes);
 
         std::size_t followingSymbolCount =
-                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
+                PSS_ODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;
@@ -498,7 +498,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinDoor->GetFollowingSymbols_Down(followingNodes);
 
         std::size_t followingSymbolCount =
-                ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
+                PSS_ODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;
@@ -523,7 +523,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         pTwinPage->GetFollowingSymbols_Down(followingNodes);
 
         const std::size_t followingSymbolCount =
-            ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
+                PSS_ODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(PSS_Symbol));
 
         if (!followingSymbolCount)
             return true;

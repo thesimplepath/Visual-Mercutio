@@ -17,7 +17,7 @@
 #include "zBaseLib\PSS_DrawFunctions.h"
 #include "zProperty\ZBDynamicProperties.h"
 #include "PSS_SymbolEdit.h"
-#include "ZUODSymbolManipulator.h"
+#include "PSS_ODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_DocObserverMsg.h"
 #include "PSS_SymbolObserverMsg.h"
@@ -206,12 +206,12 @@ void PSS_Symbol::SetShowTitleText(bool value)
 //---------------------------------------------------------------------------
 PSS_SymbolEdit* PSS_Symbol::CreateEditText(const CString& areaName, const CString& editName, CODComponent* pParent)
 {
-    return ZUODSymbolManipulator::CreateEditText(this, areaName, editName, pParent);
+    return PSS_ODSymbolManipulator::CreateEditText(this, areaName, editName, pParent);
 }
 //---------------------------------------------------------------------------
 PSS_SymbolEdit* PSS_Symbol::CreateAndReplaceEditText(const CString& editName, CODComponent* pParent)
 {
-    return ZUODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
+    return PSS_ODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
 }
 //---------------------------------------------------------------------------
 CString PSS_Symbol::GetSymbolName() const
@@ -626,7 +626,7 @@ void PSS_Symbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
         m_pDynamicPropManager = pSymbol->m_pDynamicPropManager->Dup();
 
         // set the area name
-        ZUODSymbolManipulator::MatchSymbolAreaName(this, const_cast<CODSymbolComponent*>(&src));
+        PSS_ODSymbolManipulator::MatchSymbolAreaName(this, const_cast<CODSymbolComponent*>(&src));
     }
 }
 //---------------------------------------------------------------------------
@@ -701,7 +701,7 @@ void PSS_Symbol::ShowInError(bool value)
 //---------------------------------------------------------------------------
 void PSS_Symbol::ApplyFormatFromObject(CODSymbolComponent& srcObj, bool font, bool fill, bool line)
 {
-    ZUODSymbolManipulator::ApplyFormatFromObject(this, srcObj, font, fill, line);
+    PSS_ODSymbolManipulator::ApplyFormatFromObject(this, srcObj, font, fill, line);
 }
 //---------------------------------------------------------------------------
 CODComponent* PSS_Symbol::GetLocalSymbol()
@@ -1151,8 +1151,8 @@ bool PSS_Symbol::CreateSymbolProperties()
 //---------------------------------------------------------------------------
 void PSS_Symbol::UpdateGraphicFromRisk(COLORREF color, BOOL italic)
 {
-    ZUODSymbolManipulator::ChangeTextColor(this, color);
-    ZUODSymbolManipulator::SetTextItalic  (this, italic);
+    PSS_ODSymbolManipulator::ChangeTextColor(this, color);
+    PSS_ODSymbolManipulator::SetTextItalic  (this, italic);
 
     RedrawSymbol();
 }
@@ -1160,13 +1160,13 @@ void PSS_Symbol::UpdateGraphicFromRisk(COLORREF color, BOOL italic)
 void PSS_Symbol::SetCurrentLineColor(COLORREF value)
 {
     m_CurrentLineColor = value;
-    ZUODSymbolManipulator::ChangeLineColor(this, value);
+    PSS_ODSymbolManipulator::ChangeLineColor(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_Symbol::SetCurrentLabelColor(COLORREF value)
 {
     m_CurrentLabelLineColor = value;
-    ZUODSymbolManipulator::ChangeLabelLineColor(this, value);
+    PSS_ODSymbolManipulator::ChangeLabelLineColor(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_Symbol::SetInitialLineColor(COLORREF value)
@@ -1178,7 +1178,7 @@ void PSS_Symbol::SetInitialLineColor(COLORREF value)
 void PSS_Symbol::SetInitialLineWidth(int value)
 {
     m_InitialLineWidth = value;
-    ZUODSymbolManipulator::ChangeLineWidth(this, value);
+    PSS_ODSymbolManipulator::ChangeLineWidth(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_Symbol::SetInitialLabelLineColor(COLORREF value)
@@ -1190,27 +1190,27 @@ void PSS_Symbol::SetInitialLabelLineColor(COLORREF value)
 void PSS_Symbol::SetInitialLabelLineWidth(int value)
 {
     m_InitialLabelLineWidth = value;
-    ZUODSymbolManipulator::ChangeLabelLineWidth(this, value);
+    PSS_ODSymbolManipulator::ChangeLabelLineWidth(this, value);
 }
 //---------------------------------------------------------------------------
 CODComponent* PSS_Symbol::FindSymbol(CODComponent* pMainComponent, const CString& symbolName)
 {
-    return ZUODSymbolManipulator::FindSymbol(pMainComponent, symbolName);
+    return PSS_ODSymbolManipulator::FindSymbol(pMainComponent, symbolName);
 }
 //---------------------------------------------------------------------------
 CODComponent* PSS_Symbol::FindSymbolInChild(CODComponent* pMainComponent, const CString& symbolName)
 {
-    return ZUODSymbolManipulator::FindSymbolInChild(pMainComponent, symbolName);
+    return PSS_ODSymbolManipulator::FindSymbolInChild(pMainComponent, symbolName);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Symbol::RemoveSymbol(const CString& symbolName)
 {
-    return ZUODSymbolManipulator::RemoveSymbol(this, symbolName);
+    return PSS_ODSymbolManipulator::RemoveSymbol(this, symbolName);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Symbol::RemoveSymbol(CODComponent* pMainComponent, CODComponent* pComponent)
 {
-    return ZUODSymbolManipulator::RemoveSymbol(pMainComponent, pComponent);
+    return PSS_ODSymbolManipulator::RemoveSymbol(pMainComponent, pComponent);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_Symbol::GetEnteringSymbols(CODNodeArray& nodes)

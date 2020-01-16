@@ -14,7 +14,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
-#include "zModel\ZUODSymbolManipulator.h"
+#include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"

@@ -5,9 +5,10 @@
 #include "stdafx.h"
 #include "ZVSymbolAttributes.h"
 
-#include "ZUODSymbolManipulator.h"
+// processsoft
+#include "PSS_ODSymbolManipulator.h"
 
-// Resource include
+// resources
 #include "zModelRes.h"
 
 #ifdef _DEBUG
@@ -58,8 +59,7 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
     if (m_pSymbol->IncludeNameArea())
     {
         // First, create the name Text zone if it does not exist
-        if (!ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                               M_SymbolNameComponentControlLabel))
+        if (!PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), M_SymbolNameComponentControlLabel))
         {
             m_pSymbol->CreateAndReplaceEditText(M_SymbolNameComponentControlLabel);
 
@@ -120,13 +120,13 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
     else
     {
         // If we don't need a name area, check if exist and remove it
-        CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                M_SymbolNameComponentControlLabel);
+        CODComponent* pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), 
+                                                                  M_SymbolNameComponentControlLabel);
 
         if (pComp && ISA(pComp, CODTextComponent))
         {
             // Now remove the edit.
-            ZUODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
+            PSS_ODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
         }
     }
 
@@ -134,8 +134,7 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
     if (m_pSymbol->IncludeAttributeArea())
     {
         // Create the attribute Text area if it does not exist
-        if (!ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                               M_AttributeAreaComponentLabel))
+        if (!PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), M_AttributeAreaComponentLabel))
         {
             m_pSymbol->CreateAndReplaceEditText(M_AttributeAreaComponentLabel);
 
@@ -183,8 +182,8 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
         }
 
         // If we do have an attribute area, then check for the splitter1
-        CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                M_SplitterComponentLine1);
+        CODComponent* pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), 
+                                                                  M_SplitterComponentLine1);
 
         // If not found, then we need to create one
         if (!pComp || !ISA(pComp, CODLineComponent))
@@ -238,23 +237,22 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
     else
     {
         // Otherwise, if there is one, then remove it from the component
-        CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                M_AttributeAreaComponentLabel);
+        CODComponent* pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                  M_AttributeAreaComponentLabel);
 
         if (pComp && ISA(pComp, CODTextComponent))
         {
             // Now remove the edit.
-            ZUODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
+            PSS_ODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
         }
 
         // Remove also the splitter1
-        pComp = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                  M_SplitterComponentLine1);
+        pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), M_SplitterComponentLine1);
 
         if (pComp && ISA(pComp, CODLineComponent))
         {
             // Now remove the splitter1.
-            ZUODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
+            PSS_ODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
         }
     }
 
@@ -262,8 +260,7 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
     if (m_pSymbol->IncludeDescriptionArea())
     {
         // Create the Comment Text zone if it does not exists
-        if (!ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                               M_CommentComponentControlLabel))
+        if (!PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), M_CommentComponentControlLabel))
         {
             m_pSymbol->CreateAndReplaceEditText(M_CommentComponentControlLabel);
 
@@ -313,8 +310,8 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
         }
 
         // If we do have a description, then check for the splitter2
-        CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                M_SplitterComponentLine2);
+        CODComponent* pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), 
+                                                                  M_SplitterComponentLine2);
 
         // If not found, then we need to create one
         if (!pComp || !ISA(pComp, CODLineComponent))
@@ -368,23 +365,22 @@ BOOL ZVSymbolAttributes::InitializeAttributeAreas()
     else
     {
         // Otherwise, if there is one, then remove it from the component
-        CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                M_CommentComponentControlLabel);
+        CODComponent* pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                  M_CommentComponentControlLabel);
 
         if (pComp && ISA(pComp, CODTextComponent))
         {
             // Now remove the edit.
-            ZUODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
+            PSS_ODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
         }
 
         // Remove also the splitter2
-        pComp = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                  M_SplitterComponentLine2);
+        pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), M_SplitterComponentLine2);
 
         if (pComp && ISA(pComp, CODLineComponent))
         {
             // Now remove the splitter2.
-            ZUODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
+            PSS_ODSymbolManipulator::RemoveSymbol(dynamic_cast<CODComponent*>(m_pSymbol), pComp);
         }
     }
 
@@ -483,14 +479,14 @@ CODComponent* ZVSymbolAttributes::GetEditBoxArea()
 
     if (!m_pEditBoxArea)
     {
-        m_pEditBoxArea = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                           M_EditAreaComponentControlLabel);
+        m_pEditBoxArea = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                             M_EditAreaComponentControlLabel);
 
         // If not found, try to locate label
         if (!m_pEditBoxArea)
         {
-            m_pEditBoxArea = ZUODSymbolManipulator::FindLabel(dynamic_cast<CODSymbolComponent*>(m_pSymbol),
-                                                              M_EditAreaComponentControlLabel);
+            m_pEditBoxArea = PSS_ODSymbolManipulator::FindLabel(dynamic_cast<CODSymbolComponent*>(m_pSymbol),
+                                                                M_EditAreaComponentControlLabel);
         }
     }
 
@@ -503,8 +499,8 @@ CODTextComponent* ZVSymbolAttributes::GetSymbolNameTextEdit()
 
     if (!m_pNameEditText)
     {
-        CODComponent* pFound = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                 M_SymbolNameComponentControlLabel);
+        CODComponent* pFound = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                   M_SymbolNameComponentControlLabel);
 
         if (pFound && ISA(pFound, CODTextComponent))
         {
@@ -521,8 +517,8 @@ CODTextComponent* ZVSymbolAttributes::GetCommentTextEdit()
 
     if (!m_pCommentEditText)
     {
-        CODComponent* pFound = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                 M_CommentComponentControlLabel);
+        CODComponent* pFound = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                   M_CommentComponentControlLabel);
 
         if (pFound && ISA(pFound, CODTextComponent))
         {
@@ -539,8 +535,8 @@ CODTextComponent* ZVSymbolAttributes::GetAttributeTextEdit()
 
     if (!m_pAttributeEditText)
     {
-        CODComponent* pFound = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                 M_AttributeAreaComponentLabel);
+        CODComponent* pFound = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                   M_AttributeAreaComponentLabel);
 
         if (pFound && ISA(pFound, CODTextComponent))
         {
@@ -557,8 +553,8 @@ CODLineComponent* ZVSymbolAttributes::GetSplitter1()
 
     if (!m_pSplitterComponent1)
     {
-        CODComponent* pFound = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                 M_SplitterComponentLine1);
+        CODComponent* pFound = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                   M_SplitterComponentLine1);
 
         if (pFound && ISA(pFound, CODLineComponent))
         {
@@ -575,8 +571,8 @@ CODLineComponent* ZVSymbolAttributes::GetSplitter2()
 
     if (!m_pSplitterComponent2)
     {
-        CODComponent* pFound = ZUODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
-                                                                 M_SplitterComponentLine2);
+        CODComponent* pFound = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                   M_SplitterComponentLine2);
 
         if (pFound && ISA(pFound, CODLineComponent))
         {

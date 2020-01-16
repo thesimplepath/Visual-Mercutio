@@ -28,7 +28,7 @@
 #include "zModel\PSS_SymbolLabel.h"
 #include <Views\OdLineOrientation.h>
 
-#include "zModel\ZUODSymbolManipulator.h"
+#include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
 

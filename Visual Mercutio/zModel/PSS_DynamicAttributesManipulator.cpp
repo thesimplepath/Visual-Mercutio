@@ -17,7 +17,7 @@
 #include "PSS_ExtractCategoryAttributes.h"
 #include "PSS_ExtractModelAttributes.h"
 #include "PSS_AssignDynamicAttributesToModel.h"
-#include "ZUReassignDynamicAttributesToModel.h"
+#include "PSS_ReassignDynamicAttributesToModel.h"
 #include "PSS_DeleteDynamicAttributesToModel.h"
 
 #ifdef _DEBUG
@@ -67,7 +67,7 @@ bool PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(ZBDynamicPr
 //---------------------------------------------------------------------------
 bool PSS_DynamicAttributesManipulator::ReassignProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty)
 {
-    ZUReassignDynamicAttributesToModel assign(pModel, pProperty);
+    PSS_ReassignDynamicAttributesToModel assign(pModel, pProperty);
     return assign.Navigate();
 }
 //---------------------------------------------------------------------------

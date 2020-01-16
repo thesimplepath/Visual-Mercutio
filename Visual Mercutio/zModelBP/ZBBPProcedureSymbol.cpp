@@ -34,7 +34,7 @@
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
-#include "zModel\ZUODSymbolManipulator.h"
+#include "zModel\PSS_ODSymbolManipulator.h"
 
 // ZBPropertyAttributes
 #include "zProperty\ZBPropertyAttributes.h"
@@ -3014,7 +3014,7 @@ int     ZBBPProcedureSymbol::GetEnteringUpDeliverable(CODEdgeArray& Edges)
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
+    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
 int ZBBPProcedureSymbol::GetLeavingDownDeliverable(CString& LeavingDeliverables)
@@ -3098,7 +3098,7 @@ int ZBBPProcedureSymbol::GetLeavingDownDeliverable(CODEdgeArray& Edges)
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
+    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
 int     ZBBPProcedureSymbol::GetLeavingRightDeliverable(CString& LeavingDeliverables)
@@ -3182,7 +3182,7 @@ int     ZBBPProcedureSymbol::GetLeavingRightDeliverable(CODEdgeArray& Edges)
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
+    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
 int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable(CString& LeavingDeliverables)
@@ -3266,7 +3266,7 @@ int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable(CODEdgeArray& Edges)
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
+    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
 BOOL ZBBPProcedureSymbol::SetSymbolName(const CString value)

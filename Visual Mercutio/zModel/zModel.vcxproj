@@ -546,49 +546,49 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUODSymbolManipulator.cpp">
+    <ClCompile Include="PSS_ODSymbolManipulator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUReassignDynamicAttributesToModel.cpp">
+    <ClCompile Include="PSS_ReassignDynamicAttributesToModel.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSerializeODMeasure.cpp">
+    <ClCompile Include="PSS_SerializeODMeasure.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSymbolLoader.cpp">
+    <ClCompile Include="PSS_SymbolLoader.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSymbolLoaderFILE.cpp">
+    <ClCompile Include="PSS_FileSymbolLoader.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSymbolLoaderFTP.cpp">
+    <ClCompile Include="PSS_FTPSymbolLoader.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSymbolLoaderHTTP.cpp">
+    <ClCompile Include="PSS_HTTPSymbolLoader.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDeleteModelPageDlg.cpp">
+    <ClCompile Include="PSS_DeleteModelPageDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -820,14 +820,14 @@
     <ClInclude Include="PSS_ExtractModelLogicalSystemAssigned.h" />
     <ClInclude Include="PSS_ExtractModelUnitGroupAssigned.h" />
     <ClInclude Include="PSS_ModelNavigation.h" />
-    <ClInclude Include="ZUODSymbolManipulator.h" />
-    <ClInclude Include="ZUReassignDynamicAttributesToModel.h" />
-    <ClInclude Include="ZUSerializeODMeasure.h" />
-    <ClInclude Include="ZUSymbolLoader.h" />
-    <ClInclude Include="ZUSymbolLoaderFILE.h" />
-    <ClInclude Include="ZUSymbolLoaderFTP.h" />
-    <ClInclude Include="ZUSymbolLoaderHTTP.h" />
-    <ClInclude Include="ZVDeleteModelPageDlg.h" />
+    <ClInclude Include="PSS_ODSymbolManipulator.h" />
+    <ClInclude Include="PSS_ReassignDynamicAttributesToModel.h" />
+    <ClInclude Include="PSS_SerializeODMeasure.h" />
+    <ClInclude Include="PSS_SymbolLoader.h" />
+    <ClInclude Include="PSS_FileSymbolLoader.h" />
+    <ClInclude Include="PSS_FTPSymbolLoader.h" />
+    <ClInclude Include="PSS_HTTPSymbolLoader.h" />
+    <ClInclude Include="PSS_DeleteModelPageDlg.h" />
     <ClInclude Include="ZVDynamicAttributesCreation.h" />
     <ClInclude Include="ZVDynamicAttributesDuplication.h" />
     <ClInclude Include="ZVFindSymbolDlg.h" />

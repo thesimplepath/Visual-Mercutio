@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_BaseDocument.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zProperty\ZBDynamicProperties.h"
-#include "ZUODSymbolManipulator.h"
+#include "PSS_ODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_BasicProperties.h"
 #include "PSS_Symbol.h"
@@ -248,12 +248,12 @@ void PSS_LinkSymbol::SetShowTitleText(bool value)
 //---------------------------------------------------------------------------
 PSS_SymbolEdit* PSS_LinkSymbol::CreateEditText(const CString& areaName, const CString& editName, CODComponent* pParent)
 {
-    return ZUODSymbolManipulator::CreateEditText(this, areaName, editName, pParent);
+    return PSS_ODSymbolManipulator::CreateEditText(this, areaName, editName, pParent);
 }
 //---------------------------------------------------------------------------
 PSS_SymbolEdit* PSS_LinkSymbol::CreateAndReplaceEditText(const CString& editName, CODComponent* pParent)
 {
-    return ZUODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
+    return PSS_ODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::CanEditNonDynamicName() const
@@ -652,7 +652,7 @@ void PSS_LinkSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
         m_DynamicPropManager = pSymbol->m_DynamicPropManager->Dup();
 
         // set the right area name
-        ZUODSymbolManipulator::MatchSymbolAreaName(this, const_cast<CODSymbolComponent*>(&src));
+        PSS_ODSymbolManipulator::MatchSymbolAreaName(this, const_cast<CODSymbolComponent*>(&src));
     }
 }
 //---------------------------------------------------------------------------
@@ -715,7 +715,7 @@ void PSS_LinkSymbol::ApplyFormatFromObject(CODSymbolComponent& srcObj,
                                            bool                fill,
                                            bool                line)
 {
-    ZUODSymbolManipulator::ApplyFormatFromObject(this, srcObj, font, fill, line);
+    PSS_ODSymbolManipulator::ApplyFormatFromObject(this, srcObj, font, fill, line);
 }
 //---------------------------------------------------------------------------
 CODComponent* PSS_LinkSymbol::GetLocalSymbol()
@@ -1380,8 +1380,8 @@ CODSymbolComponent* PSS_LinkSymbol::GetFollowingSymbol()
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::UpdateGraphicFromRisk(COLORREF color, BOOL italic)
 {
-    ZUODSymbolManipulator::ChangeLabelTextColor(this, color);
-    ZUODSymbolManipulator::SetLabelItalic(this, italic);
+    PSS_ODSymbolManipulator::ChangeLabelTextColor(this, color);
+    PSS_ODSymbolManipulator::SetLabelItalic(this, italic);
 
     // don't use the RedrawSymbol() function because it recalculates the entire link path,
     // and only a redraw is required here
@@ -1394,19 +1394,19 @@ void PSS_LinkSymbol::UpdateGraphicFromRisk(COLORREF color, BOOL italic)
 void PSS_LinkSymbol::SetCurrentLineColor(COLORREF value)
 {
     m_CurrentLineColor = value;
-    ZUODSymbolManipulator::ChangeLineColor(this, value);
+    PSS_ODSymbolManipulator::ChangeLineColor(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetCurrentLineWidth(int value)
 {
     m_CurrentLineWidth = value;
-    ZUODSymbolManipulator::ChangeLineWidth(this, value);
+    PSS_ODSymbolManipulator::ChangeLineWidth(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetCurrentLineStyle(int value)
 {
     m_CurrentLineStyle = value;
-    ZUODSymbolManipulator::ChangeLineStyle(this, value);
+    PSS_ODSymbolManipulator::ChangeLineStyle(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetInitialLineStyle(int value)
@@ -1418,7 +1418,7 @@ void PSS_LinkSymbol::SetInitialLineStyle(int value)
 void PSS_LinkSymbol::SetCurrentLabelColor(COLORREF value)
 {
     m_CurrentLabelLineColor = value;
-    ZUODSymbolManipulator::ChangeLabelLineColor(this, value);
+    PSS_ODSymbolManipulator::ChangeLabelLineColor(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetInitialLineColor(COLORREF value)
@@ -1442,7 +1442,7 @@ void PSS_LinkSymbol::SetInitialLabelLineColor(COLORREF value)
 void PSS_LinkSymbol::SetInitialLabelLineWidth(int value)
 {
     m_InitialLabelLineWidth = value;
-    ZUODSymbolManipulator::ChangeLabelLineWidth(this, value);
+    PSS_ODSymbolManipulator::ChangeLabelLineWidth(this, value);
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::Serialize(CArchive& ar)

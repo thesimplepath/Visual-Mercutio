@@ -20,7 +20,7 @@
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelView.h"
 #include "PSS_ProcessGraphModelViewport.h"
-#include "ZUODSymbolManipulator.h"
+#include "PSS_ODSymbolManipulator.h"
 #include "PSS_DocObserverMsg.h"
 #include "PSS_UnitObserverMsg.h"
 #include "PSS_ModelObserverMsg.h"
@@ -31,7 +31,7 @@
 #include "PSS_ProcessGraphPage.h"
 #include "ZVInsertModelNewPageDlg.h"
 #include "ZVRenameModelPageDlg.h"
-#include "ZVDeleteModelPageDlg.h"
+#include "PSS_DeleteModelPageDlg.h"
 #include "ZVSelectSymbolAttributeDlg.h"
 #include "ZVFindSymbolExtDlg.h"
 #include "PSS_BuildSymbolNewName.h"
@@ -2894,7 +2894,7 @@ void PSS_ProcessGraphModelController::OnLButtonDown(UINT flags, CPoint point)
                     (pSrcSymbol->IsPage()      && pDstSymbol->IsPage())      ||
                     (pSrcSymbol->IsPackage()   && pDstSymbol->IsPackage()))
                 {
-                    if (!ZUODSymbolManipulator::CopySymbolStyle(pSrcSymbol, pDstSymbol))
+                    if (!PSS_ODSymbolManipulator::CopySymbolStyle(pSrcSymbol, pDstSymbol))
                         return;
 
                     pDstSymbol->RedrawSymbol();
@@ -2912,14 +2912,12 @@ void PSS_ProcessGraphModelController::OnLButtonDown(UINT flags, CPoint point)
             else
             if (pSrcLinkSymbol && pDstLinkSymbol)
             {
-                CODComponent* pSrcComp = ZUODSymbolManipulator::FindSymbol(pSrcLinkSymbol,
-                                                                           M_SymbolNameComponentControlLabel);
-                CODComponent* pDstComp = ZUODSymbolManipulator::FindSymbol(pDstLinkSymbol,
-                                                                           M_SymbolNameComponentControlLabel);
+                CODComponent* pSrcComp = PSS_ODSymbolManipulator::FindSymbol(pSrcLinkSymbol, M_SymbolNameComponentControlLabel);
+                CODComponent* pDstComp = PSS_ODSymbolManipulator::FindSymbol(pDstLinkSymbol, M_SymbolNameComponentControlLabel);
 
                 if (pSrcComp && pDstComp)
                 {
-                    ZUODSymbolManipulator::CopySymbolStyle(pSrcComp, pDstComp);
+                    PSS_ODSymbolManipulator::CopySymbolStyle(pSrcComp, pDstComp);
                     pDstLinkSymbol->RedrawSymbol();
 
                     CDocument* pDocument = GetDocument();
@@ -2931,12 +2929,11 @@ void PSS_ProcessGraphModelController::OnLButtonDown(UINT flags, CPoint point)
             else
             if (pSrcLinkSymbol && ISA(pCompHit, CODLabelComponent))
             {
-                CODComponent* pSrcComp = ZUODSymbolManipulator::FindSymbol(pSrcLinkSymbol,
-                                                                           M_SymbolNameComponentControlLabel);
+                CODComponent* pSrcComp = PSS_ODSymbolManipulator::FindSymbol(pSrcLinkSymbol, M_SymbolNameComponentControlLabel);
 
                 if (pSrcComp && pCompHit)
                 {
-                    ZUODSymbolManipulator::CopySymbolStyle(pSrcComp, pCompHit);
+                    PSS_ODSymbolManipulator::CopySymbolStyle(pSrcComp, pCompHit);
                     RefreshAllSymbols();
 
                     CDocument* pDocument = GetDocument();
@@ -3878,7 +3875,7 @@ void PSS_ProcessGraphModelController::OnDeletePage()
     if (!pRoot)
         return;
 
-    ZVDeleteModelPageDlg dlg(GetModel()->GetRoot());
+    PSS_DeleteModelPageDlg dlg(GetModel()->GetRoot());
 
     if (dlg.DoModal() == IDOK)
     {
@@ -4854,8 +4851,8 @@ void PSS_ProcessGraphModelController::ChangeColorNodes()
 
         if (pComp)
         {
-            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
+            PSS_ODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
         }
 
         updateSet.Add(pComp);
@@ -4879,8 +4876,8 @@ void PSS_ProcessGraphModelController::ChangeColorEdges()
 
         if (pComp)
         {
-            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
-            ZUODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
+            PSS_ODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pComp, m_AnimatedColor);
         }
 
         updateSet.Add(pComp);
@@ -4901,8 +4898,8 @@ void PSS_ProcessGraphModelController::ChangeColorSymbols()
     {
         if (pComp)
         {
-            ZUODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
-            ZUODSymbolManipulator::ChangeLabelLineColor(static_cast<CODSymbolComponent*>(pComp), m_AnimatedColor);
+            PSS_ODSymbolManipulator::ChangeLineColor(pComp, m_AnimatedColor);
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(static_cast<CODSymbolComponent*>(pComp), m_AnimatedColor);
         }
 
         updateSet.Add(pComp);
@@ -4928,14 +4925,14 @@ void PSS_ProcessGraphModelController::ChangeBackColorNodes()
 
         if (pSymbol)
         {
-            ZUODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
-            ZUODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
+            PSS_ODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
         }
         else
         if (pLinkSymbol)
         {
-            ZUODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
-            ZUODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
+            PSS_ODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
         }
 
         updateSet.Add(pComp);
@@ -4961,14 +4958,14 @@ void PSS_ProcessGraphModelController::ChangeBackColorEdges()
 
         if (pSymbol)
         {
-            ZUODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
-            ZUODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
+            PSS_ODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
         }
         else
         if (pLinkSymbol)
         {
-            ZUODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
-            ZUODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
+            PSS_ODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
         }
 
         updateSet.Add(pComp);
@@ -4992,14 +4989,14 @@ void PSS_ProcessGraphModelController::ChangeBackColorSymbols()
 
         if (pSymbol)
         {
-            ZUODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
-            ZUODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
+            PSS_ODSymbolManipulator::ChangeLineColor     (pSymbol, pSymbol->GetCurrentLineColor());
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pSymbol, pSymbol->GetCurrentLabelColor());
         }
         else
         if (pLinkSymbol)
         {
-            ZUODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
-            ZUODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
+            PSS_ODSymbolManipulator::ChangeLineColor     (pLinkSymbol, pLinkSymbol->GetCurrentLineColor());
+            PSS_ODSymbolManipulator::ChangeLabelLineColor(pLinkSymbol, pLinkSymbol->GetCurrentLabelColor());
         }
 
         updateSet.Add(pComp);

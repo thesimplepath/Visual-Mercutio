@@ -21,30 +21,6 @@
     <ClCompile Include="zModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUODSymbolManipulator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUReassignDynamicAttributesToModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUSerializeODMeasure.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUSymbolLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUSymbolLoaderFILE.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUSymbolLoaderFTP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUSymbolLoaderHTTP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVDeleteModelPageDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZVDynamicAttributesCreation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -345,6 +321,30 @@
     <ClCompile Include="PSS_ModelNavigation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ODSymbolManipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ReassignDynamicAttributesToModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SerializeODMeasure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SymbolLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FileSymbolLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FTPSymbolLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_HTTPSymbolLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DeleteModelPageDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -415,30 +415,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zModelRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUODSymbolManipulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUReassignDynamicAttributesToModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUSerializeODMeasure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUSymbolLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUSymbolLoaderFILE.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUSymbolLoaderFTP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUSymbolLoaderHTTP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVDeleteModelPageDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVDynamicAttributesCreation.h">
@@ -745,6 +721,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ModelNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ODSymbolManipulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ReassignDynamicAttributesToModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SerializeODMeasure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SymbolLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_HTTPSymbolLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FTPSymbolLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FileSymbolLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DeleteModelPageDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

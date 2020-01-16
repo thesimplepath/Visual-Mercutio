@@ -22,7 +22,7 @@
 #include "PSS_LinkSymbol.h"
 #include "PSS_LanguageProperties.h"
 #include "PSS_BasicModelProperties.h"
-#include "ZUODSymbolManipulator.h"
+#include "PSS_ODSymbolManipulator.h"
 #include "PSS_SymbolObserverMsg.h"
 #include "PSS_DocObserverMsg.h"
 
@@ -2748,12 +2748,12 @@ std::size_t PSS_ProcessGraphModelMdl::GetEdgesLeavingISA(PSS_Symbol*          pC
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdl::KeepOnlySymbolsISA(CODNodeArray& nodes, const CRuntimeClass* pClass)
 {
-    return ZUODSymbolManipulator::KeepOnlySymbolsISA(nodes, pClass);
+    return PSS_ODSymbolManipulator::KeepOnlySymbolsISA(nodes, pClass);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdl::KeepOnlyLinksISA(CODEdgeArray& edges, const CRuntimeClass* pClass)
 {
-    return ZUODSymbolManipulator::KeepOnlyLinksISA(edges, pClass);
+    return PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, pClass);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdl::CountActivities(PSS_Symbol* pSymbol, const CODNodeArray& nodes)

@@ -9,7 +9,7 @@
 #include "PSS_PageUnits.h"
 
 // processsoft
-#include "ZUSerializeODMeasure.h"
+#include "PSS_SerializeODMeasure.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -68,10 +68,10 @@ void PSS_PageUnits::Serialize(CArchive& ar)
     {
         ar << DWORD(m_Units);
 
-        ZUSerializeODMeasure::SerializeWriteODMeasure(ar, m_ScaleFrom);
-        ZUSerializeODMeasure::SerializeWriteODMeasure(ar, m_ScaleTo);
-        ZUSerializeODMeasure::SerializeWriteODMeasure(ar, m_LogXUnit);
-        ZUSerializeODMeasure::SerializeWriteODMeasure(ar, m_LogYUnit);
+        PSS_SerializeODMeasure::SerializeWriteODMeasure(ar, m_ScaleFrom);
+        PSS_SerializeODMeasure::SerializeWriteODMeasure(ar, m_ScaleTo);
+        PSS_SerializeODMeasure::SerializeWriteODMeasure(ar, m_LogXUnit);
+        PSS_SerializeODMeasure::SerializeWriteODMeasure(ar, m_LogYUnit);
     }
     else
     {
@@ -79,10 +79,10 @@ void PSS_PageUnits::Serialize(CArchive& ar)
         ar >> wValue;
         m_Units = OD_UNIT_OF_MEASURE(wValue);
 
-        ZUSerializeODMeasure::SerializeReadODMeasure(ar, m_ScaleFrom);
-        ZUSerializeODMeasure::SerializeReadODMeasure(ar, m_ScaleTo);
-        ZUSerializeODMeasure::SerializeReadODMeasure(ar, m_LogXUnit);
-        ZUSerializeODMeasure::SerializeReadODMeasure(ar, m_LogYUnit);
+        PSS_SerializeODMeasure::SerializeReadODMeasure(ar, m_ScaleFrom);
+        PSS_SerializeODMeasure::SerializeReadODMeasure(ar, m_ScaleTo);
+        PSS_SerializeODMeasure::SerializeReadODMeasure(ar, m_LogXUnit);
+        PSS_SerializeODMeasure::SerializeReadODMeasure(ar, m_LogYUnit);
     }
 }
 //---------------------------------------------------------------------------
