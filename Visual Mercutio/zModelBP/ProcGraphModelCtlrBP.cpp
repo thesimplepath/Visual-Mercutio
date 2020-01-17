@@ -16,7 +16,7 @@
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\PSS_BuildSymbolNewName.h"
 #include "zModel\PSS_ProcessGraphPage.h"
-#include "zModel\ZVInsertModelNewPageDlg.h"
+#include "zModel\PSS_InsertModelNewPageDlg.h"
 #include "zModel\ZVRenameModelPageDlg.h"
 #include "zModel\ZVRenameModelPageInTreeDlg.h"
 #include "zModel\PSS_DeleteModelPageDlg.h"
@@ -1661,16 +1661,16 @@ void ZDProcessGraphModelControllerBP::OnInsertPage()
     rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-    ZVInsertModelNewPageDlg Dlg(pRoot,
-                                pRoot->GetValidNextPageName(),
-                                pRoot->GetExistingPageNameArray(),
-                                &rtClasses);
+    PSS_InsertModelNewPageDlg dlg(pRoot,
+                                  pRoot->GetValidNextPageName(),
+                                  pRoot->GetExistingPageNameArray(),
+                                  &rtClasses);
 
-    if (Dlg.DoModal() == IDOK)
+    if (dlg.DoModal() == IDOK)
     {
-        PSS_ProcessGraphModelMdl*    pModel = pRoot->CreateEmptyModel(Dlg.GetPageName(), Dlg.GetParentModel());
-        PSS_ProcessGraphPage*        pPage = pRoot->CreateNewPage(pModel, Dlg.GetPageName(), Dlg.GetParentModel());
-        BrowseModel(pModel, Dlg.GetParentModel());
+        PSS_ProcessGraphModelMdl*    pModel = pRoot->CreateEmptyModel(dlg.GetPageName(), dlg.GetParentModel());
+        PSS_ProcessGraphPage*        pPage = pRoot->CreateNewPage(pModel, dlg.GetPageName(), dlg.GetParentModel());
+        BrowseModel(pModel, dlg.GetParentModel());
 
         // Build the message
         PSS_DocObserverMsg DocMsg;

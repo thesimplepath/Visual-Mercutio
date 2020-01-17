@@ -594,38 +594,38 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDynamicAttributesCreation.cpp">
+    <ClCompile Include="PSS_DynamicAttributesCreation.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDynamicAttributesDuplication.cpp" />
-    <ClCompile Include="ZVFindSymbolDlg.cpp">
+    <ClCompile Include="PSS_DynamicAttributesDuplicationDlg.cpp" />
+    <ClCompile Include="PSS_FindSymbolDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVFindSymbolExtDlg.cpp">
+    <ClCompile Include="PSS_FindSymbolExtDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVInsertLinkModelPageDlg.cpp">
+    <ClCompile Include="PSS_InsertLinkModelPageDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVInsertModelNewPageDlg.cpp">
+    <ClCompile Include="PSS_InsertModelNewPageDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVLogicalSystemInfoDlg.cpp">
+    <ClCompile Include="PSS_LogicalSystemInfoDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -828,13 +828,13 @@
     <ClInclude Include="PSS_FTPSymbolLoader.h" />
     <ClInclude Include="PSS_HTTPSymbolLoader.h" />
     <ClInclude Include="PSS_DeleteModelPageDlg.h" />
-    <ClInclude Include="ZVDynamicAttributesCreation.h" />
-    <ClInclude Include="ZVDynamicAttributesDuplication.h" />
-    <ClInclude Include="ZVFindSymbolDlg.h" />
-    <ClInclude Include="ZVFindSymbolExtDlg.h" />
-    <ClInclude Include="ZVInsertLinkModelPageDlg.h" />
-    <ClInclude Include="ZVInsertModelNewPageDlg.h" />
-    <ClInclude Include="ZVLogicalSystemInfoDlg.h" />
+    <ClInclude Include="PSS_DynamicAttributesCreation.h" />
+    <ClInclude Include="PSS_DynamicAttributesDuplicationDlg.h" />
+    <ClInclude Include="PSS_FindSymbolDlg.h" />
+    <ClInclude Include="PSS_FindSymbolExtDlg.h" />
+    <ClInclude Include="PSS_InsertLinkModelPageDlg.h" />
+    <ClInclude Include="PSS_InsertModelNewPageDlg.h" />
+    <ClInclude Include="PSS_LogicalSystemInfoDlg.h" />
     <ClInclude Include="ZVOutputAnalyzerLogView.h" />
     <ClInclude Include="ZVOutputSearchView.h" />
     <ClInclude Include="ZVOutputSymbolLogView.h" />

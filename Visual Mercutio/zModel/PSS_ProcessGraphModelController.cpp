@@ -16,7 +16,6 @@
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "zProperty\ZBDynamicProperties.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
-#include "zFormsRes\zFormsRes.h"
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelView.h"
 #include "PSS_ProcessGraphModelViewport.h"
@@ -29,18 +28,19 @@
 #include "PSS_LinkSymbol.h"
 #include "PSS_TextZone.h"
 #include "PSS_ProcessGraphPage.h"
-#include "ZVInsertModelNewPageDlg.h"
+#include "PSS_InsertModelNewPageDlg.h"
 #include "ZVRenameModelPageDlg.h"
 #include "PSS_DeleteModelPageDlg.h"
 #include "ZVSelectSymbolAttributeDlg.h"
-#include "ZVFindSymbolExtDlg.h"
+#include "PSS_FindSymbolExtDlg.h"
 #include "PSS_BuildSymbolNewName.h"
 #include "PSS_BuildGenericSymbolNewName.h"
-#include "ZVDynamicAttributesCreation.h"
+#include "PSS_DynamicAttributesCreation.h"
 #include "PSS_DynamicAttributesManipulator.h"
 #include "PSS_ModelGlobal.h"
 
 // resources
+#include "zFormsRes\zFormsRes.h"
 #include "zRes32\zRes.h"
 
 #ifdef _DEBUG
@@ -3744,7 +3744,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
 
     ZBPropertyAttributes propAttributes;
-    ZVFindSymbolExtDlg   findSymbolDlg(&propAttributes, &propSet);
+    PSS_FindSymbolExtDlg findSymbolDlg(&propAttributes, &propSet);
 
     if (findSymbolDlg.DoModal() == IDOK)
     {
@@ -3768,7 +3768,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
         }
 
         // start the search
-        pModel->Find(findSymbolDlg.GetWhat(),
+        pModel->Find(findSymbolDlg.GetSearchArgument(),
                      pLog,
                      &propAttributes,
                      findSymbolDlg.GetInAllModels(),
@@ -3797,7 +3797,7 @@ void PSS_ProcessGraphModelController::OnInsertPage()
     if (!pRoot)
         return;
 
-    ZVInsertModelNewPageDlg dlg(pRoot, pRoot->GetValidNextPageName(), pRoot->GetExistingPageNameArray());
+    PSS_InsertModelNewPageDlg dlg(pRoot, pRoot->GetValidNextPageName(), pRoot->GetExistingPageNameArray());
 
     if (dlg.DoModal() == IDOK)
     {
@@ -4573,7 +4573,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
-    ZVDynamicAttributesCreation dlg(pDoc, (pSymbolHit || pLinkSymbolHit));
+    PSS_DynamicAttributesCreation dlg(pDoc, (pSymbolHit || pLinkSymbolHit));
 
     if (dlg.DoModal() == IDCANCEL)
         return;
@@ -4669,7 +4669,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 
     // create and show the duplicate dialog box
-    ZVDynamicAttributesDuplication dlg(pDoc, (pSymbolHit || pLinkSymbolHit));
+    PSS_DynamicAttributesDuplicationDlg dlg(pDoc, (pSymbolHit || pLinkSymbolHit));
 
     if (dlg.DoModal() == IDCANCEL)
         return;
@@ -4698,7 +4698,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
         pLinkSymbolHit->FillProperties(propSet);
 
     // get the properties matching with the selected category
-    pPropMgr->CreatePropertyList(dlg.m_Category, propList);
+    pPropMgr->CreatePropertyList(dlg.GetCategory(), propList);
 
     const INT_PTR propCount = propList.GetSize();
 
@@ -4708,8 +4708,8 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
     {
         const CString propName = propList.GetAt(i);
 
-        pSrcProperty  = pPropMgr->GetPropertyItem(dlg.m_Category, propName);
-        pDestProperty = pPropMgr->RegisterProperty(dlg.m_Name,
+        pSrcProperty  = pPropMgr->GetPropertyItem(dlg.GetCategory(), propName);
+        pDestProperty = pPropMgr->RegisterProperty(dlg.GetName(),
                                                    pSrcProperty->GetLabel(),
                                                    pSrcProperty->GetDescription(),
                                                    pSrcProperty->GetPTType(),
@@ -4718,12 +4718,12 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
                                                    symbolRef);
 
         // do copy the values?
-        if (dlg.m_bDupValuesIsChecked)
+        if (dlg.DupValuesIsChecked())
         {
             ZBPropertyIterator it(&propSet);
 
             for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-                if (pProp->GetCategory() == dlg.m_Category && pProp->GetLabel() == pSrcProperty->GetLabel())
+                if (pProp->GetCategory() == dlg.GetCategory() && pProp->GetLabel() == pSrcProperty->GetLabel())
                 {
                     pDestProperty->SetStringFormat(pProp->GetStringFormat());
 

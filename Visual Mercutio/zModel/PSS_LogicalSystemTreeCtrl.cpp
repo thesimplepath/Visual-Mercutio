@@ -13,7 +13,7 @@
 #include "PSS_LogicalSystemEntity.h"
 #include "ZVSelectLogicalSystemDlg.h"
 #include "PSS_LogicalSystemObserverMsg.h"
-#include "ZVLogicalSystemInfoDlg.h"
+#include "PSS_LogicalSystemInfoDlg.h"
 
 // resources
 #include "zModelRes.h"
@@ -201,7 +201,7 @@ void PSS_LogicalSystemTreeCtrl::OnNewLogicalSystem()
         ASSERT(m_pLogicalSystemRoot);
 
         // asks for the name
-        ZVLogicalSystemInfoDlg dlg(IDS_NEW_LOGICALSYSTEM_T, pLogicalSystem);
+        PSS_LogicalSystemInfoDlg dlg(IDS_NEW_LOGICALSYSTEM_T, pLogicalSystem);
 
         if (dlg.DoModal() == IDOK)
         {
@@ -256,10 +256,10 @@ void PSS_LogicalSystemTreeCtrl::OnRenameLogicalSystem()
 
         PSS_LogicalSystemEntity* pParent = dynamic_cast<PSS_LogicalSystemEntity*>(pLogicalSystem->GetParent());
 
-        ZVLogicalSystemInfoDlg dlg(IDS_RENAME_LOGICALSYSTEM_T,
-                                   pParent ? pParent : pLogicalSystem,
-                                   pLogicalSystem->GetEntityName(),
-                                   pLogicalSystem->GetEntityDescription());
+        PSS_LogicalSystemInfoDlg dlg(IDS_RENAME_LOGICALSYSTEM_T,
+                                     pParent ? pParent : pLogicalSystem,
+                                     pLogicalSystem->GetEntityName(),
+                                     pLogicalSystem->GetEntityDescription());
 
         if (dlg.DoModal() == IDOK)
         {
@@ -316,11 +316,11 @@ void PSS_LogicalSystemTreeCtrl::OnLogicalSystemProperties()
 
         PSS_LogicalSystemEntity* pParent = dynamic_cast<PSS_LogicalSystemEntity*>(pEntity->GetParent());
 
-        ZVLogicalSystemInfoDlg dlg(IDS_LOGICALSYSTEM_PROPERTY_T,
-                                   pParent ? pParent : m_pLogicalSystemRoot,
-                                   pEntity->GetEntityName(),
-                                   pEntity->GetEntityDescription(),
-                                   true);
+        PSS_LogicalSystemInfoDlg dlg(IDS_LOGICALSYSTEM_PROPERTY_T,
+                                     pParent ? pParent : m_pLogicalSystemRoot,
+                                     pEntity->GetEntityName(),
+                                     pEntity->GetEntityDescription(),
+                                     true);
 
         if (dlg.DoModal() == IDOK)
         {

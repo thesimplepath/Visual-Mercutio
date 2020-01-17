@@ -21,27 +21,6 @@
     <ClCompile Include="zModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZVDynamicAttributesCreation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVDynamicAttributesDuplication.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVFindSymbolDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVFindSymbolExtDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVInsertLinkModelPageDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVInsertModelNewPageDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVLogicalSystemInfoDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZVOutputAnalyzerLogView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -345,6 +324,27 @@
     <ClCompile Include="PSS_DeleteModelPageDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_DynamicAttributesCreation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DynamicAttributesDuplicationDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FindSymbolDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FindSymbolExtDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InsertLinkModelPageDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InsertModelNewPageDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_LogicalSystemInfoDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -415,27 +415,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zModelRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVDynamicAttributesCreation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVDynamicAttributesDuplication.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVFindSymbolDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVFindSymbolExtDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVInsertLinkModelPageDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVInsertModelNewPageDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVLogicalSystemInfoDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVOutputAnalyzerLogView.h">
@@ -745,6 +724,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DeleteModelPageDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DynamicAttributesCreation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DynamicAttributesDuplicationDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FindSymbolDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FindSymbolExtDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InsertLinkModelPageDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InsertModelNewPageDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LogicalSystemInfoDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

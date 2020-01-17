@@ -26,7 +26,7 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
-#include "ZVDynamicAttributesDuplication.h"
+#include "PSS_DynamicAttributesDuplicationDlg.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc

@@ -70,7 +70,7 @@ class AFX_EXT_CLASS PSS_LogicalRulesDocument : public PSS_BaseDocument
         * Checks if the document is modified
         *@return TRUE if the document is modified, otherwise FALSE
         */
-        virtual inline virtual BOOL IsModified();
+        virtual inline BOOL IsModified();
 
         /**
         * Sets the document as modified

@@ -10,7 +10,7 @@
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
-#include "zModel\ZVInsertLinkModelPageDlg.h"
+#include "zModel\PSS_InsertLinkModelPageDlg.h"
 #include "ZBBPProcessSymbol.h"
 
 #include "zModel\PSS_DocObserverMsg.h"
@@ -450,23 +450,23 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-        ZVInsertLinkModelPageDlg Dlg((pOwnerModel) ? pOwnerModel : pRootModel,
-                                     NewPage,
-                                     pRootModel->GetExistingPageNameArray(),
-                                     &rtClasses);
+        PSS_InsertLinkModelPageDlg dlg((pOwnerModel) ? pOwnerModel : pRootModel,
+                                       NewPage,
+                                       pRootModel->GetExistingPageNameArray(),
+                                       &rtClasses);
 
-        if (Dlg.DoModal() == IDOK)
+        if (dlg.DoModal() == IDOK)
         {
             PSS_ProcessGraphModelViewport* pNewVp = NULL;
 
             // If a new page must be inserted
-            if (Dlg.ChooseInsertNewPage())
+            if (dlg.SelectInsertNewPage())
             {
                 PSS_ProcessGraphModelMdl* pNewModel =
-                    pRootModel->CreateEmptyModel(Dlg.GetPageName(), reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
+                    pRootModel->CreateEmptyModel(dlg.GetPageName(), reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
 
                 // Create the new page
-                m_pPage = pRootModel->CreateNewPage(pNewModel, Dlg.GetPageName(), Dlg.GetParentModel());
+                m_pPage = pRootModel->CreateNewPage(pNewModel, dlg.GetPageName(), dlg.GetParentModel());
 
                 // And assign the right child model
                 if (m_pPage)
@@ -499,7 +499,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             else
             {
                 // Find the page by its name
-                m_pPage = pRootModel->FindPage(Dlg.GetPageName());
+                m_pPage = pRootModel->FindPage(dlg.GetPageName());
 
                 // And assign the right child model
                 if (m_pPage)
