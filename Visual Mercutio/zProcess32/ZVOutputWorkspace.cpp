@@ -58,7 +58,7 @@ void ZVOutputWorkspace::Release()
 
 void ZVOutputWorkspace::LogClearOutput()
 {
-    ZVOutputSymbolLogView* pView = GetLogView();
+    PSS_OutputSymbolLogView* pView = GetLogView();
 
     if (pView)
     {
@@ -68,7 +68,7 @@ void ZVOutputWorkspace::LogClearOutput()
 
 void ZVOutputWorkspace::LogAddLine(const CString Line)
 {
-    ZVOutputSymbolLogView* pView = GetLogView();
+    PSS_OutputSymbolLogView* pView = GetLogView();
 
     if (pView)
     {

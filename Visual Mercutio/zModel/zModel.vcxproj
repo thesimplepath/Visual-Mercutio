@@ -631,25 +631,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVOutputAnalyzerLogView.cpp">
+    <ClCompile Include="PSS_OutputAnalyzerLogView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVOutputSearchView.cpp">
+    <ClCompile Include="PSS_OutputSearchView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVOutputSymbolLogView.cpp">
+    <ClCompile Include="PSS_OutputSymbolLogView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVOutputWorkflowLogView.cpp">
+    <ClCompile Include="PSS_OutputWorkflowLogView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -835,10 +835,10 @@
     <ClInclude Include="PSS_InsertLinkModelPageDlg.h" />
     <ClInclude Include="PSS_InsertModelNewPageDlg.h" />
     <ClInclude Include="PSS_LogicalSystemInfoDlg.h" />
-    <ClInclude Include="ZVOutputAnalyzerLogView.h" />
-    <ClInclude Include="ZVOutputSearchView.h" />
-    <ClInclude Include="ZVOutputSymbolLogView.h" />
-    <ClInclude Include="ZVOutputWorkflowLogView.h" />
+    <ClInclude Include="PSS_OutputAnalyzerLogView.h" />
+    <ClInclude Include="PSS_OutputSearchView.h" />
+    <ClInclude Include="PSS_OutputSymbolLogView.h" />
+    <ClInclude Include="PSS_OutputWorkflowLogView.h" />
     <ClInclude Include="ZVPrestationsInfoDlg.h" />
     <ClInclude Include="ZVRenameModelPageDlg.h" />
     <ClInclude Include="ZVRenameModelPageInTreeDlg.h" />

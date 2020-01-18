@@ -10,10 +10,10 @@
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zModel\ZVOutputSymbolLogView.h"
-#include "zModel\ZVOutputSearchView.h"
-#include "zModel\ZVOutputAnalyzerLogView.h"
-#include "zModel\ZVOutputWorkflowLogView.h"
+#include "zModel\PSS_OutputSymbolLogView.h"
+#include "zModel\PSS_OutputSearchView.h"
+#include "zModel\PSS_OutputAnalyzerLogView.h"
+#include "zModel\PSS_OutputWorkflowLogView.h"
 
 // JMR-MODIF - Le 13 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -45,7 +45,7 @@ public:
 
     ///////////////////////////////////////////////////////////
     // Output Symbol log
-    ZVOutputSymbolLogView* GetLogView()
+    PSS_OutputSymbolLogView* GetLogView()
     {
         return &m_OutputView;
     }
@@ -64,7 +64,7 @@ public:
     ///////////////////////////////////////////////////////////
     // Output Search log
 
-    ZVOutputSearchView* GetLogSearchView()
+    PSS_OutputSearchView* GetLogSearchView()
     {
         return &m_OutputSearchView;
     }
@@ -83,7 +83,7 @@ public:
     ///////////////////////////////////////////////////////////
     // Output Analyzer log
 
-    ZVOutputAnalyzerLogView* GetLogAnalyzerView()
+    PSS_OutputAnalyzerLogView* GetLogAnalyzerView()
     {
         return &m_OutputAnalyzerView;
     }
@@ -102,7 +102,7 @@ public:
     ///////////////////////////////////////////////////////////
     // Output Workflow log
 
-    ZVOutputWorkflowLogView* GetLogWorkflowView()
+    PSS_OutputWorkflowLogView* GetLogWorkflowView()
     {
         return &m_OutputWkfView;
     }
@@ -144,14 +144,11 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    ZVOutputSymbolLogView        m_OutputView;
-    ZVOutputSearchView            m_OutputSearchView;
-    ZVOutputAnalyzerLogView        m_OutputAnalyzerView;
-    ZVOutputWorkflowLogView        m_OutputWkfView;
-    // RS-MODIF 21.12.04
-    SEC3DTabWnd                    m_wndTab;
-    //SECTabWnd                    m_wndTab;
+    PSS_OutputSymbolLogView   m_OutputView;
+    PSS_OutputSearchView      m_OutputSearchView;
+    PSS_OutputAnalyzerLogView m_OutputAnalyzerView;
+    PSS_OutputWorkflowLogView m_OutputWkfView;
+    SEC3DTabWnd               m_wndTab;
 };
 
-#endif // !defined(AFX_ZVOutputWorkspace_H__8CD08B10_53ED_438C_82AD_1E04FE3C6282__INCLUDED_)
+#endif
