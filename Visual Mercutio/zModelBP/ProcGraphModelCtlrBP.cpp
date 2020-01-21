@@ -17,8 +17,8 @@
 #include "zModel\PSS_BuildSymbolNewName.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\PSS_InsertModelNewPageDlg.h"
-#include "zModel\ZVRenameModelPageDlg.h"
-#include "zModel\ZVRenameModelPageInTreeDlg.h"
+#include "zModel\PSS_RenameModelPageDlg.h"
+#include "zModel\PSS_RenameModelPageInTreeDlg.h"
 #include "zModel\PSS_DeleteModelPageDlg.h"
 #include "zModel\PSS_UnitObserverMsg.h"
 #include "zModel\PSS_DocObserverMsg.h"
@@ -1697,7 +1697,7 @@ void ZDProcessGraphModelControllerBP::OnRenamePage()
     rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-    ZVRenameModelPageDlg Dlg(pRoot, pRoot->GetExistingPageNameArray(), NULL, &rtClasses);
+    PSS_RenameModelPageDlg Dlg(pRoot, pRoot->GetExistingPageNameArray(), NULL, &rtClasses);
 
     if (Dlg.DoModal() == IDOK)
     {
@@ -1754,7 +1754,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
     rtClasses.Add( RUNTIME_CLASS( ZBBPPageSymbol ) );
     rtClasses.Add( RUNTIME_CLASS( ZBBPProcessSymbol ) );
 
-    ZVRenameModelPageDlg Dlg( pRoot, pRoot->GetExistingPageNameArray(), pCurrentPage, &rtClasses );
+    PSS_RenameModelPageDlg Dlg( pRoot, pRoot->GetExistingPageNameArray(), pCurrentPage, &rtClasses );
 
     if ( Dlg.DoModal() == IDOK )
     {
@@ -1805,7 +1805,7 @@ void ZDProcessGraphModelControllerBP::OnRenameCurrentPage()
     // Keeps the old page name
     CString OldPageName = pCurrentPage->GetPageName();
 
-    ZVRenameModelPageInTreeDlg Dlg(NewPage, pRoot->GetExistingPageNameArray());
+    PSS_RenameModelPageInTreeDlg Dlg(NewPage, pRoot->GetExistingPageNameArray());
 
     if (Dlg.DoModal() == IDOK)
     {

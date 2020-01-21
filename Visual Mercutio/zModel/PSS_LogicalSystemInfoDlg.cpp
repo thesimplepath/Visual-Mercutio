@@ -40,7 +40,6 @@ PSS_LogicalSystemInfoDlg::PSS_LogicalSystemInfoDlg(UINT                     titl
     m_Description(description),
     m_ModifyMode(modifyMode)
 {
-    // assign also the initial cost
     if (titleID != -1)
         m_Title.LoadString(titleID);
 }

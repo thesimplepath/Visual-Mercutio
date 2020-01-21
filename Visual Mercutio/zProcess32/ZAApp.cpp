@@ -29,7 +29,7 @@
 #undef _ZMODELEXPORT
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\PSS_DynamicAttributesManipulator.h"
-#include "zModel\ZVSelectModelSymbolDlg.h"
+#include "zModel\PSS_SelectModelSymbolDlg.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zModel\PSS_UserEntityDocument.h"
 #include "zModel\PSS_UserGroupObserverMsg.h"
@@ -3355,10 +3355,10 @@ void ZAApp::OnGenerateMercutioReport()
         rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-        ZVSelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
-                                   IDS_MERCUTIOREP_SELECTPROCESS,
-                                   g_Selectable_Model | g_Selectable_GraphPage,
-                                   &rtClasses);
+        PSS_SelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                     IDS_MERCUTIOREP_SELECTPROCESS,
+                                     g_Selectable_Model | g_Selectable_GraphPage,
+                                     &rtClasses);
 
         if (Dlg.DoModal() == IDOK)
         {

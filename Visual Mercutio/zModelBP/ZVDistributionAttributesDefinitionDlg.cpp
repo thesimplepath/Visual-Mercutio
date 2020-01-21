@@ -9,7 +9,7 @@
 
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_UserRoleEntity.h"
-#include "zModel\ZVSelectUserGroupDlg.h"
+#include "zModel\PSS_SelectUserGroupDlg.h"
 
 #include "ZVDistributionRuleDef.h"
 
@@ -208,7 +208,7 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
         !m_pDistributionManager)
         return;
 
-    ZVSelectUserGroupDlg choose(IDS_CHOOSEDISTRIBGROUP_TITLE, m_pMainUserGroup,
+    PSS_SelectUserGroupDlg choose(IDS_CHOOSEDISTRIBGROUP_TITLE, m_pMainUserGroup,
                                 true, // Allow group selection
                                 false);    // Allow role selection
     if (choose.DoModal() == IDOK)

@@ -29,9 +29,9 @@
 #include "PSS_TextZone.h"
 #include "PSS_ProcessGraphPage.h"
 #include "PSS_InsertModelNewPageDlg.h"
-#include "ZVRenameModelPageDlg.h"
+#include "PSS_RenameModelPageDlg.h"
 #include "PSS_DeleteModelPageDlg.h"
-#include "ZVSelectSymbolAttributeDlg.h"
+#include "PSS_SelectSymbolAttributeDlg.h"
 #include "PSS_FindSymbolExtDlg.h"
 #include "PSS_BuildSymbolNewName.h"
 #include "PSS_BuildGenericSymbolNewName.h"
@@ -3833,7 +3833,7 @@ void PSS_ProcessGraphModelController::OnRenamePage()
     if (!pRoot)
         return;
 
-    ZVRenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray());
+    PSS_RenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray());
 
     if (dlg.DoModal() == IDOK)
     {
@@ -3926,7 +3926,7 @@ void PSS_ProcessGraphModelController::OnRenameCurrentPage()
     // keep the old page name
     const CString oldPageName = pCurrentPage->GetPageName();
 
-    ZVRenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray(), pCurrentPage);
+    PSS_RenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray(), pCurrentPage);
 
     if (dlg.DoModal() == IDOK)
     {
@@ -4479,8 +4479,8 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
     }
 
     // call the base dialog for attribute selection
-    ZVSelectSymbolAttributeDlg dlg(&propAttributes, &propSet);
-    const UINT                 result = dlg.DoModal();
+    PSS_SelectSymbolAttributeDlg dlg(&propAttributes, &propSet);
+    const UINT                   result = dlg.DoModal();
 
     // show the wait cursor for this operation
     CWaitCursor waitCursor;

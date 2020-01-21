@@ -11,7 +11,7 @@
 // processsoft
 #include "PSS_LogicalRulesEntity.h"
 #include "PSS_LogicalRulesObserverMsg.h"
-#include "ZVSelectRuleDlg.h"
+#include "PSS_SelectRuleDlg.h"
 #include "PSS_RulesInfoDlg.h"
 
 // resources
@@ -282,7 +282,7 @@ void PSS_RulesTreeCtrl::OnMoveRule()
     {
         ASSERT(m_pLogicalRuleRoot);
 
-        ZVSelectRuleDlg dlg(IDS_RUL_MOVE_T, m_pLogicalRuleRoot, true);
+        PSS_SelectRuleDlg dlg(IDS_RUL_MOVE_T, m_pLogicalRuleRoot, true);
 
         if (dlg.DoModal() == IDOK)
         {

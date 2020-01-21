@@ -655,30 +655,30 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVPrestationsInfoDlg.cpp" />
-    <ClCompile Include="ZVRenameModelPageDlg.cpp">
+    <ClCompile Include="PSS_PrestationsInfoDlg.cpp" />
+    <ClCompile Include="PSS_RenameModelPageDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVRenameModelPageInTreeDlg.cpp" />
+    <ClCompile Include="PSS_RenameModelPageInTreeDlg.cpp" />
     <ClCompile Include="PSS_RulesInfoDlg.cpp" />
-    <ClCompile Include="ZVSelectLogicalSystemDlg.cpp">
+    <ClCompile Include="PSS_SelectLogicalSystemDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVSelectModelSymbolDlg.cpp">
+    <ClCompile Include="PSS_SelectModelSymbolDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVSelectPrestationDlg.cpp" />
-    <ClCompile Include="ZVSelectRuleDlg.cpp" />
-    <ClCompile Include="ZVSelectSymbolAttributeDlg.cpp">
+    <ClCompile Include="PSS_SelectPrestationDlg.cpp" />
+    <ClCompile Include="PSS_SelectRuleDlg.cpp" />
+    <ClCompile Include="PSS_SelectSymbolAttributeDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -690,7 +690,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVSelectUserGroupDlg.cpp">
+    <ClCompile Include="PSS_SelectUserGroupDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -839,17 +839,17 @@
     <ClInclude Include="PSS_OutputSearchView.h" />
     <ClInclude Include="PSS_OutputSymbolLogView.h" />
     <ClInclude Include="PSS_OutputWorkflowLogView.h" />
-    <ClInclude Include="ZVPrestationsInfoDlg.h" />
-    <ClInclude Include="ZVRenameModelPageDlg.h" />
-    <ClInclude Include="ZVRenameModelPageInTreeDlg.h" />
+    <ClInclude Include="PSS_PrestationsInfoDlg.h" />
+    <ClInclude Include="PSS_RenameModelPageDlg.h" />
+    <ClInclude Include="PSS_RenameModelPageInTreeDlg.h" />
     <ClInclude Include="PSS_RulesInfoDlg.h" />
-    <ClInclude Include="ZVSelectLogicalSystemDlg.h" />
-    <ClInclude Include="ZVSelectModelSymbolDlg.h" />
-    <ClInclude Include="ZVSelectPrestationDlg.h" />
-    <ClInclude Include="ZVSelectRuleDlg.h" />
-    <ClInclude Include="ZVSelectSymbolAttributeDlg.h" />
+    <ClInclude Include="PSS_SelectLogicalSystemDlg.h" />
+    <ClInclude Include="PSS_SelectModelSymbolDlg.h" />
+    <ClInclude Include="PSS_SelectPrestationDlg.h" />
+    <ClInclude Include="PSS_SelectRuleDlg.h" />
+    <ClInclude Include="PSS_SelectSymbolAttributeDlg.h" />
     <ClInclude Include="ZVSelectSymbolFromGraphModel.h" />
-    <ClInclude Include="ZVSelectUserGroupDlg.h" />
+    <ClInclude Include="PSS_SelectUserGroupDlg.h" />
     <ClInclude Include="ZVSymbolAttributes.h" />
     <ClInclude Include="PSS_UserGroupInfoDlg.h" />
   </ItemGroup>

@@ -11,7 +11,7 @@
 
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
-#include "zModel\ZVSelectModelSymbolDlg.h"
+#include "zModel\PSS_SelectModelSymbolDlg.h"
 #include "zModel\PSS_DocObserverMsg.h"
 
 #include "ProcGraphModelMdlBP.h"
@@ -428,10 +428,10 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-        ZVSelectModelSymbolDlg Dlg(pRootModel,
-                                   ISD_DOOR_SELECTMODEL,
-                                   g_Selectable_Model | g_Selectable_GraphPage,
-                                   &rtClasses);
+        PSS_SelectModelSymbolDlg Dlg(pRootModel,
+                                     ISD_DOOR_SELECTMODEL,
+                                     g_Selectable_Model | g_Selectable_GraphPage,
+                                     &rtClasses);
 
         if (Dlg.DoModal() == IDOK)
         {

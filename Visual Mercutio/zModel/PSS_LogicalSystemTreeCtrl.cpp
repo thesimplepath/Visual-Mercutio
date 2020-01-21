@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\zBaseLibRes.h"
 #include "PSS_LogicalSystemEntity.h"
-#include "ZVSelectLogicalSystemDlg.h"
+#include "PSS_SelectLogicalSystemDlg.h"
 #include "PSS_LogicalSystemObserverMsg.h"
 #include "PSS_LogicalSystemInfoDlg.h"
 
@@ -283,7 +283,7 @@ void PSS_LogicalSystemTreeCtrl::OnMoveLogicalSystem()
     {
         ASSERT(m_pLogicalSystemRoot);
 
-        ZVSelectLogicalSystemDlg dlg(IDS_LGS_MOVE_T, m_pLogicalSystemRoot);
+        PSS_SelectLogicalSystemDlg dlg(IDS_LGS_MOVE_T, m_pLogicalSystemRoot);
 
         if (dlg.DoModal() == IDOK)
         {

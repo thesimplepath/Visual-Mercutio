@@ -11,8 +11,8 @@
 // processsoft
 #include "PSS_LogicalPrestationsEntity.h"
 #include "PSS_LogicalPrestationsObserverMsg.h"
-#include "ZVSelectPrestationDlg.h"
-#include "ZVPrestationsInfoDlg.h"
+#include "PSS_SelectPrestationDlg.h"
+#include "PSS_PrestationsInfoDlg.h"
 
 // resources
 #include "zBaseLib\zBaseLibRes.h"
@@ -201,7 +201,7 @@ void PSS_PrestationsTreeCtrl::OnNewPrestation()
         ASSERT(m_pLogicalPrestationRoot);
 
         // ask for the name
-        ZVPrestationsInfoDlg dlg(IDS_NEW_PRESTATION_T, pLogicalPrestation);
+        PSS_PrestationsInfoDlg dlg(IDS_NEW_PRESTATION_T, pLogicalPrestation);
 
         if (dlg.DoModal() == IDOK)
         {
@@ -256,10 +256,10 @@ void PSS_PrestationsTreeCtrl::OnRenamePrestation()
 
         PSS_LogicalPrestationsEntity* pParent = dynamic_cast<PSS_LogicalPrestationsEntity*>(pLogicalPrestation->GetParent());
 
-        ZVPrestationsInfoDlg dlg(IDS_RENAME_PRESTATION_T,
-                                 pParent ? pParent : pLogicalPrestation,
-                                 pLogicalPrestation->GetEntityName(),
-                                 pLogicalPrestation->GetEntityDescription());
+        PSS_PrestationsInfoDlg dlg(IDS_RENAME_PRESTATION_T,
+                                   pParent ? pParent : pLogicalPrestation,
+                                   pLogicalPrestation->GetEntityName(),
+                                   pLogicalPrestation->GetEntityDescription());
 
         if (dlg.DoModal() == IDOK)
         {
@@ -283,7 +283,7 @@ void PSS_PrestationsTreeCtrl::OnMovePrestation()
     {
         ASSERT(m_pLogicalPrestationRoot);
 
-        ZVSelectPrestationDlg dlg(IDS_PRS_MOVE_T, m_pLogicalPrestationRoot, true);
+        PSS_SelectPrestationDlg dlg(IDS_PRS_MOVE_T, m_pLogicalPrestationRoot, true);
 
         if (dlg.DoModal() == IDOK)
         {
@@ -316,11 +316,11 @@ void PSS_PrestationsTreeCtrl::OnPrestationProperties()
 
         PSS_LogicalPrestationsEntity* pParent = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEntity->GetParent());
 
-        ZVPrestationsInfoDlg dlg(IDS_PRESTATION_PROPERTY_T,
-                                 pParent ? pParent : m_pLogicalPrestationRoot,
-                                 pEntity->GetEntityName(),
-                                 pEntity->GetEntityDescription(),
-                                 true);
+        PSS_PrestationsInfoDlg dlg(IDS_PRESTATION_PROPERTY_T,
+                                   pParent ? pParent : m_pLogicalPrestationRoot,
+                                   pEntity->GetEntityName(),
+                                   pEntity->GetEntityDescription(),
+                                   true);
 
         if (dlg.DoModal() == IDOK)
         {

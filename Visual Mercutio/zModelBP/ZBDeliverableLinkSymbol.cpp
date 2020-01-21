@@ -30,7 +30,7 @@
 
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\ZVSelectUserGroupDlg.h"
+#include "zModel\PSS_SelectUserGroupDlg.h"
 
 // JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
 #include "ProcGraphModelCtlrBP.h"
@@ -49,7 +49,7 @@
 // Global resources
 #include "zBaseLib\PSS_Global.h"
 
-#include "zModel\ZVSelectModelSymbolDlg.h"
+#include "zModel\PSS_SelectModelSymbolDlg.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -1696,10 +1696,10 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
                 rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
                 rtClasses.Add(RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 
-                ZVSelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pDst->GetChildModel()),
-                                           IDS_SYMBOL_SELECTDELIVERABLE,
-                                           RUNTIME_CLASS(ZBDeliverableLinkSymbol),
-                                           &rtClasses);
+                PSS_SelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pDst->GetChildModel()),
+                                             IDS_SYMBOL_SELECTDELIVERABLE,
+                                             RUNTIME_CLASS(ZBDeliverableLinkSymbol),
+                                             &rtClasses);
 
                 if (Dlg.DoModal() == IDOK)
                     if (Dlg.GetSelectedSymbol() && ISA(Dlg.GetSelectedSymbol(), ZBDeliverableLinkSymbol))
@@ -1853,10 +1853,10 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
     {
         if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
-                                     dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
-                                     true,        // Allow group selection
-                                     false);    // Doesn't allow role selection
+            PSS_SelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
+                                       dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                       true,        // Allow group selection
+                                       false);    // Doesn't allow role selection
 
             if (dlg.DoModal() == IDOK)
             {

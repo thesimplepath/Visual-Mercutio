@@ -12,7 +12,7 @@
 #include "zBaseLib\zBaseLibRes.h"
 #include "PSS_UserRoleEntity.h"
 #include "PSS_ProcessGraphModelDoc.h"
-#include "ZVSelectUserGroupDlg.h"
+#include "PSS_SelectUserGroupDlg.h"
 #include "PSS_UserGroupObserverMsg.h"
 #include "PSS_UserGroupInfoDlg.h"
 
@@ -478,7 +478,7 @@ void PSS_UserGroupTreeCtrl::OnUgpMove()
     {
         ASSERT(m_pUserGroupRoot);
 
-        ZVSelectUserGroupDlg dlg(IDS_UGP_MOVE_T, m_pUserGroupRoot, true, false);
+        PSS_SelectUserGroupDlg dlg(IDS_UGP_MOVE_T, m_pUserGroupRoot, true, false);
 
         if (dlg.DoModal() == IDOK)
         {

@@ -33,7 +33,7 @@
 #include "zModel\PSS_ModelGlobal.h"
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZVSelectUserGroupDlg.h"
+#include "zModel\PSS_SelectUserGroupDlg.h"
 #include "zModel\PSS_ODSymbolManipulator.h"
 
 // ZBPropertyAttributes
@@ -2280,10 +2280,10 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
     {
         if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
-                                     dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
-                                     true,    // Allow group selection
-                                     false); // Doesn't allow role selection
+            PSS_SelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
+                                       dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                       true,    // Allow group selection
+                                       false); // Doesn't allow role selection
 
             if (dlg.DoModal() == IDOK)
             {

@@ -1,17 +1,19 @@
 /****************************************************************************
- * ==> PSS_RulesInfoDlg ----------------------------------------------------*
+ * ==> PSS_PrestationsInfoDlg ----------------------------------------------*
  ****************************************************************************
- * Description : Provides a rules information dialog box                    *
+ * Description : Provides an prestations info dialog                        *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_RulesInfoDlg.h"
+#include "PSS_PrestationsInfoDlg.h"
 
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
+#include "PSS_LogicalPrestationsEntity.h"
+
+// resources
 #include "zBaseLib\zBaseLibRes.h"
-#include "PSS_LogicalRulesEntity.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -22,21 +24,21 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_RulesInfoDlg, CDialog)
-    //{{AFX_MSG_MAP(PSS_RulesInfoDlg)
+BEGIN_MESSAGE_MAP(PSS_PrestationsInfoDlg, CDialog)
+    //{{AFX_MSG_MAP(PSS_PrestationsInfoDlg)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_RulesInfoDlg
+// PSS_PrestationsInfoDlg
 //---------------------------------------------------------------------------
-PSS_RulesInfoDlg::PSS_RulesInfoDlg(UINT                    titleID,
-                                   PSS_LogicalRulesEntity* pLogicalRule,
-                                   const CString&          name,
-                                   const CString&          description,
-                                   bool                    modifyMode,
-                                   CWnd*                   pParent) :
-    CDialog(PSS_RulesInfoDlg::IDD, pParent),
-    m_pRule(pLogicalRule),
+PSS_PrestationsInfoDlg::PSS_PrestationsInfoDlg(UINT                          titleID,
+                                               PSS_LogicalPrestationsEntity* pLogicalPrestation,
+                                               const CString&                name,
+                                               const CString&                description,
+                                               bool                          modifyMode,
+                                               CWnd*                         pParent) :
+    CDialog(PSS_PrestationsInfoDlg::IDD, pParent),
+    m_pPrestation(pLogicalPrestation),
     m_Name(name),
     m_Description(description),
     m_ModifyMode(modifyMode)
@@ -45,20 +47,20 @@ PSS_RulesInfoDlg::PSS_RulesInfoDlg(UINT                    titleID,
         m_Title.LoadString(titleID);
 }
 //---------------------------------------------------------------------------
-PSS_RulesInfoDlg::~PSS_RulesInfoDlg()
+PSS_PrestationsInfoDlg::~PSS_PrestationsInfoDlg()
 {}
 //---------------------------------------------------------------------------
-void PSS_RulesInfoDlg::DoDataExchange(CDataExchange* pDX)
+void PSS_PrestationsInfoDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
 
-    //{{AFX_DATA_MAP(PSS_RulesInfoDlg)
-    DDX_Text(pDX, IDC_RULE_NAME,        m_Name);
-    DDX_Text(pDX, IDC_RULE_DESCRIPTION, m_Description);
+    //{{AFX_DATA_MAP(PSS_PrestationsInfoDlg)
+    DDX_Text(pDX, IDC_PRESTATION_NAME,        m_Name);
+    DDX_Text(pDX, IDC_PRESTATION_DESCRIPTION, m_Description);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-BOOL PSS_RulesInfoDlg::OnInitDialog()
+BOOL PSS_PrestationsInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
@@ -66,27 +68,23 @@ BOOL PSS_RulesInfoDlg::OnInitDialog()
         SetWindowText(m_Title);
 
     if (m_ModifyMode)
-    {
-        CWnd* pItem = GetDlgItem(IDC_RULE_NAME);
-
-        if (pItem)
-            pItem->EnableWindow(FALSE);
-    }
+        if (GetDlgItem(IDC_PRESTATION_NAME))
+            GetDlgItem(IDC_PRESTATION_NAME)->EnableWindow(FALSE);
 
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_RulesInfoDlg::OnOK()
+void PSS_PrestationsInfoDlg::OnOK()
 {
     UpdateData(TRUE);
 
     if (!m_ModifyMode)
-        if (m_pRule && m_pRule->RuleExist(m_Name))
+        if (m_pPrestation && m_pPrestation->PrestationExist(m_Name))
         {
             // already exists
             PSS_MsgBox mBox;
-            mBox.Show(IDS_RULE_ALREADYEXIST, MB_OK);
+            mBox.Show(IDS_PRESTATION_ALREADYEXIST, MB_OK);
             return;
         }
 

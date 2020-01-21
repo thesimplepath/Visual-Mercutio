@@ -18,7 +18,7 @@
 #include "zBaseLib\PSS_Global.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\ZVSelectUserGroupDlg.h"
+#include "zModel\PSS_SelectUserGroupDlg.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
 // JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
@@ -940,10 +940,10 @@ bool ZBBPStartSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value,
     {
         if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
-            ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
-                                     dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
-                                     true,        // Allow group selection
-                                     false);    // Doesn't allow role selection
+            PSS_SelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
+                                       dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                       true,        // Allow group selection
+                                       false);    // Doesn't allow role selection
 
             if (dlg.DoModal() == IDOK)
             {
