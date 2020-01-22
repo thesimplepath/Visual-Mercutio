@@ -53,7 +53,7 @@ PSS_LinkSymbol::PSS_LinkSymbol() :
     ZIProperties(),
     PSS_ExtAppPropertyMgr(),
     PSS_ExtFilePropertyMgr(),
-    ZVSymbolAttributes(),
+    PSS_SymbolAttributes(),
     PSS_BasicSymbolAcceptVisitor(),
     PSS_Subject(),
     PSS_Observer(),
@@ -84,7 +84,7 @@ PSS_LinkSymbol::PSS_LinkSymbol(const PSS_LinkSymbol& other) :
     ZIProperties(),
     PSS_ExtAppPropertyMgr(),
     PSS_ExtFilePropertyMgr(),
-    ZVSymbolAttributes(),
+    PSS_SymbolAttributes(),
     PSS_BasicSymbolAcceptVisitor(),
     PSS_Subject(),
     PSS_Observer(),
@@ -105,7 +105,7 @@ PSS_LinkSymbol& PSS_LinkSymbol::operator = (const PSS_LinkSymbol& other)
     CODLinkComponent::      operator = ((const CODLinkComponent&)      other);
     PSS_ExtAppPropertyMgr:: operator = ((const PSS_ExtAppPropertyMgr&) other);
     PSS_ExtFilePropertyMgr::operator = ((const PSS_ExtFilePropertyMgr&)other);
-    ZVSymbolAttributes::    operator = ((const ZVSymbolAttributes&)    other);
+    PSS_SymbolAttributes::  operator = ((const PSS_SymbolAttributes&)  other);
 
     m_ObjectPath         = other.m_ObjectPath;
     m_DynamicPropManager = other.m_DynamicPropManager->Dup();
@@ -636,9 +636,9 @@ void PSS_LinkSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
         m_ExternalFiles = pSymbol->m_ExternalFiles;
         m_ExternalFiles.SetParent(this);
 
-        m_DisplayNameArea        = pSymbol->m_DisplayNameArea;
-        m_DisplayDescriptionArea = pSymbol->m_DisplayDescriptionArea;
-        m_DisplayAttributeArea   = pSymbol->m_DisplayAttributeArea;
+        m_ShowNameArea        = pSymbol->m_ShowNameArea;
+        m_ShowDescriptionArea = pSymbol->m_ShowDescriptionArea;
+        m_ShowAttributeArea   = pSymbol->m_ShowAttributeArea;
 
         m_RelativeCoordinates = pSymbol->m_RelativeCoordinates;
         m_Attributes          = pSymbol->m_Attributes;
@@ -1463,9 +1463,9 @@ void PSS_LinkSymbol::Serialize(CArchive& ar)
             ar << m_ObjectPath;
             ar << m_ReferenceName;
 
-            ar << WORD(m_DisplayNameArea);
-            ar << WORD(m_DisplayDescriptionArea);
-            ar << WORD(m_DisplayAttributeArea);
+            ar << WORD(m_ShowNameArea);
+            ar << WORD(m_ShowDescriptionArea);
+            ar << WORD(m_ShowAttributeArea);
 
             ar << m_CurrentLineColor;
             ar << m_CurrentLabelLineColor;
@@ -1492,13 +1492,13 @@ void PSS_LinkSymbol::Serialize(CArchive& ar)
             ar >> m_ReferenceName;
 
             ar >> wValue;
-            m_DisplayNameArea = bool(wValue);
+            m_ShowNameArea = bool(wValue);
 
             ar >> wValue;
-            m_DisplayDescriptionArea = bool(wValue);
+            m_ShowDescriptionArea = bool(wValue);
 
             ar >> wValue;
-            m_DisplayAttributeArea = bool(wValue);
+            m_ShowAttributeArea = bool(wValue);
 
             PSS_BaseDocument* pBaseDoc = dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument);
 
@@ -1604,17 +1604,17 @@ void PSS_LinkSymbol::OnMove()
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::OnMouseMove(UINT flags, const CPoint& point, CODController& ctrl)
 {
-    return ZVSymbolAttributes::OnMouseMove(flags, point, ctrl);
+    return PSS_SymbolAttributes::OnMouseMove(flags, point, ctrl);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::OnLButtonDown(UINT flags, const CPoint& point, CODController& ctrl)
 {
-    return ZVSymbolAttributes::OnLButtonDown(flags, point, ctrl);
+    return PSS_SymbolAttributes::OnLButtonDown(flags, point, ctrl);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::OnLButtonUp(UINT flags, const CPoint& point, CODController& ctrl)
 {
-    return ZVSymbolAttributes::OnLButtonUp(flags, point, ctrl);
+    return PSS_SymbolAttributes::OnLButtonUp(flags, point, ctrl);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::OnLButtonDblClk(UINT flags, const CPoint& point, CODController& ctrl)

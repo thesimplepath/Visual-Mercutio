@@ -4203,7 +4203,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowNameArea()
     // change the flag
     if (pSymbolHit)
     {
-        pSymbolHit->DisplayNameArea(!pSymbolHit->IsNameAreaVisible());
+        pSymbolHit->ShowNameArea(!pSymbolHit->IsNameAreaVisible());
 
         // adjust the area element position
         pSymbolHit->AdjustAreaPosition();
@@ -4211,7 +4211,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowNameArea()
     else
     if (pLinkSymbolHit)
     {
-        pLinkSymbolHit->DisplayNameArea(!pLinkSymbolHit->IsNameAreaVisible());
+        pLinkSymbolHit->ShowNameArea(!pLinkSymbolHit->IsNameAreaVisible());
 
         // adjust the area element position
         pLinkSymbolHit->AdjustAreaPosition();
@@ -4266,7 +4266,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowDescriptionArea()
     // Change the flag
     if (pSymbolHit)
     {
-        pSymbolHit->DisplayDescriptionArea(!pSymbolHit->IsDescriptionsAreaVisible());
+        pSymbolHit->ShowDescriptionArea(!pSymbolHit->IsDescriptionsAreaVisible());
 
         // adjust the area element position
         pSymbolHit->AdjustAreaPosition();
@@ -4274,7 +4274,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowDescriptionArea()
     else
     if (pLinkSymbolHit)
     {
-        pLinkSymbolHit->DisplayDescriptionArea(!pLinkSymbolHit->IsDescriptionsAreaVisible());
+        pLinkSymbolHit->ShowDescriptionArea(!pLinkSymbolHit->IsDescriptionsAreaVisible());
 
         // adjust the area element position
         pLinkSymbolHit->AdjustAreaPosition();
@@ -4329,7 +4329,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowAttributeArea()
     // change the flag
     if (pSymbolHit)
     {
-        pSymbolHit->DisplayAttributeArea(!pSymbolHit->IsAttributeAreaVisible());
+        pSymbolHit->ShowAttributeArea(!pSymbolHit->IsAttributeAreaVisible());
 
         // if visible, refresh the attribute area
         if (pSymbolHit->IsAttributeAreaVisible())
@@ -4341,7 +4341,7 @@ void PSS_ProcessGraphModelController::OnSymbolShowAttributeArea()
     else
     if (pLinkSymbolHit)
     {
-        pLinkSymbolHit->DisplayAttributeArea(!pLinkSymbolHit->IsAttributeAreaVisible());
+        pLinkSymbolHit->ShowAttributeArea(!pLinkSymbolHit->IsAttributeAreaVisible());
 
         // if visible, refresh the attribute area
         if (pLinkSymbolHit->IsAttributeAreaVisible())

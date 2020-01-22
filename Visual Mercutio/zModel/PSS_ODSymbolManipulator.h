@@ -88,44 +88,44 @@ class AFX_EXT_CLASS PSS_ODSymbolManipulator
                                                           CODComponent*  pParent = NULL);
 
         /**
-        * Removes a symbol
-        *@param pSymbol - the symbol to remove
-        *@param symbolName - the symbol name
+        * Removes a component from a symbol
+        *@param pSymbol - the symbol containing the component to symbol
+        *@param componentName - the component name to remove
         *@return TRUE on success, otherwise FALSE
         */
-        static BOOL RemoveSymbol(CODComponent* pSymbol, const CString& SymbolName);
+        static BOOL RemoveSymbol(CODComponent* pSymbol, const CString& componentName);
 
         /**
-        * Removes a symbol
-        *@param pSymbol - the symbol to remove
-        *@param pComponent - the component
+        * Removes a component from a symbol
+        *@param pSymbol - the symbol containing the component to symbol
+        *@param pComponent - the component to remove
         *@return TRUE on success, otherwise FALSE
         */
         static BOOL RemoveSymbol(CODComponent* pSymbol, CODComponent* pComponent);
 
         /**
-        * Finds a symbol
-        *@param pSymbol - the symbol to find
-        *@param symbolName - the symbol name
-        *@return the found symbol component, NULL if not found or on error
+        * Finds a component in a symbol
+        *@param pSymbol - the symbol containing the component to find
+        *@param componentName - the component name to find
+        *@return the found component, NULL if not found or on error
         */
-        static CODComponent* FindSymbol(CODComponent* pSymbol, const CString& symbolName);
+        static CODComponent* FindSymbol(CODComponent* pSymbol, const CString& componentName);
 
         /**
-        * Finds a symbol in a child
+        * Finds a component in symbol children
         *@param pSymbol - the symbol to find
-        *@param symbolName - the symbol name
-        *@return the found symbol component, NULL if not found or on error
+        *@param componentName - the component name to find
+        *@return the found component, NULL if not found or on error
         */
-        static CODComponent* FindSymbolInChild(CODComponent* pSymbol, const CString& symbolName);
+        static CODComponent* FindSymbolInChild(CODComponent* pSymbol, const CString& componentName);
 
         /**
         * Finds a label
-        *@param pSymbol - the symbol to find
-        *@param symbolName - the symbol name
+        *@param pSymbol - the symbol containing the label to find
+        *@param labelName - the label name
         *@return the found label, NULL if not found or on error
         */
-        static CODComponent* FindLabel(CODSymbolComponent* pSymbol, const CString& symbolName);
+        static CODComponent* FindLabel(CODSymbolComponent* pSymbol, const CString& labelName);
 
         /**
         * Matches the symbol area name with another symbol

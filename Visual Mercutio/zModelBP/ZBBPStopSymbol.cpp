@@ -68,9 +68,9 @@ ZBBPStopSymbol::ZBBPStopSymbol(const CString Name /*= ""*/)
     PSS_Symbol::SetSymbolName(Name);
 
     // Change what to show first
-    m_DisplayNameArea = true;
-    m_DisplayDescriptionArea = false;
-    m_DisplayAttributeArea = true;
+    m_ShowNameArea = true;
+    m_ShowDescriptionArea = false;
+    m_ShowAttributeArea = true;
 
     // JMR-MODIF - Le 29 juillet 2007 - Ajout de l'appel à CreateSymbolProperties.
     CreateSymbolProperties();

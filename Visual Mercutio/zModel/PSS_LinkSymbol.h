@@ -39,7 +39,7 @@
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zModel\PSS_ExtAppPropertyMgr.h"
 #include "zModel\PSS_ExtFilePropertyMgr.h"
-#include "zModel\ZVSymbolAttributes.h"
+#include "zModel\PSS_SymbolAttributes.h"
 
 // class name mapping
 #ifndef PSS_SymbolEdit
@@ -70,7 +70,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
                                      public ZIProperties,
                                      public PSS_ExtAppPropertyMgr,
                                      public PSS_ExtFilePropertyMgr,
-                                     public ZVSymbolAttributes,
+                                     public PSS_SymbolAttributes,
                                      public PSS_BasicSymbolAcceptVisitor,
                                      public PSS_Subject,
                                      public PSS_Observer,
@@ -1189,12 +1189,12 @@ bool PSS_LinkSymbol::AcceptDynamicAttributes() const
 //---------------------------------------------------------------------------
 CODComponent* PSS_LinkSymbol::GetEditBoxArea()
 {
-    return ZVSymbolAttributes::GetEditBoxArea();
+    return PSS_SymbolAttributes::GetEditBoxArea();
 }
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_LinkSymbol::GetCommentTextEdit()
 {
-    return ZVSymbolAttributes::GetCommentTextEdit();
+    return PSS_SymbolAttributes::GetCommentTextEdit();
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::CommentTextEditReadOnly() const
@@ -1204,7 +1204,7 @@ bool PSS_LinkSymbol::CommentTextEditReadOnly() const
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_LinkSymbol::GetSymbolNameTextEdit()
 {
-    return ZVSymbolAttributes::GetSymbolNameTextEdit();
+    return PSS_SymbolAttributes::GetSymbolNameTextEdit();
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::SymbolNameTextEditReadOnly() const
@@ -1214,17 +1214,17 @@ bool PSS_LinkSymbol::SymbolNameTextEditReadOnly() const
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_LinkSymbol::GetAttributeTextEdit()
 {
-    return ZVSymbolAttributes::GetAttributeTextEdit();
+    return PSS_SymbolAttributes::GetAttributeTextEdit();
 }
 //---------------------------------------------------------------------------
 CODLineComponent* PSS_LinkSymbol::GetSplitter1()
 {
-    return ZVSymbolAttributes::GetSplitter1();
+    return PSS_SymbolAttributes::GetSplitter1();
 }
 //---------------------------------------------------------------------------
 CODLineComponent* PSS_LinkSymbol::GetSplitter2()
 {
-    return ZVSymbolAttributes::GetSplitter2();
+    return PSS_SymbolAttributes::GetSplitter2();
 }
 //---------------------------------------------------------------------------
 CString PSS_LinkSymbol::GetReferenceName() const
@@ -1264,32 +1264,32 @@ bool PSS_LinkSymbol::IncludeAttributeArea() const
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::ShowNameArea(bool value)
 {
-    ZVSymbolAttributes::DisplayNameArea(value);
+    PSS_SymbolAttributes::ShowNameArea(value);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::IsNameAreaVisible() const
 {
-    return ZVSymbolAttributes::IsNameAreaVisible();
+    return PSS_SymbolAttributes::IsNameAreaVisible();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::ShowDescriptionArea(bool value)
 {
-    ZVSymbolAttributes::DisplayDescriptionArea(value);
+    PSS_SymbolAttributes::ShowDescriptionArea(value);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::IsDescriptionsAreaVisible() const
 {
-    return ZVSymbolAttributes::IsDescriptionsAreaVisible();
+    return PSS_SymbolAttributes::IsDescriptionsAreaVisible();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::ShowAttributeArea(bool value)
 {
-    ZVSymbolAttributes::DisplayAttributeArea(value);
+    PSS_SymbolAttributes::ShowAttributeArea(value);
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::IsAttributeAreaVisible() const
 {
-    return ZVSymbolAttributes::IsAttributeAreaVisible();
+    return PSS_SymbolAttributes::IsAttributeAreaVisible();
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::AcceptMouseInteraction() const
@@ -1464,52 +1464,52 @@ void PSS_LinkSymbol::SetIsCopy(BOOL value)
 //---------------------------------------------------------------------------
 CODComponent* PSS_LinkSymbol::GetEditBoxAreaComponent()
 {
-    return ZVSymbolAttributes::GetEditBoxAreaComponent();
+    return PSS_SymbolAttributes::GetEditBoxAreaComponent();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetEditBoxAreaComponent(CODComponent* pEdit)
 {
-    ZVSymbolAttributes::SetEditBoxAreaComponent(pEdit);
+    PSS_SymbolAttributes::SetEditBoxAreaComponent(pEdit);
 }
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_LinkSymbol::GetNameEditTextComponent()
 {
-    return ZVSymbolAttributes::GetNameEditTextComponent();
+    return PSS_SymbolAttributes::GetNameEditTextComponent();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetNameEditTextComponent(CODTextComponent* pEdit)
 {
-    ZVSymbolAttributes::SetNameEditTextComponent(pEdit);
+    PSS_SymbolAttributes::SetNameEditTextComponent(pEdit);
 }
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_LinkSymbol::GetCommentEditTextComponent()
 {
-    return ZVSymbolAttributes::GetCommentEditTextComponent();
+    return PSS_SymbolAttributes::GetCommentEditTextComponent();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetCommentEditTextComponent(CODTextComponent* pEdit)
 {
-    ZVSymbolAttributes::SetCommentEditTextComponent(pEdit);
+    PSS_SymbolAttributes::SetCommentEditTextComponent(pEdit);
 }
 //---------------------------------------------------------------------------
 CODLineComponent* PSS_LinkSymbol::GetSplitter1Component()
 {
-    return ZVSymbolAttributes::GetSplitter1Component();
+    return PSS_SymbolAttributes::GetSplitter1Component();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetSplitter1Component(CODLineComponent* pSplitter)
 {
-    ZVSymbolAttributes::SetSplitter1Component(pSplitter);
+    PSS_SymbolAttributes::SetSplitter1Component(pSplitter);
 }
 //---------------------------------------------------------------------------
 CODLineComponent* PSS_LinkSymbol::GetSplitter2Component()
 {
-    return ZVSymbolAttributes::GetSplitter2Component();
+    return PSS_SymbolAttributes::GetSplitter2Component();
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetSplitter2Component(CODLineComponent* pSplitter)
 {
-    ZVSymbolAttributes::SetSplitter2Component(pSplitter);
+    PSS_SymbolAttributes::SetSplitter2Component(pSplitter);
 }
 //---------------------------------------------------------------------------
 

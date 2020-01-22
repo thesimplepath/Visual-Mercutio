@@ -85,7 +85,7 @@ IMPLEMENT_SERIAL(ZBBPProcedureSymbol, PSS_Symbol, g_DefVersion)
 ZBBPProcedureSymbol::ZBBPProcedureSymbol(const CString Name /*= ""*/)
     : m_Combinations(this)
 {
-    m_DisplayAttributeArea = true;
+    m_ShowAttributeArea = true;
 
     PSS_Symbol::SetSymbolName(Name);
 

@@ -684,7 +684,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVSelectSymbolFromGraphModel.cpp">
+    <ClCompile Include="PSS_SelectSymbolFromGraphModelDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -696,7 +696,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVSymbolAttributes.cpp">
+    <ClCompile Include="PSS_SymbolAttributes.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -848,9 +848,9 @@
     <ClInclude Include="PSS_SelectPrestationDlg.h" />
     <ClInclude Include="PSS_SelectRuleDlg.h" />
     <ClInclude Include="PSS_SelectSymbolAttributeDlg.h" />
-    <ClInclude Include="ZVSelectSymbolFromGraphModel.h" />
+    <ClInclude Include="PSS_SelectSymbolFromGraphModelDlg.h" />
     <ClInclude Include="PSS_SelectUserGroupDlg.h" />
-    <ClInclude Include="ZVSymbolAttributes.h" />
+    <ClInclude Include="PSS_SymbolAttributes.h" />
     <ClInclude Include="PSS_UserGroupInfoDlg.h" />
   </ItemGroup>
   <ItemGroup>

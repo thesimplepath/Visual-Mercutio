@@ -231,9 +231,9 @@ PSS_SymbolLabel* PSS_ODSymbolManipulator::CreateAndReplaceLabelText(CODComponent
     return pEdit.release();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ODSymbolManipulator::RemoveSymbol(CODComponent* pSymbol, const CString& symbolName)
+BOOL PSS_ODSymbolManipulator::RemoveSymbol(CODComponent* pSymbol, const CString& componentName)
 {
-    CODComponent* pComp = FindSymbol(pSymbol, symbolName);
+    CODComponent* pComp = FindSymbol(pSymbol, componentName);
 
     if (pComp)
         return RemoveSymbol(pSymbol, pComp);
@@ -289,7 +289,7 @@ BOOL PSS_ODSymbolManipulator::RemoveSymbol(CODComponent* pSymbol, CODComponent* 
     return FALSE;
 }
 //---------------------------------------------------------------------------
-CODComponent* PSS_ODSymbolManipulator::FindSymbol(CODComponent* pSymbol, const CString& symbolName)
+CODComponent* PSS_ODSymbolManipulator::FindSymbol(CODComponent* pSymbol, const CString& componentName)
 {
     if (!pSymbol)
         return NULL;
@@ -303,11 +303,11 @@ CODComponent* PSS_ODSymbolManipulator::FindSymbol(CODComponent* pSymbol, const C
         CODComponent* pComponent = pSet->GetAt(i);
 
         // is the right component?
-        if (pComponent->GetName() == symbolName)
+        if (pComponent->GetName() == componentName)
             return pComponent;
 
         // locate the symbol in the components children
-        CODComponent* pInChildComponent = FindSymbolInChild(pComponent, symbolName);
+        CODComponent* pInChildComponent = FindSymbolInChild(pComponent, componentName);
 
         if (pInChildComponent)
             return pInChildComponent;
@@ -324,20 +324,20 @@ CODComponent* PSS_ODSymbolManipulator::FindSymbol(CODComponent* pSymbol, const C
         {
             pLabel = pSymComp->GetLabel(i);
 
-            if (pLabel->GetName() == symbolName)
+            if (pLabel->GetName() == componentName)
                 return pLabel;
 
             CString componentType = _T("");
 
             pLabel->GetValue(OD_PROP_TYPE, componentType);
 
-            if (symbolName == M_SymbolNameComponentControlLabel && componentType == _T("Label"))
+            if (componentName == M_SymbolNameComponentControlLabel && componentType == _T("Label"))
             {
                 pLabel->SetName(M_SymbolNameComponentControlLabel);
                 return pLabel;
             }
 
-            CODComponent* pInChildComponent = FindSymbolInChild(pLabel, symbolName);
+            CODComponent* pInChildComponent = FindSymbolInChild(pLabel, componentName);
 
             if (pInChildComponent)
                 return pInChildComponent;
@@ -347,7 +347,7 @@ CODComponent* PSS_ODSymbolManipulator::FindSymbol(CODComponent* pSymbol, const C
     return NULL;
 }
 //---------------------------------------------------------------------------
-CODComponent* PSS_ODSymbolManipulator::FindSymbolInChild(CODComponent* pSymbol, const CString& symbolName)
+CODComponent* PSS_ODSymbolManipulator::FindSymbolInChild(CODComponent* pSymbol, const CString& componentName)
 {
     if (!pSymbol)
         return NULL;
@@ -359,14 +359,14 @@ CODComponent* PSS_ODSymbolManipulator::FindSymbolInChild(CODComponent* pSymbol, 
     {
         CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if (pComponent->GetName() == symbolName)
+        if (pComponent->GetName() == componentName)
             return pComponent;
     }
 
     return NULL;
 }
 //---------------------------------------------------------------------------
-CODComponent* PSS_ODSymbolManipulator::FindLabel(CODSymbolComponent* pSymbol, const CString& symbolName)
+CODComponent* PSS_ODSymbolManipulator::FindLabel(CODSymbolComponent* pSymbol, const CString& labelName)
 {
     if (!pSymbol)
         return NULL;
@@ -377,7 +377,7 @@ CODComponent* PSS_ODSymbolManipulator::FindLabel(CODSymbolComponent* pSymbol, co
     {
         CODLabelComponent* pLabel = pSymbol->GetLabel(i);
 
-        if (pLabel->GetName() == symbolName)
+        if (pLabel->GetName() == labelName)
             return pLabel;
     }
 

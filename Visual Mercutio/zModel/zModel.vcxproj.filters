@@ -21,12 +21,6 @@
     <ClCompile Include="zModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZVSelectSymbolFromGraphModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVSymbolAttributes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_LinkSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -345,6 +339,12 @@
     <ClCompile Include="PSS_SelectUserGroupDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_SelectSymbolFromGraphModelDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SymbolAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Activity.sym">
@@ -415,12 +415,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zModelRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVSelectSymbolFromGraphModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVSymbolAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_LinkSymbol.h">
@@ -745,6 +739,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_SelectUserGroupDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectSymbolFromGraphModelDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SymbolAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
