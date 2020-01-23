@@ -139,8 +139,11 @@ public:
     /////////////////////////////////////////////////////////////////////////
     // IODPropertyContainer interface
 
-    //@cmember
-    /* Compare the property identifier with another identifier. */
+    /**
+    * Compares the property identifier with another identifier
+    *@param id - the property identifier to compare with
+    *@return TRUE if the property identifiers are equals, otherwise FALSE
+    */
     virtual BOOL CompareId( const int nId ) const;
 
     //@cmember

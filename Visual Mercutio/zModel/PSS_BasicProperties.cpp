@@ -86,21 +86,6 @@ void PSS_BasicProperties::Merge(CODProperty* pProp, DWORD changeFlags)
     }
 }
 //---------------------------------------------------------------------------
-CString PSS_BasicProperties::GetSymbolNumberStr() const
-{
-    CString number;
-
-    if (GetValue(M_Symbol_Number_ID, number))
-        return number;
-
-    return _T("");
-}
-//---------------------------------------------------------------------------
-void PSS_BasicProperties::SetSymbolNumber(const CString value)
-{
-    SetValue(M_Symbol_Number_ID, value);
-}
-//---------------------------------------------------------------------------
 BOOL PSS_BasicProperties::CompareId(const int id) const
 {
     const int idMin = m_nId;
@@ -120,6 +105,21 @@ BOOL PSS_BasicProperties::IsEqual(CODProperty* pProp)
     }
 
     return FALSE;
+}
+//---------------------------------------------------------------------------
+CString PSS_BasicProperties::GetSymbolNumberStr() const
+{
+    CString number;
+
+    if (GetValue(M_Symbol_Number_ID, number))
+        return number;
+
+    return _T("");
+}
+//---------------------------------------------------------------------------
+void PSS_BasicProperties::SetSymbolNumber(const CString value)
+{
+    SetValue(M_Symbol_Number_ID, value);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BasicProperties::GetValue(const int propId, int& value) const

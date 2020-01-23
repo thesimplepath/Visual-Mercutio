@@ -14,7 +14,7 @@
 
 #include "ZBBPRuleListProp.h"
 #include "ZBBPTextItemListProp.h"
-#include "ZBBPCostPropDeliverable.h"
+#include "PSS_CostPropertiesDeliverableBP.h"
 #include "ZBBPAnnualNumberProp.h"
 #include "ZBBPSimPropDeliverable.h"
 
@@ -2111,7 +2111,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolProperties()
     ZBBPTextItemListProperties textItemList;
     AddProperty(textItemList);
 
-    ZBBPCostPropertiesDeliverable propCost;
+    PSS_CostPropertiesDeliverableBP propCost;
     AddProperty(propCost);
 
     // Fill the array of unit double validation type
@@ -4824,8 +4824,8 @@ void ZBDeliverableLinkSymbol::Serialize(CArchive& ar)
         else
         {
             // Transfert the properties to new format
-            ZBBPCostPropertiesDeliverable* pCostProps =
-                (ZBBPCostPropertiesDeliverable*)GetProperty(ZS_BP_PROP_DELIVERABLE_COST);
+            PSS_CostPropertiesDeliverableBP* pCostProps =
+                (PSS_CostPropertiesDeliverableBP*)GetProperty(ZS_BP_PROP_DELIVERABLE_COST);
 
             if (pCostProps)
             {

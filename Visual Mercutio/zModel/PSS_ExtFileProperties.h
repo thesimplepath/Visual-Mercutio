@@ -166,7 +166,7 @@ class AFX_EXT_CLASS PSS_ExtFileProperties : public CObject
         /**
         * Gets the property value
         *@param propId - the property identifier
-        *@param value - the property value
+        *@param[out] value - the property value, in case the function success
         *@return TRUE on success, otherwise FALSE
         */
         virtual BOOL GetValue(const int propId, int&     value) const;

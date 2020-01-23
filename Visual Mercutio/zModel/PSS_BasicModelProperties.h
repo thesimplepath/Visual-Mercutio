@@ -104,11 +104,13 @@ class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
 
         /**
         * Adds a reference to this object
+        *@return the updated reference count
         */
         virtual inline ULONG STDMETHODCALLTYPE AddRef();
 
         /**
         * Releases a reference from this object
+        *@return the updated reference count
         */
         virtual inline ULONG STDMETHODCALLTYPE Release();
 

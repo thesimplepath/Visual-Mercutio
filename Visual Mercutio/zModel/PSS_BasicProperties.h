@@ -108,11 +108,13 @@ class AFX_EXT_CLASS PSS_BasicProperties : public CODIntProperty,
 
         /**
         * Adds a reference to this object
+        *@return the updated reference count
         */
         virtual inline ULONG STDMETHODCALLTYPE AddRef();
 
         /**
         * Releases a reference from this object
+        *@return the updated reference count
         */
         virtual inline ULONG STDMETHODCALLTYPE Release();
 
@@ -128,6 +130,19 @@ class AFX_EXT_CLASS PSS_BasicProperties : public CODIntProperty,
         *@param changeFlags - the change flags to apply
         */
         virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_Symbol_All);
+
+        /**
+        * Compares the property identifier with another identifier
+        *@param id - the property identifier to compare with
+        *@return TRUE if the property identifiers are equals, otherwise FALSE
+        */
+        virtual BOOL CompareId(const int id) const;
+
+        /**
+        * Determines if another set of properties is equal to this one
+        *@param pProp - the property set to compare with
+        */
+        virtual BOOL IsEqual(CODProperty* pProp);
 
         /**
         * Gets the symbol name
@@ -188,19 +203,6 @@ class AFX_EXT_CLASS PSS_BasicProperties : public CODIntProperty,
         *@param value - the symbol risk level
         */
         virtual inline void SetSymbolRiskLevel(const CString value);
-
-        /**
-        * Compares the property identifier with another identifier
-        *@param id - the property identifier to compare with
-        *@return TRUE if the property identifiers are equals, otherwise FALSE
-        */
-        virtual BOOL CompareId(const int id) const;
-
-        /**
-        * Determines if another set of properties is equal to this one
-        *@param pProp - the property set to compare with
-        */
-        virtual BOOL IsEqual(CODProperty* pProp);
 
         /**
         * Gets the property value

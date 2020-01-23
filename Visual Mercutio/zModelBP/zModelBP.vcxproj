@@ -179,7 +179,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPCostPropDeliverable.cpp">
+    <ClCompile Include="PSS_CostPropertiesDeliverableBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -597,7 +597,7 @@
     <ClInclude Include="ZBBPAnnualNumberProp.h" />
     <ClInclude Include="ZBBPAutomate.h" />
     <ClInclude Include="ZBBPCombinationProp.h" />
-    <ClInclude Include="ZBBPCostPropDeliverable.h" />
+    <ClInclude Include="PSS_CostPropertiesDeliverableBP.h" />
     <ClInclude Include="ZBBPCostPropDeliverable2.h" />
     <ClInclude Include="ZBBPCostPropProcedure.h" />
     <ClInclude Include="ZBBPCostPropProcedure2.h" />
