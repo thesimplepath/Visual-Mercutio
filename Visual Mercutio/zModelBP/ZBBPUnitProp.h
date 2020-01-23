@@ -1,27 +1,14 @@
-/////////////////////////////////////////////////////////////////////////////
-//@doc ZBBPUnitProperties
-//@module ZBBPUnitProp.h | Interface of the <c ZBBPUnitProperties> class.
-//
-// ProcessSoft Classes
-// <nl>Copyright <cp> 2001 - ProcessSoft SA,
-// All rights reserved.
-//
-// This source code is only intended as a supplement to
-// the ProcessSoft Class Reference and related
-// electronic documentation provided with the library.
-// See these sources for detailed information regarding
-// ProcessSoft products.
-//
-// Author:       Dom
-// <nl>Created:         05/2001
-// <nl>Description:  ZBBPUnitProperties unit properties
-//
-/////////////////////////////////////////////////////////////////////////////
-#ifndef __ZBBPUnitProp_H__
-#define __ZBBPUnitProp_H__
+/****************************************************************************
+ * ==> PSS_UnitPropertiesBP ------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the unit properties                               *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
+#ifndef PSS_UnitPropertiesBPH
+#define PSS_UnitPropertiesBPH
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -29,76 +16,36 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// resources
 #include "PSS_PropIDs.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Process change flags
-
-//@topic Process Properties Change Flags | Different aspects of the Process
-// properties that can be changed individually.
-//@flag Z_CHANGE_UNIT_NAME | Change the unit name.
-#define Z_CHANGE_UNIT_NAME 0x0001
-//@flag Z_CHANGE_UNIT_COST | Change the unit cost.
-#define Z_CHANGE_UNIT_COST 0x0002
-//@flag Z_CHANGE_UNIT_GUID | Change the unit guid.
-#define Z_CHANGE_UNIT_GUID 0x0004
-
-/////////////////////////////////////////////////////////////////////////////
-// Fill property IDs
-
-//@topic Fill Property Identifiers | Identify the properties contained by
-// <c ZBBPUnitProperties> objects. The ZBBPUnitProperties class is a property
-// container for these sub-properties. These property identifiers are
-// unique within a process properties container. These identifiers are used
-// in conjunction with the <c IODPropertyContainer> interface implemented
-// by the process property container.
-//@flag Z_UNIT_NAME | Identifier for the task list property.
-#define Z_UNIT_NAME                     1
-//@flag Z_UNIT_COST | Identifier for the decision list property.
-#define Z_UNIT_COST                2
-//@flag Z_UNIT_GUID | Identifier for unit GUID.
-#define Z_UNIT_GUID                3
-
-///////////////////////////////////////////////////////
-// process defaults
-
-
 #ifdef _ZMODELBPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
+#define Z_CHANGE_UNIT_NAME 0x0001
+#define Z_CHANGE_UNIT_COST 0x0002
+#define Z_CHANGE_UNIT_GUID 0x0004
 
-/////////////////////////////////////////////////////////////////////////////
-// ZBBPUnitProperties
-//
-//@class This set of properties determines how a component is filled. Normally,
-// the component is either not filled or filled with a solid color. You can also
-// specify hatching and patterns.
-//
-// This class is both a property and a container for properties. It implements
-// the <c IODPropertyContainer> interface for getting and setting values that
-// it contains. Each sub-property contained by process property objects has a
-// unique identifier (see <t Process Property Identifiers>) for getting and
-// setting each value. There are also methods to directly set each property.
-//
-//@base public | CODIntProperty
-//@base public | CPropertyContainer<lt>IODPropertyContainer, sfl::CODIntPropertyAccessor<lt>ZBBPUnitProperties<gt> <gt>
-//
+//---------------------------------------------------------------------------
+// Global defines
+//---------------------------------------------------------------------------
+#define Z_UNIT_NAME 1
+#define Z_UNIT_COST 2
+#define Z_UNIT_GUID 3
+//---------------------------------------------------------------------------
 
-
-
-
-
-class AFX_EXT_CLASS ZBBPUnitProperties : public CODIntProperty, 
+/**
+* Unit properties
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS ZBBPUnitProperties : public CODIntProperty,
                 public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBBPUnitProperties> >
 {
     DECLARE_SERIAL(ZBBPUnitProperties)
@@ -285,12 +232,4 @@ inline CODProperty* ZBBPUnitProperties::Dup()
     return new ZBBPUnitProperties(*this);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// ZBBPUnitProperties member variable descriptions
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-#endif // __ZBBPUnitProp_H__
-
-/////////////////////////////////////////////////////////////////////////////
+#endif

@@ -14,7 +14,7 @@
 #include "ZBBPRuleListProp.h"
 #include "ZBBPTaskListProp.h"
 #include "ZBBPDecisionListProp.h"
-#include "ZBBPCostPropProcedure.h"
+#include "PSS_CostPropertiesProcedureBP.h"
 #include "ZBBPUnitProp.h"
 #include "ZBBPCombinationProp.h"
 #include "ZBBPSimPropProcedure.h"
@@ -690,7 +690,7 @@ bool ZBBPProcedureSymbol::CreateSymbolProperties()
     ZBBPDecisionListProperties propDecisions;
     AddProperty(propDecisions);
 
-    ZBBPCostPropertiesProcedure propCost;
+    PSS_CostPropertiesProcedureBP propCost;
     AddProperty(propCost);
 
     ZBBPUnitProperties propUnit;
@@ -3491,8 +3491,8 @@ void ZBBPProcedureSymbol::Serialize(CArchive& ar)
             TRACE(_T("ZBBPProcedureSymbol::Serialize : Start Read\n"));
 
             // Transfert the properties to new format
-            ZBBPCostPropertiesProcedure* pCostProps =
-                (ZBBPCostPropertiesProcedure*)GetProperty(ZS_BP_PROP_PROCEDURE_COST);
+            PSS_CostPropertiesProcedureBP* pCostProps =
+                (PSS_CostPropertiesProcedureBP*)GetProperty(ZS_BP_PROP_PROCEDURE_COST);
 
             if (pCostProps)
             {

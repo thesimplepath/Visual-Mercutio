@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CostPropertiesDeliverableBP -------------------------------------*
+ * ==> PSS_CostPropertiesProcedureBP ---------------------------------------*
  ****************************************************************************
- * Description : Provides the cost properties for deliverables              *
+ * Description : Provides the cost properties for procedures                *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CostPropertiesDeliverableBPH
-#define PSS_CostPropertiesDeliverableBPH
+#ifndef PSS_CostPropertiesProcedureBPH
+#define PSS_CostPropertiesProcedureBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_CostPropertiesDeliverableBP
-    #define PSS_CostPropertiesDeliverableBP ZBBPCostPropertiesDeliverable
+#ifndef PSS_CostPropertiesProcedureBP
+    #define PSS_CostPropertiesProcedureBP ZBBPCostPropertiesProcedure
 #endif
 
 // resources
@@ -41,24 +41,22 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Cost_Processing_Time_ID      1
-#define M_Cost_In_Workload_Percent_ID  2
-#define M_Cost_Out_Workload_Percent_ID 3
-#define M_Cost_Unitary_Cost_ID         4
+#define M_Cost_Multiplier      1
+#define M_Cost_Processing_Time 2
+#define M_Cost_Unitary_Cost    3
 //---------------------------------------------------------------------------
 
 /**
-* Cost properties for deliverables
+* Cost properties for procedures
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CODIntProperty,
-                                                      public sfl::CPropertyContainer< IODPropertyContainer,
-                                                                                      CODPropertyAccessor<PSS_CostPropertiesDeliverableBP> >
+class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP : public CODIntProperty,
+                                                    public sfl::CPropertyContainer< IODPropertyContainer,
+                                                                                    CODPropertyAccessor<PSS_CostPropertiesProcedureBP> >
 {
-    DECLARE_SERIAL(PSS_CostPropertiesDeliverableBP)
+    DECLARE_SERIAL(PSS_CostPropertiesProcedureBP)
 
-    /// generated guid map
-    BEGIN_GUID_MAP(PSS_CostPropertiesDeliverableBP)
+    BEGIN_GUID_MAP(PSS_CostPropertiesProcedureBP)
         GUID_ENTRY(IODPropertyContainer)
         GUID_ENTRY(sfl::IPropertyContainer)
         GUID_CHAIN_ENTRY(CODIntProperty)
@@ -71,40 +69,39 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Cost_Processing_Time      = 0x0001,
-            IE_CT_Change_Cost_In_Workload_Percent  = 0x0002,
-            IE_CT_Change_Cost_Out_Workload_Percent = 0x0004,
-            IE_CT_Change_Cost_Unitary_Cost         = 0x0008,
-            IE_CT_All                              = OD_CHANGE_ALL
+            IE_CT_Change_Cost_Multiplier      = 0x0001,
+            IE_CT_Change_Cost_Processing_Time = 0x0002,
+            IE_CT_Change_Cost_Unitary_Cost    = 0x0004,
+            IE_CT_All                         = OD_CHANGE_ALL
         };
 
         /**
         * Constructor
         *@param propID - property identifier
         */
-        PSS_CostPropertiesDeliverableBP(int propID = ZS_BP_PROP_DELIVERABLE_COST);
+        PSS_CostPropertiesProcedureBP(int propID = ZS_BP_PROP_PROCEDURE_COST);
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_CostPropertiesDeliverableBP(const PSS_CostPropertiesDeliverableBP& other);
+        PSS_CostPropertiesProcedureBP(const PSS_CostPropertiesProcedureBP& other);
 
-        virtual ~PSS_CostPropertiesDeliverableBP();
+        virtual ~PSS_CostPropertiesProcedureBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_CostPropertiesDeliverableBP& operator = (const PSS_CostPropertiesDeliverableBP& other);
+        PSS_CostPropertiesProcedureBP& operator = (const PSS_CostPropertiesProcedureBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_CostPropertiesDeliverableBP& other) const;
+        BOOL operator == (const PSS_CostPropertiesProcedureBP& other) const;
 
         /**
         * Adds a reference to this object
@@ -146,6 +143,18 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CODIntProperty,
         virtual BOOL IsEqual(CODProperty* pProp);
 
         /**
+        * Gets the cost multiplier factor
+        *@return the cost multiplier factor
+        */
+        virtual inline float GetMultiplier() const;
+
+        /**
+        * Sets the cost multiplier factor
+        *@param value - the cost multiplier factor
+        */
+        virtual inline void SetMultiplier(const float value);
+
+        /**
         * Gets the processing time
         *@return the processing time
         */
@@ -156,30 +165,6 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CODIntProperty,
         *@param value - the processing time
         */
         virtual inline void SetProcessingTime(const double value);
-
-        /**
-        * Gets the input workload percent
-        *@return the input workload percent
-        */
-        virtual inline float GetInWorkloadPercent() const;
-
-        /**
-        * Sets the input workload percent
-        *@param value - the input workload percent
-        */
-        virtual inline void SetInWorkloadPercent(const float value);
-
-        /**
-        * Gets the output workload percent
-        *@return the output workload percent
-        */
-        virtual inline float GetOutWorkloadPercent() const;
-
-        /**
-        * Sets the output workload percent
-        *@param value - the output workload percent
-        */
-        virtual inline void SetOutWorkloadPercent(const float value);
 
         /**
         * Gets the unitary cost
@@ -242,8 +227,7 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CODIntProperty,
 
     protected:
         double m_ProcessingTime;
-        float  m_InWorkloadPercent;
-        float  m_OutWorkloadPercent;
+        float  m_Multiplier;
         float  m_UnitaryCost;
 
     private:
@@ -255,59 +239,49 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CODIntProperty,
 };
 
 //---------------------------------------------------------------------------
-// PSS_CostPropertiesDeliverableBP
+// PSS_CostPropertiesProcedureBP
 //---------------------------------------------------------------------------
-ULONG PSS_CostPropertiesDeliverableBP::AddRef()
+ULONG PSS_CostPropertiesProcedureBP::AddRef()
 {
     return CODIntProperty::AddRef();
 }
 //---------------------------------------------------------------------------
-ULONG PSS_CostPropertiesDeliverableBP::Release()
+ULONG PSS_CostPropertiesProcedureBP::Release()
 {
     return CODIntProperty::Release();
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_CostPropertiesDeliverableBP::Dup() const
+CODProperty* PSS_CostPropertiesProcedureBP::Dup() const
 {
-    return new PSS_CostPropertiesDeliverableBP(*this);
+    return new PSS_CostPropertiesProcedureBP(*this);
 }
 //---------------------------------------------------------------------------
-double PSS_CostPropertiesDeliverableBP::GetProcessingTime() const
+float PSS_CostPropertiesProcedureBP::GetMultiplier() const
+{
+    return m_Multiplier;
+}
+//---------------------------------------------------------------------------
+void PSS_CostPropertiesProcedureBP::SetMultiplier(const float value)
+{
+    m_Multiplier = value;
+}
+//---------------------------------------------------------------------------
+double PSS_CostPropertiesProcedureBP::GetProcessingTime() const
 {
     return m_ProcessingTime;
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesDeliverableBP::SetProcessingTime(const double value)
+void PSS_CostPropertiesProcedureBP::SetProcessingTime(const double value)
 {
     m_ProcessingTime = value;
 }
 //---------------------------------------------------------------------------
-float PSS_CostPropertiesDeliverableBP::GetInWorkloadPercent() const
-{
-    return m_InWorkloadPercent;
-}
-//---------------------------------------------------------------------------
-void PSS_CostPropertiesDeliverableBP::SetInWorkloadPercent(const float value)
-{
-    m_InWorkloadPercent = value;
-}
-//---------------------------------------------------------------------------
-float PSS_CostPropertiesDeliverableBP::GetOutWorkloadPercent() const
-{
-    return m_OutWorkloadPercent;
-}
-//---------------------------------------------------------------------------
-void PSS_CostPropertiesDeliverableBP::SetOutWorkloadPercent(const float value)
-{
-    m_OutWorkloadPercent = value;
-}
-//---------------------------------------------------------------------------
-float PSS_CostPropertiesDeliverableBP::GetUnitaryCost() const
+float PSS_CostPropertiesProcedureBP::GetUnitaryCost() const
 {
     return m_UnitaryCost;
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesDeliverableBP::SetUnitaryCost(const float value)
+void PSS_CostPropertiesProcedureBP::SetUnitaryCost(const float value)
 {
     m_UnitaryCost = value;
 }
