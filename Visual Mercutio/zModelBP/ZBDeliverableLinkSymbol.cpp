@@ -32,8 +32,7 @@
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_SelectUserGroupDlg.h"
 
-// JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
-#include "ProcGraphModelCtlrBP.h"
+#include "PSS_ProcessGraphModelControllerBP.h"
 
 #include "ZVEqualizeQuantityDlg.h"
 
@@ -2243,10 +2242,10 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         {
             ZDProcessGraphModelMdlBP* pOwnerModel = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
 
-            if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), ZDProcessGraphModelControllerBP))
+            if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), PSS_ProcessGraphModelControllerBP))
             {
-                ZDProcessGraphModelControllerBP* pController =
-                    reinterpret_cast<ZDProcessGraphModelControllerBP*>(pOwnerModel->GetController());
+                PSS_ProcessGraphModelControllerBP* pController =
+                    reinterpret_cast<PSS_ProcessGraphModelControllerBP*>(pOwnerModel->GetController());
 
                 if (pController && ISA(pController->GetDocument(), PSS_ProcessGraphModelDoc))
                 {

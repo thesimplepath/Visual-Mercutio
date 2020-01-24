@@ -40,8 +40,7 @@
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zProperty\ZBPropertyObserverMsg.h"
 
-// JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
-#include "ProcGraphModelCtlrBP.h"
+#include "PSS_ProcessGraphModelControllerBP.h"
 
 // JMR-MODIF - Le 13 juin 2007 - Ajout de l'en-tête ZVRiskOptionsDlg.h
 #include "ZVRiskOptionsDlg.h"
@@ -830,10 +829,10 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         {
             ZDProcessGraphModelMdlBP* pOwnerModel = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
 
-            if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), ZDProcessGraphModelControllerBP))
+            if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), PSS_ProcessGraphModelControllerBP))
             {
-                ZDProcessGraphModelControllerBP* pController =
-                    reinterpret_cast<ZDProcessGraphModelControllerBP*>(pOwnerModel->GetController());
+                PSS_ProcessGraphModelControllerBP* pController =
+                    reinterpret_cast<PSS_ProcessGraphModelControllerBP*>(pOwnerModel->GetController());
 
                 if (pController && ISA(pController->GetDocument(), PSS_ProcessGraphModelDoc))
                 {

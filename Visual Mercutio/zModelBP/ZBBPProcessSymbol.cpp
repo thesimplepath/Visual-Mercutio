@@ -41,8 +41,7 @@
 // JMR-MODIF - Le 15 février 2006 - Ajout de l'en-tête pour la prise en charge des modèles de pages.
 #include "zModel\PSS_ProcessGraphPage.h"
 
-// JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
-#include "ProcGraphModelCtlrBP.h"
+#include "PSS_ProcessGraphModelControllerBP.h"
 
 // JMR-MODIF - Le 13 juin 2007 - Ajout de l'en-tête ZVRiskOptionsDlg.h
 #include "ZVRiskOptionsDlg.h"
@@ -1401,10 +1400,10 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
 
             if (p_Model != NULL &&
                 p_Model->GetController() != NULL &&
-                ISA(p_Model->GetController(), ZDProcessGraphModelControllerBP))
+                ISA(p_Model->GetController(), PSS_ProcessGraphModelControllerBP))
             {
-                ZDProcessGraphModelControllerBP* p_Controller =
-                    reinterpret_cast<ZDProcessGraphModelControllerBP*>(p_Model->GetController());
+                PSS_ProcessGraphModelControllerBP* p_Controller =
+                    reinterpret_cast<PSS_ProcessGraphModelControllerBP*>(p_Model->GetController());
 
                 if (p_Controller != NULL && ISA(p_Controller->GetDocument(), PSS_ProcessGraphModelDoc))
                 {

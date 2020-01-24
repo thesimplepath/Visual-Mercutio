@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ProcGraphModelMdlBP.h"
 
-#include "ProcGraphModelCtlrBP.h"
+#include "PSS_ProcessGraphModelControllerBP.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 
 #include "zBaseLib\PSS_BaseDocument.h"
@@ -75,7 +75,7 @@ ZDProcessGraphModelMdlBP::~ZDProcessGraphModelMdlBP()
 
 PSS_ProcessGraphModelController* ZDProcessGraphModelMdlBP::CreateController(PSS_ProcessGraphModelViewport* pVp)
 {
-    return new ZDProcessGraphModelControllerBP(pVp);
+    return new PSS_ProcessGraphModelControllerBP(pVp);
 }
 
 void ZDProcessGraphModelMdlBP::SetDefaultWkfProperty(bool RedefineOnExisting /*= false*/)

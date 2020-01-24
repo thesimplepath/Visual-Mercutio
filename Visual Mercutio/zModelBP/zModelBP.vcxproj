@@ -141,7 +141,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ProcGraphModelCtlrBP.cpp">
+    <ClCompile Include="PSS_ProcessGraphModelControllerBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -586,7 +586,7 @@
     <ResourceCompile Include="zModelBP.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProcGraphModelCtlrBP.h" />
+    <ClInclude Include="PSS_ProcessGraphModelControllerBP.h" />
     <ClInclude Include="ProcGraphModelMdlBP.h" />
     <ClInclude Include="PSS_UnitPropertiesBP.h" />
     <ClInclude Include="StdAfx.h" />

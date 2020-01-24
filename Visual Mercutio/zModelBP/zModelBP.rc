@@ -16,13 +16,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Français (France) resources
+// French (France) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -108,9 +106,8 @@ END
 // Dialog
 //
 
-IDD_EQUALIZE_ACTIVATION DIALOG  0, 0, 256, 266
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_EQUALIZE_ACTIVATION DIALOG 0, 0, 256, 266
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Nombre d'activation d'un processus"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -143,36 +140,23 @@ BEGIN
     EDITTEXT        IDC_OCT_ACTIVATION,182,190,63,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_NOV_ACTIVATION,182,206,63,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_DEC_ACTIVATION,182,222,63,12,ES_AUTOHSCROLL
-    CONTROL         "Slider1",IDC_JAN_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,46,108,8
-    CONTROL         "Slider1",IDC_FEB_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,62,108,8
-    CONTROL         "Slider1",IDC_MAR_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,78,108,8
-    CONTROL         "Slider1",IDC_APR_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,94,108,8
-    CONTROL         "Slider1",IDC_MAY_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,110,108,8
-    CONTROL         "Slider1",IDC_JUN_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,126,108,8
-    CONTROL         "Slider1",IDC_JUL_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,142,108,8
-    CONTROL         "Slider1",IDC_AUG_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,158,108,8
-    CONTROL         "Slider1",IDC_SEP_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,174,108,8
-    CONTROL         "Slider1",IDC_OCT_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,190,108,8
-    CONTROL         "Slider1",IDC_NOV_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,206,108,8
-    CONTROL         "Slider1",IDC_DEC_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,222,108,8
+    CONTROL         "Slider1",IDC_JAN_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,46,108,8
+    CONTROL         "Slider1",IDC_FEB_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,62,108,8
+    CONTROL         "Slider1",IDC_MAR_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,78,108,8
+    CONTROL         "Slider1",IDC_APR_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,94,108,8
+    CONTROL         "Slider1",IDC_MAY_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,110,108,8
+    CONTROL         "Slider1",IDC_JUN_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,126,108,8
+    CONTROL         "Slider1",IDC_JUL_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,142,108,8
+    CONTROL         "Slider1",IDC_AUG_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,158,108,8
+    CONTROL         "Slider1",IDC_SEP_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,174,108,8
+    CONTROL         "Slider1",IDC_OCT_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,190,108,8
+    CONTROL         "Slider1",IDC_NOV_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,206,108,8
+    CONTROL         "Slider1",IDC_DEC_ACT_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,222,108,8
     LTEXT           "(par année)",IDC_STATIC,151,7,67,10
 END
 
-IDD_EQUALIZE_QUANTITY DIALOG  0, 0, 256, 276
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_EQUALIZE_QUANTITY DIALOG 0, 0, 256, 276
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Quantité saisonnalisée d'un livrable"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -189,69 +173,32 @@ BEGIN
     EDITTEXT        IDC_OCT_ACTIVATION,156,199,63,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_NOV_ACTIVATION,156,215,63,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_DEC_ACTIVATION,156,231,63,12,ES_AUTOHSCROLL
-    CONTROL         "Slider1",IDC_JAN_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,55,84,8
-    CONTROL         "Slider1",IDC_FEB_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,71,84,8
-    CONTROL         "Slider1",IDC_MAR_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,87,84,8
-    CONTROL         "Slider1",IDC_APR_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,103,84,8
-    CONTROL         "Slider1",IDC_MAY_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,119,84,8
-    CONTROL         "Slider1",IDC_JUN_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,135,84,8
-    CONTROL         "Slider1",IDC_JUL_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,151,84,8
-    CONTROL         "Slider1",IDC_AUG_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,167,84,8
-    CONTROL         "Slider1",IDC_SEP_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,183,84,8
-    CONTROL         "Slider1",IDC_OCT_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,199,84,8
-    CONTROL         "Slider1",IDC_NOV_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,215,84,8
-    CONTROL         "Slider1",IDC_DEC_ACT_SLIDER,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
-                    WS_TABSTOP,67,231,84,8
+    CONTROL         "Slider1",IDC_JAN_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,55,84,8
+    CONTROL         "Slider1",IDC_FEB_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,71,84,8
+    CONTROL         "Slider1",IDC_MAR_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,87,84,8
+    CONTROL         "Slider1",IDC_APR_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,103,84,8
+    CONTROL         "Slider1",IDC_MAY_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,119,84,8
+    CONTROL         "Slider1",IDC_JUN_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,135,84,8
+    CONTROL         "Slider1",IDC_JUL_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,151,84,8
+    CONTROL         "Slider1",IDC_AUG_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,167,84,8
+    CONTROL         "Slider1",IDC_SEP_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,183,84,8
+    CONTROL         "Slider1",IDC_OCT_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,199,84,8
+    CONTROL         "Slider1",IDC_NOV_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,215,84,8
+    CONTROL         "Slider1",IDC_DEC_ACT_SLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | WS_TABSTOP,67,231,84,8
     DEFPUSHBUTTON   "Valider",IDOK,199,255,50,14
-    CONTROL         "bloquer",IDC_YEAR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,197,7,52,11
-    CONTROL         "",IDC_JAN_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,55,12,11
-    CONTROL         "",IDC_FEB_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,71,12,11
-    CONTROL         "",IDC_MAR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,87,12,11
-    CONTROL         "",IDC_APR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,103,12,11
-    CONTROL         "",IDC_MAY_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,119,12,11
-    CONTROL         "",IDC_JUN_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,135,12,11
-    CONTROL         "",IDC_JUL_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,151,12,11
-    CONTROL         "",IDC_AUG_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,167,12,11
-    CONTROL         "",IDC_SEP_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,183,12,11
-    CONTROL         "",IDC_OCT_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,199,12,11
-    CONTROL         "",IDC_NOV_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,215,12,11
-    CONTROL         "",IDC_DEC_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,229,231,12,11
+    CONTROL         "bloquer",IDC_YEAR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,197,7,52,11
+    CONTROL         "",IDC_JAN_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,55,12,11
+    CONTROL         "",IDC_FEB_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,71,12,11
+    CONTROL         "",IDC_MAR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,87,12,11
+    CONTROL         "",IDC_APR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,103,12,11
+    CONTROL         "",IDC_MAY_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,119,12,11
+    CONTROL         "",IDC_JUN_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,135,12,11
+    CONTROL         "",IDC_JUL_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,151,12,11
+    CONTROL         "",IDC_AUG_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,167,12,11
+    CONTROL         "",IDC_SEP_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,183,12,11
+    CONTROL         "",IDC_OCT_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,199,12,11
+    CONTROL         "",IDC_NOV_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,215,12,11
+    CONTROL         "",IDC_DEC_ACT_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,229,231,12,11
     PUSHBUTTON      "Abandonner",IDCANCEL,143,255,50,14
     GROUPBOX        "Mensualisé",IDC_STATIC,7,34,242,217
     LTEXT           "Quantité totale:",IDC_STATIC,7,7,53,10
@@ -268,15 +215,13 @@ BEGIN
     LTEXT           "novembre",IDC_STATIC,16,215,40,10
     LTEXT           "décembre",IDC_STATIC,16,231,38,10
     LTEXT           "(par année)",IDC_STATIC,151,7,39,10
-    CONTROL         "Forcer le système de calcul à utiliser cette saisonnalité",
-                    IDC_FORCE_EQUALIZER,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,22,212,11
+    CONTROL         "Forcer le système de calcul à utiliser cette saisonnalité",IDC_FORCE_EQUALIZER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,22,212,11
     PUSHBUTTON      "Valeurs par défaut",IDC_DEFAULT,7,256,76,14
 END
 
-IDD_ADD_DELIV_COMBINATION DIALOG  0, 0, 327, 127
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_ADD_DELIV_COMBINATION DIALOG 0, 0, 327, 127
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Ajouter un ou des livrables à la combinaison"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -284,69 +229,55 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,217,106,50,14
     LTEXT           "Livrable(s) disponible(s)",IDC_STATIC,7,7,78,8
     LTEXT           "Livrable(s) de la combinaison",IDC_STATIC,221,7,99,8
-    LISTBOX         IDC_REMAIN_DELIV,7,21,145,79,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
-                    WS_TABSTOP
-    LISTBOX         IDC_COMB_DELIV,175,21,145,79,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_REMAIN_DELIV,7,21,145,79,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_COMB_DELIV,175,21,145,79,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     PUSHBUTTON      ">>",IDC_ADD_DELIV,155,44,18,12
     PUSHBUTTON      "<<",IDC_DEL_DELIV,155,59,18,12
 END
 
-IDD_DEL_DELIV_COMBINATION DIALOG  0, 0, 329, 198
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_DEL_DELIV_COMBINATION DIALOG 0, 0, 329, 198
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Enlever un ou des livrables de la combinaison"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Valider",IDOK,272,177,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,219,177,50,14
     LTEXT           "Livrable(s) de la combinaison",-1,7,7,99,8
-    LISTBOX         IDC_COMB_DELIV,7,19,270,155,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_COMB_DELIV,7,19,270,155,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     PUSHBUTTON      "Enlever",IDC_DEL_DELIV,280,19,42,12
 END
 
-IDD_CHOOSE_MASTERDELIV DIALOG  0, 0, 291, 150
+IDD_CHOOSE_MASTERDELIV DIALOG 0, 0, 291, 150
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Choisir le livrable maître"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Valider",IDOK,234,129,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,181,129,50,14
-    LISTBOX         IDC_LISTOFDELIVERABLE,7,7,277,117,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_LISTOFDELIVERABLE,7,7,277,117,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
 END
 
 IDD_WZ_PUBLISHTOMESSENGER_AUTH DIALOGEX 0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Publication vers Messenger"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     EDITTEXT        IDC_MESSENGER_USERNAME,105,103,177,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_MESSENGER_PASSWORD,105,120,177,12,ES_PASSWORD | 
-                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_MESSENGER_PASSWORD,105,120,177,12,ES_PASSWORD | ES_AUTOHSCROLL
     DEFPUSHBUTTON   "Publier",IDOK,80,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     LTEXT           "Utilisateur:",IDC_LBL_USERNAME,48,105,48,10
     LTEXT           "Mot de passe:",IDC_LBL_PASSWORD,48,123,48,10
     ICON            IDI_KEYMANAGER,IDC_STATIC,15,108,21,20
     GROUPBOX        "Date de validité",IDC_DATEGRP,6,44,282,38
     GROUPBOX        "Données d'authentification",IDC_AUTHGRP,6,88,282,53
-    CONTROL         "",IDC_MESSENGER_DATE_BEGIN,"SysDateTimePick32",
-                    DTS_RIGHTALIGN | WS_TABSTOP,105,58,177,15
+    CONTROL         "",IDC_MESSENGER_DATE_BEGIN,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,105,58,177,15
     LTEXT           "Début:",IDC_LBL_DATE_BEGIN,48,60,48,10
 END
 
 IDD_WZ_PUBLISHTOMESSENGER_START DIALOGEX 0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Publication vers Messenger"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
@@ -357,41 +288,33 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,145,159,10
     DEFPUSHBUTTON   "Suivant >>",IDNEXT,80,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
-    CONTROL         17341,IDC_BMP_USER,"Static",SS_BITMAP | SS_REALSIZEIMAGE,
-                    13,129,11,10
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
+    CONTROL         IDS_DB_DELIV_INC_6,IDC_BMP_USER,"Static",SS_BITMAP | SS_REALSIZEIMAGE,13,129,11,10
     GROUPBOX        "Options de publication",IDC_OPTIONSGRP,6,98,282,78
-    CONTROL         17337,IDC_BMP_LOGICALSYSTEM,"Static",SS_BITMAP | 
-                    SS_REALSIZEIMAGE,13,145,11,10
+    CONTROL         IDS_AL_DELIV_NOTDEFINED_COMBINATION,IDC_BMP_LOGICALSYSTEM,
+                    "Static",SS_BITMAP | SS_REALSIZEIMAGE,13,145,11,10
     LTEXT           "Adresse:",IDC_LBL_PUB_ADRESS,13,59,43,8
-    CONTROL         17339,IDC_BMP_MODEL,"Static",SS_BITMAP | 
-                    SS_REALSIZEIMAGE,13,113,11,10
-    CONTROL         "Inclure le modèle",IDC_INCLUDE_MODEL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,31,113,159,10
-    CONTROL         "Inclure la définition des prestations",
-                    IDC_INCLUDE_PRESTATIONS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,31,161,159,10
-    CONTROL         17336,IDC_BMP_PRESTATIONS,"Static",SS_BITMAP | 
-                    SS_REALSIZEIMAGE,13,161,11,10
+    CONTROL         IDS_AL_DELIV_QUANTITY_ZERO,IDC_BMP_MODEL,"Static",SS_BITMAP | SS_REALSIZEIMAGE,13,113,11,10
+    CONTROL         "Inclure le modèle",IDC_INCLUDE_MODEL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,113,159,10
+    CONTROL         "Inclure la définition des prestations",IDC_INCLUDE_PRESTATIONS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,161,159,10
+    CONTROL         IDS_DB_DELIV_INC_4,IDC_BMP_PRESTATIONS,"Static",SS_BITMAP | SS_REALSIZEIMAGE,13,161,11,10
     EDITTEXT        IDC_MESSENGER_ALIAS,64,75,216,12,ES_AUTOHSCROLL
     LTEXT           "Alias:",IDC_LBL_PUB_ALIAS,13,76,43,10
     GROUPBOX        "Publication vers Messenger",IDC_ALIASGRP,6,43,282,51
 END
 
-IDD_INPUTATTRIBUTES DIALOG  0, 0, 355, 279
+IDD_INPUTATTRIBUTES DIALOG 0, 0, 355, 279
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Les attributs de saisie du modèle"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,298,258,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,243,258,50,14
-    CONTROL         "List1",IDC_INPUTATTRIBUTE_LIST,"SysListView32",
-                    LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,
-                    7,7,341,244
+    CONTROL         "List1",IDC_INPUTATTRIBUTE_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,341,244
 END
 
-IDD_INPUTATTRIBUTES_DEF DIALOG  0, 0, 243, 198
+IDD_INPUTATTRIBUTES_DEF DIALOG 0, 0, 243, 198
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Attribut de saisie"
 FONT 8, "MS Sans Serif"
@@ -403,27 +326,23 @@ BEGIN
     LTEXT           "Valeure par défaut:",IDC_STATIC,7,42,90,9
     EDITTEXT        IDC_INPATTR_DEFVALUE,7,55,229,13,ES_AUTOHSCROLL
     LTEXT           "Visibilité:",IDC_STATIC,7,77,90,9
-    COMBOBOX        IDC_INPATTR_VISIBILITY,7,89,229,68,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_INPATTR_VISIBILITY,7,89,229,68,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Option de saisie:",IDC_STATIC,7,112,90,9
-    COMBOBOX        IDC_INPATTR_FLAG,7,123,229,68,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_INPATTR_FLAG,7,123,229,68,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Sélectionner",IDC_CHOOSE_DYNATTR,184,21,52,13
 END
 
-IDD_DISTRIBUTIONATTRIBUTES DIALOG  0, 0, 355, 279
+IDD_DISTRIBUTIONATTRIBUTES DIALOG 0, 0, 355, 279
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Les attributs de distribution du modèle"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,298,258,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,243,258,50,14
-    CONTROL         "List1",IDC_DISTRIBUTIONATTRIBUTE_LIST,"SysListView32",
-                    LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,
-                    7,7,341,244
+    CONTROL         "List1",IDC_DISTRIBUTIONATTRIBUTE_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,341,244
 END
 
-IDD_DISTRIBUTIONATTRIBUTES_DEF DIALOG  0, 0, 397, 306
+IDD_DISTRIBUTIONATTRIBUTES_DEF DIALOG 0, 0, 397, 306
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Attribut de distribution"
 FONT 8, "MS Sans Serif"
@@ -435,27 +354,22 @@ BEGIN
     LTEXT           "Basé sur attribut dynamique:",IDC_STATIC,7,8,90,9
     EDITTEXT        IDC_DYNATTRIB,7,21,173,13,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Basé sur groupe:",IDC_STATIC,7,42,90,9
-    EDITTEXT        IDC_USERGROUPNAME,7,55,173,13,ES_AUTOHSCROLL | 
-                    ES_READONLY
-    CONTROL         "List1",IDC_DISTRIBLIST,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
-                    WS_TABSTOP,13,107,371,172
+    EDITTEXT        IDC_USERGROUPNAME,7,55,173,13,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "List1",IDC_DISTRIBLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,13,107,371,172
     GROUPBOX        "Règles",IDC_STATIC,7,74,383,210
     PUSHBUTTON      "Ajouter",IDC_ADDRULE_BUTTON,15,93,47,12
     PUSHBUTTON      "Supprimer",IDC_DELRULE_BUTTON,64,93,47,12
     PUSHBUTTON      "Modifier",IDC_MODRULE_BUTTON,113,93,47,12
 END
 
-IDD_DISTRIBUTIONRULE_DEF DIALOG  0, 0, 388, 60
+IDD_DISTRIBUTIONRULE_DEF DIALOG 0, 0, 388, 60
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Règle"
 FONT 8, "MS Sans Serif"
 BEGIN
-    COMBOBOX        IDC_OPERATOR_RULE,7,19,51,137,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_OPERATOR_RULE,7,19,51,137,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_VALUE_RULE,73,19,243,12,ES_AUTOHSCROLL
-    COMBOBOX        IDC_LOGICALOPERATOR_RULE,330,19,51,137,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_LOGICALOPERATOR_RULE,330,19,51,137,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,331,39,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,278,39,50,14
     LTEXT           "Opérateur:",IDC_STATIC,7,7,38,8
@@ -464,8 +378,7 @@ BEGIN
 END
 
 IDD_ADD_DELIV_DELIVERY DIALOGEX 0, 0, 327, 142
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Ajouter un ou des livrables à la livraison"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
@@ -473,28 +386,20 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,217,121,50,14
     LTEXT           "Livrable(s) disponible(s)",IDC_STATIC,7,7,78,8
     LTEXT           "Livrable(s) de la livraison",IDC_STATIC,221,7,99,8
-    LISTBOX         IDC_AVAILABLE_DELIV,7,21,145,79,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
-                    WS_TABSTOP
-    LISTBOX         IDC_SELECTED_DELIV,175,21,144,79,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_AVAILABLE_DELIV,7,21,145,79,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SELECTED_DELIV,175,21,144,79,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     PUSHBUTTON      ">>",IDC_ADD_DELIV,155,53,18,12
-    PUSHBUTTON      "Supprimer ce livrable de la livraison",IDC_DEL_DELIV,
-                    176,103,144,14
+    PUSHBUTTON      "Supprimer ce livrable de la livraison",IDC_DEL_DELIV,176,103,144,14
 END
 
 IDD_CHOOSE_MAINDELIV DIALOGEX 0, 0, 291, 150
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Choisir le livrable principal"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "Valider",IDOK,234,129,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,181,129,50,14
-    LISTBOX         IDC_LISTOFDELIVERABLE,7,7,277,117,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_LISTOFDELIVERABLE,7,7,277,117,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
 END
 
 
@@ -504,7 +409,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_EQUALIZE_ACTIVATION, DIALOG
     BEGIN
@@ -638,13 +543,13 @@ END
 // Menu
 //
 
-IDR_SYMBOL_REF_RIGHTMENU_BP MENU 
+IDR_SYMBOL_REF_RIGHTMENU_BP MENU
 BEGIN
     POPUP "Multiples"
     BEGIN
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -691,7 +596,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -717,11 +622,9 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
@@ -732,7 +635,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -758,11 +661,9 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
@@ -773,7 +674,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -799,11 +700,9 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
@@ -814,7 +713,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -840,11 +739,9 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
@@ -855,7 +752,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -881,11 +778,9 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
@@ -896,7 +791,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -929,7 +824,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -962,7 +857,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -995,7 +890,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM SEPARATOR
         POPUP "&Ordre"
         BEGIN
@@ -1024,13 +919,13 @@ BEGIN
     END
 END
 
-IDR_SYMBOL_RIGHTMENU_BP MENU 
+IDR_SYMBOL_RIGHTMENU_BP MENU
 BEGIN
     POPUP "Multiple"
     BEGIN
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         POPUP "&Ordre"
@@ -1081,7 +976,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         POPUP "&Ordre"
@@ -1108,16 +1003,13 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1128,7 +1020,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Ajouter une application",     ID_ADD_NEWEXTAPP
@@ -1158,16 +1050,13 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1178,7 +1067,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Ajouter un lien externe",     ID_ADD_NEWEXTFILE
@@ -1207,16 +1096,13 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1227,7 +1113,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         POPUP "&Ordre"
@@ -1254,16 +1140,13 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1274,7 +1157,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         POPUP "&Ordre"
@@ -1301,16 +1184,13 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1321,7 +1201,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         POPUP "&Ordre"
@@ -1348,8 +1228,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1360,7 +1239,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         POPUP "&Ordre"
@@ -1387,8 +1266,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1398,7 +1276,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         POPUP "&Ordre"
@@ -1425,8 +1303,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
     END
@@ -1438,7 +1315,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
         MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
-        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "&Détruire\tDel",              ID_EDIT_CLEAR
         MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Lier à un fichier...",        ID_LINKTOFILE_PACKAGE
@@ -1470,14 +1347,13 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
-        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
-                                                ID_DYNATTR_DUPLICATE
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", ID_DYNATTR_DUPLICATE
         MENUITEM SEPARATOR
         MENUITEM "Propriété&s...\tCtrl+Enter",  ID_OD_PROPERTIES
     END
 END
 
-IDR_COMBINATION_MENU MENU 
+IDR_COMBINATION_MENU MENU
 BEGIN
     POPUP "Combination"
     BEGIN
@@ -1490,13 +1366,11 @@ BEGIN
         MENUITEM "Supprimer la combinaison",    ID_DEL_CURRENTCOMBINATION
         MENUITEM SEPARATOR
         MENUITEM "Ajouter un livrable",         ID_ADD_DELIVERABLE_COMBINATION
-
         MENUITEM "Supprimer un livrable",       ID_DEL_DELIVERABLE_COMBINATION
-
     END
 END
 
-IDR_DELIVERIES_MENU MENU 
+IDR_DELIVERIES_MENU MENU
 BEGIN
     POPUP "Livraisons"
     BEGIN
@@ -1505,7 +1379,7 @@ BEGIN
     END
 END
 
-IDR_PRESTATIONS_MENU MENU 
+IDR_PRESTATIONS_MENU MENU
 BEGIN
     POPUP "Prestations"
     BEGIN
@@ -1513,7 +1387,7 @@ BEGIN
     END
 END
 
-IDR_RULES_MENU MENU 
+IDR_RULES_MENU MENU
 BEGIN
     POPUP "Rules"
     BEGIN
@@ -1527,7 +1401,7 @@ END
 // Toolbar
 //
 
-IDR_BP_MODELISATION TOOLBAR  18, 18
+IDR_BP_MODELISATION TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_OD_DRAW_SELECT
     BUTTON      ID_INS_BP_PROCEDURE
@@ -1551,7 +1425,7 @@ BEGIN
     BUTTON      ID_GENERATE_REPORT_PRESTATIONS
 END
 
-IDR_BP_ADDSYMBOLS TOOLBAR  18, 18
+IDR_BP_ADDSYMBOLS TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_INS_BP_ALERT
     BUTTON      ID_INS_BP_DOCUMENT
@@ -1579,16 +1453,27 @@ END
 //
 
 IDR_BP_MODELISATION     BITMAP                  "bmp27320.bmp"
+
 IDB_INPUTATTRIBUTE_FLATTOOLBAR BITMAP                  "res\\bitmap1.bmp"
+
 IDB_IL_INPUTATTRIBUTELIST BITMAP                  "res\\bmp00001.bmp"
+
 IDB_DISTRIBATTRIBUTE_FLATTOOLBAR BITMAP                  "res\\inputatt.bmp"
+
 IDB_IL_DISTRIBUTIONATTRIBUTELIST BITMAP                  "res\\il_distr.bmp"
+
 IDR_BP_ADDSYMBOLS       BITMAP                  "res\\bp_addsy.bmp"
+
 IDB_MESG_PRESTATIONSVIEW BITMAP                  "res\\bmp00002.bmp"
+
 IDB_MESG_LOGICALSYSTEMVIEW BITMAP                  "res\\bmp00003.bmp"
+
 IDB_MESG_PROPERTIESVIEW BITMAP                  "res\\bitmap2.bmp"
+
 IDB_MESG_MODELBP        BITMAP                  "res\\bmp00004.bmp"
+
 IDB_MESG_USERVIEW       BITMAP                  "res\\bmp00006.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1596,32 +1481,59 @@ IDB_MESG_USERVIEW       BITMAP                  "res\\bmp00006.bmp"
 //
 
 IDC_INS_PROCESSBP       CURSOR                  "Res\\design.cur"
+
 IDC_INS_                CURSOR                  "res\\cur00001.cur"
+
 IDC_INS_PROCEDUREBP     CURSOR                  "res\\ins_1.cur"
+
 IDC_INS_DELIVERABLEBP   CURSOR                  "res\\ins_2.cur"
+
 IDC_INS_DOORBP          CURSOR                  "res\\ins_3.cur"
+
 IDC_INS_PAGEBP          CURSOR                  "res\\ins_4.cur"
+
 IDC_INS_STARTBP         CURSOR                  "res\\ins_5.cur"
+
 IDC_INS_STOPBP          CURSOR                  "res\\ins_6.cur"
+
 IDC_INS_PACKAGEBP       CURSOR                  "res\\ins_7.cur"
+
 IDC_INS_ALERTBP         CURSOR                  "res\\cursor1.cur"
+
 IDC_INS_INDICATORBP     CURSOR                  "res\\cursor2.cur"
+
 IDC_INS_DOCUMENTBP      CURSOR                  "res\\cur00002.cur"
+
 IDC_INS_CREBP           CURSOR                  "res\\cur00003.cur"
+
 IDC_INS_CROBP           CURSOR                  "res\\cur00004.cur"
+
 IDC_INS_DELAYBP         CURSOR                  "res\\cur00005.cur"
+
 IDC_INS_IN_PROCESSBP    CURSOR                  "res\\cur00006.cur"
+
 IDC_INS_INCIDENTBP      CURSOR                  "res\\cur00007.cur"
+
 IDC_INS_NOT_VALIDATEDBP CURSOR                  "res\\cur00008.cur"
+
 IDC_INS_OPAP1BP         CURSOR                  "res\\cur00009.cur"
+
 IDC_INS_OPAP2BP         CURSOR                  "res\\cur00010.cur"
+
 IDC_INS_OPAP3BP         CURSOR                  "res\\cur00011.cur"
+
 IDC_INS_QUALITYBP       CURSOR                  "res\\cur00012.cur"
+
 IDC_INS_RISKBP          CURSOR                  "res\\cur00013.cur"
+
 IDC_INS_CRIBP           CURSOR                  "res\\cur00015.cur"
+
 IDC_INS_VALIDATEDBP     CURSOR                  "res\\cur00016.cur"
+
 IDC_INS_TEXTZONEBP      CURSOR                  "res\\cur00014.cur"
+
 IDC_FORMATPAINTER       CURSOR                  "res\\formatpa.cur"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1631,6 +1543,7 @@ IDC_FORMATPAINTER       CURSOR                  "res\\formatpa.cur"
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_KEYMANAGER          ICON                    "res\\Key manager.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1683,7 +1596,7 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MODELISATION_TITLE  "Outils B-Process"
     IDS_MODELGENERATION_TITLE "Génération B-Process"
@@ -1691,12 +1604,12 @@ BEGIN
                             "Vous ne pouvez pas supprimer toutes les livraisons. Il doit en rester au moins une."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_START            "Démarrage du calcul pour le modèle: %s"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CANNOTDELETE_ALLCOMBINATIONS 
                             "Vous ne pouvez pas supprimer toutes les combinaisons. Il doit en rester au moins une."
@@ -1705,7 +1618,7 @@ BEGIN
                             "Le compteur de boucle maximum a été atteint. Il est possible que le modèle ne soit pas cohérent."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ISD_DOOR_SELECTMODEL    "Sélectionner le modèle"
     IDS_FS_BPPROCESS_TOOLTIP "Processus: %s\nDescription: %s\nRéférence: %s"
@@ -1722,13 +1635,13 @@ BEGIN
     IDS_EL_DOOR_INC_IN_2    "Une porte ne peut pas accepter plus d'une connexion en sortie."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_RENAME_MODELPAGE     "Renommer une page.\nRenommer une page"
     ID_DELETE_MODELPAGE     "Supprimer une page.\nSupprimer une page"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_DOUBLEVALID_NONE    "Aucune"
     IDS_DOUBLEVALID_EMPLOYEE "Collaborateur"
@@ -1740,7 +1653,7 @@ BEGIN
     IDS_EL_PROCEDURE_INC_10 "Le livrable <%s> de la combinaison <%s> n'est plus rattaché à cette procédure."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_EL_DOOR_INC_OUT_1   "Une porte doit obligatoirement être connectée en entrée ou en sortie."
     IDS_EL_START_INC_1      "Un symbole de démarrage n'accepte pas de connexion en entrée."
@@ -1760,7 +1673,7 @@ BEGIN
     IDS_EL_PROCESS_INC_4    "Un processus ne peut pas être connecté à une procédure."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_SYMBOL_SELECTDOOR   "Sélectionner la porte"
     IDS_SYMBOL_SELECTDELIVERABLE "Sélectionner le livrable"
@@ -1773,7 +1686,7 @@ BEGIN
     IDS_EL_PROCEDURE_INC_6  "Une procédure doit avoir au moins une connexion en entrée."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_WAITINGFOROTHER_REACHED 
                             "Le compteur maximum qui permet d'attendre sur d'autres livrables a été atteint. Il est possible que le modèle ne soit pas cohérent."
@@ -1796,12 +1709,12 @@ BEGIN
     IDS_EL_PAGE_INC_IN_2    "Une page ne peut pas accepter plus d'une connexion en sortie."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_SELECTAGROUP_T      "Sélectionnez un groupe"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_EL_PAGE_INC_OUT_1   "Une page doit obligatoirement être connectée en entrée ou en sortie."
     IDS_EL_PAGE_INC_IN_3    "La page n'est plus rattachée."
@@ -1825,7 +1738,7 @@ BEGIN
     IDS_AL_PROCEDURE_INC_8  "Le nombre de livrables droits réentrants de cette procédure n'est pas égal au nombre de livrable sortants. Veuillez contrôler votre modèle."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_PROCEDURE_INC_9  "Le nombre de livrables gauches réentrants de cette procédure n'est pas égal au nombre de livrable sortants. Veuillez contrôler votre modèle."
     IDS_AL_PROCEDURE_INC_10 "Aucune unité de travail n'a été assignée à cette procédure. Par conséquent le coût de l'unité pris en compte sera zéro."
@@ -1846,7 +1759,7 @@ BEGIN
     IDS_AL_PROCEDURE_INC_13 "La somme des combinaisons de cette procédure n'est pas égale à 100%."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_PAGE_BOUNDS       "Montrer ou Cacher les bords de pages\nMontrer ou Cacher bords de pages"
     ID_OD_PROPERTIES        "Show the properties of the selected symbol(s)\nProperties"
@@ -1860,7 +1773,7 @@ BEGIN
     ID_OD_ZOOM_75PCT        "Zoom to 75% Scale\nZoom 75%"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_FLIP_HORIZONTAL   "Inverser le composant autour de son axe horizontal\nInverser Horizontalement"
     ID_OD_FLIP_VERTICAL     "Inverser le composant autour de son axe vertical\nInverser Verticalement"
@@ -1876,7 +1789,7 @@ BEGIN
     ID_OD_NUDGE_UP          "Déplacer Haut\nDéplacer Haut"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_ALIGN_BOTTOM      "Aligner Bas\nAligner Bas"
     ID_OD_ALIGN_CENTER      "Aligner Centre\nAligner Centre"
@@ -1889,30 +1802,30 @@ BEGIN
     ID_OD_BACKWARD          "Redescendre derrière\nRedescendre derrière"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_ZOOM_FIT          "Zoomer pour que tous les composants soient visibles.\nZoomer pour voir tous les composants"
     ID_OD_MEASUREMENTS      "Définir la taille et les unités de mesures du modèle"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_BROWSE_SOURCESYMBOL  "Se positionner sur le symbole source.\nAller au symbole source"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Effacer la selection"
     ID_EDIT_COPY            "Copier la selection dans le presse-papier"
     ID_EDIT_CUT             "Couper la selection dans le presse-papier"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_GOIN_SYMBOL          "Ouvrir le contenu.\nOuvrir le contenu"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_GENERATE_REPORT_MERCUTIO 
                             "Générer le rapport Mercutio.\nRapport Mercutio"
@@ -1924,18 +1837,18 @@ BEGIN
     ID_ADD_NEWEXTAPP        "Ajouter une application.\nAjouter une application"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_CHECK_MODEL          "Contrôler la cohérence du modèle.\nContrôler la cohérence"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_RECALCULATE_MODEL_PARAM 
                             "Recalculer les paramètres Sesterce.\nRecalculer les paramètres Sesterce"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_RECALCULATE_SELECTEDMODEL_PARAM 
                             "Recalculer les paramètres Sesterce du modèle sélectionné uniquement.\nRecalculer paramètres Sesterce (modèle sélectionné)"
@@ -1949,7 +1862,7 @@ BEGIN
     ID_SYM_SELECTATTRIBUTES "Sélectionner les attributs à afficher.\nSélectionner les attributs"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_OPERATORRULE_MISSING "Veuillez sélectionner un opérateur."
     IDS_OPERATORVALUE_MISSING "Veuillez spécifier une valeur."
@@ -1976,7 +1889,7 @@ BEGIN
     IDS_AL_MODEL_SOAPPUBLICATION "Publication du modèle terminée"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WZ_PUBLISHTOMESSENGER_ST_S "Publication"
     IDS_WZ_PUBLISHTOMESSENGER_ST_T 
@@ -1994,7 +1907,7 @@ BEGIN
     IDS_INPUTATTRIB_FLAG_COLUMN "Type"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_EL_PAGE_INC_IN_4    "La page n'a pas de modèle attaché. Ceci est une erreur fatale. Le système ne peut pas continuer. Veuillez fermer le fichier, le réouvrir et relancer le calcul. Si le problème persiste, veuillez supprimer le symbole page et le recréer."
     IDS_EL_DOOR_INC_IN_4    "La porte n'a pas de modèle attaché. Ceci est une erreur fatale. Le système ne peut pas continuer. Veuillez fermer le fichier, le réouvrir et relancer le calcul. Si le problème persiste, veuillez supprimer la porte et la recréer."
@@ -2015,7 +1928,7 @@ BEGIN
                             "Ce livrable est une référence. Le livrable principal est introuvable."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_DUPLICATE       "Dupliquer l'objet.\nDupliquer l'objet"
     ID_GENERATE_REPORT_SESTERCE_UNIT 
@@ -2024,7 +1937,7 @@ BEGIN
                             "Générer le rapport Sesterces Consolidé.\nRapport Sesterces Consolidé"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_INPUTATTRIB_ATTACHEDSYMBOL_COLUMN "Symbole"
     IDS_MODIFYINPUTATTRIBUTE_TTIPS "Modifier l'attribut de saisie sélectionné"
@@ -2050,7 +1963,7 @@ BEGIN
     IDS_SOAPMODELGENHTML_4  "</map>\n<!--END HOTSPOT TABLE-->\n"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_SOAPMODELGENHTML_5  "</body>\n</html>\n"
     IDS_SOAPMODELGENHTML_6  "<table width=""100%"" border=""0"" cellspacing=0 cellpadding=0>\n  \n<tr bgcolor=""#CCCCCC"">"
@@ -2070,14 +1983,14 @@ BEGIN
     IDS_USERGROUP_HASNOROLE "Le groupe sélectionné ne contient aucune équipe. Vous ne pouvez pas créer de règles de distribution sur ce groupe. Vous devez définir au moins une équipe sous ce groupe."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_DYNATTR_ADD          "Insérer un attribut dynamique.\nInsérer un attribut dynamique"
     ID_RECALCULATE_MODEL_DURATION 
                             "Recalculer les délais.\nRecalculer les délais"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_SYSTEM_SOAPPUBLICATION_ERR 
                             "Erreur dans la publication des systèmes logiques"
@@ -2099,7 +2012,7 @@ BEGIN
                             "Valeurs pour le calcul des délais remises à zéro pour ce livrable <%s>"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_DB_DELIV_INC_1      "Livrable <%s> Age du cas pondéré: %f, Age du cas maximum: %f"
     IDS_DB_PROCEDURE_INC_2  "Procédure <%s> délai pondéré: %f délai maximum: %f"
@@ -2122,7 +2035,7 @@ BEGIN
                             "Le modèle n'est pas en ligne avec le fichier de définition des groupes de travail. Les prix des unités ne seront pas mis à jour."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_PUBLISHLOGICALSYSTEM "Publier le système logique : %s"
     IDS_AL_PUBLISHUSERGROUP "Publier le groupe : %s"
@@ -2149,7 +2062,7 @@ BEGIN
     IDS_AL_STOP_INC_11      "L'unité de travail assignée à ce point d'arrêt a un coût égal à zéro. Veuillez vérifier que c'est bien le coût approprié."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_STOP_INC_6       "L'unité définie pour ce point d'arrêt n'existe plus."
     IDS_AL_START_INC_13     "L'unité définie pour ce point de démarrage n'existe plus."
@@ -2174,7 +2087,7 @@ BEGIN
                             "Procédure: %s, Charge / Activation calculée: %f"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_PROCESS_WORKLOAD "Procédure: %s, Charge de travail prévisionnelle calculée: %f"
     IDS_TEXTZONE            "Zone de texte"
@@ -2204,7 +2117,7 @@ BEGIN
                             "Les réferentiels en cours d'utilisation ne correspondent pas à ceux existants dans la base de données. La publication va être interrompue."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_AL_GROUP_MULTIMODELS_CHECK_END 
                             "Contrôle de la validité des réferentiels terminé"
@@ -2229,7 +2142,7 @@ BEGIN
                             "Fichiers d'initialisation des impacts (*.imp)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_RISK_PROBABILITY_FILE_DESCRIPTION 
                             "Fichiers d'initialisation des probabilités (*.pro)"
@@ -2240,18 +2153,16 @@ BEGIN
     IDS_RULE_IS_NOT_SYNC    "Cette règle n'est plus synchronisée avec le référentiel du modèle :"
 END
 
-#endif    // Français (France) resources
+#endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Neutre (Par défaut système) resources
+// Neutral (Sys. Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
-#ifdef _WIN32
 LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2259,8 +2170,7 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
 //
 
 IDD_RISK_OPTIONS DIALOGEX 0, 0, 290, 202
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Options des risques"
 FONT 8, "MS Sans Serif", 400, 0, 0x0
 BEGIN
@@ -2268,15 +2178,11 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,176,184,50,14
     EDITTEXT        IDC_RISK_TITLE_EDIT,50,18,139,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_RISK_DESCRIPTION_EDIT,50,34,139,14,ES_AUTOHSCROLL
-    COMBOBOX        IDC_RISK_PROBABILITY,51,98,139,61,CBS_DROPDOWN | 
-                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_RISK_IMPACT,51,83,139,62,CBS_DROPDOWN | CBS_SORT | 
-                    WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_RISK_TYPE,51,69,139,58,CBS_DROPDOWN | CBS_SORT | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RISK_PROBABILITY,51,98,139,61,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RISK_IMPACT,51,83,139,62,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RISK_TYPE,51,69,139,58,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CTEXT           "",IDC_RISK_SEVERITY,51,114,14,9,WS_BORDER
-    CONTROL         "Action en cours",IDC_ACTION,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,195,114,65,8
+    CONTROL         "Action en cours",IDC_ACTION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,195,114,65,8
     EDITTEXT        IDC_POA,51,161,139,14,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_UE,51,145,139,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "Risque",IDC_RISK_GROUP,7,7,276,46
@@ -2302,15 +2208,13 @@ BEGIN
 END
 
 IDD_MODIFY_RISK DIALOGEX 0, 0, 247, 171
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Modifier les types du risque"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     PUSHBUTTON      "OK",IDOK,190,7,50,14
     PUSHBUTTON      "Annuler",IDCANCEL,190,23,50,14
-    LISTBOX         IDC_ELEMENTS_LIST,7,7,177,128,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_ELEMENTS_LIST,7,7,177,128,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_NEW_ELEMENT,7,150,177,14,ES_AUTOHSCROLL
     DEFPUSHBUTTON   "Ajouter",IDC_ADD_ELEMENT,190,55,50,14,WS_DISABLED
     PUSHBUTTON      "Supprimer",IDC_DEL_ELEMENT,190,39,50,14,WS_DISABLED
@@ -2318,23 +2222,20 @@ BEGIN
 END
 
 IDD_MODIFY_RISK_STATIC DIALOGEX 0, 0, 247, 171
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Modifier les libellés des impacts/probabilités"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     PUSHBUTTON      "OK",IDOK,190,7,50,14
     PUSHBUTTON      "Annuler",IDCANCEL,190,23,50,14
-    LISTBOX         IDC_STATIC_ELEMENTS_LIST,7,7,177,128,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_STATIC_ELEMENTS_LIST,7,7,177,128,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_STATIC_MODIFY_ELEMENT,20,150,164,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Nouveau...",IDC_STATIC_NEW_FILE,190,150,50,14
     LTEXT           "",IDC_ELEMENT_NUMBER,7,152,10,12
 END
 
 IDD_NEW_RISK_FILE DIALOGEX 0, 0, 192, 90
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Nouveau fichier"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
@@ -2342,52 +2243,40 @@ BEGIN
     PUSHBUTTON      "Annuler",IDCANCEL,7,69,50,14
     EDITTEXT        IDC_FILENAME,7,18,155,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_DIRECTORY,7,48,155,14,ES_AUTOHSCROLL
-    LTEXT           "Nom du fichier, sans extension",IDC_FILENAME_CAPTION,7,
-                    7,155,8
+    LTEXT           "Nom du fichier, sans extension",IDC_FILENAME_CAPTION,7,7,155,8
     LTEXT           "Répertoire",IDC_DIRECTORY_CAPTION,7,38,155,8
     PUSHBUTTON      "...",IDC_DIRECTORY_SELECT,169,48,16,14
 END
 
 IDD_RISK_CALCULATE_PARAMETERS DIALOGEX 0, 0, 251, 215
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Calcul des risques"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,194,194,50,14
     PUSHBUTTON      "Annuler",IDCANCEL,7,194,50,14
-    CONTROL         "",IDC_ORANGE_SEVERITY,"msctls_trackbar32",TBS_AUTOTICKS | 
-                    WS_TABSTOP,14,19,118,19
-    CONTROL         "",IDC_RED_SEVERITY,"msctls_trackbar32",TBS_AUTOTICKS | 
-                    WS_TABSTOP,14,103,118,19
+    CONTROL         "",IDC_ORANGE_SEVERITY,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,14,19,118,19
+    CONTROL         "",IDC_RED_SEVERITY,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,14,103,118,19
     CTEXT           "1",IDC_ORANGE_SEVERITY_LEVEL,136,22,11,8
     CTEXT           "1",IDC_RED_SEVERITY_LEVEL,136,106,11,8
-    GROUPBOX        "Niveau de sévérité orange",IDC_ORANGE_SEVERITY_GROUP,7,
-                    7,237,79
-    CONTROL         "Action en cours",IDC_ORANGE_ACTION,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,159,23,81,10
-    CONTROL         "Action en cours",IDC_RED_ACTION,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,159,106,81,10
-    GROUPBOX        "Niveau de sévérité rouge",IDC_RED_SEVERITY_GROUP,7,89,
-                    237,79
+    GROUPBOX        "Niveau de sévérité orange",IDC_ORANGE_SEVERITY_GROUP,7,7,237,79
+    CONTROL         "Action en cours",IDC_ORANGE_ACTION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,23,81,10
+    CONTROL         "Action en cours",IDC_RED_ACTION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,106,81,10
+    GROUPBOX        "Niveau de sévérité rouge",IDC_RED_SEVERITY_GROUP,7,89,237,79
     CONTROL         "Objets aux couleurs par défaut",IDC_DEFAULT_COLORS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,175,114,10
     EDITTEXT        IDC_ORANGE_UE,123,49,37,14,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_ORANGE_POA,123,65,37,14,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "Estimation unitaire",IDC_ORANGE_UE_LABEL,19,51,98,8
-    LTEXT           "Perte opérationnelle annuelle",IDC_ORANGE_POA_LABEL,19,
-                    67,98,8
-    CONTROL         "Pas d'action en cours",IDC_ORANGE_NO_ACTION,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,159,33,81,10
+    LTEXT           "Perte opérationnelle annuelle",IDC_ORANGE_POA_LABEL,19,67,98,8
+    CONTROL         "Pas d'action en cours",IDC_ORANGE_NO_ACTION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,33,81,10
     LTEXT           "SFr.",IDC_ORANGE_UE_FRS_LABEL,171,51,26,8
     LTEXT           "SFr.",IDC_ORANGE_POA_FRS_LABEL,171,67,26,8
     EDITTEXT        IDC_RED_UE,123,133,37,14,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_RED_POA,123,149,37,14,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "Estimation unitaire",IDC_RED_UE_LABEL,19,134,98,8
-    LTEXT           "Perte opérationnelle annuelle",IDC_RED_POA_LABEL,19,150,
-                    98,8
-    CONTROL         "Pas d'action en cours",IDC_RED_NO_ACTION,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,159,117,81,10
+    LTEXT           "Perte opérationnelle annuelle",IDC_RED_POA_LABEL,19,150,98,8
+    CONTROL         "Pas d'action en cours",IDC_RED_NO_ACTION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,117,81,10
     LTEXT           "SFr.",IDC_RED_UE_FRS_LABEL,171,134,26,8
     LTEXT           "SFr.",IDC_RED_POA_FRS_LABEL,171,150,26,8
 END
@@ -2399,7 +2288,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_RISK_OPTIONS, DIALOG
     BEGIN
@@ -2449,7 +2338,7 @@ END
 // Menu
 //
 
-IDR_RISK_MENU MENU 
+IDR_RISK_MENU MENU
 BEGIN
     POPUP "Risque"
     BEGIN
@@ -2458,18 +2347,16 @@ BEGIN
     END
 END
 
-#endif    // Neutre (Par défaut système) resources
+#endif    // Neutral (Sys. Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Français (Suisse) resources
+// French (Switzerland) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2477,7 +2364,8 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
 //
 
 IDB_MESG_HTMLVIEW       BITMAP                  "res\\bmp00005.bmp"
-#endif    // Français (Suisse) resources
+
+#endif    // French (Switzerland) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

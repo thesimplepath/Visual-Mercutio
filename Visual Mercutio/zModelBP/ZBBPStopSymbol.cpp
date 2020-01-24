@@ -25,8 +25,7 @@
 #include "zModel\PSS_SelectUserGroupDlg.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
-// JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
-#include "ProcGraphModelCtlrBP.h"
+#include "PSS_ProcessGraphModelControllerBP.h"
 
 // JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelMdlBP.h
 #include "ProcGraphModelMdlBP.h"
@@ -444,10 +443,10 @@ bool ZBBPStopSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*
 
             if (p_Model != NULL &&
                 p_Model->GetController() != NULL &&
-                ISA(p_Model->GetController(), ZDProcessGraphModelControllerBP))
+                ISA(p_Model->GetController(), PSS_ProcessGraphModelControllerBP))
             {
-                ZDProcessGraphModelControllerBP* p_Controller =
-                    reinterpret_cast<ZDProcessGraphModelControllerBP*>(p_Model->GetController());
+                PSS_ProcessGraphModelControllerBP* p_Controller =
+                    reinterpret_cast<PSS_ProcessGraphModelControllerBP*>(p_Model->GetController());
 
                 if (p_Controller != NULL && ISA(p_Controller->GetDocument(), PSS_ProcessGraphModelDoc))
                 {

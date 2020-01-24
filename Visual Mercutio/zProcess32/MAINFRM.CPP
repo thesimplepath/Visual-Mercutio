@@ -7,7 +7,7 @@
 
 #include "ZCProcessModelDocument.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModelBP\ProcGraphModelCtlrBP.h"
+#include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 #include "Resource.h"
@@ -707,7 +707,7 @@ BOOL ZIMainFrame::CreateToolBars()
                                TRUE);                    // Show. FALSE devient TRUE.
 
    // Register BP toolbar
-    PSS_FloatingToolBar::RegisterToolBar(_ModelisationToolbarName, AFX_IDW_TOOLBAR + 23, this, E_MN_Beryl);
+    PSS_FloatingToolBar::RegisterToolBar(M_ModelisationToolbarName, AFX_IDW_TOOLBAR + 23, this, E_MN_Beryl);
 
     Title.LoadString(IDS_TB_BPMODELGENERATIONBUTTONS);
 
@@ -722,7 +722,7 @@ BOOL ZIMainFrame::CreateToolBars()
                                TRUE,                    // Docking
                                TRUE);                    // Show. FALSE devient TRUE.
 
-    PSS_FloatingToolBar::RegisterToolBar(_ModelGenerationToolbarName, AFX_IDW_TOOLBAR + 24, this, E_MN_Beryl);
+    PSS_FloatingToolBar::RegisterToolBar(M_ModelGenerationToolbarName, AFX_IDW_TOOLBAR + 24, this, E_MN_Beryl);
 
     // Enable the tooltips
     pMgr->EnableToolTips(TRUE);

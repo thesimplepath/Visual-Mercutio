@@ -15,7 +15,7 @@
 #include "zModel\PSS_DocObserverMsg.h"
 
 #include "ProcGraphModelMdlBP.h"
-#include "ProcGraphModelCtlrBP.h"
+#include "PSS_ProcessGraphModelControllerBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPPageSymbol.h"
 
@@ -459,8 +459,8 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                 if (pCtrl)
                 {
                     pNewVp =
-                        dynamic_cast<ZDProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(pSelectedModel,
-                                                                                           pSelectedModel->GetParent());
+                        dynamic_cast<PSS_ProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(pSelectedModel,
+                                                                                             pSelectedModel->GetParent());
                 }
             }
 
@@ -497,7 +497,7 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                 // this new model pointing to the initial model
                 if (Found == false)
                 {
-                    dynamic_cast<ZDProcessGraphModelControllerBP*>(pNewVp->GetModelController())->InsertDoorSymbol();
+                    dynamic_cast<PSS_ProcessGraphModelControllerBP*>(pNewVp->GetModelController())->InsertDoorSymbol();
                     CODComponent* pNewSymbolInserted = pNewVp->GetModelController()->InsertSymbol(0, CPoint(30, 30), false);
 
                     if (pNewSymbolInserted && ISA(pNewSymbolInserted, ZBBPDoorSymbol))

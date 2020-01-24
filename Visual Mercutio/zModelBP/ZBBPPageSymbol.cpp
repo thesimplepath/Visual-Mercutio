@@ -6,7 +6,7 @@
 #include "ZBBPPageSymbol.h"
 
 #include "ProcGraphModelMdlBP.h"
-#include "ProcGraphModelCtlrBP.h"
+#include "PSS_ProcessGraphModelControllerBP.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
@@ -491,8 +491,8 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                 if (pCtrl)
                 {
                     pNewVp =
-                        dynamic_cast<ZDProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(pNewModel,
-                                                                                           reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
+                        dynamic_cast<PSS_ProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(pNewModel,
+                                                                                             reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
                 }
             }
             // A link to an existing page is requested
@@ -523,8 +523,8 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                     if (pCtrl)
                     {
                         pNewVp =
-                            dynamic_cast<ZDProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel),
-                                                                                               reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
+                            dynamic_cast<PSS_ProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel),
+                                                                                                 reinterpret_cast<PSS_ProcessGraphModelMdl*>(pModel));
                     }
                 }
             }
@@ -562,7 +562,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
                 // this new model pointing to the initial model
                 if (Found == false)
                 {
-                    dynamic_cast<ZDProcessGraphModelControllerBP*>(pNewVp->GetModelController())->InsertPageSymbol();
+                    dynamic_cast<PSS_ProcessGraphModelControllerBP*>(pNewVp->GetModelController())->InsertPageSymbol();
 
                     CODComponent* pNewSymbolInserted =
                         pNewVp->GetModelController()->InsertSymbol(0, CPoint(30, 30), false);

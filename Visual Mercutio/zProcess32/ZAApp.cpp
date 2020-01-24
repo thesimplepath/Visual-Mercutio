@@ -43,7 +43,7 @@
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
-#include "zModelBP\ProcGraphModelCtlrBP.h"
+#include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZVPublishToMessengerWizard.h"
 #include "zModelBP\ZVRiskTypeContainer.h"
