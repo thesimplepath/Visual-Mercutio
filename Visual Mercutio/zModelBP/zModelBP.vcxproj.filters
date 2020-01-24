@@ -252,9 +252,6 @@
     <ClCompile Include="ZVRiskTypeContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPUnitProp.cpp">
-      <Filter>Source Files\Beta 1 source version</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_SoapPublishModelAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -280,6 +277,9 @@
       <Filter>Source Files\Beta 1 source version</Filter>
     </ClCompile>
     <ClCompile Include="PSS_CostPropertiesProcedureBP.cpp">
+      <Filter>Source Files\Beta 1 source version</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UnitPropertiesBP.cpp">
       <Filter>Source Files\Beta 1 source version</Filter>
     </ClCompile>
   </ItemGroup>
@@ -612,9 +612,6 @@
     <ClInclude Include="ZVRiskTypeContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBBPUnitProp.h">
-      <Filter>Header Files\Beta1 Header version</Filter>
-    </ClInclude>
     <ClInclude Include="PSS_SoapPublishModelAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -640,6 +637,9 @@
       <Filter>Header Files\Beta1 Header version</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CostPropertiesProcedureBP.h">
+      <Filter>Header Files\Beta1 Header version</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UnitPropertiesBP.h">
       <Filter>Header Files\Beta1 Header version</Filter>
     </ClInclude>
   </ItemGroup>

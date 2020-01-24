@@ -153,6 +153,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
+    <ClCompile Include="PSS_UnitPropertiesBP.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -299,12 +300,6 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="ZBBPTextZone.cpp" />
-    <ClCompile Include="ZBBPUnitProp.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-    </ClCompile>
     <ClCompile Include="ZBBPUnitProp2.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -593,6 +588,7 @@
   <ItemGroup>
     <ClInclude Include="ProcGraphModelCtlrBP.h" />
     <ClInclude Include="ProcGraphModelMdlBP.h" />
+    <ClInclude Include="PSS_UnitPropertiesBP.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ZBBPAnnualNumberProp.h" />
     <ClInclude Include="ZBBPAutomate.h" />
@@ -622,7 +618,6 @@
     <ClInclude Include="ZBBPTaskListProp.h" />
     <ClInclude Include="ZBBPTextItemListProp.h" />
     <ClInclude Include="ZBBPTextZone.h" />
-    <ClInclude Include="ZBBPUnitProp.h" />
     <ClInclude Include="ZBBPUnitProp2.h" />
     <ClInclude Include="ZBDeliverableLinkSymbol.h" />
     <ClInclude Include="ZBDistributionAttributes.h" />

@@ -132,9 +132,9 @@ class AFX_EXT_CLASS PSS_BasicProperties : public CODIntProperty,
         virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_Symbol_All);
 
         /**
-        * Compares the property identifier with another identifier
-        *@param id - the property identifier to compare with
-        *@return TRUE if the property identifiers are equals, otherwise FALSE
+        * Checks if the identifier is in the property identifier range
+        *@param id - the identifier to check
+        *@return TRUE if the identifier is in the range, otherwise FALSE
         */
         virtual BOOL CompareId(const int id) const;
 

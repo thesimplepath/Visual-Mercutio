@@ -103,9 +103,9 @@ void PSS_ObjectPath::SetAbsolutePath(const CString& path)
     m_ObjectPath = path;
 }
 //---------------------------------------------------------------------------
-bool PSS_ObjectPath::IsEqual(const PSS_ObjectPath& Path)
+bool PSS_ObjectPath::IsEqual(const PSS_ObjectPath& path)
 {
-    return !m_ObjectPath.Compare((const char*)Path.GetAbsolutePath());
+    return !m_ObjectPath.Compare((const char*)path.GetAbsolutePath());
 }
 //---------------------------------------------------------------------------
 void PSS_ObjectPath::ClearPath()

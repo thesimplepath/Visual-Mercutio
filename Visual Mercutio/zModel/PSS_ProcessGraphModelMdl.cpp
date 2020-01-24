@@ -2215,7 +2215,7 @@ void PSS_ProcessGraphModelMdl::SetModelName(const CString& value)
     PSS_BasicModelProperties  basicProps;
     PSS_BasicModelProperties* pCurBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
-    if (pCurBasicProps != NULL)
+    if (pCurBasicProps)
     {
         basicProps = *pCurBasicProps;
         basicProps.SetModelName(value);
