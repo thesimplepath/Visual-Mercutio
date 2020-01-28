@@ -626,7 +626,7 @@ void ZBSesterceUnitReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*
 {
     ASSERT(pGroup);
     ASSERT(pTotal);
-    ZBBPAnnualNumberProperties* pAnnualNumber;
+    PSS_AnnualNumberPropertiesBP* pAnnualNumber;
 
     switch (Index)
     {

@@ -32,7 +32,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBBPAnnualNumberProp.h"
+#include "PSS_AnnualNumberPropertiesBP.h"
 #include "PSS_PropIDs.h"
 
 #ifdef _ZMODELBPEXPORT
@@ -139,7 +139,7 @@ public:
 
     //@cmember
     /* Gets the process workload forecast. */
-    ZBBPAnnualNumberProperties& GetProcessWorkloadForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcessWorkloadForecast();
 
     //@cmember
     /* Sets the process workload forecast. */
@@ -147,14 +147,14 @@ public:
 
     //@cmember
     /* Gets the process cost forecast. */
-    ZBBPAnnualNumberProperties& GetProcessCostForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcessCostForecast();
 
     //@cmember
     /* Sets the process cost forecast. */
     void SetProcessCostForecast( const double value );
 
     // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour l'obtention du coût HMO.
-    ZBBPAnnualNumberProperties& GetProcessCost();
+    PSS_AnnualNumberPropertiesBP& GetProcessCost();
 
     // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour la déclaration du coût HMO.
     void SetProcessCost( const double value );
@@ -226,21 +226,21 @@ protected:
 
     //@cmember
     /* the process workload forecast. */
-    ZBBPAnnualNumberProperties    m_ProcessWorkloadForecast;
+    PSS_AnnualNumberPropertiesBP    m_ProcessWorkloadForecast;
 
     //@cmember
     /* the process cost forecast. */
-    ZBBPAnnualNumberProperties    m_ProcessCostForecast;
+    PSS_AnnualNumberPropertiesBP    m_ProcessCostForecast;
 
     // JMR-MODIF - Le 14 mars 2006 - Ajout de la variable m_ProcessCost, pour la gestion du coût HMO.
-    ZBBPAnnualNumberProperties    m_ProcessCost;
+    PSS_AnnualNumberPropertiesBP    m_ProcessCost;
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessWorkloadForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesProcess::GetProcessWorkloadForecast()
 {
     return m_ProcessWorkloadForecast;
 }
@@ -255,7 +255,7 @@ inline void ZBBPSimPropertiesProcess::SetProcessWorkloadForecast( const double v
 
 //@mfunc Gets the process cost forecast.
 //@rdesc process cost forecast.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessCostForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesProcess::GetProcessCostForecast()
 {
     return m_ProcessCostForecast;
 }
@@ -269,7 +269,7 @@ inline void ZBBPSimPropertiesProcess::SetProcessCostForecast( const double value
 }
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour l'obtention du coût HMO.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessCost()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesProcess::GetProcessCost()
 {
     return m_ProcessCost;
 }

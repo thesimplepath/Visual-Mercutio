@@ -23,9 +23,9 @@ PSS_NumbersEqualizer& PSS_NumbersEqualizer::operator = (const PSS_NumbersEqualiz
     Reset();
 
     // copy objects
-    PSS_EqNumberIterator i(&other.GetNumberSetConst());
+    PSS_EqNumberIterator it(&other.GetNumberSetConst());
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         m_Set.Add(pNumber->Clone());
 
     // copy member variables
@@ -42,9 +42,9 @@ void PSS_NumbersEqualizer::SetTotalEqualizeNumbers(double total)
     SetTotal(total);
 
     // equalize all unlocked numbers function of percent
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         if (!pNumber->m_Locked)
             pNumber->m_Number = pNumber->m_Percent * total;
 }
@@ -58,9 +58,9 @@ void PSS_NumbersEqualizer::SetTotalReEqualizeNumbers(double total)
     SetTotal(total);
 
     // equalize all unlocked numbers function of percent
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         if (!pNumber->m_Locked)
             pNumber->m_Number = pNumber->m_Percent * remainingTotal;
 }
@@ -69,9 +69,9 @@ void PSS_NumbersEqualizer::FillSet(PSS_EqNumberSet& set)
 {
     Reset();
 
-    PSS_EqNumberIterator i(&set);
+    PSS_EqNumberIterator it(&set);
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         m_Set.Add(pNumber);
 }
 //---------------------------------------------------------------------------
@@ -162,10 +162,10 @@ void PSS_NumbersEqualizer::Reset()
 //---------------------------------------------------------------------------
 double PSS_NumbersEqualizer::GetSum() const
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     double               sum = 0;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         sum += pNumber->m_Number;
 
     return sum;
@@ -173,10 +173,10 @@ double PSS_NumbersEqualizer::GetSum() const
 //---------------------------------------------------------------------------
 double PSS_NumbersEqualizer::GetSumOfLockedNumbers() const
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     double               sum = 0;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         if (pNumber->m_Locked)
             sum += pNumber->m_Number;
 
@@ -185,10 +185,10 @@ double PSS_NumbersEqualizer::GetSumOfLockedNumbers() const
 //---------------------------------------------------------------------------
 double PSS_NumbersEqualizer::GetSumOfUnlockedNumbers() const
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     double               sum = 0;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         if (!pNumber->m_Locked)
             sum += pNumber->m_Number;
 
@@ -197,10 +197,10 @@ double PSS_NumbersEqualizer::GetSumOfUnlockedNumbers() const
 //---------------------------------------------------------------------------
 std::size_t PSS_NumbersEqualizer::GetLockedCount() const
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     std::size_t          counter = 0;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         if (pNumber->m_Locked)
             ++counter;
 
@@ -209,10 +209,10 @@ std::size_t PSS_NumbersEqualizer::GetLockedCount() const
 //---------------------------------------------------------------------------
 std::size_t PSS_NumbersEqualizer::GetUnlockedCount() const
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     std::size_t          counter = 0;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         if (!pNumber->m_Locked)
             ++counter;
 
@@ -221,31 +221,31 @@ std::size_t PSS_NumbersEqualizer::GetUnlockedCount() const
 //---------------------------------------------------------------------------
 void PSS_NumbersEqualizer::SetValueToLockedNumbers(double value, int indexToIgnore)
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     int                  n = 0;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; ++n, pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; ++n, pNumber = it.GetNext())
         if (pNumber->m_Locked && n != indexToIgnore)
             pNumber->m_Number = value;
 }
 //---------------------------------------------------------------------------
 void PSS_NumbersEqualizer::SetValueToUnlockedNumbers(double value, int indexToIgnore)
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     int                  n = 0;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; ++n, pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; ++n, pNumber = it.GetNext())
         if (!pNumber->m_Locked && n != indexToIgnore)
             pNumber->m_Number = value;
 }
 //---------------------------------------------------------------------------
 bool PSS_NumbersEqualizer::AddDeltaToLockedNumbers(double delta, int indexToIgnore)
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     int                  n              = 0;
     bool                 deltaRespected = true;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; ++n, pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; ++n, pNumber = it.GetNext())
         if (pNumber->m_Locked && n != indexToIgnore)
             if ((pNumber->m_Number + delta) < m_MinValue)
             {
@@ -260,11 +260,11 @@ bool PSS_NumbersEqualizer::AddDeltaToLockedNumbers(double delta, int indexToIgno
 //---------------------------------------------------------------------------
 bool PSS_NumbersEqualizer::AddDeltaToUnlockedNumbers(double delta, int indexToIgnore)
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     int                  n              = 0;
     bool                 deltaRespected = true;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; ++n, pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; ++n, pNumber = it.GetNext())
         if (!pNumber->m_Locked && n != indexToIgnore)
             if ((pNumber->m_Number + delta) < m_MinValue)
             {
@@ -279,11 +279,11 @@ bool PSS_NumbersEqualizer::AddDeltaToUnlockedNumbers(double delta, int indexToIg
 //---------------------------------------------------------------------------
 bool PSS_NumbersEqualizer::SubstDeltaToLockedNumbers(double delta, int indexToIgnore)
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     int                  n              = 0;
     bool                 deltaRespected = true;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; ++n, pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; ++n, pNumber = it.GetNext())
         if (pNumber->m_Locked && n != indexToIgnore)
             if ((pNumber->m_Number - delta) < m_MinValue)
             {
@@ -298,11 +298,11 @@ bool PSS_NumbersEqualizer::SubstDeltaToLockedNumbers(double delta, int indexToIg
 //---------------------------------------------------------------------------
 bool PSS_NumbersEqualizer::SubstDeltaToUnlockedNumbers(double delta, int indexToIgnore)
 {
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
     int                  n              = 0;
     bool                 deltaRespected = true;
 
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; ++n, pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; ++n, pNumber = it.GetNext())
         if (!pNumber->m_Locked && n != indexToIgnore)
             if ((pNumber->m_Number - delta) < m_MinValue)
             {
@@ -319,10 +319,10 @@ void PSS_NumbersEqualizer::CalculatePercents()
 {
     const double totalSum = GetTotal();
 
-    PSS_EqNumberIterator i(&m_Set);
+    PSS_EqNumberIterator it(&m_Set);
 
     // iterate through the list of elements and calculate the percentage
-    for (PSS_NumberEqualizer* pNumber = i.GetFirst(); pNumber; pNumber = i.GetNext())
+    for (PSS_NumberEqualizer* pNumber = it.GetFirst(); pNumber; pNumber = it.GetNext())
         if (totalSum > 0)
             pNumber->m_Percent = pNumber->m_Number / totalSum;
         else

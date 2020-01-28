@@ -39,7 +39,7 @@
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZUExtractProcessName.h"
 #include "zModelBP\ZBBPDeliveriesProp.h"
-#include "zModelBP\ZBBPAnnualNumberProp.h"
+#include "zModelBP\PSS_AnnualNumberPropertiesBP.h"
 
 #include "zProperty\ZBProperty.h"
 
@@ -77,9 +77,9 @@ class AFX_EXT_CLASS _ZBProcessDatas : public CObject
 public:
 
     _ZBProcessDatas(CString                    ProcessName = _T(""),
-                    ZBBPAnnualNumberProperties    Workload = 0,
-                    ZBBPAnnualNumberProperties    Cost = 0,
-                    ZBBPAnnualNumberProperties    CostHMO = 0,
+                    PSS_AnnualNumberPropertiesBP    Workload = 0,
+                    PSS_AnnualNumberPropertiesBP    Cost = 0,
+                    PSS_AnnualNumberPropertiesBP    CostHMO = 0,
                     float                        Percentage = 0.0f);
 
     ~_ZBProcessDatas();
@@ -87,14 +87,14 @@ public:
     void SetName(CString Name);
     CString GetName();
 
-    void SetWorkload(ZBBPAnnualNumberProperties Workload);
-    ZBBPAnnualNumberProperties GetWorkload();
+    void SetWorkload(PSS_AnnualNumberPropertiesBP Workload);
+    PSS_AnnualNumberPropertiesBP GetWorkload();
 
-    void SetCost(ZBBPAnnualNumberProperties Cost);
-    ZBBPAnnualNumberProperties GetCost();
+    void SetCost(PSS_AnnualNumberPropertiesBP Cost);
+    PSS_AnnualNumberPropertiesBP GetCost();
 
-    void SetCostHMO(ZBBPAnnualNumberProperties CostHMO);
-    ZBBPAnnualNumberProperties GetCostHMO();
+    void SetCostHMO(PSS_AnnualNumberPropertiesBP CostHMO);
+    PSS_AnnualNumberPropertiesBP GetCostHMO();
 
     void SetPercentage(double Percentage);
     double GetPercentage();
@@ -102,9 +102,9 @@ public:
 private:
 
     CString                        m_ProcessName;
-    ZBBPAnnualNumberProperties    m_Workload;
-    ZBBPAnnualNumberProperties    m_Cost;
-    ZBBPAnnualNumberProperties    m_CostHMO;
+    PSS_AnnualNumberPropertiesBP    m_Workload;
+    PSS_AnnualNumberPropertiesBP    m_Cost;
+    PSS_AnnualNumberPropertiesBP    m_CostHMO;
     double                        m_ProprietaryPrestPercentage;
 };
 
@@ -131,9 +131,9 @@ public:
                       int                Index,
                       bool                IncludeMonthDetails);
 
-    ZBBPAnnualNumberProperties GetTotalWorkload();
-    ZBBPAnnualNumberProperties GetTotalCost();
-    ZBBPAnnualNumberProperties GetTotalCostHMO();
+    PSS_AnnualNumberPropertiesBP GetTotalWorkload();
+    PSS_AnnualNumberPropertiesBP GetTotalCost();
+    PSS_AnnualNumberPropertiesBP GetTotalCostHMO();
 
     CObList* GetProcessList();
 
@@ -146,9 +146,9 @@ private:
     CString                        m_PrestationName;
     CString                        m_Space;
 
-    ZBBPAnnualNumberProperties    m_TotalWorkload;
-    ZBBPAnnualNumberProperties    m_TotalCost;
-    ZBBPAnnualNumberProperties    m_TotalCostHMO;
+    PSS_AnnualNumberPropertiesBP    m_TotalWorkload;
+    PSS_AnnualNumberPropertiesBP    m_TotalCost;
+    PSS_AnnualNumberPropertiesBP    m_TotalCostHMO;
 
     CObList                        m_ProcessList;
     CObList                        m_ChildPrestationsList;

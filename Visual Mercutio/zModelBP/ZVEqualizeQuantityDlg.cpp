@@ -4,8 +4,10 @@
 #include "stdafx.h"
 #include "ZVEqualizeQuantityDlg.h"
 
-#include "ZBBPAnnualNumberProp.h"
-// Global resources
+// processsoft
+#include "PSS_AnnualNumberPropertiesBP.h"
+
+// resources
 #include "zBaseLib\PSS_Global.h"
 
 #ifdef _DEBUG
@@ -183,163 +185,163 @@ void ZVEqualizeQuantityDlg::InitializeVariables()
 
         switch (pProp->GetItemID())
         {
-            case Z_NUMBER_YEAR:
+            case M_Number_Year:
             {
                 m_Equalizer.SetTotal( pProp->GetValueDouble() );
                 m_QuantityYear.Format(szFormatNumbers, m_Equalizer.GetTotal() );
                 break;
             }
-            case Z_NUMBER_JANUARY:
+            case M_Number_January:
             {
                 m_Equalizer.SetNumberAt(g_IndexJanuary, pProp->GetValueDouble());
                 m_QuantityJanuary.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_FEBRUARY:
+            case M_Number_February:
             {
                 m_Equalizer.SetNumberAt(g_IndexFebruary, pProp->GetValueDouble());
                 m_QuantityFebruary.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_MARCH:
+            case M_Number_March:
             {
                 m_Equalizer.SetNumberAt(g_IndexMarch, pProp->GetValueDouble());
                 m_QuantityMarch.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_APRIL:
+            case M_Number_April:
             {
                 m_Equalizer.SetNumberAt(g_IndexApril, pProp->GetValueDouble());
                 m_QuantityApril.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_MAY    :
+            case M_Number_May:
             {
                 m_Equalizer.SetNumberAt(g_IndexMay, pProp->GetValueDouble());
                 m_QuantityMay.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_JUNE    :
+            case M_Number_June:
             {
                 m_Equalizer.SetNumberAt(g_IndexJune, pProp->GetValueDouble());
                 m_QuantityJune.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_JULY    :
+            case M_Number_July:
             {
                 m_Equalizer.SetNumberAt(g_IndexJuly, pProp->GetValueDouble());
                 m_QuantityJuly.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_AUGUST:
+            case M_Number_August:
             {
                 m_Equalizer.SetNumberAt(g_IndexAugust, pProp->GetValueDouble());
                 m_QuantityAugust.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_SEPTEMBER:
+            case M_Number_September:
             {
                 m_Equalizer.SetNumberAt(g_IndexSeptember, pProp->GetValueDouble());
                 m_QuantitySeptember.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_OCTOBER:
+            case M_Number_October:
             {
                 m_Equalizer.SetNumberAt(g_IndexOctober, pProp->GetValueDouble());
                 m_QuantityOctober.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_NOVEMBER:
+            case M_Number_November:
             {
                 m_Equalizer.SetNumberAt(g_IndexNovember, pProp->GetValueDouble());
                 m_QuantityNovember.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_NUMBER_DECEMBER:
+            case M_Number_December:
             {
                 m_Equalizer.SetNumberAt(g_IndexDecember, pProp->GetValueDouble());
                 m_QuantityDecember.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
-            case Z_LOCKED_YEAR:
+            case M_Locked_Year:
             {
                 m_LockYear = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedTotal(m_LockYear);
                 break;
             }
-            case Z_LOCKED_JANUARY:
+            case M_Locked_January:
             {
                 m_LockJanuary = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexJanuary, m_LockJanuary);
                 break;
             }
-            case Z_LOCKED_FEBRUARY:
+            case M_Locked_February:
             {
                 m_LockFebruary = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexFebruary, m_LockFebruary);
                 break;
             }
-            case Z_LOCKED_MARCH:
+            case M_Locked_March:
             {
                 m_LockMarch = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexMarch, m_LockMarch);
                 break;
             }
-            case Z_LOCKED_APRIL:
+            case M_Locked_April:
             {
                 m_LockApril = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexApril, m_LockApril);
                 break;
             }
-            case Z_LOCKED_MAY:
+            case M_Locked_May:
             {
                 m_LockMay = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexMay, m_LockMay);
                 break;
             }
-            case Z_LOCKED_JUNE:
+            case M_Locked_June:
             {
                 m_LockJune = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexJune, m_LockJune);
                 break;
             }
-            case Z_LOCKED_JULY:
+            case M_Locked_July:
             {
                 m_LockJuly = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexJuly, m_LockJuly);
                 break;
             }
-            case Z_LOCKED_AUGUST:
+            case M_Locked_August:
             {
                 m_LockAugust = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexAugust, m_LockAugust);
                 break;
             }
-            case Z_LOCKED_SEPTEMBER:
+            case M_Locked_September:
             {
                 m_LockSeptember = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexSeptember, m_LockSeptember);
                 break;
             }
-            case Z_LOCKED_OCTOBER:
+            case M_Locked_October:
             {
                 m_LockOctober = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexOctober, m_LockOctober);
                 break;
             }
-            case Z_LOCKED_NOVEMBER:
+            case M_Locked_November:
             {
                 m_LockNovember = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexNovember, m_LockNovember);
                 break;
             }
-            case Z_LOCKED_DECEMBER:
+            case M_Locked_December:
             {
                 m_LockDecember = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexDecember, m_LockDecember);
                 break;
             }
-            case Z_FORCE_EQUALIZER:
+            case M_Force_Equalizer:
             {
                 m_ForceEqualizer = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 break;
@@ -417,137 +419,137 @@ void ZVEqualizeQuantityDlg::SaveVariables()
 
         switch (pProp->GetItemID())
         {
-            case Z_NUMBER_YEAR:
+            case M_Number_Year:
             {
                 pProp->SetValueDouble( m_Equalizer.GetTotal() );
                 break;
             }
-            case Z_NUMBER_JANUARY:
+            case M_Number_January:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexJanuary, bError ) );
                 break;
             }
-            case Z_NUMBER_FEBRUARY:
+            case M_Number_February:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexFebruary, bError ) );
                 break;
             }
-            case Z_NUMBER_MARCH:
+            case M_Number_March:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexMarch, bError ) );
                 break;
             }
-            case Z_NUMBER_APRIL:
+            case M_Number_April:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexApril, bError ) );
                 break;
             }
-            case Z_NUMBER_MAY    :
+            case M_Number_May:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexMay, bError ) );
                 break;
             }
-            case Z_NUMBER_JUNE    :
+            case M_Number_June:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexJune, bError ) );
                 break;
             }
-            case Z_NUMBER_JULY    :
+            case M_Number_July:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexJuly, bError ) );
                 break;
             }
-            case Z_NUMBER_AUGUST:
+            case M_Number_August:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexAugust, bError ) );
                 break;
             }
-            case Z_NUMBER_SEPTEMBER:
+            case M_Number_September:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexSeptember, bError ) );
                 break;
             }
-            case Z_NUMBER_OCTOBER:
+            case M_Number_October:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexOctober, bError ) );
                 break;
             }
-            case Z_NUMBER_NOVEMBER:
+            case M_Number_November:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexNovember, bError ) );
                 break;
             }
-            case Z_NUMBER_DECEMBER:
+            case M_Number_December:
             {
                 pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexDecember, bError ) );
                 break;
             }
-            case Z_LOCKED_YEAR:
+            case M_Locked_Year:
             {
                 pProp->SetValueString(m_LockYear ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_JANUARY:
+            case M_Locked_January:
             {
                 pProp->SetValueString(m_LockJanuary ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_FEBRUARY:
+            case M_Locked_February:
             {
                 pProp->SetValueString(m_LockFebruary ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_MARCH:
+            case M_Locked_March:
             {
                 pProp->SetValueString(m_LockMarch ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_APRIL:
+            case M_Locked_April:
             {
                 pProp->SetValueString(m_LockApril ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_MAY:
+            case M_Locked_May:
             {
                 pProp->SetValueString(m_LockMay ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_JUNE:
+            case M_Locked_June:
             {
                 pProp->SetValueString(m_LockJune ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_JULY:
+            case M_Locked_July:
             {
                 pProp->SetValueString(m_LockJuly ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_AUGUST:
+            case M_Locked_August:
             {
                 pProp->SetValueString(m_LockAugust ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_SEPTEMBER:
+            case M_Locked_September:
             {
                 pProp->SetValueString(m_LockSeptember ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_OCTOBER:
+            case M_Locked_October:
             {
                 pProp->SetValueString(m_LockOctober ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_NOVEMBER:
+            case M_Locked_November:
             {
                 pProp->SetValueString(m_LockNovember ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_LOCKED_DECEMBER:
+            case M_Locked_December:
             {
                 pProp->SetValueString(m_LockDecember ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
-            case Z_FORCE_EQUALIZER:
+            case M_Force_Equalizer:
             {
                 pProp->SetValueString(m_ForceEqualizer ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;

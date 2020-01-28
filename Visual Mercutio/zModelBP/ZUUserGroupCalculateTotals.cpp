@@ -197,7 +197,7 @@ _ZBUserGroupTotal* ZUUserGroupCalculateTotals::FindTotal( const CString GroupNam
     return pElement;
 }
 
-ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureCost( const CString GroupName )
+PSS_AnnualNumberPropertiesBP* ZUUserGroupCalculateTotals::GetProcedureCost( const CString GroupName )
 {
     // Sets the iterator
     ZBUserGroupTotalIterator i( &m_TotalSet );
@@ -214,7 +214,7 @@ ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureCost( const 
     return NULL;
 }
 
-ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureWorkloadForecast( const CString GroupName )
+PSS_AnnualNumberPropertiesBP* ZUUserGroupCalculateTotals::GetProcedureWorkloadForecast( const CString GroupName )
 {
     // Sets the iterator
     ZBUserGroupTotalIterator i( &m_TotalSet );
@@ -231,7 +231,7 @@ ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureWorkloadFore
     return NULL;
 }
 
-ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureCostForecast( const CString GroupName )
+PSS_AnnualNumberPropertiesBP* ZUUserGroupCalculateTotals::GetProcedureCostForecast( const CString GroupName )
 {
     // Sets the iterator
     ZBUserGroupTotalIterator i( &m_TotalSet );

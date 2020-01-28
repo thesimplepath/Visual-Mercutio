@@ -162,7 +162,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ZBBPAnnualNumberProp.cpp">
+    <ClCompile Include="PSS_AnnualNumberPropertiesBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -590,7 +590,7 @@
     <ClInclude Include="PSS_ProcessGraphModelMdlBP.h" />
     <ClInclude Include="PSS_UnitPropertiesBP.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="ZBBPAnnualNumberProp.h" />
+    <ClInclude Include="PSS_AnnualNumberPropertiesBP.h" />
     <ClInclude Include="ZBBPAutomate.h" />
     <ClInclude Include="ZBBPCombinationProp.h" />
     <ClInclude Include="PSS_CostPropertiesDeliverableBP.h" />

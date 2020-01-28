@@ -30,9 +30,9 @@ const size_t _MaxDeliveryListSize = 20;
 
 // Constructeur par défaut de la classe _ZBProcessDatas
 _ZBProcessDatas::_ZBProcessDatas(CString                        ProcessName        /*= _T( "" )*/,
-                                 ZBBPAnnualNumberProperties    Workload        /*= 0*/,
-                                 ZBBPAnnualNumberProperties    Cost            /*= 0*/,
-                                 ZBBPAnnualNumberProperties    CostHMO            /*= 0*/,
+                                 PSS_AnnualNumberPropertiesBP    Workload        /*= 0*/,
+                                 PSS_AnnualNumberPropertiesBP    Cost            /*= 0*/,
+                                 PSS_AnnualNumberPropertiesBP    CostHMO            /*= 0*/,
                                  float                            Percentage        /*= 0.0f*/)
 {
     m_ProcessName = ProcessName;
@@ -61,37 +61,37 @@ CString _ZBProcessDatas::GetName()
 }
 
 // Cette fonction permet de définir la charge de travail prévisionnelle du processus contenant la prestation.
-void _ZBProcessDatas::SetWorkload(ZBBPAnnualNumberProperties Workload)
+void _ZBProcessDatas::SetWorkload(PSS_AnnualNumberPropertiesBP Workload)
 {
     m_Workload = Workload;
 }
 
 // Cette fonction permet d'obtenir la charge de travail prévisionnelle du processus contenant la prestation.
-ZBBPAnnualNumberProperties _ZBProcessDatas::GetWorkload()
+PSS_AnnualNumberPropertiesBP _ZBProcessDatas::GetWorkload()
 {
     return m_Workload;
 }
 
 // Cette fonction permet de définir le coût prévisionnel du processus contenant la prestation.
-void _ZBProcessDatas::SetCost(ZBBPAnnualNumberProperties Cost)
+void _ZBProcessDatas::SetCost(PSS_AnnualNumberPropertiesBP Cost)
 {
     m_Cost = Cost;
 }
 
 // Cette fonction permet d'obtenir le coût prévisionnel du processus contenant la prestation.
-ZBBPAnnualNumberProperties _ZBProcessDatas::GetCost()
+PSS_AnnualNumberPropertiesBP _ZBProcessDatas::GetCost()
 {
     return m_Cost;
 }
 
 // Cette fonction permet de définir le coût HMO du processus contenant la prestation.
-void _ZBProcessDatas::SetCostHMO(ZBBPAnnualNumberProperties CostHMO)
+void _ZBProcessDatas::SetCostHMO(PSS_AnnualNumberPropertiesBP CostHMO)
 {
     m_CostHMO = CostHMO;
 }
 
 // Cette fonction permet d'obtenir le coût HMO du processus contenant la prestation.
-ZBBPAnnualNumberProperties _ZBProcessDatas::GetCostHMO()
+PSS_AnnualNumberPropertiesBP _ZBProcessDatas::GetCostHMO()
 {
     return m_CostHMO;
 }
@@ -170,19 +170,19 @@ CString _ZBPrestationsDatas::GetName()
 }
 
 // Cette fonction permet d'obtenir le total de la charge de travail prévisionnelle de la prestation.
-ZBBPAnnualNumberProperties _ZBPrestationsDatas::GetTotalWorkload()
+PSS_AnnualNumberPropertiesBP _ZBPrestationsDatas::GetTotalWorkload()
 {
     return m_TotalWorkload;
 }
 
 // Cette fonction permet d'obtenir le total du coût prévisionnel de la prestation.
-ZBBPAnnualNumberProperties _ZBPrestationsDatas::GetTotalCost()
+PSS_AnnualNumberPropertiesBP _ZBPrestationsDatas::GetTotalCost()
 {
     return m_TotalCost;
 }
 
 // Cette fonction permet d'obtenir le total du coût HMO de la prestation.
-ZBBPAnnualNumberProperties _ZBPrestationsDatas::GetTotalCostHMO()
+PSS_AnnualNumberPropertiesBP _ZBPrestationsDatas::GetTotalCostHMO()
 {
     return m_TotalCostHMO;
 }

@@ -32,7 +32,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBBPAnnualNumberProp.h"
+#include "PSS_AnnualNumberPropertiesBP.h"
 #include "PSS_PropIDs.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,16 +113,16 @@ protected:
 
     //@cmember
     /* the deliverable cost. */
-    ZBBPAnnualNumberProperties m_Cost;
+    PSS_AnnualNumberPropertiesBP m_Cost;
 
     //@cmember
     /* the deliverable workload forecast. */
-    ZBBPAnnualNumberProperties m_WorkloadForecast;
+    PSS_AnnualNumberPropertiesBP m_WorkloadForecast;
 
 public:
     //@cmember
     /* Gets the deliverable cost. */
-    ZBBPAnnualNumberProperties& GetCost();
+    PSS_AnnualNumberPropertiesBP& GetCost();
 
     //@cmember
     /* Sets the deliverable cost. */
@@ -130,7 +130,7 @@ public:
 
     //@cmember
     /* Gets the deliverable workload forecast. */
-    ZBBPAnnualNumberProperties& GetWorkloadForecast();
+    PSS_AnnualNumberPropertiesBP& GetWorkloadForecast();
 
     //@cmember
     /* Sets the deliverable workload forecast. */
@@ -216,7 +216,7 @@ public:
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesDeliverable::GetCost()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesDeliverable::GetCost()
 {
     return m_Cost;
 }
@@ -231,7 +231,7 @@ inline void ZBBPSimPropertiesDeliverable::SetCost(const double value)
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesDeliverable::GetWorkloadForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesDeliverable::GetWorkloadForecast()
 {
     return m_WorkloadForecast;
 }

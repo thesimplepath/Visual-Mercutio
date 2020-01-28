@@ -2870,7 +2870,7 @@ float ZBBPProcedureSymbol::GetMaxActivationPerc(const CString Master)
 // To calculate the procedure activation,
 // we need to run through all combination and to take the maximum
 // of each deliverable multiply by the percent of its combination
-ZBBPAnnualNumberProperties ZBBPProcedureSymbol::CalculateProcedureActivation()
+PSS_AnnualNumberPropertiesBP ZBBPProcedureSymbol::CalculateProcedureActivation()
 {
     // First, we need to get all entering deliverables
     CODEdgeArray Edges;
@@ -2882,7 +2882,7 @@ ZBBPAnnualNumberProperties ZBBPProcedureSymbol::CalculateProcedureActivation()
     }
 
     // Now for each deliverables, we will calculate the max procedure activation
-    ZBBPAnnualNumberProperties ProcedureActivation(0);
+    PSS_AnnualNumberPropertiesBP ProcedureActivation(0);
 
     for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {

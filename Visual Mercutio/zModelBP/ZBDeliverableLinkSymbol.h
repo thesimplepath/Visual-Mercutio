@@ -34,7 +34,7 @@
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
 #include "ZVRiskProbabilityContainer.h"
-#include "ZBBPAnnualNumberProp.h"
+#include "PSS_AnnualNumberPropertiesBP.h"
 #include "ZBBPSimPropDeliverable.h"
 #include "ZBBPCostPropDeliverable2.h"
 #include "ZBBPUnitProp2.h"
@@ -377,39 +377,39 @@ public:
 
     //@cmember
     /* Gets the deliverable cost. */
-    ZBBPAnnualNumberProperties& GetCost();
+    PSS_AnnualNumberPropertiesBP& GetCost();
 
     //@cmember
     /* Sets the deliverable cost. */
     void SetCost(const double value);
-    void SetCost(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetCost(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     //@cmember
     /* Gets the deliverable workload forecast. */
-    ZBBPAnnualNumberProperties& GetWorkloadForecast();
+    PSS_AnnualNumberPropertiesBP& GetWorkloadForecast();
 
     //@cmember
     /* Sets the deliverable workload forecast. */
     void SetWorkloadForecast(const double value);
-    void SetWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetWorkloadForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     //@cmember
     /* Gets the reference object to the quantity. */
-    ZBBPAnnualNumberProperties& GetQuantity()
+    PSS_AnnualNumberPropertiesBP& GetQuantity()
     {
         return m_Quantity;
     }
 
     //@cmember
     /* Sets a new quantity. */
-    void SetQuantity(ZBBPAnnualNumberProperties& AnnualNumberProp)
+    void SetQuantity(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
     {
         GetQuantity() = AnnualNumberProp;
     }
 
     //@cmember
     /* Sets a new quantity using the original equalizer. */
-    void SetQuantityUsingOriginalEqualizer(ZBBPAnnualNumberProperties& AnnualNumberProp)
+    void SetQuantityUsingOriginalEqualizer(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
     {
         m_Quantity.SetAndCalculateQuantitiesBasedOnYear(AnnualNumberProp.GetNumberYear());
     }
@@ -854,7 +854,7 @@ private:
 
 private:
 
-    ZBBPAnnualNumberProperties        m_Quantity;
+    PSS_AnnualNumberPropertiesBP        m_Quantity;
     ZBBPSimPropertiesDeliverable    m_SimProperties;
     ZBBPCostPropertiesDeliverable2    m_CostDeliverableProperties;
     ZBBPUnitProperties2                m_UnitProp;
@@ -1138,7 +1138,7 @@ inline void ZBDeliverableLinkSymbol::SetForceEqualizer(bool value)
     m_Quantity.SetForceEqualizer(value);
 }
 
-inline ZBBPAnnualNumberProperties& ZBDeliverableLinkSymbol::GetCost()
+inline PSS_AnnualNumberPropertiesBP& ZBDeliverableLinkSymbol::GetCost()
 {
     return m_SimProperties.GetCost();
 }
@@ -1148,12 +1148,12 @@ inline void ZBDeliverableLinkSymbol::SetCost(const double value)
     m_SimProperties.SetCost(value);
 }
 
-inline void ZBDeliverableLinkSymbol::SetCost(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBDeliverableLinkSymbol::SetCost(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimProperties.GetCost() = AnnualNumberProp;
 }
 
-inline ZBBPAnnualNumberProperties& ZBDeliverableLinkSymbol::GetWorkloadForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBDeliverableLinkSymbol::GetWorkloadForecast()
 {
     return m_SimProperties.GetWorkloadForecast();
 }
@@ -1163,7 +1163,7 @@ inline void ZBDeliverableLinkSymbol::SetWorkloadForecast(const double value)
     m_SimProperties.SetWorkloadForecast(value);
 }
 
-inline void ZBDeliverableLinkSymbol::SetWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBDeliverableLinkSymbol::SetWorkloadForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimProperties.GetWorkloadForecast() = AnnualNumberProp;
 }

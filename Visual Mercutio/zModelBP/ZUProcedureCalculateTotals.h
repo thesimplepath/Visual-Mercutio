@@ -36,7 +36,7 @@
 
 // processsoft
 #include "ZUProcessNavigation.h"
-#include "ZBBPAnnualNumberProp.h"
+#include "PSS_AnnualNumberPropertiesBP.h"
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
@@ -94,17 +94,17 @@ public:
     ZUProcedureCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUProcedureCalculateTotals();
 
-    ZBBPAnnualNumberProperties& GetProcedureCost()
+    PSS_AnnualNumberPropertiesBP& GetProcedureCost()
     {
         return m_ProcedureCost;
     };
 
-    ZBBPAnnualNumberProperties& GetProcedureWorkloadForecast()
+    PSS_AnnualNumberPropertiesBP& GetProcedureWorkloadForecast()
     {
         return m_ProcedureWorkloadForecast;
     };
 
-    ZBBPAnnualNumberProperties& GetProcedureCostForecast()
+    PSS_AnnualNumberPropertiesBP& GetProcedureCostForecast()
     {
         return m_ProcedureCostForecast;
     };
@@ -131,15 +131,14 @@ public:
     virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
 
 private:
-
-    CString                    m_UnitName;
-    bool                       m_Consolidated;
-    PSS_UserGroupEntity*       m_pGroup;
-    ZBBPAnnualNumberProperties m_ProcedureCost;
-    ZBBPAnnualNumberProperties m_ProcedureWorkloadForecast;
-    ZBBPAnnualNumberProperties m_ProcedureCostForecast;
-    double                     m_ProcedureWorkloadPerActivity;
-    double                     m_ProcedureCostPerActivity;
+    CString                      m_UnitName;
+    bool                         m_Consolidated;
+    PSS_UserGroupEntity*         m_pGroup;
+    PSS_AnnualNumberPropertiesBP m_ProcedureCost;
+    PSS_AnnualNumberPropertiesBP m_ProcedureWorkloadForecast;
+    PSS_AnnualNumberPropertiesBP m_ProcedureCostForecast;
+    double                       m_ProcedureWorkloadPerActivity;
+    double                       m_ProcedureCostPerActivity;
 };
 
 #endif

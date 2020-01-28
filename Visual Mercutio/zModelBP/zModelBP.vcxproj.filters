@@ -24,9 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPAnnualNumberProp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBBPAutomate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,6 +279,9 @@
     <ClCompile Include="PSS_ProcessGraphModelMdlBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_AnnualNumberPropertiesBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -376,9 +376,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPAnnualNumberProp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPAutomate.h">
@@ -640,6 +637,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ProcessGraphModelMdlBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_AnnualNumberPropertiesBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

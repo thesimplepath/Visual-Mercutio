@@ -36,7 +36,7 @@
 
 // processsoft
 #include "ZUProcessNavigation.h"
-#include "ZBBPAnnualNumberProp.h"
+#include "PSS_AnnualNumberPropertiesBP.h"
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
@@ -101,10 +101,10 @@ public:
 
 public:
 
-    CString                        m_GroupName;
-    ZBBPAnnualNumberProperties    m_ProcedureCost;
-    ZBBPAnnualNumberProperties    m_ProcedureWorkloadForecast;
-    ZBBPAnnualNumberProperties    m_ProcedureCostForecast;
+    CString                       m_GroupName;
+    PSS_AnnualNumberPropertiesBP  m_ProcedureCost;
+    PSS_AnnualNumberPropertiesBP  m_ProcedureWorkloadForecast;
+    PSS_AnnualNumberPropertiesBP  m_ProcedureCostForecast;
     double                        m_ProcedureWorkloadPerActivity;
     double                        m_ProcedureCostPerActivity;
 };
@@ -134,9 +134,9 @@ public:
     ZUUserGroupCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUUserGroupCalculateTotals();
 
-    ZBBPAnnualNumberProperties* GetProcedureCost(const CString GroupName);
-    ZBBPAnnualNumberProperties* GetProcedureWorkloadForecast(const CString GroupName);
-    ZBBPAnnualNumberProperties* GetProcedureCostForecast(const CString GroupName);
+    PSS_AnnualNumberPropertiesBP* GetProcedureCost(const CString GroupName);
+    PSS_AnnualNumberPropertiesBP* GetProcedureWorkloadForecast(const CString GroupName);
+    PSS_AnnualNumberPropertiesBP* GetProcedureCostForecast(const CString GroupName);
     double GetProcedureWorkloadPerActivity(const CString GroupName) const;
     double GetProcedureCostPerActivity(const CString GroupName) const;
 

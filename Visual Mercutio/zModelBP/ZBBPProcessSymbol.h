@@ -182,28 +182,28 @@ public:
 
     //@cmember
     /* Gets the process workload forecast. */
-    ZBBPAnnualNumberProperties& GetProcessWorkloadForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcessWorkloadForecast();
 
     //@cmember
     /* Sets the process workload forecast. */
     void SetProcessWorkloadForecast(const double value);
-    void SetProcessWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetProcessWorkloadForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     //@cmember
     /* Gets the process cost forecast. */
-    ZBBPAnnualNumberProperties& GetProcessCostForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcessCostForecast();
 
     //@cmember
     /* Sets the process cost forecast. */
     void SetProcessCostForecast(const double value);
-    void SetProcessCostForecast(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetProcessCostForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction GetProcessCost pour la prise en charge des coûts HMO.
-    ZBBPAnnualNumberProperties& GetProcessCost();
+    PSS_AnnualNumberPropertiesBP& GetProcessCost();
 
     // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction SetProcessCost pour la prise en charge des coûts HMO.
     void SetProcessCost(const double value);
-    void SetProcessCost(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetProcessCost(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     // ************************************************************************************************************
     // JMR-MODIF - Le 20 février 2006 - Ajout des fonctions cadres propres aux prestations.
@@ -568,7 +568,7 @@ private:
     ZBProcRisk                    m_Risks;
 };
 
-inline ZBBPAnnualNumberProperties& ZBBPProcessSymbol::GetProcessWorkloadForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPProcessSymbol::GetProcessWorkloadForecast()
 {
     return m_SimProperties.GetProcessWorkloadForecast();
 }
@@ -578,12 +578,12 @@ inline void ZBBPProcessSymbol::SetProcessWorkloadForecast(const double value)
     m_SimProperties.SetProcessWorkloadForecast(value);
 }
 
-inline void ZBBPProcessSymbol::SetProcessWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBBPProcessSymbol::SetProcessWorkloadForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimProperties.GetProcessWorkloadForecast() = AnnualNumberProp;
 }
 
-inline ZBBPAnnualNumberProperties& ZBBPProcessSymbol::GetProcessCostForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPProcessSymbol::GetProcessCostForecast()
 {
     return m_SimProperties.GetProcessCostForecast();
 }
@@ -593,13 +593,13 @@ inline void ZBBPProcessSymbol::SetProcessCostForecast(const double value)
     m_SimProperties.SetProcessCostForecast(value);
 }
 
-inline void ZBBPProcessSymbol::SetProcessCostForecast(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBBPProcessSymbol::SetProcessCostForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimProperties.GetProcessCostForecast() = AnnualNumberProp;
 }
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction GetProcessCost pour la prise en charge des coûts HMO.
-inline ZBBPAnnualNumberProperties& ZBBPProcessSymbol::GetProcessCost()
+inline PSS_AnnualNumberPropertiesBP& ZBBPProcessSymbol::GetProcessCost()
 {
     return m_SimProperties.GetProcessCost();
 }
@@ -611,7 +611,7 @@ inline void ZBBPProcessSymbol::SetProcessCost(const double value)
 }
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction SetProcessCost pour la prise en charge des coûts HMO.
-inline void ZBBPProcessSymbol::SetProcessCost(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBBPProcessSymbol::SetProcessCost(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimProperties.GetProcessCost() = AnnualNumberProp;
 }

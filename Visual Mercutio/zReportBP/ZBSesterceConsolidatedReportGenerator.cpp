@@ -656,7 +656,7 @@ void ZBSesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGraphM
 {
     ASSERT(pGroup);
     ASSERT(pTotal);
-    ZBBPAnnualNumberProperties* pANP = NULL;
+    PSS_AnnualNumberPropertiesBP* pANP = NULL;
 
     switch (Index)
     {

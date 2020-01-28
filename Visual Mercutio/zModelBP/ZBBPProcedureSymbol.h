@@ -400,7 +400,7 @@ public:
     }
 
     // Calculate the procedure activation based on combinations
-    ZBBPAnnualNumberProperties CalculateProcedureActivation();
+    PSS_AnnualNumberPropertiesBP CalculateProcedureActivation();
 
     // Attributes
     //@cmember
@@ -569,39 +569,39 @@ public:
 
     //@cmember
     /* Gets the procedure activation. */
-    ZBBPAnnualNumberProperties& GetProcedureActivation();
+    PSS_AnnualNumberPropertiesBP& GetProcedureActivation();
 
     //@cmember
     /* Sets the procedure activation. */
     void SetProcedureActivation(const double value);
-    void SetProcedureActivation(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetProcedureActivation(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     //@cmember
     /* Gets the standard procedure time. */
-    ZBBPAnnualNumberProperties& GetProcedureCost();
+    PSS_AnnualNumberPropertiesBP& GetProcedureCost();
 
     //@cmember
     /* Sets the standard procedure time. */
     void SetProcedureCost(const double value);
-    void SetProcedureCost(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetProcedureCost(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     //@cmember
     /* Gets the procedure workload forecast. */
-    ZBBPAnnualNumberProperties& GetProcedureWorkloadForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcedureWorkloadForecast();
 
     //@cmember
     /* Sets the procedure workload forecast. */
     void SetProcedureWorkloadForecast(const double value);
-    void SetProcedureWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetProcedureWorkloadForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     //@cmember
     /* Gets the procedure cost forecast. */
-    ZBBPAnnualNumberProperties& GetProcedureCostForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcedureCostForecast();
 
     //@cmember
     /* Sets the procedure cost forecast. */
     void SetProcedureCostForecast(const double value);
-    void SetProcedureCostForecast(ZBBPAnnualNumberProperties& AnnualNumberProp);
+    void SetProcedureCostForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp);
 
     //@cmember
     /* Gets the procedure workload per activity forecast. */
@@ -819,7 +819,7 @@ private:
     ZBProcRisk                        m_Risks;
 };
 
-inline ZBBPAnnualNumberProperties& ZBBPProcedureSymbol::GetProcedureActivation()
+inline PSS_AnnualNumberPropertiesBP& ZBBPProcedureSymbol::GetProcedureActivation()
 {
     return m_SimulationProperties.GetProcedureActivation();
 }
@@ -829,12 +829,12 @@ inline void ZBBPProcedureSymbol::SetProcedureActivation(const double value)
     m_SimulationProperties.SetProcedureActivation(value);
 }
 
-inline void ZBBPProcedureSymbol::SetProcedureActivation(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBBPProcedureSymbol::SetProcedureActivation(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimulationProperties.GetProcedureActivation() = AnnualNumberProp;
 }
 
-inline ZBBPAnnualNumberProperties& ZBBPProcedureSymbol::GetProcedureCost()
+inline PSS_AnnualNumberPropertiesBP& ZBBPProcedureSymbol::GetProcedureCost()
 {
     return m_SimulationProperties.GetProcedureCost();
 }
@@ -844,12 +844,12 @@ inline void ZBBPProcedureSymbol::SetProcedureCost(const double value)
     m_SimulationProperties.SetProcedureCost(value);
 }
 
-inline void ZBBPProcedureSymbol::SetProcedureCost(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBBPProcedureSymbol::SetProcedureCost(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimulationProperties.GetProcedureCost() = AnnualNumberProp;
 }
 
-inline ZBBPAnnualNumberProperties& ZBBPProcedureSymbol::GetProcedureWorkloadForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPProcedureSymbol::GetProcedureWorkloadForecast()
 {
     return m_SimulationProperties.GetProcedureWorkloadForecast();
 }
@@ -859,12 +859,12 @@ inline void ZBBPProcedureSymbol::SetProcedureWorkloadForecast(const double value
     m_SimulationProperties.SetProcedureWorkloadForecast(value);
 }
 
-inline void ZBBPProcedureSymbol::SetProcedureWorkloadForecast(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBBPProcedureSymbol::SetProcedureWorkloadForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimulationProperties.GetProcedureWorkloadForecast() = AnnualNumberProp;
 }
 
-inline ZBBPAnnualNumberProperties& ZBBPProcedureSymbol::GetProcedureCostForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPProcedureSymbol::GetProcedureCostForecast()
 {
     return m_SimulationProperties.GetProcedureCostForecast();
 }
@@ -874,7 +874,7 @@ inline void ZBBPProcedureSymbol::SetProcedureCostForecast(const double value)
     m_SimulationProperties.SetProcedureCostForecast(value);
 }
 
-inline void ZBBPProcedureSymbol::SetProcedureCostForecast(ZBBPAnnualNumberProperties& AnnualNumberProp)
+inline void ZBBPProcedureSymbol::SetProcedureCostForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
 {
     m_SimulationProperties.GetProcedureCostForecast() = AnnualNumberProp;
 }

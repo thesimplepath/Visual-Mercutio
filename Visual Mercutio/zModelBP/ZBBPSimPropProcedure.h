@@ -32,7 +32,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBBPAnnualNumberProp.h"
+#include "PSS_AnnualNumberPropertiesBP.h"
 #include "PSS_PropIDs.h"
 
 #ifdef _ZMODELBPEXPORT
@@ -148,7 +148,7 @@ public:
 
     //@cmember
     /* Gets the procedure activation. */
-    ZBBPAnnualNumberProperties& GetProcedureActivation();
+    PSS_AnnualNumberPropertiesBP& GetProcedureActivation();
 
     //@cmember
     /* Sets the procedure activation. */
@@ -156,7 +156,7 @@ public:
 
     //@cmember
     /* Gets the standard procedure time. */
-    ZBBPAnnualNumberProperties& GetProcedureCost();
+    PSS_AnnualNumberPropertiesBP& GetProcedureCost();
 
     //@cmember
     /* Sets the standard procedure time. */
@@ -164,7 +164,7 @@ public:
 
     //@cmember
     /* Gets the procedure workload forecast. */
-    ZBBPAnnualNumberProperties& GetProcedureWorkloadForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcedureWorkloadForecast();
 
     //@cmember
     /* Sets the procedure workload forecast. */
@@ -172,7 +172,7 @@ public:
 
     //@cmember
     /* Gets the procedure cost forecast. */
-    ZBBPAnnualNumberProperties& GetProcedureCostForecast();
+    PSS_AnnualNumberPropertiesBP& GetProcedureCostForecast();
 
     //@cmember
     /* Sets the procedure cost forecast. */
@@ -262,19 +262,19 @@ protected:
 
     //@cmember
     /* the procedure activation. */
-    ZBBPAnnualNumberProperties    m_ProcedureActivation;
+    PSS_AnnualNumberPropertiesBP    m_ProcedureActivation;
 
     //@cmember
     /* the standard procedure time. */
-    ZBBPAnnualNumberProperties    m_ProcedureCost;
+    PSS_AnnualNumberPropertiesBP    m_ProcedureCost;
 
     //@cmember
     /* the procedure workload forecast. */
-    ZBBPAnnualNumberProperties    m_ProcedureWorkloadForecast;
+    PSS_AnnualNumberPropertiesBP    m_ProcedureWorkloadForecast;
 
     //@cmember
     /* the procedure cost forecast. */
-    ZBBPAnnualNumberProperties    m_ProcedureCostForecast;
+    PSS_AnnualNumberPropertiesBP    m_ProcedureCostForecast;
 
     //@cmember
     /* the procedure workload per activity forecast. */
@@ -290,7 +290,7 @@ protected:
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcedure::GetProcedureActivation()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesProcedure::GetProcedureActivation()
 {
     return m_ProcedureActivation;
 }
@@ -305,7 +305,7 @@ inline void ZBBPSimPropertiesProcedure::SetProcedureActivation( const double val
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcedure::GetProcedureCost()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesProcedure::GetProcedureCost()
 {
     return m_ProcedureCost;
 }
@@ -320,7 +320,7 @@ inline void ZBBPSimPropertiesProcedure::SetProcedureCost( const double value )
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcedure::GetProcedureWorkloadForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesProcedure::GetProcedureWorkloadForecast()
 {
     return m_ProcedureWorkloadForecast;
 }
@@ -335,7 +335,7 @@ inline void ZBBPSimPropertiesProcedure::SetProcedureWorkloadForecast( const doub
 
 //@mfunc Gets the procedure cost forecast.
 //@rdesc procedure cost forecast.
-inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcedure::GetProcedureCostForecast()
+inline PSS_AnnualNumberPropertiesBP& ZBBPSimPropertiesProcedure::GetProcedureCostForecast()
 {
     return m_ProcedureCostForecast;
 }

@@ -305,7 +305,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                                pDeliverable->GetSymbolName());
                     }
 
-                    ZBBPAnnualNumberProperties qValue;
+                    PSS_AnnualNumberPropertiesBP qValue;
 
                     // If the quantity is not locked
                     if (pDeliverable->GetLockQuantityYear() == false)
@@ -439,7 +439,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 }
 
                 // Now calculate the cost
-                ZBBPAnnualNumberProperties qValue =
+                PSS_AnnualNumberPropertiesBP qValue =
                     pDeliverable->GetQuantity() * (double)pDeliverable->GetUnitaryCost();
 
                 pDeliverable->SetCost(qValue);
@@ -490,7 +490,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                        pLocalProcedureBefore->GetSymbolName());
             }
 
-            ZBBPAnnualNumberProperties qValue;
+            PSS_AnnualNumberPropertiesBP qValue;
 
             if (pLocalProcedureBefore)
             {
@@ -766,7 +766,7 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
         {
             // RS-MODIF 18.08.05 cette routine effectue une égalisation alors qu'on veut conserver la saisonnalité
             //pProcedure->SetProcedureActivation( pProcedure->CalculateProcedureActivation() );
-            ZBBPAnnualNumberProperties myEqualizer = pProcedure->CalculateProcedureActivation();
+            PSS_AnnualNumberPropertiesBP myEqualizer = pProcedure->CalculateProcedureActivation();
             pProcedure->SetProcedureActivation(myEqualizer);
         }
 
@@ -860,7 +860,7 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
         }
 
         // Now calculate the workload forecast
-        ZBBPAnnualNumberProperties qValue;
+        PSS_AnnualNumberPropertiesBP qValue;
 
         if (pLocalProcedureBefore)
         {
