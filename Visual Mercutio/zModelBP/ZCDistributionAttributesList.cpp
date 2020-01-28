@@ -10,7 +10,7 @@
 
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
@@ -229,8 +229,8 @@ void ZCDistributionAttributesList::DocumentActivated(PSS_ProcessGraphModelDoc* p
     if (!pDoc)
         Empty();
 
-    if (!pDoc->GetModel() || !ISA(pDoc->GetModel(), ZDProcessGraphModelMdlBP) ||
-        !dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes())
+    if (!pDoc->GetModel() || !ISA(pDoc->GetModel(), PSS_ProcessGraphModelMdlBP) ||
+        !dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes())
     {
         Initialize(NULL,
                    NULL,
@@ -249,13 +249,13 @@ void ZCDistributionAttributesList::DocumentActivated(PSS_ProcessGraphModelDoc* p
         HasChanged = true;
 
     if (pDoc->GetModel() &&
-        ISA(pDoc->GetModel(), ZDProcessGraphModelMdlBP) &&
-        //        dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes() &&
-        dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes() != m_pDistributionManager)
+        ISA(pDoc->GetModel(), PSS_ProcessGraphModelMdlBP) &&
+        //        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes() &&
+        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes() != m_pDistributionManager)
         HasChanged = true;
 
     if (HasChanged)
-        Initialize(dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes(),
+        Initialize(dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetDistributionAttributes(),
                    pDoc->GetDynamicPropertiesManager(),
                    pDoc->GetMainUserGroup(),
                    NULL,

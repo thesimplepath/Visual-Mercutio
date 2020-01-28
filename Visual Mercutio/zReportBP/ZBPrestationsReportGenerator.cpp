@@ -789,7 +789,7 @@ IMPLEMENT_SERIAL(ZBPrestationsReportGenerator, ZBModelBPReportGenerator, g_DefVe
 
 // Constructeur par défaut de la classe ZBPrestationsReportGenerator.
 ZBPrestationsReportGenerator::ZBPrestationsReportGenerator(ZDGridDocument*                pDoc                /*= NULL*/,
-                                                           ZDProcessGraphModelMdlBP*    pModel                /*= NULL*/,
+                                                           PSS_ProcessGraphModelMdlBP*    pModel                /*= NULL*/,
                                                            PSS_ProcessGraphModelDoc*        pSourceDoc            /*= NULL*/,
                                                            bool                        IncludeMonthDetails    /*= true*/)
     : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc),
@@ -871,7 +871,7 @@ void ZBPrestationsReportGenerator::FillPrestationsDatas()
 }
 
 // Fonction permettant d'associer les données des processus avec les prestations assignées à ceux-ci.
-void ZBPrestationsReportGenerator::Associate(ZDProcessGraphModelMdlBP* m_RootModel)
+void ZBPrestationsReportGenerator::Associate(PSS_ProcessGraphModelMdlBP* m_RootModel)
 {
     if (m_RootModel != NULL)
     {
@@ -886,7 +886,7 @@ void ZBPrestationsReportGenerator::Associate(ZDProcessGraphModelMdlBP* m_RootMod
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -907,8 +907,8 @@ void ZBPrestationsReportGenerator::Associate(ZDProcessGraphModelMdlBP* m_RootMod
                                 ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
-                                ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                 // Appel récursif à FillProcessAssociation, jusqu'à ce que tous les
                                 // processus du modèle aient été visités.

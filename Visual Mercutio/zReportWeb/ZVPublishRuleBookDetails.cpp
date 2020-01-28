@@ -17,7 +17,7 @@
 // ******************************************************************************************************
 
 // Constructeur de la classe ZVPublishRuleBookDetails.
-ZVPublishRuleBookDetails::ZVPublishRuleBookDetails(ZDProcessGraphModelMdlBP* pModel /*= NULL*/)
+ZVPublishRuleBookDetails::ZVPublishRuleBookDetails(PSS_ProcessGraphModelMdlBP* pModel /*= NULL*/)
 {
     m_pRootModel = pModel;
 
@@ -97,13 +97,13 @@ bool ZVPublishRuleBookDetails::CreateFileSystem(PSS_LogicalRulesEntity* pRules, 
 // Explore le document, recherche les objets contenus, et teste s'ils contiennent la règle demandée.
 void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                        RuleNumber,
                                                        CString                        RuleName,
-                                                       ZDProcessGraphModelMdlBP*    m_StartRootModel    /*= NULL*/)
+                                                       PSS_ProcessGraphModelMdlBP*    m_StartRootModel    /*= NULL*/)
 {
     // Si le modèle d'entrée est vide, cela veut dire que l'on veut une recherche sur tout le document.
     if (m_StartRootModel == NULL)
     {
         // Obtient le contrôleur de modèles du document.
-        m_StartRootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pRootModel);
+        m_StartRootModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pRootModel);
     }
 
     if (m_StartRootModel != NULL)
@@ -119,7 +119,7 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -141,8 +141,8 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                                 if (m_Process != NULL)
                                 {
                                     // Obtient le contrôleur de modèles enfant du processus.
-                                    ZDProcessGraphModelMdlBP* m_ChildModel =
-                                        dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                    PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                     // Si le contrôleur de modèles existe, fait un appel récursif sur celui-ci,
                                     // afin de passer en revue toutes les pages du document.

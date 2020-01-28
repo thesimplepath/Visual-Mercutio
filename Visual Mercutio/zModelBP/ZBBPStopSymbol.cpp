@@ -27,10 +27,8 @@
 
 #include "PSS_ProcessGraphModelControllerBP.h"
 
-// JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelMdlBP.h
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
-// JMR-MODIF - Le 13 juin 2007 - Ajout de l'en-tête ZVRiskOptionsDlg.h
 #include "ZVRiskOptionsDlg.h"
 
 // Resources
@@ -361,9 +359,9 @@ void ZBBPStopSymbol::CheckRulesSync(CStringArray& RulesList)
     {
         PSS_LogicalRulesEntity* p_MainRule = NULL;
 
-        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* p_Model = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             p_MainRule = p_Model->GetMainLogicalRules();
         }
@@ -437,9 +435,9 @@ bool ZBBPStopSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*
 
         PSS_LogicalRulesEntity* p_MainRule = NULL;
 
-        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* p_Model = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             if (p_Model != NULL &&
                 p_Model->GetController() != NULL &&

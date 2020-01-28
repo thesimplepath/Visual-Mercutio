@@ -16,7 +16,7 @@ ZUDeleteCorruptedSymbols::ZUDeleteCorruptedSymbols()
 ZUDeleteCorruptedSymbols::~ZUDeleteCorruptedSymbols()
 {}
 
-void ZUDeleteCorruptedSymbols::CheckModel(ZDProcessGraphModelMdlBP* m_StartRootModel)
+void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRootModel)
 {
     if (m_StartRootModel != NULL)
     {
@@ -31,8 +31,8 @@ void ZUDeleteCorruptedSymbols::CheckModel(ZDProcessGraphModelMdlBP* m_StartRootM
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel =
-                    dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel =
+                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -115,8 +115,8 @@ void ZUDeleteCorruptedSymbols::CheckModel(ZDProcessGraphModelMdlBP* m_StartRootM
                                 else
                                 {
                                     // Obtient le contrôleur de modèle du processus.
-                                    ZDProcessGraphModelMdlBP* m_ChildModel =
-                                        dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                    PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                     // Appel récursif à CheckModel, jusqu'à ce que toutes les pages des processus
                                     // enfants aient été visitées.

@@ -51,7 +51,7 @@ class AFX_EXT_CLASS ZBConceptorReportGenerator : public ZBModelBPReportGenerator
 public:
 
     ZBConceptorReportGenerator(ZDGridDocument*                pDoc = NULL,
-                               ZDProcessGraphModelMdlBP*    pModel = NULL,
+                               PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                                PSS_ProcessGraphModelDoc*        pSourceDoc = NULL,
                                BOOL                        bIncludeSynthesis = TRUE,
                                BOOL                        bIncludeDetail = TRUE,
@@ -63,7 +63,7 @@ public:
     // ZIGridReportGenerator methods
 
     virtual void Initialize(ZDGridDocument*            pDoc,
-                            ZDProcessGraphModelMdlBP*    pModel,
+                            PSS_ProcessGraphModelMdlBP*    pModel,
                             PSS_ProcessGraphModelDoc*    pSourceDoc,
                             BOOL                        bIncludeSynthesis = TRUE,
                             BOOL                        bIncludeDetail = TRUE,

@@ -6,7 +6,7 @@
 #include "ZBSesterceConsolidatedReportGenerator.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zReport\ZDGridDoc.h"
 
 #include "zModelBP\ZUExtractProcessName.h"
@@ -49,7 +49,7 @@ IMPLEMENT_SERIAL(ZBSesterceConsolidatedReportGenerator, ZBModelBPReportGenerator
 //////////////////////////////////////////////////////////////////////
 
 ZBSesterceConsolidatedReportGenerator::ZBSesterceConsolidatedReportGenerator(ZDGridDocument*            pDoc                /*= NULL*/,
-                                                                             ZDProcessGraphModelMdlBP*    pModel                /*= NULL*/,
+                                                                             PSS_ProcessGraphModelMdlBP*    pModel                /*= NULL*/,
                                                                              PSS_ProcessGraphModelDoc*    pSourceDoc            /*= NULL*/,
                                                                              bool                        IncludeMonthDetail    /*= true*/)
     : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc),

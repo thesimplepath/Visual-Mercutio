@@ -21,6 +21,9 @@
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
+#ifndef PSS_ProcessGraphModelMdlBP
+    #define PSS_ProcessGraphModelMdlBP ZDProcessGraphModelMdlBP
+#endif
 
 // forward class declaration
 class PSS_Log;
@@ -35,7 +38,7 @@ class ZBBPStartSymbol;
 class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
 class PSS_ProcessGraphModelMdl;
-class ZDProcessGraphModelMdlBP;
+class PSS_ProcessGraphModelMdlBP;
 class PSS_ProcessGraphModelController;
 
 // JMR-MODIF - Le 2 octobre 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -98,7 +101,7 @@ private:
     bool RefExist(int ref);
 
     void DeleteCorruptedSymbol(PSS_Symbol*                  m_Symbol,
-                               ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL);
+                               PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL);
 
 private:
 

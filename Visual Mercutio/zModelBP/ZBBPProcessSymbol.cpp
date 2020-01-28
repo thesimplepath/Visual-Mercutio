@@ -379,17 +379,17 @@ bool ZBBPProcessSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODControlle
         return false;
     }
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdlBP))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
-        ZDProcessGraphModelMdlBP* pRootModel =
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel)->GetRoot());
+        PSS_ProcessGraphModelMdlBP* pRootModel =
+            reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pModel)->GetRoot());
 
         if (!pRootModel)
         {
             return false;
         }
 
-        CreateEmptyChildModel(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel));
+        CreateEmptyChildModel(reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pModel));
 
         // If a new model is defined, create the first page
         if (m_pModel && !reinterpret_cast<PSS_ProcessGraphModelMdl*>(m_pModel)->HasPageSet())
@@ -836,7 +836,7 @@ void ZBBPProcessSymbol::OnDeliverableNameChange(CString OldName, CString NewName
 }
 
 // JMR-MODIF - Le 10 février 2006 - Ajout de la fonction permettant l'obtention de la quantité du livrable principal.
-float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdlBP* m_RootModel /* = NULL */)
+float ZBBPProcessSymbol::FindQuantity(const CString Main, PSS_ProcessGraphModelMdlBP* m_RootModel /* = NULL */)
 {
     // Si le nom est vide, retourne 0.
     if (Main.IsEmpty())
@@ -848,7 +848,7 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
     if (m_RootModel == NULL)
     {
         // Obtient le contrôleur de modèles du document.
-        m_RootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(GetRootModel());
+        m_RootModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(GetRootModel());
     }
 
     if (m_RootModel != NULL)
@@ -864,7 +864,7 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -900,8 +900,8 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
                                 ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
-                                ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                 // Appel récursif à FindQuantity, jusqu'à ce que toutes les pages des processus
                                 // enfants aient été visitées, ou que le livrable original ait été trouvé.
@@ -931,7 +931,7 @@ int ZBBPProcessSymbol::GetDeliverablesInChildPages(CString& DeliverablesList)
     PSS_Tokenizer    Token;
 
     // Obtient le contrôleur de modèles du processus.
-    ZDProcessGraphModelMdlBP* m_RootChldModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pModel);
+    PSS_ProcessGraphModelMdlBP* m_RootChldModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pModel);
 
     if (m_RootChldModel != NULL)
     {
@@ -946,7 +946,7 @@ int ZBBPProcessSymbol::GetDeliverablesInChildPages(CString& DeliverablesList)
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -1316,9 +1316,9 @@ void ZBBPProcessSymbol::CheckRulesSync(CStringArray& RulesList)
     {
         PSS_LogicalRulesEntity* p_MainRule = NULL;
 
-        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* p_Model = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             p_MainRule = p_Model->GetMainLogicalRules();
         }
@@ -1394,9 +1394,9 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
 
         PSS_LogicalRulesEntity* p_MainRule = NULL;
 
-        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* p_Model = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             if (p_Model != NULL &&
                 p_Model->GetController() != NULL &&
@@ -2430,8 +2430,7 @@ BOOL ZBBPProcessSymbol::CreateEmptyChildModel(CODModel* pParent)
 {
     if (!m_pModel)
     {
-        m_pModel = new ZDProcessGraphModelMdlBP(GetSymbolName(),
-                                                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pParent));
+        m_pModel = new PSS_ProcessGraphModelMdlBP(GetSymbolName(), reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pParent));
     }
     else return FALSE;
 

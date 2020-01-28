@@ -8,7 +8,7 @@
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
 #include "ZVInputAttributesDefinitionDlg.h"
 #include "ZBInputAttributes.h"
@@ -386,13 +386,13 @@ void ZVInputAttributes::OnAddInputAttribute()
     if (!m_pCurrentDoc)
         return;
     if (!m_pCurrentDoc->GetModel() ||
-        !ISA(m_pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+        !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    if (!dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->HasInputAttributes())
-        dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->AllocateInputAttributes();
+    if (!dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->HasInputAttributes())
+        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->AllocateInputAttributes();
 
-    ZBInputAttributeManager* pInputAttrManager = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
+    ZBInputAttributeManager* pInputAttrManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
     if (!pInputAttrManager)
         return;
 
@@ -451,10 +451,10 @@ void ZVInputAttributes::OnDeleteInputAttribute()
         return;
 
     if (!m_pCurrentDoc->GetModel() ||
-        !ISA(m_pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+        !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    ZBInputAttributeManager* pInputAttrManager = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
+    ZBInputAttributeManager* pInputAttrManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
     if (!pInputAttrManager)
         return;
 

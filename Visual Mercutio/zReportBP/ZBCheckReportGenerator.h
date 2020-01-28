@@ -51,7 +51,7 @@ class AFX_EXT_CLASS ZBCheckReportGenerator : public ZBModelBPReportGenerator
 public:
 
     ZBCheckReportGenerator(ZDGridDocument*                pDoc = NULL,
-                           ZDProcessGraphModelMdlBP*    pModel = NULL,
+                           PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                            PSS_ProcessGraphModelDoc*        pSourceDoc = NULL);
 
     virtual ~ZBCheckReportGenerator();

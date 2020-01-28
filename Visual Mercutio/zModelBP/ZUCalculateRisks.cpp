@@ -23,7 +23,7 @@
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZUCheckValidUnit.h"
 #include "zBaseLib\PSS_Log.h"
 #include "zBaseLib\PSS_Tokenizer.h"

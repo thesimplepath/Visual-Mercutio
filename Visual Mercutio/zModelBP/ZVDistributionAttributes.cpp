@@ -8,7 +8,7 @@
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
 #include "ZVDistributionAttributesDefinitionDlg.h"
 
@@ -370,13 +370,13 @@ void ZVDistributionAttributes::OnAddDistributionAttrib()
     if (!m_pCurrentDoc)
         return;
     if (!m_pCurrentDoc->GetModel() ||
-        !ISA(m_pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+        !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    if (!dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->HasDistributionAttributes())
-        dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->AllocateDistributionAttributes();
+    if (!dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->HasDistributionAttributes())
+        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->AllocateDistributionAttributes();
 
-    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
     if (!pDistribManager)
         return;
 
@@ -436,10 +436,10 @@ void ZVDistributionAttributes::OnDeleteDistributionAttrib()
         return;
 
     if (!m_pCurrentDoc->GetModel() ||
-        !ISA(m_pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+        !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
     if (!pDistribManager)
         return;
 
@@ -471,10 +471,10 @@ void ZVDistributionAttributes::OnModifyDistributionAttrib()
         return;
 
     if (!m_pCurrentDoc->GetModel() ||
-        !ISA(m_pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+        !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
     if (!pDistribManager)
         return;
 

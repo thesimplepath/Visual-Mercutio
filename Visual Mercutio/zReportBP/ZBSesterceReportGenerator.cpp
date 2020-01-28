@@ -6,7 +6,7 @@
 #include "ZBSesterceReportGenerator.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 
 #include "zReport\ZDGridDoc.h"
@@ -40,7 +40,7 @@ IMPLEMENT_SERIAL(ZBSesterceReportGenerator, ZBModelBPReportGenerator, g_DefVersi
 //////////////////////////////////////////////////////////////////////
 
 ZBSesterceReportGenerator::ZBSesterceReportGenerator(ZDGridDocument*            pDoc        /*= NULL*/,
-                                                     ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
+                                                     PSS_ProcessGraphModelMdlBP*    pModel        /*= NULL*/,
                                                      PSS_ProcessGraphModelDoc*    pSourceDoc    /*= NULL*/)
     : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc)
 {

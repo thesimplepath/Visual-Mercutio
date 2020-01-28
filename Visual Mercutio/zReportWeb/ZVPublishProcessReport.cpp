@@ -248,7 +248,7 @@ POSITION _ZVSymbolContainer::GetNextPosition()
 // ******************************************************************************************************
 
 // Constructeur de la classe ZVPublishProcessReport.
-ZVPublishProcessReport::ZVPublishProcessReport(ZDProcessGraphModelMdlBP*    pModel            /*= NULL*/,
+ZVPublishProcessReport::ZVPublishProcessReport(PSS_ProcessGraphModelMdlBP*    pModel            /*= NULL*/,
                                                ZBPropertyAttributes*        pPropAttributes    /*= NULL*/)
 {
     m_pRootModel = pModel;
@@ -308,7 +308,7 @@ void ZVPublishProcessReport::ResetDatas()
 
 // Cette fonction retrouve l'original d'un symbole à travers tout le système de modèles.
 PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
-                                             ZDProcessGraphModelMdlBP* m_StartRootModel /* = NULL */)
+                                               PSS_ProcessGraphModelMdlBP* m_StartRootModel /* = NULL */)
 {
     // Si le nom est vide, retourne 0.
     if (SymbolName.IsEmpty())
@@ -320,7 +320,7 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
     if (m_StartRootModel == NULL)
     {
         // Obtient le contrôleur de modèles du document.
-        m_StartRootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pRootModel);
+        m_StartRootModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pRootModel);
     }
 
     if (m_StartRootModel != NULL)
@@ -336,8 +336,8 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel =
-                    dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel =
+                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -417,8 +417,8 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
                                 ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
-                                ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                 // Appel récursif à FindSymbol, jusqu'à ce que toutes les pages des processus
                                 // enfants aient été visitées, ou que le symbole original ait été trouvé.
@@ -443,7 +443,7 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
 
 // Cette fonction retrouve l'original d'un symbole de lien à travers tout le système de modèles.
 PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
-                                                     ZDProcessGraphModelMdlBP* m_StartRootModel /* = NULL */)
+                                                       PSS_ProcessGraphModelMdlBP* m_StartRootModel /* = NULL */)
 {
     // Si le nom est vide, retourne 0.
     if (SymbolName.IsEmpty())
@@ -455,7 +455,7 @@ PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
     if (m_StartRootModel == NULL)
     {
         // Obtient le contrôleur de modèles du document.
-        m_StartRootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pRootModel);
+        m_StartRootModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pRootModel);
     }
 
     if (m_StartRootModel != NULL)
@@ -471,7 +471,7 @@ PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -509,8 +509,8 @@ PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
                                 ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
-                                ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                 // Appel récursif à FindSymbol, jusqu'à ce que toutes les pages des processus
                                 // enfants aient été visitées, ou que le symbole original ait été trouvé.
@@ -535,13 +535,13 @@ PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
 
 // Cette fonction permet de créer le système de fichiers.
 bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
-                                              ZDProcessGraphModelMdlBP* m_StartRootModel /* = NULL */)
+                                              PSS_ProcessGraphModelMdlBP* m_StartRootModel /* = NULL */)
 {
     // Si le modèle d'entrée est vide, cela veut dire que l'on veut une recherche sur tout le document.
     if (m_StartRootModel == NULL)
     {
         // Obtient le contrôleur de modèles du document.
-        m_StartRootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pRootModel);
+        m_StartRootModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pRootModel);
     }
 
     if (m_StartRootModel != NULL)
@@ -557,7 +557,7 @@ bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -578,8 +578,8 @@ bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
 
                                 if (m_Process != NULL)
                                 {
-                                    ZDProcessGraphModelMdlBP* m_ChildModel =
-                                        dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                    PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                     if (m_ChildModel != NULL)
                                     {
@@ -645,7 +645,7 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
 {
     CString Output = _T("");
 
-    ZDProcessGraphModelMdlBP* m_ChildModel = NULL;
+    PSS_ProcessGraphModelMdlBP* m_ChildModel = NULL;
 
     if (m_pProcessSymbol != NULL)
     {
@@ -665,7 +665,7 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
             }
         }
 
-        m_ChildModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pProcessSymbol->GetModel());
+        m_ChildModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pProcessSymbol->GetModel());
     }
 
     GenerateHTMLTableFoot();
@@ -683,7 +683,7 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {

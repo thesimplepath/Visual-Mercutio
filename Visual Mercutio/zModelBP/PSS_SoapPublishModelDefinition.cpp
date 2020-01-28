@@ -18,7 +18,7 @@
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBPublishMessengerModelInformation.h"
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"
@@ -83,7 +83,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(PSS_Symbol*        
     for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
     {
         // get page model
-        ZDProcessGraphModelMdlBP* pPageModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+        PSS_ProcessGraphModelMdlBP* pPageModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
         if (!pPageModel)
             continue;
@@ -109,7 +109,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(PSS_Symbol*        
             if (pCompProcSym)
             {
                 // get process child model
-                ZDProcessGraphModelMdlBP* pChildModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pCompProcSym->GetModel());
+                PSS_ProcessGraphModelMdlBP* pChildModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCompProcSym->GetModel());
 
                 // search a matching symbol in the process model children
                 const int result = GetParentSymbolReference(pSymbol,
@@ -166,7 +166,7 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
     if (!m_pDoc)
         return false;
 
-    ZDProcessGraphModelMdlBP* pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pDoc->GetModel());
+    PSS_ProcessGraphModelMdlBP* pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pDoc->GetModel());
 
     if (!pModel)
         return false;

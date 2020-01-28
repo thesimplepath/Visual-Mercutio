@@ -51,7 +51,7 @@ class AFX_EXT_CLASS ZBMercutioReportGenerator : public ZBModelBPReportGenerator
 public:
 
     ZBMercutioReportGenerator( ZDGridDocument*                pDoc        = NULL,
-                               ZDProcessGraphModelMdlBP*    pModel        = NULL,
+                              PSS_ProcessGraphModelMdlBP*    pModel        = NULL,
                               PSS_ProcessGraphModelDoc*        pSourceDoc    = NULL );
 
     virtual ~ZBMercutioReportGenerator();
@@ -60,7 +60,7 @@ public:
     // ZIGridReportGenerator methods
     
     virtual void Initialize( ZDGridDocument*            pDoc,
-                             ZDProcessGraphModelMdlBP*    pModel,
+                            PSS_ProcessGraphModelMdlBP*    pModel,
                             PSS_ProcessGraphModelDoc*    pSourceDoc );
 
     // Called by the framework to request a grid to be filled

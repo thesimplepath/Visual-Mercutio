@@ -34,7 +34,7 @@
 #include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZUExtractProcessName.h"
@@ -165,7 +165,7 @@ class AFX_EXT_CLASS ZBPrestationsReportGenerator : public ZBModelBPReportGenerat
 public:
 
     ZBPrestationsReportGenerator(ZDGridDocument*            pDoc = NULL,
-                                 ZDProcessGraphModelMdlBP*    pModel = NULL,
+                                 PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                                  PSS_ProcessGraphModelDoc*    pSourceDoc = NULL,
                                  bool                        IncludeMonthDetails = true);
 
@@ -189,7 +189,7 @@ private:
     bool FillGridPrestationsReport(CGXGridCore& GridCore, int Index);
     void FillGridPrestationsHeaders(ZBOStreamGrid &ostream, ZVGridView* pView, int Index);
     void FillPrestationsDatas();
-    void Associate(ZDProcessGraphModelMdlBP* m_RootModel);
+    void Associate(PSS_ProcessGraphModelMdlBP* m_RootModel);
     void UpdateTotals();
     void RemoveObsoleteDatas();
 

@@ -9,7 +9,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
@@ -635,7 +635,7 @@ bool ZUProcessConceptorNavigation::DisplayProcess()
 
     CODNodeArray Nodes;
 
-    if (reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)m_pPreviousProcess)->GetChildModel())->GetBPStartSymbols(Nodes, false) > 0)
+    if (reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(((PSS_Symbol*)m_pPreviousProcess)->GetChildModel())->GetBPStartSymbols(Nodes, false) > 0)
     {
         StartSection(Nodes);
     }

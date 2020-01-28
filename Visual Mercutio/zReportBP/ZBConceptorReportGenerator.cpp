@@ -6,7 +6,7 @@
 #include "ZBConceptorReportGenerator.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zReport\ZDGridDoc.h"
 #include "zModel\PSS_UserGroupEntity.h"
@@ -42,7 +42,7 @@ IMPLEMENT_SERIAL(ZBConceptorReportGenerator, ZBModelBPReportGenerator, g_DefVers
 //////////////////////////////////////////////////////////////////////
 
 ZBConceptorReportGenerator::ZBConceptorReportGenerator(ZDGridDocument*                pDoc                    /*= NULL*/,
-                                                       ZDProcessGraphModelMdlBP*    pModel                    /*= NULL*/,
+                                                       PSS_ProcessGraphModelMdlBP*    pModel                    /*= NULL*/,
                                                        PSS_ProcessGraphModelDoc*        pSourceDoc                /*= NULL*/,
                                                        BOOL                        bIncludeSynthesis        /*= TRUE*/,
                                                        BOOL                        bIncludeDetail            /*= TRUE*/,
@@ -61,7 +61,7 @@ ZBConceptorReportGenerator::~ZBConceptorReportGenerator()
 {}
 
 void ZBConceptorReportGenerator::Initialize(ZDGridDocument*            pDoc,
-                                            ZDProcessGraphModelMdlBP*    pModel,
+                                            PSS_ProcessGraphModelMdlBP*    pModel,
                                             PSS_ProcessGraphModelDoc*    pSourceDoc,
                                             BOOL                        bIncludeSynthesis        /*= TRUE*/,
                                             BOOL                        bIncludeDetail            /*= TRUE*/,
@@ -382,9 +382,9 @@ void ZBConceptorReportGenerator::OnPostRead(CArchive& ar)
         if (m_pSourceDoc                                &&
             m_pSourceDoc->ReadFromFile(m_FileName) &&
             m_pSourceDoc->GetModel() &&
-            ISA(m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP))
+            ISA(m_pSourceDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         {
-            m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pSourceDoc->GetModel());
+            m_pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pSourceDoc->GetModel());
             m_InChargeOfClosingFile = true;
         }
     }

@@ -5,7 +5,7 @@
 #include "zBaseSym\zBaseSymRes.h"
 #include "ZBBPPageSymbol.h"
 
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "zModel\PSS_ProcessGraphModelViewport.h"
 #include "zModel\PSS_ProcessGraphPage.h"
@@ -118,10 +118,10 @@ bool ZBBPPageSymbol::SetPageModel(PSS_ProcessGraphModelMdl* pModel)
 void ZBBPPageSymbol::RecalculateTwinPageReference(PSS_ProcessGraphModelMdl* pRootModel)
 {
     // First, find the right model pointer
-    if (!m_PageName.IsEmpty() && pRootModel && ISA(pRootModel, ZDProcessGraphModelMdlBP))
+    if (!m_PageName.IsEmpty() && pRootModel && ISA(pRootModel, PSS_ProcessGraphModelMdlBP))
     {
         // Find the page by its name
-        m_pPage = reinterpret_cast<ZDProcessGraphModelMdlBP*>(pRootModel)->FindPage(m_PageName);
+        m_pPage = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pRootModel)->FindPage(m_PageName);
 
         // And assign the right child model if no submodel pathname defined
         if (m_SubModelPathName.IsEmpty())
@@ -134,7 +134,7 @@ void ZBBPPageSymbol::RecalculateTwinPageReference(PSS_ProcessGraphModelMdl* pRoo
         else
         {
             m_pModel =
-                reinterpret_cast<ZDProcessGraphModelMdlBP*>(pRootModel)->FindModelFromPath(m_SubModelPathName,
+                reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pRootModel)->FindModelFromPath(m_SubModelPathName,
                                                                                            true);
         }
     }
@@ -421,10 +421,10 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         return false;
     }
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdlBP))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
-        ZDProcessGraphModelMdlBP* pRootModel =
-            dynamic_cast<ZDProcessGraphModelMdlBP*>(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel)->GetRoot());
+        PSS_ProcessGraphModelMdlBP* pRootModel =
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pModel)->GetRoot());
 
         if (!pRootModel)
         {
@@ -435,7 +435,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
 
         // Get the page of this model
         PSS_ProcessGraphPage* pPageFromModel =
-            pRootModel->FindModelPage(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel), true);
+            pRootModel->FindModelPage(reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pModel), true);
 
         if (!pPageFromModel)
         {
@@ -535,7 +535,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             if (m_pPage && m_pModel && pCtrl)
             {
                 CODNodeArray    Nodes;
-                size_t            ElementCount = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pModel)->GetBPPageSymbols(Nodes);
+                size_t            ElementCount = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pModel)->GetBPPageSymbols(Nodes);
                 bool            Found = false;
                 ZBBPPageSymbol*    pPageFound = NULL;
 
@@ -569,7 +569,7 @@ bool ZBBPPageSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
 
                     if (pNewSymbolInserted && ISA(pNewSymbolInserted, ZBBPPageSymbol))
                     {
-                        dynamic_cast<ZBBPPageSymbol*>(pNewSymbolInserted)->SetPageModel(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel));
+                        dynamic_cast<ZBBPPageSymbol*>(pNewSymbolInserted)->SetPageModel(reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pModel));
 
                         // Assigns the twin door symbol
                         AssignTwinPageSymbol(dynamic_cast<ZBBPPageSymbol*>(pNewSymbolInserted));

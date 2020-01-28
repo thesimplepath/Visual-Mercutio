@@ -33,7 +33,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS ZVPublishPrestationsReport
 {
 public:
 
-    ZVPublishPrestationsReport(ZDProcessGraphModelMdlBP* pModel = NULL);
+    ZVPublishPrestationsReport(PSS_ProcessGraphModelMdlBP* pModel = NULL);
     virtual ~ZVPublishPrestationsReport();
 
     bool Publish(CString Directory);
@@ -87,7 +87,7 @@ private:
     void GenerateHTMLSectionLine(CString Group, CString Processus, CString Procedure);
     void WriteLine(CString Text);
     void WriteLine(int nID);
-    void FindProcedures(CString ProcessName, ZDProcessGraphModelMdlBP* m_StartModel);
+    void FindProcedures(CString ProcessName, PSS_ProcessGraphModelMdlBP* m_StartModel);
 
     void FindUnitGroupChilds(PSS_UserGroupEntity*        pGroup,
                              CString                    PropertyName,
@@ -97,7 +97,7 @@ private:
                              int                        ChildLevel = 0);
 
     void ExploreProcessHierarchy(CString                    PrestationName,
-                                 ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL);
+                                 PSS_ProcessGraphModelMdlBP*    m_StartRootModel = NULL);
 
 private:
 

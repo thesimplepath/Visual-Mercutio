@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZBDeliverableLinkSymbol.h"
 
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 
 #include "ZBBPRuleListProp.h"
@@ -1284,7 +1284,7 @@ bool ZBDeliverableLinkSymbol::OnToolTip(CString& toolTipText, const CPoint& poin
 // JMR-MODIF - Le 27 mars 2006 - Fonction de notification pour les processus.
 void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldName,
                                                const CString                NewName,
-                                               ZDProcessGraphModelMdlBP*    m_RootModel    /* = NULL */)
+                                               PSS_ProcessGraphModelMdlBP* m_RootModel    /* = NULL */)
 {
     // Si les noms sont vides, ne fait rien.
     if (OldName.IsEmpty() || NewName.IsEmpty())
@@ -1296,7 +1296,7 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
     if (m_RootModel == NULL)
     {
         // Obtient le contrôleur de modèles du document.
-        m_RootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(GetRootModel());
+        m_RootModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(GetRootModel());
     }
 
     if (m_RootModel != NULL)
@@ -1312,7 +1312,7 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -1333,8 +1333,8 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
                                 ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
-                                ZDProcessGraphModelMdlBP* m_ChildModel =
-                                    dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                 // Appel récursif à NotifyNameChange, jusqu'à ce que toutes les pages des
                                 // processus enfants aient été visitées.
@@ -1417,12 +1417,12 @@ bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection(ZBBPDoorSymbol*        p
 {
     // If the door is pointing to a model
     if (pModel && pSrc->GetChildModel() &&
-        ISA(pSrc->GetChildModel(), ZDProcessGraphModelMdlBP) &&
-        ISA(pModel, ZDProcessGraphModelMdlBP))
+        ISA(pSrc->GetChildModel(), PSS_ProcessGraphModelMdlBP) &&
+        ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
         CODNodeArray Nodes;
         size_t ElementCount =
-            dynamic_cast<ZDProcessGraphModelMdlBP*>(pSrc->GetChildModel())->GetBPDoorSymbols(Nodes);
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pSrc->GetChildModel())->GetBPDoorSymbols(Nodes);
 
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
@@ -1470,13 +1470,13 @@ bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection(ZBBPProcedureSymbol*    
 {
     // If the door is pointing to a model
     if (pModel && pDst->GetChildModel() &&
-        ISA(pDst->GetChildModel(), ZDProcessGraphModelMdlBP) &&
-        ISA(pModel, ZDProcessGraphModelMdlBP))
+        ISA(pDst->GetChildModel(), PSS_ProcessGraphModelMdlBP) &&
+        ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
         CODNodeArray Nodes;
 
         size_t ElementCount =
-            dynamic_cast<ZDProcessGraphModelMdlBP*>(pDst->GetChildModel())->GetBPDoorSymbols(Nodes);
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDst->GetChildModel())->GetBPDoorSymbols(Nodes);
 
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
@@ -1525,13 +1525,13 @@ bool ZBDeliverableLinkSymbol::DoPageProcedureConnection(ZBBPPageSymbol*        p
 {
     // If the page is pointing to a model
     if (pModel && pSrc->GetModelPage() &&
-        ISA(pSrc->GetModelPage(), ZDProcessGraphModelMdlBP) &&
-        ISA(pModel, ZDProcessGraphModelMdlBP))
+        ISA(pSrc->GetModelPage(), PSS_ProcessGraphModelMdlBP) &&
+        ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
         CODNodeArray Nodes;
 
         size_t ElementCount =
-            dynamic_cast<ZDProcessGraphModelMdlBP*>(pSrc->GetModelPage())->GetBPPageSymbols(Nodes);
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pSrc->GetModelPage())->GetBPPageSymbols(Nodes);
 
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
@@ -1580,13 +1580,13 @@ bool ZBDeliverableLinkSymbol::DoProcedurePageConnection(ZBBPProcedureSymbol*    
 {
     // If the page is pointing to a model
     if (pModel && pDst->GetModelPage() &&
-        ISA(pDst->GetModelPage(), ZDProcessGraphModelMdlBP) &&
-        ISA(pModel, ZDProcessGraphModelMdlBP))
+        ISA(pDst->GetModelPage(), PSS_ProcessGraphModelMdlBP) &&
+        ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
         CODNodeArray Nodes;
 
         size_t ElementCount =
-            dynamic_cast<ZDProcessGraphModelMdlBP*>(pDst->GetModelPage())->GetBPPageSymbols(Nodes);
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDst->GetModelPage())->GetBPPageSymbols(Nodes);
 
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
@@ -1636,16 +1636,16 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
     // Check if source and destination have child model
     // If the page is pointing to a model
     if (pModel && pSrc->GetChildModel() && pDst->GetChildModel() &&
-        ISA(pSrc->GetChildModel(), ZDProcessGraphModelMdlBP) &&
-        ISA(pDst->GetChildModel(), ZDProcessGraphModelMdlBP) &&
-        ISA(pModel, ZDProcessGraphModelMdlBP))
+        ISA(pSrc->GetChildModel(), PSS_ProcessGraphModelMdlBP) &&
+        ISA(pDst->GetChildModel(), PSS_ProcessGraphModelMdlBP) &&
+        ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
         // In the destination process, retreive all door symbols.
         // Go deeper.
         CODNodeArray Nodes;
 
         size_t ElementCount =
-            dynamic_cast<ZDProcessGraphModelMdlBP*>(pDst->GetChildModel())->GetBPDoorSymbols(Nodes, true);
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDst->GetChildModel())->GetBPDoorSymbols(Nodes, true);
 
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
@@ -1695,7 +1695,7 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
                 rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
                 rtClasses.Add(RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 
-                PSS_SelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pDst->GetChildModel()),
+                PSS_SelectModelSymbolDlg Dlg(dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDst->GetChildModel()),
                                              IDS_SYMBOL_SELECTDELIVERABLE,
                                              RUNTIME_CLASS(ZBDeliverableLinkSymbol),
                                              &rtClasses);
@@ -2151,9 +2151,9 @@ void ZBDeliverableLinkSymbol::CheckRulesSync(CStringArray& RulesList)
     {
         PSS_LogicalRulesEntity* p_MainRule = NULL;
 
-        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* p_Model = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             p_MainRule = p_Model->GetMainLogicalRules();
         }
@@ -2238,9 +2238,9 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
         PSS_LogicalRulesEntity* pMainRule = NULL;
 
-        if (GetOwnerModel() && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* pOwnerModel = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* pOwnerModel = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), PSS_ProcessGraphModelControllerBP))
             {

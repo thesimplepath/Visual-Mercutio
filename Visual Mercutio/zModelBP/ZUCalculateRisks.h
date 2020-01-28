@@ -26,6 +26,9 @@
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
+#ifndef PSS_ProcessGraphModelMdlBP
+    #define PSS_ProcessGraphModelMdlBP ZDProcessGraphModelMdlBP
+#endif
 
 // forward class declaration
 class PSS_Log;
@@ -40,7 +43,7 @@ class ZBBPStartSymbol;
 class ZBBPStopSymbol;
 class ZBDeliverableLinkSymbol;
 class PSS_ProcessGraphModelMdl;
-class ZDProcessGraphModelMdlBP;
+class PSS_ProcessGraphModelMdlBP;
 class PSS_ProcessGraphModelController;
 
 class ZUCalculateRisks : public PSS_BasicSymbolVisitor

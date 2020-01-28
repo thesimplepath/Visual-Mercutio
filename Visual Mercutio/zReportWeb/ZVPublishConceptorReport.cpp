@@ -20,7 +20,7 @@
 // ******************************************************************************************************
 
 // Constructeur de la classe ZVPublishConceptorReport.
-ZVPublishConceptorReport::ZVPublishConceptorReport(ZDProcessGraphModelMdlBP* pModel    /*= NULL*/,
+ZVPublishConceptorReport::ZVPublishConceptorReport(PSS_ProcessGraphModelMdlBP* pModel    /*= NULL*/,
                                                    BOOL bShowDetails                    /*= TRUE*/,
                                                    BOOL bShowDeliverables                /*= TRUE*/)
 {
@@ -229,7 +229,7 @@ bool ZVPublishConceptorReport::CreateProcess()
 
     CODNodeArray Nodes;
 
-    if (reinterpret_cast<ZDProcessGraphModelMdlBP*>(((PSS_Symbol*)m_pPreviousProcess)->GetChildModel())->GetBPStartSymbols(Nodes, false) > 0)
+    if (reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(((PSS_Symbol*)m_pPreviousProcess)->GetChildModel())->GetBPStartSymbols(Nodes, false) > 0)
     {
         StartSection(Nodes);
     }

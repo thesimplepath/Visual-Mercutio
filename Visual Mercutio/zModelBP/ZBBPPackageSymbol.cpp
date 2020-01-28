@@ -8,7 +8,7 @@
 #include "zBaseLib\PSS_File.h"
 #include "zBaseSym\zBaseSymRes.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -246,7 +246,7 @@ BOOL ZBBPPackageSymbol::CreateEmptyChildModel(CODModel* pParent)
 {
     if (!m_pModel)
     {
-        m_pModel = new ZDProcessGraphModelMdlBP( GetSymbolName(), reinterpret_cast<ZDProcessGraphModelMdlBP*>(pParent) );
+        m_pModel = new PSS_ProcessGraphModelMdlBP( GetSymbolName(), reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pParent) );
     }
     else
         return FALSE;

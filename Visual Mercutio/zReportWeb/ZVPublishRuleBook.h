@@ -24,7 +24,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
@@ -44,7 +44,7 @@ class AFX_EXT_CLASS ZVPublishRuleBook
 {
 public:
 
-    ZVPublishRuleBook(ZDProcessGraphModelMdlBP* pModel = NULL);
+    ZVPublishRuleBook(PSS_ProcessGraphModelMdlBP* pModel = NULL);
     virtual ~ZVPublishRuleBook();
 
     bool Publish(CString Directory);

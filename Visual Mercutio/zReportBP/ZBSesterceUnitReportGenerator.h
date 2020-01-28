@@ -55,7 +55,7 @@ class AFX_EXT_CLASS ZBSesterceUnitReportGenerator : public ZBModelBPReportGenera
 public:
 
     ZBSesterceUnitReportGenerator(ZDGridDocument*                pDoc = NULL,
-                                  ZDProcessGraphModelMdlBP*    pModel = NULL,
+                                  PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                                   PSS_ProcessGraphModelDoc*        pSourceDoc = NULL,
                                   bool                            IncludeMonthDetail = true);
 

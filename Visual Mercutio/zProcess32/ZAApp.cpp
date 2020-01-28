@@ -41,7 +41,7 @@
 #include "zModel\PSS_LogicalRulesObserverMsg.h"
 #include "zModel\PSS_ModelGlobal.h"
 #include "zModel\PSS_DocObserverMsg.h"
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
 #include "zModelBP\ZBBPPageSymbol.h"
@@ -1594,7 +1594,7 @@ PSS_ProcessGraphModelDoc* ZAApp::FileNewModel()
         {
             // Retrieve the language assigned to the document
             ELanguage lang = pNewFile->GetLanguage();
-            pNewFile->SetNewModel(new ZDProcessGraphModelMdlBP(pNewFile->GetTitle()));
+            pNewFile->SetNewModel(new PSS_ProcessGraphModelMdlBP(pNewFile->GetTitle()));
 
             // Sets the language to the document
             pNewFile->SetLanguage(lang);
@@ -3265,7 +3265,7 @@ void ZAApp::OnGenerateCheckReport()
     //    Return the casted active base document.
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
     {
         return;
     }
@@ -3281,7 +3281,7 @@ void ZAApp::OnGenerateCheckReport()
         // Now we have an empty grid report
 
         pNewFile->SetNewReportGridGenerator(new ZBCheckReportGenerator(pNewFile,
-                                                                       dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                       dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                        pCurrentDoc));
 
         PSS_File file(pCurrentDoc->GetPathName());
@@ -3336,7 +3336,7 @@ void ZAApp::OnGenerateMercutioReport()
     //    Return the casted active base document.
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
     {
         return;
     }
@@ -3355,7 +3355,7 @@ void ZAApp::OnGenerateMercutioReport()
         rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-        PSS_SelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+        PSS_SelectModelSymbolDlg Dlg(dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                      IDS_MERCUTIOREP_SELECTPROCESS,
                                      g_Selectable_Model | g_Selectable_GraphPage,
                                      &rtClasses);
@@ -3366,7 +3366,7 @@ void ZAApp::OnGenerateMercutioReport()
             {
                 CWaitCursor Cursor2;
                 pNewFile->SetNewReportGridGenerator(new ZBMercutioReportGenerator(pNewFile,
-                                                                                  dynamic_cast<ZDProcessGraphModelMdlBP*>(dynamic_cast<ZBBPProcessSymbol*>(Dlg.GetSelectedSymbol())->GetChildModel()),
+                                                                                  dynamic_cast<PSS_ProcessGraphModelMdlBP*>(dynamic_cast<ZBBPProcessSymbol*>(Dlg.GetSelectedSymbol())->GetChildModel()),
                                                                                   pCurrentDoc));
 
                 PSS_File file(pCurrentDoc->GetPathName());
@@ -3432,7 +3432,7 @@ void ZAApp::OnGenerateConceptorReport()
     //    Return the casted active base document.
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
+    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
     {
         return;
     }
@@ -3451,7 +3451,7 @@ void ZAApp::OnGenerateConceptorReport()
 
             // JMR-MODIF - Le 6 mars 2006 - Suppression de l'option Synthesys, car apparamment non implémentée.
             pNewFile->SetNewReportGridGenerator(new ZBConceptorReportGenerator(pNewFile,
-                                                                               dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                               dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                                pCurrentDoc,
                                                                                TRUE,//Dlg.m_Synthesis,
                                                                                Dlg.m_Detail,
@@ -3524,7 +3524,7 @@ void ZAApp::OnGenerateSesterceReport()
     {
         // Now we have an empty grid report
         pNewFile->SetNewReportGridGenerator(new ZBSesterceReportGenerator(pNewFile,
-                                                                          dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                          dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                           pCurrentDoc));
 
         PSS_File file(pCurrentDoc->GetPathName());
@@ -3600,7 +3600,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
     {
         // Now we have an empty grid report
         pNewFile->SetNewReportGridGenerator(new ZBSesterceUnitReportGenerator(pNewFile,
-                                                                              dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                              dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                               pCurrentDoc,
                                                                               dlg.IncludeMonthDetail()));
 
@@ -3664,7 +3664,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
     {
         // Now we have an empty grid report
         pNewFile->SetNewReportGridGenerator(new ZBSesterceConsolidatedReportGenerator(pNewFile,
-                                                                                      dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                                      dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                                       pCurrentDoc,
                                                                                       dlg.IncludeMonthDetail()));
 
@@ -3729,7 +3729,7 @@ void ZAApp::OnGeneratePrestationsReport()
     {
         // Now we have an empty grid report
         pNewFile->SetNewReportGridGenerator(new ZBPrestationsReportGenerator(pNewFile,
-                                                                             dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                             dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                              pCurrentDoc,
                                                                              dlg.IncludeMonthDetail()));
 

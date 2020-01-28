@@ -27,7 +27,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphPage.h"
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
@@ -67,7 +67,7 @@ class AFX_EXT_CLASS ZVPublishConceptorReport : public PSS_BasicSymbolVisitor
 {
 public:
 
-    ZVPublishConceptorReport(ZDProcessGraphModelMdlBP* pModel = NULL,
+    ZVPublishConceptorReport(PSS_ProcessGraphModelMdlBP* pModel = NULL,
                              BOOL bShowDetails = TRUE,
                              BOOL bShowDeliverables = TRUE);
 
@@ -102,7 +102,7 @@ private:
 private:
 
     PSS_ProcessGraphModelMdl*                m_pRootModel;
-    ZDProcessGraphModelMdlBP*            m_pModel;
+    PSS_ProcessGraphModelMdlBP*            m_pModel;
     PSS_ProcessGraphModelDoc*                m_pSourceDoc;
     ZBBPProcessSymbol*                    m_pPreviousProcess;
 

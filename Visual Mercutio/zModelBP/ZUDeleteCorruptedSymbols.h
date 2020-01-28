@@ -34,7 +34,7 @@
 #include "ZBBPPackageSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
 #include "zBaseLib\PSS_Log.h"
 
@@ -57,7 +57,7 @@ public:
     ZUDeleteCorruptedSymbols();
     ~ZUDeleteCorruptedSymbols();
 
-    void CheckModel(ZDProcessGraphModelMdlBP* m_StartRootModel);
+    void CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRootModel);
 
     CODComponentSet* GetCorruptedSymbolList();
 

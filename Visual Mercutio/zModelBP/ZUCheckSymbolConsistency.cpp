@@ -15,10 +15,8 @@
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 
-// JMR-MODIF - Le 2 octobre 2006 - Ajout de l'en-tête ZDProcessGraphModelMdlBP.h
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
-// JMR-MODIF - Le 2 octobre 2006 - Ajout de l'en-tête ProcGraphModelCtlr.h
 #include "zModel\PSS_ProcessGraphModelController.h"
 
 #include "ZUCheckValidUnit.h"

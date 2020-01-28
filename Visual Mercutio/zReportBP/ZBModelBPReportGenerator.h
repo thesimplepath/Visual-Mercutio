@@ -24,10 +24,13 @@
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
+#ifndef PSS_ProcessGraphModelMdlBP
+    #define PSS_ProcessGraphModelMdlBP ZDProcessGraphModelMdlBP
+#endif
 
 // forward class declaration
 class ZDGridDocument;
-class ZDProcessGraphModelMdlBP;
+class PSS_ProcessGraphModelMdlBP;
 class PSS_ProcessGraphModelDoc;
 
 #ifdef _ZREPORTBPEXPORT
@@ -49,13 +52,13 @@ class AFX_EXT_CLASS ZBModelBPReportGenerator : public ZBGenericGridReportGenerat
 public:
 
     ZBModelBPReportGenerator(ZDGridDocument*            pDoc = NULL,
-                             ZDProcessGraphModelMdlBP*    pModel = NULL,
+                             PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                              PSS_ProcessGraphModelDoc*    pSourceDoc = NULL);
 
     virtual ~ZBModelBPReportGenerator();
 
     virtual void Initialize(ZDGridDocument*            pDoc,
-                            ZDProcessGraphModelMdlBP*    pModel,
+                            PSS_ProcessGraphModelMdlBP*    pModel,
                             PSS_ProcessGraphModelDoc*    pSourceDoc);
 
     /////////////////////////////////////////////////////////////////////////////
@@ -130,7 +133,7 @@ protected:
 protected:
 
     PSS_ProcessGraphModelDoc*        m_pSourceDoc;
-    ZDProcessGraphModelMdlBP*    m_pModel;
+    PSS_ProcessGraphModelMdlBP*    m_pModel;
     CStringArray                m_TabNameArray;
     bool                        m_InChargeOfClosingFile;
 };

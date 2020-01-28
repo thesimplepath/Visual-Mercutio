@@ -28,7 +28,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPDoorSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
@@ -121,7 +121,7 @@ class AFX_EXT_CLASS ZVPublishProcessReport
 {
 public:
 
-    ZVPublishProcessReport            ( ZDProcessGraphModelMdlBP*    pModel            = NULL,
+    ZVPublishProcessReport            (PSS_ProcessGraphModelMdlBP*    pModel            = NULL,
                                       ZBPropertyAttributes*        pPropAttributes    = NULL );
 
     virtual ~ZVPublishProcessReport    ();
@@ -130,12 +130,12 @@ public:
 
 private:
 
-    bool CreateFileSystem            ( CString Directory, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
+    bool CreateFileSystem            ( CString Directory, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL );
 
     CString GenerateFileName        ( CString Directory, CString ProcessName );
 
-    PSS_Symbol* FindSymbol            ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
-    PSS_LinkSymbol* FindLinkSymbol    ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
+    PSS_Symbol* FindSymbol            ( const CString SymbolName, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL );
+    PSS_LinkSymbol* FindLinkSymbol    ( const CString SymbolName, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL );
 
     void CreateReport                ( ZBBPProcessSymbol* m_pProcessSymbol );
     void GeneratePageFile            ( CString Name, CString Description );

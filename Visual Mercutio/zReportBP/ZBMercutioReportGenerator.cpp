@@ -6,7 +6,7 @@
 #include "ZBMercutioReportGenerator.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zReport\ZDGridDoc.h"
 
 #include "ZUGridMercutioRepProcedureNavigation.h"
@@ -32,7 +32,7 @@ IMPLEMENT_SERIAL(ZBMercutioReportGenerator, ZBModelBPReportGenerator, g_DefVersi
 //////////////////////////////////////////////////////////////////////
 
 ZBMercutioReportGenerator::ZBMercutioReportGenerator( ZDGridDocument*            pDoc        /*= NULL*/,
-                                                      ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
+                                                     PSS_ProcessGraphModelMdlBP*    pModel        /*= NULL*/,
                                                      PSS_ProcessGraphModelDoc*    pSourceDoc    /*= NULL*/ )
     : ZBModelBPReportGenerator( pDoc, pModel, pSourceDoc )
 {
@@ -51,7 +51,7 @@ ZBMercutioReportGenerator::~ZBMercutioReportGenerator()
 }
 
 void ZBMercutioReportGenerator::Initialize( ZDGridDocument*                pDoc,
-                                            ZDProcessGraphModelMdlBP*    pModel,
+                                           PSS_ProcessGraphModelMdlBP*    pModel,
                                            PSS_ProcessGraphModelDoc*        pSourceDoc )
 {
     // Store the model name
@@ -213,13 +213,13 @@ void ZBMercutioReportGenerator::OnPostRead( CArchive& ar )
         if ( m_pSourceDoc                                &&
              m_pSourceDoc->ReadFromFile( m_FileName )    &&
              m_pSourceDoc->GetModel()                    &&
-             ISA( m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
+             ISA( m_pSourceDoc->GetModel(), PSS_ProcessGraphModelMdlBP) )
         {
-            m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pSourceDoc->GetModel() );
+            m_pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>( m_pSourceDoc->GetModel() );
 
             if ( m_SubModelName )
             {
-                m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pModel->FindModelFromPath( m_SubModelName ) );
+                m_pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>( m_pModel->FindModelFromPath( m_SubModelName ) );
             }
 
             m_InChargeOfClosingFile = true;

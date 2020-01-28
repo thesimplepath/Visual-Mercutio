@@ -37,7 +37,7 @@
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZBBPGenericSymbol.h"
 #include "zModelBP\ZBBPTextZone.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZUDeleteCorruptedSymbols.h"
 #include "ZBSesterceRecalculationAutomate.h"
 #include "ZBDurationRecalculationAutomate.h"
@@ -1249,8 +1249,8 @@ void PSS_ProcessGraphModelControllerBP::OnCheckModel()
     if (!pModelDoc)
         return;
 
-    ZDProcessGraphModelMdlBP* pModel       = dynamic_cast<ZDProcessGraphModelMdlBP*>(pModelDoc->GetModel());
-    BOOL                      modelIsClean = FALSE;
+    PSS_ProcessGraphModelMdlBP* pModel       = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pModelDoc->GetModel());
+    BOOL                        modelIsClean = FALSE;
 
     if (pModel)
     {
@@ -1711,7 +1711,7 @@ void PSS_ProcessGraphModelControllerBP::OnShowInputAttributes()
     if (!pDoc)
         return;
 
-    ZDProcessGraphModelMdlBP* pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel());
+    PSS_ProcessGraphModelMdlBP* pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel());
 
     if (!pModel)
         return;
@@ -1730,7 +1730,7 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateShowInputAttributes(CCmdUI* pCmd
         return;
     }
 
-    ZDProcessGraphModelMdlBP* pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel());
+    PSS_ProcessGraphModelMdlBP* pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel());
 
     pCmdUI->Enable(pDoc->GetDynamicPropertiesManager() && pModel && pModel->GetInputAttributes());
 }

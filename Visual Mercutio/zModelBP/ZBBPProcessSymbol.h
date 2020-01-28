@@ -24,7 +24,7 @@
 #include "ZBBPSimPropProcess.h"
 #include "ZBBPPrestationsProperties.h"
 #include "ZBProcDeliveries.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBProcRules.h"
 #include "ZBBPRulesProp.h"
 #include "ZBProcRisk.h"
@@ -516,7 +516,7 @@ private:
 
     int GetDeliverablesInChildPages(CString& DeliverablesList);
 
-    float FindQuantity(const CString Main, ZDProcessGraphModelMdlBP* m_RootModel = NULL);
+    float FindQuantity(const CString Main, PSS_ProcessGraphModelMdlBP* m_RootModel = NULL);
 
     float CalculateDeliveryPercentage(float Quantity)
     {

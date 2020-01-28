@@ -147,7 +147,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcGraphModelMdlBP.cpp">
+    <ClCompile Include="PSS_ProcessGraphModelMdlBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -587,7 +587,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PSS_ProcessGraphModelControllerBP.h" />
-    <ClInclude Include="ProcGraphModelMdlBP.h" />
+    <ClInclude Include="PSS_ProcessGraphModelMdlBP.h" />
     <ClInclude Include="PSS_UnitPropertiesBP.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ZBBPAnnualNumberProp.h" />

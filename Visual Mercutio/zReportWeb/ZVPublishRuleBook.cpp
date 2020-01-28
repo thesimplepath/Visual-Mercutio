@@ -17,7 +17,7 @@
 // ******************************************************************************************************
 
 // Constructeur de la classe ZVPublishRuleBook.
-ZVPublishRuleBook::ZVPublishRuleBook(ZDProcessGraphModelMdlBP* pModel /*= NULL*/)
+ZVPublishRuleBook::ZVPublishRuleBook(PSS_ProcessGraphModelMdlBP* pModel /*= NULL*/)
 {
     m_pRootModel = pModel;
     Level = 0;

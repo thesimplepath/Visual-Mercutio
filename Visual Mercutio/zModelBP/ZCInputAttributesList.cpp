@@ -10,7 +10,7 @@
 
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zModel\PSS_SymbolObserverMsg.h"
@@ -246,8 +246,8 @@ void ZCInputAttributesList::DocumentActivated(PSS_ProcessGraphModelDoc* pDoc)
     if (!pDoc)
         Empty();
 
-    if (!pDoc->GetModel() || !ISA(pDoc->GetModel(), ZDProcessGraphModelMdlBP) ||
-        !dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes())
+    if (!pDoc->GetModel() || !ISA(pDoc->GetModel(), PSS_ProcessGraphModelMdlBP) ||
+        !dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes())
     {
         Initialize(NULL, NULL);
         return;
@@ -259,13 +259,13 @@ void ZCInputAttributesList::DocumentActivated(PSS_ProcessGraphModelDoc* pDoc)
         HasChanged = true;
 
     if (pDoc->GetModel() &&
-        ISA(pDoc->GetModel(), ZDProcessGraphModelMdlBP) &&
-        //        dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes() &&
-        dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes() != m_pInputManager)
+        ISA(pDoc->GetModel(), PSS_ProcessGraphModelMdlBP) &&
+        //        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes() &&
+        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes() != m_pInputManager)
         HasChanged = true;
 
     if (HasChanged)
-        Initialize(dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes(), pDoc->GetDynamicPropertiesManager());
+        Initialize(dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes(), pDoc->GetDynamicPropertiesManager());
 
 
 

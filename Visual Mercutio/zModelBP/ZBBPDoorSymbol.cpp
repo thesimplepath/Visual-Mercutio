@@ -14,7 +14,7 @@
 #include "zModel\PSS_SelectModelSymbolDlg.h"
 #include "zModel\PSS_DocObserverMsg.h"
 
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPPageSymbol.h"
@@ -413,10 +413,10 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
         return false;
     }
 
-    if (pModel && ISA(pModel, ZDProcessGraphModelMdlBP))
+    if (pModel && ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
-        ZDProcessGraphModelMdlBP* pRootModel =
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel)->GetRoot());
+        PSS_ProcessGraphModelMdlBP* pRootModel =
+            reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pModel)->GetRoot());
 
         if (!pRootModel)
         {
@@ -470,11 +470,11 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
             if (m_pModel && pNewVp && pCtrl)
             {
                 CODNodeArray Nodes;
-                size_t ElementCount = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pModel)->GetBPDoorSymbols(Nodes);
+                std::size_t ElementCount = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pModel)->GetBPDoorSymbols(Nodes);
                 bool Found = false;
                 ZBBPDoorSymbol* pDoorFound = NULL;
 
-                for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
+                for (std::size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
                 {
                     IODNode* pINode = Nodes.GetAt(nNodeIdx);
                     pDoorFound = static_cast<ZBBPDoorSymbol*>(pINode);
@@ -502,7 +502,7 @@ bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* 
 
                     if (pNewSymbolInserted && ISA(pNewSymbolInserted, ZBBPDoorSymbol))
                     {
-                        dynamic_cast<ZBBPDoorSymbol*>(pNewSymbolInserted)->SetDoorModel(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel));
+                        dynamic_cast<ZBBPDoorSymbol*>(pNewSymbolInserted)->SetDoorModel(reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(pModel));
 
                         // Assigns the twin door symbol
                         AssignTwinDoorSymbol(dynamic_cast<ZBBPDoorSymbol*>(pNewSymbolInserted));

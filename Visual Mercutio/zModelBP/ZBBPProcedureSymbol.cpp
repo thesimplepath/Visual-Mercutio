@@ -736,9 +736,9 @@ void ZBBPProcedureSymbol::CheckRulesSync(CStringArray& RulesList)
     {
         PSS_LogicalRulesEntity* p_MainRule = NULL;
 
-        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* p_Model = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             p_MainRule = p_Model->GetMainLogicalRules();
         }
@@ -825,9 +825,9 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
 
         PSS_LogicalRulesEntity* pMainRule = NULL;
 
-        if (GetOwnerModel() && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
+        if (GetOwnerModel() && ISA(GetOwnerModel(), PSS_ProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* pOwnerModel = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
+            PSS_ProcessGraphModelMdlBP* pOwnerModel = reinterpret_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
 
             if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), PSS_ProcessGraphModelControllerBP))
             {

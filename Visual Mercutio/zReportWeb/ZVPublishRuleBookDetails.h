@@ -24,7 +24,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 
-#include "zModelBP\ProcGraphModelMdlBP.h"
+#include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
@@ -50,7 +50,7 @@ class AFX_EXT_CLASS ZVPublishRuleBookDetails
 {
 public:
 
-    ZVPublishRuleBookDetails(ZDProcessGraphModelMdlBP* pModel = NULL);
+    ZVPublishRuleBookDetails(PSS_ProcessGraphModelMdlBP* pModel = NULL);
     virtual ~ZVPublishRuleBookDetails();
 
     bool Publish(CString Directory);
@@ -76,7 +76,7 @@ private:
 
     void ExploreProcessHierarchy(CString                    RuleNumber,
                                  CString                    RuleName,
-                                 ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL);
+                                 PSS_ProcessGraphModelMdlBP*    m_StartRootModel = NULL);
 
 private:
 

@@ -26,7 +26,7 @@
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "ProcGraphModelMdlBP.h"
+#include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBProcRules.h"
 #include "ZBBPRulesProp.h"
 #include "ZBProcRisk.h"
@@ -831,7 +831,7 @@ private:
     // JMR-MODIF - Le 27 mars 2006 - Ajout de la fonction virtuelle NotifyNameChange.
     void NotifyNameChange(const CString                OldName,
                           const CString                NewName,
-                          ZDProcessGraphModelMdlBP*    m_RootModel = NULL);
+                          PSS_ProcessGraphModelMdlBP* m_RootModel = NULL);
 
     bool CreateSymbolName();
     bool DoDoorProcedureConnection(ZBBPDoorSymbol* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);

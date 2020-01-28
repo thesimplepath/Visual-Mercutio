@@ -17,7 +17,7 @@
 // ******************************************************************************************************
 
 // Constructeur de la classe ZVPublishProcessReport.
-ZVPublishPrestationsReport::ZVPublishPrestationsReport(ZDProcessGraphModelMdlBP* pModel /*= NULL*/)
+ZVPublishPrestationsReport::ZVPublishPrestationsReport(PSS_ProcessGraphModelMdlBP* pModel /*= NULL*/)
 {
     m_pRootModel = pModel;
 }
@@ -61,7 +61,7 @@ bool ZVPublishPrestationsReport::Publish(CString Directory)
 // ******************************************************************************************************
 
 // Retrouve et publie les procédures, avec leurs groupes associés, dans les pages enfants d'un processus.
-void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, ZDProcessGraphModelMdlBP* m_StartModel)
+void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, PSS_ProcessGraphModelMdlBP* m_StartModel)
 {
     if (m_StartModel != NULL)
     {
@@ -76,7 +76,7 @@ void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, ZDProcessGr
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -137,13 +137,13 @@ void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, ZDProcessGr
 
 // Explore le document, recherche les processus contenus, et teste s'ils contiennent la prestation demandée.
 void ZVPublishPrestationsReport::ExploreProcessHierarchy(CString                    PrestationName,
-                                                         ZDProcessGraphModelMdlBP*    m_StartRootModel    /*= NULL*/)
+                                                         PSS_ProcessGraphModelMdlBP*    m_StartRootModel    /*= NULL*/)
 {
     // Si le modèle d'entrée est vide, cela veut dire que l'on veut une recherche sur tout le document.
     if (m_StartRootModel == NULL)
     {
         // Obtient le contrôleur de modèles du document.
-        m_StartRootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pRootModel);
+        m_StartRootModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pRootModel);
     }
 
     if (m_StartRootModel != NULL)
@@ -159,7 +159,7 @@ void ZVPublishPrestationsReport::ExploreProcessHierarchy(CString                
             for (PSS_ProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext())
             {
                 // Obtient le contrôleur de modèle de la page courante.
-                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(pPage->GetModel());
+                PSS_ProcessGraphModelMdlBP* m_CurModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pPage->GetModel());
 
                 if (m_CurModel != NULL)
                 {
@@ -181,8 +181,8 @@ void ZVPublishPrestationsReport::ExploreProcessHierarchy(CString                
                                 if (m_Process != NULL)
                                 {
                                     // Obtient le contrôleur de modèles enfant du processus.
-                                    ZDProcessGraphModelMdlBP* m_ChildModel =
-                                        dynamic_cast<ZDProcessGraphModelMdlBP*>(m_Process->GetModel());
+                                    PSS_ProcessGraphModelMdlBP* m_ChildModel =
+                                        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_Process->GetModel());
 
                                     // Si le contrôleur de modèles existe, fait un appel récursif sur celui-ci,
                                     // afin de passer en revue toutes les pages du document.
