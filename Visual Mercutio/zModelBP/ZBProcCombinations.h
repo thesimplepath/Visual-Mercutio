@@ -33,6 +33,14 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping
+#ifndef PSS_CombinationPropertiesBP
+    #define PSS_CombinationPropertiesBP ZBBPCombinationProperties
+#endif
+
+// forward class declarations
+class PSS_CombinationPropertiesBP;
+
 #ifdef _ZMODELBPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
@@ -43,12 +51,6 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 6 fàvrier 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBBPCombinationProperties;
-
 /////////////////////////////////////////////////////////////////////////////
 // scope symbols in stingray foundation library
 using namespace sfl;
@@ -56,13 +58,13 @@ using namespace sfl;
 ///////////////////////////////////////////////////////////////////////////
 // Collection definitions
 
-//@type ZBBPCombinationPropertiesSet | An array of ZBBPCombinationProperties pointers.
-//@iex typedef CCArray_T<ZBBPCombinationProperties*,ZBBPCombinationProperties*> ZBBPCombinationPropertiesSet;
-typedef CCArray_T<ZBBPCombinationProperties*, ZBBPCombinationProperties*> ZBBPCombinationPropertiesSet;
+//@type PSS_CombinationPropertiesBP | An array of PSS_CombinationPropertiesBP pointers.
+//@iex typedef CCArray_T<PSS_CombinationPropertiesBP*,PSS_CombinationPropertiesBP*> ZBBPCombinationPropertiesSet;
+typedef CCArray_T<PSS_CombinationPropertiesBP*, PSS_CombinationPropertiesBP*> ZBBPCombinationPropertiesSet;
 
 //@type ZBBPCombinationPropertiesIterator | An iterator for ZBBPCombinationPropertiesSet collections.
-//@iex typedef Iterator_T<ZBBPCombinationProperties*> ZBBPCombinationPropertiesIterator;
-typedef Iterator_T<ZBBPCombinationProperties*> ZBBPCombinationPropertiesIterator;
+//@iex typedef Iterator_T<PSS_CombinationPropertiesBP*> PSS_CombinationPropertiesBP;
+typedef Iterator_T<PSS_CombinationPropertiesBP*> ZBBPCombinationPropertiesIterator;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBProcCombinations class
@@ -99,11 +101,11 @@ public:
     // Add a new combination,
     // and return the index of the new added combination
     // Return -1 if the function fails
-    int AddCombination( ZBBPCombinationProperties* pProperty );
+    int AddCombination(PSS_CombinationPropertiesBP* pProperty );
 
     // Delete a combination
     bool DeleteCombination( size_t Index );
-    bool DeleteCombination( ZBBPCombinationProperties* pProperty );
+    bool DeleteCombination(PSS_CombinationPropertiesBP* pProperty );
 
     // Return true if the combination name already exists
     bool CombinationNameExist( const CString Name ) const;
@@ -121,14 +123,14 @@ public:
     bool IsDeliverableInString( const CString Deliverables, const CString Value ) const;
 
     // Retrieve the right combination properties containing a specific deliverable
-    ZBBPCombinationProperties* LocateCombinationOfDeliverable( const CString DeliverableName ) const;
+    PSS_CombinationPropertiesBP* LocateCombinationOfDeliverable( const CString DeliverableName ) const;
 
     // Retrieve the right combination properties index containing a specific deliverable
     // if not found, return -1
     int LocateCombinationIndexOfDeliverable( const CString DeliverableName ) const;
 
     // Retrieve the right combination properties containing a specific master
-    ZBBPCombinationProperties* LocateCombinationOfMaster( const CString Master ) const;
+    PSS_CombinationPropertiesBP* LocateCombinationOfMaster( const CString Master ) const;
 
     // Retrieve the right combination properties index containing a specific master
     // if not found, return -1
@@ -153,7 +155,7 @@ public:
         return m_Set.GetSize();
     };
 
-    ZBBPCombinationProperties* GetProperty( size_t Index ) const
+    PSS_CombinationPropertiesBP* GetProperty( size_t Index ) const
     {
         if ( Index < GetCombinationCount() )
         {

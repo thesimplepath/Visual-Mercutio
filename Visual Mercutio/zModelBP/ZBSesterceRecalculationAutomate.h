@@ -10,12 +10,12 @@
 #endif
 
 // processsoft
-#include "ZBBPAutomate.h"
+#include "PSS_AutomateBP.h"
 
 // forward class declaration
 class ZBBPProcedureSymbol;
 
-class ZBSesterceRecalculationAutomate : public ZBBPAutomate
+class ZBSesterceRecalculationAutomate : public PSS_AutomateBP
 {
 public:
 

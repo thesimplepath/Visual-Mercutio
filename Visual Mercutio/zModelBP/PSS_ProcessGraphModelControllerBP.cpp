@@ -1370,7 +1370,7 @@ void PSS_ProcessGraphModelControllerBP::OnRecalculateModelDurations()
         automate.SetMaxWaitingForOtherLinks(1000);
         automate.SetMaxPaused(1000);
         automate.SetMaxLoop(2000);
-        automate.SetAllowUncompletePath();
+        automate.SetAllowIncompletePath();
         automate.Start(1);
 
         // launch the second pass

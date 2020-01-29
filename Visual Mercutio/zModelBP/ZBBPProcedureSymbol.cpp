@@ -16,7 +16,7 @@
 #include "ZBBPDecisionListProp.h"
 #include "PSS_CostPropertiesProcedureBP.h"
 #include "PSS_UnitPropertiesBP.h"
-#include "ZBBPCombinationProp.h"
+#include "PSS_CombinationPropertiesBP.h"
 #include "ZBBPSimPropProcedure.h"
 
 #include "ZVAddRemoveCombinationDeliverableDlg.h"
@@ -1971,7 +1971,7 @@ bool ZBBPProcedureSymbol::SaveProperties(ZBPropertySet& PropSet)
             pProp->GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
         {
             int i = pProp->GetCategoryID() - ZS_BP_PROP_COMBINATION;
-            ZBBPCombinationProperties* pCombProps = GetCombinationProperty(i);
+            PSS_CombinationPropertiesBP* pCombProps = GetCombinationProperty(i);
 
             if (!pCombProps)
             {

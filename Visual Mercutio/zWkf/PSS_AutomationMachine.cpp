@@ -30,7 +30,7 @@ PSS_AutomationMachine::PSS_AutomationMachine(PSS_ProcessGraphModelMdl* pModel,
                                              int                       maxLoop,
                                              int                       maxPaused,
                                              int                       maxWaitingForOtherLinks,
-                                             bool                      allowUncompletePath) :
+                                             bool                      allowIncompletePath) :
     m_pModel(pModel),
     m_pMainThread(NULL),
     m_pSymbol(NULL),
@@ -41,7 +41,7 @@ PSS_AutomationMachine::PSS_AutomationMachine(PSS_ProcessGraphModelMdl* pModel,
     m_MaxPaused(maxPaused),
     m_MaxWaitingForOtherLinks(maxWaitingForOtherLinks),
     m_IsLogging(false),
-    m_AllowUncompletePath(allowUncompletePath)
+    m_AllowIncompletePath(allowIncompletePath)
 {
     m_StateMachineCollection.AssignModel(m_pModel);
 }
@@ -52,7 +52,7 @@ PSS_AutomationMachine::PSS_AutomationMachine(PSS_Symbol*               pSymbol,
                                              int                       maxLoop,
                                              int                       maxPaused,
                                              int                       maxWaitingForOtherLinks,
-                                             bool                      allowUncompletePath) :
+                                             bool                      allowIncompletePath) :
     m_pModel(pModel),
     m_pMainThread(NULL),
     m_pSymbol(pSymbol),
@@ -63,7 +63,7 @@ PSS_AutomationMachine::PSS_AutomationMachine(PSS_Symbol*               pSymbol,
     m_MaxPaused(maxPaused),
     m_MaxWaitingForOtherLinks(maxWaitingForOtherLinks),
     m_IsLogging(false),
-    m_AllowUncompletePath(allowUncompletePath)
+    m_AllowIncompletePath(allowIncompletePath)
 {
     m_StateMachineCollection.AssignModel(m_pModel);
 }

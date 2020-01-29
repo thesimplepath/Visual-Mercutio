@@ -82,14 +82,14 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@param maxLoop - maximum loop counter, -1 to set to infinite
         *@param maxPaused - maximum paused counter, -1 to set to infinite
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
-        *@param allowUncompletePath - if true, a path can be broken when object are waiting on other objects
+        *@param allowIncompletePath - if true, a path can be broken when object are waiting on other objects
         */
         PSS_AutomationMachine(PSS_ProcessGraphModelMdl* pModel                  =  NULL,
                               PSS_Log*                  pLog                    =  NULL,
                               int                       maxLoop                 = -1,
                               int                       maxPaused               = -1,
                               int                       maxWaitingForOtherLinks = -1,
-                              bool                      allowUncompletePath     =  false);
+                              bool                      allowIncompletePath     =  false);
 
         /**
         * Constructor
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@param maxLoop - maximum loop counter, -1 to set to infinite
         *@param maxPaused - maximum paused counter, -1 to set to infinite
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
-        *@param allowUncompletePath - if true, a path can be broken when object are waiting on other objects
+        *@param allowIncompletePath - if true, a path can be broken when object are waiting on other objects
         */
         PSS_AutomationMachine(PSS_Symbol*               pSymbol,
                               PSS_ProcessGraphModelMdl* pModel                  =  NULL,
@@ -107,7 +107,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
                               int                       maxLoop                 = -1,
                               int                       maxPaused               = -1,
                               int                       maxWaitingForOtherLinks = -1,
-                              bool                      allowUncompletePath     =  false);
+                              bool                      allowIncompletePath     =  false);
 
         virtual ~PSS_AutomationMachine();
 
@@ -205,16 +205,16 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         virtual inline void SetMaxWaitingForOtherLinks(int value);
 
         /**
-        * Gets if uncomplete path is allowed
-        *@return true if uncomplete path is allowed, otherwise false
+        * Gets if incomplete path is allowed
+        *@return true if incomplete path is allowed, otherwise false
         */
-        virtual inline bool AllowUncompletePath() const;
+        virtual inline bool AllowIncompletePath() const;
 
         /**
-        * Sets if uncomplete path is allowed
-        *@param value - if true, uncomplete path is allowed
+        * Sets if incomplete path is allowed
+        *@param value - if true, incomplete path is allowed
         */
-        virtual inline void SetAllowUncompletePath(bool value = true);
+        virtual inline void SetAllowIncompletePath(bool value = true);
 
         /**
         * Gets the loop counter
@@ -540,7 +540,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         int                             m_MaxPaused;
         int                             m_MaxWaitingForOtherLinks;
         bool                            m_IsLogging;
-        bool                            m_AllowUncompletePath;
+        bool                            m_AllowIncompletePath;
 
         /**
         * Merges all the state objects
@@ -701,14 +701,14 @@ void PSS_AutomationMachine::SetMaxWaitingForOtherLinks(int value)
     m_MaxWaitingForOtherLinks = value;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::AllowUncompletePath() const
+bool PSS_AutomationMachine::AllowIncompletePath() const
 {
-    return m_AllowUncompletePath;
+    return m_AllowIncompletePath;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetAllowUncompletePath(bool value)
+void PSS_AutomationMachine::SetAllowIncompletePath(bool value)
 {
-    m_AllowUncompletePath = value;
+    m_AllowIncompletePath = value;
 }
 //---------------------------------------------------------------------------
 void PSS_AutomationMachine::StartLogging()

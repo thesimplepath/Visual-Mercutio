@@ -45,7 +45,7 @@ static char THIS_FILE[] = __FILE__;
 
 ZBSesterceRecalculationAutomate::ZBSesterceRecalculationAutomate(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                  PSS_Log*                    pLog    /*= NULL*/)
-    : ZBBPAutomate(pModel, pLog)
+    : PSS_AutomateBP(pModel, pLog)
 {}
 
 ZBSesterceRecalculationAutomate::~ZBSesterceRecalculationAutomate()
@@ -53,7 +53,7 @@ ZBSesterceRecalculationAutomate::~ZBSesterceRecalculationAutomate()
 
 bool ZBSesterceRecalculationAutomate::OnStart(PSS_Log* pLog)
 {
-    bool RetValue = ZBBPAutomate::OnStart(pLog);
+    bool RetValue = PSS_AutomateBP::OnStart(pLog);
 
     // If log
     if (pLog)
@@ -130,17 +130,17 @@ bool ZBSesterceRecalculationAutomate::OnStop(PSS_Log* pLog)
         pLog->AddLine(e);
     }
 
-    return ZBBPAutomate::OnStop(pLog);
+    return PSS_AutomateBP::OnStop(pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnPause(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnPause(pLog);
+    return PSS_AutomateBP::OnPause(pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnResume(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnResume(pLog);
+    return PSS_AutomateBP::OnResume(pLog);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -149,35 +149,35 @@ bool ZBSesterceRecalculationAutomate::OnObjectIsFinished(PSS_StateObject*  pStat
                                                          PSS_StateMachine* pStateMachine,
                                                          PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectIsFinished(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnObjectIsFinished(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnObjectIsPaused(PSS_StateObject*  pState,
                                                        PSS_StateMachine* pStateMachine,
                                                        PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectIsPaused(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnObjectIsPaused(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
                                                                      PSS_StateMachine* pStateMachine,
                                                                      PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectIsWaitingForOtherLinks(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnObjectIsWaitingForOtherLinks(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnBeforeRequestMoveForward(PSS_StateObject*  pState,
                                                                  PSS_StateMachine* pStateMachine,
                                                                  PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnBeforeRequestMoveForward(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnBeforeRequestMoveForward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject*  pState,
                                                                    PSS_StateMachine* pStateMachine,
                                                                    PSS_Log*            pLog)
 {
-    if (!ZBBPAutomate::OnNextSymbolAfterMoveForward(pState, pStateMachine, pLog))
+    if (!PSS_AutomateBP::OnNextSymbolAfterMoveForward(pState, pStateMachine, pLog))
     {
         return false;
     }
@@ -717,7 +717,7 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
                                                           PSS_StateMachine* pStateMachine,
                                                           PSS_Log*            pLog)
 {
-    if (!ZBBPAutomate::OnBeforeMoveForward(pState, pStateMachine, pLog))
+    if (!PSS_AutomateBP::OnBeforeMoveForward(pState, pStateMachine, pLog))
         return false;
 
 #ifdef _DEBUG
@@ -908,43 +908,43 @@ bool ZBSesterceRecalculationAutomate::OnAfterMoveForward(PSS_StateObject*  pStat
                                                          PSS_StateMachine* pStateMachine,
                                                          PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnAfterMoveForward(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnAfterMoveForward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnBeforeMoveBackward(PSS_StateObject*  pState,
                                                            PSS_StateMachine* pStateMachine,
                                                            PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnBeforeMoveBackward(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnBeforeMoveBackward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnAfterMoveBackward(PSS_StateObject*  pState,
                                                           PSS_StateMachine* pStateMachine,
                                                           PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnAfterMoveBackward(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnAfterMoveBackward(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnObjectError(PSS_StateObject*  pState,
                                                     PSS_StateMachine* pStateMachine,
                                                     PSS_Log*            pLog)
 {
-    return ZBBPAutomate::OnObjectError(pState, pStateMachine, pLog);
+    return PSS_AutomateBP::OnObjectError(pState, pStateMachine, pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnReachMaximumLoopCounter(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnReachMaximumLoopCounter(pLog);
+    return PSS_AutomateBP::OnReachMaximumLoopCounter(pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnReachMaximumWaitingForOtherLinksCounter(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnReachMaximumWaitingForOtherLinksCounter(pLog);
+    return PSS_AutomateBP::OnReachMaximumWaitingForOtherLinksCounter(pLog);
 }
 
 bool ZBSesterceRecalculationAutomate::OnReachMaximumInPauseCounter(PSS_Log* pLog)
 {
-    return ZBBPAutomate::OnReachMaximumInPauseCounter(pLog);
+    return PSS_AutomateBP::OnReachMaximumInPauseCounter(pLog);
 }
 
 double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables(CODEdgeArray&        LeavingEdges,

@@ -13,13 +13,13 @@
 #include "stdafx.h"
 #include "ZBProcCombinations.h"
 
-#include "ZBBPCombinationProp.h"
+#include "PSS_CombinationPropertiesBP.h"
 
 #include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -35,30 +35,27 @@ IMPLEMENT_SERIAL(ZBProcCombinations, CObject, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBProcCombinations::ZBProcCombinations( CODSymbolComponent* pParent /*= NULL*/ )
-    : m_pParent( pParent )
-{
-}
+ZBProcCombinations::ZBProcCombinations(CODSymbolComponent* pParent /*= NULL*/)
+    : m_pParent(pParent)
+{}
 
 ZBProcCombinations::~ZBProcCombinations()
 {
     RemoveAllCombinations();
 }
 
-ZBProcCombinations::ZBProcCombinations( const ZBProcCombinations& src )
+ZBProcCombinations::ZBProcCombinations(const ZBProcCombinations& src)
 {
     *this = src;
 }
 
-ZBProcCombinations& ZBProcCombinations::operator=( const ZBProcCombinations& src )
+ZBProcCombinations& ZBProcCombinations::operator=(const ZBProcCombinations& src)
 {
     // Copy the members.
-    ZBBPCombinationPropertiesIterator i( &const_cast<ZBProcCombinations&>( src ).GetCombinationSet() );
+    ZBBPCombinationPropertiesIterator it(&const_cast<ZBProcCombinations&>(src).GetCombinationSet());
 
-    for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-    {
-        AddCombination( pProp->Dup() );
-    }
+    for (PSS_CombinationPropertiesBP* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        AddCombination(pProp->Dup());
 
     m_pParent = src.m_pParent;
 
@@ -67,24 +64,24 @@ ZBProcCombinations& ZBProcCombinations::operator=( const ZBProcCombinations& src
 
 ZBProcCombinations* ZBProcCombinations::Dup() const
 {
-    return ( new ZBProcCombinations( *this ) );
+    return (new ZBProcCombinations(*this));
 }
 
-void ZBProcCombinations::SetParent( CODSymbolComponent* pParent )
+void ZBProcCombinations::SetParent(CODSymbolComponent* pParent)
 {
     m_pParent = pParent;
 }
 
 bool ZBProcCombinations::CreateInitialProperties()
 {
-    if ( GetCombinationCount() > 0 )
+    if (GetCombinationCount() > 0)
     {
         return true;
     }
 
-    ZBBPCombinationProperties* pProps = new ZBBPCombinationProperties;
+    PSS_CombinationPropertiesBP* pProps = new PSS_CombinationPropertiesBP();
 
-    if ( AddCombination( pProps ) >= 0 )
+    if (AddCombination(pProps) >= 0)
     {
         return true;
     }
@@ -94,22 +91,22 @@ bool ZBProcCombinations::CreateInitialProperties()
 
 int ZBProcCombinations::AddNewCombination()
 {
-    ZBBPCombinationProperties* pProps = new ZBBPCombinationProperties;
+    PSS_CombinationPropertiesBP* pProps = new PSS_CombinationPropertiesBP();
 
-    return AddCombination( pProps );
+    return AddCombination(pProps);
 }
 
-int ZBProcCombinations::AddCombination( ZBBPCombinationProperties* pProperty )
+int ZBProcCombinations::AddCombination(PSS_CombinationPropertiesBP* pProperty)
 {
-    if ( pProperty )
+    if (pProperty)
     {
         // If no combination name specified, set it by default
-        if ( pProperty->GetCombinationName().IsEmpty() )
+        if (pProperty->GetCombinationName().IsEmpty())
         {
-            pProperty->SetCombinationName( GetNextCombinationValidName() );
+            pProperty->SetCombinationName(GetNextCombinationValidName());
         }
 
-        m_Set.Add( pProperty );
+        m_Set.Add(pProperty);
 
         // Returns the index
         return GetCombinationCount() - 1;
@@ -118,18 +115,18 @@ int ZBProcCombinations::AddCombination( ZBBPCombinationProperties* pProperty )
     return -1;
 }
 
-bool ZBProcCombinations::DeleteCombination( size_t Index )
+bool ZBProcCombinations::DeleteCombination(size_t Index)
 {
-    if ( Index < GetCombinationCount() )
+    if (Index < GetCombinationCount())
     {
-        ZBBPCombinationProperties* pProperty = GetProperty( Index );
+        PSS_CombinationPropertiesBP* pProperty = GetProperty(Index);
 
-        if ( pProperty != NULL )
+        if (pProperty != NULL)
         {
             delete pProperty;
             pProperty = NULL;
 
-            m_Set.RemoveAt( Index );
+            m_Set.RemoveAt(Index);
 
             return true;
         }
@@ -138,13 +135,13 @@ bool ZBProcCombinations::DeleteCombination( size_t Index )
     return false;
 }
 
-bool ZBProcCombinations::DeleteCombination( ZBBPCombinationProperties* pProperty )
+bool ZBProcCombinations::DeleteCombination(PSS_CombinationPropertiesBP* pProperty)
 {
-    ZBBPCombinationPropertiesIterator i( &m_Set );
+    ZBBPCombinationPropertiesIterator i(&m_Set);
 
-    for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_CombinationPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProperty == pProp )
+        if (pProperty == pProp)
         {
             delete pProp;
             pProp = NULL;
@@ -160,9 +157,9 @@ bool ZBProcCombinations::DeleteCombination( ZBBPCombinationProperties* pProperty
 
 void ZBProcCombinations::RemoveAllCombinations()
 {
-    ZBBPCombinationPropertiesIterator i( &m_Set );
+    ZBBPCombinationPropertiesIterator i(&m_Set);
 
-    for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_CombinationPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -171,57 +168,57 @@ void ZBProcCombinations::RemoveAllCombinations()
     m_Set.RemoveAll();
 }
 
-CString ZBProcCombinations::GetCombinationName( size_t Index ) const
+CString ZBProcCombinations::GetCombinationName(size_t Index) const
 {
-    if ( Index < GetCombinationCount() )
+    if (Index < GetCombinationCount())
     {
-        return m_Set.GetAt( Index )->GetCombinationName();
+        return m_Set.GetAt(Index)->GetCombinationName();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBProcCombinations::SetCombinationName( size_t Index, CString Value )
+void ZBProcCombinations::SetCombinationName(size_t Index, CString Value)
 {
-    if ( Index < GetCombinationCount() )
+    if (Index < GetCombinationCount())
     {
-        m_Set.GetAt(Index)->SetCombinationName( Value );
-    }
-}
-
-CString ZBProcCombinations::GetCombinationDeliverables( size_t Index ) const
-{
-    if ( Index < GetCombinationCount() )
-    {
-        return m_Set.GetAt( Index )->GetCombinationDeliverables();
-    }
-
-    return _T( "" );
-}
-
-void ZBProcCombinations::SetCombinationDeliverables( size_t Index, CString Value )
-{
-    if ( Index < GetCombinationCount() )
-    {
-        m_Set.GetAt( Index )->SetCombinationDeliverables( Value );
+        m_Set.GetAt(Index)->SetCombinationName(Value);
     }
 }
 
-bool ZBProcCombinations::AddCombinationDeliverable( size_t Index, CString Value )
+CString ZBProcCombinations::GetCombinationDeliverables(size_t Index) const
 {
-    CString Deliverables = GetCombinationDeliverables( Index );
+    if (Index < GetCombinationCount())
+    {
+        return m_Set.GetAt(Index)->GetCombinationDeliverables();
+    }
+
+    return _T("");
+}
+
+void ZBProcCombinations::SetCombinationDeliverables(size_t Index, CString Value)
+{
+    if (Index < GetCombinationCount())
+    {
+        m_Set.GetAt(Index)->SetCombinationDeliverables(Value);
+    }
+}
+
+bool ZBProcCombinations::AddCombinationDeliverable(size_t Index, CString Value)
+{
+    CString Deliverables = GetCombinationDeliverables(Index);
 
     PSS_Tokenizer token;    // Initialize the token with ; as separator
 
-    CString str = token.GetFirstToken( Deliverables );
+    CString str = token.GetFirstToken(Deliverables);
     bool Found = false;
-    
+
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If we found the same deliverable,
         // then sets the Found flag to true
-        if ( str == Value )
+        if (str == Value)
         {
             Found = true;
             break;
@@ -232,42 +229,42 @@ bool ZBProcCombinations::AddCombinationDeliverable( size_t Index, CString Value 
     }
 
     // If not found, add it
-    if ( Found == false )
+    if (Found == false)
     {
-        token.InitializeString( Deliverables );
-        token.AddToken( Value );
+        token.InitializeString(Deliverables);
+        token.AddToken(Value);
 
         // Set the new deliverable complete string
-        SetCombinationDeliverables( Index, token.GetString() );
+        SetCombinationDeliverables(Index, token.GetString());
     }
 
     return true;
 }
 
-bool ZBProcCombinations::RemoveCombinationDeliverable( size_t Index, CString Value )
+bool ZBProcCombinations::RemoveCombinationDeliverable(size_t Index, CString Value)
 {
-    CString Deliverables = GetCombinationDeliverables( Index );
+    CString Deliverables = GetCombinationDeliverables(Index);
 
     PSS_Tokenizer srcToken;    // Initialize the source token with ; as separator
     PSS_Tokenizer dstToken;    // Initialize the destination token with ; as separator
 
-    CString str = srcToken.GetFirstToken( Deliverables );
+    CString str = srcToken.GetFirstToken(Deliverables);
     bool Found = false;
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If we found the same deliverable,
         // then sets the Found flag to true
         // and skip it
-        if ( str == Value )
+        if (str == Value)
         {
             Found = true;
         }
         else
         {
             // If not the same, can be added to the destination token
-            dstToken.AddToken( str );
+            dstToken.AddToken(str);
         }
 
         // Get the next token
@@ -275,66 +272,66 @@ bool ZBProcCombinations::RemoveCombinationDeliverable( size_t Index, CString Val
     }
 
     // If we found it, sets the new string
-    if ( Found == true )
+    if (Found == true)
     {
         // Set the new deliverable complete string
-        SetCombinationDeliverables( Index, dstToken.GetString() );
+        SetCombinationDeliverables(Index, dstToken.GetString());
         return true;
     }
 
     return false;
 }
 
-bool ZBProcCombinations::RemoveAllCombinationDeliverable( size_t Index )
+bool ZBProcCombinations::RemoveAllCombinationDeliverable(size_t Index)
 {
-    SetCombinationDeliverables( Index, _T( "" ) );
+    SetCombinationDeliverables(Index, _T(""));
     return true;
 }
 
-float ZBProcCombinations::GetCombinationActivationPerc( size_t Index ) const
+float ZBProcCombinations::GetCombinationActivationPerc(size_t Index) const
 {
-    if ( Index < GetCombinationCount() )
+    if (Index < GetCombinationCount())
     {
-        return m_Set.GetAt( Index )->GetCombinationActivationPerc();
+        return m_Set.GetAt(Index)->GetCombinationActivationPerc();
     }
 
     return 0;
 }
 
-void ZBProcCombinations::SetCombinationActivationPerc( size_t Index, const float value )
+void ZBProcCombinations::SetCombinationActivationPerc(size_t Index, const float value)
 {
-    if ( Index < GetCombinationCount() )
+    if (Index < GetCombinationCount())
     {
-        m_Set.GetAt( Index )->SetCombinationActivationPerc( value );
+        m_Set.GetAt(Index)->SetCombinationActivationPerc(value);
     }
 }
 
-CString ZBProcCombinations::GetCombinationMaster( size_t Index ) const
+CString ZBProcCombinations::GetCombinationMaster(size_t Index) const
 {
-    if ( Index < GetCombinationCount() )
+    if (Index < GetCombinationCount())
     {
-        return m_Set.GetAt( Index )->GetCombinationMaster();
+        return m_Set.GetAt(Index)->GetCombinationMaster();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBProcCombinations::SetCombinationMaster( size_t Index, CString Value )
+void ZBProcCombinations::SetCombinationMaster(size_t Index, CString Value)
 {
-    if ( Index < GetCombinationCount() )
+    if (Index < GetCombinationCount())
     {
-        m_Set.GetAt(Index)->SetCombinationMaster( Value );
+        m_Set.GetAt(Index)->SetCombinationMaster(Value);
     }
 }
 
-bool ZBProcCombinations::CombinationNameExist( const CString Name ) const
+bool ZBProcCombinations::CombinationNameExist(const CString Name) const
 {
     // Run through the set and build the string
-    ZBBPCombinationPropertiesIterator i( &m_Set );
+    ZBBPCombinationPropertiesIterator i(&m_Set);
 
-    for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_CombinationPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCombinationName() == Name )
+        if (pProp->GetCombinationName() == Name)
         {
             return true;
         }
@@ -350,14 +347,14 @@ CString ZBProcCombinations::GetNextCombinationValidName() const
 
     do
     {
-        str.Format( _T( "Comb %d" ), i++ );
+        str.Format(_T("Comb %d"), i++);
     }
-    while ( CombinationNameExist( str ) == true );
+    while (CombinationNameExist(str) == true);
 
     return str;
 }
 
-CString ZBProcCombinations::GetAvailableDeliverables( const CString AllDeliverables ) const
+CString ZBProcCombinations::GetAvailableDeliverables(const CString AllDeliverables) const
 {
     // First, retreive the allocated deliverables
     CString AllocatedDeliverables = GetAllocatedDeliverables();
@@ -366,16 +363,16 @@ CString ZBProcCombinations::GetAvailableDeliverables( const CString AllDeliverab
     PSS_Tokenizer srcToken;    // Initialize the source token with ; as separator
     PSS_Tokenizer dstToken;    // Initialize the destination token with ; as separator
 
-    CString str = srcToken.GetFirstToken( AllDeliverables );
+    CString str = srcToken.GetFirstToken(AllDeliverables);
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If the token is not in the allocated deliverable string
         // add it to the destination token string
-        if ( !IsDeliverableInString( AllocatedDeliverables, str ) )
+        if (!IsDeliverableInString(AllocatedDeliverables, str))
         {
-            dstToken.AddToken( str );
+            dstToken.AddToken(str);
         }
 
         // Get the next token
@@ -391,30 +388,30 @@ CString ZBProcCombinations::GetAllocatedDeliverables() const
     PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     // Run through the set and build the string
-    ZBBPCombinationPropertiesIterator i( &m_Set );
+    ZBBPCombinationPropertiesIterator i(&m_Set);
 
-    for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_CombinationPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // Add the deliverables
-        token.AddToken( pProp->GetCombinationDeliverables() );
+        token.AddToken(pProp->GetCombinationDeliverables());
     }
 
     // Return the constructed string
     return token.GetString();
-}        
+}
 
-bool ZBProcCombinations::IsDeliverableInString( const CString Deliverables, const CString Value ) const
+bool ZBProcCombinations::IsDeliverableInString(const CString Deliverables, const CString Value) const
 {
     PSS_Tokenizer token;    // Initialize the token with ; as separator
 
-    CString str = token.GetFirstToken( Deliverables );
+    CString str = token.GetFirstToken(Deliverables);
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If we found the same deliverable,
         // then return true
-        if ( str == Value )
+        if (str == Value)
         {
             return true;
         }
@@ -426,27 +423,27 @@ bool ZBProcCombinations::IsDeliverableInString( const CString Deliverables, cons
     return false;
 }
 
-ZBBPCombinationProperties* ZBProcCombinations::LocateCombinationOfDeliverable( const CString DeliverableName ) const
+PSS_CombinationPropertiesBP* ZBProcCombinations::LocateCombinationOfDeliverable(const CString DeliverableName) const
 {
-    int Index = LocateCombinationIndexOfDeliverable( DeliverableName );
+    int Index = LocateCombinationIndexOfDeliverable(DeliverableName);
 
-    if ( Index == -1 )
+    if (Index == -1)
     {
         return NULL;
     }
 
-    return GetProperty( Index );
+    return GetProperty(Index);
 }
 
-int ZBProcCombinations::LocateCombinationIndexOfDeliverable( const CString DeliverableName ) const
+int ZBProcCombinations::LocateCombinationIndexOfDeliverable(const CString DeliverableName) const
 {
     // Run through the set of deliverables and check if found
-    ZBBPCombinationPropertiesIterator i( &m_Set );
+    ZBBPCombinationPropertiesIterator i(&m_Set);
     int Index = 0;
 
-    for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index )
+    for (PSS_CombinationPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index)
     {
-        if ( IsDeliverableInString( pProp->GetCombinationDeliverables(), DeliverableName ) )
+        if (IsDeliverableInString(pProp->GetCombinationDeliverables(), DeliverableName))
         {
             return Index;
         }
@@ -455,27 +452,27 @@ int ZBProcCombinations::LocateCombinationIndexOfDeliverable( const CString Deliv
     return -1;
 }
 
-ZBBPCombinationProperties* ZBProcCombinations::LocateCombinationOfMaster( const CString Master ) const
+PSS_CombinationPropertiesBP* ZBProcCombinations::LocateCombinationOfMaster(const CString Master) const
 {
-    int Index = LocateCombinationIndexOfMaster( Master );
+    int Index = LocateCombinationIndexOfMaster(Master);
 
-    if ( Index == -1 )
+    if (Index == -1)
     {
         return NULL;
     }
 
-    return GetProperty( Index );
+    return GetProperty(Index);
 }
 
-int ZBProcCombinations::LocateCombinationIndexOfMaster( const CString Master ) const
+int ZBProcCombinations::LocateCombinationIndexOfMaster(const CString Master) const
 {
     // Run through the set of deliverables and check if found
-    ZBBPCombinationPropertiesIterator i( &m_Set );
+    ZBBPCombinationPropertiesIterator i(&m_Set);
     int Index = 0;
 
-    for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index )
+    for (PSS_CombinationPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index)
     {
-        if ( !pProp->GetCombinationMaster().IsEmpty() && pProp->GetCombinationMaster() == Master )
+        if (!pProp->GetCombinationMaster().IsEmpty() && pProp->GetCombinationMaster() == Master)
         {
             return Index;
         }
@@ -484,29 +481,29 @@ int ZBProcCombinations::LocateCombinationIndexOfMaster( const CString Master ) c
     return -1;
 }
 
-bool ZBProcCombinations::ReplaceDeliverable( const CString OldDeliverableName, const CString NewDeliverableName )
+bool ZBProcCombinations::ReplaceDeliverable(const CString OldDeliverableName, const CString NewDeliverableName)
 {
-    int Index        = LocateCombinationIndexOfDeliverable( OldDeliverableName );
-    bool RetValue    = false;
+    int Index = LocateCombinationIndexOfDeliverable(OldDeliverableName);
+    bool RetValue = false;
 
-    if ( Index != -1 )
+    if (Index != -1)
     {
         // First, remove the old deliverable
-        if ( !RemoveCombinationDeliverable( Index, OldDeliverableName ) )
+        if (!RemoveCombinationDeliverable(Index, OldDeliverableName))
         {
             return false;
         }
-    
+
         // Then add the new name and return the status
-        RetValue = AddCombinationDeliverable( Index, NewDeliverableName );
+        RetValue = AddCombinationDeliverable(Index, NewDeliverableName);
     }
 
-    ZBBPCombinationProperties* pCombination = LocateCombinationOfMaster( OldDeliverableName );
+    PSS_CombinationPropertiesBP* pCombination = LocateCombinationOfMaster(OldDeliverableName);
 
-    if ( pCombination )
+    if (pCombination)
     {
         // Sets the new deliverable name
-        pCombination->SetCombinationMaster( NewDeliverableName );
+        pCombination->SetCombinationMaster(NewDeliverableName);
         RetValue = true;
     }
 
@@ -514,26 +511,26 @@ bool ZBProcCombinations::ReplaceDeliverable( const CString OldDeliverableName, c
     return RetValue;
 }
 
-bool ZBProcCombinations::DeleteDeliverableFromAllCombinations( const CString DeliverableName )
+bool ZBProcCombinations::DeleteDeliverableFromAllCombinations(const CString DeliverableName)
 {
-    int Index        = LocateCombinationIndexOfDeliverable( DeliverableName );
-    bool RetValue    = false;
+    int Index = LocateCombinationIndexOfDeliverable(DeliverableName);
+    bool RetValue = false;
 
-    if ( Index != -1 )
+    if (Index != -1)
     {
         // First, remove the old deliverable
-        if ( !RemoveCombinationDeliverable( Index, DeliverableName ) )
+        if (!RemoveCombinationDeliverable(Index, DeliverableName))
         {
             return false;
         }
     }
 
-    ZBBPCombinationProperties* pCombination = LocateCombinationOfMaster( DeliverableName );
+    PSS_CombinationPropertiesBP* pCombination = LocateCombinationOfMaster(DeliverableName);
 
-    if ( pCombination )
+    if (pCombination)
     {
         // Sets the new deliverable name
-        pCombination->SetCombinationMaster( _T( "" ) );
+        pCombination->SetCombinationMaster(_T(""));
         RetValue = true;
     }
 
@@ -541,31 +538,31 @@ bool ZBProcCombinations::DeleteDeliverableFromAllCombinations( const CString Del
     return RetValue;
 }
 
-void ZBProcCombinations::Serialize( CArchive& ar )
+void ZBProcCombinations::Serialize(CArchive& ar)
 {
     // Only if the object is serialize from and to a document
-    if ( ar.m_pDocument )
+    if (ar.m_pDocument)
     {
-        if ( ar.IsStoring() )
+        if (ar.IsStoring())
         {
-            TRACE( _T( "ZBProcCombinations::Serialize : Start Save\n" ) );
-    
+            TRACE(_T("ZBProcCombinations::Serialize : Start Save\n"));
+
             // JMR-MODIF - Le 7 septembre 2005 - Ajout de la conversion explicite de SEC_INT en int.
             // Serialize the size of the set
             ar << (int)m_Set.GetSize();
 
-            ZBBPCombinationPropertiesIterator i( &m_Set );
+            ZBBPCombinationPropertiesIterator i(&m_Set);
 
-            for ( ZBBPCombinationProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+            for (PSS_CombinationPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
                 ar << pProp;
             }
 
-            TRACE( _T( "ZBProcCombinations::Serialize : End Save\n" ) );
+            TRACE(_T("ZBProcCombinations::Serialize : End Save\n"));
         }
         else
         {
-            TRACE( _T( "ZBProcCombinations::Serialize : Start Read\n" ) );
+            TRACE(_T("ZBProcCombinations::Serialize : Start Read\n"));
 
             RemoveAllCombinations();
 
@@ -573,15 +570,15 @@ void ZBProcCombinations::Serialize( CArchive& ar )
             int Count;
             ar >> Count;
 
-            ZBBPCombinationProperties* pProp;
+            PSS_CombinationPropertiesBP* pProp;
 
-            for ( int i = 0; i < (int)Count; ++i )
+            for (int i = 0; i < (int)Count; ++i)
             {
                 ar >> pProp;
-                AddCombination( pProp );
+                AddCombination(pProp);
             }
-        
-            TRACE( _T( "ZBProcCombinations::Serialize : End Read\n" ) );
+
+            TRACE(_T("ZBProcCombinations::Serialize : End Read\n"));
         }
     }
 }

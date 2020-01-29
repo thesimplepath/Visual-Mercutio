@@ -9,7 +9,7 @@
     #pragma once
 #endif
 
-#include "ZBBPAutomate.h"
+#include "PSS_AutomateBP.h"
 
 //////////////////////////////////////////////////////////////////////
 // Forward class declaration
@@ -17,7 +17,7 @@ class ZBBPProcedureSymbol;
 
 // JMR-MODIF - Le 4 septembre 2006 - Ajout des décorations unicode _T(), nettoyage du code inutile. (En commentaires)
 
-class ZBDurationRecalculationAutomate : public ZBBPAutomate
+class ZBDurationRecalculationAutomate : public PSS_AutomateBP
 {
 public:
 

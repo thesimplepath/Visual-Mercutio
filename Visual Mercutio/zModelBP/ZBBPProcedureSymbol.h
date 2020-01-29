@@ -251,7 +251,7 @@ public:
     }
 
     // Return the combination property at a specific index
-    ZBBPCombinationProperties* GetCombinationProperty(size_t Index) const
+    PSS_CombinationPropertiesBP* GetCombinationProperty(size_t Index) const
     {
         return m_Combinations.GetProperty(Index);
     }
@@ -262,7 +262,7 @@ public:
         return m_Combinations.DeleteCombination(Index);
     }
 
-    bool DeleteCombination(ZBBPCombinationProperties* pProp)
+    bool DeleteCombination(PSS_CombinationPropertiesBP* pProp)
     {
         return m_Combinations.DeleteCombination(pProp);
     }
@@ -298,7 +298,7 @@ public:
     }
 
     // Return the right combination prop of a specific deliverable
-    ZBBPCombinationProperties* LocateCombinationOfDeliverable(const CString DeliverableName) const
+    PSS_CombinationPropertiesBP* LocateCombinationOfDeliverable(const CString DeliverableName) const
     {
         return m_Combinations.LocateCombinationOfDeliverable(DeliverableName);
     }
