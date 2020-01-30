@@ -1,12 +1,16 @@
 /****************************************************************************
- * ==> PSS_UnitPropertiesBP ------------------------------------------------*
+ * ==> PSS_CostPropertiesProcedureBP_Beta1 ---------------------------------*
  ****************************************************************************
- * Description : Provides the unit properties                               *
+ * Description : Provides the cost properties for procedures (beta 1)       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_UnitPropertiesBPH
-#define PSS_UnitPropertiesBPH
+#ifndef PSS_CostPropertiesProcedureBP_Beta1H
+#define PSS_CostPropertiesProcedureBP_Beta1H
+
+#if _MSC_VER > 1000
+    #pragma once
+#endif
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_UnitPropertiesBP
-    #define PSS_UnitPropertiesBP ZBBPUnitProperties
+#ifndef PSS_CostPropertiesProcedureBP_Beta1
+    #define PSS_CostPropertiesProcedureBP_Beta1 ZBBPCostPropertiesProcedure
 #endif
 
 // resources
@@ -37,23 +41,23 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Unit_Name 1
-#define M_Unit_Cost 2
-#define M_Unit_GUID 3
+#define M_Cost_Proc_Multiplier_Beta1_ID      1
+#define M_Cost_Proc_Processing_Time_Beta1_ID 2
+#define M_Cost_Proc_Unitary_Cost_Beta1_ID    3
 //---------------------------------------------------------------------------
 
 /**
-* Unit properties
+* Cost properties for procedures
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CODIntProperty,
-                                           public sfl::CPropertyContainer< IODPropertyContainer,
-                                                                           CODPropertyAccessor<PSS_UnitPropertiesBP> >
+class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP_Beta1 : public CODIntProperty,
+                                                          public sfl::CPropertyContainer< IODPropertyContainer,
+                                                                                          CODPropertyAccessor<PSS_CostPropertiesProcedureBP_Beta1> >
 {
-    DECLARE_SERIAL(PSS_UnitPropertiesBP)
+    DECLARE_SERIAL(PSS_CostPropertiesProcedureBP_Beta1)
 
     /// generated guid map
-    BEGIN_GUID_MAP(PSS_UnitPropertiesBP)
+    BEGIN_GUID_MAP(PSS_CostPropertiesProcedureBP_Beta1)
         GUID_ENTRY(IODPropertyContainer)
         GUID_ENTRY(sfl::IPropertyContainer)
         GUID_CHAIN_ENTRY(CODIntProperty)
@@ -66,39 +70,39 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Unit_Name = 0x0001,
-            IE_CT_Change_Unit_Cost = 0x0002,
-            IE_CT_Change_Unit_GUID = 0x0004,
-            IE_CT_All              = OD_CHANGE_ALL
+            IE_CT_Change_Cost_Multiplier      = 0x0001,
+            IE_CT_Change_Cost_Processing_Time = 0x0002,
+            IE_CT_Change_Cost_Unitary_Cost    = 0x0004,
+            IE_CT_All                         = OD_CHANGE_ALL
         };
 
         /**
         * Constructor
         *@param propID - property identifier
         */
-        PSS_UnitPropertiesBP(int propID = ZS_BP_PROP_UNIT);
+        PSS_CostPropertiesProcedureBP_Beta1(int propID = ZS_BP_PROP_PROCEDURE_COST);
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_UnitPropertiesBP(const PSS_UnitPropertiesBP& other);
+        PSS_CostPropertiesProcedureBP_Beta1(const PSS_CostPropertiesProcedureBP_Beta1& other);
 
-        virtual ~PSS_UnitPropertiesBP();
+        virtual ~PSS_CostPropertiesProcedureBP_Beta1();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_UnitPropertiesBP& operator = (const PSS_UnitPropertiesBP& other);
+        PSS_CostPropertiesProcedureBP_Beta1& operator = (const PSS_CostPropertiesProcedureBP_Beta1& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_UnitPropertiesBP& other) const;
+        BOOL operator == (const PSS_CostPropertiesProcedureBP_Beta1& other) const;
 
         /**
         * Adds a reference to this object
@@ -140,28 +144,40 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CODIntProperty,
         virtual BOOL IsEqual(CODProperty* pProp);
 
         /**
-        * Gets the unit name
-        *@return the unit name
+        * Gets the cost multiplier factor
+        *@return the cost multiplier factor
         */
-        virtual inline CString GetUnitName() const;
+        virtual inline float GetMultiplier() const;
 
         /**
-        * Sets the unit name
-        *@param pValue - the unit name
+        * Sets the cost multiplier factor
+        *@param value - the cost multiplier factor
         */
-        virtual void SetUnitName(LPCTSTR pValue);
+        virtual inline void SetMultiplier(const float value);
 
         /**
-        * Gets the unit cost
-        *@return the unit cost
+        * Gets the processing time
+        *@return the processing time
         */
-        virtual inline float GetUnitCost() const;
+        virtual inline double GetProcessingTime() const;
 
         /**
-        * Sets the unit cost
-        *@param value - the unit cost
+        * Sets the processing time
+        *@param value - the processing time
         */
-        virtual inline void SetUnitCost(const float Value);
+        virtual inline void SetProcessingTime(const double value);
+
+        /**
+        * Gets the unitary cost
+        *@return the unitary cost
+        */
+        virtual inline float GetUnitaryCost() const;
+
+        /**
+        * Sets the unitary cost
+        *@param value - the unitary cost
+        */
+        virtual inline void SetUnitaryCost(const float value);
 
         /**
         * Gets the property value
@@ -173,6 +189,7 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CODIntProperty,
         virtual BOOL GetValue(const int propId, UINT&    value) const;
         virtual BOOL GetValue(const int propId, DWORD&   value) const;
         virtual BOOL GetValue(const int propId, float&   value) const;
+        virtual BOOL GetValue(const int propId, double&  value) const;
         virtual BOOL GetValue(const int propId, CString& value) const;
 
         /**
@@ -181,11 +198,12 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CODIntProperty,
         *@param value/pValue - the property value
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL SetValue(const int propId, const int   value);
-        virtual BOOL SetValue(const int propId, const UINT  value);
-        virtual BOOL SetValue(const int propId, const DWORD value);
-        virtual BOOL SetValue(const int propId, const float value);
-        virtual BOOL SetValue(const int propId, LPCTSTR     pValue);
+        virtual BOOL SetValue(const int propId, const int    value);
+        virtual BOOL SetValue(const int propId, const UINT   value);
+        virtual BOOL SetValue(const int propId, const DWORD  value);
+        virtual BOOL SetValue(const int propId, const float  value);
+        virtual BOOL SetValue(const int propId, const double value);
+        virtual BOOL SetValue(const int propId, LPCTSTR      pValue);
 
         /**
         * Serializes the class content to an archive
@@ -209,54 +227,64 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CODIntProperty,
         #endif
 
     protected:
-        CString m_UnitName;
-        float   m_UnitCost;
+        double m_ProcessingTime;
+        float  m_Multiplier;
+        float  m_UnitaryCost;
 
     private:
         /**
-        * Sets the unit name (advanced)
-        *@param value - the unit name
-        */
-        void SetUnitNameEx(const CString value);
-
-        /**
-        * Registers the fill property meta-data
+        * Registers the basic property meta-data
         *@return true on success, otherwise false
         */
         bool RegisterProperties();
 };
 
 //---------------------------------------------------------------------------
-// PSS_UnitPropertiesBP
+// PSS_CostPropertiesProcedureBP_Beta1
 //---------------------------------------------------------------------------
-ULONG PSS_UnitPropertiesBP::AddRef()
+ULONG PSS_CostPropertiesProcedureBP_Beta1::AddRef()
 {
     return CODIntProperty::AddRef();
 }
 //---------------------------------------------------------------------------
-ULONG PSS_UnitPropertiesBP::Release()
+ULONG PSS_CostPropertiesProcedureBP_Beta1::Release()
 {
     return CODIntProperty::Release();
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_UnitPropertiesBP::Dup() const
+CODProperty* PSS_CostPropertiesProcedureBP_Beta1::Dup() const
 {
-    return new PSS_UnitPropertiesBP(*this);
+    return new PSS_CostPropertiesProcedureBP_Beta1(*this);
 }
 //---------------------------------------------------------------------------
-CString PSS_UnitPropertiesBP::GetUnitName() const
+float PSS_CostPropertiesProcedureBP_Beta1::GetMultiplier() const
 {
-    return m_UnitName;
+    return m_Multiplier;
 }
 //---------------------------------------------------------------------------
-float PSS_UnitPropertiesBP::GetUnitCost() const
+void PSS_CostPropertiesProcedureBP_Beta1::SetMultiplier(const float value)
 {
-    return m_UnitCost;
+    m_Multiplier = value;
 }
 //---------------------------------------------------------------------------
-void PSS_UnitPropertiesBP::SetUnitCost(const float Value)
+double PSS_CostPropertiesProcedureBP_Beta1::GetProcessingTime() const
 {
-    m_UnitCost = Value;
+    return m_ProcessingTime;
+}
+//---------------------------------------------------------------------------
+void PSS_CostPropertiesProcedureBP_Beta1::SetProcessingTime(const double value)
+{
+    m_ProcessingTime = value;
+}
+//---------------------------------------------------------------------------
+float PSS_CostPropertiesProcedureBP_Beta1::GetUnitaryCost() const
+{
+    return m_UnitaryCost;
+}
+//---------------------------------------------------------------------------
+void PSS_CostPropertiesProcedureBP_Beta1::SetUnitaryCost(const float value)
+{
+    m_UnitaryCost = value;
 }
 //---------------------------------------------------------------------------
 

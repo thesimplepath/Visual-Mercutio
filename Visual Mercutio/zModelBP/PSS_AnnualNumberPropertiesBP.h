@@ -42,33 +42,33 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Number_Year      1
-#define M_Number_January   2
-#define M_Number_February  3
-#define M_Number_March     4
-#define M_Number_April     5
-#define M_Number_May       6
-#define M_Number_June      7
-#define M_Number_July      8
-#define M_Number_August    9
-#define M_Number_September 10
-#define M_Number_October   11
-#define M_Number_November  12
-#define M_Number_December  13
-#define M_Locked_Year      14
-#define M_Locked_January   15
-#define M_Locked_February  16
-#define M_Locked_March     17
-#define M_Locked_April     18
-#define M_Locked_May       19
-#define M_Locked_June      20
-#define M_Locked_July      21
-#define M_Locked_August    22
-#define M_Locked_September 23
-#define M_Locked_October   24
-#define M_Locked_November  25
-#define M_Locked_December  26
-#define M_Force_Equalizer  27
+#define M_Number_Year_ID      1
+#define M_Number_January_ID   2
+#define M_Number_February_ID  3
+#define M_Number_March_ID     4
+#define M_Number_April_ID     5
+#define M_Number_May_ID       6
+#define M_Number_June_ID      7
+#define M_Number_July_ID      8
+#define M_Number_August_ID    9
+#define M_Number_September_ID 10
+#define M_Number_October_ID   11
+#define M_Number_November_ID  12
+#define M_Number_December_ID  13
+#define M_Locked_Year_ID      14
+#define M_Locked_January_ID   15
+#define M_Locked_February_ID  16
+#define M_Locked_March_ID     17
+#define M_Locked_April_ID     18
+#define M_Locked_May_ID       19
+#define M_Locked_June_ID      20
+#define M_Locked_July_ID      21
+#define M_Locked_August_ID    22
+#define M_Locked_September_ID 23
+#define M_Locked_October_ID   24
+#define M_Locked_November_ID  25
+#define M_Locked_December_ID  26
+#define M_Force_Equalizer_ID  27
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------

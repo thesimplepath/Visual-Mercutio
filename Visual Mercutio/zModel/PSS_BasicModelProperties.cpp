@@ -170,6 +170,9 @@ BOOL PSS_BasicModelProperties::SetValue(const int propId, const float value)
 //---------------------------------------------------------------------------
 BOOL PSS_BasicModelProperties::SetValue(const int propId, LPCTSTR pValue)
 {
+    if (!pValue)
+        return FALSE;
+
     switch (propId)
     {
         case M_Model_Name_ID:        m_ModelName        = pValue; break;

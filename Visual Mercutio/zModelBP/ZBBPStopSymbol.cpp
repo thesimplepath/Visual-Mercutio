@@ -13,7 +13,7 @@
 // JMR-MODIF - Le 29 juillet 2007 - Ajout de l'en-tête ZAGlobal.h
 #include "zBaseLib\PSS_Global.h"
 
-#include "PSS_UnitPropertiesBP.h"
+#include "PSS_UnitPropertiesBP_Beta1.h"
 #include "zModel\PSS_UserGroupEntity.h"
 
 // ZBPropertyAttributes
@@ -322,7 +322,7 @@ bool ZBBPStopSymbol::CreateSymbolProperties()
         return false;
     }
 
-    PSS_UnitPropertiesBP propUnit;
+    PSS_UnitPropertiesBP_Beta1 propUnit;
     AddProperty(propUnit);
 
     // JMR-MODIF - Le 3 juin 2007 - Ajoute au moins un catalogue de propriétés dans les risques.
@@ -1217,7 +1217,7 @@ void ZBBPStopSymbol::Serialize(CArchive& ar)
         else
         {
             // Transfert the properties to new format
-            PSS_UnitPropertiesBP* pUnitProps = (PSS_UnitPropertiesBP*)GetProperty(ZS_BP_PROP_UNIT);
+            PSS_UnitPropertiesBP_Beta1* pUnitProps = (PSS_UnitPropertiesBP_Beta1*)GetProperty(ZS_BP_PROP_UNIT);
 
             if (pUnitProps)
             {

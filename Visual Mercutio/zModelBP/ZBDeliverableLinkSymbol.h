@@ -36,7 +36,7 @@
 #include "ZVRiskProbabilityContainer.h"
 #include "PSS_AnnualNumberPropertiesBP.h"
 #include "ZBBPSimPropDeliverable.h"
-#include "ZBBPCostPropDeliverable2.h"
+#include "PSS_CostPropertiesDeliverableBP.h"
 #include "ZBBPUnitProp2.h"
 
 // class name mapping
@@ -856,7 +856,7 @@ private:
 
     PSS_AnnualNumberPropertiesBP        m_Quantity;
     ZBBPSimPropertiesDeliverable    m_SimProperties;
-    ZBBPCostPropertiesDeliverable2    m_CostDeliverableProperties;
+    PSS_CostPropertiesDeliverableBP    m_CostDeliverableProperties;
     ZBBPUnitProperties2                m_UnitProp;
 
     CStringArray                    m_UnitDoubleValidationTypeArray;

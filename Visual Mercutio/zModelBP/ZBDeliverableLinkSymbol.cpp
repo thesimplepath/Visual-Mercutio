@@ -14,7 +14,7 @@
 
 #include "ZBBPRuleListProp.h"
 #include "ZBBPTextItemListProp.h"
-#include "PSS_CostPropertiesDeliverableBP.h"
+#include "PSS_CostPropertiesDeliverableBP_Beta1.h"
 #include "PSS_AnnualNumberPropertiesBP.h"
 #include "ZBBPSimPropDeliverable.h"
 
@@ -1117,7 +1117,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
 
         RetValue = true;
     }
-    else if (Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == M_Number_Year)
+    else if (Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == M_Number_Year_ID)
     {
         // Sets the new value and equalize the information
         m_Quantity.SetAndCalculateQuantitiesBasedOnYear(Property.GetValueDouble());
@@ -1169,7 +1169,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
     }
     // JMR-MODIF - Le 14 juin 2005 - Mets à jour les informations visuelles en fonction du pourcentage.
     else if (Property.GetCategoryID() == ZS_BP_PROP_DELIVERABLE_COST &&
-             Property.GetItemID() == Z_COST_OUT_WORKLOAD_PERCENT)
+             Property.GetItemID() == M_Cost_Out_Workload_Percent_ID)
     {
         SetVisualInfo((int)(Property.GetValueFloat() * 100));
         RedrawSymbol();
@@ -1376,7 +1376,7 @@ bool ZBDeliverableLinkSymbol::CheckPropertyValue(ZBProperty&        Property,
                                                  CString&            value,
                                                  ZBPropertySet&    Properties)
 {
-    if (Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == M_Number_Year)
+    if (Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == M_Number_Year_ID)
     {
         // Check if the value entered is less than the sum of locked item
         double NewTotal = atol(value);
@@ -1884,7 +1884,7 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
         }
     }
     else if (Property.GetCategoryID() == ZS_BP_PROP_QUANTITY &&
-             Property.GetItemID() == M_Number_Year)
+             Property.GetItemID() == M_Number_Year_ID)
     {
         // Sets the new value and equalize the information
         m_Quantity.SetAndCalculateQuantitiesBasedOnYear(Property.GetValueDouble());
@@ -2110,7 +2110,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolProperties()
     ZBBPTextItemListProperties textItemList;
     AddProperty(textItemList);
 
-    PSS_CostPropertiesDeliverableBP propCost;
+    PSS_CostPropertiesDeliverableBP_Beta1 propCost;
     AddProperty(propCost);
 
     // Fill the array of unit double validation type
@@ -2698,7 +2698,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     ZBProperty* pOutPercent = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                              ZS_BP_PROP_DELIVERABLE_COST,
                                              IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME,
-                                             Z_COST_OUT_WORKLOAD_PERCENT,
+                                             M_Cost_Out_Workload_Percent_ID,
                                              IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
                                              GetOutWorkloadPercent(),
                                              ZBProperty::PT_EDIT_NUMBER,
@@ -2732,7 +2732,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                            ZS_BP_PROP_DELIVERABLE_COST,
                                            IDS_Z_COST_CASE_DURATION_NAME,
-                                           Z_COST_CASE_DURATION,
+                                           M_Cost_Case_Duration_ID,
                                            IDS_Z_COST_CASE_DURATION_DESC,
                                            GetCaseDuration(),
                                            ZBProperty::PT_EDIT_NUMBER);
@@ -2742,7 +2742,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                            ZS_BP_PROP_DELIVERABLE_COST,
                                            IDS_Z_COST_CASE_DURATION_NAME,
-                                           Z_COST_CASE_DURATION,
+                                           M_Cost_Case_Duration_ID,
                                            IDS_Z_COST_CASE_DURATION_DESC,
                                            PSS_Duration(GetCaseDuration(),
                                                         hourPerDay,
@@ -2763,7 +2763,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDurationMax = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                               ZS_BP_PROP_DELIVERABLE_COST,
                                               IDS_Z_COST_CASE_DURATIONMAX_NAME,
-                                              Z_COST_CASE_DURATIONMAX,
+                                              M_Cost_Case_Duration_Max_ID,
                                               IDS_Z_COST_CASE_DURATIONMAX_DESC,
                                               GetCaseDurationMax(),
                                               ZBProperty::PT_EDIT_NUMBER);
@@ -2773,7 +2773,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDurationMax = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                               ZS_BP_PROP_DELIVERABLE_COST,
                                               IDS_Z_COST_CASE_DURATIONMAX_NAME,
-                                              Z_COST_CASE_DURATIONMAX,
+                                              M_Cost_Case_Duration_Max_ID,
                                               IDS_Z_COST_CASE_DURATIONMAX_DESC,
                                               PSS_Duration(GetCaseDurationMax(),
                                                            hourPerDay,
@@ -2794,7 +2794,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pTargetDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                              ZS_BP_PROP_DELIVERABLE_COST,
                                              IDS_Z_COST_TARGET_DURATION_NAME,
-                                             Z_COST_TARGET_DURATION,
+                                             M_Cost_Target_Duration_ID,
                                              IDS_Z_COST_TARGET_DURATION_DESC,
                                              GetTargetDuration(),
                                              ZBProperty::PT_EDIT_NUMBER);
@@ -2804,7 +2804,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pTargetDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                              ZS_BP_PROP_DELIVERABLE_COST,
                                              IDS_Z_COST_TARGET_DURATION_NAME,
-                                             Z_COST_TARGET_DURATION,
+                                             M_Cost_Target_Duration_ID,
                                              IDS_Z_COST_TARGET_DURATION_DESC,
                                              PSS_Duration(GetTargetDuration(),
                                                           hourPerDay,
@@ -2825,7 +2825,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pGreenLineDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                                 ZS_BP_PROP_DELIVERABLE_COST,
                                                 IDS_Z_COST_GREENLINE_DURATION_NAME,
-                                                Z_COST_GREENLINE_DURATION,
+                                                M_Cost_Green_Line_Duration_ID,
                                                 IDS_Z_COST_GREENLINE_DURATION_DESC,
                                                 GetGreenLineDuration(),
                                                 ZBProperty::PT_EDIT_NUMBER);
@@ -2835,7 +2835,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pGreenLineDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                                 ZS_BP_PROP_DELIVERABLE_COST,
                                                 IDS_Z_COST_GREENLINE_DURATION_NAME,
-                                                Z_COST_GREENLINE_DURATION,
+                                                M_Cost_Green_Line_Duration_ID,
                                                 IDS_Z_COST_GREENLINE_DURATION_DESC,
                                                 PSS_Duration(GetGreenLineDuration(),
                                                              hourPerDay,
@@ -2854,7 +2854,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     ZBProperty* pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                           ZS_BP_PROP_QUANTITY,
                                           IDS_Z_NUMBER_YEAR_NAME,
-                                          M_Number_Year,
+                                          M_Number_Year_ID,
                                           IDS_Z_NUMBER_YEAR_DESC,
                                           GetQuantityYear(),
                                           ZBProperty::PT_EDIT_EXTENDED,
@@ -2871,7 +2871,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_YEAR_NAME,
-                                  M_Locked_Year,
+                                  M_Locked_Year_ID,
                                   IDS_Z_LOCKED_YEAR_DESC,
                                   GetLockQuantityYear() ? 1.0 : 0.0);
     else
@@ -2880,7 +2880,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_YEAR_NAME,
-                                  M_Locked_Year,
+                                  M_Locked_Year_ID,
                                   IDS_Z_LOCKED_YEAR_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -2898,7 +2898,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_FORCE_EQUALIZER_NAME,
-                                  M_Force_Equalizer,
+                                  M_Force_Equalizer_ID,
                                   IDS_Z_FORCE_EQUALIZER_DESC,
                                   GetForceEqualizer() ? 1.0 : 0.0);
     else
@@ -2907,7 +2907,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_FORCE_EQUALIZER_NAME,
-                                  M_Force_Equalizer,
+                                  M_Force_Equalizer_ID,
                                   IDS_Z_FORCE_EQUALIZER_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -2922,7 +2922,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_JANUARY_NAME,
-                              M_Number_January,
+                              M_Number_January_ID,
                               IDS_Z_NUMBER_JANUARY_DESC,
                               GetQuantityJanuary(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -2939,7 +2939,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_JANUARY_NAME,
-                                  M_Locked_January,
+                                  M_Locked_January_ID,
                                   IDS_Z_LOCKED_JANUARY_DESC,
                                   GetLockQuantityJanuary() ? 1.0 : 0.0);
     else
@@ -2948,7 +2948,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_JANUARY_NAME,
-                                  M_Locked_January,
+                                  M_Locked_January_ID,
                                   IDS_Z_LOCKED_JANUARY_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -2963,7 +2963,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_FEBRUARY_NAME,
-                              M_Number_February,
+                              M_Number_February_ID,
                               IDS_Z_NUMBER_FEBRUARY_DESC,
                               GetQuantityFebruary(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -2979,7 +2979,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_FEBRUARY_NAME,
-                                  M_Locked_February,
+                                  M_Locked_February_ID,
                                   IDS_Z_LOCKED_FEBRUARY_DESC,
                                   GetLockQuantityFebruary() ? 1.0 : 0.0);
     else
@@ -2988,7 +2988,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_FEBRUARY_NAME,
-                                  M_Locked_February,
+                                  M_Locked_February_ID,
                                   IDS_Z_LOCKED_FEBRUARY_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3003,7 +3003,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_MARCH_NAME,
-                              M_Number_March,
+                              M_Number_March_ID,
                               IDS_Z_NUMBER_MARCH_DESC,
                               GetQuantityMarch(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3019,7 +3019,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_MARCH_NAME,
-                                  M_Locked_March,
+                                  M_Locked_March_ID,
                                   IDS_Z_LOCKED_MARCH_DESC,
                                   GetLockQuantityMarch() ? 1.0 : 0.0);
     else
@@ -3028,7 +3028,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_MARCH_NAME,
-                                  M_Locked_March,
+                                  M_Locked_March_ID,
                                   IDS_Z_LOCKED_MARCH_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3043,7 +3043,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_APRIL_NAME,
-                              M_Number_April,
+                              M_Number_April_ID,
                               IDS_Z_NUMBER_APRIL_DESC,
                               GetQuantityApril(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3059,7 +3059,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_APRIL_NAME,
-                                  M_Locked_April,
+                                  M_Locked_April_ID,
                                   IDS_Z_LOCKED_APRIL_DESC,
                                   GetLockQuantityApril() ? 1.0 : 0.0);
     else
@@ -3068,7 +3068,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_APRIL_NAME,
-                                  M_Locked_April,
+                                  M_Locked_April_ID,
                                   IDS_Z_LOCKED_APRIL_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3083,7 +3083,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_MAY_NAME,
-                              M_Number_May,
+                              M_Number_May_ID,
                               IDS_Z_NUMBER_MAY_DESC,
                               GetQuantityMay(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3099,7 +3099,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_MAY_NAME,
-                                  M_Locked_May,
+                                  M_Locked_May_ID,
                                   IDS_Z_LOCKED_MAY_DESC,
                                   GetLockQuantityMay() ? 1.0 : 0.0);
     else
@@ -3108,7 +3108,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_MAY_NAME,
-                                  M_Locked_May,
+                                  M_Locked_May_ID,
                                   IDS_Z_LOCKED_MAY_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3123,7 +3123,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_JUNE_NAME,
-                              M_Number_June,
+                              M_Number_June_ID,
                               IDS_Z_NUMBER_JUNE_DESC,
                               GetQuantityJune(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3139,7 +3139,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_JUNE_NAME,
-                                  M_Locked_June,
+                                  M_Locked_June_ID,
                                   IDS_Z_LOCKED_JUNE_DESC,
                                   GetLockQuantityJune() ? 1.0 : 0.0);
     else
@@ -3148,7 +3148,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_JUNE_NAME,
-                                  M_Locked_June,
+                                  M_Locked_June_ID,
                                   IDS_Z_LOCKED_JUNE_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3163,7 +3163,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_JULY_NAME,
-                              M_Number_July,
+                              M_Number_July_ID,
                               IDS_Z_NUMBER_JULY_DESC,
                               GetQuantityJuly(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3179,7 +3179,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_JULY_NAME,
-                                  M_Locked_July,
+                                  M_Locked_July_ID,
                                   IDS_Z_LOCKED_JULY_DESC,
                                   GetLockQuantityJuly() ? 1.0 : 0.0);
     else
@@ -3188,7 +3188,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_JULY_NAME,
-                                  M_Locked_July,
+                                  M_Locked_July_ID,
                                   IDS_Z_LOCKED_JULY_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3203,7 +3203,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_AUGUST_NAME,
-                              M_Number_August,
+                              M_Number_August_ID,
                               IDS_Z_NUMBER_AUGUST_DESC,
                               GetQuantityAugust(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3219,7 +3219,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_AUGUST_NAME,
-                                  M_Locked_August,
+                                  M_Locked_August_ID,
                                   IDS_Z_LOCKED_AUGUST_DESC,
                                   GetLockQuantityAugust() ? 1.0 : 0.0);
     else
@@ -3228,7 +3228,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_AUGUST_NAME,
-                                  M_Locked_August,
+                                  M_Locked_August_ID,
                                   IDS_Z_LOCKED_AUGUST_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3243,7 +3243,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_SEPTEMBER_NAME,
-                              M_Number_September,
+                              M_Number_September_ID,
                               IDS_Z_NUMBER_SEPTEMBER_DESC,
                               GetQuantitySeptember(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3259,7 +3259,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_SEPTEMBER_NAME,
-                                  M_Locked_September,
+                                  M_Locked_September_ID,
                                   IDS_Z_LOCKED_SEPTEMBER_DESC,
                                   GetLockQuantitySeptember() ? 1.0 : 0.0);
     else
@@ -3268,7 +3268,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_SEPTEMBER_NAME,
-                                  M_Locked_September,
+                                  M_Locked_September_ID,
                                   IDS_Z_LOCKED_SEPTEMBER_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3283,7 +3283,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_OCTOBER_NAME,
-                              M_Number_October,
+                              M_Number_October_ID,
                               IDS_Z_NUMBER_OCTOBER_DESC,
                               GetQuantityOctober(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3299,7 +3299,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_OCTOBER_NAME,
-                                  M_Locked_October,
+                                  M_Locked_October_ID,
                                   IDS_Z_LOCKED_OCTOBER_DESC,
                                   GetLockQuantityOctober() ? 1.0 : 0.0);
     else
@@ -3308,7 +3308,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_OCTOBER_NAME,
-                                  M_Locked_October,
+                                  M_Locked_October_ID,
                                   IDS_Z_LOCKED_OCTOBER_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3323,7 +3323,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_NOVEMBER_NAME,
-                              M_Number_November,
+                              M_Number_November_ID,
                               IDS_Z_NUMBER_NOVEMBER_DESC,
                               GetQuantityNovember(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3339,7 +3339,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_NOVEMBER_NAME,
-                                  M_Locked_November,
+                                  M_Locked_November_ID,
                                   IDS_Z_LOCKED_NOVEMBER_DESC,
                                   GetLockQuantityNovember() ? 1.0 : 0.0);
     else
@@ -3348,7 +3348,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_NOVEMBER_NAME,
-                                  M_Locked_November,
+                                  M_Locked_November_ID,
                                   IDS_Z_LOCKED_NOVEMBER_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3363,7 +3363,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                               ZS_BP_PROP_QUANTITY,
                               IDS_Z_NUMBER_DECEMBER_NAME,
-                              M_Number_December,
+                              M_Number_December_ID,
                               IDS_Z_NUMBER_DECEMBER_DESC,
                               GetQuantityDecember(),
                               ZBProperty::PT_EDIT_NUMBER,
@@ -3379,7 +3379,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_DECEMBER_NAME,
-                                  M_Locked_December,
+                                  M_Locked_December_ID,
                                   IDS_Z_LOCKED_DECEMBER_DESC,
                                   GetLockQuantityDecember() ? 1.0 : 0.0);
     else
@@ -3388,7 +3388,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pPropQty = new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                   ZS_BP_PROP_QUANTITY,
                                   IDS_Z_LOCKED_DECEMBER_NAME,
-                                  M_Locked_December,
+                                  M_Locked_December_ID,
                                   IDS_Z_LOCKED_DECEMBER_DESC,
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3875,20 +3875,20 @@ void ZBDeliverableLinkSymbol::SavePropertiesToQuantity(ZBPropertySet& Properties
         if (pProp->GetCategoryID() == ZS_BP_PROP_QUANTITY)
         {
             // Check if a flag
-            if (pProp->GetItemID() == M_Locked_Year      ||
-                pProp->GetItemID() == M_Locked_January   ||
-                pProp->GetItemID() == M_Locked_February  ||
-                pProp->GetItemID() == M_Locked_March     ||
-                pProp->GetItemID() == M_Locked_April     ||
-                pProp->GetItemID() == M_Locked_May       ||
-                pProp->GetItemID() == M_Locked_June      ||
-                pProp->GetItemID() == M_Locked_July      ||
-                pProp->GetItemID() == M_Locked_August    ||
-                pProp->GetItemID() == M_Locked_September ||
-                pProp->GetItemID() == M_Locked_October   ||
-                pProp->GetItemID() == M_Locked_November  ||
-                pProp->GetItemID() == M_Locked_December  ||
-                pProp->GetItemID() == M_Force_Equalizer)
+            if (pProp->GetItemID() == M_Locked_Year_ID      ||
+                pProp->GetItemID() == M_Locked_January_ID   ||
+                pProp->GetItemID() == M_Locked_February_ID  ||
+                pProp->GetItemID() == M_Locked_March_ID     ||
+                pProp->GetItemID() == M_Locked_April_ID     ||
+                pProp->GetItemID() == M_Locked_May_ID       ||
+                pProp->GetItemID() == M_Locked_June_ID      ||
+                pProp->GetItemID() == M_Locked_July_ID      ||
+                pProp->GetItemID() == M_Locked_August_ID    ||
+                pProp->GetItemID() == M_Locked_September_ID ||
+                pProp->GetItemID() == M_Locked_October_ID   ||
+                pProp->GetItemID() == M_Locked_November_ID  ||
+                pProp->GetItemID() == M_Locked_December_ID  ||
+                pProp->GetItemID() == M_Force_Equalizer_ID)
             {
                 m_Quantity.SetValue(pProp->GetItemID(),
                     (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? 1 : 0);
@@ -3949,168 +3949,166 @@ void ZBDeliverableLinkSymbol::SaveEqualizerToProperties(ZBPropertySet& Propertie
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         if (!pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY)
-        {
             continue;
-        }
 
         switch (pProp->GetItemID())
         {
-            case M_Number_Year:
+            case M_Number_Year_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberYear());
                 break;
             }
 
-            case M_Number_January:
+            case M_Number_January_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberJanuary());
                 break;
             }
 
-            case M_Number_February:
+            case M_Number_February_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberFebruary());
                 break;
             }
 
-            case M_Number_March:
+            case M_Number_March_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberMarch());
                 break;
             }
 
-            case M_Number_April:
+            case M_Number_April_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberApril());
                 break;
             }
 
-            case M_Number_May:
+            case M_Number_May_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberMay());
                 break;
             }
 
-            case M_Number_June:
+            case M_Number_June_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberJune());
                 break;
             }
 
-            case M_Number_July:
+            case M_Number_July_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberJuly());
                 break;
             }
 
-            case M_Number_August:
+            case M_Number_August_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberAugust());
                 break;
             }
 
-            case M_Number_September:
+            case M_Number_September_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberSeptember());
                 break;
             }
 
-            case M_Number_October:
+            case M_Number_October_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberOctober());
                 break;
 
             }
-            case M_Number_November:
+            case M_Number_November_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberNovember());
                 break;
             }
 
-            case M_Number_December:
+            case M_Number_December_ID:
             {
                 pProp->SetValueDouble(m_Quantity.GetNumberDecember());
                 break;
             }
 
-            case M_Locked_Year:
+            case M_Locked_Year_ID:
             {
                 break;
             }
 
-            case M_Locked_January:
+            case M_Locked_January_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberJanuary() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_February:
+            case M_Locked_February_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberFebruary() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_March:
+            case M_Locked_March_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberMarch() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_April:
+            case M_Locked_April_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberApril() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_May:
+            case M_Locked_May_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberMay() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_June:
+            case M_Locked_June_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberJune() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_July:
+            case M_Locked_July_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberJuly() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_August:
+            case M_Locked_August_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberAugust() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_September:
+            case M_Locked_September_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberSeptember() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_October:
+            case M_Locked_October_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberOctober() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_November:
+            case M_Locked_November_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberNovember() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Locked_December:
+            case M_Locked_December_ID:
             {
                 pProp->SetValueString((m_Quantity.GetLockNumberDecember() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
-            case M_Force_Equalizer:
+            case M_Force_Equalizer_ID:
             {
                 pProp->SetValueString((m_Quantity.GetForceEqualizer() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
@@ -4136,79 +4134,79 @@ void ZBDeliverableLinkSymbol::SetNewNumberAndEqualize(ZBProperty& Property, ZBPr
 
         switch (pProp->GetItemID())
         {
-            case M_Number_Year:
+            case M_Number_Year_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnYear(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_January:
+            case M_Number_January_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnJanuary(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_February:
+            case M_Number_February_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnFebruary(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_March:
+            case M_Number_March_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnMarch(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_April:
+            case M_Number_April_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnApril(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_May:
+            case M_Number_May_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnMay(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_June:
+            case M_Number_June_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnJune(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_July:
+            case M_Number_July_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnJuly(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_August:
+            case M_Number_August_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnAugust(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_September:
+            case M_Number_September_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnSeptember(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_October:
+            case M_Number_October_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnOctober(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_November:
+            case M_Number_November_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnNovember(Property.GetValueDouble());
                 return;
             }
 
-            case M_Number_December:
+            case M_Number_December_ID:
             {
                 m_Quantity.SetAndCalculateQuantitiesBasedOnDecember(Property.GetValueDouble());
                 return;
@@ -4823,8 +4821,8 @@ void ZBDeliverableLinkSymbol::Serialize(CArchive& ar)
         else
         {
             // Transfert the properties to new format
-            PSS_CostPropertiesDeliverableBP* pCostProps =
-                (PSS_CostPropertiesDeliverableBP*)GetProperty(ZS_BP_PROP_DELIVERABLE_COST);
+            PSS_CostPropertiesDeliverableBP_Beta1* pCostProps =
+                (PSS_CostPropertiesDeliverableBP_Beta1*)GetProperty(ZS_BP_PROP_DELIVERABLE_COST);
 
             if (pCostProps)
             {

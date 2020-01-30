@@ -41,10 +41,10 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define Z_COMBINATION_NAME            1
-#define Z_COMBINATION_DELIVERABLES    2
-#define Z_COMBINATION_ACTIVATION_PERC 3
-#define Z_COMBINATION_MASTER          4
+#define M_Combination_Name_ID            1
+#define M_Combination_Deliverables_ID    2
+#define M_Combination_Activation_Perc_ID 3
+#define M_Combination_Master_ID          4
 //---------------------------------------------------------------------------
 
 /**

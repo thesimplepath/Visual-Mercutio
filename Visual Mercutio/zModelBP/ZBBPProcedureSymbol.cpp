@@ -14,8 +14,8 @@
 #include "ZBBPRuleListProp.h"
 #include "ZBBPTaskListProp.h"
 #include "ZBBPDecisionListProp.h"
-#include "PSS_CostPropertiesProcedureBP.h"
-#include "PSS_UnitPropertiesBP.h"
+#include "PSS_CostPropertiesProcedureBP_Beta1.h"
+#include "PSS_UnitPropertiesBP_Beta1.h"
 #include "PSS_CombinationPropertiesBP.h"
 #include "ZBBPSimPropProcedure.h"
 
@@ -689,10 +689,10 @@ bool ZBBPProcedureSymbol::CreateSymbolProperties()
     ZBBPDecisionListProperties propDecisions;
     AddProperty(propDecisions);
 
-    PSS_CostPropertiesProcedureBP propCost;
+    PSS_CostPropertiesProcedureBP_Beta1 propCost;
     AddProperty(propCost);
 
-    PSS_UnitPropertiesBP propUnit;
+    PSS_UnitPropertiesBP_Beta1 propUnit;
     AddProperty(propUnit);
 
     // Creates at least one combination property
@@ -1527,7 +1527,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             ZBProperty* pCombination = new ZBProperty(finalPropTitle,
                 (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                                       propName,
-                                                      (groupValue ? Z_COMBINATION_NAME : (Z_COMBINATION_NAME + (i * _MaxCombinationListSize))),
+                                                      (groupValue ? M_Combination_Name_ID : (M_Combination_Name_ID + (i * _MaxCombinationListSize))),
                                                       propDesc,
                                                       GetCombinationName(i),
                                                       ZBProperty::PT_EDIT_MENU,
@@ -1546,7 +1546,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pCombination = new ZBProperty(finalPropTitle,
                 (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                           propName,
-                                          (groupValue ? Z_COMBINATION_DELIVERABLES : (Z_COMBINATION_DELIVERABLES + (i * _MaxCombinationListSize))),
+                                          (groupValue ? M_Combination_Deliverables_ID : (M_Combination_Deliverables_ID + (i * _MaxCombinationListSize))),
                                           propDesc,
                                           GetCombinationDeliverables(i),
                                           ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1563,7 +1563,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pCombination = new ZBProperty(finalPropTitle,
                 (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                           propName,
-                                          (groupValue ? Z_COMBINATION_ACTIVATION_PERC : (Z_COMBINATION_ACTIVATION_PERC + (i * _MaxCombinationListSize))),
+                                          (groupValue ? M_Combination_Activation_Perc_ID : (M_Combination_Activation_Perc_ID + (i * _MaxCombinationListSize))),
                                           propDesc,
                                           maxPercent,
                                           ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1580,7 +1580,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pCombination = new ZBProperty(finalPropTitle,
                 (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                           propName,
-                                          (groupValue ? Z_COMBINATION_MASTER : (Z_COMBINATION_MASTER + (i * _MaxCombinationListSize))),
+                                          (groupValue ? M_Combination_Master_ID : (M_Combination_Master_ID + (i * _MaxCombinationListSize))),
                                           propDesc,
                                           GetCombinationMaster(i),
                                           ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -2144,28 +2144,28 @@ bool ZBBPProcedureSymbol::SaveProperty(ZBProperty& Property)
 
         switch (Property.GetItemID() - (i * _MaxCombinationListSize))
         {
-            case Z_COMBINATION_NAME:
+            case M_Combination_Name_ID:
             {
                 SetCombinationName(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
                                    Property.GetValueString());
                 break;
             }
 
-            case Z_COMBINATION_DELIVERABLES:
+            case M_Combination_Deliverables_ID:
             {
                 SetCombinationDeliverables(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
                                            Property.GetValueString());
                 break;
             }
 
-            case Z_COMBINATION_ACTIVATION_PERC:
+            case M_Combination_Activation_Perc_ID:
             {
                 SetCombinationActivationPerc(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
                                              Property.GetValueFloat());
                 break;
             }
 
-            case Z_COMBINATION_MASTER:
+            case M_Combination_Master_ID:
             {
                 SetCombinationMaster(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
                                      Property.GetValueString());
@@ -2317,7 +2317,7 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
 
         switch (Property.GetItemID() - (i * _MaxCombinationListSize))
         {
-            case Z_COMBINATION_DELIVERABLES:
+            case M_Combination_Deliverables_ID:
             {
                 // Get the deliverables
                 CString EnteringDeliverables;
@@ -2336,7 +2336,7 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
                 break;
             }
 
-            case Z_COMBINATION_MASTER:
+            case M_Combination_Master_ID:
             {
                 ZVChooseMasterDeliverable dlg(GetCombinationDeliverables(i), value);
 
@@ -2475,7 +2475,7 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBProperty
 
         switch (Property.GetItemID() - (i * _MaxCombinationListSize))
         {
-            case Z_COMBINATION_DELIVERABLES:
+            case M_Combination_Deliverables_ID:
             {
                 float MaxPercent =
                     GetMaxActivationPerc(GetCombinationMaster(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION));
@@ -2492,7 +2492,7 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBProperty
                         continue;
                     }
 
-                    if (pProp->GetItemID() - (i * _MaxCombinationListSize) == Z_COMBINATION_ACTIVATION_PERC)
+                    if (pProp->GetItemID() - (i * _MaxCombinationListSize) == M_Combination_Activation_Perc_ID)
                     {
                         pProp->SetValueFloat(MaxPercent);
                         bFound = true;
@@ -3490,8 +3490,8 @@ void ZBBPProcedureSymbol::Serialize(CArchive& ar)
             TRACE(_T("ZBBPProcedureSymbol::Serialize : Start Read\n"));
 
             // Transfert the properties to new format
-            PSS_CostPropertiesProcedureBP* pCostProps =
-                (PSS_CostPropertiesProcedureBP*)GetProperty(ZS_BP_PROP_PROCEDURE_COST);
+            PSS_CostPropertiesProcedureBP_Beta1* pCostProps =
+                (PSS_CostPropertiesProcedureBP_Beta1*)GetProperty(ZS_BP_PROP_PROCEDURE_COST);
 
             if (pCostProps)
             {
@@ -3500,7 +3500,7 @@ void ZBBPProcedureSymbol::Serialize(CArchive& ar)
                 SetUnitaryCost(pCostProps->GetUnitaryCost());
             }
 
-            PSS_UnitPropertiesBP* pUnitProps = (PSS_UnitPropertiesBP*)GetProperty(ZS_BP_PROP_UNIT);
+            PSS_UnitPropertiesBP_Beta1* pUnitProps = (PSS_UnitPropertiesBP_Beta1*)GetProperty(ZS_BP_PROP_UNIT);
 
             if (pUnitProps)
             {

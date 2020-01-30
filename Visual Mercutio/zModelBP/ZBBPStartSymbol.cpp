@@ -9,7 +9,7 @@
     #include "zModel\PSS_BasicProperties.h"
 #undef _ZMODELEXPORT
 
-#include "PSS_UnitPropertiesBP.h"
+#include "PSS_UnitPropertiesBP_Beta1.h"
 
 // Global for model
 #include "zModel\PSS_ModelGlobal.h"
@@ -314,7 +314,7 @@ bool ZBBPStartSymbol::CreateSymbolProperties()
         return false;
     }
 
-    PSS_UnitPropertiesBP propUnit;
+    PSS_UnitPropertiesBP_Beta1 propUnit;
     AddProperty(propUnit);
 
     // JMR-MODIF - Le 3 juin 2007 - Ajoute au moins un catalogue de propriétés dans les risques.
@@ -1207,7 +1207,7 @@ void ZBBPStartSymbol::Serialize(CArchive& ar)
         else
         {
             // Transfert the properties to new format
-            PSS_UnitPropertiesBP* pUnitProps = (PSS_UnitPropertiesBP*)GetProperty(ZS_BP_PROP_UNIT);
+            PSS_UnitPropertiesBP_Beta1* pUnitProps = (PSS_UnitPropertiesBP_Beta1*)GetProperty(ZS_BP_PROP_UNIT);
 
             if (pUnitProps)
             {

@@ -151,11 +151,11 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, int& value) const
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_ACTIVATION_PERC:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE); return FALSE;
-        default:                                           return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Activation_Perc_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
+        default:                                              return FALSE;
     }
 
     return TRUE;
@@ -165,11 +165,11 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, UINT& value) const
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_ACTIVATION_PERC:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE); return FALSE;
-        default:                                           return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Activation_Perc_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
+        default:                                              return FALSE;
     }
 
     return TRUE;
@@ -179,11 +179,11 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, DWORD& value) const
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_ACTIVATION_PERC:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE); return FALSE;
-        default:                                           return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Activation_Perc_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
+        default:                                              return FALSE;
     }
 
     return TRUE;
@@ -193,11 +193,11 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, float& value) const
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE);                       return FALSE;
-        case Z_COMBINATION_ACTIVATION_PERC: value = m_CombinationActivationPerc; break;
-        default:                                                                 return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE);                       return FALSE;
+        case M_Combination_Activation_Perc_ID: value = m_CombinationActivationPerc; break;
+        default:                                                                    return FALSE;
     }
 
     return TRUE;
@@ -207,10 +207,10 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, CString& value) con
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:         value = m_CombinationName;         break;
-        case Z_COMBINATION_DELIVERABLES: value = m_CombinationDeliverables; break;
-        case Z_COMBINATION_MASTER:       value = m_CombinationMaster;       break;
-        default:                         ASSERT(FALSE);                     return FALSE;
+        case M_Combination_Name_ID:         value = m_CombinationName;         break;
+        case M_Combination_Deliverables_ID: value = m_CombinationDeliverables; break;
+        case M_Combination_Master_ID:       value = m_CombinationMaster;       break;
+        default:                            ASSERT(FALSE);                     return FALSE;
     }
 
     return TRUE;
@@ -220,11 +220,11 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const int value)
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_ACTIVATION_PERC:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE); return FALSE;
-        default:                                           return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Activation_Perc_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
+        default:                                              return FALSE;
     }
 
     return TRUE;
@@ -234,11 +234,11 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const UINT value)
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_ACTIVATION_PERC:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE); return FALSE;
-        default:                                           return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Activation_Perc_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
+        default:                                              return FALSE;
     }
 
     return TRUE;
@@ -248,11 +248,11 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const DWORD value)
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_ACTIVATION_PERC:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE); return FALSE;
-        default:                                           return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Activation_Perc_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
+        default:                                              return FALSE;
     }
 
     return TRUE;
@@ -262,11 +262,11 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const float value)
 {
     switch (propId)
     {
-        case Z_COMBINATION_NAME:
-        case Z_COMBINATION_DELIVERABLES:
-        case Z_COMBINATION_MASTER:          ASSERT(FALSE);                       return FALSE;
-        case Z_COMBINATION_ACTIVATION_PERC: m_CombinationActivationPerc = value; break;
-        default:                                                                 return FALSE;
+        case M_Combination_Name_ID:
+        case M_Combination_Deliverables_ID:
+        case M_Combination_Master_ID:          ASSERT(FALSE);                       return FALSE;
+        case M_Combination_Activation_Perc_ID: m_CombinationActivationPerc = value; break;
+        default:                                                                    return FALSE;
     }
 
     return TRUE;
@@ -274,12 +274,15 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const float value)
 //---------------------------------------------------------------------------
 BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, LPCTSTR pValue)
 {
+    if (!pValue)
+        return FALSE;
+
     switch (propId)
     {
-        case Z_COMBINATION_NAME:         m_CombinationName         = pValue; break;
-        case Z_COMBINATION_DELIVERABLES: m_CombinationDeliverables = pValue; break;
-        case Z_COMBINATION_MASTER:       m_CombinationMaster       = pValue; break;
-        default:                         ASSERT(FALSE);                      return FALSE;
+        case M_Combination_Name_ID:         m_CombinationName         = pValue; break;
+        case M_Combination_Deliverables_ID: m_CombinationDeliverables = pValue; break;
+        case M_Combination_Master_ID:       m_CombinationMaster       = pValue; break;
+        default:                            ASSERT(FALSE);                      return FALSE;
     }
 
     return TRUE;
@@ -289,18 +292,18 @@ void PSS_CombinationPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize : Start Save\n"));
+        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - Start Save\n"));
 
         ar << m_CombinationName;
         ar << m_CombinationDeliverables;
         ar << m_CombinationActivationPerc;
         ar << m_CombinationMaster;
 
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize : End Save\n"));
+        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - End Save\n"));
     }
     else
     {
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize : Start Read\n"));
+        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - Start Read\n"));
 
         ar >> m_CombinationName;
         ar >> m_CombinationDeliverables;
@@ -314,7 +317,7 @@ void PSS_CombinationPropertiesBP::Serialize(CArchive& ar)
         else
             m_CombinationMaster.Empty();
 
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize : End Read\n"));
+        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - End Read\n"));
     }
 }
 //---------------------------------------------------------------------------

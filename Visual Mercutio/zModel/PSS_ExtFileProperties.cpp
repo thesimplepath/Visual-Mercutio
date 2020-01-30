@@ -235,6 +235,9 @@ BOOL PSS_ExtFileProperties::SetValue(const int propId, const float value)
 //---------------------------------------------------------------------------
 BOOL PSS_ExtFileProperties::SetValue(const int propId, LPCTSTR pValue)
 {
+    if (!pValue)
+        return FALSE;
+
     switch (propId)
     {
         case M_File_Title_ID: m_FileTitle = pValue; break;

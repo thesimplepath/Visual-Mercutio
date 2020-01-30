@@ -287,6 +287,9 @@ BOOL PSS_ExtAppProperties::SetValue(const int propId, const float value)
 //---------------------------------------------------------------------------
 BOOL PSS_ExtAppProperties::SetValue(const int propId, LPCTSTR pValue)
 {
+    if (!pValue)
+        return FALSE;
+
     switch (propId)
     {
         case M_Command_Title_ID:      m_CommandTitle            = pValue; break;

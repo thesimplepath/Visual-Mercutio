@@ -214,6 +214,9 @@ BOOL PSS_BasicProperties::SetValue(const int propId, const float value)
 //---------------------------------------------------------------------------
 BOOL PSS_BasicProperties::SetValue(const int propId, LPCTSTR pValue)
 {
+    if (!pValue)
+        return FALSE;
+
     switch (propId)
     {
         case M_Symbol_Name_ID:        m_SymbolName        = pValue;            break;

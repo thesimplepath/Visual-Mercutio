@@ -479,21 +479,21 @@ BOOL PSS_AnnualNumberPropertiesBP::GetValue(const int propId, int& value) const
     // only used to get the lock flag value
     switch (propId)
     {
-        case M_Locked_Year:      value = static_cast<int>(GetLockNumberYear());      break;
-        case M_Locked_January:   value = static_cast<int>(GetLockNumberJanuary());   break;
-        case M_Locked_February:  value = static_cast<int>(GetLockNumberFebruary());  break;
-        case M_Locked_March:     value = static_cast<int>(GetLockNumberMarch());     break;
-        case M_Locked_April:     value = static_cast<int>(GetLockNumberApril());     break;
-        case M_Locked_May:       value = static_cast<int>(GetLockNumberMay());       break;
-        case M_Locked_June:      value = static_cast<int>(GetLockNumberJune());      break;
-        case M_Locked_July:      value = static_cast<int>(GetLockNumberJuly());      break;
-        case M_Locked_August:    value = static_cast<int>(GetLockNumberAugust());    break;
-        case M_Locked_September: value = static_cast<int>(GetLockNumberSeptember()); break;
-        case M_Locked_October:   value = static_cast<int>(GetLockNumberOctober());   break;
-        case M_Locked_November:  value = static_cast<int>(GetLockNumberNovember());  break;
-        case M_Locked_December:  value = static_cast<int>(GetLockNumberDecember());  break;
-        case M_Force_Equalizer:  value = static_cast<int>(GetForceEqualizer());      break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Locked_Year_ID:      value = static_cast<int>(GetLockNumberYear());      break;
+        case M_Locked_January_ID:   value = static_cast<int>(GetLockNumberJanuary());   break;
+        case M_Locked_February_ID:  value = static_cast<int>(GetLockNumberFebruary());  break;
+        case M_Locked_March_ID:     value = static_cast<int>(GetLockNumberMarch());     break;
+        case M_Locked_April_ID:     value = static_cast<int>(GetLockNumberApril());     break;
+        case M_Locked_May_ID:       value = static_cast<int>(GetLockNumberMay());       break;
+        case M_Locked_June_ID:      value = static_cast<int>(GetLockNumberJune());      break;
+        case M_Locked_July_ID:      value = static_cast<int>(GetLockNumberJuly());      break;
+        case M_Locked_August_ID:    value = static_cast<int>(GetLockNumberAugust());    break;
+        case M_Locked_September_ID: value = static_cast<int>(GetLockNumberSeptember()); break;
+        case M_Locked_October_ID:   value = static_cast<int>(GetLockNumberOctober());   break;
+        case M_Locked_November_ID:  value = static_cast<int>(GetLockNumberNovember());  break;
+        case M_Locked_December_ID:  value = static_cast<int>(GetLockNumberDecember());  break;
+        case M_Force_Equalizer_ID:  value = static_cast<int>(GetForceEqualizer());      break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -504,21 +504,21 @@ BOOL PSS_AnnualNumberPropertiesBP::GetValue(const int propId, UINT& value) const
     // only used to get the lock flag value
     switch (propId)
     {
-        case M_Locked_Year:      value = GetLockNumberYear();      break;
-        case M_Locked_January:   value = GetLockNumberJanuary();   break;
-        case M_Locked_February:  value = GetLockNumberFebruary();  break;
-        case M_Locked_March:     value = GetLockNumberMarch();     break;
-        case M_Locked_April:     value = GetLockNumberApril();     break;
-        case M_Locked_May:       value = GetLockNumberMay();       break;
-        case M_Locked_June:      value = GetLockNumberJune();      break;
-        case M_Locked_July:      value = GetLockNumberJuly();      break;
-        case M_Locked_August:    value = GetLockNumberAugust();    break;
-        case M_Locked_September: value = GetLockNumberSeptember(); break;
-        case M_Locked_October:   value = GetLockNumberOctober();   break;
-        case M_Locked_November:  value = GetLockNumberNovember();  break;
-        case M_Locked_December:  value = GetLockNumberDecember();  break;
-        case M_Force_Equalizer:  value = GetForceEqualizer();      break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Locked_Year_ID:      value = GetLockNumberYear();      break;
+        case M_Locked_January_ID:   value = GetLockNumberJanuary();   break;
+        case M_Locked_February_ID:  value = GetLockNumberFebruary();  break;
+        case M_Locked_March_ID:     value = GetLockNumberMarch();     break;
+        case M_Locked_April_ID:     value = GetLockNumberApril();     break;
+        case M_Locked_May_ID:       value = GetLockNumberMay();       break;
+        case M_Locked_June_ID:      value = GetLockNumberJune();      break;
+        case M_Locked_July_ID:      value = GetLockNumberJuly();      break;
+        case M_Locked_August_ID:    value = GetLockNumberAugust();    break;
+        case M_Locked_September_ID: value = GetLockNumberSeptember(); break;
+        case M_Locked_October_ID:   value = GetLockNumberOctober();   break;
+        case M_Locked_November_ID:  value = GetLockNumberNovember();  break;
+        case M_Locked_December_ID:  value = GetLockNumberDecember();  break;
+        case M_Force_Equalizer_ID:  value = GetForceEqualizer();      break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -529,21 +529,21 @@ BOOL PSS_AnnualNumberPropertiesBP::GetValue(const int propId, DWORD& value) cons
     // only used to get the lock flag value
     switch (propId)
     {
-        case M_Locked_Year:      value = static_cast<DWORD>(GetLockNumberYear());      break;
-        case M_Locked_January:   value = static_cast<DWORD>(GetLockNumberJanuary());   break;
-        case M_Locked_February:  value = static_cast<DWORD>(GetLockNumberFebruary());  break;
-        case M_Locked_March:     value = static_cast<DWORD>(GetLockNumberMarch());     break;
-        case M_Locked_April:     value = static_cast<DWORD>(GetLockNumberApril());     break;
-        case M_Locked_May:       value = static_cast<DWORD>(GetLockNumberMay());       break;
-        case M_Locked_June:      value = static_cast<DWORD>(GetLockNumberJune());      break;
-        case M_Locked_July:      value = static_cast<DWORD>(GetLockNumberJuly());      break;
-        case M_Locked_August:    value = static_cast<DWORD>(GetLockNumberAugust());    break;
-        case M_Locked_September: value = static_cast<DWORD>(GetLockNumberSeptember()); break;
-        case M_Locked_October:   value = static_cast<DWORD>(GetLockNumberOctober());   break;
-        case M_Locked_November:  value = static_cast<DWORD>(GetLockNumberNovember());  break;
-        case M_Locked_December:  value = static_cast<DWORD>(GetLockNumberDecember());  break;
-        case M_Force_Equalizer:  value = static_cast<DWORD>(GetForceEqualizer());      break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Locked_Year_ID:      value = static_cast<DWORD>(GetLockNumberYear());      break;
+        case M_Locked_January_ID:   value = static_cast<DWORD>(GetLockNumberJanuary());   break;
+        case M_Locked_February_ID:  value = static_cast<DWORD>(GetLockNumberFebruary());  break;
+        case M_Locked_March_ID:     value = static_cast<DWORD>(GetLockNumberMarch());     break;
+        case M_Locked_April_ID:     value = static_cast<DWORD>(GetLockNumberApril());     break;
+        case M_Locked_May_ID:       value = static_cast<DWORD>(GetLockNumberMay());       break;
+        case M_Locked_June_ID:      value = static_cast<DWORD>(GetLockNumberJune());      break;
+        case M_Locked_July_ID:      value = static_cast<DWORD>(GetLockNumberJuly());      break;
+        case M_Locked_August_ID:    value = static_cast<DWORD>(GetLockNumberAugust());    break;
+        case M_Locked_September_ID: value = static_cast<DWORD>(GetLockNumberSeptember()); break;
+        case M_Locked_October_ID:   value = static_cast<DWORD>(GetLockNumberOctober());   break;
+        case M_Locked_November_ID:  value = static_cast<DWORD>(GetLockNumberNovember());  break;
+        case M_Locked_December_ID:  value = static_cast<DWORD>(GetLockNumberDecember());  break;
+        case M_Force_Equalizer_ID:  value = static_cast<DWORD>(GetForceEqualizer());      break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -554,20 +554,20 @@ BOOL PSS_AnnualNumberPropertiesBP::GetValue(const int propId, float& value) cons
     // only used to get quantity values
     switch (propId)
     {
-        case M_Number_Year:      value = static_cast<float>(GetNumberYear());      break;
-        case M_Number_January:   value = static_cast<float>(GetNumberJanuary());   break;
-        case M_Number_February:  value = static_cast<float>(GetNumberFebruary());  break;
-        case M_Number_March:     value = static_cast<float>(GetNumberMarch());     break;
-        case M_Number_April:     value = static_cast<float>(GetNumberApril());     break;
-        case M_Number_May:       value = static_cast<float>(GetNumberMay());       break;
-        case M_Number_June:      value = static_cast<float>(GetNumberJune());      break;
-        case M_Number_July:      value = static_cast<float>(GetNumberJuly());      break;
-        case M_Number_August:    value = static_cast<float>(GetNumberAugust());    break;
-        case M_Number_September: value = static_cast<float>(GetNumberSeptember()); break;
-        case M_Number_October:   value = static_cast<float>(GetNumberOctober());   break;
-        case M_Number_November:  value = static_cast<float>(GetNumberNovember());  break;
-        case M_Number_December:  value = static_cast<float>(GetNumberDecember());  break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Number_Year_ID:      value = static_cast<float>(GetNumberYear());      break;
+        case M_Number_January_ID:   value = static_cast<float>(GetNumberJanuary());   break;
+        case M_Number_February_ID:  value = static_cast<float>(GetNumberFebruary());  break;
+        case M_Number_March_ID:     value = static_cast<float>(GetNumberMarch());     break;
+        case M_Number_April_ID:     value = static_cast<float>(GetNumberApril());     break;
+        case M_Number_May_ID:       value = static_cast<float>(GetNumberMay());       break;
+        case M_Number_June_ID:      value = static_cast<float>(GetNumberJune());      break;
+        case M_Number_July_ID:      value = static_cast<float>(GetNumberJuly());      break;
+        case M_Number_August_ID:    value = static_cast<float>(GetNumberAugust());    break;
+        case M_Number_September_ID: value = static_cast<float>(GetNumberSeptember()); break;
+        case M_Number_October_ID:   value = static_cast<float>(GetNumberOctober());   break;
+        case M_Number_November_ID:  value = static_cast<float>(GetNumberNovember());  break;
+        case M_Number_December_ID:  value = static_cast<float>(GetNumberDecember());  break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -578,20 +578,20 @@ BOOL PSS_AnnualNumberPropertiesBP::GetValue(const int propId, double& value) con
     // only used to get quantity values
     switch (propId)
     {
-        case M_Number_Year:      value = GetNumberYear();      break;
-        case M_Number_January:   value = GetNumberJanuary();   break;
-        case M_Number_February:  value = GetNumberFebruary();  break;
-        case M_Number_March:     value = GetNumberMarch();     break;
-        case M_Number_April:     value = GetNumberApril();     break;
-        case M_Number_May:       value = GetNumberMay();       break;
-        case M_Number_June:      value = GetNumberJune();      break;
-        case M_Number_July:      value = GetNumberJuly();      break;
-        case M_Number_August:    value = GetNumberAugust();    break;
-        case M_Number_September: value = GetNumberSeptember(); break;
-        case M_Number_October:   value = GetNumberOctober();   break;
-        case M_Number_November:  value = GetNumberNovember();  break;
-        case M_Number_December:  value = GetNumberDecember();  break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Number_Year_ID:      value = GetNumberYear();      break;
+        case M_Number_January_ID:   value = GetNumberJanuary();   break;
+        case M_Number_February_ID:  value = GetNumberFebruary();  break;
+        case M_Number_March_ID:     value = GetNumberMarch();     break;
+        case M_Number_April_ID:     value = GetNumberApril();     break;
+        case M_Number_May_ID:       value = GetNumberMay();       break;
+        case M_Number_June_ID:      value = GetNumberJune();      break;
+        case M_Number_July_ID:      value = GetNumberJuly();      break;
+        case M_Number_August_ID:    value = GetNumberAugust();    break;
+        case M_Number_September_ID: value = GetNumberSeptember(); break;
+        case M_Number_October_ID:   value = GetNumberOctober();   break;
+        case M_Number_November_ID:  value = GetNumberNovember();  break;
+        case M_Number_December_ID:  value = GetNumberDecember();  break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -602,20 +602,20 @@ BOOL PSS_AnnualNumberPropertiesBP::GetValue(const int propId, CString& value) co
     // only used to get quantity values
     switch (propId)
     {
-        case M_Number_Year:      value.Format(_T("%.2f"), GetNumberYear());      break;
-        case M_Number_January:   value.Format(_T("%.2f"), GetNumberJanuary());   break;
-        case M_Number_February:  value.Format(_T("%.2f"), GetNumberFebruary());  break;
-        case M_Number_March:     value.Format(_T("%.2f"), GetNumberMarch());     break;
-        case M_Number_April:     value.Format(_T("%.2f"), GetNumberApril());     break;
-        case M_Number_May:       value.Format(_T("%.2f"), GetNumberMay());       break;
-        case M_Number_June:      value.Format(_T("%.2f"), GetNumberJune());      break;
-        case M_Number_July:      value.Format(_T("%.2f"), GetNumberJuly());      break;
-        case M_Number_August:    value.Format(_T("%.2f"), GetNumberAugust());    break;
-        case M_Number_September: value.Format(_T("%.2f"), GetNumberSeptember()); break;
-        case M_Number_October:   value.Format(_T("%.2f"), GetNumberOctober());   break;
-        case M_Number_November:  value.Format(_T("%.2f"), GetNumberNovember());  break;
-        case M_Number_December:  value.Format(_T("%.2f"), GetNumberDecember());  break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Number_Year_ID:      value.Format(_T("%.2f"), GetNumberYear());      break;
+        case M_Number_January_ID:   value.Format(_T("%.2f"), GetNumberJanuary());   break;
+        case M_Number_February_ID:  value.Format(_T("%.2f"), GetNumberFebruary());  break;
+        case M_Number_March_ID:     value.Format(_T("%.2f"), GetNumberMarch());     break;
+        case M_Number_April_ID:     value.Format(_T("%.2f"), GetNumberApril());     break;
+        case M_Number_May_ID:       value.Format(_T("%.2f"), GetNumberMay());       break;
+        case M_Number_June_ID:      value.Format(_T("%.2f"), GetNumberJune());      break;
+        case M_Number_July_ID:      value.Format(_T("%.2f"), GetNumberJuly());      break;
+        case M_Number_August_ID:    value.Format(_T("%.2f"), GetNumberAugust());    break;
+        case M_Number_September_ID: value.Format(_T("%.2f"), GetNumberSeptember()); break;
+        case M_Number_October_ID:   value.Format(_T("%.2f"), GetNumberOctober());   break;
+        case M_Number_November_ID:  value.Format(_T("%.2f"), GetNumberNovember());  break;
+        case M_Number_December_ID:  value.Format(_T("%.2f"), GetNumberDecember());  break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -626,21 +626,21 @@ BOOL PSS_AnnualNumberPropertiesBP::SetValue(const int propId, const int value)
     // only used to set locked flags
     switch (propId)
     {
-        case M_Locked_Year:      SetLockNumberYearEx     (static_cast<UINT>(value)); break;
-        case M_Locked_January:   SetLockNumberJanuaryEx  (static_cast<UINT>(value)); break;
-        case M_Locked_February:  SetLockNumberFebruaryEx (static_cast<UINT>(value)); break;
-        case M_Locked_March:     SetLockNumberMarchEx    (static_cast<UINT>(value)); break;
-        case M_Locked_April:     SetLockNumberAprilEx    (static_cast<UINT>(value)); break;
-        case M_Locked_May:       SetLockNumberMayEx      (static_cast<UINT>(value)); break;
-        case M_Locked_June:      SetLockNumberJuneEx     (static_cast<UINT>(value)); break;
-        case M_Locked_July:      SetLockNumberJulyEx     (static_cast<UINT>(value)); break;
-        case M_Locked_August:    SetLockNumberAugustEx   (static_cast<UINT>(value)); break;
-        case M_Locked_September: SetLockNumberSeptemberEx(static_cast<UINT>(value)); break;
-        case M_Locked_October:   SetLockNumberOctoberEx  (static_cast<UINT>(value)); break;
-        case M_Locked_November:  SetLockNumberNovemberEx (static_cast<UINT>(value)); break;
-        case M_Locked_December:  SetLockNumberDecemberEx (static_cast<UINT>(value)); break;
-        case M_Force_Equalizer:  SetForceEqualizerEx     (static_cast<UINT>(value)); break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Locked_Year_ID:      SetLockNumberYearEx     (static_cast<UINT>(value)); break;
+        case M_Locked_January_ID:   SetLockNumberJanuaryEx  (static_cast<UINT>(value)); break;
+        case M_Locked_February_ID:  SetLockNumberFebruaryEx (static_cast<UINT>(value)); break;
+        case M_Locked_March_ID:     SetLockNumberMarchEx    (static_cast<UINT>(value)); break;
+        case M_Locked_April_ID:     SetLockNumberAprilEx    (static_cast<UINT>(value)); break;
+        case M_Locked_May_ID:       SetLockNumberMayEx      (static_cast<UINT>(value)); break;
+        case M_Locked_June_ID:      SetLockNumberJuneEx     (static_cast<UINT>(value)); break;
+        case M_Locked_July_ID:      SetLockNumberJulyEx     (static_cast<UINT>(value)); break;
+        case M_Locked_August_ID:    SetLockNumberAugustEx   (static_cast<UINT>(value)); break;
+        case M_Locked_September_ID: SetLockNumberSeptemberEx(static_cast<UINT>(value)); break;
+        case M_Locked_October_ID:   SetLockNumberOctoberEx  (static_cast<UINT>(value)); break;
+        case M_Locked_November_ID:  SetLockNumberNovemberEx (static_cast<UINT>(value)); break;
+        case M_Locked_December_ID:  SetLockNumberDecemberEx (static_cast<UINT>(value)); break;
+        case M_Force_Equalizer_ID:  SetForceEqualizerEx     (static_cast<UINT>(value)); break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -651,21 +651,21 @@ BOOL PSS_AnnualNumberPropertiesBP::SetValue(const int propId, const UINT value)
     // only used to set locked flags
     switch (propId)
     {
-        case M_Locked_Year:      SetLockNumberYearEx(value);      break;
-        case M_Locked_January:   SetLockNumberJanuaryEx(value);   break;
-        case M_Locked_February:  SetLockNumberFebruaryEx(value);  break;
-        case M_Locked_March:     SetLockNumberMarchEx(value);     break;
-        case M_Locked_April:     SetLockNumberAprilEx(value);     break;
-        case M_Locked_May:       SetLockNumberMayEx(value);       break;
-        case M_Locked_June:      SetLockNumberJuneEx(value);      break;
-        case M_Locked_July:      SetLockNumberJulyEx(value);      break;
-        case M_Locked_August:    SetLockNumberAugustEx(value);    break;
-        case M_Locked_September: SetLockNumberSeptemberEx(value); break;
-        case M_Locked_October:   SetLockNumberOctoberEx(value);   break;
-        case M_Locked_November:  SetLockNumberNovemberEx(value);  break;
-        case M_Locked_December:  SetLockNumberDecemberEx(value);  break;
-        case M_Force_Equalizer:  SetForceEqualizerEx(value);      break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Locked_Year_ID:      SetLockNumberYearEx(value);      break;
+        case M_Locked_January_ID:   SetLockNumberJanuaryEx(value);   break;
+        case M_Locked_February_ID:  SetLockNumberFebruaryEx(value);  break;
+        case M_Locked_March_ID:     SetLockNumberMarchEx(value);     break;
+        case M_Locked_April_ID:     SetLockNumberAprilEx(value);     break;
+        case M_Locked_May_ID:       SetLockNumberMayEx(value);       break;
+        case M_Locked_June_ID:      SetLockNumberJuneEx(value);      break;
+        case M_Locked_July_ID:      SetLockNumberJulyEx(value);      break;
+        case M_Locked_August_ID:    SetLockNumberAugustEx(value);    break;
+        case M_Locked_September_ID: SetLockNumberSeptemberEx(value); break;
+        case M_Locked_October_ID:   SetLockNumberOctoberEx(value);   break;
+        case M_Locked_November_ID:  SetLockNumberNovemberEx(value);  break;
+        case M_Locked_December_ID:  SetLockNumberDecemberEx(value);  break;
+        case M_Force_Equalizer_ID:  SetForceEqualizerEx(value);      break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -676,21 +676,21 @@ BOOL PSS_AnnualNumberPropertiesBP::SetValue(const int propId, const DWORD value)
     // only used to set locked flags
     switch (propId)
     {
-        case M_Locked_Year:      SetLockNumberYearEx     (static_cast<UINT>(value)); break;
-        case M_Locked_January:   SetLockNumberJanuaryEx  (static_cast<UINT>(value)); break;
-        case M_Locked_February:  SetLockNumberFebruaryEx (static_cast<UINT>(value)); break;
-        case M_Locked_March:     SetLockNumberMarchEx    (static_cast<UINT>(value)); break;
-        case M_Locked_April:     SetLockNumberAprilEx    (static_cast<UINT>(value)); break;
-        case M_Locked_May:       SetLockNumberMayEx      (static_cast<UINT>(value)); break;
-        case M_Locked_June:      SetLockNumberJuneEx     (static_cast<UINT>(value)); break;
-        case M_Locked_July:      SetLockNumberJulyEx     (static_cast<UINT>(value)); break;
-        case M_Locked_August:    SetLockNumberAugustEx   (static_cast<UINT>(value)); break;
-        case M_Locked_September: SetLockNumberSeptemberEx(static_cast<UINT>(value)); break;
-        case M_Locked_October:   SetLockNumberOctoberEx  (static_cast<UINT>(value)); break;
-        case M_Locked_November:  SetLockNumberNovemberEx (static_cast<UINT>(value)); break;
-        case M_Locked_December:  SetLockNumberDecemberEx (static_cast<UINT>(value)); break;
-        case M_Force_Equalizer:  SetForceEqualizerEx     (static_cast<UINT>(value)); break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Locked_Year_ID:      SetLockNumberYearEx     (static_cast<UINT>(value)); break;
+        case M_Locked_January_ID:   SetLockNumberJanuaryEx  (static_cast<UINT>(value)); break;
+        case M_Locked_February_ID:  SetLockNumberFebruaryEx (static_cast<UINT>(value)); break;
+        case M_Locked_March_ID:     SetLockNumberMarchEx    (static_cast<UINT>(value)); break;
+        case M_Locked_April_ID:     SetLockNumberAprilEx    (static_cast<UINT>(value)); break;
+        case M_Locked_May_ID:       SetLockNumberMayEx      (static_cast<UINT>(value)); break;
+        case M_Locked_June_ID:      SetLockNumberJuneEx     (static_cast<UINT>(value)); break;
+        case M_Locked_July_ID:      SetLockNumberJulyEx     (static_cast<UINT>(value)); break;
+        case M_Locked_August_ID:    SetLockNumberAugustEx   (static_cast<UINT>(value)); break;
+        case M_Locked_September_ID: SetLockNumberSeptemberEx(static_cast<UINT>(value)); break;
+        case M_Locked_October_ID:   SetLockNumberOctoberEx  (static_cast<UINT>(value)); break;
+        case M_Locked_November_ID:  SetLockNumberNovemberEx (static_cast<UINT>(value)); break;
+        case M_Locked_December_ID:  SetLockNumberDecemberEx (static_cast<UINT>(value)); break;
+        case M_Force_Equalizer_ID:  SetForceEqualizerEx     (static_cast<UINT>(value)); break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -701,20 +701,20 @@ BOOL PSS_AnnualNumberPropertiesBP::SetValue(const int propId, const float value)
     // only used to set quantity values
     switch (propId)
     {
-        case M_Number_Year:      SetNumberYear(value);      break;
-        case M_Number_January:   SetNumberJanuary(value);   break;
-        case M_Number_February:  SetNumberFebruary(value);  break;
-        case M_Number_March:     SetNumberMarch(value);     break;
-        case M_Number_April:     SetNumberApril(value);     break;
-        case M_Number_May:       SetNumberMay(value);       break;
-        case M_Number_June:      SetNumberJune(value);      break;
-        case M_Number_July:      SetNumberJuly(value);      break;
-        case M_Number_August:    SetNumberAugust(value);    break;
-        case M_Number_September: SetNumberSeptember(value); break;
-        case M_Number_October:   SetNumberOctober(value);   break;
-        case M_Number_November:  SetNumberNovember(value);  break;
-        case M_Number_December:  SetNumberDecember(value);  break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Number_Year_ID:      SetNumberYear(value);      break;
+        case M_Number_January_ID:   SetNumberJanuary(value);   break;
+        case M_Number_February_ID:  SetNumberFebruary(value);  break;
+        case M_Number_March_ID:     SetNumberMarch(value);     break;
+        case M_Number_April_ID:     SetNumberApril(value);     break;
+        case M_Number_May_ID:       SetNumberMay(value);       break;
+        case M_Number_June_ID:      SetNumberJune(value);      break;
+        case M_Number_July_ID:      SetNumberJuly(value);      break;
+        case M_Number_August_ID:    SetNumberAugust(value);    break;
+        case M_Number_September_ID: SetNumberSeptember(value); break;
+        case M_Number_October_ID:   SetNumberOctober(value);   break;
+        case M_Number_November_ID:  SetNumberNovember(value);  break;
+        case M_Number_December_ID:  SetNumberDecember(value);  break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -725,20 +725,20 @@ BOOL PSS_AnnualNumberPropertiesBP::SetValue(const int propId, const double value
     // only used to set quantity values
     switch (propId)
     {
-        case M_Number_Year:      SetNumberYear(value);      break;
-        case M_Number_January:   SetNumberJanuary(value);   break;
-        case M_Number_February:  SetNumberFebruary(value);  break;
-        case M_Number_March:     SetNumberMarch(value);     break;
-        case M_Number_April:     SetNumberApril(value);     break;
-        case M_Number_May:       SetNumberMay(value);       break;
-        case M_Number_June:      SetNumberJune(value);      break;
-        case M_Number_July:      SetNumberJuly(value);      break;
-        case M_Number_August:    SetNumberAugust(value);    break;
-        case M_Number_September: SetNumberSeptember(value); break;
-        case M_Number_October:   SetNumberOctober(value);   break;
-        case M_Number_November:  SetNumberNovember(value);  break;
-        case M_Number_December:  SetNumberDecember(value);  break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Number_Year_ID:      SetNumberYear(value);      break;
+        case M_Number_January_ID:   SetNumberJanuary(value);   break;
+        case M_Number_February_ID:  SetNumberFebruary(value);  break;
+        case M_Number_March_ID:     SetNumberMarch(value);     break;
+        case M_Number_April_ID:     SetNumberApril(value);     break;
+        case M_Number_May_ID:       SetNumberMay(value);       break;
+        case M_Number_June_ID:      SetNumberJune(value);      break;
+        case M_Number_July_ID:      SetNumberJuly(value);      break;
+        case M_Number_August_ID:    SetNumberAugust(value);    break;
+        case M_Number_September_ID: SetNumberSeptember(value); break;
+        case M_Number_October_ID:   SetNumberOctober(value);   break;
+        case M_Number_November_ID:  SetNumberNovember(value);  break;
+        case M_Number_December_ID:  SetNumberDecember(value);  break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -752,20 +752,20 @@ BOOL PSS_AnnualNumberPropertiesBP::SetValue(const int propId, LPCTSTR pValue)
     // only used to set quantity values
     switch (propId)
     {
-        case M_Number_Year:      SetNumberYear     (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_January:   SetNumberJanuary  (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_February:  SetNumberFebruary (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_March:     SetNumberMarch    (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_April:     SetNumberApril    (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_May:       SetNumberMay      (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_June:      SetNumberJune     (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_July:      SetNumberJuly     (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_August:    SetNumberAugust   (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_September: SetNumberSeptember(static_cast<float>(std::atof(pValue))); break;
-        case M_Number_October:   SetNumberOctober  (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_November:  SetNumberNovember (static_cast<float>(std::atof(pValue))); break;
-        case M_Number_December:  SetNumberDecember (static_cast<float>(std::atof(pValue))); break;
-        default:                 throw new CODPropertyConversionException();
+        case M_Number_Year_ID:      SetNumberYear     (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_January_ID:   SetNumberJanuary  (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_February_ID:  SetNumberFebruary (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_March_ID:     SetNumberMarch    (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_April_ID:     SetNumberApril    (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_May_ID:       SetNumberMay      (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_June_ID:      SetNumberJune     (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_July_ID:      SetNumberJuly     (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_August_ID:    SetNumberAugust   (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_September_ID: SetNumberSeptember(static_cast<float>(std::atof(pValue))); break;
+        case M_Number_October_ID:   SetNumberOctober  (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_November_ID:  SetNumberNovember (static_cast<float>(std::atof(pValue))); break;
+        case M_Number_December_ID:  SetNumberDecember (static_cast<float>(std::atof(pValue))); break;
+        default:                    throw new CODPropertyConversionException();
     }
 
     return TRUE;
@@ -775,7 +775,7 @@ void PSS_AnnualNumberPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize : Start Save\n"));
+        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - Start Save\n"));
 
         PUT_SCHEMA(ar, PSS_AnnualNumberPropertiesBP);
 
@@ -808,11 +808,11 @@ void PSS_AnnualNumberPropertiesBP::Serialize(CArchive& ar)
         ar << UINT(GetLockNumberDecember());
         ar << UINT(GetForceEqualizer());
 
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize : End Save\n"));
+        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - End Save\n"));
     }
     else
     {
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize : Start Read\n"));
+        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - Start Read\n"));
 
         UINT schema;
         GET_SCHEMA(ar, schema);
@@ -875,7 +875,7 @@ void PSS_AnnualNumberPropertiesBP::Serialize(CArchive& ar)
         ar >> lock;
         SetForceEqualizerEx(lock);
 
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize : End Read\n"));
+        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - End Read\n"));
 
         CalculatePercents();
     }

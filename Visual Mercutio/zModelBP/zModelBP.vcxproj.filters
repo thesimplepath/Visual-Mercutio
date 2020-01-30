@@ -24,9 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPCostPropDeliverable2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBBPCostPropProcedure2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -258,15 +255,6 @@
     <ClCompile Include="PSS_SoapPublishUserGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_CostPropertiesDeliverableBP.cpp">
-      <Filter>Source Files\Beta 1 source version</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_CostPropertiesProcedureBP.cpp">
-      <Filter>Source Files\Beta 1 source version</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_UnitPropertiesBP.cpp">
-      <Filter>Source Files\Beta 1 source version</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_ProcessGraphModelControllerBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -280,6 +268,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_CombinationPropertiesBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CostPropertiesDeliverableBP_Beta1.cpp">
+      <Filter>Source Files\Beta 1 source version</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CostPropertiesProcedureBP_Beta1.cpp">
+      <Filter>Source Files\Beta 1 source version</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UnitPropertiesBP_Beta1.cpp">
+      <Filter>Source Files\Beta 1 source version</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CostPropertiesDeliverableBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -376,9 +376,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPCostPropDeliverable2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPCostPropProcedure2.h">
@@ -618,15 +615,6 @@
     <ClInclude Include="PSS_SoapPublishUserGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PSS_CostPropertiesDeliverableBP.h">
-      <Filter>Header Files\Beta1 Header version</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_CostPropertiesProcedureBP.h">
-      <Filter>Header Files\Beta1 Header version</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_UnitPropertiesBP.h">
-      <Filter>Header Files\Beta1 Header version</Filter>
-    </ClInclude>
     <ClInclude Include="PSS_ProcessGraphModelControllerBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -640,6 +628,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CombinationPropertiesBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CostPropertiesDeliverableBP_Beta1.h">
+      <Filter>Header Files\Beta1 Header version</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CostPropertiesProcedureBP_Beta1.h">
+      <Filter>Header Files\Beta1 Header version</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UnitPropertiesBP_Beta1.h">
+      <Filter>Header Files\Beta1 Header version</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CostPropertiesDeliverableBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

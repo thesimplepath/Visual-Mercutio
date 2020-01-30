@@ -153,7 +153,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_UnitPropertiesBP.cpp" />
+    <ClCompile Include="PSS_UnitPropertiesBP_Beta1.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -180,19 +180,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
+    <ClCompile Include="PSS_CostPropertiesDeliverableBP_Beta1.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
     <ClCompile Include="PSS_CostPropertiesDeliverableBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPCostPropDeliverable2.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-    </ClCompile>
-    <ClCompile Include="PSS_CostPropertiesProcedureBP.cpp">
+    <ClCompile Include="PSS_CostPropertiesProcedureBP_Beta1.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -588,14 +588,14 @@
   <ItemGroup>
     <ClInclude Include="PSS_ProcessGraphModelControllerBP.h" />
     <ClInclude Include="PSS_ProcessGraphModelMdlBP.h" />
-    <ClInclude Include="PSS_UnitPropertiesBP.h" />
+    <ClInclude Include="PSS_UnitPropertiesBP_Beta1.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_AnnualNumberPropertiesBP.h" />
     <ClInclude Include="PSS_AutomateBP.h" />
     <ClInclude Include="PSS_CombinationPropertiesBP.h" />
+    <ClInclude Include="PSS_CostPropertiesDeliverableBP_Beta1.h" />
     <ClInclude Include="PSS_CostPropertiesDeliverableBP.h" />
-    <ClInclude Include="ZBBPCostPropDeliverable2.h" />
-    <ClInclude Include="PSS_CostPropertiesProcedureBP.h" />
+    <ClInclude Include="PSS_CostPropertiesProcedureBP_Beta1.h" />
     <ClInclude Include="ZBBPCostPropProcedure2.h" />
     <ClInclude Include="ZBBPDecisionListProp.h" />
     <ClInclude Include="ZBBPDeliveriesProp.h" />
