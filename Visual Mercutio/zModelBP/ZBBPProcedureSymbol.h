@@ -23,7 +23,7 @@
 #include "ZBProcCombinations.h"
 #include "ZBBPSimPropProcedure.h"
 #include "ZBBPUnitProp2.h"
-#include "ZBBPCostPropProcedure2.h"
+#include "PSS_CostPropertiesProcedureBP.h"
 #include "ZBProcRules.h"
 #include "ZBBPRulesProp.h"
 #include "ZBProcRisk.h"
@@ -808,7 +808,7 @@ private:
     ZBBPSimPropertiesProcedure        m_SimulationProperties;
 
     ZBBPUnitProperties2                m_UnitProp;
-    ZBBPCostPropertiesProcedure2    m_CostProcedureProp;
+    PSS_CostPropertiesProcedureBP    m_CostProcedureProp;
 
     CStringArray                    m_UnitDoubleValidationTypeArray;
 

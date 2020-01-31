@@ -198,13 +198,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPCostPropProcedure2.cpp">
+    <ClCompile Include="PSS_CostPropertiesProcedureBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPDecisionListProp.cpp">
+    <ClCompile Include="PSS_DecisionListPropertiesBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -596,8 +596,8 @@
     <ClInclude Include="PSS_CostPropertiesDeliverableBP_Beta1.h" />
     <ClInclude Include="PSS_CostPropertiesDeliverableBP.h" />
     <ClInclude Include="PSS_CostPropertiesProcedureBP_Beta1.h" />
-    <ClInclude Include="ZBBPCostPropProcedure2.h" />
-    <ClInclude Include="ZBBPDecisionListProp.h" />
+    <ClInclude Include="PSS_CostPropertiesProcedureBP.h" />
+    <ClInclude Include="PSS_DecisionListPropertiesBP.h" />
     <ClInclude Include="ZBBPDeliveriesProp.h" />
     <ClInclude Include="ZBBPDoorSymbol.h" />
     <ClInclude Include="ZBBPGenericSymbol.h" />

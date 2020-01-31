@@ -10,8 +10,8 @@
 #define __ZBBPDeliveriesProp_H__
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 // Change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -20,6 +20,11 @@
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
+
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_DeliveriesPropertiesBP
+    #define PSS_DeliveriesPropertiesBP ZBBPDeliveriesProperties
+#endif
 
 #include "PSS_PropIDs.h"
 
@@ -71,72 +76,73 @@
 
 class AFX_EXT_CLASS ZBBPDeliveriesProperties : public CObject
 {
-    DECLARE_SERIAL( ZBBPDeliveriesProperties )
+    DECLARE_SERIAL(ZBBPDeliveriesProperties)
 
 public:
 
     ZBBPDeliveriesProperties();
-    ZBBPDeliveriesProperties( const ZBBPDeliveriesProperties& propProcess );
+    ZBBPDeliveriesProperties(const ZBBPDeliveriesProperties& propProcess);
 
     virtual ~ZBBPDeliveriesProperties();
 
 public:
 
-    ZBBPDeliveriesProperties& operator=( const ZBBPDeliveriesProperties& propProcess );
+    ZBBPDeliveriesProperties& operator=(const ZBBPDeliveriesProperties& propProcess);
 
-    BOOL operator==( const ZBBPDeliveriesProperties propProcess ) const;
+    BOOL operator==(const ZBBPDeliveriesProperties propProcess) const;
 
-    virtual ZBBPDeliveriesProperties* Dup();
+    virtual ZBBPDeliveriesProperties* Dup() const;
 
-    virtual void Merge( ZBBPDeliveriesProperties* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
+    virtual void Merge(ZBBPDeliveriesProperties* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
 
-    virtual BOOL IsEqual( ZBBPDeliveriesProperties* pProp );
+    virtual BOOL IsEqual(ZBBPDeliveriesProperties* pProp);
 
 public:
 
     CString GetDeliveryName() const;
-    void SetDeliveryName( LPCTSTR lpszValue );
+    void SetDeliveryName(LPCTSTR lpszValue);
 
     CString GetDeliveryDeliverables() const;
-    void SetDeliveryDeliverables( LPCTSTR lpszValue );
-    bool IsDeliverableInDelivery( LPCTSTR lpszValue );
+    void SetDeliveryDeliverables(LPCTSTR lpszValue);
+    bool IsDeliverableInDelivery(LPCTSTR lpszValue);
 
     float GetDeliveryQuantity() const;
-    void SetDeliveryQuantity( const float value );
+    void SetDeliveryQuantity(const float value);
 
     float GetDeliveryPercentage() const;
-    void SetDeliveryPercentage( const float value );
+    void SetDeliveryPercentage(const float value);
 
     CString GetDeliveryMain() const;
-    void SetDeliveryMain( LPCTSTR lpszValue );
+    void SetDeliveryMain(LPCTSTR lpszValue);
 
     /////////////////////////////////////////////////////////////////////////
     // GetValue and SetValue functions
 
-    virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
-    virtual BOOL GetValue( const int nPropId, int& nValue ) const;
-    virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
-    virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
-    virtual BOOL GetValue( const int nPropId, float& fValue ) const;
-    virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
-    virtual BOOL SetValue( const int nPropId, const int nValue );
-    virtual BOOL SetValue( const int nPropId, const UINT nValue );
-    virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
-    virtual BOOL SetValue( const int nPropId, const float fValue );
+    virtual BOOL GetValue(const int nPropId, int& nValue) const;
+    virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
+    virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
+    virtual BOOL GetValue(const int nPropId, float& fValue) const;
+    virtual BOOL GetValue(const int nPropId, CString& strValue) const;
 
-    virtual void Serialize( CArchive& ar );
+    virtual BOOL SetValue(const int nPropId, const int nValue);
+    virtual BOOL SetValue(const int nPropId, const UINT nValue);
+    virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
+    virtual BOOL SetValue(const int nPropId, const float fValue);
+    virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
+
+    virtual void Serialize(CArchive& ar);
 
 private:
 
-    void SetDeliveryNameEx( const CString value );
-    void SetDeliveryDeliverablesEx( const CString value );
-    void SetDeliveryMainEx( const CString value );
+    void SetDeliveryNameEx(const CString value);
+    void SetDeliveryDeliverablesEx(const CString value);
+    void SetDeliveryMainEx(const CString value);
 
 public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 protected:
@@ -150,9 +156,9 @@ protected:
 };
 
 // Cette fonction permet d'effectuer un duplicata de l'objet instancié.
-inline ZBBPDeliveriesProperties* ZBBPDeliveriesProperties::Dup()
+inline ZBBPDeliveriesProperties* ZBBPDeliveriesProperties::Dup() const
 {
-    return new ZBBPDeliveriesProperties( *this );
+    return new ZBBPDeliveriesProperties(*this);
 }
 
 // Obtient le nom de la livraison
@@ -174,7 +180,7 @@ inline float ZBBPDeliveriesProperties::GetDeliveryQuantity() const
 }
 
 // Indique la quantité de la livraison.
-inline void ZBBPDeliveriesProperties::SetDeliveryQuantity( const float value )
+inline void ZBBPDeliveriesProperties::SetDeliveryQuantity(const float value)
 {
     m_DeliveryQuantity = value;
 }
@@ -186,7 +192,7 @@ inline float ZBBPDeliveriesProperties::GetDeliveryPercentage() const
 }
 
 // Indique le pourcentage de la livraison.
-inline void ZBBPDeliveriesProperties::SetDeliveryPercentage( const float value )
+inline void ZBBPDeliveriesProperties::SetDeliveryPercentage(const float value)
 {
     m_DeliveryPercentage = value;
 }
@@ -197,4 +203,4 @@ inline CString ZBBPDeliveriesProperties::GetDeliveryMain() const
     return m_DeliveryMain;
 }
 
-#endif //__ZBBPDeliveriesProp_H__
+#endif

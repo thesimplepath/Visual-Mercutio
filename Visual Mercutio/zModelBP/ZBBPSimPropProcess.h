@@ -129,7 +129,7 @@ public:
 
     //@cmember
     /* Makes a copy of this properties object. */
-    virtual ZBBPSimPropertiesProcess* Dup();
+    virtual ZBBPSimPropertiesProcess* Dup() const;
     //@cmember
     /* Merges another set of properties with this one. */
     virtual void Merge( ZBBPSimPropertiesProcess* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
@@ -283,7 +283,7 @@ inline void ZBBPSimPropertiesProcess::SetProcessCost( const double value )
 //@mfunc Creates a copy of this property.
 //@rdesc A pointer to the new copy of the property. The caller is responsible
 // for cleaning up this object.
-inline ZBBPSimPropertiesProcess* ZBBPSimPropertiesProcess::Dup()
+inline ZBBPSimPropertiesProcess* ZBBPSimPropertiesProcess::Dup() const
 {
     return new ZBBPSimPropertiesProcess( *this );
 }

@@ -30,76 +30,75 @@ IMPLEMENT_SERIAL(ZBBPDeliveriesProperties, CObject, g_DefVersion)
 // Constructeur par défaut de la classe ZBBPDeliveriesProperties.
 ZBBPDeliveriesProperties::ZBBPDeliveriesProperties()
 {
-    m_DeliveryName            = _T( "" );
-    m_DeliveryDeliverables    = _T( "" );
-    m_DeliveryQuantity        = 0.0f;
-    m_DeliveryPercentage    = 0.0f;
-    m_DeliveryMain            = _T( "" );
+    m_DeliveryName = _T("");
+    m_DeliveryDeliverables = _T("");
+    m_DeliveryQuantity = 0.0f;
+    m_DeliveryPercentage = 0.0f;
+    m_DeliveryMain = _T("");
 }
 
 // Constructeur par copie de la classe ZBBPDeliveriesProperties.
-ZBBPDeliveriesProperties::ZBBPDeliveriesProperties( const ZBBPDeliveriesProperties& propProcess )
+ZBBPDeliveriesProperties::ZBBPDeliveriesProperties(const ZBBPDeliveriesProperties& propProcess)
 {
-    m_DeliveryName            = propProcess.GetDeliveryName();
-    m_DeliveryDeliverables    = propProcess.GetDeliveryDeliverables();
-    m_DeliveryQuantity        = propProcess.GetDeliveryQuantity();
-    m_DeliveryPercentage    = propProcess.GetDeliveryPercentage();
-    m_DeliveryMain            = propProcess.GetDeliveryMain();
+    m_DeliveryName = propProcess.GetDeliveryName();
+    m_DeliveryDeliverables = propProcess.GetDeliveryDeliverables();
+    m_DeliveryQuantity = propProcess.GetDeliveryQuantity();
+    m_DeliveryPercentage = propProcess.GetDeliveryPercentage();
+    m_DeliveryMain = propProcess.GetDeliveryMain();
 }
 
 // Destructeur de la classe ZBBPDeliveriesProperties.
 ZBBPDeliveriesProperties::~ZBBPDeliveriesProperties()
-{
-}
+{}
 
 // Surcharge de l'opérateur = pour la classe ZBBPDeliveriesProperties.
-ZBBPDeliveriesProperties& ZBBPDeliveriesProperties::operator=( const ZBBPDeliveriesProperties& propProcess )
+ZBBPDeliveriesProperties& ZBBPDeliveriesProperties::operator=(const ZBBPDeliveriesProperties& propProcess)
 {
-    SetDeliveryName            ( propProcess.GetDeliveryName() );
-    SetDeliveryDeliverables    ( propProcess.GetDeliveryDeliverables() );
-    SetDeliveryQuantity        ( propProcess.GetDeliveryQuantity() );
-    SetDeliveryPercentage    ( propProcess.GetDeliveryPercentage() );
-    SetDeliveryMain            ( propProcess.GetDeliveryMain() );
+    SetDeliveryName(propProcess.GetDeliveryName());
+    SetDeliveryDeliverables(propProcess.GetDeliveryDeliverables());
+    SetDeliveryQuantity(propProcess.GetDeliveryQuantity());
+    SetDeliveryPercentage(propProcess.GetDeliveryPercentage());
+    SetDeliveryMain(propProcess.GetDeliveryMain());
 
     return *this;
 }
 
 // Surcharge de l'opérateur == pour la classe ZBBPDeliveriesProperties.
-BOOL ZBBPDeliveriesProperties::operator==( const ZBBPDeliveriesProperties propProcess ) const
+BOOL ZBBPDeliveriesProperties::operator==(const ZBBPDeliveriesProperties propProcess) const
 {
-    return ( GetDeliveryName()            == propProcess.GetDeliveryName()            &&
-             GetDeliveryDeliverables()    == propProcess.GetDeliveryDeliverables()    &&
-             GetDeliveryQuantity()        == propProcess.GetDeliveryQuantity()        &&
-             GetDeliveryPercentage()    == propProcess.GetDeliveryPercentage()        &&
-             GetDeliveryMain()            == propProcess.GetDeliveryMain() );
+    return (GetDeliveryName() == propProcess.GetDeliveryName() &&
+            GetDeliveryDeliverables() == propProcess.GetDeliveryDeliverables() &&
+            GetDeliveryQuantity() == propProcess.GetDeliveryQuantity() &&
+            GetDeliveryPercentage() == propProcess.GetDeliveryPercentage() &&
+            GetDeliveryMain() == propProcess.GetDeliveryMain());
 }
 
 // Cette fonction permet de fusionner deux objets ZBBPDeliveriesProperties, en spécifiant les données partagées.
-void ZBBPDeliveriesProperties::Merge( ZBBPDeliveriesProperties* pProperty, DWORD dwChangeFlags )
+void ZBBPDeliveriesProperties::Merge(ZBBPDeliveriesProperties* pProperty, DWORD dwChangeFlags)
 {
-    if ( pProperty )
+    if (pProperty)
     {
-        if ( dwChangeFlags & Z_CHANGE_DELIVERY_NAME )
+        if (dwChangeFlags & Z_CHANGE_DELIVERY_NAME)
         {
             m_DeliveryName = pProperty->GetDeliveryName();
         }
 
-        if ( dwChangeFlags & Z_CHANGE_DELIVERY_DELIVERABLES )
+        if (dwChangeFlags & Z_CHANGE_DELIVERY_DELIVERABLES)
         {
             m_DeliveryDeliverables = pProperty->GetDeliveryDeliverables();
         }
 
-        if ( dwChangeFlags & Z_CHANGE_DELIVERY_QUANTITY )
+        if (dwChangeFlags & Z_CHANGE_DELIVERY_QUANTITY)
         {
             m_DeliveryQuantity = pProperty->GetDeliveryQuantity();
         }
 
-        if ( dwChangeFlags & Z_CHANGE_DELIVERY_PRECENTAGE )
+        if (dwChangeFlags & Z_CHANGE_DELIVERY_PRECENTAGE)
         {
             m_DeliveryPercentage = pProperty->GetDeliveryPercentage();
         }
 
-        if ( dwChangeFlags & Z_CHANGE_DELIVERY_MAIN )
+        if (dwChangeFlags & Z_CHANGE_DELIVERY_MAIN)
         {
             m_DeliveryMain = pProperty->GetDeliveryMain();
         }
@@ -107,29 +106,29 @@ void ZBBPDeliveriesProperties::Merge( ZBBPDeliveriesProperties* pProperty, DWORD
 }
 
 // Cette fonction permet de déterminer si deux objets ZBBPDeliveriesProperties sont égaux.
-BOOL ZBBPDeliveriesProperties::IsEqual( ZBBPDeliveriesProperties* pProp )
+BOOL ZBBPDeliveriesProperties::IsEqual(ZBBPDeliveriesProperties* pProp)
 {
-    if ( pProp )
+    if (pProp)
     {
-        return ( *this == *pProp );
+        return (*this == *pProp);
     }
 
     return FALSE;
 }
 
 // Cette fonction permet de déterminer si un livrable donné se trouve dans la liste des livrables de la livraison.
-bool ZBBPDeliveriesProperties::IsDeliverableInDelivery( LPCTSTR lpszValue )
+bool ZBBPDeliveriesProperties::IsDeliverableInDelivery(LPCTSTR lpszValue)
 {
     PSS_Tokenizer token;    // Initialize the token with ; as separator
 
-    CString str = token.GetFirstToken( lpszValue );
-    
+    CString str = token.GetFirstToken(lpszValue);
+
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If we found the same deliverable,
         // then sets the Found flag to true
-        if ( str == lpszValue )
+        if (str == lpszValue)
         {
             return true;
         }
@@ -142,69 +141,69 @@ bool ZBBPDeliveriesProperties::IsDeliverableInDelivery( LPCTSTR lpszValue )
 }
 
 // Inscrit le nom de la livraison.
-void ZBBPDeliveriesProperties::SetDeliveryName( LPCTSTR lpszValue )
+void ZBBPDeliveriesProperties::SetDeliveryName(LPCTSTR lpszValue)
 {
-    if ( lpszValue != NULL )
+    if (lpszValue != NULL)
     {
         m_DeliveryName = lpszValue;
     }
     else
     {
-        TRACE0( _T( "Z -> Invalid Delivery name pointer!\n" ) );
-        ASSERT( FALSE );
+        TRACE0(_T("Z -> Invalid Delivery name pointer!\n"));
+        ASSERT(FALSE);
     }
 }
 
 // Fonction interne pour l'inscription du nom de la livraison.
-void ZBBPDeliveriesProperties::SetDeliveryNameEx( const CString value )
+void ZBBPDeliveriesProperties::SetDeliveryNameEx(const CString value)
 {
-    SetDeliveryName( value );
+    SetDeliveryName(value);
 }
 
 // Inscrit la liste des livrables de la livraison.
-void ZBBPDeliveriesProperties::SetDeliveryDeliverables( LPCTSTR lpszValue )
+void ZBBPDeliveriesProperties::SetDeliveryDeliverables(LPCTSTR lpszValue)
 {
-    if ( lpszValue != NULL )
+    if (lpszValue != NULL)
     {
         m_DeliveryDeliverables = lpszValue;
     }
     else
     {
-        TRACE0( _T( "Z -> Invalid Delivery Deliverables list pointer!\n" ) );
-        ASSERT( FALSE );
+        TRACE0(_T("Z -> Invalid Delivery Deliverables list pointer!\n"));
+        ASSERT(FALSE);
     }
 }
 
 // Fonction interne pour l'inscription de la liste des livrables de la livraison.
-void ZBBPDeliveriesProperties::SetDeliveryDeliverablesEx( const CString value )
+void ZBBPDeliveriesProperties::SetDeliveryDeliverablesEx(const CString value)
 {
-    SetDeliveryDeliverables( value );
+    SetDeliveryDeliverables(value);
 }
 
 // Inscrit le nom du livrable principal de la livraison.
-void ZBBPDeliveriesProperties::SetDeliveryMain( LPCTSTR lpszValue )
+void ZBBPDeliveriesProperties::SetDeliveryMain(LPCTSTR lpszValue)
 {
-    if ( lpszValue != NULL )
+    if (lpszValue != NULL)
     {
         m_DeliveryMain = lpszValue;
     }
     else
     {
-        TRACE0( _T( "Z -> Invalid Delivery main name pointer!\n" ) );
-        ASSERT( FALSE );
+        TRACE0(_T("Z -> Invalid Delivery main name pointer!\n"));
+        ASSERT(FALSE);
     }
 }
 
 // Fonction interne pour l'inscription du nom du livrable principal de la livraison.
-void ZBBPDeliveriesProperties::SetDeliveryMainEx( const CString value )
+void ZBBPDeliveriesProperties::SetDeliveryMainEx(const CString value)
 {
-    SetDeliveryMain( value );
+    SetDeliveryMain(value);
 }
 
 // Obtient une valeur de type CString, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, CString& strValue ) const
+BOOL ZBBPDeliveriesProperties::GetValue(const int nPropId, CString& strValue) const
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         {
@@ -226,7 +225,7 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, CString& strValue ) 
 
         default:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
     }
@@ -235,9 +234,9 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, CString& strValue ) 
 }
 
 // Obtient une valeur de type int, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, int& nValue ) const
+BOOL ZBBPDeliveriesProperties::GetValue(const int nPropId, int& nValue) const
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
@@ -245,7 +244,7 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, int& nValue ) const
         case Z_DELIVERY_PERCENTAGE:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -259,9 +258,9 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, int& nValue ) const
 }
 
 // Obtient une valeur de type UINT, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, UINT& nValue ) const
+BOOL ZBBPDeliveriesProperties::GetValue(const int nPropId, UINT& nValue) const
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
@@ -269,7 +268,7 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, UINT& nValue ) const
         case Z_DELIVERY_PERCENTAGE:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -283,9 +282,9 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, UINT& nValue ) const
 }
 
 // Obtient une valeur de type DWORD, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, DWORD& dwValue ) const
+BOOL ZBBPDeliveriesProperties::GetValue(const int nPropId, DWORD& dwValue) const
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
@@ -293,7 +292,7 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, DWORD& dwValue ) con
         case Z_DELIVERY_PERCENTAGE:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -307,15 +306,15 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, DWORD& dwValue ) con
 }
 
 // Obtient une valeur de type float, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, float& fValue ) const
+BOOL ZBBPDeliveriesProperties::GetValue(const int nPropId, float& fValue) const
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -340,9 +339,9 @@ BOOL ZBBPDeliveriesProperties::GetValue( const int nPropId, float& fValue ) cons
 }
 
 // Inscrit une valeur de type LPCTSTR, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
+BOOL ZBBPDeliveriesProperties::SetValue(const int nPropId, LPCTSTR lpszValue)
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         {
@@ -364,7 +363,7 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 
         default:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
     }
@@ -373,9 +372,9 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 }
 
 // Inscrit une valeur de type const int, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const int nValue )
+BOOL ZBBPDeliveriesProperties::SetValue(const int nPropId, const int nValue)
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
@@ -383,7 +382,7 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const int nValue )
         case Z_DELIVERY_PERCENTAGE:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -397,9 +396,9 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const int nValue )
 }
 
 // Inscrit une valeur de type const UINT, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const UINT nValue )
+BOOL ZBBPDeliveriesProperties::SetValue(const int nPropId, const UINT nValue)
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
@@ -407,7 +406,7 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const UINT nValue )
         case Z_DELIVERY_PERCENTAGE:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -421,9 +420,9 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const UINT nValue )
 }
 
 // Inscrit une valeur de type const DWORD, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const DWORD dwValue )
+BOOL ZBBPDeliveriesProperties::SetValue(const int nPropId, const DWORD dwValue)
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
@@ -431,7 +430,7 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const DWORD dwValue 
         case Z_DELIVERY_PERCENTAGE:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -445,15 +444,15 @@ BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const DWORD dwValue 
 }
 
 // Inscrit une valeur de type const float, en spécifiant son ID.
-BOOL ZBBPDeliveriesProperties::SetValue( const int nPropId, const float fValue )
+BOOL ZBBPDeliveriesProperties::SetValue(const int nPropId, const float fValue)
 {
-    switch ( nPropId )
+    switch (nPropId)
     {
         case Z_DELIVERY_NAME:
         case Z_DELIVERY_DELIVERABLES:
         case Z_DELIVERY_MAIN:
         {
-            ASSERT( FALSE );
+            ASSERT(FALSE);
             return FALSE;
         }
 
@@ -487,24 +486,24 @@ void ZBBPDeliveriesProperties::AssertValid() const
     CObject::AssertValid();
 }
 
-void ZBBPDeliveriesProperties::Dump( CDumpContext& dc ) const
+void ZBBPDeliveriesProperties::Dump(CDumpContext& dc) const
 {
-    CObject::Dump( dc );
+    CObject::Dump(dc);
 
-    dc << _T( "Name = " )            << m_DeliveryName            << _T( "\n" );
-    dc << _T( "Deliverables = " )    << m_DeliveryDeliverables    << _T( "\n" );
-    dc << _T( "Main = " )            << m_DeliveryMain            << _T( "\n" );
+    dc << _T("Name = ") << m_DeliveryName << _T("\n");
+    dc << _T("Deliverables = ") << m_DeliveryDeliverables << _T("\n");
+    dc << _T("Main = ") << m_DeliveryMain << _T("\n");
 }
 #endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPDeliveriesProperties serialization
 
-void ZBBPDeliveriesProperties::Serialize( CArchive& ar )
+void ZBBPDeliveriesProperties::Serialize(CArchive& ar)
 {
-    if ( ar.IsStoring() )
+    if (ar.IsStoring())
     {
-        TRACE( _T( "ZBBPDeliveriesProperties::Serialize : Start Save\n" ) );
+        TRACE(_T("ZBBPDeliveriesProperties::Serialize : Start Save\n"));
 
         ar << m_DeliveryName;
         ar << m_DeliveryDeliverables;
@@ -512,11 +511,11 @@ void ZBBPDeliveriesProperties::Serialize( CArchive& ar )
         ar << m_DeliveryPercentage;
         ar << m_DeliveryMain;
 
-        TRACE( _T( "ZBBPDeliveriesProperties::Serialize : End Save\n" ) );
+        TRACE(_T("ZBBPDeliveriesProperties::Serialize : End Save\n"));
     }
     else
     {
-        TRACE( _T( "ZBBPDeliveriesProperties::Serialize : Start Read\n" ) );
+        TRACE(_T("ZBBPDeliveriesProperties::Serialize : Start Read\n"));
 
         ar >> m_DeliveryName;
         ar >> m_DeliveryDeliverables;
@@ -524,6 +523,6 @@ void ZBBPDeliveriesProperties::Serialize( CArchive& ar )
         ar >> m_DeliveryPercentage;
         ar >> m_DeliveryMain;
 
-        TRACE( _T( "ZBBPDeliveriesProperties::Serialize : End Read\n" ) );
+        TRACE(_T("ZBBPDeliveriesProperties::Serialize : End Read\n"));
     }
 }

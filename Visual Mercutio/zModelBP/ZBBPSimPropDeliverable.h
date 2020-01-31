@@ -150,7 +150,7 @@ public:
 
     //@cmember
     /* Makes a copy of this properties object. */
-    virtual ZBBPSimPropertiesDeliverable* Dup();
+    virtual ZBBPSimPropertiesDeliverable* Dup() const;
     //@cmember
     /* Merges another set of properties with this one. */
     virtual void Merge(ZBBPSimPropertiesDeliverable* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
@@ -247,7 +247,7 @@ inline void ZBBPSimPropertiesDeliverable::SetWorkloadForecast(const double value
 //@mfunc Creates a copy of this property.
 //@rdesc A pointer to the new copy of the property. The caller is responsible
 // for cleaning up this object.
-inline ZBBPSimPropertiesDeliverable* ZBBPSimPropertiesDeliverable::Dup()
+inline ZBBPSimPropertiesDeliverable* ZBBPSimPropertiesDeliverable::Dup() const
 {
     return new ZBBPSimPropertiesDeliverable(*this);
 }

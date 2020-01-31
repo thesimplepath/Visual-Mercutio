@@ -134,7 +134,7 @@ public:
 
     //@cmember
     /* Makes a copy of this properties object. */
-    virtual ZBBPSimPropertiesProcedure* Dup();
+    virtual ZBBPSimPropertiesProcedure* Dup() const;
 
     //@cmember
     /* Merges another set of properties with this one. */
@@ -383,7 +383,7 @@ inline void ZBBPSimPropertiesProcedure::SetProcedureCostPerActivity( const doubl
 //@mfunc Creates a copy of this property.
 //@rdesc A pointer to the new copy of the property. The caller is responsible
 // for cleaning up this object.
-inline ZBBPSimPropertiesProcedure* ZBBPSimPropertiesProcedure::Dup()
+inline ZBBPSimPropertiesProcedure* ZBBPSimPropertiesProcedure::Dup() const
 {
     return new ZBBPSimPropertiesProcedure(*this);
 }

@@ -93,7 +93,7 @@ class AFX_EXT_CLASS PSS_ExtFileProperties : public CObject
         * Makes a copy of this properties object
         *@return a copy of this properties object, NULL on error
         */
-        virtual inline PSS_ExtFileProperties* Dup();
+        virtual inline PSS_ExtFileProperties* Dup() const;
 
         /**
         * Merges another property set with this one
@@ -231,7 +231,7 @@ class AFX_EXT_CLASS PSS_ExtFileProperties : public CObject
 //---------------------------------------------------------------------------
 // PSS_ExtFileProperties
 //---------------------------------------------------------------------------
-PSS_ExtFileProperties* PSS_ExtFileProperties::Dup()
+PSS_ExtFileProperties* PSS_ExtFileProperties::Dup() const
 {
     return new PSS_ExtFileProperties(*this);
 }

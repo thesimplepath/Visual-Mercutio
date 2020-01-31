@@ -82,7 +82,7 @@ public:
 
     BOOL operator==( const ZBBPRulesProperties propProcess ) const;
 
-    virtual ZBBPRulesProperties* Dup();
+    virtual ZBBPRulesProperties* Dup() const;
 
     virtual void Merge( ZBBPRulesProperties* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
 
@@ -136,7 +136,7 @@ protected:
 };
 
 // Cette fonction permet d'effectuer un duplicata de l'objet instancié.
-inline ZBBPRulesProperties* ZBBPRulesProperties::Dup()
+inline ZBBPRulesProperties* ZBBPRulesProperties::Dup() const
 {
     return new ZBBPRulesProperties( *this );
 }

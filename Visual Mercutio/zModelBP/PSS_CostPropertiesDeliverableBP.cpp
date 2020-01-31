@@ -115,7 +115,7 @@ BOOL PSS_CostPropertiesDeliverableBP::IsEqual(PSS_CostPropertiesDeliverableBP* p
 //---------------------------------------------------------------------------
 BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, int& value) const
 {
-    if (propId >= M_Cost_Processing_Time_ID && propId <= M_Cost_Case_Duration_Max_ID)
+    if (propId >= M_Cost_Deliv_Processing_Time_ID && propId <= M_Cost_Deliv_Case_Duration_Max_ID)
         throw new CODPropertyConversionException();
 
     return FALSE;
@@ -123,7 +123,7 @@ BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, int& value) con
 //---------------------------------------------------------------------------
 BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, UINT& value) const
 {
-    if (propId >= M_Cost_Processing_Time_ID && propId <= M_Cost_Case_Duration_Max_ID)
+    if (propId >= M_Cost_Deliv_Processing_Time_ID && propId <= M_Cost_Deliv_Case_Duration_Max_ID)
         throw new CODPropertyConversionException();
 
     return FALSE;
@@ -131,7 +131,7 @@ BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, UINT& value) co
 //---------------------------------------------------------------------------
 BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, DWORD& value) const
 {
-    if (propId >= M_Cost_Processing_Time_ID && propId <= M_Cost_Case_Duration_Max_ID)
+    if (propId >= M_Cost_Deliv_Processing_Time_ID && propId <= M_Cost_Deliv_Case_Duration_Max_ID)
         throw new CODPropertyConversionException();
 
     return FALSE;
@@ -141,10 +141,10 @@ BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, float& value) c
 {
     switch (propId)
     {
-        case M_Cost_In_Workload_Percent_ID:  value = m_InWorkloadPercent;  break;
-        case M_Cost_Out_Workload_Percent_ID: value = m_OutWorkloadPercent; break;
-        case M_Cost_Unitary_Cost_ID:         value = m_UnitaryCost;        break;
-        default:                                                           return FALSE;
+        case M_Cost_Deliv_In_Workload_Percent_ID:  value = m_InWorkloadPercent;  break;
+        case M_Cost_Deliv_Out_Workload_Percent_ID: value = m_OutWorkloadPercent; break;
+        case M_Cost_Deliv_Unitary_Cost_ID:         value = m_UnitaryCost;        break;
+        default:                                                                 return FALSE;
     }
 
     return TRUE;
@@ -154,12 +154,12 @@ BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, double& value) 
 {
     switch (propId)
     {
-        case M_Cost_Processing_Time_ID:     value = m_ProcessingTime;    break;
-        case M_Cost_Case_Duration_ID:       value = m_CaseDuration;      break;
-        case M_Cost_Case_Duration_Max_ID:   value = m_CaseDurationMax;   break;
-        case M_Cost_Target_Duration_ID:     value = m_TargetDuration;    break;
-        case M_Cost_Green_Line_Duration_ID: value = m_GreenLineDuration; break;
-        default:                                                         return FALSE;
+        case M_Cost_Deliv_Processing_Time_ID:     value = m_ProcessingTime;    break;
+        case M_Cost_Deliv_Case_Duration_ID:       value = m_CaseDuration;      break;
+        case M_Cost_Deliv_Case_Duration_Max_ID:   value = m_CaseDurationMax;   break;
+        case M_Cost_Deliv_Target_Duration_ID:     value = m_TargetDuration;    break;
+        case M_Cost_Deliv_Green_Line_Duration_ID: value = m_GreenLineDuration; break;
+        default:                                                               return FALSE;
     }
 
     return TRUE;
@@ -169,15 +169,15 @@ BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, CString& value)
 {
     switch (propId)
     {
-        case M_Cost_Processing_Time_ID:      value.Format(_T("%.0f"), m_ProcessingTime);              break;
-        case M_Cost_In_Workload_Percent_ID:  value.Format(_T("%.0f"), m_InWorkloadPercent  * 100.0f); break;
-        case M_Cost_Out_Workload_Percent_ID: value.Format(_T("%.0f"), m_OutWorkloadPercent * 100.0f); break;
-        case M_Cost_Unitary_Cost_ID:         value.Format(_T("%.0f"), m_UnitaryCost);                 break;
-        case M_Cost_Case_Duration_ID:        value.Format(_T("%.0f"), m_CaseDuration);                break;
-        case M_Cost_Case_Duration_Max_ID:    value.Format(_T("%.0f"), m_CaseDurationMax);             break;
-        case M_Cost_Target_Duration_ID:      value.Format(_T("%.0f"), m_TargetDuration);              break;
-        case M_Cost_Green_Line_Duration_ID:  value.Format(_T("%.0f"), m_GreenLineDuration);           break;
-        default:                                                                                      return FALSE;
+        case M_Cost_Deliv_Processing_Time_ID:      value.Format(_T("%.0f"), m_ProcessingTime);              break;
+        case M_Cost_Deliv_In_Workload_Percent_ID:  value.Format(_T("%.0f"), m_InWorkloadPercent  * 100.0f); break;
+        case M_Cost_Deliv_Out_Workload_Percent_ID: value.Format(_T("%.0f"), m_OutWorkloadPercent * 100.0f); break;
+        case M_Cost_Deliv_Unitary_Cost_ID:         value.Format(_T("%.0f"), m_UnitaryCost);                 break;
+        case M_Cost_Deliv_Case_Duration_ID:        value.Format(_T("%.0f"), m_CaseDuration);                break;
+        case M_Cost_Deliv_Case_Duration_Max_ID:    value.Format(_T("%.0f"), m_CaseDurationMax);             break;
+        case M_Cost_Deliv_Target_Duration_ID:      value.Format(_T("%.0f"), m_TargetDuration);              break;
+        case M_Cost_Deliv_Green_Line_Duration_ID:  value.Format(_T("%.0f"), m_GreenLineDuration);           break;
+        default:                                                                                            return FALSE;
     }
 
     return TRUE;
@@ -185,7 +185,7 @@ BOOL PSS_CostPropertiesDeliverableBP::GetValue(const int propId, CString& value)
 //---------------------------------------------------------------------------
 BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, const int value)
 {
-    if (propId >= M_Cost_Processing_Time_ID && propId <= M_Cost_Case_Duration_Max_ID)
+    if (propId >= M_Cost_Deliv_Processing_Time_ID && propId <= M_Cost_Deliv_Case_Duration_Max_ID)
         throw new CODPropertyConversionException();
 
     return FALSE;
@@ -193,7 +193,7 @@ BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, const int value
 //---------------------------------------------------------------------------
 BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, const UINT value)
 {
-    if (propId >= M_Cost_Processing_Time_ID && propId <= M_Cost_Case_Duration_Max_ID)
+    if (propId >= M_Cost_Deliv_Processing_Time_ID && propId <= M_Cost_Deliv_Case_Duration_Max_ID)
         throw new CODPropertyConversionException();
 
     return FALSE;
@@ -201,7 +201,7 @@ BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, const UINT valu
 //---------------------------------------------------------------------------
 BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, const DWORD value)
 {
-    if (propId >= M_Cost_Processing_Time_ID && propId <= M_Cost_Case_Duration_Max_ID)
+    if (propId >= M_Cost_Deliv_Processing_Time_ID && propId <= M_Cost_Deliv_Case_Duration_Max_ID)
         throw new CODPropertyConversionException();
 
     return FALSE;
@@ -211,10 +211,10 @@ BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, const float val
 {
     switch (propId)
     {
-        case M_Cost_In_Workload_Percent_ID:  m_InWorkloadPercent  = value; break;
-        case M_Cost_Out_Workload_Percent_ID: m_OutWorkloadPercent = value; break;
-        case M_Cost_Unitary_Cost_ID:         m_UnitaryCost        = value; break;
-        default:                                                           return FALSE;
+        case M_Cost_Deliv_In_Workload_Percent_ID:  m_InWorkloadPercent  = value; break;
+        case M_Cost_Deliv_Out_Workload_Percent_ID: m_OutWorkloadPercent = value; break;
+        case M_Cost_Deliv_Unitary_Cost_ID:         m_UnitaryCost        = value; break;
+        default:                                                                 return FALSE;
     }
 
     return TRUE;
@@ -224,12 +224,12 @@ BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, const double va
 {
     switch (propId)
     {
-        case M_Cost_Processing_Time_ID:     m_ProcessingTime    = value; break;
-        case M_Cost_Case_Duration_ID:       m_CaseDuration      = value; break;
-        case M_Cost_Case_Duration_Max_ID:   m_CaseDurationMax   = value; break;
-        case M_Cost_Target_Duration_ID:     m_TargetDuration    = value; break;
-        case M_Cost_Green_Line_Duration_ID: m_GreenLineDuration = value; break;
-        default:                                                         return FALSE;
+        case M_Cost_Deliv_Processing_Time_ID:     m_ProcessingTime    = value; break;
+        case M_Cost_Deliv_Case_Duration_ID:       m_CaseDuration      = value; break;
+        case M_Cost_Deliv_Case_Duration_Max_ID:   m_CaseDurationMax   = value; break;
+        case M_Cost_Deliv_Target_Duration_ID:     m_TargetDuration    = value; break;
+        case M_Cost_Deliv_Green_Line_Duration_ID: m_GreenLineDuration = value; break;
+        default:                                                               return FALSE;
     }
 
     return TRUE;
@@ -242,15 +242,15 @@ BOOL PSS_CostPropertiesDeliverableBP::SetValue(const int propId, LPCTSTR pValue)
 
     switch (propId)
     {
-        case M_Cost_Processing_Time_ID:      m_ProcessingTime     = std::atof(pValue);                              break;
-        case M_Cost_In_Workload_Percent_ID:  m_InWorkloadPercent  = static_cast<float>(std::atof(pValue) / 100.0f); break;
-        case M_Cost_Out_Workload_Percent_ID: m_OutWorkloadPercent = static_cast<float>(std::atof(pValue) / 100.0f); break;
-        case M_Cost_Unitary_Cost_ID:         m_UnitaryCost        = static_cast<float>(std::atof(pValue));          break;
-        case M_Cost_Case_Duration_ID:        m_CaseDuration       = std::atof(pValue);                              break;
-        case M_Cost_Case_Duration_Max_ID:    m_CaseDurationMax    = std::atof(pValue);                              break;
-        case M_Cost_Target_Duration_ID:      m_TargetDuration     = std::atof(pValue);                              break;
-        case M_Cost_Green_Line_Duration_ID:  m_GreenLineDuration  = std::atof(pValue);                              break;
-        default:                                                                                                    return FALSE;
+        case M_Cost_Deliv_Processing_Time_ID:      m_ProcessingTime     = std::atof(pValue);                              break;
+        case M_Cost_Deliv_In_Workload_Percent_ID:  m_InWorkloadPercent  = static_cast<float>(std::atof(pValue) / 100.0f); break;
+        case M_Cost_Deliv_Out_Workload_Percent_ID: m_OutWorkloadPercent = static_cast<float>(std::atof(pValue) / 100.0f); break;
+        case M_Cost_Deliv_Unitary_Cost_ID:         m_UnitaryCost        = static_cast<float>(std::atof(pValue));          break;
+        case M_Cost_Deliv_Case_Duration_ID:        m_CaseDuration       = std::atof(pValue);                              break;
+        case M_Cost_Deliv_Case_Duration_Max_ID:    m_CaseDurationMax    = std::atof(pValue);                              break;
+        case M_Cost_Deliv_Target_Duration_ID:      m_TargetDuration     = std::atof(pValue);                              break;
+        case M_Cost_Deliv_Green_Line_Duration_ID:  m_GreenLineDuration  = std::atof(pValue);                              break;
+        default:                                                                                                          return FALSE;
     }
 
     return TRUE;

@@ -1169,7 +1169,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
     }
     // JMR-MODIF - Le 14 juin 2005 - Mets à jour les informations visuelles en fonction du pourcentage.
     else if (Property.GetCategoryID() == ZS_BP_PROP_DELIVERABLE_COST &&
-             Property.GetItemID() == M_Cost_Out_Workload_Percent_ID)
+             Property.GetItemID() == M_Cost_Deliv_Out_Workload_Percent_ID)
     {
         SetVisualInfo((int)(Property.GetValueFloat() * 100));
         RedrawSymbol();
@@ -2668,7 +2668,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pTime = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                    ZS_BP_PROP_DELIVERABLE_COST,
                                    IDS_Z_COST_PROCESSING_TIME_NAME,
-                                   Z_COST_PROCESSING_TIME,
+                                   M_Cost_Deliv_Processing_Time_ID,
                                    IDS_Z_COST_PROCESSING_TIME_DESC,
                                    GetProcessingTime(),
                                    ZBProperty::PT_EDIT_NUMBER);
@@ -2678,7 +2678,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pTime = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                    ZS_BP_PROP_DELIVERABLE_COST,
                                    IDS_Z_COST_PROCESSING_TIME_NAME,
-                                   Z_COST_PROCESSING_TIME,
+                                   M_Cost_Deliv_Processing_Time_ID,
                                    IDS_Z_COST_PROCESSING_TIME_DESC,
                                    PSS_Duration(GetProcessingTime(),
                                                 hourPerDay,
@@ -2698,7 +2698,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     ZBProperty* pOutPercent = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                              ZS_BP_PROP_DELIVERABLE_COST,
                                              IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME,
-                                             M_Cost_Out_Workload_Percent_ID,
+                                             M_Cost_Deliv_Out_Workload_Percent_ID,
                                              IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
                                              GetOutWorkloadPercent(),
                                              ZBProperty::PT_EDIT_NUMBER,
@@ -2715,7 +2715,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pPrice = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                             ZS_BP_PROP_DELIVERABLE_COST,
                                             IDS_Z_COST_UNITARY_COST_NAME,
-                                            Z_COST_UNITARY_COST,
+                                            M_Cost_Deliv_Unitary_Cost_ID,
                                             IDS_Z_COST_UNITARY_COST_DESC,
                                             GetUnitaryCost(),
                                             ZBProperty::PT_EDIT_NUMBER,
@@ -2732,7 +2732,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                            ZS_BP_PROP_DELIVERABLE_COST,
                                            IDS_Z_COST_CASE_DURATION_NAME,
-                                           M_Cost_Case_Duration_ID,
+                                           M_Cost_Deliv_Case_Duration_ID,
                                            IDS_Z_COST_CASE_DURATION_DESC,
                                            GetCaseDuration(),
                                            ZBProperty::PT_EDIT_NUMBER);
@@ -2742,7 +2742,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                            ZS_BP_PROP_DELIVERABLE_COST,
                                            IDS_Z_COST_CASE_DURATION_NAME,
-                                           M_Cost_Case_Duration_ID,
+                                           M_Cost_Deliv_Case_Duration_ID,
                                            IDS_Z_COST_CASE_DURATION_DESC,
                                            PSS_Duration(GetCaseDuration(),
                                                         hourPerDay,
@@ -2763,7 +2763,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDurationMax = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                               ZS_BP_PROP_DELIVERABLE_COST,
                                               IDS_Z_COST_CASE_DURATIONMAX_NAME,
-                                              M_Cost_Case_Duration_Max_ID,
+                                              M_Cost_Deliv_Case_Duration_ID,
                                               IDS_Z_COST_CASE_DURATIONMAX_DESC,
                                               GetCaseDurationMax(),
                                               ZBProperty::PT_EDIT_NUMBER);
@@ -2773,7 +2773,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pCaseDurationMax = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                               ZS_BP_PROP_DELIVERABLE_COST,
                                               IDS_Z_COST_CASE_DURATIONMAX_NAME,
-                                              M_Cost_Case_Duration_Max_ID,
+                                              M_Cost_Deliv_Case_Duration_ID,
                                               IDS_Z_COST_CASE_DURATIONMAX_DESC,
                                               PSS_Duration(GetCaseDurationMax(),
                                                            hourPerDay,
@@ -2794,7 +2794,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pTargetDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                              ZS_BP_PROP_DELIVERABLE_COST,
                                              IDS_Z_COST_TARGET_DURATION_NAME,
-                                             M_Cost_Target_Duration_ID,
+                                             M_Cost_Deliv_Target_Duration_ID,
                                              IDS_Z_COST_TARGET_DURATION_DESC,
                                              GetTargetDuration(),
                                              ZBProperty::PT_EDIT_NUMBER);
@@ -2804,7 +2804,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pTargetDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                              ZS_BP_PROP_DELIVERABLE_COST,
                                              IDS_Z_COST_TARGET_DURATION_NAME,
-                                             M_Cost_Target_Duration_ID,
+                                             M_Cost_Deliv_Target_Duration_ID,
                                              IDS_Z_COST_TARGET_DURATION_DESC,
                                              PSS_Duration(GetTargetDuration(),
                                                           hourPerDay,
@@ -2825,7 +2825,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pGreenLineDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                                 ZS_BP_PROP_DELIVERABLE_COST,
                                                 IDS_Z_COST_GREENLINE_DURATION_NAME,
-                                                M_Cost_Green_Line_Duration_ID,
+                                                M_Cost_Deliv_Green_Line_Duration_ID,
                                                 IDS_Z_COST_GREENLINE_DURATION_DESC,
                                                 GetGreenLineDuration(),
                                                 ZBProperty::PT_EDIT_NUMBER);
@@ -2835,7 +2835,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             pGreenLineDuration = new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                                 ZS_BP_PROP_DELIVERABLE_COST,
                                                 IDS_Z_COST_GREENLINE_DURATION_NAME,
-                                                M_Cost_Green_Line_Duration_ID,
+                                                M_Cost_Deliv_Green_Line_Duration_ID,
                                                 IDS_Z_COST_GREENLINE_DURATION_DESC,
                                                 PSS_Duration(GetGreenLineDuration(),
                                                              hourPerDay,

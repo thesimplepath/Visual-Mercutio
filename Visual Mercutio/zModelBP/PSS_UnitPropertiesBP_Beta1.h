@@ -116,7 +116,7 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         * Makes a copy of this properties object
         *@return a copy of this properties object, NULL on error
         */
-        virtual inline CODProperty* Dup() const;
+        virtual inline CODProperty* Dup();
 
         /**
         * Merges another property set with this one
@@ -239,7 +239,7 @@ ULONG PSS_UnitPropertiesBP_Beta1::Release()
     return CODIntProperty::Release();
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_UnitPropertiesBP_Beta1::Dup() const
+CODProperty* PSS_UnitPropertiesBP_Beta1::Dup()
 {
     return new PSS_UnitPropertiesBP_Beta1(*this);
 }

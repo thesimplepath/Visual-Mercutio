@@ -41,14 +41,14 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Cost_Processing_Time_ID      1
-#define M_Cost_In_Workload_Percent_ID  2
-#define M_Cost_Out_Workload_Percent_ID 3
-#define M_Cost_Unitary_Cost_ID         4
-#define M_Cost_Case_Duration_ID        5
-#define M_Cost_Target_Duration_ID      6
-#define M_Cost_Green_Line_Duration_ID  7
-#define M_Cost_Case_Duration_Max_ID    8
+#define M_Cost_Deliv_Processing_Time_ID      1
+#define M_Cost_Deliv_In_Workload_Percent_ID  2
+#define M_Cost_Deliv_Out_Workload_Percent_ID 3
+#define M_Cost_Deliv_Unitary_Cost_ID         4
+#define M_Cost_Deliv_Case_Duration_ID        5
+#define M_Cost_Deliv_Target_Duration_ID      6
+#define M_Cost_Deliv_Green_Line_Duration_ID  7
+#define M_Cost_Deliv_Case_Duration_Max_ID    8
 //---------------------------------------------------------------------------
 
 /**

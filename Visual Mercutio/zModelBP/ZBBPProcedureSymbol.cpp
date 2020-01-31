@@ -13,7 +13,7 @@
 
 #include "ZBBPRuleListProp.h"
 #include "ZBBPTaskListProp.h"
-#include "ZBBPDecisionListProp.h"
+#include "PSS_DecisionListPropertiesBP.h"
 #include "PSS_CostPropertiesProcedureBP_Beta1.h"
 #include "PSS_UnitPropertiesBP_Beta1.h"
 #include "PSS_CombinationPropertiesBP.h"
@@ -366,7 +366,7 @@ size_t ZBBPProcedureSymbol::GetTaskCount() const
 
 CString ZBBPProcedureSymbol::GetDecisionList() const
 {
-    ZBBPDecisionListProperties* pProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
+    PSS_DecisionListPropertiesBP* pProps = (PSS_DecisionListPropertiesBP*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
     if (!pProps)
     {
@@ -378,13 +378,13 @@ CString ZBBPProcedureSymbol::GetDecisionList() const
 
 void ZBBPProcedureSymbol::SetDecisionList(const CString Value)
 {
-    ZBBPDecisionListProperties* pProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
+    PSS_DecisionListPropertiesBP* pProps = (PSS_DecisionListPropertiesBP*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
     if (pProps)
     {
-        ZBBPDecisionListProperties Props(*pProps);
-        Props.SetDecisionList(Value);
-        SetProperty(&Props);
+        PSS_DecisionListPropertiesBP props(*pProps);
+        props.SetDecisionList(Value);
+        SetProperty(&props);
     }
 }
 
@@ -686,7 +686,7 @@ bool ZBBPProcedureSymbol::CreateSymbolProperties()
     ZBBPTaskListProperties propTasks;
     AddProperty(propTasks);
 
-    ZBBPDecisionListProperties propDecisions;
+    PSS_DecisionListPropertiesBP propDecisions;
     AddProperty(propDecisions);
 
     PSS_CostPropertiesProcedureBP_Beta1 propCost;
@@ -1211,7 +1211,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     }
 
     // add decisions
-    ZBBPDecisionListProperties* pDecisionsProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
+    PSS_DecisionListPropertiesBP* pDecisionsProps = (PSS_DecisionListPropertiesBP*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
     if (!pDecisionsProps)
         return false;
@@ -1237,7 +1237,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         ZBProperty* pDecList = new ZBProperty(propTitle,
                                               ZS_BP_PROP_DECISIONLIST,
                                               finalPropName,
-                                              Z_DECISION_LIST + (i * _MaxDecisionListSize),
+                                              M_Decision_List_ID + (i * _MaxDecisionListSize),
                                               propDesc,
                                               GetDecisionAt(i),
                                               ZBProperty::PT_EDIT_INTELI,
@@ -1258,7 +1258,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         ZBProperty* pDecList = new ZBProperty(propTitle,
                                               ZS_BP_PROP_DECISIONLIST,
                                               finalPropName,
-                                              Z_DECISION_LIST + (i * _MaxDecisionListSize),
+                                              M_Decision_List_ID + (i * _MaxDecisionListSize),
                                               propDesc,
                                               _T(""),
                                               ZBProperty::PT_EDIT_INTELI,
@@ -1305,7 +1305,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         ZBProperty* pMultiplier = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                                  ZS_BP_PROP_PROCEDURE_COST,
                                                  IDS_Z_COST_MULTIPLIER_NAME,
-                                                 Z_COST_MULTIPLIER,
+                                                 M_Cost_Proc_Multiplier_ID,
                                                  IDS_Z_COST_MULTIPLIER_DESC,
                                                  GetMultiplier(),
                                                  ZBProperty::PT_EDIT_NUMBER,
@@ -1322,7 +1322,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pTime = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                    ZS_BP_PROP_PROCEDURE_COST,
                                    IDS_Z_COST_PROCESSING_TIME_NAME,
-                                   Z_COST_PROCESSING_TIME,
+                                   M_Cost_Proc_Processing_Time_ID,
                                    IDS_Z_COST_PROCESSING_TIME_DESC,
                                    GetProcessingTime(),
                                    ZBProperty::PT_EDIT_NUMBER);
@@ -1332,7 +1332,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pTime = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                    ZS_BP_PROP_PROCEDURE_COST,
                                    IDS_Z_COST_PROCESSING_TIME_NAME,
-                                   Z_COST_PROCESSING_TIME,
+                                   M_Cost_Proc_Processing_Time_ID,
                                    IDS_Z_COST_PROCESSING_TIME_DESC,
                                    PSS_Duration(GetProcessingTime(),
                                                 hourPerDay,
@@ -1350,7 +1350,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         ZBProperty* pPrice = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                             ZS_BP_PROP_PROCEDURE_COST,
                                             IDS_Z_COST_UNITARY_COST_NAME,
-                                            Z_COST_UNITARY_COST,
+                                            M_Cost_Proc_Unitary_Cost_ID,
                                             IDS_Z_COST_UNITARY_COST_DESC,
                                             GetUnitaryCost(),
                                             ZBProperty::PT_EDIT_NUMBER,
@@ -1367,7 +1367,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pProcessingDuration = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                                  ZS_BP_PROP_PROCEDURE_COST,
                                                  IDS_Z_COST_PROCESSING_DURATION_NAME,
-                                                 Z_COST_PROCESSING_DURATION,
+                                                 M_Cost_Proc_Processing_Duration_ID,
                                                  IDS_Z_COST_PROCESSING_DURATION_DESC,
                                                  GetProcessingDuration(),
                                                  ZBProperty::PT_EDIT_NUMBER);
@@ -1377,7 +1377,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pProcessingDuration = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                                  ZS_BP_PROP_PROCEDURE_COST,
                                                  IDS_Z_COST_PROCESSING_DURATION_NAME,
-                                                 Z_COST_PROCESSING_DURATION,
+                                                 M_Cost_Proc_Processing_Duration_ID,
                                                  IDS_Z_COST_PROCESSING_DURATION_DESC,
                                                  PSS_Duration(GetProcessingDuration(),
                                                               hourPerDay,
@@ -1398,7 +1398,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pProcessingDurationMax = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                                     ZS_BP_PROP_PROCEDURE_COST,
                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_NAME,
-                                                    Z_COST_PROCESSING_DURATIONMAX,
+                                                    M_Cost_Proc_Processing_Duration_Max_ID,
                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_DESC,
                                                     GetProcessingDurationMax(),
                                                     ZBProperty::PT_EDIT_NUMBER);
@@ -1408,7 +1408,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             pProcessingDurationMax = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
                                                     ZS_BP_PROP_PROCEDURE_COST,
                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_NAME,
-                                                    Z_COST_PROCESSING_DURATIONMAX,
+                                                    M_Cost_Proc_Processing_Duration_Max_ID,
                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_DESC,
                                                     PSS_Duration(GetProcessingDurationMax(),
                                                                  hourPerDay,
@@ -1837,7 +1837,7 @@ bool ZBBPProcedureSymbol::SaveProperties(ZBPropertySet& PropSet)
 
     // Because using the AddTask function, not necessary to SetProperty
     // Save the decisions
-    ZBBPDecisionListProperties* pDecisionsProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
+    PSS_DecisionListPropertiesBP* pDecisionsProps = (PSS_DecisionListPropertiesBP*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
     if (!pDecisionsProps)
     {

@@ -162,7 +162,7 @@ public:
 
     //@cmember
     /* Makes a copy of this properties object. */
-    virtual ZBBPUnitProperties2* Dup();
+    virtual ZBBPUnitProperties2* Dup() const;
 
     //@cmember
     /* Merges another set of properties with this one. */
@@ -302,7 +302,7 @@ inline void ZBBPUnitProperties2::SetUnitDoubleValidationType( const int Value )
 //@mfunc Creates a copy of this property.
 //@rdesc A pointer to the new copy of the property. The caller is responsible
 // for cleaning up this object.
-inline ZBBPUnitProperties2* ZBBPUnitProperties2::Dup()
+inline ZBBPUnitProperties2* ZBBPUnitProperties2::Dup() const
 {
     return new ZBBPUnitProperties2( *this );
 }

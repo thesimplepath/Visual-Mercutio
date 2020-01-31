@@ -24,12 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPCostPropProcedure2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBBPDecisionListProp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBBPDeliveriesProp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,6 +276,12 @@
     <ClCompile Include="PSS_CostPropertiesDeliverableBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_CostPropertiesProcedureBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DecisionListPropertiesBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -376,12 +376,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPCostPropProcedure2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPDecisionListProp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPDeliveriesProp.h">
@@ -640,6 +634,12 @@
       <Filter>Header Files\Beta1 Header version</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CostPropertiesDeliverableBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CostPropertiesProcedureBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DecisionListPropertiesBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

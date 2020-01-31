@@ -102,7 +102,7 @@ public:
 
     BOOL operator==( const ZBBPRiskProperties propRisk ) const;
 
-    virtual ZBBPRiskProperties* Dup();
+    virtual ZBBPRiskProperties* Dup() const;
 
     virtual void Merge( ZBBPRiskProperties* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
 
@@ -186,7 +186,7 @@ protected:
 };
 
 // Cette fonction permet d'effectuer un duplicata de l'objet instancié.
-inline ZBBPRiskProperties* ZBBPRiskProperties::Dup()
+inline ZBBPRiskProperties* ZBBPRiskProperties::Dup() const
 {
     return new ZBBPRiskProperties( *this );
 }

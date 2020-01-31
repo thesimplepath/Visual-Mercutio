@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CostPropertiesProcedureBP_Beta1 ---------------------------------*
+ * ==> PSS_CostPropertiesProcedureBP ---------------------------------------*
  ****************************************************************************
- * Description : Provides the cost properties for procedures (beta 1)       *
+ * Description : Provides the cost properties for procedures                *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CostPropertiesProcedureBP_Beta1H
-#define PSS_CostPropertiesProcedureBP_Beta1H
+#ifndef PSS_CostPropertiesProcedureBPH
+#define PSS_CostPropertiesProcedureBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_CostPropertiesProcedureBP_Beta1
-    #define PSS_CostPropertiesProcedureBP_Beta1 ZBBPCostPropertiesProcedure
+#ifndef PSS_CostPropertiesProcedureBP
+    #define PSS_CostPropertiesProcedureBP ZBBPCostPropertiesProcedure2
 #endif
 
 // resources
@@ -41,27 +41,20 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Cost_Proc_Multiplier_Beta1_ID      1
-#define M_Cost_Proc_Processing_Time_Beta1_ID 2
-#define M_Cost_Proc_Unitary_Cost_Beta1_ID    3
+#define M_Cost_Proc_Multiplier_ID              1
+#define M_Cost_Proc_Processing_Time_ID         2
+#define M_Cost_Proc_Unitary_Cost_ID            3
+#define M_Cost_Proc_Processing_Duration_ID     4
+#define M_Cost_Proc_Processing_Duration_Max_ID 5
 //---------------------------------------------------------------------------
 
 /**
-* Cost properties for procedures (beta 1)
+* Cost properties for procedures
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP_Beta1 : public CODIntProperty,
-                                                          public sfl::CPropertyContainer< IODPropertyContainer,
-                                                                                          CODPropertyAccessor<PSS_CostPropertiesProcedureBP_Beta1> >
+class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP : public CObject
 {
-    DECLARE_SERIAL(PSS_CostPropertiesProcedureBP_Beta1)
-
-    /// generated guid map
-    BEGIN_GUID_MAP(PSS_CostPropertiesProcedureBP_Beta1)
-        GUID_ENTRY(IODPropertyContainer)
-        GUID_ENTRY(sfl::IPropertyContainer)
-        GUID_CHAIN_ENTRY(CODIntProperty)
-    END_GUID_MAP
+    DECLARE_SERIAL(PSS_CostPropertiesProcedureBP)
 
     public:
         /**
@@ -70,78 +63,57 @@ class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP_Beta1 : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Cost_Multiplier      = 0x0001,
-            IE_CT_Change_Cost_Processing_Time = 0x0002,
-            IE_CT_Change_Cost_Unitary_Cost    = 0x0004,
-            IE_CT_All                         = OD_CHANGE_ALL
+            IE_CT_Change_Cost_Multiplier              = 0x0001,
+            IE_CT_Change_Cost_Processing_Time         = 0x0002,
+            IE_CT_Change_Cost_Unitary_Cost            = 0x0004,
+            IE_CT_Change_Cost_Processing_Duration     = 0x0008,
+            IE_CT_Change_Cost_Processing_Duration_Max = 0x0010,
+            IE_CT_All                                 = OD_CHANGE_ALL
         };
 
-        /**
-        * Constructor
-        *@param propID - property identifier
-        */
-        PSS_CostPropertiesProcedureBP_Beta1(int propID = ZS_BP_PROP_PROCEDURE_COST);
+        PSS_CostPropertiesProcedureBP();
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_CostPropertiesProcedureBP_Beta1(const PSS_CostPropertiesProcedureBP_Beta1& other);
+        PSS_CostPropertiesProcedureBP(const PSS_CostPropertiesProcedureBP& other);
 
-        virtual ~PSS_CostPropertiesProcedureBP_Beta1();
+        virtual ~PSS_CostPropertiesProcedureBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_CostPropertiesProcedureBP_Beta1& operator = (const PSS_CostPropertiesProcedureBP_Beta1& other);
+        PSS_CostPropertiesProcedureBP& operator = (const PSS_CostPropertiesProcedureBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_CostPropertiesProcedureBP_Beta1& other) const;
-
-        /**
-        * Adds a reference to this object
-        *@return the updated reference count
-        */
-        virtual inline ULONG STDMETHODCALLTYPE AddRef();
-
-        /**
-        * Releases a reference from this object
-        *@return the updated reference count
-        */
-        virtual inline ULONG STDMETHODCALLTYPE Release();
+        BOOL operator == (const PSS_CostPropertiesProcedureBP& other) const;
 
         /**
         * Makes a copy of this properties object
         *@return a copy of this properties object, NULL on error
         */
-        virtual inline CODProperty* Dup();
+        virtual inline PSS_CostPropertiesProcedureBP* Dup() const;
 
         /**
         * Merges another property set with this one
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(CODProperty* pProperty, DWORD changeFlags = IE_CT_All);
-
-        /**
-        * Checks if the identifier is in the property identifier range
-        *@param id - the identifier to check
-        *@return TRUE if the identifier is in the range, otherwise FALSE
-        */
-        virtual BOOL CompareId(const int id) const;
+        virtual void Merge(PSS_CostPropertiesProcedureBP* pProperty, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param pProp - other property set to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        virtual BOOL IsEqual(CODProperty* pProp);
+        virtual BOOL IsEqual(PSS_CostPropertiesProcedureBP* pProp);
 
         /**
         * Gets the cost multiplier factor
@@ -178,6 +150,30 @@ class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP_Beta1 : public CODIntProperty,
         *@param value - the unitary cost
         */
         virtual inline void SetUnitaryCost(const float value);
+
+        /**
+        * Gets the processing time
+        *@return the processing time
+        */
+        virtual inline double GetProcessingDuration() const;
+
+        /**
+        * Sets the processing time
+        *@param value - the processing time
+        */
+        virtual inline void SetProcessingDuration(const double value);
+
+        /**
+        * Gets the processing maximum time
+        *@return the processing maximum time
+        */
+        virtual inline double GetProcessingDurationMax() const;
+
+        /**
+        * Sets the processing maximum time
+        *@param value - the processing maximum time
+        */
+        virtual inline void SetProcessingDurationMax(const double value);
 
         /**
         * Gets the property value
@@ -228,63 +224,68 @@ class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP_Beta1 : public CODIntProperty,
 
     protected:
         double m_ProcessingTime;
+        double m_ProcessingDuration;
+        double m_ProcessingDurationMax;
         float  m_Multiplier;
         float  m_UnitaryCost;
-
-    private:
-        /**
-        * Registers the basic property meta-data
-        *@return true on success, otherwise false
-        */
-        bool RegisterProperties();
 };
 
 //---------------------------------------------------------------------------
-// PSS_CostPropertiesProcedureBP_Beta1
+// PSS_CostPropertiesProcedureBP
 //---------------------------------------------------------------------------
-ULONG PSS_CostPropertiesProcedureBP_Beta1::AddRef()
+PSS_CostPropertiesProcedureBP* PSS_CostPropertiesProcedureBP::Dup() const
 {
-    return CODIntProperty::AddRef();
+    return new PSS_CostPropertiesProcedureBP(*this);
 }
 //---------------------------------------------------------------------------
-ULONG PSS_CostPropertiesProcedureBP_Beta1::Release()
-{
-    return CODIntProperty::Release();
-}
-//---------------------------------------------------------------------------
-CODProperty* PSS_CostPropertiesProcedureBP_Beta1::Dup()
-{
-    return new PSS_CostPropertiesProcedureBP_Beta1(*this);
-}
-//---------------------------------------------------------------------------
-float PSS_CostPropertiesProcedureBP_Beta1::GetMultiplier() const
+float PSS_CostPropertiesProcedureBP::GetMultiplier() const
 {
     return m_Multiplier;
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesProcedureBP_Beta1::SetMultiplier(const float value)
+void PSS_CostPropertiesProcedureBP::SetMultiplier(const float value)
 {
     m_Multiplier = value;
 }
 //---------------------------------------------------------------------------
-double PSS_CostPropertiesProcedureBP_Beta1::GetProcessingTime() const
+double PSS_CostPropertiesProcedureBP::GetProcessingTime() const
 {
     return m_ProcessingTime;
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesProcedureBP_Beta1::SetProcessingTime(const double value)
+void PSS_CostPropertiesProcedureBP::SetProcessingTime(const double value)
 {
     m_ProcessingTime = value;
 }
 //---------------------------------------------------------------------------
-float PSS_CostPropertiesProcedureBP_Beta1::GetUnitaryCost() const
+float PSS_CostPropertiesProcedureBP::GetUnitaryCost() const
 {
     return m_UnitaryCost;
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesProcedureBP_Beta1::SetUnitaryCost(const float value)
+void PSS_CostPropertiesProcedureBP::SetUnitaryCost(const float value)
 {
     m_UnitaryCost = value;
+}
+//---------------------------------------------------------------------------
+double PSS_CostPropertiesProcedureBP::GetProcessingDuration() const
+{
+    return m_ProcessingDuration;
+}
+//---------------------------------------------------------------------------
+void PSS_CostPropertiesProcedureBP::SetProcessingDuration(const double value)
+{
+    m_ProcessingDuration = value;
+}
+//---------------------------------------------------------------------------
+double PSS_CostPropertiesProcedureBP::GetProcessingDurationMax() const
+{
+    return m_ProcessingDurationMax;
+}
+//---------------------------------------------------------------------------
+void PSS_CostPropertiesProcedureBP::SetProcessingDurationMax(const double value)
+{
+    m_ProcessingDurationMax = value;
 }
 //---------------------------------------------------------------------------
 
