@@ -9,9 +9,8 @@
 #include "stdafx.h"
 #include "ZBProcDeliveries.h"
 
-#include "ZBBPDeliveriesProp.h"
-
 #include "zBaseLib\PSS_Tokenizer.h"
+#include "PSS_DeliveriesPropertiesBP.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -30,13 +29,12 @@ IMPLEMENT_SERIAL(ZBProcDeliveries, CObject, g_DefVersion)
 //////////////////////////////////////////////////////////////////////
 
 // Constructeur par défaut de la classe ZBProcDeliveries.
-ZBProcDeliveries::ZBProcDeliveries( CODSymbolComponent* pParent /*= NULL*/ )
-    : m_pParent( pParent )
-{
-}
+ZBProcDeliveries::ZBProcDeliveries(CODSymbolComponent* pParent /*= NULL*/)
+    : m_pParent(pParent)
+{}
 
 // Constructeur par copie de la classe ZBProcDeliveries.
-ZBProcDeliveries::ZBProcDeliveries( const ZBProcDeliveries& src )
+ZBProcDeliveries::ZBProcDeliveries(const ZBProcDeliveries& src)
 {
     *this = src;
 }
@@ -48,14 +46,14 @@ ZBProcDeliveries::~ZBProcDeliveries()
 }
 
 // Surcharge de l'opérateur = pour la classe ZBProcDeliveries.
-ZBProcDeliveries& ZBProcDeliveries::operator=( const ZBProcDeliveries& src )
+ZBProcDeliveries& ZBProcDeliveries::operator=(const ZBProcDeliveries& src)
 {
     // Copy the members.
-    ZBBPDeliveriesPropertiesIterator i( &const_cast<ZBProcDeliveries&>( src ).GetDeliverySet() );
+    ZBBPDeliveriesPropertiesIterator i(&const_cast<ZBProcDeliveries&>(src).GetDeliverySet());
 
-    for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        AddDelivery( pProp->Dup() );
+        AddDelivery(pProp->Dup());
     }
 
     m_pParent = src.m_pParent;
@@ -66,11 +64,11 @@ ZBProcDeliveries& ZBProcDeliveries::operator=( const ZBProcDeliveries& src )
 // Cette fonction permet d'effectuer un duplicata de l'objet instancié.
 ZBProcDeliveries* ZBProcDeliveries::Dup() const
 {
-    return ( new ZBProcDeliveries( *this ) );
+    return (new ZBProcDeliveries(*this));
 }
 
 // Cette fonction permet l'attribution du composant parent.
-void ZBProcDeliveries::SetParent( CODSymbolComponent* pParent )
+void ZBProcDeliveries::SetParent(CODSymbolComponent* pParent)
 {
     m_pParent = pParent;
 }
@@ -78,14 +76,14 @@ void ZBProcDeliveries::SetParent( CODSymbolComponent* pParent )
 // Cette fonction permet la création d'une propriété par défaut.
 bool ZBProcDeliveries::CreateInitialProperties()
 {
-    if ( GetDeliveriesCount() > 0 )
+    if (GetDeliveriesCount() > 0)
     {
         return true;
     }
 
-    ZBBPDeliveriesProperties* pProps = new ZBBPDeliveriesProperties;
+    PSS_DeliveriesPropertiesBP* pProps = new PSS_DeliveriesPropertiesBP();
 
-    if ( AddDelivery( pProps ) >= 0 )
+    if (AddDelivery(pProps) >= 0)
     {
         return true;
     }
@@ -96,23 +94,23 @@ bool ZBProcDeliveries::CreateInitialProperties()
 // Cette fonction permet l'ajout d'une nouvelle propriété vide, de type livraison, dans la liste.
 int ZBProcDeliveries::AddNewDelivery()
 {
-    ZBBPDeliveriesProperties* pProps = new ZBBPDeliveriesProperties;
+    PSS_DeliveriesPropertiesBP* pProps = new PSS_DeliveriesPropertiesBP();
 
-    return AddDelivery( pProps );
+    return AddDelivery(pProps);
 }
 
 // Cette fonction permet l'ajout d'une propriété de type livraison dans la liste.
-int ZBProcDeliveries::AddDelivery( ZBBPDeliveriesProperties* pProperty )
+int ZBProcDeliveries::AddDelivery(PSS_DeliveriesPropertiesBP* pProperty)
 {
-    if ( pProperty )
+    if (pProperty)
     {
         // If no delivery name specified, set it by default
-        if ( pProperty->GetDeliveryName().IsEmpty() )
+        if (pProperty->GetDeliveryName().IsEmpty())
         {
-            pProperty->SetDeliveryName( GetNextDeliveryValidName() );
+            pProperty->SetDeliveryName(GetNextDeliveryValidName());
         }
 
-        m_Set.Add( pProperty );
+        m_Set.Add(pProperty);
 
         // Returns the index
         return GetDeliveriesCount() - 1;
@@ -122,15 +120,15 @@ int ZBProcDeliveries::AddDelivery( ZBBPDeliveriesProperties* pProperty )
 }
 
 // Cette fonction permet la suppression d'une propriété dans la liste.
-bool ZBProcDeliveries::DeleteDelivery( size_t Index )
+bool ZBProcDeliveries::DeleteDelivery(size_t Index)
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        ZBBPDeliveriesProperties* pProperty = GetProperty( Index );
+        PSS_DeliveriesPropertiesBP* pProperty = GetProperty(Index);
 
-        if ( pProperty )
+        if (pProperty)
         {
-            m_Set.RemoveAt( Index );
+            m_Set.RemoveAt(Index);
             delete pProperty;
             return true;
         }
@@ -140,13 +138,13 @@ bool ZBProcDeliveries::DeleteDelivery( size_t Index )
 }
 
 // Cette fonction permet la suppression d'une propriété dans la liste.
-bool ZBProcDeliveries::DeleteDelivery( ZBBPDeliveriesProperties* pProperty )
+bool ZBProcDeliveries::DeleteDelivery(PSS_DeliveriesPropertiesBP* pProperty)
 {
-    ZBBPDeliveriesPropertiesIterator i( &m_Set );
+    ZBBPDeliveriesPropertiesIterator i(&m_Set);
 
-    for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProperty == pProp )
+        if (pProperty == pProp)
         {
             i.Remove();
             delete pProp;
@@ -160,9 +158,9 @@ bool ZBProcDeliveries::DeleteDelivery( ZBBPDeliveriesProperties* pProperty )
 // Cette fonction permet la suppression de toutes les propriétés dans la liste.
 void ZBProcDeliveries::RemoveAllDeliveries()
 {
-    ZBBPDeliveriesPropertiesIterator i( &m_Set );
+    ZBBPDeliveriesPropertiesIterator i(&m_Set);
 
-    for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -172,61 +170,61 @@ void ZBProcDeliveries::RemoveAllDeliveries()
 }
 
 // Obtient le nom de la livraison.
-CString ZBProcDeliveries::GetDeliveryName( size_t Index ) const
+CString ZBProcDeliveries::GetDeliveryName(size_t Index) const
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        return m_Set.GetAt( Index )->GetDeliveryName();
+        return m_Set.GetAt(Index)->GetDeliveryName();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // Inscrit le nom de la livraison.
-void ZBProcDeliveries::SetDeliveryName( size_t Index, CString Value )
+void ZBProcDeliveries::SetDeliveryName(size_t Index, CString Value)
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        m_Set.GetAt( Index )->SetDeliveryName( Value );
+        m_Set.GetAt(Index)->SetDeliveryName(Value);
     }
 }
 
 // Obtient la liste des livrables associés à cette livraison
-CString ZBProcDeliveries::GetDeliveryDeliverables( size_t Index ) const
+CString ZBProcDeliveries::GetDeliveryDeliverables(size_t Index) const
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        return m_Set.GetAt( Index )->GetDeliveryDeliverables();
+        return m_Set.GetAt(Index)->GetDeliveryDeliverables();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // Inscrit la liste des livrables associés à cette livraison
-void ZBProcDeliveries::SetDeliveryDeliverables( size_t Index, CString Value )
+void ZBProcDeliveries::SetDeliveryDeliverables(size_t Index, CString Value)
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        m_Set.GetAt( Index )->SetDeliveryDeliverables( Value );
+        m_Set.GetAt(Index)->SetDeliveryDeliverables(Value);
     }
 }
 
 // Cette fonction permet l'ajout d'un livrable à la liste des livrables de la propriété demandée.
-bool ZBProcDeliveries::AddDeliveryDeliverable( size_t Index, CString Value )
+bool ZBProcDeliveries::AddDeliveryDeliverable(size_t Index, CString Value)
 {
-    CString Deliverables = GetDeliveryDeliverables( Index );
+    CString Deliverables = GetDeliveryDeliverables(Index);
 
     PSS_Tokenizer token;    // Initialize the token with ; as separator
 
-    CString str = token.GetFirstToken( Deliverables );
+    CString str = token.GetFirstToken(Deliverables);
     bool Found = false;
-    
+
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If we found the same deliverable,
         // then sets the Found flag to true
-        if ( str == Value )
+        if (str == Value)
         {
             Found = true;
             break;
@@ -237,43 +235,43 @@ bool ZBProcDeliveries::AddDeliveryDeliverable( size_t Index, CString Value )
     }
 
     // If not found, add it
-    if ( Found == false )
+    if (Found == false)
     {
-        token.InitializeString( Deliverables );
-        token.AddToken( Value );
+        token.InitializeString(Deliverables);
+        token.AddToken(Value);
 
         // Set the new deliverable complete string
-        SetDeliveryDeliverables( Index, token.GetString() );
+        SetDeliveryDeliverables(Index, token.GetString());
     }
 
     return true;
 }
 
 // Cette fonction permet la suppression d'un livrable dans la liste des livrables de la propriété demandée.
-bool ZBProcDeliveries::RemoveDeliveryDeliverable( size_t Index, CString Value )
+bool ZBProcDeliveries::RemoveDeliveryDeliverable(size_t Index, CString Value)
 {
-    CString Deliverables = GetDeliveryDeliverables( Index );
+    CString Deliverables = GetDeliveryDeliverables(Index);
 
     PSS_Tokenizer srcToken;    // Initialize the source token with ; as separator
     PSS_Tokenizer dstToken;    // Initialize the destination token with ; as separator
 
-    CString str = srcToken.GetFirstToken( Deliverables );
+    CString str = srcToken.GetFirstToken(Deliverables);
     bool Found = false;
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If we found the same deliverable,
         // then sets the Found flag to true
         // and skip it
-        if ( str == Value )
+        if (str == Value)
         {
             Found = true;
         }
         else
         {
             // If not the same, can be added to the destination token
-            dstToken.AddToken( str );
+            dstToken.AddToken(str);
         }
 
         // Get the next token
@@ -281,10 +279,10 @@ bool ZBProcDeliveries::RemoveDeliveryDeliverable( size_t Index, CString Value )
     }
 
     // If we found it, sets the new string
-    if ( Found == true )
+    if (Found == true)
     {
         // Set the new deliverable complete string
-        SetDeliveryDeliverables( Index, dstToken.GetString() );
+        SetDeliveryDeliverables(Index, dstToken.GetString());
         return true;
     }
 
@@ -292,81 +290,81 @@ bool ZBProcDeliveries::RemoveDeliveryDeliverable( size_t Index, CString Value )
 }
 
 // Cette fonction permet la suppression de la liste des livrables de la propriété demandée.
-bool ZBProcDeliveries::RemoveAllDeliveryDeliverable( size_t Index )
+bool ZBProcDeliveries::RemoveAllDeliveryDeliverable(size_t Index)
 {
-    SetDeliveryDeliverables( Index, _T( "" ) );
+    SetDeliveryDeliverables(Index, _T(""));
     return true;
 }
 
 // Obtient la quantité de la livraison.
-float ZBProcDeliveries::GetDeliveryQuantity( size_t Index ) const
+float ZBProcDeliveries::GetDeliveryQuantity(size_t Index) const
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        return m_Set.GetAt( Index )->GetDeliveryQuantity();
+        return m_Set.GetAt(Index)->GetDeliveryQuantity();
     }
 
     return 0.0f;
 }
 
 // Inscrit la quantité de la livraison.
-void ZBProcDeliveries::SetDeliveryQuantity( size_t Index, const float value )
+void ZBProcDeliveries::SetDeliveryQuantity(size_t Index, const float value)
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        m_Set.GetAt( Index )->SetDeliveryQuantity( value );
+        m_Set.GetAt(Index)->SetDeliveryQuantity(value);
     }
 }
 
 // Obtient le pourcentage de la livraison.
-float ZBProcDeliveries::GetDeliveryPercentage( size_t Index ) const
+float ZBProcDeliveries::GetDeliveryPercentage(size_t Index) const
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        return m_Set.GetAt( Index )->GetDeliveryPercentage();
+        return m_Set.GetAt(Index)->GetDeliveryPercentage();
     }
 
     return 0.0f;
 }
 
 // Inscrit le pourcentage de la livraison.
-void ZBProcDeliveries::SetDeliveryPercentage( size_t Index, const float value )
+void ZBProcDeliveries::SetDeliveryPercentage(size_t Index, const float value)
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        m_Set.GetAt( Index )->SetDeliveryPercentage( value );
+        m_Set.GetAt(Index)->SetDeliveryPercentage(value);
     }
 }
 
 // Obtient le nom du livrable principal de la livraison.
-CString ZBProcDeliveries::GetDeliveryMain( size_t Index ) const
+CString ZBProcDeliveries::GetDeliveryMain(size_t Index) const
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        return m_Set.GetAt( Index )->GetDeliveryMain();
+        return m_Set.GetAt(Index)->GetDeliveryMain();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // Inscrit le nom du livrable principal de la livraison.
-void ZBProcDeliveries::SetDeliveryMain( size_t Index, CString Value )
+void ZBProcDeliveries::SetDeliveryMain(size_t Index, CString Value)
 {
-    if ( Index < GetDeliveriesCount() )
+    if (Index < GetDeliveriesCount())
     {
-        m_Set.GetAt(Index)->SetDeliveryMain( Value );
+        m_Set.GetAt(Index)->SetDeliveryMain(Value);
     }
 }
 
 // Permet de savoir si le nom de la livraison spécifié existe dans la liste des livraisons.
-bool ZBProcDeliveries::DeliveryNameExist( const CString Name ) const
+bool ZBProcDeliveries::DeliveryNameExist(const CString Name) const
 {
     // Run through the set and build the string
-    ZBBPDeliveriesPropertiesIterator i( &m_Set );
+    ZBBPDeliveriesPropertiesIterator i(&m_Set);
 
-    for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetDeliveryName() == Name )
+        if (pProp->GetDeliveryName() == Name)
         {
             return true;
         }
@@ -383,15 +381,15 @@ CString ZBProcDeliveries::GetNextDeliveryValidName() const
 
     do
     {
-        str.Format( _T( "Livr %d" ), i++ );
+        str.Format(_T("Livr %d"), i++);
     }
-    while ( DeliveryNameExist( str ) == true );
+    while (DeliveryNameExist(str) == true);
 
     return str;
 }
 
 // Obtient la liste des livrables disponibles.
-CString ZBProcDeliveries::GetAvailableDeliverables( const CString AllDeliverables ) const
+CString ZBProcDeliveries::GetAvailableDeliverables(const CString AllDeliverables) const
 {
     // First, retreive the allocated deliverables
     CString AllocatedDeliverables = GetAllocatedDeliverables();
@@ -400,16 +398,16 @@ CString ZBProcDeliveries::GetAvailableDeliverables( const CString AllDeliverable
     PSS_Tokenizer srcToken;    // Initialize the source token with ; as separator
     PSS_Tokenizer dstToken;    // Initialize the destination token with ; as separator
 
-    CString str = srcToken.GetFirstToken( AllDeliverables );
+    CString str = srcToken.GetFirstToken(AllDeliverables);
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If the token is not in the allocated deliverable string
         // add it to the destination token string
-        if ( !IsDeliverableInString( AllocatedDeliverables, str ) )
+        if (!IsDeliverableInString(AllocatedDeliverables, str))
         {
-            dstToken.AddToken( str );
+            dstToken.AddToken(str);
         }
 
         // Get the next token
@@ -426,12 +424,12 @@ CString ZBProcDeliveries::GetAllocatedDeliverables() const
     PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     // Run through the set and build the string
-    ZBBPDeliveriesPropertiesIterator i( &m_Set );
+    ZBBPDeliveriesPropertiesIterator i(&m_Set);
 
-    for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // Add the deliverables
-        token.AddToken( pProp->GetDeliveryDeliverables() );
+        token.AddToken(pProp->GetDeliveryDeliverables());
     }
 
     // Return the constructed string
@@ -439,18 +437,18 @@ CString ZBProcDeliveries::GetAllocatedDeliverables() const
 }
 
 // Cette fonction permet de savoir si un livrable existe dans la liste des livrables de la livraison souhaitée.
-bool ZBProcDeliveries::IsDeliverableInString( const CString Deliverables, const CString Value ) const
+bool ZBProcDeliveries::IsDeliverableInString(const CString Deliverables, const CString Value) const
 {
     PSS_Tokenizer token;    // Initialize the token with ; as separator
 
-    CString str = token.GetFirstToken( Deliverables );
+    CString str = token.GetFirstToken(Deliverables);
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
         // If we found the same deliverable,
         // then return true
-        if ( str == Value )
+        if (str == Value)
         {
             return true;
         }
@@ -463,28 +461,28 @@ bool ZBProcDeliveries::IsDeliverableInString( const CString Deliverables, const 
 }
 
 // Cette fonction permet de retrouver la propriété contenant le livrable souhaité.
-ZBBPDeliveriesProperties* ZBProcDeliveries::LocateDeliveryOfDeliverable( const CString DeliverableName ) const
+PSS_DeliveriesPropertiesBP* ZBProcDeliveries::LocateDeliveryOfDeliverable(const CString DeliverableName) const
 {
-    int Index = LocateDeliveryIndexOfDeliverable( DeliverableName );
+    int Index = LocateDeliveryIndexOfDeliverable(DeliverableName);
 
-    if ( Index == -1 )
+    if (Index == -1)
     {
         return NULL;
     }
 
-    return GetProperty( Index );
+    return GetProperty(Index);
 }
 
 // Cette fonction permet de retrouver l'index de la propriété contenant le livrable souhaité.
-int ZBProcDeliveries::LocateDeliveryIndexOfDeliverable( const CString DeliverableName ) const
+int ZBProcDeliveries::LocateDeliveryIndexOfDeliverable(const CString DeliverableName) const
 {
     // Run through the set of deliverables and check if found
-    ZBBPDeliveriesPropertiesIterator i( &m_Set );
+    ZBBPDeliveriesPropertiesIterator i(&m_Set);
     int Index = 0;
 
-    for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index )
+    for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index)
     {
-        if ( IsDeliverableInString( pProp->GetDeliveryDeliverables(), DeliverableName ) )
+        if (IsDeliverableInString(pProp->GetDeliveryDeliverables(), DeliverableName))
         {
             return Index;
         }
@@ -494,28 +492,28 @@ int ZBProcDeliveries::LocateDeliveryIndexOfDeliverable( const CString Deliverabl
 }
 
 // Cette fonction permet de retrouver la propriété contenant le livrable principal souhaité.
-ZBBPDeliveriesProperties* ZBProcDeliveries::LocateDeliveryOfMain( const CString Main ) const
+PSS_DeliveriesPropertiesBP* ZBProcDeliveries::LocateDeliveryOfMain(const CString Main) const
 {
-    int Index = LocateDeliveryIndexOfMain( Main );
+    int Index = LocateDeliveryIndexOfMain(Main);
 
-    if ( Index == -1 )
+    if (Index == -1)
     {
         return NULL;
     }
 
-    return GetProperty( Index );
+    return GetProperty(Index);
 }
 
 // Cette fonction permet de retrouver l'index de la propriété contenant le livrable principal souhaité.
-int ZBProcDeliveries::LocateDeliveryIndexOfMain( const CString Main ) const
+int ZBProcDeliveries::LocateDeliveryIndexOfMain(const CString Main) const
 {
     // Run through the set of deliverables and check if found
-    ZBBPDeliveriesPropertiesIterator i( &m_Set );
+    ZBBPDeliveriesPropertiesIterator i(&m_Set);
     int Index = 0;
 
-    for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index )
+    for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index)
     {
-        if ( !pProp->GetDeliveryMain().IsEmpty() && pProp->GetDeliveryMain() == Main )
+        if (!pProp->GetDeliveryMain().IsEmpty() && pProp->GetDeliveryMain() == Main)
         {
             return Index;
         }
@@ -525,29 +523,29 @@ int ZBProcDeliveries::LocateDeliveryIndexOfMain( const CString Main ) const
 }
 
 // Cette fonction permet de remplaçer un livrable par un autre.
-bool ZBProcDeliveries::ReplaceDeliverable( const CString OldDeliverableName, const CString NewDeliverableName )
+bool ZBProcDeliveries::ReplaceDeliverable(const CString OldDeliverableName, const CString NewDeliverableName)
 {
-    int Index        = LocateDeliveryIndexOfDeliverable( OldDeliverableName );
-    bool RetValue    = false;
+    int Index = LocateDeliveryIndexOfDeliverable(OldDeliverableName);
+    bool RetValue = false;
 
-    if ( Index != -1 )
+    if (Index != -1)
     {
         // First, remove the old deliverable
-        if ( !RemoveDeliveryDeliverable( Index, OldDeliverableName ) )
+        if (!RemoveDeliveryDeliverable(Index, OldDeliverableName))
         {
             return false;
         }
-    
+
         // Then add the new name and return the status
-        RetValue = AddDeliveryDeliverable( Index, NewDeliverableName );
+        RetValue = AddDeliveryDeliverable(Index, NewDeliverableName);
     }
 
-    ZBBPDeliveriesProperties* pDelivery = LocateDeliveryOfMain( OldDeliverableName );
+    PSS_DeliveriesPropertiesBP* pDelivery = LocateDeliveryOfMain(OldDeliverableName);
 
-    if ( pDelivery )
+    if (pDelivery)
     {
         // Sets the new deliverable name
-        pDelivery->SetDeliveryMain( NewDeliverableName );
+        pDelivery->SetDeliveryMain(NewDeliverableName);
         RetValue = true;
     }
 
@@ -556,26 +554,26 @@ bool ZBProcDeliveries::ReplaceDeliverable( const CString OldDeliverableName, con
 }
 
 // Cette fonction permet de supprimer l'occurence d'un livrable dans toutes les livraisons.
-bool ZBProcDeliveries::DeleteDeliverableFromAllDeliveries( const CString DeliverableName )
+bool ZBProcDeliveries::DeleteDeliverableFromAllDeliveries(const CString DeliverableName)
 {
-    int Index        = LocateDeliveryIndexOfDeliverable( DeliverableName );
-    bool RetValue    = false;
+    int Index = LocateDeliveryIndexOfDeliverable(DeliverableName);
+    bool RetValue = false;
 
-    if ( Index != -1 )
+    if (Index != -1)
     {
         // First, remove the old deliverable
-        if ( !RemoveDeliveryDeliverable( Index, DeliverableName ) )
+        if (!RemoveDeliveryDeliverable(Index, DeliverableName))
         {
             return false;
         }
     }
 
-    ZBBPDeliveriesProperties* pDelivery = LocateDeliveryOfMain( DeliverableName );
+    PSS_DeliveriesPropertiesBP* pDelivery = LocateDeliveryOfMain(DeliverableName);
 
-    if ( pDelivery )
+    if (pDelivery)
     {
         // Sets the new deliverable name
-        pDelivery->SetDeliveryMain( _T( "" ) );
+        pDelivery->SetDeliveryMain(_T(""));
         RetValue = true;
     }
 
@@ -584,30 +582,30 @@ bool ZBProcDeliveries::DeleteDeliverableFromAllDeliveries( const CString Deliver
 }
 
 // Fonction de sérialisation de l'objet.
-void ZBProcDeliveries::Serialize( CArchive& ar )
+void ZBProcDeliveries::Serialize(CArchive& ar)
 {
     // Only if the object is serialize from and to a document
-    if ( ar.m_pDocument )
+    if (ar.m_pDocument)
     {
-        if ( ar.IsStoring() )
+        if (ar.IsStoring())
         {
-            TRACE( _T( "ZBProcDeliveries::Serialize : Start Save\n" ) );
-    
+            TRACE(_T("ZBProcDeliveries::Serialize : Start Save\n"));
+
             // Serialize the size of the set
             ar << (int)m_Set.GetSize();
 
-            ZBBPDeliveriesPropertiesIterator i( &m_Set );
+            ZBBPDeliveriesPropertiesIterator i(&m_Set);
 
-            for ( ZBBPDeliveriesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+            for (PSS_DeliveriesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
                 ar << pProp;
             }
 
-            TRACE( _T( "ZBProcDeliveries::Serialize : End Save\n" ) );
+            TRACE(_T("ZBProcDeliveries::Serialize : End Save\n"));
         }
         else
         {
-            TRACE( _T( "ZBProcDeliveries::Serialize : Start Read\n" ) );
+            TRACE(_T("ZBProcDeliveries::Serialize : Start Read\n"));
 
             RemoveAllDeliveries();
 
@@ -615,15 +613,15 @@ void ZBProcDeliveries::Serialize( CArchive& ar )
             int Count;
             ar >> Count;
 
-            ZBBPDeliveriesProperties* pProp;
+            PSS_DeliveriesPropertiesBP* pProp;
 
-            for ( int i = 0; i < (int)Count; ++i )
+            for (int i = 0; i < (int)Count; ++i)
             {
                 ar >> pProp;
-                AddDelivery( pProp );
+                AddDelivery(pProp);
             }
-        
-            TRACE( _T( "ZBProcDeliveries::Serialize : End Read\n" ) );
+
+            TRACE(_T("ZBProcDeliveries::Serialize : End Read\n"));
         }
     }
 }

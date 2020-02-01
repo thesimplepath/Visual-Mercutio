@@ -21,6 +21,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping
+#ifndef PSS_RiskPropertiesBP
+    #define PSS_RiskPropertiesBP ZBBPRiskProperties
+#endif
+
+class PSS_RiskPropertiesBP;
+
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
@@ -31,12 +38,10 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class ZBBPRiskProperties;
-
 using namespace sfl;
 
-typedef CCArray_T<ZBBPRiskProperties*, ZBBPRiskProperties*> ZBBPRiskPropertiesSet;
-typedef Iterator_T<ZBBPRiskProperties*> ZBBPRiskPropertiesIterator;
+typedef CCArray_T<PSS_RiskPropertiesBP*, PSS_RiskPropertiesBP*> ZBBPRiskPropertiesSet;
+typedef Iterator_T<PSS_RiskPropertiesBP*> ZBBPRiskPropertiesIterator;
 
 class AFX_EXT_CLASS ZBProcRisk : public CObject
 {
@@ -56,11 +61,11 @@ public:
     void SetParent( CODSymbolComponent* pParent );
 
     int AddNewRisk();
-    int AddRisk( ZBBPRiskProperties* pProperty );
+    int AddRisk(PSS_RiskPropertiesBP* pProperty );
 
     bool CreateInitialProperties();
     bool DeleteRisk( size_t Index );
-    bool DeleteRisk( ZBBPRiskProperties* pProperty );
+    bool DeleteRisk(PSS_RiskPropertiesBP* pProperty );
     bool RiskNameExist( const CString Name ) const;
 
     CString GetNextRiskValidName() const;
@@ -78,7 +83,7 @@ public:
     };
 
     // Obtient la propriété contenue à l'index spécifié.
-    ZBBPRiskProperties* GetProperty( size_t Index ) const
+    PSS_RiskPropertiesBP* GetProperty( size_t Index ) const
     {
         if ( Index < GetRiskCount() )
         {
@@ -125,4 +130,4 @@ private:
     ZBBPRiskPropertiesSet        m_Set;
 };
 
-#endif // !defined(AFX_ZBProcRisk_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)
+#endif

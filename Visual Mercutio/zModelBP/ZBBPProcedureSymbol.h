@@ -27,7 +27,7 @@
 #include "ZBProcRules.h"
 #include "ZBBPRulesProp.h"
 #include "ZBProcRisk.h"
-#include "ZBBPRiskProp.h"
+#include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
 #include "ZVRiskProbabilityContainer.h"

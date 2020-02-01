@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZBProcRisk.h"
 
-#include "ZBBPRiskProp.h"
+#include "PSS_RiskPropertiesBP.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -51,7 +51,7 @@ ZBProcRisk& ZBProcRisk::operator=( const ZBProcRisk& src )
     // Copy the members.
     ZBBPRiskPropertiesIterator i( &const_cast<ZBProcRisk&>( src ).GetRiskSet() );
 
-    for ( ZBBPRiskProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RiskPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
     {
         AddRisk( pProp->Dup() );
     }
@@ -81,7 +81,7 @@ bool ZBProcRisk::CreateInitialProperties()
         return true;
     }
 
-    ZBBPRiskProperties* pProps = new ZBBPRiskProperties;
+    PSS_RiskPropertiesBP* pProps = new PSS_RiskPropertiesBP();
 
     if ( AddRisk( pProps ) >= 0 )
     {
@@ -94,13 +94,13 @@ bool ZBProcRisk::CreateInitialProperties()
 // Cette fonction permet l'ajout d'une nouvelle propriété vide, de type risque, dans la liste.
 int ZBProcRisk::AddNewRisk()
 {
-    ZBBPRiskProperties* pProps = new ZBBPRiskProperties;
+    PSS_RiskPropertiesBP* pProps = new PSS_RiskPropertiesBP();
 
     return AddRisk( pProps );
 }
 
 // Cette fonction permet l'ajout d'une propriété de type risque dans la liste.
-int ZBProcRisk::AddRisk( ZBBPRiskProperties* pProperty )
+int ZBProcRisk::AddRisk(PSS_RiskPropertiesBP* pProperty )
 {
     if ( pProperty )
     {
@@ -124,7 +124,7 @@ bool ZBProcRisk::DeleteRisk( size_t Index )
 {
     if ( Index < GetRiskCount() )
     {
-        ZBBPRiskProperties* pProperty = GetProperty( Index );
+        PSS_RiskPropertiesBP* pProperty = GetProperty( Index );
 
         if ( pProperty )
         {
@@ -138,11 +138,11 @@ bool ZBProcRisk::DeleteRisk( size_t Index )
 }
 
 // Cette fonction permet la suppression d'une propriété dans la liste.
-bool ZBProcRisk::DeleteRisk( ZBBPRiskProperties* pProperty )
+bool ZBProcRisk::DeleteRisk(PSS_RiskPropertiesBP* pProperty )
 {
     ZBBPRiskPropertiesIterator i( &m_Set );
 
-    for ( ZBBPRiskProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RiskPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
     {
         if ( pProperty == pProp )
         {
@@ -160,7 +160,7 @@ void ZBProcRisk::RemoveAllRisks()
 {
     ZBBPRiskPropertiesIterator i( &m_Set );
 
-    for ( ZBBPRiskProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RiskPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
     {
         delete pProp;
     }
@@ -175,7 +175,7 @@ bool ZBProcRisk::RiskNameExist( const CString Name ) const
     // Run through the set and build the string
     ZBBPRiskPropertiesIterator i( &m_Set );
 
-    for ( ZBBPRiskProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RiskPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
     {
         if ( pProp->GetRiskName() == Name )
         {
@@ -396,7 +396,7 @@ void ZBProcRisk::Serialize( CArchive& ar )
 
             ZBBPRiskPropertiesIterator i( &m_Set );
 
-            for ( ZBBPRiskProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+            for (PSS_RiskPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
             {
                 ar << pProp;
             }
@@ -413,7 +413,7 @@ void ZBProcRisk::Serialize( CArchive& ar )
             int Count;
             ar >> Count;
 
-            ZBBPRiskProperties* pProp;
+            PSS_RiskPropertiesBP* pProp;
 
             for ( int i = 0; i < (int)Count; ++i )
             {

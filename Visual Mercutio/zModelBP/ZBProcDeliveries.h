@@ -21,6 +21,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping
+#ifndef PSS_DeliveriesPropertiesBP
+    #define PSS_DeliveriesPropertiesBP ZBBPDeliveriesProperties
+#endif
+
+class PSS_DeliveriesPropertiesBP;
+
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
@@ -31,12 +38,10 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class ZBBPDeliveriesProperties;
-
 using namespace sfl;
 
-typedef CCArray_T<ZBBPDeliveriesProperties*, ZBBPDeliveriesProperties*> ZBBPDeliveriesPropertiesSet;
-typedef Iterator_T<ZBBPDeliveriesProperties*> ZBBPDeliveriesPropertiesIterator;
+typedef CCArray_T<PSS_DeliveriesPropertiesBP*, PSS_DeliveriesPropertiesBP*> ZBBPDeliveriesPropertiesSet;
+typedef Iterator_T<PSS_DeliveriesPropertiesBP*> ZBBPDeliveriesPropertiesIterator;
 
 class AFX_EXT_CLASS ZBProcDeliveries : public CObject
 {
@@ -56,11 +61,11 @@ public:
     void SetParent( CODSymbolComponent* pParent );
 
     int AddNewDelivery();
-    int AddDelivery( ZBBPDeliveriesProperties* pProperty );
+    int AddDelivery(PSS_DeliveriesPropertiesBP* pProperty );
 
     bool CreateInitialProperties();
     bool DeleteDelivery( size_t Index );
-    bool DeleteDelivery( ZBBPDeliveriesProperties* pProperty );
+    bool DeleteDelivery(PSS_DeliveriesPropertiesBP* pProperty );
     bool DeliveryNameExist( const CString Name ) const;
     bool ReplaceDeliverable( const CString OldDeliverableName, const CString NewDeliverableName );
     bool DeleteDeliverableFromAllDeliveries( const CString DeliverableName );
@@ -70,10 +75,10 @@ public:
     CString GetAvailableDeliverables( const CString AllDeliverables ) const;
     CString GetAllocatedDeliverables() const;
 
-    ZBBPDeliveriesProperties* LocateDeliveryOfDeliverable( const CString DeliverableName ) const;
+    PSS_DeliveriesPropertiesBP* LocateDeliveryOfDeliverable( const CString DeliverableName ) const;
     int LocateDeliveryIndexOfDeliverable( const CString DeliverableName ) const;
 
-    ZBBPDeliveriesProperties* LocateDeliveryOfMain( const CString Main ) const;
+    PSS_DeliveriesPropertiesBP* LocateDeliveryOfMain( const CString Main ) const;
     int LocateDeliveryIndexOfMain( const CString Master ) const;
 
     // Obtient le pointeur du groupe des propriétés.
@@ -89,7 +94,7 @@ public:
     };
 
     // Obtient la propriété contenue à l'index spécifié.
-    ZBBPDeliveriesProperties* GetProperty( size_t Index ) const
+    PSS_DeliveriesPropertiesBP* GetProperty( size_t Index ) const
     {
         if ( Index < GetDeliveriesCount() )
         {
@@ -128,4 +133,4 @@ private:
     ZBBPDeliveriesPropertiesSet    m_Set;
 };
 
-#endif // !defined(AFX_ZBProcDeliveries_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)
+#endif

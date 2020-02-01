@@ -210,7 +210,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPDeliveriesProp.cpp" />
+    <ClCompile Include="PSS_DeliveriesPropertiesBP.cpp" />
     <ClCompile Include="ZBBPDoorSymbol.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -249,7 +249,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPRiskProp.cpp" />
+    <ClCompile Include="PSS_RiskPropertiesBP.cpp" />
     <ClCompile Include="ZBBPRuleListProp.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -598,7 +598,7 @@
     <ClInclude Include="PSS_CostPropertiesProcedureBP_Beta1.h" />
     <ClInclude Include="PSS_CostPropertiesProcedureBP.h" />
     <ClInclude Include="PSS_DecisionListPropertiesBP.h" />
-    <ClInclude Include="ZBBPDeliveriesProp.h" />
+    <ClInclude Include="PSS_DeliveriesPropertiesBP.h" />
     <ClInclude Include="ZBBPDoorSymbol.h" />
     <ClInclude Include="ZBBPGenericSymbol.h" />
     <ClInclude Include="ZBBPPackageSymbol.h" />
@@ -607,7 +607,7 @@
     <ClInclude Include="ZBBPProcedureSymbol.h" />
     <ClInclude Include="ZBBPProcessProp.h" />
     <ClInclude Include="ZBBPProcessSymbol.h" />
-    <ClInclude Include="ZBBPRiskProp.h" />
+    <ClInclude Include="PSS_RiskPropertiesBP.h" />
     <ClInclude Include="ZBBPRuleListProp.h" />
     <ClInclude Include="ZBBPRulesProp.h" />
     <ClInclude Include="ZBBPSimPropDeliverable.h" />

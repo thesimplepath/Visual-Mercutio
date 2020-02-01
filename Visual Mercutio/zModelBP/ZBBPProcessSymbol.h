@@ -28,7 +28,7 @@
 #include "ZBProcRules.h"
 #include "ZBBPRulesProp.h"
 #include "ZBProcRisk.h"
-#include "ZBBPRiskProp.h"
+#include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
 #include "ZVRiskProbabilityContainer.h"
@@ -360,7 +360,7 @@ public:
         return m_Deliveries.GetDeliveriesCount();
     }
 
-    ZBBPDeliveriesProperties* GetDeliveryProperty(size_t Index) const
+    PSS_DeliveriesPropertiesBP* GetDeliveryProperty(size_t Index) const
     {
         return m_Deliveries.GetProperty(Index);
     }

@@ -1008,7 +1008,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         ZBProperty* pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                            riskName,
-                                           (groupValue ? Z_RISK_NAME : (Z_RISK_NAME + (i * _MaxRisksSize))),
+                                           (groupValue ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * _MaxRisksSize))),
                                            riskDesc,
                                            GetRiskName(i),
                                            ZBProperty::PT_EDIT_MENU,
@@ -1027,7 +1027,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_DESC : (Z_RISK_DESC + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                GetRiskDesc(i),
                                ZBProperty::PT_EDIT_EXTENDED);
@@ -1043,7 +1043,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_TYPE : (Z_RISK_TYPE + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                GetRiskType(i).IsEmpty() ? sNoRiskType : GetRiskType(i),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1058,7 +1058,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_IMPACT : (Z_RISK_IMPACT + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1073,7 +1073,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_PROBABILITY : (Z_RISK_PROBABILITY + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1088,7 +1088,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_SEVERITY : (Z_RISK_SEVERITY + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                double(GetRiskSeverity(i)),
                                ZBProperty::PT_EDIT_NUMBER_READONLY);
@@ -1103,7 +1103,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_UE : (Z_RISK_UE + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                GetRiskUE(i),
                                ZBProperty::PT_EDIT_NUMBER,
@@ -1120,7 +1120,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_POA : (Z_RISK_POA + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                GetRiskPOA(i),
                                ZBProperty::PT_EDIT_NUMBER,
@@ -1137,7 +1137,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         pRisk = new ZBProperty(finalRiskTitle,
             (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
-                               (groupValue ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize))),
+                               (groupValue ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * _MaxRisksSize))),
                                riskDesc,
                                (GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo()),
                                ZBProperty::PT_COMBO_STRING_READONLY,
@@ -1773,27 +1773,27 @@ bool ZBBPProcedureSymbol::SaveProperties(ZBPropertySet& PropSet)
         {
             int i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;
 
-            if (pProp->GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_Name_ID + (i * _MaxRisksSize))
             {
                 SetRiskName(i, pProp->GetValueString());
             }
 
-            if (pProp->GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_Desc_ID + (i * _MaxRisksSize))
             {
                 SetRiskDesc(i, pProp->GetValueString());
             }
 
-            if (pProp->GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_UE_ID + (i * _MaxRisksSize))
             {
                 SetRiskUE(i, pProp->GetValueFloat());
             }
 
-            if (pProp->GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_POA_ID + (i * _MaxRisksSize))
             {
                 SetRiskPOA(i, pProp->GetValueFloat());
             }
 
-            if (pProp->GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_Action_ID + (i * _MaxRisksSize))
             {
                 SetRiskAction(i, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
             }
@@ -2098,27 +2098,27 @@ bool ZBBPProcedureSymbol::SaveProperty(ZBProperty& Property)
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-        if (Property.GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_Name_ID + (i * _MaxRisksSize))
         {
             SetRiskName(i, Property.GetValueString());
         }
 
-        if (Property.GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_Desc_ID + (i * _MaxRisksSize))
         {
             SetRiskDesc(i, Property.GetValueString());
         }
 
-        if (Property.GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_UE_ID + (i * _MaxRisksSize))
         {
             SetRiskUE(i, Property.GetValueFloat());
         }
 
-        if (Property.GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_POA_ID + (i * _MaxRisksSize))
         {
             SetRiskPOA(i, Property.GetValueFloat());
         }
 
-        if (Property.GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_Action_ID + (i * _MaxRisksSize))
         {
             SetRiskAction(i, (Property.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
         }

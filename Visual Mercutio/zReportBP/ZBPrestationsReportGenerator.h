@@ -38,7 +38,7 @@
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZUExtractProcessName.h"
-#include "zModelBP\ZBBPDeliveriesProp.h"
+#include "zModelBP\PSS_DeliveriesPropertiesBP.h"
 #include "zModelBP\PSS_AnnualNumberPropertiesBP.h"
 
 #include "zProperty\ZBProperty.h"

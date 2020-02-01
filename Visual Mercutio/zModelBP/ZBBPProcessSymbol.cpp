@@ -22,28 +22,21 @@
 // Global for model
 #include "zModel\PSS_ModelGlobal.h"
 
-// JMR-MODIF - Le 25 janvier 2006 - Ajout des en-têtes pour la gestion des prestations.
 #include "zModel\PSS_PrestationsEntity.h"
 
-// JMR-MODIF - Le 6 février 2006 - Ajout des en-têtes pour la gestion des livraisons.
-#include "ZBBPDeliveriesProp.h"
+#include "PSS_DeliveriesPropertiesBP.h"
 
-// JMR-MODIF - Le 9 février 2006 - Ajout de l'en-tête pour l'intégration des livrables.
 #include "ZBDeliverableLinkSymbol.h"
 
-// JMR-MODIF - Le 9 janvier 2006 - Ajout de l'en-tête pour la prise en charge des Tokens.
 #include "zBaseLib\PSS_Tokenizer.h"
 
-// JMR-MODIF - Le 13 février 2006 - Ajout de la déclaration pour les boîtes de dialogue des livraisons.
 #include "ZVAddRemoveDeliveryDeliverablesDlg.h"
 #include "ZVChooseMainDeliverable.h"
 
-// JMR-MODIF - Le 15 février 2006 - Ajout de l'en-tête pour la prise en charge des modèles de pages.
 #include "zModel\PSS_ProcessGraphPage.h"
 
 #include "PSS_ProcessGraphModelControllerBP.h"
 
-// JMR-MODIF - Le 13 juin 2007 - Ajout de l'en-tête ZVRiskOptionsDlg.h
 #include "ZVRiskOptionsDlg.h"
 
 // Resources
@@ -473,7 +466,7 @@ bool ZBBPProcessSymbol::ProcessExtendedInput(ZBProperty&        Property,
 
         switch (Property.GetItemID() - (i * _MaxDeliveryListSize))
         {
-            case Z_DELIVERY_DELIVERABLES:
+            case M_Delivery_Deliverables_ID:
             {
                 CString m_AvailableList = GetAvailableDeliverables(Properties);
 
@@ -491,7 +484,7 @@ bool ZBBPProcessSymbol::ProcessExtendedInput(ZBProperty&        Property,
                 break;
             }
 
-            case Z_DELIVERY_MAIN:
+            case M_Delivery_Main_ID:
             {
                 CString m_MainList = GetPossibleListOfMainDeliverables(Properties, Property.GetCategoryID());
 
@@ -1008,7 +1001,7 @@ CString ZBBPProcessSymbol::GetPossibleListOfMainDeliverables(ZBPropertySet& Prop
         {
             int j = pProp->GetCategoryID() - ZS_BP_PROP_DELIVERIES;
 
-            if ((pProp->GetItemID() - (j * _MaxDeliveryListSize)) == Z_DELIVERY_DELIVERABLES)
+            if ((pProp->GetItemID() - (j * _MaxDeliveryListSize)) == M_Delivery_Deliverables_ID)
             {
                 switch (pProp->GetPTValueType())
                 {
@@ -1047,7 +1040,7 @@ CString ZBBPProcessSymbol::GetAvailableDeliverables(ZBPropertySet& PropSet)
         {
             int j = pProp->GetCategoryID() - ZS_BP_PROP_DELIVERIES;
 
-            if ((pProp->GetItemID() - (j * _MaxDeliveryListSize)) == Z_DELIVERY_DELIVERABLES)
+            if ((pProp->GetItemID() - (j * _MaxDeliveryListSize)) == M_Delivery_Deliverables_ID)
             {
                 switch (pProp->GetPTValueType())
                 {
@@ -1498,7 +1491,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         ZBProperty* pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                            RiskName,
-                                           (GroupValue == true) ? Z_RISK_NAME : (Z_RISK_NAME + (i * _MaxRisksSize)),
+                                           (GroupValue == true) ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * _MaxRisksSize)),
                                            RiskDesc,
                                            GetRiskName(i),
                                            ZBProperty::PT_EDIT_MENU,
@@ -1516,7 +1509,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_DESC : (Z_RISK_DESC + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                GetRiskDesc(i),
                                ZBProperty::PT_EDIT_EXTENDED);
@@ -1532,7 +1525,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_TYPE : (Z_RISK_TYPE + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                GetRiskType(i).IsEmpty() ? s_NoRiskType : GetRiskType(i),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1546,7 +1539,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_IMPACT : (Z_RISK_IMPACT + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1560,7 +1553,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_PROBABILITY : (Z_RISK_PROBABILITY + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1574,7 +1567,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_SEVERITY : (Z_RISK_SEVERITY + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                (double)GetRiskSeverity(i),
                                ZBProperty::PT_EDIT_NUMBER_READONLY);
@@ -1588,7 +1581,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_UE : (Z_RISK_UE + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                GetRiskUE(i),
                                ZBProperty::PT_EDIT_NUMBER,
@@ -1604,7 +1597,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_POA : (Z_RISK_POA + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                GetRiskPOA(i),
                                ZBProperty::PT_EDIT_NUMBER,
@@ -1620,7 +1613,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pRisk = new ZBProperty(FinalRiskTitle,
             (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                RiskName,
-                               (GroupValue == true) ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize)),
+                               (GroupValue == true) ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * _MaxRisksSize)),
                                RiskDesc,
                                (GetRiskAction(i) == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
                                ZBProperty::PT_COMBO_STRING_READONLY,
@@ -1926,7 +1919,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
         ZBProperty* pDelivery = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
                                                PropName,
-                                               (GroupValue == true) ? Z_DELIVERY_NAME : (Z_DELIVERY_NAME + (i * _MaxDeliveryListSize)),
+                                               (GroupValue == true) ? M_Delivery_Name_ID : (M_Delivery_Name_ID + (i * _MaxDeliveryListSize)),
                                                PropDesc,
                                                GetDeliveryName(i),
                                                ZBProperty::PT_EDIT_MENU,
@@ -1944,7 +1937,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
         pDelivery = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
                                    PropName,
-                                   (GroupValue == true) ? Z_DELIVERY_DELIVERABLES : (Z_DELIVERY_DELIVERABLES + (i * _MaxDeliveryListSize)),
+                                   (GroupValue == true) ? M_Delivery_Deliverables_ID : (M_Delivery_Deliverables_ID + (i * _MaxDeliveryListSize)),
                                    PropDesc,
                                    GetDeliveryDeliverables(i),
                                    ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1963,7 +1956,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
             pDelivery = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
                                        PropName,
-                                       (GroupValue == true) ? Z_DELIVERY_QUANTITY : (Z_DELIVERY_QUANTITY + (i * _MaxDeliveryListSize)),
+                                       (GroupValue == true) ? M_Delivery_Quantity_ID : (M_Delivery_Quantity_ID + (i * _MaxDeliveryListSize)),
                                        PropDesc,
                                        Quantity,
                                        ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1980,7 +1973,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
             pDelivery = new ZBProperty(FinalPropTitle,
                 (GroupValue == true) ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
                                        PropName,
-                                       (GroupValue == true) ? Z_DELIVERY_PERCENTAGE : (Z_DELIVERY_PERCENTAGE + (i * _MaxDeliveryListSize)),
+                                       (GroupValue == true) ? M_Delivery_Percentage_ID : (M_Delivery_Percentage_ID + (i * _MaxDeliveryListSize)),
                                        PropDesc,
                                        Percentage,
                                        ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1997,7 +1990,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
         pDelivery = new ZBProperty(FinalPropTitle,
             (GroupValue == true) ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
                                    PropName,
-                                   (GroupValue == true) ? Z_DELIVERY_MAIN : (Z_DELIVERY_MAIN + (i * _MaxDeliveryListSize)),
+                                   (GroupValue == true) ? M_Delivery_Main_ID : (M_Delivery_Main_ID + (i * _MaxDeliveryListSize)),
                                    PropDesc,
                                    GetDeliveryMain(i),
                                    ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -2082,27 +2075,27 @@ bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
         {
             int i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;
 
-            if (pProp->GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_Name_ID + (i * _MaxRisksSize))
             {
                 SetRiskName(i, pProp->GetValueString());
             }
 
-            if (pProp->GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_Desc_ID + (i * _MaxRisksSize))
             {
                 SetRiskDesc(i, pProp->GetValueString());
             }
 
-            if (pProp->GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_UE_ID + (i * _MaxRisksSize))
             {
                 SetRiskUE(i, pProp->GetValueFloat());
             }
 
-            if (pProp->GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_POA_ID + (i * _MaxRisksSize))
             {
                 SetRiskPOA(i, pProp->GetValueFloat());
             }
 
-            if (pProp->GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
+            if (pProp->GetItemID() == M_Risk_Action_ID + (i * _MaxRisksSize))
             {
                 SetRiskAction(i, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
             }
@@ -2188,7 +2181,7 @@ bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
             pProp->GetCategoryID() <= ZS_BP_PROP_DELIVERIES + GetDeliveriesCount())
         {
             int i = pProp->GetCategoryID() - ZS_BP_PROP_DELIVERIES;
-            ZBBPDeliveriesProperties* pDelyProp = GetDeliveryProperty(i);
+            PSS_DeliveriesPropertiesBP* pDelyProp = GetDeliveryProperty(i);
 
             if (!pDelyProp)
             {
@@ -2268,27 +2261,27 @@ bool ZBBPProcessSymbol::SaveProperty(ZBProperty& Property)
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-        if (Property.GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_Name_ID + (i * _MaxRisksSize))
         {
             SetRiskName(i, Property.GetValueString());
         }
 
-        if (Property.GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_Desc_ID + (i * _MaxRisksSize))
         {
             SetRiskDesc(i, Property.GetValueString());
         }
 
-        if (Property.GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_UE_ID + (i * _MaxRisksSize))
         {
             SetRiskUE(i, Property.GetValueFloat());
         }
 
-        if (Property.GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_POA_ID + (i * _MaxRisksSize))
         {
             SetRiskPOA(i, Property.GetValueFloat());
         }
 
-        if (Property.GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
+        if (Property.GetItemID() == M_Risk_Action_ID + (i * _MaxRisksSize))
         {
             SetRiskAction(i, (Property.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
         }
@@ -2314,28 +2307,28 @@ bool ZBBPProcessSymbol::SaveProperty(ZBProperty& Property)
 
         switch (Property.GetItemID() - (i * _MaxDeliveryListSize))
         {
-            case Z_DELIVERY_NAME:
+            case M_Delivery_Name_ID:
             {
                 SetDeliveryName(Property.GetCategoryID() - ZS_BP_PROP_DELIVERIES,
                                 Property.GetValueString());
                 break;
             }
 
-            case Z_DELIVERY_DELIVERABLES:
+            case M_Delivery_Deliverables_ID:
             {
                 SetDeliveryDeliverables(Property.GetCategoryID() - ZS_BP_PROP_DELIVERIES,
                                         Property.GetValueString());
                 break;
             }
 
-            case Z_DELIVERY_QUANTITY:
+            case M_Delivery_Quantity_ID:
             {
                 SetDeliveryQuantity(Property.GetCategoryID() - ZS_BP_PROP_DELIVERIES,
                                     Property.GetValueFloat());
                 break;
             }
 
-            case Z_DELIVERY_MAIN:
+            case M_Delivery_Main_ID:
             {
                 SetDeliveryMain(Property.GetCategoryID() - ZS_BP_PROP_DELIVERIES,
                                 Property.GetValueString());
@@ -2369,7 +2362,7 @@ bool ZBBPProcessSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySe
 
         switch (Property.GetItemID() - (i * _MaxDeliveryListSize))
         {
-            case Z_DELIVERY_DELIVERABLES:
+            case M_Delivery_Deliverables_ID:
             {
                 float Quantity = FindQuantity(GetDeliveryMain(Property.GetCategoryID() - ZS_BP_PROP_DELIVERIES));
 
@@ -2385,7 +2378,7 @@ bool ZBBPProcessSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySe
                         continue;
                     }
 
-                    if (pProp->GetItemID() - (i * _MaxDeliveryListSize) == Z_DELIVERY_QUANTITY)
+                    if (pProp->GetItemID() - (i * _MaxDeliveryListSize) == M_Delivery_Quantity_ID)
                     {
                         pProp->SetValueFloat(Quantity);
                         bFound = true;

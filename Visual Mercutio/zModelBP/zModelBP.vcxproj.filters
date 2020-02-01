@@ -24,9 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPDeliveriesProp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBBPDoorSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,9 +46,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBBPProcessSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBBPRiskProp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBBPRuleListProp.cpp">
@@ -282,6 +276,12 @@
     <ClCompile Include="PSS_DecisionListPropertiesBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_DeliveriesPropertiesBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_RiskPropertiesBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -378,9 +378,6 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBBPDeliveriesProp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZBBPDoorSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -403,9 +400,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPProcessSymbol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPRiskProp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPRuleListProp.h">
@@ -640,6 +634,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DecisionListPropertiesBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DeliveriesPropertiesBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RiskPropertiesBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
