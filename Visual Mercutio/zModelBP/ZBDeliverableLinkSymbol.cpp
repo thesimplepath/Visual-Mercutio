@@ -18,7 +18,7 @@
 #include "PSS_AnnualNumberPropertiesBP.h"
 #include "ZBBPSimPropDeliverable.h"
 
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
@@ -536,16 +536,16 @@ bool ZBDeliverableLinkSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODCon
     if (pSrc && pDst)
     {
         // Check for door procedure and procedure door
-        if (ISA(pSrc, ZBBPDoorSymbol) && ISA(pDst, ZBBPProcedureSymbol))
+        if (ISA(pSrc, PSS_DoorSymbolBP) && ISA(pDst, ZBBPProcedureSymbol))
         {
-            DoDoorProcedureConnection(dynamic_cast<ZBBPDoorSymbol*>(pSrc),
+            DoDoorProcedureConnection(dynamic_cast<PSS_DoorSymbolBP*>(pSrc),
                                       dynamic_cast<ZBBPProcedureSymbol*>(pDst),
                                       pModel);
         }
-        else if (ISA(pSrc, ZBBPProcedureSymbol) && ISA(pDst, ZBBPDoorSymbol))
+        else if (ISA(pSrc, ZBBPProcedureSymbol) && ISA(pDst, PSS_DoorSymbolBP))
         {
             DoProcedureDoorConnection(dynamic_cast<ZBBPProcedureSymbol*>(pSrc),
-                                      dynamic_cast<ZBBPDoorSymbol*>(pDst),
+                                      dynamic_cast<PSS_DoorSymbolBP*>(pDst),
                                       pModel);
         }
         // Check for page procedure and procedure page
@@ -1411,7 +1411,7 @@ BOOL ZBDeliverableLinkSymbol::MovePort(CODPortComponent* pPort, const int nOffse
     return RetValue;
 }
 
-bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection(ZBBPDoorSymbol*        pSrc,
+bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection(PSS_DoorSymbolBP*        pSrc,
                                                         ZBBPProcedureSymbol*    pDst,
                                                         CODModel*                pModel)
 {
@@ -1427,7 +1427,7 @@ bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection(ZBBPDoorSymbol*        p
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
             IODNode* pINode = Nodes.GetAt(nNodeIdx);
-            ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>(pINode);
+            PSS_DoorSymbolBP* pComp = static_cast<PSS_DoorSymbolBP*>(pINode);
 
             if (!pComp || !pComp->GetChildModel())
             {
@@ -1465,7 +1465,7 @@ bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection(ZBBPDoorSymbol*        p
 }
 
 bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection(ZBBPProcedureSymbol*    pSrc,
-                                                        ZBBPDoorSymbol*        pDst,
+                                                        PSS_DoorSymbolBP*        pDst,
                                                         CODModel*                pModel)
 {
     // If the door is pointing to a model
@@ -1481,7 +1481,7 @@ bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection(ZBBPProcedureSymbol*    
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
             IODNode* pINode = Nodes.GetAt(nNodeIdx);
-            ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>(pINode);
+            PSS_DoorSymbolBP* pComp = static_cast<PSS_DoorSymbolBP*>(pINode);
 
             if (!pComp || !pComp->GetChildModel())
             {
@@ -1651,7 +1651,7 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
         {
             // For each door symbol, keep only entering up deliverable
             IODNode* pINode = Nodes.GetAt(nNodeIdx);
-            ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>(pINode);
+            PSS_DoorSymbolBP* pComp = static_cast<PSS_DoorSymbolBP*>(pINode);
 
             if (!pComp || !pComp->GetChildModel())
             {
@@ -1682,7 +1682,7 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
         // If still door symbols available
         if (Nodes.GetSize() > 0)
         {
-            ZBBPDoorSymbol* pDoorSelected = NULL;
+            PSS_DoorSymbolBP* pDoorSelected = NULL;
             CODLinkComponent* pLinkSelected = NULL;
 
             // If we have more than one symbol,
@@ -1708,7 +1708,7 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
             {
                 // Otherwise, select the first door symbol
                 IODNode* pINode = Nodes.GetAt(0);
-                pDoorSelected = static_cast<ZBBPDoorSymbol*>(pINode);
+                pDoorSelected = static_cast<PSS_DoorSymbolBP*>(pINode);
             }
 
             // If no door selected and no link selected, display warning message
@@ -1718,7 +1718,7 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
                 PSS_MsgBox mBox;
                 mBox.Show(IDS_P2P_FIRSTDELIVERABLE_SELECTED, MB_OK);
                 IODNode* pINode = Nodes.GetAt(0);
-                pDoorSelected = static_cast<ZBBPDoorSymbol*>(pINode);
+                pDoorSelected = static_cast<PSS_DoorSymbolBP*>(pINode);
             }
 
             // If no link selected
@@ -4468,17 +4468,17 @@ ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetSourceProcedure() const
     {
         return dynamic_cast<ZBBPProcedureSymbol*>(pComp);
     }
-    else if (pComp && ISA(pComp, ZBBPDoorSymbol))
+    else if (pComp && ISA(pComp, PSS_DoorSymbolBP))
     {
         // Locate the previous connection
         // of the twin symbol
-        if (!(pComp = dynamic_cast<ZBBPDoorSymbol*>(pComp)->GetTwinDoorSymbol()))
+        if (!(pComp = dynamic_cast<PSS_DoorSymbolBP*>(pComp)->GetTwinDoorSymbol()))
         {
             return NULL;
         }
 
         CODEdgeArray EnteringEdges;
-        size_t EnteringLinkCount = dynamic_cast<ZBBPDoorSymbol*>(pComp)->GetEdgesEntering_Up(EnteringEdges);
+        size_t EnteringLinkCount = dynamic_cast<PSS_DoorSymbolBP*>(pComp)->GetEdgesEntering_Up(EnteringEdges);
 
         if (EnteringLinkCount > 0)
         {
@@ -4540,17 +4540,17 @@ ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetTargetProcedure() const
     {
         return dynamic_cast<ZBBPProcedureSymbol*>(pComp);
     }
-    else if (pComp && ISA(pComp, ZBBPDoorSymbol))
+    else if (pComp && ISA(pComp, PSS_DoorSymbolBP))
     {
         // Locate the previous connection
         // of the twin symbol
-        if (!(pComp = dynamic_cast<ZBBPDoorSymbol*>(pComp)->GetTwinDoorSymbol()))
+        if (!(pComp = dynamic_cast<PSS_DoorSymbolBP*>(pComp)->GetTwinDoorSymbol()))
         {
             return NULL;
         }
 
         CODEdgeArray LeavingEdges;
-        size_t LeavingLinkCount = dynamic_cast<ZBBPDoorSymbol*>(pComp)->GetEdgesLeaving_Down(LeavingEdges);
+        size_t LeavingLinkCount = dynamic_cast<PSS_DoorSymbolBP*>(pComp)->GetEdgesLeaving_Down(LeavingEdges);
 
         if (LeavingLinkCount > 0)
         {
@@ -4607,15 +4607,15 @@ PSS_ProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetComingFromModel() const
     // Retrieve the input procedure name
     CODComponent* pComp = GetSourceComponent();
 
-    if (pComp && ISA(pComp, ZBBPDoorSymbol))
+    if (pComp && ISA(pComp, PSS_DoorSymbolBP))
     {
         // Locate the previous connection
         // of the twin symbol
-        ZBBPDoorSymbol* pSrcDoor = dynamic_cast<ZBBPDoorSymbol*>(pComp)->GetTwinDoorSymbol();
+        PSS_DoorSymbolBP* pSrcDoor = dynamic_cast<PSS_DoorSymbolBP*>(pComp)->GetTwinDoorSymbol();
 
         if (pSrcDoor)
         {
-            return pSrcDoor->GetModelDoor();
+            return pSrcDoor->GetDoorModel();
         }
 
         // Otherwise, return NULL at the end of the function
@@ -4663,15 +4663,15 @@ PSS_ProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetGoingToModel() const
     // Retrieve the target connected symbol
     CODComponent* pComp = GetTargetComponent();
 
-    if (pComp && ISA(pComp, ZBBPDoorSymbol))
+    if (pComp && ISA(pComp, PSS_DoorSymbolBP))
     {
         // Locate the previous connection
         // of the twin symbol
-        ZBBPDoorSymbol* pSrcDoor = dynamic_cast<ZBBPDoorSymbol*>(pComp)->GetTwinDoorSymbol();
+        PSS_DoorSymbolBP* pSrcDoor = dynamic_cast<PSS_DoorSymbolBP*>(pComp)->GetTwinDoorSymbol();
 
         if (pSrcDoor)
         {
-            return pSrcDoor->GetModelDoor();
+            return pSrcDoor->GetDoorModel();
         }
 
         // Otherwise, return NULL at the end of the function
@@ -4779,8 +4779,8 @@ bool ZBDeliverableLinkSymbol::IsInterProcess() const
     // Retrieve the target connected symbol
     CODComponent* pTargetComp = GetTargetComponent();
 
-    return ((pSourceComp && ISA(pSourceComp, ZBBPDoorSymbol)) ||
-        (pTargetComp && ISA(pTargetComp, ZBBPDoorSymbol))) ? true : false;
+    return ((pSourceComp && ISA(pSourceComp, PSS_DoorSymbolBP)) ||
+        (pTargetComp && ISA(pTargetComp, PSS_DoorSymbolBP))) ? true : false;
 }
 
 // **********************************************************************************************************

@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
         *@param pSymbol - symbol for which definitions sould be added
         *@return true on success, otherwise false
         */
-        virtual bool OnDoorSymbol(ZBBPDoorSymbol* pSymbol);
+        virtual bool OnDoorSymbol(PSS_DoorSymbolBP* pSymbol);
 
         /**
         * Called when page symbol definitions should be added to publication

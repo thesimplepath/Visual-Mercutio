@@ -314,8 +314,8 @@ bool ZVPublishConceptorReport::StartSection(CODNodeArray& Nodes)
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPDoorSymbol.
-bool ZVPublishConceptorReport::OnDoorSymbol(ZBBPDoorSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_DoorSymbolBP.
+bool ZVPublishConceptorReport::OnDoorSymbol(PSS_DoorSymbolBP* pSymbol)
 {
     return true;
 }
@@ -728,9 +728,9 @@ bool ZVPublishConceptorReport::Visit(CODComponent& Symbol)
     {
         return OnDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPDoorSymbol))
+    else if (ISA(pSymbol, PSS_DoorSymbolBP))
     {
-        return OnDoorSymbol(dynamic_cast<ZBBPDoorSymbol*>(&Symbol));
+        return OnDoorSymbol(dynamic_cast<PSS_DoorSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBBPPageSymbol))
     {

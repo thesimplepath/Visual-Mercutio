@@ -80,9 +80,9 @@ void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRoo
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une porte.
-                            if (pComponent && ISA(pComponent, ZBBPDoorSymbol))
+                            if (pComponent && ISA(pComponent, PSS_DoorSymbolBP))
                             {
-                                ZBBPDoorSymbol* m_Door = dynamic_cast<ZBBPDoorSymbol*>(pComponent);
+                                PSS_DoorSymbolBP* m_Door = dynamic_cast<PSS_DoorSymbolBP*>(pComponent);
 
                                 if (IsCorrupted(m_Door))
                                 {
@@ -216,7 +216,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPStopSymbol* m_Symbol)
 }
 
 // Contrôle que les propriétés du symbole porte donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPDoorSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_DoorSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {

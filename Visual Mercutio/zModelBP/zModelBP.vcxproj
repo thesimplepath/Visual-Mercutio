@@ -211,13 +211,13 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_DeliveriesPropertiesBP.cpp" />
-    <ClCompile Include="ZBBPDoorSymbol.cpp">
+    <ClCompile Include="PSS_DoorSymbolBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPGenericSymbol.cpp" />
+    <ClCompile Include="PSS_GenericSymbolBP.cpp" />
     <ClCompile Include="ZBBPPackageSymbol.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -599,8 +599,8 @@
     <ClInclude Include="PSS_CostPropertiesProcedureBP.h" />
     <ClInclude Include="PSS_DecisionListPropertiesBP.h" />
     <ClInclude Include="PSS_DeliveriesPropertiesBP.h" />
-    <ClInclude Include="ZBBPDoorSymbol.h" />
-    <ClInclude Include="ZBBPGenericSymbol.h" />
+    <ClInclude Include="PSS_DoorSymbolBP.h" />
+    <ClInclude Include="PSS_GenericSymbolBP.h" />
     <ClInclude Include="ZBBPPackageSymbol.h" />
     <ClInclude Include="ZBBPPageSymbol.h" />
     <ClInclude Include="ZBBPPrestationsProperties.h" />

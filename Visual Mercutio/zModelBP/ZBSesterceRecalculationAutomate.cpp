@@ -15,7 +15,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
@@ -204,7 +204,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     if (pState && pState->GetSymbol() &&
         (ISA(pState->GetSymbol(), ZBBPProcedureSymbol) ||
          ISA(pState->GetSymbol(), ZBBPPageSymbol) ||
-         ISA(pState->GetSymbol(), ZBBPDoorSymbol) ||
+         ISA(pState->GetSymbol(), PSS_DoorSymbolBP) ||
          ISA(pState->GetSymbol(), ZBBPStopSymbol)))
     {
         TRACE1(_T("OnNextSymbolAfterMoveForward: current symbol is %s\n"),

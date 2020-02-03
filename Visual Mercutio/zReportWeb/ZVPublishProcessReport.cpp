@@ -395,9 +395,9 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
 
                             // JMR-MODIF - Le 31 mai 2006 - Ajout du code d'identification des portes.
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une porte.
-                            if (pComponent && ISA(pComponent, ZBBPDoorSymbol))
+                            if (pComponent && ISA(pComponent, PSS_DoorSymbolBP))
                             {
-                                ZBBPDoorSymbol* m_Door = dynamic_cast<ZBBPDoorSymbol*>(pComponent);
+                                PSS_DoorSymbolBP* m_Door = dynamic_cast<PSS_DoorSymbolBP*>(pComponent);
 
                                 if (m_Door != NULL && m_Door->IsLocal())
                                 {
@@ -747,9 +747,9 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
 
                             // JMR-MODIF - Le 31 mai 2006 - Ajout du code pour la gestion des portes.
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une porte.
-                            if (pComponent && ISA(pComponent, ZBBPDoorSymbol))
+                            if (pComponent && ISA(pComponent, PSS_DoorSymbolBP))
                             {
-                                ZBBPDoorSymbol* m_Door = dynamic_cast<ZBBPDoorSymbol*>(pComponent);
+                                PSS_DoorSymbolBP* m_Door = dynamic_cast<PSS_DoorSymbolBP*>(pComponent);
 
                                 if (m_Door != NULL)
                                 {
@@ -955,12 +955,12 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
     {
         _ZVSymbolEntity* myCurNode = m_DoorContainer.GetAt(myPos);
 
-        ZBBPDoorSymbol* m_DoorSymbol = NULL;
+        PSS_DoorSymbolBP* m_DoorSymbol = NULL;
 
         if (FindSymbol(myCurNode->GetName()) != NULL &&
-            ISA(FindSymbol(myCurNode->GetName()), ZBBPDoorSymbol))
+            ISA(FindSymbol(myCurNode->GetName()), PSS_DoorSymbolBP))
         {
-            m_DoorSymbol = dynamic_cast<ZBBPDoorSymbol*>(FindSymbol(myCurNode->GetName()));
+            m_DoorSymbol = dynamic_cast<PSS_DoorSymbolBP*>(FindSymbol(myCurNode->GetName()));
         }
 
         if (m_DoorSymbol != NULL)
@@ -1686,12 +1686,12 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
     {
         _ZVSymbolEntity* myCurNode = m_DoorContainer.GetAt(myPos);
 
-        ZBBPDoorSymbol* m_DoorSymbol = NULL;
+        PSS_DoorSymbolBP* m_DoorSymbol = NULL;
 
         if (FindSymbol(myCurNode->GetName()) != NULL &&
-            ISA(FindSymbol(myCurNode->GetName()), ZBBPDoorSymbol))
+            ISA(FindSymbol(myCurNode->GetName()), PSS_DoorSymbolBP))
         {
-            m_DoorSymbol = dynamic_cast<ZBBPDoorSymbol*>(FindSymbol(myCurNode->GetName()));
+            m_DoorSymbol = dynamic_cast<PSS_DoorSymbolBP*>(FindSymbol(myCurNode->GetName()));
         }
 
         if (m_DoorSymbol != NULL)

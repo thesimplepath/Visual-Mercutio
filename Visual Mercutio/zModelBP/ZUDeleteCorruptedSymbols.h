@@ -25,7 +25,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
@@ -67,7 +67,7 @@ private:
     BOOL IsCorrupted(ZBBPProcedureSymbol* m_Symbol);
     BOOL IsCorrupted(ZBBPStartSymbol* m_Symbol);
     BOOL IsCorrupted(ZBBPStopSymbol* m_Symbol);
-    BOOL IsCorrupted(ZBBPDoorSymbol* m_Symbol);
+    BOOL IsCorrupted(PSS_DoorSymbolBP* m_Symbol);
     BOOL IsCorrupted(ZBBPPageSymbol* m_Symbol);
     BOOL IsCorrupted(ZBBPPackageSymbol* m_Symbol);
     BOOL IsCorrupted(ZBDeliverableLinkSymbol* m_Symbol);

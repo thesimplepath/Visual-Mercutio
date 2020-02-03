@@ -19,7 +19,7 @@
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "ZBBPPageSymbol.h"
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBBPProcedureSymbol.h"
@@ -88,7 +88,7 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetBPPageSymbols(CODNodeArray& nodes, bo
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPDoorSymbols(CODNodeArray& nodes, bool deep)
 {
-    return GetSymbolsISA(nodes, RUNTIME_CLASS(ZBBPDoorSymbol), deep);
+    return GetSymbolsISA(nodes, RUNTIME_CLASS(PSS_DoorSymbolBP), deep);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetStartSymbols(CODNodeArray& nodes, bool deep)
@@ -492,7 +492,7 @@ void PSS_ProcessGraphModelMdlBP::RecalculateDoorReference()
         if (!pSymbol)
             continue;
 
-        ZBBPDoorSymbol* pDoorSymbol = dynamic_cast<ZBBPDoorSymbol*>(pComp);
+        PSS_DoorSymbolBP* pDoorSymbol = dynamic_cast<PSS_DoorSymbolBP*>(pComp);
 
         // if a page symbol
         if (pDoorSymbol)

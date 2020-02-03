@@ -40,12 +40,15 @@
 #include "ZBBPUnitProp2.h"
 
 // class name mapping
+#ifndef PSS_DoorSymbolBP
+    #define PSS_DoorSymbolBP ZBBPDoorSymbol
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declaration
-class ZBBPDoorSymbol;
+class PSS_DoorSymbolBP;
 class ZBBPPageSymbol;
 class ZBBPProcedureSymbol;
 class ZBBPProcessSymbol;
@@ -834,8 +837,8 @@ private:
                           PSS_ProcessGraphModelMdlBP* m_RootModel = NULL);
 
     bool CreateSymbolName();
-    bool DoDoorProcedureConnection(ZBBPDoorSymbol* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
-    bool DoProcedureDoorConnection(ZBBPProcedureSymbol* pSrc, ZBBPDoorSymbol* pDst, CODModel* pModel);
+    bool DoDoorProcedureConnection(PSS_DoorSymbolBP* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
+    bool DoProcedureDoorConnection(ZBBPProcedureSymbol* pSrc, PSS_DoorSymbolBP* pDst, CODModel* pModel);
     bool DoPageProcedureConnection(ZBBPPageSymbol* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
     bool DoProcedurePageConnection(ZBBPProcedureSymbol* pSrc, ZBBPPageSymbol* pDst, CODModel* pModel);
     bool DoProcessProcessConnection(ZBBPProcessSymbol* pSrc, ZBBPProcessSymbol* pDst, CODModel* pModel);

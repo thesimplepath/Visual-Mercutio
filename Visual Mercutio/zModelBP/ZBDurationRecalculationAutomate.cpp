@@ -12,7 +12,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
@@ -282,11 +282,11 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
             SetStartSymbolCaseDurationOfDownDeliverables(pState, LeavingEdges, LeavingLinkCount, pLog);
         }
     }
-    else if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPDoorSymbol))
+    else if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_DoorSymbolBP))
     {
         // Now check if we have a door symbol
         // Duplicate duration information of deliverable symbols
-        ZBBPDoorSymbol* pSymbol = dynamic_cast<ZBBPDoorSymbol*>(pState->GetSymbol());
+        PSS_DoorSymbolBP* pSymbol = dynamic_cast<PSS_DoorSymbolBP*>(pState->GetSymbol());
 
         TRACE1(_T("OnBeforeMoveForward: door in the stack is %s\n"), pSymbol->GetSymbolName());
 
@@ -295,7 +295,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
         if (EnteringLinkCount > 0 && pSymbol->GetTwinDoorSymbol())
         {
-            ZBBPDoorSymbol* pTwinDoor = pSymbol->GetTwinDoorSymbol();
+            PSS_DoorSymbolBP* pTwinDoor = pSymbol->GetTwinDoorSymbol();
 
             // Retrieve the leaving edge of the target door
             // We need to have a link

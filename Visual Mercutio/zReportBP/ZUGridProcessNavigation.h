@@ -44,7 +44,7 @@ public:
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnDoorSymbol(ZBBPDoorSymbol*            pSymbol);
+    virtual bool OnDoorSymbol(PSS_DoorSymbolBP*            pSymbol);
     virtual bool OnPageSymbol(ZBBPPageSymbol*            pSymbol);
     virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*        pSymbol);
     virtual bool OnProcessSymbol(ZBBPProcessSymbol*        pSymbol);

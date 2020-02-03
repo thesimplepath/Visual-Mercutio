@@ -16,7 +16,7 @@
 #include "zModel\PSS_ProcessGraphModelController.h"
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
@@ -139,9 +139,9 @@ bool ZUCalculateRisks::Visit(CODComponent& Symbol)
     {
         return CheckDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPDoorSymbol))
+    else if (ISA(pSymbol, PSS_DoorSymbolBP))
     {
-        return CheckDoorSymbol(dynamic_cast<ZBBPDoorSymbol*>(&Symbol));
+        return CheckDoorSymbol(dynamic_cast<PSS_DoorSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBBPPageSymbol))
     {
@@ -172,7 +172,7 @@ bool ZUCalculateRisks::Visit(CODComponent& Symbol)
     return false;
 }
 
-bool ZUCalculateRisks::CheckDoorSymbol(ZBBPDoorSymbol* pSymbol)
+bool ZUCalculateRisks::CheckDoorSymbol(PSS_DoorSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
     return true;

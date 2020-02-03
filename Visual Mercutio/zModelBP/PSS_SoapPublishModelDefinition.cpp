@@ -20,7 +20,7 @@
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBPublishMessengerModelInformation.h"
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
@@ -281,7 +281,7 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
     return m_PubMdl.Send();
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelDefinition::OnDoorSymbol(ZBBPDoorSymbol* pSymbol)
+bool PSS_SoapPublishModelDefinition::OnDoorSymbol(PSS_DoorSymbolBP* pSymbol)
 {
     return true;
 }
@@ -424,8 +424,8 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
     CODSymbolComponent* pDst = pSymbol->GetFollowingSymbol();
 
     // get the source symbol as a door or a page
-    ZBBPDoorSymbol* pSrcDoor = dynamic_cast<ZBBPDoorSymbol*>(pSrc);
-    ZBBPPageSymbol* pSrcPage = dynamic_cast<ZBBPPageSymbol*>(pSrc);
+    PSS_DoorSymbolBP* pSrcDoor = dynamic_cast<PSS_DoorSymbolBP*>(pSrc);
+    ZBBPPageSymbol*   pSrcPage = dynamic_cast<ZBBPPageSymbol*>(pSrc);
 
     // replace the source symbol by the symbol after the page or the door
     if (pSrcDoor)
@@ -434,7 +434,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         if (!pSymbol->IsLocal())
             return true;
 
-        ZBBPDoorSymbol* pTwinDoor = pSrcDoor->GetTwinDoorSymbol();
+        PSS_DoorSymbolBP* pTwinDoor = pSrcDoor->GetTwinDoorSymbol();
 
         if (!pTwinDoor)
             return true;
@@ -479,8 +479,8 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
     }
 
     // get the destination symbol as a door or a page
-    ZBBPDoorSymbol* pDstDoor = dynamic_cast<ZBBPDoorSymbol*>(pDst);
-    ZBBPPageSymbol* pDstPage = dynamic_cast<ZBBPPageSymbol*>(pDst);
+    PSS_DoorSymbolBP* pDstDoor = dynamic_cast<PSS_DoorSymbolBP*>(pDst);
+    ZBBPPageSymbol*   pDstPage = dynamic_cast<ZBBPPageSymbol*>(pDst);
 
     // Now replace the destination symbol by the symbol after the page or the door
     if (pDstDoor)
@@ -489,7 +489,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         if (!pSymbol->IsLocal())
             return true;
 
-        ZBBPDoorSymbol* pTwinDoor = pDstDoor->GetTwinDoorSymbol();
+        PSS_DoorSymbolBP* pTwinDoor = pDstDoor->GetTwinDoorSymbol();
 
         if (!pTwinDoor)
             return true;

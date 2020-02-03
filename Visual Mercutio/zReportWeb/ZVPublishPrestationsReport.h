@@ -34,7 +34,7 @@
 #include "zModel\PSS_ProcessGraphPage.h"
 
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zModelBP\ZBBPDoorSymbol.h"
+#include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"

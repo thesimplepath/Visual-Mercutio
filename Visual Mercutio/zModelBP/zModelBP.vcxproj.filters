@@ -24,12 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPDoorSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBBPGenericSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBBPPackageSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,6 +276,12 @@
     <ClCompile Include="PSS_RiskPropertiesBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_DoorSymbolBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GenericSymbolBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -376,12 +376,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPDoorSymbol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPGenericSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPPackageSymbol.h">
@@ -640,6 +634,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_RiskPropertiesBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DoorSymbolBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GenericSymbolBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

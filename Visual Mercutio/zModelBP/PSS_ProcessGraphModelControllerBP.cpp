@@ -33,9 +33,9 @@
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBBPPackageSymbol.h"
 #include "zModelBP\ZBBPPageSymbol.h"
-#include "zModelBP\ZBBPDoorSymbol.h"
+#include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
-#include "zModelBP\ZBBPGenericSymbol.h"
+#include "zModelBP\PSS_GenericSymbolBP.h"
 #include "zModelBP\ZBBPTextZone.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZUDeleteCorruptedSymbols.h"
@@ -198,7 +198,7 @@ void PSS_ProcessGraphModelControllerBP::InsertDoorSymbol()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPDoorSymbol> pSymbol(new ZBBPDoorSymbol());
+    std::unique_ptr<PSS_DoorSymbolBP> pSymbol(new PSS_DoorSymbolBP());
     pSymbol->Create();
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -264,7 +264,7 @@ void PSS_ProcessGraphModelControllerBP::OnSymbolDuplicated(CODComponentSet* pCom
             continue;
         }
 
-        ZBBPDoorSymbol* pDoorSym = dynamic_cast<ZBBPDoorSymbol*>(pComp);
+        PSS_DoorSymbolBP* pDoorSym = dynamic_cast<PSS_DoorSymbolBP*>(pComp);
 
         // if a door symbol, remove the linked process
         if (pDoorSym)
@@ -473,7 +473,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsAlert()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_ALERT);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -498,7 +498,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsDocument()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_DOCUMENT);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -523,7 +523,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsIndicator()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_INDICATOR);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -548,7 +548,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsQuality()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_QUALITY);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -573,7 +573,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsDelay()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_DELAY);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -598,7 +598,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsInProcess()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_IN_PROCESS);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -623,7 +623,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsNotValidated()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_NOT_VALIDATED);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -648,7 +648,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsValidated()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_VALIDATED);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -673,7 +673,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsRisk()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_RISK);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -698,7 +698,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsIncident()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_INCIDENT);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -723,7 +723,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsCRI()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_CRI);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -748,7 +748,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsCRE()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_CRE);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -773,7 +773,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsCRO()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_CRO);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -798,7 +798,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsOPAP1()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_OPAP1);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -823,7 +823,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsOPAP2()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_OPAP2);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -848,7 +848,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsOPAP3()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPGenericSymbol> pSymbol(new ZBBPGenericSymbol());
+    std::unique_ptr<PSS_GenericSymbolBP> pSymbol(new PSS_GenericSymbolBP());
     pSymbol->Create(IDR_OPAP3);
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -1791,7 +1791,7 @@ void PSS_ProcessGraphModelControllerBP::OnPostCutPasteOperation(CODComponentSet*
     // remove the reference on the twin door symbol from the set
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
     {
-        ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>(pComp);
+        PSS_DoorSymbolBP* pDoor = dynamic_cast<PSS_DoorSymbolBP*>(pComp);
 
         if (pDoor)
         {

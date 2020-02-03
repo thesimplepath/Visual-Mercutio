@@ -28,7 +28,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zModelBP\ZBBPDoorSymbol.h"
+#include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\ZBBPPageSymbol.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
@@ -82,7 +82,7 @@ private:
     bool CreateFileSystem(PSS_UserGroupEntity* pGroup, CString Directory);
     bool CreateProcess();
     bool StartSection(CODNodeArray& Nodes);
-    bool OnDoorSymbol(ZBBPDoorSymbol* pSymbol);
+    bool OnDoorSymbol(PSS_DoorSymbolBP* pSymbol);
     bool OnPageSymbol(ZBBPPageSymbol* pSymbol);
     bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
     bool OnProcessSymbol(ZBBPProcessSymbol* pSymbol);

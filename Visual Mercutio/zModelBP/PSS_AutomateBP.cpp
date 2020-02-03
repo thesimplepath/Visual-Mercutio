@@ -15,7 +15,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
-#include "ZBBPDoorSymbol.h"
+#include "PSS_DoorSymbolBP.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
@@ -61,7 +61,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         if (ISA(pSymbol, ZBBPProcedureSymbol))
             return RequestMoveForwardProcedureSymbol(pState, symbolSet, stateLinkSet, pLog);
         else
-        if (ISA(pSymbol, ZBBPDoorSymbol))
+        if (ISA(pSymbol, PSS_DoorSymbolBP))
             return RequestMoveForwardDoorSymbol(pState, symbolSet, stateLinkSet, pLog);
         else
         if (ISA(pSymbol, ZBBPPageSymbol))
@@ -667,7 +667,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         return PSS_AutomationMachine::IE_AS_Error;
     }
 
-    ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>(pState->GetSymbol());
+    PSS_DoorSymbolBP* pDoor = dynamic_cast<PSS_DoorSymbolBP*>(pState->GetSymbol());
 
     if (!pDoor)
     {
@@ -676,7 +676,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         return PSS_AutomationMachine::IE_AS_Error;
     }
 
-    ZBBPDoorSymbol* pTwinDoor = pDoor->GetTwinDoorSymbol();
+    PSS_DoorSymbolBP* pTwinDoor = pDoor->GetTwinDoorSymbol();
 
     if (!pTwinDoor)
     {
