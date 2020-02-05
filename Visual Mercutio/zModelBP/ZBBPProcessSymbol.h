@@ -22,7 +22,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "ZBBPSimPropProcess.h"
-#include "ZBBPPrestationsProperties.h"
+#include "PSS_PrestationsPropertiesBP.h"
 #include "ZBProcDeliveries.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBProcRules.h"
@@ -555,7 +555,7 @@ private:
     bool                        m_DisplayPreview;
 
     // JMR-MODIF - Le 26 janvier 2006 - Ajout de la variable pour la gestion des propriétés des prestations
-    ZBBPPrestationsProperties    m_PrestProperties;
+    PSS_PrestationsPropertiesBP m_PrestProperties;
     ZBBPSimPropertiesProcess    m_SimProperties;
 
     // JMR-MODIF - Le 6 février 2006 - Ajout de la variable m_Deliveries, pour la gestion des livraisons.

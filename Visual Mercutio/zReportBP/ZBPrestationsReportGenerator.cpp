@@ -724,7 +724,7 @@ void _ZBPrestationsDatas::Associate(ZBBPProcessSymbol* Process)
             {
                 // Recherche la prestation concernée.
                 if (pProp->GetCategoryID() == ZS_BP_PROP_PRESTATIONS &&
-                    pProp->GetItemID() == Z_PRESTATION_NAME)
+                    pProp->GetItemID() == M_Prestation_Name)
                 {
                     if (pProp->GetValueString() == m_PrestationName)
                     {
@@ -734,7 +734,7 @@ void _ZBPrestationsDatas::Associate(ZBBPProcessSymbol* Process)
 
                 // Obtient la valeur de pourcentage de la prestation.
                 if (pProp->GetCategoryID() == ZS_BP_PROP_PRESTATIONS &&
-                    pProp->GetItemID() == Z_PRESTATION_PERCENTAGE &&
+                    pProp->GetItemID() == M_Prestation_Percentage &&
                     IsGoodPrestationName == TRUE)
                 {
                     switch (pProp->GetPTValueType())

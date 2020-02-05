@@ -1,12 +1,16 @@
-// ZBBPProcedureSymbol.h: interface for the ZBBPProcedureSymbol class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_ProcedureSymbolBP -----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a procedure symbol for banking process            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZBBPProcedureSymbol_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)
-#define AFX_ZBBPProcedureSymbol_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_
+#ifndef PSS_ProcedureSymbolBPH
+#define PSS_ProcedureSymbolBPH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -34,16 +38,18 @@
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 6 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
+/**
+* Procedure symbol for banking process
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZBBPProcedureSymbol : public PSS_Symbol
 {
     DECLARE_SERIAL(ZBBPProcedureSymbol)
@@ -819,6 +825,9 @@ private:
     ZBProcRisk                        m_Risks;
 };
 
+//---------------------------------------------------------------------------
+// PSS_ProcedureSymbolBP
+//---------------------------------------------------------------------------
 inline PSS_AnnualNumberPropertiesBP& ZBBPProcedureSymbol::GetProcedureActivation()
 {
     return m_SimulationProperties.GetProcedureActivation();

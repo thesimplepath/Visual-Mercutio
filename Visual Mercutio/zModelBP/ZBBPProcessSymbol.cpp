@@ -194,11 +194,11 @@ PSS_Tokenizer ZBBPProcessSymbol::GetPrestationsList()
 
     while (myPos != NULL)
     {
-        ZBBPPrestationNode* myCurNode = m_PrestProperties.GetAt(myPos);
+        PSS_Prestation* myCurNode = m_PrestProperties.GetAt(myPos);
 
         if (myCurNode != NULL)
         {
-            aToken.AddToken(myCurNode->GetPrestationName());
+            aToken.AddToken(myCurNode->GetName());
         }
 
         myPos = m_PrestProperties.GetNextPosition();
@@ -252,10 +252,10 @@ bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
 
         PSS_LogicalPrestationsEntity* pPrestations = dynamic_cast<PSS_LogicalPrestationsEntity*>(pObj);
 
-        ZBBPPrestationNode* m_Prestation = new ZBBPPrestationNode();
+        PSS_Prestation* m_Prestation = new PSS_Prestation();
 
-        m_Prestation->SetPrestationName(pPrestations->GetEntityName());
-        m_Prestation->SetPrestationGUID(pPrestations->GetGUID());
+        m_Prestation->SetName(pPrestations->GetEntityName());
+        m_Prestation->SetGUID(pPrestations->GetGUID());
 
         m_PrestProperties.AddPrestation(m_Prestation);
 
@@ -550,7 +550,7 @@ bool ZBBPProcessSymbol::ProcessMenuCommand(int                MenuCommand,
     // ************************************************************************************************************
     // JMR-MODIF - Le 20 mars 2006 - Ajout de la prise en charge du menu des prestations.
 
-    if (Property.GetCategoryID() == ZS_BP_PROP_PRESTATIONS && Property.GetItemID() == Z_PRESTATION_NAME)
+    if (Property.GetCategoryID() == ZS_BP_PROP_PRESTATIONS && Property.GetItemID() == M_Prestation_Name)
     {
         switch (MenuCommand)
         {
@@ -723,13 +723,13 @@ void ZBBPProcessSymbol::OnDelCurrentPrestation(ZBProperty&        Property,
 
     while (myPos != NULL)
     {
-        ZBBPPrestationNode* myCurNode = m_PrestProperties.GetAt(myPos);
+        PSS_Prestation* myCurNode = m_PrestProperties.GetAt(myPos);
 
         switch (Property.GetPTValueType())
         {
             case ZBProperty::PT_STRING:
             {
-                if (Property.GetValueString() == myCurNode->GetPrestationName())
+                if (Property.GetValueString() == myCurNode->GetName())
                 {
                     m_PrestProperties.RemovePrestation(myPos);
 
@@ -1681,7 +1681,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
 
     while (myPos != NULL)
     {
-        ZBBPPrestationNode* myCurNode = m_PrestProperties.GetAt(myPos);
+        PSS_Prestation* myCurNode = m_PrestProperties.GetAt(myPos);
 
         CString myPropTitle;
         CString myPropSubTitle;
@@ -1689,7 +1689,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         CString myPropDesc;
         bool Error = false;
 
-        myCurNode->SetPrestationName(RetrievePrestationName(myCurNode->GetPrestationGUID(), Error));
+        myCurNode->SetName(RetrievePrestationName(myCurNode->GetGUID(), Error));
 
         myPropTitle.LoadString(IDS_Z_PRESTATIONS_TITLE);
         myPropTitleNbr.Format(_T(" %i"), ++i);
@@ -1702,9 +1702,9 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         ZBProperty* pPrestations = new ZBProperty(myPropTitle,
                                                   ZS_BP_PROP_PRESTATIONS,
                                                   myPropSubTitle,
-                                                  Z_PRESTATION_NAME,
+                                                  M_Prestation_Name,
                                                   myPropDesc,
-                                                  myCurNode->GetPrestationName(),
+                                                  myCurNode->GetName(),
                                                   ZBProperty::PT_EDIT_MENU,
                                                   true,
                                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
@@ -1714,7 +1714,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         PropSet.Add(pPrestations);
 
         float PercentageActivity = 0.0f;
-        myCurNode->GetValue(Z_PRESTATION_PERCENTAGE, PercentageActivity);
+        myCurNode->GetValue(M_Prestation_Percentage, PercentageActivity);
 
         myPropSubTitle.LoadString(IDS_Z_PRESTATION_PERCENTAGE_TITLE);
         myPropDesc.LoadString(IDS_Z_PRESTATION_PERCENTAGE_DESC);
@@ -1723,7 +1723,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pPrestations = new ZBProperty(myPropTitle,
                                       ZS_BP_PROP_PRESTATIONS,
                                       myPropSubTitle,
-                                      Z_PRESTATION_PERCENTAGE,
+                                      M_Prestation_Percentage,
                                       myPropDesc,
                                       PercentageActivity,
                                       ZBProperty::PT_EDIT_NUMBER,
@@ -1745,7 +1745,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
             pPrestations = new ZBProperty(myPropTitle,
                                           ZS_BP_PROP_PRESTATIONS,
                                           myPropSubTitle,
-                                          Z_PRESTATION_PRESTPROCESS,
+                                          M_Prestation_Prest_Process,
                                           myPropDesc,
                                           myPropPrestProcessValue,
                                           ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1762,9 +1762,9 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         pPrestations = new ZBProperty(myPropTitle,
                                       ZS_BP_PROP_PRESTATIONS,
                                       "Identifiant",//myPropSubTitle,
-                                      Z_PRESTATION_IDENTIFIER,
+                                      M_Prestation_Identifier,
                                       "Identifiant de la prestation",//myPropDesc,
-                                      myCurNode->GetPrestationGUID(),
+                                      myCurNode->GetGUID(),
                                       ZBProperty::PT_EDIT_STRING_READONLY,
                                       false);
 
@@ -2113,7 +2113,7 @@ bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
     {
         if (pProp->GetCategoryID() == ZS_BP_PROP_PRESTATIONS)
         {
-            if (pProp->GetItemID() == Z_PRESTATION_PERCENTAGE)
+            if (pProp->GetItemID() == M_Prestation_Percentage)
             {
                 switch (pProp->GetPTValueType())
                 {
@@ -2121,8 +2121,8 @@ bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
                     {
                         if (myPos != NULL)
                         {
-                            ZBBPPrestationNode* myCurNode = m_PrestProperties.GetAt(myPos);
-                            myCurNode->SetValue(Z_PRESTATION_PERCENTAGE, pProp->GetValueFloat());
+                            PSS_Prestation* myCurNode = m_PrestProperties.GetAt(myPos);
+                            myCurNode->SetValue(M_Prestation_Percentage, pProp->GetValueFloat());
                             myPos = m_PrestProperties.GetNextPosition();
                         }
 

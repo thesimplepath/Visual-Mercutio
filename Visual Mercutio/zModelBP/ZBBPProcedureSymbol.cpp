@@ -1,16 +1,31 @@
-// ZBBPProcedureSymbol.cpp: implementation of the ZBBPProcedureSymbol class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_ProcedureSymbolBP -----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a procedure symbol for banking process            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
-#include "zBaseSym\zBaseSymRes.h"
 #include "ZBBPProcedureSymbol.h"
-#include "ZBDeliverableLinkSymbol.h"
 
-// JMR-MODIF - Le 26 mai 2005 - Définition de _ZMODELEXPORT, pour éviter une erreur interne du compilateur.
+// processsoft
+#include "zBaseLib\PSS_Tokenizer.h"
+#include "zBaseLib\PSS_Global.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
+#include "zBaseLib\PSS_MsgBox.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
+#include "zBaseSym\zBaseSymRes.h"
+#include "zModel\PSS_ModelGlobal.h"
+#include "zModel\PSS_UserGroupEntity.h"
+#include "zModel\PSS_ProcessGraphModelDoc.h"
+#include "zModel\PSS_SelectUserGroupDlg.h"
+#include "zModel\PSS_ODSymbolManipulator.h"
 #define _ZMODELEXPORT
     #include "zModel\PSS_BasicProperties.h"
 #undef _ZMODELEXPORT
-
+#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\ZBPropertyObserverMsg.h"
+#include "ZBDeliverableLinkSymbol.h"
 #include "ZBBPRuleListProp.h"
 #include "ZBBPTaskListProp.h"
 #include "PSS_DecisionListPropertiesBP.h"
@@ -18,69 +33,44 @@
 #include "PSS_UnitPropertiesBP_Beta1.h"
 #include "PSS_CombinationPropertiesBP.h"
 #include "ZBBPSimPropProcedure.h"
-
 #include "ZVAddRemoveCombinationDeliverableDlg.h"
 #include "ZVChooseMasterDeliverable.h"
-
-// Global for zBaseLib
-#include "zBaseLib\PSS_Tokenizer.h"
-#include "zBaseLib\PSS_Global.h"
-#include "zBaseLib\PSS_ToolbarObserverMsg.h"
-#include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\PSS_DrawFunctions.h"
-
-// Global for model
-#include "zModel\PSS_ModelGlobal.h"
-#include "zModel\PSS_UserGroupEntity.h"
-#include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "zModel\PSS_SelectUserGroupDlg.h"
-#include "zModel\PSS_ODSymbolManipulator.h"
-
-// ZBPropertyAttributes
-#include "zProperty\ZBPropertyAttributes.h"
-#include "zProperty\ZBPropertyObserverMsg.h"
-
 #include "PSS_ProcessGraphModelControllerBP.h"
-
-// JMR-MODIF - Le 13 juin 2007 - Ajout de l'en-tête ZVRiskOptionsDlg.h
 #include "ZVRiskOptionsDlg.h"
 
-// Resources
+// resources
 #include "zModelBPRes.h"
 #include "PSS_ModelResIDs.h"
 #include "zModel\zModelRes.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-// JMR-MODIF - Le 6 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-//////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------------
+// Global constants
+//---------------------------------------------------------------------------
+const std::size_t _MaxRuleListSize        = 20;
+const std::size_t _MaxTaskListSize        = 20;
+const std::size_t _MaxDecisionListSize    = 20;
+const std::size_t _MaxCombinationListSize = 20;
+const std::size_t _MaxRulesSize           = 20;
+const std::size_t _MaxRisksSize           = 20;
+//---------------------------------------------------------------------------
 // Static variables
+//---------------------------------------------------------------------------
 static CMenu gCombinationMenu;
-// JMR-MODIF - Le 28 novembre 2006 - Ajout de la nouvelle variable statique gRulesMenu.
 static CMenu gRulesMenu;
-// JMR-MODIF - Le 10 juin 2007 - Ajout de la nouvelle variable statique gRiskMenu
 static CMenu gRiskMenu;
-
-const size_t _MaxRuleListSize = 20;
-const size_t _MaxTaskListSize = 20;
-const size_t _MaxDecisionListSize = 20;
-const size_t _MaxCombinationListSize = 20;
-// JMR-MODIF - Le 22 novembre 2006 - Ajout de la constante _MaxRulesSize.
-const size_t _MaxRulesSize = 20;
-// JMR-MODIF - Le 3 juin 2007 - Ajout de la constante _MaxRisksSize.
-const size_t _MaxRisksSize = 20;
-
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
 IMPLEMENT_SERIAL(ZBBPProcedureSymbol, PSS_Symbol, g_DefVersion)
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
+//---------------------------------------------------------------------------
+// PSS_ProcedureSymbolBP
+//---------------------------------------------------------------------------
 ZBBPProcedureSymbol::ZBBPProcedureSymbol(const CString Name /*= ""*/)
     : m_Combinations(this)
 {
