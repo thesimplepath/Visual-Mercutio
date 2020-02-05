@@ -747,7 +747,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         virtual bool FillProperties(ZBPropertySet& propSet, bool numericValue = false, bool groupValue = false);
 
         /**
-        * Save the changes to object properties
+        * Saves the changes to object properties
         *@param propSet - property set to fill with the saved properties
         *@return true on success, otherwise false
         */

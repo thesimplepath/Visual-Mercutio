@@ -47,6 +47,9 @@
 #ifndef PSS_DoorSymbolBP
     #define PSS_DoorSymbolBP ZBBPDoorSymbol
 #endif
+#ifndef PSS_PageSymbolBP
+    #define PSS_PageSymbolBP ZBBPPageSymbol
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
@@ -56,7 +59,7 @@ class PSS_Log;
 class PSS_Symbol;
 class PSS_LinkSymbol;
 class PSS_DoorSymbolBP;
-class ZBBPPageSymbol;
+class PSS_PageSymbolBP;
 class ZBBPProcedureSymbol;
 class ZBBPProcessSymbol;
 class ZBBPStartSymbol;
@@ -104,7 +107,7 @@ public:
         return true;
     };
 
-    virtual bool OnPageSymbol(ZBBPPageSymbol* pSymbol)
+    virtual bool OnPageSymbol(PSS_PageSymbolBP* pSymbol)
     {
         return true;
     };

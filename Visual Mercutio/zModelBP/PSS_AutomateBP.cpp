@@ -16,7 +16,7 @@
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "PSS_DoorSymbolBP.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
@@ -64,7 +64,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         if (ISA(pSymbol, PSS_DoorSymbolBP))
             return RequestMoveForwardDoorSymbol(pState, symbolSet, stateLinkSet, pLog);
         else
-        if (ISA(pSymbol, ZBBPPageSymbol))
+        if (ISA(pSymbol, PSS_PageSymbolBP))
             return RequestMoveForwardPageSymbol(pState, symbolSet, stateLinkSet, pLog);
         else
         if (ISA(pSymbol, ZBBPStopSymbol))
@@ -754,7 +754,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         return PSS_AutomationMachine::IE_AS_Error;
     }
 
-    ZBBPPageSymbol* pPage = dynamic_cast<ZBBPPageSymbol*>(pState->GetSymbol());
+    PSS_PageSymbolBP* pPage = dynamic_cast<PSS_PageSymbolBP*>(pState->GetSymbol());
 
     if (!pPage)
     {
@@ -763,7 +763,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         return PSS_AutomationMachine::IE_AS_Error;
     }
 
-    ZBBPPageSymbol* pTwinPage = pPage->GetTwinPageSymbol();
+    PSS_PageSymbolBP* pTwinPage = pPage->GetTwinPageSymbol();
 
     if (!pTwinPage)
     {

@@ -19,7 +19,7 @@
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "ZBBPProcessSymbol.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "zModel\PSS_ODSymbolManipulator.h"
 
 // resources
@@ -48,7 +48,7 @@ PSS_DoorSymbolBP::PSS_DoorSymbolBP(const CString& name) :
 
     CODTextComponent* pText = GetSymbolNameTextEdit();
 
-    // resize the text name area in relation to the text width
+    // resize the text name edit according to the text width
     if (pText)
         pText->SizeToText();
 }
@@ -92,35 +92,43 @@ PSS_DoorSymbolBP& PSS_DoorSymbolBP::operator = (const PSS_DoorSymbolBP& other)
 //---------------------------------------------------------------------------
 BOOL PSS_DoorSymbolBP::Create(const CString& name)
 {
+    BOOL result           = FALSE;
     m_IsInCreationProcess = true;
 
-    BOOL result = PSS_Symbol::Create(IDR_BP_DOOR,
-                                     AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
-                                     name);
-
-    if (!CreateSymbolProperties())
-        result = FALSE;
-
-    // change some name properties
-    CODTextComponent* pText = GetSymbolNameTextEdit();
-
-    if (pText)
+    try
     {
-        pText->SetValue(OD_PROP_VERT_ALIGNMENT, TRUE);
+        result = PSS_Symbol::Create(IDR_BP_DOOR,
+                                    AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
+                                    name);
 
-        CODFontProperties* pFontProp = (CODFontProperties*)pText->GetProperty(OD_PROP_FONT);
+        if (!CreateSymbolProperties())
+            result = FALSE;
 
-        if (pFontProp)
+        // change some name properties
+        CODTextComponent* pText = GetSymbolNameTextEdit();
+
+        if (pText)
         {
-            pFontProp->SetFaceName(_T("Arial"));
-            pFontProp->SetWeight(FW_NORMAL);
-            pFontProp->SetPointSize(8);
-            pText->SetProperty(pFontProp);
+            pText->SetValue(OD_PROP_VERT_ALIGNMENT, TRUE);
+
+            CODFontProperties* pFontProp = (CODFontProperties*)pText->GetProperty(OD_PROP_FONT);
+
+            if (pFontProp)
+            {
+                pFontProp->SetFaceName(_T("Arial"));
+                pFontProp->SetWeight(FW_NORMAL);
+                pFontProp->SetPointSize(8);
+                pText->SetProperty(pFontProp);
+            }
         }
+    }
+    catch (...)
+    {
+        m_IsInCreationProcess = false;
+        throw;
     }
 
     m_IsInCreationProcess = false;
-
     return result;
 }
 //---------------------------------------------------------------------------
@@ -175,7 +183,7 @@ bool PSS_DoorSymbolBP::SetDoorModel(PSS_ProcessGraphModelMdl* pModel)
 
     CODTextComponent* pText = GetSymbolNameTextEdit();
 
-    // resize the text name area in relation to the text width
+    // resize the text name edit according to the text width
     if (pText)
         pText->SizeToText();
 
@@ -321,16 +329,16 @@ void PSS_DoorSymbolBP::Serialize(CArchive& ar)
     {
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - Start Save\n"));
+            TRACE(_T("PSS_DoorSymbolBP::Serialize - Start save\n"));
 
             ar << WORD(m_ShowPreview);
             ar << m_TwinDoorRefNumber;
 
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - End Save\n"));
+            TRACE(_T("PSS_DoorSymbolBP::Serialize - End save\n"));
         }
         else
         {
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - Start Read\n"));
+            TRACE(_T("PSS_DoorSymbolBP::Serialize - Start read\n"));
 
             WORD wValue;
             ar >> wValue;
@@ -338,30 +346,11 @@ void PSS_DoorSymbolBP::Serialize(CArchive& ar)
 
             ar >> m_TwinDoorRefNumber;
 
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - End Read\n"));
+            TRACE(_T("PSS_DoorSymbolBP::Serialize - End read\n"));
         }
 
         if (m_pModel)
             m_pModel->SetName(GetSymbolName());
-    }
-}
-//---------------------------------------------------------------------------
-void PSS_DoorSymbolBP::OnSymbolNameChanged(CODComponent& comp, const CString& oldName)
-{
-    // check if the old symbol name was used somewhere in this door symbol
-    ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(&comp);
-
-    // Check if a process and the same we pointed to
-    if (pProcess && !pProcess->IsChildModelRef() && pProcess->GetChildModel() == GetChildModel())
-    {
-        // assign the door name
-        SetSymbolName(BuildSymbolName());
-
-        CODTextComponent* pText = GetSymbolNameTextEdit();
-
-        // resize the text name area in relation to the text width
-        if (pText)
-            pText->SizeToText();
     }
 }
 //---------------------------------------------------------------------------
@@ -382,7 +371,7 @@ bool PSS_DoorSymbolBP::OnPostCreation(CODModel* pModel, CODController* pCtrl)
 
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
-    rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
     PSS_SelectModelSymbolDlg dlg(pRootModel, ISD_DOOR_SELECTMODEL, g_Selectable_Model | g_Selectable_GraphPage, &rtClasses);
@@ -506,6 +495,25 @@ bool PSS_DoorSymbolBP::OnPreDelete(CODModel* pModel, CODController* pCtrl)
 
     // don't delete the door symbol
     return false;
+}
+//---------------------------------------------------------------------------
+void PSS_DoorSymbolBP::OnSymbolNameChanged(CODComponent& comp, const CString& oldName)
+{
+    // check if the old symbol name was used somewhere in this door symbol
+    ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(&comp);
+
+    // Check if a process and the same we pointed to
+    if (pProcess && !pProcess->IsChildModelRef() && pProcess->GetChildModel() == GetChildModel())
+    {
+        // assign the door name
+        SetSymbolName(BuildSymbolName());
+
+        CODTextComponent* pText = GetSymbolNameTextEdit();
+
+        // resize the text name edit according to the text width
+        if (pText)
+            pText->SizeToText();
+    }
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DoorSymbolBP::OnDoubleClick()

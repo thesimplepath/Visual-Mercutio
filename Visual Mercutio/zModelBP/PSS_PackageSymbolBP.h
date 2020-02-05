@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_DoorSymbolBP ----------------------------------------------------*
+ * ==> PSS_PackageSymbolBP -------------------------------------------------*
  ****************************************************************************
- * Description : Provides a door symbol for banking process                 *
+ * Description : Provides a package symbol for banking process              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_DoorSymbolBPH
-#define PSS_DoorSymbolBPH
+#ifndef PSS_PackageSymbolBPH
+#define PSS_PackageSymbolBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,19 +21,25 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_DoorSymbolBP
-    #define PSS_DoorSymbolBP ZBBPDoorSymbol
+#ifndef PSS_PackageSymbolBP
+    #define PSS_PackageSymbolBP ZBBPPackageSymbol
 #endif
 
 // processsoft
+#include "zBaseLib\PSS_Bitmap.h"
 #include "zModel\PSS_Symbol.h"
 
 // class name mapping
+#ifndef PSS_ProcessGraphModelDoc
+    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
-// forward class declaration
+// Forward declaration
+class PSS_ProcessModelDocTmpl;
+class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
@@ -47,34 +53,35 @@ class PSS_ProcessGraphModelMdl;
 #endif
 
 /**
-* Door symbol for banking process
+* Package symbol for banking process
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_DoorSymbolBP : public PSS_Symbol
+class AFX_EXT_CLASS PSS_PackageSymbolBP : public PSS_Symbol
 {
-    DECLARE_SERIAL(PSS_DoorSymbolBP)
+    DECLARE_SERIAL(PSS_PackageSymbolBP)
 
     public:
         /**
         * Constructor
         *@param name - the symbol name
+        *@param fileName - the package file name
         */
-        PSS_DoorSymbolBP(const CString& name = _T(""));
+        PSS_PackageSymbolBP(const CString& name = _T(""), const CString& fileName = _T(""));
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_DoorSymbolBP(const PSS_DoorSymbolBP& src);
+        PSS_PackageSymbolBP(const PSS_PackageSymbolBP& other);
 
-        virtual ~PSS_DoorSymbolBP();
+        virtual ~PSS_PackageSymbolBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_DoorSymbolBP& operator = (const PSS_DoorSymbolBP& other);
+        PSS_PackageSymbolBP& operator = (const PSS_PackageSymbolBP& other);
 
         /**
         * Adds a reference to this object
@@ -91,9 +98,17 @@ class AFX_EXT_CLASS PSS_DoorSymbolBP : public PSS_Symbol
         /**
         * Creates the symbol component
         *@param name - the symbol name
+        *@param fileName - the package file name
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(const CString& name = _T(""));
+        virtual BOOL Create(const CString& name = _T(""), const CString& fileName = _T(""));
+
+        /**
+        * Creates a new child model
+        *@param pParent - the parent model in which the new child model will be created
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL CreateEmptyChildModel(CODModel* pParent);
 
         /**
         * Makes a copy of this object
@@ -105,98 +120,87 @@ class AFX_EXT_CLASS PSS_DoorSymbolBP : public PSS_Symbol
         * Copies the symbol definition only from another symbol
         *@param other - the other symbol to copy from
         */
-        virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
+        virtual void CopySymbolDefinitionFrom(CODSymbolComponent& other);
 
         /**
-        * Checks if this symbol is a door
-        *@return TRUE if this symbol is a door, otherwise FALSE
+        * Checks if this symbol is a package
+        *@return TRUE if this symbol is a package, otherwise FALSE
         */
-        virtual inline BOOL IsDoor() const;
+        virtual inline BOOL IsPackage() const;
 
         /**
-        * Gets the door model
-        *@return the door model
-        */
-        PSS_ProcessGraphModelMdl* GetDoorModel();
-
-        /**
-        * Sets the door model
-        *@param pModel - the door model
-        *@return true on success, otherwise false
-        */
-        virtual bool SetDoorModel(PSS_ProcessGraphModelMdl* pModel);
-
-        /**
-        * Recalculates the twin door reference
-        *@param pRootModel - the root model to recalculate from
-        */
-        virtual void RecalculateTwinDoorReference(PSS_ProcessGraphModelMdl* pRootModel);
-
-        /**
-        * Gets the twin door reference number
-        *@return the twin door reference number
-        */
-        virtual inline int GetTwinDoorReferenceNumber() const;
-
-        /**
-        * Sets the twin door reference number
-        *@param value - the twin door reference number
-        */
-        virtual void SetTwinDoorReferenceNumber(int value);
-
-        /**
-        * Assigns a twin door symbol
-        *@param pDoor - the twin door symbol to assign
-        */
-        virtual void AssignTwinDoorSymbol(PSS_DoorSymbolBP* pDoor);
-
-        /**
-        * Removes the twin door symbol
-        *@param removeTwin - if true, the twin symbol linked with this one will also be removed
-        */
-        virtual void RemoveTwinDoorSymbol(bool removeTwin = true);
-
-        /**
-        * Gets the twin door symbol
-        *@return the twin door symbol
-        */
-        virtual inline PSS_DoorSymbolBP* GetTwinDoorSymbol() const;
-
-        /**
-        * Sets the twin door symbol
-        *@param pDoor - the twin door symbol
-        */
-        virtual inline void SetTwinDoorSymbol(PSS_DoorSymbolBP* pDoor);
-
-        /**
-        * Duplicates the style of the current symbol on the twin symbol
+        * Sets the symbol name
+        *@param value - the symbol name
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL DuplicateStyleOnTwinSymbol();
+        virtual BOOL SetSymbolName(const CString& value);
+
+        /**
+        * Gets the package document
+        *@return the package document
+        */
+        virtual inline PSS_ProcessGraphModelDoc* GetPackageDocument();
+
+        /**
+        * Loads the package
+        *@param pDocTmpl - the document template
+        *@param pParent - the parent
+        *@return true on success, otherwise false
+        */
+        virtual bool LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, PSS_ProcessGraphModelMdl* pParent = NULL);
+
+        /**
+        * Unloads the package
+        *@return true on success, otherwise false
+        */
+        virtual bool UnloadPackage();
+
+        /**
+        * Checks if the package is loaded
+        *@return true if the package is loaded, otherwise false
+        */
+        virtual inline bool IsLoaded() const;
+
+        /**
+        * Checks if the package is linked to a file name
+        *@return true if the package is linked to a file name, otherwise false
+        */
+        virtual inline bool IsLinkedToFileName() const;
+
+        /**
+        * Gets the file name at which this package is linked
+        *@return the file name at which this package is linked
+        */
+        virtual inline CString GetFileNameLinkedTo() const;
+
+        /**
+        * Sets the file name at which this package is linked
+        *@param value - the file name at which this package is linked
+        */
+        virtual inline void SetFileNameLinkedTo(const CString& value);
+
+        /**
+        * Clears the linked file name
+        */
+        virtual inline void ClearLinkedToFileName();
+
+        /**
+        * Gets the package name
+        *@return the package name
+        */
+        virtual inline const CString GetPackageName();
+
+        /**
+        * Sets the package name
+        *@param value - the package name
+        */
+        virtual inline void SetPackageName(const CString& value);
 
         /**
         * Checks if the symbol can contain a child model
         *@return true if the symbol can contain a child model, otherwise false
         */
         virtual inline bool CanContainChildModel() const;
-
-        /**
-        * Checks if the child model is a reference
-        *@return true if the child model is a reference, otherwise false
-        */
-        virtual inline bool IsChildModelRef() const;
-
-        /**
-        * Checks if the symbol name is read-only
-        *@return true if the symbol name is read-only, otherwise false
-        */
-        virtual inline bool SymbolNameTextEditReadOnly() const;
-
-        /**
-        * Checks if the symbol comment is read-only
-        *@return true if the symbol comment is read-only, otherwise false
-        */
-        virtual inline bool CommentTextEditReadOnly() const;
 
         /**
         * Checks if the symbol accepts the dynamic attributes
@@ -251,47 +255,10 @@ class AFX_EXT_CLASS PSS_DoorSymbolBP : public PSS_Symbol
         virtual void Serialize(CArchive& ar);
 
         /**
-        * Called after the symbol was created and before it's added on the model
-        *@param pModel - the model containing the newly created symbol
-        *@param pCtrl - the model controller
-        *@return true if the symbol can be added on the model, false if the symbol should be destroyed immediatly
-        */
-        virtual bool OnPostCreation(CODModel* pModel = NULL, CODController* pCtrl = NULL);
-
-        /**
-        * Called before the symbol is deleted
-        *@param pModel - the model containing the symbol about to be deleted
-        *@param pCtrl - the model controller
-        *@return true if the symbol can be deleted, otherwise false
-        */
-        virtual bool OnPreDelete(CODModel* pModel = NULL, CODController* pCtrl = NULL);
-
-        /**
-        * Called when the symbol name changed
-        *@param comp - the component for which the name changed
-        *@param oldName - the old component name
-        */
-        virtual void OnSymbolNameChanged(CODComponent& comp, const CString& oldName);
-
-        /**
         * Called when the symbol is double clicked
         *@return TRUE if the double click was performed, otherwise FALSE
         */
         virtual BOOL OnDoubleClick();
-
-        /**
-        * Called after the double click occured on the symbol
-        *@param pModel - the double-clicked model
-        *@param pCtrl - the model controller
-        */
-        virtual void OnPostDoubleClick(CODModel* pModel = NULL, CODController* pCtrl = NULL);
-
-        /**
-        * Called when the observer receives a message from the subject
-        *@param pSubject - subject which sent the message
-        *@param pMsg - the message
-        */
-        virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
         /**
         * Called when the symbol is drawn
@@ -316,99 +283,102 @@ class AFX_EXT_CLASS PSS_DoorSymbolBP : public PSS_Symbol
         */
         virtual void AdjustElementPosition();
 
-        /**
-        * Builds the symbol name
-        *@return the built symbol name
-        */
-        virtual CString BuildSymbolName();
-
     private:
-        PSS_DoorSymbolBP* m_pTwinDoorSymbol;
-        CRect             m_CommentRect;
-        CString           m_SubModelPathName;
-        int               m_TwinDoorRefNumber;
-        bool              m_ShowPreview;
+        static PSS_Bitmap         m_LinkedToFileBitmap;
+        PSS_ProcessGraphModelDoc* m_pPackageDoc;
+        CRect                     m_CommentRect;
+        CPoint                    m_LinkedToFileBitmapPosition;
+        CString                   m_FileNameLinkedTo;
+        bool                      m_ShowPreview;
 };
 
 //---------------------------------------------------------------------------
-// PSS_DoorSymbolBP
+// PSS_PackageSymbolBP
 //---------------------------------------------------------------------------
-ULONG STDMETHODCALLTYPE PSS_DoorSymbolBP::AddRef()
+ULONG STDMETHODCALLTYPE PSS_PackageSymbolBP::AddRef()
 {
     return CODSymbolComponent::AddRef();
 }
 //---------------------------------------------------------------------------
-ULONG STDMETHODCALLTYPE PSS_DoorSymbolBP::Release()
+ULONG STDMETHODCALLTYPE PSS_PackageSymbolBP::Release()
 {
     return CODSymbolComponent::Release();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DoorSymbolBP::IsDoor() const
+BOOL PSS_PackageSymbolBP::IsPackage() const
 {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-int PSS_DoorSymbolBP::GetTwinDoorReferenceNumber() const
+PSS_ProcessGraphModelDoc* PSS_PackageSymbolBP::GetPackageDocument()
 {
-    return m_TwinDoorRefNumber;
+    return m_pPackageDoc;
 }
 //---------------------------------------------------------------------------
-PSS_DoorSymbolBP* PSS_DoorSymbolBP::GetTwinDoorSymbol() const
+bool PSS_PackageSymbolBP::IsLoaded() const
 {
-    return m_pTwinDoorSymbol;
+    return m_pPackageDoc != NULL;
 }
 //---------------------------------------------------------------------------
-void PSS_DoorSymbolBP::SetTwinDoorSymbol(PSS_DoorSymbolBP* pDoor)
+bool PSS_PackageSymbolBP::IsLinkedToFileName() const
 {
-    m_pTwinDoorSymbol = pDoor;
+    return !m_FileNameLinkedTo.IsEmpty();
 }
 //---------------------------------------------------------------------------
-bool PSS_DoorSymbolBP::CanContainChildModel() const
+CString PSS_PackageSymbolBP::GetFileNameLinkedTo() const
+{
+    return m_FileNameLinkedTo;
+}
+//---------------------------------------------------------------------------
+void PSS_PackageSymbolBP::SetFileNameLinkedTo(const CString& value)
+{
+    m_FileNameLinkedTo = value;
+}
+//---------------------------------------------------------------------------
+void PSS_PackageSymbolBP::ClearLinkedToFileName()
+{
+    m_FileNameLinkedTo.Empty();
+}
+//---------------------------------------------------------------------------
+const CString PSS_PackageSymbolBP::GetPackageName()
+{
+    return PSS_Symbol::GetSymbolName();
+}
+//---------------------------------------------------------------------------
+void PSS_PackageSymbolBP::SetPackageName(const CString& value)
+{
+    PSS_Symbol::SetSymbolName(value);
+}
+//---------------------------------------------------------------------------
+bool PSS_PackageSymbolBP::CanContainChildModel() const
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DoorSymbolBP::IsChildModelRef() const
-{
-    return true;
-}
-//---------------------------------------------------------------------------
-bool PSS_DoorSymbolBP::SymbolNameTextEditReadOnly() const
-{
-    // cannot be edited
-    return true;
-}
-//---------------------------------------------------------------------------
-bool PSS_DoorSymbolBP::CommentTextEditReadOnly() const
-{
-    // cannot be edited
-    return false;
-}
-//---------------------------------------------------------------------------
-bool PSS_DoorSymbolBP::AcceptDynamicAttributes() const
+bool PSS_PackageSymbolBP::AcceptDynamicAttributes() const
 {
     // no dynamic attributes
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_DoorSymbolBP::GetShowPreview() const
+bool PSS_PackageSymbolBP::GetShowPreview() const
 {
     return m_ShowPreview;
 }
 //---------------------------------------------------------------------------
-void PSS_DoorSymbolBP::SetShowPreview(bool value)
+void PSS_PackageSymbolBP::SetShowPreview(bool value)
 {
     m_ShowPreview = value;
 }
 //---------------------------------------------------------------------------
-int PSS_DoorSymbolBP::GetRightSubMenu() const
+int PSS_PackageSymbolBP::GetRightSubMenu() const
 {
-    return 6;
+    return 9;
 }
 //---------------------------------------------------------------------------
-int PSS_DoorSymbolBP::GetIconIndex() const
+int PSS_PackageSymbolBP::GetIconIndex() const
 {
-    return (IsLocal() ? 8 : 16);
+    return (IsLocal() ? 11 : 19);
 }
 //---------------------------------------------------------------------------
 

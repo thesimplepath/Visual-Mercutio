@@ -8,7 +8,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
-#include "zModelBP\ZBBPPageSymbol.h"
+#include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
@@ -75,7 +75,7 @@ bool ZUProcedureCalculateTotals::OnDoorSymbol(PSS_DoorSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUProcedureCalculateTotals::OnPageSymbol(ZBBPPageSymbol* pSymbol)
+bool ZUProcedureCalculateTotals::OnPageSymbol(PSS_PageSymbolBP* pSymbol)
 {
     return true;
 }

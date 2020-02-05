@@ -43,13 +43,16 @@
 #ifndef PSS_DoorSymbolBP
     #define PSS_DoorSymbolBP ZBBPDoorSymbol
 #endif
+#ifndef PSS_PageSymbolBP
+    #define PSS_PageSymbolBP ZBBPPageSymbol
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declaration
 class PSS_DoorSymbolBP;
-class ZBBPPageSymbol;
+class PSS_PageSymbolBP;
 class ZBBPProcedureSymbol;
 class ZBBPProcessSymbol;
 class PSS_ProcessGraphModelMdl;
@@ -839,8 +842,8 @@ private:
     bool CreateSymbolName();
     bool DoDoorProcedureConnection(PSS_DoorSymbolBP* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
     bool DoProcedureDoorConnection(ZBBPProcedureSymbol* pSrc, PSS_DoorSymbolBP* pDst, CODModel* pModel);
-    bool DoPageProcedureConnection(ZBBPPageSymbol* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
-    bool DoProcedurePageConnection(ZBBPProcedureSymbol* pSrc, ZBBPPageSymbol* pDst, CODModel* pModel);
+    bool DoPageProcedureConnection(PSS_PageSymbolBP* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
+    bool DoProcedurePageConnection(ZBBPProcedureSymbol* pSrc, PSS_PageSymbolBP* pDst, CODModel* pModel);
     bool DoProcessProcessConnection(ZBBPProcessSymbol* pSrc, ZBBPProcessSymbol* pDst, CODModel* pModel);
 
     void CheckDeliverableStatus();

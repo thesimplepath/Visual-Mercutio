@@ -11,7 +11,7 @@
 
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
-#include "zModelBP\ZBBPPageSymbol.h"
+#include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"

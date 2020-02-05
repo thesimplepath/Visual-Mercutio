@@ -44,7 +44,7 @@
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
-#include "zModelBP\ZBBPPageSymbol.h"
+#include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\ZVPublishToMessengerWizard.h"
 #include "zModelBP\ZVRiskTypeContainer.h"
 #include "zModelBP\ZVRiskImpactContainer.h"
@@ -3352,7 +3352,7 @@ void ZAApp::OnGenerateMercutioReport()
         // Let the user choose a sub-process
         // filter object classes
         PSS_RuntimeClassSet rtClasses;
-        rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+        rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
         rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
         PSS_SelectModelSymbolDlg Dlg(dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),

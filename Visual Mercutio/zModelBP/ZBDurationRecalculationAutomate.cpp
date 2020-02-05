@@ -13,7 +13,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 
 #include "PSS_DoorSymbolBP.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
@@ -352,11 +352,11 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
             }
         }
     }
-    else if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPPageSymbol))
+    else if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_PageSymbolBP))
     {
         // Now check if we have a page symbol
         // Duplicate duration information of deliverable symbols
-        ZBBPPageSymbol* pSymbol = dynamic_cast<ZBBPPageSymbol*>(pState->GetSymbol());
+        PSS_PageSymbolBP* pSymbol = dynamic_cast<PSS_PageSymbolBP*>(pState->GetSymbol());
 
         TRACE1(_T("OnBeforeMoveForward: page in the stack is %s\n"), pSymbol->GetSymbolName());
 
@@ -365,7 +365,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
         if (EnteringLinkCount > 0 && pSymbol->GetTwinPageSymbol())
         {
-            ZBBPPageSymbol* pTwinPage = pSymbol->GetTwinPageSymbol();
+            PSS_PageSymbolBP* pTwinPage = pSymbol->GetTwinPageSymbol();
 
             // Now copy the duration information coming from the entering deliverable 
             // to the leaving deliverable attached to the target page

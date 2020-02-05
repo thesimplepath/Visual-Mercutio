@@ -8,7 +8,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 
 #include "PSS_DoorSymbolBP.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
@@ -156,9 +156,9 @@ bool ZUCheckSymbolConsistency::Visit(CODComponent& Symbol)
     {
         return CheckDoorSymbol(dynamic_cast<PSS_DoorSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPPageSymbol))
+    else if (ISA(pSymbol, PSS_PageSymbolBP))
     {
-        return CheckPageSymbol(dynamic_cast<ZBBPPageSymbol*>(&Symbol));
+        return CheckPageSymbol(dynamic_cast<PSS_PageSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBBPProcessSymbol))
     {
@@ -274,7 +274,7 @@ bool ZUCheckSymbolConsistency::CheckDoorSymbol(PSS_DoorSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCheckSymbolConsistency::CheckPageSymbol(ZBBPPageSymbol* pSymbol)
+bool ZUCheckSymbolConsistency::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 

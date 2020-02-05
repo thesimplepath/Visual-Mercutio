@@ -45,7 +45,7 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
     virtual bool OnDoorSymbol(PSS_DoorSymbolBP*            pSymbol);
-    virtual bool OnPageSymbol(ZBBPPageSymbol*            pSymbol);
+    virtual bool OnPageSymbol(PSS_PageSymbolBP*            pSymbol);
     virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*        pSymbol);
     virtual bool OnProcessSymbol(ZBBPProcessSymbol*        pSymbol);
     virtual bool OnStartSymbol(ZBBPStartSymbol*            pSymbol);

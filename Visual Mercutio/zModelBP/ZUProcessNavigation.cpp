@@ -8,7 +8,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
-#include "zModelBP\ZBBPPageSymbol.h"
+#include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
@@ -90,9 +90,9 @@ bool ZUProcessNavigation::Visit(CODComponent& Symbol)
     {
         return OnDoorSymbol(dynamic_cast<PSS_DoorSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPPageSymbol))
+    else if (ISA(pSymbol, PSS_PageSymbolBP))
     {
-        return OnPageSymbol(dynamic_cast<ZBBPPageSymbol*>(&Symbol));
+        return OnPageSymbol(dynamic_cast<PSS_PageSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBBPProcessSymbol))
     {

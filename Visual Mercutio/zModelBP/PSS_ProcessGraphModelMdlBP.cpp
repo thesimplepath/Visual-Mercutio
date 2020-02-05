@@ -18,8 +18,8 @@
 #include "zModel\PSS_UserEntity.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
-#include "ZBBPPageSymbol.h"
 #include "PSS_DoorSymbolBP.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBBPProcedureSymbol.h"
@@ -83,7 +83,7 @@ void PSS_ProcessGraphModelMdlBP::RecalculateSymbolReferences()
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPPageSymbols(CODNodeArray& nodes, bool deep)
 {
-    return GetSymbolsISA(nodes, RUNTIME_CLASS(ZBBPPageSymbol), deep);
+    return GetSymbolsISA(nodes, RUNTIME_CLASS(PSS_PageSymbolBP), deep);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPDoorSymbols(CODNodeArray& nodes, bool deep)
@@ -273,7 +273,7 @@ void PSS_ProcessGraphModelMdlBP::NotifyDeletePage(PSS_ProcessGraphPage* pPage)
         if (!pSymbol)
             continue;
 
-        ZBBPPageSymbol* pPageSymbol = dynamic_cast<ZBBPPageSymbol*>(pComp);
+        PSS_PageSymbolBP* pPageSymbol = dynamic_cast<PSS_PageSymbolBP*>(pComp);
 
         // if a page symbol
         if (pPageSymbol && pPageSymbol->GetPage() == pPage)
@@ -444,7 +444,7 @@ void PSS_ProcessGraphModelMdlBP::RecalculatePageReference()
         if (!pSymbol)
             continue;
 
-        ZBBPPageSymbol* pPageSymbol = dynamic_cast<ZBBPPageSymbol*>(pComp);
+        PSS_PageSymbolBP* pPageSymbol = dynamic_cast<PSS_PageSymbolBP*>(pComp);
 
         // if a page symbol
         if (pPageSymbol)

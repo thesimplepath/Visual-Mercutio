@@ -251,7 +251,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_DoorSymbolBP* m_Symbol)
 }
 
 // Contrôle que les propriétés du symbole page donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPPageSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_PageSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {
@@ -279,7 +279,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPPageSymbol* m_Symbol)
 }
 
 // Contrôle que les propriétés du symbole package donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPPackageSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_PackageSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {

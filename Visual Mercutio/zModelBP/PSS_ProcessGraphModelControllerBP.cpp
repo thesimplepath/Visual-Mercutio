@@ -31,8 +31,8 @@
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
-#include "zModelBP\ZBBPPackageSymbol.h"
-#include "zModelBP\ZBBPPageSymbol.h"
+#include "zModelBP\PSS_PackageSymbolBP.h"
+#include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\PSS_GenericSymbolBP.h"
@@ -185,7 +185,7 @@ void PSS_ProcessGraphModelControllerBP::InsertPageSymbol()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPPageSymbol> pSymbol(new ZBBPPageSymbol());
+    std::unique_ptr<PSS_PageSymbolBP> pSymbol(new PSS_PageSymbolBP());
     pSymbol->Create();
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -234,7 +234,7 @@ bool PSS_ProcessGraphModelControllerBP::CanDuplicateObject(CODComponentSet* pCom
 
     // check if a process or a package was selected
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
-        if (pComp && (ISA(pComp, ZBBPProcessSymbol) || ISA(pComp, ZBBPPackageSymbol)))
+        if (pComp && (ISA(pComp, ZBBPProcessSymbol) || ISA(pComp, PSS_PackageSymbolBP)))
             return false;
 
     return true;
@@ -273,7 +273,7 @@ void PSS_ProcessGraphModelControllerBP::OnSymbolDuplicated(CODComponentSet* pCom
             continue;
         }
 
-        ZBBPPageSymbol* pPageSym = dynamic_cast<ZBBPPageSymbol*>(pComp);
+        PSS_PageSymbolBP* pPageSym = dynamic_cast<PSS_PageSymbolBP*>(pComp);
 
         // if a page symbol, remove the linked page
         if (pPageSym)
@@ -448,7 +448,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsPackage()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPPackageSymbol> pSymbol(new ZBBPPackageSymbol());
+    std::unique_ptr<PSS_PackageSymbolBP> pSymbol(new PSS_PackageSymbolBP());
     pSymbol->Create();
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -964,10 +964,10 @@ void PSS_ProcessGraphModelControllerBP::OnOdMeasurements()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnLinktoFilePackage()
 {
-    ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pSymbolHit);
+    PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
 
     // todo -cCheck -oJean: package type was tested against m_pSymbolHit, but was get from m_pCompHit. Is the same pointer?
-    //ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pCompHit);
+    //PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pCompHit);
     if (m_pSymbolHit != m_pCompHit)
         ::OutputDebugString("PSS_ProcessGraphModelControllerBP - OnLinktoFilePackage - m_pSymbolHit is not equal to m_pCompHit");
 
@@ -1028,10 +1028,10 @@ void PSS_ProcessGraphModelControllerBP::OnLinktoFilePackage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUnlinkFromFilePackage()
 {
-    ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pSymbolHit);
+    PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
 
     // todo -cCheck -oJean: package type was tested against m_pSymbolHit, but was get from m_pCompHit. Is the same pointer?
-    //ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pCompHit);
+    //PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pCompHit);
     if (m_pSymbolHit != m_pCompHit)
         ::OutputDebugString("PSS_ProcessGraphModelControllerBP - OnLinktoFilePackage - m_pSymbolHit is not equal to m_pCompHit");
 
@@ -1064,16 +1064,16 @@ void PSS_ProcessGraphModelControllerBP::OnUnlinkFromFilePackage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateUnlinkFromFilePackage(CCmdUI* pCmdUI)
 {
-    ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pSymbolHit);
+    PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
     pCmdUI->Enable(pPackage && pPackage->IsLinkedToFileName());
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnLoadPackage()
 {
-    ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pSymbolHit);
+    PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
 
     // todo -cCheck -oJean: package type was tested against m_pSymbolHit, but was get from m_pCompHit. Is the same pointer?
-    //ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pCompHit);
+    //PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pCompHit);
     if (m_pSymbolHit != m_pCompHit)
         ::OutputDebugString("PSS_ProcessGraphModelControllerBP - OnLinktoFilePackage - m_pSymbolHit is not equal to m_pCompHit");
 
@@ -1110,7 +1110,7 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateLoadPackage(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pSymbolHit);
+    PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
 
     pCmdUI->Enable(pPackage && pPackage->IsLinkedToFileName());
 }
@@ -1119,10 +1119,10 @@ void PSS_ProcessGraphModelControllerBP::OnUnloadPackage()
 {
     AssignSymbolHit();
 
-    ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pSymbolHit);
+    PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
 
     // todo -cCheck -oJean: package type was tested against m_pSymbolHit, but was get from m_pCompHit. Is the same pointer?
-    //ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pCompHit);
+    //PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pCompHit);
     if (m_pSymbolHit != m_pCompHit)
         ::OutputDebugString("PSS_ProcessGraphModelControllerBP - OnLinktoFilePackage - m_pSymbolHit is not equal to m_pCompHit");
 
@@ -1150,7 +1150,7 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateUnloadPackage(CCmdUI* pCmdUI)
 {
     AssignSymbolHit();
 
-    ZBBPPackageSymbol* pPackage = dynamic_cast<ZBBPPackageSymbol*>(m_pSymbolHit);
+    PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
 
     pCmdUI->Enable(pPackage && pPackage->IsLinkedToFileName() && pPackage->IsLoaded());
 }
@@ -1471,7 +1471,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsertPage()
 
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
-    rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
     PSS_InsertModelNewPageDlg dlg(pRoot,
@@ -1518,7 +1518,7 @@ void PSS_ProcessGraphModelControllerBP::OnRenamePage()
 
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
-    rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
     PSS_RenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray(), NULL, &rtClasses);
@@ -1570,7 +1570,7 @@ void PSS_ProcessGraphModelControllerBP::OnDeletePage()
 
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
-    rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
     rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
     PSS_DeleteModelPageDlg dlg(pRoot, &rtClasses);

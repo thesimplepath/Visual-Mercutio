@@ -29,7 +29,7 @@
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
-#include "zModelBP\ZBBPPageSymbol.h"
+#include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
@@ -83,7 +83,7 @@ private:
     bool CreateProcess();
     bool StartSection(CODNodeArray& Nodes);
     bool OnDoorSymbol(PSS_DoorSymbolBP* pSymbol);
-    bool OnPageSymbol(ZBBPPageSymbol* pSymbol);
+    bool OnPageSymbol(PSS_PageSymbolBP* pSymbol);
     bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
     bool OnProcessSymbol(ZBBPProcessSymbol* pSymbol);
     bool OnStartSymbol(ZBBPStartSymbol* pSymbol);

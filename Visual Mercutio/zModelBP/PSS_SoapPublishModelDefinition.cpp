@@ -21,7 +21,7 @@
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBPublishMessengerModelInformation.h"
 #include "PSS_DoorSymbolBP.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
@@ -286,7 +286,7 @@ bool PSS_SoapPublishModelDefinition::OnDoorSymbol(PSS_DoorSymbolBP* pSymbol)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelDefinition::OnPageSymbol(ZBBPPageSymbol* pSymbol)
+bool PSS_SoapPublishModelDefinition::OnPageSymbol(PSS_PageSymbolBP* pSymbol)
 {
     return true;
 }
@@ -425,7 +425,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
 
     // get the source symbol as a door or a page
     PSS_DoorSymbolBP* pSrcDoor = dynamic_cast<PSS_DoorSymbolBP*>(pSrc);
-    ZBBPPageSymbol*   pSrcPage = dynamic_cast<ZBBPPageSymbol*>(pSrc);
+    PSS_PageSymbolBP* pSrcPage = dynamic_cast<PSS_PageSymbolBP*>(pSrc);
 
     // replace the source symbol by the symbol after the page or the door
     if (pSrcDoor)
@@ -459,7 +459,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         if (!pSymbol->IsLocal())
             return true;
 
-        ZBBPPageSymbol* pTwinPage = pSrcPage->GetTwinPageSymbol();
+        PSS_PageSymbolBP* pTwinPage = pSrcPage->GetTwinPageSymbol();
 
         if (!pTwinPage)
             return true;
@@ -480,7 +480,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
 
     // get the destination symbol as a door or a page
     PSS_DoorSymbolBP* pDstDoor = dynamic_cast<PSS_DoorSymbolBP*>(pDst);
-    ZBBPPageSymbol*   pDstPage = dynamic_cast<ZBBPPageSymbol*>(pDst);
+    PSS_PageSymbolBP* pDstPage = dynamic_cast<PSS_PageSymbolBP*>(pDst);
 
     // Now replace the destination symbol by the symbol after the page or the door
     if (pDstDoor)
@@ -514,7 +514,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         if (!pSymbol->IsLocal())
             return true;
 
-        ZBBPPageSymbol* pTwinPage = pDstPage->GetTwinPageSymbol();
+        PSS_PageSymbolBP* pTwinPage = pDstPage->GetTwinPageSymbol();
 
         if (!pTwinPage)
             return true;

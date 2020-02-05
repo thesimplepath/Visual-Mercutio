@@ -51,7 +51,6 @@ BOOL PSS_GenericSymbolBP::Create(UINT nID, const CString& name)
     }
 
     m_IsInCreationProcess = false;
-
     return result;
 }
 //---------------------------------------------------------------------------

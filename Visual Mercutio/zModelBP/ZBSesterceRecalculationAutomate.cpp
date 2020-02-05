@@ -16,7 +16,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 
 #include "PSS_DoorSymbolBP.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
@@ -203,7 +203,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     // 7. the procedure cost per activity
     if (pState && pState->GetSymbol() &&
         (ISA(pState->GetSymbol(), ZBBPProcedureSymbol) ||
-         ISA(pState->GetSymbol(), ZBBPPageSymbol) ||
+         ISA(pState->GetSymbol(), PSS_PageSymbolBP) ||
          ISA(pState->GetSymbol(), PSS_DoorSymbolBP) ||
          ISA(pState->GetSymbol(), ZBBPStopSymbol)))
     {

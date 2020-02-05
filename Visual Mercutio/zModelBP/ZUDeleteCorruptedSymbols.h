@@ -26,12 +26,12 @@
 #include "zModel\PSS_LinkSymbol.h"
 
 #include "PSS_DoorSymbolBP.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
-#include "ZBBPPackageSymbol.h"
+#include "PSS_PackageSymbolBP.h"
 #include "ZBDeliverableLinkSymbol.h"
 
 #include "PSS_ProcessGraphModelMdlBP.h"
@@ -68,8 +68,8 @@ private:
     BOOL IsCorrupted(ZBBPStartSymbol* m_Symbol);
     BOOL IsCorrupted(ZBBPStopSymbol* m_Symbol);
     BOOL IsCorrupted(PSS_DoorSymbolBP* m_Symbol);
-    BOOL IsCorrupted(ZBBPPageSymbol* m_Symbol);
-    BOOL IsCorrupted(ZBBPPackageSymbol* m_Symbol);
+    BOOL IsCorrupted(PSS_PageSymbolBP* m_Symbol);
+    BOOL IsCorrupted(PSS_PackageSymbolBP* m_Symbol);
     BOOL IsCorrupted(ZBDeliverableLinkSymbol* m_Symbol);
 
 private:

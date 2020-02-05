@@ -19,7 +19,7 @@
 #include "ZBBPSimPropDeliverable.h"
 
 #include "PSS_DoorSymbolBP.h"
-#include "ZBBPPageSymbol.h"
+#include "PSS_PageSymbolBP.h"
 #include "ZBBPProcedureSymbol.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
@@ -549,16 +549,16 @@ bool ZBDeliverableLinkSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODCon
                                       pModel);
         }
         // Check for page procedure and procedure page
-        else if (ISA(pSrc, ZBBPPageSymbol) && ISA(pDst, ZBBPProcedureSymbol))
+        else if (ISA(pSrc, PSS_PageSymbolBP) && ISA(pDst, ZBBPProcedureSymbol))
         {
-            DoPageProcedureConnection(dynamic_cast<ZBBPPageSymbol*>(pSrc),
+            DoPageProcedureConnection(dynamic_cast<PSS_PageSymbolBP*>(pSrc),
                                       dynamic_cast<ZBBPProcedureSymbol*>(pDst),
                                       pModel);
         }
-        else if (ISA(pSrc, ZBBPProcedureSymbol) && ISA(pDst, ZBBPPageSymbol))
+        else if (ISA(pSrc, ZBBPProcedureSymbol) && ISA(pDst, PSS_PageSymbolBP))
         {
             DoProcedurePageConnection(dynamic_cast<ZBBPProcedureSymbol*>(pSrc),
-                                      dynamic_cast<ZBBPPageSymbol*>(pDst),
+                                      dynamic_cast<PSS_PageSymbolBP*>(pDst),
                                       pModel);
         }
         // And finally, for process to process
@@ -1519,26 +1519,26 @@ bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection(ZBBPProcedureSymbol*    
     return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoPageProcedureConnection(ZBBPPageSymbol*        pSrc,
+bool ZBDeliverableLinkSymbol::DoPageProcedureConnection(PSS_PageSymbolBP*        pSrc,
                                                         ZBBPProcedureSymbol*    pDst,
                                                         CODModel*                pModel)
 {
     // If the page is pointing to a model
-    if (pModel && pSrc->GetModelPage() &&
-        ISA(pSrc->GetModelPage(), PSS_ProcessGraphModelMdlBP) &&
+    if (pModel && pSrc->GetPageModel() &&
+        ISA(pSrc->GetPageModel(), PSS_ProcessGraphModelMdlBP) &&
         ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
         CODNodeArray Nodes;
 
         size_t ElementCount =
-            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pSrc->GetModelPage())->GetBPPageSymbols(Nodes);
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pSrc->GetPageModel())->GetBPPageSymbols(Nodes);
 
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
             IODNode* pINode = Nodes.GetAt(nNodeIdx);
-            ZBBPPageSymbol* pComp = static_cast<ZBBPPageSymbol*>(pINode);
+            PSS_PageSymbolBP* pComp = static_cast<PSS_PageSymbolBP*>(pINode);
 
-            if (!pComp || !pComp->GetModelPage())
+            if (!pComp || !pComp->GetPageModel())
             {
                 continue;
             }
@@ -1575,25 +1575,25 @@ bool ZBDeliverableLinkSymbol::DoPageProcedureConnection(ZBBPPageSymbol*        p
 }
 
 bool ZBDeliverableLinkSymbol::DoProcedurePageConnection(ZBBPProcedureSymbol*    pSrc,
-                                                        ZBBPPageSymbol*        pDst,
+                                                        PSS_PageSymbolBP*        pDst,
                                                         CODModel*                pModel)
 {
     // If the page is pointing to a model
-    if (pModel && pDst->GetModelPage() &&
-        ISA(pDst->GetModelPage(), PSS_ProcessGraphModelMdlBP) &&
+    if (pModel && pDst->GetPageModel() &&
+        ISA(pDst->GetPageModel(), PSS_ProcessGraphModelMdlBP) &&
         ISA(pModel, PSS_ProcessGraphModelMdlBP))
     {
         CODNodeArray Nodes;
 
         size_t ElementCount =
-            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDst->GetModelPage())->GetBPPageSymbols(Nodes);
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDst->GetPageModel())->GetBPPageSymbols(Nodes);
 
         for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
         {
             IODNode* pINode = Nodes.GetAt(nNodeIdx);
-            ZBBPPageSymbol* pComp = static_cast<ZBBPPageSymbol*>(pINode);
+            PSS_PageSymbolBP* pComp = static_cast<PSS_PageSymbolBP*>(pINode);
 
-            if (!pComp || !pComp->GetModelPage())
+            if (!pComp || !pComp->GetPageModel())
             {
                 continue;
             }
@@ -1691,7 +1691,7 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
             {
                 // filter object classes
                 PSS_RuntimeClassSet rtClasses;
-                rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+                rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
                 rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
                 rtClasses.Add(RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 
@@ -4497,17 +4497,17 @@ ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetSourceProcedure() const
 
         // Otherwise, problem, then return NULL at the end of the function
     }
-    else if (pComp && ISA(pComp, ZBBPPageSymbol))
+    else if (pComp && ISA(pComp, PSS_PageSymbolBP))
     {
         // Locate the previous connection
         // of the twin symbol
-        if (!(pComp = dynamic_cast<ZBBPPageSymbol*>(pComp)->GetTwinPageSymbol()))
+        if (!(pComp = dynamic_cast<PSS_PageSymbolBP*>(pComp)->GetTwinPageSymbol()))
         {
             return NULL;
         }
 
         CODEdgeArray EnteringEdges;
-        size_t EnteringLinkCount = dynamic_cast<ZBBPPageSymbol*>(pComp)->GetEdgesEntering_Up(EnteringEdges);
+        size_t EnteringLinkCount = dynamic_cast<PSS_PageSymbolBP*>(pComp)->GetEdgesEntering_Up(EnteringEdges);
 
         if (EnteringLinkCount > 0)
         {
@@ -4568,17 +4568,17 @@ ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetTargetProcedure() const
         }
         // Otherwise, problem, then return NULL at the end of the function
     }
-    else if (pComp && ISA(pComp, ZBBPPageSymbol))
+    else if (pComp && ISA(pComp, PSS_PageSymbolBP))
     {
         // Locate the previous connection
         // of the twin symbol
-        if (!(pComp = dynamic_cast<ZBBPPageSymbol*>(pComp)->GetTwinPageSymbol()))
+        if (!(pComp = dynamic_cast<PSS_PageSymbolBP*>(pComp)->GetTwinPageSymbol()))
         {
             return NULL;
         }
 
         CODEdgeArray LeavingEdges;
-        size_t LeavingLinkCount = dynamic_cast<ZBBPPageSymbol*>(pComp)->GetEdgesLeaving_Down(LeavingEdges);
+        size_t LeavingLinkCount = dynamic_cast<PSS_PageSymbolBP*>(pComp)->GetEdgesLeaving_Down(LeavingEdges);
 
         if (LeavingLinkCount > 0)
         {
