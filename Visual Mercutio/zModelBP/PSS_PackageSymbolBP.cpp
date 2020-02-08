@@ -109,11 +109,11 @@ CODComponent* PSS_PackageSymbolBP::Dup() const
     return new PSS_PackageSymbolBP(*this);
 }
 //---------------------------------------------------------------------------
-void PSS_PackageSymbolBP::CopySymbolDefinitionFrom(CODSymbolComponent& other)
+void PSS_PackageSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
-    PSS_Symbol::CopySymbolDefinitionFrom(other);
+    PSS_Symbol::CopySymbolDefinitionFrom(src);
 
-    PSS_PackageSymbolBP* pOther = dynamic_cast<PSS_PackageSymbolBP*>(&other);
+    PSS_PackageSymbolBP* pOther = dynamic_cast<PSS_PackageSymbolBP*>(const_cast<CODSymbolComponent*>(&src));
 
     if (pOther)
     {

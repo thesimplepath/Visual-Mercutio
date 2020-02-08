@@ -17,7 +17,7 @@
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -58,7 +58,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         if (ISA(pSymbol, ZBBPStartSymbol))
             return RequestMoveForwardStartSymbol(pState, symbolSet, stateLinkSet, pLog);
         else
-        if (ISA(pSymbol, ZBBPProcedureSymbol))
+        if (ISA(pSymbol, PSS_ProcedureSymbolBP))
             return RequestMoveForwardProcedureSymbol(pState, symbolSet, stateLinkSet, pLog);
         else
         if (ISA(pSymbol, PSS_DoorSymbolBP))
@@ -426,7 +426,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         return PSS_AutomationMachine::IE_AS_Error;
     }
 
-    ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pState->GetSymbol());
+    PSS_ProcedureSymbolBP* pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pState->GetSymbol());
 
     if (!pProcedure);
     {

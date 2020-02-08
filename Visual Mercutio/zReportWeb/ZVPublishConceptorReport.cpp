@@ -326,8 +326,8 @@ bool ZVPublishConceptorReport::OnPageSymbol(PSS_PageSymbolBP* pSymbol)
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPProcedureSymbol.
-bool ZVPublishConceptorReport::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_ProcedureSymbolBP.
+bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     // Only for the specific unit
     // Check if for the same unit
@@ -720,9 +720,9 @@ bool ZVPublishConceptorReport::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBBPProcedureSymbol))
+    if (ISA(pSymbol, PSS_ProcedureSymbolBP))
     {
-        return OnProcedureSymbol(dynamic_cast<ZBBPProcedureSymbol*>(&Symbol));
+        return OnProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
     {

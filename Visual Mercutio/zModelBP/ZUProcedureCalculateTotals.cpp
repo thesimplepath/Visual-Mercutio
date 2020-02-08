@@ -9,7 +9,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
-#include "zModelBP\ZBBPProcedureSymbol.h"
+#include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
@@ -80,7 +80,7 @@ bool ZUProcedureCalculateTotals::OnPageSymbol(PSS_PageSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUProcedureCalculateTotals::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool ZUProcedureCalculateTotals::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     // Calculate totals only for local symbols
     if (!pSymbol->IsLocal())

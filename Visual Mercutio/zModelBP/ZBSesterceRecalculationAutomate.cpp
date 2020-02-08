@@ -17,7 +17,7 @@
 
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -202,7 +202,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     // 6. the procedure forecast cost
     // 7. the procedure cost per activity
     if (pState && pState->GetSymbol() &&
-        (ISA(pState->GetSymbol(), ZBBPProcedureSymbol) ||
+        (ISA(pState->GetSymbol(), PSS_ProcedureSymbolBP) ||
          ISA(pState->GetSymbol(), PSS_PageSymbolBP) ||
          ISA(pState->GetSymbol(), PSS_DoorSymbolBP) ||
          ISA(pState->GetSymbol(), ZBBPStopSymbol)))
@@ -235,12 +235,12 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
         }
 
         // Now check the object before
-        if (ISA(pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol))
+        if (ISA(pStateObjectBefore->GetSymbol(), PSS_ProcedureSymbolBP))
         {
-            ZBBPProcedureSymbol* pProcedureBefore =
-                dynamic_cast<ZBBPProcedureSymbol*>(pStateObjectBefore->GetSymbol());
+            PSS_ProcedureSymbolBP* pProcedureBefore =
+                dynamic_cast<PSS_ProcedureSymbolBP*>(pStateObjectBefore->GetSymbol());
 
-            ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
+            PSS_ProcedureSymbolBP* pLocalProcedureBefore = NULL;
 
             // Test if it is a local symbol
             if (!pProcedureBefore->IsLocal())
@@ -248,9 +248,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 // Locate the local symbol
                 CODComponent* pComp = pProcedureBefore->GetLocalSymbol();
 
-                if (pComp && ISA(pComp, ZBBPProcedureSymbol))
+                if (pComp && ISA(pComp, PSS_ProcedureSymbolBP))
                 {
-                    pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
+                    pLocalProcedureBefore = dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
                 }
                 else
                 {
@@ -463,12 +463,12 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
 
         // Prepare the procedure cost calculation
         // and after the forecast cost and the cost per activation
-        if (ISA(pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol))
+        if (ISA(pStateObjectBefore->GetSymbol(), PSS_ProcedureSymbolBP))
         {
-            ZBBPProcedureSymbol* pProcedureBefore =
-                dynamic_cast<ZBBPProcedureSymbol*>(pStateObjectBefore->GetSymbol());
+            PSS_ProcedureSymbolBP* pProcedureBefore =
+                dynamic_cast<PSS_ProcedureSymbolBP*>(pStateObjectBefore->GetSymbol());
 
-            ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
+            PSS_ProcedureSymbolBP* pLocalProcedureBefore = NULL;
 
             // Test if it is a local symbol
             if (!pProcedureBefore->IsLocal())
@@ -476,9 +476,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 // Locate the local symbol
                 CODComponent* pComp = pProcedureBefore->GetLocalSymbol();
 
-                if (pComp && ISA(pComp, ZBBPProcedureSymbol))
+                if (pComp && ISA(pComp, PSS_ProcedureSymbolBP))
                 {
-                    pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
+                    pLocalProcedureBefore = dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
                 }
                 else
                 {
@@ -730,10 +730,10 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
     // Now check if we are a procedure
     // If we are, calculate the procedure activation
-    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPProcedureSymbol))
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_ProcedureSymbolBP))
     {
-        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pState->GetSymbol());
-        ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
+        PSS_ProcedureSymbolBP* pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pState->GetSymbol());
+        PSS_ProcedureSymbolBP* pLocalProcedureBefore = NULL;
 
         // Test if it is a local symbol
         if (!pProcedure->IsLocal())
@@ -741,9 +741,9 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
             // Locate the local symbol
             CODComponent* pComp = pProcedure->GetLocalSymbol();
 
-            if (pComp && ISA(pComp, ZBBPProcedureSymbol))
+            if (pComp && ISA(pComp, PSS_ProcedureSymbolBP))
             {
-                pLocalProcedureBefore = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
+                pLocalProcedureBefore = dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
             }
             else
             {
@@ -949,8 +949,8 @@ bool ZBSesterceRecalculationAutomate::OnReachMaximumInPauseCounter(PSS_Log* pLog
 
 double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables(CODEdgeArray&        LeavingEdges,
                                                                       size_t                LeavingLinkCount,
-                                                                      ZBBPProcedureSymbol*    pProcedure,
-                                                                      ZBBPProcedureSymbol*    pLocalProcedureBefore)
+                                                                      PSS_ProcedureSymbolBP*    pProcedure,
+                                                                      PSS_ProcedureSymbolBP*    pLocalProcedureBefore)
 {
     double dValue = 0;
     double dPercentOut;

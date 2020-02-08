@@ -22,7 +22,7 @@
 #include "ZBPublishMessengerModelInformation.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -291,7 +291,7 @@ bool PSS_SoapPublishModelDefinition::OnPageSymbol(PSS_PageSymbolBP* pSymbol)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelDefinition::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool PSS_SoapPublishModelDefinition::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     if (!pSymbol)
         return false;

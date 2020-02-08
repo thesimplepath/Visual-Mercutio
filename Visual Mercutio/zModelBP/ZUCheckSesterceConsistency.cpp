@@ -18,7 +18,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
-#include "zModelBP\ZBBPProcedureSymbol.h"
+#include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
@@ -72,9 +72,9 @@ bool ZUCheckSesterceConsistency::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBBPProcedureSymbol))
+    if (ISA(pSymbol, PSS_ProcedureSymbolBP))
     {
-        return CheckProcedureSymbol(dynamic_cast<ZBBPProcedureSymbol*>(&Symbol));
+        return CheckProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
     {
@@ -125,7 +125,7 @@ bool ZUCheckSesterceConsistency::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool ZUCheckSesterceConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 
@@ -135,9 +135,9 @@ bool ZUCheckSesterceConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymb
         // Locate the local symbol
         CODComponent* pComp = pSymbol->GetLocalSymbol();
 
-        if (pComp && ISA(pComp, ZBBPProcedureSymbol))
+        if (pComp && ISA(pComp, PSS_ProcedureSymbolBP))
         {
-            pSymbol = dynamic_cast<ZBBPProcedureSymbol*>(pComp);
+            pSymbol = dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
         }
     }
 

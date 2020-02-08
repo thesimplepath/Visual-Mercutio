@@ -13,7 +13,7 @@
 
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
-#include "zModelBP\ZBBPProcedureSymbol.h"
+#include "zModelBP\PSS_ProcedureSymbolBP.h"
 
 #include "zModelBP\ZUExtractProcessName.h"
 #include "ZUSynthesisNavigation.h"

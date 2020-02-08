@@ -102,10 +102,10 @@ class AFX_EXT_CLASS PSS_DoorSymbolBP : public PSS_Symbol
         virtual CODComponent* Dup() const;
 
         /**
-        * Copies the symbol definition only from another symbol
-        *@param other - the other symbol to copy from
+        * Copies the symbol definition from another symbol
+        *@param src - the source symbol to copy from
         */
-        virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
+        virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
         /**
         * Checks if this symbol is a door
@@ -268,7 +268,7 @@ class AFX_EXT_CLASS PSS_DoorSymbolBP : public PSS_Symbol
 
         /**
         * Called when the symbol name changed
-        *@param comp - the component for which the name changed
+        *@param[in, out] comp - the component for which the name changed
         *@param oldName - the old component name
         */
         virtual void OnSymbolNameChanged(CODComponent& comp, const CString& oldName);

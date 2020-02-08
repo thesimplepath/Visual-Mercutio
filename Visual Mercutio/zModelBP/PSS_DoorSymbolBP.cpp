@@ -137,11 +137,11 @@ CODComponent* PSS_DoorSymbolBP::Dup() const
     return new PSS_DoorSymbolBP(*this);
 }
 //---------------------------------------------------------------------------
-void PSS_DoorSymbolBP::CopySymbolDefinitionFrom(CODSymbolComponent& other)
+void PSS_DoorSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
-    PSS_Symbol::CopySymbolDefinitionFrom(other);
+    PSS_Symbol::CopySymbolDefinitionFrom(src);
 
-    PSS_DoorSymbolBP* pDoor = dynamic_cast<PSS_DoorSymbolBP*>(&other);
+    PSS_DoorSymbolBP* pDoor = dynamic_cast<PSS_DoorSymbolBP*>(const_cast<CODSymbolComponent*>(&src));
 
     if (pDoor)
     {

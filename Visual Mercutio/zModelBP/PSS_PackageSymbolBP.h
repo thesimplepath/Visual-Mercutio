@@ -117,10 +117,10 @@ class AFX_EXT_CLASS PSS_PackageSymbolBP : public PSS_Symbol
         virtual CODComponent* Dup() const;
 
         /**
-        * Copies the symbol definition only from another symbol
-        *@param other - the other symbol to copy from
+        * Copies the symbol definition from another symbol
+        *@param src - the source symbol to copy from
         */
-        virtual void CopySymbolDefinitionFrom(CODSymbolComponent& other);
+        virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
         /**
         * Checks if this symbol is a package

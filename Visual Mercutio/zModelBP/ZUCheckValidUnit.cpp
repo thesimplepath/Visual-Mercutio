@@ -6,7 +6,7 @@
 
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zModelBP\ZBBPProcedureSymbol.h"
+#include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 
@@ -47,7 +47,7 @@ bool ZUCheckValidUnit::OnFinish()
     return true;
 }
 
-bool ZUCheckValidUnit::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool ZUCheckValidUnit::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     // Test if it is a local symbol
     if (!pSymbol || !pSymbol->IsLocal())

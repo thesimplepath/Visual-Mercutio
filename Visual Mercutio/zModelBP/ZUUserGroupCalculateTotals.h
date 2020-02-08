@@ -143,12 +143,12 @@ public:
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+    virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
 
 
 private:
 
-    void AddProcedureToTotal(ZBBPProcedureSymbol* pSymbol, _ZBUserGroupTotal& Total);
+    void AddProcedureToTotal(PSS_ProcedureSymbolBP* pSymbol, _ZBUserGroupTotal& Total);
     void CreateInitialGroupSet();
     void EmptySet();
     _ZBUserGroupTotal* FindTotal(const CString GroupName);

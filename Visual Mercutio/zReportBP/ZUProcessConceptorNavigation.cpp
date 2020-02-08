@@ -12,7 +12,7 @@
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
-#include "zModelBP\ZBBPProcedureSymbol.h"
+#include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
@@ -91,8 +91,8 @@ bool ZUProcessConceptorNavigation::OnFinish()
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPProcedureSymbol dans le modèle.
-bool ZUProcessConceptorNavigation::OnProcedureSymbol(ZBBPProcedureSymbol* pProcedure)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_ProcedureSymbolBP dans le modèle.
+bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pProcedure)
 {
     // Check the number of row
     int left, top;

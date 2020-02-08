@@ -96,7 +96,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
         *@param pSymbol - symbol for which definitions sould be added
         *@return true on success, otherwise false
         */
-        virtual bool OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol);
+        virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
 
         /**
         * Called when process symbol definitions should be added to publication

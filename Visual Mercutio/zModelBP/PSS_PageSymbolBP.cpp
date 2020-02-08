@@ -126,11 +126,11 @@ CODComponent* PSS_PageSymbolBP::Dup() const
     return new PSS_PageSymbolBP(*this);
 }
 //---------------------------------------------------------------------------
-void PSS_PageSymbolBP::CopySymbolDefinitionFrom(CODSymbolComponent& src)
+void PSS_PageSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     PSS_Symbol::CopySymbolDefinitionFrom(src);
 
-    PSS_PageSymbolBP* pPage = dynamic_cast<PSS_PageSymbolBP*>(&src);
+    PSS_PageSymbolBP* pPage = dynamic_cast<PSS_PageSymbolBP*>(const_cast<CODSymbolComponent*>(&src));
 
     if (pPage)
     {

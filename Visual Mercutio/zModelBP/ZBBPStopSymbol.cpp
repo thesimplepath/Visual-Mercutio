@@ -102,7 +102,7 @@ CODComponent* ZBBPStopSymbol::Dup() const
     return (new ZBBPStopSymbol(*this));
 }
 
-void ZBBPStopSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
+void ZBBPStopSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     // Class the base class method
     PSS_Symbol::CopySymbolDefinitionFrom(src);

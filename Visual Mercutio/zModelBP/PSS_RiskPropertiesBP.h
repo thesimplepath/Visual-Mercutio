@@ -196,26 +196,26 @@ class AFX_EXT_CLASS PSS_RiskPropertiesBP : public CObject
         virtual inline void SetRiskSeverity(const int value);
 
         /**
-        * Gets the risk UE
-        *@return the risk UE
+        * Gets the risk unitary estimation
+        *@return the risk unitary estimation
         */
         virtual inline float GetRiskUE() const;
 
         /**
-        * Sets the risk UE
-        *@param value - the risk UE
+        * Sets the risk unitary estimation
+        *@param value - the risk unitary estimation
         */
         virtual inline void SetRiskUE(const float value);
 
         /**
-        * Gets the risk POA
-        *@return the risk POA
+        * Gets the risk annual operating loss (perte opérationnelle annuelle in French)
+        *@return the risk annual operating loss (perte opérationnelle annuelle in French)
         */
         virtual inline float GetRiskPOA() const;
 
         /**
-        * Sets the risk POA
-        *@param value - the risk POA
+        * Sets the risk annual operating loss (perte opérationnelle annuelle in French)
+        *@param value - the risk annual operating loss (perte opérationnelle annuelle in French)
         */
         virtual inline void SetRiskPOA(const float value);
 

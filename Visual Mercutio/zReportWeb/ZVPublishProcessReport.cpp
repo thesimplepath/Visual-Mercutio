@@ -352,9 +352,9 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une procédure.
-                            if (pComponent && ISA(pComponent, ZBBPProcedureSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcedureSymbolBP))
                             {
-                                ZBBPProcedureSymbol* m_Procedure = dynamic_cast<ZBBPProcedureSymbol*>(pComponent);
+                                PSS_ProcedureSymbolBP* m_Procedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pComponent);
 
                                 if (m_Procedure != NULL)
                                 {
@@ -698,9 +698,9 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une procédure.
-                            if (pComponent && ISA(pComponent, ZBBPProcedureSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcedureSymbolBP))
                             {
-                                ZBBPProcedureSymbol* m_Procedure = dynamic_cast<ZBBPProcedureSymbol*>(pComponent);
+                                PSS_ProcedureSymbolBP* m_Procedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pComponent);
 
                                 if (m_Procedure != NULL)
                                 {
@@ -1084,12 +1084,12 @@ void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
                                 ObjType,
                                 RGB(192, 192, 192));
 
-        ZBBPProcedureSymbol* m_ProcedureSymbol = NULL;
+        PSS_ProcedureSymbolBP* m_ProcedureSymbol = NULL;
 
         if (FindSymbol(myCurNode->GetName()) != NULL &&
-            ISA(FindSymbol(myCurNode->GetName()), ZBBPProcedureSymbol))
+            ISA(FindSymbol(myCurNode->GetName()), PSS_ProcedureSymbolBP))
         {
-            m_ProcedureSymbol = dynamic_cast<ZBBPProcedureSymbol*>(FindSymbol(myCurNode->GetName()));
+            m_ProcedureSymbol = dynamic_cast<PSS_ProcedureSymbolBP*>(FindSymbol(myCurNode->GetName()));
         }
 
         if (m_ProcedureSymbol != NULL)

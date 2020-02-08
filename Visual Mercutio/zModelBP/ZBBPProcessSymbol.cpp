@@ -307,7 +307,7 @@ bool ZBBPProcessSymbol::DropItem(CObject* pObj, const CPoint& pt)
     return PSS_Symbol::DropItem(pObj, pt);
 }
 
-void ZBBPProcessSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
+void ZBBPProcessSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     // Class the base class method
     PSS_Symbol::CopySymbolDefinitionFrom(src);
@@ -322,7 +322,7 @@ void ZBBPProcessSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
         m_PrestProperties = ((ZBBPProcessSymbol&)src).m_PrestProperties;
 
         // JMR-MODIF - Le 6 février 2006 - Copie aussi les propriétés de livraisons.
-        m_Deliveries = dynamic_cast<ZBBPProcessSymbol&>(src).m_Deliveries;
+        m_Deliveries = dynamic_cast<ZBBPProcessSymbol&>(const_cast<CODSymbolComponent&>(src)).m_Deliveries;
         m_Deliveries.SetParent(this);
 
         // JMR-MODIF - Le 18 décembre 2006 - Ajout de la copie de la variable m_Rules.

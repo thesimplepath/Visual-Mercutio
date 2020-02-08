@@ -27,7 +27,7 @@
 #include "zModel\PSS_DeleteModelPageDlg.h"
 #include "zModel\PSS_UnitObserverMsg.h"
 #include "zModel\PSS_DocObserverMsg.h"
-#include "zModelBP\ZBBPProcedureSymbol.h"
+#include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
@@ -288,7 +288,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsProcedure()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPProcedureSymbol> pSymbol(new ZBBPProcedureSymbol());
+    std::unique_ptr<PSS_ProcedureSymbolBP> pSymbol(new PSS_ProcedureSymbolBP());
     pSymbol->Create();
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();

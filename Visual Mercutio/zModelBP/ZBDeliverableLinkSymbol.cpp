@@ -20,7 +20,7 @@
 
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -429,7 +429,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolName()
     return true;
 }
 
-void ZBDeliverableLinkSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
+void ZBDeliverableLinkSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     // Class the base class method
     PSS_LinkSymbol::CopySymbolDefinitionFrom(src);
@@ -536,28 +536,28 @@ bool ZBDeliverableLinkSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODCon
     if (pSrc && pDst)
     {
         // Check for door procedure and procedure door
-        if (ISA(pSrc, PSS_DoorSymbolBP) && ISA(pDst, ZBBPProcedureSymbol))
+        if (ISA(pSrc, PSS_DoorSymbolBP) && ISA(pDst, PSS_ProcedureSymbolBP))
         {
             DoDoorProcedureConnection(dynamic_cast<PSS_DoorSymbolBP*>(pSrc),
-                                      dynamic_cast<ZBBPProcedureSymbol*>(pDst),
+                                      dynamic_cast<PSS_ProcedureSymbolBP*>(pDst),
                                       pModel);
         }
-        else if (ISA(pSrc, ZBBPProcedureSymbol) && ISA(pDst, PSS_DoorSymbolBP))
+        else if (ISA(pSrc, PSS_ProcedureSymbolBP) && ISA(pDst, PSS_DoorSymbolBP))
         {
-            DoProcedureDoorConnection(dynamic_cast<ZBBPProcedureSymbol*>(pSrc),
+            DoProcedureDoorConnection(dynamic_cast<PSS_ProcedureSymbolBP*>(pSrc),
                                       dynamic_cast<PSS_DoorSymbolBP*>(pDst),
                                       pModel);
         }
         // Check for page procedure and procedure page
-        else if (ISA(pSrc, PSS_PageSymbolBP) && ISA(pDst, ZBBPProcedureSymbol))
+        else if (ISA(pSrc, PSS_PageSymbolBP) && ISA(pDst, PSS_ProcedureSymbolBP))
         {
             DoPageProcedureConnection(dynamic_cast<PSS_PageSymbolBP*>(pSrc),
-                                      dynamic_cast<ZBBPProcedureSymbol*>(pDst),
+                                      dynamic_cast<PSS_ProcedureSymbolBP*>(pDst),
                                       pModel);
         }
-        else if (ISA(pSrc, ZBBPProcedureSymbol) && ISA(pDst, PSS_PageSymbolBP))
+        else if (ISA(pSrc, PSS_ProcedureSymbolBP) && ISA(pDst, PSS_PageSymbolBP))
         {
-            DoProcedurePageConnection(dynamic_cast<ZBBPProcedureSymbol*>(pSrc),
+            DoProcedurePageConnection(dynamic_cast<PSS_ProcedureSymbolBP*>(pSrc),
                                       dynamic_cast<PSS_PageSymbolBP*>(pDst),
                                       pModel);
         }
@@ -1412,7 +1412,7 @@ BOOL ZBDeliverableLinkSymbol::MovePort(CODPortComponent* pPort, const int nOffse
 }
 
 bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection(PSS_DoorSymbolBP*        pSrc,
-                                                        ZBBPProcedureSymbol*    pDst,
+                                                        PSS_ProcedureSymbolBP*    pDst,
                                                         CODModel*                pModel)
 {
     // If the door is pointing to a model
@@ -1464,7 +1464,7 @@ bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection(PSS_DoorSymbolBP*       
     return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection(ZBBPProcedureSymbol*    pSrc,
+bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection(PSS_ProcedureSymbolBP*    pSrc,
                                                         PSS_DoorSymbolBP*        pDst,
                                                         CODModel*                pModel)
 {
@@ -1520,7 +1520,7 @@ bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection(ZBBPProcedureSymbol*    
 }
 
 bool ZBDeliverableLinkSymbol::DoPageProcedureConnection(PSS_PageSymbolBP*        pSrc,
-                                                        ZBBPProcedureSymbol*    pDst,
+                                                        PSS_ProcedureSymbolBP*    pDst,
                                                         CODModel*                pModel)
 {
     // If the page is pointing to a model
@@ -1574,7 +1574,7 @@ bool ZBDeliverableLinkSymbol::DoPageProcedureConnection(PSS_PageSymbolBP*       
     return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoProcedurePageConnection(ZBBPProcedureSymbol*    pSrc,
+bool ZBDeliverableLinkSymbol::DoProcedurePageConnection(PSS_ProcedureSymbolBP*    pSrc,
                                                         PSS_PageSymbolBP*        pDst,
                                                         CODModel*                pModel)
 {
@@ -4360,7 +4360,7 @@ size_t ZBDeliverableLinkSymbol::GetTextItemCount() const
 CString ZBDeliverableLinkSymbol::GetCombinationName() const
 {
     // Retrieve the destination procedure
-    ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
+    PSS_ProcedureSymbolBP* pProcedure = GetTargetProcedure();
 
     if (!pProcedure)
     {
@@ -4420,7 +4420,7 @@ size_t ZBDeliverableLinkSymbol::GetRuleCount() const
 float ZBDeliverableLinkSymbol::GetCombinationMaxPercentage() const
 {
     // Retrieve the destination procedure
-    ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
+    PSS_ProcedureSymbolBP* pProcedure = GetTargetProcedure();
 
     // Test if it is a local symbol
     if (pProcedure && !pProcedure->IsLocal())
@@ -4428,9 +4428,9 @@ float ZBDeliverableLinkSymbol::GetCombinationMaxPercentage() const
         // Locate the local symbol
         CODComponent* pLocal = pProcedure->GetLocalSymbol();
 
-        if (pLocal && ISA(pLocal, ZBBPProcedureSymbol))
+        if (pLocal && ISA(pLocal, PSS_ProcedureSymbolBP))
         {
-            pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pLocal);
+            pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pLocal);
         }
         else
         {
@@ -4459,14 +4459,14 @@ float ZBDeliverableLinkSymbol::GetCombinationMaxPercentage() const
     return (float)INT_MAX;
 }
 
-ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetSourceProcedure() const
+PSS_ProcedureSymbolBP* ZBDeliverableLinkSymbol::GetSourceProcedure() const
 {
     // Retrieve the input procedure name
     CODComponent* pComp = GetSourceComponent();
 
-    if (pComp && ISA(pComp, ZBBPProcedureSymbol))
+    if (pComp && ISA(pComp, PSS_ProcedureSymbolBP))
     {
-        return dynamic_cast<ZBBPProcedureSymbol*>(pComp);
+        return dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
     }
     else if (pComp && ISA(pComp, PSS_DoorSymbolBP))
     {
@@ -4531,14 +4531,14 @@ ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetSourceProcedure() const
     return NULL;
 }
 
-ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetTargetProcedure() const
+PSS_ProcedureSymbolBP* ZBDeliverableLinkSymbol::GetTargetProcedure() const
 {
     // Retrieve the target connected symbol
     CODComponent* pComp = GetTargetComponent();
 
-    if (pComp && ISA(pComp, ZBBPProcedureSymbol))
+    if (pComp && ISA(pComp, PSS_ProcedureSymbolBP))
     {
-        return dynamic_cast<ZBBPProcedureSymbol*>(pComp);
+        return dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
     }
     else if (pComp && ISA(pComp, PSS_DoorSymbolBP))
     {
@@ -4719,7 +4719,7 @@ ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetGoingToProcess() const
 bool ZBDeliverableLinkSymbol::IsMasterOfCombination() const
 {
     // Retrieve the destination procedure
-    ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
+    PSS_ProcedureSymbolBP* pProcedure = GetTargetProcedure();
 
     // Test if it is a local symbol
     if (pProcedure && !pProcedure->IsLocal())
@@ -4727,9 +4727,9 @@ bool ZBDeliverableLinkSymbol::IsMasterOfCombination() const
         // Locate the local symbol
         CODComponent* pLocal = pProcedure->GetLocalSymbol();
 
-        if (pLocal && ISA(pLocal, ZBBPProcedureSymbol))
+        if (pLocal && ISA(pLocal, PSS_ProcedureSymbolBP))
         {
-            pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pLocal);
+            pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pLocal);
         }
         else
         {

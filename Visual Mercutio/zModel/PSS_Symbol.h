@@ -519,7 +519,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
 
         /**
         * Applies the format coming from another object
-        *@param srcObj - source object
+        *@param[in, out] srcObj - source object
         *@param font - if true, the fonts will be copied
         *@param fill - if true, the fill style will be copied
         *@param line - if true, the line style will be copied
@@ -748,7 +748,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
 
         /**
         * Saves the changes to object properties
-        *@param propSet - property set to fill with the saved properties
+        *@param[in, out] propSet - property set to fill with the saved properties
         *@return true on success, otherwise false
         */
         virtual bool SaveProperties(ZBPropertySet& propSet);
@@ -769,18 +769,18 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
 
         /**
         * Checks the property value
-        *@param prop - property to check
-        *@param value - property value
-        *@param props - property set at which the property belongs
+        *@param[in, out] prop - property to check
+        *@param[in, out] value - property value
+        *@param[in, out] props - property set at which the property belongs
         *@return true if the property value was checked successfully, otherwise false
         */
         virtual bool CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props);
 
         /**
         * Processes the extended input for the property value
-        *@param prop - property
-        *@param value - property value
-        *@param props - property set at which the property belongs
+        *@param[in, out] prop - property
+        *@param[in, out] value - property value
+        *@param[in, out] props - property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
@@ -789,9 +789,9 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         /**
         * Processes the menu command for the property value
         *@param menuCmdID - menu command identifier to process
-        *@param prop - property
-        *@param value - property value
-        *@param props - property set at which the property belongs
+        *@param[in, out] prop - property
+        *@param[in, out] value - property value
+        *@param[in, out] props - property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
@@ -821,7 +821,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
 
         /**
         * Checks if the object can be visited
-        *@param visitor - the visitor
+        *@param[in, out] visitor - the visitor
         *@return true if the object can be visited, otherwise false
         */
         virtual inline bool AcceptVisitor(PSS_BasicSymbolVisitor& visitor);
@@ -1148,7 +1148,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         * Called when the mouse moves above the symbol
         *@param flags - special keys flags
         *@param point - the mouse position in pixels
-        *@param ctrl - the controller
+        *@param[in, out] ctrl - the controller
         *@return true on success, otherwise false
         */
         virtual bool OnMouseMove(UINT flags, const CPoint& point, CODController& ctrl);
@@ -1157,7 +1157,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         * Called when the left mouse button is down above the symbol
         *@param flags - special keys flags
         *@param point - the mouse position in pixels
-        *@param ctrl - the controller
+        *@param[in, out] ctrl - the controller
         *@return true on success, otherwise false
         */
         virtual bool OnLButtonDown(UINT flags, const CPoint& point, CODController& ctrl);
@@ -1166,7 +1166,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         * Called when the left mouse button is up above the symbol
         *@param flags - special keys flags
         *@param point - the mouse position in pixels
-        *@param ctrl - the controller
+        *@param[in, out] ctrl - the controller
         *@return true on success, otherwise false
         */
         virtual bool OnLButtonUp(UINT flags, const CPoint& point, CODController& ctrl);
@@ -1175,7 +1175,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         * Called when the left mouse button is double clicked above the symbol
         *@param flags - special keys flags
         *@param point - the mouse position in pixels
-        *@param ctrl - the controller
+        *@param[in, out] ctrl - the controller
         *@return true on success, otherwise false
         */
         virtual bool OnLButtonDblClk(UINT flags, const CPoint& point, CODController& ctrl);
@@ -1184,7 +1184,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         * Called when the right mouse button is down above the symbol
         *@param flags - special keys flags
         *@param point - the mouse position in pixels
-        *@param ctrl - the controller
+        *@param[in, out] ctrl - the controller
         *@return true on success, otherwise false
         */
         virtual bool OnRButtonDown(UINT flags, const CPoint& point, CODController& ctrl);
@@ -1193,7 +1193,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         * Called when the right mouse button is up above the symbol
         *@param flags - special keys flags
         *@param point - the mouse position in pixels
-        *@param ctrl - the controller
+        *@param[in, out] ctrl - the controller
         *@return true on success, otherwise false
         */
         virtual bool OnRButtonUp(UINT flags, const CPoint& point, CODController& ctrl);
@@ -1234,27 +1234,27 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         /**
         * Called before the property changes
         *@param newValue - the new value
-        *@param prop - the changing property
-        *@param props - the property set at which the changing property belongs
+        *@param[in, out] prop - the changing property
+        *@param[in, out] props - the property set at which the changing property belongs
         *@return true if the property is allowed to change, otherwise false
         */
         virtual bool OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props);
 
         /**
         * Called after the property changed
-        *@param prop - the changing property
-        *@param props - the property set at which the changing property belongs
-        *@param refresh - if true, the symbol will be refreshed immediately
+        *@param[in, out] prop - the changing property
+        *@param[in, out] props - the property set at which the changing property belongs
+        *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         *@return true if the property changed, otherwise false
         */
         virtual bool OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when an internal property drag&drop occurred in the symbol
-        *@param srcProperty - the source property
-        *@param dstProperty - the destination property
+        *@param[in, out] srcProperty - the source property
+        *@param[in, out] dstProperty - the destination property
         *@param top2Down - if true, the drag&drop happens from top to down
-        *@param props - the property set at which the drag&dropped properties belong
+        *@param[in, out] props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
         virtual bool OnDropInternalPropertyItem(ZBProperty&    srcProperty,
@@ -1264,7 +1264,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
 
         /**
         * Called when the symbol name has changed
-        *@param comp - the symbol component for which the name has changed
+        *@param[in, out] comp - the symbol component for which the name has changed
         *@param oldName - the old name
         */
         virtual void OnSymbolNameChanged(CODComponent& comp, const CString& oldName);
@@ -1377,7 +1377,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         /**
         * Gets the entering links matching with the name
         *@param name - the name to search
-        *@param edged - the edge array containing the matching links
+        *@param[out] edges - the edge array containing the matching links
         *@return the found link count
         */
         virtual std::size_t GetEdgesEntering_Name(const CString& name, CODEdgeArray& edges);
@@ -1385,7 +1385,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         /**
         * Gets the leaving links matching with the name
         *@param name - the name to search
-        *@param edged - the edge array containing the matching links
+        *@param[out] edges - the edge array containing the matching links
         *@return the found link count
         */
         virtual std::size_t GetEdgesLeaving_Name(const CString& name, CODEdgeArray& edges);

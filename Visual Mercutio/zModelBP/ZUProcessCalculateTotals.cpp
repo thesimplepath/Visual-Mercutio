@@ -12,7 +12,7 @@
 
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -63,7 +63,7 @@ bool ZUProcessCalculateTotals::OnPageSymbol(PSS_PageSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUProcessCalculateTotals::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool ZUProcessCalculateTotals::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     return true;
 }

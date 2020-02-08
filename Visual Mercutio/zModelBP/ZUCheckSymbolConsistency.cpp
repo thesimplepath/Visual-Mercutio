@@ -9,7 +9,7 @@
 
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -144,9 +144,9 @@ bool ZUCheckSymbolConsistency::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBBPProcedureSymbol))
+    if (ISA(pSymbol, PSS_ProcedureSymbolBP))
     {
-        return CheckProcedureSymbol(dynamic_cast<ZBBPProcedureSymbol*>(&Symbol));
+        return CheckProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
     {
@@ -363,7 +363,7 @@ bool ZUCheckSymbolConsistency::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCheckSymbolConsistency::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 
@@ -874,7 +874,7 @@ bool ZUCheckSymbolConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
 
     // Check if a process is attached to it
     if (DownSymbolCount > 0 &&
-        PSS_ODSymbolManipulator::HasSymbolsISA(DownNodes, RUNTIME_CLASS(ZBBPProcedureSymbol)))
+        PSS_ODSymbolManipulator::HasSymbolsISA(DownNodes, RUNTIME_CLASS(PSS_ProcedureSymbolBP)))
     {
         if (m_pLog)
         {

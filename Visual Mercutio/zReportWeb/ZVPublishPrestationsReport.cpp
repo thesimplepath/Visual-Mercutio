@@ -91,9 +91,9 @@ void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, PSS_Process
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une procédure.
-                            if (pComponent && ISA(pComponent, ZBBPProcedureSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcedureSymbolBP))
                             {
-                                ZBBPProcedureSymbol* m_Procedure = dynamic_cast<ZBBPProcedureSymbol*>(pComponent);
+                                PSS_ProcedureSymbolBP* m_Procedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pComponent);
 
                                 ZBPropertySet PropSet;
                                 m_Procedure->FillProperties(PropSet);

@@ -44,7 +44,7 @@ public:
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnProcedureSymbol(ZBBPProcedureSymbol*        pSymbol);
+    virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP*        pSymbol);
     virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol*    pSymbol);
 
 private:

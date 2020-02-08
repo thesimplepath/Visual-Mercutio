@@ -11,9 +11,12 @@
 
 #include "PSS_AutomateBP.h"
 
-//////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBBPProcedureSymbol;
+#ifndef PSS_ProcedureSymbolBP
+    #define PSS_ProcedureSymbolBP ZBBPProcedureSymbol
+#endif
+
+// forward class declaration
+class PSS_ProcedureSymbolBP;
 
 // JMR-MODIF - Le 4 septembre 2006 - Ajout des décorations unicode _T(), nettoyage du code inutile. (En commentaires)
 
@@ -76,13 +79,13 @@ private:
 
     bool SetCaseDurationOfLateralDeliverables(CODEdgeArray&        LeavingEdges,
                                               size_t                LeavingLinkCount,
-                                              ZBBPProcedureSymbol*    pProcedure,
+                                              PSS_ProcedureSymbolBP*    pProcedure,
                                               PSS_Log*                pLog);
 
     bool SetCaseDurationOfDownDeliverables(PSS_StateObject*            pState,
                                            CODEdgeArray&            LeavingEdges,
                                            size_t                    LeavingLinkCount,
-                                           ZBBPProcedureSymbol*    pProcedure,
+                                           PSS_ProcedureSymbolBP*    pProcedure,
                                            PSS_Log*                    pLog);
 
     bool SetStartSymbolCaseDurationOfDownDeliverables(PSS_StateObject*    pState,
@@ -93,7 +96,7 @@ private:
     bool SetCaseDurationOfProcedure(PSS_StateObject*            pState,
                                     CODEdgeArray&            LeavingEdges,
                                     size_t                    LeavingLinkCount,
-                                    ZBBPProcedureSymbol*    pProcedure,
+                                    PSS_ProcedureSymbolBP*    pProcedure,
                                     PSS_Log*                    pLog);
 
 private:

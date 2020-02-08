@@ -58,7 +58,7 @@ public:
     virtual CODComponent* Dup() const;
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
+    virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
     // Return the unique object type ID
     virtual int GetObjectTypeID() const

@@ -12,7 +12,7 @@
 
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
-#include "zModelBP\ZBBPProcedureSymbol.h"
+#include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
@@ -67,8 +67,8 @@ bool ZUSynthesisNavigation::OnFinish()
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPProcedureSymbol dans le modèle.
-bool ZUSynthesisNavigation::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_ProcedureSymbolBP dans le modèle.
+bool ZUSynthesisNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     int top;
     int left;

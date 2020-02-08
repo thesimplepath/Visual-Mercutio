@@ -22,7 +22,7 @@
 #include "PSS_PageSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 #include "ZBInputAttributes.h"
@@ -115,7 +115,7 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetBPStopSymbols(CODNodeArray& nodes, bo
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPProcedureSymbols(CODNodeArray& nodes, bool deep)
 {
-    return GetSymbolsISA(nodes, RUNTIME_CLASS(ZBBPProcedureSymbol), deep);
+    return GetSymbolsISA(nodes, RUNTIME_CLASS(PSS_ProcedureSymbolBP), deep);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPProcessSymbols(CODNodeArray& nodes, bool deep)
@@ -165,9 +165,9 @@ void PSS_ProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog)
         if (!pSymbol)
             continue;
 
-        ZBBPStartSymbol*     pStartSymbol     =                       dynamic_cast<ZBBPStartSymbol*>(pComp);
-        ZBBPStopSymbol*      pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
-        ZBBPProcedureSymbol* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<ZBBPProcedureSymbol*>(pComp);
+        ZBBPStartSymbol*       pStartSymbol     =                       dynamic_cast<ZBBPStartSymbol*>(pComp);
+        ZBBPStopSymbol*        pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
+        PSS_ProcedureSymbolBP* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
 
         // if a start symbol, a stop symbol, or a procedure symbol
         if (pStartSymbol                          &&
@@ -660,10 +660,10 @@ void PSS_ProcessGraphModelMdlBP::MigrateUnitGUID()
         if (!pSymbol)
             continue;
 
-        ZBBPStartSymbol*     pStartSymbol     =                       dynamic_cast<ZBBPStartSymbol*>(pComp);
-        ZBBPStopSymbol*      pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
-        ZBBPProcedureSymbol* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<ZBBPProcedureSymbol*>(pComp);
-        bool                 error;
+        ZBBPStartSymbol*       pStartSymbol     =                       dynamic_cast<ZBBPStartSymbol*>(pComp);
+        ZBBPStopSymbol*        pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
+        PSS_ProcedureSymbolBP* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
+        bool                   error;
 
         // if a start symbol, a stop symbol, or a procedure symbol
         if (pStartSymbol && !pStartSymbol->GetUnitName().IsEmpty())

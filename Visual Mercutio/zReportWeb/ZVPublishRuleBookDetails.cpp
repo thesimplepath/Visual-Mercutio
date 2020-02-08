@@ -168,9 +168,9 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une procédure.
-                            if (pComponent && ISA(pComponent, ZBBPProcedureSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcedureSymbolBP))
                             {
-                                ZBBPProcedureSymbol* m_Procedure = dynamic_cast<ZBBPProcedureSymbol*>(pComponent);
+                                PSS_ProcedureSymbolBP* m_Procedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pComponent);
 
                                 if (m_Procedure != NULL)
                                 {
@@ -255,10 +255,10 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                                                     dynamic_cast<ZBBPProcessSymbol*>(m_EnteringSymbol)->GetUnitName();
                                             }
 
-                                            if (ISA(m_EnteringSymbol, ZBBPProcedureSymbol))
+                                            if (ISA(m_EnteringSymbol, PSS_ProcedureSymbolBP))
                                             {
                                                 s_UnitName =
-                                                    dynamic_cast<ZBBPProcedureSymbol*>(m_EnteringSymbol)->GetUnitName();
+                                                    dynamic_cast<PSS_ProcedureSymbolBP*>(m_EnteringSymbol)->GetUnitName();
                                             }
 
                                             if (ISA(m_EnteringSymbol, ZBBPStartSymbol))

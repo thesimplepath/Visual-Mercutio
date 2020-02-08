@@ -70,7 +70,7 @@ public:
     }
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
+    virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
     // Overloaded to be able to modify the activity name
     // and description

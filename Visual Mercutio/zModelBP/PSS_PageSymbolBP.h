@@ -113,10 +113,10 @@ class AFX_EXT_CLASS PSS_PageSymbolBP : public PSS_Symbol
         virtual CODComponent* Dup() const;
 
         /**
-        * Copies the symbol definition only from another symbol
-        *@param other - the other symbol to copy from
+        * Copies the symbol definition from another symbol
+        *@param src - the source symbol to copy from
         */
-        virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
+        virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
         /**
         * Checks if this symbol is a page

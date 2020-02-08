@@ -18,7 +18,7 @@
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -131,9 +131,9 @@ bool ZUCalculateRisks::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBBPProcedureSymbol))
+    if (ISA(pSymbol, PSS_ProcedureSymbolBP))
     {
-        return CheckProcedureSymbol(dynamic_cast<ZBBPProcedureSymbol*>(&Symbol));
+        return CheckProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
     {
@@ -184,7 +184,7 @@ bool ZUCalculateRisks::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCalculateRisks::CheckProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool ZUCalculateRisks::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 

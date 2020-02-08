@@ -14,7 +14,7 @@
 
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBBPProcessSymbol.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
@@ -216,7 +216,7 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     // We must found the symbol and the link.
     // Check that we have an Entering up link
     // Now check if we have a procedure
-    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPProcedureSymbol))
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_ProcedureSymbolBP))
     {
         TRACE1(_T("OnNextSymbolAfterMoveForward: current Procedure is %s\n"),
                dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());
@@ -228,7 +228,7 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
             return false;
         }
 
-        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pState->GetSymbol());
+        PSS_ProcedureSymbolBP* pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pState->GetSymbol());
 
         CODEdgeArray LeavingDownEdges;
         size_t LeavingDownLinkCount = pProcedure->GetEdgesLeaving_Down(LeavingDownEdges);
@@ -423,12 +423,12 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
             }
         }
     }
-    else if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPProcedureSymbol))
+    else if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_ProcedureSymbolBP))
     {
         // Now check if we are a procedure
         // Calculate Deliverables Durations
-        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>(pState->GetSymbol());
-        ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
+        PSS_ProcedureSymbolBP* pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pState->GetSymbol());
+        PSS_ProcedureSymbolBP* pLocalProcedureBefore = NULL;
 
         TRACE1(_T("OnBeforeMoveForward: procedure in the stack is %s\n"), pProcedure->GetSymbolName());
 
@@ -464,7 +464,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
 bool ZBDurationRecalculationAutomate::SetCaseDurationOfLateralDeliverables(CODEdgeArray&            LeavingEdges,
                                                                            size_t                    LeavingLinkCount,
-                                                                           ZBBPProcedureSymbol*    pProcedure,
+                                                                           PSS_ProcedureSymbolBP*    pProcedure,
                                                                            PSS_Log*                  pLog)
 {
     for (size_t nEdgeIdx = 0; nEdgeIdx < LeavingLinkCount; ++nEdgeIdx)
@@ -527,7 +527,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfLateralDeliverables(CODEd
 bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_StateObject*     pState,
                                                                         CODEdgeArray&        LeavingEdges,
                                                                         std::size_t          LeavingLinkCount,
-                                                                        ZBBPProcedureSymbol* pProcedure,
+                                                                        PSS_ProcedureSymbolBP* pProcedure,
                                                                         PSS_Log*             pLog)
 {
     // Retrieve entering edges
@@ -829,7 +829,7 @@ bool ZBDurationRecalculationAutomate::SetStartSymbolCaseDurationOfDownDeliverabl
 bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject*     pState,
                                                                  CODEdgeArray&        LeavingEdges,
                                                                  std::size_t          LeavingLinkCount,
-                                                                 ZBBPProcedureSymbol* pProcedure,
+                                                                 PSS_ProcedureSymbolBP* pProcedure,
                                                                  PSS_Log*             pLog)
 {
     // First, we need to check if we are coming back from

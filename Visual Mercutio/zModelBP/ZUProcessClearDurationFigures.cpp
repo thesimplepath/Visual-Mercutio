@@ -8,7 +8,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 
-#include "ZBBPProcedureSymbol.h"
+#include "PSS_ProcedureSymbolBP.h"
 #include "ZBDeliverableLinkSymbol.h"
 
 // Include files for log
@@ -47,7 +47,7 @@ bool ZUProcessClearDurationFigures::OnFinish()
 }
 
 
-bool ZUProcessClearDurationFigures::OnProcedureSymbol(ZBBPProcedureSymbol* pSymbol)
+bool ZUProcessClearDurationFigures::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
     if (pSymbol)
     {

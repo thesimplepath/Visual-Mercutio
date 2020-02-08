@@ -6,14 +6,18 @@
 #define AFX_ZBSesterceRecalculationAutomate_H__1CC9AE94_368B_41BE_90E1_527CD3EC61F8__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+    #pragma once
 #endif
 
 // processsoft
 #include "PSS_AutomateBP.h"
 
+#ifndef PSS_ProcedureSymbolBP
+    #define PSS_ProcedureSymbolBP ZBBPProcedureSymbol
+#endif
+
 // forward class declaration
-class ZBBPProcedureSymbol;
+class PSS_ProcedureSymbolBP;
 
 class ZBSesterceRecalculationAutomate : public PSS_AutomateBP
 {
@@ -55,8 +59,8 @@ private:
 
     double CalculateSumOfOutDeliverables(CODEdgeArray&            LeavingEdges,
                                          size_t                LeavingLinkCount,
-                                         ZBBPProcedureSymbol*    pProcedure,
-                                         ZBBPProcedureSymbol*    pLocalProcedureBefore);
+                                         PSS_ProcedureSymbolBP*    pProcedure,
+                                         PSS_ProcedureSymbolBP*    pLocalProcedureBefore);
 };
 
 #endif

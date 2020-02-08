@@ -49,18 +49,18 @@ bool PSS_ModelGlobal::SaveGlobalPropertyAttributes()
     return true;
 }
 //---------------------------------------------------------------------------
-ZBPropertyAttributes& PSS_ModelGlobal::GetGlobalPropertyAttributes(int ObjectID)
+ZBPropertyAttributes& PSS_ModelGlobal::GetGlobalPropertyAttributes(int objectID)
 {
     ZBPropertyAttributes* pPropAtt = NULL;
 
-    if (ObjectID < m_Set.GetSize())
-        pPropAtt = m_Set.GetAt(ObjectID);
+    if (objectID < m_Set.GetSize())
+        pPropAtt = m_Set.GetAt(objectID);
 
     if (!pPropAtt)
     {
         std::unique_ptr<ZBPropertyAttributes> pNewPropAtt(new ZBPropertyAttributes());
-        pNewPropAtt->LoadStateFromIniFile(m_FileName, ObjectID);
-        m_Set.SetAtGrow(ObjectID, pNewPropAtt.get());
+        pNewPropAtt->LoadStateFromIniFile(m_FileName, objectID);
+        m_Set.SetAtGrow(objectID, pNewPropAtt.get());
         pPropAtt = pNewPropAtt.release();
     }
 

@@ -46,6 +46,9 @@
 #ifndef PSS_PageSymbolBP
     #define PSS_PageSymbolBP ZBBPPageSymbol
 #endif
+#ifndef PSS_ProcedureSymbolBP
+    #define PSS_ProcedureSymbolBP ZBBPProcedureSymbol
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
@@ -53,7 +56,7 @@
 // forward class declaration
 class PSS_DoorSymbolBP;
 class PSS_PageSymbolBP;
-class ZBBPProcedureSymbol;
+class PSS_ProcedureSymbolBP;
 class ZBBPProcessSymbol;
 class PSS_ProcessGraphModelMdl;
 
@@ -88,7 +91,7 @@ public:
     virtual CODComponent* Dup() const;
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
+    virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
     // Creates the link symbol 
     BOOL Create(int nStyle = -1, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1);
@@ -635,10 +638,10 @@ public:
     }
 
     // Returns the source procedure attached to this deliverable
-    ZBBPProcedureSymbol* GetSourceProcedure() const;
+    PSS_ProcedureSymbolBP* GetSourceProcedure() const;
 
     // Returns the destination procedure attached to this deliverable
-    ZBBPProcedureSymbol* GetTargetProcedure() const;
+    PSS_ProcedureSymbolBP* GetTargetProcedure() const;
 
     // Returns the coming from process of this deliverable
     PSS_ProcessGraphModelMdl* GetComingFromModel() const;
@@ -840,10 +843,10 @@ private:
                           PSS_ProcessGraphModelMdlBP* m_RootModel = NULL);
 
     bool CreateSymbolName();
-    bool DoDoorProcedureConnection(PSS_DoorSymbolBP* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
-    bool DoProcedureDoorConnection(ZBBPProcedureSymbol* pSrc, PSS_DoorSymbolBP* pDst, CODModel* pModel);
-    bool DoPageProcedureConnection(PSS_PageSymbolBP* pSrc, ZBBPProcedureSymbol* pDst, CODModel* pModel);
-    bool DoProcedurePageConnection(ZBBPProcedureSymbol* pSrc, PSS_PageSymbolBP* pDst, CODModel* pModel);
+    bool DoDoorProcedureConnection(PSS_DoorSymbolBP* pSrc, PSS_ProcedureSymbolBP* pDst, CODModel* pModel);
+    bool DoProcedureDoorConnection(PSS_ProcedureSymbolBP* pSrc, PSS_DoorSymbolBP* pDst, CODModel* pModel);
+    bool DoPageProcedureConnection(PSS_PageSymbolBP* pSrc, PSS_ProcedureSymbolBP* pDst, CODModel* pModel);
+    bool DoProcedurePageConnection(PSS_ProcedureSymbolBP* pSrc, PSS_PageSymbolBP* pDst, CODModel* pModel);
     bool DoProcessProcessConnection(ZBBPProcessSymbol* pSrc, ZBBPProcessSymbol* pDst, CODModel* pModel);
 
     void CheckDeliverableStatus();

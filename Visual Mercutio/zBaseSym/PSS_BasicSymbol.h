@@ -240,7 +240,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         virtual CODLineComponent* GetSplitter2() = 0;
 
         /**
-        * Copies the symbol definition
+        * Copies the symbol definition from another component
         *@param src - source symbol to copy from
         */
         virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src) = 0;

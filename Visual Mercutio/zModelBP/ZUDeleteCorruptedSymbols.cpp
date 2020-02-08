@@ -47,9 +47,9 @@ void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRoo
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'une procédure.
-                            if (pComponent && ISA(pComponent, ZBBPProcedureSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcedureSymbolBP))
                             {
-                                ZBBPProcedureSymbol* m_Procedure = dynamic_cast<ZBBPProcedureSymbol*>(pComponent);
+                                PSS_ProcedureSymbolBP* m_Procedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pComponent);
 
                                 if (IsCorrupted(m_Procedure))
                                 {
@@ -153,7 +153,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPProcessSymbol* m_Symbol)
 }
 
 // Contrôle que les propriétés du symbole procédure donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPProcedureSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_ProcedureSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {

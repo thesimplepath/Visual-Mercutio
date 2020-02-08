@@ -95,7 +95,7 @@ CODComponent* ZBBPStartSymbol::Dup() const
     return (new ZBBPStartSymbol(*this));
 }
 
-void ZBBPStartSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
+void ZBBPStartSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     // Class the base class method
     PSS_Symbol::CopySymbolDefinitionFrom(src);
