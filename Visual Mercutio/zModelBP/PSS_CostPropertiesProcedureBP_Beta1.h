@@ -127,7 +127,7 @@ class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP_Beta1 : public CODIntProperty,
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(CODProperty* pProperty, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if the identifier is in the property identifier range

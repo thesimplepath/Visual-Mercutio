@@ -75,7 +75,7 @@ class AFX_EXT_CLASS PSS_CombinationPropertiesBP : public CObject
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_CombinationPropertiesBP(const PSS_CombinationPropertiesBP& propProcess);
+        PSS_CombinationPropertiesBP(const PSS_CombinationPropertiesBP& other);
 
         virtual ~PSS_CombinationPropertiesBP();
 
@@ -104,7 +104,7 @@ class AFX_EXT_CLASS PSS_CombinationPropertiesBP : public CObject
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(PSS_CombinationPropertiesBP* pProperty, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(PSS_CombinationPropertiesBP* pProp, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one
@@ -153,7 +153,7 @@ class AFX_EXT_CLASS PSS_CombinationPropertiesBP : public CObject
         * Checks if the combination contains deliverables
         *@return true if combination contains deliverables, otherwise false
         */
-        virtual bool IsDeliverableInCombination(LPCTSTR lpszValue);
+        virtual bool IsDeliverableInCombination(LPCTSTR pValue);
 
         /**
         * Gets the combination master name

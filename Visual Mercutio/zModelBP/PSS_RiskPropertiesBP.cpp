@@ -80,36 +80,36 @@ BOOL PSS_RiskPropertiesBP::operator == (const PSS_RiskPropertiesBP& other) const
             GetRiskAction()      == other.GetRiskAction());
 }
 //---------------------------------------------------------------------------
-void PSS_RiskPropertiesBP::Merge(PSS_RiskPropertiesBP* pProperty, DWORD changeFlags)
+void PSS_RiskPropertiesBP::Merge(PSS_RiskPropertiesBP* pProp, DWORD changeFlags)
 {
-    if (pProperty)
+    if (pProp)
     {
         if (changeFlags & IE_CT_Change_Risk_Name)
-            m_RiskName = pProperty->GetRiskName();
+            m_RiskName = pProp->GetRiskName();
 
         if (changeFlags & IE_CT_Change_Risk_Desc)
-            m_RiskDesc = pProperty->GetRiskDesc();
+            m_RiskDesc = pProp->GetRiskDesc();
 
         if (changeFlags & IE_CT_Change_Risk_Type)
-            m_RiskType = pProperty->GetRiskType();
+            m_RiskType = pProp->GetRiskType();
 
         if (changeFlags & IE_CT_Change_Risk_Impact)
-            m_RiskImpact = pProperty->GetRiskImpact();
+            m_RiskImpact = pProp->GetRiskImpact();
 
         if (changeFlags & IE_CT_Change_Risk_Probability)
-            m_RiskProbability = pProperty->GetRiskProbability();
+            m_RiskProbability = pProp->GetRiskProbability();
 
         if (changeFlags & IE_CT_Change_Risk_Severity)
-            m_RiskSeverity = pProperty->GetRiskSeverity();
+            m_RiskSeverity = pProp->GetRiskSeverity();
 
         if (changeFlags & IE_CT_Change_Risk_UE)
-            m_RiskUE = pProperty->GetRiskUE();
+            m_RiskUE = pProp->GetRiskUE();
 
         if (changeFlags & IE_CT_Change_Risk_POA)
-            m_RiskPOA = pProperty->GetRiskPOA();
+            m_RiskPOA = pProp->GetRiskPOA();
 
         if (changeFlags & IE_CT_Change_Risk_Action)
-            m_RiskAction = pProperty->GetRiskAction();
+            m_RiskAction = pProp->GetRiskAction();
     }
 }
 //---------------------------------------------------------------------------

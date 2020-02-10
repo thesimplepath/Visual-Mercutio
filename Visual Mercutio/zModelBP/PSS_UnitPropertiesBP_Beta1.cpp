@@ -63,9 +63,9 @@ BOOL PSS_UnitPropertiesBP_Beta1::operator == (const PSS_UnitPropertiesBP_Beta1& 
             GetUnitCost() == other.GetUnitCost());
 }
 //---------------------------------------------------------------------------
-void PSS_UnitPropertiesBP_Beta1::Merge(CODProperty* pProperty, DWORD changeFlags)
+void PSS_UnitPropertiesBP_Beta1::Merge(CODProperty* pProp, DWORD changeFlags)
 {
-    PSS_UnitPropertiesBP_Beta1* pProcessProps = dynamic_cast<PSS_UnitPropertiesBP_Beta1*>(pProperty);
+    PSS_UnitPropertiesBP_Beta1* pProcessProps = dynamic_cast<PSS_UnitPropertiesBP_Beta1*>(pProp);
 
     if (pProcessProps)
     {

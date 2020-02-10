@@ -24,9 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPProcessProp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBBPProcessSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,6 +279,9 @@
     <ClCompile Include="PSS_ProcedureSymbolBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ProcessPropertiesBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -376,9 +376,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPProcessProp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPProcessSymbol.h">
@@ -640,6 +637,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ProcedureSymbolBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessPropertiesBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

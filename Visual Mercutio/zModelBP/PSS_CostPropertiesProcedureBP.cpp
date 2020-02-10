@@ -66,24 +66,24 @@ BOOL PSS_CostPropertiesProcedureBP::operator == (const PSS_CostPropertiesProcedu
             GetProcessingDurationMax() == other.GetProcessingDurationMax());
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesProcedureBP::Merge(PSS_CostPropertiesProcedureBP* pProperty, DWORD changeFlags)
+void PSS_CostPropertiesProcedureBP::Merge(PSS_CostPropertiesProcedureBP* pProp, DWORD changeFlags)
 {
-    if (pProperty)
+    if (pProp)
     {
         if (changeFlags & IE_CT_Change_Cost_Multiplier)
-            m_Multiplier = pProperty->GetMultiplier();
+            m_Multiplier = pProp->GetMultiplier();
 
         if (changeFlags & IE_CT_Change_Cost_Processing_Time)
-            m_ProcessingTime = pProperty->GetProcessingTime();
+            m_ProcessingTime = pProp->GetProcessingTime();
 
         if (changeFlags & IE_CT_Change_Cost_Unitary_Cost)
-            m_UnitaryCost = pProperty->GetUnitaryCost();
+            m_UnitaryCost = pProp->GetUnitaryCost();
 
         if (changeFlags & IE_CT_Change_Cost_Processing_Duration)
-            m_ProcessingDuration = pProperty->GetProcessingDuration();
+            m_ProcessingDuration = pProp->GetProcessingDuration();
 
         if (changeFlags & IE_CT_Change_Cost_Processing_Duration_Max)
-            m_ProcessingDurationMax = pProperty->GetProcessingDurationMax();
+            m_ProcessingDurationMax = pProp->GetProcessingDurationMax();
     }
 }
 //---------------------------------------------------------------------------

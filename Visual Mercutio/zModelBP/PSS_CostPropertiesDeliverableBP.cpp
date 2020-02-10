@@ -75,33 +75,33 @@ BOOL PSS_CostPropertiesDeliverableBP::operator == (const PSS_CostPropertiesDeliv
             GetGreenLineDuration()  == other.GetGreenLineDuration());
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesDeliverableBP::Merge(PSS_CostPropertiesDeliverableBP* pProperty, DWORD changeFlags)
+void PSS_CostPropertiesDeliverableBP::Merge(PSS_CostPropertiesDeliverableBP* pProp, DWORD changeFlags)
 {
-    if (pProperty)
+    if (pProp)
     {
         if (changeFlags & IE_CT_Change_Cost_Processing_Time)
-            m_ProcessingTime = pProperty->GetProcessingTime();
+            m_ProcessingTime = pProp->GetProcessingTime();
 
         if (changeFlags & IE_CT_Change_Cost_In_Workload_Percent)
-            m_InWorkloadPercent = pProperty->GetInWorkloadPercent();
+            m_InWorkloadPercent = pProp->GetInWorkloadPercent();
 
         if (changeFlags & IE_CT_Change_Cost_Out_Workload_Percent)
-            m_OutWorkloadPercent = pProperty->GetOutWorkloadPercent();
+            m_OutWorkloadPercent = pProp->GetOutWorkloadPercent();
 
         if (changeFlags & IE_CT_Change_Cost_Unitary_Cost)
-            m_UnitaryCost = pProperty->GetUnitaryCost();
+            m_UnitaryCost = pProp->GetUnitaryCost();
 
         if (changeFlags & IE_CT_Change_Cost_Case_Duration)
-            m_CaseDuration = pProperty->GetCaseDuration();
+            m_CaseDuration = pProp->GetCaseDuration();
 
         if (changeFlags & IE_CT_Change_Cost_Case_Duration_Max)
-            m_CaseDurationMax = pProperty->GetCaseDurationMax();
+            m_CaseDurationMax = pProp->GetCaseDurationMax();
 
         if (changeFlags & IE_CT_Change_Cost_Target_Duration)
-            m_TargetDuration = pProperty->GetTargetDuration();
+            m_TargetDuration = pProp->GetTargetDuration();
 
         if (changeFlags & IE_CT_Change_Cost_Green_Line_Duration)
-            m_GreenLineDuration = pProperty->GetGreenLineDuration();
+            m_GreenLineDuration = pProp->GetGreenLineDuration();
     }
 }
 //---------------------------------------------------------------------------

@@ -207,167 +207,165 @@ BOOL PSS_AnnualNumberPropertiesBP::operator == (const PSS_AnnualNumberProperties
             GetForceEqualizer()      == other.GetForceEqualizer());
 }
 //---------------------------------------------------------------------------
-void PSS_AnnualNumberPropertiesBP::Merge(PSS_AnnualNumberPropertiesBP* pProperty, DWORD changeFlags)
+void PSS_AnnualNumberPropertiesBP::Merge(PSS_AnnualNumberPropertiesBP* pProp, DWORD changeFlags)
 {
-    PSS_AnnualNumberPropertiesBP* pProp = dynamic_cast<PSS_AnnualNumberPropertiesBP*>(pProperty);
-
     if (pProp)
     {
         if (changeFlags & IE_CT_Change_Number_Year)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberYear(pProperty->GetNumberYear());
-                SetLockNumberYear(pProperty->GetLockNumberYear());
+                SetNumberYear(pProp->GetNumberYear());
+                SetLockNumberYear(pProp->GetLockNumberYear());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberYear(pProperty->GetLockNumberYear());
+                SetLockNumberYear(pProp->GetLockNumberYear());
             else
-                SetNumberYear(pProperty->GetNumberYear());
+                SetNumberYear(pProp->GetNumberYear());
 
         if (changeFlags & IE_CT_Change_Number_January)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberJanuary(pProperty->GetNumberJanuary());
-                SetLockNumberJanuary(pProperty->GetLockNumberJanuary());
+                SetNumberJanuary(pProp->GetNumberJanuary());
+                SetLockNumberJanuary(pProp->GetLockNumberJanuary());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberJanuary(pProperty->GetLockNumberJanuary());
+                SetLockNumberJanuary(pProp->GetLockNumberJanuary());
             else
-                SetNumberJanuary(pProperty->GetNumberJanuary());
+                SetNumberJanuary(pProp->GetNumberJanuary());
 
         if (changeFlags & IE_CT_Change_Number_February)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberFebruary(pProperty->GetNumberFebruary());
-                SetLockNumberFebruary(pProperty->GetLockNumberFebruary());
+                SetNumberFebruary(pProp->GetNumberFebruary());
+                SetLockNumberFebruary(pProp->GetLockNumberFebruary());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberFebruary(pProperty->GetLockNumberFebruary());
+                SetLockNumberFebruary(pProp->GetLockNumberFebruary());
             else
-                SetNumberFebruary(pProperty->GetNumberFebruary());
+                SetNumberFebruary(pProp->GetNumberFebruary());
 
         if (changeFlags & IE_CT_Change_Number_March)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberMarch(pProperty->GetNumberMarch());
-                SetLockNumberMarch(pProperty->GetLockNumberMarch());
+                SetNumberMarch(pProp->GetNumberMarch());
+                SetLockNumberMarch(pProp->GetLockNumberMarch());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberMarch(pProperty->GetLockNumberMarch());
+                SetLockNumberMarch(pProp->GetLockNumberMarch());
             else
-                SetNumberMarch(pProperty->GetNumberMarch());
+                SetNumberMarch(pProp->GetNumberMarch());
 
         if (changeFlags & IE_CT_Change_Number_April)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberApril(pProperty->GetNumberApril());
-                SetLockNumberApril(pProperty->GetLockNumberApril());
+                SetNumberApril(pProp->GetNumberApril());
+                SetLockNumberApril(pProp->GetLockNumberApril());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberApril(pProperty->GetLockNumberApril());
+                SetLockNumberApril(pProp->GetLockNumberApril());
             else
-                SetNumberApril(pProperty->GetNumberApril());
+                SetNumberApril(pProp->GetNumberApril());
 
         if (changeFlags & IE_CT_Change_Number_May)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberMay(pProperty->GetNumberMay());
-                SetLockNumberMay(pProperty->GetLockNumberMay());
+                SetNumberMay(pProp->GetNumberMay());
+                SetLockNumberMay(pProp->GetLockNumberMay());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberMay(pProperty->GetLockNumberMay());
+                SetLockNumberMay(pProp->GetLockNumberMay());
             else
-                SetNumberMay(pProperty->GetNumberMay());
+                SetNumberMay(pProp->GetNumberMay());
 
         if (changeFlags & IE_CT_Change_Number_June)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberJune(pProperty->GetNumberJune());
-                SetLockNumberJune(pProperty->GetLockNumberJune());
+                SetNumberJune(pProp->GetNumberJune());
+                SetLockNumberJune(pProp->GetLockNumberJune());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberJune(pProperty->GetLockNumberJune());
+                SetLockNumberJune(pProp->GetLockNumberJune());
             else
-                SetNumberJune(pProperty->GetNumberJune());
+                SetNumberJune(pProp->GetNumberJune());
 
         if (changeFlags & IE_CT_Change_Number_July)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberJuly(pProperty->GetNumberJuly());
-                SetLockNumberJuly(pProperty->GetLockNumberJuly());
+                SetNumberJuly(pProp->GetNumberJuly());
+                SetLockNumberJuly(pProp->GetLockNumberJuly());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberJuly(pProperty->GetLockNumberJuly());
+                SetLockNumberJuly(pProp->GetLockNumberJuly());
             else
-                SetNumberJuly(pProperty->GetNumberJuly());
+                SetNumberJuly(pProp->GetNumberJuly());
 
         if (changeFlags & IE_CT_Change_Number_August)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberAugust(pProperty->GetNumberAugust());
-                SetLockNumberAugust(pProperty->GetLockNumberAugust());
+                SetNumberAugust(pProp->GetNumberAugust());
+                SetLockNumberAugust(pProp->GetLockNumberAugust());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberAugust(pProperty->GetLockNumberAugust());
+                SetLockNumberAugust(pProp->GetLockNumberAugust());
             else
-                SetNumberAugust(pProperty->GetNumberAugust());
+                SetNumberAugust(pProp->GetNumberAugust());
 
         if (changeFlags & IE_CT_Change_Number_September)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberSeptember(pProperty->GetNumberSeptember());
-                SetLockNumberSeptember(pProperty->GetLockNumberSeptember());
+                SetNumberSeptember(pProp->GetNumberSeptember());
+                SetLockNumberSeptember(pProp->GetLockNumberSeptember());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberSeptember(pProperty->GetLockNumberSeptember());
+                SetLockNumberSeptember(pProp->GetLockNumberSeptember());
             else
-                SetNumberSeptember(pProperty->GetNumberSeptember());
+                SetNumberSeptember(pProp->GetNumberSeptember());
 
         if (changeFlags & IE_CT_Change_Number_October)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberOctober(pProperty->GetNumberOctober());
-                SetLockNumberOctober(pProperty->GetLockNumberOctober());
+                SetNumberOctober(pProp->GetNumberOctober());
+                SetLockNumberOctober(pProp->GetLockNumberOctober());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberOctober(pProperty->GetLockNumberOctober());
+                SetLockNumberOctober(pProp->GetLockNumberOctober());
             else
-                SetNumberOctober(pProperty->GetNumberOctober());
+                SetNumberOctober(pProp->GetNumberOctober());
 
         if (changeFlags & IE_CT_Change_Number_November)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberNovember(pProperty->GetNumberNovember());
-                SetLockNumberNovember(pProperty->GetLockNumberNovember());
+                SetNumberNovember(pProp->GetNumberNovember());
+                SetLockNumberNovember(pProp->GetLockNumberNovember());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberNovember(pProperty->GetLockNumberNovember());
+                SetLockNumberNovember(pProp->GetLockNumberNovember());
             else
-                SetNumberNovember(pProperty->GetNumberNovember());
+                SetNumberNovember(pProp->GetNumberNovember());
 
         if (changeFlags & IE_CT_Change_Number_December)
             if (changeFlags & IE_CT_All)
             {
-                SetNumberDecember(pProperty->GetNumberDecember());
-                SetLockNumberDecember(pProperty->GetLockNumberDecember());
+                SetNumberDecember(pProp->GetNumberDecember());
+                SetLockNumberDecember(pProp->GetLockNumberDecember());
             }
             else
             if (changeFlags & IE_CT_Change_Locked_Month)
-                SetLockNumberDecember(pProperty->GetLockNumberDecember());
+                SetLockNumberDecember(pProp->GetLockNumberDecember());
             else
-                SetNumberDecember(pProperty->GetNumberDecember());
+                SetNumberDecember(pProp->GetNumberDecember());
     }
 }
 //---------------------------------------------------------------------------

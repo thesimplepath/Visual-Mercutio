@@ -1,12 +1,16 @@
 /****************************************************************************
- * ==> PSS_DecisionListPropertiesBP ----------------------------------------*
+ * ==> PSS_ProcessPropertiesBP ---------------------------------------------*
  ****************************************************************************
- * Description : Provides the decision list properties for banking process  *
+ * Description : Provides the process properties for banking process        *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_DecisionListPropertiesBPH
-#define PSS_DecisionListPropertiesBPH
+#ifndef PSS_ProcessPropertiesBPH
+#define PSS_ProcessPropertiesBPH
+
+#if _MSC_VER > 1000
+    #pragma once
+#endif
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_DecisionListPropertiesBP
-    #define PSS_DecisionListPropertiesBP ZBBPDecisionListProperties
+#ifndef PSS_ProcessPropertiesBP
+    #define PSS_ProcessPropertiesBP ZBBPProcessProperties
 #endif
 
 // resources
@@ -37,21 +41,21 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Decision_List_ID 1
+#define M_Management_Case_ID 1
 //---------------------------------------------------------------------------
 
 /**
-* Decision list properties for banking process
+* Process properties for banking process
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_DecisionListPropertiesBP : public CODIntProperty,
-                                                   public sfl::CPropertyContainer< IODPropertyContainer,
-                                                                                   CODPropertyAccessor<PSS_DecisionListPropertiesBP> >
+class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
+                                              public sfl::CPropertyContainer<IODPropertyContainer,
+                                                                             CODPropertyAccessor<PSS_ProcessPropertiesBP> >
 {
-    DECLARE_SERIAL(PSS_DecisionListPropertiesBP)
+    DECLARE_SERIAL(PSS_ProcessPropertiesBP)
 
     /// generated guid map
-    BEGIN_GUID_MAP(PSS_DecisionListPropertiesBP)
+    BEGIN_GUID_MAP(PSS_ProcessPropertiesBP)
         GUID_ENTRY(IODPropertyContainer)
         GUID_ENTRY(sfl::IPropertyContainer)
         GUID_CHAIN_ENTRY(CODIntProperty)
@@ -64,37 +68,37 @@ class AFX_EXT_CLASS PSS_DecisionListPropertiesBP : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Decision_List = 0x0001,
-            IE_CT_All                  = OD_CHANGE_ALL
+            IE_CT_Change_Management_Case = 0x0001,
+            IE_CT_All                    = OD_CHANGE_ALL
         };
 
         /**
         * Constructor
         *@param propID - property identifier
         */
-        PSS_DecisionListPropertiesBP(int propID = ZS_BP_PROP_DECISIONLIST);
+        PSS_ProcessPropertiesBP(int propID = ZS_BP_PROP_PROCESS);
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_DecisionListPropertiesBP(const PSS_DecisionListPropertiesBP& other);
+        PSS_ProcessPropertiesBP(const PSS_ProcessPropertiesBP& other);
 
-        virtual ~PSS_DecisionListPropertiesBP();
+        virtual ~PSS_ProcessPropertiesBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_DecisionListPropertiesBP& operator = (const PSS_DecisionListPropertiesBP& other);
+        PSS_ProcessPropertiesBP& operator = (const PSS_ProcessPropertiesBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_DecisionListPropertiesBP& other) const;
+        BOOL operator == (const PSS_ProcessPropertiesBP& other) const;
 
         /**
         * Adds a reference to this object
@@ -119,7 +123,7 @@ class AFX_EXT_CLASS PSS_DecisionListPropertiesBP : public CODIntProperty,
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(CODProperty* pProp, DWORD changeFlags = OD_CHANGE_ALL);
 
         /**
         * Checks if the identifier is in the property identifier range
@@ -136,16 +140,16 @@ class AFX_EXT_CLASS PSS_DecisionListPropertiesBP : public CODIntProperty,
         virtual BOOL IsEqual(CODProperty* pProp);
 
         /**
-        * Gets the decision list
-        *@return the decision list
+        * Gets the management case
+        *@return the management case
         */
-        virtual inline CString GetDecisionList() const;
+        virtual inline CString GetManagementCase() const;
 
         /**
-        * Sets the decision list
-        *@param value - the decision list
+        * Sets the management case
+        *@param pValue - the management case
         */
-        virtual void SetDecisionList(LPCTSTR pValue);
+        virtual void SetManagementCase(LPCTSTR pValue);
 
         /**
         * Gets the property value
@@ -193,43 +197,43 @@ class AFX_EXT_CLASS PSS_DecisionListPropertiesBP : public CODIntProperty,
         #endif
 
     protected:
-        CString m_DecisionList;
+        CString m_ManagementCase;
 
     private:
         /**
-        * Sets the decision list (extended)
-        *@param value - the decision list
+        * Sets the management case (advanced)
+        *@param pValue - the management case
         */
-        void SetDecisionListEx(const CString value);
+        void SetManagementCaseEx(const CString name);
 
         /**
-        * Registers the properties
+        * Registers the basic property meta-data
         *@return true on success, otherwise false
         */
         bool RegisterProperties();
 };
 
 //---------------------------------------------------------------------------
-// PSS_DecisionListPropertiesBP
+// PSS_ProcessPropertiesBP
 //---------------------------------------------------------------------------
-ULONG PSS_DecisionListPropertiesBP::AddRef()
+ULONG PSS_ProcessPropertiesBP::AddRef()
 {
     return CODIntProperty::AddRef();
 }
 //---------------------------------------------------------------------------
-ULONG PSS_DecisionListPropertiesBP::Release()
+ULONG PSS_ProcessPropertiesBP::Release()
 {
     return CODIntProperty::Release();
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_DecisionListPropertiesBP::Dup()
+CODProperty* PSS_ProcessPropertiesBP::Dup()
 {
-    return new PSS_DecisionListPropertiesBP(*this);
+    return new PSS_ProcessPropertiesBP(*this);
 }
 //---------------------------------------------------------------------------
-CString PSS_DecisionListPropertiesBP::GetDecisionList() const
+CString PSS_ProcessPropertiesBP::GetManagementCase() const
 {
-    return m_DecisionList;
+    return m_ManagementCase;
 }
 //---------------------------------------------------------------------------
 

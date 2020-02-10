@@ -68,24 +68,24 @@ BOOL PSS_DeliveriesPropertiesBP::operator == (const PSS_DeliveriesPropertiesBP& 
             GetDeliveryMain()         == other.GetDeliveryMain());
 }
 //---------------------------------------------------------------------------
-void PSS_DeliveriesPropertiesBP::Merge(PSS_DeliveriesPropertiesBP* pProperty, DWORD changeFlags)
+void PSS_DeliveriesPropertiesBP::Merge(PSS_DeliveriesPropertiesBP* pProp, DWORD changeFlags)
 {
-    if (pProperty)
+    if (pProp)
     {
         if (changeFlags & IE_CT_Change_Delivery_Name)
-            m_DeliveryName = pProperty->GetDeliveryName();
+            m_DeliveryName = pProp->GetDeliveryName();
 
         if (changeFlags & IE_CT_Change_Delivery_Deliverables)
-            m_DeliveryDeliverables = pProperty->GetDeliveryDeliverables();
+            m_DeliveryDeliverables = pProp->GetDeliveryDeliverables();
 
         if (changeFlags & IE_CT_Change_Delivery_Quantity)
-            m_DeliveryQuantity = pProperty->GetDeliveryQuantity();
+            m_DeliveryQuantity = pProp->GetDeliveryQuantity();
 
         if (changeFlags & IE_CT_Change_Delivery_Percentage)
-            m_DeliveryPercentage = pProperty->GetDeliveryPercentage();
+            m_DeliveryPercentage = pProp->GetDeliveryPercentage();
 
         if (changeFlags & IE_CT_Change_Delivery_Main)
-            m_DeliveryMain = pProperty->GetDeliveryMain();
+            m_DeliveryMain = pProp->GetDeliveryMain();
     }
 }
 //---------------------------------------------------------------------------

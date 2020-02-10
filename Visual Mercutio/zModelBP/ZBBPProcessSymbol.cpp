@@ -12,7 +12,7 @@
     #include "zModel\PSS_BasicProperties.h"
 #undef _ZMODELEXPORT
 
-#include "ZBBPProcessProp.h"
+#include "PSS_ProcessPropertiesBP.h"
 #include "ZBBPSimPropProcess.h"
 #include "zModel\PSS_DocObserverMsg.h"
 
@@ -172,7 +172,7 @@ bool ZBBPProcessSymbol::CreateSymbolProperties()
         return false;
     }
 
-    ZBBPProcessProperties propProcess;
+    PSS_ProcessPropertiesBP propProcess;
     AddProperty(propProcess);
 
     // JMR-MODIF - Le 6 février 2006 - Ajoute au moins un catalogue de propriétés dans les livraisons.
@@ -1651,7 +1651,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
         }
     }
 
-    ZBBPProcessProperties* pProcessProps = (ZBBPProcessProperties*)GetProperty(ZS_BP_PROP_PROCESS);
+    PSS_ProcessPropertiesBP* pProcessProps = (PSS_ProcessPropertiesBP*)GetProperty(ZS_BP_PROP_PROCESS);
 
     if (!pProcessProps)
     {
@@ -1662,7 +1662,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
     ZBProperty* pMngCase = new ZBProperty(IDS_ZS_BP_PROP_PROCESS_TITLE,
                                           ZS_BP_PROP_PROCESS,
                                           IDS_Z_MANAGEMENT_CASE_NAME,
-                                          Z_MANAGEMENT_CASE,
+                                          M_Management_Case_ID,
                                           IDS_Z_MANAGEMENT_CASE_DESC,
                                           pProcessProps->GetManagementCase());
 
@@ -2015,7 +2015,7 @@ bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
         return true;
     }
 
-    ZBBPProcessProperties* pProcessProps = (ZBBPProcessProperties*)GetProperty(ZS_BP_PROP_PROCESS);
+    PSS_ProcessPropertiesBP* pProcessProps = (PSS_ProcessPropertiesBP*)GetProperty(ZS_BP_PROP_PROCESS);
 
     if (!pProcessProps)
     {
@@ -2025,7 +2025,7 @@ bool ZBBPProcessSymbol::SaveProperties(ZBPropertySet& PropSet)
     // Now run through the list of data and fill the property set
     ZBPropertyIterator i(&PropSet);
     ZBProperty* pProp;
-    ZBBPProcessProperties ProcessProps(*pProcessProps);
+    PSS_ProcessPropertiesBP ProcessProps(*pProcessProps);
 
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {

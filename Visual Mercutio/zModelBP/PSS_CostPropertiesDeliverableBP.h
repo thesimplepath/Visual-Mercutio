@@ -93,7 +93,7 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CObject
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_CostPropertiesDeliverableBP& operator = (const PSS_CostPropertiesDeliverableBP& propBasic);
+        PSS_CostPropertiesDeliverableBP& operator = (const PSS_CostPropertiesDeliverableBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
@@ -113,7 +113,7 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CObject
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(PSS_CostPropertiesDeliverableBP* pProperty, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(PSS_CostPropertiesDeliverableBP* pProp, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one

@@ -65,21 +65,21 @@ BOOL PSS_CombinationPropertiesBP::operator == (const PSS_CombinationPropertiesBP
             GetCombinationMaster()         == other.GetCombinationMaster());
 }
 //---------------------------------------------------------------------------
-void PSS_CombinationPropertiesBP::Merge(PSS_CombinationPropertiesBP* pProperty, DWORD changeFlags)
+void PSS_CombinationPropertiesBP::Merge(PSS_CombinationPropertiesBP* pProp, DWORD changeFlags)
 {
-    if (pProperty)
+    if (pProp)
     {
         if (changeFlags & IE_CT_Change_Combination_Name)
-            m_CombinationName = pProperty->GetCombinationName();
+            m_CombinationName = pProp->GetCombinationName();
 
         if (changeFlags & IE_CT_Change_Combination_Deliverables)
-            m_CombinationDeliverables = pProperty->GetCombinationDeliverables();
+            m_CombinationDeliverables = pProp->GetCombinationDeliverables();
 
         if (changeFlags & IE_CT_Change_Combination_Activation_Perc)
-            m_CombinationActivationPerc = pProperty->GetCombinationActivationPerc();
+            m_CombinationActivationPerc = pProp->GetCombinationActivationPerc();
 
         if (changeFlags & IE_CT_Change_Combination_Master)
-            m_CombinationMaster = pProperty->GetCombinationMaster();
+            m_CombinationMaster = pProp->GetCombinationMaster();
     }
 }
 //---------------------------------------------------------------------------

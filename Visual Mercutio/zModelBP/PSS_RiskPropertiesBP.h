@@ -114,7 +114,7 @@ class AFX_EXT_CLASS PSS_RiskPropertiesBP : public CObject
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(PSS_RiskPropertiesBP* pProperty, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(PSS_RiskPropertiesBP* pProp, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one
@@ -133,7 +133,7 @@ class AFX_EXT_CLASS PSS_RiskPropertiesBP : public CObject
         * Sets the risk name
         *@param value - the risk name
         */
-        virtual void SetRiskName(LPCTSTR lpszValue);
+        virtual void SetRiskName(LPCTSTR pValue);
 
         /**
         * Gets the risk description
@@ -145,7 +145,7 @@ class AFX_EXT_CLASS PSS_RiskPropertiesBP : public CObject
         * Sets the risk description
         *@param value - the risk description
         */
-        virtual void SetRiskDesc(LPCTSTR lpszValue);
+        virtual void SetRiskDesc(LPCTSTR pValue);
 
         /**
         * Gets the risk type
@@ -157,7 +157,7 @@ class AFX_EXT_CLASS PSS_RiskPropertiesBP : public CObject
         * Sets the risk type
         *@param value - the risk type
         */
-        virtual void SetRiskType(LPCTSTR lpszValue);
+        virtual void SetRiskType(LPCTSTR pValue);
 
         /**
         * Gets the risk impact

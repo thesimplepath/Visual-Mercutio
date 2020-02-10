@@ -61,9 +61,9 @@ BOOL PSS_CostPropertiesProcedureBP_Beta1::operator == (const PSS_CostPropertiesP
             GetUnitaryCost()    == other.GetUnitaryCost());
 }
 //---------------------------------------------------------------------------
-void PSS_CostPropertiesProcedureBP_Beta1::Merge(CODProperty* pProperty, DWORD changeFlags)
+void PSS_CostPropertiesProcedureBP_Beta1::Merge(CODProperty* pProp, DWORD changeFlags)
 {
-    PSS_CostPropertiesProcedureBP_Beta1* pOrientationProp = dynamic_cast<PSS_CostPropertiesProcedureBP_Beta1*>(pProperty);
+    PSS_CostPropertiesProcedureBP_Beta1* pOrientationProp = dynamic_cast<PSS_CostPropertiesProcedureBP_Beta1*>(pProp);
 
     if (pOrientationProp)
     {

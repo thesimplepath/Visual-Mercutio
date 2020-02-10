@@ -106,7 +106,7 @@ class AFX_EXT_CLASS PSS_CostPropertiesProcedureBP : public CObject
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(PSS_CostPropertiesProcedureBP* pProperty, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(PSS_CostPropertiesProcedureBP* pProp, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one
