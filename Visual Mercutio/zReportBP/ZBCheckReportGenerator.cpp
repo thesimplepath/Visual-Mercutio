@@ -12,7 +12,7 @@
 #include "zModelBP\ZUExtractProcessName.h"
 #include "ZUGridProcessNavigation.h"
 
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_UserRoleEntity.h"
@@ -141,12 +141,12 @@ bool ZBCheckReportGenerator::FillGridUnit(CGXGridCore& GridCore)
         if (!pSet ||
             pSet->GetSize() <= 0 ||
             pSet->GetAt(0) == NULL ||
-            !ISA(pSet->GetAt(0), ZBBPProcessSymbol))
+            !ISA(pSet->GetAt(0), PSS_ProcessSymbolBP))
         {
             continue;
         }
 
-        ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(pSet->GetAt(0));
+        PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(pSet->GetAt(0));
 
         ostream << _T("\n");
 

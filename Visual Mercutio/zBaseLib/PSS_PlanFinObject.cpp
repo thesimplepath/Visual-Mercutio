@@ -711,7 +711,7 @@ void PSS_PlanFinObject::DrawHiddenSymbol(CDC* pDC)
 
     ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_HIDDEN),
                          pDC->m_hDC,
-                         AfxFindResourceHandle(MAKEINTRESOURCE(IDB_HIDDEN), RT_BITMAP),
+                         ::AfxFindResourceHandle(MAKEINTRESOURCE(IDB_HIDDEN), RT_BITMAP),
                          m_ObjectRect.right,
                          m_ObjectRect.bottom,
                          SRCAND);
@@ -724,7 +724,7 @@ void PSS_PlanFinObject::DrawHiddenOnPrintSymbol(CDC* pDC)
 
     ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_PRINTER),
                          pDC->m_hDC,
-                         AfxFindResourceHandle(MAKEINTRESOURCE(IDB_PRINTER), RT_BITMAP),
+                         ::AfxFindResourceHandle(MAKEINTRESOURCE(IDB_PRINTER), RT_BITMAP),
                          m_ObjectRect.right,
                          m_ObjectRect.bottom,
                          SRCAND);
@@ -740,7 +740,7 @@ void PSS_PlanFinObject::DrawNoteSymbol(CDC* pDC)
 
     ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_NOTES),
                          pDC->m_hDC,
-                         AfxFindResourceHandle(MAKEINTRESOURCE(IDB_NOTES), RT_BITMAP),
+                         ::AfxFindResourceHandle(MAKEINTRESOURCE(IDB_NOTES), RT_BITMAP),
                          m_ObjectRect.right,
                          m_ObjectRect.bottom,
                          SRCAND);

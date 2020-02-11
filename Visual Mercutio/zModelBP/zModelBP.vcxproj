@@ -243,7 +243,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPProcessSymbol.cpp">
+    <ClCompile Include="PSS_ProcessSymbolBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -606,7 +606,7 @@
     <ClInclude Include="PSS_PrestationsPropertiesBP.h" />
     <ClInclude Include="PSS_ProcedureSymbolBP.h" />
     <ClInclude Include="PSS_ProcessPropertiesBP.h" />
-    <ClInclude Include="ZBBPProcessSymbol.h" />
+    <ClInclude Include="PSS_ProcessSymbolBP.h" />
     <ClInclude Include="PSS_RiskPropertiesBP.h" />
     <ClInclude Include="ZBBPRuleListProp.h" />
     <ClInclude Include="ZBBPRulesProp.h" />

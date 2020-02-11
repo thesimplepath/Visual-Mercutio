@@ -75,7 +75,7 @@ void PSS_WelcomeDialog::OnPaint()
     // device context for painting
     CPaintDC dc(this);
 
-    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
+    HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
 
     ShowBitmapFile(MAKEINTRESOURCE(m_BitmapID), dc.m_hDC, hInst, 3, 3);
 }

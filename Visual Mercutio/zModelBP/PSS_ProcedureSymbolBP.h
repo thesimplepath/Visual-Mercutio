@@ -1047,13 +1047,13 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] srcProperty - the source property
         *@param[in, out] dstProperty - the destination property
         *@param top2Down - if true, the drag&drop happens from top to down
-        *@param[in, out] properties - the property set at which the drag&dropped properties belong
+        *@param[in, out] props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
         virtual bool OnDropInternalPropertyItem(ZBProperty&    srcProperty,
                                                 ZBProperty&    dstProperty,
                                                 bool           top2Down,
-                                                ZBPropertySet& properties);
+                                                ZBPropertySet& props);
 
         /**
         * Called when the default attributes are filled

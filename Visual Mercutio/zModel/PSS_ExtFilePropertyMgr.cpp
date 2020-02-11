@@ -389,7 +389,7 @@ bool PSS_ExtFilePropertyMgr::ProcessExtendedInput(ZBProperty&    prop,
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::ProcessMenuCommand(int            menuCommand,
+bool PSS_ExtFilePropertyMgr::ProcessMenuCommand(int            menuCmdID,
                                                 ZBProperty&    prop,
                                                 CString&       value,
                                                 ZBPropertySet& props,
@@ -398,7 +398,7 @@ bool PSS_ExtFilePropertyMgr::ProcessMenuCommand(int            menuCommand,
     if (prop.GetCategoryID() >=  ZS_BP_PROP_EXTFILE &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTFILE + int(GetExtFileCount())))
     {
-        switch (menuCommand)
+        switch (menuCmdID)
         {
             case ID_ADD_NEWEXTFILE:     OnAddNewExtFile    (prop, value, props, refresh); break;
             case ID_DEL_CURRENTEXTFILE: OnDelCurrentExtFile(prop, value, props, refresh); break;

@@ -42,7 +42,7 @@
 #include "zModel\PSS_ModelGlobal.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\ZVPublishToMessengerWizard.h"
@@ -3353,7 +3353,7 @@ void ZAApp::OnGenerateMercutioReport()
         // filter object classes
         PSS_RuntimeClassSet rtClasses;
         rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
-        rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
+        rtClasses.Add(RUNTIME_CLASS(PSS_ProcessSymbolBP));
 
         PSS_SelectModelSymbolDlg Dlg(dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                      IDS_MERCUTIOREP_SELECTPROCESS,
@@ -3362,11 +3362,11 @@ void ZAApp::OnGenerateMercutioReport()
 
         if (Dlg.DoModal() == IDOK)
         {
-            if (Dlg.GetSelectedSymbol() && ISA(Dlg.GetSelectedSymbol(), ZBBPProcessSymbol))
+            if (Dlg.GetSelectedSymbol() && ISA(Dlg.GetSelectedSymbol(), PSS_ProcessSymbolBP))
             {
                 CWaitCursor Cursor2;
                 pNewFile->SetNewReportGridGenerator(new ZBMercutioReportGenerator(pNewFile,
-                                                                                  dynamic_cast<PSS_ProcessGraphModelMdlBP*>(dynamic_cast<ZBBPProcessSymbol*>(Dlg.GetSelectedSymbol())->GetChildModel()),
+                                                                                  dynamic_cast<PSS_ProcessGraphModelMdlBP*>(dynamic_cast<PSS_ProcessSymbolBP*>(Dlg.GetSelectedSymbol())->GetChildModel()),
                                                                                   pCurrentDoc));
 
                 PSS_File file(pCurrentDoc->GetPathName());

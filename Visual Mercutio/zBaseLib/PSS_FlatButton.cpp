@@ -200,7 +200,7 @@ BOOL PSS_FlatButton::SetBtnCursor(int cursorId)
     // cursor wanted?
     if (cursorId != -1)
     {
-        hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(cursorId), RT_GROUP_CURSOR);
+        hInstResource = ::AfxFindResourceHandle(MAKEINTRESOURCE(cursorId), RT_GROUP_CURSOR);
 
         // load icon resource
         m_hCursor = (HCURSOR)::LoadImage(hInstResource, MAKEINTRESOURCE(cursorId), IMAGE_CURSOR, 0, 0, 0);
@@ -352,7 +352,7 @@ void PSS_FlatButton::SetFlat(BOOL state)
 //---------------------------------------------------------------------------
 void PSS_FlatButton::SetIcon(int iconInId, int iconOutId)
 {
-    HINSTANCE hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(iconInId), RT_GROUP_ICON);
+    HINSTANCE hInstResource = ::AfxFindResourceHandle(MAKEINTRESOURCE(iconInId), RT_GROUP_ICON);
 
     // set icon when the mouse is IN the button
     HICON hIconIn = HICON(::LoadImage(hInstResource, MAKEINTRESOURCE(iconInId), IMAGE_ICON, 0, 0, 0));

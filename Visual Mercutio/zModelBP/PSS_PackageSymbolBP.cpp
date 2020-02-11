@@ -77,7 +77,7 @@ BOOL PSS_PackageSymbolBP::Create(const CString& name, const CString& fileName)
             m_FileNameLinkedTo = fileName;
 
         result = PSS_Symbol::Create(IDR_PACKAGE_SYM,
-                                    AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
+                                    ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
                                     name);
 
         if (!CreateSymbolProperties())
@@ -113,7 +113,7 @@ void PSS_PackageSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src
 {
     PSS_Symbol::CopySymbolDefinitionFrom(src);
 
-    PSS_PackageSymbolBP* pOther = dynamic_cast<PSS_PackageSymbolBP*>(const_cast<CODSymbolComponent*>(&src));
+    const PSS_PackageSymbolBP* pOther = dynamic_cast<const PSS_PackageSymbolBP*>(&src);
 
     if (pOther)
     {
@@ -189,7 +189,7 @@ bool PSS_PackageSymbolBP::UnloadPackage()
 //---------------------------------------------------------------------------
 bool PSS_PackageSymbolBP::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    // prohibit the drop unless the symbol is a local symbol
+    // don't allow the drop if the symbol isn't local
     if (!IsLocal())
         return false;
 
@@ -265,6 +265,11 @@ bool PSS_PackageSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, P
         CString linkToFile;
         linkToFile.Format(IDS_FS_BPPACKAGE_LINKTF_TOOLTIP, m_FileNameLinkedTo);
         toolTipText += linkToFile;
+    }
+
+    if (mode == PSS_Symbol::IE_TT_Design)
+    {
+        // todo -cFeature -oJean: need to implement the result of the control checking
     }
 
     return true;

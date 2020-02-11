@@ -31,7 +31,7 @@
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
@@ -85,7 +85,7 @@ private:
     bool OnDoorSymbol(PSS_DoorSymbolBP* pSymbol);
     bool OnPageSymbol(PSS_PageSymbolBP* pSymbol);
     bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
-    bool OnProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    bool OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol);
     bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
     bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
     bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
@@ -104,7 +104,7 @@ private:
     PSS_ProcessGraphModelMdl*                m_pRootModel;
     PSS_ProcessGraphModelMdlBP*            m_pModel;
     PSS_ProcessGraphModelDoc*                m_pSourceDoc;
-    ZBBPProcessSymbol*                    m_pPreviousProcess;
+    PSS_ProcessSymbolBP*                    m_pPreviousProcess;
 
     PSS_HtmlFile                          HtmlFile;
 

@@ -174,9 +174,9 @@ void ZVPublishPrestationsReport::ExploreProcessHierarchy(CString                
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 if (m_Process != NULL)
                                 {

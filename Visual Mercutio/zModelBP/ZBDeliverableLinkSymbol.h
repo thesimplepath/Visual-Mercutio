@@ -49,6 +49,9 @@
 #ifndef PSS_ProcedureSymbolBP
     #define PSS_ProcedureSymbolBP ZBBPProcedureSymbol
 #endif
+#ifndef PSS_ProcessSymbolBP
+    #define PSS_ProcessSymbolBP ZBBPProcessSymbol
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
@@ -57,7 +60,7 @@
 class PSS_DoorSymbolBP;
 class PSS_PageSymbolBP;
 class PSS_ProcedureSymbolBP;
-class ZBBPProcessSymbol;
+class PSS_ProcessSymbolBP;
 class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZMODELBPEXPORT
@@ -645,11 +648,11 @@ public:
 
     // Returns the coming from process of this deliverable
     PSS_ProcessGraphModelMdl* GetComingFromModel() const;
-    ZBBPProcessSymbol* GetComingFromProcess() const;
+    PSS_ProcessSymbolBP* GetComingFromProcess() const;
 
     // Returns the going to process attached of this deliverable
     PSS_ProcessGraphModelMdl* GetGoingToModel() const;
-    ZBBPProcessSymbol* GetGoingToProcess() const;
+    PSS_ProcessSymbolBP* GetGoingToProcess() const;
 
     // Return true if the deliverable is an initial deliverable
     bool IsInitial() const;
@@ -847,7 +850,7 @@ private:
     bool DoProcedureDoorConnection(PSS_ProcedureSymbolBP* pSrc, PSS_DoorSymbolBP* pDst, CODModel* pModel);
     bool DoPageProcedureConnection(PSS_PageSymbolBP* pSrc, PSS_ProcedureSymbolBP* pDst, CODModel* pModel);
     bool DoProcedurePageConnection(PSS_ProcedureSymbolBP* pSrc, PSS_PageSymbolBP* pDst, CODModel* pModel);
-    bool DoProcessProcessConnection(ZBBPProcessSymbol* pSrc, ZBBPProcessSymbol* pDst, CODModel* pModel);
+    bool DoProcessProcessConnection(PSS_ProcessSymbolBP* pSrc, PSS_ProcessSymbolBP* pDst, CODModel* pModel);
 
     void CheckDeliverableStatus();
 

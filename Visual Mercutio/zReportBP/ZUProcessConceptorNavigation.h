@@ -53,7 +53,7 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
     virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP*    pProcedure);
-    virtual bool OnProcessSymbol(ZBBPProcessSymbol*    pSymbol);
+    virtual bool OnProcessSymbol(PSS_ProcessSymbolBP*    pSymbol);
     virtual bool OnSymbol(PSS_Symbol*               pSymbol);
     virtual bool OnLink(PSS_LinkSymbol*            pLink);
 
@@ -66,7 +66,7 @@ private:
 
     ZBOStreamGrid*            m_postream;
 
-    ZBBPProcessSymbol*        m_pPreviousProcess;
+    PSS_ProcessSymbolBP*        m_pPreviousProcess;
     PSS_ProcessGraphModelMdl*    m_pRootModel;
 
     CGXStyle                m_BlueStyle;

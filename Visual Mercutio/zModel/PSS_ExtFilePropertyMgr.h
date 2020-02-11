@@ -290,7 +290,7 @@ class AFX_EXT_CLASS PSS_ExtFilePropertyMgr
         *@param[in, out] refresh - if true, the owning symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessMenuCommand(int            menuCommand,
+        virtual bool ProcessMenuCommand(int            menuCmdID,
                                         ZBProperty&    prop,
                                         CString&       value,
                                         ZBPropertySet& props,

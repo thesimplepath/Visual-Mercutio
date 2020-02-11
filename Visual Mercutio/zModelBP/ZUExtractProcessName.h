@@ -36,12 +36,15 @@
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 
 // class name mapping
+#ifndef PSS_ProcessSymbolBP
+    #define PSS_ProcessSymbolBP ZBBPProcessSymbol
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declarations
-class ZBBPProcessSymbol;
+class PSS_ProcessSymbolBP;
 class PSS_ProcessGraphModelMdl;
 class PSS_Log;
 
@@ -76,7 +79,7 @@ public:
 
 private:
 
-    bool AddProcessSymbol(ZBBPProcessSymbol* pSymbol);
+    bool AddProcessSymbol(PSS_ProcessSymbolBP* pSymbol);
     bool Exist(CStringArray& Array, const CString ProcessName);
 
     // JMR-MODIF - Le 8 mars 2006 - Ajout de la fonction Sort.

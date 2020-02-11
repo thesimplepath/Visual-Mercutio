@@ -13,7 +13,7 @@
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
@@ -65,16 +65,16 @@ bool ZUGridSesterceProcessNavigation::OnStart()
     }
 
     // Find the right process, function of the model name
-    ZBBPProcessSymbol*    pProcess = NULL;
+    PSS_ProcessSymbolBP*    pProcess = NULL;
     CODComponentSet*    pSet = m_pModel->GetRoot()->FindSymbol(m_pModel->GetModelName(),
                                                                _T(""),
                                                                true,
                                                                true,    // In case sensitive,
                                                                true);    // and only local symbol
 
-    if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0) != NULL && ISA(pSet->GetAt(0), ZBBPProcessSymbol))
+    if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0) != NULL && ISA(pSet->GetAt(0), PSS_ProcessSymbolBP))
     {
-        pProcess = dynamic_cast<ZBBPProcessSymbol*>(pSet->GetAt(0));
+        pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(pSet->GetAt(0));
     }
 
     // Initialize the normal style for cells

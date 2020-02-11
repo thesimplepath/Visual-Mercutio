@@ -118,7 +118,7 @@ void PSS_PointerWnd::OnPaint()
     CPaintDC dc(this);
 
     // find the resource instance handle
-    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_ID), RT_BITMAP);
+    HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(m_ID), RT_BITMAP);
 
     ShowBitmapFile(MAKEINTRESOURCE(m_ID), dc.m_hDC, hInst, 0, 0);
 }

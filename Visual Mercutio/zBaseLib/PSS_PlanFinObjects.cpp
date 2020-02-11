@@ -1039,7 +1039,7 @@ void PSS_PLFNLong::DrawCalculatedSymbol(CDC* pDC)
     if (pDC->IsPrinting())
         return;
 
-    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(IDB_CALCBACKASSC), RT_BITMAP);
+    HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(IDB_CALCBACKASSC), RT_BITMAP);
 
     if (GetCurrentAssociation())
     {

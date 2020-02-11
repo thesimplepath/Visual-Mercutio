@@ -23,7 +23,7 @@
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 #include "ZBDeliverableLinkSymbol.h"
 #include "ZBInputAttributes.h"
 #include "ZBDistributionAttributes.h"
@@ -120,7 +120,7 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetBPProcedureSymbols(CODNodeArray& node
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPProcessSymbols(CODNodeArray& nodes, bool deep)
 {
-    return GetSymbolsISA(nodes, RUNTIME_CLASS(ZBBPProcessSymbol), deep);
+    return GetSymbolsISA(nodes, RUNTIME_CLASS(PSS_ProcessSymbolBP), deep);
 }
 //---------------------------------------------------------------------------
 UINT PSS_ProcessGraphModelMdlBP::GetSymbolImageIDRes() const
@@ -540,8 +540,8 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetStartSymbolInStartProcess(CODNodeArra
     // iterate through the node array and for each process which have no entering up links
     for (std::size_t nodeIndex = 0; nodeIndex < counter; ++nodeIndex)
     {
-        IODNode*           pINode   = processNodes.GetAt(nodeIndex);
-        ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(pINode);
+        IODNode*             pINode   = processNodes.GetAt(nodeIndex);
+        PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(pINode);
 
         if (!pProcess)
             continue;
@@ -563,8 +563,8 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetStartSymbolInStartProcess(CODNodeArra
         // no start symbol was found, recursively call the GetStartSymbols() function
         for (std::size_t nodeIndex = 0; nodeIndex < retainedCount; ++nodeIndex)
         {
-            IODNode*           pINode   = retainedProcessNodes.GetAt(nodeIndex);
-            ZBBPProcessSymbol* pProcess = static_cast<ZBBPProcessSymbol*>(pINode);
+            IODNode*             pINode   = retainedProcessNodes.GetAt(nodeIndex);
+            PSS_ProcessSymbolBP* pProcess = static_cast<PSS_ProcessSymbolBP*>(pINode);
 
             if (!pProcess)
                 continue;
@@ -585,8 +585,8 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetStartSymbolInStartProcess(CODNodeArra
         // iterate through the retained processes again, but this time call GetStartSymbols() function instead
         for (std::size_t nodeIndex = 0; nodeIndex < retainedCount; ++nodeIndex)
         {
-            IODNode*           pINode   = retainedProcessNodes.GetAt(nodeIndex);
-            ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(pINode);
+            IODNode*             pINode   = retainedProcessNodes.GetAt(nodeIndex);
+            PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(pINode);
 
             if (!pProcess)
                 continue;

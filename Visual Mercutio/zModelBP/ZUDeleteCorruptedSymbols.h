@@ -28,7 +28,7 @@
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "PSS_PackageSymbolBP.h"
@@ -63,7 +63,7 @@ public:
 
 private:
 
-    BOOL IsCorrupted(ZBBPProcessSymbol* m_Symbol);
+    BOOL IsCorrupted(PSS_ProcessSymbolBP* m_Symbol);
     BOOL IsCorrupted(PSS_ProcedureSymbolBP* m_Symbol);
     BOOL IsCorrupted(ZBBPStartSymbol* m_Symbol);
     BOOL IsCorrupted(ZBBPStopSymbol* m_Symbol);

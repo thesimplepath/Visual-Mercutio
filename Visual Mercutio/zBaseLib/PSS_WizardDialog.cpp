@@ -343,12 +343,12 @@ BOOL PSS_WizardDialog::OnInitDialog()
 
     if (m_IconID)
     {
-        m_hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_IconID), RT_ICON);
+        m_hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(m_IconID), RT_ICON);
         m_hIcon = ::LoadIcon(m_hInst, MAKEINTRESOURCE(m_IconID));
     }
 
     // find resources
-    m_hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
+    m_hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
 
     PSS_Dialog::OnInitDialog();
 

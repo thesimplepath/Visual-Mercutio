@@ -681,7 +681,7 @@ void _ZBPrestationsDatas::UpdateTotals()
 }
 
 // Cette fonction effectue l'association des données entre les prestations et les processus qui les contiennent.
-void _ZBPrestationsDatas::Associate(ZBBPProcessSymbol* Process)
+void _ZBPrestationsDatas::Associate(PSS_ProcessSymbolBP* Process)
 {
     // Effectue la récursion pour chaque niveaux de prestations.
     POSITION Pos = m_ChildPrestationsList.GetHeadPosition();
@@ -901,10 +901,10 @@ void ZBPrestationsReportGenerator::Associate(PSS_ProcessGraphModelMdlBP* m_RootM
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
                                 // Convertit le symbole.
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
                                 PSS_ProcessGraphModelMdlBP* m_ChildModel =

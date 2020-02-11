@@ -627,8 +627,8 @@ bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPProcessSymbol.
-bool ZVPublishConceptorReport::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_ProcessSymbolBP.
+bool ZVPublishConceptorReport::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
     switch (PublishProc)
     {
@@ -736,9 +736,9 @@ bool ZVPublishConceptorReport::Visit(CODComponent& Symbol)
     {
         return OnPageSymbol(dynamic_cast<PSS_PageSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPProcessSymbol))
+    else if (ISA(pSymbol, PSS_ProcessSymbolBP))
     {
-        return OnProcessSymbol(dynamic_cast<ZBBPProcessSymbol*>(&Symbol));
+        return OnProcessSymbol(dynamic_cast<PSS_ProcessSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBBPStartSymbol))
     {

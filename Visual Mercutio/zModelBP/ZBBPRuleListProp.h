@@ -1,27 +1,14 @@
-/////////////////////////////////////////////////////////////////////////////
-//@doc ZBBPRuleListProperties
-//@module XXXClass.h | Interface of the <c ZBBPRuleListProperties> class.
-//
-// ProcessSoft Classes
-// <nl>Copyright <cp> 2001 - ProcessSoft SA,
-// All rights reserved.
-//
-// This source code is only intended as a supplement to
-// the ProcessSoft Class Reference and related
-// electronic documentation provided with the library.
-// See these sources for detailed information regarding
-// ProcessSoft products.
-//
-// Author:       Dom
-// <nl>Created:         04/2002
-// <nl>Description:  ZBBPRuleListProperties manages a list of rules
-//
-/////////////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_RuleListPropertiesBP --------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the rule list properties for banking process      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#ifndef __ZBBPRuleListProp_H__
-#define __ZBBPRuleListProp_H__
+#ifndef PSS_RuleListPropertiesBPH
+#define PSS_RuleListPropertiesBPH
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -29,86 +16,65 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// resources
 #include "PSS_PropIDs.h"
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 22 novembre 2006 - Ajout des décorations unicode _T(), nettoyage du code inutile. (En commentaires)
+#define Z_CHANGE_RULE_LIST 0x0001
 
-/////////////////////////////////////////////////////////////////////////////
-// Process change flags
+//---------------------------------------------------------------------------
+// Global defines
+//---------------------------------------------------------------------------
+#define Z_RULE_LIST 1
+//---------------------------------------------------------------------------
 
-//@topic Process Properties Change Flags | Different aspects of the Process
-// properties that can be changed individually.
-//@flag Z_CHANGE_RULE_LIST | Change the rule list.
-#define    Z_CHANGE_RULE_LIST    0x0001
-
-/////////////////////////////////////////////////////////////////////////////
-// Fill property IDs
-
-//@topic Fill Property Identifiers | Identify the properties contained by
-// <c ZBBPRuleListProperties> objects. The ZBBPRuleListProperties class is a property
-// container for these sub-properties. These property identifiers are
-// unique within a process properties container. These identifiers are used
-// in conjunction with the <c IODPropertyContainer> interface implemented
-// by the process property container.
-//@flag Z_RULE_LIST | Identifier for the rule list property.
-#define    Z_RULE_LIST            1
-
-/////////////////////////////////////////////////////////////////////////////
-// ZBBPRuleListProperties
-
-//@class This set of properties determines how a component is filled. Normally,
-// the component is either not filled or filled with a solid color. You can also
-// specify hatching and patterns.
-//
-// This class is both a property and a container for properties. It implements
-// the <c IODPropertyContainer> interface for getting and setting values that
-// it contains. Each sub-property contained by process property objects has a
-// unique identifier (see <t Process Property Identifiers>) for getting and
-// setting each value. There are also methods to directly set each property.
-
-//@base public | CODIntProperty
-//@base public | CPropertyContainer<lt>IODPropertyContainer, sfl::CODIntPropertyAccessor<lt>ZBBPRuleListProperties<gt> <gt>
-
+/**
+* Rule list properties for banking process
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZBBPRuleListProperties : public CODIntProperty,
-                                             public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBBPRuleListProperties> >
+                                             public sfl::CPropertyContainer< IODPropertyContainer,
+                                                                             CODPropertyAccessor<ZBBPRuleListProperties> >
 {
-    DECLARE_SERIAL( ZBBPRuleListProperties )
+    DECLARE_SERIAL(ZBBPRuleListProperties)
 
-// Construction/Destruction
 public:
+    /**
+    * Constructor
+    *@param propID - property identifier
+    */
+    ZBBPRuleListProperties(int propID = ZS_BP_PROP_RULELIST);
 
-    //@cmember
-    /* Constructor. */
-    ZBBPRuleListProperties( int nId = ZS_BP_PROP_RULELIST );
+    /**
+    * Copy constructor
+    *@param other - other object to copy from
+    */
+    ZBBPRuleListProperties(const ZBBPRuleListProperties& other);
 
-    //@cmember
-    /* Copy constructor. */
-    ZBBPRuleListProperties( const ZBBPRuleListProperties& propProcess );
-
-    //@cmember
-    /* Destructor. */
     virtual ~ZBBPRuleListProperties();
 
-// Operations
-public:
+    /**
+    * Copy operator
+    *@param other - other object to copy from
+    *@return copy of itself
+    */
+    ZBBPRuleListProperties& operator = (const ZBBPRuleListProperties& other);
 
-    //@cmember
-    /* Sets this set of fill properties equal to another. */
-    ZBBPRuleListProperties& operator=( const ZBBPRuleListProperties& propProcess );
-
-    //@cmember
-    /* Determines if another set of fill properties is equal to this one. */
-    BOOL operator==( const ZBBPRuleListProperties propProcess ) const;
+    /**
+    * Checks if another set of properties is equal to this one
+    *@param other - the other properties to compare with
+    *@return TRUE if the properties are equals, otherwise FALSE
+    */
+    BOOL operator == (const ZBBPRuleListProperties other) const;
 
     //@cmember
     /* Makes a copy of this properties object. */
@@ -116,11 +82,11 @@ public:
 
     //@cmember
     /* Merges another set of properties with this one. */
-    virtual void Merge( CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
+    virtual void Merge(CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
 
     //@cmember
     /* Determines if another set of properties is equal to this one. */
-    virtual BOOL IsEqual( CODProperty* pProp );
+    virtual BOOL IsEqual(CODProperty* pProp);
 
     // The GUID map implements the QueryGuid function
     BEGIN_GUID_MAP(ZBBPRuleListProperties)
@@ -144,7 +110,7 @@ public:
     *@param id - the identifier to check
     *@return TRUE if the identifier is in the range, otherwise FALSE
     */
-    virtual BOOL CompareId( const int nId ) const;
+    virtual BOOL CompareId(const int nId) const;
 
     //@cmember
     /* Gets the task list. */
@@ -152,69 +118,69 @@ public:
 
     //@cmember
     /* Sets the task list. */
-    void SetRuleList( LPCTSTR lpszValue );
+    void SetRuleList(LPCTSTR lpszValue);
 
     //@cmember
     /* Gets the value of the given string property. */
-    virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
+    virtual BOOL GetValue(const int nPropId, CString& strValue) const;
 
     //@cmember
     /* Gets the value of the given integer property. */
-    virtual BOOL GetValue( const int nPropId, int& nValue ) const;
+    virtual BOOL GetValue(const int nPropId, int& nValue) const;
 
     //@cmember
     /* Gets the value of the given unsigned integer property. */
-    virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
+    virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
 
     //@cmember
     /* Gets the value of the given DWORD property. */
-    virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
+    virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
 
     //@cmember
     /* Gets the value of the given float property. */
-    virtual BOOL GetValue( const int nPropId, float& fValue ) const;
+    virtual BOOL GetValue(const int nPropId, float& fValue) const;
 
     //@cmember
     /* Sets the value of the given string property. */
-    virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
+    virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
 
     //@cmember
     /* Sets the value of the given integer property. */
-    virtual BOOL SetValue( const int nPropId, const int nValue );
+    virtual BOOL SetValue(const int nPropId, const int nValue);
 
     //@cmember
     /* Sets the value of the given unsigned integer property. */
-    virtual BOOL SetValue( const int nPropId, const UINT nValue );
+    virtual BOOL SetValue(const int nPropId, const UINT nValue);
 
     //@cmember
     /* Sets the value of the given unsigned DWORD property. */
-    virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
+    virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
 
     //@cmember
     /* Sets the value of the given float property. */
-    virtual BOOL SetValue( const int nPropId, const float fValue );
+    virtual BOOL SetValue(const int nPropId, const float fValue);
 
     //@cmember
     /* Serializes the line properties. */
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
-// Implementation
+    // Implementation
 public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:
 
     /* Additional mutators for use with CODIntPropertyAccessor */
-    void SetRuleListEx( const CString value );
+    void SetRuleListEx(const CString value);
 
     /* Registers the fill property meta-data. */
     bool RegisterProperties();
 
-// Attributes
+    // Attributes
 protected:
 
     //@cmember
@@ -251,7 +217,7 @@ inline CString ZBBPRuleListProperties::GetRuleList() const
 // for cleaning up this object.
 inline CODProperty* ZBBPRuleListProperties::Dup()
 {
-    return new ZBBPRuleListProperties( *this );
+    return new ZBBPRuleListProperties(*this);
 }
 
-#endif // __ZBBPRuleListProp_H__
+#endif

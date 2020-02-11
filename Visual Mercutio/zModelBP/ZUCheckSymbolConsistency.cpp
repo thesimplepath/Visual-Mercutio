@@ -10,7 +10,7 @@
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
@@ -160,9 +160,9 @@ bool ZUCheckSymbolConsistency::Visit(CODComponent& Symbol)
     {
         return CheckPageSymbol(dynamic_cast<PSS_PageSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPProcessSymbol))
+    else if (ISA(pSymbol, PSS_ProcessSymbolBP))
     {
-        return CheckProcessSymbol(dynamic_cast<ZBBPProcessSymbol*>(&Symbol));
+        return CheckProcessSymbol(dynamic_cast<PSS_ProcessSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBBPStartSymbol))
     {
@@ -401,7 +401,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymb
 
     if (FollowingLeftSymbolCount > 0)
     {
-        if (PSS_ODSymbolManipulator::HasSymbolsISA(LeftNodes, RUNTIME_CLASS(ZBBPProcessSymbol)))
+        if (PSS_ODSymbolManipulator::HasSymbolsISA(LeftNodes, RUNTIME_CLASS(PSS_ProcessSymbolBP)))
         {
             if (m_pLog)
             {
@@ -424,7 +424,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymb
 
     if (EnteringLeftSymbolCount > 0)
     {
-        if (PSS_ODSymbolManipulator::HasSymbolsISA(LeftNodes, RUNTIME_CLASS(ZBBPProcessSymbol)))
+        if (PSS_ODSymbolManipulator::HasSymbolsISA(LeftNodes, RUNTIME_CLASS(PSS_ProcessSymbolBP)))
         {
             if (m_pLog)
             {
@@ -464,7 +464,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymb
 
     if (FollowingRightSymbolCount > 0)
     {
-        if (PSS_ODSymbolManipulator::HasSymbolsISA(RightNodes, RUNTIME_CLASS(ZBBPProcessSymbol)))
+        if (PSS_ODSymbolManipulator::HasSymbolsISA(RightNodes, RUNTIME_CLASS(PSS_ProcessSymbolBP)))
         {
             if (m_pLog)
             {
@@ -487,7 +487,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymb
 
     if (EnteringRightSymbolCount > 0)
     {
-        if (PSS_ODSymbolManipulator::HasSymbolsISA(RightNodes, RUNTIME_CLASS(ZBBPProcessSymbol)))
+        if (PSS_ODSymbolManipulator::HasSymbolsISA(RightNodes, RUNTIME_CLASS(PSS_ProcessSymbolBP)))
         {
             if (m_pLog)
             {
@@ -525,7 +525,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymb
     UpSymbolCount = pSymbol->GetEnteringSymbols_Up(UpNodes);
 
     // Check if a process is attached to it
-    if (UpSymbolCount > 0 && PSS_ODSymbolManipulator::HasSymbolsISA(UpNodes, RUNTIME_CLASS(ZBBPProcessSymbol)))
+    if (UpSymbolCount > 0 && PSS_ODSymbolManipulator::HasSymbolsISA(UpNodes, RUNTIME_CLASS(PSS_ProcessSymbolBP)))
     {
         if (m_pLog)
         {
@@ -626,7 +626,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymb
 
     // Check if a process is attached to it
     if (DownSymbolCount > 0 &&
-        PSS_ODSymbolManipulator::HasSymbolsISA(DownNodes, RUNTIME_CLASS(ZBBPProcessSymbol)))
+        PSS_ODSymbolManipulator::HasSymbolsISA(DownNodes, RUNTIME_CLASS(PSS_ProcessSymbolBP)))
     {
         if (m_pLog)
         {
@@ -792,7 +792,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymb
     return true;
 }
 
-bool ZUCheckSymbolConsistency::CheckProcessSymbol(ZBBPProcessSymbol* pSymbol)
+bool ZUCheckSymbolConsistency::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 

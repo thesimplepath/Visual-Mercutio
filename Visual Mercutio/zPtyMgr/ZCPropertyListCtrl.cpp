@@ -79,7 +79,7 @@ ZCPropertyListCtrl::ZCPropertyListCtrl(LPCTSTR pIniFile /*= NULL*/)
 
     HINSTANCE hInstResource;
 
-    hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(IDC_SPLITTER_H),
+    hInstResource = ::AfxFindResourceHandle(MAKEINTRESOURCE(IDC_SPLITTER_H),
                                           RT_GROUP_CURSOR);
 
     // Load icon resource

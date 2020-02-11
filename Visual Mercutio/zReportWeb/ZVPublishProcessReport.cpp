@@ -409,12 +409,12 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
                                 PSS_Symbol* Result = NULL;
 
                                 // Convertit le symbole.
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
                                 PSS_ProcessGraphModelMdlBP* m_ChildModel =
@@ -501,12 +501,12 @@ PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
                                 PSS_LinkSymbol* Result = NULL;
 
                                 // Convertit le symbole.
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
                                 PSS_ProcessGraphModelMdlBP* m_ChildModel =
@@ -572,9 +572,9 @@ bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 if (m_Process != NULL)
                                 {
@@ -641,7 +641,7 @@ bool ZVPublishProcessReport::CreateFileSystem(CString Directory,
 }
 
 // Cette fonction permet la génération du rapport.
-void ZVPublishProcessReport::CreateReport(ZBBPProcessSymbol* m_pProcessSymbol)
+void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
 {
     CString Output = _T("");
 

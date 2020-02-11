@@ -704,7 +704,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)lParam;
 
-        HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(IDR_WIZARDMENU), RT_MENU);
+        HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_WIZARDMENU), RT_MENU);
 
         // show the wizard context menu
         HMENU dummyMenu = ::LoadMenu(hInst, MAKEINTRESOURCE(IDR_WIZARDMENU));

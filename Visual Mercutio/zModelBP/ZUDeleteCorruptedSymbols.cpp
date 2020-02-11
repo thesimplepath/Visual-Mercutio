@@ -103,10 +103,10 @@ void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRoo
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
                                 // Convertit le symbole.
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 if (IsCorrupted(m_Process))
                                 {
@@ -132,7 +132,7 @@ void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRoo
 }
 
 // Contrôle que les propriétés du symbole processus donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPProcessSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_ProcessSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {

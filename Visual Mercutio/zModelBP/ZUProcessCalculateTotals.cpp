@@ -13,7 +13,7 @@
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
@@ -68,7 +68,7 @@ bool ZUProcessCalculateTotals::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUProcessCalculateTotals::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
+bool ZUProcessCalculateTotals::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
     // Now initiate the procedure totals for the process
     ZUProcedureCalculateTotals ProcedureTotals(dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel()),

@@ -48,7 +48,9 @@ BOOL PSS_GenericSymbolBP::Create(UINT nID, const CString& name)
     try
     {
         m_IsInCreationProcess = true;
-        result                = PSS_Symbol::Create(nID, AfxFindResourceHandle(MAKEINTRESOURCE(nID), _T("Symbol")), name);
+        result                = PSS_Symbol::Create(nID,
+                                                   ::AfxFindResourceHandle(MAKEINTRESOURCE(nID), _T("Symbol")),
+                                                   name);
     }
     catch (...)
     {

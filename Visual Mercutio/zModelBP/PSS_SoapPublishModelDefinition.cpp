@@ -23,7 +23,7 @@
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
@@ -103,7 +103,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(PSS_Symbol*        
             CODComponent* pComponent = pCompSet->GetAt(i);
 
             // get process symbol
-            ZBBPProcessSymbol* pCompProcSym = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+            PSS_ProcessSymbolBP* pCompProcSym = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
             // found it?
             if (pCompProcSym)
@@ -322,7 +322,7 @@ bool PSS_SoapPublishModelDefinition::OnProcedureSymbol(PSS_ProcedureSymbolBP* pS
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelDefinition::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
+bool PSS_SoapPublishModelDefinition::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
     if (!pSymbol)
         return false;

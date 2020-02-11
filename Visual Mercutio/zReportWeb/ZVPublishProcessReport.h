@@ -32,7 +32,7 @@
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
@@ -62,19 +62,19 @@ class AFX_EXT_CLASS _ZVSymbolEntity : public CObject
 public:
 
     _ZVSymbolEntity();
-    _ZVSymbolEntity( int            Ref,
-                     CString        Name,
-                     CString        Description );
+    _ZVSymbolEntity(int            Ref,
+                    CString        Name,
+                    CString        Description);
 
     ~_ZVSymbolEntity();
 
-    void            SetRef( int Ref );
+    void            SetRef(int Ref);
     int                GetRef();
 
-    void            SetName( CString Name );
+    void            SetName(CString Name);
     CString            GetName();
 
-    void            SetDescription( CString Description );
+    void            SetDescription(CString Description);
     CString            GetDescription();
 
 private:
@@ -92,11 +92,11 @@ public:
     _ZVSymbolContainer();
     ~_ZVSymbolContainer();
 
-    void AddSymbol( _ZVSymbolEntity* SymbolEntity );
+    void AddSymbol(_ZVSymbolEntity* SymbolEntity);
     void RemoveAll();
     void Sort();
 
-    _ZVSymbolEntity* GetAt ( POSITION Pos );
+    _ZVSymbolEntity* GetAt(POSITION Pos);
 
     POSITION GetHeadPosition();
     POSITION GetTailPosition();
@@ -106,7 +106,7 @@ public:
 private:
 
     // JMR-MODIF - Le 13 juin 2006 - Ajout de la fonction WashString.
-    CString WashString( CString EntryString );
+    CString WashString(CString EntryString);
 
 private:
 
@@ -121,44 +121,44 @@ class AFX_EXT_CLASS ZVPublishProcessReport
 {
 public:
 
-    ZVPublishProcessReport            (PSS_ProcessGraphModelMdlBP*    pModel            = NULL,
-                                      ZBPropertyAttributes*        pPropAttributes    = NULL );
+    ZVPublishProcessReport(PSS_ProcessGraphModelMdlBP*    pModel = NULL,
+                           ZBPropertyAttributes*        pPropAttributes = NULL);
 
-    virtual ~ZVPublishProcessReport    ();
+    virtual ~ZVPublishProcessReport();
 
-    bool Publish                    ( CString Directory );
+    bool Publish(CString Directory);
 
 private:
 
-    bool CreateFileSystem            ( CString Directory, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL );
+    bool CreateFileSystem(CString Directory, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL);
 
-    CString GenerateFileName        ( CString Directory, CString ProcessName );
+    CString GenerateFileName(CString Directory, CString ProcessName);
 
-    PSS_Symbol* FindSymbol            ( const CString SymbolName, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL );
-    PSS_LinkSymbol* FindLinkSymbol    ( const CString SymbolName, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL );
+    PSS_Symbol* FindSymbol(const CString SymbolName, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL);
+    PSS_LinkSymbol* FindLinkSymbol(const CString SymbolName, PSS_ProcessGraphModelMdlBP* m_StartRootModel = NULL);
 
-    void CreateReport                ( ZBBPProcessSymbol* m_pProcessSymbol );
-    void GeneratePageFile            ( CString Name, CString Description );
-    void GenerateSection            ( ZBPropertySet& PropSet );
-    void GenerateHTMLPageHead        ( CString Title );
-    void GenerateHTMLPageFoot        ();
-    void GenerateHTMLTableHead        ();
-    void GenerateHTMLTableFoot        ();
+    void CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol);
+    void GeneratePageFile(CString Name, CString Description);
+    void GenerateSection(ZBPropertySet& PropSet);
+    void GenerateHTMLPageHead(CString Title);
+    void GenerateHTMLPageFoot();
+    void GenerateHTMLTableHead();
+    void GenerateHTMLTableFoot();
 
     // JMR-MODIF - Le 18 avril 2007 - Suppression du 3ème paramètre.
-    void GenerateHTMLReportTitle    ( CString DomainName, CString Title );
+    void GenerateHTMLReportTitle(CString DomainName, CString Title);
 
-    void GenerateHTMLSymbolTitle    ( int NbRef, CString Title, CString ObjectType, COLORREF ColorTitle );
-    void GenerateHTMLSymbolTitle    ( int NbRef, CString Title, COLORREF ColorTitle );
-    void GenerateHTMLSectionTitle    ( CString Title );
-    void GenerateHTMLSectionLine    ( CString NbRef, CString Title, CString Description );
-    void GenerateBlackLine            ();
-    void GenerateSeparation            ();
+    void GenerateHTMLSymbolTitle(int NbRef, CString Title, CString ObjectType, COLORREF ColorTitle);
+    void GenerateHTMLSymbolTitle(int NbRef, CString Title, COLORREF ColorTitle);
+    void GenerateHTMLSectionTitle(CString Title);
+    void GenerateHTMLSectionLine(CString NbRef, CString Title, CString Description);
+    void GenerateBlackLine();
+    void GenerateSeparation();
 
-    void WriteLine                    ( CString Text );
-    void WriteLine                    ( int nID );
+    void WriteLine(CString Text);
+    void WriteLine(int nID);
 
-    void ResetDatas                    ();
+    void ResetDatas();
 
 private:
 
@@ -178,4 +178,4 @@ private:
     _ZVSymbolContainer                m_DoorContainer;
 };
 
-#endif // !defined(AFX_ZVPUBLISHPROCESSREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
+#endif

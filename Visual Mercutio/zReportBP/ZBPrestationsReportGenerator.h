@@ -35,7 +35,7 @@
 #include "zModel\PSS_ProcessGraphPage.h"
 
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZUExtractProcessName.h"
 #include "zModelBP\PSS_DeliveriesPropertiesBP.h"
@@ -120,7 +120,7 @@ public:
     CString GetName();
 
     void GenerateHierarchy(PSS_LogicalPrestationsEntity* pPrestations, int Level = 0);
-    void Associate(ZBBPProcessSymbol* Process);
+    void Associate(PSS_ProcessSymbolBP* Process);
     void UpdateTotals();
 
     void DisplayDatas(ZBOStreamGrid    &ostream,

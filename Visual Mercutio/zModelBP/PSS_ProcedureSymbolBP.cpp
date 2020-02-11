@@ -108,11 +108,10 @@ BOOL PSS_ProcedureSymbolBP::Create(const CString& name)
     try
     {
         m_IsInCreationProcess = true;
-
-
-        result = PSS_Symbol::Create(IDR_BP_PROCEDURE,
-                                    AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
-                                    name);
+        result                = PSS_Symbol::Create(IDR_BP_PROCEDURE,
+                                                   ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM),
+                                                                           _T("Symbol")),
+                                                   name);
 
         if (!CreateSymbolProperties())
             result = FALSE;
@@ -162,7 +161,7 @@ BOOL PSS_ProcedureSymbolBP::SetSymbolName(const CString& value)
 //---------------------------------------------------------------------------
 bool PSS_ProcedureSymbolBP::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    // prohibit the drop unless the symbol is a local symbol
+    // don't allow the drop if the symbol isn't local
     if (!IsLocal())
         return false;
 
@@ -284,8 +283,6 @@ bool PSS_ProcedureSymbolBP::CreateSymbolProperties()
 //---------------------------------------------------------------------------
 bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
 {
-    CODModel* pModel = GetRootModel();
-
     // if no file, add a new one
     if (!GetExtFileCount())
         AddNewExtFile();
@@ -303,11 +300,11 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     if (!IsLocal())
         return true;
 
+    PSS_ProcessGraphModelMdl* pProcessGraphModel  =                      dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
+    PSS_ProcessGraphModelDoc* pProcessGraphMdlDoc = pProcessGraphModel ? dynamic_cast<PSS_ProcessGraphModelDoc*>(pProcessGraphModel->GetDocument()) : NULL;
+
     // initialize the currency symbol with the user local currency symbol defined in the control panel
     CString currencySymbol = PSS_Global::GetLocaleCurrency();
-
-    PSS_ProcessGraphModelMdl* pProcessGraphModel  =                      dynamic_cast<PSS_ProcessGraphModelMdl*>(pModel);
-    PSS_ProcessGraphModelDoc* pProcessGraphMdlDoc = pProcessGraphModel ? dynamic_cast<PSS_ProcessGraphModelDoc*>(pProcessGraphModel->GetDocument()) : NULL;
 
     // update the currency symbol according to the user selection
     if (pProcessGraphMdlDoc)
@@ -324,14 +321,13 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     if (!g_RulesMenu.GetSafeHmenu())
         g_RulesMenu.LoadMenu(IDR_RULES_MENU);
 
-    // rules exist?
+    // fill the rule properties
     if (m_Rules.GetRulesCount() > 0)
     {
         CString ruleSectionTitle;
-        CString ruleName;
-        CString ruleDesc;
-
         ruleSectionTitle.LoadString(IDS_Z_RULES_TITLE);
+
+        CString ruleDesc;
         ruleDesc.LoadString(IDS_Z_RULES_DESC);
 
         PSS_LogicalRulesEntity*     pMainRule   = NULL;
@@ -366,6 +362,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
                     m_Rules.SetRuleName(i, safeName);
             }
 
+            CString ruleName;
             ruleName.Format(IDS_Z_RULES_NAME, i + 1);
 
             // the "Rule x" property of the "Rules" group
@@ -731,7 +728,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     if (!pDecisionsProps)
         return false;
 
-    count = GetDecisionCount() + 1;
+    count       = GetDecisionCount() + 1;
     propTitle.LoadString(IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE);
     pValueArray = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
@@ -1240,10 +1237,12 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
             }
 
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-        if (pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&
-            pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
+    {
+        const int categoryID = pProp->GetCategoryID();
+
+        if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
         {
-            const int i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;
+            const int i = categoryID - ZS_BP_PROP_RISK;
 
             if (pProp->GetItemID() == M_Risk_Name_ID + (i * g_MaxRisksSize))
                 SetRiskName(i, pProp->GetValueString());
@@ -1260,6 +1259,7 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
             if (pProp->GetItemID() == M_Risk_Action_ID + (i * g_MaxRisksSize))
                 SetRiskAction(i, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
         }
+    }
 
     // save the tasks
     ZBBPTaskListProperties* pTasksProps = static_cast<ZBBPTaskListProperties*>(GetProperty(ZS_BP_PROP_TASKLIST));
@@ -1336,10 +1336,12 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
 
     // iterate through the data list and fill the property set of combination
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-        if (pProp->GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-            pProp->GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
+    {
+        const int categoryID = pProp->GetCategoryID();
+
+        if (categoryID >= ZS_BP_PROP_COMBINATION && categoryID <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
         {
-            const int                    i          = pProp->GetCategoryID() - ZS_BP_PROP_COMBINATION;
+            const int                    i          = categoryID - ZS_BP_PROP_COMBINATION;
             PSS_CombinationPropertiesBP* pCombProps = GetCombinationProperty(i);
 
             if (!pCombProps)
@@ -1355,6 +1357,7 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
                 case ZBProperty::PT_DURATION: ASSERT(FALSE);                                                                                                 break;
             }
         }
+    }
 
     // iterate through the data list and fill the property set
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1383,10 +1386,11 @@ bool PSS_ProcedureSymbolBP::SaveProperty(ZBProperty& prop)
     if (!IsLocal())
         return true;
 
-    if (prop.GetCategoryID() >= ZS_BP_PROP_RISK &&
-        prop.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
+    const int categoryID = prop.GetCategoryID();
+
+    if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        const int i = prop.GetCategoryID() - ZS_BP_PROP_RISK;
+        const int i = categoryID - ZS_BP_PROP_RISK;
 
         if (prop.GetItemID() == M_Risk_Name_ID + (i * g_MaxRisksSize))
             SetRiskName(i, prop.GetValueString());
@@ -1405,7 +1409,7 @@ bool PSS_ProcedureSymbolBP::SaveProperty(ZBProperty& prop)
     }
 
     // check if the user tried to rename a rule, if yes revert to previous name
-    if (prop.GetCategoryID() == ZS_BP_PROP_RULES)
+    if (categoryID == ZS_BP_PROP_RULES)
     {
         const int index = (prop.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
 
@@ -1413,10 +1417,9 @@ bool PSS_ProcedureSymbolBP::SaveProperty(ZBProperty& prop)
             prop.SetValueString(m_Rules.GetRuleName(index));
     }
 
-    if (prop.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-        prop.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
+    if (categoryID >= ZS_BP_PROP_COMBINATION && categoryID <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
     {
-        const int i = prop.GetCategoryID() - ZS_BP_PROP_COMBINATION;
+        const int i = categoryID - ZS_BP_PROP_COMBINATION;
 
         switch (prop.GetItemID() - (i * g_MaxCombinationListSize))
         {
@@ -1427,17 +1430,17 @@ bool PSS_ProcedureSymbolBP::SaveProperty(ZBProperty& prop)
         }
     }
 
-    if (prop.GetCategoryID() == ZS_BP_PROP_RULELIST)
+    if (categoryID == ZS_BP_PROP_RULELIST)
         // if not empty, add this new rule
         if (!prop.GetValueString().IsEmpty())
             AddRule(prop.GetValueString());
 
-    if (prop.GetCategoryID() == ZS_BP_PROP_TASKLIST)
+    if (categoryID == ZS_BP_PROP_TASKLIST)
         // if not empty, add this new task
         if (!prop.GetValueString().IsEmpty())
             AddTask(prop.GetValueString());
 
-    if (prop.GetCategoryID() == ZS_BP_PROP_DECISIONLIST)
+    if (categoryID == ZS_BP_PROP_DECISIONLIST)
         // if not empty, add this new task
         if (!prop.GetValueString().IsEmpty())
             AddDecision(prop.GetValueString());
@@ -1455,10 +1458,11 @@ bool PSS_ProcedureSymbolBP::CheckPropertyValue(ZBProperty& prop, CString& value,
 //---------------------------------------------------------------------------
 bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
-    if (prop.GetCategoryID() >= ZS_BP_PROP_RISK &&
-        prop.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
+    const int categoryID = prop.GetCategoryID();
+
+    if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        const int                 i              = prop.GetCategoryID() - ZS_BP_PROP_RISK;
+        const int                 i              = categoryID - ZS_BP_PROP_RISK;
         PSS_ProcessGraphModelMdl* pModel         = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
         CString                   currencySymbol = PSS_Global::GetLocaleCurrency();
 
@@ -1503,7 +1507,7 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
         }
     }
 
-    if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == Z_UNIT_NAME)
+    if (categoryID == ZS_BP_PROP_UNIT && prop.GetItemID() == Z_UNIT_NAME)
     {
         PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel());
 
@@ -1535,10 +1539,9 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
         }
     }
     else
-    if (prop.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-        prop.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
+    if (categoryID >= ZS_BP_PROP_COMBINATION && categoryID <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
     {
-        const int i = prop.GetCategoryID() - ZS_BP_PROP_COMBINATION;
+        const int i = categoryID - ZS_BP_PROP_COMBINATION;
 
         switch (prop.GetItemID() - (i * g_MaxCombinationListSize))
         {
@@ -1579,16 +1582,17 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
     return PSS_Symbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCommand,
+bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCmdID,
                                                ZBProperty&    prop,
                                                CString&       value,
                                                ZBPropertySet& props,
                                                bool&          refresh)
 {
-    if (prop.GetCategoryID() >= ZS_BP_PROP_RISK &&
-        prop.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
+    const int categoryID = prop.GetCategoryID();
+
+    if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        switch (menuCommand)
+        switch (menuCmdID)
         {
             case ID_ADD_NEWRISK:     OnAddNewRisk    (prop, value, props, refresh); break;
             case ID_DEL_CURRENTRISK: OnDelCurrentRisk(prop, value, props, refresh); break;
@@ -1598,10 +1602,9 @@ bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCommand,
         return true;
     }
 
-    if (prop.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-        prop.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
+    if (categoryID >= ZS_BP_PROP_COMBINATION && categoryID <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
     {
-        switch (menuCommand)
+        switch (menuCmdID)
         {
             case ID_ADD_NEWCOMBINATION:          OnAddNewCombination        (prop, value, props, refresh); break;
             case ID_DEL_CURRENTCOMBINATION:      OnDelCurrentCombination    (prop, value, props, refresh); break;
@@ -1613,8 +1616,8 @@ bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCommand,
         return true;
     }
 
-    if (prop.GetCategoryID() == ZS_BP_PROP_RULES)
-        switch (menuCommand)
+    if (categoryID == ZS_BP_PROP_RULES)
+        switch (menuCmdID)
         {
             case ID_DEL_CURRENTRULE:
             {
@@ -1628,7 +1631,7 @@ bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCommand,
                 break;
         }
 
-    return PSS_Symbol::ProcessMenuCommand(menuCommand, prop, value, props, refresh);
+    return PSS_Symbol::ProcessMenuCommand(menuCmdID, prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
 CString PSS_ProcedureSymbolBP::GetAttributeString(ZBPropertyAttributes* pAttributes) const

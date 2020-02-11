@@ -28,7 +28,7 @@
 #include "zModel\PSS_UnitObserverMsg.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\PSS_PackageSymbolBP.h"
@@ -234,7 +234,7 @@ bool PSS_ProcessGraphModelControllerBP::CanDuplicateObject(CODComponentSet* pCom
 
     // check if a process or a package was selected
     for (CODComponent* pComp = it.GetFirst(); pComp; pComp = it.GetNext())
-        if (pComp && (ISA(pComp, ZBBPProcessSymbol) || ISA(pComp, PSS_PackageSymbolBP)))
+        if (pComp && (ISA(pComp, PSS_ProcessSymbolBP) || ISA(pComp, PSS_PackageSymbolBP)))
             return false;
 
     return true;
@@ -256,7 +256,7 @@ void PSS_ProcessGraphModelControllerBP::OnSymbolDuplicated(CODComponentSet* pCom
         if (!pComp)
             continue;
 
-        ZBBPProcessSymbol* pProcessSym = dynamic_cast<ZBBPProcessSymbol*>(pComp);
+        PSS_ProcessSymbolBP* pProcessSym = dynamic_cast<PSS_ProcessSymbolBP*>(pComp);
 
         if (pProcessSym)
         {
@@ -313,7 +313,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsProcess()
     // set creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPProcessSymbol> pSymbol(new ZBBPProcessSymbol());
+    std::unique_ptr<PSS_ProcessSymbolBP> pSymbol(new PSS_ProcessSymbolBP());
     pSymbol->Create();
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -904,11 +904,11 @@ void PSS_ProcessGraphModelControllerBP::OnShowProcessPreview()
 
     AssignSymbolHit();
 
-    ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(m_pCompHit);
+    PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(m_pCompHit);
 
     if (pProcess)
     {
-        pProcess->SetDisplayPreview(!pProcess->GetDisplayPreview());
+        pProcess->SetShowPreview(!pProcess->GetShowPreview());
 
         CODViewport* pViewport = GetVp();
 
@@ -932,12 +932,12 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateShowProcessPreview(CCmdUI* pCmdU
 
     AssignSymbolHit();
 
-    ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(m_pCompHit);
+    PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(m_pCompHit);
 
     if (pProcess)
     {
         pCmdUI->Enable(TRUE);
-        pCmdUI->SetCheck(pProcess->GetDisplayPreview());
+        pCmdUI->SetCheck(pProcess->GetShowPreview());
     }
     else
         pCmdUI->Enable(FALSE);
@@ -1472,7 +1472,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsertPage()
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
-    rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_ProcessSymbolBP));
 
     PSS_InsertModelNewPageDlg dlg(pRoot,
                                   pRoot->GetValidNextPageName(),
@@ -1519,7 +1519,7 @@ void PSS_ProcessGraphModelControllerBP::OnRenamePage()
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
-    rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_ProcessSymbolBP));
 
     PSS_RenameModelPageDlg dlg(pRoot, pRoot->GetExistingPageNameArray(), NULL, &rtClasses);
 
@@ -1571,7 +1571,7 @@ void PSS_ProcessGraphModelControllerBP::OnDeletePage()
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
-    rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_ProcessSymbolBP));
 
     PSS_DeleteModelPageDlg dlg(pRoot, &rtClasses);
 

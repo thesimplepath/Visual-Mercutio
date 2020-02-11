@@ -12,7 +12,7 @@
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
@@ -297,7 +297,7 @@ bool ZUGridMercutioRepDeliverableNavigation::OnDeliverableLinkSymbol( ZBDelivera
 
     // Retrieve the output procedure name
     PSS_ProcedureSymbolBP* pProcedure = pSymbol->GetTargetProcedure();
-    ZBBPProcessSymbol* pProcess = pSymbol->GetComingFromProcess();
+    PSS_ProcessSymbolBP* pProcess = pSymbol->GetComingFromProcess();
 
     if ( pProcess )
     {

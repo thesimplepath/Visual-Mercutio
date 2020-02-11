@@ -14,11 +14,9 @@
 #include "stdafx.h"
 #include "ZUExtractProcessName.h"
 
-//#include "zModel\ProcGraphModelMdl.h"
-#include "ZBBPProcessSymbol.h"
-
-// Include files for log
+// processsoft
 #include "zBaseLib\PSS_Log.h"
+#include "PSS_ProcessSymbolBP.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -63,16 +61,16 @@ bool ZUExtractProcessName::Visit(CODComponent& Symbol)
 {
     CODComponent* pSymbol = &Symbol;
 
-    if (ISA(pSymbol, ZBBPProcessSymbol))
+    if (ISA(pSymbol, PSS_ProcessSymbolBP))
     {
-        return AddProcessSymbol(dynamic_cast<ZBBPProcessSymbol*>(&Symbol));
+        return AddProcessSymbol(dynamic_cast<PSS_ProcessSymbolBP*>(&Symbol));
     }
 
     // Nothing to do
     return true;
 }
 
-bool ZUExtractProcessName::AddProcessSymbol(ZBBPProcessSymbol* pSymbol)
+bool ZUExtractProcessName::AddProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
     ASSERT(m_pArray);

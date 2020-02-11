@@ -15,7 +15,7 @@
 #include "zModelBP\ZUProcedureCalculateTotals.h"
 #include "zModelBP\ZUUserGroupCalculateTotals.h"
 
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_UserRoleEntity.h"

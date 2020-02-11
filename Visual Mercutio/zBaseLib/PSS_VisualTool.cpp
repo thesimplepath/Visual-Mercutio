@@ -93,7 +93,7 @@ PSS_VisualTool* PSS_VisualTool::FindTool(IEToolType objectToolType)
 PSS_VisualToolEdit::PSS_VisualToolEdit() :
     PSS_VisualTool(IE_TT_VToolEdit)
 {
-    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(IDC_EDITABLE), RT_GROUP_CURSOR);
+    HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(IDC_EDITABLE), RT_GROUP_CURSOR);
     m_hCurEdit      = ::LoadCursor(hInst, MAKEINTRESOURCE(IDC_EDITABLE));
 }
 //---------------------------------------------------------------------------

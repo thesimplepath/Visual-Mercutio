@@ -39,7 +39,7 @@ PSS_MessageDlg::PSS_MessageDlg(CWnd* pWnd) :
     m_BitmapID(0),
     m_TimerID(0)
 {
-    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(IDC_CLICKTOCLOSE), RT_GROUP_CURSOR);
+    HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(IDC_CLICKTOCLOSE), RT_GROUP_CURSOR);
     m_Cursor        = ::LoadCursor(hInst, MAKEINTRESOURCE(IDC_CLICKTOCLOSE));
 
     // create the text font
@@ -95,7 +95,7 @@ void PSS_MessageDlg::ShowMessage(const CString& text, const CString& title, UINT
     m_BitmapID = bitmapID;
 
     if (m_BitmapID)
-        m_hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
+        m_hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
 
     DoModal();
 }

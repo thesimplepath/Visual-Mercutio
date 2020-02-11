@@ -283,7 +283,7 @@ void PSS_ListCtrl::SetHeaderBitmap(int col, int bitmapID, DWORD remove)
 
     hdi.mask = HDI_BITMAP | HDI_FORMAT;
     hdi.fmt |= HDF_BITMAP;
-    hdi.hbm  = (HBITMAP)::LoadImage(AfxFindResourceHandle(MAKEINTRESOURCE(bitmapID), RT_BITMAP),
+    hdi.hbm  = (HBITMAP)::LoadImage(::AfxFindResourceHandle(MAKEINTRESOURCE(bitmapID), RT_BITMAP),
                                     MAKEINTRESOURCE(bitmapID),
                                     IMAGE_BITMAP,
                                     0,

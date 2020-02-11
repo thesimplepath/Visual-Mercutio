@@ -7,7 +7,7 @@
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 
 #include "zReport\ZDGridDoc.h"
 
@@ -140,12 +140,12 @@ bool ZBSesterceReportGenerator::FillGridUnit(CGXGridCore& GridCore)
                                                      true);
 
         if (!pSet || pSet->GetSize() <= 0 || pSet->GetAt(0) == NULL ||
-            !ISA(pSet->GetAt(0), ZBBPProcessSymbol))
+            !ISA(pSet->GetAt(0), PSS_ProcessSymbolBP))
         {
             continue;
         }
 
-        ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(pSet->GetAt(0));
+        PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(pSet->GetAt(0));
 
         ostream << _T("\n");
 

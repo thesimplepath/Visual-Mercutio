@@ -124,7 +124,7 @@ BOOL ZBBPStopSymbol::Create(const CString Name /*= ""*/)
     m_IsInCreationProcess = true;
 
     BOOL RetValue = PSS_Symbol::Create(IDR_BP_STOP,
-                                     AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_END_SYM), _T("Symbol")),
+                                     ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_END_SYM), _T("Symbol")),
                                      Name);
 
     if (!CreateSymbolProperties())

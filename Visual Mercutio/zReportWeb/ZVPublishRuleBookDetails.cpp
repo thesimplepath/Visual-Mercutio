@@ -134,9 +134,9 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 if (m_Process != NULL)
                                 {
@@ -249,10 +249,10 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                                         // Recherche l'unité de traitement du symbole entrant.
                                         if (m_EnteringSymbol != NULL)
                                         {
-                                            if (ISA(m_EnteringSymbol, ZBBPProcessSymbol))
+                                            if (ISA(m_EnteringSymbol, PSS_ProcessSymbolBP))
                                             {
                                                 s_UnitName =
-                                                    dynamic_cast<ZBBPProcessSymbol*>(m_EnteringSymbol)->GetUnitName();
+                                                    dynamic_cast<PSS_ProcessSymbolBP*>(m_EnteringSymbol)->GetUnitName();
                                             }
 
                                             if (ISA(m_EnteringSymbol, PSS_ProcedureSymbolBP))

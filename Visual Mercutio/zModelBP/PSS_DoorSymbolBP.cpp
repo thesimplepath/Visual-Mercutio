@@ -18,7 +18,7 @@
 #include "zModel\PSS_DocObserverMsg.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "zModel\PSS_ODSymbolManipulator.h"
 
@@ -98,7 +98,7 @@ BOOL PSS_DoorSymbolBP::Create(const CString& name)
     try
     {
         result = PSS_Symbol::Create(IDR_BP_DOOR,
-                                    AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
+                                    ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
                                     name);
 
         if (!CreateSymbolProperties())
@@ -141,7 +141,7 @@ void PSS_DoorSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     PSS_Symbol::CopySymbolDefinitionFrom(src);
 
-    PSS_DoorSymbolBP* pDoor = dynamic_cast<PSS_DoorSymbolBP*>(const_cast<CODSymbolComponent*>(&src));
+    const PSS_DoorSymbolBP* pDoor = dynamic_cast<const PSS_DoorSymbolBP*>(&src);
 
     if (pDoor)
     {
@@ -308,7 +308,7 @@ BOOL PSS_DoorSymbolBP::DuplicateStyleOnTwinSymbol()
 //---------------------------------------------------------------------------
 bool PSS_DoorSymbolBP::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    // prohibit the drop unless the symbol is a local symbol
+    // don't allow the drop if the symbol isn't local
     if (!IsLocal())
         return false;
 
@@ -372,7 +372,7 @@ bool PSS_DoorSymbolBP::OnPostCreation(CODModel* pModel, CODController* pCtrl)
     // filter object classes
     PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
-    rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_ProcessSymbolBP));
 
     PSS_SelectModelSymbolDlg dlg(pRootModel, ISD_DOOR_SELECTMODEL, g_Selectable_Model | g_Selectable_GraphPage, &rtClasses);
 
@@ -500,7 +500,7 @@ bool PSS_DoorSymbolBP::OnPreDelete(CODModel* pModel, CODController* pCtrl)
 void PSS_DoorSymbolBP::OnSymbolNameChanged(CODComponent& comp, const CString& oldName)
 {
     // check if the old symbol name was used somewhere in this door symbol
-    ZBBPProcessSymbol* pProcess = dynamic_cast<ZBBPProcessSymbol*>(&comp);
+    PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(&comp);
 
     // Check if a process and the same we pointed to
     if (pProcess && !pProcess->IsChildModelRef() && pProcess->GetChildModel() == GetChildModel())

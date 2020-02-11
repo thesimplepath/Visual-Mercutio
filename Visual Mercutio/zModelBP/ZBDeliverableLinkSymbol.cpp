@@ -21,7 +21,7 @@
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 
@@ -562,10 +562,10 @@ bool ZBDeliverableLinkSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODCon
                                       pModel);
         }
         // And finally, for process to process
-        else if (ISA(pSrc, ZBBPProcessSymbol) && ISA(pDst, ZBBPProcessSymbol))
+        else if (ISA(pSrc, PSS_ProcessSymbolBP) && ISA(pDst, PSS_ProcessSymbolBP))
         {
-            DoProcessProcessConnection(dynamic_cast<ZBBPProcessSymbol*>(pSrc),
-                                       dynamic_cast<ZBBPProcessSymbol*>(pDst),
+            DoProcessProcessConnection(dynamic_cast<PSS_ProcessSymbolBP*>(pSrc),
+                                       dynamic_cast<PSS_ProcessSymbolBP*>(pDst),
                                        pModel);
         }
     }
@@ -1327,10 +1327,10 @@ void ZBDeliverableLinkSymbol::NotifyNameChange(const CString                OldN
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-                            if (pComponent && ISA(pComponent, ZBBPProcessSymbol))
+                            if (pComponent && ISA(pComponent, PSS_ProcessSymbolBP))
                             {
                                 // Convertit le symbole.
-                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>(pComponent);
+                                PSS_ProcessSymbolBP* m_Process = dynamic_cast<PSS_ProcessSymbolBP*>(pComponent);
 
                                 // Obtient le contrôleur de modèle du processus.
                                 PSS_ProcessGraphModelMdlBP* m_ChildModel =
@@ -1629,8 +1629,8 @@ bool ZBDeliverableLinkSymbol::DoProcedurePageConnection(PSS_ProcedureSymbolBP*  
     return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    pSrc,
-                                                         ZBBPProcessSymbol*    pDst,
+bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(PSS_ProcessSymbolBP*    pSrc,
+                                                         PSS_ProcessSymbolBP*    pDst,
                                                          CODModel*                pModel)
 {
     // Check if source and destination have child model
@@ -1692,7 +1692,7 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection(ZBBPProcessSymbol*    p
                 // filter object classes
                 PSS_RuntimeClassSet rtClasses;
                 rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
-                rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
+                rtClasses.Add(RUNTIME_CLASS(PSS_ProcessSymbolBP));
                 rtClasses.Add(RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 
                 PSS_SelectModelSymbolDlg Dlg(dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDst->GetChildModel()),
@@ -4624,7 +4624,7 @@ PSS_ProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetComingFromModel() const
     return NULL;
 }
 
-ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetComingFromProcess() const
+PSS_ProcessSymbolBP* ZBDeliverableLinkSymbol::GetComingFromProcess() const
 {
     // Retrieve the coming from model
     PSS_ProcessGraphModelMdl* pModel = GetComingFromModel();
@@ -4644,9 +4644,9 @@ ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetComingFromProcess() const
 
                 for (int i = 0; i < Count; ++i)
                 {
-                    if (pSet->GetAt(i) && ISA(pSet->GetAt(i), ZBBPProcessSymbol))
+                    if (pSet->GetAt(i) && ISA(pSet->GetAt(i), PSS_ProcessSymbolBP))
                     {
-                        return dynamic_cast<ZBBPProcessSymbol*>(pSet->GetAt(i));
+                        return dynamic_cast<PSS_ProcessSymbolBP*>(pSet->GetAt(i));
                     }
                 }
             }
@@ -4680,7 +4680,7 @@ PSS_ProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetGoingToModel() const
     return NULL;
 }
 
-ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetGoingToProcess() const
+PSS_ProcessSymbolBP* ZBDeliverableLinkSymbol::GetGoingToProcess() const
 {
     // Retrieve the going to model
     PSS_ProcessGraphModelMdl* pModel = GetGoingToModel();
@@ -4700,9 +4700,9 @@ ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetGoingToProcess() const
 
                 for (int i = 0; i < Count; ++i)
                 {
-                    if (pSet->GetAt(i) && ISA(pSet->GetAt(i), ZBBPProcessSymbol))
+                    if (pSet->GetAt(i) && ISA(pSet->GetAt(i), PSS_ProcessSymbolBP))
                     {
-                        return dynamic_cast<ZBBPProcessSymbol*>(pSet->GetAt(i));
+                        return dynamic_cast<PSS_ProcessSymbolBP*>(pSet->GetAt(i));
                     }
                 }
             }

@@ -13,7 +13,7 @@
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
-#include "zModelBP\ZBBPProcessSymbol.h"
+#include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\ZBBPStartSymbol.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
@@ -539,8 +539,8 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pPro
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPProcessSymbol dans le modèle.
-bool ZUProcessConceptorNavigation::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_ProcessSymbolBP dans le modèle.
+bool ZUProcessConceptorNavigation::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
     m_pPreviousProcess = pSymbol;
     m_CurrentProcessName = pSymbol->GetSymbolName();

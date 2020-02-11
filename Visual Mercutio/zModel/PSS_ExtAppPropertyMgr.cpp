@@ -500,7 +500,7 @@ bool PSS_ExtAppPropertyMgr::ProcessExtendedInput(ZBProperty&    prop,
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::ProcessMenuCommand(int            menuCommand,
+bool PSS_ExtAppPropertyMgr::ProcessMenuCommand(int            menuCmdID,
                                                ZBProperty&    prop,
                                                CString&       value,
                                                ZBPropertySet& props,
@@ -509,7 +509,7 @@ bool PSS_ExtAppPropertyMgr::ProcessMenuCommand(int            menuCommand,
     if (prop.GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTAPP + int(GetExtAppCount())))
     {
-        switch (menuCommand)
+        switch (menuCmdID)
         {
             case ID_ADD_NEWEXTAPP:     OnAddNewExtApp    (prop, value, props, refresh); break;
             case ID_DEL_CURRENTEXTAPP: OnDelCurrentExtApp(prop, value, props, refresh); break;

@@ -91,7 +91,7 @@ BOOL PSS_SpecialHelpWnd::CreateSpecialHelp(CWnd*              pParentWnd,
     m_pObj                = pObj;
     m_AutoCalculateOption = autoCalculateOption;
 
-    HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapRes), RT_BITMAP);
+    HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapRes), RT_BITMAP);
     ::GetSizeOfBitmapFile(MAKEINTRESOURCE(m_BitmapRes), hInst, &m_BitmapSize);
 
     // create the helper window
@@ -167,7 +167,7 @@ void PSS_SpecialHelpWnd::OnPaint()
     // calculate the middle of the area to draw the bitmap
     if (m_BitmapRes)
     {
-        HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapRes), RT_BITMAP);
+        HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapRes), RT_BITMAP);
         ShowBitmapFile(MAKEINTRESOURCE(m_BitmapRes), dc.m_hDC, hInst, 0, 0);
     }
 }

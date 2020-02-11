@@ -117,8 +117,8 @@ BOOL ZBBPStartSymbol::Create(const CString Name /*= _T( "" )*/)
     m_IsInCreationProcess = true;
 
     BOOL RetValue = PSS_Symbol::Create(IDR_BP_START,
-                                     AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_START_SYM), _T("Symbol")),
-                                     Name);
+                                       ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_START_SYM), _T("Symbol")),
+                                       Name);
 
     if (!CreateSymbolProperties())
     {

@@ -99,7 +99,7 @@ void PSS_View::Initialize()
 
     VERIFY(ReleaseDC(pDC));
 
-    m_hSelectorCursor = ::LoadCursor(AfxFindResourceHandle(MAKEINTRESOURCE(IDC_SELECTOROBJECT), RT_GROUP_CURSOR),
+    m_hSelectorCursor = ::LoadCursor(::AfxFindResourceHandle(MAKEINTRESOURCE(IDC_SELECTOROBJECT), RT_GROUP_CURSOR),
                                      MAKEINTRESOURCE(IDC_SELECTOROBJECT));
 
     m_PageRect = CRect(CPoint(0, 0), GetReportPageSizeInPixels());

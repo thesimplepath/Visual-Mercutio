@@ -18,7 +18,7 @@
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
-#include "ZBBPProcessSymbol.h"
+#include "PSS_ProcessSymbolBP.h"
 
 // resources
 #include "zBaseSym\zBaseSymRes.h"
@@ -74,14 +74,15 @@ PSS_PageSymbolBP& PSS_PageSymbolBP::operator = (const PSS_PageSymbolBP& other)
 //---------------------------------------------------------------------------
 BOOL PSS_PageSymbolBP::Create(const CString& name)
 {
-    BOOL result           = FALSE;
-    m_IsInCreationProcess = true;
+    BOOL result = FALSE;
 
     try
     {
-        result = PSS_Symbol::Create(IDR_BP_PAGE,
-                                           AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
-                                           name);
+        m_IsInCreationProcess = true;
+        result                = PSS_Symbol::Create(IDR_BP_PAGE,
+                                                   ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM),
+                                                                           _T("Symbol")),
+                                                   name);
 
         if (!CreateSymbolProperties())
             result = FALSE;
@@ -130,7 +131,7 @@ void PSS_PageSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     PSS_Symbol::CopySymbolDefinitionFrom(src);
 
-    PSS_PageSymbolBP* pPage = dynamic_cast<PSS_PageSymbolBP*>(const_cast<CODSymbolComponent*>(&src));
+    const PSS_PageSymbolBP* pPage = dynamic_cast<const PSS_PageSymbolBP*>(&src);
 
     if (pPage)
     {
@@ -313,7 +314,7 @@ bool PSS_PageSymbolBP::SaveProperties(ZBPropertySet& propSet)
 //---------------------------------------------------------------------------
 bool PSS_PageSymbolBP::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
-    // prohibit the drop unless the symbol is a local symbol
+    // don't allow the drop if the symbol isn't local
     if (!IsLocal())
         return false;
 
@@ -399,7 +400,7 @@ bool PSS_PageSymbolBP::OnPostCreation(CODModel* pModel, CODController* pCtrl)
 
     PSS_RuntimeClassSet rtClasses;
     rtClasses.Add(RUNTIME_CLASS(PSS_PageSymbolBP));
-    rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
+    rtClasses.Add(RUNTIME_CLASS(PSS_ProcessSymbolBP));
 
     PSS_InsertLinkModelPageDlg dlg(pOwnerModel ? pOwnerModel : pRootModel,
                                    newPage,
