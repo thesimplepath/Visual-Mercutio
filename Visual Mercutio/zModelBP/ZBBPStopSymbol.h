@@ -22,7 +22,7 @@
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "ZBBPUnitProp2.h"
 #include "ZBProcRules.h"
-#include "ZBBPRulesProp.h"
+#include "PSS_RulesPropertiesBP.h"
 #include "ZBProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"

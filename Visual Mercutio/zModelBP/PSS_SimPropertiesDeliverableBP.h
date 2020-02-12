@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ProcessPropertiesBP ---------------------------------------------*
+ * ==> PSS_SimPropertiesDeliverableBP --------------------------------------*
  ****************************************************************************
- * Description : Provides the process properties for banking process        *
+ * Description : Provides the simulation properties for deliverable         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ProcessPropertiesBPH
-#define PSS_ProcessPropertiesBPH
+#ifndef PSS_SimPropertiesDeliverableBPH
+#define PSS_SimPropertiesDeliverableBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,9 +21,12 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_ProcessPropertiesBP
-    #define PSS_ProcessPropertiesBP ZBBPProcessProperties
+#ifndef PSS_SimPropertiesDeliverableBP
+    #define PSS_SimPropertiesDeliverableBP ZBBPSimPropertiesDeliverable
 #endif
+
+// processsoft
+#include "PSS_AnnualNumberPropertiesBP.h"
 
 // resources
 #include "PSS_PropIDs.h"
@@ -41,25 +44,17 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Management_Case_ID 1
+#define M_Sim_Deliv_Cost_ID              1
+#define M_Sim_Deliv_Workload_Forecast_ID 2
 //---------------------------------------------------------------------------
 
 /**
-* Process properties for banking process
+* Simulation properties for deliverable
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
-                                              public sfl::CPropertyContainer<IODPropertyContainer,
-                                                                             CODPropertyAccessor<PSS_ProcessPropertiesBP> >
+class AFX_EXT_CLASS PSS_SimPropertiesDeliverableBP : public CObject
 {
-    DECLARE_SERIAL(PSS_ProcessPropertiesBP)
-
-    /// generated guid map
-    BEGIN_GUID_MAP(PSS_ProcessPropertiesBP)
-        GUID_ENTRY(IODPropertyContainer)
-        GUID_ENTRY(sfl::IPropertyContainer)
-        GUID_CHAIN_ENTRY(CODIntProperty)
-    END_GUID_MAP
+    DECLARE_SERIAL(PSS_SimPropertiesDeliverableBP)
 
     public:
         /**
@@ -68,88 +63,78 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Management_Case = 0x0001,
-            IE_CT_All                    = OD_CHANGE_ALL
+            IE_CT_Change_Sim_Deliv_Cost              = 0x0001,
+            IE_CT_Change_Sim_Deliv_Workload_Forecast = 0x0002,
+            IE_CT_All                                = OD_CHANGE_ALL
         };
 
-        /**
-        * Constructor
-        *@param propID - property identifier
-        */
-        PSS_ProcessPropertiesBP(int propID = ZS_BP_PROP_PROCESS);
+        PSS_SimPropertiesDeliverableBP();
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_ProcessPropertiesBP(const PSS_ProcessPropertiesBP& other);
+        PSS_SimPropertiesDeliverableBP(const PSS_SimPropertiesDeliverableBP& other);
 
-        virtual ~PSS_ProcessPropertiesBP();
+        virtual ~PSS_SimPropertiesDeliverableBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_ProcessPropertiesBP& operator = (const PSS_ProcessPropertiesBP& other);
+        PSS_SimPropertiesDeliverableBP& operator = (const PSS_SimPropertiesDeliverableBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_ProcessPropertiesBP& other) const;
-
-        /**
-        * Adds a reference to this object
-        *@return the updated reference count
-        */
-        virtual inline ULONG STDMETHODCALLTYPE AddRef();
-
-        /**
-        * Releases a reference from this object
-        *@return the updated reference count
-        */
-        virtual inline ULONG STDMETHODCALLTYPE Release();
+        BOOL operator == (const PSS_SimPropertiesDeliverableBP& other) const;
 
         /**
         * Makes a copy of this properties object
         *@return a copy of this properties object, NULL on error
         */
-        virtual inline CODProperty* Dup();
+        virtual inline PSS_SimPropertiesDeliverableBP* Dup() const;
 
         /**
         * Merges another property set with this one
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_All);
-
-        /**
-        * Checks if the identifier is in the property identifier range
-        *@param id - the identifier to check
-        *@return TRUE if the identifier is in the range, otherwise FALSE
-        */
-        virtual BOOL CompareId(const int id) const;
+        virtual void Merge(PSS_SimPropertiesDeliverableBP* pProperty, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param pProp - other property set to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        virtual BOOL IsEqual(CODProperty* pProp);
+        virtual BOOL IsEqual(PSS_SimPropertiesDeliverableBP* pProp);
 
         /**
-        * Gets the management case
-        *@return the management case
+        * Gets the deliverable cost
+        *@return the deliverable cost
         */
-        virtual inline CString GetManagementCase() const;
+        virtual inline PSS_AnnualNumberPropertiesBP& GetCost();
 
         /**
-        * Sets the management case
-        *@param pValue - the management case
+        * Sets the deliverable cost
+        *@param value - the deliverable cost
         */
-        virtual void SetManagementCase(LPCTSTR pValue);
+        virtual inline void SetCost(const double value);
+
+        /**
+        * Gets the deliverable workload forecast
+        *@return the deliverable workload forecast
+        */
+        virtual inline PSS_AnnualNumberPropertiesBP& GetWorkloadForecast();
+
+        /**
+        * Sets the deliverable workload forecast
+        *@param value - the deliverable workload forecast
+        */
+        virtual inline void SetWorkloadForecast(const double value);
 
         /**
         * Gets the property value
@@ -161,6 +146,7 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
         virtual BOOL GetValue(const int propId, UINT&    value) const;
         virtual BOOL GetValue(const int propId, DWORD&   value) const;
         virtual BOOL GetValue(const int propId, float&   value) const;
+        virtual BOOL GetValue(const int propId, double&  value) const;
         virtual BOOL GetValue(const int propId, CString& value) const;
 
         /**
@@ -169,11 +155,12 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
         *@param value/pValue - the property value
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL SetValue(const int propId, const int   value);
-        virtual BOOL SetValue(const int propId, const UINT  value);
-        virtual BOOL SetValue(const int propId, const DWORD value);
-        virtual BOOL SetValue(const int propId, const float value);
-        virtual BOOL SetValue(const int propId, LPCTSTR     pValue);
+        virtual BOOL SetValue(const int propId, const int    value);
+        virtual BOOL SetValue(const int propId, const UINT   value);
+        virtual BOOL SetValue(const int propId, const DWORD  value);
+        virtual BOOL SetValue(const int propId, const float  value);
+        virtual BOOL SetValue(const int propId, const double value);
+        virtual BOOL SetValue(const int propId, LPCTSTR      pValue);
 
         /**
         * Serializes the class content to an archive
@@ -197,43 +184,36 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
         #endif
 
     protected:
-        CString m_ManagementCase;
-
-    private:
-        /**
-        * Sets the management case (advanced)
-        *@param pValue - the management case
-        */
-        void SetManagementCaseEx(const CString name);
-
-        /**
-        * Registers the basic property meta-data
-        *@return true on success, otherwise false
-        */
-        bool RegisterProperties();
+        PSS_AnnualNumberPropertiesBP m_Cost;
+        PSS_AnnualNumberPropertiesBP m_WorkloadForecast;
 };
 
 //---------------------------------------------------------------------------
-// PSS_ProcessPropertiesBP
+// PSS_SimPropertiesDeliverableBP
 //---------------------------------------------------------------------------
-ULONG PSS_ProcessPropertiesBP::AddRef()
+PSS_SimPropertiesDeliverableBP* PSS_SimPropertiesDeliverableBP::Dup() const
 {
-    return CODIntProperty::AddRef();
+    return new PSS_SimPropertiesDeliverableBP(*this);
 }
 //---------------------------------------------------------------------------
-ULONG PSS_ProcessPropertiesBP::Release()
+PSS_AnnualNumberPropertiesBP& PSS_SimPropertiesDeliverableBP::GetCost()
 {
-    return CODIntProperty::Release();
+    return m_Cost;
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_ProcessPropertiesBP::Dup()
+void PSS_SimPropertiesDeliverableBP::SetCost(const double value)
 {
-    return new PSS_ProcessPropertiesBP(*this);
+    m_Cost = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_ProcessPropertiesBP::GetManagementCase() const
+PSS_AnnualNumberPropertiesBP& PSS_SimPropertiesDeliverableBP::GetWorkloadForecast()
 {
-    return m_ManagementCase;
+    return m_WorkloadForecast;
+}
+//---------------------------------------------------------------------------
+void PSS_SimPropertiesDeliverableBP::SetWorkloadForecast(const double value)
+{
+    m_WorkloadForecast = value;
 }
 //---------------------------------------------------------------------------
 

@@ -26,13 +26,13 @@
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "ZBDeliverableLinkSymbol.h"
-#include "ZBBPRuleListProp.h"
+#include "PSS_RuleListPropertiesBP.h"
 #include "ZBBPTaskListProp.h"
 #include "PSS_DecisionListPropertiesBP.h"
 #include "PSS_CostPropertiesProcedureBP_Beta1.h"
 #include "PSS_UnitPropertiesBP_Beta1.h"
 #include "PSS_CombinationPropertiesBP.h"
-#include "ZBBPSimPropProcedure.h"
+#include "PSS_SimPropertiesProcedureBP.h"
 #include "ZVAddRemoveCombinationDeliverableDlg.h"
 #include "ZVChooseMasterDeliverable.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
@@ -220,7 +220,7 @@ bool PSS_ProcedureSymbolBP::DropItem(CObject* pObj, const CPoint& point)
             return false;
         }
 
-        std::unique_ptr<ZBBPRulesProperties> pRuleProps(new ZBBPRulesProperties());
+        std::unique_ptr<PSS_RulesPropertiesBP> pRuleProps(new PSS_RulesPropertiesBP());
         pRuleProps->SetRuleName(pLogicalRulesEntity->GetEntityName());
         pRuleProps->SetRuleDescription(pLogicalRulesEntity->GetEntityDescription());
         pRuleProps->SetRuleGUID(pLogicalRulesEntity->GetGUID());
@@ -253,7 +253,7 @@ bool PSS_ProcedureSymbolBP::CreateSymbolProperties()
     if (!PSS_Symbol::CreateSymbolProperties())
         return false;
 
-    ZBBPRuleListProperties propRules;
+    PSS_RuleListPropertiesBP propRules;
     AddProperty(propRules);
 
     ZBBPTaskListProperties propTasks;
@@ -369,7 +369,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
             pProp.reset(new ZBProperty(ruleSectionTitle,
                                        ZS_BP_PROP_RULES,
                                        ruleName,
-                                       Z_RULE_NAME + (i * g_MaxRulesSize),
+                                       M_Rule_Name_ID + (i * g_MaxRulesSize),
                                        ruleDesc,
                                        m_Rules.GetRuleName(i),
                                        ZBProperty::PT_EDIT_MENU,
@@ -390,16 +390,16 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     // previous serialization process, the texts referencing to the previous architecture were modified, and the "Rules"
     // words were replaced by "Controls" in the text resources, however the code side was not updated, due to a too huge
     // work to apply the changes. So if a new modification should be applied in the code, please be aware about this point
-    ZBBPRuleListProperties* pRulesProps;
+    PSS_RuleListPropertiesBP* pRulesProps;
 
     // add the rule
-    if ((pRulesProps = static_cast<ZBBPRuleListProperties*>(GetProperty(ZS_BP_PROP_RULELIST))) == NULL)
+    if ((pRulesProps = static_cast<PSS_RuleListPropertiesBP*>(GetProperty(ZS_BP_PROP_RULELIST))) == NULL)
     {
-        ZBBPRuleListProperties propRules;
+        PSS_RuleListPropertiesBP propRules;
         AddProperty(propRules);
 
         // get it back
-        pRulesProps = static_cast<ZBBPRuleListProperties*>(GetProperty(ZS_BP_PROP_RULELIST));
+        pRulesProps = static_cast<PSS_RuleListPropertiesBP*>(GetProperty(ZS_BP_PROP_RULELIST));
 
         if (!pRulesProps)
             return false;
@@ -430,7 +430,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(propTitle,
                                    ZS_BP_PROP_RULELIST,
                                    finalPropName,
-                                   Z_RULE_LIST + (i * g_MaxRuleListSize),
+                                   M_Rule_List_ID + (i * g_MaxRuleListSize),
                                    propDesc,
                                    GetRuleAt(i),
                                    ZBProperty::PT_EDIT_INTELI,
@@ -452,7 +452,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(propTitle,
                                    ZS_BP_PROP_RULELIST,
                                    finalPropName,
-                                   Z_RULE_LIST + (i * g_MaxRuleListSize),
+                                   M_Rule_List_ID + (i * g_MaxRuleListSize),
                                    propDesc,
                                    _T(""),
                                    ZBProperty::PT_EDIT_INTELI,
@@ -1072,12 +1072,12 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
 
             // the "Master" property of the "Combination x" group
             pProp.reset(new ZBProperty(finalPropTitle,
-                                              groupValues ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i),
-                                              propName,
-                                              groupValues ? M_Combination_Master_ID : (M_Combination_Master_ID + (i * g_MaxCombinationListSize)),
-                                              propDesc,
-                                              GetCombinationMaster(i),
-                                              ZBProperty::PT_EDIT_EXTENDED_READONLY));
+                                       groupValues ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i),
+                                       propName,
+                                       groupValues ? M_Combination_Master_ID : (M_Combination_Master_ID + (i * g_MaxCombinationListSize)),
+                                       propDesc,
+                                       GetCombinationMaster(i),
+                                       ZBProperty::PT_EDIT_EXTENDED_READONLY));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -1091,14 +1091,14 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
 
         // the "Activation" property of the "Calculations and forecasts" group
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                              ZS_BP_PROP_SIM_PROCEDURE,
-                                              IDS_Z_SIM_PROCEDURE_ACTIVATION_NAME,
-                                              Z_SIM_PROCEDURE_ACTIVATION,
-                                              IDS_Z_SIM_PROCEDURE_ACTIVATION_DESC,
-                                              value,
-                                              ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                              true,
-                                              PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, 0)));
+                                   ZS_BP_PROP_SIM_PROCEDURE,
+                                   IDS_Z_SIM_PROCEDURE_ACTIVATION_NAME,
+                                   M_Sim_Procedure_Activation_ID,
+                                   IDS_Z_SIM_PROCEDURE_ACTIVATION_DESC,
+                                   value,
+                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                   true,
+                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, 0)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -1107,7 +1107,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
                                    ZS_BP_PROP_SIM_PROCEDURE,
                                    IDS_Z_SIM_PROCEDURE_COST_NAME,
-                                   Z_SIM_PROCEDURE_COST,
+                                   M_Sim_Procedure_Cost_ID,
                                    IDS_Z_SIM_PROCEDURE_COST_DESC,
                                    double(GetProcedureCost()),
                                    ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1122,7 +1122,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
                                        ZS_BP_PROP_SIM_PROCEDURE,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_FORECAST,
+                                       M_Sim_Procedure_Workload_Forecast_ID,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_DESC,
                                        double(GetProcedureWorkloadForecast()),
                                        ZBProperty::PT_EDIT_NUMBER));
@@ -1130,7 +1130,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
                                        ZS_BP_PROP_SIM_PROCEDURE,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_FORECAST,
+                                       M_Sim_Procedure_Workload_Forecast_ID,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_DESC,
                                        PSS_Duration(double(GetProcedureWorkloadForecast()),
                                                            hourPerDay,
@@ -1148,7 +1148,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
                                    ZS_BP_PROP_SIM_PROCEDURE,
                                    IDS_Z_SIM_PROCEDURE_COST_FORECAST_NAME,
-                                   Z_SIM_PROCEDURE_COST_FORECAST,
+                                   M_Sim_Procedure_Cost_Forecast_ID,
                                    IDS_Z_SIM_PROCEDURE_COST_FORECAST_DESC,
                                    double(GetProcedureCostForecast()),
                                    ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1163,7 +1163,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
                                        ZS_BP_PROP_SIM_PROCEDURE,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV,
+                                       M_Sim_Procedure_Workload_Per_Activ_ID,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_DESC,
                                        double(GetProcedureWorkloadPerActivity()),
                                        ZBProperty::PT_EDIT_NUMBER));
@@ -1171,7 +1171,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
                                        ZS_BP_PROP_SIM_PROCEDURE,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV,
+                                       M_Sim_Procedure_Workload_Per_Activ_ID,
                                        IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_DESC,
                                        PSS_Duration(double(GetProcedureWorkloadPerActivity()),
                                                     hourPerDay,
@@ -1189,7 +1189,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
                                    ZS_BP_PROP_SIM_PROCEDURE,
                                    IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_NAME,
-                                   Z_SIM_PROCEDURE_COST_P_ACTIV,
+                                   M_Sim_Procedure_Cost_Per_Activ_ID,
                                    IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_DESC,
                                    GetProcedureCostPerActivity(),
                                    ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1213,7 +1213,7 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
         return true;
 
     // save the rules
-    ZBBPRuleListProperties* pRulesProps = static_cast<ZBBPRuleListProperties*>(GetProperty(ZS_BP_PROP_RULELIST));
+    PSS_RuleListPropertiesBP* pRulesProps = static_cast<PSS_RuleListPropertiesBP*>(GetProperty(ZS_BP_PROP_RULELIST));
 
     if (!pRulesProps)
         return false;
@@ -1411,7 +1411,7 @@ bool PSS_ProcedureSymbolBP::SaveProperty(ZBProperty& prop)
     // check if the user tried to rename a rule, if yes revert to previous name
     if (categoryID == ZS_BP_PROP_RULES)
     {
-        const int index = (prop.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
+        const int index = (prop.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
 
         if (m_Rules.GetRuleName(index) != prop.GetValueString())
             prop.SetValueString(m_Rules.GetRuleName(index));
@@ -1621,7 +1621,7 @@ bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCmdID,
         {
             case ID_DEL_CURRENTRULE:
             {
-                const int index = (prop.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
+                const int index = (prop.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
                 m_Rules.DeleteRule(index);
                 refresh = true;
                 break;
@@ -2001,7 +2001,7 @@ PSS_AnnualNumberPropertiesBP PSS_ProcedureSymbolBP::CalculateProcedureActivation
 //---------------------------------------------------------------------------
 CString PSS_ProcedureSymbolBP::GetRuleList() const
 {
-    ZBBPRuleListProperties* pProps = static_cast<ZBBPRuleListProperties*>(GetProperty(ZS_BP_PROP_RULELIST));
+    PSS_RuleListPropertiesBP* pProps = static_cast<PSS_RuleListPropertiesBP*>(GetProperty(ZS_BP_PROP_RULELIST));
 
     if (!pProps)
         return _T("");
@@ -2011,11 +2011,11 @@ CString PSS_ProcedureSymbolBP::GetRuleList() const
 //---------------------------------------------------------------------------
 void PSS_ProcedureSymbolBP::SetRuleList(const CString& value)
 {
-    ZBBPRuleListProperties* pProps = static_cast<ZBBPRuleListProperties*>(GetProperty(ZS_BP_PROP_RULELIST));
+    PSS_RuleListPropertiesBP* pProps = static_cast<PSS_RuleListPropertiesBP*>(GetProperty(ZS_BP_PROP_RULELIST));
 
     if (pProps)
     {
-        ZBBPRuleListProperties props(*pProps);
+        PSS_RuleListPropertiesBP props(*pProps);
         props.SetRuleList(value);
         SetProperty(&props);
     }
@@ -2616,8 +2616,8 @@ bool PSS_ProcedureSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcPropert
 
     if (result)
     {
-        const int srcIndex = (srcProperty.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
-        const int dstIndex = (dstProperty.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
+        const int srcIndex = (srcProperty.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
+        const int dstIndex = (dstProperty.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
 
         const CString srcRuleName = m_Rules.GetRuleName(srcIndex);
         const CString srcRuleDesc = m_Rules.GetRuleDescription(srcIndex);

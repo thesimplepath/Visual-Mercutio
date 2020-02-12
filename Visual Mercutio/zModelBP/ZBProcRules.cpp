@@ -9,11 +9,11 @@
 #include "stdafx.h"
 #include "ZBProcRules.h"
 
-#include "ZBBPRulesProp.h"
+#include "PSS_RulesPropertiesBP.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -28,13 +28,12 @@ IMPLEMENT_SERIAL(ZBProcRules, CObject, g_DefVersion)
 //////////////////////////////////////////////////////////////////////
 
 // Constructeur par défaut de la classe ZBProcRules.
-ZBProcRules::ZBProcRules( CODSymbolComponent* pParent /*= NULL*/ )
-    : m_pParent( pParent )
-{
-}
+ZBProcRules::ZBProcRules(CODSymbolComponent* pParent /*= NULL*/)
+    : m_pParent(pParent)
+{}
 
 // Constructeur par copie de la classe ZBProcRules.
-ZBProcRules::ZBProcRules( const ZBProcRules& src )
+ZBProcRules::ZBProcRules(const ZBProcRules& src)
 {
     *this = src;
 }
@@ -46,14 +45,14 @@ ZBProcRules::~ZBProcRules()
 }
 
 // Surcharge de l'opérateur = pour la classe ZBProcRules.
-ZBProcRules& ZBProcRules::operator=( const ZBProcRules& src )
+ZBProcRules& ZBProcRules::operator=(const ZBProcRules& src)
 {
     // Copy the members.
-    ZBBPRulesPropertiesIterator i( &const_cast<ZBProcRules&>( src ).GetRuleSet() );
+    ZBBPRulesPropertiesIterator i(&const_cast<ZBProcRules&>(src).GetRuleSet());
 
-    for ( ZBBPRulesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RulesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        AddRule( pProp->Dup() );
+        AddRule(pProp->Dup());
     }
 
     m_pParent = src.m_pParent;
@@ -64,11 +63,11 @@ ZBProcRules& ZBProcRules::operator=( const ZBProcRules& src )
 // Cette fonction permet d'effectuer un duplicata de l'objet instancié.
 ZBProcRules* ZBProcRules::Dup() const
 {
-    return ( new ZBProcRules( *this ) );
+    return (new ZBProcRules(*this));
 }
 
 // Cette fonction permet l'attribution du composant parent.
-void ZBProcRules::SetParent( CODSymbolComponent* pParent )
+void ZBProcRules::SetParent(CODSymbolComponent* pParent)
 {
     m_pParent = pParent;
 }
@@ -76,23 +75,23 @@ void ZBProcRules::SetParent( CODSymbolComponent* pParent )
 // Cette fonction permet l'ajout d'une nouvelle propriété vide, de type règle, dans la liste.
 int ZBProcRules::AddNewRule()
 {
-    ZBBPRulesProperties* pProps = new ZBBPRulesProperties;
+    PSS_RulesPropertiesBP* pProps = new PSS_RulesPropertiesBP;
 
-    return AddRule( pProps );
+    return AddRule(pProps);
 }
 
 // Cette fonction permet l'ajout d'une propriété de type règle dans la liste.
-int ZBProcRules::AddRule( ZBBPRulesProperties* pProperty )
+int ZBProcRules::AddRule(PSS_RulesPropertiesBP* pProperty)
 {
-    if ( pProperty )
+    if (pProperty)
     {
         // If no rule name specified, set it by default
-        if ( pProperty->GetRuleName().IsEmpty() )
+        if (pProperty->GetRuleName().IsEmpty())
         {
-            pProperty->SetRuleName( GetNextRuleValidName() );
+            pProperty->SetRuleName(GetNextRuleValidName());
         }
 
-        m_Set.Add( pProperty );
+        m_Set.Add(pProperty);
 
         // Returns the index
         return GetRulesCount() - 1;
@@ -102,15 +101,15 @@ int ZBProcRules::AddRule( ZBBPRulesProperties* pProperty )
 }
 
 // Cette fonction permet la suppression d'une propriété dans la liste.
-bool ZBProcRules::DeleteRule( size_t Index )
+bool ZBProcRules::DeleteRule(size_t Index)
 {
-    if ( Index < GetRulesCount() )
+    if (Index < GetRulesCount())
     {
-        ZBBPRulesProperties* pProperty = GetProperty( Index );
+        PSS_RulesPropertiesBP* pProperty = GetProperty(Index);
 
-        if ( pProperty )
+        if (pProperty)
         {
-            m_Set.RemoveAt( Index );
+            m_Set.RemoveAt(Index);
             delete pProperty;
             return true;
         }
@@ -120,13 +119,13 @@ bool ZBProcRules::DeleteRule( size_t Index )
 }
 
 // Cette fonction permet la suppression d'une propriété dans la liste.
-bool ZBProcRules::DeleteRule( ZBBPRulesProperties* pProperty )
+bool ZBProcRules::DeleteRule(PSS_RulesPropertiesBP* pProperty)
 {
-    ZBBPRulesPropertiesIterator i( &m_Set );
+    ZBBPRulesPropertiesIterator i(&m_Set);
 
-    for ( ZBBPRulesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RulesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProperty == pProp )
+        if (pProperty == pProp)
         {
             i.Remove();
             delete pProp;
@@ -140,9 +139,9 @@ bool ZBProcRules::DeleteRule( ZBBPRulesProperties* pProperty )
 // Cette fonction permet la suppression de toutes les propriétés dans la liste.
 void ZBProcRules::RemoveAllRules()
 {
-    ZBBPRulesPropertiesIterator i( &m_Set );
+    ZBBPRulesPropertiesIterator i(&m_Set);
 
-    for ( ZBBPRulesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RulesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -152,74 +151,74 @@ void ZBProcRules::RemoveAllRules()
 }
 
 // Obtient le nom de la règle.
-CString ZBProcRules::GetRuleName( size_t Index ) const
+CString ZBProcRules::GetRuleName(size_t Index) const
 {
-    if ( Index < GetRulesCount() )
+    if (Index < GetRulesCount())
     {
-        return m_Set.GetAt( Index )->GetRuleName();
+        return m_Set.GetAt(Index)->GetRuleName();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // Inscrit le nom de la règle.
-void ZBProcRules::SetRuleName( size_t Index, CString Value )
+void ZBProcRules::SetRuleName(size_t Index, CString Value)
 {
-    if ( Index < GetRulesCount() )
+    if (Index < GetRulesCount())
     {
-        m_Set.GetAt( Index )->SetRuleName( Value );
+        m_Set.GetAt(Index)->SetRuleName(Value);
     }
 }
 
 // Obtient la description associée à cette règle.
-CString ZBProcRules::GetRuleDescription( size_t Index ) const
+CString ZBProcRules::GetRuleDescription(size_t Index) const
 {
-    if ( Index < GetRulesCount() )
+    if (Index < GetRulesCount())
     {
-        return m_Set.GetAt( Index )->GetRuleDescription();
+        return m_Set.GetAt(Index)->GetRuleDescription();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // Inscrit la description associée à cette règle.
-void ZBProcRules::SetRuleDescription( size_t Index, CString Value )
+void ZBProcRules::SetRuleDescription(size_t Index, CString Value)
 {
-    if ( Index < GetRulesCount() )
+    if (Index < GetRulesCount())
     {
-        m_Set.GetAt( Index )->SetRuleDescription( Value );
+        m_Set.GetAt(Index)->SetRuleDescription(Value);
     }
 }
 
 // Obtient la description associée à cette règle.
-CString ZBProcRules::GetRuleGUID( size_t Index ) const
+CString ZBProcRules::GetRuleGUID(size_t Index) const
 {
-    if ( Index < GetRulesCount() )
+    if (Index < GetRulesCount())
     {
-        return m_Set.GetAt( Index )->GetRuleGUID();
+        return m_Set.GetAt(Index)->GetRuleGUID();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // Inscrit la description associée à cette règle.
-void ZBProcRules::SetRuleGUID( size_t Index, CString Value )
+void ZBProcRules::SetRuleGUID(size_t Index, CString Value)
 {
-    if ( Index < GetRulesCount() )
+    if (Index < GetRulesCount())
     {
-        m_Set.GetAt( Index )->SetRuleGUID( Value );
+        m_Set.GetAt(Index)->SetRuleGUID(Value);
     }
 }
 
 // Permet de savoir si le nom de la règle spécifiée existe déjà.
-bool ZBProcRules::RuleNameExist( const CString Name ) const
+bool ZBProcRules::RuleNameExist(const CString Name) const
 {
     // Run through the set and build the string
-    ZBBPRulesPropertiesIterator i( &m_Set );
+    ZBBPRulesPropertiesIterator i(&m_Set);
 
-    for ( ZBBPRulesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (PSS_RulesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetRuleName() == Name )
+        if (pProp->GetRuleName() == Name)
         {
             return true;
         }
@@ -236,36 +235,36 @@ CString ZBProcRules::GetNextRuleValidName() const
 
     do
     {
-        str.Format( _T( "Règle %d" ), i++ );
+        str.Format(_T("Règle %d"), i++);
     }
-    while ( RuleNameExist( str ) == true );
+    while (RuleNameExist(str) == true);
 
     return str;
 }
 
 // Cette fonction permet de retrouver la propriété contenant la description souhaitée.
-ZBBPRulesProperties* ZBProcRules::LocateRuleByDescription( const CString Description ) const
+PSS_RulesPropertiesBP* ZBProcRules::LocateRuleByDescription(const CString Description) const
 {
-    int Index = LocateRuleIndexByDescription( Description );
+    int Index = LocateRuleIndexByDescription(Description);
 
-    if ( Index == -1 )
+    if (Index == -1)
     {
         return NULL;
     }
 
-    return GetProperty( Index );
+    return GetProperty(Index);
 }
 
 // Cette fonction permet de retrouver l'index de la propriété contenant la description souhaitée.
-int ZBProcRules::LocateRuleIndexByDescription( const CString Description ) const
+int ZBProcRules::LocateRuleIndexByDescription(const CString Description) const
 {
     // Run through the set of rules and check if found
-    ZBBPRulesPropertiesIterator i( &m_Set );
+    ZBBPRulesPropertiesIterator i(&m_Set);
     int Index = 0;
 
-    for ( ZBBPRulesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index )
+    for (PSS_RulesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext(), ++Index)
     {
-        if ( !pProp->GetRuleDescription().IsEmpty() && pProp->GetRuleDescription() == Description )
+        if (!pProp->GetRuleDescription().IsEmpty() && pProp->GetRuleDescription() == Description)
         {
             return Index;
         }
@@ -275,30 +274,30 @@ int ZBProcRules::LocateRuleIndexByDescription( const CString Description ) const
 }
 
 // Fonction de sérialisation de l'objet.
-void ZBProcRules::Serialize( CArchive& ar )
+void ZBProcRules::Serialize(CArchive& ar)
 {
     // Only if the object is serialize from and to a document
-    if ( ar.m_pDocument )
+    if (ar.m_pDocument)
     {
-        if ( ar.IsStoring() )
+        if (ar.IsStoring())
         {
-            TRACE( _T( "ZBProcRules::Serialize : Start Save\n" ) );
-    
+            TRACE(_T("ZBProcRules::Serialize : Start Save\n"));
+
             // Serialize the size of the set
             ar << (int)m_Set.GetSize();
 
-            ZBBPRulesPropertiesIterator i( &m_Set );
+            ZBBPRulesPropertiesIterator i(&m_Set);
 
-            for ( ZBBPRulesProperties* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+            for (PSS_RulesPropertiesBP* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
                 ar << pProp;
             }
 
-            TRACE( _T( "ZBProcRules::Serialize : End Save\n" ) );
+            TRACE(_T("ZBProcRules::Serialize : End Save\n"));
         }
         else
         {
-            TRACE( _T( "ZBProcRules::Serialize : Start Read\n" ) );
+            TRACE(_T("ZBProcRules::Serialize : Start Read\n"));
 
             RemoveAllRules();
 
@@ -306,15 +305,15 @@ void ZBProcRules::Serialize( CArchive& ar )
             int Count;
             ar >> Count;
 
-            ZBBPRulesProperties* pProp;
+            PSS_RulesPropertiesBP* pProp;
 
-            for ( int i = 0; i < (int)Count; ++i )
+            for (int i = 0; i < (int)Count; ++i)
             {
                 ar >> pProp;
-                AddRule( pProp );
+                AddRule(pProp);
             }
-        
-            TRACE( _T( "ZBProcRules::Serialize : End Read\n" ) );
+
+            TRACE(_T("ZBProcRules::Serialize : End Read\n"));
         }
     }
 }

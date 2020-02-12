@@ -1,16 +1,12 @@
 /****************************************************************************
- * ==> PSS_ProcessPropertiesBP ---------------------------------------------*
+ * ==> PSS_RuleListPropertiesBP --------------------------------------------*
  ****************************************************************************
- * Description : Provides the process properties for banking process        *
+ * Description : Provides the rule list properties for banking process      *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ProcessPropertiesBPH
-#define PSS_ProcessPropertiesBPH
-
-#if _MSC_VER > 1000
-    #pragma once
-#endif
+#ifndef PSS_RuleListPropertiesBPH
+#define PSS_RuleListPropertiesBPH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -21,8 +17,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_ProcessPropertiesBP
-    #define PSS_ProcessPropertiesBP ZBBPProcessProperties
+#ifndef PSS_RuleListPropertiesBP
+    #define PSS_RuleListPropertiesBP ZBBPRuleListProperties
 #endif
 
 // resources
@@ -41,21 +37,21 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Management_Case_ID 1
+#define M_Rule_List_ID 1
 //---------------------------------------------------------------------------
 
 /**
-* Process properties for banking process
+* Rule list properties for banking process
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
-                                              public sfl::CPropertyContainer<IODPropertyContainer,
-                                                                             CODPropertyAccessor<PSS_ProcessPropertiesBP> >
+class AFX_EXT_CLASS PSS_RuleListPropertiesBP : public CODIntProperty,
+                                               public sfl::CPropertyContainer< IODPropertyContainer,
+                                                                               CODPropertyAccessor<PSS_RuleListPropertiesBP> >
 {
-    DECLARE_SERIAL(PSS_ProcessPropertiesBP)
+    DECLARE_SERIAL(PSS_RuleListPropertiesBP)
 
     /// generated guid map
-    BEGIN_GUID_MAP(PSS_ProcessPropertiesBP)
+    BEGIN_GUID_MAP(PSS_RuleListPropertiesBP)
         GUID_ENTRY(IODPropertyContainer)
         GUID_ENTRY(sfl::IPropertyContainer)
         GUID_CHAIN_ENTRY(CODIntProperty)
@@ -68,37 +64,37 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Management_Case = 0x0001,
-            IE_CT_All                    = OD_CHANGE_ALL
+            IE_CT_Change_Rule_List = 0x0001,
+            IE_CT_All              = OD_CHANGE_ALL
         };
 
         /**
         * Constructor
         *@param propID - property identifier
         */
-        PSS_ProcessPropertiesBP(int propID = ZS_BP_PROP_PROCESS);
+        PSS_RuleListPropertiesBP(int propID = ZS_BP_PROP_RULELIST);
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_ProcessPropertiesBP(const PSS_ProcessPropertiesBP& other);
+        PSS_RuleListPropertiesBP(const PSS_RuleListPropertiesBP& other);
 
-        virtual ~PSS_ProcessPropertiesBP();
+        virtual ~PSS_RuleListPropertiesBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_ProcessPropertiesBP& operator = (const PSS_ProcessPropertiesBP& other);
+        PSS_RuleListPropertiesBP& operator = (const PSS_RuleListPropertiesBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_ProcessPropertiesBP& other) const;
+        BOOL operator == (const PSS_RuleListPropertiesBP& other) const;
 
         /**
         * Adds a reference to this object
@@ -140,16 +136,16 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
         virtual BOOL IsEqual(CODProperty* pProp);
 
         /**
-        * Gets the management case
-        *@return the management case
+        * Gets the rule list
+        *@return the rule list
         */
-        virtual inline CString GetManagementCase() const;
+        virtual inline CString GetRuleList() const;
 
         /**
-        * Sets the management case
-        *@param pValue - the management case
+        * Sets the rule list
+        *@param pValue - the rule list
         */
-        virtual void SetManagementCase(LPCTSTR pValue);
+        virtual void SetRuleList(LPCTSTR pValue);
 
         /**
         * Gets the property value
@@ -197,14 +193,14 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
         #endif
 
     protected:
-        CString m_ManagementCase;
+        CString m_RuleList;
 
     private:
         /**
-        * Sets the management case (advanced)
-        *@param pValue - the management case
+        * Sets the rule list (advanced)
+        *@param value - the rule list
         */
-        void SetManagementCaseEx(const CString name);
+        void SetRuleListEx(const CString value);
 
         /**
         * Registers the basic property meta-data
@@ -214,26 +210,26 @@ class AFX_EXT_CLASS PSS_ProcessPropertiesBP : public CODIntProperty,
 };
 
 //---------------------------------------------------------------------------
-// PSS_ProcessPropertiesBP
+// PSS_RuleListPropertiesBP
 //---------------------------------------------------------------------------
-ULONG PSS_ProcessPropertiesBP::AddRef()
+ULONG PSS_RuleListPropertiesBP::AddRef()
 {
     return CODIntProperty::AddRef();
 }
 //---------------------------------------------------------------------------
-ULONG PSS_ProcessPropertiesBP::Release()
+ULONG PSS_RuleListPropertiesBP::Release()
 {
     return CODIntProperty::Release();
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_ProcessPropertiesBP::Dup()
+CODProperty* PSS_RuleListPropertiesBP::Dup()
 {
-    return new PSS_ProcessPropertiesBP(*this);
+    return new PSS_RuleListPropertiesBP(*this);
 }
 //---------------------------------------------------------------------------
-CString PSS_ProcessPropertiesBP::GetManagementCase() const
+CString PSS_RuleListPropertiesBP::GetRuleList() const
 {
-    return m_ManagementCase;
+    return m_RuleList;
 }
 //---------------------------------------------------------------------------
 

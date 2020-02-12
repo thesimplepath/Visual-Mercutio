@@ -35,7 +35,7 @@
 #include "ZBProcDeliveries.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBProcRules.h"
-#include "ZBBPRulesProp.h"
+#include "PSS_RulesPropertiesBP.h"
 #include "ZBProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"

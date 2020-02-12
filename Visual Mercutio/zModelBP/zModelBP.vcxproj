@@ -250,20 +250,20 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_RiskPropertiesBP.cpp" />
-    <ClCompile Include="ZBBPRuleListProp.cpp">
+    <ClCompile Include="PSS_RuleListPropertiesBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPRulesProp.cpp" />
-    <ClCompile Include="ZBBPSimPropDeliverable.cpp">
+    <ClCompile Include="PSS_RulesPropertiesBP.cpp" />
+    <ClCompile Include="PSS_SimPropertiesDeliverableBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPSimPropProcedure.cpp">
+    <ClCompile Include="PSS_SimPropertiesProcedureBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -608,10 +608,10 @@
     <ClInclude Include="PSS_ProcessPropertiesBP.h" />
     <ClInclude Include="PSS_ProcessSymbolBP.h" />
     <ClInclude Include="PSS_RiskPropertiesBP.h" />
-    <ClInclude Include="ZBBPRuleListProp.h" />
-    <ClInclude Include="ZBBPRulesProp.h" />
-    <ClInclude Include="ZBBPSimPropDeliverable.h" />
-    <ClInclude Include="ZBBPSimPropProcedure.h" />
+    <ClInclude Include="PSS_RuleListPropertiesBP.h" />
+    <ClInclude Include="PSS_RulesPropertiesBP.h" />
+    <ClInclude Include="PSS_SimPropertiesDeliverableBP.h" />
+    <ClInclude Include="PSS_SimPropertiesProcedureBP.h" />
     <ClInclude Include="ZBBPSimPropProcess.h" />
     <ClInclude Include="ZBBPStartSymbol.h" />
     <ClInclude Include="ZBBPStopSymbol.h" />

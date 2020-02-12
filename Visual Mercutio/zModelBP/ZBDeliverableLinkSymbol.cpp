@@ -12,11 +12,11 @@
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 
-#include "ZBBPRuleListProp.h"
+#include "PSS_RuleListPropertiesBP.h"
 #include "ZBBPTextItemListProp.h"
 #include "PSS_CostPropertiesDeliverableBP_Beta1.h"
 #include "PSS_AnnualNumberPropertiesBP.h"
-#include "ZBBPSimPropDeliverable.h"
+#include "PSS_SimPropertiesDeliverableBP.h"
 
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
@@ -496,7 +496,7 @@ bool ZBDeliverableLinkSymbol::DropItem(CObject* pObj, const CPoint& pt)
 
         PSS_LogicalRulesEntity* pRule = dynamic_cast<PSS_LogicalRulesEntity*>(pObj);
 
-        ZBBPRulesProperties* m_NewRule = new ZBBPRulesProperties();
+        PSS_RulesPropertiesBP* m_NewRule = new PSS_RulesPropertiesBP();
 
         m_NewRule->SetRuleName(pRule->GetEntityName());
         m_NewRule->SetRuleDescription(pRule->GetEntityDescription());
@@ -1213,8 +1213,8 @@ bool ZBDeliverableLinkSymbol::OnDropInternalPropertyItem(ZBProperty&        SrcP
     // If done, return
     if (RetValue)
     {
-        int SrcIndex = (SrcProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
-        int DstIndex = (DstProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+        int SrcIndex = (SrcProperty.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
+        int DstIndex = (DstProperty.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
 
         CString SrcRuleName = m_Rules.GetRuleName(SrcIndex);
         CString SrcRuleDesc = m_Rules.GetRuleDescription(SrcIndex);
@@ -1949,7 +1949,7 @@ bool ZBDeliverableLinkSymbol::ProcessMenuCommand(int                MenuCommand,
         {
             case ID_DEL_CURRENTRULE:
             {
-                int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+                int Index = (Property.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
 
                 m_Rules.DeleteRule(Index);
 
@@ -2104,7 +2104,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolProperties()
         return false;
     }
 
-    ZBBPRuleListProperties propRules;
+    PSS_RuleListPropertiesBP propRules;
     AddProperty(propRules);
 
     ZBBPTextItemListProperties textItemList;
@@ -2296,7 +2296,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
             ZBProperty* pRule = new ZBProperty(ruleSectionTitle,
                                                ZS_BP_PROP_RULES,
                                                ruleName,
-                                               Z_RULE_NAME + (i * _MaxRulesSize),
+                                               M_Rule_Name_ID + (i * _MaxRulesSize),
                                                ruleDesc,
                                                m_Rules.GetRuleName(i),
                                                ZBProperty::PT_EDIT_MENU,
@@ -2324,18 +2324,18 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     // il faut donc le faire avec la plus grande prudence.
 
     // add rules
-    ZBBPRuleListProperties* pRulesProps;
+    PSS_RuleListPropertiesBP* pRulesProps;
 
     // FIXME translate comments
     // Obtention des données pour l'affichage des règles.
-    if ((pRulesProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST)) == NULL)
+    if ((pRulesProps = (PSS_RuleListPropertiesBP*)GetProperty(ZS_BP_PROP_RULELIST)) == NULL)
     {
         // try to add it
-        ZBBPRuleListProperties propRules;
+        PSS_RuleListPropertiesBP propRules;
         AddProperty(propRules);
 
         // retreive it
-        pRulesProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
+        pRulesProps = (PSS_RuleListPropertiesBP*)GetProperty(ZS_BP_PROP_RULELIST);
 
         if (!pRulesProps)
             return false;
@@ -2362,7 +2362,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pRuleList = new ZBProperty(propTitle,
                                                ZS_BP_PROP_RULELIST,
                                                finalPropName,
-                                               Z_RULE_LIST + (i * _MaxRuleListSize),
+                                               M_Rule_List_ID + (i * _MaxRuleListSize),
                                                propDesc,
                                                GetRuleAt(i),
                                                ZBProperty::PT_EDIT_INTELI,
@@ -2384,7 +2384,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pRuleList = new ZBProperty(propTitle,
                                                ZS_BP_PROP_RULELIST,
                                                finalPropName,
-                                               Z_RULE_LIST + (i * _MaxRuleListSize),
+                                               M_Rule_List_ID + (i * _MaxRuleListSize),
                                                propDesc,
                                                _T(""),
                                                ZBProperty::PT_EDIT_INTELI,
@@ -3409,7 +3409,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_DELIVERABLE,
                                   ZS_BP_PROP_SIM_DELIVERABLE,
                                   IDS_Z_SIM_DELIV_COST_NAME,
-                                  Z_SIM_DELIV_COST,
+                                  M_Sim_Deliv_Cost_ID,
                                   IDS_Z_SIM_DELIV_COST_DESC,
                                   double(GetCost()),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -3423,7 +3423,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_DELIVERABLE,
                                   ZS_BP_PROP_SIM_DELIVERABLE,
                                   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_NAME,
-                                  Z_SIM_DELIV_WORKLOAD_FORECAST,
+                                  M_Sim_Deliv_Workload_Forecast_ID,
                                   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_DESC,
                                   PSS_Duration(double(GetWorkloadForecast()),
                                                hourPerDay,
@@ -3527,7 +3527,7 @@ bool ZBDeliverableLinkSymbol::SaveProperties(ZBPropertySet& PropSet)
     }
 
     // Save the rules
-    ZBBPRuleListProperties* pRulesProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
+    PSS_RuleListPropertiesBP* pRulesProps = (PSS_RuleListPropertiesBP*)GetProperty(ZS_BP_PROP_RULELIST);
 
     if (!pRulesProps)
     {
@@ -3833,7 +3833,7 @@ bool ZBDeliverableLinkSymbol::SaveProperty(ZBProperty& Property)
     // Si c'est le cas, réetablit le nom d'origine.
     if (Property.GetCategoryID() == ZS_BP_PROP_RULES)
     {
-        int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+        int Index = (Property.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
 
         if (m_Rules.GetRuleName(Index) != Property.GetValueString())
         {
@@ -4235,11 +4235,11 @@ void ZBDeliverableLinkSymbol::SetTextItemList(const CString Value)
 
 void ZBDeliverableLinkSymbol::SetRuleList(const CString Value)
 {
-    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
+    PSS_RuleListPropertiesBP* pProps = (PSS_RuleListPropertiesBP*)GetProperty(ZS_BP_PROP_RULELIST);
 
     if (pProps)
     {
-        ZBBPRuleListProperties Props(*pProps);
+        PSS_RuleListPropertiesBP Props(*pProps);
         Props.SetRuleList(Value);
         SetProperty(&Props);
     }
@@ -4385,7 +4385,7 @@ CString ZBDeliverableLinkSymbol::GetCombinationName() const
 
 CString ZBDeliverableLinkSymbol::GetRuleList() const
 {
-    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
+    PSS_RuleListPropertiesBP* pProps = (PSS_RuleListPropertiesBP*)GetProperty(ZS_BP_PROP_RULELIST);
 
     if (!pProps)
     {

@@ -241,7 +241,7 @@ bool ZBBPStartSymbol::DropItem(CObject* pObj, const CPoint& pt)
 
         PSS_LogicalRulesEntity* pRule = dynamic_cast<PSS_LogicalRulesEntity*>(pObj);
 
-        ZBBPRulesProperties* m_NewRule = new ZBBPRulesProperties();
+        PSS_RulesPropertiesBP* m_NewRule = new PSS_RulesPropertiesBP();
 
         m_NewRule->SetRuleName(pRule->GetEntityName());
         m_NewRule->SetRuleDescription(pRule->GetEntityDescription());
@@ -488,7 +488,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
             ZBProperty* pRule = new ZBProperty(RuleSectionTitle,
                                                ZS_BP_PROP_RULES,
                                                RuleName,
-                                               Z_RULE_NAME + (i * _MaxRulesSize),
+                                               M_Rule_Name_ID + (i * _MaxRulesSize),
                                                RuleDesc,
                                                m_Rules.GetRuleName(i),
                                                ZBProperty::PT_EDIT_MENU,
@@ -854,7 +854,7 @@ bool ZBBPStartSymbol::SaveProperty(ZBProperty& Property)
     // Si c'est le cas, réetablit le nom d'origine.
     if (Property.GetCategoryID() == ZS_BP_PROP_RULES)
     {
-        int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+        int Index = (Property.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
 
         if (m_Rules.GetRuleName(Index) != Property.GetValueString())
         {
@@ -1015,7 +1015,7 @@ bool ZBBPStartSymbol::ProcessMenuCommand(int                MenuCommand,
         {
             case ID_DEL_CURRENTRULE:
             {
-                int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+                int Index = (Property.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
 
                 m_Rules.DeleteRule(Index);
 
@@ -1143,8 +1143,8 @@ bool ZBBPStartSymbol::OnDropInternalPropertyItem(ZBProperty&        SrcProperty,
     // If done, return
     if (RetValue)
     {
-        int SrcIndex = (SrcProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
-        int DstIndex = (DstProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+        int SrcIndex = (SrcProperty.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
+        int DstIndex = (DstProperty.GetItemID() - M_Rule_Name_ID) / _MaxRulesSize;
 
         CString SrcRuleName = m_Rules.GetRuleName(SrcIndex);
         CString SrcRuleDesc = m_Rules.GetRuleDescription(SrcIndex);

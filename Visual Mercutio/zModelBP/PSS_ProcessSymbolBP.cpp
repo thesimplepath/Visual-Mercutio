@@ -232,7 +232,7 @@ bool PSS_ProcessSymbolBP::DropItem(CObject* pObj, const CPoint& point)
             return false;
         }
 
-        std::unique_ptr<ZBBPRulesProperties> pRule(new ZBBPRulesProperties());
+        std::unique_ptr<PSS_RulesPropertiesBP> pRule(new PSS_RulesPropertiesBP());
 
         pRule->SetRuleName(pRules->GetEntityName());
         pRule->SetRuleDescription(pRules->GetEntityDescription());
@@ -339,7 +339,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             pProp.reset(new ZBProperty(ruleSectionTitle,
                                        ZS_BP_PROP_RULES,
                                        ruleName,
-                                       Z_RULE_NAME + (i * g_MaxRulesSize),
+                                       M_Rule_Name_ID + (i * g_MaxRulesSize),
                                        ruleDesc,
                                        m_Rules.GetRuleName(i),
                                        ZBProperty::PT_EDIT_MENU,
@@ -1041,7 +1041,7 @@ bool PSS_ProcessSymbolBP::SaveProperty(ZBProperty& prop)
     // check if the user tried to rename a rule, if yes revert to previous name
     if (categoryID == ZS_BP_PROP_RULES)
     {
-        const int index = (prop.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
+        const int index = (prop.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
 
         if (m_Rules.GetRuleName(index) != prop.GetValueString())
             prop.SetValueString(m_Rules.GetRuleName(index));
@@ -1216,7 +1216,7 @@ bool PSS_ProcessSymbolBP::ProcessMenuCommand(int menuCmdID, ZBProperty& prop, CS
         {
             case ID_DEL_CURRENTRULE:
             {
-                const int index = (prop.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
+                const int index = (prop.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
 
                 m_Rules.DeleteRule(index);
 
@@ -1460,8 +1460,8 @@ bool PSS_ProcessSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
     if (!::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_RULES))
         return false;
 
-    const int srcIndex = (srcProperty.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
-    const int dstIndex = (dstProperty.GetItemID() - Z_RULE_NAME) / g_MaxRulesSize;
+    const int srcIndex = (srcProperty.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
+    const int dstIndex = (dstProperty.GetItemID() - M_Rule_Name_ID) / g_MaxRulesSize;
 
     const CString srcRuleName = m_Rules.GetRuleName(srcIndex);
     const CString srcRuleDesc = m_Rules.GetRuleDescription(srcIndex);

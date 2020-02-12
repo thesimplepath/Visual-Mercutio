@@ -28,14 +28,14 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBProcRules.h"
-#include "ZBBPRulesProp.h"
+#include "PSS_RulesPropertiesBP.h"
 #include "ZBProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
 #include "ZVRiskProbabilityContainer.h"
 #include "PSS_AnnualNumberPropertiesBP.h"
-#include "ZBBPSimPropDeliverable.h"
+#include "PSS_SimPropertiesDeliverableBP.h"
 #include "PSS_CostPropertiesDeliverableBP.h"
 #include "ZBBPUnitProp2.h"
 
@@ -867,7 +867,7 @@ private:
 private:
 
     PSS_AnnualNumberPropertiesBP        m_Quantity;
-    ZBBPSimPropertiesDeliverable    m_SimProperties;
+    PSS_SimPropertiesDeliverableBP    m_SimProperties;
     PSS_CostPropertiesDeliverableBP    m_CostDeliverableProperties;
     ZBBPUnitProperties2                m_UnitProp;
 

@@ -21,6 +21,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping
+#ifndef PSS_RulesPropertiesBP
+    #define PSS_RulesPropertiesBP ZBBPRulesProperties
+#endif
+
+class PSS_RulesPropertiesBP;
+
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
@@ -31,41 +38,39 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class ZBBPRulesProperties;
-
 using namespace sfl;
 
-typedef CCArray_T<ZBBPRulesProperties*, ZBBPRulesProperties*> ZBBPRulesPropertiesSet;
-typedef Iterator_T<ZBBPRulesProperties*> ZBBPRulesPropertiesIterator;
+typedef CCArray_T<PSS_RulesPropertiesBP*, PSS_RulesPropertiesBP*> ZBBPRulesPropertiesSet;
+typedef Iterator_T<PSS_RulesPropertiesBP*> ZBBPRulesPropertiesIterator;
 
 class AFX_EXT_CLASS ZBProcRules : public CObject
 {
-    DECLARE_SERIAL( ZBProcRules )
+    DECLARE_SERIAL(ZBProcRules)
 
 public:
 
-    ZBProcRules( CODSymbolComponent* pParent = NULL );
+    ZBProcRules(CODSymbolComponent* pParent = NULL);
     virtual ~ZBProcRules();
 
-    ZBProcRules( const ZBProcRules& src );
+    ZBProcRules(const ZBProcRules& src);
 
-    ZBProcRules& operator=( const ZBProcRules& src );
+    ZBProcRules& operator=(const ZBProcRules& src);
 
     virtual ZBProcRules* Dup() const;
 
-    void SetParent( CODSymbolComponent* pParent );
+    void SetParent(CODSymbolComponent* pParent);
 
     int AddNewRule();
-    int AddRule( ZBBPRulesProperties* pProperty );
+    int AddRule(PSS_RulesPropertiesBP* pProperty);
 
-    bool DeleteRule( size_t Index );
-    bool DeleteRule( ZBBPRulesProperties* pProperty );
-    bool RuleNameExist( const CString Name ) const;
+    bool DeleteRule(size_t Index);
+    bool DeleteRule(PSS_RulesPropertiesBP* pProperty);
+    bool RuleNameExist(const CString Name) const;
 
     CString GetNextRuleValidName() const;
 
-    ZBBPRulesProperties* LocateRuleByDescription( const CString Description ) const;
-    int LocateRuleIndexByDescription( const CString Description ) const;
+    PSS_RulesPropertiesBP* LocateRuleByDescription(const CString Description) const;
+    int LocateRuleIndexByDescription(const CString Description) const;
 
     // Obtient le pointeur du groupe des propriétés.
     ZBBPRulesPropertiesSet& GetRuleSet()
@@ -80,11 +85,11 @@ public:
     }
 
     // Obtient la propriété contenue à l'index spécifié.
-    ZBBPRulesProperties* GetProperty( size_t Index ) const
+    PSS_RulesPropertiesBP* GetProperty(size_t Index) const
     {
-        if ( Index < GetRulesCount() )
+        if (Index < GetRulesCount())
         {
-            return m_Set.GetAt( Index );
+            return m_Set.GetAt(Index);
         }
 
         return NULL;
@@ -92,16 +97,16 @@ public:
 
     void RemoveAllRules();
 
-    CString GetRuleName( size_t Index ) const;
-    void SetRuleName( size_t Index, CString Value );
+    CString GetRuleName(size_t Index) const;
+    void SetRuleName(size_t Index, CString Value);
 
-    CString GetRuleDescription( size_t Index ) const;
-    void SetRuleDescription( size_t Index, CString Value );
+    CString GetRuleDescription(size_t Index) const;
+    void SetRuleDescription(size_t Index, CString Value);
 
-    CString GetRuleGUID( size_t Index ) const;
-    void SetRuleGUID( size_t Index, CString Value );
+    CString GetRuleGUID(size_t Index) const;
+    void SetRuleGUID(size_t Index, CString Value);
 
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
 private:
 
@@ -109,4 +114,4 @@ private:
     ZBBPRulesPropertiesSet    m_Set;
 };
 
-#endif // !defined(AFX_ZBProcRules_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)
+#endif
