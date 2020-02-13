@@ -243,7 +243,7 @@ bool ZVPublishConceptorReport::StartSection(CODNodeArray& Nodes)
     for (size_t nNodeIdx = 0; nNodeIdx < (size_t)Nodes.GetSize(); ++nNodeIdx)
     {
         IODNode* pINode = Nodes.GetAt(nNodeIdx);
-        ZBBPStartSymbol* pStart = static_cast<ZBBPStartSymbol*>(pINode);
+        PSS_StartSymbolBP* pStart = static_cast<PSS_StartSymbolBP*>(pINode);
 
         if (!pStart)
         {
@@ -685,8 +685,8 @@ bool ZVPublishConceptorReport::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPStartSymbol.
-bool ZVPublishConceptorReport::OnStartSymbol(ZBBPStartSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_StartSymbolBP.
+bool ZVPublishConceptorReport::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
     return true;
 }
@@ -740,9 +740,9 @@ bool ZVPublishConceptorReport::Visit(CODComponent& Symbol)
     {
         return OnProcessSymbol(dynamic_cast<PSS_ProcessSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPStartSymbol))
+    else if (ISA(pSymbol, PSS_StartSymbolBP))
     {
-        return OnStartSymbol(dynamic_cast<ZBBPStartSymbol*>(&Symbol));
+        return OnStartSymbol(dynamic_cast<PSS_StartSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, ZBBPStopSymbol))
     {

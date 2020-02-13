@@ -58,9 +58,9 @@ void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRoo
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point start.
-                            if (pComponent && ISA(pComponent, ZBBPStartSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StartSymbolBP))
                             {
-                                ZBBPStartSymbol* m_Start = dynamic_cast<ZBBPStartSymbol*>(pComponent);
+                                PSS_StartSymbolBP* m_Start = dynamic_cast<PSS_StartSymbolBP*>(pComponent);
 
                                 if (IsCorrupted(m_Start))
                                 {
@@ -174,7 +174,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_ProcedureSymbolBP* m_Symbol)
 }
 
 // Contrôle que les propriétés du symbole start donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPStartSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_StartSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {

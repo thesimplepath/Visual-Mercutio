@@ -25,7 +25,7 @@
 #include "ZBPublishMessengerModelInformation.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "zWeb\PSS_HtmlFile.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -368,7 +368,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl*
             continue;
         }
 
-        ZBBPStartSymbol* pStartCompSym = dynamic_cast<ZBBPStartSymbol*>(pComp);
+        PSS_StartSymbolBP* pStartCompSym = dynamic_cast<PSS_StartSymbolBP*>(pComp);
 
         // if it's a start symbol, create the hot spot for starting a new process
         if (pStartCompSym)

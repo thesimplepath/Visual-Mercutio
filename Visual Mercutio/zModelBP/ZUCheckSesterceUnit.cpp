@@ -8,7 +8,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
-#include "zModelBP\ZBBPStartSymbol.h"
+#include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
@@ -75,7 +75,7 @@ bool ZUCheckSesterceUnit::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
     }
     return true;
 }
-bool ZUCheckSesterceUnit::OnStartSymbol(ZBBPStartSymbol* pSymbol)
+bool ZUCheckSesterceUnit::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
     // Test if it is a local symbol
     if (!pSymbol || !pSymbol->IsLocal())

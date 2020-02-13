@@ -14,7 +14,7 @@
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 
@@ -83,13 +83,13 @@ bool ZUProcessCalculateTotals::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
         pSymbol->SetProcessCostForecast(ProcedureTotals.GetProcedureCostForecast());
 
         // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge du coût HMO pour les processus.
-        pSymbol->SetProcessCost(ProcedureTotals.GetProcedureCost());
+        pSymbol->SetProcessCostHMO(ProcedureTotals.GetProcedureCost());
     }
 
     return true;
 }
 
-bool ZUProcessCalculateTotals::OnStartSymbol(ZBBPStartSymbol* pSymbol)
+bool ZUProcessCalculateTotals::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
     return true;
 }

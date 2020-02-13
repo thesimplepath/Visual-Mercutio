@@ -19,7 +19,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 
 #include "zModel\PSS_DynamicAttributesManipulator.h"
@@ -333,8 +333,8 @@ CString ZVDistributionAttributes::GetAndCheckUnitGUID() const
         if (ISA(m_pSymbol, PSS_ProcedureSymbolBP))
             UnitGUID = dynamic_cast<PSS_ProcedureSymbolBP*>(m_pSymbol)->GetUnitGUID();
         else
-            if (ISA(m_pSymbol, ZBBPStartSymbol))
-                UnitGUID = (wchar_t)(dynamic_cast<ZBBPStartSymbol*>(m_pSymbol)->GetUnitGUID().IsEmpty());
+            if (ISA(m_pSymbol, PSS_StartSymbolBP))
+                UnitGUID = (wchar_t)(dynamic_cast<PSS_StartSymbolBP*>(m_pSymbol)->GetUnitGUID().IsEmpty());
             else
                 if (ISA(m_pSymbol, ZBBPStopSymbol))
                     UnitGUID = (wchar_t)(dynamic_cast<ZBBPStopSymbol*>(m_pSymbol)->GetUnitGUID().IsEmpty());

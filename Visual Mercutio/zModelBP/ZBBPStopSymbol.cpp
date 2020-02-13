@@ -332,7 +332,7 @@ bool ZBBPStopSymbol::CreateSymbolProperties()
 }
 
 // JMR-MODIF - Le 26 avril 2007 - Cette fonction permet de déterminer si une règle donnée a été attribuée à cet objet.
-BOOL ZBBPStopSymbol::ContainsRule(CString RuleName)
+BOOL ZBBPStopSymbol::ContainsRule(CString RuleName) const
 {
     for (int i = 0; i < m_Rules.GetRulesCount(); i++)
     {

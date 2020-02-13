@@ -366,9 +366,9 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point start.
-                            if (pComponent && ISA(pComponent, ZBBPStartSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StartSymbolBP))
                             {
-                                ZBBPStartSymbol* m_Start = dynamic_cast<ZBBPStartSymbol*>(pComponent);
+                                PSS_StartSymbolBP* m_Start = dynamic_cast<PSS_StartSymbolBP*>(pComponent);
 
                                 if (m_Start != NULL)
                                 {
@@ -714,9 +714,9 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point start.
-                            if (pComponent && ISA(pComponent, ZBBPStartSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StartSymbolBP))
                             {
-                                ZBBPStartSymbol* m_Start = dynamic_cast<ZBBPStartSymbol*>(pComponent);
+                                PSS_StartSymbolBP* m_Start = dynamic_cast<PSS_StartSymbolBP*>(pComponent);
 
                                 if (m_Start != NULL)
                                 {
@@ -796,12 +796,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                 ObjType,
                                 RGB(0, 255, 0));
 
-        ZBBPStartSymbol* m_StartSymbol = NULL;
+        PSS_StartSymbolBP* m_StartSymbol = NULL;
 
         if (FindSymbol(myCurNode->GetName()) != NULL &&
-            ISA(FindSymbol(myCurNode->GetName()), ZBBPStartSymbol))
+            ISA(FindSymbol(myCurNode->GetName()), PSS_StartSymbolBP))
         {
-            m_StartSymbol = dynamic_cast<ZBBPStartSymbol*>(FindSymbol(myCurNode->GetName()));
+            m_StartSymbol = dynamic_cast<PSS_StartSymbolBP*>(FindSymbol(myCurNode->GetName()));
         }
 
         if (m_StartSymbol != NULL)

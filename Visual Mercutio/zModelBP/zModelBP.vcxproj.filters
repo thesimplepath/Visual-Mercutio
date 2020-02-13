@@ -24,12 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBBPSimPropProcess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBBPStartSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBBPStopSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,6 +276,12 @@
     <ClCompile Include="PSS_SimPropertiesProcedureBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_SimPropertiesProcessBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_StartSymbolBP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -376,12 +376,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPSimPropProcess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBBPStartSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBBPStopSymbol.h">
@@ -640,6 +634,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_SimPropertiesProcedureBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SimPropertiesProcessBP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_StartSymbolBP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

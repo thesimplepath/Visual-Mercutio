@@ -23,7 +23,7 @@
 #include "zModel\PSS_ProcessGraphPage.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "PSS_ProcessPropertiesBP.h"
-#include "ZBBPSimPropProcess.h"
+#include "PSS_SimPropertiesProcessBP.h"
 #include "PSS_DeliveriesPropertiesBP.h"
 #include "ZBDeliverableLinkSymbol.h"
 #include "ZVAddRemoveDeliveryDeliverablesDlg.h"
@@ -667,7 +667,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
                                        ZS_BP_PROP_SIM_PROCESS,
                                        IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_NAME,
-                                       Z_SIM_PROCESS_WORKLOAD_FORECAST,
+                                       M_Sim_Process_Workload_Forecast_ID,
                                        IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC,
                                        double(GetProcessWorkloadForecast()),
                                        ZBProperty::PT_EDIT_NUMBER));
@@ -675,7 +675,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
                                        ZS_BP_PROP_SIM_PROCESS,
                                        IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_NAME,
-                                       Z_SIM_PROCESS_WORKLOAD_FORECAST,
+                                       M_Sim_Process_Workload_Forecast_ID,
                                        IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC,
                                        PSS_Duration(double(GetProcessWorkloadForecast()),
                                                     hourPerDay,
@@ -693,7 +693,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
                                    ZS_BP_PROP_SIM_PROCESS,
                                    IDS_Z_SIM_PROCESS_COST_FORECAST_NAME,
-                                   Z_SIM_PROCESS_COST_FORECAST,
+                                   M_Sim_Process_Cost_Forecast_ID,
                                    IDS_Z_SIM_PROCESS_COST_FORECAST_DESC,
                                    double(GetProcessCostForecast()),
                                    ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -707,9 +707,9 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
                                    ZS_BP_PROP_SIM_PROCESS,
                                    IDS_Z_SIM_PROCESS_COST_NAME,
-                                   Z_SIM_PROCESS_COST_HMO,
+                                   M_Sim_Process_Cost_HMO_ID,
                                    IDS_Z_SIM_PROCESS_COST_DESC,
-                                   double(GetProcessCost()),
+                                   double(GetProcessCostHMO()),
                                    ZBProperty::PT_EDIT_NUMBER_READONLY,
                                    true,
                                    PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
@@ -721,7 +721,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
                                    ZS_BP_PROP_SIM_PROCESS,
                                    IDS_Z_SIM_PROCESS_SUM_DELIVERIES_NAME,
-                                   Z_SIM_PROCESS_SUM_DELIVERIES,
+                                   M_Sim_Process_Sum_Deliveries_ID,
                                    IDS_Z_SIM_PROCESS_SUM_DELIVERIES_DESC,
                                    sumOfDeliveries,
                                    ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -744,7 +744,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
                                    ZS_BP_PROP_SIM_PROCESS,
                                    IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES,
-                                   Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES,
+                                   M_Sim_Process_Workload_By_Deliveries_ID,
                                    IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES_DESC,
                                    PSS_Duration(double(workloadByDeliveries),
                                                 hourPerDay,
@@ -762,7 +762,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
                                    ZS_BP_PROP_SIM_PROCESS,
                                    IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES,
-                                   Z_SIM_PROCESS_COST_BY_DELIVERIES,
+                                   M_Sim_Process_Cost_By_Deliveries_ID,
                                    IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES_DESC,
                                    costByDeliveries,
                                    ZBProperty::PT_EDIT_NUMBER_READONLY));
@@ -1278,7 +1278,7 @@ CString PSS_ProcessSymbolBP::GetRiskType(std::size_t index) const
     return _T("");
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ProcessSymbolBP::ContainsRule(const CString& ruleName)
+BOOL PSS_ProcessSymbolBP::ContainsRule(const CString& ruleName) const
 {
     const int ruleCount = m_Rules.GetRulesCount();
 

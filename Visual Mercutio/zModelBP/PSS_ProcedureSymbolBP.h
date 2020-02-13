@@ -663,7 +663,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param ruleName - the rule name to check
         *@return TRUE if the rule is contained in the rules, otherwise FALSE
         */
-        virtual BOOL ContainsRule(const CString& ruleName);
+        virtual BOOL ContainsRule(const CString& ruleName) const;
 
         /**
         * Checks the rules which are no longer synchronized with the referential

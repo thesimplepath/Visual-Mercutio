@@ -189,9 +189,9 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point start.
-                            if (pComponent && ISA(pComponent, ZBBPStartSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StartSymbolBP))
                             {
-                                ZBBPStartSymbol* m_Start = dynamic_cast<ZBBPStartSymbol*>(pComponent);
+                                PSS_StartSymbolBP* m_Start = dynamic_cast<PSS_StartSymbolBP*>(pComponent);
 
                                 if (m_Start != NULL)
                                 {
@@ -261,10 +261,10 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                                                     dynamic_cast<PSS_ProcedureSymbolBP*>(m_EnteringSymbol)->GetUnitName();
                                             }
 
-                                            if (ISA(m_EnteringSymbol, ZBBPStartSymbol))
+                                            if (ISA(m_EnteringSymbol, PSS_StartSymbolBP))
                                             {
                                                 s_UnitName =
-                                                    dynamic_cast<ZBBPStartSymbol*>(m_EnteringSymbol)->GetUnitName();
+                                                    dynamic_cast<PSS_StartSymbolBP*>(m_EnteringSymbol)->GetUnitName();
                                             }
 
                                             if (ISA(m_EnteringSymbol, ZBBPStopSymbol))

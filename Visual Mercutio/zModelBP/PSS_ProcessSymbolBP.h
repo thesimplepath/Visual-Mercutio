@@ -30,7 +30,7 @@
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
-#include "ZBBPSimPropProcess.h"
+#include "PSS_SimPropertiesProcessBP.h"
 #include "PSS_PrestationsPropertiesBP.h"
 #include "ZBProcDeliveries.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
@@ -274,22 +274,22 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         virtual inline void SetProcessCostForecast(PSS_AnnualNumberPropertiesBP& prop);
 
         /**
-        * Gets the process cost
-        *@return the process cost
+        * Gets the HMO process cost
+        *@return the HMO process cost
         */
-        virtual inline PSS_AnnualNumberPropertiesBP& GetProcessCost();
+        virtual inline PSS_AnnualNumberPropertiesBP& GetProcessCostHMO();
 
         /**
-        * Sets the process cost
-        *@param value - the process cost value
+        * Sets the HMO process cost
+        *@param value - the HMO process cost value
         */
-        virtual inline void SetProcessCost(const double value);
+        virtual inline void SetProcessCostHMO(const double value);
 
         /**
-        * Sets the process cost
-        *@param value - the property containing the process cost value
+        * Sets the HMO process cost
+        *@param value - the property containing the HMO process cost value
         */
-        virtual inline void SetProcessCost(PSS_AnnualNumberPropertiesBP& prop);
+        virtual inline void SetProcessCostHMO(PSS_AnnualNumberPropertiesBP& prop);
 
         /**
         * Checks if the process may contain prestations
@@ -552,7 +552,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param ruleName - the rule name to check
         *@return TRUE if the process contains the rule, otherwise FALSE
         */
-        virtual BOOL ContainsRule(const CString& ruleName);
+        virtual BOOL ContainsRule(const CString& ruleName) const;
 
         /**
         * Gets the rules which are no longer synchronized with this process
@@ -687,7 +687,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
 
     private:
         PSS_PrestationsPropertiesBP m_PrestProperties;
-        ZBBPSimPropertiesProcess    m_SimProperties;
+        PSS_SimPropertiesProcessBP  m_SimProperties;
         ZBProcDeliveries            m_Deliveries;
         ZBProcRules                 m_Rules;
         ZBProcRisk                  m_Risks;
@@ -870,9 +870,9 @@ void PSS_ProcessSymbolBP::SetProcessWorkloadForecast(const double value)
     m_SimProperties.SetProcessWorkloadForecast(value);
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::SetProcessWorkloadForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
+void PSS_ProcessSymbolBP::SetProcessWorkloadForecast(PSS_AnnualNumberPropertiesBP& prop)
 {
-    m_SimProperties.GetProcessWorkloadForecast() = AnnualNumberProp;
+    m_SimProperties.GetProcessWorkloadForecast() = prop;
 }
 //---------------------------------------------------------------------------
 PSS_AnnualNumberPropertiesBP& PSS_ProcessSymbolBP::GetProcessCostForecast()
@@ -885,24 +885,24 @@ void PSS_ProcessSymbolBP::SetProcessCostForecast(const double value)
     m_SimProperties.SetProcessCostForecast(value);
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::SetProcessCostForecast(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
+void PSS_ProcessSymbolBP::SetProcessCostForecast(PSS_AnnualNumberPropertiesBP& prop)
 {
-    m_SimProperties.GetProcessCostForecast() = AnnualNumberProp;
+    m_SimProperties.GetProcessCostForecast() = prop;
 }
 //---------------------------------------------------------------------------
-PSS_AnnualNumberPropertiesBP& PSS_ProcessSymbolBP::GetProcessCost()
+PSS_AnnualNumberPropertiesBP& PSS_ProcessSymbolBP::GetProcessCostHMO()
 {
-    return m_SimProperties.GetProcessCost();
+    return m_SimProperties.GetProcessCostHMO();
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::SetProcessCost(const double value)
+void PSS_ProcessSymbolBP::SetProcessCostHMO(const double value)
 {
-    m_SimProperties.SetProcessCost(value);
+    m_SimProperties.SetProcessCostHMO(value);
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::SetProcessCost(PSS_AnnualNumberPropertiesBP& AnnualNumberProp)
+void PSS_ProcessSymbolBP::SetProcessCostHMO(PSS_AnnualNumberPropertiesBP& prop)
 {
-    m_SimProperties.GetProcessCost() = AnnualNumberProp;
+    m_SimProperties.GetProcessCostHMO() = prop;
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessSymbolBP::HasPrestations() const

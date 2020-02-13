@@ -674,7 +674,7 @@ public:
                                            CDC*                    pDC = NULL);
 
     // JMR-MODIF - Le 26 avril 2007 - Ajout de la fonction ContainsRule.
-    BOOL ContainsRule(CString RuleName);
+    BOOL ContainsRule(CString RuleName) const;
 
     // JMR-MODIF - Le 9 octobre 2007 - Ajout de la fonction CheckRulesSync.
     void CheckRulesSync(CStringArray& RulesList);

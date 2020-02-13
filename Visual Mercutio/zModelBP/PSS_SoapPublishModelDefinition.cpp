@@ -24,7 +24,7 @@
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 #include "ZBInputAttributes.h"
@@ -353,7 +353,7 @@ bool PSS_SoapPublishModelDefinition::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbo
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelDefinition::OnStartSymbol(ZBBPStartSymbol* pSymbol)
+bool PSS_SoapPublishModelDefinition::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
     if (!pSymbol)
         return false;

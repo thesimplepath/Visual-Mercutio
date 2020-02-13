@@ -22,7 +22,7 @@
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 
 #include "zModel\PSS_SymbolLabel.h"
@@ -2124,7 +2124,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolProperties()
 }
 
 // JMR-MODIF - Le 26 avril 2007 - Cette fonction permet de déterminer si une règle donnée a été attribuée à cet objet.
-BOOL ZBDeliverableLinkSymbol::ContainsRule(CString RuleName)
+BOOL ZBDeliverableLinkSymbol::ContainsRule(CString RuleName) const
 {
     for (int i = 0; i < m_Rules.GetRulesCount(); i++)
     {
@@ -4761,7 +4761,7 @@ bool ZBDeliverableLinkSymbol::IsInitial() const
 {
     // Retrieve the source connected symbol
     CODComponent* pComp = GetSourceComponent();
-    return (pComp && ISA(pComp, ZBBPStartSymbol)) ? true : false;
+    return (pComp && ISA(pComp, PSS_StartSymbolBP)) ? true : false;
 }
 
 bool ZBDeliverableLinkSymbol::IsFinal() const

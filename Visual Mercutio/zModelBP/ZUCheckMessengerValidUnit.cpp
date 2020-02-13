@@ -6,7 +6,7 @@
 #include "ZUCheckMessengerValidUnit.h"
 
 #include "PSS_ProcedureSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 
 #include "zModel\PSS_ProcessGraphModelMdl.h"
@@ -129,7 +129,7 @@ bool ZUCheckMessengerValidUnit::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol
     return true;
 }
 
-bool ZUCheckMessengerValidUnit::OnStartSymbol(ZBBPStartSymbol* pSymbol)
+bool ZUCheckMessengerValidUnit::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
     // Test if it is a local symbol
     if (!pSymbol || !pSymbol->IsLocal())

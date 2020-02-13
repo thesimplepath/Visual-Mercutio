@@ -14,7 +14,7 @@
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
-#include "zModelBP\ZBBPStartSymbol.h"
+#include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 
@@ -651,7 +651,7 @@ bool ZUProcessConceptorNavigation::StartSection(CODNodeArray& Nodes)
     for (size_t nNodeIdx = 0; nNodeIdx < (size_t)Nodes.GetSize(); ++nNodeIdx)
     {
         IODNode*            pINode = Nodes.GetAt(nNodeIdx);
-        ZBBPStartSymbol*    pStart = static_cast<ZBBPStartSymbol*>(pINode);
+        PSS_StartSymbolBP*  pStart = static_cast<PSS_StartSymbolBP*>(pINode);
 
         if (!pStart)
         {

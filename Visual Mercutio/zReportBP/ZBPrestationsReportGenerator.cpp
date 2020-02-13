@@ -761,7 +761,7 @@ void _ZBPrestationsDatas::Associate(PSS_ProcessSymbolBP* Process)
             m_Data->SetName(Process->GetSymbolName());
             m_Data->SetWorkload(Process->GetProcessWorkloadForecast() * m_Data->GetPercentage());
             m_Data->SetCost(Process->GetProcessCostForecast() * m_Data->GetPercentage());
-            m_Data->SetCostHMO(Process->GetProcessCost() * m_Data->GetPercentage());
+            m_Data->SetCostHMO(Process->GetProcessCostHMO() * m_Data->GetPercentage());
 
             m_ProcessList.AddTail(m_Data);
 

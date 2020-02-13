@@ -20,7 +20,7 @@
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
@@ -105,7 +105,7 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetStartSymbols(CODNodeArray& nodes, boo
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPStartSymbols(CODNodeArray& nodes, bool deep)
 {
-    return GetSymbolsISA(nodes, RUNTIME_CLASS(ZBBPStartSymbol), deep);
+    return GetSymbolsISA(nodes, RUNTIME_CLASS(PSS_StartSymbolBP), deep);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPStopSymbols(CODNodeArray& nodes, bool deep)
@@ -165,7 +165,7 @@ void PSS_ProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog)
         if (!pSymbol)
             continue;
 
-        ZBBPStartSymbol*       pStartSymbol     =                       dynamic_cast<ZBBPStartSymbol*>(pComp);
+        PSS_StartSymbolBP*     pStartSymbol     =                       dynamic_cast<PSS_StartSymbolBP*>(pComp);
         ZBBPStopSymbol*        pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
         PSS_ProcedureSymbolBP* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
 
@@ -660,7 +660,7 @@ void PSS_ProcessGraphModelMdlBP::MigrateUnitGUID()
         if (!pSymbol)
             continue;
 
-        ZBBPStartSymbol*       pStartSymbol     =                       dynamic_cast<ZBBPStartSymbol*>(pComp);
+        PSS_StartSymbolBP*     pStartSymbol     =                       dynamic_cast<PSS_StartSymbolBP*>(pComp);
         ZBBPStopSymbol*        pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
         PSS_ProcedureSymbolBP* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
         bool                   error;

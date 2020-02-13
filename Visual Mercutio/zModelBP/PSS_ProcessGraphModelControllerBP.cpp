@@ -29,7 +29,7 @@
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
-#include "zModelBP\ZBBPStartSymbol.h"
+#include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\PSS_PackageSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
@@ -397,7 +397,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsStart()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPStartSymbol> pSymbol(new ZBBPStartSymbol());
+    std::unique_ptr<PSS_StartSymbolBP> pSymbol(new PSS_StartSymbolBP());
     pSymbol->Create();
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();
@@ -1350,7 +1350,7 @@ void PSS_ProcessGraphModelControllerBP::OnRecalculateModelDurations()
 
     AssignSymbolHit();
 
-    ZBBPStartSymbol* pStartSymbol = dynamic_cast<ZBBPStartSymbol*>(m_pSymbolHit);
+    PSS_StartSymbolBP* pStartSymbol = dynamic_cast<PSS_StartSymbolBP*>(m_pSymbolHit);
     ASSERT(pStartSymbol);
 
     // check if cost simulation is set
@@ -1394,7 +1394,7 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateRecalculateModelDurations(CCmdUI
 
     PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
-    pCmdUI->Enable(pModelDoc && pModelDoc->GetIntegrateCostSimulation() && m_pSymbolHit && ISA(m_pSymbolHit, ZBBPStartSymbol));
+    pCmdUI->Enable(pModelDoc && pModelDoc->GetIntegrateCostSimulation() && m_pSymbolHit && ISA(m_pSymbolHit, PSS_StartSymbolBP));
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnCalculateRisks()

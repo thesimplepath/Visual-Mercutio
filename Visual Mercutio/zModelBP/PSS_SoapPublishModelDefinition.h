@@ -110,7 +110,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
         *@param pSymbol - symbol for which definitions sould be added
         *@return true on success, otherwise false
         */
-        virtual bool OnStartSymbol(ZBBPStartSymbol* pSymbol);
+        virtual bool OnStartSymbol(PSS_StartSymbolBP* pSymbol);
 
         /**
         * Called when stop symbol definitions should be added to publication

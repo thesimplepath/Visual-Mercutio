@@ -13,7 +13,7 @@
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
-#include "zModelBP\ZBBPStartSymbol.h"
+#include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 
@@ -194,7 +194,7 @@ bool ZUGridProcessNavigation::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUGridProcessNavigation::OnStartSymbol(ZBBPStartSymbol* pSymbol)
+bool ZUGridProcessNavigation::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
     int top;
     int left;

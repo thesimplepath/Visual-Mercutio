@@ -16,7 +16,7 @@
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 
@@ -268,7 +268,7 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
     // Now check if we have a start symbol
     // Calculate Deliverables down Durations
-    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), ZBBPStartSymbol))
+    if (pState && pState->GetSymbol() && ISA(pState->GetSymbol(), PSS_StartSymbolBP))
     {
         PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(pState->GetSymbol());
 

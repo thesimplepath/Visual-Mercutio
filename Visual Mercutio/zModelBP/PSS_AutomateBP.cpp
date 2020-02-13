@@ -19,7 +19,7 @@
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
-#include "ZBBPStartSymbol.h"
+#include "PSS_StartSymbolBP.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
 
@@ -55,7 +55,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     PSS_Symbol* pSymbol = pState->GetSymbol();
 
     if (pSymbol)
-        if (ISA(pSymbol, ZBBPStartSymbol))
+        if (ISA(pSymbol, PSS_StartSymbolBP))
             return RequestMoveForwardStartSymbol(pState, symbolSet, stateLinkSet, pLog);
         else
         if (ISA(pSymbol, PSS_ProcedureSymbolBP))
@@ -361,7 +361,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
         return PSS_AutomationMachine::IE_AS_Error;
     }
 
-    ZBBPStartSymbol* pStart = dynamic_cast<ZBBPStartSymbol*>(pState->GetSymbol());
+    PSS_StartSymbolBP* pStart = dynamic_cast<PSS_StartSymbolBP*>(pState->GetSymbol());
 
     if (!pStart)
     {

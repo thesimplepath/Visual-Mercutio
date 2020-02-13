@@ -11,7 +11,7 @@
 #include "zReport\ZDGridDoc.h"
 #include "zModel\PSS_UserGroupEntity.h"
 
-#include "zModelBP\ZBBPStartSymbol.h"
+#include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 

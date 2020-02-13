@@ -2078,7 +2078,7 @@ std::size_t PSS_ProcedureSymbolBP::GetRuleCount() const
     return token.GetTokenCount();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ProcedureSymbolBP::ContainsRule(const CString& ruleName)
+BOOL PSS_ProcedureSymbolBP::ContainsRule(const CString& ruleName) const
 {
     const int ruleCount = m_Rules.GetRulesCount();
 

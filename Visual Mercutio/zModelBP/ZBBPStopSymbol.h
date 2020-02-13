@@ -1,8 +1,12 @@
-// ZBBPStopSymbol.h: interface for the ZBBPStopSymbol class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_StopSymbolBP ----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a stop symbol for banking process                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZBBPStopSymbol_H__78F947C3_2DC6_4808_A357_392EF1C0512F__INCLUDED_)
-#define AFX_ZBBPStopSymbol_H__78F947C3_2DC6_4808_A357_392EF1C0512F__INCLUDED_
+#ifndef PSS_StopSymbolBPH
+#define PSS_StopSymbolBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -197,7 +201,7 @@ public:
     }
 
     // JMR-MODIF - Le 26 avril 2007 - Ajout de la fonction ContainsRule.
-    BOOL ContainsRule( CString RuleName );
+    BOOL ContainsRule( CString RuleName ) const;
 
     // JMR-MODIF - Le 9 octobre 2007 - Ajout de la fonction CheckRulesSync.
     void CheckRulesSync( CStringArray& RulesList );
