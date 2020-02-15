@@ -691,8 +691,8 @@ bool ZVPublishConceptorReport::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBBPStopSymbol.
-bool ZVPublishConceptorReport::OnStopSymbol(ZBBPStopSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_StopSymbolBP.
+bool ZVPublishConceptorReport::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
 {
     return true;
 }
@@ -744,9 +744,9 @@ bool ZVPublishConceptorReport::Visit(CODComponent& Symbol)
     {
         return OnStartSymbol(dynamic_cast<PSS_StartSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPStopSymbol))
+    else if (ISA(pSymbol, PSS_StopSymbolBP))
     {
-        return OnStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
+        return OnStopSymbol(dynamic_cast<PSS_StopSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_Symbol))
     {

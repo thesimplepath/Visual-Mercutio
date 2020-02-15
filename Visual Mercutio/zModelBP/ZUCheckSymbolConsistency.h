@@ -33,6 +33,9 @@
 #ifndef PSS_StartSymbolBP
     #define PSS_StartSymbolBP ZBBPStartSymbol
 #endif
+#ifndef PSS_StopSymbolBP
+    #define PSS_StopSymbolBP ZBBPStopSymbol
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
@@ -50,7 +53,7 @@ class PSS_PageSymbolBP;
 class PSS_ProcedureSymbolBP;
 class PSS_ProcessSymbolBP;
 class PSS_StartSymbolBP;
-class ZBBPStopSymbol;
+class PSS_StopSymbolBP;
 class ZBDeliverableLinkSymbol;
 class PSS_ProcessGraphModelMdl;
 class PSS_ProcessGraphModelMdlBP;
@@ -106,7 +109,7 @@ private:
     bool CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
     bool CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol);
     bool CheckStartSymbol(PSS_StartSymbolBP* pSymbol);
-    bool CheckStopSymbol(ZBBPStopSymbol* pSymbol);
+    bool CheckStopSymbol(PSS_StopSymbolBP* pSymbol);
     bool CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
     bool CheckSymbol(PSS_Symbol* pSymbol);
     bool CheckLink(PSS_LinkSymbol* pLink);

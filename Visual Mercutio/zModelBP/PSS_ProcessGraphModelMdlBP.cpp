@@ -21,7 +21,7 @@
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
-#include "ZBBPStopSymbol.h"
+#include "PSS_StopSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
 #include "ZBDeliverableLinkSymbol.h"
@@ -110,7 +110,7 @@ std::size_t PSS_ProcessGraphModelMdlBP::GetBPStartSymbols(CODNodeArray& nodes, b
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPStopSymbols(CODNodeArray& nodes, bool deep)
 {
-    return GetSymbolsISA(nodes, RUNTIME_CLASS(ZBBPStopSymbol), deep);
+    return GetSymbolsISA(nodes, RUNTIME_CLASS(PSS_StopSymbolBP), deep);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_ProcessGraphModelMdlBP::GetBPProcedureSymbols(CODNodeArray& nodes, bool deep)
@@ -166,7 +166,7 @@ void PSS_ProcessGraphModelMdlBP::ReassignUnit(PSS_Log* pLog)
             continue;
 
         PSS_StartSymbolBP*     pStartSymbol     =                       dynamic_cast<PSS_StartSymbolBP*>(pComp);
-        ZBBPStopSymbol*        pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
+        PSS_StopSymbolBP*      pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<PSS_StopSymbolBP*>(pComp);
         PSS_ProcedureSymbolBP* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
 
         // if a start symbol, a stop symbol, or a procedure symbol
@@ -661,7 +661,7 @@ void PSS_ProcessGraphModelMdlBP::MigrateUnitGUID()
             continue;
 
         PSS_StartSymbolBP*     pStartSymbol     =                       dynamic_cast<PSS_StartSymbolBP*>(pComp);
-        ZBBPStopSymbol*        pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<ZBBPStopSymbol*>(pComp);
+        PSS_StopSymbolBP*      pStopSymbol      = pStartSymbol ? NULL : dynamic_cast<PSS_StopSymbolBP*>(pComp);
         PSS_ProcedureSymbolBP* pProcedureSymbol = pStopSymbol  ? NULL : dynamic_cast<PSS_ProcedureSymbolBP*>(pComp);
         bool                   error;
 

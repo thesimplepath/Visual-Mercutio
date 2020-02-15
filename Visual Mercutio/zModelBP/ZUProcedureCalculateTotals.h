@@ -127,7 +127,7 @@ public:
     virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
     virtual bool OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol);
     virtual bool OnStartSymbol(PSS_StartSymbolBP* pSymbol);
-    virtual bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
+    virtual bool OnStopSymbol(PSS_StopSymbolBP* pSymbol);
     virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
 
 private:

@@ -20,7 +20,7 @@
 
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
-#include "ZBBPStopSymbol.h"
+#include "PSS_StopSymbolBP.h"
 
 #include "zModel\PSS_DynamicAttributesManipulator.h"
 
@@ -336,8 +336,8 @@ CString ZVDistributionAttributes::GetAndCheckUnitGUID() const
             if (ISA(m_pSymbol, PSS_StartSymbolBP))
                 UnitGUID = (wchar_t)(dynamic_cast<PSS_StartSymbolBP*>(m_pSymbol)->GetUnitGUID().IsEmpty());
             else
-                if (ISA(m_pSymbol, ZBBPStopSymbol))
-                    UnitGUID = (wchar_t)(dynamic_cast<ZBBPStopSymbol*>(m_pSymbol)->GetUnitGUID().IsEmpty());
+                if (ISA(m_pSymbol, PSS_StopSymbolBP))
+                    UnitGUID = (wchar_t)(dynamic_cast<PSS_StopSymbolBP*>(m_pSymbol)->GetUnitGUID().IsEmpty());
                 else
                 {
                     PSS_MsgBox mBox;

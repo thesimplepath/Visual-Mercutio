@@ -17,7 +17,7 @@
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
-#include "ZBBPStopSymbol.h"
+#include "PSS_StopSymbolBP.h"
 #include "ZBDeliverableLinkSymbol.h"
 
 #include "zModel\PSS_ODSymbolManipulator.h"

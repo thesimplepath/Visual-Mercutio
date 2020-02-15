@@ -1,28 +1,32 @@
 /****************************************************************************
- * ==> PSS_StartSymbolBP ---------------------------------------------------*
+ * ==> PSS_StopSymbolBP ----------------------------------------------------*
  ****************************************************************************
- * Description : Provides a start symbol for banking process                *
+ * Description : Provides a stop symbol for banking process                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_StartSymbolBP.h"
+#include "PSS_StopSymbolBP.h"
 
 // processsoft
 #include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#define _ZMODELEXPORT
-    #include "zModel\PSS_BasicProperties.h"
-#undef _ZMODELEXPORT
+#include "zBaseSym\zBaseSymRes.h"
+#include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_ModelGlobal.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_SelectUserGroupDlg.h"
+#define _ZMODELEXPORT
+    #include "zModel\PSS_BasicProperties.h"
+#undef _ZMODELEXPORT
+#include "zProperty\ZBPropertyAttributes.h"
 #include "PSS_UnitPropertiesBP_Beta1.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZVRiskOptionsDlg.h"
 
 // resources
+#include "zModel\zModelRes.h"
 #include "zModelBPRes.h"
 #include "PSS_ModelResIDs.h"
 
@@ -45,11 +49,11 @@ static CMenu g_RiskMenu;
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_StartSymbolBP, PSS_Symbol, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_StopSymbolBP, PSS_Symbol, g_DefVersion)
 //---------------------------------------------------------------------------
-// PSS_StartSymbolBP
+// PSS_StopSymbolBP
 //---------------------------------------------------------------------------
-PSS_StartSymbolBP::PSS_StartSymbolBP(const CString& name) :
+PSS_StopSymbolBP::PSS_StopSymbolBP(const CString& name) :
     PSS_Symbol()
 {
     PSS_Symbol::SetSymbolName(name);
@@ -62,15 +66,15 @@ PSS_StartSymbolBP::PSS_StartSymbolBP(const CString& name) :
     CreateSymbolProperties();
 }
 //---------------------------------------------------------------------------
-PSS_StartSymbolBP::PSS_StartSymbolBP(const PSS_StartSymbolBP& other)
+PSS_StopSymbolBP::PSS_StopSymbolBP(const PSS_StopSymbolBP& other)
 {
     *this = other;
 }
 //---------------------------------------------------------------------------
-PSS_StartSymbolBP::~PSS_StartSymbolBP()
+PSS_StopSymbolBP::~PSS_StopSymbolBP()
 {}
 //---------------------------------------------------------------------------
-PSS_StartSymbolBP& PSS_StartSymbolBP::operator = (const PSS_StartSymbolBP& other)
+PSS_StopSymbolBP& PSS_StopSymbolBP::operator = (const PSS_StopSymbolBP& other)
 {
     PSS_Symbol::operator = ((const PSS_Symbol&)other);
 
@@ -81,15 +85,15 @@ PSS_StartSymbolBP& PSS_StartSymbolBP::operator = (const PSS_StartSymbolBP& other
     return *this;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_StartSymbolBP::Create(const CString& name)
+BOOL PSS_StopSymbolBP::Create(const CString& name)
 {
     BOOL result = FALSE;
 
     try
     {
         m_IsInCreationProcess = true;
-        result                = PSS_Symbol::Create(IDR_BP_START,
-                                                   ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_START_SYM),
+        result                = PSS_Symbol::Create(IDR_BP_STOP,
+                                                   ::AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_END_SYM),
                                                                            _T("Symbol")),
                                                    name);
 
@@ -106,16 +110,16 @@ BOOL PSS_StartSymbolBP::Create(const CString& name)
     return result;
 }
 //---------------------------------------------------------------------------
-CODComponent* PSS_StartSymbolBP::Dup() const
+CODComponent* PSS_StopSymbolBP::Dup() const
 {
-    return new PSS_StartSymbolBP(*this);
+    return new PSS_StopSymbolBP(*this);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
+void PSS_StopSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 {
     PSS_Symbol::CopySymbolDefinitionFrom(src);
 
-    const PSS_StartSymbolBP* pSymbol = dynamic_cast<const PSS_StartSymbolBP*>(&src);
+    const PSS_StopSymbolBP* pSymbol = dynamic_cast<const PSS_StopSymbolBP*>(&src);
 
     if (pSymbol)
     {
@@ -125,7 +129,7 @@ void PSS_StartSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
     }
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::AcceptDropItem(CObject* pObj, const CPoint& point)
+bool PSS_StopSymbolBP::AcceptDropItem(CObject* pObj, const CPoint& point)
 {
     // don't allow the drop if the symbol isn't local
     if (!IsLocal())
@@ -145,7 +149,7 @@ bool PSS_StartSymbolBP::AcceptDropItem(CObject* pObj, const CPoint& point)
     return PSS_Symbol::AcceptDropItem(pObj, point);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::DropItem(CObject* pObj, const CPoint& point)
+bool PSS_StopSymbolBP::DropItem(CObject* pObj, const CPoint& point)
 {
     PSS_UserGroupEntity* pUserGroupEntity = dynamic_cast<PSS_UserGroupEntity*>(pObj);
 
@@ -207,7 +211,7 @@ bool PSS_StartSymbolBP::DropItem(CObject* pObj, const CPoint& point)
     return PSS_Symbol::DropItem(pObj, point);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::CreateSymbolProperties()
+bool PSS_StopSymbolBP::CreateSymbolProperties()
 {
     if (!PSS_Symbol::CreateSymbolProperties())
         return false;
@@ -220,7 +224,7 @@ bool PSS_StartSymbolBP::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
 {
     if (!PSS_Symbol::FillProperties(propSet, numericValues, groupValues))
         return false;
@@ -556,7 +560,7 @@ bool PSS_StartSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValue
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::SaveProperties(ZBPropertySet& propSet)
+bool PSS_StopSymbolBP::SaveProperties(ZBPropertySet& propSet)
 {
     if (!PSS_Symbol::SaveProperties(propSet))
         return false;
@@ -570,7 +574,7 @@ bool PSS_StartSymbolBP::SaveProperties(ZBPropertySet& propSet)
 
         if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
         {
-            int i = categoryID - ZS_BP_PROP_RISK;
+            const int i = categoryID - ZS_BP_PROP_RISK;
 
             if (pProp->GetItemID() == M_Risk_Name_ID + (i * g_MaxRisksSize))
                 SetRiskName(i, pProp->GetValueString());
@@ -608,7 +612,7 @@ bool PSS_StartSymbolBP::SaveProperties(ZBPropertySet& propSet)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::SaveProperty(ZBProperty& prop)
+bool PSS_StopSymbolBP::SaveProperty(ZBProperty& prop)
 {
     if (!PSS_Symbol::SaveProperty(prop))
         return false;
@@ -622,22 +626,22 @@ bool PSS_StartSymbolBP::SaveProperty(ZBProperty& prop)
     // update the risk properties
     if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        const int index = categoryID - ZS_BP_PROP_RISK;
+        const int i = prop.GetCategoryID() - ZS_BP_PROP_RISK;
 
-        if (prop.GetItemID() == M_Risk_Name_ID + (index * g_MaxRisksSize))
-            SetRiskName(index, prop.GetValueString());
+        if (prop.GetItemID() == M_Risk_Name_ID + (i * g_MaxRisksSize))
+            SetRiskName(i, prop.GetValueString());
 
-        if (prop.GetItemID() == M_Risk_Desc_ID + (index * g_MaxRisksSize))
-            SetRiskDesc(index, prop.GetValueString());
+        if (prop.GetItemID() == M_Risk_Desc_ID + (i * g_MaxRisksSize))
+            SetRiskDesc(i, prop.GetValueString());
 
-        if (prop.GetItemID() == M_Risk_UE_ID + (index * g_MaxRisksSize))
-            SetRiskUE(index, prop.GetValueFloat());
+        if (prop.GetItemID() == M_Risk_UE_ID + (i * g_MaxRisksSize))
+            SetRiskUE(i, prop.GetValueFloat());
 
-        if (prop.GetItemID() == M_Risk_POA_ID + (index * g_MaxRisksSize))
-            SetRiskPOA(index, prop.GetValueFloat());
+        if (prop.GetItemID() == M_Risk_POA_ID + (i * g_MaxRisksSize))
+            SetRiskPOA(i, prop.GetValueFloat());
 
-        if (prop.GetItemID() == M_Risk_Action_ID + (index * g_MaxRisksSize))
-            SetRiskAction(index, (prop.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
+        if (prop.GetItemID() == M_Risk_Action_ID + (i * g_MaxRisksSize))
+            SetRiskAction(i, (prop.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
     }
 
     // check if the user modified a rule, if yes, restore the original name
@@ -655,17 +659,14 @@ bool PSS_StartSymbolBP::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
+bool PSS_StopSymbolBP::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
 {
     return PSS_Symbol::CheckPropertyValue(prop, value, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_StopSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int categoryID = prop.GetCategoryID();
-
-    PSS_ProcessGraphModelMdl* pProcessGraphModel  =                      dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
-    PSS_ProcessGraphModelDoc* pProcessGraphMdlDoc = pProcessGraphModel ? dynamic_cast<PSS_ProcessGraphModelDoc*>(pProcessGraphModel->GetDocument()) : NULL;
 
     // process the risks
     if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
@@ -751,11 +752,11 @@ bool PSS_StartSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, Z
     return PSS_Symbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::ProcessMenuCommand(int            menuCmdID,
-                                           ZBProperty&    prop,
-                                           CString&       value,
-                                           ZBPropertySet& props,
-                                           bool&          refresh)
+bool PSS_StopSymbolBP::ProcessMenuCommand(int            menuCmdID,
+                                          ZBProperty&    prop,
+                                          CString&       value,
+                                          ZBPropertySet& props,
+                                          bool&          refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -794,12 +795,12 @@ bool PSS_StartSymbolBP::ProcessMenuCommand(int            menuCmdID,
     return PSS_Symbol::ProcessMenuCommand(menuCmdID, prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetAttributeString(ZBPropertyAttributes* pAttributes) const
+CString PSS_StopSymbolBP::GetAttributeString(ZBPropertyAttributes* pAttributes) const
 {
     return PSS_Symbol::GetAttributeString(pAttributes);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_StartSymbolBP::ContainsRule(const CString& ruleName) const
+BOOL PSS_StopSymbolBP::ContainsRule(const CString& ruleName) const
 {
     const int ruleCount = m_Rules.GetRulesCount();
 
@@ -810,7 +811,7 @@ BOOL PSS_StartSymbolBP::ContainsRule(const CString& ruleName) const
     return FALSE;
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::CheckRulesSync(CStringArray& rulesList)
+void PSS_StopSymbolBP::CheckRulesSync(CStringArray& rulesList)
 {
     CODModel* pModel = GetRootModel();
 
@@ -841,7 +842,7 @@ void PSS_StartSymbolBP::CheckRulesSync(CStringArray& rulesList)
     }
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetRiskType(std::size_t index) const
+CString PSS_StopSymbolBP::GetRiskType(std::size_t index) const
 {
     PSS_Application* pApp = PSS_Application::Instance();
 
@@ -868,7 +869,7 @@ CString PSS_StartSymbolBP::GetRiskType(std::size_t index) const
     return _T("");
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::Serialize(CArchive& ar)
+void PSS_StopSymbolBP::Serialize(CArchive& ar)
 {
     PSS_Symbol::Serialize(ar);
 
@@ -902,7 +903,7 @@ void PSS_StartSymbolBP::Serialize(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_StopSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
 {
     bool result = false;
 
@@ -943,10 +944,10 @@ bool PSS_StartSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& p
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
-                                                   ZBProperty&    dstProperty,
-                                                   bool           top2Down,
-                                                   ZBPropertySet& props)
+bool PSS_StopSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
+                                                  ZBProperty&    dstProperty,
+                                                  bool           top2Down,
+                                                  ZBPropertySet& props)
 {
     if (!::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_RULES))
         return false;
@@ -973,7 +974,7 @@ bool PSS_StartSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_StopSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
 {
     if (!pAttributes)
         return false;
@@ -996,19 +997,19 @@ bool PSS_StartSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttribute
     return PSS_Symbol::OnFillDefaultAttributes(pAttributes);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_StopSymbolBP::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
 {
     return PSS_Symbol::OnChangeAttributes(pAttributes);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_StartSymbolBP::OnDoubleClick()
+BOOL PSS_StopSymbolBP::OnDoubleClick()
 {
     return FALSE;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
+bool PSS_StopSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
-    toolTipText.Format(IDS_FS_BPSTART_TOOLTIP,
+    toolTipText.Format(IDS_FS_BPSTOP_TOOLTIP,
                        (const char*)GetSymbolName(),
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
@@ -1021,7 +1022,7 @@ bool PSS_StartSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StopSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -1032,7 +1033,7 @@ void PSS_StartSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropert
     }
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StopSymbolBP::OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 
@@ -1054,7 +1055,7 @@ void PSS_StartSymbolBP::OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPro
     }
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
+CString PSS_StopSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
 {
     if (!pRule)
         return _T("");

@@ -39,7 +39,7 @@
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
-#include "zModelBP\ZBBPStopSymbol.h"
+#include "zModelBP\PSS_StopSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZBBPUnitProp2.h"
 

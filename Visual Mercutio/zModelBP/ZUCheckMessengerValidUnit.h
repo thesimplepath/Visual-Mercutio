@@ -72,7 +72,7 @@ public:
     virtual bool OnFinish();
     virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
     virtual bool OnStartSymbol(PSS_StartSymbolBP* pSymbol);
-    virtual bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
+    virtual bool OnStopSymbol(PSS_StopSymbolBP* pSymbol);
 };
 
 #endif

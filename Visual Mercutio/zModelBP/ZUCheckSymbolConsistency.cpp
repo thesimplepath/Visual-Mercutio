@@ -12,7 +12,7 @@
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
-#include "ZBBPStopSymbol.h"
+#include "PSS_StopSymbolBP.h"
 #include "ZBDeliverableLinkSymbol.h"
 
 #include "PSS_ProcessGraphModelMdlBP.h"
@@ -168,9 +168,9 @@ bool ZUCheckSymbolConsistency::Visit(CODComponent& Symbol)
     {
         return CheckStartSymbol(dynamic_cast<PSS_StartSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPStopSymbol))
+    else if (ISA(pSymbol, PSS_StopSymbolBP))
     {
-        return CheckStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
+        return CheckStopSymbol(dynamic_cast<PSS_StopSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_Symbol))
     {
@@ -1031,7 +1031,7 @@ bool ZUCheckSymbolConsistency::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCheckSymbolConsistency::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
+bool ZUCheckSymbolConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 

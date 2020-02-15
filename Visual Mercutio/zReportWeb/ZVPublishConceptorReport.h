@@ -33,7 +33,7 @@
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
-#include "zModelBP\ZBBPStopSymbol.h"
+#include "zModelBP\PSS_StopSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 #include "zWeb\PSS_HtmlFile.h"
@@ -87,7 +87,7 @@ private:
     bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
     bool OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol);
     bool OnStartSymbol(PSS_StartSymbolBP* pSymbol);
-    bool OnStopSymbol(ZBBPStopSymbol* pSymbol);
+    bool OnStopSymbol(PSS_StopSymbolBP* pSymbol);
     bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
     bool OnSymbol(PSS_Symbol* pSymbol);
     bool OnLink(PSS_LinkSymbol* pLink);

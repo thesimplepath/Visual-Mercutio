@@ -30,7 +30,7 @@
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
-#include "zModelBP\ZBBPStopSymbol.h"
+#include "zModelBP\PSS_StopSymbolBP.h"
 #include "zModelBP\PSS_PackageSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
@@ -372,7 +372,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsStop()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPStopSymbol> pSymbol(new ZBBPStopSymbol());
+    std::unique_ptr<PSS_StopSymbolBP> pSymbol(new PSS_StopSymbolBP());
     pSymbol->Create();
     OnInsertSymbol(pSymbol.get());
     pSymbol.release();

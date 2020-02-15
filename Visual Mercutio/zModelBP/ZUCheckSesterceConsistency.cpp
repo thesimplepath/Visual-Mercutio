@@ -21,7 +21,7 @@
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
-#include "zModelBP\ZBBPStopSymbol.h"
+#include "zModelBP\PSS_StopSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 
 #include "zModel\PSS_ODSymbolManipulator.h"
@@ -96,9 +96,9 @@ bool ZUCheckSesterceConsistency::Visit(CODComponent& Symbol)
     {
         return CheckStartSymbol(dynamic_cast<PSS_StartSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBBPStopSymbol))
+    else if (ISA(pSymbol, PSS_StopSymbolBP))
     {
-        return CheckStopSymbol(dynamic_cast<ZBBPStopSymbol*>(&Symbol));
+        return CheckStopSymbol(dynamic_cast<PSS_StopSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_Symbol))
     {
@@ -301,7 +301,7 @@ bool ZUCheckSesterceConsistency::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckStopSymbol(ZBBPStopSymbol* pSymbol)
+bool ZUCheckSesterceConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 

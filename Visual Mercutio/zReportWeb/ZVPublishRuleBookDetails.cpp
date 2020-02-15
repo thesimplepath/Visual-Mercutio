@@ -210,9 +210,9 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point stop.
-                            if (pComponent && ISA(pComponent, ZBBPStopSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StopSymbolBP))
                             {
-                                ZBBPStopSymbol* m_Stop = dynamic_cast<ZBBPStopSymbol*>(pComponent);
+                                PSS_StopSymbolBP* m_Stop = dynamic_cast<PSS_StopSymbolBP*>(pComponent);
 
                                 if (m_Stop != NULL)
                                 {
@@ -267,10 +267,10 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                                                     dynamic_cast<PSS_StartSymbolBP*>(m_EnteringSymbol)->GetUnitName();
                                             }
 
-                                            if (ISA(m_EnteringSymbol, ZBBPStopSymbol))
+                                            if (ISA(m_EnteringSymbol, PSS_StopSymbolBP))
                                             {
                                                 s_UnitName =
-                                                    dynamic_cast<ZBBPStopSymbol*>(m_EnteringSymbol)->GetUnitName();
+                                                    dynamic_cast<PSS_StopSymbolBP*>(m_EnteringSymbol)->GetUnitName();
                                             }
                                         }
 

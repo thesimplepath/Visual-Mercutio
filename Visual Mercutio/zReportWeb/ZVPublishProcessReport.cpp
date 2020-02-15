@@ -380,9 +380,9 @@ PSS_Symbol* ZVPublishProcessReport::FindSymbol(const CString SymbolName,
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point stop.
-                            if (pComponent && ISA(pComponent, ZBBPStopSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StopSymbolBP))
                             {
-                                ZBBPStopSymbol* m_Stop = dynamic_cast<ZBBPStopSymbol*>(pComponent);
+                                PSS_StopSymbolBP* m_Stop = dynamic_cast<PSS_StopSymbolBP*>(pComponent);
 
                                 if (m_Stop != NULL && m_Stop->IsLocal())
                                 {
@@ -730,9 +730,9 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point stop.
-                            if (pComponent && ISA(pComponent, ZBBPStopSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StopSymbolBP))
                             {
-                                ZBBPStopSymbol* m_Stop = dynamic_cast<ZBBPStopSymbol*>(pComponent);
+                                PSS_StopSymbolBP* m_Stop = dynamic_cast<PSS_StopSymbolBP*>(pComponent);
 
                                 if (m_Stop != NULL)
                                 {
@@ -1818,12 +1818,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                 ObjType,
                                 RGB(255, 0, 0));
 
-        ZBBPStopSymbol* m_StopSymbol = NULL;
+        PSS_StopSymbolBP* m_StopSymbol = NULL;
 
         if (FindSymbol(myCurNode->GetName()) != NULL &&
-            ISA(FindSymbol(myCurNode->GetName()), ZBBPStopSymbol))
+            ISA(FindSymbol(myCurNode->GetName()), PSS_StopSymbolBP))
         {
-            m_StopSymbol = dynamic_cast<ZBBPStopSymbol*>(FindSymbol(myCurNode->GetName()));
+            m_StopSymbol = dynamic_cast<PSS_StopSymbolBP*>(FindSymbol(myCurNode->GetName()));
         }
 
         if (m_StopSymbol != NULL)

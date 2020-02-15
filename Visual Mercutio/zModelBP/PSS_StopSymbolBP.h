@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_StartSymbolBP ---------------------------------------------------*
+ * ==> PSS_StopSymbolBP ----------------------------------------------------*
  ****************************************************************************
- * Description : Provides a start symbol for banking process                *
+ * Description : Provides a stop symbol for banking process                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_StartSymbolBPH
-#define PSS_StartSymbolBPH
+#ifndef PSS_StopSymbolBPH
+#define PSS_StopSymbolBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_StartSymbolBP
-    #define PSS_StartSymbolBP ZBBPStartSymbol
+#ifndef PSS_StopSymbolBP
+    #define PSS_StopSymbolBP ZBBPStopSymbol
 #endif
 
 // processsoft
@@ -49,34 +49,34 @@
 #endif
 
 /**
-* Start symbol for banking process
+* Stop symbol for banking process
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_StartSymbolBP : public PSS_Symbol
+class AFX_EXT_CLASS PSS_StopSymbolBP : public PSS_Symbol
 {
-    DECLARE_SERIAL(PSS_StartSymbolBP)
+    DECLARE_SERIAL(PSS_StopSymbolBP)
 
     public:
         /**
         * Constructor
         *@param name - the symbol name
         */
-        PSS_StartSymbolBP(const CString& name = _T(""));
+        PSS_StopSymbolBP(const CString& name = _T(""));
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_StartSymbolBP(const PSS_StartSymbolBP& other);
+        PSS_StopSymbolBP(const PSS_StopSymbolBP& other);
 
-        virtual ~PSS_StartSymbolBP();
+        virtual ~PSS_StopSymbolBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_StartSymbolBP& operator = (const PSS_StartSymbolBP& other);
+        PSS_StopSymbolBP& operator = (const PSS_StopSymbolBP& other);
 
         /**
         * Creates the symbol component
@@ -98,10 +98,10 @@ class AFX_EXT_CLASS PSS_StartSymbolBP : public PSS_Symbol
         virtual void CopySymbolDefinitionFrom(const CODSymbolComponent& src);
 
         /**
-        * Checks if this symbol is a start symbol
-        *@return TRUE if this symbol is a start symbol, otherwise FALSE
+        * Checks if this symbol is a stop symbol
+        *@return TRUE if this symbol is a stop symbol, otherwise FALSE
         */
-        virtual inline BOOL IsStart() const;
+        virtual inline BOOL IsStop() const;
 
         /**
         * Checks if an item may be dropped on this symbol
@@ -507,169 +507,169 @@ class AFX_EXT_CLASS PSS_StartSymbolBP : public PSS_Symbol
 };
 
 //---------------------------------------------------------------------------
-// PSS_StartSymbolBP
+// PSS_StopSymbolBP
 //---------------------------------------------------------------------------
-BOOL PSS_StartSymbolBP::IsStart() const
+BOOL PSS_StopSymbolBP::IsStop() const
 {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::IncludeDescriptionArea() const
+bool PSS_StopSymbolBP::IncludeDescriptionArea() const
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::IncludeAttributeArea() const
+bool PSS_StopSymbolBP::IncludeAttributeArea() const
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::HasUnit() const
+bool PSS_StopSymbolBP::HasUnit() const
 {
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetUnitName() const
+CString PSS_StopSymbolBP::GetUnitName() const
 {
     return m_UnitProp.GetUnitName();
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetUnitName(const CString& value)
+void PSS_StopSymbolBP::SetUnitName(const CString& value)
 {
     m_UnitProp.SetUnitName(value);
 }
 //---------------------------------------------------------------------------
-float PSS_StartSymbolBP::GetUnitCost() const
+float PSS_StopSymbolBP::GetUnitCost() const
 {
     return m_UnitProp.GetUnitCost();
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetUnitCost(const float value)
+void PSS_StopSymbolBP::SetUnitCost(const float value)
 {
     m_UnitProp.SetUnitCost(value);
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetUnitGUID() const
+CString PSS_StopSymbolBP::GetUnitGUID() const
 {
     return m_UnitProp.GetUnitGUID();
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetUnitGUID(const CString& value)
+void PSS_StopSymbolBP::SetUnitGUID(const CString& value)
 {
     m_UnitProp.SetUnitGUID(value);
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::GetRiskCount() const
+int PSS_StopSymbolBP::GetRiskCount() const
 {
     return m_Risks.GetRiskCount();
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetRiskName(std::size_t index) const
+CString PSS_StopSymbolBP::GetRiskName(std::size_t index) const
 {
     return m_Risks.GetRiskName(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskName(std::size_t index, const CString& value)
+void PSS_StopSymbolBP::SetRiskName(std::size_t index, const CString& value)
 {
     m_Risks.SetRiskName(index, value);
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetRiskDesc(std::size_t index) const
+CString PSS_StopSymbolBP::GetRiskDesc(std::size_t index) const
 {
     return m_Risks.GetRiskDesc(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskDesc(std::size_t index, const CString& value)
+void PSS_StopSymbolBP::SetRiskDesc(std::size_t index, const CString& value)
 {
     m_Risks.SetRiskDesc(index, value);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskType(std::size_t index, const CString& value)
+void PSS_StopSymbolBP::SetRiskType(std::size_t index, const CString& value)
 {
     m_Risks.SetRiskType(index, value);
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::GetRiskImpact(std::size_t index) const
+int PSS_StopSymbolBP::GetRiskImpact(std::size_t index) const
 {
     return m_Risks.GetRiskImpact(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskImpact(std::size_t index, int value)
+void PSS_StopSymbolBP::SetRiskImpact(std::size_t index, int value)
 {
     m_Risks.SetRiskImpact(index, value);
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::GetRiskProbability(std::size_t index) const
+int PSS_StopSymbolBP::GetRiskProbability(std::size_t index) const
 {
     return m_Risks.GetRiskProbability(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskProbability(std::size_t index, int value)
+void PSS_StopSymbolBP::SetRiskProbability(std::size_t index, int value)
 {
     m_Risks.SetRiskProbability(index, value);
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::GetRiskSeverity(std::size_t index) const
+int PSS_StopSymbolBP::GetRiskSeverity(std::size_t index) const
 {
     return m_Risks.GetRiskSeverity(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskSeverity(std::size_t index, int value)
+void PSS_StopSymbolBP::SetRiskSeverity(std::size_t index, int value)
 {
     m_Risks.SetRiskSeverity(index, value);
 }
 //---------------------------------------------------------------------------
-float PSS_StartSymbolBP::GetRiskUE(std::size_t index) const
+float PSS_StopSymbolBP::GetRiskUE(std::size_t index) const
 {
     return m_Risks.GetRiskUE(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskUE(std::size_t index, float value)
+void PSS_StopSymbolBP::SetRiskUE(std::size_t index, float value)
 {
     m_Risks.SetRiskUE(index, value);
 }
 //---------------------------------------------------------------------------
-float PSS_StartSymbolBP::GetRiskPOA(std::size_t index) const
+float PSS_StopSymbolBP::GetRiskPOA(std::size_t index) const
 {
     return m_Risks.GetRiskPOA(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskPOA(std::size_t index, float value)
+void PSS_StopSymbolBP::SetRiskPOA(std::size_t index, float value)
 {
     m_Risks.SetRiskPOA(index, value);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::GetRiskAction(std::size_t index) const
+bool PSS_StopSymbolBP::GetRiskAction(std::size_t index) const
 {
     return m_Risks.GetRiskAction(index);
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::SetRiskAction(std::size_t index, bool value)
+void PSS_StopSymbolBP::SetRiskAction(std::size_t index, bool value)
 {
     m_Risks.SetRiskAction(index, value);
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::GetObjectTypeID() const
+int PSS_StopSymbolBP::GetObjectTypeID() const
 {
-    return 0;
+    return 1;
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::GetRightSubMenu() const
+int PSS_StopSymbolBP::GetRightSubMenu() const
 {
-    return 4;
+    return 5;
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::GetIconIndex() const
+int PSS_StopSymbolBP::GetIconIndex() const
 {
-    return (IsLocal()) ? 10 : 18;
+    return (IsLocal() ? 9 : 17);
 }
 //---------------------------------------------------------------------------
-int PSS_StartSymbolBP::AddNewRisk()
+int PSS_StopSymbolBP::AddNewRisk()
 {
     return m_Risks.AddNewRisk();
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::DeleteRisk(std::size_t index)
+bool PSS_StopSymbolBP::DeleteRisk(std::size_t index)
 {
     return m_Risks.DeleteRisk(index);
 }

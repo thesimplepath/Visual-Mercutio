@@ -281,7 +281,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPStopSymbol.cpp">
+    <ClCompile Include="PSS_StopSymbolBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -614,7 +614,7 @@
     <ClInclude Include="PSS_SimPropertiesProcedureBP.h" />
     <ClInclude Include="PSS_SimPropertiesProcessBP.h" />
     <ClInclude Include="PSS_StartSymbolBP.h" />
-    <ClInclude Include="ZBBPStopSymbol.h" />
+    <ClInclude Include="PSS_StopSymbolBP.h" />
     <ClInclude Include="ZBBPTaskListProp.h" />
     <ClInclude Include="ZBBPTextItemListProp.h" />
     <ClInclude Include="ZBBPTextZone.h" />

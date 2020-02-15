@@ -20,7 +20,7 @@
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
-#include "ZBBPStopSymbol.h"
+#include "PSS_StopSymbolBP.h"
 #include "ZBDeliverableLinkSymbol.h"
 
 #include "zModel\PSS_ODSymbolManipulator.h"
@@ -205,7 +205,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
         (ISA(pState->GetSymbol(), PSS_ProcedureSymbolBP) ||
          ISA(pState->GetSymbol(), PSS_PageSymbolBP) ||
          ISA(pState->GetSymbol(), PSS_DoorSymbolBP) ||
-         ISA(pState->GetSymbol(), ZBBPStopSymbol)))
+         ISA(pState->GetSymbol(), PSS_StopSymbolBP)))
     {
         TRACE1(_T("OnNextSymbolAfterMoveForward: current symbol is %s\n"),
                dynamic_cast<PSS_Symbol*>(pState->GetSymbol())->GetSymbolName());

@@ -23,7 +23,7 @@
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
-#include "ZBBPStopSymbol.h"
+#include "PSS_StopSymbolBP.h"
 
 #include "zModel\PSS_SymbolLabel.h"
 #include <Views\OdLineOrientation.h>
@@ -4768,7 +4768,7 @@ bool ZBDeliverableLinkSymbol::IsFinal() const
 {
     // Retrieve the target connected symbol
     CODComponent* pComp = GetTargetComponent();
-    return (pComp && ISA(pComp, ZBBPStopSymbol)) ? true : false;
+    return (pComp && ISA(pComp, PSS_StopSymbolBP)) ? true : false;
 }
 
 bool ZBDeliverableLinkSymbol::IsInterProcess() const

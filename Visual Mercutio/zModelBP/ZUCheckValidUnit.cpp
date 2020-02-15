@@ -8,7 +8,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
-#include "zModelBP\ZBBPStopSymbol.h"
+#include "zModelBP\PSS_StopSymbolBP.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
 
@@ -121,7 +121,7 @@ bool ZUCheckValidUnit::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCheckValidUnit::OnStopSymbol(ZBBPStopSymbol* pSymbol)
+bool ZUCheckValidUnit::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
 {
     // Test if it is a local symbol
     if (!pSymbol || !pSymbol->IsLocal())

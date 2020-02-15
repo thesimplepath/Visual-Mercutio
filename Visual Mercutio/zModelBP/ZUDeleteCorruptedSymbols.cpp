@@ -69,9 +69,9 @@ void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRoo
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un point stop.
-                            if (pComponent && ISA(pComponent, ZBBPStopSymbol))
+                            if (pComponent && ISA(pComponent, PSS_StopSymbolBP))
                             {
-                                ZBBPStopSymbol* m_Stop = dynamic_cast<ZBBPStopSymbol*>(pComponent);
+                                PSS_StopSymbolBP* m_Stop = dynamic_cast<PSS_StopSymbolBP*>(pComponent);
 
                                 if (IsCorrupted(m_Stop))
                                 {
@@ -195,7 +195,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_StartSymbolBP* m_Symbol)
 }
 
 // Contrôle que les propriétés du symbole stop donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBBPStopSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_StopSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {
