@@ -105,7 +105,7 @@ void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, PSS_Process
                                 {
                                     // Si la catégorie est nouvelle, on crée une nouvelle section.
                                     if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT &&
-                                        pProp->GetItemID() == Z_UNIT_NAME)
+                                        pProp->GetItemID() == M_Unit_Name_ID)
                                     {
                                         GenerateHTMLSectionLine(pProp->GetValueString(),
                                                                 ProcessName,

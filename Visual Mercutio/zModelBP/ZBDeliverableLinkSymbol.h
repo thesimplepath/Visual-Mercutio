@@ -37,7 +37,7 @@
 #include "PSS_AnnualNumberPropertiesBP.h"
 #include "PSS_SimPropertiesDeliverableBP.h"
 #include "PSS_CostPropertiesDeliverableBP.h"
-#include "ZBBPUnitProp2.h"
+#include "PSS_UnitPropertiesBP.h"
 
 // class name mapping
 #ifndef PSS_DoorSymbolBP
@@ -865,19 +865,13 @@ private:
     CString GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rule, CString RuleGUID);
 
 private:
-
-    PSS_AnnualNumberPropertiesBP        m_Quantity;
-    PSS_SimPropertiesDeliverableBP    m_SimProperties;
-    PSS_CostPropertiesDeliverableBP    m_CostDeliverableProperties;
-    ZBBPUnitProperties2                m_UnitProp;
-
+    PSS_AnnualNumberPropertiesBP    m_Quantity;
+    PSS_SimPropertiesDeliverableBP  m_SimProperties;
+    PSS_CostPropertiesDeliverableBP m_CostDeliverableProperties;
+    PSS_UnitPropertiesBP            m_UnitProp;
+    ZBProcRules                     m_Rules;
+    ZBProcRisk                      m_Risks;
     CStringArray                    m_UnitDoubleValidationTypeArray;
-
-    // JMR-MODIF - Le 22 novembre 2006 - Ajout de la variable m_Rules
-    ZBProcRules                        m_Rules;
-
-    // JMR-MODIF - Le 3 juin 2007 - Ajout de la variable m_Risks
-    ZBProcRisk                        m_Risks;
 };
 
 inline double ZBDeliverableLinkSymbol::GetQuantityYear() const

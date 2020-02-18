@@ -287,20 +287,20 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPTaskListProp.cpp">
+    <ClCompile Include="PSS_TaskListPropertiesBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPTextItemListProp.cpp">
+    <ClCompile Include="PSS_TextItemListPropertiesBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBBPTextZone.cpp" />
-    <ClCompile Include="ZBBPUnitProp2.cpp">
+    <ClCompile Include="PSS_TextZoneBP.cpp" />
+    <ClCompile Include="PSS_UnitPropertiesBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -615,10 +615,10 @@
     <ClInclude Include="PSS_SimPropertiesProcessBP.h" />
     <ClInclude Include="PSS_StartSymbolBP.h" />
     <ClInclude Include="PSS_StopSymbolBP.h" />
-    <ClInclude Include="ZBBPTaskListProp.h" />
-    <ClInclude Include="ZBBPTextItemListProp.h" />
-    <ClInclude Include="ZBBPTextZone.h" />
-    <ClInclude Include="ZBBPUnitProp2.h" />
+    <ClInclude Include="PSS_TaskListPropertiesBP.h" />
+    <ClInclude Include="PSS_TextItemListPropertiesBP.h" />
+    <ClInclude Include="PSS_TextZoneBP.h" />
+    <ClInclude Include="PSS_UnitPropertiesBP.h" />
     <ClInclude Include="ZBDeliverableLinkSymbol.h" />
     <ClInclude Include="ZBDistributionAttributes.h" />
     <ClInclude Include="ZBDistributionRules.h" />

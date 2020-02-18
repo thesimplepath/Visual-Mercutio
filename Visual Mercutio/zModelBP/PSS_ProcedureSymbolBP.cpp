@@ -27,7 +27,7 @@
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "ZBDeliverableLinkSymbol.h"
 #include "PSS_RuleListPropertiesBP.h"
-#include "ZBBPTaskListProp.h"
+#include "PSS_TaskListPropertiesBP.h"
 #include "PSS_DecisionListPropertiesBP.h"
 #include "PSS_CostPropertiesProcedureBP_Beta1.h"
 #include "PSS_UnitPropertiesBP_Beta1.h"
@@ -256,7 +256,7 @@ bool PSS_ProcedureSymbolBP::CreateSymbolProperties()
     PSS_RuleListPropertiesBP propRules;
     AddProperty(propRules);
 
-    ZBBPTaskListProperties propTasks;
+    PSS_TaskListPropertiesBP propTasks;
     AddProperty(propTasks);
 
     PSS_DecisionListPropertiesBP propDecisions;
@@ -661,7 +661,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     }
 
     // add tasks
-    ZBBPTaskListProperties* pTasksProps = static_cast<ZBBPTaskListProperties*>(GetProperty(ZS_BP_PROP_TASKLIST));
+    PSS_TaskListPropertiesBP* pTasksProps = static_cast<PSS_TaskListPropertiesBP*>(GetProperty(ZS_BP_PROP_TASKLIST));
 
     if (!pTasksProps)
         return false;
@@ -686,7 +686,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(propTitle,
                                    ZS_BP_PROP_TASKLIST,
                                    finalPropName,
-                                   Z_TASK_LIST + (i * g_MaxTaskListSize),
+                                   M_Task_List_ID + (i * g_MaxTaskListSize),
                                    propDesc,
                                    GetTaskAt(i),
                                    ZBProperty::PT_EDIT_INTELI,
@@ -708,7 +708,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(propTitle,
                                    ZS_BP_PROP_TASKLIST,
                                    finalPropName,
-                                   Z_TASK_LIST + (i * g_MaxTaskListSize),
+                                   M_Task_List_ID + (i * g_MaxTaskListSize),
                                    propDesc,
                                    _T(""),
                                    ZBProperty::PT_EDIT_INTELI,
@@ -921,7 +921,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                    ZS_BP_PROP_UNIT,
                                    IDS_Z_UNIT_COST_NAME,
-                                   Z_UNIT_COST,
+                                   M_Unit_Cost_ID,
                                    IDS_Z_UNIT_COST_DESC,
                                    unitCost,
                                    ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -939,7 +939,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                        ZS_BP_PROP_UNIT,
                                        IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                       Z_UNIT_DOUBLE_VALIDATION,
+                                       M_Unit_Double_Validation_ID,
                                        IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
                                        double(GetUnitDoubleValidationType()),
                                        ZBProperty::PT_EDIT_NUMBER,
@@ -949,7 +949,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
             pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                        ZS_BP_PROP_UNIT,
                                        IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                       Z_UNIT_DOUBLE_VALIDATION,
+                                       M_Unit_Double_Validation_ID,
                                        IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
                                        GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
                                        ZBProperty::PT_COMBO_STRING_READONLY,
@@ -966,7 +966,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                ZS_BP_PROP_UNIT,
                                IDS_Z_UNIT_GUID_NAME,
-                               Z_UNIT_GUID,
+                               M_Unit_GUID_ID,
                                IDS_Z_UNIT_GUID_DESC,
                                GetUnitGUID(),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY,
@@ -982,7 +982,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                ZS_BP_PROP_UNIT,
                                IDS_Z_UNIT_NAME_NAME,
-                               Z_UNIT_NAME,
+                               M_Unit_Name_ID,
                                IDS_Z_UNIT_NAME_DESC,
                                unitName,
                                groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY));
@@ -1262,7 +1262,7 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
     }
 
     // save the tasks
-    ZBBPTaskListProperties* pTasksProps = static_cast<ZBBPTaskListProperties*>(GetProperty(ZS_BP_PROP_TASKLIST));
+    PSS_TaskListPropertiesBP* pTasksProps = static_cast<PSS_TaskListPropertiesBP*>(GetProperty(ZS_BP_PROP_TASKLIST));
 
     if (!pTasksProps)
         return false;
@@ -1323,7 +1323,7 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
     // iterate through the data list and fill the property set
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT)
-            if (pProp->GetItemID() == Z_UNIT_DOUBLE_VALIDATION)
+            if (pProp->GetItemID() == M_Unit_Double_Validation_ID)
                 m_UnitProp.SetValue(pProp->GetItemID(),
                                     ConvertUnitDoubleValidationString2Type(pProp->GetValueString()));
             else
@@ -1507,7 +1507,7 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
         }
     }
 
-    if (categoryID == ZS_BP_PROP_UNIT && prop.GetItemID() == Z_UNIT_NAME)
+    if (categoryID == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
         PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel());
 
@@ -1527,7 +1527,7 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
                     ZBPropertyIterator it(&props);
 
                     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
+                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
                         {
                             pProp->SetValueString(pUserEntity->GetGUID());
                             break;
@@ -2121,7 +2121,7 @@ void PSS_ProcedureSymbolBP::CheckRulesSync(CStringArray& rulesList)
 //---------------------------------------------------------------------------
 CString PSS_ProcedureSymbolBP::GetTaskList() const
 {
-    ZBBPTaskListProperties* pProps = static_cast<ZBBPTaskListProperties*>(GetProperty(ZS_BP_PROP_TASKLIST));
+    PSS_TaskListPropertiesBP* pProps = static_cast<PSS_TaskListPropertiesBP*>(GetProperty(ZS_BP_PROP_TASKLIST));
 
     if (!pProps)
         return _T("");
@@ -2131,11 +2131,11 @@ CString PSS_ProcedureSymbolBP::GetTaskList() const
 //---------------------------------------------------------------------------
 void PSS_ProcedureSymbolBP::SetTaskList(const CString& value)
 {
-    ZBBPTaskListProperties* pProps = static_cast<ZBBPTaskListProperties*>(GetProperty(ZS_BP_PROP_TASKLIST));
+    PSS_TaskListPropertiesBP* pProps = static_cast<PSS_TaskListPropertiesBP*>(GetProperty(ZS_BP_PROP_TASKLIST));
 
     if (pProps)
     {
-        ZBBPTaskListProperties props(*pProps);
+        PSS_TaskListPropertiesBP props(*pProps);
         props.SetTaskList(value);
         SetProperty(&props);
     }
@@ -2432,14 +2432,14 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySe
         }
     }
     else
-    if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == Z_UNIT_NAME)
+    if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
         ZBPropertyIterator it(&props);
         CString            guid;
 
         // iterate through the properties and change the unit cost to the property value
         for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
+            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
             {
                 guid = pProp->GetValueString();
                 break;
@@ -2447,7 +2447,7 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySe
 
         if (!guid.IsEmpty())
             for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
+                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_Cost_ID)
                 {
                     bool  error;
                     float unitCost = RetrieveUnitCost(guid, error);
@@ -2658,7 +2658,7 @@ bool PSS_ProcedureSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttri
         pAttributes->AddAttribute(ZS_BP_PROP_BASIC, M_Symbol_Number_ID);
 
         // add the unit name
-        pAttributes->AddAttribute(ZS_BP_PROP_UNIT, Z_UNIT_NAME);
+        pAttributes->AddAttribute(ZS_BP_PROP_UNIT, M_Unit_Name_ID);
 
         // no item labels
         pAttributes->SetDisplayTitleText(false);

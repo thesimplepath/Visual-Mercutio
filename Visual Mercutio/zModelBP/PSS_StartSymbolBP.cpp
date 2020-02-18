@@ -512,7 +512,7 @@ bool PSS_StartSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValue
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                ZS_BP_PROP_UNIT,
                                IDS_Z_UNIT_GUID_NAME,
-                               Z_UNIT_GUID,
+                               M_Unit_GUID_ID,
                                IDS_Z_UNIT_GUID_DESC,
                                GetUnitGUID(),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY,
@@ -528,7 +528,7 @@ bool PSS_StartSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValue
     pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                ZS_BP_PROP_UNIT,
                                IDS_Z_UNIT_NAME_NAME,
-                               Z_UNIT_NAME,
+                               M_Unit_Name_ID,
                                IDS_Z_UNIT_NAME_DESC,
                                unitName,
                                groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY));
@@ -544,7 +544,7 @@ bool PSS_StartSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValue
         pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                    ZS_BP_PROP_UNIT,
                                    IDS_Z_UNIT_COST_NAME,
-                                   Z_UNIT_COST,
+                                   M_Unit_Cost_ID,
                                    IDS_Z_UNIT_COST_DESC,
                                    unitCost,
                                    ZBProperty::PT_EDIT_NUMBER_READONLY));
@@ -716,7 +716,7 @@ bool PSS_StartSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, Z
     }
 
     // process the units
-    if (categoryID == ZS_BP_PROP_UNIT && prop.GetItemID() == Z_UNIT_NAME)
+    if (categoryID == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
         PSS_ProcessGraphModelMdl* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel());
 
@@ -736,7 +736,7 @@ bool PSS_StartSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, Z
 
                     // change the disabled properties unit GUID
                     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
+                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
                         {
                             pProp->SetValueString(pUserEntity->GetGUID());
                             break;
@@ -906,14 +906,14 @@ bool PSS_StartSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& p
 {
     bool result = false;
 
-    if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == Z_UNIT_NAME)
+    if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
         ZBPropertyIterator it(&props);
         CString            guid;
 
         // iterate through the properties and search for the matching guid
         for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
+            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
             {
                 guid = pProp->GetValueString();
                 break;
@@ -922,7 +922,7 @@ bool PSS_StartSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& p
         // iterate through the properties and update the unit cost
         if (!guid.IsEmpty())
             for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
-                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
+                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_Cost_ID)
                 {
                     bool        error;
                     const float unitCost = RetrieveUnitCost(guid, error);
@@ -987,7 +987,7 @@ bool PSS_StartSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttribute
         pAttributes->AddAttribute(ZS_BP_PROP_BASIC, M_Symbol_Number_ID);
 
         // add the unit name
-        pAttributes->AddAttribute(ZS_BP_PROP_UNIT, Z_UNIT_NAME);
+        pAttributes->AddAttribute(ZS_BP_PROP_UNIT, M_Unit_Name_ID);
 
         // no item labels
         pAttributes->SetDisplayTitleText(false);

@@ -36,7 +36,7 @@
 #include "zModelBP\PSS_DoorSymbolBP.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\PSS_GenericSymbolBP.h"
-#include "zModelBP\ZBBPTextZone.h"
+#include "zModelBP\PSS_TextZoneBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZUDeleteCorruptedSymbols.h"
 #include "ZBSesterceRecalculationAutomate.h"
@@ -880,7 +880,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsTextZone()
     // set the creation flag
     m_NewSymbolCreated = true;
 
-    std::unique_ptr<ZBBPTextZone> pTextZone(new ZBBPTextZone());
+    std::unique_ptr<PSS_TextZoneBP> pTextZone(new PSS_TextZoneBP());
     pTextZone->Create(ptLog, &dc);
     OnInsertSymbol(pTextZone.get());
     pTextZone.release();

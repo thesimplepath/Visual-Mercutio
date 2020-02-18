@@ -31,7 +31,7 @@
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "ZBProcCombinations.h"
 #include "PSS_SimPropertiesProcedureBP.h"
-#include "ZBBPUnitProp2.h"
+#include "PSS_UnitPropertiesBP.h"
 #include "PSS_CostPropertiesProcedureBP.h"
 #include "ZBProcRules.h"
 #include "PSS_RulesPropertiesBP.h"
@@ -1212,7 +1212,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
     private:
         ZBProcCombinations            m_Combinations;
         PSS_SimPropertiesProcedureBP  m_SimulationProperties;
-        ZBBPUnitProperties2           m_UnitProp;
+        PSS_UnitPropertiesBP          m_UnitProp;
         PSS_CostPropertiesProcedureBP m_CostProcedureProp;
         ZBProcRules                   m_Rules;
         ZBProcRisk                    m_Risks;

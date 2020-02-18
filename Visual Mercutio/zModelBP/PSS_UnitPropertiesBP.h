@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_UnitPropertiesBP_Beta1 ------------------------------------------*
+ * ==> PSS_UnitPropertiesBP ------------------------------------------------*
  ****************************************************************************
- * Description : Provides the unit properties for banking process (beta 1)  *
+ * Description : Provides the unit properties for banking process           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_UnitPropertiesBP_Beta1H
-#define PSS_UnitPropertiesBP_Beta1H
+#ifndef PSS_UnitPropertiesBPH
+#define PSS_UnitPropertiesBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_UnitPropertiesBP_Beta1
-    #define PSS_UnitPropertiesBP_Beta1 ZBBPUnitProperties
+#ifndef PSS_UnitPropertiesBP
+    #define PSS_UnitPropertiesBP ZBBPUnitProperties2
 #endif
 
 // resources
@@ -41,27 +41,19 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Unit_Name_Beta1_ID 1
-#define M_Unit_Cost_Beta1_ID 2
-#define M_Unit_GUID_Beta1_ID 3
+#define M_Unit_Name_ID              1
+#define M_Unit_Cost_ID              2
+#define M_Unit_GUID_ID              3
+#define M_Unit_Double_Validation_ID 4
 //---------------------------------------------------------------------------
 
 /**
-* Unit properties (beta 1)
+* Unit properties for banking process
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
-                                                 public sfl::CPropertyContainer< IODPropertyContainer,
-                                                                                 CODPropertyAccessor<PSS_UnitPropertiesBP_Beta1> >
+class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CObject
 {
-    DECLARE_SERIAL(PSS_UnitPropertiesBP_Beta1)
-
-    /// generated guid map
-    BEGIN_GUID_MAP(PSS_UnitPropertiesBP_Beta1)
-        GUID_ENTRY(IODPropertyContainer)
-        GUID_ENTRY(sfl::IPropertyContainer)
-        GUID_CHAIN_ENTRY(CODIntProperty)
-    END_GUID_MAP
+    DECLARE_SERIAL(PSS_UnitPropertiesBP)
 
     public:
         /**
@@ -70,78 +62,56 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Unit_Name = 0x0001,
-            IE_CT_Change_Unit_Cost = 0x0002,
-            IE_CT_Change_Unit_GUID = 0x0004,
-            IE_CT_All              = OD_CHANGE_ALL
+            IE_CT_Change_Unit_Name              = 0x0001,
+            IE_CT_Change_Unit_Cost              = 0x0002,
+            IE_CT_Change_Unit_GUID              = 0x0004,
+            IE_CT_Change_Unit_Double_Validation = 0x0008,
+            IE_CT_All                           = OD_CHANGE_ALL
         };
 
-        /**
-        * Constructor
-        *@param propID - property identifier
-        */
-        PSS_UnitPropertiesBP_Beta1(int propID = ZS_BP_PROP_UNIT);
+        PSS_UnitPropertiesBP();
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_UnitPropertiesBP_Beta1(const PSS_UnitPropertiesBP_Beta1& other);
+        PSS_UnitPropertiesBP(const PSS_UnitPropertiesBP& other);
 
-        virtual ~PSS_UnitPropertiesBP_Beta1();
+        virtual ~PSS_UnitPropertiesBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_UnitPropertiesBP_Beta1& operator = (const PSS_UnitPropertiesBP_Beta1& other);
+        PSS_UnitPropertiesBP& operator = (const PSS_UnitPropertiesBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_UnitPropertiesBP_Beta1& other) const;
-
-        /**
-        * Adds a reference to this object
-        *@return the updated reference count
-        */
-        virtual inline ULONG STDMETHODCALLTYPE AddRef();
-
-        /**
-        * Releases a reference from this object
-        *@return the updated reference count
-        */
-        virtual inline ULONG STDMETHODCALLTYPE Release();
+        BOOL operator == (const PSS_UnitPropertiesBP& other) const;
 
         /**
         * Makes a copy of this properties object
         *@return a copy of this properties object, NULL on error
         */
-        virtual inline CODProperty* Dup();
+        virtual inline PSS_UnitPropertiesBP* Dup() const;
 
         /**
         * Merges another property set with this one
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_All);
-
-        /**
-        * Checks if the identifier is in the property identifier range
-        *@param id - the identifier to check
-        *@return TRUE if the identifier is in the range, otherwise FALSE
-        */
-        virtual BOOL CompareId(const int id) const;
+        virtual void Merge(PSS_UnitPropertiesBP* pProp, DWORD changeFlags = IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param pProp - other property set to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        virtual BOOL IsEqual(CODProperty* pProp);
+        virtual BOOL IsEqual(PSS_UnitPropertiesBP* pProp);
 
         /**
         * Gets the unit name
@@ -165,7 +135,51 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         * Sets the unit cost
         *@param value - the unit cost
         */
-        virtual inline void SetUnitCost(const float Value);
+        virtual inline void SetUnitCost(const float value);
+
+        /**
+        * Gets the unit guid
+        *@return the unit guid
+        */
+        virtual inline CString GetUnitGUID() const;
+
+        /**
+        * Sets the unit guid
+        *@param pValue - the unit guid
+        */
+        virtual void SetUnitGUID(LPCTSTR pValue);
+
+        /**
+        * Gets the unit double validation type
+        *@return the unit double validation type
+        */
+        virtual inline int GetUnitDoubleValidationType() const;
+
+        /**
+        * Sets the unit double validation type
+        *@param value - the unit double validation type
+        */
+        virtual inline void SetUnitDoubleValidationType(const int value);
+
+        /**
+        * Gets the unit double validation type as a string array
+        *@param[out] strArray - the string array which will contain the unit double validation type
+        */
+        virtual void GetUnitDoubleValidationTypeStringArray(CStringArray& strArray) const;
+
+        /**
+        * Converts the unit double validation string to type
+        *@param type - the string containing the type to convert
+        *@return the converted type
+        */
+        virtual int ConvertUnitDoubleValidationString2Type(const CString& type) const;
+
+        /**
+        * Gets the unit double validation type as a string
+        *@param value - the unit double validation type to convert
+        *@return the converted string
+        */
+        virtual CString GetUnitDoubleValidationTypeString(const int value) const;
 
         /**
         * Gets the property value
@@ -214,7 +228,9 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
 
     protected:
         CString m_UnitName;
+        CString m_UnitGUID;
         float   m_UnitCost;
+        int     m_DoubleValidationType;
 
     private:
         /**
@@ -224,43 +240,48 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         void SetUnitNameEx(const CString value);
 
         /**
-        * Registers the fill property meta-data
-        *@return true on success, otherwise false
+        * Sets the unit guid (advanced)
+        *@param value - the unit guid
         */
-        bool RegisterProperties();
+        void SetUnitGUIDEx(const CString value);
 };
 
 //---------------------------------------------------------------------------
-// PSS_UnitPropertiesBP_Beta1
+// PSS_UnitPropertiesBP
 //---------------------------------------------------------------------------
-ULONG PSS_UnitPropertiesBP_Beta1::AddRef()
+PSS_UnitPropertiesBP* PSS_UnitPropertiesBP::Dup() const
 {
-    return CODIntProperty::AddRef();
+    return new PSS_UnitPropertiesBP(*this);
 }
 //---------------------------------------------------------------------------
-ULONG PSS_UnitPropertiesBP_Beta1::Release()
-{
-    return CODIntProperty::Release();
-}
-//---------------------------------------------------------------------------
-CODProperty* PSS_UnitPropertiesBP_Beta1::Dup()
-{
-    return new PSS_UnitPropertiesBP_Beta1(*this);
-}
-//---------------------------------------------------------------------------
-CString PSS_UnitPropertiesBP_Beta1::GetUnitName() const
+CString PSS_UnitPropertiesBP::GetUnitName() const
 {
     return m_UnitName;
 }
 //---------------------------------------------------------------------------
-float PSS_UnitPropertiesBP_Beta1::GetUnitCost() const
+float PSS_UnitPropertiesBP::GetUnitCost() const
 {
     return m_UnitCost;
 }
 //---------------------------------------------------------------------------
-void PSS_UnitPropertiesBP_Beta1::SetUnitCost(const float Value)
+void PSS_UnitPropertiesBP::SetUnitCost(const float value)
 {
-    m_UnitCost = Value;
+    m_UnitCost = value;
+}
+//---------------------------------------------------------------------------
+CString PSS_UnitPropertiesBP::GetUnitGUID() const
+{
+    return m_UnitGUID;
+}
+//---------------------------------------------------------------------------
+int PSS_UnitPropertiesBP::GetUnitDoubleValidationType() const
+{
+    return m_DoubleValidationType;
+}
+//---------------------------------------------------------------------------
+void PSS_UnitPropertiesBP::SetUnitDoubleValidationType(const int value)
+{
+    m_DoubleValidationType = value;
 }
 //---------------------------------------------------------------------------
 

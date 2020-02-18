@@ -1,7 +1,7 @@
 /****************************************************************************
  * ==> PSS_UnitPropertiesBP_Beta1 ------------------------------------------*
  ****************************************************************************
- * Description : Provides the unit properties (beta 1)                      *
+ * Description : Provides the unit properties for banking process (beta 1)  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 

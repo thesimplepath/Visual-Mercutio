@@ -13,7 +13,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 
 #include "PSS_RuleListPropertiesBP.h"
-#include "ZBBPTextItemListProp.h"
+#include "PSS_TextItemListPropertiesBP.h"
 #include "PSS_CostPropertiesDeliverableBP_Beta1.h"
 #include "PSS_AnnualNumberPropertiesBP.h"
 #include "PSS_SimPropertiesDeliverableBP.h"
@@ -1127,7 +1127,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
         SaveEqualizerToProperties(Properties);
         RetValue = true;
     }
-    else if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
+    else if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == M_Unit_Name_ID)
     {
         // Run trough the set of properties and changed the unit cost
         // to the value of the property
@@ -1137,7 +1137,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
 
         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
-            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
+            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
             {
                 GUID = pProp->GetValueString();
                 break;
@@ -1148,7 +1148,7 @@ bool ZBDeliverableLinkSymbol::OnPostPropertyChanged(ZBProperty&    Property,
         {
             for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
-                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
+                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_Cost_ID)
                 {
                     bool Error;
                     float UnitCost = RetrieveUnitCost(GUID, Error);
@@ -1848,7 +1848,7 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
 
     CODModel * pModel = GetOwnerModel();
 
-    if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
+    if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == M_Unit_Name_ID)
     {
         if (pModel && ISA(pModel, PSS_ProcessGraphModelMdl))
         {
@@ -1871,7 +1871,7 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
 
                     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                     {
-                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
+                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
                         {
                             pProp->SetValueString(pUserEntity->GetGUID());
                             break;
@@ -2107,7 +2107,7 @@ bool ZBDeliverableLinkSymbol::CreateSymbolProperties()
     PSS_RuleListPropertiesBP propRules;
     AddProperty(propRules);
 
-    ZBBPTextItemListProperties textItemList;
+    PSS_TextItemListPropertiesBP textItemList;
     AddProperty(textItemList);
 
     PSS_CostPropertiesDeliverableBP_Beta1 propCost;
@@ -2572,7 +2572,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     // ***********************************************************************************************************
 
     // text item list
-    ZBBPTextItemListProperties* pTextItemProps = (ZBBPTextItemListProperties*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
+    PSS_TextItemListPropertiesBP* pTextItemProps = (PSS_TextItemListPropertiesBP*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
 
     if (!pTextItemProps)
         return false;
@@ -2598,7 +2598,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pTextList = new ZBProperty(propTitle,
                                                ZS_BP_PROP_TEXTITEMLIST,
                                                finalPropName,
-                                               Z_TEXTITEM_LIST + (i * _MaxTextItemListSize),
+                                               M_TextItem_List_ID + (i * _MaxTextItemListSize),
                                                propDesc,
                                                GetTextItemAt(i),
                                                ZBProperty::PT_EDIT_INTELI,
@@ -2620,7 +2620,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pTextList = new ZBProperty(propTitle,
                                                ZS_BP_PROP_TEXTITEMLIST,
                                                finalPropName,
-                                               Z_TEXTITEM_LIST + (i * _MaxTextItemListSize),
+                                               M_TextItem_List_ID + (i * _MaxTextItemListSize),
                                                propDesc,
                                                _T(""),
                                                ZBProperty::PT_EDIT_INTELI,
@@ -3441,7 +3441,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pUnitGUID = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                                ZS_BP_PROP_UNIT,
                                                IDS_Z_UNIT_GUID_NAME,
-                                               Z_UNIT_GUID,
+                                               M_Unit_GUID_ID,
                                                IDS_Z_UNIT_GUID_DESC,
                                                GetUnitGUID(),
                                                ZBProperty::PT_EDIT_EXTENDED_READONLY,
@@ -3457,7 +3457,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pUnitName = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                                ZS_BP_PROP_UNIT,
                                                IDS_Z_UNIT_NAME_NAME,
-                                               Z_UNIT_NAME,
+                                               M_Unit_Name_ID,
                                                IDS_Z_UNIT_NAME_DESC,
                                                unitName,
                                                groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY,
@@ -3471,7 +3471,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         ZBProperty* pUnitCost = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                                ZS_BP_PROP_UNIT,
                                                IDS_Z_UNIT_COST_NAME,
-                                               Z_UNIT_COST,
+                                               M_Unit_Cost_ID,
                                                IDS_Z_UNIT_COST_DESC,
                                                unitCost,
                                                ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -3491,7 +3491,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pUnitDoubleValid = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                           ZS_BP_PROP_UNIT,
                                           IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                          Z_UNIT_DOUBLE_VALIDATION,
+                                          M_Unit_Double_Validation_ID,
                                           IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
                                           double(GetUnitDoubleValidationType()));
     else
@@ -3500,7 +3500,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         pUnitDoubleValid = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
                                           ZS_BP_PROP_UNIT,
                                           IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                          Z_UNIT_DOUBLE_VALIDATION,
+                                          M_Unit_Double_Validation_ID,
                                           IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
                                           GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
                                           ZBProperty::PT_COMBO_STRING_READONLY,
@@ -3703,7 +3703,7 @@ bool ZBDeliverableLinkSymbol::SaveProperties(ZBPropertySet& PropSet)
         }
     }
 
-    ZBBPTextItemListProperties* pTextItemProps = (ZBBPTextItemListProperties*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
+    PSS_TextItemListPropertiesBP* pTextItemProps = (PSS_TextItemListPropertiesBP*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
 
     if (!pTextItemProps)
     {
@@ -3745,7 +3745,7 @@ bool ZBDeliverableLinkSymbol::SaveProperties(ZBPropertySet& PropSet)
         if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT)
         {
             // Check if a flag
-            if (pProp->GetItemID() == Z_UNIT_DOUBLE_VALIDATION)
+            if (pProp->GetItemID() == M_Unit_Double_Validation_ID)
             {
                 m_UnitProp.SetValue(pProp->GetItemID(),
                                     ConvertUnitDoubleValidationString2Type(pProp->GetValueString()));
@@ -4223,11 +4223,11 @@ void ZBDeliverableLinkSymbol::SetNewNumberAndEqualize(ZBProperty& Property, ZBPr
 
 void ZBDeliverableLinkSymbol::SetTextItemList(const CString Value)
 {
-    ZBBPTextItemListProperties* pProps = (ZBBPTextItemListProperties*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
+    PSS_TextItemListPropertiesBP* pProps = (PSS_TextItemListPropertiesBP*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
 
     if (pProps)
     {
-        ZBBPTextItemListProperties Props(*pProps);
+        PSS_TextItemListPropertiesBP Props(*pProps);
         Props.SetTextItemList(Value);
         SetProperty(&Props);
     }
@@ -4323,7 +4323,7 @@ CString ZBDeliverableLinkSymbol::GetRuleNameByGUID(PSS_LogicalRulesEntity* p_Rul
 
 CString ZBDeliverableLinkSymbol::GetTextItemList() const
 {
-    ZBBPTextItemListProperties* pProps = (ZBBPTextItemListProperties*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
+    PSS_TextItemListPropertiesBP* pProps = (PSS_TextItemListPropertiesBP*)GetProperty(ZS_BP_PROP_TEXTITEMLIST);
 
     if (!pProps)
     {

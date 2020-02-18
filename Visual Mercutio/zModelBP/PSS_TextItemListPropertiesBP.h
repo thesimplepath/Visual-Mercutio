@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_UnitPropertiesBP_Beta1 ------------------------------------------*
+ * ==> PSS_TextItemListPropertiesBP ----------------------------------------*
  ****************************************************************************
- * Description : Provides the unit properties for banking process (beta 1)  *
+ * Description : Provides the text item list properties for banking process *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_UnitPropertiesBP_Beta1H
-#define PSS_UnitPropertiesBP_Beta1H
+#ifndef PSS_TextItemListPropertiesBPH
+#define PSS_TextItemListPropertiesBPH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_UnitPropertiesBP_Beta1
-    #define PSS_UnitPropertiesBP_Beta1 ZBBPUnitProperties
+#ifndef PSS_TextItemListPropertiesBP
+    #define PSS_TextItemListPropertiesBP ZBBPTextItemListProperties
 #endif
 
 // resources
@@ -41,23 +41,21 @@
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define M_Unit_Name_Beta1_ID 1
-#define M_Unit_Cost_Beta1_ID 2
-#define M_Unit_GUID_Beta1_ID 3
+#define M_TextItem_List_ID 1
 //---------------------------------------------------------------------------
 
 /**
-* Unit properties (beta 1)
+* Text item list properties for banking process
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
-                                                 public sfl::CPropertyContainer< IODPropertyContainer,
-                                                                                 CODPropertyAccessor<PSS_UnitPropertiesBP_Beta1> >
+class AFX_EXT_CLASS PSS_TextItemListPropertiesBP : public CODIntProperty,
+                                                   public sfl::CPropertyContainer< IODPropertyContainer,
+                                                                                   CODPropertyAccessor<PSS_TextItemListPropertiesBP> >
 {
-    DECLARE_SERIAL(PSS_UnitPropertiesBP_Beta1)
+    DECLARE_SERIAL(PSS_TextItemListPropertiesBP)
 
     /// generated guid map
-    BEGIN_GUID_MAP(PSS_UnitPropertiesBP_Beta1)
+    BEGIN_GUID_MAP(PSS_TextItemListPropertiesBP)
         GUID_ENTRY(IODPropertyContainer)
         GUID_ENTRY(sfl::IPropertyContainer)
         GUID_CHAIN_ENTRY(CODIntProperty)
@@ -70,39 +68,37 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         */
         enum IEChangeType
         {
-            IE_CT_Change_Unit_Name = 0x0001,
-            IE_CT_Change_Unit_Cost = 0x0002,
-            IE_CT_Change_Unit_GUID = 0x0004,
-            IE_CT_All              = OD_CHANGE_ALL
+            IE_CT_Change_TextItem_List = 0x0001,
+            IE_CT_All                  = OD_CHANGE_ALL
         };
 
         /**
         * Constructor
         *@param propID - property identifier
         */
-        PSS_UnitPropertiesBP_Beta1(int propID = ZS_BP_PROP_UNIT);
+        PSS_TextItemListPropertiesBP(int propID = ZS_BP_PROP_TEXTITEMLIST);
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_UnitPropertiesBP_Beta1(const PSS_UnitPropertiesBP_Beta1& other);
+        PSS_TextItemListPropertiesBP(const PSS_TextItemListPropertiesBP& other);
 
-        virtual ~PSS_UnitPropertiesBP_Beta1();
+        virtual ~PSS_TextItemListPropertiesBP();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        PSS_UnitPropertiesBP_Beta1& operator = (const PSS_UnitPropertiesBP_Beta1& other);
+        PSS_TextItemListPropertiesBP& operator = (const PSS_TextItemListPropertiesBP& other);
 
         /**
         * Checks if another set of properties is equal to this one
         *@param other - the other properties to compare with
         *@return TRUE if the properties are equals, otherwise FALSE
         */
-        BOOL operator == (const PSS_UnitPropertiesBP_Beta1& other) const;
+        BOOL operator == (const PSS_TextItemListPropertiesBP& other) const;
 
         /**
         * Adds a reference to this object
@@ -144,28 +140,16 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         virtual BOOL IsEqual(CODProperty* pProp);
 
         /**
-        * Gets the unit name
-        *@return the unit name
+        * Gets the text item list
+        *@return the text item list
         */
-        virtual inline CString GetUnitName() const;
+        virtual inline CString GetTextItemList() const;
 
         /**
-        * Sets the unit name
-        *@param pValue - the unit name
+        * Sets the text item list
+        *@param pValue - the text item list
         */
-        virtual void SetUnitName(LPCTSTR pValue);
-
-        /**
-        * Gets the unit cost
-        *@return the unit cost
-        */
-        virtual inline float GetUnitCost() const;
-
-        /**
-        * Sets the unit cost
-        *@param value - the unit cost
-        */
-        virtual inline void SetUnitCost(const float Value);
+        virtual void SetTextItemList(LPCTSTR pValue);
 
         /**
         * Gets the property value
@@ -213,54 +197,43 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         #endif
 
     protected:
-        CString m_UnitName;
-        float   m_UnitCost;
+        CString m_TextItemList;
 
     private:
         /**
-        * Sets the unit name (advanced)
-        *@param value - the unit name
+        * Sets the text item list (advanced)
+        *@param value - the text item list
         */
-        void SetUnitNameEx(const CString value);
+        void SetTextItemListEx(const CString value);
 
         /**
-        * Registers the fill property meta-data
+        * Registers the basic property meta-data
         *@return true on success, otherwise false
         */
         bool RegisterProperties();
 };
 
 //---------------------------------------------------------------------------
-// PSS_UnitPropertiesBP_Beta1
+// PSS_TextItemListPropertiesBP
 //---------------------------------------------------------------------------
-ULONG PSS_UnitPropertiesBP_Beta1::AddRef()
+ULONG PSS_TextItemListPropertiesBP::AddRef()
 {
     return CODIntProperty::AddRef();
 }
 //---------------------------------------------------------------------------
-ULONG PSS_UnitPropertiesBP_Beta1::Release()
+ULONG PSS_TextItemListPropertiesBP::Release()
 {
     return CODIntProperty::Release();
 }
 //---------------------------------------------------------------------------
-CODProperty* PSS_UnitPropertiesBP_Beta1::Dup()
+CODProperty* PSS_TextItemListPropertiesBP::Dup()
 {
-    return new PSS_UnitPropertiesBP_Beta1(*this);
+    return new PSS_TextItemListPropertiesBP(*this);
 }
 //---------------------------------------------------------------------------
-CString PSS_UnitPropertiesBP_Beta1::GetUnitName() const
+CString PSS_TextItemListPropertiesBP::GetTextItemList() const
 {
-    return m_UnitName;
-}
-//---------------------------------------------------------------------------
-float PSS_UnitPropertiesBP_Beta1::GetUnitCost() const
-{
-    return m_UnitCost;
-}
-//---------------------------------------------------------------------------
-void PSS_UnitPropertiesBP_Beta1::SetUnitCost(const float Value)
-{
-    m_UnitCost = Value;
+    return m_TextItemList;
 }
 //---------------------------------------------------------------------------
 
