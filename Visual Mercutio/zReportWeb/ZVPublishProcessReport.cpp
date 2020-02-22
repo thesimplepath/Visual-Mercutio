@@ -486,10 +486,10 @@ PSS_LinkSymbol* ZVPublishProcessReport::FindLinkSymbol(const CString SymbolName,
                             CODComponent* pComponent = pCompSet->GetAt(j);
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un livrable.
-                            if (pComponent && ISA(pComponent, ZBDeliverableLinkSymbol))
+                            if (pComponent && ISA(pComponent, PSS_DeliverableLinkSymbolBP))
                             {
-                                ZBDeliverableLinkSymbol* m_Deliverable =
-                                    dynamic_cast<ZBDeliverableLinkSymbol*>(pComponent);
+                                PSS_DeliverableLinkSymbolBP* m_Deliverable =
+                                    dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComponent);
 
                                 if (m_Deliverable != NULL && m_Deliverable->IsLocal())
                                 {
@@ -868,7 +868,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -890,13 +890,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1013,7 +1013,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Check if null and continue if the case
                     if (!pComp)
@@ -1021,12 +1021,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         continue;
                     }
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(pComp->GetSymbolName()) != NULL &&
-                        ISA(FindLinkSymbol(pComp->GetSymbolName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(pComp->GetSymbolName()), PSS_DeliverableLinkSymbolBP))
                     {
-                        m_LinkSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(pComp->GetSymbolName()));
+                        m_LinkSymbol = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(pComp->GetSymbolName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1153,7 +1153,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -1175,13 +1175,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1254,7 +1254,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -1276,13 +1276,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1326,7 +1326,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -1348,13 +1348,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1427,7 +1427,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -1449,13 +1449,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1499,7 +1499,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -1521,13 +1521,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1600,7 +1600,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -1622,13 +1622,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1744,7 +1744,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Check if null and continue if the case
                     if (!pComp)
@@ -1752,12 +1752,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         continue;
                     }
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(pComp->GetSymbolName()) != NULL &&
-                        ISA(FindLinkSymbol(pComp->GetSymbolName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(pComp->GetSymbolName()), PSS_DeliverableLinkSymbolBP))
                     {
-                        m_LinkSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(pComp->GetSymbolName()));
+                        m_LinkSymbol = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(pComp->GetSymbolName()));
                     }
 
                     if (m_LinkSymbol != NULL)
@@ -1889,7 +1889,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Teste si le pointeur est vide, et passe à l'itération suivante si c'est le cas.
                     if (!pComp)
@@ -1911,13 +1911,13 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 {
                     _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt(myDelivPos);
 
-                    ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;
+                    PSS_DeliverableLinkSymbolBP* m_LinkSymbol = NULL;
 
                     if (FindLinkSymbol(myDelivCurNode->GetName()) != NULL &&
-                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), ZBDeliverableLinkSymbol))
+                        ISA(FindLinkSymbol(myDelivCurNode->GetName()), PSS_DeliverableLinkSymbolBP))
                     {
                         m_LinkSymbol =
-                            dynamic_cast<ZBDeliverableLinkSymbol*>(FindLinkSymbol(myDelivCurNode->GetName()));
+                            dynamic_cast<PSS_DeliverableLinkSymbolBP*>(FindLinkSymbol(myDelivCurNode->GetName()));
                     }
 
                     if (m_LinkSymbol != NULL)

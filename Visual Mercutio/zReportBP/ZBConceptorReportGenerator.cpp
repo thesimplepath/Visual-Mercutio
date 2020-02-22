@@ -12,7 +12,7 @@
 #include "zModel\PSS_UserGroupEntity.h"
 
 #include "zModelBP\PSS_StartSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 
 #include "zModelBP\ZUExtractProcessName.h"

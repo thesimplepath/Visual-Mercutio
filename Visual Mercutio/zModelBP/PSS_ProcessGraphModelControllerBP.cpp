@@ -34,7 +34,7 @@
 #include "zModelBP\PSS_PackageSymbolBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\PSS_DoorSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 #include "zModelBP\PSS_GenericSymbolBP.h"
 #include "zModelBP\PSS_TextZoneBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
@@ -423,7 +423,7 @@ void PSS_ProcessGraphModelControllerBP::OnInsDeliverable()
     m_NewSymbolCreated = true;
 
     // create the deliverable symbol
-    std::unique_ptr<ZBDeliverableLinkSymbol> pLinkComp(new ZBDeliverableLinkSymbol());
+    std::unique_ptr<PSS_DeliverableLinkSymbolBP> pLinkComp(new PSS_DeliverableLinkSymbolBP());
     pLinkComp->CreateOrthogonal();
     OnInsertLink(pLinkComp.get());
     pLinkComp.release();

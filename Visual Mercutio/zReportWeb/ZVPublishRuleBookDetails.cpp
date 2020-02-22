@@ -231,10 +231,10 @@ void ZVPublishRuleBookDetails::ExploreProcessHierarchy(CString                  
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un livrable.
-                            if (pComponent && ISA(pComponent, ZBDeliverableLinkSymbol))
+                            if (pComponent && ISA(pComponent, PSS_DeliverableLinkSymbolBP))
                             {
-                                ZBDeliverableLinkSymbol* m_Deliverable =
-                                    dynamic_cast<ZBDeliverableLinkSymbol*>(pComponent);
+                                PSS_DeliverableLinkSymbolBP* m_Deliverable =
+                                    dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComponent);
 
                                 if (m_Deliverable != NULL)
                                 {

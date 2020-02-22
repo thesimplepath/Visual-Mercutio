@@ -84,38 +84,17 @@ PSS_SymbolEdit* PSS_ODSymbolManipulator::CreateAndReplaceEditText(CODComponent* 
     // set its properties
     if (pComp)
     {
-        if (pComp->GetProperty(OD_PROP_EDIT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_EDIT));
-
-        if (pComp->GetProperty(OD_PROP_ORIENTATION))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_ORIENTATION));
-
-        if (pComp->GetProperty(OD_PROP_FONT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FONT));
-
-        if (pComp->GetProperty(OD_PROP_FILL))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FILL));
-
-        if (pComp->GetProperty(OD_PROP_LINE))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_LINE));
-
-        if (pComp->GetProperty(OD_PROP_WORDBREAK))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_WORDBREAK));
-
-        if (pComp->GetProperty(OD_PROP_MULTILINE))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_MULTILINE));
-
-        if (pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT));
-
-        if (pComp->GetProperty(OD_PROP_VERT_ALIGNMENT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_VERT_ALIGNMENT));
-
-        if (pComp->GetProperty(OD_PROP_TRANSPARENT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT));
-
-        if (pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR));
+        CopyProperties(static_cast<CODEditProperties*>       (pComp->GetProperty(OD_PROP_EDIT)),              pEdit.get());
+        CopyProperties(static_cast<CODOrientationProperties*>(pComp->GetProperty(OD_PROP_ORIENTATION)),       pEdit.get());
+        CopyProperties(static_cast<CODFontProperties*>       (pComp->GetProperty(OD_PROP_FONT)),              pEdit.get());
+        CopyProperties(static_cast<CODFillProperties*>       (pComp->GetProperty(OD_PROP_FILL)),              pEdit.get());
+        CopyProperties(static_cast<CODLineProperties*>       (pComp->GetProperty(OD_PROP_LINE)),              pEdit.get());
+        CopyProperty  (static_cast<CODBoolProperty*>         (pComp->GetProperty(OD_PROP_WORDBREAK)),         pEdit.get());
+        CopyProperty  (static_cast<CODBoolProperty*>         (pComp->GetProperty(OD_PROP_MULTILINE)),         pEdit.get());
+        CopyProperty  (static_cast<CODIntProperty*>          (pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT)),    pEdit.get());
+        CopyProperty  (static_cast<CODIntProperty*>          (pComp->GetProperty(OD_PROP_VERT_ALIGNMENT)),    pEdit.get());
+        CopyProperty  (static_cast<CODBoolProperty*>         (pComp->GetProperty(OD_PROP_TRANSPARENT)),       pEdit.get());
+        CopyProperty  (static_cast<CODDWordProperty*>        (pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR)), pEdit.get());
 
         CODTextComponent* pTextComp = dynamic_cast<CODTextComponent*>(pComp);
 
@@ -152,9 +131,9 @@ PSS_SymbolLabel* PSS_ODSymbolManipulator::CreateAndReplaceLabelText(CODComponent
     }
 
     // create the new symbol
-    std::unique_ptr<PSS_SymbolLabel> pEdit(new PSS_SymbolLabel(notifyParent));
+    std::unique_ptr<PSS_SymbolLabel> pLabel(new PSS_SymbolLabel(notifyParent));
 
-    CODTextComponent* pEditComp = dynamic_cast<CODTextComponent*>(pEdit.get());
+    CODTextComponent* pEditComp = dynamic_cast<CODTextComponent*>(pLabel.get());
 
     // set its size
     if (pEditComp)
@@ -165,70 +144,49 @@ PSS_SymbolLabel* PSS_ODSymbolManipulator::CreateAndReplaceLabelText(CODComponent
         CODSymbolComponent* pParentSym = dynamic_cast<CODSymbolComponent*>(pParent);
 
         if (pParentSym)
-            pParentSym->AddLabel(pEdit.get());
+            pParentSym->AddLabel(pLabel.get());
         else
-            pParent->AppendChild(pEdit.get());
+            pParent->AppendChild(pLabel.get());
     }
     else
     {
         CODSymbolComponent* pSymComp = dynamic_cast<CODSymbolComponent*>(pSymbol);
 
         if (pSymComp)
-            pSymComp->AddLabel(pEdit.get());
+            pSymComp->AddLabel(pLabel.get());
         else
-            pSymbol->AppendChild(pEdit.get());
+            pSymbol->AppendChild(pLabel.get());
     }
 
     // set its properties
     if (pComp)
     {
-        if (pComp->GetProperty(OD_PROP_EDIT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_EDIT));
-
-        if (pComp->GetProperty(OD_PROP_ORIENTATION))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_ORIENTATION));
-
-        if (pComp->GetProperty(OD_PROP_FONT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FONT));
-
-        if (pComp->GetProperty(OD_PROP_FILL))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FILL));
-
-        if (pComp->GetProperty(OD_PROP_LINE))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_LINE));
-
-        if (pComp->GetProperty(OD_PROP_WORDBREAK))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_WORDBREAK));
-
-        if (pComp->GetProperty(OD_PROP_MULTILINE))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_MULTILINE));
-
-        if (pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT));
-
-        if (pComp->GetProperty(OD_PROP_VERT_ALIGNMENT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_VERT_ALIGNMENT));
-
-        if (pComp->GetProperty(OD_PROP_TRANSPARENT))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT));
-
-        if (pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR))
-            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR));
+        CopyProperties(static_cast<CODEditProperties*>       (pComp->GetProperty(OD_PROP_EDIT)),              pLabel.get());
+        CopyProperties(static_cast<CODOrientationProperties*>(pComp->GetProperty(OD_PROP_ORIENTATION)),       pLabel.get());
+        CopyProperties(static_cast<CODFontProperties*>       (pComp->GetProperty(OD_PROP_FONT)),              pLabel.get());
+        CopyProperties(static_cast<CODFillProperties*>       (pComp->GetProperty(OD_PROP_FILL)),              pLabel.get());
+        CopyProperties(static_cast<CODLineProperties*>       (pComp->GetProperty(OD_PROP_LINE)),              pLabel.get());
+        CopyProperty  (static_cast<CODBoolProperty*>         (pComp->GetProperty(OD_PROP_WORDBREAK)),         pLabel.get());
+        CopyProperty  (static_cast<CODBoolProperty*>         (pComp->GetProperty(OD_PROP_MULTILINE)),         pLabel.get());
+        CopyProperty  (static_cast<CODIntProperty*>          (pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT)),    pLabel.get());
+        CopyProperty  (static_cast<CODIntProperty*>          (pComp->GetProperty(OD_PROP_VERT_ALIGNMENT)),    pLabel.get());
+        CopyProperty  (static_cast<CODBoolProperty*>         (pComp->GetProperty(OD_PROP_TRANSPARENT)),       pLabel.get());
+        CopyProperty  (static_cast<CODDWordProperty*>        (pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR)), pLabel.get());
 
         CODTextComponent* pTextComp = dynamic_cast<CODTextComponent*>(pComp);
 
         if (pTextComp)
-            pEdit->SetText(pTextComp->GetText());
+            pLabel->SetText(pTextComp->GetText());
     }
 
     // set the new symbol name
-    pEdit->SetName(editName);
+    pLabel->SetName(editName);
 
     // remove the previous edit
     if (pComp)
         RemoveSymbol(pSymbol, pComp);
 
-    return pEdit.release();
+    return pLabel.release();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ODSymbolManipulator::RemoveSymbol(CODComponent* pSymbol, const CString& componentName)
@@ -842,38 +800,17 @@ void PSS_ODSymbolManipulator::ApplyFormatFromObject(CODComponent* pSymbol, CODCo
 {
     if (pSymbol)
     {
-        if (object.GetProperty(OD_PROP_EDIT))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_EDIT));
-
-        if (object.GetProperty(OD_PROP_ORIENTATION))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_ORIENTATION));
-
-        if (object.GetProperty(OD_PROP_FONT))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_FONT));
-
-        if (object.GetProperty(OD_PROP_FILL))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_FILL));
-
-        if (object.GetProperty(OD_PROP_LINE))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_LINE));
-
-        if (object.GetProperty(OD_PROP_WORDBREAK))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_WORDBREAK));
-
-        if (object.GetProperty(OD_PROP_MULTILINE))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_MULTILINE));
-
-        if (object.GetProperty(OD_PROP_HORZ_ALIGNMENT))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_HORZ_ALIGNMENT));
-
-        if (object.GetProperty(OD_PROP_VERT_ALIGNMENT))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_VERT_ALIGNMENT));
-
-        if (object.GetProperty(OD_PROP_TRANSPARENT))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_TRANSPARENT));
-
-        if (object.GetProperty(OD_PROP_TRANSPARENT_COLOR))
-            pSymbol->SetProperty(object.GetProperty(OD_PROP_TRANSPARENT_COLOR));
+        CopyProperties(static_cast<CODEditProperties*>       (object.GetProperty(OD_PROP_EDIT)),              pSymbol);
+        CopyProperties(static_cast<CODOrientationProperties*>(object.GetProperty(OD_PROP_ORIENTATION)),       pSymbol);
+        CopyProperties(static_cast<CODFontProperties*>       (object.GetProperty(OD_PROP_FONT)),              pSymbol);
+        CopyProperties(static_cast<CODFillProperties*>       (object.GetProperty(OD_PROP_FILL)),              pSymbol);
+        CopyProperties(static_cast<CODLineProperties*>       (object.GetProperty(OD_PROP_LINE)),              pSymbol);
+        CopyProperty  (static_cast<CODBoolProperty*>         (object.GetProperty(OD_PROP_WORDBREAK)),         pSymbol);
+        CopyProperty  (static_cast<CODBoolProperty*>         (object.GetProperty(OD_PROP_MULTILINE)),         pSymbol);
+        CopyProperty  (static_cast<CODIntProperty*>          (object.GetProperty(OD_PROP_HORZ_ALIGNMENT)),    pSymbol);
+        CopyProperty  (static_cast<CODIntProperty*>          (object.GetProperty(OD_PROP_VERT_ALIGNMENT)),    pSymbol);
+        CopyProperty  (static_cast<CODBoolProperty*>         (object.GetProperty(OD_PROP_TRANSPARENT)),       pSymbol);
+        CopyProperty  (static_cast<CODDWordProperty*>        (object.GetProperty(OD_PROP_TRANSPARENT_COLOR)), pSymbol);
     }
 
     // find the matching symbol in children
@@ -896,38 +833,17 @@ BOOL PSS_ODSymbolManipulator::CopySymbolStyle(CODComponent* pSrcSymbol, CODCompo
 
     if (pSrcSymbol && pDstSymbol)
     {
-        if (pSrcSymbol->GetProperty(OD_PROP_EDIT))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_EDIT));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_ORIENTATION))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_ORIENTATION));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_FONT))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_FONT));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_FILL))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_FILL));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_LINE))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_LINE));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_WORDBREAK))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_WORDBREAK));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_MULTILINE))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_MULTILINE));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_HORZ_ALIGNMENT))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_HORZ_ALIGNMENT));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_VERT_ALIGNMENT))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_VERT_ALIGNMENT));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT));
-
-        if (pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT_COLOR))
-            pDstSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT_COLOR));
+        CopyProperties(static_cast<CODEditProperties*>       (pSrcSymbol->GetProperty(OD_PROP_EDIT)),              pDstSymbol);
+        CopyProperties(static_cast<CODOrientationProperties*>(pSrcSymbol->GetProperty(OD_PROP_ORIENTATION)),       pDstSymbol);
+        CopyProperties(static_cast<CODFontProperties*>       (pSrcSymbol->GetProperty(OD_PROP_FONT)),              pDstSymbol);
+        CopyProperties(static_cast<CODFillProperties*>       (pSrcSymbol->GetProperty(OD_PROP_FILL)),              pDstSymbol);
+        CopyProperties(static_cast<CODLineProperties*>       (pSrcSymbol->GetProperty(OD_PROP_LINE)),              pDstSymbol);
+        CopyProperty  (static_cast<CODBoolProperty*>         (pSrcSymbol->GetProperty(OD_PROP_WORDBREAK)),         pDstSymbol);
+        CopyProperty  (static_cast<CODBoolProperty*>         (pSrcSymbol->GetProperty(OD_PROP_MULTILINE)),         pDstSymbol);
+        CopyProperty  (static_cast<CODIntProperty*>          (pSrcSymbol->GetProperty(OD_PROP_HORZ_ALIGNMENT)),    pDstSymbol);
+        CopyProperty  (static_cast<CODIntProperty*>          (pSrcSymbol->GetProperty(OD_PROP_VERT_ALIGNMENT)),    pDstSymbol);
+        CopyProperty  (static_cast<CODBoolProperty*>         (pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT)),       pDstSymbol);
+        CopyProperty  (static_cast<CODDWordProperty*>        (pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT_COLOR)), pDstSymbol);
 
         // find the matching symbol in children
         const int srcChildCount = pSrcSymbol->GetChildCount();
@@ -1076,5 +992,93 @@ std::size_t PSS_ODSymbolManipulator::GetPortFollowingSymbols(CODPortComponent& p
     // get the owner
     CODSymbolComponent* pComp = port.GetOwner();
     return set.GetSize();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperties(CODEditProperties* pProps, CODComponent* pComp)
+{
+    if (!pProps || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODEditProperties> pNewEditProps(new CODEditProperties(*pProps));
+    pComp->SetProperty(pNewEditProps.get());
+    pNewEditProps.release();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperties(CODOrientationProperties* pProps, CODComponent* pComp)
+{
+    if (!pProps || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODOrientationProperties> pNewOrientationProps(new CODOrientationProperties(*pProps));
+    pComp->SetProperty(pNewOrientationProps.get());
+    pNewOrientationProps.release();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperties(CODFontProperties* pProps, CODComponent* pComp)
+{
+    if (!pProps || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODFontProperties> pNewFontProps(new CODFontProperties(*pProps));
+    pComp->SetProperty(pNewFontProps.get());
+    pNewFontProps.release();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperties(CODFillProperties* pProps, CODComponent* pComp)
+{
+    if (!pProps || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODFillProperties> pNewFillProps(new CODFillProperties(*pProps));
+    pComp->SetProperty(pNewFillProps.get());
+    pNewFillProps.release();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperties(CODLineProperties* pProps, CODComponent* pComp)
+{
+    if (!pProps || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODLineProperties> pNewLineProps(new CODLineProperties(*pProps));
+    pComp->SetProperty(pNewLineProps.get());
+    pNewLineProps.release();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperty(CODBoolProperty* pProp, CODComponent* pComp)
+{
+    if (!pProp || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODBoolProperty> pNewBoolProp(new CODBoolProperty(*pProp));
+    pComp->SetProperty(pNewBoolProp.get());
+    pNewBoolProp.release();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperty(CODIntProperty* pProp, CODComponent* pComp)
+{
+    if (!pProp || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODIntProperty> pNewIntProp(new CODIntProperty(*pProp));
+    pComp->SetProperty(pNewIntProp.get());
+    pNewIntProp.release();
+}
+//---------------------------------------------------------------------------
+void PSS_ODSymbolManipulator::CopyProperty(CODDWordProperty* pProp, CODComponent* pComp)
+{
+    if (!pProp || !pComp)
+        return;
+
+    // copy the properties and set them to the target edit
+    std::unique_ptr<CODDWordProperty> pNewDWordProp(new CODDWordProperty(*pProp));
+    pComp->SetProperty(pNewDWordProp.get());
+    pNewDWordProp.release();
 }
 //---------------------------------------------------------------------------

@@ -25,7 +25,7 @@
 #include "PSS_ProcessPropertiesBP.h"
 #include "PSS_SimPropertiesProcessBP.h"
 #include "PSS_DeliveriesPropertiesBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 #include "ZVAddRemoveDeliveryDeliverablesDlg.h"
 #include "ZVChooseMainDeliverable.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
@@ -1713,7 +1713,7 @@ int PSS_ProcessSymbolBP::GetDeliverablesInChildPages(CString& deliverablesList) 
                     // On passe en revue chacun des symboles de la page.
                     for (int i = 0; i < pCompSet->GetSize(); ++i)
                     {
-                        ZBDeliverableLinkSymbol* pSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>(pCompSet->GetAt(i));
+                        PSS_DeliverableLinkSymbolBP* pSymbol = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pCompSet->GetAt(i));
 
                         // if the symbol is valid, and if it's a deliverable, get it
                         if (pSymbol)
@@ -1854,8 +1854,8 @@ float PSS_ProcessSymbolBP::FindQuantity(const CString& main, PSS_ProcessGraphMod
                         // iterate through the page symbols
                         for (int i = 0; i < symbolCount; ++i)
                         {
-                            CODComponent*            pComponent  = pCompSet->GetAt(i);
-                            ZBDeliverableLinkSymbol* pLinkSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>(pComponent);
+                            CODComponent*                pComponent  = pCompSet->GetAt(i);
+                            PSS_DeliverableLinkSymbolBP* pLinkSymbol = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComponent);
 
                             // is a deliverable?
                             if (pLinkSymbol)

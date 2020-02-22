@@ -15,7 +15,7 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\PSS_StopSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zReport\ZBOStreamGrid.h"
 
@@ -249,8 +249,8 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol(PSS_ProcedureSymbol
     {
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
-            IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-            ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             // Check if null and continue if the case
             if (!pComp)
@@ -436,8 +436,8 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol(PSS_ProcedureSymbol
     {
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
-            IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-            ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+            PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             // Check if null and continue if the case
             if (!pComp)
@@ -464,9 +464,9 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol(PSS_ProcedureSymbol
                 // Locate the local symbol
                 CODComponent* pLocal = pComp->GetLocalSymbol();
 
-                if (pLocal && ISA(pLocal, ZBDeliverableLinkSymbol))
+                if (pLocal && ISA(pLocal, PSS_DeliverableLinkSymbolBP))
                 {
-                    pComp = dynamic_cast<ZBDeliverableLinkSymbol*>(pLocal);
+                    pComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pLocal);
                 }
                 else
                 {
@@ -502,8 +502,8 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol(PSS_ProcedureSymbol
     {
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
-            IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-            ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             // Check if null and continue if the case
             if (!pComp)
@@ -530,9 +530,9 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol(PSS_ProcedureSymbol
                 // Locate the local symbol
                 CODComponent* pLocal = pComp->GetLocalSymbol();
 
-                if (pLocal && ISA(pLocal, ZBDeliverableLinkSymbol))
+                if (pLocal && ISA(pLocal, PSS_DeliverableLinkSymbolBP))
                 {
-                    pComp = dynamic_cast<ZBDeliverableLinkSymbol*>(pLocal);
+                    pComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pLocal);
                 }
                 else
                 {
@@ -560,8 +560,8 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol(PSS_ProcedureSymbol
     {
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
-            IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-            ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+            PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             // Check if null and continue if the case
             if (!pComp)
@@ -588,9 +588,9 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol(PSS_ProcedureSymbol
                 // Locate the local symbol
                 CODComponent* pLocal = pComp->GetLocalSymbol();
 
-                if (pLocal && ISA(pLocal, ZBDeliverableLinkSymbol))
+                if (pLocal && ISA(pLocal, PSS_DeliverableLinkSymbolBP))
                 {
-                    pComp = dynamic_cast<ZBDeliverableLinkSymbol*>(pLocal);
+                    pComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pLocal);
                 }
                 else
                 {

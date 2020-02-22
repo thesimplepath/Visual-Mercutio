@@ -25,7 +25,7 @@
 #undef _ZMODELEXPORT
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zProperty\ZBPropertyObserverMsg.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 #include "PSS_RuleListPropertiesBP.h"
 #include "PSS_TaskListPropertiesBP.h"
 #include "PSS_DecisionListPropertiesBP.h"
@@ -321,8 +321,10 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     if (!g_RulesMenu.GetSafeHmenu())
         g_RulesMenu.LoadMenu(IDR_RULES_MENU);
 
+    const int ruleCount = m_Rules.GetRulesCount();
+
     // fill the rule properties
-    if (m_Rules.GetRulesCount() > 0)
+    if (ruleCount)
     {
         CString ruleSectionTitle;
         ruleSectionTitle.LoadString(IDS_Z_RULES_TITLE);
@@ -330,8 +332,8 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         CString ruleDesc;
         ruleDesc.LoadString(IDS_Z_RULES_DESC);
 
-        PSS_LogicalRulesEntity*     pMainRule   = NULL;
         PSS_ProcessGraphModelMdlBP* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
+        PSS_LogicalRulesEntity*     pMainRule   = NULL;
 
         // get the main rule
         if (pOwnerModel)
@@ -347,8 +349,6 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
                     pMainRule = pDoc->GetMainLogicalRules();
             }
         }
-
-        const int ruleCount = m_Rules.GetRulesCount();
 
         // iterate through the rules and add their properties
         for (int i = 0; i < ruleCount; ++i)
@@ -443,7 +443,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.release();
     }
 
-    // continue to add empty controls until the maximum size
+    // continue to add empty controls until reaching the maximum size
     for (int i = index; i < g_MaxRuleListSize; ++i)
     {
         finalPropName.Format(_T("%s %d"), propName, i + 1);
@@ -523,6 +523,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         CString sNoRiskType = _T("");
         sNoRiskType.LoadString(IDS_NO_RISK_TYPE);
 
+        // the "Type" property of the "Risk (x)" group
         pProp.reset(new ZBProperty(finalRiskTitle,
                                    groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
                                    riskName,
@@ -699,7 +700,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
         pProp.release();
     }
 
-    // continue to add empty tasks until the maximum size
+    // continue to add empty tasks until reaching the maximum size
     for (int i = index; i < g_MaxTaskListSize; ++i)
     {
         finalPropName.Format(_T("%s %d"), propName, i + 1);
@@ -1242,21 +1243,22 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
 
         if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
         {
-            const int i = categoryID - ZS_BP_PROP_RISK;
+            const int itemID = pProp->GetItemID();
+            const int i      = categoryID - ZS_BP_PROP_RISK;
 
-            if (pProp->GetItemID() == M_Risk_Name_ID + (i * g_MaxRisksSize))
+            if (itemID == M_Risk_Name_ID + (i * g_MaxRisksSize))
                 SetRiskName(i, pProp->GetValueString());
 
-            if (pProp->GetItemID() == M_Risk_Desc_ID + (i * g_MaxRisksSize))
+            if (itemID == M_Risk_Desc_ID + (i * g_MaxRisksSize))
                 SetRiskDesc(i, pProp->GetValueString());
 
-            if (pProp->GetItemID() == M_Risk_UE_ID + (i * g_MaxRisksSize))
+            if (itemID == M_Risk_UE_ID + (i * g_MaxRisksSize))
                 SetRiskUE(i, pProp->GetValueFloat());
 
-            if (pProp->GetItemID() == M_Risk_POA_ID + (i * g_MaxRisksSize))
+            if (itemID == M_Risk_POA_ID + (i * g_MaxRisksSize))
                 SetRiskPOA(i, pProp->GetValueFloat());
 
-            if (pProp->GetItemID() == M_Risk_Action_ID + (i * g_MaxRisksSize))
+            if (itemID == M_Risk_Action_ID + (i * g_MaxRisksSize))
                 SetRiskAction(i, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
         }
     }
@@ -1310,15 +1312,19 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
     // it's not necessary to call SetProperty()
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_PROCEDURE_COST)
+        {
+            const int itemID = pProp->GetItemID();
+
             switch (pProp->GetPTValueType())
             {
-                case ZBProperty::PT_STRING:   m_CostProcedureProp.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case ZBProperty::PT_DOUBLE:   m_CostProcedureProp.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble()));     break;
-                case ZBProperty::PT_FLOAT:    m_CostProcedureProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case ZBProperty::PT_DATE:     m_CostProcedureProp.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
-                case ZBProperty::PT_TIMESPAN: m_CostProcedureProp.SetValue(pProp->GetItemID(), double(pProp->GetValueTimeSpan()));  break;
-                case ZBProperty::PT_DURATION: m_CostProcedureProp.SetValue(pProp->GetItemID(), double(pProp->GetValueDuration()));  break;
+                case ZBProperty::PT_STRING:   m_CostProcedureProp.SetValue(itemID,            pProp->GetValueString());    break;
+                case ZBProperty::PT_DOUBLE:   m_CostProcedureProp.SetValue(itemID, float(     pProp->GetValueDouble()));   break;
+                case ZBProperty::PT_FLOAT:    m_CostProcedureProp.SetValue(itemID,            pProp->GetValueFloat());     break;
+                case ZBProperty::PT_DATE:     m_CostProcedureProp.SetValue(itemID, float(DATE(pProp->GetValueDate())));    break;
+                case ZBProperty::PT_TIMESPAN: m_CostProcedureProp.SetValue(itemID, double(    pProp->GetValueTimeSpan())); break;
+                case ZBProperty::PT_DURATION: m_CostProcedureProp.SetValue(itemID, double(    pProp->GetValueDuration())); break;
             }
+        }
 
     // iterate through the data list and fill the property set
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1327,12 +1333,16 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
                 m_UnitProp.SetValue(pProp->GetItemID(),
                                     ConvertUnitDoubleValidationString2Type(pProp->GetValueString()));
             else
+            {
+                const int itemID = pProp->GetItemID();
+
                 switch (pProp->GetPTValueType())
                 {
-                    case ZBProperty::PT_DOUBLE: m_UnitProp.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble())); break;
-                    case ZBProperty::PT_FLOAT:  m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());         break;
-                    case ZBProperty::PT_STRING: m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueString());        break;
+                    case ZBProperty::PT_DOUBLE: m_UnitProp.SetValue(itemID, float(pProp->GetValueDouble())); break;
+                    case ZBProperty::PT_FLOAT:  m_UnitProp.SetValue(itemID,       pProp->GetValueFloat());   break;
+                    case ZBProperty::PT_STRING: m_UnitProp.SetValue(itemID,       pProp->GetValueString());  break;
                 }
+            }
 
     // iterate through the data list and fill the property set of combination
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1347,14 +1357,16 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
             if (!pCombProps)
                 return false;
 
+            const int itemID = pProp->GetItemID();
+
             switch (pProp->GetPTValueType())
             {
-                case ZBProperty::PT_STRING:   pCombProps->SetValue(pProp->GetItemID() - (i * g_MaxCombinationListSize), pProp->GetValueString());            break;
-                case ZBProperty::PT_DOUBLE:   pCombProps->SetValue(pProp->GetItemID() - (i * g_MaxCombinationListSize), float(pProp->GetValueDouble()));     break;
-                case ZBProperty::PT_FLOAT:    pCombProps->SetValue(pProp->GetItemID() - (i * g_MaxCombinationListSize), pProp->GetValueFloat());             break;
-                case ZBProperty::PT_DATE:     pCombProps->SetValue(pProp->GetItemID() - (i * g_MaxCombinationListSize), float(DATE(pProp->GetValueDate()))); break;
-                case ZBProperty::PT_TIMESPAN: ASSERT(FALSE);                                                                                                 break;
-                case ZBProperty::PT_DURATION: ASSERT(FALSE);                                                                                                 break;
+                case ZBProperty::PT_STRING:   pCombProps->SetValue(itemID - (i * g_MaxCombinationListSize),            pProp->GetValueString());  break;
+                case ZBProperty::PT_DOUBLE:   pCombProps->SetValue(itemID - (i * g_MaxCombinationListSize), float(     pProp->GetValueDouble())); break;
+                case ZBProperty::PT_FLOAT:    pCombProps->SetValue(itemID - (i * g_MaxCombinationListSize),            pProp->GetValueFloat());   break;
+                case ZBProperty::PT_DATE:     pCombProps->SetValue(itemID - (i * g_MaxCombinationListSize), float(DATE(pProp->GetValueDate())));  break;
+                case ZBProperty::PT_TIMESPAN: ASSERT(FALSE);                                                                                      break;
+                case ZBProperty::PT_DURATION: ASSERT(FALSE);                                                                                      break;
             }
         }
     }
@@ -1362,15 +1374,19 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
     // iterate through the data list and fill the property set
     for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_SIM_PROCEDURE)
+        {
+            const int itemID = pProp->GetItemID();
+
             switch (pProp->GetPTValueType())
             {
-                case ZBProperty::PT_STRING:   m_SimulationProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case ZBProperty::PT_DOUBLE:   m_SimulationProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
-                case ZBProperty::PT_FLOAT:    m_SimulationProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case ZBProperty::PT_DATE:     m_SimulationProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
-                case ZBProperty::PT_TIMESPAN: m_SimulationProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueTimeSpan()));  break;
-                case ZBProperty::PT_DURATION: m_SimulationProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueDuration()));  break;
+                case ZBProperty::PT_STRING:   m_SimulationProperties.SetValue(itemID,            pProp->GetValueString());    break;
+                case ZBProperty::PT_DOUBLE:   m_SimulationProperties.SetValue(itemID,            pProp->GetValueDouble());    break;
+                case ZBProperty::PT_FLOAT:    m_SimulationProperties.SetValue(itemID,            pProp->GetValueFloat());     break;
+                case ZBProperty::PT_DATE:     m_SimulationProperties.SetValue(itemID, float(DATE(pProp->GetValueDate())));    break;
+                case ZBProperty::PT_TIMESPAN: m_SimulationProperties.SetValue(itemID, double(    pProp->GetValueTimeSpan())); break;
+                case ZBProperty::PT_DURATION: m_SimulationProperties.SetValue(itemID, double(    pProp->GetValueDuration())); break;
             }
+        }
 
     RefreshAttributeTextArea(true);
 
@@ -1390,21 +1406,22 @@ bool PSS_ProcedureSymbolBP::SaveProperty(ZBProperty& prop)
 
     if (categoryID >= ZS_BP_PROP_RISK && categoryID <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        const int i = categoryID - ZS_BP_PROP_RISK;
+        const int itemID = prop.GetItemID();
+        const int i      = categoryID - ZS_BP_PROP_RISK;
 
-        if (prop.GetItemID() == M_Risk_Name_ID + (i * g_MaxRisksSize))
+        if (itemID == M_Risk_Name_ID + (i * g_MaxRisksSize))
             SetRiskName(i, prop.GetValueString());
 
-        if (prop.GetItemID() == M_Risk_Desc_ID + (i * g_MaxRisksSize))
+        if (itemID == M_Risk_Desc_ID + (i * g_MaxRisksSize))
             SetRiskDesc(i, prop.GetValueString());
 
-        if (prop.GetItemID() == M_Risk_UE_ID + (i * g_MaxRisksSize))
+        if (itemID == M_Risk_UE_ID + (i * g_MaxRisksSize))
             SetRiskUE(i, prop.GetValueFloat());
 
-        if (prop.GetItemID() == M_Risk_POA_ID + (i * g_MaxRisksSize))
+        if (itemID == M_Risk_POA_ID + (i * g_MaxRisksSize))
             SetRiskPOA(i, prop.GetValueFloat());
 
-        if (prop.GetItemID() == M_Risk_Action_ID + (i * g_MaxRisksSize))
+        if (itemID == M_Risk_Action_ID + (i * g_MaxRisksSize))
             SetRiskAction(i, (prop.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
     }
 
@@ -1653,8 +1670,8 @@ int PSS_ProcedureSymbolBP::GetEnteringUpDeliverable(CString& deliverables)
 
         for (int i = 0; i < edgeCount; ++i)
         {
-            IODEdge*                 pIEdge = edges.GetAt(i);
-            ZBDeliverableLinkSymbol* pComp  = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = edges.GetAt(i);
+            PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             if (pComp)
             {
@@ -1714,7 +1731,7 @@ int PSS_ProcedureSymbolBP::GetEnteringUpDeliverable(CODEdgeArray& edges)
     }
 
     // keep only deliverable symbols
-    return int(PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol)));
+    return int(PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(PSS_DeliverableLinkSymbolBP)));
 }
 //---------------------------------------------------------------------------
 int PSS_ProcedureSymbolBP::GetLeavingDownDeliverable(CString& deliverables)
@@ -1730,8 +1747,8 @@ int PSS_ProcedureSymbolBP::GetLeavingDownDeliverable(CString& deliverables)
 
         for (int i = 0; i < edgeCount; ++i)
         {
-            IODEdge*                 pIEdge = edges.GetAt(i);
-            ZBDeliverableLinkSymbol* pComp  = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = edges.GetAt(i);
+            PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             if (pComp)
             {
@@ -1753,13 +1770,13 @@ int PSS_ProcedureSymbolBP::GetLeavingDownDeliverable(CODEdgeArray& edges)
     GetEdgesLeaving_Down(edges);
 
     CODComponentSet* pSet = GetReferenceSymbols();
-    CODComponentSet  InternalSet;
+    CODComponentSet  internalSet;
 
     // get all edges from referenced procedures and local symbol if a referenced symbol is defined
     if (!IsLocal())
     {
         if (!pSet)
-            pSet = &InternalSet;
+            pSet = &internalSet;
 
         CODComponent* pLocalSymbol = GetLocalSymbol();
 
@@ -1791,7 +1808,7 @@ int PSS_ProcedureSymbolBP::GetLeavingDownDeliverable(CODEdgeArray& edges)
     }
 
     // keep only deliverable symbols
-    return int(PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol)));
+    return int(PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(PSS_DeliverableLinkSymbolBP)));
 }
 //---------------------------------------------------------------------------
 int PSS_ProcedureSymbolBP::GetLeavingLeftDeliverable(CString& deliverables)
@@ -1807,8 +1824,8 @@ int PSS_ProcedureSymbolBP::GetLeavingLeftDeliverable(CString& deliverables)
 
         for (int i = 0; i < edgeCount; ++i)
         {
-            IODEdge*                 pIEdge = edges.GetAt(i);
-            ZBDeliverableLinkSymbol* pComp  = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = edges.GetAt(i);
+            PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             if (pComp)
             {
@@ -1868,7 +1885,7 @@ int PSS_ProcedureSymbolBP::GetLeavingLeftDeliverable(CODEdgeArray& edges)
     }
 
     // keep only deliverable symbols
-    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
+    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(PSS_DeliverableLinkSymbolBP));
 }
 //---------------------------------------------------------------------------
 int PSS_ProcedureSymbolBP::GetLeavingRightDeliverable(CString& deliverables)
@@ -1884,8 +1901,8 @@ int PSS_ProcedureSymbolBP::GetLeavingRightDeliverable(CString& deliverables)
 
         for (int i = 0; i < edgeCount; ++i)
         {
-            IODEdge*                 pIEdge = edges.GetAt(i);
-            ZBDeliverableLinkSymbol* pComp  = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = edges.GetAt(i);
+            PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             if (pComp)
             {
@@ -1945,7 +1962,7 @@ int PSS_ProcedureSymbolBP::GetLeavingRightDeliverable(CODEdgeArray& edges)
     }
 
     // keep only deliverable symbols
-    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
+    return (int)PSS_ODSymbolManipulator::KeepOnlyLinksISA(edges, RUNTIME_CLASS(PSS_DeliverableLinkSymbolBP));
 }
 //---------------------------------------------------------------------------
 PSS_AnnualNumberPropertiesBP PSS_ProcedureSymbolBP::CalculateProcedureActivation()
@@ -1962,8 +1979,8 @@ PSS_AnnualNumberPropertiesBP PSS_ProcedureSymbolBP::CalculateProcedureActivation
     // for each deliverables, calculate the max procedure activation
     for (int i = 0; i < edges.GetSize(); ++i)
     {
-        IODEdge*                 pIEdge       = edges.GetAt(i);
-        ZBDeliverableLinkSymbol* pDeliverable = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+        IODEdge*                     pIEdge       = edges.GetAt(i);
+        PSS_DeliverableLinkSymbolBP* pDeliverable = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
         if (!pDeliverable)
             continue;
@@ -1972,7 +1989,7 @@ PSS_AnnualNumberPropertiesBP PSS_ProcedureSymbolBP::CalculateProcedureActivation
         if (!pDeliverable->IsLocal())
         {
             // get the local symbol
-            ZBDeliverableLinkSymbol* pComp = dynamic_cast<ZBDeliverableLinkSymbol*>(pDeliverable->GetLocalSymbol());
+            PSS_DeliverableLinkSymbolBP* pComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pDeliverable->GetLocalSymbol());
 
             if (pComp)
                 pDeliverable = pComp;
@@ -2784,14 +2801,14 @@ float PSS_ProcedureSymbolBP::GetMaxActivationPerc(const CString& master)
 
         for (int i = 0; i < edgeCount; ++i)
         {
-            IODEdge*                 pIEdge = edges.GetAt(i);
-            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = edges.GetAt(i);
+            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             // check if it's a local symbol
             if (!pComp->IsLocal())
             {
                 // get the local symbol
-                ZBDeliverableLinkSymbol* pLocalComp = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp->GetLocalSymbol());
+                PSS_DeliverableLinkSymbolBP* pLocalComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp->GetLocalSymbol());
 
                 if (pLocalComp)
                     pComp = pLocalComp;

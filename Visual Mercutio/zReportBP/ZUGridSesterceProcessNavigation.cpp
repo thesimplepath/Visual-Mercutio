@@ -16,7 +16,7 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\PSS_StopSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zReport\ZBOStreamGrid.h"
 #include "zReport\ZVGridView.h"
@@ -1135,7 +1135,7 @@ bool ZUGridSesterceProcessNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* p
     return true;
 }
 
-bool ZUGridSesterceProcessNavigation::OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+bool ZUGridSesterceProcessNavigation::OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     int top;
     int left;

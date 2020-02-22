@@ -21,7 +21,7 @@
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 
 #include "zModel\PSS_ODSymbolManipulator.h"
 
@@ -277,10 +277,10 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                 }
 
                 // Check if we have a deliverable
-                if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
+                if (ISA(pStateLink->GetLinkSymbol(), PSS_DeliverableLinkSymbolBP))
                 {
-                    ZBDeliverableLinkSymbol* pDeliverable =
-                        dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
+                    PSS_DeliverableLinkSymbolBP* pDeliverable =
+                        dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pStateLink->GetLinkSymbol());
 
                     TRACE1(_T("OnNextSymbolAfterMoveForward: deliverable in the stack%s\n"),
                            pDeliverable->GetSymbolName());
@@ -291,9 +291,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                         // Locate the local symbol
                         CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-                        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+                        if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
                         {
-                            pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                            pDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
                         }
                         else
                         {
@@ -416,10 +416,10 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
             }
 
             // Check if we have a deliverable
-            if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
+            if (ISA(pStateLink->GetLinkSymbol(), PSS_DeliverableLinkSymbolBP))
             {
-                ZBDeliverableLinkSymbol* pDeliverable =
-                    dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
+                PSS_DeliverableLinkSymbolBP* pDeliverable =
+                    dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pStateLink->GetLinkSymbol());
 
                 // Test if it is a local symbol
                 if (!pDeliverable->IsLocal())
@@ -427,9 +427,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                     // Locate the local symbol
                     CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-                    if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+                    if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
                     {
-                        pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                        pDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
                     }
                     else
                     {
@@ -515,12 +515,12 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
 
                     // Check if a PSS_LinkSymbol
                     if (!static_cast<CODLinkComponent*>(pIEdge) ||
-                        !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+                        !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
                     {
                         continue;
                     }
 
-                    ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     if (!pLink)
                     {
@@ -533,9 +533,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                         // Locate the local symbol
                         CODComponent* pComp = pLink->GetLocalSymbol();
 
-                        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+                        if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
                         {
-                            pLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                            pLink = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
                         }
                         else
                         {
@@ -560,12 +560,12 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
 
                     // Check if a PSS_LinkSymbol
                     if (!static_cast<CODLinkComponent*>(pIEdge) ||
-                        !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+                        !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
                     {
                         continue;
                     }
 
-                    ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    PSS_DeliverableLinkSymbolBP* pLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     if (!pLink)
                     {
@@ -578,9 +578,9 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
                         // Locate the local symbol
                         CODComponent* pComp = pLink->GetLocalSymbol();
 
-                        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+                        if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
                         {
-                            pLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                            pLink = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
                         }
                         else
                         {
@@ -961,12 +961,12 @@ double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables(CODEdgeArr
 
         // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
-            !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+            !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
         {
             continue;
         }
 
-        ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+        PSS_DeliverableLinkSymbolBP* pLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
         if (!pLink)
         {
@@ -979,9 +979,9 @@ double ZBSesterceRecalculationAutomate::CalculateSumOfOutDeliverables(CODEdgeArr
             // Locate the local symbol
             CODComponent* pComp = pLink->GetLocalSymbol();
 
-            if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+            if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
             {
-                pLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                pLink = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
             }
             else
             {

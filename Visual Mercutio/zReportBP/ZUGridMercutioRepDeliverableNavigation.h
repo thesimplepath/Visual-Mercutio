@@ -38,13 +38,13 @@ class ZUGridMercutioRepDeliverableNavigation : public ZUProcessNavigation
 {
 public:
     //*@param pClass - the custom data class, can be NULL
-    ZUGridMercutioRepDeliverableNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    ZUGridMercutioRepDeliverableNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
     virtual ~ZUGridMercutioRepDeliverableNavigation();
 
     // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol );
+    virtual bool OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol);
 
 private:
 
@@ -73,4 +73,4 @@ private:
     CString        m_FinalProcedureLabel;
 };
 
-#endif // !defined(AFX_ZUGridMercutioRepDeliverableNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

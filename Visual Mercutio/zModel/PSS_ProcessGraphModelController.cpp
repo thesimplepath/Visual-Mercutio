@@ -822,9 +822,10 @@ void PSS_ProcessGraphModelController::SelectAllComponents()
 
         if (pPropEdit)
         {
-            CODEditProperties editProps(*pPropEdit);
-            editProps.SetCanSelect(TRUE);
-            pComp->SetProperty(&editProps);
+            std::unique_ptr<CODEditProperties> pEditProps(new CODEditProperties(*pPropEdit));
+            pEditProps->SetCanSelect(TRUE);
+            pComp->SetProperty(pEditProps.get());
+            pEditProps.release();
         }
     }
 

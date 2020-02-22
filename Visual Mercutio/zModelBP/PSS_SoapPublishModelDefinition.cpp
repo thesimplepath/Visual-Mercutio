@@ -26,7 +26,7 @@
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 #include "ZBInputAttributes.h"
 #include "ZBDistributionAttributes.h"
 
@@ -415,7 +415,7 @@ bool PSS_SoapPublishModelDefinition::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     if (!pSymbol)
         return false;
@@ -547,8 +547,8 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
     for (std::size_t edgeIndex = 0; edgeIndex < leavingRightLinkCount; ++edgeIndex)
     {
         // get next edge
-        IODEdge*                 pIEdge = leavingRightEdges.GetAt(edgeIndex);
-        ZBDeliverableLinkSymbol* pLink  = dynamic_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+        IODEdge*                     pIEdge = leavingRightEdges.GetAt(edgeIndex);
+        PSS_DeliverableLinkSymbolBP* pLink  = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
         if (!pLink)
             continue;
@@ -570,8 +570,8 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         // iterate through edges and find left one
         for (std::size_t edgeIndex = 0; edgeIndex < leavingLeftLinkCount; ++edgeIndex)
         {
-            IODEdge*                 pIEdge = leavingLeftEdges.GetAt(edgeIndex);
-            ZBDeliverableLinkSymbol* pLink  = dynamic_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+            IODEdge*                     pIEdge = leavingLeftEdges.GetAt(edgeIndex);
+            PSS_DeliverableLinkSymbolBP* pLink  = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
             if (!pLink)
                 continue;

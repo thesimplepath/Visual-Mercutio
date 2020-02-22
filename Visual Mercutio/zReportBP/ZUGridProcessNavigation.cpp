@@ -15,7 +15,7 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\PSS_StopSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zReport\ZBOStreamGrid.h"
 
@@ -248,7 +248,7 @@ bool ZUGridProcessNavigation::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUGridProcessNavigation::OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+bool ZUGridProcessNavigation::OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     int top;
     int left;

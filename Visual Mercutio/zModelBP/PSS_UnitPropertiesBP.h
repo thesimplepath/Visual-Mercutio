@@ -138,14 +138,14 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP : public CObject
         virtual inline void SetUnitCost(const float value);
 
         /**
-        * Gets the unit guid
-        *@return the unit guid
+        * Gets the unit GUID
+        *@return the unit GUID
         */
         virtual inline CString GetUnitGUID() const;
 
         /**
-        * Sets the unit guid
-        *@param pValue - the unit guid
+        * Sets the unit GUID
+        *@param pValue - the unit GUID
         */
         virtual void SetUnitGUID(LPCTSTR pValue);
 

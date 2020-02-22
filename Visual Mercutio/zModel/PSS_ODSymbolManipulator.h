@@ -380,6 +380,63 @@ class AFX_EXT_CLASS PSS_ODSymbolManipulator
         *@return the found symbol count
         */
         static std::size_t GetPortFollowingSymbols(CODPortComponent& port, CODComponentSet& set);
+
+    private:
+        /**
+        * Copies edit properties to a symbol edit component
+        *@param pProps - source properties to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperties(CODEditProperties* pProps, CODComponent* pComp);
+
+        /**
+        * Copies orientation properties to a symbol edit component
+        *@param pProps - source properties to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperties(CODOrientationProperties* pProps, CODComponent* pComp);
+
+        /**
+        * Copies font properties to a symbol edit component
+        *@param pProps - source properties to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperties(CODFontProperties* pProps, CODComponent* pComp);
+
+        /**
+        * Copies fill properties to a symbol edit component
+        *@param pProps - source properties to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperties(CODFillProperties* pProps, CODComponent* pComp);
+
+        /**
+        * Copies line properties to a symbol edit component
+        *@param pProps - source properties to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperties(CODLineProperties* pProps, CODComponent* pComp);
+
+        /**
+        * Copies bool property to a symbol edit component
+        *@param pProp - source property to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperty(CODBoolProperty* pProp, CODComponent* pComp);
+
+        /**
+        * Copies int property to a symbol edit component
+        *@param pProp - source property to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperty(CODIntProperty* pProp, CODComponent* pComp);
+
+        /**
+        * Copies dword property to a symbol edit component
+        *@param pProp - source property to copy
+        *@param pComp - target component to copy to
+        */
+        static void CopyProperty(CODDWordProperty* pProp, CODComponent* pComp);
 };
 
 #endif

@@ -306,7 +306,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBDeliverableLinkSymbol.cpp">
+    <ClCompile Include="PSS_DeliverableLinkSymbolBP.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -619,7 +619,7 @@
     <ClInclude Include="PSS_TextItemListPropertiesBP.h" />
     <ClInclude Include="PSS_TextZoneBP.h" />
     <ClInclude Include="PSS_UnitPropertiesBP.h" />
-    <ClInclude Include="ZBDeliverableLinkSymbol.h" />
+    <ClInclude Include="PSS_DeliverableLinkSymbolBP.h" />
     <ClInclude Include="ZBDistributionAttributes.h" />
     <ClInclude Include="ZBDistributionRules.h" />
     <ClInclude Include="ZBDurationRecalculationAutomate.h" />

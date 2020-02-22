@@ -280,12 +280,12 @@ bool ZVPublishConceptorReport::StartSection(CODNodeArray& Nodes)
 
             if (pStart->GetEdgesLeaving(Edges) > 0)
             {
-                ZBDeliverableLinkSymbol* pDeliverable = NULL;
+                PSS_DeliverableLinkSymbolBP* pDeliverable = NULL;
 
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    pDeliverable = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    pDeliverable = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Check if null and continue if the case
                     if (!pDeliverable)
@@ -391,7 +391,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
                         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                         {
                             IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                             // Check if null and continue if the case
                             if (!pComp)
@@ -420,7 +420,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
                         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                         {
                             IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                             // Check if null and continue if the case
                             if (!pComp)
@@ -445,7 +445,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
                         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                         {
                             IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                             // Check if null and continue if the case
                             if (!pComp)
@@ -474,7 +474,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
                         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                         {
                             IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                             // Check if null and continue if the case
                             if (!pComp)
@@ -499,7 +499,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
                         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                         {
                             IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                             // Check if null and continue if the case
                             if (!pComp)
@@ -599,7 +599,7 @@ bool ZVPublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
                         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                         {
                             IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                            PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                             // Check if null and continue if the case
                             if (!pComp)
@@ -697,8 +697,8 @@ bool ZVPublishConceptorReport::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
     return true;
 }
 
-// Cette fonction est appelée lorsque la navigation visite un symbole de type ZBDeliverableLinkSymbol.
-bool ZVPublishConceptorReport::OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+// Cette fonction est appelée lorsque la navigation visite un symbole de type PSS_DeliverableLinkSymbolBP.
+bool ZVPublishConceptorReport::OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     return true;
 }
@@ -724,9 +724,9 @@ bool ZVPublishConceptorReport::Visit(CODComponent& Symbol)
     {
         return OnProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
+    else if (ISA(pSymbol, PSS_DeliverableLinkSymbolBP))
     {
-        return OnDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
+        return OnDeliverableLinkSymbol(dynamic_cast<PSS_DeliverableLinkSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_DoorSymbolBP))
     {

@@ -22,7 +22,7 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\PSS_StopSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zModel\PSS_ODSymbolManipulator.h"
 
@@ -76,9 +76,9 @@ bool ZUCheckSesterceConsistency::Visit(CODComponent& Symbol)
     {
         return CheckProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
+    else if (ISA(pSymbol, PSS_DeliverableLinkSymbolBP))
     {
-        return CheckDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
+        return CheckDeliverableLinkSymbol(dynamic_cast<PSS_DeliverableLinkSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_DoorSymbolBP))
     {
@@ -341,7 +341,7 @@ bool ZUCheckSesterceConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 
@@ -351,9 +351,9 @@ bool ZUCheckSesterceConsistency::CheckDeliverableLinkSymbol(ZBDeliverableLinkSym
         // Locate the local symbol
         CODComponent* pComp = pSymbol->GetLocalSymbol();
 
-        if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+        if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
         {
-            pSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+            pSymbol = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
         }
     }
 

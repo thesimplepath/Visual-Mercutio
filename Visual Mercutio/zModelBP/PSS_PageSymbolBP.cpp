@@ -94,15 +94,16 @@ BOOL PSS_PageSymbolBP::Create(const CString& name)
         {
             pText->SetValue(OD_PROP_VERT_ALIGNMENT, TRUE);
 
-            CODFontProperties* pFontProp = dynamic_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
+            CODFontProperties* pFontProp = static_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
 
             if (pFontProp)
             {
-                pFontProp->SetFaceName(_T("Arial"));
-                pFontProp->SetWeight(FW_NORMAL);
-                pFontProp->SetPointSize(8);
-
-                pText->SetProperty(pFontProp);
+                std::unique_ptr<CODFontProperties> pNewFontProp(new CODFontProperties(*pFontProp));
+                pNewFontProp->SetFaceName(_T("Arial"));
+                pNewFontProp->SetWeight(FW_NORMAL);
+                pNewFontProp->SetPointSize(8);
+                pText->SetProperty(pNewFontProp.get());
+                pNewFontProp.release();
             }
         }
     }

@@ -1002,11 +1002,32 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         virtual BOOL OnConnectionMove(CODConnection* pConnection);
 
         /**
-        * Called when the symbol name changes
+        * Called when the symbol name is changing
         *@param oldName - the old name
         *@param newName - the new name
         */
         virtual void OnSymbolNameChange(const CString& oldName, const CString& newName);
+
+        /**
+        * Called when the symbol name changed
+        *@param[in, out] comp - the symbol component on which the name is changing
+        *@param oldName - the changing old name
+        */
+        virtual void OnSymbolNameChanged(CODComponent& comp, const CString& oldName);
+
+        /**
+        * Called when the page name changed
+        *@param pPage - the page on which the name is changing
+        *@param oldName - the changing old name
+        */
+        virtual void OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName);
+
+        /**
+        * Called when the user entity name changed
+        *@param pUserEntity - the user entity on which the name is changing
+        *@param oldName - the changing old name
+        */
+        virtual void OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName);
 
         /**
         * Called when the default attributes are filled
@@ -1052,27 +1073,6 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
                                                 ZBProperty&    dstProperty,
                                                 bool           top2Down,
                                                 ZBPropertySet& props);
-
-        /**
-        * Called when the symbol name changed
-        *@param[in, out] comp - the symbol component on which the name is changing
-        *@param oldName - the changing old name
-        */
-        virtual void OnSymbolNameChanged(CODComponent& Comp, const CString& oldName);
-
-        /**
-        * Called when the page name changed
-        *@param pPage - the page on which the name is changing
-        *@param oldName - the changing old name
-        */
-        virtual void OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName);
-
-        /**
-        * Called when the user entity name changed
-        *@param pUserEntity - the user entity on which the name is changing
-        *@param oldName - the changing old name
-        */
-        virtual void OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName);
 
         /**
         * Called when a tooltip is required

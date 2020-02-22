@@ -91,10 +91,10 @@ void ZUDeleteCorruptedSymbols::CheckModel(PSS_ProcessGraphModelMdlBP* m_StartRoo
                             }
 
                             // Contrôle que le composant soit valide, et identifie s'il s'agit d'un lien.
-                            if (pComponent && ISA(pComponent, ZBDeliverableLinkSymbol))
+                            if (pComponent && ISA(pComponent, PSS_DeliverableLinkSymbolBP))
                             {
-                                ZBDeliverableLinkSymbol* m_Link =
-                                    dynamic_cast<ZBDeliverableLinkSymbol*>(pComponent);
+                                PSS_DeliverableLinkSymbolBP* m_Link =
+                                    dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComponent);
 
                                 if (IsCorrupted(m_Link))
                                 {
@@ -300,7 +300,7 @@ BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_PackageSymbolBP* m_Symbol)
 }
 
 // Contrôle que les propriétés du symbole de lien donné soient convenables.
-BOOL ZUDeleteCorruptedSymbols::IsCorrupted(ZBDeliverableLinkSymbol* m_Symbol)
+BOOL ZUDeleteCorruptedSymbols::IsCorrupted(PSS_DeliverableLinkSymbolBP* m_Symbol)
 {
     if (m_Symbol == NULL)
     {

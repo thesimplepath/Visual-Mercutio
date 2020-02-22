@@ -36,7 +36,7 @@
 
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 #include "zModelBP\ZUExtractProcessName.h"
 #include "zModelBP\PSS_DeliveriesPropertiesBP.h"
 #include "zModelBP\PSS_AnnualNumberPropertiesBP.h"

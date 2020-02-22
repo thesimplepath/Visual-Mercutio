@@ -152,40 +152,42 @@ BOOL PSS_LinkSymbol::SetLineProperty(int style, int pointSize, COLORREF color, i
 
     if (pProp)
     {
-        CODLineProperties lineProp(*((CODLineProperties*)((CODProperty*)pProp)));
+        std::unique_ptr<CODLineProperties> pLineProp(new CODLineProperties(*((CODLineProperties*)((CODProperty*)pProp))));
 
         if (style != -1)
-            lineProp.SetStyle(style);
+            pLineProp->SetStyle(style);
 
         if (pointSize != -1)
-            lineProp.SetPointSize(pointSize);
+            pLineProp->SetPointSize(pointSize);
 
         if (color != -1)
-            lineProp.SetColor(color);
+            pLineProp->SetColor(color);
 
         if (transparent != -1)
-            lineProp.SetTransparent(BOOL(transparent));
+            pLineProp->SetTransparent(BOOL(transparent));
 
-        SetProperty(&lineProp);
+        SetProperty(pLineProp.get());
+        pLineProp.release();
 
         return TRUE;
     }
 
-    CODLineProperties lineProp;
+    std::unique_ptr<CODLineProperties> pLineProp(new CODLineProperties());
 
     if (style != -1)
-        lineProp.SetStyle(style);
+        pLineProp->SetStyle(style);
 
     if (pointSize != -1)
-        lineProp.SetPointSize(pointSize);
+        pLineProp->SetPointSize(pointSize);
 
     if (color != -1)
-        lineProp.SetColor(color);
+        pLineProp->SetColor(color);
 
     if (transparent != -1)
-        lineProp.SetTransparent(BOOL(transparent));
+        pLineProp->SetTransparent(BOOL(transparent));
 
-    SetProperty(&lineProp);
+    SetProperty(pLineProp.get());
+    pLineProp.release();
 
     return TRUE;
 }
@@ -559,6 +561,7 @@ void PSS_LinkSymbol::EditSymbolName()
         pSymbolLabel = CreateSymbolLabel();
     else
     {
+        // todo -cCheck -oJean: Is this code really useful and required?
         CODLabelComponent* pLabel;
 
         for (int i = 0; i < numLabels; ++i)
@@ -1336,14 +1339,14 @@ CODSymbolComponent* PSS_LinkSymbol::GetEnteringSymbol()
     {
         pINode = pIEdge->GetTailNode();
 
-        CODComponent* m_pTailComp = GetTailComponent();
+        CODComponent* pTailComp = GetTailComponent();
 
-        if (m_pTailComp && pINode)
+        if (pTailComp && pINode)
         {
-            m_pTailComp->AddRef();
+            pTailComp->AddRef();
 
-            if (m_pTailComp->Release() > 1)
-                m_pTailComp->Release();
+            if (pTailComp->Release() > 1)
+                pTailComp->Release();
         }
 
         pIEdge->Release();
@@ -1362,14 +1365,14 @@ CODSymbolComponent* PSS_LinkSymbol::GetFollowingSymbol()
     {
         pINode = pIEdge->GetHeadNode();
 
-        CODComponent* m_pHeadComp = GetHeadComponent();
+        CODComponent* pHeadComp = GetHeadComponent();
 
-        if (m_pHeadComp && pINode)
+        if (pHeadComp && pINode)
         {
-            m_pHeadComp->AddRef();
+            pHeadComp->AddRef();
 
-            if (m_pHeadComp->Release() > 1)
-                m_pHeadComp->Release();
+            if (pHeadComp->Release() > 1)
+                pHeadComp->Release();
         }
 
         pIEdge->Release();
@@ -1637,7 +1640,7 @@ void PSS_LinkSymbol::OnPostDoubleClick(CODModel* pModel, CODController* pCtrl)
 //---------------------------------------------------------------------------
 BOOL PSS_LinkSymbol::OnConnectionMove(CODConnection* pConnection)
 {
-    BOOL result = CODLinkComponent::OnConnectionMove(pConnection);
+    const BOOL result = CODLinkComponent::OnConnectionMove(pConnection);
 
     AdjustLinePath();
     AdjustElementPosition();
@@ -1648,6 +1651,15 @@ BOOL PSS_LinkSymbol::OnConnectionMove(CODConnection* pConnection)
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::OnSymbolNameChange(const CString& oldName, const CString& newName)
+{}
+//---------------------------------------------------------------------------
+void PSS_LinkSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString& oldName)
+{}
+//---------------------------------------------------------------------------
+void PSS_LinkSymbol::OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName)
+{}
+//---------------------------------------------------------------------------
+void PSS_LinkSymbol::OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
@@ -1723,15 +1735,6 @@ bool PSS_LinkSymbol::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
 
     return true;
 }
-//---------------------------------------------------------------------------
-void PSS_LinkSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString& oldName)
-{}
-//---------------------------------------------------------------------------
-void PSS_LinkSymbol::OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CString& oldName)
-{}
-//---------------------------------------------------------------------------
-void PSS_LinkSymbol::OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName)
-{}
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {

@@ -13,7 +13,7 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\PSS_StopSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zModelBPRes.h"
 
@@ -82,9 +82,9 @@ bool ZUProcessNavigation::Visit(CODComponent& Symbol)
     {
         return OnProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
+    else if (ISA(pSymbol, PSS_DeliverableLinkSymbolBP))
     {
-        return OnDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
+        return OnDeliverableLinkSymbol(dynamic_cast<PSS_DeliverableLinkSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_DoorSymbolBP))
     {

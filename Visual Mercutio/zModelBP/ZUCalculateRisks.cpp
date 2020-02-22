@@ -22,7 +22,7 @@
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZUCheckValidUnit.h"
 #include "zBaseLib\PSS_Log.h"
@@ -135,9 +135,9 @@ bool ZUCalculateRisks::Visit(CODComponent& Symbol)
     {
         return CheckProcedureSymbol(dynamic_cast<PSS_ProcedureSymbolBP*>(&Symbol));
     }
-    else if (ISA(pSymbol, ZBDeliverableLinkSymbol))
+    else if (ISA(pSymbol, PSS_DeliverableLinkSymbolBP))
     {
-        return CheckDeliverableLinkSymbol(dynamic_cast<ZBDeliverableLinkSymbol*>(&Symbol));
+        return CheckDeliverableLinkSymbol(dynamic_cast<PSS_DeliverableLinkSymbolBP*>(&Symbol));
     }
     else if (ISA(pSymbol, PSS_DoorSymbolBP))
     {
@@ -644,7 +644,7 @@ bool ZUCalculateRisks::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUCalculateRisks::CheckDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+bool ZUCalculateRisks::CheckDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     ASSERT(pSymbol);
 

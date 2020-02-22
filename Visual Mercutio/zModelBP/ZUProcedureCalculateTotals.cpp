@@ -13,7 +13,7 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\PSS_StopSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
 
@@ -140,7 +140,7 @@ bool ZUProcedureCalculateTotals::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUProcedureCalculateTotals::OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+bool ZUProcedureCalculateTotals::OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     return true;
 }

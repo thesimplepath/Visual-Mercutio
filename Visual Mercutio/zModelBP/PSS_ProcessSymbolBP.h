@@ -621,9 +621,9 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
-        virtual bool OnDropInternalPropertyItem(ZBProperty&    SrcProperty,
-                                                ZBProperty&    DstProperty,
-                                                bool            Top2Down,
+        virtual bool OnDropInternalPropertyItem(ZBProperty&    srcProperty,
+                                                ZBProperty&    dstProperty,
+                                                bool           top2Down,
                                                 ZBPropertySet& props);
 
         /**

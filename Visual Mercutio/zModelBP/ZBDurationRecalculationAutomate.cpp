@@ -18,7 +18,7 @@
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 
 #include "zModel\PSS_ODSymbolManipulator.h"
 
@@ -310,24 +310,24 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
                 // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
-                    !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+                    !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
                 {
                     return true;
                 }
 
-                ZBDeliverableLinkSymbol* pSrcLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                PSS_DeliverableLinkSymbolBP* pSrcLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Now the deliverable to the target door
                 pIEdge = LeavingEdges.GetAt(0);
 
                 // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
-                    !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+                    !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
                 {
                     return true;
                 }
 
-                ZBDeliverableLinkSymbol* pDstLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                PSS_DeliverableLinkSymbolBP* pDstLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Copy the duration
                 pDstLink->SetCaseDuration(pSrcLink->GetCaseDuration());
@@ -380,24 +380,24 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
 
                 // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
-                    !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+                    !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
                 {
                     return true;
                 }
 
-                ZBDeliverableLinkSymbol* pSrcLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                PSS_DeliverableLinkSymbolBP* pSrcLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Now the deliverable to the target door
                 pIEdge = LeavingEdges.GetAt(0);
 
                 // Check if a PSS_LinkSymbol
                 if (!static_cast<CODLinkComponent*>(pIEdge) ||
-                    !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+                    !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
                 {
                     return true;
                 }
 
-                ZBDeliverableLinkSymbol* pDstLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                PSS_DeliverableLinkSymbolBP* pDstLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Copy the duration
                 pDstLink->SetCaseDuration(pSrcLink->GetCaseDuration());
@@ -473,13 +473,13 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfLateralDeliverables(CODEd
 
         // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
-            !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+            !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
         {
             continue;
         }
 
-        ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
-        ZBDeliverableLinkSymbol* pLocalLink = NULL;
+        PSS_DeliverableLinkSymbolBP* pLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
+        PSS_DeliverableLinkSymbolBP* pLocalLink = NULL;
 
         if (!pLink)
         {
@@ -492,9 +492,9 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfLateralDeliverables(CODEd
             // Locate the local symbol
             CODComponent* pComp = pLink->GetLocalSymbol();
 
-            if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+            if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
             {
-                pLocalLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                pLocalLink = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
             }
             else
             {
@@ -544,13 +544,13 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
 
         // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
-            !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+            !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
         {
             continue;
         }
 
-        ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
-        ZBDeliverableLinkSymbol* pLocalLink = NULL;
+        PSS_DeliverableLinkSymbolBP* pLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
+        PSS_DeliverableLinkSymbolBP* pLocalLink = NULL;
 
         if (!pLink)
         {
@@ -563,9 +563,9 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
             // Locate the local symbol
             CODComponent* pComp = pLink->GetLocalSymbol();
 
-            if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+            if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
             {
-                pLocalLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                pLocalLink = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
             }
             else
             {
@@ -586,9 +586,9 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                 return false;
 
             // check if we have a deliverable
-            if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
+            if (ISA(pStateLink->GetLinkSymbol(), PSS_DeliverableLinkSymbolBP))
             {
-                ZBDeliverableLinkSymbol* pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
+                PSS_DeliverableLinkSymbolBP* pDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pStateLink->GetLinkSymbol());
 
                 // not applicable for entering lateral deliverables
                 if (EnteringEdgesLeft.ContainsEdge(pDeliverable) || EnteringEdgesRight.ContainsEdge(pDeliverable))
@@ -603,7 +603,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                 if (pDeliverable->GetCaseDuration() == -1 && pDeliverable->GetCaseDurationMax() == -1)
                     continue;
 
-                ZBDeliverableLinkSymbol* pLocalDeliverable = NULL;
+                PSS_DeliverableLinkSymbolBP* pLocalDeliverable = NULL;
 
                 // test if it is a local symbol
                 if (!pDeliverable->IsLocal())
@@ -611,8 +611,8 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                     // locate the local symbol
                     CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-                    if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
-                        pLocalDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                    if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
+                        pLocalDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
                     else
                         return false;
                 }
@@ -651,10 +651,10 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                 return false;
 
             // check if we have a deliverable
-            if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
+            if (ISA(pStateLink->GetLinkSymbol(), PSS_DeliverableLinkSymbolBP))
             {
-                ZBDeliverableLinkSymbol* pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
-                ZBDeliverableLinkSymbol* pLocalDeliverable = NULL;
+                PSS_DeliverableLinkSymbolBP* pDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pStateLink->GetLinkSymbol());
+                PSS_DeliverableLinkSymbolBP* pLocalDeliverable = NULL;
 
                 // test if it is a local symbol
                 if (!pDeliverable->IsLocal())
@@ -662,8 +662,8 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_Stat
                     // locate the local symbol
                     CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-                    if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
-                        pLocalDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                    if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
+                        pLocalDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
                     else
                         return false;
                 }
@@ -791,12 +791,12 @@ bool ZBDurationRecalculationAutomate::SetStartSymbolCaseDurationOfDownDeliverabl
 
         // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
-            !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+            !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
         {
             continue;
         }
 
-        ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+        PSS_DeliverableLinkSymbolBP* pLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
         if (!pLink)
         {
@@ -856,10 +856,10 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
         }
 
         // Check if we have a deliverable
-        if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
+        if (ISA(pStateLink->GetLinkSymbol(), PSS_DeliverableLinkSymbolBP))
         {
-            ZBDeliverableLinkSymbol* pDeliverable =
-                dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
+            PSS_DeliverableLinkSymbolBP* pDeliverable =
+                dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pStateLink->GetLinkSymbol());
 
             // If an entering lateral deliverable
             if (EnteringEdgesLeft.ContainsEdge(pDeliverable) ||
@@ -887,13 +887,13 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
 
         // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
-            !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+            !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
         {
             continue;
         }
 
-        ZBDeliverableLinkSymbol* pLink = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
-        ZBDeliverableLinkSymbol* pLocalLink = NULL;
+        PSS_DeliverableLinkSymbolBP* pLink = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
+        PSS_DeliverableLinkSymbolBP* pLocalLink = NULL;
 
         if (!pLink)
         {
@@ -906,9 +906,9 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
             // Locate the local symbol
             CODComponent* pComp = pLink->GetLocalSymbol();
 
-            if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+            if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
             {
-                pLocalLink = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                pLocalLink = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
             }
             else
             {
@@ -959,13 +959,13 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
 
         // Check if a PSS_LinkSymbol
         if (!static_cast<CODLinkComponent*>(pIEdge) ||
-            !ISA(static_cast<CODLinkComponent*>(pIEdge), ZBDeliverableLinkSymbol))
+            !ISA(static_cast<CODLinkComponent*>(pIEdge), PSS_DeliverableLinkSymbolBP))
         {
             continue;
         }
 
-        ZBDeliverableLinkSymbol* pDeliverable = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
-        ZBDeliverableLinkSymbol* pLocalDeliverable = NULL;
+        PSS_DeliverableLinkSymbolBP* pDeliverable = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
+        PSS_DeliverableLinkSymbolBP* pLocalDeliverable = NULL;
 
         // Test if it is a local symbol
         if (!pDeliverable->IsLocal())
@@ -973,9 +973,9 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject
             // Locate the local symbol
             CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-            if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
+            if (pComp && ISA(pComp, PSS_DeliverableLinkSymbolBP))
             {
-                pLocalDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+                pLocalDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
             }
             else
             {

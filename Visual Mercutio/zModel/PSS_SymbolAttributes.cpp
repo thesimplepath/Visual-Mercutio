@@ -125,7 +125,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                 pText->SetValue(OD_PROP_TRANSPARENT, TRUE);
 
                 // set transparent
-                CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>(pText->GetProperty(OD_PROP_FILL));
+                CODFillProperties* pFillProps = static_cast<CODFillProperties*>(pText->GetProperty(OD_PROP_FILL));
 
                 if (pFillProps)
                 {
@@ -135,7 +135,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewProps.release();
                 }
 
-                CODEditProperties* pEdit = dynamic_cast<CODEditProperties*>(pText->GetProperty(OD_PROP_EDIT));
+                CODEditProperties* pEdit = static_cast<CODEditProperties*>(pText->GetProperty(OD_PROP_EDIT));
 
                 // can't be selected
                 if (pEdit)
@@ -146,7 +146,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewEdit.release();
                 }
 
-                CODLineProperties* pLine = dynamic_cast<CODLineProperties*>(pText->GetProperty(OD_PROP_LINE));
+                CODLineProperties* pLine = static_cast<CODLineProperties*>(pText->GetProperty(OD_PROP_LINE));
 
                 // no line
                 if (pLine)
@@ -157,7 +157,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewLine.release();
                 }
 
-                CODFontProperties* pFontProp = dynamic_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
+                CODFontProperties* pFontProp = static_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
 
                 // change font
                 if (pFontProp)
@@ -207,7 +207,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                 pText->SetValue(OD_PROP_VERT_ALIGNMENT, DT_TOP);
                 pText->SetValue(OD_PROP_TRANSPARENT,    TRUE);
 
-                CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>(pText->GetProperty(OD_PROP_FILL));
+                CODFillProperties* pFillProps = static_cast<CODFillProperties*>(pText->GetProperty(OD_PROP_FILL));
 
                 // set transparent
                 if (pFillProps)
@@ -218,7 +218,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewProps.release();
                 }
 
-                CODEditProperties* pEdit = dynamic_cast<CODEditProperties*>(pText->GetProperty(OD_PROP_EDIT));
+                CODEditProperties* pEdit = static_cast<CODEditProperties*>(pText->GetProperty(OD_PROP_EDIT));
 
                 // can't be selected
                 if (pEdit)
@@ -229,7 +229,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewEdit.release();
                 }
 
-                CODLineProperties* pLine = dynamic_cast<CODLineProperties*>(pText->GetProperty(OD_PROP_LINE));
+                CODLineProperties* pLine = static_cast<CODLineProperties*>(pText->GetProperty(OD_PROP_LINE));
 
                 // no line
                 if (pLine)
@@ -240,7 +240,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewLine.release();
                 }
 
-                CODFontProperties* pFontProp = dynamic_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
+                CODFontProperties* pFontProp = static_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
 
                 // change font
                 if (pFontProp)
@@ -256,10 +256,11 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
         }
 
         // if an attribute area exists, check for the splitter1
-        CODComponent* pComp = PSS_ODSymbolManipulator::FindSymbol(pSymComp, M_SplitterComponentLine1);
+        CODLineComponent* pComp =
+                dynamic_cast<CODLineComponent*>(PSS_ODSymbolManipulator::FindSymbol(pSymComp, M_SplitterComponentLine1));
 
         // if not found, need to create one
-        if (!pComp || !ISA(pComp, CODLineComponent))
+        if (!pComp)
         {
             std::unique_ptr<CODLineComponent> pSplitter(new CODLineComponent());
 
@@ -329,7 +330,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                 pText->SetValue(OD_PROP_MULTILINE,   TRUE);
                 pText->SetValue(OD_PROP_TRANSPARENT, TRUE);
 
-                CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>(pText->GetProperty(OD_PROP_FILL));
+                CODFillProperties* pFillProps = static_cast<CODFillProperties*>(pText->GetProperty(OD_PROP_FILL));
 
                 // set transparent
                 if (pFillProps)
@@ -340,7 +341,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewProps.release();
                 }
 
-                CODEditProperties* pEdit = dynamic_cast<CODEditProperties*>(pText->GetProperty(OD_PROP_EDIT));
+                CODEditProperties* pEdit = static_cast<CODEditProperties*>(pText->GetProperty(OD_PROP_EDIT));
 
                 // can't be selected
                 if (pEdit)
@@ -351,7 +352,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewEdit.release();
                 }
 
-                CODLineProperties* pLine = dynamic_cast<CODLineProperties*>(pText->GetProperty(OD_PROP_LINE));
+                CODLineProperties* pLine = static_cast<CODLineProperties*>(pText->GetProperty(OD_PROP_LINE));
 
                 // no line
                 if (pLine)
@@ -362,7 +363,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                     pNewLine.release();
                 }
 
-                CODFontProperties* pFontProp = dynamic_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
+                CODFontProperties* pFontProp = static_cast<CODFontProperties*>(pText->GetProperty(OD_PROP_FONT));
 
                 // change font
                 if (pFontProp)
@@ -378,11 +379,12 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
         }
 
         // if a description exists, check for the second splitter
-        CODComponent* pComp = PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol), 
-                                                                  M_SplitterComponentLine2);
+        CODComponent* pComp =
+                dynamic_cast<CODLineComponent*>(PSS_ODSymbolManipulator::FindSymbol(dynamic_cast<CODComponent*>(m_pSymbol),
+                                                                                    M_SplitterComponentLine2));
 
         // if not found, need to create one
-        if (!pComp || !ISA(pComp, CODLineComponent))
+        if (!pComp)
         {
             std::unique_ptr<CODLineComponent> pSplitter(new CODLineComponent());
 
@@ -480,7 +482,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
         ShowDescriptionArea(isDescriptionsAreaVisible);
 
     // select the symbol
-    CODEditProperties* pPropEdit = dynamic_cast<CODEditProperties*>(pSymComp->GetProperty(OD_PROP_EDIT));
+    CODEditProperties* pPropEdit = static_cast<CODEditProperties*>(pSymComp->GetProperty(OD_PROP_EDIT));
 
     if (pPropEdit)
     {

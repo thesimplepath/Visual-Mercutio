@@ -16,7 +16,7 @@
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -99,7 +99,7 @@ bool ZUProcessCalculateTotals::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
     return true;
 }
 
-bool ZUProcessCalculateTotals::OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol)
+bool ZUProcessCalculateTotals::OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     return true;
 }

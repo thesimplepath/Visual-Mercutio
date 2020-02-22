@@ -579,7 +579,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
 
         /**
         * Called when the symbol name has changed
-        *@param comp - the symbol component
+        *@param[in, out] comp - the symbol component
         *@param oldName - the old name
         */
         virtual void OnSymbolNameChanged(CODComponent& comp, const CString& oldName) = 0;

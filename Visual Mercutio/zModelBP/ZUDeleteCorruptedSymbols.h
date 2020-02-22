@@ -32,7 +32,7 @@
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
 #include "PSS_PackageSymbolBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 
 #include "PSS_ProcessGraphModelMdlBP.h"
 
@@ -70,7 +70,7 @@ private:
     BOOL IsCorrupted(PSS_DoorSymbolBP* m_Symbol);
     BOOL IsCorrupted(PSS_PageSymbolBP* m_Symbol);
     BOOL IsCorrupted(PSS_PackageSymbolBP* m_Symbol);
-    BOOL IsCorrupted(ZBDeliverableLinkSymbol* m_Symbol);
+    BOOL IsCorrupted(PSS_DeliverableLinkSymbolBP* m_Symbol);
 
 private:
     CODComponentSet CorruptedSymbols;

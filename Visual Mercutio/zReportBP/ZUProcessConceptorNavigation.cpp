@@ -16,7 +16,7 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_StartSymbolBP.h"
 #include "zModelBP\PSS_StopSymbolBP.h"
-#include "zModelBP\ZBDeliverableLinkSymbol.h"
+#include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zReport\ZBOStreamGrid.h"
 
@@ -172,8 +172,8 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pPro
         {
             for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
             {
-                IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-                ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+                PSS_DeliverableLinkSymbolBP* pComp = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Check if null and continue if the case
                 if (!pComp)
@@ -217,8 +217,8 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pPro
         {
             for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
             {
-                IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-                ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+                PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Check if null and continue if the case
                 if (!pComp)
@@ -254,8 +254,8 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pPro
         {
             for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
             {
-                IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-                ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+                PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Check if null and continue if the case
                 if (!pComp)
@@ -300,8 +300,8 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pPro
         {
             for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
             {
-                IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-                ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+                PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Check if null and continue if the case
                 if (!pComp)
@@ -337,8 +337,8 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pPro
         {
             for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
             {
-                IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-                ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+                PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Check if null and continue if the case
                 if (!pComp)
@@ -503,8 +503,8 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol(PSS_ProcedureSymbolBP* pPro
         {
             for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
             {
-                IODEdge*                    pIEdge = Edges.GetAt(nEdgeIdx);
-                ZBDeliverableLinkSymbol*    pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                IODEdge*                     pIEdge = Edges.GetAt(nEdgeIdx);
+                PSS_DeliverableLinkSymbolBP* pComp  = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                 // Check if null and continue if the case
                 if (!pComp)
@@ -708,12 +708,12 @@ bool ZUProcessConceptorNavigation::StartSection(CODNodeArray& Nodes)
 
             if (pStart->GetEdgesLeaving(Edges) > 0)
             {
-                ZBDeliverableLinkSymbol* pDeliverable = NULL;
+                PSS_DeliverableLinkSymbolBP* pDeliverable = NULL;
 
                 for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
                 {
                     IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-                    pDeliverable = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+                    pDeliverable = static_cast<PSS_DeliverableLinkSymbolBP*>(pIEdge);
 
                     // Check if null and continue if the case
                     if (!pDeliverable)

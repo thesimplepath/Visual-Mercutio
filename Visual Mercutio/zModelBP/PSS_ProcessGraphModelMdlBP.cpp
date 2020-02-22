@@ -24,7 +24,7 @@
 #include "PSS_StopSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
-#include "ZBDeliverableLinkSymbol.h"
+#include "PSS_DeliverableLinkSymbolBP.h"
 #include "ZBInputAttributes.h"
 #include "ZBDistributionAttributes.h"
 #include "ZUCheckSymbolConsistency.h"
@@ -723,7 +723,7 @@ void PSS_ProcessGraphModelMdlBP::ConvertDeliverables()
         if (!pSymbol)
             continue;
 
-        ZBDeliverableLinkSymbol* pDeliverableSymbol = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
+        PSS_DeliverableLinkSymbolBP* pDeliverableSymbol = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp);
 
         // If a deliverable symbol
         if (pDeliverableSymbol)
@@ -743,7 +743,7 @@ void PSS_ProcessGraphModelMdlBP::ConvertDeliverables()
             if (!pLabelComp)
                 continue;
 
-            CODFontProperties* pFontProp = (CODFontProperties*)pLabelComp->GetProperty(OD_PROP_FONT);
+            CODFontProperties* pFontProp = static_cast<CODFontProperties*>(pLabelComp->GetProperty(OD_PROP_FONT));
 
             if (pFontProp)
             {
@@ -761,7 +761,7 @@ void PSS_ProcessGraphModelMdlBP::ConvertDeliverables()
                 pLabelComp->SetValue(OD_PROP_VERT_ALIGNMENT, DT_TOP);
 
                 // change the fill color
-                CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>(pLabelComp->GetProperty(OD_PROP_FILL));
+                CODFillProperties* pFillProps = static_cast<CODFillProperties*>(pLabelComp->GetProperty(OD_PROP_FILL));
 
                 if (pFillProps)
                 {

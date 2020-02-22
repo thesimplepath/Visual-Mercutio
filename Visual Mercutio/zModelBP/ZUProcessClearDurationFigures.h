@@ -57,7 +57,7 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
     virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
-    virtual bool OnDeliverableLinkSymbol(ZBDeliverableLinkSymbol* pSymbol);
+    virtual bool OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol);
 };
 
 #endif
