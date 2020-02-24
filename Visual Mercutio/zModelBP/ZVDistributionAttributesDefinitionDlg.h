@@ -22,15 +22,24 @@
 #include "zProperty\ZIProperties.h"
 
 // class name mapping
+#ifndef PSS_DistributionAttribute
+    #define PSS_DistributionAttribute ZBDistributionAttribute
+#endif
+#ifndef PSS_DistributionAttributeManager
+    #define PSS_DistributionAttributeManager ZBDistributionAttributeManager
+#endif
+#ifndef PSS_DistributionRulesForRole
+    #define PSS_DistributionRulesForRole ZBDistributionRulesForRole
+#endif
 #ifndef PSS_UserGroupEntity
     #define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
 
 // forward class declaration
-class ZBDistributionAttributeManager;
+class PSS_DistributionAttribute;
+class PSS_DistributionAttributeManager;
 class ZBDynamicPropertiesManager;
-class ZBDistributionAttribute;
-class ZBDistributionRulesForRole;
+class PSS_DistributionRulesForRole;
 class PSS_UserGroupEntity;
 
 
@@ -53,12 +62,12 @@ class AFX_EXT_CLASS ZVDistributionAttributesDefinitionDlg : public CDialog
 {
 // Construction
 public:
-    ZVDistributionAttributesDefinitionDlg(ZBDistributionAttributeManager* pDistributionManager, 
+    ZVDistributionAttributesDefinitionDlg(PSS_DistributionAttributeManager* pDistributionManager,
                                           ZBDynamicPropertiesManager* pPropManager, 
                                           ZBPropertySet* pSet, 
                                           PSS_UserGroupEntity* pMainUserGroup,
                                           const CString GroupGUID = "",
-                                          ZBDistributionAttribute* pDistributionAttr = NULL, 
+                                          PSS_DistributionAttribute* pDistributionAttr = NULL,
                                           CWnd* pParent = NULL);   // standard constructor
 
     virtual ~ZVDistributionAttributesDefinitionDlg();
@@ -75,7 +84,7 @@ public:
     {
         return m_GroupGUID;
     };
-    ZBDistributionAttribute* GetDistributionAttribute()
+    PSS_DistributionAttribute* GetDistributionAttribute()
     {
         return m_pDistributionAttr;
     };
@@ -116,25 +125,25 @@ protected:
 
 private:
     void CheckControlState();
-    ZBDistributionAttribute* GetSelectedDistributionAttribute()
+    PSS_DistributionAttribute* GetSelectedDistributionAttribute()
     {
         return m_List.GetSelectedDistributionAttribute();
     };
-    ZBDistributionRulesForRole*    GetSelectedDistributionRuleForRole()
+    PSS_DistributionRulesForRole* GetSelectedDistributionRuleForRole()
     {
         return m_List.GetSelectedDistributionRuleForRole();
     };
-    ZBDistributionRule*    GetSelectedDistributionRule()
+    ZBDistributionRule* GetSelectedDistributionRule()
     {
         return m_List.GetSelectedDistributionRule();
     };
 
 private:
-    ZBDistributionAttributeManager* m_pDistributionManager;
+    PSS_DistributionAttributeManager* m_pDistributionManager;
     ZBDynamicPropertiesManager* m_pPropManager;
     ZBPropertySet* m_pSet;
     PSS_UserGroupEntity* m_pMainUserGroup;
-    ZBDistributionAttribute* m_pDistributionAttr;
+    PSS_DistributionAttribute* m_pDistributionAttr;
 
     int m_CategoryID;
     int m_ItemID;
@@ -143,7 +152,4 @@ private:
     bool m_Allocated;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVDISTRIBUTIONATTRIBUTESDEFINITIONDLG_H__D757EF50_18E9_4D65_A086_707453C89826__INCLUDED_)
+#endif

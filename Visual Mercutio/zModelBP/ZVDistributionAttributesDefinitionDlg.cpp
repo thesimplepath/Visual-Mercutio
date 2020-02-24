@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVDistributionAttributesDefinitionDlg.h"
 
-#include "ZBDistributionAttributes.h"
+#include "PSS_DistributionAttributes.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
@@ -29,12 +29,12 @@ static char THIS_FILE[] = __FILE__;
 // ZVDistributionAttributesDefinitionDlg dialog
 
 
-ZVDistributionAttributesDefinitionDlg::ZVDistributionAttributesDefinitionDlg(ZBDistributionAttributeManager* pDistributionManager,
+ZVDistributionAttributesDefinitionDlg::ZVDistributionAttributesDefinitionDlg(PSS_DistributionAttributeManager* pDistributionManager,
                                                                              ZBDynamicPropertiesManager* pPropManager,
                                                                              ZBPropertySet* pSet,
                                                                              PSS_UserGroupEntity* pMainUserGroup,
                                                                              const CString GroupGUID /*= ""*/,
-                                                                             ZBDistributionAttribute* pDistributionAttr /*= NULL*/,
+                                                                             PSS_DistributionAttribute* pDistributionAttr /*= NULL*/,
                                                                              CWnd* pParent /*=NULL*/)
     : CDialog(ZVDistributionAttributesDefinitionDlg::IDD, pParent),
     m_pDistributionManager(pDistributionManager),
@@ -128,7 +128,7 @@ BOOL ZVDistributionAttributesDefinitionDlg::OnInitDialog()
     if (!m_pDistributionAttr)
     {
         m_Allocated = true;
-        m_pDistributionAttr = new ZBDistributionAttribute;
+        m_pDistributionAttr = new PSS_DistributionAttribute();
         // If we do have a group defined
         // then assign the group id to the distribution attribute
         if (!m_GroupGUID.IsEmpty() &&
@@ -257,7 +257,7 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
 
 void ZVDistributionAttributesDefinitionDlg::OnAddruleButton()
 {
-    ZBDistributionRulesForRole*    pRole = GetSelectedDistributionRuleForRole();
+    PSS_DistributionRulesForRole* pRole = GetSelectedDistributionRuleForRole();
     if (!pRole)
     {
         PSS_MsgBox mBox;

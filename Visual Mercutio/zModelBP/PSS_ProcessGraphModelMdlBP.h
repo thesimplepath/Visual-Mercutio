@@ -27,9 +27,14 @@
 
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 
+// old class name mapping
+#ifndef PSS_DistributionAttributeManager
+    #define PSS_DistributionAttributeManager ZBDistributionAttributeManager
+#endif
+
 // forward class declaration
 class ZBInputAttributeManager;
-class ZBDistributionAttributeManager;
+class PSS_DistributionAttributeManager;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -211,13 +216,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdlBP : public PSS_ProcessGraphModelMdl
         *@param deleteExisting - if true, the existing attributes will be deleted before assigning the new one
         *@return the newly created input attributes, NULL on error
         */
-        virtual ZBDistributionAttributeManager* AllocateDistributionAttributes(bool deleteExisting = false);
+        virtual PSS_DistributionAttributeManager* AllocateDistributionAttributes(bool deleteExisting = false);
 
         /**
         * Gets the distribution attributes
         *@return the distribution attributes
         */
-        virtual inline ZBDistributionAttributeManager* GetDistributionAttributes();
+        virtual inline PSS_DistributionAttributeManager* GetDistributionAttributes();
 
         /**
         * Checks if the model contains distribution attributes
@@ -272,8 +277,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdlBP : public PSS_ProcessGraphModelMdl
         virtual void ConvertDeliverables();
 
     private:
-        ZBInputAttributeManager*        m_pInputAttributes;
-        ZBDistributionAttributeManager* m_pDistributionAttributes;
+        ZBInputAttributeManager*          m_pInputAttributes;
+        PSS_DistributionAttributeManager* m_pDistributionAttributes;
 };
 
 //---------------------------------------------------------------------------
@@ -299,7 +304,7 @@ bool PSS_ProcessGraphModelMdlBP::HasInputAttributes()
     return GetInputAttributes();
 }
 //---------------------------------------------------------------------------
-ZBDistributionAttributeManager* PSS_ProcessGraphModelMdlBP::GetDistributionAttributes()
+PSS_DistributionAttributeManager* PSS_ProcessGraphModelMdlBP::GetDistributionAttributes()
 {
     if (GetRoot() == this)
         return m_pDistributionAttributes;

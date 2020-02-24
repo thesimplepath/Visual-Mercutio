@@ -12,7 +12,7 @@
 
 #include "ZVDistributionAttributesDefinitionDlg.h"
 
-#include "ZBDistributionAttributes.h"
+#include "PSS_DistributionAttributes.h"
 
 #include "zModel\PSS_SymbolObserverMsg.h"
 #include "zModel\PSS_Symbol.h"
@@ -376,7 +376,9 @@ void ZVDistributionAttributes::OnAddDistributionAttrib()
     if (!dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->HasDistributionAttributes())
         dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->AllocateDistributionAttributes();
 
-    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+    PSS_DistributionAttributeManager* pDistribManager =
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+
     if (!pDistribManager)
         return;
 
@@ -399,10 +401,10 @@ void ZVDistributionAttributes::OnAddDistributionAttrib()
     if (dlg.DoModal() == IDOK)
     {
         // Allocate a new attribute
-        ZBDistributionAttribute* pDistributionAttrib = dlg.GetDistributionAttribute();
+        PSS_DistributionAttribute* pDistributionAttrib = dlg.GetDistributionAttribute();
         if (pDistributionAttrib)
         {
-            ZBDistributionAttribute* pDistr = pDistributionAttrib->Dup();
+            PSS_DistributionAttribute* pDistr = pDistributionAttrib->Dup();
             ASSERT(pDistr);
 
             // Assigns value members
@@ -439,12 +441,12 @@ void ZVDistributionAttributes::OnDeleteDistributionAttrib()
         !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+    PSS_DistributionAttributeManager* pDistribManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
     if (!pDistribManager)
         return;
 
 
-    ZBDistributionAttribute* pDistributionAttrib = GetSelectedDistributionAttribute();
+    PSS_DistributionAttribute* pDistributionAttrib = GetSelectedDistributionAttribute();
     if (!pDistributionAttrib)
     {
         PSS_MsgBox mBox;
@@ -474,11 +476,13 @@ void ZVDistributionAttributes::OnModifyDistributionAttrib()
         !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    ZBDistributionAttributeManager* pDistribManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+    PSS_DistributionAttributeManager* pDistribManager =
+            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetDistributionAttributes();
+
     if (!pDistribManager)
         return;
 
-    ZBDistributionAttribute* pDistributionAttrib = GetSelectedDistributionAttribute();
+    PSS_DistributionAttribute* pDistributionAttrib = GetSelectedDistributionAttribute();
     if (!pDistributionAttrib)
     {
         PSS_MsgBox mBox;

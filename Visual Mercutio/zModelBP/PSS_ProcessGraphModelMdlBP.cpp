@@ -26,7 +26,7 @@
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
 #include "ZBInputAttributes.h"
-#include "ZBDistributionAttributes.h"
+#include "PSS_DistributionAttributes.h"
 #include "ZUCheckSymbolConsistency.h"
 
 // resources
@@ -332,7 +332,7 @@ ZBInputAttributeManager* PSS_ProcessGraphModelMdlBP::AllocateInputAttributes(boo
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZBDistributionAttributeManager* PSS_ProcessGraphModelMdlBP::AllocateDistributionAttributes(bool deleteExisting)
+PSS_DistributionAttributeManager* PSS_ProcessGraphModelMdlBP::AllocateDistributionAttributes(bool deleteExisting)
 {
     if (GetRoot() == this)
     {
@@ -342,7 +342,7 @@ ZBDistributionAttributeManager* PSS_ProcessGraphModelMdlBP::AllocateDistribution
             m_pDistributionAttributes = NULL;
         }
 
-        m_pDistributionAttributes = new ZBDistributionAttributeManager;
+        m_pDistributionAttributes = new PSS_DistributionAttributeManager;
 
         return m_pDistributionAttributes;
     }

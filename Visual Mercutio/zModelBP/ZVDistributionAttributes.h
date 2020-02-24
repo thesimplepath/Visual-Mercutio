@@ -106,10 +106,10 @@ public:
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Operations
-    void Initialize(ZBDistributionAttributeManager* pDistributionManager,
+    void Initialize(PSS_DistributionAttributeManager* pDistributionManager,
                     ZBDynamicPropertiesManager* pPropManager,
                     PSS_UserGroupEntity* pMainUserGroup,
-                    ZBDistributionAttribute* pDistributionAttribute = NULL,
+                    PSS_DistributionAttribute* pDistributionAttribute = NULL,
                     bool ShowAll = false, int SymbolRef = -1)
     {
         m_listctrl.Initialize(pDistributionManager, pPropManager,
@@ -128,11 +128,11 @@ public:
     void Refresh();
     void Empty();
 
-    ZBDistributionAttribute* GetSelectedDistributionAttribute()
+    PSS_DistributionAttribute* GetSelectedDistributionAttribute()
     {
         return m_listctrl.GetSelectedDistributionAttribute();
     };
-    ZBDistributionRulesForRole*    GetSelectedDistributionRuleForRole()
+    PSS_DistributionRulesForRole*    GetSelectedDistributionRuleForRole()
     {
         return m_listctrl.GetSelectedDistributionRuleForRole();
     };

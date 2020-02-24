@@ -38,12 +38,12 @@ class AFX_EXT_CLASS ZVDistributionAttributesSelectionDlg : public CDialog
 {
 // Construction
 public:
-    ZVDistributionAttributesSelectionDlg(ZBDistributionAttributeManager* pDistribManager, 
+    ZVDistributionAttributesSelectionDlg(PSS_DistributionAttributeManager* pDistribManager,
                                          ZBDynamicPropertiesManager* pPropManager, 
                                          PSS_UserGroupEntity* pMainUserGroup,
                                          CWnd* pParent = NULL);   // standard constructor
 
-    ZBDistributionAttribute* GetSelectedDistributionAttribute()
+    PSS_DistributionAttribute* GetSelectedDistributionAttribute()
     {
         return m_List.GetSelectedDistributionAttribute();
     };
@@ -84,7 +84,7 @@ private:
     void CheckControlState();
 
 private:
-    ZBDistributionAttributeManager* m_pDistribManager;
+    PSS_DistributionAttributeManager* m_pDistribManager;
     ZBDynamicPropertiesManager* m_pPropManager;
     PSS_UserGroupEntity* m_pMainUserGroup;
 };

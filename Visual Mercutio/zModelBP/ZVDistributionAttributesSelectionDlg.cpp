@@ -14,7 +14,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVDistributionAttributesSelectionDlg dialog
 
 
-ZVDistributionAttributesSelectionDlg::ZVDistributionAttributesSelectionDlg(ZBDistributionAttributeManager* pDistribManager, 
+ZVDistributionAttributesSelectionDlg::ZVDistributionAttributesSelectionDlg(PSS_DistributionAttributeManager* pDistribManager,
                                                                            ZBDynamicPropertiesManager* pPropManager, 
                                                                            PSS_UserGroupEntity* pMainUserGroup,
                                                                            CWnd* pParent /*=NULL*/)

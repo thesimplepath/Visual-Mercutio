@@ -36,6 +36,15 @@
 #include "zBaseLib\PSS_TreeListCtrl.h"
 
 // class name mapping
+#ifndef PSS_DistributionAttribute
+    #define PSS_DistributionAttribute ZBDistributionAttribute
+#endif
+#ifndef PSS_DistributionAttributeManager
+    #define PSS_DistributionAttributeManager ZBDistributionAttributeManager
+#endif
+#ifndef PSS_DistributionRulesForRole
+    #define PSS_DistributionRulesForRole ZBDistributionRulesForRole
+#endif
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
@@ -44,10 +53,10 @@
 #endif
 
 // forward class declaration
-class ZBDistributionAttribute;
-class ZBDistributionAttributeManager;
+class PSS_DistributionAttribute;
+class PSS_DistributionAttributeManager;
 class ZBDistributionRule;
-class ZBDistributionRulesForRole;
+class PSS_DistributionRulesForRole;
 class ZBDynamicPropertiesManager;
 class PSS_ProcessGraphModelDoc;
 class PSS_UserGroupEntity;
@@ -76,15 +85,15 @@ public:
     ZCDistributionAttributesList();
     virtual ~ZCDistributionAttributesList();
 
-    ZBDistributionAttribute* GetSelectedDistributionAttribute();
-    ZBDistributionRulesForRole*    GetSelectedDistributionRuleForRole();
+    PSS_DistributionAttribute* GetSelectedDistributionAttribute();
+    PSS_DistributionRulesForRole*    GetSelectedDistributionRuleForRole();
     ZBDistributionRule*    GetSelectedDistributionRule();
 
 
-    int    Initialize(ZBDistributionAttributeManager* pDistributionManager,
+    int    Initialize(PSS_DistributionAttributeManager* pDistributionManager,
                       ZBDynamicPropertiesManager* pPropManager,
                       PSS_UserGroupEntity* pMainUserGroup,
-                      ZBDistributionAttribute* pDistributionAttribute = NULL,
+                      PSS_DistributionAttribute* pDistributionAttribute = NULL,
                       bool ShowAll = false, int SymbolRef = -1);
     void  ShowAll(bool value = true, bool bRefresh = true)
     {
@@ -118,11 +127,11 @@ private:
 
     void    BuildColumns();
     void    DocumentActivated(PSS_ProcessGraphModelDoc* pDoc);
-    int        InsertDistributionAttribute(ZBDistributionAttribute* pDistributionAttribute, int Level);
+    int        InsertDistributionAttribute(PSS_DistributionAttribute* pDistributionAttribute, int Level);
 
 private: //## implementation
-    ZBDistributionAttribute* m_pDistributionAttribute;
-    ZBDistributionAttributeManager*    m_pDistributionManager;
+    PSS_DistributionAttribute* m_pDistributionAttribute;
+    PSS_DistributionAttributeManager*    m_pDistributionManager;
     ZBDynamicPropertiesManager* m_pPropManager;
     PSS_UserGroupEntity* m_pMainUserGroup;
     bool                    m_ShowAll;

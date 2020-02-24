@@ -28,7 +28,7 @@
 #include "PSS_StopSymbolBP.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
 #include "ZBInputAttributes.h"
-#include "ZBDistributionAttributes.h"
+#include "PSS_DistributionAttributes.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -210,21 +210,21 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
     // publish the distribution attributes
     if (pModel && pModel->HasDistributionAttributes())
     {
-        ZBDistributionAttributeManager* pDistribManager = pModel->GetDistributionAttributes();
+        PSS_DistributionAttributeManager* pDistribManager = pModel->GetDistributionAttributes();
 
         if (pDistribManager)
         {
-            ZBDistributionAttributeIterator itAttrib(&pDistribManager->GetDistributionAttributeSet());
+            PSS_DistributionAttributeManager::PSS_DistributionAttributeIterator itAttrib (&pDistribManager->GetDistributionAttributeSet());
 
             // iterate through distribution attributes
-            for (ZBDistributionAttribute* pAttrib = itAttrib.GetFirst(); pAttrib; pAttrib = itAttrib.GetNext())
+            for (PSS_DistributionAttribute* pAttrib = itAttrib.GetFirst(); pAttrib; pAttrib = itAttrib.GetNext())
             {
-                ZBDistributionRulesForRoleIterator itRole(&pAttrib->GetDistributionRulesForRoleSet());
+                PSS_DistributionAttribute::PSS_DistributionRulesForRoleIterator itRole(&pAttrib->GetDistributionRulesForRoleSet());
 
                 // iterate through roles
-                for (ZBDistributionRulesForRole* pRole = itRole.GetFirst(); pRole; pRole = itRole.GetNext())
+                for (PSS_DistributionRulesForRole* pRole = itRole.GetFirst(); pRole; pRole = itRole.GetNext())
                 {
-                    ZBDistributionRuleIterator itRule(&pRole->GetDistributionRuleSet());
+                    ZBDistributionRuleIterator itRule(&pRole->GetDistributionRuleset());
 
                     // iterate through rules
                     for (ZBDistributionRule* pDistribRule = itRule.GetFirst(); pDistribRule; pDistribRule = itRule.GetNext())

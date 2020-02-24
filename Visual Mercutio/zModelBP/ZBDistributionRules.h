@@ -1,15 +1,18 @@
-// ZBDistributionRules.h: interface for the ZBDistributionRule class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_DistributionRules -----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the distribution rules                            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZBDistributionRules_H__30293825_AA01_4900_B87E_808BA14EE11B__INCLUDED_)
-#define AFX_ZBDistributionRules_H__30293825_AA01_4900_B87E_808BA14EE11B__INCLUDED_
+#ifndef PSS_DistributionRulesH
+#define PSS_DistributionRulesH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,23 +20,27 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-
 #ifdef _ZMODELBPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// scope symbols in stingray foundation library
+using namespace sfl;
 
-class AFX_EXT_CLASS ZBDistributionRule : public CObject  
+/**
+* Distribution rule
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS ZBDistributionRule : public CObject
 {
     DECLARE_SERIAL(ZBDistributionRule)
+
 public:
     ZBDistributionRule(int Operator = -1, CString Value = "", int LogicalOperator = -1);
     virtual ~ZBDistributionRule();
@@ -126,27 +133,13 @@ inline BOOL ZBDistributionRule::operator != (const ZBDistributionRule& Rule)
             Rule.m_LogicalOperator != this->m_LogicalOperator);
 }
 
-
-
-/////////////////////////////////////////////////////////////////////////////
-// scope symbols in stingray foundation library
-using namespace sfl;
-
-
-///////////////////////////////////////////////////////////////////////////
-// Collection definitions
-
-//@type ZBDistributionRuleSet | An array of ZBDistributionRule pointers.
-//@iex typedef CCArray_T<ZBDistributionRule*,ZBDistributionRule*> ZBDistributionRuleSet;
 typedef CCArray_T<ZBDistributionRule*,ZBDistributionRule*> ZBDistributionRuleSet;
-
-//@type ZBDistributionRule | An iterator for ZBDistributionRuleSet collections.
-//@iex typedef Iterator_T<ZBDistributionRule*> ZBDistributionRuleIterator;
 typedef Iterator_T<ZBDistributionRule*> ZBDistributionRuleIterator;
 
-
-
-
+/**
+* Distribution rules
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZBDistributionRuleManager : public CObject
 {
     DECLARE_SERIAL(ZBDistributionRuleManager)
@@ -185,16 +178,7 @@ public:
     bool DeleteDistributionRule( ZBDistributionRule* pDistributionRule );
 
 private:
-
-private:
     ZBDistributionRuleSet m_Set;
-
 };
 
-#endif // !defined(AFX_ZBDistributionRules_H__30293825_AA01_4900_B87E_808BA14EE11B__INCLUDED_)
-
-
-
-
-
-
+#endif
