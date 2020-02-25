@@ -233,8 +233,8 @@ class AFX_EXT_CLASS PSS_AnnualNumberPropertiesBP : public CObject
         inline operator double() const;
 
         /**
-        * Makes a copy of this properties object
-        *@return a copy of this properties object, NULL on error
+        * Makes a copy of this object
+        *@return a copy of this object, NULL on error
         */
         virtual inline PSS_AnnualNumberPropertiesBP* Dup() const;
 

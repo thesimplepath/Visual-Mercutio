@@ -25,7 +25,7 @@
 #include "PSS_ProcedureSymbolBP.h"
 #include "PSS_ProcessSymbolBP.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
-#include "ZBInputAttributes.h"
+#include "PSS_InputAttributes.h"
 #include "PSS_DistributionAttributes.h"
 #include "ZUCheckSymbolConsistency.h"
 
@@ -309,7 +309,7 @@ void PSS_ProcessGraphModelMdlBP::NotifyDeletePage(PSS_ProcessGraphPage* pPage)
     }
 }
 //---------------------------------------------------------------------------
-ZBInputAttributeManager* PSS_ProcessGraphModelMdlBP::AllocateInputAttributes(bool deleteExisting)
+PSS_InputAttributeManager* PSS_ProcessGraphModelMdlBP::AllocateInputAttributes(bool deleteExisting)
 {
     if (GetRoot() == this)
     {
@@ -319,7 +319,7 @@ ZBInputAttributeManager* PSS_ProcessGraphModelMdlBP::AllocateInputAttributes(boo
             m_pInputAttributes = NULL;
         }
 
-        m_pInputAttributes = new ZBInputAttributeManager();
+        m_pInputAttributes = new PSS_InputAttributeManager();
 
         return m_pInputAttributes;
     }

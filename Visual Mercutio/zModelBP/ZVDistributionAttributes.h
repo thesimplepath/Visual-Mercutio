@@ -132,11 +132,11 @@ public:
     {
         return m_listctrl.GetSelectedDistributionAttribute();
     };
-    PSS_DistributionRulesForRole*    GetSelectedDistributionRuleForRole()
+    PSS_DistributionRulesForRole* GetSelectedDistributionRuleForRole()
     {
         return m_listctrl.GetSelectedDistributionRuleForRole();
     };
-    ZBDistributionRule*    GetSelectedDistributionRule()
+    PSS_DistributionRule* GetSelectedDistributionRule()
     {
         return m_listctrl.GetSelectedDistributionRule();
     };

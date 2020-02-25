@@ -32,7 +32,7 @@
 #endif
 
 // processsoft
-#include "zModelBP\ZBDistributionRules.h"
+#include "zModelBP\PSS_DistributionRules.h"
 
 // old class name mapping
 #ifndef PSS_UserGroupEntity
@@ -121,7 +121,7 @@ class AFX_EXT_CLASS PSS_DistributionRulesForRole : public CObject
         * Gets the distribution ruleset
         *@return the distribution ruleset
         */
-        virtual inline ZBDistributionRuleSet& GetDistributionRuleset();
+        virtual inline PSS_DistributionRuleManager::IDistributionRuleset& GetDistributionRuleset();
 
         /**
         * Deletes all the distribution rules
@@ -133,7 +133,7 @@ class AFX_EXT_CLASS PSS_DistributionRulesForRole : public CObject
         *@param index - the index
         *@return the distribution rule, NULL if not found or on error
         */
-        virtual inline ZBDistributionRule* GetDistributionRuleAt(std::size_t index);
+        virtual inline PSS_DistributionRule* GetDistributionRuleAt(std::size_t index);
 
         /**
         * Gets the distribution rule count
@@ -145,13 +145,23 @@ class AFX_EXT_CLASS PSS_DistributionRulesForRole : public CObject
         * Adds a distribution rule
         *@param pDistributionRule - the rule to add
         */
-        virtual inline void AddDistributionRule(ZBDistributionRule* pDistributionRule);
+        virtual inline void AddDistributionRule(PSS_DistributionRule* pDistributionRule);
 
         /**
         * Adds a distribution rule
-        *@param ruleOp - the rule operator
+        *@param ruleOp - the rule operator, which may be one of the following:
+        *               -1 none
+        *                1 ==
+        *                2 <
+        *                3 <=
+        *                4 >=
+        *                5 >
+        *                6 !=
         *@param value - the value
-        *@param logicalOperator - the logical operator to apply
+        *@param logicalOperator - the rule logical operator, which may be one of the following:
+        *                        -1 none
+        *                         0 AND
+        *                         1 OR
         */
         virtual inline void AddDistributionRule(int ruleOp, const CString& value, int logicalOperator = -1);
 
@@ -160,14 +170,14 @@ class AFX_EXT_CLASS PSS_DistributionRulesForRole : public CObject
         *@param pDistributionRule - the rule to check
         *@return true if the distribution rule exists, otherwise false
         */
-        virtual inline bool Exist(ZBDistributionRule* pDistributionRule);
+        virtual inline bool Exist(PSS_DistributionRule* pDistributionRule);
 
         /**
         * Deletes a distribution rule
         *@param pDistributionRule - the rule to delete
         *@return true on success, otherwise false
         */
-        virtual inline bool DeleteDistributionRule(ZBDistributionRule* pDistributionRule);
+        virtual inline bool DeleteDistributionRule(PSS_DistributionRule* pDistributionRule);
 
         /**
         * Serializes the class content to an archive
@@ -176,8 +186,8 @@ class AFX_EXT_CLASS PSS_DistributionRulesForRole : public CObject
         virtual void Serialize(CArchive& ar);
 
     private:
-        ZBDistributionRuleManager m_RulesManager;
-        CString                   m_RoleGUID;
+        PSS_DistributionRuleManager m_RulesManager;
+        CString                     m_RoleGUID;
 };
 
 //---------------------------------------------------------------------------
@@ -203,9 +213,9 @@ void PSS_DistributionRulesForRole::SetRoleGUID(const CString& value)
     m_RoleGUID = value;
 }
 //---------------------------------------------------------------------------
-ZBDistributionRuleSet& PSS_DistributionRulesForRole::GetDistributionRuleset()
+PSS_DistributionRuleManager::IDistributionRuleset& PSS_DistributionRulesForRole::GetDistributionRuleset()
 {
-    return m_RulesManager.GetDistributionRuleSet();
+    return m_RulesManager.GetDistributionRuleset();
 }
 //---------------------------------------------------------------------------
 void PSS_DistributionRulesForRole::DeleteAllDistributionRule()
@@ -213,7 +223,7 @@ void PSS_DistributionRulesForRole::DeleteAllDistributionRule()
     m_RulesManager.DeleteAllDistributionRule();
 }
 //---------------------------------------------------------------------------
-ZBDistributionRule* PSS_DistributionRulesForRole::GetDistributionRuleAt(std::size_t index)
+PSS_DistributionRule* PSS_DistributionRulesForRole::GetDistributionRuleAt(std::size_t index)
 {
     return m_RulesManager.GetDistributionRuleAt(index);
 }
@@ -223,7 +233,7 @@ std::size_t PSS_DistributionRulesForRole::GetDistributionRuleCount() const
     return m_RulesManager.GetDistributionRuleCount();
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionRulesForRole::AddDistributionRule(ZBDistributionRule* pDistributionRule)
+void PSS_DistributionRulesForRole::AddDistributionRule(PSS_DistributionRule* pDistributionRule)
 {
     m_RulesManager.AddDistributionRule(pDistributionRule);
 }
@@ -233,12 +243,12 @@ void PSS_DistributionRulesForRole::AddDistributionRule(int ruleOp, const CString
     m_RulesManager.AddDistributionRule(ruleOp, value, logicalOperator);
 }
 //---------------------------------------------------------------------------
-bool PSS_DistributionRulesForRole::Exist(ZBDistributionRule* pDistributionRule)
+bool PSS_DistributionRulesForRole::Exist(PSS_DistributionRule* pDistributionRule)
 {
     return m_RulesManager.Exist(pDistributionRule);
 }
 //---------------------------------------------------------------------------
-bool PSS_DistributionRulesForRole::DeleteDistributionRule(ZBDistributionRule* pDistributionRule)
+bool PSS_DistributionRulesForRole::DeleteDistributionRule(PSS_DistributionRule* pDistributionRule)
 {
     return m_RulesManager.DeleteDistributionRule(pDistributionRule);
 }
@@ -253,8 +263,8 @@ class AFX_EXT_CLASS PSS_DistributionAttribute : public CObject
     DECLARE_SERIAL(PSS_DistributionAttribute)
 
     public:
-        typedef CCArray_T <PSS_DistributionRulesForRole*, PSS_DistributionRulesForRole*> PSS_DistributionRulesForRoleSet;
-        typedef Iterator_T<PSS_DistributionRulesForRole*>                                PSS_DistributionRulesForRoleIterator;
+        typedef CCArray_T <PSS_DistributionRulesForRole*, PSS_DistributionRulesForRole*> IDistributionRulesForRoleSet;
+        typedef Iterator_T<PSS_DistributionRulesForRole*>                                IDistributionRulesForRoleIterator;
 
         PSS_DistributionAttribute();
 
@@ -345,9 +355,19 @@ class AFX_EXT_CLASS PSS_DistributionAttribute : public CObject
         /**
         * Adds distribution rules for a role
         *@param roleGUID - the role GUID
-        *@param ruleOp - the rule operator
+        *@param ruleOp - the rule operator, which may be one of the following:
+        *               -1 none
+        *                1 ==
+        *                2 <
+        *                3 <=
+        *                4 >=
+        *                5 >
+        *                6 !=
         *@param value - the value
-        *@param logicalOperator - the logical operator to apply
+        *@param logicalOperator - the rule logical operator, which may be one of the following:
+        *                        -1 none
+        *                         0 AND
+        *                         1 OR
         */
         virtual void AddDistributionRulesForRole(const CString& roleGUID);
         virtual void AddDistributionRulesForRole(const CString& roleGUID,
@@ -382,7 +402,7 @@ class AFX_EXT_CLASS PSS_DistributionAttribute : public CObject
         * Deletes a distribution rule
         *@param pRule - the rule to delete
         */
-        virtual bool DeleteDistributionRule(ZBDistributionRule* pRule);
+        virtual bool DeleteDistributionRule(PSS_DistributionRule* pRule);
 
         /**
         * Finds the distribution rules for a role
@@ -410,14 +430,14 @@ class AFX_EXT_CLASS PSS_DistributionAttribute : public CObject
         *@param pRule - the rule
         *@return true if the distribution rule exists, otherwise false
         */
-        virtual bool ExistDistributionRule(ZBDistributionRule* pRule) const;
+        virtual bool ExistDistributionRule(PSS_DistributionRule* pRule) const;
 
         /**
         * Gets the distribution ruleset for a role
         *@param roleGUID - the role GUID
         *@return the distribution ruleset, NULL if not found or on error
         */
-        virtual ZBDistributionRuleSet* GetDistributionRuleset(const CString& roleGUID);
+        virtual PSS_DistributionRuleManager::IDistributionRuleset* GetDistributionRuleset(const CString& roleGUID);
 
         /**
         * Gets the distribution rules for a role at index
@@ -425,7 +445,7 @@ class AFX_EXT_CLASS PSS_DistributionAttribute : public CObject
         *@param index - the index
         *@return the distribution rule, NULL if not found or on error
         */
-        virtual ZBDistributionRule* GetDistributionRuleAt(const CString& roleGUID, std::size_t index);
+        virtual PSS_DistributionRule* GetDistributionRuleAt(const CString& roleGUID, std::size_t index);
 
         /**
         * Gets the distribution rules for a role count
@@ -438,7 +458,7 @@ class AFX_EXT_CLASS PSS_DistributionAttribute : public CObject
         * Gets the distribution rules for a role ruleset
         *@return the distribution rules for a role ruleset
         */
-        virtual inline PSS_DistributionRulesForRoleSet& GetDistributionRulesForRoleSet();
+        virtual inline IDistributionRulesForRoleSet& GetDistributionRulesForRoleSet();
 
         /**
         * Gets the distribution rules for a role at index
@@ -465,11 +485,11 @@ class AFX_EXT_CLASS PSS_DistributionAttribute : public CObject
         virtual void Serialize(CArchive& ar);
 
     private:
-        PSS_DistributionRulesForRoleSet m_Set;
-        CString                         m_UserGroupGUID;
-        int                             m_CategoryID;
-        int                             m_ItemID;
-        int                             m_SymbolRef;
+        IDistributionRulesForRoleSet m_Set;
+        CString                      m_UserGroupGUID;
+        int                          m_CategoryID;
+        int                          m_ItemID;
+        int                          m_SymbolRef;
 };
 
 //---------------------------------------------------------------------------
@@ -534,7 +554,7 @@ bool PSS_DistributionAttribute::Exist(const CString& roleGUID) const
     return FindDistributionRulesForRole(roleGUID);
 }
 //---------------------------------------------------------------------------
-PSS_DistributionAttribute::PSS_DistributionRulesForRoleSet& PSS_DistributionAttribute::GetDistributionRulesForRoleSet()
+PSS_DistributionAttribute::IDistributionRulesForRoleSet& PSS_DistributionAttribute::GetDistributionRulesForRoleSet()
 {
     return m_Set;
 }
@@ -575,8 +595,8 @@ class AFX_EXT_CLASS PSS_DistributionAttributeManager : public CObject
     DECLARE_SERIAL(PSS_DistributionAttributeManager)
 
     public:
-        typedef CCArray_T <PSS_DistributionAttribute*, PSS_DistributionAttribute*> PSS_DistributionAttributeSet;
-        typedef Iterator_T<PSS_DistributionAttribute*>                             PSS_DistributionAttributeIterator;
+        typedef CCArray_T <PSS_DistributionAttribute*, PSS_DistributionAttribute*> IDistributionAttributeSet;
+        typedef Iterator_T<PSS_DistributionAttribute*>                             IDistributionAttributeIterator;
 
         PSS_DistributionAttributeManager();
 
@@ -611,7 +631,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributeManager : public CObject
         * Gets the distribution attribute set
         *@return the distribution attribute set
         */
-        virtual inline PSS_DistributionAttributeSet& GetDistributionAttributeSet();
+        virtual inline IDistributionAttributeSet& GetDistributionAttributeSet();
 
         /**
         * Adds a distribution attribute
@@ -648,7 +668,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributeManager : public CObject
         *@param pRule - the rule to delete
         *@return true on success, otherwise false
         */
-        virtual bool DeleteDistributionRule(ZBDistributionRule* pRule);
+        virtual bool DeleteDistributionRule(PSS_DistributionRule* pRule);
 
         /**
         * Checks the distribution role
@@ -664,7 +684,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributeManager : public CObject
         virtual void Serialize(CArchive& ar);
 
     private:
-        PSS_DistributionAttributeSet m_Set;
+        IDistributionAttributeSet m_Set;
 
         /**
         * Replaces the distribution attribute
@@ -676,7 +696,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributeManager : public CObject
 //---------------------------------------------------------------------------
 // PSS_DistributionAttributeManager
 //---------------------------------------------------------------------------
-PSS_DistributionAttributeManager::PSS_DistributionAttributeSet& PSS_DistributionAttributeManager::GetDistributionAttributeSet()
+PSS_DistributionAttributeManager::IDistributionAttributeSet& PSS_DistributionAttributeManager::GetDistributionAttributeSet()
 {
     return m_Set;
 }

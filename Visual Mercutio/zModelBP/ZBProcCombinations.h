@@ -218,4 +218,4 @@ private:
     ZBBPCombinationPropertiesSet    m_Set;
 };
 
-#endif // !defined(AFX_ZBProcCombinations_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)
+#endif

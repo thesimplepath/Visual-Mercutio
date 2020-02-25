@@ -133,7 +133,7 @@ private:
     {
         return m_List.GetSelectedDistributionRuleForRole();
     };
-    ZBDistributionRule* GetSelectedDistributionRule()
+    PSS_DistributionRule* GetSelectedDistributionRule()
     {
         return m_List.GetSelectedDistributionRule();
     };

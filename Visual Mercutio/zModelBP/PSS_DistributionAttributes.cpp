@@ -101,7 +101,7 @@ PSS_DistributionAttribute& PSS_DistributionAttribute::operator = (const PSS_Dist
     m_ItemID        = other.m_ItemID;
     m_SymbolRef     = other.m_SymbolRef;
 
-    PSS_DistributionRulesForRoleIterator it(&other.m_Set);
+    IDistributionRulesForRoleIterator it(&other.m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         AddDistributionRulesForRole(pRulesForRole->Dup());
@@ -154,7 +154,7 @@ void PSS_DistributionAttribute::AddDistributionRulesForRole(PSS_DistributionRule
 //---------------------------------------------------------------------------
 void PSS_DistributionAttribute::DeleteAllDistributionRulesForAllRoles()
 {
-    PSS_DistributionRulesForRoleIterator it(&m_Set);
+    IDistributionRulesForRoleIterator it(&m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         delete pRulesForRole;
@@ -164,7 +164,7 @@ void PSS_DistributionAttribute::DeleteAllDistributionRulesForAllRoles()
 //---------------------------------------------------------------------------
 void PSS_DistributionAttribute::DeleteAllDistributionRulesForRole(const CString& roleGUID)
 {
-    PSS_DistributionRulesForRoleIterator it(&m_Set);
+    IDistributionRulesForRoleIterator it(&m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         if (pRulesForRole->GetRoleGUID() == roleGUID)
@@ -179,7 +179,7 @@ void PSS_DistributionAttribute::DeleteAllDistributionRulesForRole(const CString&
 //---------------------------------------------------------------------------
 bool PSS_DistributionAttribute::DeleteDistributionRulesForRole(PSS_DistributionRulesForRole* pDistributionRulesForRole)
 {
-    PSS_DistributionRulesForRoleIterator it(&m_Set);
+    IDistributionRulesForRoleIterator it(&m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         if (pRulesForRole == pDistributionRulesForRole)
@@ -192,12 +192,12 @@ bool PSS_DistributionAttribute::DeleteDistributionRulesForRole(PSS_DistributionR
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_DistributionAttribute::DeleteDistributionRule(ZBDistributionRule* pRule)
+bool PSS_DistributionAttribute::DeleteDistributionRule(PSS_DistributionRule* pRule)
 {
     if (!pRule)
         return false;
 
-    PSS_DistributionRulesForRoleIterator it(&m_Set);
+    IDistributionRulesForRoleIterator it(&m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         if (pRulesForRole->Exist(pRule))
@@ -208,7 +208,7 @@ bool PSS_DistributionAttribute::DeleteDistributionRule(ZBDistributionRule* pRule
 //---------------------------------------------------------------------------
 PSS_DistributionRulesForRole* PSS_DistributionAttribute::FindDistributionRulesForRole(const CString& roleGUID) const
 {
-    PSS_DistributionRulesForRoleIterator it(&m_Set);
+    IDistributionRulesForRoleIterator it(&m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         if (pRulesForRole->GetRoleGUID() == roleGUID)
@@ -222,7 +222,7 @@ bool PSS_DistributionAttribute::Exist(PSS_DistributionRulesForRole* pDistributio
     if (!pDistributionRulesForRole)
         return NULL;
 
-    PSS_DistributionRulesForRoleIterator it(&m_Set);
+    IDistributionRulesForRoleIterator it(&m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         if (pRulesForRole == pDistributionRulesForRole)
@@ -231,9 +231,9 @@ bool PSS_DistributionAttribute::Exist(PSS_DistributionRulesForRole* pDistributio
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_DistributionAttribute::ExistDistributionRule(ZBDistributionRule* pRule) const
+bool PSS_DistributionAttribute::ExistDistributionRule(PSS_DistributionRule* pRule) const
 {
-    PSS_DistributionRulesForRoleIterator it(&m_Set);
+    IDistributionRulesForRoleIterator it(&m_Set);
 
     for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
         if (pRulesForRole->Exist(pRule))
@@ -242,13 +242,13 @@ bool PSS_DistributionAttribute::ExistDistributionRule(ZBDistributionRule* pRule)
     return false;
 }
 //---------------------------------------------------------------------------
-ZBDistributionRuleSet* PSS_DistributionAttribute::GetDistributionRuleset(const CString& roleGUID)
+PSS_DistributionRuleManager::IDistributionRuleset* PSS_DistributionAttribute::GetDistributionRuleset(const CString& roleGUID)
 {
     PSS_DistributionRulesForRole* pRole = FindDistributionRulesForRole(roleGUID);
     return (pRole ? &pRole->GetDistributionRuleset() : NULL);
 }
 //---------------------------------------------------------------------------
-ZBDistributionRule* PSS_DistributionAttribute::GetDistributionRuleAt(const CString& roleGUID, std::size_t index)
+PSS_DistributionRule* PSS_DistributionAttribute::GetDistributionRuleAt(const CString& roleGUID, std::size_t index)
 {
     PSS_DistributionRulesForRole* pRole = FindDistributionRulesForRole(roleGUID);
     return (pRole ? pRole->GetDistributionRuleAt(index) : NULL);
@@ -274,7 +274,7 @@ void PSS_DistributionAttribute::Serialize(CArchive& ar)
         // serialize the size
         ar << m_Set.GetSize();
 
-        PSS_DistributionRulesForRoleIterator it(&m_Set);
+        IDistributionRulesForRoleIterator it(&m_Set);
 
         for (PSS_DistributionRulesForRole* pRulesForRole = it.GetFirst(); pRulesForRole; pRulesForRole = it.GetNext())
             ar << pRulesForRole;
@@ -327,7 +327,7 @@ PSS_DistributionAttributeManager::~PSS_DistributionAttributeManager()
 //---------------------------------------------------------------------------
 PSS_DistributionAttributeManager& PSS_DistributionAttributeManager::operator = (const PSS_DistributionAttributeManager& other)
 {
-    PSS_DistributionAttributeIterator it(&other.m_Set);
+    IDistributionAttributeIterator it(&other.m_Set);
 
     for (PSS_DistributionAttribute* pDistribAttrib = it.GetFirst(); pDistribAttrib; pDistribAttrib = it.GetNext())
         AddDistributionAttribute(pDistribAttrib->Dup());
@@ -342,7 +342,7 @@ PSS_DistributionAttributeManager* PSS_DistributionAttributeManager::Dup() const
 //---------------------------------------------------------------------------
 void PSS_DistributionAttributeManager::FreePropertiesSet()
 {
-    PSS_DistributionAttributeIterator it(&m_Set);
+    IDistributionAttributeIterator it(&m_Set);
 
     for (PSS_DistributionAttribute* pDistribAttrib = it.GetFirst(); pDistribAttrib; pDistribAttrib = it.GetNext())
         delete pDistribAttrib;
@@ -377,7 +377,7 @@ void PSS_DistributionAttributeManager::AddDistributionAttribute(PSS_Distribution
 //---------------------------------------------------------------------------
 bool PSS_DistributionAttributeManager::DeleteDistributionAttribute(PSS_DistributionAttribute* pDistributionAttribute)
 {
-    PSS_DistributionAttributeIterator it(&m_Set);
+    IDistributionAttributeIterator it(&m_Set);
 
     for (PSS_DistributionAttribute* pDistribAttrib = it.GetFirst(); pDistribAttrib; pDistribAttrib = it.GetNext())
         if (pDistribAttrib == pDistributionAttribute)
@@ -394,7 +394,7 @@ PSS_DistributionAttribute* PSS_DistributionAttributeManager::FindDistributionAtt
                                                                                        int            itemID,
                                                                                        const CString& userGroupGUID)
 {
-    PSS_DistributionAttributeIterator it(&m_Set);
+    IDistributionAttributeIterator it(&m_Set);
 
     for (PSS_DistributionAttribute* pDistribAttrib = it.GetFirst(); pDistribAttrib; pDistribAttrib = it.GetNext())
         if (categoryID    == pDistribAttrib->GetCategoryID() &&
@@ -415,9 +415,9 @@ bool PSS_DistributionAttributeManager::Exist(PSS_DistributionAttribute* pDistrib
                                      pDistributionAttribute->GetUserGroupGUID());
 }
 //---------------------------------------------------------------------------
-bool PSS_DistributionAttributeManager::DeleteDistributionRule(ZBDistributionRule* pRule)
+bool PSS_DistributionAttributeManager::DeleteDistributionRule(PSS_DistributionRule* pRule)
 {
-    PSS_DistributionAttributeIterator it(&m_Set);
+    IDistributionAttributeIterator it(&m_Set);
 
     for (PSS_DistributionAttribute* pDistribAttrib = it.GetFirst(); pDistribAttrib; pDistribAttrib = it.GetNext())
         if (pDistribAttrib->ExistDistributionRule(pRule))
@@ -486,7 +486,7 @@ void PSS_DistributionAttributeManager::Serialize(CArchive& ar)
         // serialize the size
         ar << int(m_Set.GetSize());
 
-        PSS_DistributionAttributeIterator it(&m_Set);
+        IDistributionAttributeIterator it(&m_Set);
 
         for (PSS_DistributionAttribute* pDistribAttrib = it.GetFirst(); pDistribAttrib; pDistribAttrib = it.GetNext())
             ar << pDistribAttrib;

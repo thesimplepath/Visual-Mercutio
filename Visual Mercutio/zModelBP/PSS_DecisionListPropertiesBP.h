@@ -109,8 +109,8 @@ class AFX_EXT_CLASS PSS_DecisionListPropertiesBP : public CODIntProperty,
         virtual inline ULONG STDMETHODCALLTYPE Release();
 
         /**
-        * Makes a copy of this properties object
-        *@return a copy of this properties object, NULL on error
+        * Makes a copy of this object
+        *@return a copy of this object, NULL on error
         */
         virtual inline CODProperty* Dup();
 

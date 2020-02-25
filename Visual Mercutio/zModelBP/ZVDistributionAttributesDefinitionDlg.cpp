@@ -277,7 +277,8 @@ void ZVDistributionAttributesDefinitionDlg::OnAddruleButton()
 
 void ZVDistributionAttributesDefinitionDlg::OnDelruleButton()
 {
-    ZBDistributionRule*    pRule = GetSelectedDistributionRule();
+    PSS_DistributionRule* pRule = GetSelectedDistributionRule();
+
     if (!pRule)
     {
         PSS_MsgBox mBox;
@@ -286,6 +287,7 @@ void ZVDistributionAttributesDefinitionDlg::OnDelruleButton()
     }
 
     PSS_MsgBox mBox;
+
     if (mBox.Show(IDS_DELETERULE_CONFIRM, MB_YESNO) == IDYES)
     {
         m_pDistributionManager->DeleteDistributionRule(pRule);
@@ -296,7 +298,8 @@ void ZVDistributionAttributesDefinitionDlg::OnDelruleButton()
 
 void ZVDistributionAttributesDefinitionDlg::OnModruleButton()
 {
-    ZBDistributionRule*    pRule = GetSelectedDistributionRule();
+    PSS_DistributionRule* pRule = GetSelectedDistributionRule();
+
     if (!pRule)
     {
         PSS_MsgBox mBox;
@@ -305,6 +308,7 @@ void ZVDistributionAttributesDefinitionDlg::OnModruleButton()
     }
 
     ZVDistributionRuleDef dlg(pRule);
+
     if (dlg.DoModal() == IDOK)
     {
         pRule->SetOperator(dlg.GetOperator());

@@ -27,7 +27,7 @@
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
-#include "ZBInputAttributes.h"
+#include "PSS_InputAttributes.h"
 #include "PSS_DistributionAttributes.h"
 
 // resources
@@ -171,15 +171,15 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
     if (!pModel)
         return false;
 
-    ZBInputAttributeManager* pInputAttrManager = pModel->GetInputAttributes();
+    PSS_InputAttributeManager* pInputAttrManager = pModel->GetInputAttributes();
 
     // publish the input attributes
     if (pInputAttrManager)
     {
-        ZBInputAttributeIterator it(&pInputAttrManager->GetInputAttributeSet());
+        PSS_InputAttributeManager::IInputAttributeIterator it(&pInputAttrManager->GetInputAttributeSet());
 
         // iterate through attributes to publish
-        for (ZBInputAttribute* pInputAttrib = it.GetFirst(); pInputAttrib; pInputAttrib = it.GetNext())
+        for (PSS_InputAttribute* pInputAttrib = it.GetFirst(); pInputAttrib; pInputAttrib = it.GetNext())
         {
             // build the attribute key (to find it in attributes array)
             const short left  = pInputAttrib->GetCategoryID() & 0x0000FFFF;
@@ -214,25 +214,25 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
 
         if (pDistribManager)
         {
-            PSS_DistributionAttributeManager::PSS_DistributionAttributeIterator itAttrib (&pDistribManager->GetDistributionAttributeSet());
+            PSS_DistributionAttributeManager::IDistributionAttributeIterator itAttrib (&pDistribManager->GetDistributionAttributeSet());
 
             // iterate through distribution attributes
             for (PSS_DistributionAttribute* pAttrib = itAttrib.GetFirst(); pAttrib; pAttrib = itAttrib.GetNext())
             {
-                PSS_DistributionAttribute::PSS_DistributionRulesForRoleIterator itRole(&pAttrib->GetDistributionRulesForRoleSet());
+                PSS_DistributionAttribute::IDistributionRulesForRoleIterator itRole(&pAttrib->GetDistributionRulesForRoleSet());
 
                 // iterate through roles
                 for (PSS_DistributionRulesForRole* pRole = itRole.GetFirst(); pRole; pRole = itRole.GetNext())
                 {
-                    ZBDistributionRuleIterator itRule(&pRole->GetDistributionRuleset());
+                    PSS_DistributionRuleManager::IDistributionRuleIterator itRule(&pRole->GetDistributionRuleset());
 
                     // iterate through rules
-                    for (ZBDistributionRule* pDistribRule = itRule.GetFirst(); pDistribRule; pDistribRule = itRule.GetNext())
+                    for (PSS_DistributionRule* pDistribRule = itRule.GetFirst(); pDistribRule; pDistribRule = itRule.GetNext())
                     {
                         // build the attribute key (to find it in attributes array)
-                        const short left    = pAttrib->GetCategoryID() & 0x0000FFFF;
-                        const short right   = pAttrib->GetItemID()     & 0x0000FFFF;
-                        const int   key     = (left << 16) | right;
+                        const short left  = pAttrib->GetCategoryID() & 0x0000FFFF;
+                        const short right = pAttrib->GetItemID()     & 0x0000FFFF;
+                        const int   key   = (left << 16) | right;
 
                         // log the newly added attribute role content
                         if (m_pLog && m_pLog->IsInDebugMode())

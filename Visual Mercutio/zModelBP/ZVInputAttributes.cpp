@@ -11,7 +11,7 @@
 #include "PSS_ProcessGraphModelMdlBP.h"
 
 #include "ZVInputAttributesDefinitionDlg.h"
-#include "ZBInputAttributes.h"
+#include "PSS_InputAttributes.h"
 
 #include "zModel\PSS_SymbolObserverMsg.h"
 #include "zModel\PSS_Symbol.h"
@@ -392,7 +392,7 @@ void ZVInputAttributes::OnAddInputAttribute()
     if (!dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->HasInputAttributes())
         dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->AllocateInputAttributes();
 
-    ZBInputAttributeManager* pInputAttrManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
+    PSS_InputAttributeManager* pInputAttrManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
     if (!pInputAttrManager)
         return;
 
@@ -411,7 +411,7 @@ void ZVInputAttributes::OnAddInputAttribute()
     if (dlg.DoModal() == IDOK)
     {
         // Allocate a new attribute
-        ZBInputAttribute* pInputAttribute = new ZBInputAttribute;
+        PSS_InputAttribute* pInputAttribute = new PSS_InputAttribute();
         ASSERT(pInputAttribute);
 
         // Assigns value members
@@ -454,12 +454,12 @@ void ZVInputAttributes::OnDeleteInputAttribute()
         !ISA(m_pCurrentDoc->GetModel(), PSS_ProcessGraphModelMdlBP))
         return;
 
-    ZBInputAttributeManager* pInputAttrManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
+    PSS_InputAttributeManager* pInputAttrManager = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
     if (!pInputAttrManager)
         return;
 
 
-    ZBInputAttribute* pInputAttribute = GetSelectedInputAttribute();
+    PSS_InputAttribute* pInputAttribute = GetSelectedInputAttribute();
     if (!pInputAttribute)
         return;
     PSS_MsgBox mBox;
@@ -480,7 +480,7 @@ void ZVInputAttributes::OnModifyInputAttribute()
     if (!m_pCurrentDoc)
         return;
 
-    ZBInputAttribute* pInputAttribute = GetSelectedInputAttribute();
+    PSS_InputAttribute* pInputAttribute = GetSelectedInputAttribute();
     if (!pInputAttribute)
         return;
 

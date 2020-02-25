@@ -24,15 +24,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBDistributionRules.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBDurationRecalculationAutomate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBInputAttributes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBProcCombinations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,6 +273,15 @@
     <ClCompile Include="PSS_DistributionAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_DistributionRules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DurationRecalculationAutomate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InputAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -376,15 +376,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBDistributionRules.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBDurationRecalculationAutomate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBInputAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBProcCombinations.h">
@@ -640,6 +631,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DistributionAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DistributionRules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DurationRecalculationAutomate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InputAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

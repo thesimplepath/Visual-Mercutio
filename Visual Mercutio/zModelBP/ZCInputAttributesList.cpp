@@ -6,7 +6,7 @@
 #include "StdAfx.h"
 
 #include "ZCInputAttributesList.h"
-#include "ZBInputAttributes.h"
+#include "PSS_InputAttributes.h"
 
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
@@ -86,7 +86,7 @@ void    ZCInputAttributesList::BuildColumns()
     m_ColumnsBuilt = TRUE;
 }
 
-int ZCInputAttributesList::Initialize(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager,
+int ZCInputAttributesList::Initialize(PSS_InputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager,
                                       bool ShowAll /*= false*/, int SymbolRef /*= -1*/)
 {
     m_pInputManager = pInputManager;
@@ -107,8 +107,8 @@ int ZCInputAttributesList::Refresh()
     size_t        LineCounter = 0;
     size_t        ColumnCounter;
 
-    ZBInputAttributeIterator i(&m_pInputManager->GetInputAttributeSet());
-    for (ZBInputAttribute* pInputAttrib = i.GetFirst(); pInputAttrib; pInputAttrib = i.GetNext())
+    PSS_InputAttributeManager::IInputAttributeIterator i(&m_pInputManager->GetInputAttributeSet());
+    for (PSS_InputAttribute* pInputAttrib = i.GetFirst(); pInputAttrib; pInputAttrib = i.GetNext())
     {
         // Check if necessary to display
         if (m_ShowAll == false &&
@@ -225,7 +225,7 @@ void ZCInputAttributesList::Empty()
         DeleteAllItems();
 }
 
-ZBInputAttribute*    ZCInputAttributesList::GetSelectedInputAttribute()
+PSS_InputAttribute* ZCInputAttributesList::GetSelectedInputAttribute()
 {
     int    Index;
     POSITION pos = GetFirstSelectedItemPosition();
@@ -233,8 +233,8 @@ ZBInputAttribute*    ZCInputAttributesList::GetSelectedInputAttribute()
     {
         Index = GetNextSelectedItem(pos);
         CObject* pObj = (CObject*)GetItemData(Index);
-        if (pObj && ISA(pObj, ZBInputAttribute))
-            return dynamic_cast<ZBInputAttribute*>(pObj);
+        if (pObj && ISA(pObj, PSS_InputAttribute))
+            return dynamic_cast<PSS_InputAttribute*>(pObj);
     }
     return NULL;
 }

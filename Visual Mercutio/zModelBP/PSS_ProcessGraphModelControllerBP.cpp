@@ -40,7 +40,7 @@
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZUDeleteCorruptedSymbols.h"
 #include "ZBSesterceRecalculationAutomate.h"
-#include "ZBDurationRecalculationAutomate.h"
+#include "PSS_DurationRecalculationAutomate.h"
 #include "ZVInputAttributesSelectionDlg.h"
 #include "ZVRiskCalculateParametersDlg.h"
 #include "ZUCalculateRisks.h"
@@ -1366,7 +1366,7 @@ void PSS_ProcessGraphModelControllerBP::OnRecalculateModelDurations()
         UnselectAllComponents();
 
         // initialize the calculator
-        ZBDurationRecalculationAutomate automate(pStartSymbol, GetRootModel(), pModelDoc->GetAnalyzerOutputLog());
+        PSS_DurationRecalculationAutomate automate(pStartSymbol, GetRootModel(), pModelDoc->GetAnalyzerOutputLog());
         automate.SetMaxWaitingForOtherLinks(1000);
         automate.SetMaxPaused(1000);
         automate.SetMaxLoop(2000);

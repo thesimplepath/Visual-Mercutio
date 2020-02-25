@@ -36,13 +36,19 @@
 #include "zBaseLib\PSS_ListCtrl.h"
 
 // class name mapping
+#ifndef PSS_InputAttribute
+    #define PSS_InputAttribute ZBInputAttribute
+#endif
+#ifndef PSS_InputAttributeManager
+    #define PSS_InputAttributeManager ZBInputAttributeManager
+#endif
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
 
 // forward class declaration
-class ZBInputAttribute;
-class ZBInputAttributeManager;
+class PSS_InputAttribute;
+class PSS_InputAttributeManager;
 class ZBDynamicPropertiesManager;
 class PSS_ProcessGraphModelDoc;
 
@@ -68,10 +74,10 @@ public:
     ZCInputAttributesList();
     virtual ~ZCInputAttributesList();
 
-    ZBInputAttribute* GetSelectedInputAttribute();
+    PSS_InputAttribute* GetSelectedInputAttribute();
 
 
-    int    Initialize(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, bool ShowAll = false, int SymbolRef = -1);
+    int    Initialize(PSS_InputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, bool ShowAll = false, int SymbolRef = -1);
     void  ShowAll(bool value = true, bool bRefresh = true)
     {
         m_ShowAll = value;
@@ -106,7 +112,7 @@ private:
     void    DocumentActivated(PSS_ProcessGraphModelDoc* pDoc);
 
 private: //## implementation
-    ZBInputAttributeManager*    m_pInputManager;
+    PSS_InputAttributeManager*    m_pInputManager;
     ZBDynamicPropertiesManager* m_pPropManager;
     bool                    m_ShowAll;
     int                        m_SymbolRef;

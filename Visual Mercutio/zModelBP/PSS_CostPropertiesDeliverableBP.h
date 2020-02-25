@@ -103,8 +103,8 @@ class AFX_EXT_CLASS PSS_CostPropertiesDeliverableBP : public CObject
         BOOL operator == (const PSS_CostPropertiesDeliverableBP& other) const;
 
         /**
-        * Makes a copy of this properties object
-        *@return a copy of this properties object, NULL on error
+        * Makes a copy of this object
+        *@return a copy of this object, NULL on error
         */
         virtual inline PSS_CostPropertiesDeliverableBP* Dup() const;
 

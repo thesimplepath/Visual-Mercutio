@@ -42,6 +42,9 @@
 #ifndef PSS_DistributionAttributeManager
     #define PSS_DistributionAttributeManager ZBDistributionAttributeManager
 #endif
+#ifndef PSS_DistributionRule
+    #define PSS_DistributionRule ZBDistributionRule
+#endif
 #ifndef PSS_DistributionRulesForRole
     #define PSS_DistributionRulesForRole ZBDistributionRulesForRole
 #endif
@@ -55,7 +58,7 @@
 // forward class declaration
 class PSS_DistributionAttribute;
 class PSS_DistributionAttributeManager;
-class ZBDistributionRule;
+class PSS_DistributionRule;
 class PSS_DistributionRulesForRole;
 class ZBDynamicPropertiesManager;
 class PSS_ProcessGraphModelDoc;
@@ -86,8 +89,8 @@ public:
     virtual ~ZCDistributionAttributesList();
 
     PSS_DistributionAttribute* GetSelectedDistributionAttribute();
-    PSS_DistributionRulesForRole*    GetSelectedDistributionRuleForRole();
-    ZBDistributionRule*    GetSelectedDistributionRule();
+    PSS_DistributionRulesForRole* GetSelectedDistributionRuleForRole();
+    PSS_DistributionRule* GetSelectedDistributionRule();
 
 
     int    Initialize(PSS_DistributionAttributeManager* pDistributionManager,

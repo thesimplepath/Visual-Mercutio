@@ -14,7 +14,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVInputAttributesSelectionDlg dialog
 
 
-ZVInputAttributesSelectionDlg::ZVInputAttributesSelectionDlg(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, CWnd* pParent /*=NULL*/)
+ZVInputAttributesSelectionDlg::ZVInputAttributesSelectionDlg(PSS_InputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, CWnd* pParent /*=NULL*/)
 : CDialog(ZVInputAttributesSelectionDlg::IDD, pParent),
   m_pInputManager(pInputManager),
   m_pPropManager(pPropManager)

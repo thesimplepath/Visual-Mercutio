@@ -47,7 +47,7 @@ public:
     {
         return m_List.GetSelectedDistributionAttribute();
     };
-    ZBDistributionRule*    GetSelectedDistributionRule()
+    PSS_DistributionRule* GetSelectedDistributionRule()
     {
         return m_List.GetSelectedDistributionRule();
     };

@@ -116,7 +116,7 @@ int ZCDistributionAttributesList::Refresh()
     }
     else
     {
-        PSS_DistributionAttributeManager::PSS_DistributionAttributeIterator it(&m_pDistributionManager->GetDistributionAttributeSet());
+        PSS_DistributionAttributeManager::IDistributionAttributeIterator it(&m_pDistributionManager->GetDistributionAttributeSet());
 
         for (PSS_DistributionAttribute* pAttrib = it.GetFirst(); pAttrib; pAttrib = it.GetNext())
         {
@@ -146,8 +146,8 @@ int ZCDistributionAttributesList::InsertDistributionAttribute(PSS_DistributionAt
         return 0;
     size_t        LineCounter = 0;
 
-    PSS_DistributionAttribute::PSS_DistributionRulesForRoleIterator i(&pDistributionAttribute->GetDistributionRulesForRoleSet());
-    for (PSS_DistributionRulesForRole* pRole = i.GetFirst(); pRole; pRole = i.GetNext())
+    PSS_DistributionAttribute::IDistributionRulesForRoleIterator itRole(&pDistributionAttribute->GetDistributionRulesForRoleSet());
+    for (PSS_DistributionRulesForRole* pRole = itRole.GetFirst(); pRole; pRole = itRole.GetNext())
     {
 
         // First level is the role name
@@ -157,8 +157,8 @@ int ZCDistributionAttributesList::InsertDistributionAttribute(PSS_DistributionAt
         ++LineCounter;
 
         // Second level is all the rules
-        ZBDistributionRuleIterator j(&pRole->GetDistributionRuleset());
-        for (ZBDistributionRule* pDistribRule = j.GetFirst(); pDistribRule; pDistribRule = j.GetNext())
+        PSS_DistributionRuleManager::IDistributionRuleIterator itRule(&pRole->GetDistributionRuleset());
+        for (PSS_DistributionRule* pDistribRule = itRule.GetFirst(); pDistribRule; pDistribRule = itRule.GetNext())
         {
             int iItem = AddItem(_T(""), 3, Level + 1, (LPARAM)pDistribRule);
             SetItemText(iItem, 1, pDistribRule->GetOperatorString());
@@ -209,7 +209,7 @@ PSS_DistributionRulesForRole* ZCDistributionAttributesList::GetSelectedDistribut
     return NULL;
 }
 
-ZBDistributionRule*    ZCDistributionAttributesList::GetSelectedDistributionRule()
+PSS_DistributionRule* ZCDistributionAttributesList::GetSelectedDistributionRule()
 {
     int    Index;
     POSITION pos = GetFirstSelectedItemPosition();
@@ -218,8 +218,8 @@ ZBDistributionRule*    ZCDistributionAttributesList::GetSelectedDistributionRule
         Index = GetNextSelectedItem(pos);
         int nItem = (int)GetItemData(Index);
         CObject* pObj = (CObject*)GetParam(nItem);
-        if (pObj && ISA(pObj, ZBDistributionRule))
-            return dynamic_cast<ZBDistributionRule*>(pObj);
+        if (pObj && ISA(pObj, PSS_DistributionRule))
+            return dynamic_cast<PSS_DistributionRule*>(pObj);
     }
     return NULL;
 }

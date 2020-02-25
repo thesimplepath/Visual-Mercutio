@@ -318,19 +318,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBDistributionRules.cpp">
+    <ClCompile Include="PSS_DistributionRules.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBDurationRecalculationAutomate.cpp">
+    <ClCompile Include="PSS_DurationRecalculationAutomate.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBInputAttributes.cpp">
+    <ClCompile Include="PSS_InputAttributes.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -621,9 +621,9 @@
     <ClInclude Include="PSS_UnitPropertiesBP.h" />
     <ClInclude Include="PSS_DeliverableLinkSymbolBP.h" />
     <ClInclude Include="PSS_DistributionAttributes.h" />
-    <ClInclude Include="ZBDistributionRules.h" />
-    <ClInclude Include="ZBDurationRecalculationAutomate.h" />
-    <ClInclude Include="ZBInputAttributes.h" />
+    <ClInclude Include="PSS_DistributionRules.h" />
+    <ClInclude Include="PSS_DurationRecalculationAutomate.h" />
+    <ClInclude Include="PSS_InputAttributes.h" />
     <ClInclude Include="ZBProcCombinations.h" />
     <ClInclude Include="ZBProcDeliveries.h" />
     <ClInclude Include="ZBProcRisk.h" />

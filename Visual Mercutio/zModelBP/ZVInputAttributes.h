@@ -112,7 +112,7 @@ public:
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Operations
-    void Initialize(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager)
+    void Initialize(PSS_InputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager)
     {
         m_listctrl.Initialize(pInputManager, pPropManager);
     };
@@ -131,7 +131,7 @@ public:
     void Refresh();
     void Empty();
 
-    ZBInputAttribute* GetSelectedInputAttribute()
+    PSS_InputAttribute* GetSelectedInputAttribute()
     {
         return m_listctrl.GetSelectedInputAttribute();
     };

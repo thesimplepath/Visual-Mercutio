@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVInputAttributesDefinitionDlg.h"
 
-#include "ZBInputAttributes.h"
+#include "PSS_InputAttributes.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 
 // Symbol Properties
@@ -23,7 +23,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVInputAttributesDefinitionDlg dialog
 
 
-ZVInputAttributesDefinitionDlg::ZVInputAttributesDefinitionDlg(ZBDynamicPropertiesManager* pPropManager, ZBPropertySet* pSet, ZBInputAttribute* pInputAttr /*= NULL*/, CWnd* pParent /*=NULL*/)
+ZVInputAttributesDefinitionDlg::ZVInputAttributesDefinitionDlg(ZBDynamicPropertiesManager* pPropManager, ZBPropertySet* pSet, PSS_InputAttribute* pInputAttr /*= NULL*/, CWnd* pParent /*=NULL*/)
     : CDialog(ZVInputAttributesDefinitionDlg::IDD, pParent),
     m_pPropManager(pPropManager),
     m_pSet(pSet),

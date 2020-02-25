@@ -28,12 +28,15 @@
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 
 // old class name mapping
+#ifndef PSS_InputAttributeManager
+    #define PSS_InputAttributeManager ZBInputAttributeManager
+#endif
 #ifndef PSS_DistributionAttributeManager
     #define PSS_DistributionAttributeManager ZBDistributionAttributeManager
 #endif
 
 // forward class declaration
-class ZBInputAttributeManager;
+class PSS_InputAttributeManager;
 class PSS_DistributionAttributeManager;
 
 #ifdef _ZMODELBPEXPORT
@@ -197,13 +200,13 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdlBP : public PSS_ProcessGraphModelMdl
         *@param deleteExisting - if true, the existing attributes will be deleted before assigning the new one
         *@return the newly created input attributes, NULL on error
         */
-        virtual ZBInputAttributeManager* AllocateInputAttributes(bool deleteExisting = false);
+        virtual PSS_InputAttributeManager* AllocateInputAttributes(bool deleteExisting = false);
 
         /**
         * Gets the input attributes
         *@return the input attributes
         */
-        virtual inline ZBInputAttributeManager* GetInputAttributes();
+        virtual inline PSS_InputAttributeManager* GetInputAttributes();
 
         /**
         * Checks if the model contains input attributes
@@ -277,7 +280,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdlBP : public PSS_ProcessGraphModelMdl
         virtual void ConvertDeliverables();
 
     private:
-        ZBInputAttributeManager*          m_pInputAttributes;
+        PSS_InputAttributeManager*        m_pInputAttributes;
         PSS_DistributionAttributeManager* m_pDistributionAttributes;
 };
 
@@ -289,7 +292,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdlBP::CreateEmptyModel(const CSt
     return new PSS_ProcessGraphModelMdlBP(name, dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pParent));
 }
 //---------------------------------------------------------------------------
-ZBInputAttributeManager* PSS_ProcessGraphModelMdlBP::GetInputAttributes()
+PSS_InputAttributeManager* PSS_ProcessGraphModelMdlBP::GetInputAttributes()
 {
     if (GetRoot() == this)
         return m_pInputAttributes;

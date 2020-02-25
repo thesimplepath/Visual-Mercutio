@@ -4,9 +4,9 @@
 #include "stdafx.h"
 #include "ZVDistributionRuleDef.h"
 
-#include "ZBDistributionRules.h"
-
+// processsoft
 #include "zBaseLib\PSS_MsgBox.h"
+#include "PSS_DistributionRules.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,7 +18,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVDistributionRuleDef dialog
 
 
-ZVDistributionRuleDef::ZVDistributionRuleDef(ZBDistributionRule* pRule /*= NULL*/, CWnd* pParent /*= NULL*/)
+ZVDistributionRuleDef::ZVDistributionRuleDef(PSS_DistributionRule* pRule /*= NULL*/, CWnd* pParent /*= NULL*/)
     : CDialog(ZVDistributionRuleDef::IDD, pParent),
     m_pRule(pRule)
 {
@@ -74,8 +74,8 @@ BOOL ZVDistributionRuleDef::OnInitDialog()
 {
     if (m_pRule)
     {
-        m_Operator = m_pRule->GetOperator();
-        m_Value = m_pRule->GetValue();
+        m_Value           = m_pRule->GetValue();
+        m_Operator        = m_pRule->GetOperator();
         m_LogicalOperator = m_pRule->GetLogicalOperator() + 1;
 
     }

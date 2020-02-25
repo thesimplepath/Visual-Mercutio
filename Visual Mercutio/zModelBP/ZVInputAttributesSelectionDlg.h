@@ -38,9 +38,9 @@ class AFX_EXT_CLASS ZVInputAttributesSelectionDlg : public CDialog
 {
 // Construction
 public:
-    ZVInputAttributesSelectionDlg(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, CWnd* pParent = NULL);   // standard constructor
+    ZVInputAttributesSelectionDlg(PSS_InputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, CWnd* pParent = NULL);   // standard constructor
 
-    ZBInputAttribute* GetSelectedInputAttribute()
+    PSS_InputAttribute* GetSelectedInputAttribute()
     {
         return m_List.GetSelectedInputAttribute();
     };
@@ -76,11 +76,8 @@ private:
     void CheckControlState();
 
 private:
-    ZBInputAttributeManager* m_pInputManager;
+    PSS_InputAttributeManager* m_pInputManager;
     ZBDynamicPropertiesManager* m_pPropManager;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVINPUTATTRIBUTESSELECTIONDLG_H__B7A96F15_086F_49FF_B844_8C441C3CB68A__INCLUDED_)
+#endif

@@ -94,8 +94,8 @@ class AFX_EXT_CLASS PSS_CombinationPropertiesBP : public CObject
         BOOL operator == (const PSS_CombinationPropertiesBP& other) const;
 
         /**
-        * Makes a copy of this properties object
-        *@return a copy of this properties object, NULL on error
+        * Makes a copy of this object
+        *@return a copy of this object, NULL on error
         */
         virtual inline PSS_CombinationPropertiesBP* Dup() const;
 
