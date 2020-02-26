@@ -32,7 +32,7 @@
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "PSS_SimPropertiesProcessBP.h"
 #include "PSS_PrestationsPropertiesBP.h"
-#include "ZBProcDeliveries.h"
+#include "PSS_ProcDeliveries.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZBProcRules.h"
 #include "PSS_RulesPropertiesBP.h"
@@ -439,7 +439,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         * Gets the deliveries
         *@return Gets the deliveries
         */
-        virtual inline ZBProcDeliveries& GetDeliveries();
+        virtual inline PSS_ProcDeliveries& GetDeliveries();
 
         /**
         * Gets the deliverie count
@@ -688,7 +688,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
     private:
         PSS_PrestationsPropertiesBP m_PrestProperties;
         PSS_SimPropertiesProcessBP  m_SimProperties;
-        ZBProcDeliveries            m_Deliveries;
+        PSS_ProcDeliveries          m_Deliveries;
         ZBProcRules                 m_Rules;
         ZBProcRisk                  m_Risks;
         CRect                       m_CommentRect;
@@ -999,7 +999,7 @@ void PSS_ProcessSymbolBP::SetRiskAction(std::size_t index, bool value)
     m_Risks.SetRiskAction(index, value);
 }
 //---------------------------------------------------------------------------
-ZBProcDeliveries& PSS_ProcessSymbolBP::GetDeliveries()
+PSS_ProcDeliveries& PSS_ProcessSymbolBP::GetDeliveries()
 {
     return m_Deliveries;
 }

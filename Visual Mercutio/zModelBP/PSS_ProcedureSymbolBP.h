@@ -29,7 +29,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
-#include "ZBProcCombinations.h"
+#include "PSS_ProcCombinations.h"
 #include "PSS_SimPropertiesProcedureBP.h"
 #include "PSS_UnitPropertiesBP.h"
 #include "PSS_CostPropertiesProcedureBP.h"
@@ -297,7 +297,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         * Gets the combinations reference
         *@return the combinations reference
         */
-        virtual inline ZBProcCombinations& GetCombinations();
+        virtual inline PSS_ProcCombinations& GetCombinations();
 
         /**
         * Adds a new combination
@@ -1210,7 +1210,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         virtual void OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
     private:
-        ZBProcCombinations            m_Combinations;
+        PSS_ProcCombinations          m_Combinations;
         PSS_SimPropertiesProcedureBP  m_SimulationProperties;
         PSS_UnitPropertiesBP          m_UnitProp;
         PSS_CostPropertiesProcedureBP m_CostProcedureProp;
@@ -1261,7 +1261,7 @@ bool PSS_ProcedureSymbolBP::IncludeAttributeArea() const
     return true;
 }
 //---------------------------------------------------------------------------
-ZBProcCombinations& PSS_ProcedureSymbolBP::GetCombinations()
+PSS_ProcCombinations& PSS_ProcedureSymbolBP::GetCombinations()
 {
     return m_Combinations;
 }

@@ -336,13 +336,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBProcCombinations.cpp">
+    <ClCompile Include="PSS_ProcCombinations.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBProcDeliveries.cpp" />
+    <ClCompile Include="PSS_ProcDeliveries.cpp" />
     <ClCompile Include="ZBProcRisk.cpp" />
     <ClCompile Include="ZBProcRules.cpp" />
     <ClCompile Include="ZBSesterceRecalculationAutomate.cpp">
@@ -624,8 +624,8 @@
     <ClInclude Include="PSS_DistributionRules.h" />
     <ClInclude Include="PSS_DurationRecalculationAutomate.h" />
     <ClInclude Include="PSS_InputAttributes.h" />
-    <ClInclude Include="ZBProcCombinations.h" />
-    <ClInclude Include="ZBProcDeliveries.h" />
+    <ClInclude Include="PSS_ProcCombinations.h" />
+    <ClInclude Include="PSS_ProcDeliveries.h" />
     <ClInclude Include="ZBProcRisk.h" />
     <ClInclude Include="ZBProcRules.h" />
     <ClInclude Include="ZBPublishMessengerModelInformation.h" />
