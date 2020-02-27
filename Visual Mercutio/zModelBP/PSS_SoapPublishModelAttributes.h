@@ -25,10 +25,10 @@
 #include "zModel\PSS_ModelNavigation.h"
 #include "zProperty\ZBProperty.h"
 #include "zSOAP\PSS_SoapPublisher_ModelAttributes.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_PublishMessengerModelInformation.h"
 
 // forward class declaration
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -53,9 +53,9 @@ class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public PSS_ModelNavigation
         *@param pModel - the model to navigate, can be NULL
         *@param pClass - the custom data class, can be NULL
         */
-        PSS_SoapPublishModelAttributes(ZBPublishMessengerModelInformation* pInfo,
-                                       PSS_ProcessGraphModelMdl*           pModel = NULL,
-                                       void*                               pClass = NULL);
+        PSS_SoapPublishModelAttributes(PSS_PublishMessengerModelInformation* pInfo,
+                                       PSS_ProcessGraphModelMdl*             pModel = NULL,
+                                       void*                                 pClass = NULL);
 
         virtual ~PSS_SoapPublishModelAttributes();
 
@@ -100,10 +100,10 @@ class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public PSS_ModelNavigation
         bool KeyExist(int key);
 
     private:
-        ZBPublishMessengerModelInformation* m_pInfo;
-        PSS_SoapPublisher_ModelAttributes   m_PubMdlAttr;
-        int                                 m_IDArray[500];
-        CString                             m_MessengerAddress;
+        PSS_PublishMessengerModelInformation* m_pInfo;
+        PSS_SoapPublisher_ModelAttributes     m_PubMdlAttr;
+        int                                   m_IDArray[500];
+        CString                               m_MessengerAddress;
 };
 
 #endif

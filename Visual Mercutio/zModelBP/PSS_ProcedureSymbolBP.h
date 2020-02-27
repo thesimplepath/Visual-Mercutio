@@ -33,9 +33,9 @@
 #include "PSS_SimPropertiesProcedureBP.h"
 #include "PSS_UnitPropertiesBP.h"
 #include "PSS_CostPropertiesProcedureBP.h"
-#include "ZBProcRules.h"
+#include "PSS_ProcRules.h"
 #include "PSS_RulesPropertiesBP.h"
-#include "ZBProcRisk.h"
+#include "PSS_ProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
@@ -1214,8 +1214,8 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         PSS_SimPropertiesProcedureBP  m_SimulationProperties;
         PSS_UnitPropertiesBP          m_UnitProp;
         PSS_CostPropertiesProcedureBP m_CostProcedureProp;
-        ZBProcRules                   m_Rules;
-        ZBProcRisk                    m_Risks;
+        PSS_ProcRules                 m_Rules;
+        PSS_ProcRisk                  m_Risks;
         CRect                         m_CommentRect;
         CStringArray                  m_UnitDoubleValidationTypeArray;
 

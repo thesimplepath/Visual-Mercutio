@@ -16,7 +16,7 @@
 #include "zModel\PSS_UserRoleEntity.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_PublishMessengerModelInformation.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -30,7 +30,7 @@
 //---------------------------------------------------------------------------
 // PSS_SoapPublishUserGroup
 //---------------------------------------------------------------------------
-PSS_SoapPublishUserGroup::PSS_SoapPublishUserGroup(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog) :
+PSS_SoapPublishUserGroup::PSS_SoapPublishUserGroup(PSS_PublishMessengerModelInformation* pInfo, PSS_Log* pLog) :
     m_pInfo(pInfo),
     m_pLog(pLog)
 {}

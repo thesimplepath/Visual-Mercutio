@@ -343,9 +343,10 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_ProcDeliveries.cpp" />
-    <ClCompile Include="ZBProcRisk.cpp" />
-    <ClCompile Include="ZBProcRules.cpp" />
-    <ClCompile Include="ZBSesterceRecalculationAutomate.cpp">
+    <ClCompile Include="PSS_ProcRisk.cpp" />
+    <ClCompile Include="PSS_ProcRules.cpp" />
+    <ClCompile Include="PSS_PublishMessengerModelInformation.cpp" />
+    <ClCompile Include="PSS_SesterceRecalculationAutomate.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -626,10 +627,10 @@
     <ClInclude Include="PSS_InputAttributes.h" />
     <ClInclude Include="PSS_ProcCombinations.h" />
     <ClInclude Include="PSS_ProcDeliveries.h" />
-    <ClInclude Include="ZBProcRisk.h" />
-    <ClInclude Include="ZBProcRules.h" />
-    <ClInclude Include="ZBPublishMessengerModelInformation.h" />
-    <ClInclude Include="ZBSesterceRecalculationAutomate.h" />
+    <ClInclude Include="PSS_ProcRisk.h" />
+    <ClInclude Include="PSS_ProcRules.h" />
+    <ClInclude Include="PSS_PublishMessengerModelInformation.h" />
+    <ClInclude Include="PSS_SesterceRecalculationAutomate.h" />
     <ClInclude Include="ZCDistributionAttributesList.h" />
     <ClInclude Include="ZCInputAttributesList.h" />
     <ClInclude Include="zModelBPLib.h" />

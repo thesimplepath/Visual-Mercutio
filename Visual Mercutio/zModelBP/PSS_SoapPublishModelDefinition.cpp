@@ -19,7 +19,7 @@
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_PublishMessengerModelInformation.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
@@ -42,9 +42,9 @@
 //---------------------------------------------------------------------------
 // PSS_SoapPublishModelDefinition
 //---------------------------------------------------------------------------
-PSS_SoapPublishModelDefinition::PSS_SoapPublishModelDefinition(ZBPublishMessengerModelInformation* pInfo,
-                                                               PSS_ProcessGraphModelMdl*           pModel,
-                                                               void*                               pClass) :
+PSS_SoapPublishModelDefinition::PSS_SoapPublishModelDefinition(PSS_PublishMessengerModelInformation* pInfo,
+                                                               PSS_ProcessGraphModelMdl*             pModel,
+                                                               void*                                 pClass) :
     ZUProcessNavigation(pModel, pClass),
     m_pInfo(pInfo),
     m_pDoc(NULL),
@@ -139,9 +139,9 @@ bool PSS_SoapPublishModelDefinition::OnStart()
         return false;
 
     // get the document and Messenger address to publish to
-    ZBPublishMessengerModelInformation* pInfo = static_cast<ZBPublishMessengerModelInformation*>(m_pClass);
-    m_pDoc                                    = pInfo->m_pDoc;
-    m_MessengerAddress                        = pInfo->m_MessengerAddress;
+    PSS_PublishMessengerModelInformation* pInfo = static_cast<PSS_PublishMessengerModelInformation*>(m_pClass);
+    m_pDoc                                      = pInfo->m_pDoc;
+    m_MessengerAddress                          = pInfo->m_MessengerAddress;
 
     // copy the publication address from source info
     PSS_SoapData_Settings::m_Url = (const char*)m_MessengerAddress;

@@ -29,7 +29,7 @@
 
 // forward class declaration
 class PSS_ProcessGraphModelDoc;
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
@@ -163,7 +163,7 @@ class ZVPublishToMessengerLogon : public PSS_WizardDialog
 public:
 
     // Standard constructor
-    ZVPublishToMessengerLogon(ZBPublishMessengerModelInformation* pInfo, CWnd* pParent = NULL);
+    ZVPublishToMessengerLogon(PSS_PublishMessengerModelInformation* pInfo, CWnd* pParent = NULL);
 
     // JMR-MODIF - Le 19 juin 2006 - Ajout de la fonction GetBeginDate.
     CString GetBeginDate()
@@ -207,11 +207,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    // JMR-MODIF - Le 19 juin 2006 - Ajout des variables m_Date_Begin et m_Date_End.
-    CString                                m_Date_Begin;
-    CString                                m_Date_End;
-    ZBPublishMessengerModelInformation*    m_pInfo;
+    PSS_PublishMessengerModelInformation* m_pInfo;
+    CString                               m_Date_Begin;
+    CString                               m_Date_End;
 };
 
 #endif

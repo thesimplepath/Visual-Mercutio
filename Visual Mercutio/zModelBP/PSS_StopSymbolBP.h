@@ -30,9 +30,9 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "PSS_UnitPropertiesBP.h"
-#include "ZBProcRules.h"
+#include "PSS_ProcRules.h"
 #include "PSS_RulesPropertiesBP.h"
-#include "ZBProcRisk.h"
+#include "PSS_ProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
@@ -494,8 +494,8 @@ class AFX_EXT_CLASS PSS_StopSymbolBP : public PSS_Symbol
 
     private:
         PSS_UnitPropertiesBP m_UnitProp;
-        ZBProcRules          m_Rules;
-        ZBProcRisk           m_Risks;
+        PSS_ProcRules        m_Rules;
+        PSS_ProcRisk         m_Risks;
 
         /**
         * Gets the rule name by GUID

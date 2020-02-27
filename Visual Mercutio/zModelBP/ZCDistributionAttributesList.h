@@ -132,7 +132,7 @@ private:
     void    DocumentActivated(PSS_ProcessGraphModelDoc* pDoc);
     int        InsertDistributionAttribute(PSS_DistributionAttribute* pDistributionAttribute, int Level);
 
-private: //## implementation
+private:
     PSS_DistributionAttribute* m_pDistributionAttribute;
     PSS_DistributionAttributeManager*    m_pDistributionManager;
     ZBDynamicPropertiesManager* m_pPropManager;
@@ -143,7 +143,4 @@ private: //## implementation
     BOOL                    m_ColumnsBuilt;
 };
 
-//#undef  AFX_DATA
-//#define AFX_DATA
-
-#endif      // ZCDistributionAttributesList_h
+#endif

@@ -31,7 +31,7 @@
 
 // forward class declaration
 class PSS_LogicalSystemEntity;
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
@@ -56,7 +56,7 @@ class AFX_EXT_CLASS PSS_SoapPublishLogicalSystem
         *@param pInfo - info to publish
         *@param pLog - logger, can be NULL
         */
-        PSS_SoapPublishLogicalSystem(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
+        PSS_SoapPublishLogicalSystem(PSS_PublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
 
         virtual ~PSS_SoapPublishLogicalSystem();
 
@@ -67,9 +67,9 @@ class AFX_EXT_CLASS PSS_SoapPublishLogicalSystem
         bool Publish();
 
     private:
-        ZBPublishMessengerModelInformation* m_pInfo;
-        PSS_SoapPublisher_System            m_PubSys;
-        PSS_Log*                            m_pLog;
+        PSS_PublishMessengerModelInformation* m_pInfo;
+        PSS_SoapPublisher_System              m_PubSys;
+        PSS_Log*                              m_pLog;
 
         /**
         * Publishes a logical system

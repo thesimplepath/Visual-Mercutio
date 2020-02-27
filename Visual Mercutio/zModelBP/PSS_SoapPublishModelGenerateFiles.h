@@ -28,7 +28,7 @@
 #include "zSOAP\PSS_SoapPublisher_File.h"
 
 // forward class declaration
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 class PSS_InfoModelGraphicGeneration;
 
 #ifdef _ZMODELBPEXPORT
@@ -55,9 +55,9 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public PSS_ModelNavigati
         *@param pModel - the model to navigate, can be NULL
         *@param pClass - the custom data class, can be NULL
         */
-        PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*           pModel = NULL,
-                                          void*                               pClass = NULL,
-                                          ZBPublishMessengerModelInformation* pInfo  = NULL);
+        PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*             pModel = NULL,
+                                          void*                                 pClass = NULL,
+                                          PSS_PublishMessengerModelInformation* pInfo  = NULL);
 
         virtual ~PSS_SoapPublishModelGenerateFiles();
 
@@ -88,13 +88,13 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public PSS_ModelNavigati
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        PSS_PublishModelGenerateDialog      m_FileGenerateWindow;
-        ZBPublishMessengerModelInformation* m_pModelInfo;
-        PSS_InfoModelGraphicGeneration*     m_pInfo;
-        PSS_SoapPublisher_File              m_PubFile;
-        CString                             m_RootHtmlFileName;
-        CString                             m_RootName;
-        CString                             m_TargetDirectory;
+        PSS_PublishModelGenerateDialog        m_FileGenerateWindow;
+        PSS_PublishMessengerModelInformation* m_pModelInfo;
+        PSS_InfoModelGraphicGeneration*       m_pInfo;
+        PSS_SoapPublisher_File                m_PubFile;
+        CString                               m_RootHtmlFileName;
+        CString                               m_RootName;
+        CString                               m_TargetDirectory;
 
         /**
         * Publishes the model images

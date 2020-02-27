@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_DurationRecalculationAutomate -----------------------------------*
+ * ==> PSS_SesterceRecalculationAutomate -----------------------------------*
  ****************************************************************************
- * Description : Provides the duration recalculation automate               *
+ * Description : Provides the Sesterce recalculation automate               *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_DurationRecalculationAutomateH
-#define PSS_DurationRecalculationAutomateH
+#ifndef PSS_SesterceRecalculationAutomateH
+#define PSS_SesterceRecalculationAutomateH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -23,7 +23,6 @@
 // processsoft
 #include "PSS_AutomateBP.h"
 
-// old class name mapping
 #ifndef PSS_ProcedureSymbolBP
     #define PSS_ProcedureSymbolBP ZBBPProcedureSymbol
 #endif
@@ -42,23 +41,20 @@ class PSS_ProcedureSymbolBP;
 #endif
 
 /**
-* Duration recalculation automate
+* Sesterce recalculation automate
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_DurationRecalculationAutomate : public PSS_AutomateBP
+class PSS_SesterceRecalculationAutomate : public PSS_AutomateBP
 {
     public:
         /**
         * Constructor
-        *@param pSymbol - the symbol
         *@param pModel - the model
         *@param pLog - the log to use to show messages
         */
-        PSS_DurationRecalculationAutomate(PSS_Symbol*               pSymbol,
-                                          PSS_ProcessGraphModelMdl* pModel = NULL,
-                                          PSS_Log*                  pLog   = NULL);
+        PSS_SesterceRecalculationAutomate(PSS_ProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
 
-        virtual ~PSS_DurationRecalculationAutomate();
+        virtual ~PSS_SesterceRecalculationAutomate();
 
         /**
         * Called when the automation starts
@@ -113,9 +109,7 @@ class PSS_DurationRecalculationAutomate : public PSS_AutomateBP
         *@param pLog - the log to use to show messages
         *@return true on success, otherwise false
         */
-        virtual bool OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
-                                                    PSS_StateMachine* pStateMachine,
-                                                    PSS_Log*          pLog);
+        virtual bool OnObjectIsWaitingForOtherLinks(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, PSS_Log* pLog);
 
         /**
         * Called before the automate requests to move forward
@@ -201,86 +195,19 @@ class PSS_DurationRecalculationAutomate : public PSS_AutomateBP
         */
         virtual bool OnReachMaximumWaitingForOtherLinksCounter(PSS_Log* pLog);
 
-        /**
-        * Increments the pass
-        */
-        virtual inline void IncrementPass();
-
-    protected:
-        /**
-        * Gets the pass
-        *@return the pass
-        */
-        virtual inline int GetPass() const;
-
     private:
-        int m_Pass;
-
         /**
-        * Sets the lateral deliverables case duration
+        * Calculates the sum of output deliverables
         *@param leavingEdges - the leaving edges
         *@param leavingLinkCount - the leaving link count
         *@param pProcedure - the procedure
-        *@param pLog - the log to use to show messages
+        *@param pLocalProcedureBefore - the local procedure before the symbol
+        *@return the sum of output deliverables
         */
-        bool SetCaseDurationOfLateralDeliverables(CODEdgeArray&          leavingEdges,
-                                                  std::size_t            leavingLinkCount,
-                                                  PSS_ProcedureSymbolBP* pProcedure,
-                                                  PSS_Log*               pLog);
-
-        /**
-        * Sets the down deliverables case duration
-        *@param pState - the state object
-        *@param leavingEdges - the leaving edges
-        *@param leavingLinkCount - the leaving link count
-        *@param pProcedure - the procedure
-        *@param pLog - the log to use to show messages
-        */
-        bool SetCaseDurationOfDownDeliverables(PSS_StateObject*       pState,
-                                               CODEdgeArray&          leavingEdges,
-                                               std::size_t            leavingLinkCount,
-                                               PSS_ProcedureSymbolBP* pProcedure,
-                                               PSS_Log*               pLog);
-
-        /**
-        * Sets the down deliverables case duration
-        *@param pState - the state object
-        *@param leavingEdges - the leaving edges
-        *@param leavingLinkCount - the leaving link count
-        *@param pLog - the log to use to show messages
-        */
-        bool SetStartSymbolCaseDurationOfDownDeliverables(PSS_StateObject* pState,
-                                                          CODEdgeArray&    leavingEdges,
-                                                          std::size_t      leavingLinkCount,
-                                                          PSS_Log*         pLog);
-
-        /**
-        * Sets the procedure case duration
-        *@param pState - the state object
-        *@param leavingEdges - the leaving edges
-        *@param leavingLinkCount - the leaving link count
-        *@param pProcedure - the procedure
-        *@param pLog - the log to use to show messages
-        */
-        bool SetCaseDurationOfProcedure(PSS_StateObject*       pState,
-                                        CODEdgeArray&          leavingEdges,
-                                        std::size_t            leavingLinkCount,
-                                        PSS_ProcedureSymbolBP* pProcedure,
-                                        PSS_Log*               pLog);
+        double CalculateSumOfOutDeliverables(CODEdgeArray&          leavingEdges,
+                                             std::size_t            leavingLinkCount,
+                                             PSS_ProcedureSymbolBP* pProcedure,
+                                             PSS_ProcedureSymbolBP* pLocalProcedureBefore);
 };
-
-//---------------------------------------------------------------------------
-// PSS_DurationRecalculationAutomate
-//---------------------------------------------------------------------------
-void PSS_DurationRecalculationAutomate::IncrementPass()
-{
-    ++m_Pass;
-}
-//---------------------------------------------------------------------------
-int PSS_DurationRecalculationAutomate::GetPass() const
-{
-    return m_Pass;
-}
-//---------------------------------------------------------------------------
 
 #endif

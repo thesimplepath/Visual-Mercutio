@@ -34,9 +34,9 @@
 #include "PSS_PrestationsPropertiesBP.h"
 #include "PSS_ProcDeliveries.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
-#include "ZBProcRules.h"
+#include "PSS_ProcRules.h"
 #include "PSS_RulesPropertiesBP.h"
-#include "ZBProcRisk.h"
+#include "PSS_ProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
@@ -689,8 +689,8 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         PSS_PrestationsPropertiesBP m_PrestProperties;
         PSS_SimPropertiesProcessBP  m_SimProperties;
         PSS_ProcDeliveries          m_Deliveries;
-        ZBProcRules                 m_Rules;
-        ZBProcRisk                  m_Risks;
+        PSS_ProcRules               m_Rules;
+        PSS_ProcRisk                m_Risks;
         CRect                       m_CommentRect;
         bool                        m_IsUserModified;
         bool                        m_ShowPreview;

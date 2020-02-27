@@ -39,7 +39,7 @@
 #include "zModelBP\PSS_TextZoneBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "ZUDeleteCorruptedSymbols.h"
-#include "ZBSesterceRecalculationAutomate.h"
+#include "PSS_SesterceRecalculationAutomate.h"
 #include "PSS_DurationRecalculationAutomate.h"
 #include "ZVInputAttributesSelectionDlg.h"
 #include "ZVRiskCalculateParametersDlg.h"
@@ -1311,7 +1311,7 @@ void PSS_ProcessGraphModelControllerBP::OnRecalculateModelParameters()
         UnselectAllComponents();
 
         // initialize the calculator
-        ZBSesterceRecalculationAutomate automate(GetRootModel(), pModelDoc->GetAnalyzerOutputLog());
+        PSS_SesterceRecalculationAutomate automate(GetRootModel(), pModelDoc->GetAnalyzerOutputLog());
         automate.SetMaxWaitingForOtherLinks(1000);
         automate.SetMaxPaused(1000);
         automate.SetMaxLoop(2000);

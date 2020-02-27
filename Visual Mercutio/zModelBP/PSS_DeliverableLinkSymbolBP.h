@@ -31,9 +31,9 @@
 #include "zModel\PSS_LogicalRulesEntity.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
-#include "ZBProcRules.h"
+#include "PSS_ProcRules.h"
 #include "PSS_RulesPropertiesBP.h"
-#include "ZBProcRisk.h"
+#include "PSS_ProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
@@ -1279,8 +1279,8 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         PSS_SimPropertiesDeliverableBP  m_SimProperties;
         PSS_CostPropertiesDeliverableBP m_CostDeliverableProperties;
         PSS_UnitPropertiesBP            m_UnitProp;
-        ZBProcRules                     m_Rules;
-        ZBProcRisk                      m_Risks;
+        PSS_ProcRules                   m_Rules;
+        PSS_ProcRisk                    m_Risks;
         CStringArray                    m_UnitDoubleValidationTypeArray;
 
         /**

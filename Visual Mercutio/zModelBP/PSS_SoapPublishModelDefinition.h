@@ -24,7 +24,7 @@
 // processsoft
 #include "zProperty\ZIProperties.h"
 #include "zSOAP\PSS_SoapPublisher_Model.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_PublishMessengerModelInformation.h"
 #include "ZUProcessNavigation.h"
 
 // class name mapping
@@ -34,7 +34,7 @@
 
 // forward class declaration
 class PSS_ProcessGraphModelDoc;
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -59,9 +59,9 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
         *@param pModel - the model to navigate, can be NULL
         *@param pClass - thecustom data class, can be NULL
         */
-        PSS_SoapPublishModelDefinition(ZBPublishMessengerModelInformation* pInfo,
-                                       PSS_ProcessGraphModelMdl*           pModel = NULL,
-                                       void*                               pClass = NULL);
+        PSS_SoapPublishModelDefinition(PSS_PublishMessengerModelInformation* pInfo,
+                                       PSS_ProcessGraphModelMdl*             pModel = NULL,
+                                       void*                                 pClass = NULL);
 
         virtual ~PSS_SoapPublishModelDefinition();
 
@@ -127,11 +127,11 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
         virtual bool OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol);
 
     private:
-        ZBPublishMessengerModelInformation* m_pInfo;
-        PSS_SoapPublisher_Model             m_PubMdl;
-        PSS_ProcessGraphModelDoc*           m_pDoc;
-        CString                             m_MessengerAddress;
-        int                                 m_CounterRow;
+        PSS_PublishMessengerModelInformation* m_pInfo;
+        PSS_SoapPublisher_Model               m_PubMdl;
+        PSS_ProcessGraphModelDoc*             m_pDoc;
+        CString                               m_MessengerAddress;
+        int                                   m_CounterRow;
 
         /**
         * Gets the parent symbol reference

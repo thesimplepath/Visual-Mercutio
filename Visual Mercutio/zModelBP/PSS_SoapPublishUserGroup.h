@@ -35,7 +35,7 @@
 // forward class declaration
 class PSS_UserGroupEntity;
 class PSS_UserRoleEntity;
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_SoapPublishUserGroup
         *@param pInfo - info to publish
         *@param pLog - logger, can be NULL
         */
-        PSS_SoapPublishUserGroup(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
+        PSS_SoapPublishUserGroup(PSS_PublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
 
         virtual ~PSS_SoapPublishUserGroup();
 
@@ -71,9 +71,9 @@ class AFX_EXT_CLASS PSS_SoapPublishUserGroup
         bool Publish();
 
     private:
-        ZBPublishMessengerModelInformation* m_pInfo;
-        PSS_SoapPublisher_Workgroup         m_PubWorkgroup;
-        PSS_Log*                            m_pLog;
+        PSS_PublishMessengerModelInformation* m_pInfo;
+        PSS_SoapPublisher_Workgroup           m_PubWorkgroup;
+        PSS_Log*                              m_pLog;
 
         /**
         * Publishes the user groups and check their validity

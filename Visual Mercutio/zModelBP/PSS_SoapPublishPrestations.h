@@ -27,7 +27,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapPublisher_Prestations.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_PublishMessengerModelInformation.h"
 
 // class name mapping
 #ifndef PSS_LogicalPrestationsEntity
@@ -36,7 +36,7 @@
 
 // forward class declaration
 class PSS_LogicalPrestationsEntity;
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_SoapPublishPrestations
         *@param pInfo - info to publish
         *@param pLog - logger, can be NULL
         */
-        PSS_SoapPublishPrestations(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
+        PSS_SoapPublishPrestations(PSS_PublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
 
         virtual ~PSS_SoapPublishPrestations();
 
@@ -71,9 +71,9 @@ class AFX_EXT_CLASS PSS_SoapPublishPrestations
         bool Publish();
 
     private:
-        ZBPublishMessengerModelInformation* m_pInfo;
-        pPublishPrestations                 m_Prestations;
-        PSS_Log*                            m_pLog;
+        PSS_PublishMessengerModelInformation* m_pInfo;
+        pPublishPrestations                   m_Prestations;
+        PSS_Log*                              m_pLog;
 
         /**
         * Publishes the prestations and check their validity

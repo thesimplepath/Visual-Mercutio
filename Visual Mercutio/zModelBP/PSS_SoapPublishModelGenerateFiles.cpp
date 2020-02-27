@@ -22,7 +22,7 @@
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_PublishMessengerModelInformation.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "zWeb\PSS_HtmlFile.h"
 #include "PSS_StartSymbolBP.h"
@@ -44,9 +44,9 @@ const CString g_ParentImageFile = _T("parent.gif");
 //---------------------------------------------------------------------------
 // PSS_SoapPublishModelGenerateFiles
 //---------------------------------------------------------------------------
-PSS_SoapPublishModelGenerateFiles::PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*           pModel,
-                                                                     void*                               pClass,
-                                                                     ZBPublishMessengerModelInformation* pInfo) :
+PSS_SoapPublishModelGenerateFiles::PSS_SoapPublishModelGenerateFiles(PSS_ProcessGraphModelMdl*             pModel,
+                                                                     void*                                 pClass,
+                                                                     PSS_PublishMessengerModelInformation* pInfo) :
     PSS_ModelNavigation(pModel, pClass),
     m_pModelInfo(pInfo)
 {}

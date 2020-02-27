@@ -25,7 +25,7 @@
 #include "zSOAP\PSS_SoapPublisher_MessengerUniverse.h"
 
 // forward class declaration
-class ZBPublishMessengerModelInformation;
+class PSS_PublishMessengerModelInformation;
 class PSS_Log;
 
 #ifdef _ZMODELBPEXPORT
@@ -50,7 +50,7 @@ class AFX_EXT_CLASS PSS_SoapPublishMessengerUniverse
         *@param pInfo - info to publish
         *@param pLog - logger, can be NULL
         */
-        PSS_SoapPublishMessengerUniverse(ZBPublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
+        PSS_SoapPublishMessengerUniverse(PSS_PublishMessengerModelInformation* pInfo, PSS_Log* pLog = NULL);
 
         virtual ~PSS_SoapPublishMessengerUniverse();
 
@@ -61,9 +61,9 @@ class AFX_EXT_CLASS PSS_SoapPublishMessengerUniverse
         bool Publish();
 
     private:
-        ZBPublishMessengerModelInformation* m_pInfo;
-        PSS_SoapPublisher_MessengerUniverse m_PubMngUni;
-        PSS_Log*                            m_pLog;
+        PSS_PublishMessengerModelInformation* m_pInfo;
+        PSS_SoapPublisher_MessengerUniverse   m_PubMngUni;
+        PSS_Log*                              m_pLog;
 };
 
 #endif

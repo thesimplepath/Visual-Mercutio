@@ -18,7 +18,7 @@
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "zSOAP\PSS_SoapPublisher_MessengerInfo.h"
 #include "zSOAP\PSS_SoapException.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_PublishMessengerModelInformation.h"
 #include "PSS_SoapPublishUserGroup.h"
 #include "PSS_SoapPublishLogicalSystem.h"
 #include "PSS_SoapPublishPrestations.h"
@@ -138,11 +138,11 @@ int ZVPublishToMessengerWizard::DoModal()
         }
 
         // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias dans les paramètres.
-        ZBPublishMessengerModelInformation Info(m_pModelDoc,
-                                                Start.GetMessengerAddress(),
-                                                Start.GetMessengerAlias());
+        PSS_PublishMessengerModelInformation info(m_pModelDoc,
+                                                  Start.GetMessengerAddress(),
+                                                  Start.GetMessengerAlias());
 
-        ZVPublishToMessengerLogon Logon(&Info);
+        ZVPublishToMessengerLogon Logon(&info);
 
         if (Logon.DoModal() == IDCANCEL)
         {
@@ -166,8 +166,8 @@ int ZVPublishToMessengerWizard::DoModal()
         }
 
         // JMR-MODIF - Le 21 juin 2006 - Ajout des dates de validité dans les informations de publication.
-        Info.m_BeginDate = Logon.GetBeginDate();
-        Info.m_EndDate = Logon.GetEndDate();
+        info.m_BeginDate = Logon.GetBeginDate();
+        info.m_EndDate = Logon.GetEndDate();
 
         // Starts the publication
         if (m_pLog)
@@ -192,7 +192,7 @@ int ZVPublishToMessengerWizard::DoModal()
 
         int                              nbCheck = 0;
         BOOL                             IsCheckOK = FALSE;
-        PSS_SoapPublishMessengerUniverse SOAPPubCheckUniverse(&Info, m_pLog);
+        PSS_SoapPublishMessengerUniverse SOAPPubCheckUniverse(&info, m_pLog);
 
         do
         {
@@ -242,7 +242,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine(e);
             }
 
-            PSS_SoapPublishUserGroup SOAPPublishGroups(&Info, m_pLog);
+            PSS_SoapPublishUserGroup SOAPPublishGroups(&info, m_pLog);
 
             int retries = 0;
 
@@ -287,7 +287,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine(e);
             }
 
-            PSS_SoapPublishLogicalSystem SOAPPublishLogicalSystem(&Info, m_pLog);
+            PSS_SoapPublishLogicalSystem SOAPPublishLogicalSystem(&info, m_pLog);
 
             int retries = 0;
 
@@ -334,7 +334,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine(e);
             }
 
-            PSS_SoapPublishPrestations SOAPPublishPrestations(&Info, m_pLog);
+            PSS_SoapPublishPrestations SOAPPublishPrestations(&info, m_pLog);
 
             int retries = 0;
 
@@ -382,7 +382,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine(e);
             }
 
-            PSS_SoapPublishModelAttributes SOAPPublishAttributes(&Info,
+            PSS_SoapPublishModelAttributes SOAPPublishAttributes(&info,
                                                                  m_pModelDoc->GetModel(),
                                                                  (void*)((const char*)Start.GetMessengerAddress()));
 
@@ -431,9 +431,9 @@ int ZVPublishToMessengerWizard::DoModal()
             }
 
             // Publish the model
-            PSS_SoapPublishModelDefinition SOAPPublishModel(&Info,
+            PSS_SoapPublishModelDefinition SOAPPublishModel(&info,
                                                             m_pModelDoc->GetModel(),
-                                                            static_cast<void*>(&Info));
+                                                            static_cast<void*>(&info));
 
             // Assigns the log pointer
             SOAPPublishModel.SetLog(m_pLog);
@@ -493,7 +493,7 @@ int ZVPublishToMessengerWizard::DoModal()
                                                      pDC,
                                                      PSS_Global::GetServer());
 
-            PSS_SoapPublishModelGenerateFiles ModelGen(m_pModelDoc->GetModel(), &modelInfo, &Info);
+            PSS_SoapPublishModelGenerateFiles ModelGen(m_pModelDoc->GetModel(), &modelInfo, &info);
 
             // Assigns the log pointer
             ModelGen.SetLog(m_pLog);
@@ -729,7 +729,7 @@ BEGIN_MESSAGE_MAP(ZVPublishToMessengerLogon, PSS_WizardDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVPublishToMessengerLogon::ZVPublishToMessengerLogon(ZBPublishMessengerModelInformation*    pInfo,
+ZVPublishToMessengerLogon::ZVPublishToMessengerLogon(PSS_PublishMessengerModelInformation*    pInfo,
                                                      CWnd*                                    pParent /*=NULL*/) :
     PSS_WizardDialog(ZVPublishToMessengerLogon::IDD,
                      IDB_WZBMP1,
