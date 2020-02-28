@@ -16,8 +16,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zModelBP\ZCDistributionAttributesList.h"
+// processsoft
+#include "zModelBP\PSS_DistributionAttributesList.h"
 #include "zModelBP\zModelBPRes.h"
 
 #ifdef _ZMODELBPEXPORT
@@ -57,7 +57,7 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZVDistributionAttributesSelectionDlg)
     enum { IDD = IDD_DISTRIBUTIONATTRIBUTES };
-    ZCDistributionAttributesList    m_List;
+    PSS_DistributionAttributesList    m_List;
     //}}AFX_DATA
 
 

@@ -3,11 +3,9 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
-// ZVDistributionAttributes.h : header file
-//
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,10 +13,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "ZCDistributionAttributesList.h"
+#include "PSS_DistributionAttributesList.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc
@@ -28,17 +26,15 @@
 // forward class declaration
 class PSS_ProcessGraphModelDoc;
 
-
 #ifdef _ZMODELBPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
 
 /////////////////////////////////////////////////////////////////////////////
 // _ZVFlatToolBarDistributionAttribs window
@@ -161,7 +157,7 @@ protected:
 
 private:
     _ZVFlatToolBarDistributionAttribs    m_FlatToolBar;
-    ZCDistributionAttributesList        m_listctrl;
+    PSS_DistributionAttributesList        m_listctrl;
     PSS_ProcessGraphModelDoc*                m_pCurrentDoc;
     CODComponent*                        m_pSymbol;
 

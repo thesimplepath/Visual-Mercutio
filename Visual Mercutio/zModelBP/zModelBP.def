@@ -1,9 +1,9 @@
-; zModelBP.def : Declares the module parameters for the DLL.
+; zModelBP.def: Declares the module parameters for the DLL
 
-LIBRARY      "zModelBP"
+LIBRARY "zModelBP"
 
-; JMR-MODIF - Le 2 juin 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'zModelBP Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'zModelBP Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

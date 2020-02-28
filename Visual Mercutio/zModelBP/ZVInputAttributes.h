@@ -15,10 +15,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "ZCInputAttributesList.h"
+#include "PSS_InputAttributesList.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc
@@ -152,11 +152,10 @@ protected:
 
 
 private:
-    _ZVFlatToolBarInputAttributes    m_FlatToolBar;
-    ZCInputAttributesList            m_listctrl;
-    PSS_ProcessGraphModelDoc*            m_pCurrentDoc;
-    int                                m_SymbolRef;
-
+    _ZVFlatToolBarInputAttributes m_FlatToolBar;
+    PSS_InputAttributesList       m_listctrl;
+    PSS_ProcessGraphModelDoc*     m_pCurrentDoc;
+    int                           m_SymbolRef;
 };
 
 #endif

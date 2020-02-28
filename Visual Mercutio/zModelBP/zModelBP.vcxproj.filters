@@ -24,16 +24,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZCDistributionAttributesList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZCInputAttributesList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zModelBP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUCalculateRisks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZUCheckMessengerValidUnit.cpp">
@@ -285,6 +276,15 @@
     <ClCompile Include="PSS_SesterceRecalculationAutomate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_DistributionAttributesList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InputAttributesList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CalculateRisks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -381,19 +381,10 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZCDistributionAttributesList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCInputAttributesList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="zModelBPLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zModelBPRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUCalculateRisks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUCheckMessengerValidUnit.h">
@@ -643,6 +634,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_SesterceRecalculationAutomate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DistributionAttributesList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InputAttributesList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CalculateRisks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

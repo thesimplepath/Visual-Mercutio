@@ -8,7 +8,7 @@
 //
 
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -16,20 +16,19 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "ZCInputAttributesList.h"
+// processsoft
+#include "PSS_InputAttributesList.h"
 #include "zModelBP\zModelBPRes.h"
 
 #ifdef _ZMODELBPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVInputAttributesSelectionDlg dialog
@@ -49,7 +48,7 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZVInputAttributesSelectionDlg)
     enum { IDD = IDD_INPUTATTRIBUTES };
-    ZCInputAttributesList    m_List;
+    PSS_InputAttributesList m_List;
     //}}AFX_DATA
 
 

@@ -10,6 +10,7 @@
 
 // processsoft
 #include "zMediator\PSS_Application.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_FloatingToolBar.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_FileDialog.h"
@@ -43,8 +44,7 @@
 #include "PSS_DurationRecalculationAutomate.h"
 #include "ZVInputAttributesSelectionDlg.h"
 #include "ZVRiskCalculateParametersDlg.h"
-#include "ZUCalculateRisks.h"
-#include "zBaseLib\PSS_Global.h"
+#include "PSS_CalculateRisks.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -1425,19 +1425,19 @@ void PSS_ProcessGraphModelControllerBP::OnCalculateRisks()
 
         if (pDoc)
         {
-            ZUCalculateRisks calculateRisks(riskParametersDlg.GetOrangeSeverityLevel(),
-                                            riskParametersDlg.GetRedSeverityLevel(),
-                                            riskParametersDlg.GetOrangeUE(),
-                                            riskParametersDlg.GetRedUE(),
-                                            riskParametersDlg.GetOrangePOA(),
-                                            riskParametersDlg.GetRedPOA(),
-                                            riskParametersDlg.IsOrangeActionEnabled(),
-                                            riskParametersDlg.IsOrangeNoActionEnabled(),
-                                            riskParametersDlg.IsRedActionEnabled(),
-                                            riskParametersDlg.IsRedNoActionEnabled(),
-                                            riskParametersDlg.IsDefaultColorsEnabled(),
-                                            GetRootModel(),
-                                            pDoc->GetModelOutputLog());
+            PSS_CalculateRisks calculateRisks(riskParametersDlg.GetOrangeSeverityLevel(),
+                                              riskParametersDlg.GetRedSeverityLevel(),
+                                              riskParametersDlg.GetOrangeUE(),
+                                              riskParametersDlg.GetRedUE(),
+                                              riskParametersDlg.GetOrangePOA(),
+                                              riskParametersDlg.GetRedPOA(),
+                                              riskParametersDlg.IsOrangeActionEnabled(),
+                                              riskParametersDlg.IsOrangeNoActionEnabled(),
+                                              riskParametersDlg.IsRedActionEnabled(),
+                                              riskParametersDlg.IsRedNoActionEnabled(),
+                                              riskParametersDlg.IsDefaultColorsEnabled(),
+                                              GetRootModel(),
+                                              pDoc->GetModelOutputLog());
 
             calculateRisks.Calculate(*GetRootModel());
         }

@@ -352,13 +352,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCDistributionAttributesList.cpp">
+    <ClCompile Include="PSS_DistributionAttributesList.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCInputAttributesList.cpp">
+    <ClCompile Include="PSS_InputAttributesList.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -370,7 +370,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUCalculateRisks.cpp" />
+    <ClCompile Include="PSS_CalculateRisks.cpp" />
     <ClCompile Include="ZUCheckMessengerValidUnit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -631,11 +631,11 @@
     <ClInclude Include="PSS_ProcRules.h" />
     <ClInclude Include="PSS_PublishMessengerModelInformation.h" />
     <ClInclude Include="PSS_SesterceRecalculationAutomate.h" />
-    <ClInclude Include="ZCDistributionAttributesList.h" />
-    <ClInclude Include="ZCInputAttributesList.h" />
+    <ClInclude Include="PSS_DistributionAttributesList.h" />
+    <ClInclude Include="PSS_InputAttributesList.h" />
     <ClInclude Include="zModelBPLib.h" />
     <ClInclude Include="zModelBPRes.h" />
-    <ClInclude Include="ZUCalculateRisks.h" />
+    <ClInclude Include="PSS_CalculateRisks.h" />
     <ClInclude Include="ZUCheckMessengerValidUnit.h" />
     <ClInclude Include="ZUCheckSesterceConsistency.h" />
     <ClInclude Include="ZUCheckSesterceUnit.h" />
