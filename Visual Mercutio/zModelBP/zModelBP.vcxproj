@@ -371,7 +371,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_CalculateRisks.cpp" />
-    <ClCompile Include="ZUCheckMessengerValidUnit.cpp">
+    <ClCompile Include="PSS_CheckMessengerValidUnit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -636,7 +636,7 @@
     <ClInclude Include="zModelBPLib.h" />
     <ClInclude Include="zModelBPRes.h" />
     <ClInclude Include="PSS_CalculateRisks.h" />
-    <ClInclude Include="ZUCheckMessengerValidUnit.h" />
+    <ClInclude Include="PSS_CheckMessengerValidUnit.h" />
     <ClInclude Include="ZUCheckSesterceConsistency.h" />
     <ClInclude Include="ZUCheckSesterceUnit.h" />
     <ClInclude Include="ZUCheckSymbolConsistency.h" />

@@ -27,7 +27,7 @@
 #include "PSS_SoapPublishModelAttributes.h"
 #include "PSS_SOAPPublishModelGenerateFiles.h"
 #include "ZUCheckValidUnit.h"
-#include "ZUCheckMessengerValidUnit.h"
+#include "PSS_CheckMessengerValidUnit.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -37,11 +37,9 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 2 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-//////////////////////////////////////////////////////////////////////
-// Global definitions
-
-// JMR-MODIF - Le 30 mai 2006 - Ajout de la constante gPublishMessengerIncludePrestationsEntityName.
-// JMR-MODIF - Le 21 juin 2006 - Ajout de la constante gPublishMessengerAliasName.
+//---------------------------------------------------------------------------
+// Global constants
+//---------------------------------------------------------------------------
 const CString gPublishMessengerSectionName = _T("PublishToMessenger");
 const CString gPublishMessengerAddressEntityName = _T("PublishAddress");
 const CString gPublishMessengerLastAddressEntityName = _T("LastPublishAddress");
@@ -86,23 +84,23 @@ int ZVPublishToMessengerWizard::DoModal()
         }
 
         // Do a unit check before lauching the wizard for the messenger publication
-        ZUCheckMessengerValidUnit CheckUnit(m_pModelDoc->GetModel());
-        CheckUnit.SetLog(m_pLog);
-        CheckUnit.Navigate();
+        PSS_CheckMessengerValidUnit checkUnit(m_pModelDoc->GetModel());
+        checkUnit.SetLog(m_pLog);
+        checkUnit.Navigate();
 
         // Do a second unit check to be sure all units defined in symbol are still exist
         ZUCheckValidUnit Check(m_pModelDoc->GetModel());
         Check.SetLog(m_pLog);
         Check.Navigate();
 
-        if (CheckUnit.GetErrorCounter() > 0 || Check.GetErrorCounter() > 0)
+        if (checkUnit.GetErrorCounter() > 0 || Check.GetErrorCounter() > 0)
         {
             if (m_pLog)
             {
                 CString message;
                 message.Format(IDS_ZS_STOP2,
-                               CheckUnit.GetErrorCounter() + Check.GetErrorCounter(),
-                               CheckUnit.GetWarningCounter() + Check.GetWarningCounter());
+                               checkUnit.GetErrorCounter() + Check.GetErrorCounter(),
+                               checkUnit.GetWarningCounter() + Check.GetWarningCounter());
 
                 PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);
@@ -115,11 +113,11 @@ int ZVPublishToMessengerWizard::DoModal()
         {
             CString message;
 
-            if (CheckUnit.GetWarningCounter() > 0 || Check.GetWarningCounter() > 0)
+            if (checkUnit.GetWarningCounter() > 0 || Check.GetWarningCounter() > 0)
             {
                 message.Format(IDS_ZS_STOP2,
-                               CheckUnit.GetErrorCounter() + Check.GetErrorCounter(),
-                               CheckUnit.GetWarningCounter() + Check.GetWarningCounter());
+                               checkUnit.GetErrorCounter() + Check.GetErrorCounter(),
+                               checkUnit.GetWarningCounter() + Check.GetWarningCounter());
             }
             else
             {

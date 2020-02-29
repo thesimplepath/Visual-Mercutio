@@ -27,9 +27,6 @@
     <ClCompile Include="zModelBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUCheckMessengerValidUnit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZUCheckSesterceConsistency.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -285,6 +282,9 @@
     <ClCompile Include="PSS_CalculateRisks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_CheckMessengerValidUnit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -385,9 +385,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zModelBPRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUCheckMessengerValidUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUCheckSesterceConsistency.h">
@@ -643,6 +640,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CalculateRisks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CheckMessengerValidUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
