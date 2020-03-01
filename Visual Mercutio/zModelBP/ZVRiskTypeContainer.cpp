@@ -1,10 +1,9 @@
-// **************************************************************************************************************
-// *                                            Classe ZVRiskTypeContainer                                        *
-// **************************************************************************************************************
-// * JMR-MODIF - Le 8 juillet 2007 - Ajout de la classe ZVRiskTypeContainer.                                    *
-// **************************************************************************************************************
-// * Cette classe contient en mémoire les types pour les risques, en synchronisation avec le fichier des types.    *
-// **************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_RiskTypeContainer -----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a risk type container                             *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVRiskTypeContainer.h"
@@ -12,81 +11,74 @@
 // processsoft
 #include "zBaseLib\PSS_TextFile.h"
 
-// Constructeur de la classe ZVRiskTypeContainer.
-ZVRiskTypeContainer::ZVRiskTypeContainer()
-{
-}
+#ifdef _DEBUG
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+#endif
 
-// Destructeur de la classe ZVRiskTypeContainer.
-ZVRiskTypeContainer::~ZVRiskTypeContainer()
+//---------------------------------------------------------------------------
+// PSS_RiskTypeContainer
+//---------------------------------------------------------------------------
+PSS_RiskTypeContainer::PSS_RiskTypeContainer() :
+    CObject()
+{}
+//---------------------------------------------------------------------------
+PSS_RiskTypeContainer::~PSS_RiskTypeContainer()
 {
     RemoveAllElements();
 }
-
-// Cette fonction permet d'ouvrir un fichier de données.
-BOOL ZVRiskTypeContainer::LoadFile( CString fileName)
+//---------------------------------------------------------------------------
+BOOL PSS_RiskTypeContainer::LoadFile(const CString& fileName)
 {
-    if (fileName.IsEmpty() == true )
-    {
+    if (fileName.IsEmpty())
         return FALSE;
-    }
 
     m_FileName = fileName;
 
-    PSS_TextFile p_File;
+    PSS_TextFile textFile;
 
-    if ( p_File.OpenRead( m_FileName ) == FALSE )
-    {
+    if (!textFile.OpenRead(m_FileName))
         return FALSE;
-    }
 
-    BOOL    m_EndReached    = FALSE;
-    CString    m_Text            = _T( "" );
+    BOOL    endReached = FALSE;
+    CString text;
 
-    while( m_EndReached != TRUE )
+    while (!endReached)
     {
-        p_File >> m_Text;
+        textFile >> text;
 
-        if ( m_Text.IsEmpty() == false )
-        {
-            m_Set.Add( m_Text );
-        }
+        if (!text.IsEmpty())
+            m_Set.Add(text);
         else
-        {
-            m_EndReached = TRUE;
-        }
+            endReached = TRUE;
     }
 
-    p_File.CloseFile();
+    textFile.CloseFile();
 
     return TRUE;
 }
-
-// Obtient la liste des éléments.
-CStringArray* ZVRiskTypeContainer::GetElementsArray()
-{
-    return &m_Set;
-}
-
-// Obtient l'élément à la position indiquée.
-CString ZVRiskTypeContainer::GetElementAt( size_t Index ) const
-{
-    if ( Index < GetElementCount() )
-    {
-        return m_Set.GetAt( Index );
-    }
-
-    return _T( "" );
-}
-
-// Cette fonction retourne le nom du fchier en cours d'utilisation.
-CString ZVRiskTypeContainer::GetFileName()
+//---------------------------------------------------------------------------
+CString PSS_RiskTypeContainer::GetFileName() const
 {
     return m_FileName;
 }
+//---------------------------------------------------------------------------
+CStringArray* PSS_RiskTypeContainer::GetElementsArray()
+{
+    return &m_Set;
+}
+//---------------------------------------------------------------------------
+CString PSS_RiskTypeContainer::GetElementAt(std::size_t index) const
+{
+    if (index < GetElementCount())
+        return m_Set.GetAt(index);
 
-// Cette fonction permet la suppression de tous les éléments dans la liste.
-void ZVRiskTypeContainer::RemoveAllElements()
+    return _T("");
+}
+//---------------------------------------------------------------------------
+void PSS_RiskTypeContainer::RemoveAllElements()
 {
     m_Set.RemoveAll();
 }
+//---------------------------------------------------------------------------

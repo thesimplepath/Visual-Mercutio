@@ -1,20 +1,18 @@
-// **************************************************************************************************************
-// *                                      Classe ZVRiskProbabilityContainer                                        *
-// **************************************************************************************************************
-// * JMR-MODIF - Le 11 juillet 2007 - Ajout de la classe ZVRiskProbabilityContainer.                            *
-// **************************************************************************************************************
-// * Cette classe contient en mémoire les probabilités pour les risques, en synchronisation avec le fichier des    *
-// * probabilités.                                                                                                *
-// **************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_RiskProbabilityContainer ----------------------------------------*
+ ****************************************************************************
+ * Description : Provides a risk probability container                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVRISKPROBABILITYCONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
-#define AFX_ZVRISKPROBABILITYCONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_
+#ifndef PSS_RiskProbabilityContainerH
+#define PSS_RiskProbabilityContainerH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -23,43 +21,74 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZVRiskProbabilityContainer : public CObject
+/**
+* Risk probability container
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_RiskProbabilityContainer : public CObject
 {
 public:
+    PSS_RiskProbabilityContainer();
+    virtual ~PSS_RiskProbabilityContainer();
 
-    ZVRiskProbabilityContainer();
-    ~ZVRiskProbabilityContainer();
+    /**
+    * Loads the risk type from a file
+    *@param fileName - the risk type file name
+    *@return TRUE on success, otherwise FALSE
+    */
+    virtual BOOL LoadFile(const CString& fileName);
 
-public:
+    /**
+    * Gets the file name
+    *@return the file name
+    */
+    virtual CString GetFileName() const;
 
-    BOOL LoadFile( CString fileName);
+    /**
+    * Gets the element array
+    *@return the element array
+    */
+    virtual CStringArray* GetElementsArray();
 
-    CStringArray* GetElementsArray();
+    /**
+    * Gets the element at index
+    *@param index - the index
+    *@return the element at index, NULL if not found or on error
+    */
+    virtual CString GetElementAt(std::size_t index) const;
 
-    CString GetElementAt( size_t Index ) const;
-    CString GetFileName();
+    /**
+    * Removes all the elements
+    */
+    virtual void RemoveAllElements();
 
-    void RemoveAllElements();
-
-    // Obtient le nombre de propriétés contenues dans l'ensemble.
-    size_t GetElementCount() const
-    {
-        return m_Set.GetSize();
-    };
+    /**
+    * Gets the element count
+    *@return the element count
+    */
+    virtual inline std::size_t GetElementCount() const;
 
 private:
-
-    CString            m_FileName;
-    CStringArray    m_Set;
+    CString      m_FileName;
+    CStringArray m_Set;
 };
 
-#endif // !defined(AFX_ZVRISKPROBABILITYCONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
+//---------------------------------------------------------------------------
+// PSS_RiskProbabilityContainer
+//---------------------------------------------------------------------------
+std::size_t PSS_RiskProbabilityContainer::GetElementCount() const
+{
+    return m_Set.GetSize();
+}
+//---------------------------------------------------------------------------
+
+#endif

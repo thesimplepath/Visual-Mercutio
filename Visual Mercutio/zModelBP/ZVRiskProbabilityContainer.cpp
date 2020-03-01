@@ -1,11 +1,9 @@
-// **************************************************************************************************************
-// *                                      Classe ZVRiskProbabilityContainer                                        *
-// **************************************************************************************************************
-// * JMR-MODIF - Le 11 juillet 2007 - Ajout de la classe ZVRiskProbabilityContainer.                            *
-// **************************************************************************************************************
-// * Cette classe contient en mémoire les probabilités pour les risques, en synchronisation avec le fichier des    *
-// * probabilités.                                                                                                *
-// **************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_RiskProbabilityContainer ----------------------------------------*
+ ****************************************************************************
+ * Description : Provides a risk probability container                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVRiskProbabilityContainer.h"
@@ -13,81 +11,74 @@
 // processsoft
 #include "zBaseLib\PSS_TextFile.h"
 
-// Constructeur de la classe ZVRiskProbabilityContainer.
-ZVRiskProbabilityContainer::ZVRiskProbabilityContainer()
-{
-}
+#ifdef _DEBUG
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+#endif
 
-// Destructeur de la classe ZVRiskProbabilityContainer.
-ZVRiskProbabilityContainer::~ZVRiskProbabilityContainer()
+//---------------------------------------------------------------------------
+// PSS_RiskProbabilityContainer
+//---------------------------------------------------------------------------
+PSS_RiskProbabilityContainer::PSS_RiskProbabilityContainer() :
+    CObject()
+{}
+//---------------------------------------------------------------------------
+PSS_RiskProbabilityContainer::~PSS_RiskProbabilityContainer()
 {
     RemoveAllElements();
 }
-
-// Cette fonction permet d'ouvrir un fichier de données.
-BOOL ZVRiskProbabilityContainer::LoadFile( CString fileName)
+//---------------------------------------------------------------------------
+BOOL PSS_RiskProbabilityContainer::LoadFile(const CString& fileName)
 {
-    if (fileName.IsEmpty() == true )
-    {
+    if (fileName.IsEmpty())
         return FALSE;
-    }
 
     m_FileName = fileName;
 
-    PSS_TextFile p_File;
+    PSS_TextFile textFile;
 
-    if ( p_File.OpenRead( m_FileName ) == FALSE )
-    {
+    if (!textFile.OpenRead(m_FileName))
         return FALSE;
-    }
 
-    BOOL    m_EndReached    = FALSE;
-    CString    m_Text            = _T( "" );
+    BOOL    endReached = FALSE;
+    CString text;
 
-    while( m_EndReached != TRUE )
+    while (!endReached)
     {
-        p_File >> m_Text;
+        textFile >> text;
 
-        if ( m_Text.IsEmpty() == false )
-        {
-            m_Set.Add( m_Text );
-        }
+        if (!text.IsEmpty())
+            m_Set.Add(text);
         else
-        {
-            m_EndReached = TRUE;
-        }
+            endReached = TRUE;
     }
 
-    p_File.CloseFile();
+    textFile.CloseFile();
 
     return TRUE;
 }
-
-// Obtient la liste des éléments.
-CStringArray* ZVRiskProbabilityContainer::GetElementsArray()
-{
-    return &m_Set;
-}
-
-// Obtient l'élément à la position indiquée.
-CString ZVRiskProbabilityContainer::GetElementAt( size_t Index ) const
-{
-    if ( Index < GetElementCount() )
-    {
-        return m_Set.GetAt( Index );
-    }
-
-    return _T( "" );
-}
-
-// Cette fonction retourne le nom du fchier en cours d'utilisation.
-CString ZVRiskProbabilityContainer::GetFileName()
+//---------------------------------------------------------------------------
+CString PSS_RiskProbabilityContainer::GetFileName() const
 {
     return m_FileName;
 }
+//---------------------------------------------------------------------------
+CStringArray* PSS_RiskProbabilityContainer::GetElementsArray()
+{
+    return &m_Set;
+}
+//---------------------------------------------------------------------------
+CString PSS_RiskProbabilityContainer::GetElementAt(std::size_t index) const
+{
+    if (index < GetElementCount())
+        return m_Set.GetAt(index);
 
-// Cette fonction permet la suppression de tous les éléments dans la liste.
-void ZVRiskProbabilityContainer::RemoveAllElements()
+    return _T("");
+}
+//---------------------------------------------------------------------------
+void PSS_RiskProbabilityContainer::RemoveAllElements()
 {
     m_Set.RemoveAll();
 }
+//---------------------------------------------------------------------------

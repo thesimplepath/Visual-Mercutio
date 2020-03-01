@@ -1,19 +1,18 @@
-// **************************************************************************************************************
-// *                                            Classe ZVRiskTypeContainer                                        *
-// **************************************************************************************************************
-// * JMR-MODIF - Le 8 juillet 2007 - Ajout de la classe ZVRiskTypeContainer.                                    *
-// **************************************************************************************************************
-// * Cette classe contient en mémoire les types pour les risques, en synchronisation avec le fichier des types.    *
-// **************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_RiskTypeContainer -----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a risk type container                             *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVRISKTYPECONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
-#define AFX_ZVRISKTYPECONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_
+#ifndef PSS_RiskTypeContainerH
+#define PSS_RiskTypeContainerH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -22,43 +21,74 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZVRiskTypeContainer : public CObject
+/**
+* Risk type container
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_RiskTypeContainer : public CObject
 {
-public:
+    public:
+        PSS_RiskTypeContainer();
+        virtual ~PSS_RiskTypeContainer();
 
-    ZVRiskTypeContainer();
-    ~ZVRiskTypeContainer();
+        /**
+        * Loads the risk type from a file
+        *@param fileName - the risk type file name
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL LoadFile(const CString& fileName);
 
-public:
+        /**
+        * Gets the file name
+        *@return the file name
+        */
+        virtual CString GetFileName() const;
 
-    BOOL LoadFile( CString fileName);
+        /**
+        * Gets the element array
+        *@return the element array
+        */
+        virtual CStringArray* GetElementsArray();
 
-    CStringArray* GetElementsArray();
+        /**
+        * Gets the element at index
+        *@param index - the index
+        *@return the element at index, NULL if not found or on error
+        */
+        virtual CString GetElementAt(std::size_t index) const;
 
-    CString GetElementAt( size_t Index ) const;
-    CString GetFileName();
+        /**
+        * Removes all the elements
+        */
+        virtual void RemoveAllElements();
 
-    void RemoveAllElements();
+        /**
+        * Gets the element count
+        *@return the element count
+        */
+        virtual inline std::size_t GetElementCount() const;
 
-    // Obtient le nombre de propriétés contenues dans l'ensemble.
-    size_t GetElementCount() const
-    {
-        return m_Set.GetSize();
-    };
-
-private:
-
-    CString            m_FileName;
-    CStringArray    m_Set;
+    private:
+        CString      m_FileName;
+        CStringArray m_Set;
 };
 
-#endif // !defined(AFX_ZVRISKTYPECONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
+//---------------------------------------------------------------------------
+// PSS_RiskTypeContainer
+//---------------------------------------------------------------------------
+std::size_t PSS_RiskTypeContainer::GetElementCount() const
+{
+    return m_Set.GetSize();
+}
+//---------------------------------------------------------------------------
+
+#endif
