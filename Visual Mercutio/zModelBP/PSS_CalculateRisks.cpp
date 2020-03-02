@@ -9,6 +9,8 @@
 #include "PSS_CalculateRisks.h"
 
 // processsoft
+#include "zBaseLib\PSS_Log.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "zMediator\PSS_Application.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
@@ -23,9 +25,9 @@
 #include "PSS_StopSymbolBP.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
-#include "ZUCheckValidUnit.h"
-#include "zBaseLib\PSS_Log.h"
-#include "zBaseLib\PSS_Tokenizer.h"
+#include "PSS_CheckValidUnit.h"
+
+// resources
 #include "zModelBPRes.h"
 #include "PSS_ModelResIDs.h"
 

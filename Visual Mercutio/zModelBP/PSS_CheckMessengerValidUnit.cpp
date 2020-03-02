@@ -1,8 +1,7 @@
 /****************************************************************************
  * ==> PSS_CheckMessengerValidUnit -----------------------------------------*
  ****************************************************************************
- * Description : Provides a navigator which will navigates through the      *
- *               process and write the process information to a grid        *
+ * Description : Provides a navigator to check Messenger valid unit         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 

@@ -37,9 +37,9 @@
 #include "PSS_RulesPropertiesBP.h"
 #include "PSS_ProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
-#include "ZVRiskTypeContainer.h"
+#include "PSS_RiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
-#include "ZVRiskProbabilityContainer.h"
+#include "PSS_RiskProbabilityContainer.h"
 
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again

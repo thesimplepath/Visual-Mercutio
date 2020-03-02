@@ -27,18 +27,6 @@
     <ClCompile Include="zModelBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUCheckSesterceConsistency.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUCheckSesterceUnit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUCheckSymbolConsistency.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUCheckValidUnit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZUDeleteCorruptedSymbols.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -115,12 +103,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVRiskOptionsDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVRiskProbabilityContainer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVRiskTypeContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_SoapPublishModelAttributes.cpp">
@@ -285,6 +267,24 @@
     <ClCompile Include="PSS_CheckMessengerValidUnit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_RiskTypeContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_RiskProbabilityContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CheckSesterceConsistency.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CheckSesterceUnit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CheckSymbolConsistency.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CheckValidUnit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -387,18 +387,6 @@
     <ClInclude Include="zModelBPRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZUCheckSesterceConsistency.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUCheckSesterceUnit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUCheckSymbolConsistency.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUCheckValidUnit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZUDeleteCorruptedSymbols.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -475,12 +463,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVRiskOptionsDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVRiskProbabilityContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVRiskTypeContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_SoapPublishModelAttributes.h">
@@ -643,6 +625,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CheckMessengerValidUnit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RiskTypeContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RiskProbabilityContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CheckSesterceConsistency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CheckSesterceUnit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CheckSymbolConsistency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CheckValidUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,7 +26,7 @@
 #include "PSS_SoapPublishModelDefinition.h"
 #include "PSS_SoapPublishModelAttributes.h"
 #include "PSS_SOAPPublishModelGenerateFiles.h"
-#include "ZUCheckValidUnit.h"
+#include "PSS_CheckValidUnit.h"
 #include "PSS_CheckMessengerValidUnit.h"
 
 #ifdef _DEBUG
@@ -89,7 +89,7 @@ int ZVPublishToMessengerWizard::DoModal()
         checkUnit.Navigate();
 
         // Do a second unit check to be sure all units defined in symbol are still exist
-        ZUCheckValidUnit Check(m_pModelDoc->GetModel());
+        PSS_CheckValidUnit Check(m_pModelDoc->GetModel());
         Check.SetLog(m_pLog);
         Check.Navigate();
 

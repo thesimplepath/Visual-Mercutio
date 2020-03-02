@@ -46,9 +46,9 @@
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
 #include "zModelBP\ZVPublishToMessengerWizard.h"
-#include "zModelBP\ZVRiskTypeContainer.h"
+#include "zModelBP\PSS_RiskTypeContainer.h"
 #include "zModelBP\ZVRiskImpactContainer.h"
-#include "zModelBP\ZVRiskProbabilityContainer.h"
+#include "zModelBP\PSS_RiskProbabilityContainer.h"
 #include "zModelWeb\PSS_PublishModelToHTML.h"
 #include "zReport\ZVGridReportChildFrm.h"
 #include "zReport\ZDGridReportDoc.h"
@@ -1155,7 +1155,7 @@ BOOL ZAApp::LoadTypeRiskFile()
 {
     if (m_pRiskTypeContainer == NULL)
     {
-        m_pRiskTypeContainer = new ZVRiskTypeContainer();
+        m_pRiskTypeContainer = new PSS_RiskTypeContainer();
 
         if (!m_pRiskTypeContainer->LoadFile(GetApplicationOptions().GetRiskTypeFileName()))
             return FALSE;
@@ -1183,7 +1183,7 @@ BOOL ZAApp::LoadProbabilityRiskFile()
 {
     if (m_pRiskProbabilityContainer == NULL)
     {
-        m_pRiskProbabilityContainer = new ZVRiskProbabilityContainer();
+        m_pRiskProbabilityContainer = new PSS_RiskProbabilityContainer();
 
         if (!m_pRiskProbabilityContainer->LoadFile(GetApplicationOptions().GetRiskProbabilityFileName()))
             return FALSE;

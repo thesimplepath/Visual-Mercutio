@@ -15,7 +15,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
-#include "ZUCheckSesterceConsistency.h"
+#include "PSS_CheckSesterceConsistency.h"
 #include "ZUProcessClearDurationFigures.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
@@ -69,7 +69,7 @@ bool PSS_DurationRecalculationAutomate::OnStart(PSS_Log* pLog)
         clearDuration.Navigate();
 
         // preform a deep check before starting the calculation of the model
-        ZUCheckSesterceConsistency checkConsistency(m_pModel, pLog);
+        PSS_CheckSesterceConsistency checkConsistency(m_pModel, pLog);
         checkConsistency.CheckModel();
 
         // Assigns the error counter and the warning counter

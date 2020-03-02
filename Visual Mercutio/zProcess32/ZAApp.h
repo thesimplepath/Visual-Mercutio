@@ -58,9 +58,9 @@ class PSS_LogicalPrestationsDocument;
 class PSS_LogicalPrestationsEntity;
 class PSS_LogicalRulesDocument;
 class PSS_LogicalRulesEntity;
-class ZVRiskTypeContainer;
+class PSS_RiskTypeContainer;
 class ZVRiskImpactContainer;
-class ZVRiskProbabilityContainer;
+class PSS_RiskProbabilityContainer;
 
 // derive from the abstract CGXAppAdapter
 class ZBGridAppAdapter : public CGXAppAdapter
@@ -145,7 +145,7 @@ public:
     // ********************************************************************************
     // JMR-MODIF - Le 8 juillet 2007 - Ajout des fonctions concernant les risques.
 
-    ZVRiskTypeContainer* GetRiskTypeContainer()
+    PSS_RiskTypeContainer* GetRiskTypeContainer()
     {
         return m_pRiskTypeContainer;
     }
@@ -159,7 +159,7 @@ public:
 
     BOOL LoadImpactRiskFile();
 
-    ZVRiskProbabilityContainer* GetRiskProbabilityContainer()
+    PSS_RiskProbabilityContainer* GetRiskProbabilityContainer()
     {
         return m_pRiskProbabilityContainer;
     }
@@ -490,13 +490,13 @@ private:
     PSS_LogicalRulesDocument*            m_pRulesDocument;
 
     // JMR-MODIF - Le 8 juillet 2007 - Ajout de la variable m_RiskTypeContainer.
-    ZVRiskTypeContainer*            m_pRiskTypeContainer;
+    PSS_RiskTypeContainer*            m_pRiskTypeContainer;
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de la variable m_pRiskImpactContainer.
     ZVRiskImpactContainer*            m_pRiskImpactContainer;
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de la variable m_pRiskProbabilityContainer.
-    ZVRiskProbabilityContainer*        m_pRiskProbabilityContainer;
+    PSS_RiskProbabilityContainer*        m_pRiskProbabilityContainer;
 };
 
 //## begin ZAApp%36441921033A.postscript preserve=yes

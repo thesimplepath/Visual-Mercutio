@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CheckMessengerValidUnit -----------------------------------------*
+ * ==> PSS_CheckValidUnit --------------------------------------------------*
  ****************************************************************************
- * Description : Provides a navigator to check Messenger valid unit         *
+ * Description : Provides a navigator to check the valid units              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CheckMessengerValidUnitH
-#define PSS_CheckMessengerValidUnitH
+#ifndef PSS_CheckValidUnitH
+#define PSS_CheckValidUnitH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -42,10 +42,10 @@ class PSS_UserGroupEntity;
 #endif
 
 /**
-* Navigator to check Messenger valid unit
+* Navigator to check the valid units
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CheckMessengerValidUnit : public ZUProcessNavigation
+class AFX_EXT_CLASS PSS_CheckValidUnit : public ZUProcessNavigation
 {
     public:
         /**
@@ -53,9 +53,9 @@ class AFX_EXT_CLASS PSS_CheckMessengerValidUnit : public ZUProcessNavigation
         *@param pModel - the model
         *@param pClass - the class
         */
-        PSS_CheckMessengerValidUnit(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+        PSS_CheckValidUnit(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
-        virtual ~PSS_CheckMessengerValidUnit();
+        virtual ~PSS_CheckValidUnit();
 
         /**
         * Called when the navigation starts

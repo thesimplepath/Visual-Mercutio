@@ -33,9 +33,9 @@
 #endif
 
 // class prototypes
-class ZVRiskTypeContainer;
+class PSS_RiskTypeContainer;
 class ZVRiskImpactContainer;
-class ZVRiskProbabilityContainer;
+class PSS_RiskProbabilityContainer;
 
 /**
 * Application main form interface
@@ -79,7 +79,7 @@ class AFX_EXT_CLASS PSS_MainForm : public CWinApp
         * Gets the Risk type container
         *@return the Risk type container
         */
-        virtual ZVRiskTypeContainer* GetRiskTypeContainer() = 0;
+        virtual PSS_RiskTypeContainer* GetRiskTypeContainer() = 0;
 
         /**
         * Gets the Risk impact container
@@ -91,7 +91,7 @@ class AFX_EXT_CLASS PSS_MainForm : public CWinApp
         * Gets the Risk probability container
         *@return the Risk probability container
         */
-        virtual ZVRiskProbabilityContainer* GetRiskProbabilityContainer() = 0;
+        virtual PSS_RiskProbabilityContainer* GetRiskProbabilityContainer() = 0;
 
         // JMR-MODIF - Le 16 octobre 2007 - Ajout de cette fonction pour corriger un bug du menu "Fichiers récents".
         /**

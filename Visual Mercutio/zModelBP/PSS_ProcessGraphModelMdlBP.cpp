@@ -27,7 +27,7 @@
 #include "PSS_DeliverableLinkSymbolBP.h"
 #include "PSS_InputAttributes.h"
 #include "PSS_DistributionAttributes.h"
-#include "ZUCheckSymbolConsistency.h"
+#include "PSS_CheckSymbolConsistency.h"
 
 // resources
 #include "zModel\zModelRes.h"
@@ -134,7 +134,7 @@ bool PSS_ProcessGraphModelMdlBP::CheckModelWorkflow(PSS_Log* pLog, BOOL modelIsC
     m_RecursionCounter = 0;
     m_IsInRecursion    = false;
 
-    ZUCheckSymbolConsistency symbolConsistency(this, pLog);
+    PSS_CheckSymbolConsistency symbolConsistency(this, pLog);
     symbolConsistency.CheckSymbol(*this, modelIsClean);
 
     // reset the array

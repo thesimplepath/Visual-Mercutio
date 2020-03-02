@@ -572,7 +572,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
         if (pMainForm)
         {
-            ZVRiskProbabilityContainer* pContainer = pMainForm->GetRiskProbabilityContainer();
+            PSS_RiskProbabilityContainer* pContainer = pMainForm->GetRiskProbabilityContainer();
 
             if (pContainer)
                 riskProbability = pContainer->GetElementAt(GetRiskProbability(i));
@@ -2513,7 +2513,7 @@ CString PSS_DeliverableLinkSymbolBP::GetRiskType(std::size_t index) const
     if (!pMainForm)
         return _T("");
 
-    ZVRiskTypeContainer* pContainer = pMainForm->GetRiskTypeContainer();
+    PSS_RiskTypeContainer* pContainer = pMainForm->GetRiskTypeContainer();
 
     if (!pContainer)
         return _T("");

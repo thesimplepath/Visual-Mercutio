@@ -14,9 +14,9 @@
 #include "zMediator\PSS_Application.h"
 #include "ZVRiskModifyDlg.h"
 #include "ZVRiskModifyStaticDlg.h"
-#include "ZVRiskTypeContainer.h"
+#include "PSS_RiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
-#include "ZVRiskProbabilityContainer.h"
+#include "PSS_RiskProbabilityContainer.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW

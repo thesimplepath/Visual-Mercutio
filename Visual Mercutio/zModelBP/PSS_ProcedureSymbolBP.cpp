@@ -575,7 +575,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
 
         if (pMainForm)
         {
-            ZVRiskProbabilityContainer* pContainer = pMainForm->GetRiskProbabilityContainer();
+            PSS_RiskProbabilityContainer* pContainer = pMainForm->GetRiskProbabilityContainer();
 
             if (pContainer)
                 riskProbability = pContainer->GetElementAt(GetRiskProbability(i));
@@ -1989,12 +1989,9 @@ PSS_AnnualNumberPropertiesBP PSS_ProcedureSymbolBP::CalculateProcedureActivation
         if (!pDeliverable->IsLocal())
         {
             // get the local symbol
-            PSS_DeliverableLinkSymbolBP* pComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pDeliverable->GetLocalSymbol());
+            pDeliverable = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pDeliverable->GetLocalSymbol());
 
-            if (pComp)
-                pDeliverable = pComp;
-            else
-                // todo -cFeature -oJean: log the error
+            if (!pDeliverable)
                 return false;
         }
 
@@ -2308,7 +2305,7 @@ CString PSS_ProcedureSymbolBP::GetRiskType(std::size_t index) const
     if (!pMainForm)
         return _T("");
 
-    ZVRiskTypeContainer* pContainer = pMainForm->GetRiskTypeContainer();
+    PSS_RiskTypeContainer* pContainer = pMainForm->GetRiskTypeContainer();
 
     if (!pContainer)
         return _T("");
@@ -2806,15 +2803,8 @@ float PSS_ProcedureSymbolBP::GetMaxActivationPerc(const CString& master)
 
             // check if it's a local symbol
             if (!pComp->IsLocal())
-            {
                 // get the local symbol
-                PSS_DeliverableLinkSymbolBP* pLocalComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp->GetLocalSymbol());
-
-                if (pLocalComp)
-                    pComp = pLocalComp;
-                else
-                    pComp = NULL;
-            }
+                pComp = dynamic_cast<PSS_DeliverableLinkSymbolBP*>(pComp->GetLocalSymbol());
 
             if (pComp)
             {

@@ -15,8 +15,8 @@
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "zWkf\PSS_StateMachine.h"
-#include "ZUCheckSesterceConsistency.h"
-#include "ZUCheckSesterceUnit.h"
+#include "PSS_CheckSesterceConsistency.h"
+#include "PSS_CheckSesterceUnit.h"
 #include "ZUProcessCalculateTotals.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
@@ -59,7 +59,7 @@ bool PSS_SesterceRecalculationAutomate::OnStart(PSS_Log* pLog)
     }
 
     // perform a deep check before running the model calculation
-    ZUCheckSesterceConsistency checkConsistency(m_pModel, pLog);
+    PSS_CheckSesterceConsistency checkConsistency(m_pModel, pLog);
     checkConsistency.CheckModel();
 
     // assign the error and warning counters
@@ -71,7 +71,7 @@ bool PSS_SesterceRecalculationAutomate::OnStart(PSS_Log* pLog)
     if (pProcessGraphModel && pProcessGraphModel->MainUserGroupIsValid())
     {
         // perform an unit check and assignement before running the model calculation
-        ZUCheckSesterceUnit checkUnit(m_pModel);
+        PSS_CheckSesterceUnit checkUnit(m_pModel);
         checkUnit.SetLog(pLog);
         checkUnit.Navigate();
 

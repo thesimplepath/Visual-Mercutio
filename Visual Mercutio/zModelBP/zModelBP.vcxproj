@@ -377,25 +377,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUCheckSesterceConsistency.cpp">
+    <ClCompile Include="PSS_CheckSesterceConsistency.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUCheckSesterceUnit.cpp">
+    <ClCompile Include="PSS_CheckSesterceUnit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUCheckSymbolConsistency.cpp">
+    <ClCompile Include="PSS_CheckSymbolConsistency.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUCheckValidUnit.cpp">
+    <ClCompile Include="PSS_CheckValidUnit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -544,8 +544,8 @@
     <ClCompile Include="ZVRiskModifyStaticDlg.cpp" />
     <ClCompile Include="ZVRiskNewFileDlg.cpp" />
     <ClCompile Include="ZVRiskOptionsDlg.cpp" />
-    <ClCompile Include="ZVRiskProbabilityContainer.cpp" />
-    <ClCompile Include="ZVRiskTypeContainer.cpp" />
+    <ClCompile Include="PSS_RiskProbabilityContainer.cpp" />
+    <ClCompile Include="PSS_RiskTypeContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur" />
@@ -637,10 +637,10 @@
     <ClInclude Include="zModelBPRes.h" />
     <ClInclude Include="PSS_CalculateRisks.h" />
     <ClInclude Include="PSS_CheckMessengerValidUnit.h" />
-    <ClInclude Include="ZUCheckSesterceConsistency.h" />
-    <ClInclude Include="ZUCheckSesterceUnit.h" />
-    <ClInclude Include="ZUCheckSymbolConsistency.h" />
-    <ClInclude Include="ZUCheckValidUnit.h" />
+    <ClInclude Include="PSS_CheckSesterceConsistency.h" />
+    <ClInclude Include="PSS_CheckSesterceUnit.h" />
+    <ClInclude Include="PSS_CheckSymbolConsistency.h" />
+    <ClInclude Include="PSS_CheckValidUnit.h" />
     <ClInclude Include="ZUDeleteCorruptedSymbols.h" />
     <ClInclude Include="ZUExtractProcessName.h" />
     <ClInclude Include="ZUProcedureCalculateTotals.h" />
@@ -674,8 +674,8 @@
     <ClInclude Include="ZVRiskModifyStaticDlg.h" />
     <ClInclude Include="ZVRiskNewFileDlg.h" />
     <ClInclude Include="ZVRiskOptionsDlg.h" />
-    <ClInclude Include="ZVRiskProbabilityContainer.h" />
-    <ClInclude Include="ZVRiskTypeContainer.h" />
+    <ClInclude Include="PSS_RiskProbabilityContainer.h" />
+    <ClInclude Include="PSS_RiskTypeContainer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bmp27320.bmp" />
