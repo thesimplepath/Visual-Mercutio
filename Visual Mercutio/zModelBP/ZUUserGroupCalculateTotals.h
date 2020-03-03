@@ -1,32 +1,18 @@
-/////////////////////////////////////////////////////////////////////////////
-//@doc ZUUserGroupCalculateTotals
-//@module ZUUserGroupCalculateTotals.h | Interface of the <c ZUUserGroupCalculateTotals> class.
-//
-// ProcessSoft Classes
-// <nl>Copyright <cp> 2001 - ProcessSoft SA,
-// All rights reserved.
-//
-// This source code is only intended as a supplement to
-// the ProcessSoft Class Reference and related
-// electronic documentation provided with the library.
-// See these sources for detailed information regarding
-// ProcessSoft products.
-//
-// Author:       Dom
-// <nl>Created:         07/2001
-// <nl>Description:  ZUUserGroupCalculateTotals navigates through the process and
-//                     write process information to the grid
-//
-/////////////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_UserGroupCalculateTotals ----------------------------------------*
+ ****************************************************************************
+ * Description : Provides a navigator to calculate the user group totals    *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZUUserGroupCalculateTotals_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
-#define AFX_ZUUserGroupCalculateTotals_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_
+#ifndef PSS_UserGroupCalculateTotalsH
+#define PSS_UserGroupCalculateTotalsH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -35,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZUProcessNavigation.h"
+#include "PSS_ProcessNavigation.h"
 #include "PSS_AnnualNumberPropertiesBP.h"
 
 // class name mapping
@@ -47,19 +33,14 @@
 class PSS_UserGroupEntity;
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-// JMR-MODIF - Le 9 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// ZBUserGroupCalculateTotalsInformation
 
 class AFX_EXT_CLASS ZBUserGroupCalculateTotalsInformation
 {
@@ -124,10 +105,11 @@ typedef CCArray_T<_ZBUserGroupTotal*, _ZBUserGroupTotal*> ZBUserGroupTotalSet;
 //@iex typedef Iterator_T<_ZBUserGroupTotal*> ZBUserEntityIterator;
 typedef Iterator_T<_ZBUserGroupTotal*> ZBUserGroupTotalIterator;
 
-/////////////////////////////////////////////////////////////////////////////
-// ZUUserGroupCalculateTotals
-
-class AFX_EXT_CLASS ZUUserGroupCalculateTotals : public ZUProcessNavigation
+/**
+* Navigator to calculate the user group totals
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS ZUUserGroupCalculateTotals : public PSS_ProcessNavigation
 {
 public:
     //*@param pClass - the custom data class, can be NULL

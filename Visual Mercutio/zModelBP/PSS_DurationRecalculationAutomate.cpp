@@ -16,7 +16,7 @@
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
 #include "PSS_CheckSesterceConsistency.h"
-#include "ZUProcessClearDurationFigures.h"
+#include "PSS_ProcessClearDurationFigures.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
@@ -64,7 +64,7 @@ bool PSS_DurationRecalculationAutomate::OnStart(PSS_Log* pLog)
         }
 
         // clear all values before calculating the model duration
-        ZUProcessClearDurationFigures clearDuration(m_pModel, pLog);
+        PSS_ProcessClearDurationFigures clearDuration(m_pModel, pLog);
         clearDuration.SetLog(pLog);
         clearDuration.Navigate();
 

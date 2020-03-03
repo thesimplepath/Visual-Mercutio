@@ -17,7 +17,7 @@
 #include "zWkf\PSS_StateMachine.h"
 #include "PSS_CheckSesterceConsistency.h"
 #include "PSS_CheckSesterceUnit.h"
-#include "ZUProcessCalculateTotals.h"
+#include "PSS_ProcessCalculateTotals.h"
 #include "PSS_DoorSymbolBP.h"
 #include "PSS_PageSymbolBP.h"
 #include "PSS_ProcedureSymbolBP.h"
@@ -107,7 +107,7 @@ bool PSS_SesterceRecalculationAutomate::OnStop(PSS_Log* pLog)
     }
 
     // at the model calculation end, calculate the process forecast values
-    ZUProcessCalculateTotals processCalculateTotals(m_pModel, NULL);
+    PSS_ProcessCalculateTotals processCalculateTotals(m_pModel, NULL);
     processCalculateTotals.Navigate();
 
     // can log?

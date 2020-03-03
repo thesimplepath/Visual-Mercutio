@@ -39,7 +39,7 @@
 #include "zModelBP\PSS_GenericSymbolBP.h"
 #include "zModelBP\PSS_TextZoneBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
-#include "ZUDeleteCorruptedSymbols.h"
+#include "PSS_DeleteCorruptedSymbols.h"
 #include "PSS_SesterceRecalculationAutomate.h"
 #include "PSS_DurationRecalculationAutomate.h"
 #include "ZVInputAttributesSelectionDlg.h"
@@ -1254,7 +1254,7 @@ void PSS_ProcessGraphModelControllerBP::OnCheckModel()
 
     if (pModel)
     {
-        ZUDeleteCorruptedSymbols verifySymbols;
+        PSS_DeleteCorruptedSymbols verifySymbols;
         verifySymbols.CheckModel(pModel);
 
         if (verifySymbols.GetCorruptedSymbolList()->GetCount() > 0)

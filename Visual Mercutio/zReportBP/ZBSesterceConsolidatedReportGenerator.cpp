@@ -9,9 +9,9 @@
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zReport\ZDGridDoc.h"
 
-#include "zModelBP\ZUExtractProcessName.h"
+#include "zModelBP\PSS_ExtractProcessName.h"
 #include "ZUGridProcessNavigation.h"
-#include "zModelBP\ZUProcedureCalculateTotals.h"
+#include "zModelBP\PSS_ProcedureCalculateTotals.h"
 
 #include "zModelBP\ZUUserGroupCalculateTotals.h"
 
@@ -162,8 +162,8 @@ void ZBSesterceConsolidatedReportGenerator::FillTabArray()
     RemoveAllData();
 
     // Fill the array with process name
-    ZUExtractProcessName ExtractProcessName(m_pModel);
-    ExtractProcessName.FillProcessNameArray(&m_ProcessNameArray);
+    PSS_ExtractProcessName extractProcessName(m_pModel);
+    extractProcessName.FillProcessNameArray(&m_ProcessNameArray);
 
     // Add all models to the model array
     m_ModelArray.Add(m_pModel);

@@ -31,7 +31,7 @@
 // PSS_CheckSesterceUnit
 //---------------------------------------------------------------------------
 PSS_CheckSesterceUnit::PSS_CheckSesterceUnit(PSS_ProcessGraphModelMdl* pModel, void* pClass) :
-    ZUProcessNavigation(pModel, pClass)
+    PSS_ProcessNavigation(pModel, pClass)
 {}
 //---------------------------------------------------------------------------
 PSS_CheckSesterceUnit::~PSS_CheckSesterceUnit()

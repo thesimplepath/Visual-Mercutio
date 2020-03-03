@@ -31,7 +31,7 @@
 // PSS_CheckValidUnit
 //---------------------------------------------------------------------------
 PSS_CheckValidUnit::PSS_CheckValidUnit(PSS_ProcessGraphModelMdl* pModel, void* pClass) :
-    ZUProcessNavigation(pModel, pClass)
+    PSS_ProcessNavigation(pModel, pClass)
 {}
 //---------------------------------------------------------------------------
 PSS_CheckValidUnit::~PSS_CheckValidUnit()

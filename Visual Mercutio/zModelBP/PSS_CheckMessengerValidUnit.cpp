@@ -32,7 +32,7 @@
 // PSS_CheckMessengerValidUnit
 //---------------------------------------------------------------------------
 PSS_CheckMessengerValidUnit::PSS_CheckMessengerValidUnit(PSS_ProcessGraphModelMdl* pModel, void* pClass) :
-    ZUProcessNavigation(pModel, pClass)
+    PSS_ProcessNavigation(pModel, pClass)
 {}
 //---------------------------------------------------------------------------
 PSS_CheckMessengerValidUnit::~PSS_CheckMessengerValidUnit()

@@ -41,7 +41,7 @@ static char THIS_FILE[] = __FILE__;
 
 ZUGridSesterceProcessNavigation::ZUGridSesterceProcessNavigation(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                  void*                        pClass    /*= NULL*/)
-    : ZUProcessNavigation(pModel, pClass)
+    : PSS_ProcessNavigation(pModel, pClass)
 {}
 
 ZUGridSesterceProcessNavigation::~ZUGridSesterceProcessNavigation()

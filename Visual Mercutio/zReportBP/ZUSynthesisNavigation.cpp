@@ -40,7 +40,7 @@ ZUSynthesisNavigation::ZUSynthesisNavigation(PSS_ProcessGraphModelMdl*    pModel
                                              PSS_ProcessGraphModelMdl*    pRootModel    /*= NULL*/,
                                              const CString                domainName    /*= ""*/,
                                              const CString                unitName    /*= ""*/)
-    : ZUProcessNavigation(pModel, pClass),
+    : PSS_ProcessNavigation(pModel, pClass),
     m_pRootModel(pRootModel),
     m_DomainName(domainName),
     m_UnitName(unitName)

@@ -15,7 +15,7 @@
 #include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 
-#include "zModelBP\ZUExtractProcessName.h"
+#include "zModelBP\PSS_ExtractProcessName.h"
 #include "ZUSynthesisNavigation.h"
 #include "ZUProcessConceptorNavigation.h"
 
@@ -101,10 +101,10 @@ void ZBConceptorReportGenerator::FillTabArray()
     FillTabUnitGroup(m_pModel->GetMainUserGroup());
 
     // Fill the array with process name
-    ZUExtractProcessName ExtractProcessName(m_pModel);
+    PSS_ExtractProcessName extractProcessName(m_pModel);
 
     // Add all models to the model array
-    ExtractProcessName.FillProcessNameArray(&m_ProcessNameArray);
+    extractProcessName.FillProcessNameArray(&m_ProcessNameArray);
 
     int CountProcess = m_ProcessNameArray.GetSize();
 

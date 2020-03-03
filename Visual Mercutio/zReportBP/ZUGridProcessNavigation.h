@@ -26,7 +26,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zModelBP\ZUProcessNavigation.h"
+#include "zModelBP\PSS_ProcessNavigation.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Forward declaration
@@ -34,7 +34,7 @@ class ZBOStreamGrid;
 
 // JMR-MODIF - Le 7 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class ZUGridProcessNavigation : public ZUProcessNavigation
+class ZUGridProcessNavigation : public PSS_ProcessNavigation
 {
 public:
     //*@param pClass - the custom data class, can be NULL

@@ -1321,8 +1321,8 @@ void ZBPrestationsReportGenerator::FillTabArray()
     RemoveObsoleteDatas();
 
     // Obtient la liste des noms des processus.
-    ZUExtractProcessName ExtractProcessName(m_pModel);
-    ExtractProcessName.FillProcessNameArray(&m_ProcessNameArray);
+    PSS_ExtractProcessName extractProcessName(m_pModel);
+    extractProcessName.FillProcessNameArray(&m_ProcessNameArray);
 
     // Constuit la hiérarchie des formulaires.
     CString s = _T("");

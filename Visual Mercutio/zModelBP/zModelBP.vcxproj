@@ -401,32 +401,32 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUDeleteCorruptedSymbols.cpp" />
-    <ClCompile Include="ZUExtractProcessName.cpp">
+    <ClCompile Include="PSS_DeleteCorruptedSymbols.cpp" />
+    <ClCompile Include="PSS_ExtractProcessName.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUProcedureCalculateTotals.cpp">
+    <ClCompile Include="PSS_ProcedureCalculateTotals.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUProcessCalculateTotals.cpp">
+    <ClCompile Include="PSS_ProcessCalculateTotals.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUProcessClearDurationFigures.cpp">
+    <ClCompile Include="PSS_ProcessClearDurationFigures.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUProcessNavigation.cpp">
+    <ClCompile Include="PSS_ProcessNavigation.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -641,12 +641,12 @@
     <ClInclude Include="PSS_CheckSesterceUnit.h" />
     <ClInclude Include="PSS_CheckSymbolConsistency.h" />
     <ClInclude Include="PSS_CheckValidUnit.h" />
-    <ClInclude Include="ZUDeleteCorruptedSymbols.h" />
-    <ClInclude Include="ZUExtractProcessName.h" />
-    <ClInclude Include="ZUProcedureCalculateTotals.h" />
-    <ClInclude Include="ZUProcessCalculateTotals.h" />
-    <ClInclude Include="ZUProcessClearDurationFigures.h" />
-    <ClInclude Include="ZUProcessNavigation.h" />
+    <ClInclude Include="PSS_DeleteCorruptedSymbols.h" />
+    <ClInclude Include="PSS_ExtractProcessName.h" />
+    <ClInclude Include="PSS_ProcedureCalculateTotals.h" />
+    <ClInclude Include="PSS_ProcessCalculateTotals.h" />
+    <ClInclude Include="PSS_ProcessClearDurationFigures.h" />
+    <ClInclude Include="PSS_ProcessNavigation.h" />
     <ClInclude Include="PSS_SoapPublishMessengerUniverse.h" />
     <ClInclude Include="PSS_SoapPublishLogicalSystem.h" />
     <ClInclude Include="PSS_SoapPublishModelAttributes.h" />

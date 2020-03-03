@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZUProcessNavigation.h"
+#include "PSS_ProcessNavigation.h"
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
@@ -45,7 +45,7 @@ class PSS_UserGroupEntity;
 * Navigator to check a Sesterce unit
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CheckSesterceUnit : public ZUProcessNavigation
+class AFX_EXT_CLASS PSS_CheckSesterceUnit : public PSS_ProcessNavigation
 {
     public:
         /**

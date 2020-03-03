@@ -9,7 +9,7 @@
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zReport\ZDGridDoc.h"
 
-#include "zModelBP\ZUExtractProcessName.h"
+#include "zModelBP\PSS_ExtractProcessName.h"
 #include "ZUGridProcessNavigation.h"
 
 #include "zModelBP\PSS_ProcessSymbolBP.h"
@@ -310,7 +310,7 @@ void ZBCheckReportGenerator::FillTabArray()
     // First, remove all elements
     m_TabNameArray.RemoveAll();
 
-    ZUExtractProcessName ExtractProcessName(m_pModel);
+    PSS_ExtractProcessName extractProcessName(m_pModel);
 
     // First tab is for the units 
     CString s;
@@ -318,7 +318,7 @@ void ZBCheckReportGenerator::FillTabArray()
     m_TabNameArray.Add(s);
 
     // JMR-MODIF - Le 29 mars 2006 - Ajout de l'index de tri : On trie la liste depuis l'onglet 1.
-    ExtractProcessName.FillProcessNameArray(&m_TabNameArray, 1);
+    extractProcessName.FillProcessNameArray(&m_TabNameArray, 1);
 }
 
 const CString ZBCheckReportGenerator::GetReportTitle() const

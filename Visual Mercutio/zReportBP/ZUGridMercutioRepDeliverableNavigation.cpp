@@ -38,7 +38,7 @@ static char THIS_FILE[] = __FILE__;
 
 ZUGridMercutioRepDeliverableNavigation::ZUGridMercutioRepDeliverableNavigation(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                                                void*                    pClass    /*= NULL*/)
-    : ZUProcessNavigation(pModel, pClass)
+    : PSS_ProcessNavigation(pModel, pClass)
 {}
 
 ZUGridMercutioRepDeliverableNavigation::~ZUGridMercutioRepDeliverableNavigation()

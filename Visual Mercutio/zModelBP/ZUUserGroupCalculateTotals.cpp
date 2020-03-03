@@ -23,7 +23,7 @@ static char THIS_FILE[] = __FILE__;
 
 ZUUserGroupCalculateTotals::ZUUserGroupCalculateTotals(PSS_ProcessGraphModelMdl*    pModel    /*= NULL*/,
                                                        void*                    pClass    /*= NULL*/)
-    : ZUProcessNavigation(pModel, pClass)
+    : PSS_ProcessNavigation(pModel, pClass)
 {}
 
 ZUUserGroupCalculateTotals::~ZUUserGroupCalculateTotals()

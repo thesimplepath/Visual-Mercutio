@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CheckValidUnit --------------------------------------------------*
+ * ==> PSS_ProcessClearDurationFigures -------------------------------------*
  ****************************************************************************
- * Description : Provides a navigator to check the valid units              *
+ * Description : Provides a navigator to clear the process duration figures *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CheckValidUnitH
-#define PSS_CheckValidUnitH
+#ifndef PSS_ProcessClearDurationFiguresH
+#define PSS_ProcessClearDurationFiguresH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -23,14 +23,6 @@
 // processsoft
 #include "PSS_ProcessNavigation.h"
 
-// class name mapping
-#ifndef PSS_UserGroupEntity
-    #define PSS_UserGroupEntity ZBUserGroupEntity
-#endif
-
-// forward class declaration
-class PSS_UserGroupEntity;
-
 #ifdef _ZMODELBPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
     #undef AFX_EXT_CLASS
@@ -42,10 +34,10 @@ class PSS_UserGroupEntity;
 #endif
 
 /**
-* Navigator to check the valid units
+* Navigator to clear the process duration figures
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CheckValidUnit : public PSS_ProcessNavigation
+class AFX_EXT_CLASS PSS_ProcessClearDurationFigures : public PSS_ProcessNavigation
 {
     public:
         /**
@@ -53,9 +45,9 @@ class AFX_EXT_CLASS PSS_CheckValidUnit : public PSS_ProcessNavigation
         *@param pModel - the model
         *@param pClass - the class
         */
-        PSS_CheckValidUnit(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+        PSS_ProcessClearDurationFigures(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
-        virtual ~PSS_CheckValidUnit();
+        virtual ~PSS_ProcessClearDurationFigures();
 
         /**
         * Called when the navigation starts
@@ -77,18 +69,11 @@ class AFX_EXT_CLASS PSS_CheckValidUnit : public PSS_ProcessNavigation
         virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
 
         /**
-        * Called when a start symbol is visited
+        * Called when a deliverable link symbol is visited
         *@param pSymbol - the visited symbol
         *@return true on success, otherwise false
         */
-        virtual bool OnStartSymbol(PSS_StartSymbolBP* pSymbol);
-
-        /**
-        * Called when a stop symbol is visited
-        *@param pSymbol - the visited symbol
-        *@return true on success, otherwise false
-        */
-        virtual bool OnStopSymbol(PSS_StopSymbolBP* pSymbol);
+        virtual bool OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol);
 };
 
 #endif

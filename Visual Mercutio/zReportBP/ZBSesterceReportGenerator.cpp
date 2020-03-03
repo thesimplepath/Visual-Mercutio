@@ -11,9 +11,9 @@
 
 #include "zReport\ZDGridDoc.h"
 
-#include "zModelBP\ZUExtractProcessName.h"
+#include "zModelBP\PSS_ExtractProcessName.h"
 #include "ZUGridSesterceProcessNavigation.h"
-#include "zModelBP\ZUProcedureCalculateTotals.h"
+#include "zModelBP\PSS_ProcedureCalculateTotals.h"
 
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_UserRoleEntity.h"
@@ -331,13 +331,13 @@ void ZBSesterceReportGenerator::FillTabArray()
     // First, remove all elements
     m_TabNameArray.RemoveAll();
 
-    ZUExtractProcessName ExtractProcessName(m_pModel);
+    PSS_ExtractProcessName extractProcessName(m_pModel);
 
     // First tab is for the model name 
     m_TabNameArray.Add(m_pModel->GetModelName());
 
     // JMR-MODIF - Le 29 mars 2006 - Ajout de l'index de tri : On trie la liste depuis l'onglet 1.
-    ExtractProcessName.FillProcessNameArray(&m_TabNameArray, 1);
+    extractProcessName.FillProcessNameArray(&m_TabNameArray, 1);
 }
 
 const CString ZBSesterceReportGenerator::GetReportTitle() const

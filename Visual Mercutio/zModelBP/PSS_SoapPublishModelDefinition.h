@@ -25,7 +25,7 @@
 #include "zProperty\ZIProperties.h"
 #include "zSOAP\PSS_SoapPublisher_Model.h"
 #include "PSS_PublishMessengerModelInformation.h"
-#include "ZUProcessNavigation.h"
+#include "PSS_ProcessNavigation.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc
@@ -50,7 +50,7 @@ class PSS_PublishMessengerModelInformation;
 * Publish the model definitions to Messenger through a SOAP protocol
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public ZUProcessNavigation
+class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public PSS_ProcessNavigation
 {
     public:
         /**

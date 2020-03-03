@@ -43,7 +43,7 @@ ZUProcessConceptorNavigation::ZUProcessConceptorNavigation(PSS_ProcessGraphModel
                                                            BOOL                    bIncludeSynthesis        /*= TRUE*/,
                                                            BOOL                    bIncludeDetail            /*= TRUE*/,
                                                            BOOL                    bIncludeDeliverables    /*= TRUE*/)
-    : ZUProcessNavigation(pModel, pClass),
+    : PSS_ProcessNavigation(pModel, pClass),
     m_pRootModel(pRootModel),
     m_DomainName(domainName),
     m_UnitName(unitName)

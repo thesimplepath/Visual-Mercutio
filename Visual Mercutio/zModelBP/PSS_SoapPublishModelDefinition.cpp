@@ -45,7 +45,7 @@
 PSS_SoapPublishModelDefinition::PSS_SoapPublishModelDefinition(PSS_PublishMessengerModelInformation* pInfo,
                                                                PSS_ProcessGraphModelMdl*             pModel,
                                                                void*                                 pClass) :
-    ZUProcessNavigation(pModel, pClass),
+    PSS_ProcessNavigation(pModel, pClass),
     m_pInfo(pInfo),
     m_pDoc(NULL),
     m_CounterRow(0)
