@@ -1,19 +1,18 @@
-// **************************************************************************************************************
-// *                                             Classe ZVRiskNewFileDlg                                        *
-// **************************************************************************************************************
-// * JMR-MODIF - Le 12 juillet 2007 - Ajout de la classe ZVRiskNewFileDlg.                                        *
-// **************************************************************************************************************
-// * Cette classe permet à l'utilisateur de créer un nouveau fichier pour les éléments des menus des risques.    *
-// **************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_RiskNewFileDlg --------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a create a new risk file dialog box               *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVRISKNEWFILEDLG_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
-#define AFX_ZVRISKNEWFILEDLG_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_
+#ifndef PSS_RiskNewFileDlgH
+#define PSS_RiskNewFileDlgH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -21,76 +20,86 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zModelBPRes.h"
+// mfc
 #include "afxwin.h"
 
+// resources
+#include "zModelBPRes.h"
+
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZVRiskNewFileDlg dialog
-
-class AFX_EXT_CLASS ZVRiskNewFileDlg : public CDialog
+/**
+* Create a new risk file dialog box
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_RiskNewFileDlg : public CDialog
 {
-// Construction / Destruction
-public:
+    public:
+        /**
+        * Constructor
+        *@param extension - the file extension
+        *@param pParent - the parent window, can be NULL
+        */
+        PSS_RiskNewFileDlg(const CString& extension, CWnd* pParent = NULL);
 
-    ZVRiskNewFileDlg( CString Extension, CWnd* pParent = NULL );
+        virtual ~PSS_RiskNewFileDlg();
 
-public:
+        /**
+        * Gets the directory
+        *@return the directory
+        */
+        virtual CString GetDirectory();
 
-    CString GetDirectory();
-    CString GetFileName();
+        /**
+        * Gets the file name
+        *@return the file name
+        */
+        virtual CString GetFileName();
 
-private:
-
-    void CheckUserEntry();
-
-private:
-
-    // Dialog Data
-    //{{AFX_DATA(ZVRiskNewFileDlg)
-    enum { IDD = IDD_NEW_RISK_FILE };
-    CString m_FileName;
-    CString m_Directory;
-    CEdit m_FileName_Ctrl;
-    CEdit m_Directory_Ctrl;
-    CButton m_OK_Ctrl;
-    //}}AFX_DATA
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZVRiskNewFileDlg)
     protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_RiskNewFileDlg)
+        virtual void DoDataExchange(CDataExchange* pDX);
+        //}}AFX_VIRTUAL
 
-// Implementation
-protected:
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_RiskNewFileDlg)
+        virtual BOOL OnInitDialog();
+        afx_msg void OnBnClickedDirectorySelect();
+        afx_msg void OnEnChangeFileName();
+        afx_msg void OnEnChangeDirectory();
+        afx_msg void OnBnClickedOk();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    // Generated message map functions
-    //{{AFX_MSG(ZVRiskNewFileDlg)
-    virtual BOOL OnInitDialog();
-    afx_msg void OnBnClickedDirectorySelect();
-    afx_msg void OnEnChangeFileName();
-    afx_msg void OnEnChangeDirectory();
-    afx_msg void OnBnClickedOk();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    private:
+        /**
+        * Dialog data type
+        */
+        enum
+        {
+            IDD = IDD_NEW_RISK_FILE
+        };
 
-private:
+        CEdit   m_FileName_Ctrl;
+        CEdit   m_Directory_Ctrl;
+        CButton m_OK_Ctrl;
+        CString m_Directory;
+        CString m_FileName;
+        CString m_Extension;
 
-    CString m_Extension;
+        /**
+        * Checks the user entry
+        */
+        void CheckUserEntry();
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVRISKNEWFILEDLG_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
+#endif

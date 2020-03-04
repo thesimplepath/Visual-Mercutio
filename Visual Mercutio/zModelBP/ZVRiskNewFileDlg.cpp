@@ -1,10 +1,9 @@
-// **************************************************************************************************************
-// *                                             Classe ZVRiskNewFileDlg                                        *
-// **************************************************************************************************************
-// * JMR-MODIF - Le 12 juillet 2007 - Ajout de la classe ZVRiskNewFileDlg.                                        *
-// **************************************************************************************************************
-// * Cette classe permet à l'utilisateur de créer un nouveau fichier pour les éléments des menus des risques.    *
-// **************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_RiskNewFileDlg --------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a create a new risk file dialog box               *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVRiskNewFileDlg.h"
@@ -21,133 +20,123 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-BEGIN_MESSAGE_MAP(ZVRiskNewFileDlg, CDialog)
-    //{{AFX_MSG_MAP(ZVRiskNewFileDlg)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_RiskNewFileDlg, CDialog)
+    //{{AFX_MSG_MAP(PSS_RiskNewFileDlg)
     ON_BN_CLICKED(IDC_DIRECTORY_SELECT, OnBnClickedDirectorySelect)
     ON_EN_CHANGE(IDC_FILENAME, OnEnChangeFileName)
     ON_EN_CHANGE(IDC_DIRECTORY, OnEnChangeDirectory)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVRiskNewFileDlg dialog
-
-ZVRiskNewFileDlg::ZVRiskNewFileDlg(CString Extension, CWnd* pParent /*= NULL*/)
-    : CDialog(ZVRiskNewFileDlg::IDD, pParent),
-    m_Extension(Extension),
-    m_FileName(_T("")),
-    m_Directory(_T(""))
-{
-    //{{AFX_DATA_INIT(ZVRiskNewFileDlg)
-    //}}AFX_DATA_INIT
-}
-
-// Cette fonction retourne le nom du répertoire utilisé pour la nouvelle liste.
-CString ZVRiskNewFileDlg::GetDirectory()
+//---------------------------------------------------------------------------
+// PSS_RiskNewFileDlg
+//---------------------------------------------------------------------------
+PSS_RiskNewFileDlg::PSS_RiskNewFileDlg(const CString& extension, CWnd* pParent) :
+    CDialog(PSS_RiskNewFileDlg::IDD, pParent),
+    m_Extension(extension)
+{}
+//---------------------------------------------------------------------------
+PSS_RiskNewFileDlg::~PSS_RiskNewFileDlg()
+{}
+//---------------------------------------------------------------------------
+CString PSS_RiskNewFileDlg::GetDirectory()
 {
     return m_Directory;
 }
-
-// Cette fonction retourne le nom du fichier utilisé pour la nouvelle liste.
-CString ZVRiskNewFileDlg::GetFileName()
+//---------------------------------------------------------------------------
+CString PSS_RiskNewFileDlg::GetFileName()
 {
     return m_FileName;
 }
-
-// Cette fonction contrôle les entrées utilisateurs.
-void ZVRiskNewFileDlg::CheckUserEntry()
-{
-    if ((m_FileName.IsEmpty() == FALSE) && (m_Directory.IsEmpty() == FALSE))
-    {
-        m_OK_Ctrl.EnableWindow(TRUE);
-    }
-    else
-    {
-        m_OK_Ctrl.EnableWindow(FALSE);
-    }
-}
-
-void ZVRiskNewFileDlg::DoDataExchange(CDataExchange* pDX)
+//---------------------------------------------------------------------------
+void PSS_RiskNewFileDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
 
-    //{{AFX_DATA_MAP(ZVRiskNewFileDlg)
-    DDX_Text(pDX, IDC_FILENAME, m_FileName);
-    DDX_Text(pDX, IDC_DIRECTORY, m_Directory);
-    DDX_Control(pDX, IDC_FILENAME, m_FileName_Ctrl);
+    //{{AFX_DATA_MAP(PSS_RiskNewFileDlg)
+    DDX_Text   (pDX, IDC_FILENAME,  m_FileName);
+    DDX_Text   (pDX, IDC_DIRECTORY, m_Directory);
+    DDX_Control(pDX, IDC_FILENAME,  m_FileName_Ctrl);
     DDX_Control(pDX, IDC_DIRECTORY, m_Directory_Ctrl);
-    DDX_Control(pDX, IDOK, m_OK_Ctrl);
+    DDX_Control(pDX, IDOK,          m_OK_Ctrl);
     //}}AFX_DATA_MAP
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVRiskNewFileDlg message handlers
-
-// Cette fonction est appelée lorsque la fenêtre s'initialise.
-BOOL ZVRiskNewFileDlg::OnInitDialog()
+//---------------------------------------------------------------------------
+BOOL PSS_RiskNewFileDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    m_Directory = PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory;
-    m_Directory_Ctrl.SetWindowText(m_Directory);
+    PSS_Application* pApplication = PSS_Application::Instance();
+
+    if (pApplication)
+    {
+        PSS_MainForm* pMainForm = pApplication->GetMainForm();
+
+        if (pMainForm)
+        {
+            m_Directory = pMainForm->GetApplicationDir() + g_RiskDirectory;
+            m_Directory_Ctrl.SetWindowText(m_Directory);
+        }
+    }
 
     m_OK_Ctrl.EnableWindow(FALSE);
 
     return TRUE;
 }
-
-// Cette fonction est appelée lorsque le nom du fichier change.
-void ZVRiskNewFileDlg::OnEnChangeFileName()
+//---------------------------------------------------------------------------
+void PSS_RiskNewFileDlg::OnBnClickedDirectorySelect()
 {
-    m_FileName_Ctrl.GetWindowText(m_FileName);
+    CSHFileInfo fileInfo;
+    fileInfo.m_strTitle = _T(m_Directory);
 
-    CheckUserEntry();
-}
-
-// Cette fonction est appelée lorsque le nom du répertoire change.
-void ZVRiskNewFileDlg::OnEnChangeDirectory()
-{
-    m_Directory_Ctrl.GetWindowText(m_Directory);
-
-    CheckUserEntry();
-}
-
-// Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "Changer".
-void ZVRiskNewFileDlg::OnBnClickedDirectorySelect()
-{
-    CSHFileInfo m_FileInfo;
-    m_FileInfo.m_strTitle = _T(m_Directory);
-
-    if (m_FileInfo.BrowseForFolder(GetParent()) == IDOK)
+    if (fileInfo.BrowseForFolder(GetParent()) == IDOK)
     {
-        m_Directory = m_FileInfo.m_strPath;
+        m_Directory = fileInfo.m_strPath;
         m_Directory_Ctrl.SetWindowText(m_Directory);
     }
 }
-
-// Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "Ok".
-void ZVRiskNewFileDlg::OnBnClickedOk()
+//---------------------------------------------------------------------------
+void PSS_RiskNewFileDlg::OnEnChangeFileName()
 {
-    PSS_File m_File;
+    m_FileName_Ctrl.GetWindowText(m_FileName);
+    CheckUserEntry();
+}
+//---------------------------------------------------------------------------
+void PSS_RiskNewFileDlg::OnEnChangeDirectory()
+{
+    m_Directory_Ctrl.GetWindowText(m_Directory);
+    CheckUserEntry();
+}
+//---------------------------------------------------------------------------
+void PSS_RiskNewFileDlg::OnBnClickedOk()
+{
+    PSS_File file;
 
-    if (!m_File.Exist(m_Directory))
+    if (!file.Exist(m_Directory))
     {
         PSS_MsgBox mBox;
-
         mBox.Show(IDS_BAD_DIRECTORY, MB_OK);
-
         return;
     }
 
-    if (m_File.Exist(m_Directory + _T("\\") + m_FileName + m_Extension))
+    if (file.Exist(m_Directory + _T("\\") + m_FileName + m_Extension))
     {
         PSS_MsgBox mBox;
-
         mBox.Show(IDS_RISK_FILE_ALREADY_EXIST, MB_OK);
-
         return;
     }
 
     OnOK();
 }
+//---------------------------------------------------------------------------
+void PSS_RiskNewFileDlg::CheckUserEntry()
+{
+    if (!m_FileName.IsEmpty() && !m_Directory.IsEmpty())
+        m_OK_Ctrl.EnableWindow(TRUE);
+    else
+        m_OK_Ctrl.EnableWindow(FALSE);
+}
+//---------------------------------------------------------------------------
