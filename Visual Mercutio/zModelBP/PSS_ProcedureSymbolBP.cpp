@@ -33,8 +33,8 @@
 #include "PSS_UnitPropertiesBP_Beta1.h"
 #include "PSS_CombinationPropertiesBP.h"
 #include "PSS_SimPropertiesProcedureBP.h"
-#include "ZVAddRemoveCombinationDeliverableDlg.h"
-#include "ZVChooseMasterDeliverable.h"
+#include "PSS_AddRemoveCombinationDeliverableDlg.h"
+#include "PSS_SelectMasterDeliverableDlg.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "ZVRiskOptionsDlg.h"
 
@@ -1570,7 +1570,7 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
                 CString availableDeliverables = GetAvailableDeliverables(enteringDeliverables);
 
                 // show the dialog
-                ZVAddRemoveCombinationDeliverableDlg dlg(availableDeliverables, value);
+                PSS_AddRemoveCombinationDeliverableDlg dlg(availableDeliverables, value);
 
                 if (dlg.DoModal() == IDOK)
                 {
@@ -1583,7 +1583,7 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
 
             case M_Combination_Master_ID:
             {
-                ZVChooseMasterDeliverable dlg(GetCombinationDeliverables(i), value);
+                PSS_SelectMasterDeliverableDlg dlg(GetCombinationDeliverables(i), value);
 
                 if (dlg.DoModal() == IDOK)
                 {

@@ -88,8 +88,8 @@ class AFX_EXT_CLASS PSS_ProcessNavigation : public PSS_BasicSymbolVisitor
 public:
     /**
     * Constructor
-    *@param pModel - the model
-    *@param pClass - the class
+    *@param pModel - the model to navigate
+    *@param pClass - the custom data class, can be NULL
     */
     PSS_ProcessNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
@@ -97,8 +97,8 @@ public:
 
     /**
     * Navigates in the model
-    *@param pModel - the model
-    *@param pClass - the class
+    *@param pModel - the model to navigate
+    *@param pClass - the custom data class, can be NULL
     */
     bool Navigate(PSS_ProcessGraphModelMdl* pModel, void* pClass);
     bool Navigate(PSS_ProcessGraphModelMdl* pModel);

@@ -335,7 +335,7 @@ class AFX_EXT_CLASS PSS_ODSymbolManipulator
         /**
         * Checks if a type of symbol can be found in a node array
         *@param nodes - the nodes to search in
-        *@param pClass - the type to find
+        *@param pClass - the class type to find
         *@return true if the type can be found in the node array, otherwise false
         */
         static bool HasSymbolsISA(const CODNodeArray& nodes, const CRuntimeClass* pClass);
@@ -343,7 +343,7 @@ class AFX_EXT_CLASS PSS_ODSymbolManipulator
         /**
         * Checks if a type of link symbol can be found in a edge array
         *@param edges - the edges to search in
-        *@param pClass - the type to find
+        *@param pClass - the class type to find
         *@return true if the type can be found in the node array, otherwise false
         */
         static bool HasLinksISA(const CODEdgeArray& edges, const CRuntimeClass* pClass);

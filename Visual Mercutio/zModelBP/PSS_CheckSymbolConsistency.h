@@ -93,8 +93,8 @@ class PSS_CheckSymbolConsistency : public PSS_BasicSymbolVisitor
     public:
         /**
         * Constructor
-        *@param pModel - the model
-        *@param pClass - the class
+        *@param pModel - the model to navigate
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_CheckSymbolConsistency(PSS_ProcessGraphModelMdl* pModel = NULL, PSS_Log* pLog = NULL);
 

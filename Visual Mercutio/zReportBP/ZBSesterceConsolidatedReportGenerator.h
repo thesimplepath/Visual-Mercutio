@@ -17,8 +17,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zModelBP\PSS_UserGroupCalculateTotals.h"
 #include "ZBModelBPReportGenerator.h"
-#include "zModelBP\ZUUserGroupCalculateTotals.h"
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
@@ -35,7 +36,7 @@
 class PSS_UserGroupEntity;
 class PSS_UserRoleEntity;
 class PSS_ProcessGraphModelMdl;
-class ZUUserGroupCalculateTotals;
+class PSS_UserGroupCalculateTotals;
 
 #ifdef _ZREPORTBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -81,11 +82,11 @@ private:
     void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
     void FillGridUnitRole(PSS_UserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
 
-    void FillProcessFigures(PSS_ProcessGraphModelMdl*        pModel,
-                            ZUUserGroupCalculateTotals*    pTotal,
-                            PSS_UserGroupEntity*                pGroup,
-                            size_t                            Index,
-                            ZBOStreamGrid                    &ostream);
+    void FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
+                            PSS_UserGroupCalculateTotals* pTotal,
+                            PSS_UserGroupEntity*          pGroup,
+                            size_t                        Index,
+                            ZBOStreamGrid                 &ostream);
 
     // Implementation
 private:

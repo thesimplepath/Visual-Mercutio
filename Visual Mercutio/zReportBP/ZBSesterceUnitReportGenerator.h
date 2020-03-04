@@ -34,7 +34,7 @@
 class PSS_UserGroupEntity;
 class PSS_UserRoleEntity;
 class PSS_ProcessGraphModelMdl;
-class ZUUserGroupCalculateTotals;
+class PSS_UserGroupCalculateTotals;
 
 #ifdef _ZREPORTBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -80,11 +80,11 @@ private:
     void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
     void FillGridUnitRole(PSS_UserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
 
-    void FillProcessFigures(PSS_ProcessGraphModelMdl*        pModel,
-                            ZUUserGroupCalculateTotals*    pTotal,
-                            PSS_UserGroupEntity*                pGroup,
-                            size_t                            Index,
-                            ZBOStreamGrid                    &ostream);
+    void FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
+                            PSS_UserGroupCalculateTotals* pTotal,
+                            PSS_UserGroupEntity*          pGroup,
+                            size_t                        Index,
+                            ZBOStreamGrid                 &ostream);
 
     // Implementation
 private:
@@ -111,7 +111,6 @@ private:
     CGXStyle        m_NumericCellStyle;
 
 
-    //    ZUUserGroupCalculateTotals m_UserGroupTotals;
     CObArray        m_ModelArray;
     CObArray        m_NavigationTotalArray;
 

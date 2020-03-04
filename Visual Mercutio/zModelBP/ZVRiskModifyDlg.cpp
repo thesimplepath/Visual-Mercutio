@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\PSS_TextFile.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "ZVRiskNewFileDlg.h"
+#include "PSS_RiskNewFileDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -160,11 +160,11 @@ void ZVRiskModifyDlg::OnBnClickedDelElement()
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "Nouveau"
 void ZVRiskModifyDlg::OnBnClickedNewFile()
 {
-    ZVRiskNewFileDlg m_NewFileDlg(m_Extension);
+    PSS_RiskNewFileDlg newFileDlg(m_Extension);
 
-    if (m_NewFileDlg.DoModal() == IDOK)
+    if (newFileDlg.DoModal() == IDOK)
     {
-        m_FileName = m_NewFileDlg.GetDirectory() + _T("\\") + m_NewFileDlg.GetFileName() + m_Extension;
+        m_FileName = newFileDlg.GetDirectory() + _T("\\") + newFileDlg.GetFileName() + m_Extension;
 
         while (m_ElementsListCtrl.GetCount() > 0)
         {

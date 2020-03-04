@@ -26,8 +26,8 @@
 #include "PSS_SimPropertiesProcessBP.h"
 #include "PSS_DeliveriesPropertiesBP.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
-#include "ZVAddRemoveDeliveryDeliverablesDlg.h"
-#include "ZVChooseMainDeliverable.h"
+#include "PSS_AddRemoveDeliveryDeliverablesDlg.h"
+#include "PSS_SelectMainDeliverableDlg.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "ZVRiskOptionsDlg.h"
 
@@ -1131,7 +1131,7 @@ bool PSS_ProcessSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value,
                 const CString availableList = GetAvailableDeliverables(props);
 
                 // open the add/delete delivery dialog box
-                ZVAddRemoveDeliveryDeliverablesDlg dlg(availableList, value);
+                PSS_AddRemoveDeliveryDeliverablesDlg dlg(availableList, value);
 
                 if (dlg.DoModal() == IDOK)
                 {
@@ -1148,7 +1148,7 @@ bool PSS_ProcessSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value,
                 const CString mainList = GetPossibleListOfMainDeliverables(props, categoryID);
 
                 // open the set master delivery dialog box
-                ZVChooseMainDeliverable dlg(mainList, value);
+                PSS_SelectMainDeliverableDlg dlg(mainList, value);
 
                 if (dlg.DoModal() == IDOK)
                 {

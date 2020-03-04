@@ -464,21 +464,21 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUUserGroupCalculateTotals.cpp">
+    <ClCompile Include="PSS_UserGroupCalculateTotals.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVAddRemoveCombinationDeliverableDlg.cpp">
+    <ClCompile Include="PSS_AddRemoveCombinationDeliverableDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVAddRemoveDeliveryDeliverablesDlg.cpp" />
-    <ClCompile Include="ZVChooseMainDeliverable.cpp" />
-    <ClCompile Include="ZVChooseMasterDeliverable.cpp">
+    <ClCompile Include="PSS_AddRemoveDeliveryDeliverablesDlg.cpp" />
+    <ClCompile Include="PSS_SelectMainDeliverableDlg.cpp" />
+    <ClCompile Include="PSS_SelectMasterDeliverableDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -542,7 +542,7 @@
     <ClCompile Include="ZVRiskImpactContainer.cpp" />
     <ClCompile Include="ZVRiskModifyDlg.cpp" />
     <ClCompile Include="ZVRiskModifyStaticDlg.cpp" />
-    <ClCompile Include="ZVRiskNewFileDlg.cpp" />
+    <ClCompile Include="PSS_RiskNewFileDlg.cpp" />
     <ClCompile Include="ZVRiskOptionsDlg.cpp" />
     <ClCompile Include="PSS_RiskProbabilityContainer.cpp" />
     <ClCompile Include="PSS_RiskTypeContainer.cpp" />
@@ -654,11 +654,11 @@
     <ClInclude Include="PSS_SoapPublishModelGenerateFiles.h" />
     <ClInclude Include="PSS_SoapPublishPrestations.h" />
     <ClInclude Include="PSS_SoapPublishUserGroup.h" />
-    <ClInclude Include="ZUUserGroupCalculateTotals.h" />
-    <ClInclude Include="ZVAddRemoveCombinationDeliverableDlg.h" />
-    <ClInclude Include="ZVAddRemoveDeliveryDeliverablesDlg.h" />
-    <ClInclude Include="ZVChooseMainDeliverable.h" />
-    <ClInclude Include="ZVChooseMasterDeliverable.h" />
+    <ClInclude Include="PSS_UserGroupCalculateTotals.h" />
+    <ClInclude Include="PSS_AddRemoveCombinationDeliverableDlg.h" />
+    <ClInclude Include="PSS_AddRemoveDeliveryDeliverablesDlg.h" />
+    <ClInclude Include="PSS_SelectMainDeliverableDlg.h" />
+    <ClInclude Include="PSS_SelectMasterDeliverableDlg.h" />
     <ClInclude Include="ZVDistributionAttributes.h" />
     <ClInclude Include="ZVDistributionAttributesDefinitionDlg.h" />
     <ClInclude Include="ZVDistributionAttributesSelectionDlg.h" />
@@ -672,7 +672,7 @@
     <ClInclude Include="ZVRiskImpactContainer.h" />
     <ClInclude Include="ZVRiskModifyDlg.h" />
     <ClInclude Include="ZVRiskModifyStaticDlg.h" />
-    <ClInclude Include="ZVRiskNewFileDlg.h" />
+    <ClInclude Include="PSS_RiskNewFileDlg.h" />
     <ClInclude Include="ZVRiskOptionsDlg.h" />
     <ClInclude Include="PSS_RiskProbabilityContainer.h" />
     <ClInclude Include="PSS_RiskTypeContainer.h" />

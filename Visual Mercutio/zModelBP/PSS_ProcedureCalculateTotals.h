@@ -50,9 +50,33 @@ class AFX_EXT_CLASS PSS_ProcedureCalculateTotals : public PSS_ProcessNavigation
 {
     public:
         /**
+        * The procedure calculate totals information
+        *@author Dominique Aigroz, Jean-Milost Reymond
+        */
+        class IInfo
+        {
+            public:
+                PSS_UserGroupEntity* m_pGroup;
+                CString              m_UnitName;
+                bool                 m_Consolidated;
+
+                /**
+                * Constructor
+                *@param unitName - the unit name
+                *@param consolidated - if true, the model should be consolidated
+                *@param pGroup - the user group
+                */
+                IInfo(const CString&       unitName,
+                      bool                 consolidated,
+                      PSS_UserGroupEntity* pGroup = NULL);
+
+                ~IInfo();
+        };
+
+        /**
         * Constructor
-        *@param pModel - the model
-        *@param pClass - the class
+        *@param pModel - the model to navigate
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_ProcedureCalculateTotals(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
@@ -150,30 +174,6 @@ class AFX_EXT_CLASS PSS_ProcedureCalculateTotals : public PSS_ProcessNavigation
         virtual bool OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol);
 
     private:
-        /**
-        * The procedure calculate totals information
-        *@author Dominique Aigroz, Jean-Milost Reymond
-        */
-        class IInfo
-        {
-            public:
-                PSS_UserGroupEntity* m_pGroup;
-                CString              m_UnitName;
-                bool                 m_Consolidated;
-
-                /**
-                * Constructor
-                *@param unitName - the unit name
-                *@param consolidated - if true, the model was consolidated
-                *@param pGroup - the user group
-                */
-                IInfo(const CString&       unitName,
-                      bool                 consolidated,
-                      PSS_UserGroupEntity* pGroup = NULL);
-
-                ~IInfo();
-        };
-
         PSS_UserGroupEntity*         m_pGroup;
         PSS_AnnualNumberPropertiesBP m_ProcedureCost;
         PSS_AnnualNumberPropertiesBP m_ProcedureWorkloadForecast;

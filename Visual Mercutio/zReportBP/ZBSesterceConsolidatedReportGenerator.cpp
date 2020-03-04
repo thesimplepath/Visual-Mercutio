@@ -13,7 +13,7 @@
 #include "ZUGridProcessNavigation.h"
 #include "zModelBP\PSS_ProcedureCalculateTotals.h"
 
-#include "zModelBP\ZUUserGroupCalculateTotals.h"
+#include "zModelBP\PSS_UserGroupCalculateTotals.h"
 
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 
@@ -141,7 +141,7 @@ void ZBSesterceConsolidatedReportGenerator::RemoveAllData()
 
     for (int i = 0; i < m_NavigationTotalArray.GetSize(); ++i)
     {
-        delete ((ZUUserGroupCalculateTotals*)m_NavigationTotalArray.GetAt(i));
+        delete ((PSS_UserGroupCalculateTotals*)m_NavigationTotalArray.GetAt(i));
     }
 
     m_NavigationTotalArray.RemoveAll();
@@ -184,14 +184,14 @@ void ZBSesterceConsolidatedReportGenerator::FillTabArray()
         m_ModelArray.Add(pModel);
     }
 
-    ZBUserGroupCalculateTotalsInformation Info(true, m_pModel->GetMainUserGroup());
+    PSS_UserGroupCalculateTotals::IInfo info(true, m_pModel->GetMainUserGroup());
 
     for (int i = 0; i < m_ModelArray.GetSize(); ++i)
     {
-        ZUUserGroupCalculateTotals* pUserGroupTotals = new ZUUserGroupCalculateTotals;
+        PSS_UserGroupCalculateTotals* pUserGroupTotals = new PSS_UserGroupCalculateTotals;
 
         if (!pUserGroupTotals->Navigate(((PSS_ProcessGraphModelMdl*)m_ModelArray.GetAt(i)),
-            (void*)(static_cast<ZBUserGroupCalculateTotalsInformation*>(&Info))))
+            (void*)(static_cast<PSS_UserGroupCalculateTotals::IInfo*>(&info))))
         {
             return;
         }
@@ -594,14 +594,14 @@ void ZBSesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEntit
 
     // Fill process figures for the main process
     FillProcessFigures(((PSS_ProcessGraphModelMdl*)m_ModelArray.GetAt(0)),
-        ((ZUUserGroupCalculateTotals*)m_NavigationTotalArray.GetAt(0)),
+        ((PSS_UserGroupCalculateTotals*)m_NavigationTotalArray.GetAt(0)),
                        pGroup,
                        Index,
                        ostream);
 
     for (int i = 1; i < m_ModelArray.GetSize() && i < m_NavigationTotalArray.GetSize(); ++i)
         FillProcessFigures(((PSS_ProcessGraphModelMdl*)m_ModelArray.GetAt(i)),
-        ((ZUUserGroupCalculateTotals*)m_NavigationTotalArray.GetAt(i)),
+        ((PSS_UserGroupCalculateTotals*)m_NavigationTotalArray.GetAt(i)),
                            pGroup,
                            Index,
                            ostream);
@@ -648,11 +648,11 @@ void ZBSesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEntit
     --m_UnitLevel;
 }
 
-void ZBSesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*        pModel,
-                                                               ZUUserGroupCalculateTotals*    pTotal,
-                                                               PSS_UserGroupEntity*            pGroup,
+void ZBSesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
+                                                               PSS_UserGroupCalculateTotals* pTotal,
+                                                               PSS_UserGroupEntity*          pGroup,
                                                                size_t                        Index,
-                                                               ZBOStreamGrid                &ostream)
+                                                               ZBOStreamGrid                 &ostream)
 {
     ASSERT(pGroup);
     ASSERT(pTotal);

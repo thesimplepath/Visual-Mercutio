@@ -27,21 +27,6 @@
     <ClCompile Include="zModelBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUUserGroupCalculateTotals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVAddRemoveCombinationDeliverableDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVAddRemoveDeliveryDeliverablesDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVChooseMainDeliverable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVChooseMasterDeliverable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZVDistributionAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,9 +64,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVRiskModifyStaticDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVRiskNewFileDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVRiskOptionsDlg.cpp">
@@ -285,6 +267,24 @@
     <ClCompile Include="PSS_ProcessNavigation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_RiskNewFileDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserGroupCalculateTotals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_AddRemoveCombinationDeliverableDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_AddRemoveDeliveryDeliverablesDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectMainDeliverableDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectMasterDeliverableDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -387,21 +387,6 @@
     <ClInclude Include="zModelBPRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZUUserGroupCalculateTotals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVAddRemoveCombinationDeliverableDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVAddRemoveDeliveryDeliverablesDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVChooseMainDeliverable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVChooseMasterDeliverable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZVDistributionAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -439,9 +424,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVRiskModifyStaticDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVRiskNewFileDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVRiskOptionsDlg.h">
@@ -643,6 +625,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ProcessNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RiskNewFileDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserGroupCalculateTotals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_AddRemoveCombinationDeliverableDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_AddRemoveDeliveryDeliverablesDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectMainDeliverableDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectMasterDeliverableDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

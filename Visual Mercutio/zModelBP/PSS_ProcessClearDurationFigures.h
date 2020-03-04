@@ -42,8 +42,8 @@ class AFX_EXT_CLASS PSS_ProcessClearDurationFigures : public PSS_ProcessNavigati
     public:
         /**
         * Constructor
-        *@param pModel - the model
-        *@param pClass - the class
+        *@param pModel - the model to navigate
+        *@param pClass - the custom data class, can be NULL
         */
         PSS_ProcessClearDurationFigures(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
