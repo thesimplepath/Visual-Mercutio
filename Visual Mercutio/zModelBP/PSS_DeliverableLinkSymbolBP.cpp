@@ -34,7 +34,7 @@
 #include "PSS_StartSymbolBP.h"
 #include "PSS_StopSymbolBP.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
-#include "ZVEqualizeQuantityDlg.h"
+#include "PSS_EqualizeQuantityDlg.h"
 #include "ZVRiskOptionsDlg.h"
 
 // resources
@@ -1844,11 +1844,11 @@ bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString
         // save the equalizer value to the properties to avoid to work with wrong equalizer values
         SaveEqualizerToProperties(props);
 
-        ZVEqualizeQuantityDlg Equalize(&props);
+        PSS_EqualizeQuantityDlg equalize(&props);
 
-        if (Equalize.DoModal() == IDOK)
+        if (equalize.DoModal() == IDOK)
         {
-            value.Format(_T("%.0f"), Equalize.GetfQuantityYear());
+            value.Format(_T("%.0f"), equalize.GetQuantityYear());
 
             SavePropertiesToQuantity(props);
             return true;

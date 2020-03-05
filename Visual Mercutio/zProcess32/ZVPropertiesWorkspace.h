@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_SpanWnd.h"
 #include "zModelBP\ZVInputAttributes.h"
-#include "zModelBP\ZVDistributionAttributes.h"
+#include "zModelBP\PSS_DistributionAttributesWnd.h"
 
 // JMR-MODIF - Le 3 juilet 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -32,10 +32,10 @@ public:
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
 
-    ZVProperties*                GetPropertyView();
-    ZVInputAttributes*            GetInputAttributeView();
-    ZVDistributionAttributes*    GetDistributionAttributeView();
-    PSS_SpanWnd*                  GetPanView();
+    ZVProperties* GetPropertyView();
+    ZVInputAttributes* GetInputAttributeView();
+    PSS_DistributionAttributesWnd* GetDistributionAttributeView();
+    PSS_SpanWnd* GetPanView();
 
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
@@ -61,11 +61,11 @@ protected:
 
 private:
 
-    ZVProperties                m_PropertyView;
-    ZVInputAttributes            m_InputAttributeView;
-    ZVDistributionAttributes    m_DistributionAttributeView;
-    PSS_SpanWnd                  m_PanView;
-    SEC3DTabWnd                    m_wndTab;
+    ZVProperties                  m_PropertyView;
+    ZVInputAttributes             m_InputAttributeView;
+    PSS_DistributionAttributesWnd m_DistributionAttributeView;
+    PSS_SpanWnd                   m_PanView;
+    SEC3DTabWnd                   m_wndTab;
 };
 
 inline ZVProperties* ZVPropertiesWorkspace::GetPropertyView()
@@ -78,7 +78,7 @@ inline ZVInputAttributes* ZVPropertiesWorkspace::GetInputAttributeView()
     return &m_InputAttributeView;
 }
 
-inline ZVDistributionAttributes* ZVPropertiesWorkspace::GetDistributionAttributeView()
+inline PSS_DistributionAttributesWnd* ZVPropertiesWorkspace::GetDistributionAttributeView()
 {
     return &m_DistributionAttributeView;
 }

@@ -484,31 +484,31 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDistributionAttributes.cpp">
+    <ClCompile Include="PSS_DistributionAttributesWnd.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDistributionAttributesDefinitionDlg.cpp">
+    <ClCompile Include="PSS_DistributionAttributesDefinitionDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDistributionAttributesSelectionDlg.cpp">
+    <ClCompile Include="PSS_DistributionAttributesSelectionDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDistributionRuleDef.cpp">
+    <ClCompile Include="PSS_DistributionRuleDefDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVEqualizeQuantityDlg.cpp">
+    <ClCompile Include="PSS_EqualizeQuantityDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -659,11 +659,11 @@
     <ClInclude Include="PSS_AddRemoveDeliveryDeliverablesDlg.h" />
     <ClInclude Include="PSS_SelectMainDeliverableDlg.h" />
     <ClInclude Include="PSS_SelectMasterDeliverableDlg.h" />
-    <ClInclude Include="ZVDistributionAttributes.h" />
-    <ClInclude Include="ZVDistributionAttributesDefinitionDlg.h" />
-    <ClInclude Include="ZVDistributionAttributesSelectionDlg.h" />
-    <ClInclude Include="ZVDistributionRuleDef.h" />
-    <ClInclude Include="ZVEqualizeQuantityDlg.h" />
+    <ClInclude Include="PSS_DistributionAttributesWnd.h" />
+    <ClInclude Include="PSS_DistributionAttributesDefinitionDlg.h" />
+    <ClInclude Include="PSS_DistributionAttributesSelectionDlg.h" />
+    <ClInclude Include="PSS_DistributionRuleDefDlg.h" />
+    <ClInclude Include="PSS_EqualizeQuantityDlg.h" />
     <ClInclude Include="ZVInputAttributes.h" />
     <ClInclude Include="ZVInputAttributesDefinitionDlg.h" />
     <ClInclude Include="ZVInputAttributesSelectionDlg.h" />
