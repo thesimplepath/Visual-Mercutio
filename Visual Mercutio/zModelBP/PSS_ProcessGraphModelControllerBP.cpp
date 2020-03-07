@@ -42,8 +42,8 @@
 #include "PSS_DeleteCorruptedSymbols.h"
 #include "PSS_SesterceRecalculationAutomate.h"
 #include "PSS_DurationRecalculationAutomate.h"
-#include "ZVInputAttributesSelectionDlg.h"
-#include "ZVRiskCalculateParametersDlg.h"
+#include "PSS_InputAttributesSelectionDlg.h"
+#include "PSS_RiskCalculateParametersDlg.h"
 #include "PSS_CalculateRisks.h"
 
 // resources
@@ -1417,7 +1417,7 @@ void PSS_ProcessGraphModelControllerBP::OnCalculateRisks()
             currencySymbol = pDoc->GetCurrencySymbol();
     }
 
-    ZVRiskCalculateParametersDlg riskParametersDlg(pMainForm->GetApplicationIniFileName(), currencySymbol);
+    PSS_RiskCalculateParametersDlg riskParametersDlg(pMainForm->GetApplicationIniFileName(), currencySymbol);
 
     if (riskParametersDlg.DoModal() == IDOK)
     {
@@ -1716,7 +1716,7 @@ void PSS_ProcessGraphModelControllerBP::OnShowInputAttributes()
     if (!pModel)
         return;
 
-    ZVInputAttributesSelectionDlg dlg(pModel->GetInputAttributes(), pDoc->GetDynamicPropertiesManager());
+    PSS_InputAttributesSelectionDlg dlg(pModel->GetInputAttributes(), pDoc->GetDynamicPropertiesManager());
     dlg.DoModal();
 }
 //---------------------------------------------------------------------------

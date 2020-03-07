@@ -29,7 +29,7 @@
 #include "PSS_AddRemoveDeliveryDeliverablesDlg.h"
 #include "PSS_SelectMainDeliverableDlg.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
-#include "ZVRiskOptionsDlg.h"
+#include "PSS_RiskOptionsDlg.h"
 
 // resources
 #include "zModel\zModelRes.h"
@@ -1089,15 +1089,15 @@ bool PSS_ProcessSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value,
         CString noRiskType;
         noRiskType.LoadString(IDS_NO_RISK_TYPE);
 
-        ZVRiskOptionsDlg riskOptions(GetRiskName(i),
-                                     GetRiskDesc(i),
-                                     GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                     GetRiskImpact(i),
-                                     GetRiskProbability(i),
-                                     GetRiskUE(i),
-                                     GetRiskPOA(i),
-                                     GetRiskAction(i),
-                                     currencySymbol);
+        PSS_RiskOptionsDlg riskOptions(GetRiskName(i),
+                                       GetRiskDesc(i),
+                                       GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
+                                       GetRiskImpact(i),
+                                       GetRiskProbability(i),
+                                       GetRiskUE(i),
+                                       GetRiskPOA(i),
+                                       GetRiskAction(i),
+                                       currencySymbol);
 
         if (riskOptions.DoModal() == IDOK)
         {

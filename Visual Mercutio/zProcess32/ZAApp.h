@@ -59,7 +59,7 @@ class PSS_LogicalPrestationsEntity;
 class PSS_LogicalRulesDocument;
 class PSS_LogicalRulesEntity;
 class PSS_RiskTypeContainer;
-class ZVRiskImpactContainer;
+class PSS_RiskImpactContainer;
 class PSS_RiskProbabilityContainer;
 
 // derive from the abstract CGXAppAdapter
@@ -152,7 +152,7 @@ public:
 
     BOOL LoadTypeRiskFile();
 
-    ZVRiskImpactContainer* GetRiskImpactContainer()
+    PSS_RiskImpactContainer* GetRiskImpactContainer()
     {
         return m_pRiskImpactContainer;
     }
@@ -493,7 +493,7 @@ private:
     PSS_RiskTypeContainer*            m_pRiskTypeContainer;
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de la variable m_pRiskImpactContainer.
-    ZVRiskImpactContainer*            m_pRiskImpactContainer;
+    PSS_RiskImpactContainer*            m_pRiskImpactContainer;
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de la variable m_pRiskProbabilityContainer.
     PSS_RiskProbabilityContainer*        m_pRiskProbabilityContainer;

@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_DistributionAttributesWnd ---------------------------------------*
+ * ==> PSS_DistributionAttributesView --------------------------------------*
  ****************************************************************************
- * Description : Provides the distribution attributes window                *
+ * Description : Provides the distribution attributes view                  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_DistributionAttributesWndH
-#define PSS_DistributionAttributesWndH
+#ifndef PSS_DistributionAttributesViewH
+#define PSS_DistributionAttributesViewH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -44,25 +44,25 @@ class PSS_ProcessGraphModelDoc;
 #endif
 
 /**
-* Distribution attributes
+* Distribution attributes view
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_DistributionAttributesWnd : public CWnd,
-                                                    public PSS_Subject,
-                                                    public PSS_Observer
+class AFX_EXT_CLASS PSS_DistributionAttributesView : public CWnd,
+                                                     public PSS_Subject,
+                                                     public PSS_Observer
 {
-    DECLARE_DYNCREATE(PSS_DistributionAttributesWnd)
+    DECLARE_DYNCREATE(PSS_DistributionAttributesView)
 
     public:
         /**
         * Flat toolbar
         */
-        class IFlatToolBar : public CStatic,
+        class IFlatToolbar : public CStatic,
                              public PSS_Subject
         {
             public:
-                IFlatToolBar();
-                virtual ~IFlatToolBar();
+                IFlatToolbar();
+                virtual ~IFlatToolbar();
 
             protected:
                 /// ClassWizard generated virtual function overrides
@@ -72,7 +72,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesWnd : public CWnd,
                 //}}AFX_VIRTUAL
 
                 /// Generated message map functions
-                //{{AFX_MSG(IFlatToolBar)
+                //{{AFX_MSG(IFlatToolbar)
                 afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
                 afx_msg void OnRefreshButton();
                 afx_msg void OnAddDistributionAttribButton();
@@ -90,11 +90,11 @@ class AFX_EXT_CLASS PSS_DistributionAttributesWnd : public CWnd,
                 CImageList    m_ImageList;
         };
 
-        PSS_DistributionAttributesWnd();
-        virtual ~PSS_DistributionAttributesWnd();
+        PSS_DistributionAttributesView();
+        virtual ~PSS_DistributionAttributesView();
 
         /**
-        * Initializes the window
+        * Initializes the view
         *@param pDistributionManager - the distribution manager
         *@param pPropManager - the properties manager
         *@param pMainUserGroup - the main user group
@@ -142,7 +142,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesWnd : public CWnd,
         virtual inline void ShowAll(bool value = true, bool refresh = true);
 
         /**
-        * Refreshes the window
+        * Refreshes the view
         */
         virtual void Refresh();
 
@@ -160,7 +160,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesWnd : public CWnd,
 
     protected:
         /// Generated message map functions
-        //{{AFX_MSG(PSS_DistributionAttributesWnd)
+        //{{AFX_MSG(PSS_DistributionAttributesView)
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         //}}AFX_MSG
@@ -188,26 +188,26 @@ class AFX_EXT_CLASS PSS_DistributionAttributesWnd : public CWnd,
         virtual void OnModifyDistributionAttrib();
 
         /**
-        * Called when the window is refreshed
+        * Called when the view is refreshed
         */
         virtual void OnRefresh();
 
     private:
-        IFlatToolBar                   m_FlatToolBar;
+        IFlatToolbar                   m_FlatToolbar;
         PSS_DistributionAttributesList m_ListCtrl;
         PSS_ProcessGraphModelDoc*      m_pCurrentDoc;
         CODComponent*                  m_pSymbol;
 };
 
 //---------------------------------------------------------------------------
-// PSS_DistributionAttributesWnd
+// PSS_DistributionAttributesView
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::Initialize(PSS_DistributionAttributeManager* pDistributionManager,
-                                               ZBDynamicPropertiesManager*       pPropManager,
-                                               PSS_UserGroupEntity*              pMainUserGroup,
-                                               PSS_DistributionAttribute*        pDistributionAttribute,
-                                               bool                              showAll,
-                                               int                               symbolRef)
+void PSS_DistributionAttributesView::Initialize(PSS_DistributionAttributeManager* pDistributionManager,
+                                                ZBDynamicPropertiesManager*       pPropManager,
+                                                PSS_UserGroupEntity*              pMainUserGroup,
+                                                PSS_DistributionAttribute*        pDistributionAttribute,
+                                                bool                              showAll,
+                                                int                               symbolRef)
 {
     m_ListCtrl.Initialize(pDistributionManager,
                           pPropManager,
@@ -217,27 +217,27 @@ void PSS_DistributionAttributesWnd::Initialize(PSS_DistributionAttributeManager*
                           symbolRef);
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::SetSymbolRef(int value, bool refresh)
+void PSS_DistributionAttributesView::SetSymbolRef(int value, bool refresh)
 {
     m_ListCtrl.SetSymbolRef(value, refresh);
 }
 //---------------------------------------------------------------------------
-PSS_DistributionAttribute* PSS_DistributionAttributesWnd::GetSelectedDistributionAttribute()
+PSS_DistributionAttribute* PSS_DistributionAttributesView::GetSelectedDistributionAttribute()
 {
     return m_ListCtrl.GetSelectedDistributionAttribute();
 }
 //---------------------------------------------------------------------------
-PSS_DistributionRulesForRole* PSS_DistributionAttributesWnd::GetSelectedDistributionRuleForRole()
+PSS_DistributionRulesForRole* PSS_DistributionAttributesView::GetSelectedDistributionRuleForRole()
 {
     return m_ListCtrl.GetSelectedDistributionRuleForRole();
 }
 //---------------------------------------------------------------------------
-PSS_DistributionRule* PSS_DistributionAttributesWnd::GetSelectedDistributionRule()
+PSS_DistributionRule* PSS_DistributionAttributesView::GetSelectedDistributionRule()
 {
     return m_ListCtrl.GetSelectedDistributionRule();
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::ShowAll(bool value, bool refresh)
+void PSS_DistributionAttributesView::ShowAll(bool value, bool refresh)
 {
     m_ListCtrl.ShowAll(value, refresh);
 }

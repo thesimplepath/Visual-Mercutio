@@ -35,7 +35,7 @@
 #include "PSS_ProcRisk.h"
 #include "PSS_RiskPropertiesBP.h"
 #include "PSS_RiskTypeContainer.h"
-#include "ZVRiskImpactContainer.h"
+#include "PSS_RiskImpactContainer.h"
 #include "PSS_RiskProbabilityContainer.h"
 
 #ifdef _ZMODELBPEXPORT

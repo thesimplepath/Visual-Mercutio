@@ -34,7 +34,7 @@
 
 // class prototypes
 class PSS_RiskTypeContainer;
-class ZVRiskImpactContainer;
+class PSS_RiskImpactContainer;
 class PSS_RiskProbabilityContainer;
 
 /**
@@ -85,7 +85,7 @@ class AFX_EXT_CLASS PSS_MainForm : public CWinApp
         * Gets the Risk impact container
         *@return the Risk impact container
         */
-        virtual ZVRiskImpactContainer* GetRiskImpactContainer() = 0;
+        virtual PSS_RiskImpactContainer* GetRiskImpactContainer() = 0;
 
         /**
         * Gets the Risk probability container

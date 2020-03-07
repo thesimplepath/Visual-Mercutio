@@ -45,9 +45,9 @@
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
 #include "zModelBP\PSS_PageSymbolBP.h"
-#include "zModelBP\ZVPublishToMessengerWizard.h"
+#include "zModelBP\PSS_PublishToMessengerWizard.h"
 #include "zModelBP\PSS_RiskTypeContainer.h"
-#include "zModelBP\ZVRiskImpactContainer.h"
+#include "zModelBP\PSS_RiskImpactContainer.h"
 #include "zModelBP\PSS_RiskProbabilityContainer.h"
 #include "zModelWeb\PSS_PublishModelToHTML.h"
 #include "zReport\ZVGridReportChildFrm.h"
@@ -1169,7 +1169,7 @@ BOOL ZAApp::LoadImpactRiskFile()
 {
     if (m_pRiskImpactContainer == NULL)
     {
-        m_pRiskImpactContainer = new ZVRiskImpactContainer();
+        m_pRiskImpactContainer = new PSS_RiskImpactContainer();
 
         if (!m_pRiskImpactContainer->LoadFile(GetApplicationOptions().GetRiskImpactFileName()))
             return FALSE;
@@ -2874,8 +2874,8 @@ void ZAApp::OnPublishToMessenger()
         // Activate the log tab first
         GetOutputWorkspace()->ActivateWorkflowLogTab();
 
-        ZVPublishToMessengerWizard wz(pCurrentDoc, GetOutputWorkspace()->GetLogWorkflowView(), m_pszProfileName);
-        wz.DoModal();
+        PSS_PublishToMessengerWizard wizard(pCurrentDoc, GetOutputWorkspace()->GetLogWorkflowView(), m_pszProfileName);
+        wizard.DoModal();
     }
 }
 

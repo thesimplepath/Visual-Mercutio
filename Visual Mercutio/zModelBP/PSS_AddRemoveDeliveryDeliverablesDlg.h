@@ -42,7 +42,7 @@ class PSS_AddRemoveDeliveryDeliverablesDlg : public CDialog
     public:
         /**
         * Constructor
-        *@remainingDeliverables - the remaining deliverables
+        *@param remainingDeliverables - the remaining deliverables
         *@param deliverables - the deliverables
         *@param pParent - the parent window, can be NULL
         */

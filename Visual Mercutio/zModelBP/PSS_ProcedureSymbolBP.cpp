@@ -36,7 +36,7 @@
 #include "PSS_AddRemoveCombinationDeliverableDlg.h"
 #include "PSS_SelectMasterDeliverableDlg.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
-#include "ZVRiskOptionsDlg.h"
+#include "PSS_RiskOptionsDlg.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -549,7 +549,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
 
             if (pMainForm)
             {
-                ZVRiskImpactContainer* pContainer = pMainForm->GetRiskImpactContainer();
+                PSS_RiskImpactContainer* pContainer = pMainForm->GetRiskImpactContainer();
 
                 if (pContainer)
                     riskImpact = pContainer->GetElementAt(GetRiskImpact(i));
@@ -1495,15 +1495,15 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& valu
         CString noRiskType;
         noRiskType.LoadString(IDS_NO_RISK_TYPE);
 
-        ZVRiskOptionsDlg riskOptions(GetRiskName(i),
-                                     GetRiskDesc(i),
-                                     GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                     GetRiskImpact(i),
-                                     GetRiskProbability(i),
-                                     GetRiskUE(i),
-                                     GetRiskPOA(i),
-                                     GetRiskAction(i),
-                                     currencySymbol);
+        PSS_RiskOptionsDlg riskOptions(GetRiskName(i),
+                                       GetRiskDesc(i),
+                                       GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
+                                       GetRiskImpact(i),
+                                       GetRiskProbability(i),
+                                       GetRiskUE(i),
+                                       GetRiskPOA(i),
+                                       GetRiskAction(i),
+                                       currencySymbol);
 
         if (riskOptions.DoModal() == IDOK)
         {

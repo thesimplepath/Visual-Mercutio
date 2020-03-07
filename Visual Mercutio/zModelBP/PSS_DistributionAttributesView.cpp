@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_DistributionAttributesWnd ---------------------------------------*
+ * ==> PSS_DistributionAttributesView --------------------------------------*
  ****************************************************************************
- * Description : Provides the distribution attributes window                *
+ * Description : Provides the distribution attributes view                  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_DistributionAttributesWnd.h"
+#include "PSS_DistributionAttributesView.h"
 
 // processsoft
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
@@ -53,8 +53,8 @@ const int UM_MODIFYDISTRIBUTIONATTRIBUTE        = 22003;
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_DistributionAttributesWnd::IFlatToolBar, CStatic)
-    //{{AFX_MSG_MAP(PSS_DistributionAttributesWnd::IFlatToolBar)
+BEGIN_MESSAGE_MAP(PSS_DistributionAttributesView::IFlatToolbar, CStatic)
+    //{{AFX_MSG_MAP(PSS_DistributionAttributesView::IFlatToolbar)
     ON_BN_CLICKED(IDC_ADDDISTRIBUTIONATTRIBUTE, OnAddDistributionAttribButton)
     ON_BN_CLICKED(IDC_DELETEDISTRIBUTIONATTRIBUTE, OnDeleteDistributionAttribButton)
     ON_BN_CLICKED(IDC_MODIFYDISTRIBUTIONATTRIBUTE, OnModifyDistributionAttribButton)
@@ -63,31 +63,31 @@ BEGIN_MESSAGE_MAP(PSS_DistributionAttributesWnd::IFlatToolBar, CStatic)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_DistributionAttributesWnd::IFlatToolBar
+// PSS_DistributionAttributesView::IFlatToolbar
 //---------------------------------------------------------------------------
-PSS_DistributionAttributesWnd::IFlatToolBar::IFlatToolBar() :
+PSS_DistributionAttributesView::IFlatToolbar::IFlatToolbar() :
     CStatic(),
     PSS_Subject()
 {
     m_ImageList.Create(IDB_DISTRIBATTRIBUTE_FLATTOOLBAR, 20, 1, RGB(255, 0, 255));
 }
 //---------------------------------------------------------------------------
-PSS_DistributionAttributesWnd::IFlatToolBar::~IFlatToolBar()
+PSS_DistributionAttributesView::IFlatToolbar::~IFlatToolbar()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_DistributionAttributesWnd::IFlatToolBar::PreTranslateMessage(MSG* pMsg)
+BOOL PSS_DistributionAttributesView::IFlatToolbar::PreTranslateMessage(MSG* pMsg)
 {
     // let the tooltip process this message
     m_Tooltip.RelayEvent(pMsg);
     return CStatic::PreTranslateMessage(pMsg);
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::IFlatToolBar::PreSubclassWindow()
+void PSS_DistributionAttributesView::IFlatToolbar::PreSubclassWindow()
 {
     CStatic::PreSubclassWindow();
 }
 //---------------------------------------------------------------------------
-int PSS_DistributionAttributesWnd::IFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int PSS_DistributionAttributesView::IFlatToolbar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CStatic::OnCreate(lpCreateStruct) == -1)
         return -1;
@@ -165,25 +165,25 @@ int PSS_DistributionAttributesWnd::IFlatToolBar::OnCreate(LPCREATESTRUCT lpCreat
     return 0;
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::IFlatToolBar::OnRefreshButton()
+void PSS_DistributionAttributesView::IFlatToolbar::OnRefreshButton()
 {
     PSS_ToolbarObserverMsg msg(UM_REFRESH);
     NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::IFlatToolBar::OnAddDistributionAttribButton()
+void PSS_DistributionAttributesView::IFlatToolbar::OnAddDistributionAttribButton()
 {
     PSS_ToolbarObserverMsg msg(UM_ADDDISTRIBUTIONATTRIBUTE);
     NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::IFlatToolBar::OnDeleteDistributionAttribButton()
+void PSS_DistributionAttributesView::IFlatToolbar::OnDeleteDistributionAttribButton()
 {
     PSS_ToolbarObserverMsg msg(UM_DELETEDISTRIBUTIONATTRIBUTE);
     NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::IFlatToolBar::OnModifyDistributionAttribButton()
+void PSS_DistributionAttributesView::IFlatToolbar::OnModifyDistributionAttribButton()
 {
     PSS_ToolbarObserverMsg msg(UM_MODIFYDISTRIBUTIONATTRIBUTE);
     NotifyAllObservers(&msg);
@@ -191,20 +191,20 @@ void PSS_DistributionAttributesWnd::IFlatToolBar::OnModifyDistributionAttribButt
 //---------------------------------------------------------------------------
 // Dynamic implementation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNCREATE(PSS_DistributionAttributesWnd, CWnd)
+IMPLEMENT_DYNCREATE(PSS_DistributionAttributesView, CWnd)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_DistributionAttributesWnd, CWnd)
-    //{{AFX_MSG_MAP(PSS_DistributionAttributesWnd)
+BEGIN_MESSAGE_MAP(PSS_DistributionAttributesView, CWnd)
+    //{{AFX_MSG_MAP(PSS_DistributionAttributesView)
     ON_WM_CREATE()
     ON_WM_SIZE()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_DistributionAttributesWnd
+// PSS_DistributionAttributesView
 //---------------------------------------------------------------------------
-PSS_DistributionAttributesWnd::PSS_DistributionAttributesWnd() :
+PSS_DistributionAttributesView::PSS_DistributionAttributesView() :
     CWnd(),
     PSS_Subject(),
     PSS_Observer(),
@@ -212,13 +212,13 @@ PSS_DistributionAttributesWnd::PSS_DistributionAttributesWnd() :
     m_pSymbol(NULL)
 {}
 //---------------------------------------------------------------------------
-PSS_DistributionAttributesWnd::~PSS_DistributionAttributesWnd()
+PSS_DistributionAttributesView::~PSS_DistributionAttributesView()
 {
-    m_FlatToolBar.DetachObserver(this);
+    m_FlatToolbar.DetachObserver(this);
     m_ListCtrl.DetachObserver(this);
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::Refresh()
+void PSS_DistributionAttributesView::Refresh()
 {
     CWaitCursor cursor;
 
@@ -227,13 +227,13 @@ void PSS_DistributionAttributesWnd::Refresh()
         m_ListCtrl.Refresh();
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::Empty()
+void PSS_DistributionAttributesView::Empty()
 {
     CWaitCursor cursor;
     m_ListCtrl.Empty();
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
+void PSS_DistributionAttributesView::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     // forward the message to the property control
     m_ListCtrl.OnUpdate(pSubject, pMsg);
@@ -281,13 +281,13 @@ void PSS_DistributionAttributesWnd::OnUpdate(PSS_Subject* pSubject, PSS_Observer
     }
 }
 //---------------------------------------------------------------------------
-int PSS_DistributionAttributesWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int PSS_DistributionAttributesView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     // create the flat toolbar
-    dynamic_cast<CStatic&>(m_FlatToolBar).Create(_T(""),
+    dynamic_cast<CStatic&>(m_FlatToolbar).Create(_T(""),
                                                  WS_CHILD | WS_VISIBLE | LBS_NOINTEGRALHEIGHT,
                                                  CRect(0, 0, 100, g_FlatToolbarHeight),
                                                  this,
@@ -300,24 +300,24 @@ int PSS_DistributionAttributesWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
                       IDC_DISTRIBUTIONATTRIBUTE_LISTCTRL);
 
     // attach the message observers
-    m_FlatToolBar.AttachObserver(this);
+    m_FlatToolbar.AttachObserver(this);
     m_ListCtrl.AttachObserver(this);
 
     return 0;
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::OnSize(UINT nType, int cx, int cy)
+void PSS_DistributionAttributesView::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
 
-    if (::IsWindow(m_FlatToolBar.GetSafeHwnd()) && ::IsWindow(m_ListCtrl.GetSafeHwnd()))
+    if (::IsWindow(m_FlatToolbar.GetSafeHwnd()) && ::IsWindow(m_ListCtrl.GetSafeHwnd()))
     {
-        m_FlatToolBar.MoveWindow(0, 0, cx, g_FlatToolbarHeight);
+        m_FlatToolbar.MoveWindow(0, 0, cx, g_FlatToolbarHeight);
         m_ListCtrl.MoveWindow(0, g_FlatToolbarHeight, cx, cy - g_FlatToolbarHeight);
     }
 }
 //---------------------------------------------------------------------------
-CString PSS_DistributionAttributesWnd::GetAndCheckUnitGUID() const
+CString PSS_DistributionAttributesView::GetAndCheckUnitGUID() const
 {
     CString unitGUID;
 
@@ -354,7 +354,7 @@ CString PSS_DistributionAttributesWnd::GetAndCheckUnitGUID() const
     return unitGUID;
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::OnAddDistributionAttrib()
+void PSS_DistributionAttributesView::OnAddDistributionAttrib()
 {
     if (!m_pCurrentDoc)
         return;
@@ -429,7 +429,7 @@ void PSS_DistributionAttributesWnd::OnAddDistributionAttrib()
     propSet.RemoveAll();
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::OnDeleteDistributionAttrib()
+void PSS_DistributionAttributesView::OnDeleteDistributionAttrib()
 {
     if (!m_pCurrentDoc)
         return;
@@ -467,7 +467,7 @@ void PSS_DistributionAttributesWnd::OnDeleteDistributionAttrib()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::OnModifyDistributionAttrib()
+void PSS_DistributionAttributesView::OnModifyDistributionAttrib()
 {
     if (!m_pCurrentDoc)
         return;
@@ -513,7 +513,7 @@ void PSS_DistributionAttributesWnd::OnModifyDistributionAttrib()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DistributionAttributesWnd::OnRefresh()
+void PSS_DistributionAttributesView::OnRefresh()
 {
     Refresh();
 }

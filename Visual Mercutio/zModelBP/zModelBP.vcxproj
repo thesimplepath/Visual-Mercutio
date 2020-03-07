@@ -484,7 +484,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_DistributionAttributesWnd.cpp">
+    <ClCompile Include="PSS_DistributionAttributesView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -514,36 +514,36 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVInputAttributes.cpp">
+    <ClCompile Include="PSS_InputAttributesView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVInputAttributesDefinitionDlg.cpp">
+    <ClCompile Include="PSS_InputAttributesDefinitionDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVInputAttributesSelectionDlg.cpp">
+    <ClCompile Include="PSS_InputAttributesSelectionDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVPublishToMessengerWizard.cpp">
+    <ClCompile Include="PSS_PublishToMessengerWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVRiskCalculateParametersDlg.cpp" />
-    <ClCompile Include="ZVRiskImpactContainer.cpp" />
-    <ClCompile Include="ZVRiskModifyDlg.cpp" />
-    <ClCompile Include="ZVRiskModifyStaticDlg.cpp" />
+    <ClCompile Include="PSS_RiskCalculateParametersDlg.cpp" />
+    <ClCompile Include="PSS_RiskImpactContainer.cpp" />
+    <ClCompile Include="PSS_RiskModifyDlg.cpp" />
+    <ClCompile Include="PSS_RiskModifyStaticDlg.cpp" />
     <ClCompile Include="PSS_RiskNewFileDlg.cpp" />
-    <ClCompile Include="ZVRiskOptionsDlg.cpp" />
+    <ClCompile Include="PSS_RiskOptionsDlg.cpp" />
     <ClCompile Include="PSS_RiskProbabilityContainer.cpp" />
     <ClCompile Include="PSS_RiskTypeContainer.cpp" />
   </ItemGroup>
@@ -659,21 +659,21 @@
     <ClInclude Include="PSS_AddRemoveDeliveryDeliverablesDlg.h" />
     <ClInclude Include="PSS_SelectMainDeliverableDlg.h" />
     <ClInclude Include="PSS_SelectMasterDeliverableDlg.h" />
-    <ClInclude Include="PSS_DistributionAttributesWnd.h" />
+    <ClInclude Include="PSS_DistributionAttributesView.h" />
     <ClInclude Include="PSS_DistributionAttributesDefinitionDlg.h" />
     <ClInclude Include="PSS_DistributionAttributesSelectionDlg.h" />
     <ClInclude Include="PSS_DistributionRuleDefDlg.h" />
     <ClInclude Include="PSS_EqualizeQuantityDlg.h" />
-    <ClInclude Include="ZVInputAttributes.h" />
-    <ClInclude Include="ZVInputAttributesDefinitionDlg.h" />
-    <ClInclude Include="ZVInputAttributesSelectionDlg.h" />
-    <ClInclude Include="ZVPublishToMessengerWizard.h" />
-    <ClInclude Include="ZVRiskCalculateParametersDlg.h" />
-    <ClInclude Include="ZVRiskImpactContainer.h" />
-    <ClInclude Include="ZVRiskModifyDlg.h" />
-    <ClInclude Include="ZVRiskModifyStaticDlg.h" />
+    <ClInclude Include="PSS_InputAttributesView.h" />
+    <ClInclude Include="PSS_InputAttributesDefinitionDlg.h" />
+    <ClInclude Include="PSS_InputAttributesSelectionDlg.h" />
+    <ClInclude Include="PSS_PublishToMessengerWizard.h" />
+    <ClInclude Include="PSS_RiskCalculateParametersDlg.h" />
+    <ClInclude Include="PSS_RiskImpactContainer.h" />
+    <ClInclude Include="PSS_RiskModifyDlg.h" />
+    <ClInclude Include="PSS_RiskModifyStaticDlg.h" />
     <ClInclude Include="PSS_RiskNewFileDlg.h" />
-    <ClInclude Include="ZVRiskOptionsDlg.h" />
+    <ClInclude Include="PSS_RiskOptionsDlg.h" />
     <ClInclude Include="PSS_RiskProbabilityContainer.h" />
     <ClInclude Include="PSS_RiskTypeContainer.h" />
   </ItemGroup>

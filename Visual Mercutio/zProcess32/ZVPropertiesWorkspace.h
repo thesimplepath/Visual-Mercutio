@@ -11,8 +11,8 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_SpanWnd.h"
-#include "zModelBP\ZVInputAttributes.h"
-#include "zModelBP\PSS_DistributionAttributesWnd.h"
+#include "zModelBP\PSS_InputAttributesView.h"
+#include "zModelBP\PSS_DistributionAttributesView.h"
 
 // JMR-MODIF - Le 3 juilet 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -33,8 +33,8 @@ public:
     void Release();
 
     ZVProperties* GetPropertyView();
-    ZVInputAttributes* GetInputAttributeView();
-    PSS_DistributionAttributesWnd* GetDistributionAttributeView();
+    PSS_InputAttributesView* GetInputAttributeView();
+    PSS_DistributionAttributesView* GetDistributionAttributeView();
     PSS_SpanWnd* GetPanView();
 
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
@@ -61,11 +61,11 @@ protected:
 
 private:
 
-    ZVProperties                  m_PropertyView;
-    ZVInputAttributes             m_InputAttributeView;
-    PSS_DistributionAttributesWnd m_DistributionAttributeView;
-    PSS_SpanWnd                   m_PanView;
-    SEC3DTabWnd                   m_wndTab;
+    ZVProperties                   m_PropertyView;
+    PSS_InputAttributesView        m_InputAttributeView;
+    PSS_DistributionAttributesView m_DistributionAttributeView;
+    PSS_SpanWnd                    m_PanView;
+    SEC3DTabWnd                    m_wndTab;
 };
 
 inline ZVProperties* ZVPropertiesWorkspace::GetPropertyView()
@@ -73,12 +73,12 @@ inline ZVProperties* ZVPropertiesWorkspace::GetPropertyView()
     return &m_PropertyView;
 }
 
-inline ZVInputAttributes* ZVPropertiesWorkspace::GetInputAttributeView()
+inline PSS_InputAttributesView* ZVPropertiesWorkspace::GetInputAttributeView()
 {
     return &m_InputAttributeView;
 }
 
-inline PSS_DistributionAttributesWnd* ZVPropertiesWorkspace::GetDistributionAttributeView()
+inline PSS_DistributionAttributesView* ZVPropertiesWorkspace::GetDistributionAttributeView()
 {
     return &m_DistributionAttributeView;
 }
