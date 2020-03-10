@@ -5,7 +5,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -16,24 +16,22 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZIProperties::ZIProperties()
-{
-}
+{}
 
 ZIProperties::~ZIProperties()
-{
-}
+{}
 
-AFX_EXT_API bool SwapInternalPropertyItem( ZBProperty&        SrcProperty,
-                                           ZBProperty&        DstProperty,
-                                           bool                Top2Down,
-                                           ZBPropertySet&    Properties,
-                                           int                CategoryID )
+AFX_EXT_API bool SwapInternalPropertyItem(PSS_Property&        SrcProperty,
+                                          PSS_Property&        DstProperty,
+                                          bool                Top2Down,
+                                          ZBPropertySet&    Properties,
+                                          int                CategoryID)
 {
     bool RetValue = false;
 
     // Check if the source and the destination are in the same field and for the text item list
-    if ( SrcProperty.GetCategoryID() == CategoryID &&
-         DstProperty.GetCategoryID() == CategoryID )
+    if (SrcProperty.GetCategoryID() == CategoryID &&
+        DstProperty.GetCategoryID() == CategoryID)
     {
         // Move properties from src to destination
 
@@ -41,21 +39,21 @@ AFX_EXT_API bool SwapInternalPropertyItem( ZBProperty&        SrcProperty,
         CString SrcValue = SrcProperty.GetValueString();
 
         // Run trough the set of properties and changed find the src for the start
-        ZBPropertyIterator i( &Properties );
-        ZBProperty* pProp;
+        ZBPropertyIterator i(&Properties);
+        PSS_Property* pProp;
         bool FoundSrc = false;
 
-        for ( pProp = ( Top2Down ) ? i.GetFirst() : i.GetLast(); pProp; pProp = ( Top2Down ) ? i.GetNext() : i.GetPrev() )
+        for (pProp = (Top2Down) ? i.GetFirst() : i.GetLast(); pProp; pProp = (Top2Down) ? i.GetNext() : i.GetPrev())
         {
             // Continue if not the right category
-            if ( pProp->GetCategoryID() != CategoryID )
+            if (pProp->GetCategoryID() != CategoryID)
             {
                 continue;
             }
 
             // If we found the right source property,
             // break the loop and set the flag
-            if ( pProp == &SrcProperty )
+            if (pProp == &SrcProperty)
             {
                 FoundSrc = true;
                 break;
@@ -63,28 +61,28 @@ AFX_EXT_API bool SwapInternalPropertyItem( ZBProperty&        SrcProperty,
         }
 
         // If the source hasn't been reached, then error
-        if ( !FoundSrc )
+        if (!FoundSrc)
         {
             return false;
         }
 
         // Now, from the source till the destination, copy the element to the previous
-        bool FoundDst                = false;
-        ZBProperty* pPreviousProp    = pProp;
+        bool FoundDst = false;
+        PSS_Property* pPreviousProp = pProp;
 
-        for ( pProp = ( Top2Down ) ? i.GetNext() : i.GetPrev(); pProp; pProp = ( Top2Down ) ? i.GetNext() : i.GetPrev() )
+        for (pProp = (Top2Down) ? i.GetNext() : i.GetPrev(); pProp; pProp = (Top2Down) ? i.GetNext() : i.GetPrev())
         {
             // If we are not still in the same category
             // then break the loop.
-            if ( pProp->GetCategoryID() != CategoryID )
+            if (pProp->GetCategoryID() != CategoryID)
             {
                 break;
             }
 
             // Copy the current property value to the previous element
-            pPreviousProp->SetValueString( pProp->GetValueString() );
+            pPreviousProp->SetValueString(pProp->GetValueString());
 
-            if ( pProp == &DstProperty )
+            if (pProp == &DstProperty)
             {
                 FoundDst = true;
                 break;
@@ -95,13 +93,13 @@ AFX_EXT_API bool SwapInternalPropertyItem( ZBProperty&        SrcProperty,
         }
 
         // If the destination hasn't been reached, then error
-        if ( !FoundDst || !pProp )
+        if (!FoundDst || !pProp)
         {
             return false;
         }
 
         // Copy the saved value of the droped item
-        pProp->SetValueString( SrcValue );
+        pProp->SetValueString(SrcValue);
 
         RetValue = true;
     }

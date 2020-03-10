@@ -16,7 +16,7 @@
 #include "zModel\PSS_LinkSymbol.h"
 #include "zModel\PSS_ODSymbolManipulator.h"
 #include "zModel\PSS_GenericSymbolErrorLine.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 #include "PSS_PublishMessengerModelInformation.h"
@@ -314,7 +314,7 @@ bool PSS_SoapPublishModelDefinition::OnProcedureSymbol(PSS_ProcedureSymbolBP* pS
     ZBPropertyIterator it(&propSet);
 
     // delete all now published attributes
-    for (ZBProperty*  pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property*  pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -345,7 +345,7 @@ bool PSS_SoapPublishModelDefinition::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbo
     ZBPropertyIterator it(&propSet);
 
     // delete all now published attributes
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -376,7 +376,7 @@ bool PSS_SoapPublishModelDefinition::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
     ZBPropertyIterator it(&propSet);
 
     // delete all now published attributes
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext() )
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext() )
         delete pProp;
 
     propSet.RemoveAll();
@@ -407,7 +407,7 @@ bool PSS_SoapPublishModelDefinition::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
     ZBPropertyIterator it(&propSet);
 
     // delete all now published attributes
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -605,7 +605,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
     ZBPropertyIterator it(&propSet);
 
     // delete all now published attributes
-    for (ZBProperty*  pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property*  pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -618,11 +618,11 @@ void PSS_SoapPublishModelDefinition::Publish(int ref, const ZBPropertySet& propS
     ZBPropertyIterator it(&propSet);
 
     // publish all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         Publish(ref, pProp);
 }
 //---------------------------------------------------------------------------
-void PSS_SoapPublishModelDefinition::Publish(int ref, ZBProperty* pProp)
+void PSS_SoapPublishModelDefinition::Publish(int ref, PSS_Property* pProp)
 {
     if (!pProp)
         return;
@@ -635,14 +635,14 @@ void PSS_SoapPublishModelDefinition::Publish(int ref, ZBProperty* pProp)
     CString s;
 
     // search for the property value type
-    switch (pProp->GetPTValueType())
+    switch (pProp->GetValueType())
     {
-        case ZBProperty::PT_DOUBLE:   s.Format(_T("%g"), pProp->GetValueDouble());                  break;
-        case ZBProperty::PT_FLOAT:    s.Format(_T("%f"), pProp->GetValueFloat());                   break;
-        case ZBProperty::PT_DATE:     s = pProp->GetValueDate().GetStandardFormattedDate();         break;
-        case ZBProperty::PT_TIMESPAN: s = pProp->GetValueTimeSpan().GetStandardFormattedTimeSpan(); break;
-        case ZBProperty::PT_DURATION: s.Format(_T("%f"), double(pProp->GetValueDuration()));        break;
-        default:                      s = pProp->GetValueString();                                  break;
+        case PSS_Property::IE_VT_Double:   s.Format(_T("%g"), pProp->GetValueDouble());                  break;
+        case PSS_Property::IE_VT_Float:    s.Format(_T("%f"), pProp->GetValueFloat());                   break;
+        case PSS_Property::IE_VT_Date:     s = pProp->GetValueDate().GetStandardFormattedDate();         break;
+        case PSS_Property::IE_VT_TimeSpan: s = pProp->GetValueTimeSpan().GetStandardFormattedTimeSpan(); break;
+        case PSS_Property::IE_VT_Duration: s.Format(_T("%f"), double(pProp->GetValueDuration()));        break;
+        default:                           s = pProp->GetValueString();                                  break;
     }
 
     // log property content

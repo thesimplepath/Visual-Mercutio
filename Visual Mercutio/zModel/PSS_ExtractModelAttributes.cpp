@@ -62,7 +62,7 @@ bool PSS_ExtractModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -83,7 +83,7 @@ bool PSS_ExtractModelAttributes::OnLink(PSS_LinkSymbol* pLink)
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -98,7 +98,7 @@ void PSS_ExtractModelAttributes::ProcessAttrib(ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         const short left  = pProp->GetCategoryID() & 0x0000FFFF;
         const short right = pProp->GetItemID()     & 0x0000FFFF;

@@ -1117,24 +1117,24 @@ bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numeric
     if (!pBasicProps)
         return false;
 
-    std::unique_ptr<ZBProperty> pProp;
+    std::unique_ptr<PSS_Property> pProp;
 
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_MODEL_BASIC_TITLE,
-                               ZS_BP_PROP_MODEL_BASIC,
-                               IDS_Z_MODEL_NAME_NAME,
-                               M_Model_Name_ID,
-                               IDS_Z_MODEL_NAME_DESC,
-                               pBasicProps->GetModelName(),
-                               ZBProperty::PT_EDIT_STRING_READONLY));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_MODEL_BASIC_TITLE,
+                                 ZS_BP_PROP_MODEL_BASIC,
+                                 IDS_Z_MODEL_NAME_NAME,
+                                 M_Model_Name_ID,
+                                 IDS_Z_MODEL_NAME_DESC,
+                                 pBasicProps->GetModelName(),
+                                 PSS_Property::IE_T_EditStringReadOnly));
     props.Add(pProp.get());
     pProp.release();
 
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_MODEL_BASIC_TITLE,
-                               ZS_BP_PROP_MODEL_BASIC,
-                               IDS_Z_MODEL_DESCRIPTION_NAME,
-                               M_Model_Description_ID,
-                               IDS_Z_MODEL_DESCRIPTION_DESC,
-                               pBasicProps->GetModelDescription()));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_MODEL_BASIC_TITLE,
+                                 ZS_BP_PROP_MODEL_BASIC,
+                                 IDS_Z_MODEL_DESCRIPTION_NAME,
+                                 M_Model_Description_ID,
+                                 IDS_Z_MODEL_DESCRIPTION_DESC,
+                                 pBasicProps->GetModelDescription()));
     props.Add(pProp.get());
     pProp.release();
 
@@ -1151,7 +1151,7 @@ bool PSS_ProcessGraphModelMdl::SaveProperties(ZBPropertySet& props)
     ZBPropertyIterator it(&props);
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         // if no changes, continue
         if (!pProp->GetHasChanged())
@@ -1168,7 +1168,7 @@ bool PSS_ProcessGraphModelMdl::SaveProperties(ZBPropertySet& props)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::FillProperty(ZBProperty& prop)
+bool PSS_ProcessGraphModelMdl::FillProperty(PSS_Property& prop)
 {
     PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
@@ -1185,7 +1185,7 @@ bool PSS_ProcessGraphModelMdl::FillProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::SaveProperty(ZBProperty& prop)
+bool PSS_ProcessGraphModelMdl::SaveProperty(PSS_Property& prop)
 {
     PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
@@ -1202,7 +1202,7 @@ bool PSS_ProcessGraphModelMdl::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
+bool PSS_ProcessGraphModelMdl::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
 {
     if (prop.GetCategoryID() == ZS_BP_PROP_MODEL_BASIC && prop.GetItemID() == M_Model_Name_ID)
     {
@@ -1229,7 +1229,7 @@ bool PSS_ProcessGraphModelMdl::CheckPropertyValue(ZBProperty& prop, CString& val
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::ProcessExtendedInput(ZBProperty&    prop,
+bool PSS_ProcessGraphModelMdl::ProcessExtendedInput(PSS_Property&  prop,
                                                     CString&       value,
                                                     ZBPropertySet& props,
                                                     bool&          refresh)
@@ -1238,7 +1238,7 @@ bool PSS_ProcessGraphModelMdl::ProcessExtendedInput(ZBProperty&    prop,
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::ProcessMenuCommand(int            menuCmdID,
-                                                  ZBProperty&    prop,
+                                                  PSS_Property&  prop,
                                                   CString&       value,
                                                   ZBPropertySet& props,
                                                   bool&          refresh)
@@ -2382,18 +2382,18 @@ void PSS_ProcessGraphModelMdl::PostWrite(CArchive& ar)
 void PSS_ProcessGraphModelMdl::OnPostOpenDocument(long documentVersion)
 {}
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props)
+bool PSS_ProcessGraphModelMdl::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessGraphModelMdl::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
 {
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::OnDropInternalPropertyItem(ZBProperty&    srcProp,
-                                                          ZBProperty&    dstProp,
+bool PSS_ProcessGraphModelMdl::OnDropInternalPropertyItem(PSS_Property&  srcProp,
+                                                          PSS_Property&  dstProp,
                                                           bool           top2Down,
                                                           ZBPropertySet& props)
 {

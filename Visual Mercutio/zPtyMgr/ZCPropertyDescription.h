@@ -18,12 +18,14 @@
 // processsoft
 #include "zBaseLib\PSS_Observer.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward declaration
-class ZBProperty;
+// old class name mapping
+#ifndef PSS_Property
+    #define PSS_Property ZBProperty
+#endif
+
+// forward class declaration
+class PSS_Property;
 class PSS_ObserverMsg;
-
-
 
 #ifdef _ZPTYMGREXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -71,7 +73,7 @@ protected:
 
 private:
     void EmptyControlData();
-    void UpdateControlData(ZBProperty* pProp);
+    void UpdateControlData(PSS_Property* pProp);
 
 
 private:

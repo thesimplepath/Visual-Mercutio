@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "PSS_DynamicAttributesManipulator.h"
 #include "PSS_ProcessGraphModelDoc.h"
 
@@ -26,7 +26,7 @@
 //---------------------------------------------------------------------------
 PSS_DynamicAttributesCreation::PSS_DynamicAttributesCreation(PSS_ProcessGraphModelDoc* pModelDoc, bool symbolSelected) :
     m_pModelDoc(pModelDoc),
-    m_PropertyType(ZBProperty::PT_EDIT_STRING),
+    m_PropertyType(PSS_Property::IE_T_EditString),
     m_Visibility(0),
     m_SymbolSelected(symbolSelected)
 {}
@@ -215,7 +215,7 @@ PSS_DynamicAttributesCreateAttributeDlg::PSS_DynamicAttributesCreateAttributeDlg
                      IDS_WZ_DYNATTRS2_ST_S,
                      IDS_WZ_DYNATTRS2_ST_T),
     m_pModelDoc(pModelDoc),
-    m_PropertyType(ZBProperty::PT_EDIT_STRING),
+    m_PropertyType(PSS_Property::IE_T_EditString),
     m_Category(category),
     m_Visibility(0),
     m_SymbolSelected(symbolSelected)
@@ -337,12 +337,12 @@ bool PSS_DynamicAttributesCreateAttributeDlg::CheckData()
 
     switch (m_AttributeType.GetCurSel())
     {
-        case 0:  m_PropertyType = ZBProperty::PT_EDIT_STRING;    break;
-        case 1:  m_PropertyType = ZBProperty::PT_EDIT_MULTILINE; break;
-        case 2:  m_PropertyType = ZBProperty::PT_EDIT_NUMBER;    break;
-        case 3:  m_PropertyType = ZBProperty::PT_EDIT_DATE;      break;
-        case 4:  m_PropertyType = ZBProperty::PT_EDIT_TIME;      break;
-        case 5:  m_PropertyType = ZBProperty::PT_EDIT_DURATION;  break;
+        case 0:  m_PropertyType = PSS_Property::IE_T_EditString;    break;
+        case 1:  m_PropertyType = PSS_Property::IE_T_EditMultiline; break;
+        case 2:  m_PropertyType = PSS_Property::IE_T_EditNumber;    break;
+        case 3:  m_PropertyType = PSS_Property::IE_T_EditDate;      break;
+        case 4:  m_PropertyType = PSS_Property::IE_T_EditTime;      break;
+        case 5:  m_PropertyType = PSS_Property::IE_T_EditDuration;  break;
         default: return false;
     }
 

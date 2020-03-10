@@ -1140,7 +1140,7 @@ void ZCPropertyListCtrl::CreateInPlaceControl(int nItem, int nPreviousItem /*= -
     }
 
     // Notify all observers
-    ZBProperty* pProperty = m_pPropertyItemManager->GetCorrespondingProperty(pPropertyItem);
+    PSS_Property* pProperty = m_pPropertyItemManager->GetCorrespondingProperty(pPropertyItem);
     ZBPropertyItemObserverMsg Msg(pProperty);
 
     // Notify all observers

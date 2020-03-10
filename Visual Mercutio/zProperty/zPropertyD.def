@@ -1,9 +1,9 @@
-; zPropertyD.def : Declares the module parameters for the DLL.
+; zPropertyD.def: Declares the module parameters for the DLL
 
-LIBRARY      "zPropertyD"
+LIBRARY "zPropertyD"
 
-; JMR-MODIF - Le 19 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+; NOTE deactivated because unsupported by the compiler
 ;DESCRIPTION  'zPropertyD Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

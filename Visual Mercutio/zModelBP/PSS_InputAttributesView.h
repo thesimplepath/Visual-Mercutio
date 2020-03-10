@@ -103,7 +103,7 @@ class AFX_EXT_CLASS PSS_InputAttributesView : public CWnd,
         *@param pInputManager - the distribution manager
         *@param pPropManager - the properties manager
         */
-        virtual inline void Initialize(PSS_InputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager);
+        virtual inline void Initialize(PSS_InputAttributeManager* pInputManager, PSS_DynamicPropertiesManager* pPropManager);
 
         /**
         * Sets the symbol reference
@@ -180,7 +180,7 @@ class AFX_EXT_CLASS PSS_InputAttributesView : public CWnd,
 //---------------------------------------------------------------------------
 // PSS_InputAttributesView
 //---------------------------------------------------------------------------
-void PSS_InputAttributesView::Initialize(PSS_InputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager)
+void PSS_InputAttributesView::Initialize(PSS_InputAttributeManager* pInputManager, PSS_DynamicPropertiesManager* pPropManager)
 {
     m_ListCtrl.Initialize(pInputManager, pPropManager);
 }

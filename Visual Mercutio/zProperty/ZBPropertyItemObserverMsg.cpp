@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "ZBPropertyItemObserverMsg.h"
-#include "ZBProperty.h"
+#include "PSS_Property.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -18,7 +18,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemObserverMsg, PSS_ObserverMsg)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBPropertyItemObserverMsg::ZBPropertyItemObserverMsg(ZBProperty* pProperty) :
+ZBPropertyItemObserverMsg::ZBPropertyItemObserverMsg(PSS_Property* pProperty) :
     PSS_ObserverMsg(),
     m_pProperty(pProperty)
 {}

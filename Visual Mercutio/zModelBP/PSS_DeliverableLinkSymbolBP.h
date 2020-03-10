@@ -264,7 +264,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] prop - property to save, saved property on function ends
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperty(ZBProperty& prop);
+        virtual bool SaveProperty(PSS_Property& prop);
 
         /**
         * Checks the property value
@@ -273,7 +273,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] props - property set at which the property belongs
         *@return true if the property value was checked successfully, otherwise false
         */
-        virtual bool CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props);
+        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props);
 
         /**
         * Processes the extended input for the property value
@@ -283,7 +283,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -295,7 +295,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@return true on success, otherwise false
         */
         virtual bool ProcessMenuCommand(int            menuCmdID,
-                                        ZBProperty&    prop,
+                                        PSS_Property&  prop,
                                         CString&       value,
                                         ZBPropertySet& props,
                                         bool&          refresh);
@@ -1177,8 +1177,8 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
-        virtual bool OnDropInternalPropertyItem(ZBProperty&    srcProperty,
-                                                ZBProperty&    dstProperty,
+        virtual bool OnDropInternalPropertyItem(PSS_Property&  srcProperty,
+                                                PSS_Property&  dstProperty,
                                                 bool           top2Down,
                                                 ZBPropertySet& props);
 
@@ -1189,7 +1189,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] props - the property set at which the changing property belongs
         *@return true if the property is allowed to change, otherwise false
         */
-        virtual bool OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props);
+        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props);
 
         /**
         * Called after the property changed
@@ -1198,7 +1198,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         *@return true if the property changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called after a connection was performed
@@ -1263,7 +1263,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         */
-        virtual void OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when a risk is deleted
@@ -1272,7 +1272,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         */
-        virtual void OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
     private:
         PSS_AnnualNumberPropertiesBP    m_Quantity;
@@ -1360,7 +1360,7 @@ class AFX_EXT_CLASS PSS_DeliverableLinkSymbolBP : public PSS_LinkSymbol
         *@param prop - the property containing the number
         *@param props - the properties
         */
-        void SetNewNumberAndEqualize(const ZBProperty& prop, const ZBPropertySet& props);
+        void SetNewNumberAndEqualize(const PSS_Property& prop, const ZBPropertySet& props);
 
         /**
         * Saves the equalizer to the properties

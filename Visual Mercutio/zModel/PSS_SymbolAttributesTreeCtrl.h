@@ -186,14 +186,14 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         *@param pProp - the property
         *@return true on success, otherwise false
         */
-        bool ProcessProperty(ZBProperty* pProp);
+        bool ProcessProperty(PSS_Property* pProp);
 
         /**
         * Gets the parent property
         *@param pProp - the property for which the parent should be get
         *@return the parent property, NULL on error
         */
-        HTREEITEM GetParentProperty(ZBProperty* pProp);
+        HTREEITEM GetParentProperty(PSS_Property* pProp);
 
         /**
         * Checks the property attribute

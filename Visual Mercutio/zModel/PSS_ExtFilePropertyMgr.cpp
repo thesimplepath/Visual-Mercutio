@@ -193,23 +193,23 @@ bool PSS_ExtFilePropertyMgr::FillProperties(ZBPropertySet& propSet, bool numeric
     {
         finalPropTitle.Format(_T("%s (%d)"), propTitle, i + 1);
 
-        std::unique_ptr<ZBProperty> pProp;
+        std::unique_ptr<PSS_Property> pProp;
 
         propName.LoadString(IDS_Z_FILE_TITLE_NAME);
         propDesc.LoadString(IDS_Z_FILE_TITLE_DESC);
 
         // link title property in the external link group
-        pProp.reset(new ZBProperty(finalPropTitle,
-                                   groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
-                                   propName,
-                                   groupValue ? M_File_Title_ID : (M_File_Title_ID + (i * 40)),
-                                   propDesc,
-                                   GetFileTitle(i),
-                                   ZBProperty::PT_EDIT_MENU,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   NULL,
-                                   &g_ExtFilesMenu));
+        pProp.reset(new PSS_Property(finalPropTitle,
+                                     groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                     propName,
+                                     groupValue ? M_File_Title_ID : (M_File_Title_ID + (i * 40)),
+                                     propDesc,
+                                     GetFileTitle(i),
+                                     PSS_Property::IE_T_EditMenu,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     NULL,
+                                     &g_ExtFilesMenu));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -218,13 +218,13 @@ bool PSS_ExtFilePropertyMgr::FillProperties(ZBPropertySet& propSet, bool numeric
         propDesc.LoadString(IDS_Z_FILE_NAME_DESC);
 
         // link property in the external link group
-        pProp.reset(new ZBProperty(finalPropTitle,
-                                   groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
-                                   propName,
-                                   groupValue ? M_File_Name_ID : (M_File_Name_ID + (i * 40)),
-                                   propDesc,
-                                   GetFileName(i),
-                                   ZBProperty::PT_EDIT_EXTENDED));
+        pProp.reset(new PSS_Property(finalPropTitle,
+                                     groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                     propName,
+                                     groupValue ? M_File_Name_ID : (M_File_Name_ID + (i * 40)),
+                                     propDesc,
+                                     GetFileName(i),
+                                     PSS_Property::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -252,31 +252,31 @@ bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, boo
     {
         finalPropTitle.Format(_T("%s (%d)"), propTitle, i + 1);
 
-        std::unique_ptr<ZBProperty> pProp;
+        std::unique_ptr<PSS_Property> pProp;
 
         propName.LoadString(IDS_Z_INSERTION_TYPE_NAME);
         propDesc.LoadString(IDS_Z_INSERTION_TYPE_DESC);
 
         // insertion mode property from the external link group
         if (numericValue)
-            pProp.reset(new ZBProperty(finalPropTitle,
-                                       groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
-                                       propName,
-                                       groupValue ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
-                                       propDesc,
-                                       double(GetInsertionType(i)),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(finalPropTitle,
+                                         groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                         propName,
+                                         groupValue ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
+                                         propDesc,
+                                         double(GetInsertionType(i)),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(finalPropTitle,
-                                       groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
-                                       propName,
-                                       groupValue ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
-                                       propDesc,
-                                       PSS_Global::GetInsertionTypeString(GetInsertionType(i)),
-                                       ZBProperty::PT_COMBO_STRING_READONLY,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                       PSS_Global::GetArrayInsertionType()));
+            pProp.reset(new PSS_Property(finalPropTitle,
+                                         groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                         propName,
+                                         groupValue ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
+                                         propDesc,
+                                         PSS_Global::GetInsertionTypeString(GetInsertionType(i)),
+                                         PSS_Property::IE_T_ComboStringReadOnly,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_Global::GetArrayInsertionType()));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -286,24 +286,24 @@ bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, boo
 
         // activation mode property from the external link group
         if (numericValue)
-            pProp.reset(new ZBProperty(finalPropTitle,
-                                       groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
-                                       propName,
-                                       groupValue ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
-                                       propDesc,
-                                       double(GetActivationType(i)),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(finalPropTitle,
+                                         groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                         propName,
+                                         groupValue ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
+                                         propDesc,
+                                         double(GetActivationType(i)),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(finalPropTitle,
-                                       groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
-                                       propName,
-                                       groupValue ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
-                                       propDesc,
-                                       PSS_Global::GetActivationTypeString(GetActivationType(i)),
-                                       ZBProperty::PT_COMBO_STRING_READONLY,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                       PSS_Global::GetArrayActivationType()));
+            pProp.reset(new PSS_Property(finalPropTitle,
+                                         groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                         propName,
+                                         groupValue ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
+                                         propDesc,
+                                         PSS_Global::GetActivationTypeString(GetActivationType(i)),
+                                         PSS_Property::IE_T_ComboStringReadOnly,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_Global::GetArrayActivationType()));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -317,7 +317,7 @@ bool PSS_ExtFilePropertyMgr::SaveProperties(ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the external files property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() >=  ZS_BP_PROP_EXTFILE &&
             pProp->GetCategoryID() <= (ZS_BP_PROP_EXTFILE + int(GetExtFileCount())))
             SaveProperty(*pProp);
@@ -325,12 +325,12 @@ bool PSS_ExtFilePropertyMgr::SaveProperties(ZBPropertySet& propSet)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::FillProperty(ZBProperty& prop)
+bool PSS_ExtFilePropertyMgr::FillProperty(PSS_Property& prop)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::SaveProperty(ZBProperty& prop)
+bool PSS_ExtFilePropertyMgr::SaveProperty(PSS_Property& prop)
 {
     if (prop.GetCategoryID() >=  ZS_BP_PROP_EXTFILE &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTFILE + int(GetExtFileCount())))
@@ -349,12 +349,12 @@ bool PSS_ExtFilePropertyMgr::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
+bool PSS_ExtFilePropertyMgr::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::ProcessExtendedInput(ZBProperty&    prop,
+bool PSS_ExtFilePropertyMgr::ProcessExtendedInput(PSS_Property&  prop,
                                                   CString&       value,
                                                   ZBPropertySet& props,
                                                   bool&          refresh)
@@ -390,7 +390,7 @@ bool PSS_ExtFilePropertyMgr::ProcessExtendedInput(ZBProperty&    prop,
 }
 //---------------------------------------------------------------------------
 bool PSS_ExtFilePropertyMgr::ProcessMenuCommand(int            menuCmdID,
-                                                ZBProperty&    prop,
+                                                PSS_Property&  prop,
                                                 CString&       value,
                                                 ZBPropertySet& props,
                                                 bool&          refresh)
@@ -420,7 +420,7 @@ void PSS_ExtFilePropertyMgr::Serialize(CArchive& ar)
     m_ExternalFiles.Serialize(ar);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtFilePropertyMgr::OnAddNewExtFile(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtFilePropertyMgr::OnAddNewExtFile(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     refresh = DoInsertExtFile(false);
 
@@ -428,7 +428,7 @@ void PSS_ExtFilePropertyMgr::OnAddNewExtFile(ZBProperty& prop, CString& value, Z
         value = GetFileTitle(GetExtFileCount() - 1);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtFilePropertyMgr::OnDelCurrentExtFile(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtFilePropertyMgr::OnDelCurrentExtFile(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     // delete the current selected external file
     const int index = prop.GetCategoryID() - ZS_BP_PROP_EXTFILE;
@@ -437,12 +437,12 @@ void PSS_ExtFilePropertyMgr::OnDelCurrentExtFile(ZBProperty& prop, CString& valu
         refresh = true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props)
+bool PSS_ExtFilePropertyMgr::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ExtFilePropertyMgr::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
 {
     return false;
 }

@@ -27,8 +27,14 @@
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
+#ifndef PSS_Property
+    #define PSS_Property ZBProperty
+#endif
 #ifndef PSS_Symbol
     #define PSS_Symbol ZBSymbol
+#endif
+#ifndef PSS_DynamicPropertiesManager
+    #define PSS_DynamicPropertiesManager ZBDynamicPropertiesManager
 #endif
 #ifndef PSS_LinkSymbol
     #define PSS_LinkSymbol ZBLinkSymbol
@@ -36,8 +42,8 @@
 
 // forward class declaration
 class PSS_ProcessGraphModelMdl;
-class ZBProperty;
-class ZBDynamicPropertiesManager;
+class PSS_Property;
+class PSS_DynamicPropertiesManager;
 class PSS_BasicSymbol;
 class PSS_Symbol;
 class PSS_LinkSymbol;
@@ -78,35 +84,36 @@ class AFX_EXT_CLASS PSS_DynamicAttributesManipulator
         *@param pProperty - the property to add
         *@param pRTClass - the property runtime class
         */
-        static bool AssignProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty, CRuntimeClass* pRTClass = NULL);
+        static bool AssignProperty(PSS_ProcessGraphModelMdl* pModel, PSS_Property* pProperty, CRuntimeClass* pRTClass = NULL);
 
         /**
         * Assigns a dynamic property on a symbol
         *@param pDynamicPropertiesManager - the dynamic properties manager
         *@param pSymbol - the symbol to add to
         */
-        static bool AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager* pDynamicPropertiesManager, PSS_Symbol* pSymbol);
+        static bool AssignDynamicPropertyOnSymbol(PSS_DynamicPropertiesManager* pDynamicPropertiesManager, PSS_Symbol* pSymbol);
 
         /**
         * Assigns a dynamic property on a link symbol
         *@param pDynamicPropertiesManager - the dynamic properties manager
         *@param pSymbol - the link symbol to add to
         */
-        static bool AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager* pDynamicPropertiesManager, PSS_LinkSymbol* pSymbol);
+        static bool AssignDynamicPropertyOnSymbol(PSS_DynamicPropertiesManager* pDynamicPropertiesManager,
+                                                  PSS_LinkSymbol*               pSymbol);
 
         /**
         * Reassigns a property
         *@param pModel - the model owning the property to reassign
         *@param pProperty - the property to reassign
         */
-        static bool ReassignProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty);
+        static bool ReassignProperty(PSS_ProcessGraphModelMdl* pModel, PSS_Property* pProperty);
 
         /**
         * Deletes a property
         *@param pModel - the model owning the property to delete
         *@param pProperty - the property to delete
         */
-        static bool DeleteProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty);
+        static bool DeleteProperty(PSS_ProcessGraphModelMdl* pModel, PSS_Property* pProperty);
 
         /**
         * Extracts an unique attribute
@@ -122,9 +129,9 @@ class AFX_EXT_CLASS PSS_DynamicAttributesManipulator
         *@param pSymbol - the symbol to add to
         *@param className - the class name
         */
-        static bool AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager* pDynamicPropertiesManager,
-                                                  PSS_BasicSymbol*            pSymbol,
-                                                  const CString&              className);
+        static bool AssignDynamicPropertyOnSymbol(PSS_DynamicPropertiesManager* pDynamicPropertiesManager,
+                                                  PSS_BasicSymbol*              pSymbol,
+                                                  const CString&                className);
 };
 
 #endif

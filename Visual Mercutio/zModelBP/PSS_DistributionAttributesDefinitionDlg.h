@@ -32,6 +32,9 @@
 #ifndef PSS_DistributionAttributeManager
     #define PSS_DistributionAttributeManager ZBDistributionAttributeManager
 #endif
+#ifndef PSS_DynamicPropertiesManager
+    #define PSS_DynamicPropertiesManager ZBDynamicPropertiesManager
+#endif
 #ifndef PSS_DistributionRulesForRole
     #define PSS_DistributionRulesForRole ZBDistributionRulesForRole
 #endif
@@ -42,7 +45,7 @@
 // forward class declaration
 class PSS_DistributionAttribute;
 class PSS_DistributionAttributeManager;
-class ZBDynamicPropertiesManager;
+class PSS_DynamicPropertiesManager;
 class PSS_DistributionRulesForRole;
 class PSS_UserGroupEntity;
 
@@ -74,7 +77,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesDefinitionDlg : public CDialog
         *@param pParent - the parent window, can be NULL
         */
         PSS_DistributionAttributesDefinitionDlg(PSS_DistributionAttributeManager* pDistributionManager,
-                                                ZBDynamicPropertiesManager*       pPropManager,
+                                                PSS_DynamicPropertiesManager*     pPropManager,
                                                 ZBPropertySet*                    pSet,
                                                 PSS_UserGroupEntity*              pMainUserGroup,
                                                 const CString&                    groupGUID         = "",
@@ -138,7 +141,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesDefinitionDlg : public CDialog
 
         PSS_DistributionAttributesList    m_List;
         PSS_DistributionAttributeManager* m_pDistributionManager;
-        ZBDynamicPropertiesManager*       m_pPropManager;
+        PSS_DynamicPropertiesManager*     m_pPropManager;
         PSS_UserGroupEntity*              m_pMainUserGroup;
         PSS_DistributionAttribute*        m_pDistributionAttr;
         ZBPropertySet*                    m_pSet;

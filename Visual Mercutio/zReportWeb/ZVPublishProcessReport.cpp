@@ -655,7 +655,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
         GenerateSection(PropSet);
 
         ZBPropertyIterator i(&PropSet);
-        ZBProperty* pProp = NULL;
+        PSS_Property* pProp = NULL;
 
         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
@@ -812,7 +812,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
             GenerateSection(PropSet);
 
             ZBPropertyIterator i(&PropSet);
-            ZBProperty* pProp = NULL;
+            PSS_Property* pProp = NULL;
 
             for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
@@ -915,7 +915,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -985,7 +985,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 GenerateSection(PropSet);
 
                 ZBPropertyIterator i(&PropSet);
-                ZBProperty* pProp = NULL;
+                PSS_Property* pProp = NULL;
 
                 for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                 {
@@ -1045,7 +1045,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1100,7 +1100,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
             GenerateSection(PropSet);
 
             ZBPropertyIterator i(&PropSet);
-            ZBProperty* pProp = NULL;
+            PSS_Property* pProp = NULL;
 
             for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
@@ -1200,7 +1200,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1301,7 +1301,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1373,7 +1373,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1474,7 +1474,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1546,7 +1546,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1647,7 +1647,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1716,7 +1716,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                 GenerateSection(PropSet);
 
                 ZBPropertyIterator i(&PropSet);
-                ZBProperty* pProp = NULL;
+                PSS_Property* pProp = NULL;
 
                 for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                 {
@@ -1776,7 +1776,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1834,7 +1834,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
             GenerateSection(PropSet);
 
             ZBPropertyIterator i(&PropSet);
-            ZBProperty* pProp = NULL;
+            PSS_Property* pProp = NULL;
 
             for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
@@ -1936,7 +1936,7 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                         GenerateSection(PropSet);
 
                         ZBPropertyIterator i(&PropSet);
-                        ZBProperty* pProp = NULL;
+                        PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                         {
@@ -1978,7 +1978,7 @@ CString ZVPublishProcessReport::GenerateFileName(CString Directory, CString Proc
 void ZVPublishProcessReport::GenerateSection(ZBPropertySet& PropSet)
 {
     ZBPropertyIterator    i(&PropSet);
-    ZBProperty*            pProp;
+    PSS_Property*            pProp;
     int                    nCatID = -1;
     CString                s = _T("");
 
@@ -2017,42 +2017,42 @@ void ZVPublishProcessReport::GenerateSection(ZBPropertySet& PropSet)
         // *************************************************************************************************************
 
         // Retrouve la valeur formattée en fonction du type de donnée.
-        switch (pProp->GetPTValueType())
+        switch (pProp->GetValueType())
         {
-            case ZBProperty::PT_DOUBLE:
+            case PSS_Property::IE_VT_Double:
             {
                 Value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(), pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_FLOAT:
+            case PSS_Property::IE_VT_Float:
             {
                 Value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(), pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_DATE:
+            case PSS_Property::IE_VT_Date:
             {
                 Value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),
                                                                 pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_TIMESPAN:
+            case PSS_Property::IE_VT_TimeSpan:
             {
                 Value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(),
                                                                 pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_DURATION:
+            case PSS_Property::IE_VT_Duration:
             {
                 Value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(),
                                                                 pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_STRING:
+            case PSS_Property::IE_VT_String:
             {
                 Value = pProp->GetValueString();
                 break;

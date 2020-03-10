@@ -27,8 +27,8 @@
 #include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
-#include "zProperty\ZBProperty.h"
+#include "zProperty\PSS_Property.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_DynamicAttributesManipulator.h"
 

@@ -100,7 +100,7 @@ public:
         return NULL;
     };
 
-    ZBProperty* GetCorrespondingProperty(ZBPropertyItem* pPropertyItem)
+    PSS_Property* GetCorrespondingProperty(ZBPropertyItem* pPropertyItem)
     {
         if (m_pPropertyItemManager)
         {

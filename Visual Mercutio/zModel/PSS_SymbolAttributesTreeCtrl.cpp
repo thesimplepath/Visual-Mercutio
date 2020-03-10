@@ -245,7 +245,7 @@ void PSS_SymbolAttributesTreeCtrl::LoadTree()
     ZBPropertyIterator itProp(m_pPropSet);
 
     // iterate through the property set
-    for (ZBProperty* pProp = itProp.GetFirst(); pProp; pProp = itProp.GetNext())
+    for (PSS_Property* pProp = itProp.GetFirst(); pProp; pProp = itProp.GetNext())
         ProcessProperty(pProp);
 
     _ZBPropertyAttributeIterator itAttr(&m_pPropAttributes->GetAttributeSetConst());
@@ -308,7 +308,7 @@ void PSS_SymbolAttributesTreeCtrl::EmptyDataSet()
     m_DataSet.RemoveAll();
 }
 //---------------------------------------------------------------------------
-bool PSS_SymbolAttributesTreeCtrl::ProcessProperty(ZBProperty* pProp)
+bool PSS_SymbolAttributesTreeCtrl::ProcessProperty(PSS_Property* pProp)
 {
     ASSERT(pProp);
 
@@ -330,7 +330,7 @@ bool PSS_SymbolAttributesTreeCtrl::ProcessProperty(ZBProperty* pProp)
     return result;
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_SymbolAttributesTreeCtrl::GetParentProperty(ZBProperty* pProp)
+HTREEITEM PSS_SymbolAttributesTreeCtrl::GetParentProperty(PSS_Property* pProp)
 {
     ASSERT(pProp);
 

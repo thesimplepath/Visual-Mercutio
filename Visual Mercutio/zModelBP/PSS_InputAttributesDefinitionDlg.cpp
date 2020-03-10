@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zModel\PSS_DynamicAttributesManipulator.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "PSS_InputAttributes.h"
 
@@ -32,10 +32,10 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_InputAttributesDefinitionDlg
 //---------------------------------------------------------------------------
-PSS_InputAttributesDefinitionDlg::PSS_InputAttributesDefinitionDlg(ZBDynamicPropertiesManager* pPropManager,
-                                                                   ZBPropertySet*              pSet,
-                                                                   PSS_InputAttribute*         pInputAttr,
-                                                                   CWnd*                       pParent) :
+PSS_InputAttributesDefinitionDlg::PSS_InputAttributesDefinitionDlg(PSS_DynamicPropertiesManager* pPropManager,
+                                                                   ZBPropertySet*                pSet,
+                                                                   PSS_InputAttribute*           pInputAttr,
+                                                                   CWnd*                         pParent) :
     CDialog(PSS_InputAttributesDefinitionDlg::IDD, pParent),
     m_pPropManager(pPropManager),
     m_pSet(pSet),
@@ -65,7 +65,7 @@ BOOL PSS_InputAttributesDefinitionDlg::OnInitDialog()
 {
     if (m_pInputAttr && m_pPropManager)
     {
-        ZBProperty* pProp = m_pPropManager->GetPropertyItem(m_pInputAttr->GetCategoryID(), m_pInputAttr->GetItemID());
+        PSS_Property* pProp = m_pPropManager->GetPropertyItem(m_pInputAttr->GetCategoryID(), m_pInputAttr->GetItemID());
 
         if (pProp)
         {
@@ -101,7 +101,7 @@ void PSS_InputAttributesDefinitionDlg::OnChooseDynAttr()
 
     if (selectDlg.DoModal() == IDOK)
     {
-        ZBProperty* pProp = selectDlg.GetSelectedProperty();
+        PSS_Property* pProp = selectDlg.GetSelectedProperty();
 
         if (pProp)
         {

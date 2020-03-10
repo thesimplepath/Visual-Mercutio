@@ -657,14 +657,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[out] prop - the property to fill
         *@return true on success, otherwise false
         */
-        virtual bool FillProperty(ZBProperty& prop);
+        virtual bool FillProperty(PSS_Property& prop);
 
         /**
         * Saves the new changes to a property in the model
         *@param prop - the property containing the changes to save
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperty(ZBProperty& prop);
+        virtual bool SaveProperty(PSS_Property& prop);
 
         /**
         * Checks the property value
@@ -673,7 +673,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param props - the property set at which the property belongs
         *@return true if check succeeded, otherwise false
         */
-        virtual bool CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props);
+        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props);
 
         /**
         * Processes the extended input for the property value
@@ -683,7 +683,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[in, out] refresh - if true, the model will be refreshed immediately
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -695,7 +695,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@return true on success, otherwise false
         */
         virtual bool ProcessMenuCommand(int            menuCmdID,
-                                        ZBProperty&    prop,
+                                        PSS_Property&  prop,
                                         CString&       value,
                                         ZBPropertySet& props,
                                         bool&          refresh);
@@ -1211,7 +1211,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param props - the property set at which the property belongs
         *@return true if the property is allowed to change, otherwise false
         */
-        virtual bool OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props);
+        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props);
 
         /**
         * Called after the property changed
@@ -1220,7 +1220,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[in, out] refresh - if true, the model will be refreshed immediately
         *@return true if the property content has changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when an internal property drag&drop occured
@@ -1230,8 +1230,8 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
-        virtual bool OnDropInternalPropertyItem(ZBProperty&    srcProp,
-                                                ZBProperty&    dstProp,
+        virtual bool OnDropInternalPropertyItem(PSS_Property&  srcProp,
+                                                PSS_Property&  dstProp,
                                                 bool           top2Down,
                                                 ZBPropertySet& props);
 

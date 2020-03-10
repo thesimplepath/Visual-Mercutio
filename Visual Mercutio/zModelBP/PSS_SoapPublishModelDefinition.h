@@ -152,7 +152,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public PSS_ProcessNavigatio
         * Publishes the property
         *@param pProp - property to publish
         */
-        void Publish(int ref, ZBProperty* pProp);
+        void Publish(int ref, PSS_Property* pProp);
 };
 
 #endif

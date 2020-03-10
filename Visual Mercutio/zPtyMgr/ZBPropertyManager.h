@@ -43,7 +43,7 @@ class _ZBPropertyState
 public:
 
     _ZBPropertyState();
-    _ZBPropertyState(ZBProperty& Property, double ObjectReference = 0);
+    _ZBPropertyState(PSS_Property& Property, double ObjectReference = 0);
     _ZBPropertyState(ZBPropertyItemCategory& PropItemCat, double ObjectReference = 0);
 
     // Allow copy constructor and assignement operator
@@ -103,7 +103,7 @@ inline _ZBPropertyState::_ZBPropertyState()
     m_CategoryOrder = -1;;
 }
 
-inline _ZBPropertyState::_ZBPropertyState(ZBProperty& Property, double ObjectReference /*= 0*/)
+inline _ZBPropertyState::_ZBPropertyState(PSS_Property& Property, double ObjectReference /*= 0*/)
     : m_Size(0, 0),
     m_ExtendedSize(0, 0)
 {
@@ -315,7 +315,7 @@ public:
     };
 
     ZBPropertyItemCategory* GetTab(ZBPropertyItem* pPropertyItem);
-    ZBProperty*                GetCorrespondingProperty(ZBPropertyItem* pPropertyItem);
+    PSS_Property*           GetCorrespondingProperty(ZBPropertyItem* pPropertyItem);
 
     // Operations
     ZBPropertyItemCategory* AddNewTab(LPCTSTR pStrTabName);
@@ -369,9 +369,9 @@ private:
     ZBPropertyItemManager& operator=(const ZBPropertyItemManager& d);
 
     bool UpdateControlData();
-    ZBPropertyItem* CreatePropertyItem(ZBProperty& Prop);
-    void SetDataToPropertyItem(ZBPropertyItem* pPropertyItem, ZBProperty& Prop);
-    void SetItemDataToProperty(ZBPropertyItem* pPropertyItem, ZBProperty& Prop);
+    ZBPropertyItem* CreatePropertyItem(PSS_Property& Prop);
+    void SetDataToPropertyItem(ZBPropertyItem* pPropertyItem, PSS_Property& Prop);
+    void SetItemDataToProperty(ZBPropertyItem* pPropertyItem, PSS_Property& Prop);
     void FreePropertySet();
     void DeleteUnusedTab();
     void DeleteAllTabs();
@@ -427,7 +427,7 @@ inline void ZBPropertyItemManager::OnDataChanged(ZBPropertyItem*        pPropert
                                                  int                    nIndex,
                                                  bool&                    Refresh)
 {
-    ZBProperty* pProp = GetCorrespondingProperty(pPropertyItem);
+    PSS_Property* pProp = GetCorrespondingProperty(pPropertyItem);
 
     // Before updating the property,
     // call the pre property change function

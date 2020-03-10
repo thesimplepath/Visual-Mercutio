@@ -38,13 +38,18 @@
 #include "PSS_LanguageDefs.h"
 #include "PSS_Defines.h"
 
+// class name mapping
+#ifndef PSS_DynamicPropertiesManager
+    #define PSS_DynamicPropertiesManager ZBDynamicPropertiesManager
+#endif
+
 // forward class declaration
 class PSS_Log;
 class PSS_ProcessGraphModelView;
 class ZUUserManager;
 class ZUMail;
 class ZDTemplateManager;
-class ZBDynamicPropertiesManager;
+class PSS_DynamicPropertiesManager;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -670,7 +675,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         * Gets the dynamic properties manager
         *@return the dynamic properties manager
         */
-        virtual inline ZBDynamicPropertiesManager* GetDynamicPropertiesManager();
+        virtual inline PSS_DynamicPropertiesManager* GetDynamicPropertiesManager();
 
         /**
         * Checks if the document has dynamic properties manager
@@ -785,40 +790,40 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelDoc : public PSS_BaseDocument,
         DECLARE_MESSAGE_MAP()
 
     private:
-        PSS_PageUnits               m_PageUnits;
-        ZUUserManager*              m_pUserManager;
-        ZUMail*                     m_pMail;
-        ZDTemplateManager*          m_pTemplateManager;
-        ZBDynamicPropertiesManager* m_DynamicPropertiesManager;
-        PSS_UnitManager*            m_pUnitManager;
-        PSS_ModelSet                m_DocumentModelSet;
-        PSS_ModelSet                m_UnitModelSet;
-        PSS_WorkflowDefinition*     m_pWorkflowDefinition;
-        PSS_Log*                    m_pOutputLog;
-        PSS_Log*                    m_pAnalyzerLog;
-        PSS_Log*                    m_pSearchLog;
-        PSS_Log*                    m_pWorflowLog;
-        CString                     m_GUID;
-        CString                     m_UserDefGUID;
-        CString                     m_SystemDefGUID;
-        CString                     m_PrestationsDefGUID;
-        CString                     m_RulesDefGUID;
-        CString                     m_CurrencySymbol;
-        CSize                       m_PaperSize;
-        int                         m_HourPerDay;
-        int                         m_DayPerWeek;
-        int                         m_DayPerMonth;
-        int                         m_DayPerYear;
-        short                       m_StandardSize;
-        short                       m_Orientation;
-        BOOL                        m_IsDocumentClosing;
-        BOOL                        m_IsReadOnly;
-        bool                        m_IsInModelCreation;
-        bool                        m_UseWorkflow;
-        bool                        m_BrowseInSameWindow;
-        bool                        m_IntegrateCostSimulation;
-        bool                        m_CheckConsistency;
-        bool                        m_ShowPageBorder;
+        PSS_PageUnits                 m_PageUnits;
+        ZUUserManager*                m_pUserManager;
+        ZUMail*                       m_pMail;
+        ZDTemplateManager*            m_pTemplateManager;
+        PSS_DynamicPropertiesManager* m_DynamicPropertiesManager;
+        PSS_UnitManager*              m_pUnitManager;
+        PSS_ModelSet                  m_DocumentModelSet;
+        PSS_ModelSet                  m_UnitModelSet;
+        PSS_WorkflowDefinition*       m_pWorkflowDefinition;
+        PSS_Log*                      m_pOutputLog;
+        PSS_Log*                      m_pAnalyzerLog;
+        PSS_Log*                      m_pSearchLog;
+        PSS_Log*                      m_pWorflowLog;
+        CString                       m_GUID;
+        CString                       m_UserDefGUID;
+        CString                       m_SystemDefGUID;
+        CString                       m_PrestationsDefGUID;
+        CString                       m_RulesDefGUID;
+        CString                       m_CurrencySymbol;
+        CSize                         m_PaperSize;
+        int                           m_HourPerDay;
+        int                           m_DayPerWeek;
+        int                           m_DayPerMonth;
+        int                           m_DayPerYear;
+        short                         m_StandardSize;
+        short                         m_Orientation;
+        BOOL                          m_IsDocumentClosing;
+        BOOL                          m_IsReadOnly;
+        bool                          m_IsInModelCreation;
+        bool                          m_UseWorkflow;
+        bool                          m_BrowseInSameWindow;
+        bool                          m_IntegrateCostSimulation;
+        bool                          m_CheckConsistency;
+        bool                          m_ShowPageBorder;
 
         /**
         * Creates the unit manager
@@ -1274,7 +1279,7 @@ bool PSS_ProcessGraphModelDoc::IsInModelCreation() const
     return m_IsInModelCreation;
 }
 //---------------------------------------------------------------------------
-ZBDynamicPropertiesManager* PSS_ProcessGraphModelDoc::GetDynamicPropertiesManager()
+PSS_DynamicPropertiesManager* PSS_ProcessGraphModelDoc::GetDynamicPropertiesManager()
 {
     return m_DynamicPropertiesManager;
 }

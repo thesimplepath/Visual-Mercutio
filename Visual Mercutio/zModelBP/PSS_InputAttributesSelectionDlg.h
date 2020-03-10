@@ -49,9 +49,9 @@ class AFX_EXT_CLASS PSS_InputAttributesSelectionDlg : public CDialog
         *@param pPropManager - the property manager
         *@param pParent - the parent window, can be NULL
         */
-        PSS_InputAttributesSelectionDlg(PSS_InputAttributeManager*  pInputManager,
-                                        ZBDynamicPropertiesManager* pPropManager,
-                                        CWnd*                       pParent = NULL);
+        PSS_InputAttributesSelectionDlg(PSS_InputAttributeManager*    pInputManager,
+                                        PSS_DynamicPropertiesManager* pPropManager,
+                                        CWnd*                         pParent = NULL);
 
         virtual ~PSS_InputAttributesSelectionDlg();
 
@@ -85,9 +85,9 @@ class AFX_EXT_CLASS PSS_InputAttributesSelectionDlg : public CDialog
             IDD = IDD_INPUTATTRIBUTES
         };
 
-        PSS_InputAttributeManager*  m_pInputManager;
-        ZBDynamicPropertiesManager* m_pPropManager;
-        PSS_InputAttributesList     m_List;
+        PSS_InputAttributeManager*    m_pInputManager;
+        PSS_DynamicPropertiesManager* m_pPropManager;
+        PSS_InputAttributesList       m_List;
 
         /**
         * Checks the control state

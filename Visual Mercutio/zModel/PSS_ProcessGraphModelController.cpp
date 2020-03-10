@@ -14,8 +14,8 @@
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zProperty\ZBPropertyObserverMsg.h"
-#include "zProperty\ZBDynamicProperties.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicProperties.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "PSS_ProcessGraphModelDoc.h"
 #include "PSS_ProcessGraphModelView.h"
 #include "PSS_ProcessGraphModelViewport.h"
@@ -3780,7 +3780,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -4489,7 +4489,7 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -4593,7 +4593,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
         symbolRef  = pBasicSymbol->GetSymbolReferenceNumber();
     }
 
-    ZBProperty*      pProperty = NULL;
+    PSS_Property*    pProperty = NULL;
     PSS_StringFormat ft;
 
     switch (dlg.GetVisibility())
@@ -4661,7 +4661,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
     if (!pDoc->HasDynamicPropertiesManager())
         pDoc->AllocatePropertiesManager();
 
-    ZBDynamicPropertiesManager* pPropMgr = pDoc->GetDynamicPropertiesManager();
+    PSS_DynamicPropertiesManager* pPropMgr = pDoc->GetDynamicPropertiesManager();
     ASSERT(pPropMgr);
 
     AssignSymbolHit();
@@ -4680,8 +4680,8 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
     CStringArray     propList;
     CString          symbolName;
     int              symbolRef     = -1;
-    ZBProperty*      pSrcProperty  =  NULL;
-    ZBProperty*      pDestProperty =  NULL;
+    PSS_Property*    pSrcProperty  =  NULL;
+    PSS_Property*    pDestProperty =  NULL;
     PSS_BasicSymbol* pBasicSymbol  =  dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit);
 
     // get the owning symbol name and reference
@@ -4713,7 +4713,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
         pDestProperty = pPropMgr->RegisterProperty(dlg.GetName(),
                                                    pSrcProperty->GetLabel(),
                                                    pSrcProperty->GetDescription(),
-                                                   pSrcProperty->GetPTType(),
+                                                   pSrcProperty->GetType(),
                                                    ft,
                                                    symbolName,
                                                    symbolRef);
@@ -4723,20 +4723,20 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
         {
             ZBPropertyIterator it(&propSet);
 
-            for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+            for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 if (pProp->GetCategory() == dlg.GetCategory() && pProp->GetLabel() == pSrcProperty->GetLabel())
                 {
                     pDestProperty->SetStringFormat(pProp->GetStringFormat());
 
-                    switch (pSrcProperty->GetPTValueType())
+                    switch (pSrcProperty->GetValueType())
                     {
-                        case ZBProperty::PT_DATE:     pDestProperty->SetValueDate(pProp->GetValueDate());         break;
-                        case ZBProperty::PT_DOUBLE:   pDestProperty->SetValueDouble(pProp->GetValueDouble());     break;
-                        case ZBProperty::PT_DURATION: pDestProperty->SetValueDuration(pProp->GetValueDuration()); break;
-                        case ZBProperty::PT_FLOAT:    pDestProperty->SetValueFloat(pProp->GetValueFloat());       break;
-                        case ZBProperty::PT_STRING:   pDestProperty->SetValueString(pProp->GetValueString());     break;
-                        case ZBProperty::PT_TIMESPAN: pDestProperty->SetValueTimeSpan(pProp->GetValueTimeSpan()); break;
-                        case ZBProperty::PT_UNKNOWN:                                                              break;
+                        case PSS_Property::IE_VT_Date:     pDestProperty->SetValueDate(pProp->GetValueDate());         break;
+                        case PSS_Property::IE_VT_Double:   pDestProperty->SetValueDouble(pProp->GetValueDouble());     break;
+                        case PSS_Property::IE_VT_Duration: pDestProperty->SetValueDuration(pProp->GetValueDuration()); break;
+                        case PSS_Property::IE_VT_Float:    pDestProperty->SetValueFloat(pProp->GetValueFloat());       break;
+                        case PSS_Property::IE_VT_String:   pDestProperty->SetValueString(pProp->GetValueString());     break;
+                        case PSS_Property::IE_VT_TimeSpan: pDestProperty->SetValueTimeSpan(pProp->GetValueTimeSpan()); break;
+                        case PSS_Property::IE_VT_Unknown:                                                              break;
                     }
                 }
         }

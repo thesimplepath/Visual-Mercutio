@@ -2910,12 +2910,9 @@ void ZAApp::OnDynamicAttributesDisplay()
 
         // Remove all properties
         ZBPropertyIterator i(&Set);
-        ZBProperty* pProp;
 
-        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
-        {
+        for (PSS_Property* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             delete pProp;
-        }
 
         Set.RemoveAll();
     }

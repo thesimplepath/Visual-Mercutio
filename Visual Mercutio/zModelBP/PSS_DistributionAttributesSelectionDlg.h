@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesSelectionDlg : public CDialog
         *@param pParent - the parent window, can be NULL
         */
         PSS_DistributionAttributesSelectionDlg(PSS_DistributionAttributeManager* pDistribManager,
-                                               ZBDynamicPropertiesManager*       pPropManager,
+                                               PSS_DynamicPropertiesManager*     pPropManager,
                                                PSS_UserGroupEntity*              pMainUserGroup,
                                                CWnd*                             pParent = NULL);
 
@@ -95,7 +95,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesSelectionDlg : public CDialog
 
         PSS_DistributionAttributesList    m_List;
         PSS_DistributionAttributeManager* m_pDistribManager;
-        ZBDynamicPropertiesManager*       m_pPropManager;
+        PSS_DynamicPropertiesManager*     m_pPropManager;
         PSS_UserGroupEntity*              m_pMainUserGroup;
 
         /**

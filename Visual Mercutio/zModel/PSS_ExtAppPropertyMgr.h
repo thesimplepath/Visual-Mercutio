@@ -289,14 +289,14 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param[in, out] prop - property to fill, filled property on function ends
         *@return true on success, otherwise false
         */
-        virtual bool FillProperty(ZBProperty& prop);
+        virtual bool FillProperty(PSS_Property& prop);
 
         /**
         * Saves the owning symbol property
         *@param[in, out] prop - property to save, saved property on function ends
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperty(ZBProperty& prop);
+        virtual bool SaveProperty(PSS_Property& prop);
 
         /**
         * Checks the property value
@@ -305,7 +305,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - property set at which the property belongs
         *@return true if the property value was checked successfully, otherwise false
         */
-        virtual bool CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props);
+        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props);
 
         /**
         * Processes the extended input for the property value
@@ -315,7 +315,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param[in, out] refresh - if true, the owning symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -327,7 +327,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@return true on success, otherwise false
         */
         virtual bool ProcessMenuCommand(int            menuCmdID,
-                                        ZBProperty&    prop,
+                                        PSS_Property&  prop,
                                         CString&       value,
                                         ZBPropertySet& props,
                                         bool&          refresh);
@@ -345,7 +345,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         */
-        virtual void OnAddNewExtApp(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnAddNewExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when an external application is deleted
@@ -354,7 +354,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         */
-        virtual void OnDelCurrentExtApp(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelCurrentExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called before a property changes
@@ -363,7 +363,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - the property set at which the property belongs
         *@return true if the property is allowed to change, otherwise false
         */
-        virtual bool OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props);
+        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props);
 
         /**
         * Called after a property changed
@@ -372,7 +372,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         *@return true if the property changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh);
 
     protected:
         CODSymbolComponent* m_pSymbol;

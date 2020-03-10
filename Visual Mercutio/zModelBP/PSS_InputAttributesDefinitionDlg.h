@@ -25,12 +25,15 @@
 #include "zProperty\ZIProperties.h"
 
 // class name mapping
+#ifndef PSS_DynamicPropertiesManager
+    #define PSS_DynamicPropertiesManager ZBDynamicPropertiesManager
+#endif
 #ifndef PSS_InputAttribute
     #define PSS_InputAttribute ZBInputAttribute
 #endif
 
 // forward class declaration
-class ZBDynamicPropertiesManager;
+class PSS_DynamicPropertiesManager;
 class PSS_InputAttribute;
 
 #ifdef _ZMODELBPEXPORT
@@ -57,10 +60,10 @@ class AFX_EXT_CLASS PSS_InputAttributesDefinitionDlg : public CDialog
         *@param pInputAttr - the input attributes
         *@param pParent - the parent window, can be NULL
         */
-        PSS_InputAttributesDefinitionDlg(ZBDynamicPropertiesManager* pPropManager,
-                                         ZBPropertySet*              pSet,
-                                         PSS_InputAttribute*         pInputAttr = NULL,
-                                         CWnd*                       pParent    = NULL);
+        PSS_InputAttributesDefinitionDlg(PSS_DynamicPropertiesManager* pPropManager,
+                                         ZBPropertySet*                pSet,
+                                         PSS_InputAttribute*           pInputAttr = NULL,
+                                         CWnd*                         pParent    = NULL);
 
         virtual ~PSS_InputAttributesDefinitionDlg();
 
@@ -117,17 +120,17 @@ class AFX_EXT_CLASS PSS_InputAttributesDefinitionDlg : public CDialog
             IDD = IDD_INPUTATTRIBUTES_DEF
         };
 
-        ZBDynamicPropertiesManager* m_pPropManager;
-        ZBPropertySet*              m_pSet;
-        PSS_InputAttribute*         m_pInputAttr;
-        CComboBox                   m_VisibilityList;
-        CComboBox                   m_FlagList;
-        CString                     m_DefaultValue;
-        CString                     m_DynamicAttributeName;
-        int                         m_CategoryID;
-        int                         m_ItemID;
-        int                         m_Visibility;
-        int                         m_Flag;
+        PSS_DynamicPropertiesManager* m_pPropManager;
+        ZBPropertySet*                m_pSet;
+        PSS_InputAttribute*           m_pInputAttr;
+        CComboBox                     m_VisibilityList;
+        CComboBox                     m_FlagList;
+        CString                       m_DefaultValue;
+        CString                       m_DynamicAttributeName;
+        int                           m_CategoryID;
+        int                           m_ItemID;
+        int                           m_Visibility;
+        int                           m_Flag;
 };
 
 //---------------------------------------------------------------------------

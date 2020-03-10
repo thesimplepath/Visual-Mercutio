@@ -10,8 +10,8 @@
 
 // processsoft
 #include "zBaseSym\PSS_BasicSymbol.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
-#include "zProperty\ZBDynamicProperties.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicProperties.h"
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
 #include "PSS_ExtractCategoryAttributes.h"
@@ -44,34 +44,34 @@ void PSS_DynamicAttributesManipulator::GetCategories(PSS_ProcessGraphModelMdl* p
 }
 //---------------------------------------------------------------------------
 bool PSS_DynamicAttributesManipulator::AssignProperty(PSS_ProcessGraphModelMdl* pModel,
-                                                      ZBProperty*               pProperty,
+                                                      PSS_Property*             pProperty,
                                                       CRuntimeClass*            pRTClass)
 {
     PSS_AssignDynamicAttributesToModel assign(pModel, pProperty, pRTClass);
     return assign.Navigate();
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager* pDynamicPropertiesManager,
-                                                                     PSS_Symbol*                 pSymbol)
+bool PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(PSS_DynamicPropertiesManager* pDynamicPropertiesManager,
+                                                                     PSS_Symbol*                   pSymbol)
 {
     // to use the runtime class info
     return AssignDynamicPropertyOnSymbol(pDynamicPropertiesManager, pSymbol, pSymbol->GetRuntimeClass()->m_lpszClassName);
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager* pDynamicPropertiesManager,
-                                                                     PSS_LinkSymbol*             pSymbol)
+bool PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(PSS_DynamicPropertiesManager* pDynamicPropertiesManager,
+                                                                     PSS_LinkSymbol*               pSymbol)
 {
     // to use the runtime class info
     return AssignDynamicPropertyOnSymbol(pDynamicPropertiesManager, pSymbol, pSymbol->GetRuntimeClass()->m_lpszClassName);
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicAttributesManipulator::ReassignProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty)
+bool PSS_DynamicAttributesManipulator::ReassignProperty(PSS_ProcessGraphModelMdl* pModel, PSS_Property* pProperty)
 {
     PSS_ReassignDynamicAttributesToModel assign(pModel, pProperty);
     return assign.Navigate();
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicAttributesManipulator::DeleteProperty(PSS_ProcessGraphModelMdl* pModel, ZBProperty* pProperty)
+bool PSS_DynamicAttributesManipulator::DeleteProperty(PSS_ProcessGraphModelMdl* pModel, PSS_Property* pProperty)
 {
     PSS_DeleteDynamicAttributesToModel assign(pModel, pProperty);
     return assign.Navigate();
@@ -83,17 +83,17 @@ void PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(PSS_ProcessGraphM
     extract.Navigate();
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(ZBDynamicPropertiesManager* pDynamicPropertiesManager,
-                                                                     PSS_BasicSymbol*            pSymbol,
-                                                                     const CString&              className)
+bool PSS_DynamicAttributesManipulator::AssignDynamicPropertyOnSymbol(PSS_DynamicPropertiesManager* pDynamicPropertiesManager,
+                                                                     PSS_BasicSymbol*              pSymbol,
+                                                                     const CString&                className)
 {
     if (!pDynamicPropertiesManager)
         return false;
 
-    ZBDynamicPropertiesInfoIterator it(&pDynamicPropertiesManager->GetDynamicPropertiesInfoSet());
+    PSS_DynamicPropertiesManager::IDynamicPropertiesInfoIterator it(&pDynamicPropertiesManager->GetDynamicPropertiesInfoSet());
 
     // iterate through all dynamic properties
-    for (_ZBDynamicPropertyInfo* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_DynamicPropertyInfo* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         // if for the entire model, or for a specific class name, or for a specific symbol
         if (!pProp->m_pSelectableClass && pProp->m_SymbolRef == -1 ||
             (pProp->m_SymbolName == pSymbol->GetSymbolName())      ||

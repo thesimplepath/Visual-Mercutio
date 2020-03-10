@@ -213,9 +213,8 @@ bool ZBPropertyAttributes::Match(ZBPropertySet&    PropSet,
                                  bool                PartialSearch /*= false*/)
 {
     ZBPropertyIterator i(&PropSet);
-    ZBProperty* pProp;
 
-    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
+    for (PSS_Property* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         if (!FindAttribute(pProp->GetCategoryID(), pProp->GetItemID()))
         {
@@ -225,21 +224,21 @@ bool ZBPropertyAttributes::Match(ZBPropertySet&    PropSet,
         CString Value;
 
         // Retrieve the formatted value
-        switch (pProp->GetPTValueType())
+        switch (pProp->GetValueType())
         {
-            case ZBProperty::PT_DOUBLE:
+            case PSS_Property::IE_VT_Double:
             {
                 Value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(), pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_FLOAT:
+            case PSS_Property::IE_VT_Float:
             {
                 Value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(), pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_DATE:
+            case PSS_Property::IE_VT_Date:
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
@@ -248,7 +247,7 @@ bool ZBPropertyAttributes::Match(ZBPropertySet&    PropSet,
                 break;
             }
 
-            case ZBProperty::PT_TIMESPAN:
+            case PSS_Property::IE_VT_TimeSpan:
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
@@ -257,7 +256,7 @@ bool ZBPropertyAttributes::Match(ZBPropertySet&    PropSet,
                 break;
             }
 
-            case ZBProperty::PT_DURATION:
+            case PSS_Property::IE_VT_Duration:
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDuration(), pProp->GetStringFormat() );
@@ -266,7 +265,7 @@ bool ZBPropertyAttributes::Match(ZBPropertySet&    PropSet,
                 break;
             }
 
-            case ZBProperty::PT_STRING:
+            case PSS_Property::IE_VT_String:
             {
                 Value = pProp->GetValueString();
                 break;
@@ -322,9 +321,8 @@ CString ZBPropertyAttributes::GetString(ZBPropertySet* pPropSet, bool KeepOnlyNo
     PSS_Tokenizer token('\n');
 
     ZBPropertyIterator i(pPropSet);
-    ZBProperty* pProp;
 
-    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
+    for (PSS_Property* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         if (!FindAttribute(pProp->GetCategoryID(), pProp->GetItemID()))
         {
@@ -341,21 +339,21 @@ CString ZBPropertyAttributes::GetString(ZBPropertySet* pPropSet, bool KeepOnlyNo
         }
 
         // Retrieve the formatted value
-        switch (pProp->GetPTValueType())
+        switch (pProp->GetValueType())
         {
-            case ZBProperty::PT_DOUBLE:
+            case PSS_Property::IE_VT_Double:
             {
                 Value += PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(), pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_FLOAT:
+            case PSS_Property::IE_VT_Float:
             {
                 Value += PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(), pProp->GetStringFormat());
                 break;
             }
 
-            case ZBProperty::PT_DATE:
+            case PSS_Property::IE_VT_Date:
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
@@ -364,7 +362,7 @@ CString ZBPropertyAttributes::GetString(ZBPropertySet* pPropSet, bool KeepOnlyNo
                 break;
             }
 
-            case ZBProperty::PT_TIMESPAN:
+            case PSS_Property::IE_VT_TimeSpan:
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
@@ -373,7 +371,7 @@ CString ZBPropertyAttributes::GetString(ZBPropertySet* pPropSet, bool KeepOnlyNo
                 break;
             }
 
-            case ZBProperty::PT_DURATION:
+            case PSS_Property::IE_VT_Duration:
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDuration(), pProp->GetStringFormat() );
@@ -382,7 +380,7 @@ CString ZBPropertyAttributes::GetString(ZBPropertySet* pPropSet, bool KeepOnlyNo
                 break;
             }
 
-            case ZBProperty::PT_STRING:
+            case PSS_Property::IE_VT_String:
             {
                 Value += pProp->GetValueString();
                 break;

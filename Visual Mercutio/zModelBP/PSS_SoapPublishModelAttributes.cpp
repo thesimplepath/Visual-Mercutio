@@ -11,7 +11,7 @@
 
 // Include files for log
 #include "zBaseLib\PSS_Log.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
@@ -65,15 +65,15 @@ bool PSS_SoapPublishModelAttributes::OnFinish()
         return false;
 
     // get the dynamic properties
-    ZBDynamicPropertiesManager* pDynPropMgr = pDoc->GetDynamicPropertiesManager();
+    PSS_DynamicPropertiesManager* pDynPropMgr = pDoc->GetDynamicPropertiesManager();
 
     if (!pDynPropMgr)
         return false;
 
-    ZBPropertySet                   propSet;
-    ZBDynamicPropertiesInfoIterator it(&pDynPropMgr->GetDynamicPropertiesInfoSet());
+    ZBPropertySet                                                propSet;
+    PSS_DynamicPropertiesManager::IDynamicPropertiesInfoIterator it(&pDynPropMgr->GetDynamicPropertiesInfoSet());
 
-    for (_ZBDynamicPropertyInfo* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_DynamicPropertyInfo* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         propSet.Add(pProp->m_pProperty);
 
     // publish the properties
@@ -102,7 +102,7 @@ bool PSS_SoapPublishModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -126,7 +126,7 @@ bool PSS_SoapPublishModelAttributes::OnLink(PSS_LinkSymbol* pLink)
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -139,7 +139,7 @@ void PSS_SoapPublishModelAttributes::Publish(const ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // iterate through properties to publish
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         // build the property key (to find it in properties array)
         const short left  = pProp->GetCategoryID() & 0x0000FFFF;
@@ -149,14 +149,14 @@ void PSS_SoapPublishModelAttributes::Publish(const ZBPropertySet& propSet)
         int type;
 
         // search for property value type
-        switch (pProp->GetPTValueType())
+        switch (pProp->GetValueType())
         {
-            case ZBProperty::PT_DOUBLE:
-            case ZBProperty::PT_FLOAT:    type = 2; break;
-            case ZBProperty::PT_DATE:
-            case ZBProperty::PT_TIMESPAN:
-            case ZBProperty::PT_DURATION: type = 3; break;
-            default:                      type = 1; break;
+            case PSS_Property::IE_VT_Double:
+            case PSS_Property::IE_VT_Float:    type = 2; break;
+            case PSS_Property::IE_VT_Date:
+            case PSS_Property::IE_VT_TimeSpan:
+            case PSS_Property::IE_VT_Duration: type = 3; break;
+            default:                           type = 1; break;
         }
 
         // check if property already exists in array, add it if not
@@ -169,7 +169,7 @@ void PSS_SoapPublishModelAttributes::Publish(const ZBPropertySet& propSet)
                 message.Format(IDS_AL_PUBLISHMODELATTRIBUTE,
                                pProp->GetItemID(),
                                (const char*)pProp->GetLabel(),
-                               pProp->GetPTValueType());
+                               pProp->GetValueType());
 
                 PSS_GenericSymbolErrorLine e(message);
                 m_pLog->AddLine(e);

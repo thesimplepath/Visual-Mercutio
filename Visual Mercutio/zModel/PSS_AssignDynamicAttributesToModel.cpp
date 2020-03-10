@@ -10,7 +10,7 @@
 #include "PSS_AssignDynamicAttributesToModel.h"
 
 // processsoft
-#include "zProperty\ZBDynamicProperties.h"
+#include "zProperty\PSS_DynamicProperties.h"
 #include "PSS_ProcessGraphModelMdl.h"
 #include "PSS_Symbol.h"
 #include "PSS_LinkSymbol.h"
@@ -25,7 +25,7 @@
 // PSS_AssignDynamicAttributesToModel
 //---------------------------------------------------------------------------
 PSS_AssignDynamicAttributesToModel::PSS_AssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel,
-                                                                       ZBProperty*               pProperty,
+                                                                       PSS_Property*             pProperty,
                                                                        CRuntimeClass*            pRTClass,
                                                                        void*                     pClass) :
     PSS_ModelNavigation(pModel, pClass),

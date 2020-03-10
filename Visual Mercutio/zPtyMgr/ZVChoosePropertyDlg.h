@@ -20,12 +20,15 @@
 #include "zPtyMgr\zPtyMgrRes.h"
 
 // class name mapping
+#ifndef PSS_DynamicPropertiesManager
+    #define PSS_DynamicPropertiesManager ZBDynamicPropertiesManager
+#endif
 #ifndef PSS_ProcessGraphModelMdl
     #define PSS_ProcessGraphModelMdl ZDProcessGraphModelMdl
 #endif
 
 // forward class declaration
-class ZBDynamicPropertiesManager;
+class PSS_DynamicPropertiesManager;
 class PSS_ProcessGraphModelMdl;
 
 #ifdef _ZPTYMGREXPORT
@@ -48,18 +51,18 @@ class AFX_EXT_CLASS ZVChoosePropertyDlg : public CDialog
 public:
     ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType = 0, bool Selection = true, 
                         bool AllowItemSelection = true, bool AllowCategorySelection = false, 
-                        ZBDynamicPropertiesManager* pPropManager = NULL, 
+                        PSS_DynamicPropertiesManager* pPropManager = NULL,
                         PSS_ProcessGraphModelMdl* pModel = NULL,
                         CWnd* pParent = NULL);   // standard constructor
 
     ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType = 0, bool Selection = true,  
                         bool AllowItemSelection = true, bool AllowCategorySelection = false, 
-                        ZBDynamicPropertiesManager* pPropManager = NULL, 
+                        PSS_DynamicPropertiesManager* pPropManager = NULL,
                         PSS_ProcessGraphModelMdl* pModel = NULL,
                         CWnd* pParent = NULL);   // standard constructor
     
 
-    ZBProperty*    GetSelectedProperty()
+    PSS_Property*    GetSelectedProperty()
     {
         if (m_pSelectedProperty)
             return m_PropertyList.GetCorrespondingProperty( m_pSelectedProperty );
@@ -110,7 +113,7 @@ private:
     bool m_AllowItemSelection;
     bool m_AllowCategorySelection;
     bool m_Selection;
-    ZBDynamicPropertiesManager* m_pPropManager;
+    PSS_DynamicPropertiesManager* m_pPropManager;
     PSS_ProcessGraphModelMdl* m_pModel;
 };
 

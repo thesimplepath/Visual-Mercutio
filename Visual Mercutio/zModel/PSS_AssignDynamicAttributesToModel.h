@@ -22,8 +22,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
+#include "zProperty\PSS_Property.h"
 #include "zProperty\ZIProperties.h"
-#include "zProperty\ZBProperty.h"
 #include "zModel\PSS_ModelNavigation.h"
 
 // forward class declaration
@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public PSS_ModelNavigat
         *@param pClass - the custom data class, can be NULL
         */
         PSS_AssignDynamicAttributesToModel(PSS_ProcessGraphModelMdl* pModel    = NULL,
-                                           ZBProperty*               pProperty = NULL,
+                                           PSS_Property*             pProperty = NULL,
                                            CRuntimeClass*            pRTClass  = NULL,
                                            void*                     pClass    = NULL);
 
@@ -87,7 +87,7 @@ class AFX_EXT_CLASS PSS_AssignDynamicAttributesToModel : public PSS_ModelNavigat
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        ZBProperty*    m_pProperty;
+        PSS_Property*  m_pProperty;
         CRuntimeClass* m_pRTClass;
 };
 

@@ -6,7 +6,7 @@
 
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "zModel\PSS_DynamicAttributesManipulator.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
@@ -26,7 +26,7 @@ static char THIS_FILE[] = __FILE__;
 
 ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType /*= 0*/, bool Selection /*= true*/,
                                          bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
-                                         ZBDynamicPropertiesManager* pPropManager /*=NULL*/,
+                                         PSS_DynamicPropertiesManager* pPropManager /*=NULL*/,
                                          PSS_ProcessGraphModelMdl* pModel /*=NULL*/,
                                          CWnd* pParent /*=NULL*/)
     : CDialog(ZVChoosePropertyDlg::IDD, pParent),
@@ -46,7 +46,7 @@ ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType
 
 ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType /*= 0*/, bool Selection /*= true*/,
                                          bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
-                                         ZBDynamicPropertiesManager* pPropManager /*=NULL*/,
+                                         PSS_DynamicPropertiesManager* pPropManager /*=NULL*/,
                                          PSS_ProcessGraphModelMdl* pModel /*=NULL*/,
                                          CWnd* pParent /*=NULL*/)
     : CDialog(ZVChoosePropertyDlg::IDD, pParent),
@@ -191,10 +191,10 @@ void ZVChoosePropertyDlg::OnDeleteAttribute()
 
 
     // Find the attribute in the Dynamic Property manager
-    ZBProperty*    pProp = m_PropertyList.GetCorrespondingProperty(pItem);
+    PSS_Property* pProp = m_PropertyList.GetCorrespondingProperty(pItem);
     if (pProp)
     {
-        ZBProperty* pProperty = m_pPropManager->GetPropertyItem(pProp->GetCategoryID(), pProp->GetItemID());
+        PSS_Property* pProperty = m_pPropManager->GetPropertyItem(pProp->GetCategoryID(), pProp->GetItemID());
         if (pProperty)
         {
             //            m_PropertyList.DeletePropertyItem( pItem );
@@ -224,10 +224,10 @@ void ZVChoosePropertyDlg::OnRenameAttribute()
     if (InputValue.DoModal() == IDOK)
     {
         // Find the attribute in the Dynamic Property manager
-        ZBProperty*    pProp = m_PropertyList.GetCorrespondingProperty(pItem);
+        PSS_Property* pProp = m_PropertyList.GetCorrespondingProperty(pItem);
         if (pProp)
         {
-            ZBProperty* pProperty = m_pPropManager->GetPropertyItem(pProp->GetCategoryID(), pProp->GetItemID());
+            PSS_Property* pProperty = m_pPropManager->GetPropertyItem(pProp->GetCategoryID(), pProp->GetItemID());
             if (pProperty)
             {
                 pProperty->SetLabel(InputValue.GetValue());

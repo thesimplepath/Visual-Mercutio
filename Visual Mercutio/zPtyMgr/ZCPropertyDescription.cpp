@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ZCPropertyDescription.h"
 
-#include "zProperty\ZBProperty.h"
+#include "zProperty\PSS_Property.h"
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "zProperty\ZBPropertyItemObserverMsg.h"
 
@@ -43,7 +43,7 @@ void ZCPropertyDescription::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
 
     if (ISA(pMsg, ZBPropertyItemObserverMsg))
     {
-        ZBProperty* pProp = ((ZBPropertyItemObserverMsg*)pMsg)->GetProperty();
+        PSS_Property* pProp = ((ZBPropertyItemObserverMsg*)pMsg)->GetProperty();
 
         if (pProp)
         {
@@ -64,7 +64,7 @@ void ZCPropertyDescription::EmptyControlData()
     Invalidate();
 }
 
-void ZCPropertyDescription::UpdateControlData(ZBProperty* pProp)
+void ZCPropertyDescription::UpdateControlData(PSS_Property* pProp)
 {
     // Update data members
     m_Title = pProp->GetLabel();

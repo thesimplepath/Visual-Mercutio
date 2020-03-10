@@ -99,7 +99,7 @@ void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, PSS_Process
                                 m_Procedure->FillProperties(PropSet);
 
                                 ZBPropertyIterator k(&PropSet);
-                                ZBProperty* pProp;
+                                PSS_Property* pProp;
 
                                 for (pProp = k.GetFirst(); pProp; pProp = k.GetNext())
                                 {

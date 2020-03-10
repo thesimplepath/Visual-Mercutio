@@ -103,7 +103,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesView : public CWnd,
         *@param symbolRef - the symbol reference
         */
         virtual inline void Initialize(PSS_DistributionAttributeManager* pDistributionManager,
-                                       ZBDynamicPropertiesManager*       pPropManager,
+                                       PSS_DynamicPropertiesManager*     pPropManager,
                                        PSS_UserGroupEntity*              pMainUserGroup,
                                        PSS_DistributionAttribute*        pDistributionAttribute =  NULL,
                                        bool                              showAll                =  false,
@@ -203,7 +203,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesView : public CWnd,
 // PSS_DistributionAttributesView
 //---------------------------------------------------------------------------
 void PSS_DistributionAttributesView::Initialize(PSS_DistributionAttributeManager* pDistributionManager,
-                                                ZBDynamicPropertiesManager*       pPropManager,
+                                                PSS_DynamicPropertiesManager*     pPropManager,
                                                 PSS_UserGroupEntity*              pMainUserGroup,
                                                 PSS_DistributionAttribute*        pDistributionAttribute,
                                                 bool                              showAll,

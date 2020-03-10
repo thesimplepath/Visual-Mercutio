@@ -26,9 +26,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_InputAttributesSelectionDlg
 //---------------------------------------------------------------------------
-PSS_InputAttributesSelectionDlg::PSS_InputAttributesSelectionDlg(PSS_InputAttributeManager*  pInputManager,
-                                                                 ZBDynamicPropertiesManager* pPropManager,
-                                                                 CWnd*                       pParent) :
+PSS_InputAttributesSelectionDlg::PSS_InputAttributesSelectionDlg(PSS_InputAttributeManager*    pInputManager,
+                                                                 PSS_DynamicPropertiesManager* pPropManager,
+                                                                 CWnd*                         pParent) :
     CDialog(PSS_InputAttributesSelectionDlg::IDD, pParent),
     m_pInputManager(pInputManager),
     m_pPropManager(pPropManager)

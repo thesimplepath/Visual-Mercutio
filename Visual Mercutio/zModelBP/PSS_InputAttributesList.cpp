@@ -15,7 +15,7 @@
 #include "zModel\PSS_SymbolObserverMsg.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "PSS_InputAttributes.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 
@@ -84,10 +84,10 @@ const PSS_InputAttributesList& PSS_InputAttributesList::operator = (const PSS_In
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_InputAttributesList::Initialize(PSS_InputAttributeManager*  pInputManager,
-                                        ZBDynamicPropertiesManager* pPropManager,
-                                        bool                        showAll,
-                                        int                         symbolRef)
+int PSS_InputAttributesList::Initialize(PSS_InputAttributeManager*    pInputManager,
+                                        PSS_DynamicPropertiesManager* pPropManager,
+                                        bool                          showAll,
+                                        int                           symbolRef)
 {
     m_pInputManager = pInputManager;
     m_pPropManager  = pPropManager;
@@ -142,7 +142,7 @@ int PSS_InputAttributesList::Refresh()
 
         columnCounter = 1;
 
-        ZBProperty* pProp =
+        PSS_Property* pProp =
                 m_pPropManager ? m_pPropManager->GetPropertyItem(pInputAttrib->GetCategoryID(), pInputAttrib->GetItemID()) : NULL;
 
         SetItem(lineCounter, columnCounter, LVIF_TEXT, pProp ? pProp->GetLabel() : _T(""), 0, 0, 0, 0);
@@ -160,15 +160,15 @@ int PSS_InputAttributesList::Refresh()
 
         if (pProp)
         {
-            switch (pProp->GetPTType())
+            switch (pProp->GetType())
             {
-                case ZBProperty::PT_EDIT_STRING:    index = 0; break;
-                case ZBProperty::PT_EDIT_MULTILINE: index = 1; break;
-                case ZBProperty::PT_EDIT_NUMBER:    index = 2; break;
-                case ZBProperty::PT_EDIT_DATE:      index = 3; break;
-                case ZBProperty::PT_EDIT_TIME:      index = 4; break;
-                case ZBProperty::PT_EDIT_DURATION:  index = 5; break;
-                default:                                       break;
+                case PSS_Property::IE_T_EditString:    index = 0; break;
+                case PSS_Property::IE_T_EditMultiline: index = 1; break;
+                case PSS_Property::IE_T_EditNumber:    index = 2; break;
+                case PSS_Property::IE_T_EditDate:      index = 3; break;
+                case PSS_Property::IE_T_EditTime:      index = 4; break;
+                case PSS_Property::IE_T_EditDuration:  index = 5; break;
+                default:                                          break;
             }
 
             if (index >= 0)

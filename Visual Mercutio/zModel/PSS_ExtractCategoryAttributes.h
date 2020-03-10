@@ -23,8 +23,8 @@
 
 // processsoft
 #include "zBaseLib\PSS_KeepStringUsage.h"
+#include "zProperty\PSS_Property.h"
 #include "zProperty\ZIProperties.h"
-#include "zProperty\ZBProperty.h"
 #include "zModel\PSS_ModelNavigation.h"
 
 #ifdef _ZMODELEXPORT

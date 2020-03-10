@@ -69,7 +69,7 @@ bool PSS_ExtractCategoryAttributes::OnSymbol(PSS_Symbol* pSymbol)
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -90,7 +90,7 @@ bool PSS_ExtractCategoryAttributes::OnLink(PSS_LinkSymbol* pLink)
     ZBPropertyIterator it(&PropSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     PropSet.RemoveAll();
@@ -103,7 +103,7 @@ void PSS_ExtractCategoryAttributes::FillAttribCategory(ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         // check if the category has already been generated
         if (!StringAlreadyGenerated(pProp->GetCategory()))
             if (pProp->IsDynamic() && m_pDynamicArray)

@@ -14,7 +14,7 @@
 #include "zModel\PSS_UserRoleEntity.h"
 #include "zModel\PSS_SelectUserGroupDlg.h"
 #include "zModel\PSS_DynamicAttributesManipulator.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "PSS_DistributionAttributes.h"
 #include "PSS_DistributionRuleDefDlg.h"
@@ -43,7 +43,7 @@ END_MESSAGE_MAP()
 // PSS_DistributionAttributesDefinitionDlg
 //---------------------------------------------------------------------------
 PSS_DistributionAttributesDefinitionDlg::PSS_DistributionAttributesDefinitionDlg(PSS_DistributionAttributeManager* pDistributionManager,
-                                                                                 ZBDynamicPropertiesManager*       pPropManager,
+                                                                                 PSS_DynamicPropertiesManager*     pPropManager,
                                                                                  ZBPropertySet*                    pSet,
                                                                                  PSS_UserGroupEntity*              pMainUserGroup,
                                                                                  const CString&                    groupGUID,
@@ -92,8 +92,8 @@ BOOL PSS_DistributionAttributesDefinitionDlg::OnInitDialog()
 
     if (m_pDistributionAttr && m_pPropManager)
     {
-        ZBProperty* pProp = m_pPropManager->GetPropertyItem(m_pDistributionAttr->GetCategoryID(),
-                                                            m_pDistributionAttr->GetItemID());
+        PSS_Property* pProp = m_pPropManager->GetPropertyItem(m_pDistributionAttr->GetCategoryID(),
+                                                              m_pDistributionAttr->GetItemID());
 
         if (pProp)
         {
@@ -139,7 +139,7 @@ void PSS_DistributionAttributesDefinitionDlg::OnChooseDynattr()
 
     if (selectPropDlg.DoModal() == IDOK)
     {
-        ZBProperty* pProp = selectPropDlg.GetSelectedProperty();
+        PSS_Property* pProp = selectPropDlg.GetSelectedProperty();
 
         if (pProp)
         {

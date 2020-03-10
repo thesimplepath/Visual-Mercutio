@@ -715,7 +715,7 @@ void _ZBPrestationsDatas::Associate(PSS_ProcessSymbolBP* Process)
             Process->FillProperties(PropSet);
 
             ZBPropertyIterator j(&PropSet);
-            ZBProperty* pProp;
+            PSS_Property* pProp;
 
             BOOL IsGoodPrestationName = FALSE;
 
@@ -737,15 +737,15 @@ void _ZBPrestationsDatas::Associate(PSS_ProcessSymbolBP* Process)
                     pProp->GetItemID() == M_Prestation_Percentage &&
                     IsGoodPrestationName == TRUE)
                 {
-                    switch (pProp->GetPTValueType())
+                    switch (pProp->GetValueType())
                     {
-                        case ZBProperty::PT_DOUBLE:
+                        case PSS_Property::IE_VT_Double:
                         {
                             m_Data->SetPercentage(pProp->GetValueDouble());
                             break;
                         }
 
-                        case ZBProperty::PT_FLOAT:
+                        case PSS_Property::IE_VT_Float:
                         {
                             m_Data->SetPercentage((double)pProp->GetValueFloat());
                             break;

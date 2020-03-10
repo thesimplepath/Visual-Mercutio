@@ -30,13 +30,16 @@
 #ifndef PSS_UserEntity
     #define PSS_UserEntity ZBUserEntity
 #endif
+#ifndef PSS_DynamicProperties
+    #define PSS_DynamicProperties ZBDynamicProperties
+#endif
 
 // forward class definition
 class ZBPropertyAttributes;
 class PSS_SymbolEdit;
 class PSS_ProcessGraphPage;
 class PSS_UserEntity;
-class ZBDynamicProperties;
+class PSS_DynamicProperties;
 
 #ifdef _ZBASESYMEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -189,7 +192,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         * Gets the dynamic properties manager
         *@return the dynamic properties manager
         */
-        virtual ZBDynamicProperties* GetDynamicPropertiesManager() = 0;
+        virtual PSS_DynamicProperties* GetDynamicPropertiesManager() = 0;
 
         /**
         * Gets the edit box area

@@ -28,6 +28,9 @@
 #ifndef PSS_InputAttributeManager
     #define PSS_InputAttributeManager ZBInputAttributeManager
 #endif
+#ifndef PSS_DynamicPropertiesManager
+    #define PSS_DynamicPropertiesManager ZBDynamicPropertiesManager
+#endif
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
@@ -35,7 +38,7 @@
 // forward class declaration
 class PSS_InputAttribute;
 class PSS_InputAttributeManager;
-class ZBDynamicPropertiesManager;
+class PSS_DynamicPropertiesManager;
 class PSS_ProcessGraphModelDoc;
 
 #ifdef _ZMODELBPEXPORT
@@ -70,10 +73,10 @@ class AFX_EXT_CLASS PSS_InputAttributesList : public PSS_ListCtrl,
         *@param symbolRef - the symbol reference
         *@return the attribute count
         */
-        virtual int Initialize(PSS_InputAttributeManager*  pInputManager,
-                               ZBDynamicPropertiesManager* pPropManager,
-                               bool                        showAll   =  false,
-                               int                         symbolRef = -1);
+        virtual int Initialize(PSS_InputAttributeManager*    pInputManager,
+                               PSS_DynamicPropertiesManager* pPropManager,
+                               bool                          showAll   =  false,
+                               int                           symbolRef = -1);
 
         /**
         * Gets the selected input attribute
@@ -124,13 +127,13 @@ class AFX_EXT_CLASS PSS_InputAttributesList : public PSS_ListCtrl,
         DECLARE_MESSAGE_MAP()
 
     private:
-        PSS_InputAttributeManager*  m_pInputManager;
-        ZBDynamicPropertiesManager* m_pPropManager;
-        PSS_ProcessGraphModelDoc*   m_pDoc;
-        CODComponent*               m_pComp;
-        int                         m_SymbolRef;
-        BOOL                        m_ColumnsBuilt;
-        bool                        m_ShowAll;
+        PSS_InputAttributeManager*    m_pInputManager;
+        PSS_DynamicPropertiesManager* m_pPropManager;
+        PSS_ProcessGraphModelDoc*     m_pDoc;
+        CODComponent*                 m_pComp;
+        int                           m_SymbolRef;
+        BOOL                          m_ColumnsBuilt;
+        bool                          m_ShowAll;
 
         /**
         * Copy constructor

@@ -286,7 +286,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
     if (pProcessGraphMdlDoc)
         currencySymbol = pProcessGraphMdlDoc->GetCurrencySymbol();
 
-    std::unique_ptr<ZBProperty> pProp;
+    std::unique_ptr<PSS_Property> pProp;
 
     // if the rules menu is still not loaded, load it
     if (!g_RulesMenu.GetSafeHmenu())
@@ -336,17 +336,17 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             ruleName.Format(IDS_Z_RULES_NAME, i + 1);
 
             // the "Rule x" property of the "Rules" group
-            pProp.reset(new ZBProperty(ruleSectionTitle,
-                                       ZS_BP_PROP_RULES,
-                                       ruleName,
-                                       M_Rule_Name_ID + (i * g_MaxRulesSize),
-                                       ruleDesc,
-                                       m_Rules.GetRuleName(i),
-                                       ZBProperty::PT_EDIT_MENU,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                       NULL,
-                                       &g_RulesMenu));
+            pProp.reset(new PSS_Property(ruleSectionTitle,
+                                         ZS_BP_PROP_RULES,
+                                         ruleName,
+                                         M_Rule_Name_ID + (i * g_MaxRulesSize),
+                                         ruleDesc,
+                                         m_Rules.GetRuleName(i),
+                                         PSS_Property::IE_T_EditMenu,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         NULL,
+                                         &g_RulesMenu));
 
             pProp->EnableDragNDrop();
             propSet.Add(pProp.get());
@@ -374,17 +374,17 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_NAME_DESC);
 
         // the "Risk title" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskName(i),
-                                   ZBProperty::PT_EDIT_MENU,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   NULL,
-                                   &g_RiskMenu));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskName(i),
+                                     PSS_Property::IE_T_EditMenu,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     NULL,
+                                     &g_RiskMenu));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -393,13 +393,13 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_DESC_DESC);
 
         // the "Description" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskDesc(i),
-                                   ZBProperty::PT_EDIT_EXTENDED));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskDesc(i),
+                                     PSS_Property::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -411,13 +411,13 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         noRiskType.LoadString(IDS_NO_RISK_TYPE);
 
         // the "Type" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -426,13 +426,13 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_IMPACT_DESC);
 
         // the "Impact" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -441,13 +441,13 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_PROBABILITY_DESC);
 
         // the "Probability" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -456,13 +456,13 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_SEVERITY_DESC);
 
         // the "Severity" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   double(GetRiskSeverity(i)),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     double(GetRiskSeverity(i)),
+                                     PSS_Property::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -471,15 +471,15 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_UE_DESC);
 
         // the "Unitary estimation" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskUE(i),
-                                   ZBProperty::PT_EDIT_NUMBER,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskUE(i),
+                                     PSS_Property::IE_T_EditNumber,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -488,15 +488,15 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_POA_DESC);
 
         // the "Annual operating loss" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskPOA(i),
-                                   ZBProperty::PT_EDIT_NUMBER,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskPOA(i),
+                                     PSS_Property::IE_T_EditNumber,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -505,16 +505,16 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         riskDesc.LoadString(IDS_Z_RISK_ACTION_DESC);
 
         // the "Action" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   TRUE,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     TRUE,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -543,12 +543,12 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         return false;
 
     // the "Management case" property of the "Process" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_PROCESS_TITLE,
-                               ZS_BP_PROP_PROCESS,
-                               IDS_Z_MANAGEMENT_CASE_NAME,
-                               M_Management_Case_ID,
-                               IDS_Z_MANAGEMENT_CASE_DESC,
-                               pProcessProps->GetManagementCase()));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_PROCESS_TITLE,
+                                 ZS_BP_PROP_PROCESS,
+                                 IDS_Z_MANAGEMENT_CASE_NAME,
+                                 M_Management_Case_ID,
+                                 IDS_Z_MANAGEMENT_CASE_DESC,
+                                 pProcessProps->GetManagementCase()));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -583,17 +583,17 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             propDesc.LoadString(IDS_Z_PRESTATION_NAME_DESC);
 
             // the "Prestations" property of the "Prestation (x)" group
-            pProp.reset(new ZBProperty(propTitle,
-                                       ZS_BP_PROP_PRESTATIONS,
-                                       propSubTitle,
-                                       M_Prestation_Name,
-                                       propDesc,
-                                       pCurNode->GetName(),
-                                       ZBProperty::PT_EDIT_MENU,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                       NULL,
-                                       &g_PrestationsMenu));
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_PRESTATIONS,
+                                         propSubTitle,
+                                         M_Prestation_Name,
+                                         propDesc,
+                                         pCurNode->GetName(),
+                                         PSS_Property::IE_T_EditMenu,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         NULL,
+                                         &g_PrestationsMenu));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -605,15 +605,15 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             propDesc.LoadString(IDS_Z_PRESTATION_PERCENTAGE_DESC);
 
             // the "Percentage" property of the "Prestation (x)" group
-            pProp.reset(new ZBProperty(propTitle,
-                                       ZS_BP_PROP_PRESTATIONS,
-                                       propSubTitle,
-                                       M_Prestation_Percentage,
-                                       propDesc,
-                                       percentageActivity,
-                                       ZBProperty::PT_EDIT_NUMBER,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_PRESTATIONS,
+                                         propSubTitle,
+                                         M_Prestation_Percentage,
+                                         propDesc,
+                                         percentageActivity,
+                                         PSS_Property::IE_T_EditNumber,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -627,15 +627,15 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
                 const float propPrestProcessValue = sumOfDeliveries * percentageActivity;
 
                 // the "Process" property of the "Prestation (x)" group
-                pProp.reset(new ZBProperty(propTitle,
-                                           ZS_BP_PROP_PRESTATIONS,
-                                           propSubTitle,
-                                           M_Prestation_Prest_Process,
-                                           propDesc,
-                                           propPrestProcessValue,
-                                           ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                           true,
-                                           PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
+                pProp.reset(new PSS_Property(propTitle,
+                                             ZS_BP_PROP_PRESTATIONS,
+                                             propSubTitle,
+                                             M_Prestation_Prest_Process,
+                                             propDesc,
+                                             propPrestProcessValue,
+                                             PSS_Property::IE_T_EditNumberReadOnly,
+                                             true,
+                                             PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
 
                 propSet.Add(pProp.get());
                 pProp.release();
@@ -643,14 +643,14 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
 
             // todo -cFeature -oJean: Localize me
             // the "Identifiant" property of the "Prestation (x)" group
-            pProp.reset(new ZBProperty(propTitle,
-                                       ZS_BP_PROP_PRESTATIONS,
-                                       "Identifiant",
-                                       M_Prestation_Identifier,
-                                       "Identifiant de la prestation",
-                                       pCurNode->GetGUID(),
-                                       ZBProperty::PT_EDIT_STRING_READONLY,
-                                       false));
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_PRESTATIONS,
+                                         "Identifiant",
+                                         M_Prestation_Identifier,
+                                         "Identifiant de la prestation",
+                                         pCurNode->GetGUID(),
+                                         PSS_Property::IE_T_EditStringReadOnly,
+                                         false));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -664,69 +664,69 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
     {
         // the "Charge" property of the "Calculations and forecasts" group
         if (numericValues)
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
-                                       ZS_BP_PROP_SIM_PROCESS,
-                                       IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_NAME,
-                                       M_Sim_Process_Workload_Forecast_ID,
-                                       IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC,
-                                       double(GetProcessWorkloadForecast()),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
+                                         ZS_BP_PROP_SIM_PROCESS,
+                                         IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_NAME,
+                                         M_Sim_Process_Workload_Forecast_ID,
+                                         IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC,
+                                         double(GetProcessWorkloadForecast()),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
-                                       ZS_BP_PROP_SIM_PROCESS,
-                                       IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_NAME,
-                                       M_Sim_Process_Workload_Forecast_ID,
-                                       IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC,
-                                       PSS_Duration(double(GetProcessWorkloadForecast()),
-                                                    hourPerDay,
-                                                    dayPerWeek,
-                                                    dayPerMonth,
-                                                    dayPerYear),
-                                       ZBProperty::PT_EDIT_DURATION_READONLY,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
+                                         ZS_BP_PROP_SIM_PROCESS,
+                                         IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_NAME,
+                                         M_Sim_Process_Workload_Forecast_ID,
+                                         IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC,
+                                         PSS_Duration(double(GetProcessWorkloadForecast()),
+                                                      hourPerDay,
+                                                      dayPerWeek,
+                                                      dayPerMonth,
+                                                      dayPerYear),
+                                         PSS_Property::IE_T_EditDurationReadOnly,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Cost" property of the "Calculations and forecasts" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
-                                   ZS_BP_PROP_SIM_PROCESS,
-                                   IDS_Z_SIM_PROCESS_COST_FORECAST_NAME,
-                                   M_Sim_Process_Cost_Forecast_ID,
-                                   IDS_Z_SIM_PROCESS_COST_FORECAST_DESC,
-                                   double(GetProcessCostForecast()),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
+                                     ZS_BP_PROP_SIM_PROCESS,
+                                     IDS_Z_SIM_PROCESS_COST_FORECAST_NAME,
+                                     M_Sim_Process_Cost_Forecast_ID,
+                                     IDS_Z_SIM_PROCESS_COST_FORECAST_DESC,
+                                     double(GetProcessCostForecast()),
+                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "HMO cost" property of the "Calculations and forecasts" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
-                                   ZS_BP_PROP_SIM_PROCESS,
-                                   IDS_Z_SIM_PROCESS_COST_NAME,
-                                   M_Sim_Process_Cost_HMO_ID,
-                                   IDS_Z_SIM_PROCESS_COST_DESC,
-                                   double(GetProcessCostHMO()),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
+                                     ZS_BP_PROP_SIM_PROCESS,
+                                     IDS_Z_SIM_PROCESS_COST_NAME,
+                                     M_Sim_Process_Cost_HMO_ID,
+                                     IDS_Z_SIM_PROCESS_COST_DESC,
+                                     double(GetProcessCostHMO()),
+                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Sum of deliveries" property of the "Calculations and forecasts" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
-                                   ZS_BP_PROP_SIM_PROCESS,
-                                   IDS_Z_SIM_PROCESS_SUM_DELIVERIES_NAME,
-                                   M_Sim_Process_Sum_Deliveries_ID,
-                                   IDS_Z_SIM_PROCESS_SUM_DELIVERIES_DESC,
-                                   sumOfDeliveries,
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
+                                     ZS_BP_PROP_SIM_PROCESS,
+                                     IDS_Z_SIM_PROCESS_SUM_DELIVERIES_NAME,
+                                     M_Sim_Process_Sum_Deliveries_ID,
+                                     IDS_Z_SIM_PROCESS_SUM_DELIVERIES_DESC,
+                                     sumOfDeliveries,
+                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -741,31 +741,31 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         }
 
         // the "Charge / delivery" property of the "Calculations and forecasts" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
-                                   ZS_BP_PROP_SIM_PROCESS,
-                                   IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES,
-                                   M_Sim_Process_Workload_By_Deliveries_ID,
-                                   IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES_DESC,
-                                   PSS_Duration(double(workloadByDeliveries),
-                                                hourPerDay,
-                                                dayPerWeek,
-                                                dayPerMonth,
-                                                dayPerYear),
-                                   ZBProperty::PT_EDIT_DURATION_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
+                                     ZS_BP_PROP_SIM_PROCESS,
+                                     IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES,
+                                     M_Sim_Process_Workload_By_Deliveries_ID,
+                                     IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES_DESC,
+                                     PSS_Duration(double(workloadByDeliveries),
+                                                  hourPerDay,
+                                                  dayPerWeek,
+                                                  dayPerMonth,
+                                                  dayPerYear),
+                                     PSS_Property::IE_T_EditDurationReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Cost / delivery" property of the "Calculations and forecasts" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCESS,
-                                   ZS_BP_PROP_SIM_PROCESS,
-                                   IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES,
-                                   M_Sim_Process_Cost_By_Deliveries_ID,
-                                   IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES_DESC,
-                                   costByDeliveries,
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
+                                     ZS_BP_PROP_SIM_PROCESS,
+                                     IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES,
+                                     M_Sim_Process_Cost_By_Deliveries_ID,
+                                     IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES_DESC,
+                                     costByDeliveries,
+                                     PSS_Property::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -795,17 +795,17 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         propDesc.LoadString(IDS_Z_DELIVERY_NAME_DESC);
 
         // the "Title" property of the "Deliveries (x)" group
-        pProp.reset(new ZBProperty(finalPropTitle,
-                                   groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
-                                   propName,
-                                   groupValues ? M_Delivery_Name_ID : (M_Delivery_Name_ID + (i * g_MaxDeliveryListSize)),
-                                   propDesc,
-                                   GetDeliveryName(i),
-                                   ZBProperty::PT_EDIT_MENU,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   NULL,
-                                   &g_DeliveriesMenu));
+        pProp.reset(new PSS_Property(finalPropTitle,
+                                     groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
+                                     propName,
+                                     groupValues ? M_Delivery_Name_ID : (M_Delivery_Name_ID + (i * g_MaxDeliveryListSize)),
+                                     propDesc,
+                                     GetDeliveryName(i),
+                                     PSS_Property::IE_T_EditMenu,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     NULL,
+                                     &g_DeliveriesMenu));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -814,13 +814,13 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         propDesc.LoadString(IDS_Z_DELIVERY_DELIVERABLES_DESC);
 
         // the "Delivery" property of the "Deliveries (x)" group
-        pProp.reset(new ZBProperty(finalPropTitle,
-                                   groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
-                                   propName,
-                                   groupValues ? M_Delivery_Deliverables_ID : (M_Delivery_Deliverables_ID + (i * g_MaxDeliveryListSize)),
-                                   propDesc,
-                                   GetDeliveryDeliverables(i),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalPropTitle,
+                                     groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
+                                     propName,
+                                     groupValues ? M_Delivery_Deliverables_ID : (M_Delivery_Deliverables_ID + (i * g_MaxDeliveryListSize)),
+                                     propDesc,
+                                     GetDeliveryDeliverables(i),
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -834,15 +834,15 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             const float quantity = FindQuantity(GetDeliveryMain(i));
 
             // the "Quantity" property of the "Deliveries (x)" group
-            pProp.reset(new ZBProperty(finalPropTitle,
-                                       groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
-                                       propName,
-                                       groupValues ? M_Delivery_Quantity_ID : (M_Delivery_Quantity_ID + (i * g_MaxDeliveryListSize)),
-                                       propDesc,
-                                       quantity,
-                                       ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
+            pProp.reset(new PSS_Property(finalPropTitle,
+                                         groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
+                                         propName,
+                                         groupValues ? M_Delivery_Quantity_ID : (M_Delivery_Quantity_ID + (i * g_MaxDeliveryListSize)),
+                                         propDesc,
+                                         quantity,
+                                         PSS_Property::IE_T_EditNumberReadOnly,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -853,15 +853,15 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
             const float percentage = GetDeliveryPercentage(i);
 
             // the "Percentage" property of the "Deliveries (x)" group
-            pProp.reset(new ZBProperty(finalPropTitle,
-                                       groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
-                                       propName,
-                                       groupValues ? M_Delivery_Percentage_ID : (M_Delivery_Percentage_ID + (i * g_MaxDeliveryListSize)),
-                                       propDesc,
-                                       percentage,
-                                       ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
+            pProp.reset(new PSS_Property(finalPropTitle,
+                                         groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
+                                         propName,
+                                         groupValues ? M_Delivery_Percentage_ID : (M_Delivery_Percentage_ID + (i * g_MaxDeliveryListSize)),
+                                         propDesc,
+                                         percentage,
+                                         PSS_Property::IE_T_EditNumberReadOnly,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -871,13 +871,13 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
         propDesc.LoadString(IDS_Z_DELIVERY_MAIN_DESC);
 
         // the "Main" property of the "Deliveries (x)" group
-        pProp.reset(new ZBProperty(finalPropTitle,
-                                   groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
-                                   propName,
-                                   groupValues ? M_Delivery_Main_ID : (M_Delivery_Main_ID + (i * g_MaxDeliveryListSize)),
-                                   propDesc,
-                                   GetDeliveryMain(i),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalPropTitle,
+                                     groupValues ? ZS_BP_PROP_DELIVERIES : (ZS_BP_PROP_DELIVERIES + i),
+                                     propName,
+                                     groupValues ? M_Delivery_Main_ID : (M_Delivery_Main_ID + (i * g_MaxDeliveryListSize)),
+                                     propDesc,
+                                     GetDeliveryMain(i),
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -904,21 +904,21 @@ bool PSS_ProcessSymbolBP::SaveProperties(ZBPropertySet& PropSet)
     ZBPropertyIterator      it(&PropSet);
 
     // iterate through the processes and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_PROCESS)
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_STRING: processProps.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case ZBProperty::PT_DOUBLE: processProps.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble()));     break;
-                case ZBProperty::PT_FLOAT:  processProps.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case ZBProperty::PT_DATE:   processProps.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IE_VT_String: processProps.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
+                case PSS_Property::IE_VT_Double: processProps.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble()));     break;
+                case PSS_Property::IE_VT_Float:  processProps.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
+                case PSS_Property::IE_VT_Date:   processProps.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
             }
 
     // set the new property
     SetProperty(&processProps);
 
     // iterate through the risks and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         const int categoryID = pProp->GetCategoryID();
 
@@ -946,12 +946,12 @@ bool PSS_ProcessSymbolBP::SaveProperties(ZBPropertySet& PropSet)
     POSITION pPos = m_PrestProperties.GetHeadPosition();
 
     // iterate through the prestations and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_PRESTATIONS)
             if (pProp->GetItemID() == M_Prestation_Percentage)
-                switch (pProp->GetPTValueType())
+                switch (pProp->GetValueType())
                 {
-                    case ZBProperty::PT_FLOAT:
+                    case PSS_Property::IE_VT_Float:
                         if (pPos)
                         {
                             PSS_Prestation* pCurNode = m_PrestProperties.GetAt(pPos);
@@ -966,18 +966,18 @@ bool PSS_ProcessSymbolBP::SaveProperties(ZBPropertySet& PropSet)
                 }
 
     // iterate through the simulation processes and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_SIM_PROCESS)
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_STRING: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case ZBProperty::PT_DOUBLE: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
-                case ZBProperty::PT_FLOAT:  m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case ZBProperty::PT_DATE:   m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IE_VT_String: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
+                case PSS_Property::IE_VT_Double: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
+                case PSS_Property::IE_VT_Float:  m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
+                case PSS_Property::IE_VT_Date:   m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
             }
 
     // iterate through the deliveries and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         const int categoryID = pProp->GetCategoryID();
 
@@ -989,14 +989,14 @@ bool PSS_ProcessSymbolBP::SaveProperties(ZBPropertySet& PropSet)
             if (!pDeliveriesProp)
                 return false;
 
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_STRING:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueString());            break;
-                case ZBProperty::PT_DOUBLE:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(pProp->GetValueDouble()));     break;
-                case ZBProperty::PT_FLOAT:    pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueFloat());             break;
-                case ZBProperty::PT_DATE:     pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(DATE(pProp->GetValueDate()))); break;
-                case ZBProperty::PT_TIMESPAN: ASSERT(FALSE);                                                                                                   break;
-                case ZBProperty::PT_DURATION: ASSERT(FALSE);                                                                                                   break;
+                case PSS_Property::IE_VT_String:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueString());            break;
+                case PSS_Property::IE_VT_Double:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(pProp->GetValueDouble()));     break;
+                case PSS_Property::IE_VT_Float:    pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueFloat());             break;
+                case PSS_Property::IE_VT_Date:     pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IE_VT_TimeSpan: ASSERT(FALSE);                                                                                                   break;
+                case PSS_Property::IE_VT_Duration: ASSERT(FALSE);                                                                                                   break;
             }
         }
     }
@@ -1006,7 +1006,7 @@ bool PSS_ProcessSymbolBP::SaveProperties(ZBPropertySet& PropSet)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::SaveProperty(ZBProperty& prop)
+bool PSS_ProcessSymbolBP::SaveProperty(PSS_Property& prop)
 {
     if (!PSS_Symbol::SaveProperty(prop))
         return false;
@@ -1066,7 +1066,7 @@ bool PSS_ProcessSymbolBP::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -1167,7 +1167,7 @@ bool PSS_ProcessSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value,
     return PSS_Symbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::ProcessMenuCommand(int menuCmdID, ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessSymbolBP::ProcessMenuCommand(int menuCmdID, PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -1400,7 +1400,7 @@ bool PSS_ProcessSymbolBP::OnPostCreation(CODModel* pModel, CODController* pCtrl)
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
 {
     // only local symbol may access to the properties
     if (!IsLocal())
@@ -1423,7 +1423,7 @@ bool PSS_ProcessSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet&
                 bool               found = false;
 
                 // iterate through propertis and search for the quantity
-                for (ZBProperty* pProp = it.GetFirst(); pProp && !found; pProp = it.GetNext())
+                for (PSS_Property* pProp = it.GetFirst(); pProp && !found; pProp = it.GetNext())
                 {
                     if (!pProp || ((pProp->GetCategoryID() - ZS_BP_PROP_DELIVERIES) != i))
                         continue;
@@ -1452,8 +1452,8 @@ bool PSS_ProcessSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet&
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
-                                                     ZBProperty&    dstProperty,
+bool PSS_ProcessSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
+                                                     PSS_Property&  dstProperty,
                                                      bool           top2Down,
                                                      ZBPropertySet& props)
 {
@@ -1532,7 +1532,7 @@ void PSS_ProcessSymbolBP::OnDeliverableNameChange(const CString& oldName, const 
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnDelCurrentPrestation(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnDelCurrentPrestation(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     POSITION pPos = m_PrestProperties.GetHeadPosition();
     int      i    = 0;
@@ -1542,9 +1542,9 @@ void PSS_ProcessSymbolBP::OnDelCurrentPrestation(ZBProperty& prop, CString& valu
         PSS_Prestation* pCurNode = m_PrestProperties.GetAt(pPos);
 
         if (pCurNode)
-            switch (prop.GetPTValueType())
+            switch (prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                     if (prop.GetValueString() == pCurNode->GetName())
                     {
                         m_PrestProperties.RemovePrestation(pPos);
@@ -1601,16 +1601,16 @@ CString PSS_ProcessSymbolBP::GetPossibleListOfMainDeliverables(const ZBPropertyS
 {
     ZBPropertyIterator it(&propSet);
 
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == catID)
         {
             const int index = pProp->GetCategoryID() - ZS_BP_PROP_DELIVERIES;
 
             if ((pProp->GetItemID() - (index * g_MaxDeliveryListSize)) == M_Delivery_Deliverables_ID)
-                switch (pProp->GetPTValueType())
+                switch (pProp->GetValueType())
                 {
-                    case ZBProperty::PT_STRING: return pProp->GetValueString();
-                    default:                    return _T("");
+                    case PSS_Property::IE_VT_String: return pProp->GetValueString();
+                    default:                         return _T("");
                 }
         }
 
@@ -1626,7 +1626,7 @@ CString PSS_ProcessSymbolBP::GetAvailableDeliverables(const ZBPropertySet& propS
     CString            attribuedDeliverables;
 
     // build the set containing all the already attributed deliverables
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         const int categoryID = pProp->GetCategoryID();
 
@@ -1635,9 +1635,9 @@ CString PSS_ProcessSymbolBP::GetAvailableDeliverables(const ZBPropertySet& propS
             const int index = pProp->GetCategoryID() - ZS_BP_PROP_DELIVERIES;
 
             if ((pProp->GetItemID() - (index * g_MaxDeliveryListSize)) == M_Delivery_Deliverables_ID)
-                switch (pProp->GetPTValueType())
+                switch (pProp->GetValueType())
                 {
-                    case ZBProperty::PT_STRING:
+                    case PSS_Property::IE_VT_String:
                     {
                         const CString list = pProp->GetValueString();
 
@@ -1938,7 +1938,7 @@ CString PSS_ProcessSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, co
     return _T("");
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -1950,7 +1950,7 @@ void PSS_ProcessSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBPrope
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 
@@ -1974,7 +1974,7 @@ void PSS_ProcessSymbolBP::OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBP
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnAddNewDelivery(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnAddNewDelivery(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     // add a new delivery
     if (AddNewDelivery() >= 0)
@@ -1986,7 +1986,7 @@ void PSS_ProcessSymbolBP::OnAddNewDelivery(ZBProperty& prop, CString& value, ZBP
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnDelCurrentDelivery(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnDelCurrentDelivery(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int count = GetDeliveriesCount();
 

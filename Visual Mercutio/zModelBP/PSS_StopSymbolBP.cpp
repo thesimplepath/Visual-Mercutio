@@ -243,7 +243,7 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
     if (pProcessGraphMdlDoc)
         currencySymbol = pProcessGraphMdlDoc->GetCurrencySymbol();
 
-    std::unique_ptr<ZBProperty> pProp;
+    std::unique_ptr<PSS_Property> pProp;
 
     // if the rule menu isn't loaded, load it
     if (!g_RulesMenu.GetSafeHmenu())
@@ -293,17 +293,17 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
             ruleName.Format(IDS_Z_RULES_NAME, i + 1);
 
             // the "Rule x" property of the "Rules" group
-            pProp.reset(new ZBProperty(ruleSectionTitle,
-                                       ZS_BP_PROP_RULES,
-                                       ruleName,
-                                       M_Rule_Name_ID + (i * g_MaxRulesSize),
-                                       ruleDesc,
-                                       m_Rules.GetRuleName(i),
-                                       ZBProperty::PT_EDIT_MENU,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                       NULL,
-                                       &g_RulesMenu));
+            pProp.reset(new PSS_Property(ruleSectionTitle,
+                                         ZS_BP_PROP_RULES,
+                                         ruleName,
+                                         M_Rule_Name_ID + (i * g_MaxRulesSize),
+                                         ruleDesc,
+                                         m_Rules.GetRuleName(i),
+                                         PSS_Property::IE_T_EditMenu,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         NULL,
+                                         &g_RulesMenu));
 
             pProp->EnableDragNDrop();
             propSet.Add(pProp.get());
@@ -331,17 +331,17 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_NAME_DESC);
 
         // the "Title" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskName(i),
-                                   ZBProperty::PT_EDIT_MENU,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   NULL,
-                                   &g_RiskMenu));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskName(i),
+                                     PSS_Property::IE_T_EditMenu,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     NULL,
+                                     &g_RiskMenu));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -350,13 +350,13 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_DESC_DESC);
 
         // the "Description" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskDesc(i),
-                                   ZBProperty::PT_EDIT_EXTENDED));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskDesc(i),
+                                     PSS_Property::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -368,13 +368,13 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         noRiskType.LoadString(IDS_NO_RISK_TYPE);
 
         // the "Type" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -401,13 +401,13 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_IMPACT_DESC);
 
         // the "Impact" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   riskImpact,
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     riskImpact,
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -426,13 +426,13 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_PROBABILITY_DESC);
 
         // the "Probability" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   riskProbability,
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     riskProbability,
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -441,13 +441,13 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_SEVERITY_DESC);
 
         // the "Severity" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   double(GetRiskSeverity(i)),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     double(GetRiskSeverity(i)),
+                                     PSS_Property::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -456,15 +456,15 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_UE_DESC);
 
         // the "Unit. est." property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskUE(i),
-                                   ZBProperty::PT_EDIT_NUMBER,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskUE(i),
+                                     PSS_Property::IE_T_EditNumber,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -473,15 +473,15 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_POA_DESC);
 
         // the "POA" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskPOA(i),
-                                   ZBProperty::PT_EDIT_NUMBER,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskPOA(i),
+                                     PSS_Property::IE_T_EditNumber,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -490,16 +490,16 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
         riskDesc.LoadString(IDS_Z_RISK_ACTION_DESC);
 
         // the "Action" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   TRUE,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     TRUE,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -513,14 +513,14 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
 
     // the "Guid" property of the "Processing unit" group. This property isn't enabled, just used for write the unit GUID.
     // NOTE "GUID" and "Name" properties should appear in Conceptor
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                               ZS_BP_PROP_UNIT,
-                               IDS_Z_UNIT_GUID_NAME,
-                               M_Unit_GUID_ID,
-                               IDS_Z_UNIT_GUID_DESC,
-                               GetUnitGUID(),
-                               ZBProperty::PT_EDIT_EXTENDED_READONLY,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                 ZS_BP_PROP_UNIT,
+                                 IDS_Z_UNIT_GUID_NAME,
+                                 M_Unit_GUID_ID,
+                                 IDS_Z_UNIT_GUID_DESC,
+                                 GetUnitGUID(),
+                                 PSS_Property::IE_T_EditExtendedReadOnly,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -529,13 +529,13 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
     const CString unitName = RetrieveUnitName(GetUnitGUID(), error);
 
     // the "Name" property of the "Processing unit" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                               ZS_BP_PROP_UNIT,
-                               IDS_Z_UNIT_NAME_NAME,
-                               M_Unit_Name_ID,
-                               IDS_Z_UNIT_NAME_DESC,
-                               unitName,
-                               groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                 ZS_BP_PROP_UNIT,
+                                 IDS_Z_UNIT_NAME_NAME,
+                                 M_Unit_Name_ID,
+                                 IDS_Z_UNIT_NAME_DESC,
+                                 unitName,
+                                 groupEnabled ? PSS_Property::IE_T_EditExtendedReadOnly : PSS_Property::IE_T_EditStringReadOnly));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -545,13 +545,13 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
     {
         const float unitCost = RetrieveUnitCost(GetUnitGUID(), error);
 
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                                   ZS_BP_PROP_UNIT,
-                                   IDS_Z_UNIT_COST_NAME,
-                                   M_Unit_Cost_ID,
-                                   IDS_Z_UNIT_COST_DESC,
-                                   unitCost,
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                     ZS_BP_PROP_UNIT,
+                                     IDS_Z_UNIT_COST_NAME,
+                                     M_Unit_Cost_ID,
+                                     IDS_Z_UNIT_COST_DESC,
+                                     unitCost,
+                                     PSS_Property::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -568,7 +568,7 @@ bool PSS_StopSymbolBP::SaveProperties(ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // iterate through the risk values
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         const int categoryID = pProp->GetCategoryID();
 
@@ -594,16 +594,16 @@ bool PSS_StopSymbolBP::SaveProperties(ZBPropertySet& propSet)
     }
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         const int categoryID = pProp->GetCategoryID();
 
         if (categoryID == ZS_BP_PROP_UNIT)
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_DOUBLE: m_UnitProp.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble())); break;
-                case ZBProperty::PT_FLOAT:  m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());         break;
-                case ZBProperty::PT_STRING: m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueString());        break;
+                case PSS_Property::IE_VT_Double: m_UnitProp.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble())); break;
+                case PSS_Property::IE_VT_Float:  m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());         break;
+                case PSS_Property::IE_VT_String: m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueString());        break;
             }
     }
 
@@ -612,7 +612,7 @@ bool PSS_StopSymbolBP::SaveProperties(ZBPropertySet& propSet)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::SaveProperty(ZBProperty& prop)
+bool PSS_StopSymbolBP::SaveProperty(PSS_Property& prop)
 {
     if (!PSS_Symbol::SaveProperty(prop))
         return false;
@@ -659,12 +659,12 @@ bool PSS_StopSymbolBP::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
+bool PSS_StopSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
 {
     return PSS_Symbol::CheckPropertyValue(prop, value, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_StopSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -736,7 +736,7 @@ bool PSS_StopSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZB
                     ZBPropertyIterator it(&props);
 
                     // change the disabled properties unit GUID
-                    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+                    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                         if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
                         {
                             pProp->SetValueString(pUserEntity->GetGUID());
@@ -753,7 +753,7 @@ bool PSS_StopSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZB
 }
 //---------------------------------------------------------------------------
 bool PSS_StopSymbolBP::ProcessMenuCommand(int            menuCmdID,
-                                          ZBProperty&    prop,
+                                          PSS_Property&  prop,
                                           CString&       value,
                                           ZBPropertySet& props,
                                           bool&          refresh)
@@ -903,7 +903,7 @@ void PSS_StopSymbolBP::Serialize(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_StopSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
 {
     bool result = false;
 
@@ -913,7 +913,7 @@ bool PSS_StopSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& pr
         CString            guid;
 
         // iterate through the properties and search for the matching guid
-        for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
             if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
             {
                 guid = pProp->GetValueString();
@@ -922,7 +922,7 @@ bool PSS_StopSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& pr
 
         // iterate through the properties and update the unit cost
         if (!guid.IsEmpty())
-            for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+            for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_Cost_ID)
                 {
                     bool        error;
@@ -944,8 +944,8 @@ bool PSS_StopSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& pr
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
-                                                  ZBProperty&    dstProperty,
+bool PSS_StopSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
+                                                  PSS_Property&  dstProperty,
                                                   bool           top2Down,
                                                   ZBPropertySet& props)
 {
@@ -1022,7 +1022,7 @@ bool PSS_StopSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS_
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_StopSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StopSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -1033,7 +1033,7 @@ void PSS_StopSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBProperty
     }
 }
 //---------------------------------------------------------------------------
-void PSS_StopSymbolBP::OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StopSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 

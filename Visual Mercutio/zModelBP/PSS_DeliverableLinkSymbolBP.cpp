@@ -310,7 +310,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
     if (pProcessGraphModel && !pProcessGraphModel->MainUserGroupIsValid())
         groupEnabled = false;
 
-    std::unique_ptr<ZBProperty> pProp;
+    std::unique_ptr<PSS_Property> pProp;
 
     // if the rule menu isn't loaded, load it
     if (!g_RulesMenu.GetSafeHmenu())
@@ -360,17 +360,17 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
             ruleName.Format(IDS_Z_RULES_NAME, i + 1);
 
             // the "Rule x" property of the "Rules" group
-            pProp.reset(new ZBProperty(ruleSectionTitle,
-                                       ZS_BP_PROP_RULES,
-                                       ruleName,
-                                       M_Rule_Name_ID + (i * g_MaxRulesSize),
-                                       ruleDesc,
-                                       m_Rules.GetRuleName(i),
-                                       ZBProperty::PT_EDIT_MENU,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                       NULL,
-                                       &g_RulesMenu));
+            pProp.reset(new PSS_Property(ruleSectionTitle,
+                                         ZS_BP_PROP_RULES,
+                                         ruleName,
+                                         M_Rule_Name_ID + (i * g_MaxRulesSize),
+                                         ruleDesc,
+                                         m_Rules.GetRuleName(i),
+                                         PSS_Property::IE_T_EditMenu,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         NULL,
+                                         &g_RulesMenu));
 
             pProp->EnableDragNDrop();
             propSet.Add(pProp.get());
@@ -422,16 +422,16 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
         // the "Control x" property of the "Controls" group
-        pProp.reset(new ZBProperty(propTitle,
-                                   ZS_BP_PROP_RULELIST,
-                                   finalPropName,
-                                   M_Rule_List_ID + (i * g_MaxRuleListSize),
-                                   propDesc,
-                                   GetRuleAt(i),
-                                   ZBProperty::PT_EDIT_INTELI,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   pArrayOfValues));
+        pProp.reset(new PSS_Property(propTitle,
+                                     ZS_BP_PROP_RULELIST,
+                                     finalPropName,
+                                     M_Rule_List_ID + (i * g_MaxRuleListSize),
+                                     propDesc,
+                                     GetRuleAt(i),
+                                     PSS_Property::IE_T_EditIntelli,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     pArrayOfValues));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -444,16 +444,16 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
         // the "Control X" of the "Controls" group, but it is empty and not shown
-        pProp.reset(new ZBProperty(propTitle,
-                                   ZS_BP_PROP_RULELIST,
-                                   finalPropName,
-                                   M_Rule_List_ID + (i * g_MaxRuleListSize),
-                                   propDesc,
-                                   _T(""),
-                                   ZBProperty::PT_EDIT_INTELI,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   pArrayOfValues));
+        pProp.reset(new PSS_Property(propTitle,
+                                     ZS_BP_PROP_RULELIST,
+                                     finalPropName,
+                                     M_Rule_List_ID + (i * g_MaxRuleListSize),
+                                     propDesc,
+                                     _T(""),
+                                     PSS_Property::IE_T_EditIntelli,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     pArrayOfValues));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -484,17 +484,17 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         riskDesc.LoadString(IDS_Z_RISK_NAME_DESC);
 
         // the "Risk title" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskName(i),
-                                   ZBProperty::PT_EDIT_MENU,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   NULL,
-                                   &g_RiskMenu));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskName(i),
+                                     PSS_Property::IE_T_EditMenu,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     NULL,
+                                     &g_RiskMenu));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -503,13 +503,13 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         riskDesc.LoadString(IDS_Z_RISK_DESC_DESC);
 
         // the "Description" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskDesc(i),
-                                   ZBProperty::PT_EDIT_EXTENDED));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskDesc(i),
+                                     PSS_Property::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -521,13 +521,13 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         noRiskType.LoadString(IDS_NO_RISK_TYPE);
 
         // the "Type" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -554,13 +554,13 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         }
 
         // the "Impact" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   riskImpact,
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     riskImpact,
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -579,13 +579,13 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         }
 
         // the "Probability" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   riskProbability,
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     riskProbability,
+                                     PSS_Property::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -594,13 +594,13 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         riskDesc.LoadString(IDS_Z_RISK_SEVERITY_DESC);
 
         // the "Severity" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   double(GetRiskSeverity(i)),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     double(GetRiskSeverity(i)),
+                                     PSS_Property::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -609,15 +609,15 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         riskDesc.LoadString(IDS_Z_RISK_UE_DESC);
 
         // the "Unit. est." property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskUE(i),
-                                   ZBProperty::PT_EDIT_NUMBER,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskUE(i),
+                                     PSS_Property::IE_T_EditNumber,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -626,15 +626,15 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         riskDesc.LoadString(IDS_Z_RISK_POA_DESC);
 
         // the "POA" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskPOA(i),
-                                   ZBProperty::PT_EDIT_NUMBER,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskPOA(i),
+                                     PSS_Property::IE_T_EditNumber,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -643,16 +643,16 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         riskDesc.LoadString(IDS_Z_RISK_ACTION_DESC);
 
         // the "Action" property of the "Risk (x)" group
-        pProp.reset(new ZBProperty(finalRiskTitle,
-                                   groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
-                                   riskName,
-                                   groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
-                                   riskDesc,
-                                   GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   TRUE,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(finalRiskTitle,
+                                     groupValues ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                     riskName,
+                                     groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
+                                     riskDesc,
+                                     GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     TRUE,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -682,16 +682,16 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
         // the "Info x" property of the "Info list" group
-        pProp.reset(new ZBProperty(propTitle,
-                                   ZS_BP_PROP_TEXTITEMLIST,
-                                   finalPropName,
-                                   M_TextItem_List_ID + (i * g_MaxTextItemListSize),
-                                   propDesc,
-                                   GetTextItemAt(i),
-                                   ZBProperty::PT_EDIT_INTELI,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   pArrayOfValues));
+        pProp.reset(new PSS_Property(propTitle,
+                                     ZS_BP_PROP_TEXTITEMLIST,
+                                     finalPropName,
+                                     M_TextItem_List_ID + (i * g_MaxTextItemListSize),
+                                     propDesc,
+                                     GetTextItemAt(i),
+                                     PSS_Property::IE_T_EditIntelli,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     pArrayOfValues));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -704,16 +704,16 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
         // the "Info x" property of the "Info list" group, but it is empty and not shown
-        pProp.reset(new ZBProperty(propTitle,
-                                   ZS_BP_PROP_TEXTITEMLIST,
-                                   finalPropName,
-                                   M_TextItem_List_ID + (i * g_MaxTextItemListSize),
-                                   propDesc,
-                                   _T(""),
-                                   ZBProperty::PT_EDIT_INTELI,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   pArrayOfValues));
+        pProp.reset(new PSS_Property(propTitle,
+                                     ZS_BP_PROP_TEXTITEMLIST,
+                                     finalPropName,
+                                     M_TextItem_List_ID + (i * g_MaxTextItemListSize),
+                                     propDesc,
+                                     _T(""),
+                                     PSS_Property::IE_T_EditIntelli,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     pArrayOfValues));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -739,42 +739,42 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
     {
         // the "Standard time" property of the "Deliverable" group
         if (numericValues)
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_PROCESSING_TIME_NAME,
-                                       M_Cost_Deliv_Processing_Time_ID,
-                                       IDS_Z_COST_PROCESSING_TIME_DESC,
-                                       GetProcessingTime(),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_PROCESSING_TIME_NAME,
+                                         M_Cost_Deliv_Processing_Time_ID,
+                                         IDS_Z_COST_PROCESSING_TIME_DESC,
+                                         GetProcessingTime(),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_PROCESSING_TIME_NAME,
-                                       M_Cost_Deliv_Processing_Time_ID,
-                                       IDS_Z_COST_PROCESSING_TIME_DESC,
-                                       PSS_Duration(GetProcessingTime(),
-                                                    hourPerDay,
-                                                    dayPerWeek,
-                                                    dayPerMonth,
-                                                    dayPerYear),
-                                       ZBProperty::PT_EDIT_DURATION,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_PROCESSING_TIME_NAME,
+                                         M_Cost_Deliv_Processing_Time_ID,
+                                         IDS_Z_COST_PROCESSING_TIME_DESC,
+                                         PSS_Duration(GetProcessingTime(),
+                                                      hourPerDay,
+                                                      dayPerWeek,
+                                                      dayPerMonth,
+                                                      dayPerYear),
+                                         PSS_Property::IE_T_EditDuration,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
     }
 
     // the "Workload percent" property of the "Deliverable" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                               ZS_BP_PROP_DELIVERABLE_COST,
-                               IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME,
-                               M_Cost_Deliv_Out_Workload_Percent_ID,
-                               IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
-                               GetOutWorkloadPercent(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               true,
-                               PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                 ZS_BP_PROP_DELIVERABLE_COST,
+                                 IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME,
+                                 M_Cost_Deliv_Out_Workload_Percent_ID,
+                                 IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
+                                 GetOutWorkloadPercent(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 true,
+                                 PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -783,138 +783,138 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
     if (pProcessGraphModel && pProcessGraphModel->GetIntegrateCostSimulation())
     {
         // the "Unitary cost" property of the "Deliverable" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                   ZS_BP_PROP_DELIVERABLE_COST,
-                                   IDS_Z_COST_UNITARY_COST_NAME,
-                                   M_Cost_Deliv_Unitary_Cost_ID,
-                                   IDS_Z_COST_UNITARY_COST_DESC,
-                                   GetUnitaryCost(),
-                                   ZBProperty::PT_EDIT_NUMBER,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                     ZS_BP_PROP_DELIVERABLE_COST,
+                                     IDS_Z_COST_UNITARY_COST_NAME,
+                                     M_Cost_Deliv_Unitary_Cost_ID,
+                                     IDS_Z_COST_UNITARY_COST_DESC,
+                                     GetUnitaryCost(),
+                                     PSS_Property::IE_T_EditNumber,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Case duration (weighted)" property of the "Deliverable" group
         if (numericValues)
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_CASE_DURATION_NAME,
-                                       M_Cost_Deliv_Case_Duration_ID,
-                                       IDS_Z_COST_CASE_DURATION_DESC,
-                                       GetCaseDuration(),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_CASE_DURATION_NAME,
+                                         M_Cost_Deliv_Case_Duration_ID,
+                                         IDS_Z_COST_CASE_DURATION_DESC,
+                                         GetCaseDuration(),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_CASE_DURATION_NAME,
-                                       M_Cost_Deliv_Case_Duration_ID,
-                                       IDS_Z_COST_CASE_DURATION_DESC,
-                                       PSS_Duration(GetCaseDuration(),
-                                                    hourPerDay,
-                                                    dayPerWeek,
-                                                    dayPerMonth,
-                                                    dayPerYear),
-                                       ZBProperty::PT_EDIT_DURATION_READONLY,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_CASE_DURATION_NAME,
+                                         M_Cost_Deliv_Case_Duration_ID,
+                                         IDS_Z_COST_CASE_DURATION_DESC,
+                                         PSS_Duration(GetCaseDuration(),
+                                                      hourPerDay,
+                                                      dayPerWeek,
+                                                      dayPerMonth,
+                                                      dayPerYear),
+                                         PSS_Property::IE_T_EditDurationReadOnly,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Case duration max" property of the "Deliverable" group
         if (numericValues)
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_CASE_DURATIONMAX_NAME,
-                                       M_Cost_Deliv_Case_Duration_ID,
-                                       IDS_Z_COST_CASE_DURATIONMAX_DESC,
-                                       GetCaseDurationMax(),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_CASE_DURATIONMAX_NAME,
+                                         M_Cost_Deliv_Case_Duration_ID,
+                                         IDS_Z_COST_CASE_DURATIONMAX_DESC,
+                                         GetCaseDurationMax(),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_CASE_DURATIONMAX_NAME,
-                                       M_Cost_Deliv_Case_Duration_ID,
-                                       IDS_Z_COST_CASE_DURATIONMAX_DESC,
-                                       PSS_Duration(GetCaseDurationMax(),
-                                                    hourPerDay,
-                                                    dayPerWeek,
-                                                    dayPerMonth,
-                                                    dayPerYear),
-                                       ZBProperty::PT_EDIT_DURATION_READONLY,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_CASE_DURATIONMAX_NAME,
+                                         M_Cost_Deliv_Case_Duration_ID,
+                                         IDS_Z_COST_CASE_DURATIONMAX_DESC,
+                                         PSS_Duration(GetCaseDurationMax(),
+                                                      hourPerDay,
+                                                      dayPerWeek,
+                                                      dayPerMonth,
+                                                      dayPerYear),
+                                         PSS_Property::IE_T_EditDurationReadOnly,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Target duration" property of the "Deliverable" group
         if (numericValues)
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_TARGET_DURATION_NAME,
-                                       M_Cost_Deliv_Target_Duration_ID,
-                                       IDS_Z_COST_TARGET_DURATION_DESC,
-                                       GetTargetDuration(),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_TARGET_DURATION_NAME,
+                                         M_Cost_Deliv_Target_Duration_ID,
+                                         IDS_Z_COST_TARGET_DURATION_DESC,
+                                         GetTargetDuration(),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_TARGET_DURATION_NAME,
-                                       M_Cost_Deliv_Target_Duration_ID,
-                                       IDS_Z_COST_TARGET_DURATION_DESC,
-                                       PSS_Duration(GetTargetDuration(),
-                                                    hourPerDay,
-                                                    dayPerWeek,
-                                                    dayPerMonth,
-                                                    dayPerYear),
-                                       ZBProperty::PT_EDIT_DURATION,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_TARGET_DURATION_NAME,
+                                         M_Cost_Deliv_Target_Duration_ID,
+                                         IDS_Z_COST_TARGET_DURATION_DESC,
+                                         PSS_Duration(GetTargetDuration(),
+                                                      hourPerDay,
+                                                      dayPerWeek,
+                                                      dayPerMonth,
+                                                      dayPerYear),
+                                         PSS_Property::IE_T_EditDuration,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Green line duration" property of the "Deliverable" group
         if (numericValues)
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_GREENLINE_DURATION_NAME,
-                                       M_Cost_Deliv_Green_Line_Duration_ID,
-                                       IDS_Z_COST_GREENLINE_DURATION_DESC,
-                                       GetGreenLineDuration(),
-                                       ZBProperty::PT_EDIT_NUMBER));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_GREENLINE_DURATION_NAME,
+                                         M_Cost_Deliv_Green_Line_Duration_ID,
+                                         IDS_Z_COST_GREENLINE_DURATION_DESC,
+                                         GetGreenLineDuration(),
+                                         PSS_Property::IE_T_EditNumber));
         else
-            pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-                                       ZS_BP_PROP_DELIVERABLE_COST,
-                                       IDS_Z_COST_GREENLINE_DURATION_NAME,
-                                       M_Cost_Deliv_Green_Line_Duration_ID,
-                                       IDS_Z_COST_GREENLINE_DURATION_DESC,
-                                       PSS_Duration(GetGreenLineDuration(),
-                                                    hourPerDay,
-                                                    dayPerWeek,
-                                                    dayPerMonth,
-                                                    dayPerYear),
-                                       ZBProperty::PT_EDIT_DURATION,
-                                       true,
-                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+            pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                         ZS_BP_PROP_DELIVERABLE_COST,
+                                         IDS_Z_COST_GREENLINE_DURATION_NAME,
+                                         M_Cost_Deliv_Green_Line_Duration_ID,
+                                         IDS_Z_COST_GREENLINE_DURATION_DESC,
+                                         PSS_Duration(GetGreenLineDuration(),
+                                                      hourPerDay,
+                                                      dayPerWeek,
+                                                      dayPerMonth,
+                                                      dayPerYear),
+                                         PSS_Property::IE_T_EditDuration,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
     }
 
     // the "Year quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_YEAR_NAME,
-                               M_Number_Year_ID,
-                               IDS_Z_NUMBER_YEAR_DESC,
-                               GetQuantityYear(),
-                               ZBProperty::PT_EDIT_EXTENDED,
-                               true,
-                               PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, 0)));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_YEAR_NAME,
+                                 M_Number_Year_ID,
+                                 IDS_Z_NUMBER_YEAR_DESC,
+                                 GetQuantityYear(),
+                                 PSS_Property::IE_T_EditExtended,
+                                 true,
+                                 PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, 0)));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -923,23 +923,23 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock year" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_YEAR_NAME,
-                                   M_Locked_Year_ID,
-                                   IDS_Z_LOCKED_YEAR_DESC,
-                                   GetLockQuantityYear() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_YEAR_NAME,
+                                     M_Locked_Year_ID,
+                                     IDS_Z_LOCKED_YEAR_DESC,
+                                     GetLockQuantityYear() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_YEAR_NAME,
-                                   M_Locked_Year_ID,
-                                   IDS_Z_LOCKED_YEAR_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_YEAR_NAME,
+                                     M_Locked_Year_ID,
+                                     IDS_Z_LOCKED_YEAR_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -948,36 +948,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Force equalizer" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_FORCE_EQUALIZER_NAME,
-                                   M_Force_Equalizer_ID,
-                                   IDS_Z_FORCE_EQUALIZER_DESC,
-                                   GetForceEqualizer() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_FORCE_EQUALIZER_NAME,
+                                     M_Force_Equalizer_ID,
+                                     IDS_Z_FORCE_EQUALIZER_DESC,
+                                     GetForceEqualizer() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_FORCE_EQUALIZER_NAME,
-                                   M_Force_Equalizer_ID,
-                                   IDS_Z_FORCE_EQUALIZER_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_FORCE_EQUALIZER_NAME,
+                                     M_Force_Equalizer_ID,
+                                     IDS_Z_FORCE_EQUALIZER_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "January quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_JANUARY_NAME,
-                               M_Number_January_ID,
-                               IDS_Z_NUMBER_JANUARY_DESC,
-                               GetQuantityJanuary(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_JANUARY_NAME,
+                                 M_Number_January_ID,
+                                 IDS_Z_NUMBER_JANUARY_DESC,
+                                 GetQuantityJanuary(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -986,36 +986,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock January" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_JANUARY_NAME,
-                                   M_Locked_January_ID,
-                                   IDS_Z_LOCKED_JANUARY_DESC,
-                                   GetLockQuantityJanuary() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_JANUARY_NAME,
+                                     M_Locked_January_ID,
+                                     IDS_Z_LOCKED_JANUARY_DESC,
+                                     GetLockQuantityJanuary() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_JANUARY_NAME,
-                                   M_Locked_January_ID,
-                                   IDS_Z_LOCKED_JANUARY_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_JANUARY_NAME,
+                                     M_Locked_January_ID,
+                                     IDS_Z_LOCKED_JANUARY_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "Feburuary quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_FEBRUARY_NAME,
-                               M_Number_February_ID,
-                               IDS_Z_NUMBER_FEBRUARY_DESC,
-                               GetQuantityFebruary(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_FEBRUARY_NAME,
+                                 M_Number_February_ID,
+                                 IDS_Z_NUMBER_FEBRUARY_DESC,
+                                 GetQuantityFebruary(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1024,36 +1024,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock February" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_FEBRUARY_NAME,
-                                   M_Locked_February_ID,
-                                   IDS_Z_LOCKED_FEBRUARY_DESC,
-                                   GetLockQuantityFebruary() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_FEBRUARY_NAME,
+                                     M_Locked_February_ID,
+                                     IDS_Z_LOCKED_FEBRUARY_DESC,
+                                     GetLockQuantityFebruary() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_FEBRUARY_NAME,
-                                   M_Locked_February_ID,
-                                   IDS_Z_LOCKED_FEBRUARY_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_FEBRUARY_NAME,
+                                     M_Locked_February_ID,
+                                     IDS_Z_LOCKED_FEBRUARY_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "March quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_MARCH_NAME,
-                               M_Number_March_ID,
-                               IDS_Z_NUMBER_MARCH_DESC,
-                               GetQuantityMarch(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_MARCH_NAME,
+                                 M_Number_March_ID,
+                                 IDS_Z_NUMBER_MARCH_DESC,
+                                 GetQuantityMarch(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1062,36 +1062,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock March" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_MARCH_NAME,
-                                   M_Locked_March_ID,
-                                   IDS_Z_LOCKED_MARCH_DESC,
-                                   GetLockQuantityMarch() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_MARCH_NAME,
+                                     M_Locked_March_ID,
+                                     IDS_Z_LOCKED_MARCH_DESC,
+                                     GetLockQuantityMarch() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_MARCH_NAME,
-                                   M_Locked_March_ID,
-                                   IDS_Z_LOCKED_MARCH_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_MARCH_NAME,
+                                     M_Locked_March_ID,
+                                     IDS_Z_LOCKED_MARCH_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "Abril quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_APRIL_NAME,
-                               M_Number_April_ID,
-                               IDS_Z_NUMBER_APRIL_DESC,
-                               GetQuantityApril(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_APRIL_NAME,
+                                 M_Number_April_ID,
+                                 IDS_Z_NUMBER_APRIL_DESC,
+                                 GetQuantityApril(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1100,36 +1100,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock Abril" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_APRIL_NAME,
-                                   M_Locked_April_ID,
-                                   IDS_Z_LOCKED_APRIL_DESC,
-                                   GetLockQuantityApril() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_APRIL_NAME,
+                                     M_Locked_April_ID,
+                                     IDS_Z_LOCKED_APRIL_DESC,
+                                     GetLockQuantityApril() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_APRIL_NAME,
-                                   M_Locked_April_ID,
-                                   IDS_Z_LOCKED_APRIL_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_APRIL_NAME,
+                                     M_Locked_April_ID,
+                                     IDS_Z_LOCKED_APRIL_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "May quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_MAY_NAME,
-                               M_Number_May_ID,
-                               IDS_Z_NUMBER_MAY_DESC,
-                               GetQuantityMay(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_MAY_NAME,
+                                 M_Number_May_ID,
+                                 IDS_Z_NUMBER_MAY_DESC,
+                                 GetQuantityMay(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1138,36 +1138,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock May" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_MAY_NAME,
-                                   M_Locked_May_ID,
-                                   IDS_Z_LOCKED_MAY_DESC,
-                                   GetLockQuantityMay() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_MAY_NAME,
+                                     M_Locked_May_ID,
+                                     IDS_Z_LOCKED_MAY_DESC,
+                                     GetLockQuantityMay() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_MAY_NAME,
-                                   M_Locked_May_ID,
-                                   IDS_Z_LOCKED_MAY_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_MAY_NAME,
+                                     M_Locked_May_ID,
+                                     IDS_Z_LOCKED_MAY_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "June quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_JUNE_NAME,
-                               M_Number_June_ID,
-                               IDS_Z_NUMBER_JUNE_DESC,
-                               GetQuantityJune(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_JUNE_NAME,
+                                 M_Number_June_ID,
+                                 IDS_Z_NUMBER_JUNE_DESC,
+                                 GetQuantityJune(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1176,36 +1176,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock June" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_JUNE_NAME,
-                                   M_Locked_June_ID,
-                                   IDS_Z_LOCKED_JUNE_DESC,
-                                   GetLockQuantityJune() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_JUNE_NAME,
+                                     M_Locked_June_ID,
+                                     IDS_Z_LOCKED_JUNE_DESC,
+                                     GetLockQuantityJune() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_JUNE_NAME,
-                                   M_Locked_June_ID,
-                                   IDS_Z_LOCKED_JUNE_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_JUNE_NAME,
+                                     M_Locked_June_ID,
+                                     IDS_Z_LOCKED_JUNE_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "July quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_JULY_NAME,
-                               M_Number_July_ID,
-                               IDS_Z_NUMBER_JULY_DESC,
-                               GetQuantityJuly(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_JULY_NAME,
+                                 M_Number_July_ID,
+                                 IDS_Z_NUMBER_JULY_DESC,
+                                 GetQuantityJuly(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1214,36 +1214,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock July" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_JULY_NAME,
-                                   M_Locked_July_ID,
-                                   IDS_Z_LOCKED_JULY_DESC,
-                                   GetLockQuantityJuly() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_JULY_NAME,
+                                     M_Locked_July_ID,
+                                     IDS_Z_LOCKED_JULY_DESC,
+                                     GetLockQuantityJuly() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_JULY_NAME,
-                                   M_Locked_July_ID,
-                                   IDS_Z_LOCKED_JULY_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_JULY_NAME,
+                                     M_Locked_July_ID,
+                                     IDS_Z_LOCKED_JULY_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "August quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_AUGUST_NAME,
-                               M_Number_August_ID,
-                               IDS_Z_NUMBER_AUGUST_DESC,
-                               GetQuantityAugust(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_AUGUST_NAME,
+                                 M_Number_August_ID,
+                                 IDS_Z_NUMBER_AUGUST_DESC,
+                                 GetQuantityAugust(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1252,36 +1252,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock August" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_AUGUST_NAME,
-                                   M_Locked_August_ID,
-                                   IDS_Z_LOCKED_AUGUST_DESC,
-                                   GetLockQuantityAugust() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_AUGUST_NAME,
+                                     M_Locked_August_ID,
+                                     IDS_Z_LOCKED_AUGUST_DESC,
+                                     GetLockQuantityAugust() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_AUGUST_NAME,
-                                   M_Locked_August_ID,
-                                   IDS_Z_LOCKED_AUGUST_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_AUGUST_NAME,
+                                     M_Locked_August_ID,
+                                     IDS_Z_LOCKED_AUGUST_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "September quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_SEPTEMBER_NAME,
-                               M_Number_September_ID,
-                               IDS_Z_NUMBER_SEPTEMBER_DESC,
-                               GetQuantitySeptember(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_SEPTEMBER_NAME,
+                                 M_Number_September_ID,
+                                 IDS_Z_NUMBER_SEPTEMBER_DESC,
+                                 GetQuantitySeptember(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1290,36 +1290,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock September" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_SEPTEMBER_NAME,
-                                   M_Locked_September_ID,
-                                   IDS_Z_LOCKED_SEPTEMBER_DESC,
-                                   GetLockQuantitySeptember() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_SEPTEMBER_NAME,
+                                     M_Locked_September_ID,
+                                     IDS_Z_LOCKED_SEPTEMBER_DESC,
+                                     GetLockQuantitySeptember() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_SEPTEMBER_NAME,
-                                   M_Locked_September_ID,
-                                   IDS_Z_LOCKED_SEPTEMBER_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_SEPTEMBER_NAME,
+                                     M_Locked_September_ID,
+                                     IDS_Z_LOCKED_SEPTEMBER_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "October quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_OCTOBER_NAME,
-                               M_Number_October_ID,
-                               IDS_Z_NUMBER_OCTOBER_DESC,
-                               GetQuantityOctober(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_OCTOBER_NAME,
+                                 M_Number_October_ID,
+                                 IDS_Z_NUMBER_OCTOBER_DESC,
+                                 GetQuantityOctober(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1328,36 +1328,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock October" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_OCTOBER_NAME,
-                                   M_Locked_October_ID,
-                                   IDS_Z_LOCKED_OCTOBER_DESC,
-                                   GetLockQuantityOctober() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_OCTOBER_NAME,
+                                     M_Locked_October_ID,
+                                     IDS_Z_LOCKED_OCTOBER_DESC,
+                                     GetLockQuantityOctober() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_OCTOBER_NAME,
-                                   M_Locked_October_ID,
-                                   IDS_Z_LOCKED_OCTOBER_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_OCTOBER_NAME,
+                                     M_Locked_October_ID,
+                                     IDS_Z_LOCKED_OCTOBER_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "November quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_NOVEMBER_NAME,
-                               M_Number_November_ID,
-                               IDS_Z_NUMBER_NOVEMBER_DESC,
-                               GetQuantityNovember(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_NOVEMBER_NAME,
+                                 M_Number_November_ID,
+                                 IDS_Z_NUMBER_NOVEMBER_DESC,
+                                 GetQuantityNovember(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1366,36 +1366,36 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock November" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_NOVEMBER_NAME,
-                                   M_Locked_November_ID,
-                                   IDS_Z_LOCKED_NOVEMBER_DESC,
-                                   GetLockQuantityNovember() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_NOVEMBER_NAME,
+                                     M_Locked_November_ID,
+                                     IDS_Z_LOCKED_NOVEMBER_DESC,
+                                     GetLockQuantityNovember() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_NOVEMBER_NAME,
-                                   M_Locked_November_ID,
-                                   IDS_Z_LOCKED_NOVEMBER_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_NOVEMBER_NAME,
+                                     M_Locked_November_ID,
+                                     IDS_Z_LOCKED_NOVEMBER_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
     // the "December quantity" property of the "Quantities" group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                               ZS_BP_PROP_QUANTITY,
-                               IDS_Z_NUMBER_DECEMBER_NAME,
-                               M_Number_December_ID,
-                               IDS_Z_NUMBER_DECEMBER_DESC,
-                               GetQuantityDecember(),
-                               ZBProperty::PT_EDIT_NUMBER,
-                               false));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                 ZS_BP_PROP_QUANTITY,
+                                 IDS_Z_NUMBER_DECEMBER_NAME,
+                                 M_Number_December_ID,
+                                 IDS_Z_NUMBER_DECEMBER_DESC,
+                                 GetQuantityDecember(),
+                                 PSS_Property::IE_T_EditNumber,
+                                 false));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1404,23 +1404,23 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Lock December" property of the "Quantities" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_DECEMBER_NAME,
-                                   M_Locked_December_ID,
-                                   IDS_Z_LOCKED_DECEMBER_DESC,
-                                   GetLockQuantityDecember() ? 1.0 : 0.0));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_DECEMBER_NAME,
+                                     M_Locked_December_ID,
+                                     IDS_Z_LOCKED_DECEMBER_DESC,
+                                     GetLockQuantityDecember() ? 1.0 : 0.0));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_NUMBER_TITLE,
-                                   ZS_BP_PROP_QUANTITY,
-                                   IDS_Z_LOCKED_DECEMBER_NAME,
-                                   M_Locked_December_ID,
-                                   IDS_Z_LOCKED_DECEMBER_DESC,
-                                   value,
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   PSS_Global::GetArrayYesNo()));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                     ZS_BP_PROP_QUANTITY,
+                                     IDS_Z_LOCKED_DECEMBER_NAME,
+                                     M_Locked_December_ID,
+                                     IDS_Z_LOCKED_DECEMBER_DESC,
+                                     value,
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1429,46 +1429,46 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
     if (pProcessGraphModel && pProcessGraphModel->GetIntegrateCostSimulation())
     {
         // the "Cost" property of the "Calculations and forecasts" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_DELIVERABLE,
-                                   ZS_BP_PROP_SIM_DELIVERABLE,
-                                   IDS_Z_SIM_DELIV_COST_NAME,
-                                   M_Sim_Deliv_Cost_ID,
-                                   IDS_Z_SIM_DELIV_COST_DESC,
-                                   double(GetCost()),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_DELIVERABLE,
+                                     ZS_BP_PROP_SIM_DELIVERABLE,
+                                     IDS_Z_SIM_DELIV_COST_NAME,
+                                     M_Sim_Deliv_Cost_ID,
+                                     IDS_Z_SIM_DELIV_COST_DESC,
+                                     double(GetCost()),
+                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Workload forecast" property of the "Calculations and forecasts" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_SIM_DELIVERABLE,
-                                   ZS_BP_PROP_SIM_DELIVERABLE,
-                                   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_NAME,
-                                   M_Sim_Deliv_Workload_Forecast_ID,
-                                   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_DESC,
-                                   PSS_Duration(double(GetWorkloadForecast()),
-                                                hourPerDay,
-                                                dayPerWeek,
-                                                dayPerMonth,
-                                                dayPerYear),
-                                   ZBProperty::PT_EDIT_DURATION_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_DELIVERABLE,
+                                     ZS_BP_PROP_SIM_DELIVERABLE,
+                                     IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_NAME,
+                                     M_Sim_Deliv_Workload_Forecast_ID,
+                                     IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_DESC,
+                                     PSS_Duration(double(GetWorkloadForecast()),
+                                                  hourPerDay,
+                                                  dayPerWeek,
+                                                  dayPerMonth,
+                                                  dayPerYear),
+                                     PSS_Property::IE_T_EditDurationReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
 
         // the "Guid" property of the "Process unit" group
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                                   ZS_BP_PROP_UNIT,
-                                   IDS_Z_UNIT_GUID_NAME,
-                                   M_Unit_GUID_ID,
-                                   IDS_Z_UNIT_GUID_DESC,
-                                   GetUnitGUID(),
-                                   ZBProperty::PT_EDIT_EXTENDED_READONLY,
-                                   false));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                     ZS_BP_PROP_UNIT,
+                                     IDS_Z_UNIT_GUID_NAME,
+                                     M_Unit_GUID_ID,
+                                     IDS_Z_UNIT_GUID_DESC,
+                                     GetUnitGUID(),
+                                     PSS_Property::IE_T_EditExtendedReadOnly,
+                                     false));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -1477,14 +1477,14 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         CString unitName = RetrieveUnitName(GetUnitGUID(), error);
 
         // the "Unit" property of the "Process unit" group (not visible)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                                   ZS_BP_PROP_UNIT,
-                                   IDS_Z_UNIT_NAME_NAME,
-                                   M_Unit_Name_ID,
-                                   IDS_Z_UNIT_NAME_DESC,
-                                   unitName,
-                                   groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY,
-                                   false));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                     ZS_BP_PROP_UNIT,
+                                     IDS_Z_UNIT_NAME_NAME,
+                                     M_Unit_Name_ID,
+                                     IDS_Z_UNIT_NAME_DESC,
+                                     unitName,
+                                     groupEnabled ? PSS_Property::IE_T_EditExtendedReadOnly : PSS_Property::IE_T_EditStringReadOnly,
+                                     false));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -1492,16 +1492,16 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
         const float unitCost = RetrieveUnitCost(GetUnitGUID(), error);
 
         // the "Group cost" property of the "Process unit" group (not visible)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                                   ZS_BP_PROP_UNIT,
-                                   IDS_Z_UNIT_COST_NAME,
-                                   M_Unit_Cost_ID,
-                                   IDS_Z_UNIT_COST_DESC,
-                                   unitCost,
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   false,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol),
-                                   false));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                     ZS_BP_PROP_UNIT,
+                                     IDS_Z_UNIT_COST_NAME,
+                                     M_Unit_Cost_ID,
+                                     IDS_Z_UNIT_COST_DESC,
+                                     unitCost,
+                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     false,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol),
+                                     false));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -1509,23 +1509,23 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
 
     // the "Double validation" property of the "Process unit" group
     if (numericValues)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                                   ZS_BP_PROP_UNIT,
-                                   IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                   M_Unit_Double_Validation_ID,
-                                   IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
-                                   double(GetUnitDoubleValidationType())));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                     ZS_BP_PROP_UNIT,
+                                     IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
+                                     M_Unit_Double_Validation_ID,
+                                     IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
+                                     double(GetUnitDoubleValidationType())));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
-                                   ZS_BP_PROP_UNIT,
-                                   IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                   M_Unit_Double_Validation_ID,
-                                   IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
-                                   GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
-                                   ZBProperty::PT_COMBO_STRING_READONLY,
-                                   true,
-                                   PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                   &m_UnitDoubleValidationTypeArray));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                     ZS_BP_PROP_UNIT,
+                                     IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
+                                     M_Unit_Double_Validation_ID,
+                                     IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
+                                     GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
+                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     true,
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     &m_UnitDoubleValidationTypeArray));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1554,11 +1554,11 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_RULELIST)
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                     // if not empty, add this new task
                     if (!pProp->GetValueString().IsEmpty())
                         AddRule(pProp->GetValueString());
@@ -1567,25 +1567,25 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
             }
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_DELIVERABLE_COST)
         {
             const int itemID = pProp->GetItemID();
 
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_STRING:   m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueString());    break;
-                case ZBProperty::PT_DOUBLE:   m_CostDeliverableProperties.SetValue(itemID, float(     pProp->GetValueDouble()));   break;
-                case ZBProperty::PT_FLOAT:    m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueFloat());     break;
-                case ZBProperty::PT_DATE:     m_CostDeliverableProperties.SetValue(itemID, float(DATE(pProp->GetValueDate())));    break;
-                case ZBProperty::PT_TIMESPAN: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueTimeSpan())); break;
-                case ZBProperty::PT_DURATION: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueDuration())); break;
+                case PSS_Property::IE_VT_String:   m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueString());    break;
+                case PSS_Property::IE_VT_Double:   m_CostDeliverableProperties.SetValue(itemID, float(     pProp->GetValueDouble()));   break;
+                case PSS_Property::IE_VT_Float:    m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueFloat());     break;
+                case PSS_Property::IE_VT_Date:     m_CostDeliverableProperties.SetValue(itemID, float(DATE(pProp->GetValueDate())));    break;
+                case PSS_Property::IE_VT_TimeSpan: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueTimeSpan())); break;
+                case PSS_Property::IE_VT_Duration: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueDuration())); break;
             }
         }
 
     SavePropertiesToQuantity(propSet);
 
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         const int categoryID = pProp->GetCategoryID();
 
@@ -1612,16 +1612,16 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
     }
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_SIM_DELIVERABLE)
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_STRING:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case ZBProperty::PT_DOUBLE:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
-                case ZBProperty::PT_FLOAT:    m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case ZBProperty::PT_DATE:     m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
-                case ZBProperty::PT_TIMESPAN: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueTimeSpan()));  break;
-                case ZBProperty::PT_DURATION: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueDuration()));  break;
+                case PSS_Property::IE_VT_String:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
+                case PSS_Property::IE_VT_Double:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
+                case PSS_Property::IE_VT_Float:    m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
+                case PSS_Property::IE_VT_Date:     m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IE_VT_TimeSpan: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueTimeSpan()));  break;
+                case PSS_Property::IE_VT_Duration: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueDuration()));  break;
             }
 
     PSS_TextItemListPropertiesBP* pTextItemProps =
@@ -1634,11 +1634,11 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
     SetTextItemList(_T(""));
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST)
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                     // if not empty, add this new text item
                     if (!pProp->GetValueString().IsEmpty())
                         AddTextItem(pProp->GetValueString());
@@ -1647,7 +1647,7 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
             }
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT)
         {
             const int itemID = pProp->GetItemID();
@@ -1656,11 +1656,11 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
             if (itemID == M_Unit_Double_Validation_ID)
                 m_UnitProp.SetValue(itemID, ConvertUnitDoubleValidationString2Type(pProp->GetValueString()));
             else
-                switch (pProp->GetPTValueType())
+                switch (pProp->GetValueType())
                 {
-                    case ZBProperty::PT_DOUBLE: m_UnitProp.SetValue(itemID, float(pProp->GetValueDouble())); break;
-                    case ZBProperty::PT_FLOAT:  m_UnitProp.SetValue(itemID,       pProp->GetValueFloat());   break;
-                    case ZBProperty::PT_STRING: m_UnitProp.SetValue(itemID,       pProp->GetValueString());  break;
+                    case PSS_Property::IE_VT_Double: m_UnitProp.SetValue(itemID, float(pProp->GetValueDouble())); break;
+                    case PSS_Property::IE_VT_Float:  m_UnitProp.SetValue(itemID,       pProp->GetValueFloat());   break;
+                    case PSS_Property::IE_VT_String: m_UnitProp.SetValue(itemID,       pProp->GetValueString());  break;
                 }
         }
 
@@ -1669,7 +1669,7 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::SaveProperty(ZBProperty& prop)
+bool PSS_DeliverableLinkSymbolBP::SaveProperty(PSS_Property& prop)
 {
     if (!PSS_LinkSymbol::SaveProperty(prop))
         return false;
@@ -1727,7 +1727,7 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
+bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
 {
     if (prop.GetCategoryID() == ZS_BP_PROP_QUANTITY && prop.GetItemID() == M_Number_Year_ID)
     {
@@ -1752,7 +1752,7 @@ bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(ZBProperty& prop, CString& 
     return PSS_LinkSymbol::CheckPropertyValue(prop, value, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -1823,7 +1823,7 @@ bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString
                     ZBPropertyIterator it(&props);
 
                     // change the disabled properties unit GUID
-                    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+                    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                         if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
                         {
                             pProp->SetValueString(pUserEntity->GetGUID());
@@ -1859,7 +1859,7 @@ bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(ZBProperty& prop, CString
 }
 //---------------------------------------------------------------------------
 bool PSS_DeliverableLinkSymbolBP::ProcessMenuCommand(int            menuCmdID,
-                                                     ZBProperty&    prop,
+                                                     PSS_Property&  prop,
                                                      CString&       value,
                                                      ZBPropertySet& props,
                                                      bool&          refresh)
@@ -2677,8 +2677,8 @@ void PSS_DeliverableLinkSymbolBP::OnSymbolNameChange(const CString& oldName, con
     NotifyNameChange(oldName, newName);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
-                                                             ZBProperty&    dstProperty,
+bool PSS_DeliverableLinkSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
+                                                             PSS_Property&  dstProperty,
                                                              bool           top2Down,
                                                              ZBPropertySet& props)
 {
@@ -2721,7 +2721,7 @@ bool PSS_DeliverableLinkSymbolBP::OnDropInternalPropertyItem(ZBProperty&    srcP
     return ::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_TEXTITEMLIST);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props)
+bool PSS_DeliverableLinkSymbolBP::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
 {
     // only local symbol may access to properties
     if (!IsLocal())
@@ -2730,7 +2730,7 @@ bool PSS_DeliverableLinkSymbolBP::OnPrePropertyChanged(const CString& newValue, 
     return PSS_LinkSymbol::OnPrePropertyChanged(newValue, prop, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
 {
     // only local symbol may access to properties
     if (!IsLocal())
@@ -2744,22 +2744,22 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBProp
         std::size_t        counterEnableEmpty = 0;
 
         // iterate through the properties
-        for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
             if (pProp->GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST)
             {
                 // if the string is not empty, enable the property
                 if (!pProp->GetValueString().IsEmpty())
-                    pProp->SetEnable(true);
+                    pProp->SetEnabled(true);
 
                 // otherwise, check if the property was already enabled, and count it if yes
                 if (pProp->GetValueString().IsEmpty())
                 {
-                    if (pProp->GetEnable())
+                    if (pProp->GetEnabled())
                         ++counterEnableEmpty;
                     else
                     if (counterEnableEmpty < 1)
                     {
-                        pProp->SetEnable(true);
+                        pProp->SetEnabled(true);
                         ++counterEnableEmpty;
                     }
 
@@ -2767,7 +2767,7 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBProp
                     if (counterEnableEmpty > 1)
                     {
                         --counterEnableEmpty;
-                        pProp->SetEnable(false);
+                        pProp->SetEnabled(false);
                     }
                 }
             }
@@ -2780,22 +2780,22 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBProp
         ZBPropertyIterator it(&props);
         std::size_t        counterEnableEmpty = 0;
 
-        for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
             if (pProp->GetCategoryID() == ZS_BP_PROP_RULELIST)
             {
                 // if the string is not empty, enable the property
                 if (!pProp->GetValueString().IsEmpty())
-                    pProp->SetEnable(true);
+                    pProp->SetEnabled(true);
 
                 // otherwise, check if the property was already enabled, and count it if yes
                 if (pProp->GetValueString().IsEmpty())
                 {
-                    if (pProp->GetEnable() == true)
+                    if (pProp->GetEnabled() == true)
                         ++counterEnableEmpty;
                     else
                     if (counterEnableEmpty < 1)
                     {
-                        pProp->SetEnable(true);
+                        pProp->SetEnabled(true);
                         ++counterEnableEmpty;
                     }
 
@@ -2803,7 +2803,7 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBProp
                     if (counterEnableEmpty > 1)
                     {
                         --counterEnableEmpty;
-                        pProp->SetEnable(false);
+                        pProp->SetEnabled(false);
                     }
                 }
             }
@@ -2827,7 +2827,7 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBProp
         CString            GUID;
 
         // iterate through the properties and get the GUID
-        for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
             if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
             {
                 GUID = pProp->GetValueString();
@@ -2835,7 +2835,7 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(ZBProperty& prop, ZBProp
             }
 
         if (!GUID.IsEmpty())
-            for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+            for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_Cost_ID)
                 {
                     bool        error;
@@ -2958,7 +2958,7 @@ bool PSS_DeliverableLinkSymbolBP::OnToolTip(CString& toolTipText, const CPoint& 
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_DeliverableLinkSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -2969,7 +2969,7 @@ void PSS_DeliverableLinkSymbolBP::OnAddNewRisk(ZBProperty& prop, CString& value,
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_DeliverableLinkSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 
@@ -3646,7 +3646,7 @@ void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const ZBPropertySet& 
     ZBPropertyIterator it(&props);
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == ZS_BP_PROP_QUANTITY)
         {
             const int itemID = pProp->GetItemID();
@@ -3667,14 +3667,14 @@ void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const ZBPropertySet& 
                 itemID == M_Force_Equalizer_ID)
                 m_Quantity.SetValue(itemID, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? 1 : 0);
             else
-                switch (pProp->GetPTValueType())
+                switch (pProp->GetValueType())
                 {
-                    case ZBProperty::PT_STRING:   m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueString());  break;
-                    case ZBProperty::PT_DOUBLE:   m_Quantity.SetValue(pProp->GetItemID(), float(     pProp->GetValueDouble())); break;
-                    case ZBProperty::PT_FLOAT:    m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueFloat());   break;
-                    case ZBProperty::PT_DATE:     m_Quantity.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate())));  break;
-                    case ZBProperty::PT_TIMESPAN: ASSERT(FALSE);                                                                break;
-                    case ZBProperty::PT_DURATION: ASSERT(FALSE);                                                                break;
+                    case PSS_Property::IE_VT_String:   m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueString());  break;
+                    case PSS_Property::IE_VT_Double:   m_Quantity.SetValue(pProp->GetItemID(), float(     pProp->GetValueDouble())); break;
+                    case PSS_Property::IE_VT_Float:    m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueFloat());   break;
+                    case PSS_Property::IE_VT_Date:     m_Quantity.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate())));  break;
+                    case PSS_Property::IE_VT_TimeSpan: ASSERT(FALSE);                                                                break;
+                    case PSS_Property::IE_VT_Duration: ASSERT(FALSE);                                                                break;
                 }
         }
 
@@ -3682,11 +3682,11 @@ void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const ZBPropertySet& 
     m_Quantity.CalculatePercents();
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::SetNewNumberAndEqualize(const ZBProperty& prop, const ZBPropertySet& props)
+void PSS_DeliverableLinkSymbolBP::SetNewNumberAndEqualize(const PSS_Property& prop, const ZBPropertySet& props)
 {
     ZBPropertyIterator it(&props);
 
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         // continue until the property to change was found
         if (!pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY || pProp->GetItemID() != prop.GetItemID())
@@ -3716,7 +3716,7 @@ void PSS_DeliverableLinkSymbolBP::SaveEqualizerToProperties(ZBPropertySet& props
 {
     ZBPropertyIterator it(&props);
 
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         if (!pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY)
             continue;

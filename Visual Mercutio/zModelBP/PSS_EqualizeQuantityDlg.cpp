@@ -549,7 +549,7 @@ void PSS_EqualizeQuantityDlg::InitializeVariables()
 {
     ZBPropertyIterator it(m_pPropertySet);
 
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         if (!pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY)
             continue;
@@ -754,7 +754,7 @@ void PSS_EqualizeQuantityDlg::SaveVariables()
     ZBPropertyIterator it(m_pPropertySet);
     bool               error;
 
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         if (!pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY)
             continue;

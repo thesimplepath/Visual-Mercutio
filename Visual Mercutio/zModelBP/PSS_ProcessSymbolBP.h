@@ -182,7 +182,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] prop - property to save, saved property on function ends
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperty(ZBProperty& prop);
+        virtual bool SaveProperty(PSS_Property& prop);
 
         /**
         * Processes the extended input for the property value
@@ -192,7 +192,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -203,7 +203,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessMenuCommand(int menuCmdID, ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessMenuCommand(int menuCmdID, PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Gets the attributes as a string
@@ -611,7 +611,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         *@return true if the property changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when an internal property drag&drop occurred in the symbol
@@ -621,8 +621,8 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
-        virtual bool OnDropInternalPropertyItem(ZBProperty&    srcProperty,
-                                                ZBProperty&    dstProperty,
+        virtual bool OnDropInternalPropertyItem(PSS_Property&  srcProperty,
+                                                PSS_Property&  dstProperty,
                                                 bool           top2Down,
                                                 ZBPropertySet& props);
 
@@ -654,7 +654,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         */
-        virtual void OnDelCurrentPrestation(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelCurrentPrestation(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when the symbol is double clicked
@@ -797,7 +797,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         */
-        void OnAddNewRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        void OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when a risk is deleted
@@ -806,7 +806,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         */
-        void OnDelCurrentRisk(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        void OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when a new delivery is added
@@ -815,7 +815,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         */
-        void OnAddNewDelivery(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        void OnAddNewDelivery(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
         /**
         * Called when a delivery is deleted
@@ -824,7 +824,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         */
-        void OnDelCurrentDelivery(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        void OnDelCurrentDelivery(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
 };
 
 //---------------------------------------------------------------------------

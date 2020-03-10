@@ -23,7 +23,7 @@
 
 // processsoft
 #include "zModel\PSS_ModelNavigation.h"
-#include "zProperty\ZBProperty.h"
+#include "zProperty\PSS_Property.h"
 #include "zSOAP\PSS_SoapPublisher_ModelAttributes.h"
 #include "PSS_PublishMessengerModelInformation.h"
 

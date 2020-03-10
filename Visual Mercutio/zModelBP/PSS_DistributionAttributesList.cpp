@@ -15,7 +15,7 @@
 #include "zModel\PSS_SymbolObserverMsg.h"
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "PSS_DistributionAttributes.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
 
@@ -84,7 +84,7 @@ const PSS_DistributionAttributesList& PSS_DistributionAttributesList::operator =
 }
 //---------------------------------------------------------------------------
 int PSS_DistributionAttributesList::Initialize(PSS_DistributionAttributeManager* pDistributionManager,
-                                               ZBDynamicPropertiesManager*       pPropManager,
+                                               PSS_DynamicPropertiesManager*     pPropManager,
                                                PSS_UserGroupEntity*              pMainUserGroup,
                                                PSS_DistributionAttribute*        pDistributionAttribute,
                                                bool                              showAll,
@@ -179,7 +179,7 @@ int PSS_DistributionAttributesList::Refresh()
                 PSS_UserEntity* pEntity =
                         (m_pMainUserGroup ? m_pMainUserGroup->FindGroupByGUID(pAttrib->GetUserGroupGUID(), true) : NULL);
                 const int       item    = AddItem(pEntity ? pEntity->GetEntityName() : _T(""), 4, level, LPARAM(pAttrib));
-                ZBProperty*     pProp   =
+                PSS_Property*   pProp   =
                         (m_pPropManager ? m_pPropManager->GetPropertyItem(pAttrib->GetCategoryID(), pAttrib->GetItemID()) : NULL);
                 SetItemText(item, 1, pProp ? pProp->GetLabel() : _T(""));
 

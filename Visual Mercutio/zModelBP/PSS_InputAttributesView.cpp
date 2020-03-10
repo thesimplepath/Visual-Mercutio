@@ -390,7 +390,7 @@ void PSS_InputAttributesView::OnAddInputAttribute()
     if (!m_pCurrentDoc->HasDynamicPropertiesManager())
         m_pCurrentDoc->AllocatePropertiesManager();
 
-    ZBDynamicPropertiesManager* pDynPropMgr = m_pCurrentDoc->GetDynamicPropertiesManager();
+    PSS_DynamicPropertiesManager* pDynPropMgr = m_pCurrentDoc->GetDynamicPropertiesManager();
 
     if (!pDynPropMgr)
         return;
@@ -435,7 +435,7 @@ void PSS_InputAttributesView::OnAddInputAttribute()
     ZBPropertyIterator it(&propSet);
 
     // remove all properties
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();

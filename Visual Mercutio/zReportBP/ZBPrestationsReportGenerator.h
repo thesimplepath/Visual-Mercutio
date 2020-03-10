@@ -41,7 +41,7 @@
 #include "zModelBP\PSS_DeliveriesPropertiesBP.h"
 #include "zModelBP\PSS_AnnualNumberPropertiesBP.h"
 
-#include "zProperty\ZBProperty.h"
+#include "zProperty\PSS_Property.h"
 
 #include "ColorRefDefinition.h"
 #include "zReportBPRes.h"

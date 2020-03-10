@@ -24,7 +24,7 @@
 
 // processsoft
 #include "zModel\PSS_ModelNavigation.h"
-#include "zProperty\ZBProperty.h"
+#include "zProperty\PSS_Property.h"
 #include "PSS_ProcessGraphModelMdl.h"
 
 #ifdef _ZMODELEXPORT

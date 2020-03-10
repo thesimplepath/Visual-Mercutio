@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 // PSS_DistributionAttributesSelectionDlg
 //---------------------------------------------------------------------------
 PSS_DistributionAttributesSelectionDlg::PSS_DistributionAttributesSelectionDlg(PSS_DistributionAttributeManager* pDistribManager,
-                                                                               ZBDynamicPropertiesManager*       pPropManager, 
+                                                                               PSS_DynamicPropertiesManager*     pPropManager,
                                                                                PSS_UserGroupEntity*              pMainUserGroup,
                                                                                CWnd*                             pParent) :
     CDialog(PSS_DistributionAttributesSelectionDlg::IDD, pParent),

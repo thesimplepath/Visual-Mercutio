@@ -38,7 +38,7 @@ void ZBPropertyItemManager::SetPropertyListCtrl(ZCPropertyListCtrl* pCtrl)
 void ZBPropertyItemManager::FreePropertySet()
 {
     ZBPropertyIterator i(&m_PropSet);
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
@@ -82,7 +82,7 @@ bool ZBPropertyItemManager::UpdateControlData(ZBPropertySet& PropSet)
     // Duplicate the set
     ZBPropertyIterator i(&PropSet);
 
-    for (ZBProperty* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
+    for (PSS_Property* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         m_PropSet.Add(pProp->Dup());
     }
@@ -98,7 +98,7 @@ bool ZBPropertyItemManager::UpdateControlData()
 {
     ZBPropertyIterator i(&m_PropSet);
 
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
@@ -170,7 +170,7 @@ bool ZBPropertyItemManager::UpdateControlData()
 
         // Sets the propertyID for further identification
         pPropertyItem->SetPropertyID(pProp->GetItemID());
-        pPropertyItem->SetEnabled(pProp->GetEnable());
+        pPropertyItem->SetEnabled(pProp->GetEnabled());
         pPropertyItem->SetName(pProp->GetLabel());
         pPropertyItem->SetStringFormat(pProp->GetStringFormat());
         pPropertyItem->SetSaveState(pProp->GetSaveState());
@@ -194,7 +194,7 @@ bool ZBPropertyItemManager::UpdateControlData()
 
 bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*= NULL*/)
 {
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     // If no property item specified, update all
     if (!pPropertyItem)
@@ -224,7 +224,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*=
             SetItemDataToProperty(pPropItem, *pProp);
 
             // Set the enable flag and the stringformat type
-            pProp->SetEnable(pPropItem->GetEnabled());
+            pProp->SetEnabled(pPropItem->GetEnabled());
             pProp->SetStringFormat(pPropItem->GetStringFormat());
         }
 
@@ -294,7 +294,7 @@ bool ZBPropertyItemManager::CheckCurrentPropertyData(ZBPropertyItem* pPropertyIt
     // Now run through the list of data and fill the property set
     ZBPropertyIterator i(&m_PropSet);
 
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     bool Found = false;
 
@@ -348,7 +348,7 @@ bool ZBPropertyItemManager::ProcessExtendedCurrentPropertyData(ZBPropertyItem*  
     // Now run through the list of data and fill the property set
     ZBPropertyIterator i(&m_PropSet);
 
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     bool Found = false;
 
@@ -407,7 +407,7 @@ bool ZBPropertyItemManager::ProcessMenuCommandCurrentPropertyData(int           
     // Now run through the list of data and fill the property set
     ZBPropertyIterator i(&m_PropSet);
 
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     bool Found = false;
 
@@ -455,7 +455,7 @@ bool ZBPropertyItemManager::ApplyPropertyChanges()
 {
     ZBPropertyIterator i(&m_PropSet);
 
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     bool Updated = false;
 
@@ -481,7 +481,7 @@ bool ZBPropertyItemManager::ApplyPropertyChanges()
         // Sets the value, enable and name
         SetDataToPropertyItem(pPropertyItem, *pProp);
 
-        pPropertyItem->SetEnabled(pProp->GetEnable());
+        pPropertyItem->SetEnabled(pProp->GetEnabled());
         pPropertyItem->SetName(pProp->GetLabel());
         pPropertyItem->SetStringFormat(pProp->GetStringFormat());
 
@@ -497,47 +497,47 @@ bool ZBPropertyItemManager::ApplyPropertyChanges()
     return true;
 }
 
-ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(ZBProperty& Prop)
+ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(PSS_Property& Prop)
 {
     ZBPropertyItem* pItem = NULL;
 
-    switch (Prop.GetPTType())
+    switch (Prop.GetType())
     {
-        case ZBProperty::PT_EDIT_STRING:
+        case PSS_Property::IE_T_EditString:
         {
             pItem = new ZBPropertyItemString;
             break;
         }
 
-        case ZBProperty::PT_EDIT_STRING_READONLY:
+        case PSS_Property::IE_T_EditStringReadOnly:
         {
             // Read-only and cannot be edited
             pItem = new ZBPropertyItemString(NULL, true, false);
             break;
         }
 
-        case ZBProperty::PT_COMBO_STRING:
+        case PSS_Property::IE_T_ComboString:
         {
             pItem = new ZBPropertyItemList;
             break;
         }
 
-        case ZBProperty::PT_COMBO_STRING_READONLY:
+        case PSS_Property::IE_T_ComboStringReadOnly:
         {
             // Read-only
             pItem = new ZBPropertyItemList(NULL, true);
             break;
         }
 
-        case ZBProperty::PT_EDIT_NUMBER:
+        case PSS_Property::IE_T_EditNumber:
         {
-            if (Prop.GetPTValueType() == ZBProperty::PT_DOUBLE)
+            if (Prop.GetValueType() == PSS_Property::IE_VT_Double)
             {
                 pItem = new ZBPropertyItemNumber(Prop.GetValueDouble());
             }
             else
             {
-                if (Prop.GetPTValueType() == ZBProperty::PT_FLOAT)
+                if (Prop.GetValueType() == PSS_Property::IE_VT_Float)
                 {
                     pItem = new ZBPropertyItemNumber(Prop.GetValueFloat());
                 }
@@ -546,16 +546,16 @@ ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(ZBProperty& Prop)
             break;
         }
 
-        case ZBProperty::PT_EDIT_NUMBER_READONLY:
+        case PSS_Property::IE_T_EditNumberReadOnly:
         {
-            if (Prop.GetPTValueType() == ZBProperty::PT_DOUBLE)
+            if (Prop.GetValueType() == PSS_Property::IE_VT_Double)
             {
                 // Read-only and cannot be edited
                 pItem = new ZBPropertyItemNumber(Prop.GetValueDouble(), true, false);
             }
             else
             {
-                if (Prop.GetPTValueType() == ZBProperty::PT_FLOAT)
+                if (Prop.GetValueType() == PSS_Property::IE_VT_Float)
                 {
                     // Read-only and cannot be edited
                     pItem = new ZBPropertyItemNumber(Prop.GetValueFloat(), true, false);
@@ -565,66 +565,66 @@ ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(ZBProperty& Prop)
             break;
         }
 
-        case ZBProperty::PT_EDIT_MENU:
+        case PSS_Property::IE_T_EditMenu:
         {
             pItem = new ZBPropertyItemMenuFileDir(Prop.GetMenu());
             break;
         }
 
-        case ZBProperty::PT_EDIT_MENU_READONLY:
+        case PSS_Property::IE_T_EditMenuReadOnly:
         {
             // Read-only
             pItem = new ZBPropertyItemMenuFileDir(Prop.GetMenu(), true);
             break;
         }
 
-        case ZBProperty::PT_EDIT_FILE:
+        case PSS_Property::IE_T_EditFile:
         {
             // As file is true
             pItem = new ZBPropertyItemMenuFileDir((LPCTSTR)NULL, true);
             break;
         }
 
-        case ZBProperty::PT_EDIT_DIRECTORY:
+        case PSS_Property::IE_T_EditDirectory:
         {
             // As file is false
             pItem = new ZBPropertyItemMenuFileDir((LPCTSTR)NULL, true);
             break;
         }
 
-        case ZBProperty::PT_EDIT_EXTENDED:
+        case PSS_Property::IE_T_EditExtended:
         {
             pItem = new ZBPropertyItemExtended;
             break;
         }
 
-        case ZBProperty::PT_EDIT_EXTENDED_READONLY:
+        case PSS_Property::IE_T_EditExtendedReadOnly:
         {
             // Read-only
             pItem = new ZBPropertyItemExtended(NULL, true);
             break;
         }
 
-        case ZBProperty::PT_EDIT_DURATION:
+        case PSS_Property::IE_T_EditDuration:
         {
             pItem = new ZBPropertyItemDuration;
             break;
         }
 
-        case ZBProperty::PT_EDIT_DURATION_READONLY:
+        case PSS_Property::IE_T_EditDurationReadOnly:
         {
             // Read-only and cannot be edited
             pItem = new ZBPropertyItemDuration(NULL, true, false);
             break;
         }
 
-        case ZBProperty::PT_EDIT_DATE:
+        case PSS_Property::IE_T_EditDate:
         {
             pItem = new ZBPropertyItemDate;
             break;
         }
 
-        case ZBProperty::PT_EDIT_DATE_READONLY:
+        case PSS_Property::IE_T_EditDateReadOnly:
         {
             // Read-only and cannot be edited
             pItem = new ZBPropertyItemDate(NULL, true, false);
@@ -632,39 +632,39 @@ ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(ZBProperty& Prop)
         }
 
         //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
-        case ZBProperty::PT_EDIT_TIME:
+        case PSS_Property::IE_T_EditTime:
         {
             pItem = new ZBPropertyItemTime;
             break;
         }
 
-        case ZBProperty::PT_EDIT_TIME_READONLY:
+        case PSS_Property::IE_T_EditTimeReadOnly:
         {
             // Read-only and cannot be edited
             pItem = new ZBPropertyItemTime(NULL, true, false);
             break;
         }
 
-        case ZBProperty::PT_EDIT_INTELI:
+        case PSS_Property::IE_T_EditIntelli:
         {
             pItem = new ZBPropertyItemIntelliEdit;
             break;
         }
 
-        case ZBProperty::PT_EDIT_INTELI_READONLY:
+        case PSS_Property::IE_T_EditIntelliReadOnly:
         {
             // Read-only and cannot be edited
             pItem = new ZBPropertyItemIntelliEdit(NULL, true, false);
             break;
         }
 
-        case ZBProperty::PT_EDIT_MULTILINE:
+        case PSS_Property::IE_T_EditMultiline:
         {
             pItem = new ZBPropertyItemMultiLineEdit;
             break;
         }
 
-        case ZBProperty::PT_EDIT_MULTILINE_READONLY:
+        case PSS_Property::IE_T_EditMultilineReadOnly:
         {
             // Read-only and cannot be edited
             pItem = new ZBPropertyItemMultiLineEdit(NULL, true, false);
@@ -675,7 +675,7 @@ ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(ZBProperty& Prop)
     if (pItem)
     {
         // Sets drag&drop flag
-        pItem->EnableDragNDrop(Prop.IsEnabledDragNDrop());
+        pItem->EnableDragNDrop(Prop.IsDragNDropEnabled());
 
         // Sets the order
         pItem->SetItemOrder(Prop.GetItemOrder());
@@ -685,19 +685,19 @@ ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(ZBProperty& Prop)
     return pItem;
 }
 
-void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem, ZBProperty& Prop)
+void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem, PSS_Property& Prop)
 {
-    switch (Prop.GetPTType())
+    switch (Prop.GetType())
     {
-        case ZBProperty::PT_EDIT_STRING:
-        case ZBProperty::PT_EDIT_STRING_READONLY:
+        case PSS_Property::IE_T_EditString:
+        case PSS_Property::IE_T_EditStringReadOnly:
         {
             reinterpret_cast<ZBPropertyItemString*>(pPropertyItem)->SetData(Prop.GetValueString());
             break;
         }
 
-        case ZBProperty::PT_COMBO_STRING:
-        case ZBProperty::PT_COMBO_STRING_READONLY:
+        case PSS_Property::IE_T_ComboString:
+        case PSS_Property::IE_T_ComboStringReadOnly:
         {
             reinterpret_cast<ZBPropertyItemList*>(pPropertyItem)->SetData(Prop.GetValueString());
 
@@ -705,22 +705,22 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             if (Prop.HasValueList())
             {
                 // Add all values
-                reinterpret_cast<ZBPropertyItemList*>(pPropertyItem)->SetData(Prop.GetArrayOfValues());
+                reinterpret_cast<ZBPropertyItemList*>(pPropertyItem)->SetData(Prop.GetValueArray());
             }
 
             break;
         }
 
-        case ZBProperty::PT_EDIT_NUMBER:
-        case ZBProperty::PT_EDIT_NUMBER_READONLY:
+        case PSS_Property::IE_T_EditNumber:
+        case PSS_Property::IE_T_EditNumberReadOnly:
         {
-            if (Prop.GetPTValueType() == ZBProperty::PT_DOUBLE)
+            if (Prop.GetValueType() == PSS_Property::IE_VT_Double)
             {
                 reinterpret_cast<ZBPropertyItemNumber*>(pPropertyItem)->SetData(Prop.GetValueDouble());
             }
             else
             {
-                if (Prop.GetPTValueType() == ZBProperty::PT_FLOAT)
+                if (Prop.GetValueType() == PSS_Property::IE_VT_Float)
                 {
                     reinterpret_cast<ZBPropertyItemNumber*>(pPropertyItem)->SetData(Prop.GetValueFloat());
                 }
@@ -729,24 +729,24 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_EXTENDED:
-        case ZBProperty::PT_EDIT_EXTENDED_READONLY:
+        case PSS_Property::IE_T_EditExtended:
+        case PSS_Property::IE_T_EditExtendedReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     reinterpret_cast<ZBPropertyItemExtended*>(pPropertyItem)->SetData(Prop.GetValueString());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     reinterpret_cast<ZBPropertyItemExtended*>(pPropertyItem)->SetData(Prop.GetValueDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     reinterpret_cast<ZBPropertyItemExtended*>(pPropertyItem)->SetData(Prop.GetValueFloat());
                     break;
@@ -756,18 +756,18 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_DURATION:
-        case ZBProperty::PT_EDIT_DURATION_READONLY:
+        case PSS_Property::IE_T_EditDuration:
+        case PSS_Property::IE_T_EditDurationReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     reinterpret_cast<ZBPropertyItemDuration*>(pPropertyItem)->SetData(Prop.GetValueString());
                     break;
                 }
 
-                case ZBProperty::PT_DURATION:
+                case PSS_Property::IE_VT_Duration:
                 {
                     // JMR-MODIF - Le 2 août 2005 - Conversion explicite permet de corriger bug sur attributs dynamiques.
                     reinterpret_cast<ZBPropertyItemDuration*>(pPropertyItem)->SetData((PSS_Duration&)Prop.GetValueDuration());
@@ -778,18 +778,18 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_DATE:
-        case ZBProperty::PT_EDIT_DATE_READONLY:
+        case PSS_Property::IE_T_EditDate:
+        case PSS_Property::IE_T_EditDateReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     reinterpret_cast<ZBPropertyItemDate*>(pPropertyItem)->SetData(Prop.GetValueString());
                     break;
                 }
 
-                case ZBProperty::PT_DATE:
+                case PSS_Property::IE_VT_Date:
                 {
                     // JMR-MODIF - Le 2 août 2005 - Conversion explicite permet de corriger bug sur attributs dynamiques.
                     reinterpret_cast<ZBPropertyItemDate*>(pPropertyItem)->SetData((PSS_Date&)Prop.GetValueDate());
@@ -801,18 +801,18 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
         }
 
         // RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
-        case ZBProperty::PT_EDIT_TIME:
-        case ZBProperty::PT_EDIT_TIME_READONLY:
+        case PSS_Property::IE_T_EditTime:
+        case PSS_Property::IE_T_EditTimeReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     reinterpret_cast<ZBPropertyItemTime*>(pPropertyItem)->SetData(Prop.GetValueString());
                     break;
                 }
 
-                case ZBProperty::PT_TIMESPAN:
+                case PSS_Property::IE_VT_TimeSpan:
                 {
                     reinterpret_cast<ZBPropertyItemTime*>(pPropertyItem)->SetData((PSS_TimeSpan&)Prop.GetValueTimeSpan());
                     break;
@@ -822,26 +822,26 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_MENU:
-        case ZBProperty::PT_EDIT_MENU_READONLY:
-        case ZBProperty::PT_EDIT_FILE:
-        case ZBProperty::PT_EDIT_DIRECTORY:
+        case PSS_Property::IE_T_EditMenu:
+        case PSS_Property::IE_T_EditMenuReadOnly:
+        case PSS_Property::IE_T_EditFile:
+        case PSS_Property::IE_T_EditDirectory:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     reinterpret_cast<ZBPropertyItemMenuFileDir*>(pPropertyItem)->SetData(Prop.GetValueString());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     reinterpret_cast<ZBPropertyItemMenuFileDir*>(pPropertyItem)->SetData(Prop.GetValueDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     reinterpret_cast<ZBPropertyItemMenuFileDir*>(pPropertyItem)->SetData(Prop.GetValueFloat());
                     break;
@@ -851,24 +851,24 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_INTELI:
-        case ZBProperty::PT_EDIT_INTELI_READONLY:
+        case PSS_Property::IE_T_EditIntelli:
+        case PSS_Property::IE_T_EditIntelliReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->SetData(Prop.GetValueString());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->SetData((char)Prop.GetValueDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->SetData((char)Prop.GetValueFloat());
                     break;
@@ -879,30 +879,30 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
             if (Prop.HasValueList())
             {
                 // Add all values
-                reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->SetData(Prop.GetArrayOfValues());
+                reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->SetData(Prop.GetValueArray());
             }
 
             break;
         }
 
-        case ZBProperty::PT_EDIT_MULTILINE:
-        case ZBProperty::PT_EDIT_MULTILINE_READONLY:
+        case PSS_Property::IE_T_EditMultiline:
+        case PSS_Property::IE_T_EditMultilineReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     reinterpret_cast<ZBPropertyItemMultiLineEdit*>(pPropertyItem)->SetData(Prop.GetValueString());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     reinterpret_cast<ZBPropertyItemMultiLineEdit*>(pPropertyItem)->SetData((char)Prop.GetValueDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     reinterpret_cast<ZBPropertyItemMultiLineEdit*>(pPropertyItem)->SetData((char)Prop.GetValueFloat());
                     break;
@@ -918,35 +918,35 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
     pPropertyItem->SetCategoryOrder(Prop.GetCategoryOrder());
 }
 
-void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem, ZBProperty& Prop)
+void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem, PSS_Property& Prop)
 {
     // Assign the right values
-    switch (Prop.GetPTType())
+    switch (Prop.GetType())
     {
-        case ZBProperty::PT_EDIT_STRING:
-        case ZBProperty::PT_EDIT_STRING_READONLY:
+        case PSS_Property::IE_T_EditString:
+        case PSS_Property::IE_T_EditStringReadOnly:
         {
             Prop.SetValueString(reinterpret_cast<ZBPropertyItemString*>(pPropertyItem)->GetData());
             break;
         }
 
-        case ZBProperty::PT_COMBO_STRING:
-        case ZBProperty::PT_COMBO_STRING_READONLY:
+        case PSS_Property::IE_T_ComboString:
+        case PSS_Property::IE_T_ComboStringReadOnly:
         {
             Prop.SetValueString(reinterpret_cast<ZBPropertyItemList*>(pPropertyItem)->GetData());
             break;
         }
 
-        case ZBProperty::PT_EDIT_NUMBER:
-        case ZBProperty::PT_EDIT_NUMBER_READONLY:
+        case PSS_Property::IE_T_EditNumber:
+        case PSS_Property::IE_T_EditNumberReadOnly:
         {
-            if (Prop.GetPTValueType() == ZBProperty::PT_DOUBLE)
+            if (Prop.GetValueType() == PSS_Property::IE_VT_Double)
             {
                 Prop.SetValueDouble(reinterpret_cast<ZBPropertyItemNumber*>(pPropertyItem)->GetDataDouble());
             }
             else
             {
-                if (Prop.GetPTValueType() == ZBProperty::PT_FLOAT)
+                if (Prop.GetValueType() == PSS_Property::IE_VT_Float)
                 {
                     Prop.SetValueFloat(reinterpret_cast<ZBPropertyItemNumber*>(pPropertyItem)->GetDataFloat());
                 }
@@ -955,24 +955,24 @@ void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_EXTENDED:
-        case ZBProperty::PT_EDIT_EXTENDED_READONLY:
+        case PSS_Property::IE_T_EditExtended:
+        case PSS_Property::IE_T_EditExtendedReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     Prop.SetValueString(reinterpret_cast<ZBPropertyItemExtended*>(pPropertyItem)->GetData());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     Prop.SetValueDouble(reinterpret_cast<ZBPropertyItemExtended*>(pPropertyItem)->GetDataDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     Prop.SetValueFloat(reinterpret_cast<ZBPropertyItemExtended*>(pPropertyItem)->GetDataFloat());
                     break;
@@ -982,18 +982,18 @@ void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_DURATION:
-        case ZBProperty::PT_EDIT_DURATION_READONLY:
+        case PSS_Property::IE_T_EditDuration:
+        case PSS_Property::IE_T_EditDurationReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     Prop.SetValueString(reinterpret_cast<ZBPropertyItemDuration*>(pPropertyItem)->GetData());
                     break;
                 }
 
-                case ZBProperty::PT_DURATION:
+                case PSS_Property::IE_VT_Duration:
                 {
                     Prop.SetValueDuration(reinterpret_cast<ZBPropertyItemDuration*>(pPropertyItem)->GetDataDuration());
                     break;
@@ -1003,18 +1003,18 @@ void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_DATE:
-        case ZBProperty::PT_EDIT_DATE_READONLY:
+        case PSS_Property::IE_T_EditDate:
+        case PSS_Property::IE_T_EditDateReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     Prop.SetValueString(reinterpret_cast<ZBPropertyItemDate*>(pPropertyItem)->GetData());
                     break;
                 }
 
-                case ZBProperty::PT_DATE:
+                case PSS_Property::IE_VT_Date:
                 {
                     Prop.SetValueDate(reinterpret_cast<ZBPropertyItemDate*>(pPropertyItem)->GetDataDate());
                     break;
@@ -1024,18 +1024,18 @@ void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem,
             break;
         }
         //RS-MODIF 08.08.2005: correction attribut dynamique de temps n'était pas géré
-        case ZBProperty::PT_EDIT_TIME:
-        case ZBProperty::PT_EDIT_TIME_READONLY:
+        case PSS_Property::IE_T_EditTime:
+        case PSS_Property::IE_T_EditTimeReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     Prop.SetValueString(reinterpret_cast<ZBPropertyItemTime*>(pPropertyItem)->GetData());
                     break;
                 }
 
-                case ZBProperty::PT_TIMESPAN:
+                case PSS_Property::IE_VT_TimeSpan:
                 {
                     Prop.SetValueTimeSpan(reinterpret_cast<ZBPropertyItemTime*>(pPropertyItem)->GetDataTime());
                     break;
@@ -1045,26 +1045,26 @@ void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_MENU:
-        case ZBProperty::PT_EDIT_MENU_READONLY:
-        case ZBProperty::PT_EDIT_FILE:
-        case ZBProperty::PT_EDIT_DIRECTORY:
+        case PSS_Property::IE_T_EditMenu:
+        case PSS_Property::IE_T_EditMenuReadOnly:
+        case PSS_Property::IE_T_EditFile:
+        case PSS_Property::IE_T_EditDirectory:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     Prop.SetValueString(reinterpret_cast<ZBPropertyItemMenuFileDir*>(pPropertyItem)->GetData());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     Prop.SetValueDouble(reinterpret_cast<ZBPropertyItemMenuFileDir*>(pPropertyItem)->GetDataDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     Prop.SetValueFloat(reinterpret_cast<ZBPropertyItemMenuFileDir*>(pPropertyItem)->GetDataFloat());
                     break;
@@ -1074,24 +1074,24 @@ void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_INTELI:
-        case ZBProperty::PT_EDIT_INTELI_READONLY:
+        case PSS_Property::IE_T_EditIntelli:
+        case PSS_Property::IE_T_EditIntelliReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     Prop.SetValueString(reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->GetData());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     Prop.SetValueDouble(reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->GetDataDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     Prop.SetValueFloat(reinterpret_cast<ZBPropertyItemIntelliEdit*>(pPropertyItem)->GetDataFloat());
                     break;
@@ -1101,24 +1101,24 @@ void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem,
             break;
         }
 
-        case ZBProperty::PT_EDIT_MULTILINE:
-        case ZBProperty::PT_EDIT_MULTILINE_READONLY:
+        case PSS_Property::IE_T_EditMultiline:
+        case PSS_Property::IE_T_EditMultilineReadOnly:
         {
-            switch (Prop.GetPTValueType())
+            switch (Prop.GetValueType())
             {
-                case ZBProperty::PT_STRING:
+                case PSS_Property::IE_VT_String:
                 {
                     Prop.SetValueString(reinterpret_cast<ZBPropertyItemMultiLineEdit*>(pPropertyItem)->GetData());
                     break;
                 }
 
-                case ZBProperty::PT_DOUBLE:
+                case PSS_Property::IE_VT_Double:
                 {
                     Prop.SetValueDouble(reinterpret_cast<ZBPropertyItemMultiLineEdit*>(pPropertyItem)->GetDataDouble());
                     break;
                 }
 
-                case ZBProperty::PT_FLOAT:
+                case PSS_Property::IE_VT_Float:
                 {
                     Prop.SetValueFloat(reinterpret_cast<ZBPropertyItemMultiLineEdit*>(pPropertyItem)->GetDataFloat());
                     break;
@@ -1179,7 +1179,7 @@ bool ZBPropertyItemManager::ExistInPropSet(LPCTSTR pStrTabName)
     // Now run through the list of data and fill the property set
     ZBPropertyIterator i(&m_PropSet);
 
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
@@ -1192,12 +1192,12 @@ bool ZBPropertyItemManager::ExistInPropSet(LPCTSTR pStrTabName)
     return false;
 }
 
-ZBProperty* ZBPropertyItemManager::GetCorrespondingProperty(ZBPropertyItem* pPropertyItem)
+PSS_Property* ZBPropertyItemManager::GetCorrespondingProperty(ZBPropertyItem* pPropertyItem)
 {
     // Now run through the list of data and fill the property set
     ZBPropertyIterator i(&m_PropSet);
 
-    ZBProperty* pProp;
+    PSS_Property* pProp;
 
     ZBPropertyItemCategory* pCat = GetTab(pPropertyItem);
 
@@ -1344,7 +1344,7 @@ bool ZBPropertyItemManager::SavePropertyState(ZBPropertyItem* pPropertyItem)
     // If not found, try to create a new property
     if (!pPropState)
     {
-        ZBProperty*    pCorrespondingProperty = GetCorrespondingProperty(pPropertyItem);
+        PSS_Property* pCorrespondingProperty = GetCorrespondingProperty(pPropertyItem);
 
         if (pCorrespondingProperty)
         {
@@ -1369,7 +1369,7 @@ bool ZBPropertyItemManager::SavePropertyState(ZBPropertyItem* pPropertyItem)
 
 _ZBPropertyState* ZBPropertyItemManager::GetPropertyState(ZBPropertyItem* pPropertyItem)
 {
-    ZBProperty*    pCorrespondingProperty = GetCorrespondingProperty(pPropertyItem);
+    PSS_Property* pCorrespondingProperty = GetCorrespondingProperty(pPropertyItem);
 
     if (pCorrespondingProperty)
     {
@@ -1668,7 +1668,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPrope
     }
 
     // Now run through the list of data and locate the source and the destination property
-    ZBProperty* pSrcProp;
+    PSS_Property* pSrcProp;
     ZBPropertyIterator i(&m_PropSet);
     bool FoundSrc = false;
 
@@ -1703,7 +1703,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPrope
         return false;
     }
 
-    ZBProperty* pDstProp;
+    PSS_Property* pDstProp;
     ZBPropertyIterator l(&m_PropSet);
     bool FoundDst = false;
 

@@ -2462,9 +2462,9 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
         CString            previousCategory;
 
         // iterate through the property set
-        for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         {
-            if (!pProp->GetEnable())
+            if (!pProp->GetEnabled())
                 continue;
 
             // check if property attributes to show should be filtered
@@ -2503,15 +2503,15 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
             }
 
             // get the formatted value
-            switch (pProp->GetPTValueType())
+            switch (pProp->GetValueType())
             {
-                case ZBProperty::PT_DOUBLE:   value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
-                case ZBProperty::PT_FLOAT:    value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
-                case ZBProperty::PT_DATE:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
-                case ZBProperty::PT_TIMESPAN: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
-                case ZBProperty::PT_DURATION: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
-                case ZBProperty::PT_STRING:   value = pProp->GetValueString();                                                                                     break;
-                default:                                                                                                                                           break;
+                case PSS_Property::IE_VT_Double:   value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
+                case PSS_Property::IE_VT_Float:    value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
+                case PSS_Property::IE_VT_Date:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
+                case PSS_Property::IE_VT_TimeSpan: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
+                case PSS_Property::IE_VT_Duration: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
+                case PSS_Property::IE_VT_String:   value = pProp->GetValueString();                                                                                     break;
+                default:                                                                                                                                                break;
             }
 
             // remove empty spaces from properties
@@ -2549,7 +2549,7 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
         // delete all properties
         ZBPropertyIterator itDel(&propSet);
 
-        for (ZBProperty* pProp = itDel.GetFirst(); pProp; pProp = itDel.GetNext())
+        for (PSS_Property* pProp = itDel.GetFirst(); pProp; pProp = itDel.GetNext())
             delete pProp;
 
         propSet.RemoveAll();

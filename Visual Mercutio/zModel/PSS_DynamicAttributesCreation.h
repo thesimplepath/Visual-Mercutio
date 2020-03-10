@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zProperty\ZBProperty.h"
+#include "zProperty\PSS_Property.h"
 #include "zModel\zModelRes.h"
 
 // class name mapping
@@ -81,7 +81,7 @@ class PSS_DynamicAttributesCreation
         * Gets the property type
         *@return the property type
         */
-        virtual inline ZBProperty::PropertyType GetPropertyType() const;
+        virtual inline PSS_Property::IEType GetPropertyType() const;
 
         /**
         * Gets the visibility
@@ -97,7 +97,7 @@ class PSS_DynamicAttributesCreation
 
     private:
         PSS_ProcessGraphModelDoc* m_pModelDoc;
-        ZBProperty::PropertyType  m_PropertyType;
+        PSS_Property::IEType      m_PropertyType;
         CString                   m_CategoryName;
         CString                   m_AttributeDescription;
         CString                   m_AttributeName;
@@ -123,7 +123,7 @@ CString PSS_DynamicAttributesCreation::GetAttributeDescription() const
     return m_AttributeDescription;
 }
 //---------------------------------------------------------------------------
-ZBProperty::PropertyType PSS_DynamicAttributesCreation::GetPropertyType() const
+PSS_Property::IEType PSS_DynamicAttributesCreation::GetPropertyType() const
 {
     return m_PropertyType;
 }
@@ -241,7 +241,7 @@ class PSS_DynamicAttributesCreateAttributeDlg : public PSS_WizardDialog
         * Gets the property type
         *@return the property type
         */
-        virtual inline ZBProperty::PropertyType GetPropertyType() const;
+        virtual inline PSS_Property::IEType GetPropertyType() const;
 
         /**
         * Gets the visibility
@@ -273,7 +273,7 @@ class PSS_DynamicAttributesCreateAttributeDlg : public PSS_WizardDialog
         };
 
         PSS_ProcessGraphModelDoc* m_pModelDoc;
-        ZBProperty::PropertyType  m_PropertyType;
+        PSS_Property::IEType      m_PropertyType;
         CComboBox                 m_AttributeVisibility;
         CComboBox                 m_AttributeType;
         CString                   m_AttributeDescription;
@@ -302,7 +302,7 @@ CString PSS_DynamicAttributesCreateAttributeDlg::GetAttributeDescription() const
     return m_AttributeDescription;
 }
 //---------------------------------------------------------------------------
-ZBProperty::PropertyType PSS_DynamicAttributesCreateAttributeDlg::GetPropertyType() const
+PSS_Property::IEType PSS_DynamicAttributesCreateAttributeDlg::GetPropertyType() const
 {
     return m_PropertyType;
 }

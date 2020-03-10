@@ -34,6 +34,9 @@
 #ifndef PSS_DistributionRulesForRole
     #define PSS_DistributionRulesForRole ZBDistributionRulesForRole
 #endif
+#ifndef PSS_DynamicPropertiesManager
+    #define PSS_DynamicPropertiesManager ZBDynamicPropertiesManager
+#endif
 #ifndef PSS_ProcessGraphModelDoc
     #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
@@ -46,7 +49,7 @@ class PSS_DistributionAttribute;
 class PSS_DistributionAttributeManager;
 class PSS_DistributionRule;
 class PSS_DistributionRulesForRole;
-class ZBDynamicPropertiesManager;
+class PSS_DynamicPropertiesManager;
 class PSS_ProcessGraphModelDoc;
 class PSS_UserGroupEntity;
 
@@ -85,7 +88,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesList : public PSS_TreeListCtrl,
         *@return the attribute count
         */
         virtual int Initialize(PSS_DistributionAttributeManager* pDistributionManager,
-                               ZBDynamicPropertiesManager*       pPropManager,
+                               PSS_DynamicPropertiesManager*     pPropManager,
                                PSS_UserGroupEntity*              pMainUserGroup,
                                PSS_DistributionAttribute*        pDistributionAttribute =  NULL,
                                bool                              showAll                =  false,
@@ -154,7 +157,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesList : public PSS_TreeListCtrl,
     private:
         PSS_DistributionAttribute*        m_pDistributionAttribute;
         PSS_DistributionAttributeManager* m_pDistributionManager;
-        ZBDynamicPropertiesManager*       m_pPropManager;
+        PSS_DynamicPropertiesManager*     m_pPropManager;
         PSS_UserGroupEntity*              m_pMainUserGroup;
         CODComponent*                     m_pComp;
         int                               m_SymbolRef;

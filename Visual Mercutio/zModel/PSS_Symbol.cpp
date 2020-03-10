@@ -15,7 +15,7 @@
 #include "zBaseLib\PSS_BaseDocument.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
-#include "zProperty\ZBDynamicProperties.h"
+#include "zProperty\PSS_DynamicProperties.h"
 #include "PSS_SymbolEdit.h"
 #include "PSS_ODSymbolManipulator.h"
 #include "PSS_ProcessGraphModelMdl.h"
@@ -162,7 +162,7 @@ CString PSS_Symbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
         ZBPropertyIterator it(&propSet);
 
         // remove all properties
-        for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+        for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
             delete pProp;
 
         propSet.RemoveAll();
@@ -410,7 +410,7 @@ bool PSS_Symbol::Match(const CString&        argument,
     // remove all properties
     ZBPropertyIterator it(&propSet);
 
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
 
     propSet.RemoveAll();
@@ -853,49 +853,49 @@ bool PSS_Symbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool 
         name.Replace('\r', ' ');
     }
 
-    std::unique_ptr<ZBProperty> pProp;
+    std::unique_ptr<PSS_Property> pProp;
 
     // get the name property from the general group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
-                               ZS_BP_PROP_BASIC,
-                               IDS_Z_SYMBOL_NAME_NAME,
-                               M_Symbol_Name_ID,
-                               IDS_Z_SYMBOL_NAME_DESC,
-                               numericValue ? name : pBasicProps->GetSymbolName(),
-                               !IsLocal() || SymbolNameTextEditReadOnly() ? ZBProperty::PT_EDIT_MULTILINE_READONLY :
-                                                                            ZBProperty::PT_EDIT_MULTILINE));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                 ZS_BP_PROP_BASIC,
+                                 IDS_Z_SYMBOL_NAME_NAME,
+                                 M_Symbol_Name_ID,
+                                 IDS_Z_SYMBOL_NAME_DESC,
+                                 numericValue ? name : pBasicProps->GetSymbolName(),
+                                 !IsLocal() || SymbolNameTextEditReadOnly() ? PSS_Property::IE_T_EditMultilineReadOnly :
+                                                                              PSS_Property::IE_T_EditMultiline));
     propSet.Add(pProp.get());
     pProp.release();
 
     // get the description property from the general group
-    pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
-                               ZS_BP_PROP_BASIC,
-                               IDS_Z_SYMBOL_DESCRIPTION_NAME,
-                               M_Symbol_Description_ID,
-                               IDS_Z_SYMBOL_DESCRIPTION_DESC,
-                               pBasicProps->GetSymbolDescription(),
-                               !IsLocal() || CommentTextEditReadOnly() ? ZBProperty::PT_EDIT_MULTILINE_READONLY :
-                                                                         ZBProperty::PT_EDIT_MULTILINE));
+    pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                 ZS_BP_PROP_BASIC,
+                                 IDS_Z_SYMBOL_DESCRIPTION_NAME,
+                                 M_Symbol_Description_ID,
+                                 IDS_Z_SYMBOL_DESCRIPTION_DESC,
+                                 pBasicProps->GetSymbolDescription(),
+                                 !IsLocal() || CommentTextEditReadOnly() ? PSS_Property::IE_T_EditMultilineReadOnly :
+                                                                           PSS_Property::IE_T_EditMultiline));
     propSet.Add(pProp.get());
     pProp.release();
 
     // get the reference property from the general group
     if (numericValue)
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
-                                   ZS_BP_PROP_BASIC,
-                                   IDS_Z_SYMBOL_NUMBER_NAME,
-                                   M_Symbol_Number_ID,
-                                   IDS_Z_SYMBOL_NUMBER_DESC,
-                                   double(pBasicProps->GetSymbolNumber()),
-                                   IsLocal() ? ZBProperty::PT_EDIT_NUMBER : ZBProperty::PT_EDIT_NUMBER_READONLY));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                     ZS_BP_PROP_BASIC,
+                                     IDS_Z_SYMBOL_NUMBER_NAME,
+                                     M_Symbol_Number_ID,
+                                     IDS_Z_SYMBOL_NUMBER_DESC,
+                                     double(pBasicProps->GetSymbolNumber()),
+                                     IsLocal() ? PSS_Property::IE_T_EditNumber : PSS_Property::IE_T_EditNumberReadOnly));
     else
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
-                                   ZS_BP_PROP_BASIC,
-                                   IDS_Z_SYMBOL_NUMBER_NAME,
-                                   M_Symbol_Number_ID,
-                                   IDS_Z_SYMBOL_NUMBER_DESC,
-                                   pBasicProps->GetSymbolNumberStr(),
-                                   IsLocal() ? ZBProperty::PT_EDIT_STRING : ZBProperty::PT_EDIT_STRING_READONLY));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                     ZS_BP_PROP_BASIC,
+                                     IDS_Z_SYMBOL_NUMBER_NAME,
+                                     M_Symbol_Number_ID,
+                                     IDS_Z_SYMBOL_NUMBER_DESC,
+                                     pBasicProps->GetSymbolNumberStr(),
+                                     IsLocal() ? PSS_Property::IE_T_EditString : PSS_Property::IE_T_EditStringReadOnly));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -903,13 +903,13 @@ bool PSS_Symbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool 
     // get the risk level property from the general group
     if (IsProcess() || IsProcedure() || IsStart() || IsStop())
     {
-        pProp.reset(new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
-                                   ZS_BP_PROP_BASIC,
-                                   IDS_Z_SYMBOL_RISK_LEVEL_NAME,
-                                   M_Symbol_Risk_Level_ID,
-                                   IDS_Z_SYMBOL_RISK_LEVEL_DESC,
-                                   pBasicProps->GetSymbolRiskLevel(),
-                                   ZBProperty::PT_EDIT_STRING_READONLY));
+        pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                     ZS_BP_PROP_BASIC,
+                                     IDS_Z_SYMBOL_RISK_LEVEL_NAME,
+                                     M_Symbol_Risk_Level_ID,
+                                     IDS_Z_SYMBOL_RISK_LEVEL_DESC,
+                                     pBasicProps->GetSymbolRiskLevel(),
+                                     PSS_Property::IE_T_EditStringReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -961,7 +961,7 @@ bool PSS_Symbol::SaveProperties(ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
         // if hasn't changed, continue
         if (!pProp->GetHasChanged())
@@ -987,7 +987,7 @@ bool PSS_Symbol::SaveProperties(ZBPropertySet& propSet)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::FillProperty(ZBProperty& prop)
+bool PSS_Symbol::FillProperty(PSS_Property& prop)
 {
     PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
@@ -1013,7 +1013,7 @@ bool PSS_Symbol::FillProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::SaveProperty(ZBProperty& prop)
+bool PSS_Symbol::SaveProperty(PSS_Property& prop)
 {
     if (!IsLocal())
         return true;
@@ -1042,7 +1042,7 @@ bool PSS_Symbol::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
+bool PSS_Symbol::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
 {
     // if needed to check the reference number, check if allowed
     if (prop.GetCategoryID() == ZS_BP_PROP_BASIC)
@@ -1083,7 +1083,7 @@ bool PSS_Symbol::CheckPropertyValue(ZBProperty& prop, CString& value, ZBProperty
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_Symbol::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     bool result = false;
 
@@ -1101,7 +1101,7 @@ bool PSS_Symbol::ProcessExtendedInput(ZBProperty& prop, CString& value, ZBProper
 }
 //---------------------------------------------------------------------------
 bool PSS_Symbol::ProcessMenuCommand(int            menuCmdID,
-                                    ZBProperty&    prop,
+                                    PSS_Property&  prop,
                                     CString&       value,
                                     ZBPropertySet& props,
                                     bool&          refresh)
@@ -1141,7 +1141,7 @@ bool PSS_Symbol::CreateSymbolProperties()
         m_pDynamicPropManager = NULL;
     }
 
-    m_pDynamicPropManager = new ZBDynamicProperties;
+    m_pDynamicPropManager = new PSS_DynamicProperties();
 
     if (m_pDynamicPropManager)
         m_pDynamicPropManager->CreateSymbolProperties();
@@ -1713,7 +1713,7 @@ void PSS_Symbol::Serialize(CArchive& ar)
                 ar >> (CObject*&)m_pDynamicPropManager;
 
             if (!m_pDynamicPropManager)
-                m_pDynamicPropManager = new ZBDynamicProperties();
+                m_pDynamicPropManager = new PSS_DynamicProperties();
 
             CODEditProperties* pPropEdit = static_cast<CODEditProperties*>(GetProperty(OD_PROP_EDIT));
 
@@ -1843,7 +1843,7 @@ bool PSS_Symbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props)
+bool PSS_Symbol::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
 {
     bool result = true;
 
@@ -1861,7 +1861,7 @@ bool PSS_Symbol::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop,
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_Symbol::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
 {
     bool result = false;
 
@@ -1879,8 +1879,8 @@ bool PSS_Symbol::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, b
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnDropInternalPropertyItem(ZBProperty&    srcProperty,
-                                            ZBProperty&    dstProperty,
+bool PSS_Symbol::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
+                                            PSS_Property&  dstProperty,
                                             bool           top2Down,
                                             ZBPropertySet& props)
 {

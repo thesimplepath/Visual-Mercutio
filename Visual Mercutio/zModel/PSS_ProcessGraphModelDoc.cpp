@@ -16,7 +16,7 @@
 #include "zBaseLib\PSS_GUID.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zMediator\PSS_Application.h"
-#include "zProperty\ZBDynamicPropertiesManager.h"
+#include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "PSS_ProcessGraphModelView.h"
 #include "PSS_ProcessGraphChildFrame.h"
 #include "PSS_ProcessGraphModelController.h"
@@ -716,7 +716,7 @@ void PSS_ProcessGraphModelDoc::AllocatePropertiesManager(bool deleteFirst)
     if (deleteFirst && m_DynamicPropertiesManager)
         delete m_DynamicPropertiesManager;
 
-    m_DynamicPropertiesManager = new ZBDynamicPropertiesManager;
+    m_DynamicPropertiesManager = new PSS_DynamicPropertiesManager();
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelDoc::DeleteContents()

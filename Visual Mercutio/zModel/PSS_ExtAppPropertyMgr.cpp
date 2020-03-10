@@ -248,18 +248,18 @@ bool PSS_ExtAppPropertyMgr::FillProperties(ZBPropertySet& propSet, bool numericV
             commandLine  = GetCommandLine(i);
         }
 
-        std::unique_ptr<ZBProperty> pExtApp
-                (new ZBProperty(finalPropTitle,
-                                groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                propName,
-                                groupValue ? M_Command_Title_ID : (M_Command_Title_ID + (i * 40)),
-                                propDesc,
-                                commandTitle,
-                                ZBProperty::PT_EDIT_MENU,
-                                systemIsEnabled,
-                                PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                NULL,
-                                &g_ExtAppsMenu));
+        std::unique_ptr<PSS_Property> pExtApp
+                (new PSS_Property(finalPropTitle,
+                                  groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                  propName,
+                                  groupValue ? M_Command_Title_ID : (M_Command_Title_ID + (i * 40)),
+                                  propDesc,
+                                  commandTitle,
+                                  PSS_Property::IE_T_EditMenu,
+                                  systemIsEnabled,
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                  NULL,
+                                  &g_ExtAppsMenu));
 
         propSet.Add(pExtApp.get());
         pExtApp.release();
@@ -316,19 +316,19 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
             commandLine  = GetCommandLine(i);
         }
 
-        std::unique_ptr<ZBProperty> pExtApp;
+        std::unique_ptr<PSS_Property> pExtApp;
 
         propName.LoadString(IDS_Z_COMMAND_LINE_NAME);
         propDesc.LoadString(IDS_Z_COMMAND_LINE_DESC);
 
-        pExtApp.reset(new ZBProperty(finalPropTitle,
-                                     groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                     propName,
-                                     groupValue ? M_Command_Line_ID : (M_Command_Line_ID + (i * 40)),
-                                     propDesc,
-                                     commandLine,
-                                     ZBProperty::PT_EDIT_EXTENDED,
-                                     systemIsEnabled));
+        pExtApp.reset(new PSS_Property(finalPropTitle,
+                                       groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                       propName,
+                                       groupValue ? M_Command_Line_ID : (M_Command_Line_ID + (i * 40)),
+                                       propDesc,
+                                       commandLine,
+                                       PSS_Property::IE_T_EditExtended,
+                                       systemIsEnabled));
 
         propSet.Add(pExtApp.get());
         pExtApp.release();
@@ -336,14 +336,14 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
         propName.LoadString(IDS_Z_COMMAND_PARAM_NAME);
         propDesc.LoadString(IDS_Z_COMMAND_PARAM_DESC);
 
-        pExtApp.reset(new ZBProperty(finalPropTitle,
-                                     groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                     propName,
-                                     groupValue ? M_Command_Param_ID : (M_Command_Param_ID + (i * 40)),
-                                     propDesc,
-                                     GetCommandParameters(i),
-                                     ZBProperty::PT_EDIT_EXTENDED,
-                                     systemIsEnabled));
+        pExtApp.reset(new PSS_Property(finalPropTitle,
+                                       groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                       propName,
+                                       groupValue ? M_Command_Param_ID : (M_Command_Param_ID + (i * 40)),
+                                       propDesc,
+                                       GetCommandParameters(i),
+                                       PSS_Property::IE_T_EditExtended,
+                                       systemIsEnabled));
 
         propSet.Add(pExtApp.get());
         pExtApp.release();
@@ -351,14 +351,14 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
         propName.LoadString(IDS_Z_COMMAND_STARTUPDIR_NAME);
         propDesc.LoadString(IDS_Z_COMMAND_STARTUPDIR_DESC);
 
-        pExtApp.reset(new ZBProperty(finalPropTitle,
-                                     groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                     propName,
-                                     groupValue ? M_Command_StartupDir_ID : (M_Command_StartupDir_ID + (i * 40)),
-                                     propDesc,
-                                     GetCommandStartupDirectory(i),
-                                     ZBProperty::PT_EDIT_DIRECTORY,
-                                     systemIsEnabled));
+        pExtApp.reset(new PSS_Property(finalPropTitle,
+                                       groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                       propName,
+                                       groupValue ? M_Command_StartupDir_ID : (M_Command_StartupDir_ID + (i * 40)),
+                                       propDesc,
+                                       GetCommandStartupDirectory(i),
+                                       PSS_Property::IE_T_EditDirectory,
+                                       systemIsEnabled));
 
         propSet.Add(pExtApp.get());
         pExtApp.release();
@@ -367,25 +367,25 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
         propDesc.LoadString(IDS_Z_PRIORITY_LEVEL_DESC);
 
         if (numericValue)
-            pExtApp.reset(new ZBProperty(finalPropTitle,
-                                         groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                         propName,
-                                         groupValue ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
-                                         propDesc,
-                                         double(GetPriorityLevel(i)),
-                                         ZBProperty::PT_EDIT_NUMBER,
-                                         systemIsEnabled));
+            pExtApp.reset(new PSS_Property(finalPropTitle,
+                                           groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                           propName,
+                                           groupValue ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
+                                           propDesc,
+                                           double(GetPriorityLevel(i)),
+                                           PSS_Property::IE_T_EditNumber,
+                                           systemIsEnabled));
         else
-            pExtApp.reset(new ZBProperty(finalPropTitle,
-                                         groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                         propName,
-                                         groupValue ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
-                                         propDesc,
-                                         PSS_Global::GetJobPriorityString(GetPriorityLevel(i)),
-                                         ZBProperty::PT_COMBO_STRING_READONLY,
-                                         systemIsEnabled,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                         PSS_Global::GetArrayJobPriority()));
+            pExtApp.reset(new PSS_Property(finalPropTitle,
+                                           groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                           propName,
+                                           groupValue ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
+                                           propDesc,
+                                           PSS_Global::GetJobPriorityString(GetPriorityLevel(i)),
+                                           PSS_Property::IE_T_ComboStringReadOnly,
+                                           systemIsEnabled,
+                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                           PSS_Global::GetArrayJobPriority()));
 
         propSet.Add(pExtApp.get());
         pExtApp.release();
@@ -394,25 +394,25 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
         propDesc.LoadString(IDS_Z_WINDOW_STARTMODE_DESC);
 
         if (numericValue)
-            pExtApp.reset(new ZBProperty(finalPropTitle,
-                                         groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                         propName,
-                                         groupValue ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
-                                         propDesc,
-                                         double(GetWindowStartMode(i)),
-                                         ZBProperty::PT_EDIT_NUMBER,
-                                         systemIsEnabled));
+            pExtApp.reset(new PSS_Property(finalPropTitle,
+                                           groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                           propName,
+                                           groupValue ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
+                                           propDesc,
+                                           double(GetWindowStartMode(i)),
+                                           PSS_Property::IE_T_EditNumber,
+                                           systemIsEnabled));
         else
-            pExtApp.reset(new ZBProperty(finalPropTitle,
-                                         groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
-                                         propName,
-                                         groupValue ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
-                                         propDesc,
-                                         PSS_Global::GetWindowModeString(GetWindowStartMode(i)),
-                                         ZBProperty::PT_COMBO_STRING_READONLY,
-                                         systemIsEnabled,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                         PSS_Global::GetArrayWindowMode()));
+            pExtApp.reset(new PSS_Property(finalPropTitle,
+                                           groupValue ? ZS_BP_PROP_EXTAPP : (ZS_BP_PROP_EXTAPP + i),
+                                           propName,
+                                           groupValue ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
+                                           propDesc,
+                                           PSS_Global::GetWindowModeString(GetWindowStartMode(i)),
+                                           PSS_Property::IE_T_ComboStringReadOnly,
+                                           systemIsEnabled,
+                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                           PSS_Global::GetArrayWindowMode()));
 
         propSet.Add(pExtApp.get());
         pExtApp.release();
@@ -426,7 +426,7 @@ bool PSS_ExtAppPropertyMgr::SaveProperties(ZBPropertySet& propSet)
     ZBPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the external files property set
-    for (ZBProperty* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+    for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
             pProp->GetCategoryID() <= (ZS_BP_PROP_EXTAPP + int(GetExtAppCount())))
             SaveProperty(*pProp);
@@ -434,12 +434,12 @@ bool PSS_ExtAppPropertyMgr::SaveProperties(ZBPropertySet& propSet)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::FillProperty(ZBProperty& prop)
+bool PSS_ExtAppPropertyMgr::FillProperty(PSS_Property& prop)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::SaveProperty(ZBProperty& prop)
+bool PSS_ExtAppPropertyMgr::SaveProperty(PSS_Property& prop)
 {
     if (prop.GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTAPP + int(GetExtAppCount())))
@@ -460,12 +460,12 @@ bool PSS_ExtAppPropertyMgr::SaveProperty(ZBProperty& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::CheckPropertyValue(ZBProperty& prop, CString& value, ZBPropertySet& props)
+bool PSS_ExtAppPropertyMgr::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::ProcessExtendedInput(ZBProperty&    prop,
+bool PSS_ExtAppPropertyMgr::ProcessExtendedInput(PSS_Property&  prop,
                                                  CString&       value,
                                                  ZBPropertySet& props,
                                                  bool&          refresh)
@@ -501,7 +501,7 @@ bool PSS_ExtAppPropertyMgr::ProcessExtendedInput(ZBProperty&    prop,
 }
 //---------------------------------------------------------------------------
 bool PSS_ExtAppPropertyMgr::ProcessMenuCommand(int            menuCmdID,
-                                               ZBProperty&    prop,
+                                               PSS_Property&  prop,
                                                CString&       value,
                                                ZBPropertySet& props,
                                                bool&          refresh)
@@ -531,7 +531,7 @@ void PSS_ExtAppPropertyMgr::Serialize(CArchive& ar)
     m_ExternalApplications.Serialize(ar);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::OnAddNewExtApp(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtAppPropertyMgr::OnAddNewExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     refresh = DoInsertExtApp(false);
 
@@ -539,7 +539,7 @@ void PSS_ExtAppPropertyMgr::OnAddNewExtApp(ZBProperty& prop, CString& value, ZBP
         value = GetCommandTitle(GetExtAppCount() - 1);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::OnDelCurrentExtApp(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtAppPropertyMgr::OnDelCurrentExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
 {
     // delete the current selected external application
     const int index = prop.GetCategoryID() - ZS_BP_PROP_EXTAPP;
@@ -548,12 +548,12 @@ void PSS_ExtAppPropertyMgr::OnDelCurrentExtApp(ZBProperty& prop, CString& value,
         refresh = true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::OnPrePropertyChanged(const CString& newValue, ZBProperty& prop, ZBPropertySet& props)
+bool PSS_ExtAppPropertyMgr::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::OnPostPropertyChanged(ZBProperty& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ExtAppPropertyMgr::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
 {
     return false;
 }
