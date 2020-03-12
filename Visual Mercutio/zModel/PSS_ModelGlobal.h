@@ -20,8 +20,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-// ZBPropertyAttributes
-#include "zProperty\ZBPropertyAttributes.h"
+// processsoft
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -63,7 +63,7 @@ class AFX_EXT_CLASS PSS_ModelGlobal
         *@param objectID - the attributes object identifier to get
         *@return the attributes, NULL if not found or on error
         */
-        static ZBPropertyAttributes& GetGlobalPropertyAttributes(int ObjectID);
+        static PSS_PropertyAttributes& GetGlobalPropertyAttributes(int ObjectID);
 
         /**
         * Releases the global property attributes
@@ -71,8 +71,8 @@ class AFX_EXT_CLASS PSS_ModelGlobal
         static void Release();
 
     private:
-        typedef CCArray_T <ZBPropertyAttributes*, ZBPropertyAttributes*> IPropertyAttributesSet;
-        typedef Iterator_T<ZBPropertyAttributes*>                        IPropertyAttributesIterator;
+        typedef CCArray_T <PSS_PropertyAttributes*, PSS_PropertyAttributes*> IPropertyAttributesSet;
+        typedef Iterator_T<PSS_PropertyAttributes*>                          IPropertyAttributesIterator;
 
         static IPropertyAttributesSet m_Set;
         static CString                m_FileName;

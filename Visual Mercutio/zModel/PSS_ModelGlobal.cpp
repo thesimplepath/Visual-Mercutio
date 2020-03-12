@@ -40,7 +40,7 @@ bool PSS_ModelGlobal::SaveGlobalPropertyAttributes()
     // iterate through the global attributes
     for (int i = 0; i < count; ++i)
     {
-        ZBPropertyAttributes* pPropAtt = m_Set.GetAt(i);
+        PSS_PropertyAttributes* pPropAtt = m_Set.GetAt(i);
 
         if (pPropAtt)
             pPropAtt->SaveStateToIniFile(m_FileName, i);
@@ -49,16 +49,16 @@ bool PSS_ModelGlobal::SaveGlobalPropertyAttributes()
     return true;
 }
 //---------------------------------------------------------------------------
-ZBPropertyAttributes& PSS_ModelGlobal::GetGlobalPropertyAttributes(int objectID)
+PSS_PropertyAttributes& PSS_ModelGlobal::GetGlobalPropertyAttributes(int objectID)
 {
-    ZBPropertyAttributes* pPropAtt = NULL;
+    PSS_PropertyAttributes* pPropAtt = NULL;
 
     if (objectID < m_Set.GetSize())
         pPropAtt = m_Set.GetAt(objectID);
 
     if (!pPropAtt)
     {
-        std::unique_ptr<ZBPropertyAttributes> pNewPropAtt(new ZBPropertyAttributes());
+        std::unique_ptr<PSS_PropertyAttributes> pNewPropAtt(new PSS_PropertyAttributes());
         pNewPropAtt->LoadStateFromIniFile(m_FileName, objectID);
         m_Set.SetAtGrow(objectID, pNewPropAtt.get());
         pPropAtt = pNewPropAtt.release();
@@ -74,7 +74,7 @@ void PSS_ModelGlobal::Release()
 
     for (int i = 0; i < count; ++i)
     {
-        ZBPropertyAttributes* pPropAtt = m_Set.GetAt(i);
+        PSS_PropertyAttributes* pPropAtt = m_Set.GetAt(i);
 
         if (pPropAtt)
             delete pPropAtt;

@@ -48,7 +48,7 @@
 
 // forward class declaration
 class PSS_SymbolEdit;
-class ZBPropertyAttributes;
+class PSS_PropertyAttributes;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -129,7 +129,7 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         *@param pAttributes - the attributes
         *@return the attributes as a string
         */
-        virtual CString GetAttributeString(ZBPropertyAttributes* pAttributes) const;
+        virtual CString GetAttributeString(PSS_PropertyAttributes* pAttributes) const;
 
         /**
         * Refreshes the attribute text area
@@ -226,10 +226,10 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         *@param partialSearch - if true, the search will be partial
         *@return true the argument matches an attribute, otherwise false
         */
-        virtual bool Match(const CString&        argument,
-                           ZBPropertyAttributes* pPropAttributes = NULL,
-                           bool                  caseSensitive   = false,
-                           bool                  partialSearch   = false);
+        virtual bool Match(const CString&          argument,
+                           PSS_PropertyAttributes* pPropAttributes = NULL,
+                           bool                    caseSensitive   = false,
+                           bool                    partialSearch   = false);
 
         /**
         * Retrieves the unit GUID from the name
@@ -1222,14 +1222,14 @@ class AFX_EXT_CLASS PSS_Symbol : public CODSymbolComponent,
         *@param pAttributes - the attributes
         *@return true if the attributes were filled, otherwise false
         */
-        virtual bool OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes);
+        virtual bool OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes);
 
         /**
         * Called when the attributes change
         *@param pAttributes - the attributes
         *@return true if the attributes changed, otherwise false
         */
-        virtual bool OnChangeAttributes(ZBPropertyAttributes* pAttributes);
+        virtual bool OnChangeAttributes(PSS_PropertyAttributes* pAttributes);
 
         /**
         * Called before the property changes

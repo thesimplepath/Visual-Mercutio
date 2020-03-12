@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_FileLauncher.h"
 #include "zResMgr\PSS_ResourceManager.h"
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\PSS_ProcessGraphModelController.h"
 #define _ZMODELEXPORT
@@ -50,7 +50,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pD
     ZBPropertySet propSet;
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pDoc->GetModel(), propSet);
 
-    ZBPropertyAttributes propAttributes;
+    PSS_PropertyAttributes propAttributes;
 
     // start with the wizard to choose the directory to export the model
     PSS_PublishModel publishModel(&propAttributes, &propSet, iniFileName);

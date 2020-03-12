@@ -794,7 +794,7 @@ bool PSS_StartSymbolBP::ProcessMenuCommand(int            menuCmdID,
     return PSS_Symbol::ProcessMenuCommand(menuCmdID, prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-CString PSS_StartSymbolBP::GetAttributeString(ZBPropertyAttributes* pAttributes) const
+CString PSS_StartSymbolBP::GetAttributeString(PSS_PropertyAttributes* pAttributes) const
 {
     return PSS_Symbol::GetAttributeString(pAttributes);
 }
@@ -973,7 +973,7 @@ bool PSS_StartSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_StartSymbolBP::OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (!pAttributes)
         return false;
@@ -990,13 +990,13 @@ bool PSS_StartSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttribute
         pAttributes->AddAttribute(ZS_BP_PROP_UNIT, M_Unit_Name_ID);
 
         // no item labels
-        pAttributes->SetDisplayTitleText(false);
+        pAttributes->SetShowTitleText(false);
     }
 
     return PSS_Symbol::OnFillDefaultAttributes(pAttributes);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_StartSymbolBP::OnChangeAttributes(PSS_PropertyAttributes* pAttributes)
 {
     return PSS_Symbol::OnChangeAttributes(pAttributes);
 }

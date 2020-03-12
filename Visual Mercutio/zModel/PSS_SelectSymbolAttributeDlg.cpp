@@ -9,7 +9,7 @@
 #include "PSS_SelectSymbolAttributeDlg.h"
 
 // processsoft
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -28,9 +28,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SelectSymbolAttributeDlg
 //---------------------------------------------------------------------------
-PSS_SelectSymbolAttributeDlg::PSS_SelectSymbolAttributeDlg(ZBPropertyAttributes* pPropAttributes,
-                                                           ZBPropertySet*        pPropSet,
-                                                           CWnd*                 pParent) :
+PSS_SelectSymbolAttributeDlg::PSS_SelectSymbolAttributeDlg(PSS_PropertyAttributes* pPropAttributes,
+                                                           ZBPropertySet*          pPropSet,
+                                                           CWnd*                   pParent) :
     CDialog(PSS_SelectSymbolAttributeDlg::IDD, pParent),
     m_pPropAttributes(pPropAttributes),
     m_pPropSet(pPropSet),
@@ -38,7 +38,7 @@ PSS_SelectSymbolAttributeDlg::PSS_SelectSymbolAttributeDlg(ZBPropertyAttributes*
     m_ShowLabel(TRUE)
 {
     if (m_pPropAttributes)
-        m_ShowLabel = m_pPropAttributes->GetDisplayTitleText();
+        m_ShowLabel = m_pPropAttributes->GetShowTitleText();
 }
 //---------------------------------------------------------------------------
 PSS_SelectSymbolAttributeDlg::~PSS_SelectSymbolAttributeDlg()
@@ -74,7 +74,7 @@ void PSS_SelectSymbolAttributeDlg::OnApplyToAll()
     m_AttributeTree.FillMatchingCheckedItems();
 
     if (m_pPropAttributes)
-        m_pPropAttributes->SetDisplayTitleText(m_ShowLabel);
+        m_pPropAttributes->SetShowTitleText(m_ShowLabel);
 
     CDialog::EndDialog(ID_APPLYTOALL);
 }
@@ -87,7 +87,7 @@ void PSS_SelectSymbolAttributeDlg::OnOK()
     m_AttributeTree.FillMatchingCheckedItems();
 
     if (m_pPropAttributes)
-        m_pPropAttributes->SetDisplayTitleText(m_ShowLabel);
+        m_pPropAttributes->SetShowTitleText(m_ShowLabel);
 
     CDialog::OnOK();
 }

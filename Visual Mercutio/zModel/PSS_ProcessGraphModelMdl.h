@@ -86,7 +86,7 @@ class PSS_ProcessGraphModelViewport;
 class PSS_ProcessGraphModelView;
 class PSS_ProcessGraphModelController;
 class PSS_ProcessGraphPage;
-class ZBPropertyAttributes;
+class PSS_PropertyAttributes;
 class PSS_UserEntity;
 class PSS_UserGroupEntity;
 class PSS_LogicalSystemEntity;
@@ -622,7 +622,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param pAttributes - the new attributes to propagate
         *@param objectID - the object identifier
         */
-        virtual void PropagateNewSymbolAttributes(ZBPropertyAttributes* pAttributes, int objectID);
+        virtual void PropagateNewSymbolAttributes(PSS_PropertyAttributes* pAttributes, int objectID);
 
         /**
         * Refreshes the symbol attributes
@@ -1028,12 +1028,12 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param partialSearch - if true, the search will stop on the first matching item found
         *@return the found matching item count
         */
-        virtual std::size_t Find(const CString&        argument,
-                                 PSS_Log*              pLog,
-                                 ZBPropertyAttributes* pPropAttributes = NULL,
-                                 bool                  inSubModel      = true,
-                                 bool                  caseSensitive   = false,
-                                 bool                  partialSearch   = false);
+        virtual std::size_t Find(const CString&          argument,
+                                 PSS_Log*                pLog,
+                                 PSS_PropertyAttributes* pPropAttributes = NULL,
+                                 bool                    inSubModel      = true,
+                                 bool                    caseSensitive   = false,
+                                 bool                    partialSearch   = false);
 
         /**
         * Finds a model
@@ -1519,12 +1519,12 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param partialSearch - if true, the search will stop on the first matching item found
         *@return the found matching item count
         */
-        virtual void FindPvt(const CString&        argument,
-                             PSS_Log*              pLog,
-                             ZBPropertyAttributes* pPropAttributes = NULL,
-                             bool                  inSubModel      = true,
-                             bool                  caseSensitive   = false,
-                             bool                  partialSearch   = false);
+        virtual void FindPvt(const CString&          argument,
+                             PSS_Log*                pLog,
+                             PSS_PropertyAttributes* pPropAttributes = NULL,
+                             bool                    inSubModel      = true,
+                             bool                    caseSensitive   = false,
+                             bool                    partialSearch   = false);
 
         /**
         * Finds a model from its path

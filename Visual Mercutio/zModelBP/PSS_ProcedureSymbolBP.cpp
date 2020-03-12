@@ -23,7 +23,7 @@
 #define _ZMODELEXPORT
     #include "zModel\PSS_BasicProperties.h"
 #undef _ZMODELEXPORT
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
 #include "PSS_RuleListPropertiesBP.h"
@@ -1651,7 +1651,7 @@ bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCmdID,
     return PSS_Symbol::ProcessMenuCommand(menuCmdID, prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-CString PSS_ProcedureSymbolBP::GetAttributeString(ZBPropertyAttributes* pAttributes) const
+CString PSS_ProcedureSymbolBP::GetAttributeString(PSS_PropertyAttributes* pAttributes) const
 {
     return PSS_Symbol::GetAttributeString(pAttributes);
 }
@@ -2656,12 +2656,12 @@ bool PSS_ProcedureSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcPropert
     return ::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_DECISIONLIST);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_ProcedureSymbolBP::OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (!pAttributes)
         return false;
 
-    ZBPropertyAttributes& attributes = PSS_ModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID());
+    PSS_PropertyAttributes& attributes = PSS_ModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID());
 
     // if global attributes were defined, copy them
     if (attributes.GetAttributeCount() > 0)
@@ -2675,13 +2675,13 @@ bool PSS_ProcedureSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttri
         pAttributes->AddAttribute(ZS_BP_PROP_UNIT, M_Unit_Name_ID);
 
         // no item labels
-        pAttributes->SetDisplayTitleText(false);
+        pAttributes->SetShowTitleText(false);
     }
 
     return PSS_Symbol::OnFillDefaultAttributes(pAttributes);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_ProcedureSymbolBP::OnChangeAttributes(PSS_PropertyAttributes* pAttributes)
 {
     return PSS_Symbol::OnChangeAttributes(pAttributes);
 }

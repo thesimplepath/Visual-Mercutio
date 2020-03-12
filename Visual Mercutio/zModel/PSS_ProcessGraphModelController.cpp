@@ -3744,7 +3744,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
     ZBPropertySet propSet;
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
 
-    ZBPropertyAttributes propAttributes;
+    PSS_PropertyAttributes propAttributes;
     PSS_FindSymbolExtDlg findSymbolDlg(&propAttributes, &propSet);
 
     if (findSymbolDlg.DoModal() == IDOK)
@@ -4458,8 +4458,8 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
     if (!pSymbolHit && !pLinkSymbolHit)
         return;
 
-    ZBPropertySet        propSet;
-    ZBPropertyAttributes propAttributes;
+    ZBPropertySet          propSet;
+    PSS_PropertyAttributes propAttributes;
 
     // check what kind of symbol was clicked
     if (pSymbolHit)

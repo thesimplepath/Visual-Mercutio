@@ -6,7 +6,7 @@
 #include "ZCPropertyListCtrl.h"
 
 
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
@@ -142,7 +142,7 @@ CString ZCInPlaceIntelliEdit::GetEditText() const
 }
 
 
-BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
@@ -159,7 +159,7 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, cons
     return rValue;
 }
 
-BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, double dInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, double dInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
@@ -175,7 +175,7 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, doub
     SetSelAll();
     return rValue;
 }
-BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, float fInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, float fInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
@@ -316,7 +316,7 @@ void ZCInPlaceIntelliEdit::OnExtendedCommand()
     // Process Extended
     if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
     {
-        ZBPropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
+        PSS_PropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
 
         CString ProposedValue = GetEditText();
         // Save the value

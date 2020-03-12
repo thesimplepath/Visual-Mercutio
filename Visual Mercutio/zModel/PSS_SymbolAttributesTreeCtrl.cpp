@@ -9,7 +9,6 @@
 #include "PSS_SymbolAttributesTreeCtrl.h"
 
 // processsoft
-#include "zProperty\ZBPropertyAttributes.h"
 #include "zProperty\ZIProperties.h"
 
 #ifdef _DEBUG
@@ -34,11 +33,11 @@ PSS_SymbolAttributesTreeCtrl::ITreeData::ITreeData() :
 //---------------------------------------------------------------------------
 PSS_SymbolAttributesTreeCtrl::ITreeData::ITreeData(int category, int item) :
     CObject(),
-    m_pPropAttribute(new _ZBPropertyAttribute(category, item)),
+    m_pPropAttribute(new PSS_PropertyAttributes::IAttribute(category, item)),
     m_Type(item == -1 ? IE_DT_Category : IE_DT_Item)
 {}
 //---------------------------------------------------------------------------
-PSS_SymbolAttributesTreeCtrl::ITreeData::ITreeData(_ZBPropertyAttribute* pPropAttribute) :
+PSS_SymbolAttributesTreeCtrl::ITreeData::ITreeData(PSS_PropertyAttributes::IAttribute* pPropAttribute) :
     CObject(),
     m_pPropAttribute(NULL),
     m_Type(IE_DT_Item)
@@ -65,7 +64,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SymbolAttributesTreeCtrl
 //---------------------------------------------------------------------------
-PSS_SymbolAttributesTreeCtrl::PSS_SymbolAttributesTreeCtrl(ZBPropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet) :
+PSS_SymbolAttributesTreeCtrl::PSS_SymbolAttributesTreeCtrl(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet) :
     PSS_TreeCtrl(),
     m_pPropAttributes(pPropAttributes),
     m_pPropSet(pPropSet),
@@ -83,7 +82,7 @@ void PSS_SymbolAttributesTreeCtrl::Initialize()
     LoadTree();
 }
 //---------------------------------------------------------------------------
-void PSS_SymbolAttributesTreeCtrl::Initialize(ZBPropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet)
+void PSS_SymbolAttributesTreeCtrl::Initialize(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet)
 {
     m_pPropAttributes = pPropAttributes;
     m_pPropSet        = pPropSet;
@@ -248,10 +247,10 @@ void PSS_SymbolAttributesTreeCtrl::LoadTree()
     for (PSS_Property* pProp = itProp.GetFirst(); pProp; pProp = itProp.GetNext())
         ProcessProperty(pProp);
 
-    _ZBPropertyAttributeIterator itAttr(&m_pPropAttributes->GetAttributeSetConst());
+    PSS_PropertyAttributes::IAttributeIterator itAttr(&m_pPropAttributes->GetAttributeSet());
 
     // iterate through all attributes and check the matching element in the tree control. Copy all element attributes
-    for (_ZBPropertyAttribute* pAttribute = itAttr.GetFirst(); pAttribute; pAttribute = itAttr.GetNext())
+    for (PSS_PropertyAttributes::IAttribute* pAttribute = itAttr.GetFirst(); pAttribute; pAttribute = itAttr.GetNext())
         CheckAttribute(pAttribute);
 
     HTREEITEM hCurrent = GetRootItem();
@@ -345,7 +344,7 @@ HTREEITEM PSS_SymbolAttributesTreeCtrl::GetParentProperty(PSS_Property* pProp)
     return hTreeItem;
 }
 //---------------------------------------------------------------------------
-void PSS_SymbolAttributesTreeCtrl::CheckAttribute(_ZBPropertyAttribute* pAttribute)
+void PSS_SymbolAttributesTreeCtrl::CheckAttribute(PSS_PropertyAttributes::IAttribute* pAttribute)
 {
     ASSERT(pAttribute);
 
@@ -411,7 +410,7 @@ PSS_SymbolAttributesTreeCtrl::ITreeData* PSS_SymbolAttributesTreeCtrl::FindEleme
     return NULL;
 }
 //---------------------------------------------------------------------------
-PSS_SymbolAttributesTreeCtrl::ITreeData* PSS_SymbolAttributesTreeCtrl::FindElementFromDataSet(_ZBPropertyAttribute* pPropAttribute)
+PSS_SymbolAttributesTreeCtrl::ITreeData* PSS_SymbolAttributesTreeCtrl::FindElementFromDataSet(PSS_PropertyAttributes::IAttribute* pPropAttribute)
 {
     if (!pPropAttribute)
         return NULL;
@@ -434,7 +433,7 @@ PSS_SymbolAttributesTreeCtrl::ITreeData* PSS_SymbolAttributesTreeCtrl::AddDataTo
     return pData.release();
 }
 //---------------------------------------------------------------------------
-PSS_SymbolAttributesTreeCtrl::ITreeData* PSS_SymbolAttributesTreeCtrl::AddDataToSet(_ZBPropertyAttribute* pPropAttribute)
+PSS_SymbolAttributesTreeCtrl::ITreeData* PSS_SymbolAttributesTreeCtrl::AddDataToSet(PSS_PropertyAttributes::IAttribute* pPropAttribute)
 {
     std::unique_ptr<ITreeData> pData(new ITreeData(pPropAttribute));
     m_DataSet.Add(pData.get());

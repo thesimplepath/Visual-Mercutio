@@ -69,7 +69,7 @@ public:
         return NULL;
     };
 
-    ZBPropertyItem* GetSelectedPropertyItem() const
+    PSS_PropertyItem* GetSelectedPropertyItem() const
     {
         return m_pSelectedProperty;
     };
@@ -109,7 +109,7 @@ private:
 private:
     ZIProperties* m_pProperties;
     ZBPropertySet* m_pPropSet;
-    ZBPropertyItem* m_pSelectedProperty;
+    PSS_PropertyItem* m_pSelectedProperty;
     bool m_AllowItemSelection;
     bool m_AllowCategorySelection;
     bool m_Selection;

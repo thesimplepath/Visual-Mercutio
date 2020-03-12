@@ -993,7 +993,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelMdl::GetOwnerPageModel(PSS_Proces
     return NULL;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::PropagateNewSymbolAttributes(ZBPropertyAttributes* pAttributes, int objectID)
+void PSS_ProcessGraphModelMdl::PropagateNewSymbolAttributes(PSS_PropertyAttributes* pAttributes, int objectID)
 {
     CODComponentSet* pSet           = GetComponents();
     const int        componentCount = pSet->GetSize();
@@ -2023,12 +2023,12 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPartialName(const CString& 
     return &m_FindSet;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ProcessGraphModelMdl::Find(const CString&        argument,
-                                           PSS_Log*              pLog,
-                                           ZBPropertyAttributes* pPropAttributes,
-                                           bool                  inSubModel,
-                                           bool                  caseSensitive,
-                                           bool                  partialSearch)
+std::size_t PSS_ProcessGraphModelMdl::Find(const CString&          argument,
+                                           PSS_Log*                pLog,
+                                           PSS_PropertyAttributes* pPropAttributes,
+                                           bool                    inSubModel,
+                                           bool                    caseSensitive,
+                                           bool                    partialSearch)
 {
     m_FindCounter = 0;
 
@@ -3209,12 +3209,12 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPartialNamePvt(const CStrin
     return &m_FindSet;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessGraphModelMdl::FindPvt(const CString&        argument,
-                                       PSS_Log*              pLog,
-                                       ZBPropertyAttributes* pPropAttributes,
-                                       bool                  inSubModel,
-                                       bool                  caseSensitive,
-                                       bool                  partialSearch)
+void PSS_ProcessGraphModelMdl::FindPvt(const CString&          argument,
+                                       PSS_Log*                pLog,
+                                       PSS_PropertyAttributes* pPropAttributes,
+                                       bool                    inSubModel,
+                                       bool                    caseSensitive,
+                                       bool                    partialSearch)
 {
     CODComponentSet* pSet           = GetComponents();
     const int        componentCount = pSet->GetSize();

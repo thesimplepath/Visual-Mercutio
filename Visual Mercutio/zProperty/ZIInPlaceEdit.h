@@ -26,7 +26,7 @@
 #include "zBaseLib\PSS_TimeSpan.h"
 
 // forward class declaration
-class ZBPropertyItem;
+class PSS_PropertyItem;
 
 #ifdef _ZPROPERTYEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -73,32 +73,32 @@ public:
 
 
     // Initialize the edit control
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, double dInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, double dInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, float fInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, float fInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Duration& DurationInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, PSS_Duration& DurationInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Date& DateInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, PSS_Date& DateInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_TimeSpan& TimeInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, PSS_TimeSpan& TimeInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
-    virtual void SetNewPropertyItem(ZBPropertyItem* pItem)
+    virtual void SetNewPropertyItem(PSS_PropertyItem* pItem)
     {
         m_pItem = pItem;
     };
@@ -165,7 +165,7 @@ protected:
 
 
 protected:
-    ZBPropertyItem* m_pItem;
+    PSS_PropertyItem* m_pItem;
 
     InPlaceEditType m_type;
 

@@ -15,7 +15,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 #include "zProperty\ZIProperties.h"
 
 #ifdef _ZPTYMGREXPORT
@@ -44,7 +44,7 @@ public:
 
     _ZBPropertyState();
     _ZBPropertyState(PSS_Property& Property, double ObjectReference = 0);
-    _ZBPropertyState(ZBPropertyItemCategory& PropItemCat, double ObjectReference = 0);
+    _ZBPropertyState(PSS_PropertyItemCategory& PropItemCat, double ObjectReference = 0);
 
     // Allow copy constructor and assignement operator
     _ZBPropertyState(const _ZBPropertyState& src);
@@ -124,7 +124,7 @@ inline _ZBPropertyState::_ZBPropertyState(PSS_Property& Property, double ObjectR
     m_CategoryOrder = Property.GetCategoryOrder();
 }
 
-inline _ZBPropertyState::_ZBPropertyState(ZBPropertyItemCategory& PropItemCat, double ObjectReference /*= 0*/)
+inline _ZBPropertyState::_ZBPropertyState(PSS_PropertyItemCategory& PropItemCat, double ObjectReference /*= 0*/)
     : m_Size(0, 0),
     m_ExtendedSize(0, 0)
 {
@@ -261,11 +261,11 @@ using namespace sfl;
 
 //@type ZBItemCategorySet | An array of ZBPropertyItemCategory pointers.
 //@iex typedef CCArray_T<ZBPropertyItemCategory*,ZBPropertyItemCategory*> ZBItemCategorySet;
-typedef CCArray_T<ZBPropertyItemCategory*, ZBPropertyItemCategory*> ZBItemCategorySet;
+typedef CCArray_T<PSS_PropertyItemCategory*, PSS_PropertyItemCategory*> ZBItemCategorySet;
 
 //@type ZBItemCategoryIterator | An iterator for ZBItemCategorySet collections.
 //@iex typedef Iterator_T<ZBPropertyItemCategory*> ZBItemCategoryIterator;
-typedef Iterator_T<ZBPropertyItemCategory*> ZBItemCategoryIterator;
+typedef Iterator_T<PSS_PropertyItemCategory*> ZBItemCategoryIterator;
 
 //@type _ZBPropertyStateSet | An array of _ZBPropertyState pointers.
 //@iex typedef CCArray_T<_ZBPropertyState*,_ZBPropertyState*> _ZBPropertyStateSet;
@@ -309,57 +309,57 @@ public:
         return m_PropertyItemTabSet.GetSize();
     };
 
-    ZBPropertyItemCategory* GetCategoryTab(int nIndex) const
+    PSS_PropertyItemCategory* GetCategoryTab(int nIndex) const
     {
         return (nIndex < (int)GetCategoryCount()) ? m_PropertyItemTabSet.GetAt(nIndex) : NULL;
     };
 
-    ZBPropertyItemCategory* GetTab(ZBPropertyItem* pPropertyItem);
-    PSS_Property*           GetCorrespondingProperty(ZBPropertyItem* pPropertyItem);
+    PSS_PropertyItemCategory* GetTab(PSS_PropertyItem* pPropertyItem);
+    PSS_Property*           GetCorrespondingProperty(PSS_PropertyItem* pPropertyItem);
 
     // Operations
-    ZBPropertyItemCategory* AddNewTab(LPCTSTR pStrTabName);
+    PSS_PropertyItemCategory* AddNewTab(LPCTSTR pStrTabName);
     void CheckState(int nFromControlIndex, BYTE nFromPropertyItemID);
 
-    virtual void OnDataChanged(ZBPropertyItem*        pPropertyItem,
+    virtual void OnDataChanged(PSS_PropertyItem*        pPropertyItem,
                                ZCPropertyListCtrl*    pWndPropertyListCtrl,
                                int                    nIndex,
                                bool&                Refresh);
 
     virtual bool UpdateControlData(const ZIProperties* pData);
     virtual bool UpdateControlData(ZBPropertySet& PropSet);
-    virtual bool UpdatePropertyData(ZBPropertyItem* pPropertyItem = NULL);
-    virtual bool CheckCurrentPropertyData(ZBPropertyItem* pPropertyItem, CString& ProposedValue);
+    virtual bool UpdatePropertyData(PSS_PropertyItem* pPropertyItem = NULL);
+    virtual bool CheckCurrentPropertyData(PSS_PropertyItem* pPropertyItem, CString& ProposedValue);
 
-    virtual bool ProcessExtendedCurrentPropertyData(ZBPropertyItem*    pPropertyItem,
+    virtual bool ProcessExtendedCurrentPropertyData(PSS_PropertyItem*    pPropertyItem,
                                                     CString&            ProposedValue,
                                                     bool&                Refresh);
 
     virtual bool ProcessMenuCommandCurrentPropertyData(int                MenuCommand,
-                                                       ZBPropertyItem*    pPropertyItem,
+                                                       PSS_PropertyItem*    pPropertyItem,
                                                        CString&        ProposedValue,
                                                        bool&            Refresh);
 
     /////////////////////////////////////////////////////////////////////////////
     // Property state management methods
-    bool SavePropertyState(ZBPropertyItem* pPropertyItem);
-    bool SetPropertyStateToProperty(ZBPropertyItem* pPropertyItem);
-    bool SavePropertyState(ZBPropertyItemCategory* pPropertyCategoryItem);
-    bool SetPropertyStateToProperty(ZBPropertyItemCategory* pPropertyCategoryItem);
-    _ZBPropertyState* GetPropertyState(ZBPropertyItem* pPropertyItem);
-    _ZBPropertyState* GetPropertyCategoryState(ZBPropertyItemCategory* pPropertyCategoryItem);
+    bool SavePropertyState(PSS_PropertyItem* pPropertyItem);
+    bool SetPropertyStateToProperty(PSS_PropertyItem* pPropertyItem);
+    bool SavePropertyState(PSS_PropertyItemCategory* pPropertyCategoryItem);
+    bool SetPropertyStateToProperty(PSS_PropertyItemCategory* pPropertyCategoryItem);
+    _ZBPropertyState* GetPropertyState(PSS_PropertyItem* pPropertyItem);
+    _ZBPropertyState* GetPropertyCategoryState(PSS_PropertyItemCategory* pPropertyCategoryItem);
 
     bool LoadStateFromIniFile(const CString IniFile);
     bool SaveStateToIniFile(const CString IniFile);
 
-    bool OnDropInternalPropertyItem(ZBPropertyItem*    pSrcPropertyItem,
-                                    ZBPropertyItem*    pDstPropertyItem,
+    bool OnDropInternalPropertyItem(PSS_PropertyItem*    pSrcPropertyItem,
+                                    PSS_PropertyItem*    pDstPropertyItem,
                                     bool                Top2Down);
 
 protected:
 
     // If the tab exists, return it, otherwise return NULL
-    ZBPropertyItemCategory* TabExist(LPCTSTR pStrTabName);
+    PSS_PropertyItemCategory* TabExist(LPCTSTR pStrTabName);
     bool ApplyPropertyChanges();
 
 private:
@@ -369,9 +369,9 @@ private:
     ZBPropertyItemManager& operator=(const ZBPropertyItemManager& d);
 
     bool UpdateControlData();
-    ZBPropertyItem* CreatePropertyItem(PSS_Property& Prop);
-    void SetDataToPropertyItem(ZBPropertyItem* pPropertyItem, PSS_Property& Prop);
-    void SetItemDataToProperty(ZBPropertyItem* pPropertyItem, PSS_Property& Prop);
+    PSS_PropertyItem* CreatePropertyItem(PSS_Property& Prop);
+    void SetDataToPropertyItem(PSS_PropertyItem* pPropertyItem, PSS_Property& Prop);
+    void SetItemDataToProperty(PSS_PropertyItem* pPropertyItem, PSS_Property& Prop);
     void FreePropertySet();
     void DeleteUnusedTab();
     void DeleteAllTabs();
@@ -381,8 +381,8 @@ private:
     // Property state management methods
     void DeletePropertyState();
 
-    bool OnDropCategory(ZBPropertyItemCategory*    pSrcCategoryItem,
-                        ZBPropertyItem*            pDstPropertyItem,
+    bool OnDropCategory(PSS_PropertyItemCategory*    pSrcCategoryItem,
+                        PSS_PropertyItem*            pDstPropertyItem,
                         bool                        Top2Down);
 
     void SetInitialCategoryOrder();
@@ -422,7 +422,7 @@ inline ZBPropertyItemManager::~ZBPropertyItemManager()
     DeletePropertyState();
 }
 
-inline void ZBPropertyItemManager::OnDataChanged(ZBPropertyItem*        pPropertyItem,
+inline void ZBPropertyItemManager::OnDataChanged(PSS_PropertyItem*        pPropertyItem,
                                                  ZCPropertyListCtrl*    pWndPropertyListCtrl,
                                                  int                    nIndex,
                                                  bool&                    Refresh)
@@ -455,7 +455,7 @@ inline void ZBPropertyItemManager::OnDataChanged(ZBPropertyItem*        pPropert
 { \
     ZBPropertyItemCategory* pNewTab = AddNewTab(LoadString(idTabName)); \
     pNewTab->SetEnabled(enabled); \
-    ZBPropertyItem* pPropertyItem;
+    PSS_PropertyItem* pPropertyItem;
 #define PROPERTY_ITEM_IDNAME(id, class_name, idItemName, enabled) \
     pPropertyItem = new class_name(LoadString(idItemName)); \
     pPropertyItem->SetEnabled(enabled); \
@@ -466,7 +466,7 @@ inline void ZBPropertyItemManager::OnDataChanged(ZBPropertyItem*        pPropert
 { \
     ZBPropertyItemCategory* pNewTab = AddNewTab(tabName); \
     pNewTab->SetEnabled(enabled); \
-    ZBPropertyItem* pPropertyItem;
+    PSS_PropertyItem* pPropertyItem;
 #define PROPERTY_ITEM(id, class_name, itemName, enabled) \
     pPropertyItem = new class_name(itemName); \
     pPropertyItem->SetEnabled(enabled); \
@@ -483,7 +483,7 @@ inline void ZBPropertyItemManager::OnDataChanged(ZBPropertyItem*        pPropert
         POSITION posItem = pPropertyItemTab->GetHeadPosition(); \
         while(posItem != NULL) \
         { \
-            ZBPropertyItem* pPropertyItem = pPropertyItemTab->GetNext(posItem); \
+            PSS_PropertyItem* pPropertyItem = pPropertyItemTab->GetNext(posItem); \
             switch(pPropertyItem->GetPropertyID()) \
             {
 #define SET_ITEM_STRING(id, string) \

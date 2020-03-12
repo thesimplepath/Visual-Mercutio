@@ -28,7 +28,7 @@
 #include "zModelRes.h"
 
 // forward class declaration
-class ZBPropertyAttributes;
+class PSS_PropertyAttributes;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -53,9 +53,9 @@ class PSS_SelectSymbolAttributeDlg : public CDialog
         *@param pPropSet - the properties set
         *@param pParent - parent window, can be NULL
         */
-        PSS_SelectSymbolAttributeDlg(ZBPropertyAttributes* pPropAttributes = NULL,
-                                     ZBPropertySet*        pPropSet        = NULL,
-                                     CWnd*                 pParent         = NULL);
+        PSS_SelectSymbolAttributeDlg(PSS_PropertyAttributes* pPropAttributes = NULL,
+                                     ZBPropertySet*          pPropSet        = NULL,
+                                     CWnd*                   pParent         = NULL);
 
         virtual ~PSS_SelectSymbolAttributeDlg();
 
@@ -88,7 +88,7 @@ class PSS_SelectSymbolAttributeDlg : public CDialog
             IDD = IDD_SYMBOLATTRIBUTE_SELECTION
         };
 
-        ZBPropertyAttributes*        m_pPropAttributes;
+        PSS_PropertyAttributes*      m_pPropAttributes;
         ZBPropertySet*               m_pPropSet;
         PSS_SymbolAttributesTreeCtrl m_AttributeTree;
         BOOL                         m_SetAsDefaultToAll;

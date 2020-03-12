@@ -19,7 +19,7 @@
 #define _ZMODELEXPORT
     #include "zModel\PSS_BasicProperties.h"
 #undef _ZMODELEXPORT
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 #include "PSS_UnitPropertiesBP_Beta1.h"
 #include "PSS_ProcessGraphModelControllerBP.h"
 #include "PSS_ProcessGraphModelMdlBP.h"
@@ -795,7 +795,7 @@ bool PSS_StopSymbolBP::ProcessMenuCommand(int            menuCmdID,
     return PSS_Symbol::ProcessMenuCommand(menuCmdID, prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-CString PSS_StopSymbolBP::GetAttributeString(ZBPropertyAttributes* pAttributes) const
+CString PSS_StopSymbolBP::GetAttributeString(PSS_PropertyAttributes* pAttributes) const
 {
     return PSS_Symbol::GetAttributeString(pAttributes);
 }
@@ -974,7 +974,7 @@ bool PSS_StopSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_StopSymbolBP::OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (!pAttributes)
         return false;
@@ -991,13 +991,13 @@ bool PSS_StopSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes
         pAttributes->AddAttribute(ZS_BP_PROP_UNIT, M_Unit_Name_ID);
 
         // no item labels
-        pAttributes->SetDisplayTitleText(false);
+        pAttributes->SetShowTitleText(false);
     }
 
     return PSS_Symbol::OnFillDefaultAttributes(pAttributes);
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_StopSymbolBP::OnChangeAttributes(PSS_PropertyAttributes* pAttributes)
 {
     return PSS_Symbol::OnChangeAttributes(pAttributes);
 }

@@ -131,7 +131,7 @@ bool ZBPropertyItemManager::UpdateControlData()
             }
         }
 
-        ZBPropertyItemCategory* pTab = TabExist(pProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pProp->GetCategory());
 
         if (!pTab)
         {
@@ -150,7 +150,7 @@ bool ZBPropertyItemManager::UpdateControlData()
         }
 
         // Check if already exists
-        ZBPropertyItem* pPropertyItem = pTab->GetPropertyItem(pProp->GetItemID());
+        PSS_PropertyItem* pPropertyItem = pTab->GetPropertyItem(pProp->GetItemID());
 
         // Then add property item
         if (!pPropertyItem)
@@ -192,7 +192,7 @@ bool ZBPropertyItemManager::UpdateControlData()
     return true;
 }
 
-bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*= NULL*/)
+bool ZBPropertyItemManager::UpdatePropertyData(PSS_PropertyItem* pPropertyItem /*= NULL*/)
 {
     PSS_Property* pProp;
 
@@ -205,7 +205,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*=
         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
             // First, find the category
-            ZBPropertyItemCategory* pTab = TabExist(pProp->GetCategory());
+            PSS_PropertyItemCategory* pTab = TabExist(pProp->GetCategory());
 
             if (!pTab)
             {
@@ -213,7 +213,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*=
             }
 
             // Check if already exists
-            ZBPropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
+            PSS_PropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
 
             if (!pPropItem)
             {
@@ -241,7 +241,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*=
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // First, find the category
-        ZBPropertyItemCategory* pTab = TabExist(pProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pProp->GetCategory());
 
         if (!pTab)
         {
@@ -249,7 +249,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*=
         }
 
         // Check if already exists
-        ZBPropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
+        PSS_PropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
 
         if (!pPropItem || pPropItem != pPropertyItem)
         {
@@ -282,7 +282,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(ZBPropertyItem* pPropertyItem /*=
     return false;
 }
 
-bool ZBPropertyItemManager::CheckCurrentPropertyData(ZBPropertyItem* pPropertyItem, CString& ProposedValue)
+bool ZBPropertyItemManager::CheckCurrentPropertyData(PSS_PropertyItem* pPropertyItem, CString& ProposedValue)
 {
     // If no item specified, assume the data are entered correctly
     if (!pPropertyItem)
@@ -301,7 +301,7 @@ bool ZBPropertyItemManager::CheckCurrentPropertyData(ZBPropertyItem* pPropertyIt
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // First, find the category
-        ZBPropertyItemCategory* pTab = TabExist(pProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pProp->GetCategory());
 
         if (!pTab)
         {
@@ -309,7 +309,7 @@ bool ZBPropertyItemManager::CheckCurrentPropertyData(ZBPropertyItem* pPropertyIt
         }
 
         // Check if already exists
-        ZBPropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
+        PSS_PropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
 
         if (!pPropItem || pPropItem != pPropertyItem)
         {
@@ -334,7 +334,7 @@ bool ZBPropertyItemManager::CheckCurrentPropertyData(ZBPropertyItem* pPropertyIt
     return false;
 }
 
-bool ZBPropertyItemManager::ProcessExtendedCurrentPropertyData(ZBPropertyItem*    pPropertyItem,
+bool ZBPropertyItemManager::ProcessExtendedCurrentPropertyData(PSS_PropertyItem*    pPropertyItem,
                                                                CString&        ProposedValue,
                                                                bool&            Refresh)
 {
@@ -355,7 +355,7 @@ bool ZBPropertyItemManager::ProcessExtendedCurrentPropertyData(ZBPropertyItem*  
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // First, find the category
-        ZBPropertyItemCategory* pTab = TabExist(pProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pProp->GetCategory());
 
         if (!pTab)
         {
@@ -363,7 +363,7 @@ bool ZBPropertyItemManager::ProcessExtendedCurrentPropertyData(ZBPropertyItem*  
         }
 
         // Check if already exists
-        ZBPropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
+        PSS_PropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
 
         if (!pPropItem || pPropItem != pPropertyItem)
         {
@@ -393,7 +393,7 @@ bool ZBPropertyItemManager::ProcessExtendedCurrentPropertyData(ZBPropertyItem*  
 }
 
 bool ZBPropertyItemManager::ProcessMenuCommandCurrentPropertyData(int                MenuCommand,
-                                                                  ZBPropertyItem*    pPropertyItem,
+                                                                  PSS_PropertyItem*    pPropertyItem,
                                                                   CString&            ProposedValue,
                                                                   bool&            Refresh)
 {
@@ -414,7 +414,7 @@ bool ZBPropertyItemManager::ProcessMenuCommandCurrentPropertyData(int           
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // First, find the category
-        ZBPropertyItemCategory* pTab = TabExist(pProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pProp->GetCategory());
 
         if (!pTab)
         {
@@ -422,7 +422,7 @@ bool ZBPropertyItemManager::ProcessMenuCommandCurrentPropertyData(int           
         }
 
         // Check if already exists
-        ZBPropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
+        PSS_PropertyItem* pPropItem = pTab->GetPropertyItem(pProp->GetItemID());
 
         if (!pPropItem || pPropItem != pPropertyItem)
         {
@@ -462,7 +462,7 @@ bool ZBPropertyItemManager::ApplyPropertyChanges()
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // First, get the category
-        ZBPropertyItemCategory* pTab = TabExist(pProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pProp->GetCategory());
 
         if (!pTab)
         {
@@ -470,7 +470,7 @@ bool ZBPropertyItemManager::ApplyPropertyChanges()
         }
 
         // Then, get the right property item
-        ZBPropertyItem* pPropertyItem = pTab->GetPropertyItem(pProp->GetItemID());
+        PSS_PropertyItem* pPropertyItem = pTab->GetPropertyItem(pProp->GetItemID());
 
         // If not exits, continue
         if (!pPropertyItem)
@@ -497,9 +497,9 @@ bool ZBPropertyItemManager::ApplyPropertyChanges()
     return true;
 }
 
-ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(PSS_Property& Prop)
+PSS_PropertyItem* ZBPropertyItemManager::CreatePropertyItem(PSS_Property& Prop)
 {
-    ZBPropertyItem* pItem = NULL;
+    PSS_PropertyItem* pItem = NULL;
 
     switch (Prop.GetType())
     {
@@ -685,7 +685,7 @@ ZBPropertyItem* ZBPropertyItemManager::CreatePropertyItem(PSS_Property& Prop)
     return pItem;
 }
 
-void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem, PSS_Property& Prop)
+void ZBPropertyItemManager::SetDataToPropertyItem(PSS_PropertyItem* pPropertyItem, PSS_Property& Prop)
 {
     switch (Prop.GetType())
     {
@@ -918,7 +918,7 @@ void ZBPropertyItemManager::SetDataToPropertyItem(ZBPropertyItem* pPropertyItem,
     pPropertyItem->SetCategoryOrder(Prop.GetCategoryOrder());
 }
 
-void ZBPropertyItemManager::SetItemDataToProperty(ZBPropertyItem* pPropertyItem, PSS_Property& Prop)
+void ZBPropertyItemManager::SetItemDataToProperty(PSS_PropertyItem* pPropertyItem, PSS_Property& Prop)
 {
     // Assign the right values
     switch (Prop.GetType())
@@ -1142,7 +1142,7 @@ void ZBPropertyItemManager::DeleteAllTabs()
     // Run through all items
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
+    for (PSS_PropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
     {
         delete pItemCat;
     }
@@ -1155,7 +1155,7 @@ void ZBPropertyItemManager::DeleteUnusedTab()
     // Run through all items
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; )
+    for (PSS_PropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; )
     {
         if (!ExistInPropSet(pItemCat->GetName()))
         {
@@ -1192,14 +1192,14 @@ bool ZBPropertyItemManager::ExistInPropSet(LPCTSTR pStrTabName)
     return false;
 }
 
-PSS_Property* ZBPropertyItemManager::GetCorrespondingProperty(ZBPropertyItem* pPropertyItem)
+PSS_Property* ZBPropertyItemManager::GetCorrespondingProperty(PSS_PropertyItem* pPropertyItem)
 {
     // Now run through the list of data and fill the property set
     ZBPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
-    ZBPropertyItemCategory* pCat = GetTab(pPropertyItem);
+    PSS_PropertyItemCategory* pCat = GetTab(pPropertyItem);
 
     if (!pCat)
     {
@@ -1218,25 +1218,25 @@ PSS_Property* ZBPropertyItemManager::GetCorrespondingProperty(ZBPropertyItem* pP
     return NULL;
 }
 
-ZBPropertyItemCategory* ZBPropertyItemManager::AddNewTab(LPCTSTR pStrTabName)
+PSS_PropertyItemCategory* ZBPropertyItemManager::AddNewTab(LPCTSTR pStrTabName)
 {
-    ZBPropertyItemCategory* pNewTab = TabExist(pStrTabName);
+    PSS_PropertyItemCategory* pNewTab = TabExist(pStrTabName);
 
     if (!pNewTab)
     {
-        pNewTab = new ZBPropertyItemCategory(pStrTabName);
+        pNewTab = new PSS_PropertyItemCategory(pStrTabName);
         m_PropertyItemTabSet.Add(pNewTab);
     }
 
     return pNewTab;
 }
 
-ZBPropertyItemCategory* ZBPropertyItemManager::TabExist(LPCTSTR pStrTabName)
+PSS_PropertyItemCategory* ZBPropertyItemManager::TabExist(LPCTSTR pStrTabName)
 {
     // Run through all items
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
+    for (PSS_PropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
     {
         if (pItemCat->GetName() == pStrTabName)
         {
@@ -1247,12 +1247,12 @@ ZBPropertyItemCategory* ZBPropertyItemManager::TabExist(LPCTSTR pStrTabName)
     return NULL;
 }
 
-ZBPropertyItemCategory* ZBPropertyItemManager::GetTab(ZBPropertyItem* pPropertyItem)
+PSS_PropertyItemCategory* ZBPropertyItemManager::GetTab(PSS_PropertyItem* pPropertyItem)
 {
     // Run through all items
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
+    for (PSS_PropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
     {
         if (pItemCat->PropertyItemExist(pPropertyItem))
         {
@@ -1275,7 +1275,7 @@ void ZBPropertyItemManager::CheckState(int nFromControlIndex, BYTE nFromProperty
     // Run through all items
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext())
+    for (PSS_PropertyItemCategory* pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext())
     {
         if (bDoInsert)
         {
@@ -1291,9 +1291,9 @@ void ZBPropertyItemManager::CheckState(int nFromControlIndex, BYTE nFromProperty
         }
 
         // Now run through category's elements
-        ZBPropertyItemIterator j(&pPropertyItemTab->GetPropertyItemSet());
+        PSS_PropertyItemCategory::IPropertyItemIterator j(&pPropertyItemTab->GetPropertyItemSet());
 
-        for (ZBPropertyItem* pPropertyItem = j.GetFirst(); pPropertyItem; pPropertyItem = j.GetNext())
+        for (PSS_PropertyItem* pPropertyItem = j.GetFirst(); pPropertyItem; pPropertyItem = j.GetNext())
         {
             if (bDoInsert)
             {
@@ -1337,7 +1337,7 @@ void ZBPropertyItemManager::DeletePropertyState()
     m_PropertyState.RemoveAll();
 }
 
-bool ZBPropertyItemManager::SavePropertyState(ZBPropertyItem* pPropertyItem)
+bool ZBPropertyItemManager::SavePropertyState(PSS_PropertyItem* pPropertyItem)
 {
     _ZBPropertyState* pPropState = GetPropertyState(pPropertyItem);
 
@@ -1367,7 +1367,7 @@ bool ZBPropertyItemManager::SavePropertyState(ZBPropertyItem* pPropertyItem)
     return false;
 }
 
-_ZBPropertyState* ZBPropertyItemManager::GetPropertyState(ZBPropertyItem* pPropertyItem)
+_ZBPropertyState* ZBPropertyItemManager::GetPropertyState(PSS_PropertyItem* pPropertyItem)
 {
     PSS_Property* pCorrespondingProperty = GetCorrespondingProperty(pPropertyItem);
 
@@ -1391,7 +1391,7 @@ _ZBPropertyState* ZBPropertyItemManager::GetPropertyState(ZBPropertyItem* pPrope
     return NULL;
 }
 
-bool ZBPropertyItemManager::SetPropertyStateToProperty(ZBPropertyItem* pPropertyItem)
+bool ZBPropertyItemManager::SetPropertyStateToProperty(PSS_PropertyItem* pPropertyItem)
 {
     _ZBPropertyState* pPropState = GetPropertyState(pPropertyItem);
 
@@ -1408,7 +1408,7 @@ bool ZBPropertyItemManager::SetPropertyStateToProperty(ZBPropertyItem* pProperty
     return false;
 }
 
-bool ZBPropertyItemManager::SavePropertyState(ZBPropertyItemCategory* pPropertyCategoryItem)
+bool ZBPropertyItemManager::SavePropertyState(PSS_PropertyItemCategory* pPropertyCategoryItem)
 {
     _ZBPropertyState* pPropState = GetPropertyCategoryState(pPropertyCategoryItem);
 
@@ -1435,7 +1435,7 @@ bool ZBPropertyItemManager::SavePropertyState(ZBPropertyItemCategory* pPropertyC
     return false;
 }
 
-_ZBPropertyState* ZBPropertyItemManager::GetPropertyCategoryState(ZBPropertyItemCategory* pPropertyCategoryItem)
+_ZBPropertyState* ZBPropertyItemManager::GetPropertyCategoryState(PSS_PropertyItemCategory* pPropertyCategoryItem)
 {
     if (pPropertyCategoryItem)
     {
@@ -1456,7 +1456,7 @@ _ZBPropertyState* ZBPropertyItemManager::GetPropertyCategoryState(ZBPropertyItem
     return NULL;
 }
 
-bool ZBPropertyItemManager::SetPropertyStateToProperty(ZBPropertyItemCategory* pPropertyCategoryItem)
+bool ZBPropertyItemManager::SetPropertyStateToProperty(PSS_PropertyItemCategory* pPropertyCategoryItem)
 {
     _ZBPropertyState* pPropState = GetPropertyCategoryState(pPropertyCategoryItem);
 
@@ -1656,14 +1656,14 @@ bool ZBPropertyItemManager::SaveStateToIniFile(const CString IniFile)
     return true;
 }
 
-bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPropertyItem,
-                                                       ZBPropertyItem* pDstPropertyItem,
+bool ZBPropertyItemManager::OnDropInternalPropertyItem(PSS_PropertyItem* pSrcPropertyItem,
+                                                       PSS_PropertyItem* pDstPropertyItem,
                                                        bool            Top2Down)
 {
     // If the source is a category
-    if (ISA(pSrcPropertyItem, ZBPropertyItemCategory))
+    if (ISA(pSrcPropertyItem, PSS_PropertyItemCategory))
     {
-        return OnDropCategory(dynamic_cast<ZBPropertyItemCategory*>(pSrcPropertyItem),
+        return OnDropCategory(dynamic_cast<PSS_PropertyItemCategory*>(pSrcPropertyItem),
                               pDstPropertyItem, Top2Down);
     }
 
@@ -1675,7 +1675,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPrope
     for (pSrcProp = i.GetFirst(); pSrcProp; pSrcProp = i.GetNext())
     {
         // First, find the category
-        ZBPropertyItemCategory* pTab = TabExist(pSrcProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pSrcProp->GetCategory());
 
         if (!pTab)
         {
@@ -1683,7 +1683,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPrope
         }
 
         // Check if already exists
-        ZBPropertyItem* pPropItem = pTab->GetPropertyItem(pSrcProp->GetItemID());
+        PSS_PropertyItem* pPropItem = pTab->GetPropertyItem(pSrcProp->GetItemID());
 
         if (!pPropItem || pPropItem != pSrcPropertyItem)
         {
@@ -1710,7 +1710,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPrope
     for (pDstProp = l.GetFirst(); pDstProp; pDstProp = l.GetNext())
     {
         // First, find the category
-        ZBPropertyItemCategory* pTab = TabExist(pDstProp->GetCategory());
+        PSS_PropertyItemCategory* pTab = TabExist(pDstProp->GetCategory());
 
         if (!pTab)
         {
@@ -1718,7 +1718,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPrope
         }
 
         // Check if already exists
-        ZBPropertyItem* pPropItem = pTab->GetPropertyItem(pDstProp->GetItemID());;
+        PSS_PropertyItem* pPropItem = pTab->GetPropertyItem(pDstProp->GetItemID());;
 
         if (!pPropItem || pPropItem != pDstPropertyItem)
         {
@@ -1749,18 +1749,18 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(ZBPropertyItem* pSrcPrope
     return false;
 }
 //---------------------------------------------------------------------------
-bool ZBPropertyItemManager::OnDropCategory(ZBPropertyItemCategory* pSrcCategoryItem,
-                                           ZBPropertyItem*         pDstPropertyItem,
+bool ZBPropertyItemManager::OnDropCategory(PSS_PropertyItemCategory* pSrcCategoryItem,
+                                           PSS_PropertyItem*         pDstPropertyItem,
                                            bool                    top2Down)
 {
     if (!pDstPropertyItem || !pSrcCategoryItem)
         return false;
 
-    ZBPropertyItemCategory* pDstCategoryItem;
+    PSS_PropertyItemCategory* pDstCategoryItem;
 
     // if the destination is a category
-    if (ISA(pDstPropertyItem, ZBPropertyItemCategory))
-        pDstCategoryItem = dynamic_cast<ZBPropertyItemCategory*>(pDstPropertyItem);
+    if (ISA(pDstPropertyItem, PSS_PropertyItemCategory))
+        pDstCategoryItem = dynamic_cast<PSS_PropertyItemCategory*>(pDstPropertyItem);
     else
         // locate the category of the property item
         pDstCategoryItem = GetTab(pDstPropertyItem);
@@ -1778,7 +1778,7 @@ bool ZBPropertyItemManager::OnDropCategory(ZBPropertyItemCategory* pSrcCategoryI
     bool foundSrc = false;
 
     ZBItemCategoryIterator  i(&m_PropertyItemTabSet);
-    ZBPropertyItemCategory* pItemCat;
+    PSS_PropertyItemCategory* pItemCat;
 
     for (pItemCat = (top2Down ? i.GetFirst() : i.GetLast()); pItemCat; pItemCat = (top2Down ? i.GetNext() : i.GetPrev()))
         // if we found the right source property, break the loop and set the flag
@@ -1850,7 +1850,7 @@ void ZBPropertyItemManager::SaveAllCategoryOrders()
     // to the corresponding object state
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
+    for (PSS_PropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
     {
         SavePropertyState(pItemCat);
     }
@@ -1863,7 +1863,7 @@ void ZBPropertyItemManager::SetInitialCategoryOrder()
 
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
+    for (PSS_PropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
     {
         pItemCat->SetCategoryOrder(CategoryOrder);
         ++CategoryOrder;
@@ -1878,7 +1878,7 @@ void ZBPropertyItemManager::ReOrderCategory()
 
     ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
+    for (PSS_PropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
     {
         // order is not set,
         // then re assigns initial order
@@ -1904,7 +1904,7 @@ void ZBPropertyItemManager::ReOrderCategory()
     ZBItemCategorySet      tempItemTabSet;
     ZBItemCategoryIterator j(&m_PropertyItemTabSet);
 
-    for (ZBPropertyItemCategory* pItemCat = j.GetFirst(); pItemCat; pItemCat = j.GetNext())
+    for (PSS_PropertyItemCategory* pItemCat = j.GetFirst(); pItemCat; pItemCat = j.GetNext())
         tempItemTabSet.Add(pItemCat);
 
     // remove all elements from the initial set, just the pointer, not the element itself
@@ -1913,14 +1913,14 @@ void ZBPropertyItemManager::ReOrderCategory()
     // now insert elements in order
     ZBItemCategoryIterator s(&tempItemTabSet);
 
-    for (ZBPropertyItemCategory* pSrcItemCat = s.GetFirst(); pSrcItemCat; pSrcItemCat = s.GetNext())
+    for (PSS_PropertyItemCategory* pSrcItemCat = s.GetFirst(); pSrcItemCat; pSrcItemCat = s.GetNext())
     {
         // insert in order
         bool                   inserted = false;
         int                    index = 0;
         ZBItemCategoryIterator d(&m_PropertyItemTabSet);
 
-        for (ZBPropertyItemCategory* pDstItemCat = d.GetFirst(); pDstItemCat; pDstItemCat = d.GetNext(), ++index)
+        for (PSS_PropertyItemCategory* pDstItemCat = d.GetFirst(); pDstItemCat; pDstItemCat = d.GetNext(), ++index)
             if (pSrcItemCat->GetCategoryOrder() < pDstItemCat->GetCategoryOrder())
             {
                 inserted = true;

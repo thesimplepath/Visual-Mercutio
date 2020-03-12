@@ -106,15 +106,15 @@ void ZVChoosePropertyDlg::OnOK()
         int CurSel = m_PropertyList.GetCurSel();
         if (CurSel != LB_ERR)
         {
-            ZBPropertyItem* pProperty = m_PropertyList.GetPropertyItem(CurSel);
+            PSS_PropertyItem* pProperty = m_PropertyList.GetPropertyItem(CurSel);
 
             if (pProperty)
             {
                 if (m_AllowItemSelection &&
-                    !ISA(pProperty, ZBPropertyItemCategory))
+                    !ISA(pProperty, PSS_PropertyItemCategory))
                     Enable = TRUE;
                 if (m_AllowCategorySelection &&
-                    ISA(pProperty, ZBPropertyItemCategory))
+                    ISA(pProperty, PSS_PropertyItemCategory))
                     Enable = TRUE;
             }
         }
@@ -183,8 +183,8 @@ void ZVChoosePropertyDlg::OnDeleteAttribute()
     if (mBox.Show(IDS_CONFIRMDELATTRIB, MB_YESNO) == IDNO)
         return;
 
-    ZBPropertyItem* pItem = m_PropertyList.GetCurrentPropertyItem();
-    if (pItem && ISA(pItem, ZBPropertyItemCategory))
+    PSS_PropertyItem* pItem = m_PropertyList.GetCurrentPropertyItem();
+    if (pItem && ISA(pItem, PSS_PropertyItemCategory))
         pItem = NULL;
     if (!pItem)
         return;
@@ -213,8 +213,8 @@ void ZVChoosePropertyDlg::OnDeleteAttribute()
 
 void ZVChoosePropertyDlg::OnRenameAttribute()
 {
-    ZBPropertyItem* pItem = m_PropertyList.GetCurrentPropertyItem();
-    if (pItem && ISA(pItem, ZBPropertyItemCategory))
+    PSS_PropertyItem* pItem = m_PropertyList.GetCurrentPropertyItem();
+    if (pItem && ISA(pItem, PSS_PropertyItemCategory))
         pItem = NULL;
     if (!pItem)
         return;

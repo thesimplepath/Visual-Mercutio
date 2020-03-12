@@ -41,7 +41,7 @@
 
 #include "zWeb\PSS_HtmlFile.h"
 
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _ZREPORTWEBEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -121,8 +121,8 @@ class AFX_EXT_CLASS ZVPublishProcessReport
 {
 public:
 
-    ZVPublishProcessReport(PSS_ProcessGraphModelMdlBP*    pModel = NULL,
-                           ZBPropertyAttributes*        pPropAttributes = NULL);
+    ZVPublishProcessReport(PSS_ProcessGraphModelMdlBP* pModel = NULL,
+                           PSS_PropertyAttributes*     pPropAttributes = NULL);
 
     virtual ~ZVPublishProcessReport();
 
@@ -162,7 +162,7 @@ private:
 
 private:
 
-    ZBPropertyAttributes*            m_pPropAttributes;
+    PSS_PropertyAttributes*            m_pPropAttributes;
 
     PSS_ProcessGraphModelMdl*            m_pRootModel;
 

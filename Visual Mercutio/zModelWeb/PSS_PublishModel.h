@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 #include "PSS_LanguageDefs.h"
 
 #ifdef _ZMODELWEBEXPORT
@@ -43,9 +43,9 @@ class AFX_EXT_CLASS PSS_PublishModel
         *@param pSet - model properties to publish
         *@param iniFile - initialization file name
         */
-        PSS_PublishModel(ZBPropertyAttributes* pAttributes = NULL,
-                         ZBPropertySet*        pSet        = NULL,
-                         const CString&        iniFile     = _T(""));
+        PSS_PublishModel(PSS_PropertyAttributes* pAttributes = NULL,
+                         ZBPropertySet*          pSet        = NULL,
+                         const CString&          iniFile     = _T(""));
 
         virtual ~PSS_PublishModel();
 
@@ -119,13 +119,13 @@ class AFX_EXT_CLASS PSS_PublishModel
         * Gets the property attributes
         *@return the property attributes
         */
-        virtual inline ZBPropertyAttributes* GetPropAttributes() const;
+        virtual inline PSS_PropertyAttributes* GetPropAttributes() const;
 
         /**
         * Adds an attribute
         *@param pAttribute - attribute to add
         */
-        virtual void AddAttribute(_ZBPropertyAttribute* pAttribute);
+        virtual void AddAttribute(PSS_PropertyAttributes::IAttribute* pAttribute);
 
         /**
         * Finds an attribute
@@ -133,7 +133,7 @@ class AFX_EXT_CLASS PSS_PublishModel
         *@param itemID - item identifier at which the attribute belongs
         *@return attribute, NULL if not found or on error
         */
-        virtual _ZBPropertyAttribute* FindAttribute(int categoryID, int itemID);
+        virtual PSS_PropertyAttributes::IAttribute* FindAttribute(int categoryID, int itemID);
 
         /**
         * Removes all attributes
@@ -141,21 +141,21 @@ class AFX_EXT_CLASS PSS_PublishModel
         virtual void RemoveAllAttributes();
 
     private:
-        ZBPropertyAttributes*   m_pPropAttributes;
-        ZBPropertySet*          m_pPropSet;
-        _ZBPropertyAttributeSet m_AttributeSet;
-        ELanguage               m_Language;
-        CStringArray            m_ArrayOfAddress;
-        CString                 m_Directory;
-        CString                 m_ImageFileName;
-        CString                 m_HyperLink;
-        CString                 m_IniFile;
-        bool                    m_VisualizeResult;
-        bool                    m_PublishConceptor;
-        bool                    m_PublishConceptorDetails;
-        bool                    m_PublishConceptorDeliverables;
-        bool                    m_PublishProcess;
-        bool                    m_PublishRuleBook;
+        PSS_PropertyAttributes*               m_pPropAttributes;
+        ZBPropertySet*                        m_pPropSet;
+        PSS_PropertyAttributes::IAttributeSet m_AttributeSet;
+        ELanguage                             m_Language;
+        CStringArray                          m_ArrayOfAddress;
+        CString                               m_Directory;
+        CString                               m_ImageFileName;
+        CString                               m_HyperLink;
+        CString                               m_IniFile;
+        bool                                  m_VisualizeResult;
+        bool                                  m_PublishConceptor;
+        bool                                  m_PublishConceptorDetails;
+        bool                                  m_PublishConceptorDeliverables;
+        bool                                  m_PublishProcess;
+        bool                                  m_PublishRuleBook;
 
         /**
         * Copy constructor
@@ -254,7 +254,7 @@ ELanguage PSS_PublishModel::GetLanguage() const
     return m_Language;
 }
 //---------------------------------------------------------------------------
-ZBPropertyAttributes* PSS_PublishModel::GetPropAttributes() const
+PSS_PropertyAttributes* PSS_PublishModel::GetPropAttributes() const
 {
     return m_pPropAttributes;
 }

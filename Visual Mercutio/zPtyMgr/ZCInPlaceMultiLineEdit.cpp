@@ -6,7 +6,7 @@
 #include "ZCPropertyListCtrl.h"
 
 
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
@@ -142,7 +142,7 @@ CString ZCInPlaceMultiLineEdit::GetEditText() const
 }
 
 
-BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
     BOOL rValue = PSS_MultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
@@ -158,7 +158,7 @@ BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, co
     return rValue;
 }
 
-BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, double dInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, double dInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
@@ -174,7 +174,7 @@ BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, do
     SetSelAll();
     return rValue;
 }
-BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, float fInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, float fInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
@@ -315,7 +315,7 @@ void ZCInPlaceMultiLineEdit::OnExtendedCommand()
     // Process Extended
     if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
     {
-        ZBPropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
+        PSS_PropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
 
         CString ProposedValue = GetEditText();
         // Save the value

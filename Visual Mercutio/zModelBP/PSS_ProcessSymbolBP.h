@@ -210,7 +210,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param pAttributes - the attributes
         *@return the attributes as a string
         */
-        virtual CString GetAttributeString(ZBPropertyAttributes* pAttributes) const;
+        virtual CString GetAttributeString(PSS_PropertyAttributes* pAttributes) const;
 
         /**
         * Checks if the description area is included
@@ -631,14 +631,14 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@param pAttributes - the attributes
         *@return true if the attributes were filled, otherwise false
         */
-        virtual bool OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes);
+        virtual bool OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes);
 
         /**
         * Called when the attributes change
         *@param pAttributes - the attributes
         *@return true if the attributes changed, otherwise false
         */
-        virtual bool OnChangeAttributes(ZBPropertyAttributes* pAttributes);
+        virtual bool OnChangeAttributes(PSS_PropertyAttributes* pAttributes);
 
         /**
         * Called when a deliverable name changed

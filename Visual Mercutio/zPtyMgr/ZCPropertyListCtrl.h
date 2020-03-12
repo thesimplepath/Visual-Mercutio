@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zProperty\ZIInPlaceEdit.h"
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 #include "ZBPropertyManager.h"
 
 // Forward declaration
@@ -79,7 +79,7 @@ public:
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Attributes
-    ZBPropertyItemCategory* GetCategoryTab(int nIndex) const
+    PSS_PropertyItemCategory* GetCategoryTab(int nIndex) const
     {
         if (m_pPropertyItemManager)
         {
@@ -90,7 +90,7 @@ public:
     };
 
     // Operations
-    ZBPropertyItemCategory* AddNewTab(LPCTSTR pStrTabName)
+    PSS_PropertyItemCategory* AddNewTab(LPCTSTR pStrTabName)
     {
         if (m_pPropertyItemManager)
         {
@@ -100,7 +100,7 @@ public:
         return NULL;
     };
 
-    PSS_Property* GetCorrespondingProperty(ZBPropertyItem* pPropertyItem)
+    PSS_Property* GetCorrespondingProperty(PSS_PropertyItem* pPropertyItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -113,7 +113,7 @@ public:
     // Operations
     void CheckState();
 
-    virtual void OnDataChanged(ZBPropertyItem* pPropertyItem, int nIndex, bool& Refresh)
+    virtual void OnDataChanged(PSS_PropertyItem* pPropertyItem, int nIndex, bool& Refresh)
     {
         if (m_pPropertyItemManager)
         {
@@ -131,7 +131,7 @@ public:
         return false;
     };
 
-    virtual bool UpdatePropertyData(ZBPropertyItem* pPropertyItem = NULL) const
+    virtual bool UpdatePropertyData(PSS_PropertyItem* pPropertyItem = NULL) const
     {
         if (m_pPropertyItemManager)
         {
@@ -141,7 +141,7 @@ public:
         return false;
     };
 
-    virtual bool CheckCurrentPropertyData(ZBPropertyItem* pPropertyItem, CString& ProposedValue)
+    virtual bool CheckCurrentPropertyData(PSS_PropertyItem* pPropertyItem, CString& ProposedValue)
     {
         if (m_pPropertyItemManager)
         {
@@ -152,7 +152,7 @@ public:
         return true;
     };
 
-    virtual bool ProcessExtendedCurrentPropertyData(ZBPropertyItem*    pPropertyItem,
+    virtual bool ProcessExtendedCurrentPropertyData(PSS_PropertyItem*    pPropertyItem,
                                                     CString&            ProposedValue,
                                                     bool&                Refresh)
     {
@@ -168,7 +168,7 @@ public:
     };
 
     virtual bool ProcessMenuCommandCurrentPropertyData(int                MenuCommand,
-                                                       ZBPropertyItem*    pPropertyItem,
+                                                       PSS_PropertyItem*    pPropertyItem,
                                                        CString&        ProposedValue,
                                                        bool&            Refresh)
     {
@@ -186,7 +186,7 @@ public:
 
     /////////////////////////////////////////////////////////////////////////////
     // Property state management methods
-    bool SavePropertyState(ZBPropertyItem* pPropertyItem)
+    bool SavePropertyState(PSS_PropertyItem* pPropertyItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -197,7 +197,7 @@ public:
         return false;
     };
 
-    bool SetPropertyStateToProperty(ZBPropertyItem* pPropertyItem)
+    bool SetPropertyStateToProperty(PSS_PropertyItem* pPropertyItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -208,7 +208,7 @@ public:
         return false;
     };
 
-    _ZBPropertyState* GetPropertyState(ZBPropertyItem* pPropertyItem)
+    _ZBPropertyState* GetPropertyState(PSS_PropertyItem* pPropertyItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -219,7 +219,7 @@ public:
         return NULL;
     };
 
-    bool SavePropertyState(ZBPropertyItemCategory* pPropertyCategoryItem)
+    bool SavePropertyState(PSS_PropertyItemCategory* pPropertyCategoryItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -230,7 +230,7 @@ public:
         return false;
     };
 
-    bool SetPropertyStateToProperty(ZBPropertyItemCategory* pPropertyCategoryItem)
+    bool SetPropertyStateToProperty(PSS_PropertyItemCategory* pPropertyCategoryItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -241,7 +241,7 @@ public:
         return false;
     };
 
-    _ZBPropertyState* GetPropertyCategoryState(ZBPropertyItemCategory* pPropertyCategoryItem)
+    _ZBPropertyState* GetPropertyCategoryState(PSS_PropertyItemCategory* pPropertyCategoryItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -256,12 +256,12 @@ public:
     void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager);
 
     // Return the current property item element
-    ZBPropertyItem* GetCurrentPropertyItem();
-    ZBPropertyItem* GetPropertyItem(int nIndex);
+    PSS_PropertyItem* GetCurrentPropertyItem();
+    PSS_PropertyItem* GetPropertyItem(int nIndex);
 
     // Operations
-    void InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex = 0);
-    void DeletePropertyItem(ZBPropertyItem* pPropertyItem);
+    void InsertPropertyItem(PSS_PropertyItem* pPropertyItem, int nIndex = 0);
+    void DeletePropertyItem(PSS_PropertyItem* pPropertyItem);
     void DeletePropertyItem(int nIndex);
     void ResetContent(bool DeleteEditCtrl = true);
     void ShowInPlaceControl(bool bShow = true);
@@ -278,10 +278,10 @@ protected:
     void EditNextItem();
     void EditPreviousItem();
 
-    void DoCollapse(ZBPropertyItemCategory* pPropertyItemTab, int nItem);
-    void DoExpand(ZBPropertyItemCategory* pPropertyItemTab, int& nItem);
+    void DoCollapse(PSS_PropertyItemCategory* pPropertyItemTab, int nItem);
+    void DoExpand(PSS_PropertyItemCategory* pPropertyItemTab, int& nItem);
 
-    void DoCollapseExpand(int nItem, ZBPropertyItem* pPropertyItem = NULL);
+    void DoCollapseExpand(int nItem, PSS_PropertyItem* pPropertyItem = NULL);
 
     void GetItemValueRect(CRect& rect);
     bool SetCurrentData();
@@ -348,13 +348,13 @@ private:
     int                        m_SplitterX;
     HCURSOR                    m_hcurSplitter;
 
-    ZBPropertyItem*            m_pSrcDragPropertyItem;
+    PSS_PropertyItem*            m_pSrcDragPropertyItem;
     int                        m_SrcDragPropertyItemIndex;
 
     bool                    m_ListInReadOnly;
 };
 
-inline void ZCPropertyListCtrl::InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex)
+inline void ZCPropertyListCtrl::InsertPropertyItem(PSS_PropertyItem* pPropertyItem, int nIndex)
 {
     ASSERT(pPropertyItem != NULL);
     InsertString(nIndex, (LPCTSTR)pPropertyItem);

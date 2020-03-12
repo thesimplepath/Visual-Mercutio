@@ -4,7 +4,7 @@
 #include "ZCInPlaceListBox.h"
 #include "ZCPropertyListCtrl.h"
 
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
@@ -239,10 +239,10 @@ CString ZCInPlaceListBox::GetEditText() const
     return strText;
 }
 
-BOOL ZCInPlaceListBox::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
+BOOL ZCInPlaceListBox::InitializeInPlaceEditCtrl(PSS_PropertyItem*    pItem,
                                                  const CString&    strInitText,
                                                  CWnd*                pWndParent,
-                                                 CRect&            rect,
+                                                 const CRect&            rect,
                                                  DWORD                exDwStyle    /*= 0"*/)
 {
     m_pItem = pItem;

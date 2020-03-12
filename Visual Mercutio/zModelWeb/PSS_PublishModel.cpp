@@ -8,10 +8,13 @@
 #include <StdAfx.h>
 #include "PSS_PublishModel.h"
 
+// std
+#include <memory>
+
 // processsoft
 #include "zBaseLib\PSS_SystemOption.h"
 #include "zBaseLib\PSS_Tokenizer.h"
-#include "zProperty\zBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 #include "PSS_PublishModelWelcomeDialog.h"
 #include "PSS_PublishModelSelDirDialog.h"
 #include "PSS_PublishModelBannerDialog.h"
@@ -35,9 +38,9 @@ const CString g_PublishModelHTMLLogoRefHTMLEntityName        = _T("LogoRef");
 //---------------------------------------------------------------------------
 // PSS_PublishModel
 //---------------------------------------------------------------------------
-PSS_PublishModel::PSS_PublishModel(ZBPropertyAttributes* pAttributes,
-                                   ZBPropertySet*        pSet,
-                                   const CString&        iniFile) :
+PSS_PublishModel::PSS_PublishModel(PSS_PropertyAttributes* pAttributes,
+                                   ZBPropertySet*          pSet,
+                                   const CString&          iniFile) :
     m_IniFile(iniFile),
     m_pPropAttributes(pAttributes),
     m_pPropSet(pSet)
@@ -122,12 +125,12 @@ BOOL PSS_PublishModel::SelectDir()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_PublishModel::AddAttribute(_ZBPropertyAttribute* pAttribute)
+void PSS_PublishModel::AddAttribute(PSS_PropertyAttributes::IAttribute* pAttribute)
 {
     if (!pAttribute)
         return;
 
-    ZBPropertyAttributes* pPropTemp = GetPropAttributes();
+    PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
     ASSERT(pPropTemp);
 
     if (!FindAttribute(pAttribute->GetCategoryID(), pAttribute->GetItemID()))
@@ -137,15 +140,15 @@ void PSS_PublishModel::AddAttribute(_ZBPropertyAttribute* pAttribute)
         delete pAttribute;
 }
 //---------------------------------------------------------------------------
-_ZBPropertyAttribute* PSS_PublishModel::FindAttribute(int CategoryID, int ItemID)
+PSS_PropertyAttributes::IAttribute* PSS_PublishModel::FindAttribute(int categoryID, int itemID)
 {
-    ZBPropertyAttributes* pPropTemp = GetPropAttributes();
+    PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
     ASSERT(pPropTemp);
 
-    _ZBPropertyAttributeIterator it(&(pPropTemp->GetAttributeSet()));
+    PSS_PropertyAttributes::IAttributeIterator it(&(pPropTemp->GetAttributeSet()));
 
-    for (_ZBPropertyAttribute* pAtt = it.GetFirst(); pAtt; pAtt = it.GetNext())
-        if (pAtt->GetCategoryID() == CategoryID && pAtt->GetItemID() == ItemID)
+    for (PSS_PropertyAttributes::IAttribute* pAtt = it.GetFirst(); pAtt; pAtt = it.GetNext())
+        if (pAtt->GetCategoryID() == categoryID && pAtt->GetItemID() == itemID)
             return pAtt;
 
     return NULL;
@@ -153,12 +156,12 @@ _ZBPropertyAttribute* PSS_PublishModel::FindAttribute(int CategoryID, int ItemID
 //---------------------------------------------------------------------------
 void PSS_PublishModel::RemoveAllAttributes()
 {
-    ZBPropertyAttributes* pPropTemp = GetPropAttributes();
+    PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
     ASSERT(pPropTemp);
 
-    _ZBPropertyAttributeIterator it(&(pPropTemp->GetAttributeSet()));
+    PSS_PropertyAttributes::IAttributeIterator it(&(pPropTemp->GetAttributeSet()));
 
-    for (_ZBPropertyAttribute* pAtt = it.GetFirst(); pAtt; pAtt = it.GetNext())
+    for (PSS_PropertyAttributes::IAttribute* pAtt = it.GetFirst(); pAtt; pAtt = it.GetNext())
         delete pAtt;
 
     pPropTemp->GetAttributeSet().RemoveAll();
@@ -294,10 +297,11 @@ bool PSS_PublishModel::LoadAttributesFromIniFile()
         const int itemID = std::atoi((const char*)str);
 
         // all objects have been extracted, create the object state
-        _ZBPropertyAttribute* pAtt = new _ZBPropertyAttribute(categoryID, itemID);
+        std::unique_ptr<PSS_PropertyAttributes::IAttribute> pAtt(new PSS_PropertyAttributes::IAttribute(categoryID, itemID));
 
         // add it to the value array
-        AddAttribute(pAtt);
+        AddAttribute(pAtt.get());
+        pAtt.release();
     }
     while (index < max);
 
@@ -314,12 +318,12 @@ bool PSS_PublishModel::SaveAttributesToIniFile()
     std::size_t index = 0;
     CString     keyName;
 
-    ZBPropertyAttributes* pPropTemp = GetPropAttributes();
+    PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
     ASSERT(pPropTemp);
 
-    _ZBPropertyAttributeIterator it(&(pPropTemp->GetAttributeSet()));
+    PSS_PropertyAttributes::IAttributeIterator it(&(pPropTemp->GetAttributeSet()));
 
-    for (_ZBPropertyAttribute* pAtt = it.GetFirst(); pAtt; pAtt = it.GetNext(), ++index)
+    for (PSS_PropertyAttributes::IAttribute* pAtt = it.GetFirst(); pAtt; pAtt = it.GetNext(), ++index)
     {
         // format the key
         keyName.Format(_T("%s%d"), _T("_PropertyDefaultAttributeSaveStateWeb"), index);

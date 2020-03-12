@@ -76,7 +76,7 @@ std::size_t PSS_ModelGenerateImageFiles::m_IndexItem = 0;
 //---------------------------------------------------------------------------
 PSS_ModelGenerateImageFiles::PSS_ModelGenerateImageFiles(PSS_ProcessGraphModelMdl* pModel,
                                                          void*                     pClass,
-                                                         ZBPropertyAttributes*     pPropAttributes) :
+                                                         PSS_PropertyAttributes*   pPropAttributes) :
     PSS_ModelNavigation(pModel, pClass),
     m_pPropAttributes(pPropAttributes)
 {}

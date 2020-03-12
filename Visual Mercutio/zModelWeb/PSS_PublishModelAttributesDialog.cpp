@@ -11,7 +11,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -29,9 +29,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_PublishModelAttributesDialog
 //---------------------------------------------------------------------------
-PSS_PublishModelAttributesDialog::PSS_PublishModelAttributesDialog(ZBPropertyAttributes* pPropAttributes,
-                                                                   ZBPropertySet*        pPropSet,
-                                                                   CWnd*                 pParent) :
+PSS_PublishModelAttributesDialog::PSS_PublishModelAttributesDialog(PSS_PropertyAttributes* pPropAttributes,
+                                                                   ZBPropertySet*          pPropSet,
+                                                                   CWnd*                   pParent) :
     PSS_WizardDialog(PSS_PublishModelAttributesDialog::IDD,
                      IDB_WZBMP1,
                      0,

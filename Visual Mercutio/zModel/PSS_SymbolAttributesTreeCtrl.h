@@ -25,10 +25,7 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
 #include "zProperty\ZIProperties.h"
-
-// forward class declaration
-class ZBPropertyAttributes;
-class _ZBPropertyAttribute;
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -54,7 +51,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         *@param pPropAttributes - the property attributes
         *@param pPropSet - the property set
         */
-        PSS_SymbolAttributesTreeCtrl(ZBPropertyAttributes* pPropAttributes = NULL, ZBPropertySet* pPropSet = NULL);
+        PSS_SymbolAttributesTreeCtrl(PSS_PropertyAttributes* pPropAttributes = NULL, ZBPropertySet* pPropSet = NULL);
 
         virtual ~PSS_SymbolAttributesTreeCtrl();
 
@@ -68,7 +65,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         *@param pPropAttributes - the property attributes
         *@param pPropSet - the property set
         */
-        virtual void Initialize(ZBPropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet);
+        virtual void Initialize(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet);
 
         /**
         * Refreshes the controller
@@ -105,8 +102,8 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
                     IE_DT_Unknown
                 };
 
-                _ZBPropertyAttribute* m_pPropAttribute;
-                IEDataType            m_Type;
+                PSS_PropertyAttributes::IAttribute* m_pPropAttribute;
+                IEDataType                          m_Type;
 
                 ITreeData();
 
@@ -121,7 +118,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
                 * Constructor
                 *@param pPropAttribute - the property attribuze
                 */
-                ITreeData(_ZBPropertyAttribute* pPropAttribute);
+                ITreeData(PSS_PropertyAttributes::IAttribute* pPropAttribute);
         
                 virtual ~ITreeData();
         };
@@ -156,10 +153,10 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         typedef sfl::CCArray_T <ITreeData*, ITreeData*> ITreeDataSet;
         typedef sfl::Iterator_T<ITreeData*>             ITreeDataIterator;
 
-        ZBPropertyAttributes* m_pPropAttributes;
-        ZBPropertySet*        m_pPropSet;
-        ITreeDataSet          m_DataSet;
-        bool                  m_HasBeenInitialized;
+        PSS_PropertyAttributes* m_pPropAttributes;
+        ZBPropertySet*          m_pPropSet;
+        ITreeDataSet            m_DataSet;
+        bool                    m_HasBeenInitialized;
 
         /**
         * Creates the tree
@@ -199,7 +196,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         * Checks the property attribute
         *@param pAttribute - the property attribute to check
         */
-        void CheckAttribute(_ZBPropertyAttribute* pAttribute);
+        void CheckAttribute(PSS_PropertyAttributes::IAttribute* pAttribute);
 
         /**
         * Adds a property item
@@ -224,7 +221,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         *@param pPropAttribute - the property attribute
         *@return the element, NULL if not found or on error
         */
-        ITreeData* FindElementFromDataSet(_ZBPropertyAttribute* pPropAttribute);
+        ITreeData* FindElementFromDataSet(PSS_PropertyAttributes::IAttribute* pPropAttribute);
 
         /**
         * Adds a data to a dataset
@@ -239,7 +236,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         *@param pPropAttribute - the property attribute
         *@return the added data, NULL on error
         */
-        ITreeData* AddDataToSet(_ZBPropertyAttribute* pPropAttribute);
+        ITreeData* AddDataToSet(PSS_PropertyAttributes::IAttribute* pPropAttribute);
 };
 
 //---------------------------------------------------------------------------

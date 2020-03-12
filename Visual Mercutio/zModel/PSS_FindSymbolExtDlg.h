@@ -28,7 +28,7 @@
 #include "zModelRes.h"
 
 // forward class declaration
-class ZBPropertyAttributes;
+class PSS_PropertyAttributes;
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -53,9 +53,9 @@ class AFX_EXT_CLASS PSS_FindSymbolExtDlg : public PSS_Dialog
         *@param pPropSet - the properties set, can be NULL
         *@param pParent - the parent window, can be NULL
         */
-        PSS_FindSymbolExtDlg(ZBPropertyAttributes* pPropAttributes = NULL,
-                             ZBPropertySet*        pPropSet        = NULL,
-                             CWnd*                 pParent         = NULL);
+        PSS_FindSymbolExtDlg(PSS_PropertyAttributes* pPropAttributes = NULL,
+                             ZBPropertySet*          pPropSet        = NULL,
+                             CWnd*                   pParent         = NULL);
 
         virtual ~PSS_FindSymbolExtDlg();
 
@@ -111,7 +111,7 @@ class AFX_EXT_CLASS PSS_FindSymbolExtDlg : public PSS_Dialog
             IDD = IDD_FIND_SYMBOL_EXT
         };
 
-        ZBPropertyAttributes*        m_pPropAttributes;
+        PSS_PropertyAttributes*      m_pPropAttributes;
         ZBPropertySet*               m_pPropSet;
         PSS_SymbolAttributesTreeCtrl m_AttributeText;
         CString                      m_SearchArgument;

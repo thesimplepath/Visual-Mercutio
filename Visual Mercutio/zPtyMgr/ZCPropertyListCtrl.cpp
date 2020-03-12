@@ -4,7 +4,7 @@
 #include "ZCPropertyListCtrl.h"
 #include "ZBPropertyManager.h"
 
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 
 // Observer message classes
 #include "zProperty\ZBPropertyObserverMsg.h"
@@ -313,7 +313,7 @@ void ZCPropertyListCtrl::Refresh(bool DeleteEditCtrl /*= true*/, bool ReloadCont
     // RS-MODIF 08.08.2005: correction affichage attribut dynamique temps
     //for ( ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext() )
 
-    ZBPropertyItemCategory* pPropertyItemTab;
+    PSS_PropertyItemCategory* pPropertyItemTab;
 
     for (pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext())
     {
@@ -416,7 +416,7 @@ void ZCPropertyListCtrl::EditPreviousItem()
     }
 }
 
-ZBPropertyItem* ZCPropertyListCtrl::GetCurrentPropertyItem()
+PSS_PropertyItem* ZCPropertyListCtrl::GetCurrentPropertyItem()
 {
     int nItem = GetCurSel();
 
@@ -428,18 +428,18 @@ ZBPropertyItem* ZCPropertyListCtrl::GetCurrentPropertyItem()
     return NULL;
 }
 
-ZBPropertyItem* ZCPropertyListCtrl::GetPropertyItem(int nIndex)
+PSS_PropertyItem* ZCPropertyListCtrl::GetPropertyItem(int nIndex)
 {
-    return nIndex >= 0 && nIndex < GetCount() ? reinterpret_cast<ZBPropertyItem*>(GetItemData(nIndex)) : NULL;
+    return nIndex >= 0 && nIndex < GetCount() ? reinterpret_cast<PSS_PropertyItem*>(GetItemData(nIndex)) : NULL;
 }
 
-void ZCPropertyListCtrl::DeletePropertyItem(ZBPropertyItem* pPropertyItem)
+void ZCPropertyListCtrl::DeletePropertyItem(PSS_PropertyItem* pPropertyItem)
 {
     int Count = GetCount();
 
     for (int i = 0; i < Count; ++i)
     {
-        ZBPropertyItem* pProp = reinterpret_cast<ZBPropertyItem*>(GetItemData(i));
+        PSS_PropertyItem* pProp = reinterpret_cast<PSS_PropertyItem*>(GetItemData(i));
 
         if (pProp == pPropertyItem)
         {
@@ -564,7 +564,7 @@ void ZCPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
     }
 #endif
 
-    ZBPropertyItem* pPropertyItem = (ZBPropertyItem*)lpDrawItemStruct->itemData;
+    PSS_PropertyItem* pPropertyItem = (PSS_PropertyItem*)lpDrawItemStruct->itemData;
     ASSERT(pPropertyItem != NULL);
 
     CDC dc;
@@ -576,7 +576,7 @@ void ZCPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
     int nLeftBorder = rect.left + PROPERTY_LEFT_BORDER;
 
     // + / -
-    bool bTabItem = ToBool(ISA(pPropertyItem, ZBPropertyItemCategory));
+    bool bTabItem = ToBool(ISA(pPropertyItem, PSS_PropertyItemCategory));
 
     if (bTabItem)
     {
@@ -597,7 +597,7 @@ void ZCPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
         dc.MoveTo(ptCenter.x - 2, ptCenter.y);
         dc.LineTo(ptCenter.x + 3, ptCenter.y);
 
-        if (!static_cast<ZBPropertyItemCategory*>(pPropertyItem)->GetChildrenVisible())
+        if (!static_cast<PSS_PropertyItemCategory*>(pPropertyItem)->GetChildrenVisible())
         {
             // Plus
             dc.MoveTo(ptCenter.x, ptCenter.y - 2);
@@ -697,13 +697,13 @@ void ZCPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
     dc.Detach();
 }
 
-void ZCPropertyListCtrl::DoCollapse(ZBPropertyItemCategory* pPropertyItemTab, int nItem)
+void ZCPropertyListCtrl::DoCollapse(PSS_PropertyItemCategory* pPropertyItemTab, int nItem)
 {
     ASSERT(pPropertyItemTab->GetChildrenVisible());
 
     nItem++;
 
-    for (int nNumber = pPropertyItemTab->GetNumberEnabledItems(); nNumber > 0; nNumber--)
+    for (int nNumber = pPropertyItemTab->GetEnabledItemNumber(); nNumber > 0; nNumber--)
     {
         DeleteString(nItem);
     }
@@ -711,12 +711,12 @@ void ZCPropertyListCtrl::DoCollapse(ZBPropertyItemCategory* pPropertyItemTab, in
     pPropertyItemTab->SetChildrenVisible(false);
 }
 
-void ZCPropertyListCtrl::DoExpand(ZBPropertyItemCategory* pPropertyItemTab, int& nItem)
+void ZCPropertyListCtrl::DoExpand(PSS_PropertyItemCategory* pPropertyItemTab, int& nItem)
 {
     // Now run through category's elements
-    ZBPropertyItemIterator i(&pPropertyItemTab->GetPropertyItemSet());
+    PSS_PropertyItemCategory::IPropertyItemIterator i(&pPropertyItemTab->GetPropertyItemSet());
 
-    for (ZBPropertyItem* pPropertyItem = i.GetFirst(); pPropertyItem; pPropertyItem = i.GetNext())
+    for (PSS_PropertyItem* pPropertyItem = i.GetFirst(); pPropertyItem; pPropertyItem = i.GetNext())
     {
         if (pPropertyItem->GetEnabled())
         {
@@ -727,7 +727,7 @@ void ZCPropertyListCtrl::DoExpand(ZBPropertyItemCategory* pPropertyItemTab, int&
     pPropertyItemTab->SetChildrenVisible();
 }
 
-void ZCPropertyListCtrl::DoCollapseExpand(int nItem, ZBPropertyItem* pPropertyItem)
+void ZCPropertyListCtrl::DoCollapseExpand(int nItem, PSS_PropertyItem* pPropertyItem)
 {
     if (pPropertyItem == NULL)
     {
@@ -739,14 +739,14 @@ void ZCPropertyListCtrl::DoCollapseExpand(int nItem, ZBPropertyItem* pPropertyIt
         return;
     }
 
-    if (pPropertyItem->IsKindOf(RUNTIME_CLASS(ZBPropertyItemCategory)))
+    if (pPropertyItem->IsKindOf(RUNTIME_CLASS(PSS_PropertyItemCategory)))
     {
         if (SetCurrentData())
         {
             NoInPlaceControl();
         }
 
-        ZBPropertyItemCategory* pPropertyItemTab = static_cast<ZBPropertyItemCategory*>(pPropertyItem);
+        PSS_PropertyItemCategory* pPropertyItemTab = static_cast<PSS_PropertyItemCategory*>(pPropertyItem);
 
         if (pPropertyItemTab->GetChildrenVisible())
         {
@@ -777,13 +777,13 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage(MSG* pMsg)
         char nChar = char(pMsg->wParam);
         bool bDone = true;
 
-        ZBPropertyItem* pPropertyItem = GetPropertyItem(nItem);
+        PSS_PropertyItem* pPropertyItem = GetPropertyItem(nItem);
 
         if (pPropertyItem != NULL)
         {
-            if (pPropertyItem->IsKindOf(RUNTIME_CLASS(ZBPropertyItemCategory)))
+            if (pPropertyItem->IsKindOf(RUNTIME_CLASS(PSS_PropertyItemCategory)))
             {
-                bool bChildrenVisible = static_cast<ZBPropertyItemCategory*>(pPropertyItem)->GetChildrenVisible();
+                bool bChildrenVisible = static_cast<PSS_PropertyItemCategory*>(pPropertyItem)->GetChildrenVisible();
 
                 switch (nChar)
                 {
@@ -797,7 +797,7 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage(MSG* pMsg)
                     {
                         if (!bChildrenVisible)
                         {
-                            DoExpand((ZBPropertyItemCategory*)pPropertyItem, nItem);
+                            DoExpand((PSS_PropertyItemCategory*)pPropertyItem, nItem);
                         }
 
                         break;
@@ -807,7 +807,7 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage(MSG* pMsg)
                     {
                         if (bChildrenVisible)
                         {
-                            DoCollapse((ZBPropertyItemCategory*)pPropertyItem, nItem);
+                            DoCollapse((PSS_PropertyItemCategory*)pPropertyItem, nItem);
                         }
 
                         break;
@@ -904,7 +904,7 @@ int ZCPropertyListCtrl::FindPropertyItem(char nStartChar, int nFromIndex, int nC
 
     while (nCount--)
     {
-        ZBPropertyItem* pPropertyItem = reinterpret_cast<ZBPropertyItem*>(GetItemData(nFromIndex));
+        PSS_PropertyItem* pPropertyItem = reinterpret_cast<PSS_PropertyItem*>(GetItemData(nFromIndex));
         ASSERT(pPropertyItem != NULL);
 
         if (pPropertyItem->GetName().Left(1).CompareNoCase(strStartChar) == 0)
@@ -952,7 +952,7 @@ bool ZCPropertyListCtrl::SetCurrentData()
 {
     if (m_pWndInPlaceControl != NULL && m_nSelectedItem != -1)
     {
-        ZBPropertyItem* pPropertyItemEdited = GetPropertyItem(m_nSelectedItem);
+        PSS_PropertyItem* pPropertyItemEdited = GetPropertyItem(m_nSelectedItem);
 
         if (pPropertyItemEdited != NULL)
         {
@@ -1047,7 +1047,7 @@ void ZCPropertyListCtrl::DetachObserverForEditCtrl()
 
 void ZCPropertyListCtrl::CreateInPlaceControl(int nItem, int nPreviousItem /*= -1*/)
 {
-    ZBPropertyItem* pPreviousPropertyItem = NULL;
+    PSS_PropertyItem* pPreviousPropertyItem = NULL;
 
     if (nPreviousItem != -1)
     {
@@ -1088,7 +1088,7 @@ void ZCPropertyListCtrl::CreateInPlaceControl(int nItem, int nPreviousItem /*= -
     DetachObserverForEditCtrl();
 
     // Get the requested property item
-    ZBPropertyItem* pPropertyItem = GetPropertyItem(nItem);
+    PSS_PropertyItem* pPropertyItem = GetPropertyItem(nItem);
     ASSERT(pPropertyItem != NULL);
 
     if (pPropertyItem->CanBeEdited())
@@ -1172,9 +1172,9 @@ void ZCPropertyListCtrl::RedrawAll()
 
 void ZCPropertyListCtrl::RedrawItem(int nItem)
 {
-    ZBPropertyItem* pPropertyItem = GetPropertyItem(nItem);
+    PSS_PropertyItem* pPropertyItem = GetPropertyItem(nItem);
 
-    if (pPropertyItem && !ISA(pPropertyItem, ZBPropertyItemCategory))
+    if (pPropertyItem && !ISA(pPropertyItem, PSS_PropertyItemCategory))
     {
         CRect rect;
 
@@ -1232,7 +1232,7 @@ bool ZCPropertyListCtrl::IsListInPhase()
     // run trough the item list and check simulatenously the property item manager
     // run through all items
     ZBItemCategoryIterator  i(&m_pPropertyItemManager->GetItemCategorySet());
-    ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst();
+    PSS_PropertyItemCategory* pPropertyItemTab = i.GetFirst();
     int                     index = 0;
 
     for (int nIndex = 0; (nIndex < nCount) && pPropertyItemTab; ++nIndex, pPropertyItemTab = i.GetNext())
@@ -1240,7 +1240,7 @@ bool ZCPropertyListCtrl::IsListInPhase()
         index = nIndex;
 
         // retreive the item from the list control
-        ZBPropertyItem* pItem = GetPropertyItem(nIndex);
+        PSS_PropertyItem* pItem = GetPropertyItem(nIndex);
 
         while (pPropertyItemTab && !pPropertyItemTab->GetEnabled())
             pPropertyItemTab = i.GetNext();
@@ -1258,7 +1258,7 @@ bool ZCPropertyListCtrl::IsListInPhase()
             return false;
 
         // check if the item is a category and the same, if not, return not in phase
-        if (!ISA(pItem, ZBPropertyItemCategory) || pItem != pPropertyItemTab)
+        if (!ISA(pItem, PSS_PropertyItemCategory) || pItem != pPropertyItemTab)
             return false;
 
         // now process the category.
@@ -1267,9 +1267,9 @@ bool ZCPropertyListCtrl::IsListInPhase()
         if (pPropertyItemTab->GetChildrenVisible())
         {
             // now run through category's elements
-            ZBPropertyItemIterator j(&pPropertyItemTab->GetPropertyItemSet());
+            PSS_PropertyItemCategory::IPropertyItemIterator j(&pPropertyItemTab->GetPropertyItemSet());
 
-            for (ZBPropertyItem* pChildPropertyCatItem = j.GetFirst(); pChildPropertyCatItem; pChildPropertyCatItem = j.GetNext())
+            for (PSS_PropertyItem* pChildPropertyCatItem = j.GetFirst(); pChildPropertyCatItem; pChildPropertyCatItem = j.GetNext())
             {
                 // retreive the immediate following item from the list control
                 pItem = GetPropertyItem(++nIndex);
@@ -1457,8 +1457,8 @@ BOOL ZCPropertyListCtrl::BeginDrag(CPoint pt)
     m_SrcDragPropertyItemIndex = ItemFromPt(pt);
     m_pSrcDragPropertyItem = GetPropertyItem(m_SrcDragPropertyItemIndex);
 
-    if ((!m_pSrcDragPropertyItem || !m_pSrcDragPropertyItem->IsEnabledDragNDrop()) &&
-        !ISA(m_pSrcDragPropertyItem, ZBPropertyItemCategory))
+    if ((!m_pSrcDragPropertyItem || !m_pSrcDragPropertyItem->IsDragNDropEnabled()) &&
+        !ISA(m_pSrcDragPropertyItem, PSS_PropertyItemCategory))
     {
         m_pSrcDragPropertyItem = NULL;
         return FALSE;
@@ -1483,14 +1483,14 @@ void ZCPropertyListCtrl::Dropped(int nSrcIndex, CPoint pt)
         return;
     }
 
-    ZBPropertyItem* pDstPropertyItem = GetPropertyItem((m_SrcDragPropertyItemIndex < Index) ? Index - 1 : Index);
+    PSS_PropertyItem* pDstPropertyItem = GetPropertyItem((m_SrcDragPropertyItemIndex < Index) ? Index - 1 : Index);
 
     // If it is the same index, or NULL, or disabled drag & drop or a category, do nothing
     if (m_pSrcDragPropertyItem == pDstPropertyItem ||
         m_pSrcDragPropertyItem == NULL ||
         pDstPropertyItem == NULL ||
-        !m_pSrcDragPropertyItem->IsEnabledDragNDrop() ||
-        ISA(m_pSrcDragPropertyItem, ZBPropertyItemCategory))
+        !m_pSrcDragPropertyItem->IsDragNDropEnabled() ||
+        ISA(m_pSrcDragPropertyItem, PSS_PropertyItemCategory))
     {
         Refresh(false, false);
         return;
@@ -1505,7 +1505,7 @@ void ZCPropertyListCtrl::Dropped(int nSrcIndex, CPoint pt)
     }
     else
     {
-        if (m_pSrcDragPropertyItem || m_pSrcDragPropertyItem->IsEnabledDragNDrop())
+        if (m_pSrcDragPropertyItem || m_pSrcDragPropertyItem->IsDragNDropEnabled())
         {
             Refresh(false, false);
         }

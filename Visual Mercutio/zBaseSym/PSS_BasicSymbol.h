@@ -35,7 +35,7 @@
 #endif
 
 // forward class definition
-class ZBPropertyAttributes;
+class PSS_PropertyAttributes;
 class PSS_SymbolEdit;
 class PSS_ProcessGraphPage;
 class PSS_UserEntity;
@@ -166,21 +166,21 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         *@param pAttributes - attributes
         *@return true if the attributes are autorized to be filled, otherwise false
         */
-        virtual bool OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes) = 0;
+        virtual bool OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes) = 0;
 
         /**
         * Called when the attributes are changed
         *@param pAttributes - attributes
         *@return true if the attributes are autorized to change, otherwise false
         */
-        virtual bool OnChangeAttributes(ZBPropertyAttributes* pAttributes) = 0;
+        virtual bool OnChangeAttributes(PSS_PropertyAttributes* pAttributes) = 0;
 
         /**
         * Gets the attributes as string
         *@param pAttributes - attributes
         *@return the attributes as string
         */
-        virtual CString GetAttributeString(ZBPropertyAttributes* pAttributes) const = 0;
+        virtual CString GetAttributeString(PSS_PropertyAttributes* pAttributes) const = 0;
 
         /**
         * Refreshes the attributes text area

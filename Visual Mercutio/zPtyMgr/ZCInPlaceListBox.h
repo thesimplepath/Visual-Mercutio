@@ -139,7 +139,7 @@ public:
     // Operations
 public:
     // Initialize the edit control
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle = 0);
     // Initialize the edit text value
     virtual void SetEditText(const CString& strText);
     // Retrieve the text entered

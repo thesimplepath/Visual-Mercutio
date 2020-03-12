@@ -147,7 +147,7 @@ CODComponent* PSS_Symbol::Dup() const
     return new PSS_Symbol(*this);
 }
 //---------------------------------------------------------------------------
-CString PSS_Symbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
+CString PSS_Symbol::GetAttributeString(PSS_PropertyAttributes* pAttributes) const
 {
     if (AcceptDynamicAttributes())
     {
@@ -187,14 +187,14 @@ void PSS_Symbol::RefreshAttributeTextArea(bool redraw)
 //---------------------------------------------------------------------------
 bool PSS_Symbol::GetShowTitleText() const
 {
-    return (AcceptDynamicAttributes() ? m_Attributes.GetDisplayTitleText() : false);
+    return (AcceptDynamicAttributes() ? m_Attributes.GetShowTitleText() : false);
 }
 //---------------------------------------------------------------------------
 void PSS_Symbol::SetShowTitleText(bool value)
 {
     if (AcceptDynamicAttributes())
     {
-        m_Attributes.SetDisplayTitleText(value);
+        m_Attributes.SetShowTitleText(value);
 
         if (GetAttributeTextEdit())
         {
@@ -391,10 +391,10 @@ BOOL PSS_Symbol::SetSymbolReferenceNumberStr(const CString& value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::Match(const CString&        argument,
-                       ZBPropertyAttributes* pPropAttributes,
-                       bool                  caseSensitive,
-                       bool                  partialSearch)
+bool PSS_Symbol::Match(const CString&          argument,
+                       PSS_PropertyAttributes* pPropAttributes,
+                       bool                    caseSensitive,
+                       bool                    partialSearch)
 {
     if (!pPropAttributes)
         return false;
@@ -1817,7 +1817,7 @@ void PSS_Symbol::OnLinkConnect(CODLinkComponent* pLink)
 void PSS_Symbol::OnLinkDisconnect(CODLinkComponent* pLink)
 {}
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_Symbol::OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {
@@ -1828,7 +1828,7 @@ bool PSS_Symbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_Symbol::OnChangeAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {

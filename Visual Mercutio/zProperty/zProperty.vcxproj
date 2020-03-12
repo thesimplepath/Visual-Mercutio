@@ -164,13 +164,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPropertyAttributes.cpp">
+    <ClCompile Include="PSS_PropertyAttributes.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPropertyItem.cpp">
+    <ClCompile Include="PSS_PropertyItem.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -221,8 +221,8 @@
     <ClInclude Include="PSS_DynamicProperties.h" />
     <ClInclude Include="PSS_DynamicPropertiesManager.h" />
     <ClInclude Include="PSS_Property.h" />
-    <ClInclude Include="ZBPropertyAttributes.h" />
-    <ClInclude Include="ZBPropertyItem.h" />
+    <ClInclude Include="PSS_PropertyAttributes.h" />
+    <ClInclude Include="PSS_PropertyItem.h" />
     <ClInclude Include="ZBPropertyItemObserverMsg.h" />
     <ClInclude Include="ZBPropertyObserverMsg.h" />
     <ClInclude Include="ZIInPlaceEdit.h" />

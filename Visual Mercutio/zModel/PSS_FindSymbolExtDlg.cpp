@@ -9,7 +9,7 @@
 #include "PSS_FindSymbolExtDlg.h"
 
 // processsoft
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_FindSymbolExtDlg
 //---------------------------------------------------------------------------
-PSS_FindSymbolExtDlg::PSS_FindSymbolExtDlg(ZBPropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet, CWnd* pParent) :
+PSS_FindSymbolExtDlg::PSS_FindSymbolExtDlg(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet, CWnd* pParent) :
     PSS_Dialog(PSS_FindSymbolExtDlg::IDD, TRUE, pParent),
     m_pPropAttributes(pPropAttributes),
     m_pPropSet(pPropSet),

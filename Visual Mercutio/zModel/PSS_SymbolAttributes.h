@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseSym\PSS_BasicSymbol.h"
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _ZMODELEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -72,7 +72,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributes
         * Gets the attributes
         *@return the attributes
         */
-        virtual inline ZBPropertyAttributes& GetAttributes();
+        virtual inline PSS_PropertyAttributes& GetAttributes();
 
         /**
         * Initializes the attribute areas
@@ -261,20 +261,20 @@ class AFX_EXT_CLASS PSS_SymbolAttributes
         virtual bool OnLButtonUp(UINT flags, const CPoint& point, CODController& ctrl);
 
     protected:
-        PSS_BasicSymbol*     m_pSymbol;
-        CODComponent*        m_pEditBoxArea;
-        CODTextComponent*    m_pNameEditText;
-        CODTextComponent*    m_pCommentEditText;
-        CODTextComponent*    m_pAttributeEditText;
-        CODLineComponent*    m_pSplitterComponent1;
-        CODLineComponent*    m_pSplitterComponent2;
-        ZBPropertyAttributes m_Attributes;
-        bool                 m_UseDynamicArea;
-        bool                 m_ShowNameArea;
-        bool                 m_ShowDescriptionArea;
-        bool                 m_ShowAttributeArea;
-        bool                 m_ReinitializeAreaAtCreation;
-        bool                 m_RelativeCoordinates;
+        PSS_BasicSymbol*       m_pSymbol;
+        CODComponent*          m_pEditBoxArea;
+        CODTextComponent*      m_pNameEditText;
+        CODTextComponent*      m_pCommentEditText;
+        CODTextComponent*      m_pAttributeEditText;
+        CODLineComponent*      m_pSplitterComponent1;
+        CODLineComponent*      m_pSplitterComponent2;
+        PSS_PropertyAttributes m_Attributes;
+        bool                   m_UseDynamicArea;
+        bool                   m_ShowNameArea;
+        bool                   m_ShowDescriptionArea;
+        bool                   m_ShowAttributeArea;
+        bool                   m_ReinitializeAreaAtCreation;
+        bool                   m_RelativeCoordinates;
 
         /**
         * Moves the component to a position
@@ -307,7 +307,7 @@ void PSS_SymbolAttributes::SetSymbol(PSS_BasicSymbol* pSymbol)
     m_pSymbol = pSymbol;
 }
 //---------------------------------------------------------------------------
-ZBPropertyAttributes& PSS_SymbolAttributes::GetAttributes()
+PSS_PropertyAttributes& PSS_SymbolAttributes::GetAttributes()
 {
     return m_Attributes;
 }

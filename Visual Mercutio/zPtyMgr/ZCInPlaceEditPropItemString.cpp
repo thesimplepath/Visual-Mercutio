@@ -257,11 +257,11 @@ void ZCInPlaceEditPropItemString::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMs
 {}
 
 
-BOOL ZCInPlaceEditPropItemString::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0*/)
+BOOL ZCInPlaceEditPropItemString::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0*/)
 {
     m_pItem = pItem;
 
-    rect.DeflateRect(0, 1);
+    const_cast<CRect&>(rect).DeflateRect(0, 1);
     DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle;
     if (m_IsReadOnly)
         dwStyle |= ES_READONLY;
@@ -299,11 +299,11 @@ void ZCInPlaceEditPropItemNumber::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMs
 {}
 
 
-BOOL ZCInPlaceEditPropItemNumber::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, double dInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0*/)
+BOOL ZCInPlaceEditPropItemNumber::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, double dInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0*/)
 {
     m_pItem = pItem;
 
-    rect.DeflateRect(0, 1);
+    const_cast<CRect&>(rect).DeflateRect(0, 1);
     DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle;
     if (m_IsReadOnly)
         dwStyle |= ES_READONLY;
@@ -320,11 +320,11 @@ BOOL ZCInPlaceEditPropItemNumber::InitializeInPlaceEditCtrl(ZBPropertyItem* pIte
 }
 
 
-BOOL ZCInPlaceEditPropItemNumber::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, float fInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0*/)
+BOOL ZCInPlaceEditPropItemNumber::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, float fInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0*/)
 {
     m_pItem = pItem;
 
-    rect.DeflateRect(0, 1);
+    const_cast<CRect&>(rect).DeflateRect(0, 1);
     DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle;
     if (m_IsReadOnly)
         dwStyle |= ES_READONLY;

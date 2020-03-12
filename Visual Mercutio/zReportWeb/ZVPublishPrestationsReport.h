@@ -47,7 +47,7 @@
 
 #include "zWeb\PSS_HtmlFile.h"
 
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _ZREPORTWEBEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

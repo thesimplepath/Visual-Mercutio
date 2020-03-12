@@ -4,7 +4,7 @@
 #include "ZCInPlaceExtendedEdit.h"
 #include "ZCPropertyListCtrl.h"
 
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
@@ -138,10 +138,10 @@ CString ZCInPlaceExtendedEdit::GetEditText() const
     return strText;
 }
 
-BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
+BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*    pItem,
                                                       const CString&    strInitText,
                                                       CWnd*            pWndParent,
-                                                      CRect&            rect,
+                                                      const CRect&            rect,
                                                       DWORD            exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
@@ -171,10 +171,10 @@ BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
     return rValue;
 }
 
-BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
+BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*    pItem,
                                                       double            dInitValue,
                                                       CWnd*            pWndParent,
-                                                      CRect&            rect,
+                                                      const CRect&            rect,
                                                       DWORD            exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
@@ -204,10 +204,10 @@ BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
     return rValue;
 }
 
-BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
+BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*    pItem,
                                                       float            fInitValue,
                                                       CWnd*            pWndParent,
-                                                      CRect&            rect,
+                                                      const CRect&            rect,
                                                       DWORD            exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
@@ -385,7 +385,7 @@ void ZCInPlaceExtendedEdit::OnExtendedCommand()
     // Process Extended
     if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
     {
-        ZBPropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
+        PSS_PropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
 
         CString ProposedValue = GetEditText();
 

@@ -21,7 +21,7 @@
 #include "zModel\PSS_ModelGlobal.h"
 #include "zModel\PSS_PrestationsEntity.h"
 #include "zModel\PSS_ProcessGraphPage.h"
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 #include "PSS_ProcessPropertiesBP.h"
 #include "PSS_SimPropertiesProcessBP.h"
 #include "PSS_DeliveriesPropertiesBP.h"
@@ -1232,7 +1232,7 @@ bool PSS_ProcessSymbolBP::ProcessMenuCommand(int menuCmdID, PSS_Property& prop, 
     return PSS_Symbol::ProcessMenuCommand(menuCmdID, prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-CString PSS_ProcessSymbolBP::GetAttributeString(ZBPropertyAttributes* pAttributes) const
+CString PSS_ProcessSymbolBP::GetAttributeString(PSS_PropertyAttributes* pAttributes) const
 {
     return PSS_Symbol::GetAttributeString(pAttributes);
 }
@@ -1482,7 +1482,7 @@ bool PSS_ProcessSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_ProcessSymbolBP::OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (!pAttributes)
         return false;
@@ -1497,7 +1497,7 @@ bool PSS_ProcessSymbolBP::OnFillDefaultAttributes(ZBPropertyAttributes* pAttribu
     return PSS_Symbol::OnFillDefaultAttributes(pAttributes);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_ProcessSymbolBP::OnChangeAttributes(PSS_PropertyAttributes* pAttributes)
 {
     return PSS_Symbol::OnChangeAttributes(pAttributes);
 }

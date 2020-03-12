@@ -29,7 +29,7 @@
 #include "zModelWebRes.h"
 
 // forward declaration
-class ZBPropertyAttributes;
+class PSS_PropertyAttributes;
 
 #ifdef _ZMODELWEBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -54,9 +54,9 @@ class PSS_PublishModelAttributesDialog : public PSS_WizardDialog
         *@param propSet - property set owning the attributes to publish, can be NULL
         *@param pParent - parent window, can be NULL
         */
-        PSS_PublishModelAttributesDialog(ZBPropertyAttributes* pPropAttributes = NULL,
-                                         ZBPropertySet*        pPropSet        = NULL,
-                                         CWnd*                 pParent         = NULL);
+        PSS_PublishModelAttributesDialog(PSS_PropertyAttributes* pPropAttributes = NULL,
+                                         ZBPropertySet*          pPropSet        = NULL,
+                                         CWnd*                   pParent         = NULL);
 
     protected:
         /// ClassWizard generated virtual function overrides
@@ -81,7 +81,7 @@ class PSS_PublishModelAttributesDialog : public PSS_WizardDialog
         };
 
         PSS_SymbolAttributesTreeCtrl m_Attributes;
-        ZBPropertyAttributes*        m_pPropAttributes;
+        PSS_PropertyAttributes*      m_pPropAttributes;
         ZBPropertySet*               m_pPropSet;
 };
 

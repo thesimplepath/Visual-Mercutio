@@ -121,13 +121,13 @@ public:
         m_listctrl.LoadStateFromIniFile(IniFile);
     }
 
-    ZBPropertyItem* GetPropertyItem(int nIndex)
+    PSS_PropertyItem* GetPropertyItem(int nIndex)
     {
         return m_listctrl.GetPropertyItem(nIndex);
     }
 
     // Operations
-    void InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex = 0)
+    void InsertPropertyItem(PSS_PropertyItem* pPropertyItem, int nIndex = 0)
     {
         m_listctrl.InsertPropertyItem(pPropertyItem, nIndex);
     }

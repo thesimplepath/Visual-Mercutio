@@ -13,7 +13,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zProperty\ZBPropertyAttributes.h"
+// processsoft
+#include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _ZREPORTWEBEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -60,7 +61,7 @@ public:
     CString                    IndexName;
 
     // JMR-MODIF - Le 6 mars 2006 - Ajout de la variable Attributes.
-    ZBPropertyAttributes    Attributes;
+    PSS_PropertyAttributes    Attributes;
 };
 
-#endif // !defined(AFX_ZVPUBLISHREPORTINFO_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
+#endif

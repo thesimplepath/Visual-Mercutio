@@ -248,8 +248,8 @@ POSITION _ZVSymbolContainer::GetNextPosition()
 // ******************************************************************************************************
 
 // Constructeur de la classe ZVPublishProcessReport.
-ZVPublishProcessReport::ZVPublishProcessReport(PSS_ProcessGraphModelMdlBP*    pModel            /*= NULL*/,
-                                               ZBPropertyAttributes*        pPropAttributes    /*= NULL*/)
+ZVPublishProcessReport::ZVPublishProcessReport(PSS_ProcessGraphModelMdlBP* pModel            /*= NULL*/,
+                                               PSS_PropertyAttributes*     pPropAttributes    /*= NULL*/)
 {
     m_pRootModel = pModel;
     m_pPropAttributes = pPropAttributes;

@@ -25,7 +25,7 @@
 #include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zConversion\PSS_StringTools.h"
-#include "zProperty\ZBPropertyAttributes.h"
+#include "zProperty\PSS_PropertyAttributes.h"
 #include "zModel\PSS_ModelNavigation.h"
 #include "zModel\PSS_InfoModelGraphicGeneration.h"
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
@@ -100,7 +100,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public PSS_ModelNavigation,
         */
         PSS_ModelGenerateImageFiles(PSS_ProcessGraphModelMdl* pModel          = NULL,
                                     void*                     pClass          = NULL,
-                                    ZBPropertyAttributes*     pPropAttributes = NULL);
+                                    PSS_PropertyAttributes*   pPropAttributes = NULL);
 
         virtual ~PSS_ModelGenerateImageFiles();
 
@@ -145,7 +145,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public PSS_ModelNavigation,
     private:
         static std::size_t              m_IndexItem;
         PSS_InfoModelGraphicGeneration* m_pInfo;
-        ZBPropertyAttributes*           m_pPropAttributes;
+        PSS_PropertyAttributes*         m_pPropAttributes;
         PSS_PublishModelGenerateDialog  m_FileGenerateWindow;
         CString                         m_RootHtmlFileName;
         CString                         m_IndexHtmlFileName;

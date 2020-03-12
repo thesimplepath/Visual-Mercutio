@@ -192,7 +192,7 @@ BOOL PSS_LinkSymbol::SetLineProperty(int style, int pointSize, COLORREF color, i
     return TRUE;
 }
 //---------------------------------------------------------------------------
-CString PSS_LinkSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
+CString PSS_LinkSymbol::GetAttributeString(PSS_PropertyAttributes* pAttributes) const
 {
     if (AcceptDynamicAttributes())
     {
@@ -231,14 +231,14 @@ void PSS_LinkSymbol::RefreshAttributeTextArea(bool redraw)
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::GetShowTitleText() const
 {
-    return (AcceptDynamicAttributes() ? m_Attributes.GetDisplayTitleText() : false);
+    return (AcceptDynamicAttributes() ? m_Attributes.GetShowTitleText() : false);
 }
 //---------------------------------------------------------------------------
 void PSS_LinkSymbol::SetShowTitleText(bool value)
 {
     if (AcceptDynamicAttributes())
     {
-        m_Attributes.SetDisplayTitleText(value);
+        m_Attributes.SetShowTitleText(value);
 
         if (GetAttributeTextEdit())
         {
@@ -434,10 +434,10 @@ BOOL PSS_LinkSymbol::SetSymbolReferenceNumberStr(const CString& value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-bool PSS_LinkSymbol::Match(const CString&        argument,
-                           ZBPropertyAttributes* pPropAttributes,
-                           bool                  caseSensitive,
-                           bool                  partialSearch)
+bool PSS_LinkSymbol::Match(const CString&          argument,
+                           PSS_PropertyAttributes* pPropAttributes,
+                           bool                    caseSensitive,
+                           bool                    partialSearch)
 {
     if (!pPropAttributes)
         return false;
@@ -1662,7 +1662,7 @@ void PSS_LinkSymbol::OnPageNameChanged(PSS_ProcessGraphPage* pPage, const CStrin
 void PSS_LinkSymbol::OnUserEntityChanged(PSS_UserEntity* pUserEntity, const CString& oldName)
 {}
 //---------------------------------------------------------------------------
-bool PSS_LinkSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_LinkSymbol::OnFillDefaultAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {
@@ -1673,7 +1673,7 @@ bool PSS_LinkSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_LinkSymbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
+bool PSS_LinkSymbol::OnChangeAttributes(PSS_PropertyAttributes* pAttributes)
 {
     if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {

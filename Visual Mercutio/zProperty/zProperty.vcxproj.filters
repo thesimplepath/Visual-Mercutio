@@ -14,12 +14,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBPropertyAttributes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBPropertyItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBPropertyItemObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,15 +38,15 @@
     <ClCompile Include="PSS_Property.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_PropertyAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PropertyItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBPropertyAttributes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBPropertyItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBPropertyItemObserverMsg.h">
@@ -77,6 +71,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_Property.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PropertyAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PropertyItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

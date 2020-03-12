@@ -8,7 +8,7 @@
 #include "ZCInPlaceTimeEdit.h"
 #include "ZCPropertyListCtrl.h"
 
-#include "zProperty\ZBPropertyItem.h"
+#include "zProperty\PSS_PropertyItem.h"
 
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
@@ -118,7 +118,7 @@ CString ZCInPlaceTimeEdit::GetEditText() const
 }
 
 
-BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
@@ -135,7 +135,7 @@ BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const C
     return rValue;
 }
 
-BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_TimeSpan& TimeInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, PSS_TimeSpan& TimeInitValue, CWnd* pWndParent, const CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
@@ -263,7 +263,7 @@ void ZCInPlaceTimeEdit::OnExtendedCommand()
     // Process Extended
     if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
     {
-        ZBPropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
+        PSS_PropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
 
         CString ProposedValue = GetEditText();
         // Save the value
