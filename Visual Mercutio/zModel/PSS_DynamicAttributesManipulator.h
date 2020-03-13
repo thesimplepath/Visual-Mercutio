@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelMdl
@@ -120,7 +120,7 @@ class AFX_EXT_CLASS PSS_DynamicAttributesManipulator
         *@param pModel - the model owning the property to extract
         *@param[out] set - the property set to populate with the results
         */
-        static void ExtractUniqueAttributes(PSS_ProcessGraphModelMdl* pModel, ZBPropertySet& set);
+        static void ExtractUniqueAttributes(PSS_ProcessGraphModelMdl* pModel, PSS_Properties::IPropertySet& set);
 
     private:
         /**

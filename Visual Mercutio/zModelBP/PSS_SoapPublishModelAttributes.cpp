@@ -70,7 +70,7 @@ bool PSS_SoapPublishModelAttributes::OnFinish()
     if (!pDynPropMgr)
         return false;
 
-    ZBPropertySet                                                propSet;
+    PSS_Properties::IPropertySet                                 propSet;
     PSS_DynamicPropertiesManager::IDynamicPropertiesInfoIterator it(&pDynPropMgr->GetDynamicPropertiesInfoSet());
 
     for (PSS_DynamicPropertyInfo* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -91,7 +91,7 @@ bool PSS_SoapPublishModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
     if (!pSymbol)
         return false;
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the object properties
     pSymbol->FillProperties(propSet, true, true);
@@ -99,7 +99,7 @@ bool PSS_SoapPublishModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
     // publish the properties
     Publish(propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -115,7 +115,7 @@ bool PSS_SoapPublishModelAttributes::OnLink(PSS_LinkSymbol* pLink)
     if (!pLink)
         return false;
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the object properties
     pLink->FillProperties(propSet, true, true);
@@ -123,7 +123,7 @@ bool PSS_SoapPublishModelAttributes::OnLink(PSS_LinkSymbol* pLink)
     // publish the properties
     Publish(propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -134,9 +134,9 @@ bool PSS_SoapPublishModelAttributes::OnLink(PSS_LinkSymbol* pLink)
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_SoapPublishModelAttributes::Publish(const ZBPropertySet& propSet)
+void PSS_SoapPublishModelAttributes::Publish(const PSS_Properties::IPropertySet& propSet)
 {
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // iterate through properties to publish
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())

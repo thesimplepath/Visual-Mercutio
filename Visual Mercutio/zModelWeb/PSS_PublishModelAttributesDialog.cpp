@@ -29,9 +29,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_PublishModelAttributesDialog
 //---------------------------------------------------------------------------
-PSS_PublishModelAttributesDialog::PSS_PublishModelAttributesDialog(PSS_PropertyAttributes* pPropAttributes,
-                                                                   ZBPropertySet*          pPropSet,
-                                                                   CWnd*                   pParent) :
+PSS_PublishModelAttributesDialog::PSS_PublishModelAttributesDialog(PSS_PropertyAttributes*       pPropAttributes,
+                                                                   PSS_Properties::IPropertySet* pPropSet,
+                                                                   CWnd*                         pParent) :
     PSS_WizardDialog(PSS_PublishModelAttributesDialog::IDD,
                      IDB_WZBMP1,
                      0,

@@ -220,7 +220,7 @@ bool PSS_StartSymbolBP::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_StartSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
     if (!PSS_Symbol::FillProperties(propSet, numericValues, groupValues))
         return false;
@@ -556,12 +556,12 @@ bool PSS_StartSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValue
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::SaveProperties(ZBPropertySet& propSet)
+bool PSS_StartSymbolBP::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
     if (!PSS_Symbol::SaveProperties(propSet))
         return false;
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // iterate through the risk values
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -655,12 +655,15 @@ bool PSS_StartSymbolBP::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_StartSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     return PSS_Symbol::CheckPropertyValue(prop, value, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_StartSymbolBP::ProcessExtendedInput(PSS_Property&                 prop,
+                                             CString&                      value,
+                                             PSS_Properties::IPropertySet& props,
+                                             bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -732,7 +735,7 @@ bool PSS_StartSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value,
                 {
                     value = pUserEntity->GetEntityName();
 
-                    ZBPropertyIterator it(&props);
+                    PSS_Properties::IPropertyIterator it(&props);
 
                     // change the disabled properties unit GUID
                     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -751,11 +754,11 @@ bool PSS_StartSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value,
     return PSS_Symbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::ProcessMenuCommand(int            menuCmdID,
-                                           PSS_Property&  prop,
-                                           CString&       value,
-                                           ZBPropertySet& props,
-                                           bool&          refresh)
+bool PSS_StartSymbolBP::ProcessMenuCommand(int                           menuCmdID,
+                                           PSS_Property&                 prop,
+                                           CString&                      value,
+                                           PSS_Properties::IPropertySet& props,
+                                           bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -902,14 +905,14 @@ void PSS_StartSymbolBP::Serialize(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_StartSymbolBP::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     bool result = false;
 
     if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
-        ZBPropertyIterator it(&props);
-        CString            guid;
+        PSS_Properties::IPropertyIterator it(&props);
+        CString                           guid;
 
         // iterate through the properties and search for the matching guid
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -943,10 +946,10 @@ bool PSS_StartSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet&
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_StartSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                   PSS_Property&  dstProperty,
-                                                   bool           top2Down,
-                                                   ZBPropertySet& props)
+bool PSS_StartSymbolBP::OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                   PSS_Property&                 dstProperty,
+                                                   bool                          top2Down,
+                                                   PSS_Properties::IPropertySet& props)
 {
     if (!::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_RULES))
         return false;
@@ -1021,7 +1024,7 @@ bool PSS_StartSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StartSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -1032,7 +1035,7 @@ void PSS_StartSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPrope
     }
 }
 //---------------------------------------------------------------------------
-void PSS_StartSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StartSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 

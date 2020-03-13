@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_DistributionAttributesDefinitionDlg::PSS_DistributionAttributesDefinitionDlg(PSS_DistributionAttributeManager* pDistributionManager,
                                                                                  PSS_DynamicPropertiesManager*     pPropManager,
-                                                                                 ZBPropertySet*                    pSet,
+                                                                                 PSS_Properties::IPropertySet*     pSet,
                                                                                  PSS_UserGroupEntity*              pMainUserGroup,
                                                                                  const CString&                    groupGUID,
                                                                                  PSS_DistributionAttribute*        pDistributionAttr,

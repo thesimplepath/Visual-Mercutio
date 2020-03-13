@@ -55,7 +55,7 @@ bool PSS_DynamicProperties::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_DynamicProperties::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
     IDynamicPropertiesIterator it(&m_Set);
 
@@ -66,9 +66,9 @@ bool PSS_DynamicProperties::FillProperties(ZBPropertySet& propSet, bool numericV
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::SaveProperties(ZBPropertySet& propSet)
+bool PSS_DynamicProperties::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
-    ZBPropertyIterator itProp(&propSet);
+    PSS_Properties::IPropertyIterator itProp(&propSet);
 
     // iterate through the source properties
     for (PSS_Property* pPropSrc = itProp.GetFirst(); pPropSrc; pPropSrc = itProp.GetNext())
@@ -103,21 +103,21 @@ bool PSS_DynamicProperties::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_DynamicProperties::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_DynamicProperties::ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::ProcessMenuCommand(int            menuCmdID,
-                                               PSS_Property&  prop,
-                                               CString&       value,
-                                               ZBPropertySet& props,
-                                               bool&          refresh)
+bool PSS_DynamicProperties::ProcessMenuCommand(int                           menuCmdID,
+                                               PSS_Property&                 prop,
+                                               CString&                      value,
+                                               PSS_Properties::IPropertySet& props,
+                                               bool&                         refresh)
 {
     return true;
 }
@@ -167,20 +167,20 @@ void PSS_DynamicProperties::FreePropertiesSet()
     m_Set.RemoveAll();
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
+bool PSS_DynamicProperties::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_DynamicProperties::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DynamicProperties::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                       PSS_Property&  dstProperty,
-                                                       bool           top2Down,
-                                                       ZBPropertySet& props)
+bool PSS_DynamicProperties::OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                       PSS_Property&                 dstProperty,
+                                                       bool                          top2Down,
+                                                       PSS_Properties::IPropertySet& props)
 {
     return true;
 }

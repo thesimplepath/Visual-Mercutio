@@ -92,7 +92,7 @@ BOOL ZCInPlaceDurationEdit::PreTranslateMessage(MSG* pMsg)
 
 void ZCInPlaceDurationEdit::SetEditText(const CString& strText)
 {
-    m_strText = strText;
+    m_StrValue = strText;
 
     if (::IsWindow(GetSafeHwnd()))
         SetWindowText(strText);
@@ -124,12 +124,16 @@ BOOL ZCInPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, c
 
     BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
     SetEditText(strInitText);
+
     // Saves the initial value
-    m_strInitialValueText = strInitText;
+    m_StrInitialValue = strInitText;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_STRING;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -141,12 +145,16 @@ BOOL ZCInPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, P
 
     BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
     SetEditText((PSS_Duration&)DurationInitValue);
+
     // Saves the initial value
     m_InitialDurationValue = DurationInitValue;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_DURATION;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Duration;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -171,18 +179,21 @@ void ZCInPlaceDurationEdit::SaveValue()
         if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
         {
             CString ProposedValue = GetEditText();
+
             // If correct, process the data
             if (m_pItem)
             {
                 bool ConversionCorrect = true;
+
                 switch (GetEditType())
                 {
-                    case ZIInPlaceEdit::IPE_STRING:
+                    case PSS_InPlaceEdit::IE_T_String:
                     {
                         // do nothing for string
                         break;
                     }
-                    case ZIInPlaceEdit::IPE_DURATION:
+
+                    case PSS_InPlaceEdit::IE_T_Duration:
                     {
                         // Check the conversion
                         PSS_Duration value;
@@ -192,6 +203,7 @@ void ZCInPlaceDurationEdit::SaveValue()
                         break;
                     }
                 }
+
                 // Now, if conversion correct and check value, save the edit value
                 if (ConversionCorrect &&
                     dynamic_cast<ZCPropertyListCtrl*>(GetParent())->CheckCurrentPropertyData(m_pItem, ProposedValue))
@@ -221,26 +233,27 @@ void ZCInPlaceDurationEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case ZIInPlaceEdit::IPE_STRING:
+        case PSS_InPlaceEdit::IE_T_String:
         {
             // Set back the initial value
-            SetEditText(m_strInitialValueText);
+            SetEditText(m_StrInitialValue);
             break;
         }
-        case ZIInPlaceEdit::IPE_DURATION:
+
+        case PSS_InPlaceEdit::IE_T_Duration:
         {
             // Set back the initial duration value
             SetEditText((PSS_Duration&)m_InitialDurationValue);
             break;
         }
     }
+
     // Set the focus to properties control
     SetFocus();
+
     // Reset the has changed value
     SetHasChanged(false);
 }
-
-
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceDurationEdit message handlers

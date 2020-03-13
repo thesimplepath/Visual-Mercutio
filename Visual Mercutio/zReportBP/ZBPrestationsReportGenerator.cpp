@@ -711,10 +711,10 @@ void _ZBPrestationsDatas::Associate(PSS_ProcessSymbolBP* Process)
         {
             _ZBProcessDatas* m_Data = new _ZBProcessDatas();
 
-            ZBPropertySet PropSet;
+            PSS_Properties::IPropertySet PropSet;
             Process->FillProperties(PropSet);
 
-            ZBPropertyIterator j(&PropSet);
+            PSS_Properties::IPropertyIterator j(&PropSet);
             PSS_Property* pProp;
 
             BOOL IsGoodPrestationName = FALSE;

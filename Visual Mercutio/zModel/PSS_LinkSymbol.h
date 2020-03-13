@@ -35,7 +35,7 @@
 #include "zBaseSym\PSS_ObjectPath.h"
 #include "zBaseSym\PSS_BasicSymbolAcceptVisitor.h"
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 #include "zProperty\PSS_PropertyAttributes.h"
 #include "zModel\PSS_ExtAppPropertyMgr.h"
 #include "zModel\PSS_ExtFilePropertyMgr.h"
@@ -67,7 +67,7 @@ class PSS_PropertyAttributes;
 class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
                                      public PSS_BasicSymbol,
                                      public PSS_ObjectPath,
-                                     public ZIProperties,
+                                     public PSS_Properties,
                                      public PSS_ExtAppPropertyMgr,
                                      public PSS_ExtFilePropertyMgr,
                                      public PSS_SymbolAttributes,
@@ -670,14 +670,14 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param groupValues - if true, values will be grouped
         *@return true on success, otherwise false
         */
-        virtual bool FillProperties(ZBPropertySet& propSet, bool numericValue = false, bool groupValue = false);
+        virtual bool FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValue = false, bool groupValue = false);
 
         /**
         * Saves the changes to object properties
         *@param[in, out] propSet - property set to fill with the saved properties
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperties(ZBPropertySet& propSet);
+        virtual bool SaveProperties(PSS_Properties::IPropertySet& propSet);
 
         /**
         * Fills a symbol property
@@ -700,7 +700,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[in, out] props - property set at which the property belongs
         *@return true if the property value was checked successfully, otherwise false
         */
-        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props);
+        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props);
 
         /**
         * Processes the extended input for the property value
@@ -710,7 +710,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -721,11 +721,11 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessMenuCommand(int            menuCmdID,
-                                        PSS_Property&  prop,
-                                        CString&       value,
-                                        ZBPropertySet& props,
-                                        bool&          refresh);
+        virtual bool ProcessMenuCommand(int                           menuCmdID,
+                                        PSS_Property&                 prop,
+                                        CString&                      value,
+                                        PSS_Properties::IPropertySet& props,
+                                        bool&                         refresh);
 
         /**
         * Creates the symbol properties
@@ -1050,7 +1050,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[in, out] props - the property set at which the changing property belongs
         *@return true if the property is allowed to change, otherwise false
         */
-        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props);
+        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props);
 
         /**
         * Called after the property changed
@@ -1059,7 +1059,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         *@return true if the property changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Called when an internal property drag&drop occurred in the symbol
@@ -1069,10 +1069,10 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         *@param[in, out] props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
-        virtual bool OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                PSS_Property&  dstProperty,
-                                                bool           top2Down,
-                                                ZBPropertySet& props);
+        virtual bool OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                PSS_Property&                 dstProperty,
+                                                bool                          top2Down,
+                                                PSS_Properties::IPropertySet& props);
 
         /**
         * Called when a tooltip is required

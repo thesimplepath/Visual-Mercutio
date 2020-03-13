@@ -395,7 +395,7 @@ void PSS_InputAttributesView::OnAddInputAttribute()
     if (!pDynPropMgr)
         return;
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), propSet);
 
 
@@ -432,7 +432,7 @@ void PSS_InputAttributesView::OnAddInputAttribute()
         Refresh();
     }
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())

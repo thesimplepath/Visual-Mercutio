@@ -37,7 +37,7 @@ void ZBPropertyItemManager::SetPropertyListCtrl(ZCPropertyListCtrl* pCtrl)
 
 void ZBPropertyItemManager::FreePropertySet()
 {
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
     PSS_Property* pProp;
 
     for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -48,7 +48,7 @@ void ZBPropertyItemManager::FreePropertySet()
     m_PropSet.RemoveAll();
 }
 
-bool ZBPropertyItemManager::UpdateControlData(const ZIProperties* pData)
+bool ZBPropertyItemManager::UpdateControlData(const PSS_Properties* pData)
 {
     if (!pData)
     {
@@ -62,16 +62,16 @@ bool ZBPropertyItemManager::UpdateControlData(const ZIProperties* pData)
     FreePropertySet();
 
     // Retrieve the property set from object
-    const_cast<ZIProperties*>(pData)->FillProperties(m_PropSet);
+    const_cast<PSS_Properties*>(pData)->FillProperties(m_PropSet);
 
     bool RetValue = UpdateControlData();
 
-    m_pCurrentData = const_cast<ZIProperties*>(pData);
+    m_pCurrentData = const_cast<PSS_Properties*>(pData);
 
     return RetValue;
 }
 
-bool ZBPropertyItemManager::UpdateControlData(ZBPropertySet& PropSet)
+bool ZBPropertyItemManager::UpdateControlData(PSS_Properties::IPropertySet& PropSet)
 {
     // First, delete all tabs
     DeleteAllTabs();
@@ -80,7 +80,7 @@ bool ZBPropertyItemManager::UpdateControlData(ZBPropertySet& PropSet)
     FreePropertySet();
 
     // Duplicate the set
-    ZBPropertyIterator i(&PropSet);
+    PSS_Properties::IPropertyIterator i(&PropSet);
 
     for (PSS_Property* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
@@ -96,7 +96,7 @@ bool ZBPropertyItemManager::UpdateControlData(ZBPropertySet& PropSet)
 
 bool ZBPropertyItemManager::UpdateControlData()
 {
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
@@ -200,7 +200,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(PSS_PropertyItem* pPropertyItem /
     if (!pPropertyItem)
     {
         // Now run through the list of data and fill the property set
-        ZBPropertyIterator i(&m_PropSet);
+        PSS_Properties::IPropertyIterator i(&m_PropSet);
 
         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
@@ -234,7 +234,7 @@ bool ZBPropertyItemManager::UpdatePropertyData(PSS_PropertyItem* pPropertyItem /
 
     // Otherwise, one value is specified and request only one save
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     bool Found = false;
 
@@ -292,7 +292,7 @@ bool ZBPropertyItemManager::CheckCurrentPropertyData(PSS_PropertyItem* pProperty
 
     // Otherwise, one value is specified and request only one save
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
@@ -346,7 +346,7 @@ bool ZBPropertyItemManager::ProcessExtendedCurrentPropertyData(PSS_PropertyItem*
 
     // Otherwise, one value is specified and request only one save
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
@@ -405,7 +405,7 @@ bool ZBPropertyItemManager::ProcessMenuCommandCurrentPropertyData(int           
 
     // Otherwise, one value is specified and request only one save
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
@@ -453,7 +453,7 @@ bool ZBPropertyItemManager::ProcessMenuCommandCurrentPropertyData(int           
 
 bool ZBPropertyItemManager::ApplyPropertyChanges()
 {
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
@@ -1177,7 +1177,7 @@ void ZBPropertyItemManager::DeleteUnusedTab()
 bool ZBPropertyItemManager::ExistInPropSet(LPCTSTR pStrTabName)
 {
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
@@ -1195,7 +1195,7 @@ bool ZBPropertyItemManager::ExistInPropSet(LPCTSTR pStrTabName)
 PSS_Property* ZBPropertyItemManager::GetCorrespondingProperty(PSS_PropertyItem* pPropertyItem)
 {
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
 
     PSS_Property* pProp;
 
@@ -1669,7 +1669,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(PSS_PropertyItem* pSrcPro
 
     // Now run through the list of data and locate the source and the destination property
     PSS_Property* pSrcProp;
-    ZBPropertyIterator i(&m_PropSet);
+    PSS_Properties::IPropertyIterator i(&m_PropSet);
     bool FoundSrc = false;
 
     for (pSrcProp = i.GetFirst(); pSrcProp; pSrcProp = i.GetNext())
@@ -1704,7 +1704,7 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem(PSS_PropertyItem* pSrcPro
     }
 
     PSS_Property* pDstProp;
-    ZBPropertyIterator l(&m_PropSet);
+    PSS_Properties::IPropertyIterator l(&m_PropSet);
     bool FoundDst = false;
 
     for (pDstProp = l.GetFirst(); pDstProp; pDstProp = l.GetNext())

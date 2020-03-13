@@ -77,7 +77,7 @@ bool PSS_DynamicAttributesManipulator::DeleteProperty(PSS_ProcessGraphModelMdl* 
     return assign.Navigate();
 }
 //---------------------------------------------------------------------------
-void PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(PSS_ProcessGraphModelMdl* pModel, ZBPropertySet& set)
+void PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(PSS_ProcessGraphModelMdl* pModel, PSS_Properties::IPropertySet& set)
 {
     PSS_ExtractModelAttributes extract(pModel, &set);
     extract.Navigate();

@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIProperties.h"
+#include "PSS_Properties.h"
 
 #ifdef _ZPROPERTYEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -278,10 +278,10 @@ class AFX_EXT_CLASS PSS_PropertyAttributes
         *@param partialSearch - if true, the search will be partial
         *@return true the argument matches an attribute, otherwise false
         */
-        virtual bool Match(ZBPropertySet& propAttributes,
-                           const CString& argument,
-                           bool           caseSensitive = false,
-                           bool           partialSearch = false);
+        virtual bool Match(PSS_Properties::IPropertySet& propAttributes,
+                           const CString&                argument,
+                           bool                          caseSensitive = false,
+                           bool                          partialSearch = false);
 
         /**
         * Gets the attributes as a string
@@ -289,7 +289,7 @@ class AFX_EXT_CLASS PSS_PropertyAttributes
         *@param keepOnlyNotEmpty - if true, only the filled attributes will be kept
         *@return the attributes as a string
         */
-        virtual CString GetString(ZBPropertySet* pPropAttributes, bool keepOnlyNotEmpty = true);
+        virtual CString GetString(PSS_Properties::IPropertySet* pPropAttributes, bool keepOnlyNotEmpty = true);
 
         /**
         * Gets if the title text is shown

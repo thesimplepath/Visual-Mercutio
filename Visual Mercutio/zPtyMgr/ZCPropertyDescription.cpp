@@ -4,8 +4,8 @@
 #include "ZCPropertyDescription.h"
 
 #include "zProperty\PSS_Property.h"
-#include "zProperty\ZBPropertyObserverMsg.h"
-#include "zProperty\ZBPropertyItemObserverMsg.h"
+#include "zProperty\PSS_PropertyObserverMsg.h"
+#include "zProperty\PSS_PropertyItemObserverMsg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -41,16 +41,16 @@ void ZCPropertyDescription::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
         return;
     }
 
-    if (ISA(pMsg, ZBPropertyItemObserverMsg))
+    if (ISA(pMsg, PSS_PropertyItemObserverMsg))
     {
-        PSS_Property* pProp = ((ZBPropertyItemObserverMsg*)pMsg)->GetProperty();
+        PSS_Property* pProp = ((PSS_PropertyItemObserverMsg*)pMsg)->GetProperty();
 
         if (pProp)
         {
             UpdateControlData(pProp);
         }
     }
-    else if (ISA(pMsg, ZBPropertyObserverMsg))
+    else if (ISA(pMsg, PSS_PropertyObserverMsg))
     {
         EmptyControlData();
     }

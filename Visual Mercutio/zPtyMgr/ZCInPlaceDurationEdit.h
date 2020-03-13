@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zProperty\ZIInPlaceEdit.h"
+#include "zProperty\PSS_InPlaceEdit.h"
 #include "zWinUtil32\PSS_SearchEdit.h"
 
 
@@ -34,7 +34,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceDurationEdit
 
-class AFX_EXT_CLASS ZCInPlaceDurationEdit : public PSS_SearchEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceDurationEdit : public PSS_SearchEdit, public PSS_InPlaceEdit
 {
     ZCInPlaceDurationEdit(const ZCInPlaceDurationEdit& d);
     ZCInPlaceDurationEdit operator=(const ZCInPlaceDurationEdit& d);
@@ -95,11 +95,11 @@ private:
 };
 
 inline ZCInPlaceDurationEdit::ZCInPlaceDurationEdit(bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit((double)0, IsReadOnly)
+    : PSS_InPlaceEdit((double)0, IsReadOnly)
 {}
 
 inline ZCInPlaceDurationEdit::ZCInPlaceDurationEdit(PSS_Duration& DurationInitValue, bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit(DurationInitValue, IsReadOnly)
+    : PSS_InPlaceEdit(DurationInitValue, IsReadOnly)
 {}
 
 inline ZCInPlaceDurationEdit::~ZCInPlaceDurationEdit()

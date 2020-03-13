@@ -32,7 +32,7 @@ PSS_ExtractModelAttributes::~PSS_ExtractModelAttributes()
 //---------------------------------------------------------------------------
 bool PSS_ExtractModelAttributes::OnStart()
 {
-    m_pPropertySet = static_cast<ZBPropertySet*>(m_pClass);
+    m_pPropertySet = static_cast<PSS_Properties::IPropertySet*>(m_pClass);
 
     if (!m_pPropertySet)
         return false;
@@ -51,7 +51,7 @@ bool PSS_ExtractModelAttributes::OnFinish()
 //---------------------------------------------------------------------------
 bool PSS_ExtractModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
 {
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the property set from object
     pSymbol->FillProperties(propSet, true);
@@ -59,7 +59,7 @@ bool PSS_ExtractModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
     // add the attributes to the pPublishAttribDef class
     ProcessAttrib(propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -72,7 +72,7 @@ bool PSS_ExtractModelAttributes::OnSymbol(PSS_Symbol* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_ExtractModelAttributes::OnLink(PSS_LinkSymbol* pLink)
 {
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the property set from object
     pLink->FillProperties(propSet, true);
@@ -80,7 +80,7 @@ bool PSS_ExtractModelAttributes::OnLink(PSS_LinkSymbol* pLink)
     // add the attributes to the pPublishAttribDef class
     ProcessAttrib(propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -91,11 +91,11 @@ bool PSS_ExtractModelAttributes::OnLink(PSS_LinkSymbol* pLink)
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_ExtractModelAttributes::ProcessAttrib(ZBPropertySet& propSet)
+void PSS_ExtractModelAttributes::ProcessAttrib(PSS_Properties::IPropertySet& propSet)
 {
     ASSERT(m_pPropertySet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())

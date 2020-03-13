@@ -2894,10 +2894,10 @@ void ZAApp::OnDynamicAttributesDisplay()
 
     if (pCurrentDoc)
     {
-        ZBPropertySet Set;
-        PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pCurrentDoc->GetModel(), Set);
+        PSS_Properties::IPropertySet set;
+        PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pCurrentDoc->GetModel(), set);
 
-        ZVChoosePropertyDlg choose(&Set,
+        ZVChoosePropertyDlg choose(&set,
                                    2,
                                    false,    // Selection
                                    true,    // AllowItemSelection
@@ -2909,12 +2909,12 @@ void ZAApp::OnDynamicAttributesDisplay()
         }
 
         // Remove all properties
-        ZBPropertyIterator i(&Set);
+        PSS_Properties::IPropertyIterator i(&set);
 
         for (PSS_Property* pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             delete pProp;
 
-        Set.RemoveAll();
+        set.RemoveAll();
     }
 }
 

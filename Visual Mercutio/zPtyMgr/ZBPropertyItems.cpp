@@ -31,7 +31,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemString, PSS_PropertyItem)
 
 void ZBPropertyItemString::CreateInPlaceControl(CWnd*           pWndParent,
                                                 const CRect&    rect,
-                                                ZIInPlaceEdit*& pWndInPlaceControl,
+                                                PSS_InPlaceEdit*& pWndInPlaceControl,
                                                 const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -49,7 +49,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemList, PSS_PropertyItem)
 
 void ZBPropertyItemList::CreateInPlaceControl(CWnd*           pWndParent,
                                               const CRect&    rect,
-                                              ZIInPlaceEdit*& pWndInPlaceControl,
+                                              PSS_InPlaceEdit*& pWndInPlaceControl,
                                               const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -85,7 +85,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemExtended, PSS_PropertyItem)
 
 void ZBPropertyItemExtended::CreateInPlaceControl(CWnd*           pWndParent,
                                                   const CRect&    rect,
-                                                  ZIInPlaceEdit*& pWndInPlaceControl,
+                                                  PSS_InPlaceEdit*& pWndInPlaceControl,
                                                   const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -125,7 +125,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemIntelliEdit, PSS_PropertyItem)
 
 void ZBPropertyItemIntelliEdit::CreateInPlaceControl(CWnd*           pWndParent,
                                                      const CRect&    rect,
-                                                     ZIInPlaceEdit*& pWndInPlaceControl,
+                                                     PSS_InPlaceEdit*& pWndInPlaceControl,
                                                      const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -171,7 +171,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemMultiLineEdit, PSS_PropertyItem)
 
 void ZBPropertyItemMultiLineEdit::CreateInPlaceControl(CWnd*           pWndParent,
                                                        const CRect&    rect,
-                                                       ZIInPlaceEdit*& pWndInPlaceControl,
+                                                       PSS_InPlaceEdit*& pWndInPlaceControl,
                                                        const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -224,7 +224,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemDuration, PSS_PropertyItem)
 
 void ZBPropertyItemDuration::CreateInPlaceControl(CWnd*           pWndParent,
                                                   const CRect&    rect,
-                                                  ZIInPlaceEdit*& pWndInPlaceControl,
+                                                  PSS_InPlaceEdit*& pWndInPlaceControl,
                                                   const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -258,7 +258,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemDate, PSS_PropertyItem)
 
 void ZBPropertyItemDate::CreateInPlaceControl(CWnd*           pWndParent,
                                               const CRect&    rect,
-                                              ZIInPlaceEdit*& pWndInPlaceControl,
+                                              PSS_InPlaceEdit*& pWndInPlaceControl,
                                               const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -293,7 +293,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemTime, PSS_PropertyItem)
 
 void ZBPropertyItemTime::CreateInPlaceControl(CWnd*           pWndParent,
                                               const CRect&    rect,
-                                              ZIInPlaceEdit*& pWndInPlaceControl,
+                                              PSS_InPlaceEdit*& pWndInPlaceControl,
                                               const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -327,7 +327,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemMenuFileDir, PSS_PropertyItem)
 
 void ZBPropertyItemMenuFileDir::CreateInPlaceControl(CWnd*           pWndParent,
                                                      const CRect&    rect,
-                                                     ZIInPlaceEdit*& pWndInPlaceControl,
+                                                     PSS_InPlaceEdit*& pWndInPlaceControl,
                                                      const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);
@@ -390,7 +390,7 @@ IMPLEMENT_DYNAMIC(ZBPropertyItemNumber, PSS_PropertyItem)
 
 void ZBPropertyItemNumber::CreateInPlaceControl(CWnd*           pWndParent,
                                                 const CRect&    rect,
-                                                ZIInPlaceEdit*& pWndInPlaceControl,
+                                                PSS_InPlaceEdit*& pWndInPlaceControl,
                                                 const CSize&    extendedSize)
 {
     CWnd* pWnd = dynamic_cast<CWnd*>(pWndInPlaceControl);

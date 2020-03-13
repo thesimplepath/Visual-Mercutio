@@ -139,7 +139,7 @@ private:
 
     void CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol);
     void GeneratePageFile(CString Name, CString Description);
-    void GenerateSection(ZBPropertySet& PropSet);
+    void GenerateSection(PSS_Properties::IPropertySet& PropSet);
     void GenerateHTMLPageHead(CString Title);
     void GenerateHTMLPageFoot();
     void GenerateHTMLTableHead();

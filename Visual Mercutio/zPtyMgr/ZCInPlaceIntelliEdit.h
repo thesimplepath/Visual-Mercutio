@@ -2,12 +2,10 @@
 #define _ZCInPlaceIntelliEdit_H__
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// _ZCInPlaceIntelliEdit_H.h : header file
-//
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,24 +15,23 @@
 
 // processsoft
 #include "zBaseLib\PSS_IntelliEdit.h"
-#include "zProperty\ZIInPlaceEdit.h"
-
+#include "zProperty\PSS_InPlaceEdit.h"
 
 #ifdef _ZPTYMGREXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceIntelliEdit
 
-class AFX_EXT_CLASS ZCInPlaceIntelliEdit : public PSS_IntelliEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceIntelliEdit : public PSS_IntelliEdit, public PSS_InPlaceEdit
 {
     ZCInPlaceIntelliEdit(const ZCInPlaceIntelliEdit& d);
     ZCInPlaceIntelliEdit operator=(const ZCInPlaceIntelliEdit& d);

@@ -28,9 +28,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SelectSymbolAttributeDlg
 //---------------------------------------------------------------------------
-PSS_SelectSymbolAttributeDlg::PSS_SelectSymbolAttributeDlg(PSS_PropertyAttributes* pPropAttributes,
-                                                           ZBPropertySet*          pPropSet,
-                                                           CWnd*                   pParent) :
+PSS_SelectSymbolAttributeDlg::PSS_SelectSymbolAttributeDlg(PSS_PropertyAttributes*       pPropAttributes,
+                                                           PSS_Properties::IPropertySet* pPropSet,
+                                                           CWnd*                         pParent) :
     CDialog(PSS_SelectSymbolAttributeDlg::IDD, pParent),
     m_pPropAttributes(pPropAttributes),
     m_pPropSet(pPropSet),

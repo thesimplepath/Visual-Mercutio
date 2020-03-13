@@ -92,7 +92,7 @@ BOOL ZCInPlaceTimeEdit::PreTranslateMessage(MSG* pMsg)
 
 void ZCInPlaceTimeEdit::SetEditText(const CString& strText)
 {
-    m_strText = strText;
+    m_StrValue = strText;
 
     if (::IsWindow(GetSafeHwnd()))
         SetWindowText(strText);
@@ -124,12 +124,16 @@ BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const
 
     BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
     SetEditText(strInitText);
+
     // Saves the initial value
-    m_strInitialValueText = strInitText;
+    m_StrInitialValue = strInitText;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_STRING;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -141,12 +145,16 @@ BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, PSS_T
 
     BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
     SetEditText((PSS_TimeSpan&)TimeInitValue);
+
     // Saves the initial value
     m_InitialTimeValue = TimeInitValue;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_TIME;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Time;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -177,12 +185,13 @@ void ZCInPlaceTimeEdit::SaveValue()
                 bool ConversionCorrect = true;
                 switch (GetEditType())
                 {
-                    case ZIInPlaceEdit::IPE_STRING:
+                    case PSS_InPlaceEdit::IE_T_String:
                     {
                         // do nothing for string
                         break;
                     }
-                    case ZIInPlaceEdit::IPE_TIME:
+
+                    case PSS_InPlaceEdit::IE_T_Time:
                     {
                         // Check the conversion
                         PSS_TimeSpan value;
@@ -222,13 +231,14 @@ void ZCInPlaceTimeEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case ZIInPlaceEdit::IPE_STRING:
+        case PSS_InPlaceEdit::IE_T_String:
         {
             // Set back the initial value
-            SetEditText(m_strInitialValueText);
+            SetEditText(m_StrInitialValue);
             break;
         }
-        case ZIInPlaceEdit::IPE_TIME:
+
+        case PSS_InPlaceEdit::IE_T_Time:
         {
             // Set back the initial duration value
             SetEditText((PSS_TimeSpan&)m_InitialTimeValue);

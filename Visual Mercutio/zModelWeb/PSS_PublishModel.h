@@ -43,9 +43,9 @@ class AFX_EXT_CLASS PSS_PublishModel
         *@param pSet - model properties to publish
         *@param iniFile - initialization file name
         */
-        PSS_PublishModel(PSS_PropertyAttributes* pAttributes = NULL,
-                         ZBPropertySet*          pSet        = NULL,
-                         const CString&          iniFile     = _T(""));
+        PSS_PublishModel(PSS_PropertyAttributes*       pAttributes = NULL,
+                         PSS_Properties::IPropertySet* pSet        = NULL,
+                         const CString&                iniFile     = _T(""));
 
         virtual ~PSS_PublishModel();
 
@@ -142,7 +142,7 @@ class AFX_EXT_CLASS PSS_PublishModel
 
     private:
         PSS_PropertyAttributes*               m_pPropAttributes;
-        ZBPropertySet*                        m_pPropSet;
+        PSS_Properties::IPropertySet*         m_pPropSet;
         PSS_PropertyAttributes::IAttributeSet m_AttributeSet;
         ELanguage                             m_Language;
         CStringArray                          m_ArrayOfAddress;

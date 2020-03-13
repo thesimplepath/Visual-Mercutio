@@ -24,7 +24,7 @@ static char THIS_FILE[] = __FILE__;
 // ZVChoosePropertyDlg dialog
 
 
-ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType /*= 0*/, bool Selection /*= true*/,
+ZVChoosePropertyDlg::ZVChoosePropertyDlg(PSS_Properties* pProperties, int ShowType /*= 0*/, bool Selection /*= true*/,
                                          bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
                                          PSS_DynamicPropertiesManager* pPropManager /*=NULL*/,
                                          PSS_ProcessGraphModelMdl* pModel /*=NULL*/,
@@ -44,7 +44,7 @@ ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType
     //}}AFX_DATA_INIT
 }
 
-ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType /*= 0*/, bool Selection /*= true*/,
+ZVChoosePropertyDlg::ZVChoosePropertyDlg(PSS_Properties::IPropertySet* pPropSet, int ShowType /*= 0*/, bool Selection /*= true*/,
                                          bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
                                          PSS_DynamicPropertiesManager* pPropManager /*=NULL*/,
                                          PSS_ProcessGraphModelMdl* pModel /*=NULL*/,

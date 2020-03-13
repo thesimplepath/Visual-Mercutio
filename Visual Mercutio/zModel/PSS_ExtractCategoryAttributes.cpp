@@ -58,7 +58,7 @@ bool PSS_ExtractCategoryAttributes::OnFinish()
 //---------------------------------------------------------------------------
 bool PSS_ExtractCategoryAttributes::OnSymbol(PSS_Symbol* pSymbol)
 {
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the property set from object
     pSymbol->FillProperties(propSet, true);
@@ -66,7 +66,7 @@ bool PSS_ExtractCategoryAttributes::OnSymbol(PSS_Symbol* pSymbol)
     // add the attributes to the pPublishAttribDef class
     FillAttribCategory(propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -79,7 +79,7 @@ bool PSS_ExtractCategoryAttributes::OnSymbol(PSS_Symbol* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_ExtractCategoryAttributes::OnLink(PSS_LinkSymbol* pLink)
 {
-    ZBPropertySet PropSet;
+    PSS_Properties::IPropertySet PropSet;
 
     // get the property set from object
     pLink->FillProperties(PropSet, true);
@@ -87,7 +87,7 @@ bool PSS_ExtractCategoryAttributes::OnLink(PSS_LinkSymbol* pLink)
     // add the attributes to the pPublishAttribDef class
     FillAttribCategory(PropSet);
 
-    ZBPropertyIterator it(&PropSet);
+    PSS_Properties::IPropertyIterator it(&PropSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -98,9 +98,9 @@ bool PSS_ExtractCategoryAttributes::OnLink(PSS_LinkSymbol* pLink)
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_ExtractCategoryAttributes::FillAttribCategory(ZBPropertySet& propSet)
+void PSS_ExtractCategoryAttributes::FillAttribCategory(PSS_Properties::IPropertySet& propSet)
 {
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())

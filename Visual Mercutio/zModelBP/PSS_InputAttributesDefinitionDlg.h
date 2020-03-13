@@ -21,8 +21,10 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
+#include "zProperty\PSS_Properties.h"
+
+// resources
 #include "zModelBP\zModelBPRes.h"
-#include "zProperty\ZIProperties.h"
 
 // class name mapping
 #ifndef PSS_DynamicPropertiesManager
@@ -61,7 +63,7 @@ class AFX_EXT_CLASS PSS_InputAttributesDefinitionDlg : public CDialog
         *@param pParent - the parent window, can be NULL
         */
         PSS_InputAttributesDefinitionDlg(PSS_DynamicPropertiesManager* pPropManager,
-                                         ZBPropertySet*                pSet,
+                                         PSS_Properties::IPropertySet* pSet,
                                          PSS_InputAttribute*           pInputAttr = NULL,
                                          CWnd*                         pParent    = NULL);
 
@@ -121,7 +123,7 @@ class AFX_EXT_CLASS PSS_InputAttributesDefinitionDlg : public CDialog
         };
 
         PSS_DynamicPropertiesManager* m_pPropManager;
-        ZBPropertySet*                m_pSet;
+        PSS_Properties::IPropertySet* m_pSet;
         PSS_InputAttribute*           m_pInputAttr;
         CComboBox                     m_VisibilityList;
         CComboBox                     m_FlagList;

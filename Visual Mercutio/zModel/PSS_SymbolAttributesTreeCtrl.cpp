@@ -9,7 +9,7 @@
 #include "PSS_SymbolAttributesTreeCtrl.h"
 
 // processsoft
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -64,7 +64,8 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SymbolAttributesTreeCtrl
 //---------------------------------------------------------------------------
-PSS_SymbolAttributesTreeCtrl::PSS_SymbolAttributesTreeCtrl(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet) :
+PSS_SymbolAttributesTreeCtrl::PSS_SymbolAttributesTreeCtrl(PSS_PropertyAttributes*       pPropAttributes,
+                                                           PSS_Properties::IPropertySet* pPropSet) :
     PSS_TreeCtrl(),
     m_pPropAttributes(pPropAttributes),
     m_pPropSet(pPropSet),
@@ -82,7 +83,7 @@ void PSS_SymbolAttributesTreeCtrl::Initialize()
     LoadTree();
 }
 //---------------------------------------------------------------------------
-void PSS_SymbolAttributesTreeCtrl::Initialize(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet)
+void PSS_SymbolAttributesTreeCtrl::Initialize(PSS_PropertyAttributes* pPropAttributes, PSS_Properties::IPropertySet* pPropSet)
 {
     m_pPropAttributes = pPropAttributes;
     m_pPropSet        = pPropSet;
@@ -241,7 +242,7 @@ void PSS_SymbolAttributesTreeCtrl::LoadTree()
     if (!m_pPropAttributes || !m_pPropSet)
         return;
 
-    ZBPropertyIterator itProp(m_pPropSet);
+    PSS_Properties::IPropertyIterator itProp(m_pPropSet);
 
     // iterate through the property set
     for (PSS_Property* pProp = itProp.GetFirst(); pProp; pProp = itProp.GetNext())

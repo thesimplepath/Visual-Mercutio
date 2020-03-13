@@ -382,7 +382,7 @@ void PSS_DistributionAttributesView::OnAddDistributionAttrib()
 
     const CString unitGUID = GetAndCheckUnitGUID();
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), propSet);
 
     PSS_DistributionAttributesDefinitionDlg dlg(pDistribManager,
@@ -420,7 +420,7 @@ void PSS_DistributionAttributesView::OnAddDistributionAttrib()
         }
     }
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -493,7 +493,7 @@ void PSS_DistributionAttributesView::OnModifyDistributionAttrib()
 
     const CString unitGUID = GetAndCheckUnitGUID();
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), propSet);
 
     PSS_DistributionAttributesDefinitionDlg dlg(pDistribManager,

@@ -24,7 +24,7 @@
     #include "zModel\PSS_BasicProperties.h"
 #undef _ZMODELEXPORT
 #include "zProperty\PSS_PropertyAttributes.h"
-#include "zProperty\ZBPropertyObserverMsg.h"
+#include "zProperty\PSS_PropertyObserverMsg.h"
 #include "PSS_DeliverableLinkSymbolBP.h"
 #include "PSS_RuleListPropertiesBP.h"
 #include "PSS_TaskListPropertiesBP.h"
@@ -281,7 +281,7 @@ bool PSS_ProcedureSymbolBP::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_ProcedureSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
     // if no file, add a new one
     if (!GetExtFileCount())
@@ -1204,7 +1204,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericV
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
+bool PSS_ProcedureSymbolBP::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
     if (!PSS_Symbol::SaveProperties(propSet))
         return false;
@@ -1219,7 +1219,7 @@ bool PSS_ProcedureSymbolBP::SaveProperties(ZBPropertySet& propSet)
     if (!pRulesProps)
         return false;
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // empty the task list
     SetRuleList(_T(""));
@@ -1468,12 +1468,15 @@ bool PSS_ProcedureSymbolBP::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_ProcedureSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     return PSS_Symbol::CheckPropertyValue(prop, value, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcedureSymbolBP::ProcessExtendedInput(PSS_Property&                 prop,
+                                                 CString&                      value,
+                                                 PSS_Properties::IPropertySet& props,
+                                                 bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -1541,7 +1544,7 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& va
                     value = pUserEntity->GetEntityName();
 
                     // change the disabled property unit GUID
-                    ZBPropertyIterator it(&props);
+                    PSS_Properties::IPropertyIterator it(&props);
 
                     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                         if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
@@ -1599,11 +1602,11 @@ bool PSS_ProcedureSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& va
     return PSS_Symbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int            menuCmdID,
-                                               PSS_Property&  prop,
-                                               CString&       value,
-                                               ZBPropertySet& props,
-                                               bool&          refresh)
+bool PSS_ProcedureSymbolBP::ProcessMenuCommand(int                           menuCmdID,
+                                               PSS_Property&                 prop,
+                                               CString&                      value,
+                                               PSS_Properties::IPropertySet& props,
+                                               bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -2398,7 +2401,7 @@ void PSS_ProcedureSymbolBP::OnSymbolNameChanged(CODComponent& comp, const CStrin
         ReplaceDeliverable(oldName, pSymbol->GetSymbolName());
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // only local symbol may access to properties
     if (!IsLocal())
@@ -2418,8 +2421,8 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBProperty
                 const float maxPercent =
                         GetMaxActivationPerc(GetCombinationMaster(prop.GetCategoryID() - ZS_BP_PROP_COMBINATION));
 
-                ZBPropertyIterator it(&props);
-                bool               found = false;
+                PSS_Properties::IPropertyIterator it(&props);
+                bool                              found = false;
 
                 // set the value to the property
                 for (PSS_Property* pProp = it.GetFirst(); pProp && !found; pProp = it.GetNext())
@@ -2448,8 +2451,8 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBProperty
     else
     if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
-        ZBPropertyIterator it(&props);
-        CString            guid;
+        PSS_Properties::IPropertyIterator it(&props);
+        CString                           guid;
 
         // iterate through the properties and change the unit cost to the property value
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -2481,8 +2484,8 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBProperty
         // change the return value to reload the properties. Need to reload since the rule list has an empty rule.
         // If the user fills it, need to enable a new empty one. And if the user remove one rule, need also to
         // disable one from the property list
-        ZBPropertyIterator it(&props);
-        std::size_t        counterEnableEmpty = 0;
+        PSS_Properties::IPropertyIterator it(&props);
+        std::size_t                       counterEnableEmpty = 0;
 
         // iterate through the properties and change their enabled flag. To change it, need to check if it is a new
         // property that need to be enabled or not, then need to ensure that only an empty property is enable
@@ -2524,8 +2527,8 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBProperty
         // change the return value to reload the properties. Need to reload since the rule list has an empty task.
         // If the user fills it, need to enable a new empty one. And if the user remove one task, need also to
         // disable one from the property list
-        ZBPropertyIterator it(&props);
-        std::size_t        counterEnableEmpty = 0;
+        PSS_Properties::IPropertyIterator it(&props);
+        std::size_t                       counterEnableEmpty = 0;
 
         // iterate through the properties and change their enabled flag. To change it, need to check if it is a new
         // property that need to be enabled or not, then need to ensure that only an empty property is enable
@@ -2567,8 +2570,8 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBProperty
         // change the return value to reload the properties. Need to reload since the decision list has an empty decision.
         // If the user fills it, need to enable a new empty one. And if the user remove one decision, need also to
         // disable one from the property list
-        ZBPropertyIterator it(&props);
-        std::size_t        counterEnableEmpty = 0;
+        PSS_Properties::IPropertyIterator it(&props);
+        std::size_t                       counterEnableEmpty = 0;
 
         // iterate through the properties and change their enabled flag. To change it, need to check if it is a new
         // property that need to be enabled or not, then need to ensure that only an empty property is enable
@@ -2611,10 +2614,10 @@ bool PSS_ProcedureSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBProperty
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcedureSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                       PSS_Property&  dstProperty,
-                                                       bool           top2Down,
-                                                       ZBPropertySet& props)
+bool PSS_ProcedureSymbolBP::OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                       PSS_Property&                 dstProperty,
+                                                       bool                          top2Down,
+                                                       PSS_Properties::IPropertySet& props)
 {
     bool result = ::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_TASKLIST);
 
@@ -2829,7 +2832,10 @@ float PSS_ProcedureSymbolBP::GetMaxActivationPerc(const CString& master)
     return float(masterQuantity / sum);
 }
 //---------------------------------------------------------------------------
-void PSS_ProcedureSymbolBP::OnAddNewCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcedureSymbolBP::OnAddNewCombination(PSS_Property&                 prop,
+                                                CString&                      value,
+                                                PSS_Properties::IPropertySet& props,
+                                                bool&                         refresh)
 {
     // add a new combination
     if (AddNewCombination() >= 0)
@@ -2840,7 +2846,10 @@ void PSS_ProcedureSymbolBP::OnAddNewCombination(PSS_Property& prop, CString& val
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcedureSymbolBP::OnDelCurrentCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcedureSymbolBP::OnDelCurrentCombination(PSS_Property&                 prop,
+                                                    CString&                      value,
+                                                    PSS_Properties::IPropertySet& props,
+                                                    bool&                         refresh)
 {
     const int count = GetCombinationCount();
 
@@ -2863,13 +2872,19 @@ void PSS_ProcedureSymbolBP::OnDelCurrentCombination(PSS_Property& prop, CString&
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcedureSymbolBP::OnAddDeliverableCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcedureSymbolBP::OnAddDeliverableCombination(PSS_Property&                 prop,
+                                                        CString&                      value,
+                                                        PSS_Properties::IPropertySet& props,
+                                                        bool&                         refresh)
 {}
 //---------------------------------------------------------------------------
-void PSS_ProcedureSymbolBP::OnDelDeliverableCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcedureSymbolBP::OnDelDeliverableCombination(PSS_Property&                 prop,
+                                                        CString&                      value,
+                                                        PSS_Properties::IPropertySet& props,
+                                                        bool&                         refresh)
 {}
 //---------------------------------------------------------------------------
-void PSS_ProcedureSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcedureSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // sdd a new risk
     if (AddNewRisk() >= 0)
@@ -2880,7 +2895,7 @@ void PSS_ProcedureSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBP
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcedureSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcedureSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 

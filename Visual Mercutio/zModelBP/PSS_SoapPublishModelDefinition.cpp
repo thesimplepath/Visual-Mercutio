@@ -303,7 +303,7 @@ bool PSS_SoapPublishModelDefinition::OnProcedureSymbol(PSS_ProcedureSymbolBP* pS
                                       pSymbol->GetUnitDoubleValidationType(),
                                       GetParentSymbolReference(pSymbol)));
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the property set from object
     pSymbol->FillProperties(propSet, true, true);
@@ -311,7 +311,7 @@ bool PSS_SoapPublishModelDefinition::OnProcedureSymbol(PSS_ProcedureSymbolBP* pS
     // publish the symbol attributes
     Publish(pSymbol->GetSymbolReferenceNumber(), propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // delete all now published attributes
     for (PSS_Property*  pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -334,7 +334,7 @@ bool PSS_SoapPublishModelDefinition::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbo
                                       0,
                                       0));
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the process attributes
     pSymbol->FillProperties(propSet, true, true);
@@ -342,7 +342,7 @@ bool PSS_SoapPublishModelDefinition::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbo
     // publish the process attributes
     Publish(pSymbol->GetSymbolReferenceNumber(), propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // delete all now published attributes
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -365,7 +365,7 @@ bool PSS_SoapPublishModelDefinition::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
                                       0,
                                       GetParentSymbolReference(pSymbol)));
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the start symbol attributes
     pSymbol->FillProperties(propSet, true, true);
@@ -373,7 +373,7 @@ bool PSS_SoapPublishModelDefinition::OnStartSymbol(PSS_StartSymbolBP* pSymbol)
     // publish the start symbol attributes
     Publish(pSymbol->GetSymbolReferenceNumber(), propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // delete all now published attributes
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext() )
@@ -396,7 +396,7 @@ bool PSS_SoapPublishModelDefinition::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
                                       0,
                                       GetParentSymbolReference(pSymbol)));
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the end symbol attributes
     pSymbol->FillProperties(propSet, true, true);
@@ -404,7 +404,7 @@ bool PSS_SoapPublishModelDefinition::OnStopSymbol(PSS_StopSymbolBP* pSymbol)
     // publish the end symbol attributes
     Publish(pSymbol->GetSymbolReferenceNumber(), propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // delete all now published attributes
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -594,7 +594,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
                                           lateralDirection,
                                           pSymbol->GetUnitDoubleValidationType()));
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the deliverable link symbol attributes
     pSymbol->FillProperties(propSet, true, true);
@@ -602,7 +602,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
     // publish the deliverable link symbol attributes
     Publish(pSymbol->GetSymbolReferenceNumber(), propSet);
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // delete all now published attributes
     for (PSS_Property*  pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -613,9 +613,9 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_SoapPublishModelDefinition::Publish(int ref, const ZBPropertySet& propSet)
+void PSS_SoapPublishModelDefinition::Publish(int ref, const PSS_Properties::IPropertySet& propSet)
 {
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // publish all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())

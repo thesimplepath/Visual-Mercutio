@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_NumbersEqualizer.h"
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 
 // resources
 #include "zModelBPRes.h"
@@ -49,7 +49,7 @@ class PSS_EqualizeQuantityDlg : public CDialog
         *@param pPropertySet - the property set
         *@param pParent - the parent window, can be NULL
         */
-        PSS_EqualizeQuantityDlg(ZBPropertySet* pPropertySet = NULL, CWnd* pParent = NULL);
+        PSS_EqualizeQuantityDlg(PSS_Properties::IPropertySet* pPropertySet = NULL, CWnd* pParent = NULL);
 
         virtual ~PSS_EqualizeQuantityDlg();
 
@@ -276,47 +276,47 @@ class PSS_EqualizeQuantityDlg : public CDialog
             IDD = IDD_EQUALIZE_QUANTITY
         };
 
-        PSS_NumbersEqualizer m_Equalizer;
-        ZBPropertySet*       m_pPropertySet;
-        CSliderCtrl          m_SliderJanuary;
-        CSliderCtrl          m_SliderFebruary;
-        CSliderCtrl          m_SliderMarch;
-        CSliderCtrl          m_SliderApril;
-        CSliderCtrl          m_SliderMay;
-        CSliderCtrl          m_SliderJune;
-        CSliderCtrl          m_SliderJuly;
-        CSliderCtrl          m_SliderAugust;
-        CSliderCtrl          m_SliderSeptember;
-        CSliderCtrl          m_SliderOctober;
-        CSliderCtrl          m_SliderNovember;
-        CSliderCtrl          m_SliderDecember;
-        CString              m_QuantityYear;
-        CString              m_QuantityJanuary;
-        CString              m_QuantityFebruary;
-        CString              m_QuantityMarch;
-        CString              m_QuantityApril;
-        CString              m_QuantityMay;
-        CString              m_QuantityJune;
-        CString              m_QuantityJuly;
-        CString              m_QuantityAugust;
-        CString              m_QuantitySeptember;
-        CString              m_QuantityOctober;
-        CString              m_QuantityNovember;
-        CString              m_QuantityDecember;
-        BOOL                 m_LockYear;
-        BOOL                 m_LockJanuary;
-        BOOL                 m_LockFebruary;
-        BOOL                 m_LockMarch;
-        BOOL                 m_LockApril;
-        BOOL                 m_LockMay;
-        BOOL                 m_LockJune;
-        BOOL                 m_LockJuly;
-        BOOL                 m_LockAugust;
-        BOOL                 m_LockSeptember;
-        BOOL                 m_LockOctober;
-        BOOL                 m_LockNovember;
-        BOOL                 m_LockDecember;
-        BOOL                 m_ForceEqualizer;
+        PSS_NumbersEqualizer          m_Equalizer;
+        PSS_Properties::IPropertySet* m_pPropertySet;
+        CSliderCtrl                   m_SliderJanuary;
+        CSliderCtrl                   m_SliderFebruary;
+        CSliderCtrl                   m_SliderMarch;
+        CSliderCtrl                   m_SliderApril;
+        CSliderCtrl                   m_SliderMay;
+        CSliderCtrl                   m_SliderJune;
+        CSliderCtrl                   m_SliderJuly;
+        CSliderCtrl                   m_SliderAugust;
+        CSliderCtrl                   m_SliderSeptember;
+        CSliderCtrl                   m_SliderOctober;
+        CSliderCtrl                   m_SliderNovember;
+        CSliderCtrl                   m_SliderDecember;
+        CString                       m_QuantityYear;
+        CString                       m_QuantityJanuary;
+        CString                       m_QuantityFebruary;
+        CString                       m_QuantityMarch;
+        CString                       m_QuantityApril;
+        CString                       m_QuantityMay;
+        CString                       m_QuantityJune;
+        CString                       m_QuantityJuly;
+        CString                       m_QuantityAugust;
+        CString                       m_QuantitySeptember;
+        CString                       m_QuantityOctober;
+        CString                       m_QuantityNovember;
+        CString                       m_QuantityDecember;
+        BOOL                          m_LockYear;
+        BOOL                          m_LockJanuary;
+        BOOL                          m_LockFebruary;
+        BOOL                          m_LockMarch;
+        BOOL                          m_LockApril;
+        BOOL                          m_LockMay;
+        BOOL                          m_LockJune;
+        BOOL                          m_LockJuly;
+        BOOL                          m_LockAugust;
+        BOOL                          m_LockSeptember;
+        BOOL                          m_LockOctober;
+        BOOL                          m_LockNovember;
+        BOOL                          m_LockDecember;
+        BOOL                          m_ForceEqualizer;
 
         /**
         * Initializes the variable

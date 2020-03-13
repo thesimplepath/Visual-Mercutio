@@ -89,7 +89,7 @@ BOOL ZCInPlaceDateEdit::PreTranslateMessage(MSG* pMsg)
 
 void ZCInPlaceDateEdit::SetEditText(const CString& strText)
 {
-    m_strText = strText;
+    m_StrValue = strText;
 
     if (::IsWindow(GetSafeHwnd()))
         SetWindowText(strText);
@@ -121,12 +121,16 @@ BOOL ZCInPlaceDateEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, const
 
     BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
     SetEditText(strInitText);
+
     // Saves the initial value
-    m_strInitialValueText = strInitText;
+    m_StrInitialValue = strInitText;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_STRING;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -138,12 +142,16 @@ BOOL ZCInPlaceDateEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, PSS_D
 
     BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
     SetEditText((PSS_Date&)DateInitValue);
+
     // Saves the initial value
     m_InitialDateValue = DateInitValue;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_DATE;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Date;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -172,14 +180,16 @@ void ZCInPlaceDateEdit::SaveValue()
             if (m_pItem)
             {
                 bool ConversionCorrect = true;
+
                 switch (GetEditType())
                 {
-                    case ZIInPlaceEdit::IPE_STRING:
+                    case PSS_InPlaceEdit::IE_T_String:
                     {
                         // do nothing for string
                         break;
                     }
-                    case ZIInPlaceEdit::IPE_DATE:
+
+                    case PSS_InPlaceEdit::IE_T_Date:
                     {
                         // Check the conversion
                         // RS-MODIF 05.08.05 édition de date
@@ -222,13 +232,14 @@ void ZCInPlaceDateEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case ZIInPlaceEdit::IPE_STRING:
+        case PSS_InPlaceEdit::IE_T_String:
         {
             // Set back the initial value
-            SetEditText(m_strInitialValueText);
+            SetEditText(m_StrInitialValue);
             break;
         }
-        case ZIInPlaceEdit::IPE_DATE:
+
+        case PSS_InPlaceEdit::IE_T_Date:
         {
             // Set back the initial duration value
             SetEditText((PSS_Date&)m_InitialDateValue);

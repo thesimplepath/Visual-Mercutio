@@ -47,7 +47,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pD
     if (!pDoc || !pView)
         return false;
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pDoc->GetModel(), propSet);
 
     PSS_PropertyAttributes propAttributes;

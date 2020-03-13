@@ -224,7 +224,7 @@ bool PSS_StopSymbolBP::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
     if (!PSS_Symbol::FillProperties(propSet, numericValues, groupValues))
         return false;
@@ -560,12 +560,12 @@ bool PSS_StopSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::SaveProperties(ZBPropertySet& propSet)
+bool PSS_StopSymbolBP::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
     if (!PSS_Symbol::SaveProperties(propSet))
         return false;
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // iterate through the risk values
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -659,12 +659,12 @@ bool PSS_StopSymbolBP::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_StopSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     return PSS_Symbol::CheckPropertyValue(prop, value, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_StopSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -733,7 +733,7 @@ bool PSS_StopSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, 
                 {
                     value = pUserEntity->GetEntityName();
 
-                    ZBPropertyIterator it(&props);
+                    PSS_Properties::IPropertyIterator it(&props);
 
                     // change the disabled properties unit GUID
                     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -752,11 +752,11 @@ bool PSS_StopSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, 
     return PSS_Symbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::ProcessMenuCommand(int            menuCmdID,
-                                          PSS_Property&  prop,
-                                          CString&       value,
-                                          ZBPropertySet& props,
-                                          bool&          refresh)
+bool PSS_StopSymbolBP::ProcessMenuCommand(int                           menuCmdID,
+                                          PSS_Property&                 prop,
+                                          CString&                      value,
+                                          PSS_Properties::IPropertySet& props,
+                                          bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -903,14 +903,14 @@ void PSS_StopSymbolBP::Serialize(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_StopSymbolBP::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     bool result = false;
 
     if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
-        ZBPropertyIterator it(&props);
-        CString            guid;
+        PSS_Properties::IPropertyIterator it(&props);
+        CString                           guid;
 
         // iterate through the properties and search for the matching guid
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -944,10 +944,10 @@ bool PSS_StopSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& 
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_StopSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                  PSS_Property&  dstProperty,
-                                                  bool           top2Down,
-                                                  ZBPropertySet& props)
+bool PSS_StopSymbolBP::OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                  PSS_Property&                 dstProperty,
+                                                  bool                          top2Down,
+                                                  PSS_Properties::IPropertySet& props)
 {
     if (!::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_RULES))
         return false;
@@ -1022,7 +1022,7 @@ bool PSS_StopSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS_
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_StopSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StopSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -1033,7 +1033,7 @@ void PSS_StopSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBProper
     }
 }
 //---------------------------------------------------------------------------
-void PSS_StopSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_StopSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 

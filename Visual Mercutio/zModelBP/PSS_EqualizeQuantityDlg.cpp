@@ -73,7 +73,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_EqualizeQuantityDlg
 //---------------------------------------------------------------------------
-PSS_EqualizeQuantityDlg::PSS_EqualizeQuantityDlg(ZBPropertySet* pPropertySet, CWnd* pParent) :
+PSS_EqualizeQuantityDlg::PSS_EqualizeQuantityDlg(PSS_Properties::IPropertySet* pPropertySet, CWnd* pParent) :
     CDialog(PSS_EqualizeQuantityDlg::IDD, pParent),
     m_pPropertySet(pPropertySet),
     m_LockYear(FALSE),
@@ -547,7 +547,7 @@ void PSS_EqualizeQuantityDlg::OnOK()
 //---------------------------------------------------------------------------
 void PSS_EqualizeQuantityDlg::InitializeVariables()
 {
-    ZBPropertyIterator it(m_pPropertySet);
+    PSS_Properties::IPropertyIterator it(m_pPropertySet);
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
@@ -751,7 +751,7 @@ void PSS_EqualizeQuantityDlg::SaveVariables()
 {
     UpdateData(TRUE);
 
-    ZBPropertyIterator it(m_pPropertySet);
+    PSS_Properties::IPropertyIterator it(m_pPropertySet);
     bool               error;
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())

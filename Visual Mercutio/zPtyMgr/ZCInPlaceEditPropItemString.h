@@ -2,12 +2,10 @@
 #define _ZCINPLACEEDITPROPITEMSTRING_H__
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZCInPlaceEditPropItemString.h : header file
-//
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,26 +13,25 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zProperty\ZIInPlaceEdit.h"
+// processsoft
 #include "zBaseLib\PSS_DragEdit.h"
-
+#include "zProperty\PSS_InPlaceEdit.h"
 
 #ifdef _ZPTYMGREXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceEdit
 
-class AFX_EXT_CLASS ZCInPlaceEdit : public PSS_DragEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceEdit : public PSS_DragEdit, public PSS_InPlaceEdit
 {
     ZCInPlaceEdit(const ZCInPlaceEdit& d);
     ZCInPlaceEdit& operator=(const ZCInPlaceEdit& d);
@@ -107,19 +104,19 @@ protected:
 };
 
 inline ZCInPlaceEdit::ZCInPlaceEdit()
-    : ZIInPlaceEdit()
+    : PSS_InPlaceEdit()
 {}
 
 inline ZCInPlaceEdit::ZCInPlaceEdit(const CString& strInitText, bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit(strInitText, IsReadOnly)
+    : PSS_InPlaceEdit(strInitText, IsReadOnly)
 {}
 
 inline ZCInPlaceEdit::ZCInPlaceEdit(double dInitValue, bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit(dInitValue, IsReadOnly)
+    : PSS_InPlaceEdit(dInitValue, IsReadOnly)
 {}
 
 inline ZCInPlaceEdit::ZCInPlaceEdit(float fInitValue, bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit(fInitValue, IsReadOnly)
+    : PSS_InPlaceEdit(fInitValue, IsReadOnly)
 {}
 
 inline ZCInPlaceEdit::~ZCInPlaceEdit()

@@ -49,13 +49,13 @@ class AFX_EXT_CLASS ZVChoosePropertyDlg : public CDialog
 {
 // Construction
 public:
-    ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType = 0, bool Selection = true, 
+    ZVChoosePropertyDlg(PSS_Properties* pProperties, int ShowType = 0, bool Selection = true,
                         bool AllowItemSelection = true, bool AllowCategorySelection = false, 
                         PSS_DynamicPropertiesManager* pPropManager = NULL,
                         PSS_ProcessGraphModelMdl* pModel = NULL,
                         CWnd* pParent = NULL);   // standard constructor
 
-    ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType = 0, bool Selection = true,  
+    ZVChoosePropertyDlg(PSS_Properties::IPropertySet* pPropSet, int ShowType = 0, bool Selection = true,
                         bool AllowItemSelection = true, bool AllowCategorySelection = false, 
                         PSS_DynamicPropertiesManager* pPropManager = NULL,
                         PSS_ProcessGraphModelMdl* pModel = NULL,
@@ -107,8 +107,8 @@ private:
     void CheckControlStates();
 
 private:
-    ZIProperties* m_pProperties;
-    ZBPropertySet* m_pPropSet;
+    PSS_Properties* m_pProperties;
+    PSS_Properties::IPropertySet* m_pPropSet;
     PSS_PropertyItem* m_pSelectedProperty;
     bool m_AllowItemSelection;
     bool m_AllowCategorySelection;

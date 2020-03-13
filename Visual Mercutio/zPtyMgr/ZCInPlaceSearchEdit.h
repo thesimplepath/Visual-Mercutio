@@ -2,12 +2,10 @@
 #define _ZCInPlaceSearchEdit_H__
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// _ZCInPlaceSearchEdit_H.h : header file
-//
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,27 +13,25 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zProperty\ZIInPlaceEdit.h"
+// processsoft
+#include "zProperty\PSS_InPlaceEdit.h"
 #include "zWinUtil32\PSS_SearchEdit.h"
 
-
-
 #ifdef _ZPTYMGREXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceSearchEdit
 
-class AFX_EXT_CLASS ZCInPlaceSearchEdit : public PSS_SearchEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceSearchEdit : public PSS_SearchEdit, public PSS_InPlaceEdit
 {
     ZCInPlaceSearchEdit(const ZCInPlaceSearchEdit& d);
     ZCInPlaceSearchEdit operator=(const ZCInPlaceSearchEdit& d);

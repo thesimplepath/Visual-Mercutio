@@ -95,10 +95,10 @@ void ZVPublishPrestationsReport::FindProcedures(CString ProcessName, PSS_Process
                             {
                                 PSS_ProcedureSymbolBP* m_Procedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pComponent);
 
-                                ZBPropertySet PropSet;
+                                PSS_Properties::IPropertySet PropSet;
                                 m_Procedure->FillProperties(PropSet);
 
-                                ZBPropertyIterator k(&PropSet);
+                                PSS_Properties::IPropertyIterator k(&PropSet);
                                 PSS_Property* pProp;
 
                                 for (pProp = k.GetFirst(); pProp; pProp = k.GetNext())

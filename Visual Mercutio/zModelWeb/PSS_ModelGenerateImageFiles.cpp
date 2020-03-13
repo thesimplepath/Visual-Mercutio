@@ -2417,7 +2417,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(PSS_LogicalP
     return htmlFileName;
 }
 //---------------------------------------------------------------------------
-bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pPropertiesObject, const CString& htmlFileName)
+bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pPropertiesObject, const CString& htmlFileName)
 {
     if (!pPropertiesObject)
         return false;
@@ -2445,7 +2445,7 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
             return false;
 
         // get the property set from object
-        ZBPropertySet propSet;
+        PSS_Properties::IPropertySet propSet;
         pPropertiesObject->FillProperties(propSet);
 
         CString s;
@@ -2458,8 +2458,8 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
 
         bool oneAtLeast = false;
 
-        ZBPropertyIterator it(&propSet);
-        CString            previousCategory;
+        PSS_Properties::IPropertyIterator it(&propSet);
+        CString                           previousCategory;
 
         // iterate through the property set
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -2547,7 +2547,7 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
         htmlFile.CloseFile();
 
         // delete all properties
-        ZBPropertyIterator itDel(&propSet);
+        PSS_Properties::IPropertyIterator itDel(&propSet);
 
         for (PSS_Property* pProp = itDel.GetFirst(); pProp; pProp = itDel.GetNext())
             delete pProp;

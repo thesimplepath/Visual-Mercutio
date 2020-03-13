@@ -266,7 +266,7 @@ bool PSS_ProcessSymbolBP::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
     // the "Name", "Description" and "Reference" properties of the "General" group can be found in the base class
     if (!PSS_Symbol::FillProperties(propSet, numericValues, groupValues))
@@ -886,7 +886,7 @@ bool PSS_ProcessSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericVal
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::SaveProperties(ZBPropertySet& PropSet)
+bool PSS_ProcessSymbolBP::SaveProperties(PSS_Properties::IPropertySet& PropSet)
 {
     if (!PSS_Symbol::SaveProperties(PropSet))
         return false;
@@ -900,8 +900,8 @@ bool PSS_ProcessSymbolBP::SaveProperties(ZBPropertySet& PropSet)
     if (!pProcessProps)
         return false;
 
-    PSS_ProcessPropertiesBP processProps(*pProcessProps);
-    ZBPropertyIterator      it(&PropSet);
+    PSS_ProcessPropertiesBP           processProps(*pProcessProps);
+    PSS_Properties::IPropertyIterator it(&PropSet);
 
     // iterate through the processes and fill the property set
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1066,7 +1066,10 @@ bool PSS_ProcessSymbolBP::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessSymbolBP::ProcessExtendedInput(PSS_Property&                 prop,
+                                               CString&                      value,
+                                               PSS_Properties::IPropertySet& props,
+                                               bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -1167,7 +1170,11 @@ bool PSS_ProcessSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& valu
     return PSS_Symbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::ProcessMenuCommand(int menuCmdID, PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessSymbolBP::ProcessMenuCommand(int                           menuCmdID,
+                                             PSS_Property&                 prop,
+                                             CString&                      value,
+                                             PSS_Properties::IPropertySet& props,
+                                             bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -1400,7 +1407,7 @@ bool PSS_ProcessSymbolBP::OnPostCreation(CODModel* pModel, CODController* pCtrl)
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessSymbolBP::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // only local symbol may access to the properties
     if (!IsLocal())
@@ -1419,8 +1426,8 @@ bool PSS_ProcessSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySe
             {
                 const float quantity = FindQuantity(GetDeliveryMain(categoryID - ZS_BP_PROP_DELIVERIES));
 
-                ZBPropertyIterator it(&props);
-                bool               found = false;
+                PSS_Properties::IPropertyIterator it(&props);
+                bool                              found = false;
 
                 // iterate through propertis and search for the quantity
                 for (PSS_Property* pProp = it.GetFirst(); pProp && !found; pProp = it.GetNext())
@@ -1452,10 +1459,10 @@ bool PSS_ProcessSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySe
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                     PSS_Property&  dstProperty,
-                                                     bool           top2Down,
-                                                     ZBPropertySet& props)
+bool PSS_ProcessSymbolBP::OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                     PSS_Property&                 dstProperty,
+                                                     bool                          top2Down,
+                                                     PSS_Properties::IPropertySet& props)
 {
     if (!::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_RULES))
         return false;
@@ -1532,7 +1539,10 @@ void PSS_ProcessSymbolBP::OnDeliverableNameChange(const CString& oldName, const 
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnDelCurrentPrestation(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnDelCurrentPrestation(PSS_Property&                 prop,
+                                                 CString&                      value,
+                                                 PSS_Properties::IPropertySet& props,
+                                                 bool&                         refresh)
 {
     POSITION pPos = m_PrestProperties.GetHeadPosition();
     int      i    = 0;
@@ -1597,9 +1607,9 @@ void PSS_ProcessSymbolBP::AdjustElementPosition()
     PSS_Symbol::AdjustElementPosition();
 }
 //---------------------------------------------------------------------------
-CString PSS_ProcessSymbolBP::GetPossibleListOfMainDeliverables(const ZBPropertySet& propSet, int catID) const
+CString PSS_ProcessSymbolBP::GetPossibleListOfMainDeliverables(const PSS_Properties::IPropertySet& propSet, int catID) const
 {
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         if (pProp->GetCategoryID() == catID)
@@ -1617,13 +1627,13 @@ CString PSS_ProcessSymbolBP::GetPossibleListOfMainDeliverables(const ZBPropertyS
     return _T("");
 }
 //---------------------------------------------------------------------------
-CString PSS_ProcessSymbolBP::GetAvailableDeliverables(const ZBPropertySet& propSet) const
+CString PSS_ProcessSymbolBP::GetAvailableDeliverables(const PSS_Properties::IPropertySet& propSet) const
 {
     CString deliverableList;
     GetDeliverablesInChildPages(deliverableList);
 
-    ZBPropertyIterator it(&propSet);
-    CString            attribuedDeliverables;
+    PSS_Properties::IPropertyIterator it(&propSet);
+    CString                           attribuedDeliverables;
 
     // build the set containing all the already attributed deliverables
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1938,7 +1948,7 @@ CString PSS_ProcessSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, co
     return _T("");
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -1950,7 +1960,7 @@ void PSS_ProcessSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPro
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     const int count = GetRiskCount();
 
@@ -1974,7 +1984,7 @@ void PSS_ProcessSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, Z
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnAddNewDelivery(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnAddNewDelivery(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // add a new delivery
     if (AddNewDelivery() >= 0)
@@ -1986,7 +1996,10 @@ void PSS_ProcessSymbolBP::OnAddNewDelivery(PSS_Property& prop, CString& value, Z
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::OnDelCurrentDelivery(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ProcessSymbolBP::OnDelCurrentDelivery(PSS_Property&                 prop,
+                                               CString&                      value,
+                                               PSS_Properties::IPropertySet& props,
+                                               bool&                         refresh)
 {
     const int count = GetDeliveriesCount();
 

@@ -53,7 +53,7 @@ PSS_Symbol::PSS_Symbol() :
     PSS_BasicSymbol(),
     PSS_ObjectPath(),
     PSS_NavigableSymbol(),
-    ZIProperties(),
+    PSS_Properties(),
     PSS_ExtAppPropertyMgr(this),
     PSS_ExtFilePropertyMgr(),
     PSS_SymbolAttributes(),
@@ -90,7 +90,7 @@ PSS_Symbol::PSS_Symbol(const PSS_Symbol& other) :
     PSS_BasicSymbol(),
     PSS_ObjectPath(),
     PSS_NavigableSymbol(),
-    ZIProperties(),
+    PSS_Properties(),
     PSS_ExtAppPropertyMgr(this),
     PSS_ExtFilePropertyMgr(),
     PSS_SymbolAttributes(),
@@ -151,7 +151,7 @@ CString PSS_Symbol::GetAttributeString(PSS_PropertyAttributes* pAttributes) cons
 {
     if (AcceptDynamicAttributes())
     {
-        ZBPropertySet propSet;
+        PSS_Properties::IPropertySet propSet;
 
         // Retrieve the property set from object
         const_cast<PSS_Symbol*>(this)->FillProperties(propSet);
@@ -159,7 +159,7 @@ CString PSS_Symbol::GetAttributeString(PSS_PropertyAttributes* pAttributes) cons
         // format the string
         CString str = pAttributes->GetString(&propSet);
 
-        ZBPropertyIterator it(&propSet);
+        PSS_Properties::IPropertyIterator it(&propSet);
 
         // remove all properties
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -399,7 +399,7 @@ bool PSS_Symbol::Match(const CString&          argument,
     if (!pPropAttributes)
         return false;
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
 
     // get the property set from object
     FillProperties(propSet);
@@ -408,7 +408,7 @@ bool PSS_Symbol::Match(const CString&          argument,
     bool RetValue = pPropAttributes->Match(propSet, argument, caseSensitive, partialSearch);
 
     // remove all properties
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         delete pProp;
@@ -837,7 +837,7 @@ void PSS_Symbol::RedrawSymbol()
         pModel->RedrawComponent(*this);
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool groupValue)
+bool PSS_Symbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValue, bool groupValue)
 {
     PSS_BasicProperties* pBasicProps = static_cast<PSS_BasicProperties*>(GetProperty(ZS_BP_PROP_BASIC));
 
@@ -953,12 +953,12 @@ bool PSS_Symbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool 
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::SaveProperties(ZBPropertySet& propSet)
+bool PSS_Symbol::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
     if (!IsLocal())
         return true;
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the property set
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1042,7 +1042,7 @@ bool PSS_Symbol::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_Symbol::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     // if needed to check the reference number, check if allowed
     if (prop.GetCategoryID() == ZS_BP_PROP_BASIC)
@@ -1083,7 +1083,7 @@ bool PSS_Symbol::CheckPropertyValue(PSS_Property& prop, CString& value, ZBProper
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_Symbol::ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     bool result = false;
 
@@ -1100,11 +1100,11 @@ bool PSS_Symbol::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBProp
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::ProcessMenuCommand(int            menuCmdID,
-                                    PSS_Property&  prop,
-                                    CString&       value,
-                                    ZBPropertySet& props,
-                                    bool&          refresh)
+bool PSS_Symbol::ProcessMenuCommand(int                           menuCmdID,
+                                    PSS_Property&                 prop,
+                                    CString&                      value,
+                                    PSS_Properties::IPropertySet& props,
+                                    bool&                         refresh)
 {
     bool result = false;
 
@@ -1843,7 +1843,7 @@ bool PSS_Symbol::OnChangeAttributes(PSS_PropertyAttributes* pAttributes)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
+bool PSS_Symbol::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props)
 {
     bool result = true;
 
@@ -1861,7 +1861,7 @@ bool PSS_Symbol::OnPrePropertyChanged(const CString& newValue, PSS_Property& pro
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_Symbol::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     bool result = false;
 
@@ -1879,10 +1879,10 @@ bool PSS_Symbol::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props,
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_Symbol::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                            PSS_Property&  dstProperty,
-                                            bool           top2Down,
-                                            ZBPropertySet& props)
+bool PSS_Symbol::OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                            PSS_Property&                 dstProperty,
+                                            bool                          top2Down,
+                                            PSS_Properties::IPropertySet& props)
 {
     if (m_pDynamicPropManager)
         if (!m_pDynamicPropManager->OnDropInternalPropertyItem(srcProperty, dstProperty, top2Down, props))

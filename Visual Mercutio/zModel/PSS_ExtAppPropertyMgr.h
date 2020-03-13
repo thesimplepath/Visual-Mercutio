@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 #include "PSS_ExtAppProperties.h"
 #include "PSS_ExtApps.h"
 
@@ -266,7 +266,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param groupValues - if true, values will be grouped
         *@return true on success, otherwise false
         */
-        virtual bool FillProperties(ZBPropertySet& propSet, bool numericValue = false, bool groupValue = false);
+        virtual bool FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValue = false, bool groupValue = false);
 
         /**
         * Fills an array with the owning symbol properties for Messenger
@@ -275,14 +275,16 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param groupValues - if true, values will be grouped
         *@return true on success, otherwise false
         */
-        virtual bool FillPropertiesMessenger(ZBPropertySet& propSet, bool numericValue = false, bool groupValue = false);
+        virtual bool FillPropertiesMessenger(PSS_Properties::IPropertySet& propSet,
+                                             bool                          numericValue = false,
+                                             bool                          groupValue   = false);
 
         /**
         * Save the changes to object properties
         *@param propSet - property set to fill with the saved properties
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperties(ZBPropertySet& propSet);
+        virtual bool SaveProperties(PSS_Properties::IPropertySet& propSet);
 
         /**
         * Fills the owning symbol property
@@ -305,7 +307,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - property set at which the property belongs
         *@return true if the property value was checked successfully, otherwise false
         */
-        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props);
+        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props);
 
         /**
         * Processes the extended input for the property value
@@ -315,7 +317,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param[in, out] refresh - if true, the owning symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -326,11 +328,11 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param[in, out] refresh - if true, the owning symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessMenuCommand(int            menuCmdID,
-                                        PSS_Property&  prop,
-                                        CString&       value,
-                                        ZBPropertySet& props,
-                                        bool&          refresh);
+        virtual bool ProcessMenuCommand(int                           menuCmdID,
+                                        PSS_Property&                 prop,
+                                        CString&                      value,
+                                        PSS_Properties::IPropertySet& props,
+                                        bool&                         refresh);
 
         /**
         * Serializes the class content to an archive
@@ -345,7 +347,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         */
-        virtual void OnAddNewExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnAddNewExtApp(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Called when an external application is deleted
@@ -354,7 +356,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         */
-        virtual void OnDelCurrentExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelCurrentExtApp(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Called before a property changes
@@ -363,7 +365,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param props - the property set at which the property belongs
         *@return true if the property is allowed to change, otherwise false
         */
-        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props);
+        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props);
 
         /**
         * Called after a property changed
@@ -372,7 +374,7 @@ class AFX_EXT_CLASS PSS_ExtAppPropertyMgr
         *@param[in, out] refresh - if true, the owning symbol should be refreshed immediately
         *@return true if the property changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh);
 
     protected:
         CODSymbolComponent* m_pSymbol;

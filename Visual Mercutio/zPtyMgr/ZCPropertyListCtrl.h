@@ -4,10 +4,10 @@
 #define _ZCPropertyListCtrl_H__
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,21 +15,22 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zProperty\ZIInPlaceEdit.h"
+// processsoft
+#include "zProperty\PSS_InPlaceEdit.h"
 #include "zProperty\PSS_PropertyItem.h"
 #include "ZBPropertyManager.h"
 
-// Forward declaration
-class ZIProperties;
+// forward class declaration
+class PSS_Properties;
 
 #ifdef _ZPTYMGREXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - Le 10 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -51,8 +52,8 @@ public:
     ZCPropertyListCtrl(LPCTSTR pIniFile = NULL);
 
     // Initialization function
-    void Initialize(ZIProperties* pProperties = NULL, LPCTSTR pIniFile = NULL);
-    void Initialize(ZBPropertySet& PropSet, LPCTSTR pIniFile = NULL);
+    void Initialize(PSS_Properties* pProperties = NULL, LPCTSTR pIniFile = NULL);
+    void Initialize(PSS_Properties::IPropertySet& PropSet, LPCTSTR pIniFile = NULL);
     void LoadStateFromIniFile(const CString IniFile);
     void Refresh(bool DeleteEditCtrl = true, bool ReloadControlData = false);
     void Empty();
@@ -121,7 +122,7 @@ public:
         }
     };
 
-    virtual bool UpdateControlData(const ZIProperties* pData)
+    virtual bool UpdateControlData(const PSS_Properties* pData)
     {
         if (m_pPropertyItemManager)
         {
@@ -335,12 +336,12 @@ protected:
 private:
 
     int                        m_nSelectedItem;
-    ZIInPlaceEdit*            m_pWndInPlaceControl;
+    PSS_InPlaceEdit*            m_pWndInPlaceControl;
     CFont                    m_Font;
     CFont                    m_FontBold;
 
     ZBPropertyItemManager*    m_pPropertyItemManager;
-    ZIProperties*            m_pCurrentProperties;
+    PSS_Properties*            m_pCurrentProperties;
 
     CString                    m_IniFile;
     bool                    m_IniFileLoaded;

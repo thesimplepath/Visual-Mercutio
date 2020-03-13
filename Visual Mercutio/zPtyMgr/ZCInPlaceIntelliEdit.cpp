@@ -26,11 +26,8 @@ IMPLEMENT_DYNAMIC(ZCInPlaceIntelliEdit, CEdit)
 
 
 ZCInPlaceIntelliEdit::ZCInPlaceIntelliEdit(bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit(_T(""), IsReadOnly)
-{
-
-}
-
+    : PSS_InPlaceEdit(CString(_T("")), IsReadOnly)
+{}
 
 BEGIN_MESSAGE_MAP(ZCInPlaceIntelliEdit, PSS_IntelliEdit)
     //{{AFX_MSG_MAP(ZCInPlaceIntelliEdit)
@@ -105,7 +102,7 @@ void ZCInPlaceIntelliEdit::OnItemSelectedFromList()
 
 void ZCInPlaceIntelliEdit::SetEditText(const CString& strText)
 {
-    m_strText = strText;
+    m_StrValue = strText;
 
     if (::IsWindow(GetSafeHwnd()))
         SetWindowText(strText);
@@ -114,22 +111,22 @@ void ZCInPlaceIntelliEdit::SetEditText(const CString& strText)
 void ZCInPlaceIntelliEdit::SetEditText(double dValue)
 {
     // Sets the double value
-    m_dValue = dValue;
+    m_DoubleValue = dValue;
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_dValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_DoubleValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
 void ZCInPlaceIntelliEdit::SetEditText(float fValue)
 {
     // Sets the float value
-    m_fValue = fValue;
+    m_FloatValue = fValue;
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_fValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_FloatValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -148,12 +145,16 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, co
 
     BOOL rValue = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(strInitText);
+
     // Saves the initial value
-    m_strInitialValueText = strInitText;
+    m_StrInitialValue = strInitText;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_STRING;
+    m_Type = PSS_InPlaceEdit::IE_T_String;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -165,12 +166,16 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, do
 
     BOOL rValue = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(dInitValue);
+
     // Saves the initial value
-    m_dInitialValue = dInitValue;
+    m_DoubleInitialValue = dInitValue;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_DOUBLE;
+    m_Type = PSS_InPlaceEdit::IE_T_Double;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -181,12 +186,16 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem, fl
 
     BOOL rValue = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(fInitValue);
+
     // Saves the initial value
-    m_fInitialValue = fInitValue;
+    m_FloatInitialValue = fInitValue;
+
     // Reset the has changed value
     SetHasChanged(false);
+
     // Sets the type
-    m_type = ZIInPlaceEdit::IPE_FLOAT;
+    m_Type = PSS_InPlaceEdit::IE_T_Float;
+
     // Sets the current selection to all
     SetSelAll();
     return rValue;
@@ -217,12 +226,13 @@ void ZCInPlaceIntelliEdit::SaveValue()
                 bool ConversionCorrect = true;
                 switch (GetEditType())
                 {
-                    case ZIInPlaceEdit::IPE_STRING:
+                    case PSS_InPlaceEdit::IE_T_String:
                     {
                         // do nothing for string
                         break;
                     }
-                    case ZIInPlaceEdit::IPE_DOUBLE:
+
+                    case PSS_InPlaceEdit::IE_T_Double:
                     {
                         // Check the conversion
                         double value;
@@ -231,7 +241,8 @@ void ZCInPlaceIntelliEdit::SaveValue()
                             ZCInPlaceIntelliEdit::CancelEdit();
                         break;
                     }
-                    case ZIInPlaceEdit::IPE_FLOAT:
+
+                    case PSS_InPlaceEdit::IE_T_Float:
                     {
                         // Check the conversion
                         float value;
@@ -241,6 +252,7 @@ void ZCInPlaceIntelliEdit::SaveValue()
                         break;
                     }
                 }
+
                 // Now, if conversion correct and check value, save the edit value
                 if (ConversionCorrect &&
                     dynamic_cast<ZCPropertyListCtrl*>(GetParent())->CheckCurrentPropertyData(m_pItem, ProposedValue))
@@ -270,22 +282,24 @@ void ZCInPlaceIntelliEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case ZIInPlaceEdit::IPE_STRING:
+        case PSS_InPlaceEdit::IE_T_String:
         {
             // Set back the initial value
-            SetEditText(m_strInitialValueText);
+            SetEditText(m_StrInitialValue);
             break;
         }
-        case ZIInPlaceEdit::IPE_DOUBLE:
+
+        case PSS_InPlaceEdit::IE_T_Double:
         {
             // Set back the initial double value
-            SetEditText(m_dInitialValue);
+            SetEditText(m_DoubleInitialValue);
             break;
         }
-        case ZIInPlaceEdit::IPE_FLOAT:
+
+        case PSS_InPlaceEdit::IE_T_Float:
         {
             // Set back the initial float value
-            SetEditText(m_fInitialValue);
+            SetEditText(m_FloatInitialValue);
             break;
         }
     }
@@ -294,8 +308,6 @@ void ZCInPlaceIntelliEdit::CancelEdit()
     // Reset the has changed value
     SetHasChanged(false);
 }
-
-
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceIntelliEdit message handlers

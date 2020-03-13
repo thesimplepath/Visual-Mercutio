@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zProperty\ZIInPlaceEdit.h"
+#include "zProperty\PSS_InPlaceEdit.h"
 #include "zWinUtil32\PSS_SearchEdit.h"
 
 
@@ -34,7 +34,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceDateEdit
 
-class AFX_EXT_CLASS ZCInPlaceDateEdit : public PSS_SearchEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceDateEdit : public PSS_SearchEdit, public PSS_InPlaceEdit
 {
     ZCInPlaceDateEdit(const ZCInPlaceDateEdit& d);
     ZCInPlaceDateEdit operator=(const ZCInPlaceDateEdit& d);
@@ -87,19 +87,15 @@ protected:
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
     afx_msg void OnSetFocus(CWnd* pOldWnd);
     //}}AFX_MSG
-
     DECLARE_MESSAGE_MAP()
-
-    // Data
-private:
 };
 
 inline ZCInPlaceDateEdit::ZCInPlaceDateEdit(bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit((double)0, IsReadOnly)
+    : PSS_InPlaceEdit((double)0, IsReadOnly)
 {}
 
 inline ZCInPlaceDateEdit::ZCInPlaceDateEdit(PSS_Date& DateInitValue, bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit(DateInitValue, IsReadOnly)
+    : PSS_InPlaceEdit(DateInitValue, IsReadOnly)
 {}
 
 inline ZCInPlaceDateEdit::~ZCInPlaceDateEdit()

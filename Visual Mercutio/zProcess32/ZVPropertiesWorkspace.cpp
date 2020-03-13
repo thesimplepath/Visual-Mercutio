@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVPropertiesWorkspace.h"
 
-#include "zProperty\ZBPropertyObserverMsg.h"
+#include "zProperty\PSS_PropertyObserverMsg.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"

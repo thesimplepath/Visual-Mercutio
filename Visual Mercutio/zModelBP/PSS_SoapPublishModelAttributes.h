@@ -90,7 +90,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public PSS_ModelNavigation
         * Publishes the properties
         *@param propSet - properties to publish
         */
-        void Publish(const ZBPropertySet& propSet);
+        void Publish(const PSS_Properties::IPropertySet& propSet);
 
         /**
         * Checks if a property mathcing with key already exists in the array, adds it if not

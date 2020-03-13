@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zProperty\PSS_PropertyItem.h"
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 
 #ifdef _ZPTYMGREXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -326,8 +326,8 @@ public:
                                int                    nIndex,
                                bool&                Refresh);
 
-    virtual bool UpdateControlData(const ZIProperties* pData);
-    virtual bool UpdateControlData(ZBPropertySet& PropSet);
+    virtual bool UpdateControlData(const PSS_Properties* pData);
+    virtual bool UpdateControlData(PSS_Properties::IPropertySet& PropSet);
     virtual bool UpdatePropertyData(PSS_PropertyItem* pPropertyItem = NULL);
     virtual bool CheckCurrentPropertyData(PSS_PropertyItem* pPropertyItem, CString& ProposedValue);
 
@@ -394,9 +394,9 @@ protected:
 
     ZBItemCategorySet    m_PropertyItemTabSet;
 
-    ZBPropertySet        m_PropSet;
+    PSS_Properties::IPropertySet        m_PropSet;
 
-    ZIProperties*        m_pCurrentData;
+    PSS_Properties*        m_pCurrentData;
 
     ZCPropertyListCtrl*    m_pWndPropertyListCtrl;
 

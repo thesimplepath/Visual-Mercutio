@@ -347,12 +347,12 @@ PSS_PropertyAttributes::IAttribute* PSS_PropertyAttributes::FindAttribute(int ca
     return NULL;
 }
 //---------------------------------------------------------------------------
-bool PSS_PropertyAttributes::Match(ZBPropertySet& propAttributes,
-                                   const CString& argument,
-                                   bool           caseSensitive,
-                                   bool           partialSearch)
+bool PSS_PropertyAttributes::Match(PSS_Properties::IPropertySet& propAttributes,
+                                   const CString&                argument,
+                                   bool                          caseSensitive,
+                                   bool                          partialSearch)
 {
-    ZBPropertyIterator it(&propAttributes);
+    PSS_Properties::IPropertyIterator it(&propAttributes);
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
@@ -413,13 +413,13 @@ bool PSS_PropertyAttributes::Match(ZBPropertySet& propAttributes,
     return false;
 }
 //---------------------------------------------------------------------------
-CString PSS_PropertyAttributes::GetString(ZBPropertySet* pPropAttributes, bool keepOnlyNotEmpty)
+CString PSS_PropertyAttributes::GetString(PSS_Properties::IPropertySet* pPropAttributes, bool keepOnlyNotEmpty)
 {
     if (!pPropAttributes)
         return _T("");
 
-    PSS_Tokenizer      token('\n');
-    ZBPropertyIterator it(pPropAttributes);
+    PSS_Tokenizer                     token('\n');
+    PSS_Properties::IPropertyIterator it(pPropAttributes);
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {

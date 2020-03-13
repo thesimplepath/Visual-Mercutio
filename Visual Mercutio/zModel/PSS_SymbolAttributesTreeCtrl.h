@@ -24,7 +24,7 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeCtrl.h"
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 #include "zProperty\PSS_PropertyAttributes.h"
 
 #ifdef _ZMODELEXPORT
@@ -51,7 +51,8 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         *@param pPropAttributes - the property attributes
         *@param pPropSet - the property set
         */
-        PSS_SymbolAttributesTreeCtrl(PSS_PropertyAttributes* pPropAttributes = NULL, ZBPropertySet* pPropSet = NULL);
+        PSS_SymbolAttributesTreeCtrl(PSS_PropertyAttributes*       pPropAttributes = NULL,
+                                     PSS_Properties::IPropertySet* pPropSet = NULL);
 
         virtual ~PSS_SymbolAttributesTreeCtrl();
 
@@ -65,7 +66,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         *@param pPropAttributes - the property attributes
         *@param pPropSet - the property set
         */
-        virtual void Initialize(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet);
+        virtual void Initialize(PSS_PropertyAttributes* pPropAttributes, PSS_Properties::IPropertySet* pPropSet);
 
         /**
         * Refreshes the controller
@@ -153,10 +154,10 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
         typedef sfl::CCArray_T <ITreeData*, ITreeData*> ITreeDataSet;
         typedef sfl::Iterator_T<ITreeData*>             ITreeDataIterator;
 
-        PSS_PropertyAttributes* m_pPropAttributes;
-        ZBPropertySet*          m_pPropSet;
-        ITreeDataSet            m_DataSet;
-        bool                    m_HasBeenInitialized;
+        PSS_PropertyAttributes*       m_pPropAttributes;
+        PSS_Properties::IPropertySet* m_pPropSet;
+        ITreeDataSet                  m_DataSet;
+        bool                          m_HasBeenInitialized;
 
         /**
         * Creates the tree

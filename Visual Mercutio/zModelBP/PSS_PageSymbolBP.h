@@ -210,14 +210,14 @@ class AFX_EXT_CLASS PSS_PageSymbolBP : public PSS_Symbol
         *@param groupValues - if true, values will be grouped
         *@return true on success, otherwise false
         */
-        virtual bool FillProperties(ZBPropertySet& propSet, bool numericValues = false, bool groupValues = false);
+        virtual bool FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues = false, bool groupValues = false);
 
         /**
         * Saves the changes to object properties
         *@param propSet - property set to fill with the saved properties
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperties(ZBPropertySet& PropSet);
+        virtual bool SaveProperties(PSS_Properties::IPropertySet& PropSet);
 
         /**
         * Checks if the properties are read-only

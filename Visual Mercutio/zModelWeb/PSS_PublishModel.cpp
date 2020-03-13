@@ -38,9 +38,9 @@ const CString g_PublishModelHTMLLogoRefHTMLEntityName        = _T("LogoRef");
 //---------------------------------------------------------------------------
 // PSS_PublishModel
 //---------------------------------------------------------------------------
-PSS_PublishModel::PSS_PublishModel(PSS_PropertyAttributes* pAttributes,
-                                   ZBPropertySet*          pSet,
-                                   const CString&          iniFile) :
+PSS_PublishModel::PSS_PublishModel(PSS_PropertyAttributes*       pAttributes,
+                                   PSS_Properties::IPropertySet* pSet,
+                                   const CString&                iniFile) :
     m_IniFile(iniFile),
     m_pPropAttributes(pAttributes),
     m_pPropSet(pSet)

@@ -54,9 +54,9 @@ class PSS_PublishModelAttributesDialog : public PSS_WizardDialog
         *@param propSet - property set owning the attributes to publish, can be NULL
         *@param pParent - parent window, can be NULL
         */
-        PSS_PublishModelAttributesDialog(PSS_PropertyAttributes* pPropAttributes = NULL,
-                                         ZBPropertySet*          pPropSet        = NULL,
-                                         CWnd*                   pParent         = NULL);
+        PSS_PublishModelAttributesDialog(PSS_PropertyAttributes*       pPropAttributes = NULL,
+                                         PSS_Properties::IPropertySet* pPropSet        = NULL,
+                                         CWnd*                         pParent         = NULL);
 
     protected:
         /// ClassWizard generated virtual function overrides
@@ -80,9 +80,9 @@ class PSS_PublishModelAttributesDialog : public PSS_WizardDialog
             IDD = IDD_WZPUBMODEL_ATTRIBUTE
         };
 
-        PSS_SymbolAttributesTreeCtrl m_Attributes;
-        PSS_PropertyAttributes*      m_pPropAttributes;
-        ZBPropertySet*               m_pPropSet;
+        PSS_SymbolAttributesTreeCtrl  m_Attributes;
+        PSS_PropertyAttributes*       m_pPropAttributes;
+        PSS_Properties::IPropertySet* m_pPropSet;
 };
 
 #endif

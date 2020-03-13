@@ -215,7 +215,7 @@ BEGIN_MESSAGE_MAP(ZCInPlaceListBox, CWnd)
 END_MESSAGE_MAP()
 
 ZCInPlaceListBox::ZCInPlaceListBox(bool IsReadOnly /*= false*/)
-    : ZIInPlaceEdit(_T(""), IsReadOnly),
+    : PSS_InPlaceEdit(CString(_T("")), IsReadOnly),
     m_nCurrentSelection(-1)
 {}
 

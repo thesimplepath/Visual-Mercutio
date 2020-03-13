@@ -24,7 +24,7 @@
 // processsoft
 #include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zProperty\PSS_Property.h"
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 #include "zModel\PSS_ModelNavigation.h"
 
 #ifdef _ZMODELEXPORT
@@ -93,7 +93,7 @@ class AFX_EXT_CLASS PSS_ExtractCategoryAttributes : public PSS_ModelNavigation,
         * Fills the attribute category
         *@param[out] propSet - the property set to populate with the result
         */
-        void FillAttribCategory(ZBPropertySet& propSet);
+        void FillAttribCategory(PSS_Properties::IPropertySet& propSet);
 };
 
 #endif

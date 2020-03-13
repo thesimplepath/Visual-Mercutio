@@ -32,7 +32,7 @@
 #include "zBaseSym\PSS_BasicSymbolAcceptVisitor.h"
 #include "zBaseSym\PSS_BasicSymbolVisitor.h"
 #include "zBaseSym\PSS_NavigableModel.h"
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 #include "zEvent\PSS_ActivityResources.h"
 #include "PSS_UserGroupEntity.h"
 #include "PSS_LogicalSystemEntity.h"
@@ -111,7 +111,7 @@ using namespace sfl;
 class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
                                                public PSS_Subject,
                                                public PSS_ObjectPath,
-                                               public ZIProperties,
+                                               public PSS_Properties,
                                                public PSS_NavigableModel,
                                                public PSS_BasicSymbolAcceptVisitor
 {
@@ -643,14 +643,14 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param groupValue - if true, the values will be grouped
         *@return true on success, otherwise false
         */
-        virtual bool FillProperties(ZBPropertySet& props, bool numericValue = false, bool groupValue = false);
+        virtual bool FillProperties(PSS_Properties::IPropertySet& props, bool numericValue = false, bool groupValue = false);
 
         /**
         * Saves the new changes to the model properties
         *@param props - the property set containing the changes to save
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperties(ZBPropertySet& props);
+        virtual bool SaveProperties(PSS_Properties::IPropertySet& props);
 
         /**
         * Fills a model property
@@ -673,7 +673,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param props - the property set at which the property belongs
         *@return true if check succeeded, otherwise false
         */
-        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props);
+        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props);
 
         /**
         * Processes the extended input for the property value
@@ -683,7 +683,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[in, out] refresh - if true, the model will be refreshed immediately
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -694,11 +694,11 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[in, out] refresh - if true, the model will be refreshed immediately
         *@return true on success, otherwise false
         */
-        virtual bool ProcessMenuCommand(int            menuCmdID,
-                                        PSS_Property&  prop,
-                                        CString&       value,
-                                        ZBPropertySet& props,
-                                        bool&          refresh);
+        virtual bool ProcessMenuCommand(int                           menuCmdID,
+                                        PSS_Property&                 prop,
+                                        CString&                      value,
+                                        PSS_Properties::IPropertySet& props,
+                                        bool&                         refresh);
 
         /**
         * Creates the symbol properties
@@ -1211,7 +1211,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param props - the property set at which the property belongs
         *@return true if the property is allowed to change, otherwise false
         */
-        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props);
+        virtual bool OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props);
 
         /**
         * Called after the property changed
@@ -1220,7 +1220,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param[in, out] refresh - if true, the model will be refreshed immediately
         *@return true if the property content has changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Called when an internal property drag&drop occured
@@ -1230,10 +1230,10 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelMdl : public CODModel,
         *@param props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
-        virtual bool OnDropInternalPropertyItem(PSS_Property&  srcProp,
-                                                PSS_Property&  dstProp,
-                                                bool           top2Down,
-                                                ZBPropertySet& props);
+        virtual bool OnDropInternalPropertyItem(PSS_Property&                 srcProp,
+                                                PSS_Property&                 dstProp,
+                                                bool                          top2Down,
+                                                PSS_Properties::IPropertySet& props);
 
         /**
         * Called when the symbol name changed

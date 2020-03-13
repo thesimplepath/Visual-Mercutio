@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 #include "zSOAP\PSS_SoapPublisher_Model.h"
 #include "PSS_PublishMessengerModelInformation.h"
 #include "PSS_ProcessNavigation.h"
@@ -146,7 +146,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelDefinition : public PSS_ProcessNavigatio
         * Publishes the properties
         *@param propSet - properties to publish
         */
-        void Publish(int ref, const ZBPropertySet& propSet);
+        void Publish(int ref, const PSS_Properties::IPropertySet& propSet);
 
         /**
         * Publishes the property

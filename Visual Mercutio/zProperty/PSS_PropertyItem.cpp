@@ -34,15 +34,15 @@ PSS_PropertyItem& PSS_PropertyItem::operator = (const PSS_PropertyItem& other)
 void PSS_PropertyItem::DrawValue(CDC* pDC, CRect& rect)
 {}
 //---------------------------------------------------------------------------
-void PSS_PropertyItem::CreateInPlaceControl(CWnd*           pWndParent,
-                                            const CRect&    rect,
-                                            ZIInPlaceEdit*& pWndInPlaceControl,
-                                            const CSize&    extendedSize)
+void PSS_PropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
+                                            const CRect&      rect,
+                                            PSS_InPlaceEdit*& pWndInPlaceControl,
+                                            const CSize&      extendedSize)
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 }
 //---------------------------------------------------------------------------
-void PSS_PropertyItem::DestroyInPlaceControl(ZIInPlaceEdit*& pWndInPlaceControl)
+void PSS_PropertyItem::DestroyInPlaceControl(PSS_InPlaceEdit*& pWndInPlaceControl)
 {
     if (pWndInPlaceControl)
     {

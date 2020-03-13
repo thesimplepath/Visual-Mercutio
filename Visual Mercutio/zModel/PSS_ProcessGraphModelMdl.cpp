@@ -1094,7 +1094,7 @@ bool PSS_ProcessGraphModelMdl::HasProperties() const
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numericValue, bool groupValue)
+bool PSS_ProcessGraphModelMdl::FillProperties(PSS_Properties::IPropertySet& props, bool numericValue, bool groupValue)
 {
     // get the language property
     PSS_LanguageProperties* pProps = static_cast<PSS_LanguageProperties*>(GetProperty(ZS_BP_PROP_LANGUAGE));
@@ -1141,14 +1141,14 @@ bool PSS_ProcessGraphModelMdl::FillProperties(ZBPropertySet& props, bool numeric
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::SaveProperties(ZBPropertySet& props)
+bool PSS_ProcessGraphModelMdl::SaveProperties(PSS_Properties::IPropertySet& props)
 {
     PSS_BasicModelProperties* pBasicProps = static_cast<PSS_BasicModelProperties*>(GetProperty(ZS_BP_PROP_MODEL_BASIC));
 
     if (!pBasicProps)
         return false;
 
-    ZBPropertyIterator it(&props);
+    PSS_Properties::IPropertyIterator it(&props);
 
     // iterate through the data list and fill the property set
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1202,7 +1202,7 @@ bool PSS_ProcessGraphModelMdl::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_ProcessGraphModelMdl::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     if (prop.GetCategoryID() == ZS_BP_PROP_MODEL_BASIC && prop.GetItemID() == M_Model_Name_ID)
     {
@@ -1229,19 +1229,19 @@ bool PSS_ProcessGraphModelMdl::CheckPropertyValue(PSS_Property& prop, CString& v
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::ProcessExtendedInput(PSS_Property&  prop,
-                                                    CString&       value,
-                                                    ZBPropertySet& props,
-                                                    bool&          refresh)
+bool PSS_ProcessGraphModelMdl::ProcessExtendedInput(PSS_Property&                 prop,
+                                                    CString&                      value,
+                                                    PSS_Properties::IPropertySet& props,
+                                                    bool&                         refresh)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::ProcessMenuCommand(int            menuCmdID,
-                                                  PSS_Property&  prop,
-                                                  CString&       value,
-                                                  ZBPropertySet& props,
-                                                  bool&          refresh)
+bool PSS_ProcessGraphModelMdl::ProcessMenuCommand(int                           menuCmdID,
+                                                  PSS_Property&                 prop,
+                                                  CString&                      value,
+                                                  PSS_Properties::IPropertySet& props,
+                                                  bool&                         refresh)
 {
     return false;
 }
@@ -2382,20 +2382,20 @@ void PSS_ProcessGraphModelMdl::PostWrite(CArchive& ar)
 void PSS_ProcessGraphModelMdl::OnPostOpenDocument(long documentVersion)
 {}
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
+bool PSS_ProcessGraphModelMdl::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ProcessGraphModelMdl::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ProcessGraphModelMdl::OnDropInternalPropertyItem(PSS_Property&  srcProp,
-                                                          PSS_Property&  dstProp,
-                                                          bool           top2Down,
-                                                          ZBPropertySet& props)
+bool PSS_ProcessGraphModelMdl::OnDropInternalPropertyItem(PSS_Property&                 srcProp,
+                                                          PSS_Property&                 dstProp,
+                                                          bool                          top2Down,
+                                                          PSS_Properties::IPropertySet& props)
 {
     return true;
 }

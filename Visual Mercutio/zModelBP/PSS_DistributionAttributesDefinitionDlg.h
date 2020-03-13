@@ -22,8 +22,10 @@
 
 // processsoft
 #include "zModelBP\PSS_DistributionAttributesList.h"
+#include "zProperty\PSS_Properties.h"
+
+// resources
 #include "zModelBP\zModelBPRes.h"
-#include "zProperty\ZIProperties.h"
 
 // class name mapping
 #ifndef PSS_DistributionAttribute
@@ -78,7 +80,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesDefinitionDlg : public CDialog
         */
         PSS_DistributionAttributesDefinitionDlg(PSS_DistributionAttributeManager* pDistributionManager,
                                                 PSS_DynamicPropertiesManager*     pPropManager,
-                                                ZBPropertySet*                    pSet,
+                                                PSS_Properties::IPropertySet*     pSet,
                                                 PSS_UserGroupEntity*              pMainUserGroup,
                                                 const CString&                    groupGUID         = "",
                                                 PSS_DistributionAttribute*        pDistributionAttr = NULL,
@@ -144,7 +146,7 @@ class AFX_EXT_CLASS PSS_DistributionAttributesDefinitionDlg : public CDialog
         PSS_DynamicPropertiesManager*     m_pPropManager;
         PSS_UserGroupEntity*              m_pMainUserGroup;
         PSS_DistributionAttribute*        m_pDistributionAttr;
-        ZBPropertySet*                    m_pSet;
+        PSS_Properties::IPropertySet*     m_pSet;
         CString                           m_DynamicAttributeName;
         CString                           m_GroupName;
         CString                           m_GroupGUID;

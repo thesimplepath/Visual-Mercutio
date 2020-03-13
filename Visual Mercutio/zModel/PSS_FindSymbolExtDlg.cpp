@@ -28,7 +28,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_FindSymbolExtDlg
 //---------------------------------------------------------------------------
-PSS_FindSymbolExtDlg::PSS_FindSymbolExtDlg(PSS_PropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet, CWnd* pParent) :
+PSS_FindSymbolExtDlg::PSS_FindSymbolExtDlg(PSS_PropertyAttributes*       pPropAttributes,
+                                           PSS_Properties::IPropertySet* pPropSet,
+                                           CWnd*                         pParent) :
     PSS_Dialog(PSS_FindSymbolExtDlg::IDD, TRUE, pParent),
     m_pPropAttributes(pPropAttributes),
     m_pPropSet(pPropSet),

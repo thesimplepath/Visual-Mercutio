@@ -48,10 +48,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 };
 
 inline ZBPropertyItemString::ZBPropertyItemString(LPCTSTR    pStrName,
@@ -106,10 +106,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 
     virtual void SetData(const CString sText);
     virtual CString GetData() const;
@@ -174,10 +174,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 };
 
 inline ZBPropertyItemExtended::ZBPropertyItemExtended(LPCTSTR    pStrName    /*= NULL*/,
@@ -228,10 +228,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 
     virtual void SetData(const CString sText);
     virtual CString GetData() const;
@@ -288,10 +288,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 
     virtual void SetData(const CString sText);
     virtual CString GetData() const;
@@ -336,10 +336,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 };
 
 inline ZBPropertyItemDuration::ZBPropertyItemDuration(LPCTSTR    pStrName    /*= NULL*/,
@@ -377,10 +377,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 };
 
 inline ZBPropertyItemDate::ZBPropertyItemDate(LPCTSTR    pStrName    /*= NULL*/,
@@ -418,10 +418,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 };
 
 inline ZBPropertyItemTime::ZBPropertyItemTime(LPCTSTR    pStrName    /*= NULL*/,
@@ -463,10 +463,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 
 private:
 
@@ -528,10 +528,10 @@ public:
     // Operations
     virtual void DrawValue(CDC* pDC, CRect& rect);
 
-    virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                      const CRect&    rect,
-                                      ZIInPlaceEdit*& pWndInPlaceControl,
-                                      const CSize&    extendedSize = CSize(0, 0));
+    virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                      const CRect&      rect,
+                                      PSS_InPlaceEdit*& pWndInPlaceControl,
+                                      const CSize&      extendedSize = CSize(0, 0));
 };
 
 inline ZBPropertyItemNumber::ZBPropertyItemNumber(double    Value        /*= 0*/,

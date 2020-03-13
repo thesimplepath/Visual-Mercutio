@@ -23,7 +23,7 @@
 
 // processsoft
 #include "zProperty\PSS_Property.h"
-#include "zProperty\ZIProperties.h"
+#include "zProperty\PSS_Properties.h"
 #include "zModel\PSS_ModelNavigation.h"
 
 // forward class declaration

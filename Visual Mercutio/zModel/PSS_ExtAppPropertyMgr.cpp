@@ -197,7 +197,7 @@ bool PSS_ExtAppPropertyMgr::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::FillProperties(ZBPropertySet& propSet, bool numericValue, bool groupValue)
+bool PSS_ExtAppPropertyMgr::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValue, bool groupValue)
 {
     // if the menu isn't loaded, load it
     if (!g_ExtAppsMenu.GetSafeHmenu())
@@ -268,7 +268,7 @@ bool PSS_ExtAppPropertyMgr::FillProperties(ZBPropertySet& propSet, bool numericV
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool numericValue, bool groupValue)
+bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet& propSet, bool numericValue, bool groupValue)
 {
     // if the menu isn't loaded, load it
     if (!g_ExtAppsMenu.GetSafeHmenu())
@@ -421,9 +421,9 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::SaveProperties(ZBPropertySet& propSet)
+bool PSS_ExtAppPropertyMgr::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the external files property set
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -460,15 +460,15 @@ bool PSS_ExtAppPropertyMgr::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_ExtAppPropertyMgr::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::ProcessExtendedInput(PSS_Property&  prop,
-                                                 CString&       value,
-                                                 ZBPropertySet& props,
-                                                 bool&          refresh)
+bool PSS_ExtAppPropertyMgr::ProcessExtendedInput(PSS_Property&                 prop,
+                                                 CString&                      value,
+                                                 PSS_Properties::IPropertySet& props,
+                                                 bool&                         refresh)
 {
     if (prop.GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTAPP + int(GetExtAppCount())))
@@ -500,11 +500,11 @@ bool PSS_ExtAppPropertyMgr::ProcessExtendedInput(PSS_Property&  prop,
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::ProcessMenuCommand(int            menuCmdID,
-                                               PSS_Property&  prop,
-                                               CString&       value,
-                                               ZBPropertySet& props,
-                                               bool&          refresh)
+bool PSS_ExtAppPropertyMgr::ProcessMenuCommand(int                           menuCmdID,
+                                               PSS_Property&                 prop,
+                                               CString&                      value,
+                                               PSS_Properties::IPropertySet& props,
+                                               bool&                         refresh)
 {
     if (prop.GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTAPP + int(GetExtAppCount())))
@@ -531,7 +531,7 @@ void PSS_ExtAppPropertyMgr::Serialize(CArchive& ar)
     m_ExternalApplications.Serialize(ar);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::OnAddNewExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtAppPropertyMgr::OnAddNewExtApp(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     refresh = DoInsertExtApp(false);
 
@@ -539,7 +539,10 @@ void PSS_ExtAppPropertyMgr::OnAddNewExtApp(PSS_Property& prop, CString& value, Z
         value = GetCommandTitle(GetExtAppCount() - 1);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtAppPropertyMgr::OnDelCurrentExtApp(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtAppPropertyMgr::OnDelCurrentExtApp(PSS_Property&                 prop,
+                                               CString&                      value,
+                                               PSS_Properties::IPropertySet& props,
+                                               bool&                         refresh)
 {
     // delete the current selected external application
     const int index = prop.GetCategoryID() - ZS_BP_PROP_EXTAPP;
@@ -548,12 +551,12 @@ void PSS_ExtAppPropertyMgr::OnDelCurrentExtApp(PSS_Property& prop, CString& valu
         refresh = true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
+bool PSS_ExtAppPropertyMgr::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtAppPropertyMgr::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ExtAppPropertyMgr::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     return false;
 }

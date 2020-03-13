@@ -80,14 +80,14 @@ class AFX_EXT_CLASS PSS_ExtractModelAttributes : public PSS_ModelNavigation
         virtual bool OnLink(PSS_LinkSymbol* pLink);
 
     private:
-        ZBPropertySet* m_pPropertySet;
-        int            m_IDArray[500];
+        PSS_Properties::IPropertySet* m_pPropertySet;
+        int                           m_IDArray[500];
 
         /**
         * Processes the attributes
         *@param[out] propSet - the property set to populate with the result
         */
-        void ProcessAttrib(ZBPropertySet& propSet);
+        void ProcessAttrib(PSS_Properties::IPropertySet& propSet);
 
         /**
         * Checks if a key exists

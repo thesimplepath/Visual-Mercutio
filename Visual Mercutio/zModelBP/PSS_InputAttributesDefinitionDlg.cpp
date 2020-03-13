@@ -33,7 +33,7 @@ END_MESSAGE_MAP()
 // PSS_InputAttributesDefinitionDlg
 //---------------------------------------------------------------------------
 PSS_InputAttributesDefinitionDlg::PSS_InputAttributesDefinitionDlg(PSS_DynamicPropertiesManager* pPropManager,
-                                                                   ZBPropertySet*                pSet,
+                                                                   PSS_Properties::IPropertySet* pSet,
                                                                    PSS_InputAttribute*           pInputAttr,
                                                                    CWnd*                         pParent) :
     CDialog(PSS_InputAttributesDefinitionDlg::IDD, pParent),

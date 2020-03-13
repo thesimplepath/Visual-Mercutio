@@ -2,7 +2,7 @@
 #define _ZCInPlaceMultiLineEdit_H__
 
 #if _MSC_VER > 1000
-#pragma once
+    #pragma once
 #endif
 
 // change the definition of AFX_EXT... to make it import
@@ -15,7 +15,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_MultiLineEdit.h"
-#include "zProperty\ZIInPlaceEdit.h"
+#include "zProperty\PSS_InPlaceEdit.h"
 
 #ifdef _ZPTYMGREXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -31,7 +31,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceMultiLineEdit
 
-class AFX_EXT_CLASS ZCInPlaceMultiLineEdit : public PSS_MultiLineEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceMultiLineEdit : public PSS_MultiLineEdit, public PSS_InPlaceEdit
 {
     ZCInPlaceMultiLineEdit(const ZCInPlaceMultiLineEdit& d);
     ZCInPlaceMultiLineEdit operator=(const ZCInPlaceMultiLineEdit& d);

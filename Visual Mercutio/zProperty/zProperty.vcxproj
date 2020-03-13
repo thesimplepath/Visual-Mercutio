@@ -176,25 +176,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPropertyItemObserverMsg.cpp">
+    <ClCompile Include="PSS_PropertyItemObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPropertyObserverMsg.cpp">
+    <ClCompile Include="PSS_PropertyObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIInPlaceEdit.cpp">
+    <ClCompile Include="PSS_InPlaceEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIProperties.cpp">
+    <ClCompile Include="PSS_Properties.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -223,10 +223,10 @@
     <ClInclude Include="PSS_Property.h" />
     <ClInclude Include="PSS_PropertyAttributes.h" />
     <ClInclude Include="PSS_PropertyItem.h" />
-    <ClInclude Include="ZBPropertyItemObserverMsg.h" />
-    <ClInclude Include="ZBPropertyObserverMsg.h" />
-    <ClInclude Include="ZIInPlaceEdit.h" />
-    <ClInclude Include="ZIProperties.h" />
+    <ClInclude Include="PSS_PropertyItemObserverMsg.h" />
+    <ClInclude Include="PSS_PropertyObserverMsg.h" />
+    <ClInclude Include="PSS_InPlaceEdit.h" />
+    <ClInclude Include="PSS_Properties.h" />
     <ClInclude Include="zPropertyLib.h" />
   </ItemGroup>
   <ItemGroup>

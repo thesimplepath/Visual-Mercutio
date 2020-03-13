@@ -27,7 +27,7 @@
 #include "zBaseLib\PSS_Duration.h"
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_TimeSpan.h"
-#include "zProperty\ZIInPlaceEdit.h"
+#include "zProperty\PSS_InPlaceEdit.h"
 
 #ifdef _ZPROPERTYEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -196,16 +196,16 @@ class AFX_EXT_CLASS PSS_PropertyItem : public CObject
         *@param[out] pWndInPlaceControl - the newly created in-place control window on function ends
         *@param extendedSize - the control extended size
         */
-        virtual void CreateInPlaceControl(CWnd*           pWndParent,
-                                          const CRect&    rect,
-                                          ZIInPlaceEdit*& pWndInPlaceControl,
-                                          const CSize&    extendedSize = CSize(0, 0));
+        virtual void CreateInPlaceControl(CWnd*             pWndParent,
+                                          const CRect&      rect,
+                                          PSS_InPlaceEdit*& pWndInPlaceControl,
+                                          const CSize&      extendedSize = CSize(0, 0));
 
         /**
         * Deletes an in-place control
         *@param pWndInPlaceControl - the in-place control window to delete
         */
-        virtual void DestroyInPlaceControl(ZIInPlaceEdit*& pWndInPlaceControl);
+        virtual void DestroyInPlaceControl(PSS_InPlaceEdit*& pWndInPlaceControl);
 
         /**
         * Gets the data as a float value

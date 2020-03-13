@@ -172,14 +172,14 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param groupValues - if true, values will be grouped
         *@return true on success, otherwise false
         */
-        virtual bool FillProperties(ZBPropertySet& propSet, bool numericValues = false, bool groupValues = false);
+        virtual bool FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues = false, bool groupValues = false);
 
         /**
         * Saves the changes to object properties
         *@param propSet - property set to fill with the saved properties
         *@return true on success, otherwise false
         */
-        virtual bool SaveProperties(ZBPropertySet& propSet);
+        virtual bool SaveProperties(PSS_Properties::IPropertySet& propSet);
 
         /**
         * Saves a symbol property
@@ -195,7 +195,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - property set at which the property belongs
         *@return true if the property value was checked successfully, otherwise false
         */
-        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props);
+        virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props);
 
         /**
         * Processes the extended input for the property value
@@ -205,7 +205,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Processes the menu command for the property value
@@ -216,7 +216,11 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately after the process is terminated
         *@return true on success, otherwise false
         */
-        virtual bool ProcessMenuCommand(int menuCmdID, PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual bool ProcessMenuCommand(int                           menuCmdID,
+                                        PSS_Property&                 prop,
+                                        CString&                      value,
+                                        PSS_Properties::IPropertySet& props,
+                                        bool&                         refresh);
 
         /**
         * Gets the attributes as a string
@@ -1040,7 +1044,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         *@return true if the property changed, otherwise false
         */
-        virtual bool OnPostPropertyChanged(PSS_Property& property, ZBPropertySet& properties, bool& refresh);
+        virtual bool OnPostPropertyChanged(PSS_Property& property, PSS_Properties::IPropertySet& properties, bool& refresh);
 
         /**
         * Called when an internal property drag&drop occurred in the symbol
@@ -1050,10 +1054,10 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the drag&dropped properties belong
         *@return true if item was dropped, otherwise false
         */
-        virtual bool OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                PSS_Property&  dstProperty,
-                                                bool           top2Down,
-                                                ZBPropertySet& props);
+        virtual bool OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                PSS_Property&                 dstProperty,
+                                                bool                          top2Down,
+                                                PSS_Properties::IPropertySet& props);
 
         /**
         * Called when the default attributes are filled
@@ -1162,7 +1166,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         */
-        virtual void OnAddNewCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnAddNewCombination(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Called when a combination was deleted
@@ -1171,7 +1175,10 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         */
-        virtual void OnDelCurrentCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelCurrentCombination(PSS_Property&                 prop,
+                                             CString&                      value,
+                                             PSS_Properties::IPropertySet& props,
+                                             bool&                         refresh);
 
         /**
         * Called when a new deliverable combination is added
@@ -1180,7 +1187,10 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         */
-        virtual void OnAddDeliverableCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnAddDeliverableCombination(PSS_Property&                 prop,
+                                                 CString&                      value,
+                                                 PSS_Properties::IPropertySet& props,
+                                                 bool&                         refresh);
 
         /**
         * Called when a deliverable combination was deleted
@@ -1189,7 +1199,10 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         */
-        virtual void OnDelDeliverableCombination(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelDeliverableCombination(PSS_Property&                 prop,
+                                                 CString&                      value,
+                                                 PSS_Properties::IPropertySet& props,
+                                                 bool&                         refresh);
 
         /**
         * Called when a new deliverable combination is added
@@ -1198,7 +1211,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         */
-        virtual void OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnAddNewRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
         /**
         * Called when a risk was deleted
@@ -1207,7 +1220,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         *@param[in, out] props - the property set at which the property belongs
         *@param[in, out] refresh - if true, the symbol will be refreshed immediately
         */
-        virtual void OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh);
+        virtual void OnDelCurrentRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh);
 
     private:
         PSS_ProcCombinations          m_Combinations;

@@ -174,7 +174,7 @@ bool PSS_ExtFilePropertyMgr::CreateSymbolProperties()
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::FillProperties(ZBPropertySet& propSet, bool numericValue, bool groupValue)
+bool PSS_ExtFilePropertyMgr::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValue, bool groupValue)
 {
     // if the menu isn't loaded, load it
     if (!g_ExtFilesMenu.GetSafeHmenu())
@@ -233,7 +233,7 @@ bool PSS_ExtFilePropertyMgr::FillProperties(ZBPropertySet& propSet, bool numeric
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, bool numericValue, bool groupValue)
+bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet& propSet, bool numericValue, bool groupValue)
 {
     // if the menu isn't loaded, load it
     if (!g_ExtFilesMenu.GetSafeHmenu())
@@ -312,9 +312,9 @@ bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet& propSet, boo
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::SaveProperties(ZBPropertySet& propSet)
+bool PSS_ExtFilePropertyMgr::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the external files property set
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -349,15 +349,15 @@ bool PSS_ExtFilePropertyMgr::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_ExtFilePropertyMgr::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::ProcessExtendedInput(PSS_Property&  prop,
-                                                  CString&       value,
-                                                  ZBPropertySet& props,
-                                                  bool&          refresh)
+bool PSS_ExtFilePropertyMgr::ProcessExtendedInput(PSS_Property&                 prop,
+                                                  CString&                      value,
+                                                  PSS_Properties::IPropertySet& props,
+                                                  bool&                         refresh)
 {
     if (prop.GetCategoryID() >=  ZS_BP_PROP_EXTFILE &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTFILE + int(GetExtFileCount())))
@@ -389,11 +389,11 @@ bool PSS_ExtFilePropertyMgr::ProcessExtendedInput(PSS_Property&  prop,
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::ProcessMenuCommand(int            menuCmdID,
-                                                PSS_Property&  prop,
-                                                CString&       value,
-                                                ZBPropertySet& props,
-                                                bool&          refresh)
+bool PSS_ExtFilePropertyMgr::ProcessMenuCommand(int                           menuCmdID,
+                                                PSS_Property&                 prop,
+                                                CString&                      value,
+                                                PSS_Properties::IPropertySet& props,
+                                                bool&                         refresh)
 {
     if (prop.GetCategoryID() >=  ZS_BP_PROP_EXTFILE &&
         prop.GetCategoryID() <= (ZS_BP_PROP_EXTFILE + int(GetExtFileCount())))
@@ -420,7 +420,10 @@ void PSS_ExtFilePropertyMgr::Serialize(CArchive& ar)
     m_ExternalFiles.Serialize(ar);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtFilePropertyMgr::OnAddNewExtFile(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtFilePropertyMgr::OnAddNewExtFile(PSS_Property&                 prop,
+                                             CString&                      value,
+                                             PSS_Properties::IPropertySet& props,
+                                             bool&                         refresh)
 {
     refresh = DoInsertExtFile(false);
 
@@ -428,7 +431,10 @@ void PSS_ExtFilePropertyMgr::OnAddNewExtFile(PSS_Property& prop, CString& value,
         value = GetFileTitle(GetExtFileCount() - 1);
 }
 //---------------------------------------------------------------------------
-void PSS_ExtFilePropertyMgr::OnDelCurrentExtFile(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_ExtFilePropertyMgr::OnDelCurrentExtFile(PSS_Property&                 prop,
+                                                 CString&                      value,
+                                                 PSS_Properties::IPropertySet& props,
+                                                 bool&                         refresh)
 {
     // delete the current selected external file
     const int index = prop.GetCategoryID() - ZS_BP_PROP_EXTFILE;
@@ -437,12 +443,12 @@ void PSS_ExtFilePropertyMgr::OnDelCurrentExtFile(PSS_Property& prop, CString& va
         refresh = true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
+bool PSS_ExtFilePropertyMgr::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, PSS_Properties::IPropertySet& props)
 {
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_ExtFilePropertyMgr::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_ExtFilePropertyMgr::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     return false;
 }

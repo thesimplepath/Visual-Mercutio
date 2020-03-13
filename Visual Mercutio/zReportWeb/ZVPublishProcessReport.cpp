@@ -649,12 +649,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
 
     if (m_pProcessSymbol != NULL)
     {
-        ZBPropertySet PropSet;
+        PSS_Properties::IPropertySet PropSet;
         m_pProcessSymbol->FillProperties(PropSet);
 
         GenerateSection(PropSet);
 
-        ZBPropertyIterator i(&PropSet);
+        PSS_Properties::IPropertyIterator i(&PropSet);
         PSS_Property* pProp = NULL;
 
         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -806,12 +806,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
 
         if (m_StartSymbol != NULL)
         {
-            ZBPropertySet PropSet;
+            PSS_Properties::IPropertySet PropSet;
             m_StartSymbol->FillProperties(PropSet);
 
             GenerateSection(PropSet);
 
-            ZBPropertyIterator i(&PropSet);
+            PSS_Properties::IPropertyIterator i(&PropSet);
             PSS_Property* pProp = NULL;
 
             for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -909,12 +909,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -979,12 +979,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                         ObjType,
                                         RGB(155, 255, 155));
 
-                ZBPropertySet PropSet;
+                PSS_Properties::IPropertySet PropSet;
                 m_DoorSymbol->FillProperties(PropSet);
 
                 GenerateSection(PropSet);
 
-                ZBPropertyIterator i(&PropSet);
+                PSS_Properties::IPropertyIterator i(&PropSet);
                 PSS_Property* pProp = NULL;
 
                 for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1039,12 +1039,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1094,12 +1094,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
 
         if (m_ProcedureSymbol != NULL)
         {
-            ZBPropertySet PropSet;
+            PSS_Properties::IPropertySet PropSet;
             m_ProcedureSymbol->FillProperties(PropSet);
 
             GenerateSection(PropSet);
 
-            ZBPropertyIterator i(&PropSet);
+            PSS_Properties::IPropertyIterator i(&PropSet);
             PSS_Property* pProp = NULL;
 
             for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1194,12 +1194,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1295,12 +1295,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1367,12 +1367,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1468,12 +1468,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1540,12 +1540,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1641,12 +1641,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1710,12 +1710,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                         ObjType,
                                         RGB(255, 155, 155));
 
-                ZBPropertySet PropSet;
+                PSS_Properties::IPropertySet PropSet;
                 m_DoorSymbol->FillProperties(PropSet);
 
                 GenerateSection(PropSet);
 
-                ZBPropertyIterator i(&PropSet);
+                PSS_Properties::IPropertyIterator i(&PropSet);
                 PSS_Property* pProp = NULL;
 
                 for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1770,12 +1770,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1828,12 +1828,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
 
         if (m_StopSymbol != NULL)
         {
-            ZBPropertySet PropSet;
+            PSS_Properties::IPropertySet PropSet;
             m_StopSymbol->FillProperties(PropSet);
 
             GenerateSection(PropSet);
 
-            ZBPropertyIterator i(&PropSet);
+            PSS_Properties::IPropertyIterator i(&PropSet);
             PSS_Property* pProp = NULL;
 
             for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1930,12 +1930,12 @@ void ZVPublishProcessReport::CreateReport(PSS_ProcessSymbolBP* m_pProcessSymbol)
                                                 ObjType,
                                                 RGB(162, 221, 198));
 
-                        ZBPropertySet PropSet;
+                        PSS_Properties::IPropertySet PropSet;
                         m_LinkSymbol->FillProperties(PropSet);
 
                         GenerateSection(PropSet);
 
-                        ZBPropertyIterator i(&PropSet);
+                        PSS_Properties::IPropertyIterator i(&PropSet);
                         PSS_Property* pProp = NULL;
 
                         for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
@@ -1975,9 +1975,9 @@ CString ZVPublishProcessReport::GenerateFileName(CString Directory, CString Proc
 }
 
 // Cette fonction permet la génération d'une section contenant toutes les propriétés d'un symbole.
-void ZVPublishProcessReport::GenerateSection(ZBPropertySet& PropSet)
+void ZVPublishProcessReport::GenerateSection(PSS_Properties::IPropertySet& PropSet)
 {
-    ZBPropertyIterator    i(&PropSet);
+    PSS_Properties::IPropertyIterator    i(&PropSet);
     PSS_Property*            pProp;
     int                    nCatID = -1;
     CString                s = _T("");

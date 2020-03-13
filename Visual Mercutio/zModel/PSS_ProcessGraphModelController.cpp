@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_FileDialog.h"
-#include "zProperty\ZBPropertyObserverMsg.h"
+#include "zProperty\PSS_PropertyObserverMsg.h"
 #include "zProperty\PSS_DynamicProperties.h"
 #include "zProperty\PSS_DynamicPropertiesManager.h"
 #include "PSS_ProcessGraphModelDoc.h"
@@ -1862,8 +1862,8 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
 
     if (pSymbol)
     {
-        ZBPropertyObserverMsg msg   (pSymbol);
-        PSS_SymbolObserverMsg symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pSymbol);
+        PSS_PropertyObserverMsg msg   (pSymbol);
+        PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pSymbol);
 
         // notify direct observers
         NotifyAllObservers(&msg);
@@ -1883,8 +1883,8 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
 
     if (pLinkSymbol)
     {
-        ZBPropertyObserverMsg msg   (pLinkSymbol);
-        PSS_SymbolObserverMsg symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pLinkSymbol);
+        PSS_PropertyObserverMsg msg   (pLinkSymbol);
+        PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pLinkSymbol);
 
         // notify direct observers
         NotifyAllObservers(&msg);
@@ -1900,8 +1900,8 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
         return;
     }
 
-    ZBPropertyObserverMsg msg   (NULL);
-    PSS_SymbolObserverMsg symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, NULL);
+    PSS_PropertyObserverMsg msg   (NULL);
+    PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, NULL);
 
     // Notify direct observers
     NotifyAllObservers(&msg);
@@ -3741,7 +3741,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
 
     CWaitCursor waitCursor;
 
-    ZBPropertySet propSet;
+    PSS_Properties::IPropertySet propSet;
     PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
 
     PSS_PropertyAttributes propAttributes;
@@ -3777,7 +3777,7 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
                      findSymbolDlg.GetPartialSearch());
     }
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -4458,8 +4458,8 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
     if (!pSymbolHit && !pLinkSymbolHit)
         return;
 
-    ZBPropertySet          propSet;
-    PSS_PropertyAttributes propAttributes;
+    PSS_Properties::IPropertySet propSet;
+    PSS_PropertyAttributes       propAttributes;
 
     // check what kind of symbol was clicked
     if (pSymbolHit)
@@ -4486,7 +4486,7 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
     // show the wait cursor for this operation
     CWaitCursor waitCursor;
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // remove all properties
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -4675,14 +4675,14 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
     if (dlg.DoModal() == IDCANCEL)
         return;
 
-    PSS_StringFormat ft;
-    ZBPropertySet    propSet;
-    CStringArray     propList;
-    CString          symbolName;
-    int              symbolRef     = -1;
-    PSS_Property*    pSrcProperty  =  NULL;
-    PSS_Property*    pDestProperty =  NULL;
-    PSS_BasicSymbol* pBasicSymbol  =  dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit);
+    PSS_StringFormat             ft;
+    PSS_Properties::IPropertySet propSet;
+    CStringArray                 propList;
+    CString                      symbolName;
+    int                          symbolRef     = -1;
+    PSS_Property*                pSrcProperty  =  NULL;
+    PSS_Property*                pDestProperty =  NULL;
+    PSS_BasicSymbol*             pBasicSymbol  =  dynamic_cast<PSS_BasicSymbol*>(m_pSymbolHit);
 
     // get the owning symbol name and reference
     if (pBasicSymbol)
@@ -4721,7 +4721,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
         // do copy the values?
         if (dlg.DupValuesIsChecked())
         {
-            ZBPropertyIterator it(&propSet);
+            PSS_Properties::IPropertyIterator it(&propSet);
 
             for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 if (pProp->GetCategory() == dlg.GetCategory() && pProp->GetLabel() == pSrcProperty->GetLabel())

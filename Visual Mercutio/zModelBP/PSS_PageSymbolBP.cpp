@@ -298,12 +298,12 @@ bool PSS_PageSymbolBP::CreateSymbolProperties()
     return PSS_Symbol::CreateSymbolProperties();
 }
 //---------------------------------------------------------------------------
-bool PSS_PageSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_PageSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
     return PSS_Symbol::FillProperties(propSet, numericValues, groupValues);
 }
 //---------------------------------------------------------------------------
-bool PSS_PageSymbolBP::SaveProperties(ZBPropertySet& propSet)
+bool PSS_PageSymbolBP::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
     if (!PSS_Symbol::SaveProperties(propSet))
         return false;

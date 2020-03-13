@@ -61,7 +61,7 @@
 
 // forward class declaration
 class PSS_BasicSymbol;
-class ZIProperties;
+class PSS_Properties;
 class PSS_InfoModelGraphicGeneration;
 class PSS_UserEntity;
 class PSS_UserGroupEntity;
@@ -351,7 +351,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public PSS_ModelNavigation,
         */
         CString GenerateLogicalPrestationsList(PSS_LogicalPrestationsEntity* pPrestationsEntity);
 
-        bool GeneratePropertyPage(ZIProperties* pPropertiesObject, const CString& htmlFileName);
+        bool GeneratePropertyPage(PSS_Properties* pPropertiesObject, const CString& htmlFileName);
 
         /**
         * Builds the model image file name

@@ -278,7 +278,7 @@ bool PSS_DeliverableLinkSymbolBP::AcceptExtFile() const
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool numericValues, bool groupValues)
+bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
     CODModel* pModel = GetRootModel();
 
@@ -1533,7 +1533,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(ZBPropertySet& propSet, bool nu
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
+bool PSS_DeliverableLinkSymbolBP::SaveProperties(PSS_Properties::IPropertySet& propSet)
 {
     if (!PSS_LinkSymbol::SaveProperties(propSet))
         return false;
@@ -1551,7 +1551,7 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(ZBPropertySet& propSet)
     // empty the task list
     SetRuleList(_T(""));
 
-    ZBPropertyIterator it(&propSet);
+    PSS_Properties::IPropertyIterator it(&propSet);
 
     // iterate through the data list and fill the property set
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1727,7 +1727,7 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperty(PSS_Property& prop)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, ZBPropertySet& props)
+bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     if (prop.GetCategoryID() == ZS_BP_PROP_QUANTITY && prop.GetItemID() == M_Number_Year_ID)
     {
@@ -1752,7 +1752,10 @@ bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(PSS_Property& prop, CString
     return PSS_LinkSymbol::CheckPropertyValue(prop, value, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(PSS_Property&                 prop,
+                                                       CString&                      value,
+                                                       PSS_Properties::IPropertySet& props,
+                                                       bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -1820,7 +1823,7 @@ bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(PSS_Property& prop, CStri
                 {
                     value = pUserEntity->GetEntityName();
 
-                    ZBPropertyIterator it(&props);
+                    PSS_Properties::IPropertyIterator it(&props);
 
                     // change the disabled properties unit GUID
                     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -1858,11 +1861,11 @@ bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(PSS_Property& prop, CStri
     return PSS_LinkSymbol::ProcessExtendedInput(prop, value, props, refresh);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::ProcessMenuCommand(int            menuCmdID,
-                                                     PSS_Property&  prop,
-                                                     CString&       value,
-                                                     ZBPropertySet& props,
-                                                     bool&          refresh)
+bool PSS_DeliverableLinkSymbolBP::ProcessMenuCommand(int                           menuCmdID,
+                                                     PSS_Property&                 prop,
+                                                     CString&                      value,
+                                                     PSS_Properties::IPropertySet& props,
+                                                     bool&                         refresh)
 {
     const int categoryID = prop.GetCategoryID();
 
@@ -2677,10 +2680,10 @@ void PSS_DeliverableLinkSymbolBP::OnSymbolNameChange(const CString& oldName, con
     NotifyNameChange(oldName, newName);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcProperty,
-                                                             PSS_Property&  dstProperty,
-                                                             bool           top2Down,
-                                                             ZBPropertySet& props)
+bool PSS_DeliverableLinkSymbolBP::OnDropInternalPropertyItem(PSS_Property&                 srcProperty,
+                                                             PSS_Property&                 dstProperty,
+                                                             bool                          top2Down,
+                                                             PSS_Properties::IPropertySet& props)
 {
     // swap the rule list property items
     bool result = ::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_RULELIST);
@@ -2721,7 +2724,9 @@ bool PSS_DeliverableLinkSymbolBP::OnDropInternalPropertyItem(PSS_Property&  srcP
     return ::SwapInternalPropertyItem(srcProperty, dstProperty, top2Down, props, ZS_BP_PROP_TEXTITEMLIST);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::OnPrePropertyChanged(const CString& newValue, PSS_Property& prop, ZBPropertySet& props)
+bool PSS_DeliverableLinkSymbolBP::OnPrePropertyChanged(const CString&                newValue,
+                                                       PSS_Property&                 prop,
+                                                       PSS_Properties::IPropertySet& props)
 {
     // only local symbol may access to properties
     if (!IsLocal())
@@ -2730,7 +2735,7 @@ bool PSS_DeliverableLinkSymbolBP::OnPrePropertyChanged(const CString& newValue, 
     return PSS_LinkSymbol::OnPrePropertyChanged(newValue, prop, props);
 }
 //---------------------------------------------------------------------------
-bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPropertySet& props, bool& refresh)
+bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(PSS_Property& prop, PSS_Properties::IPropertySet& props, bool& refresh)
 {
     // only local symbol may access to properties
     if (!IsLocal())
@@ -2740,8 +2745,8 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPr
 
     if (prop.GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST)
     {
-        ZBPropertyIterator it(&props);
-        std::size_t        counterEnableEmpty = 0;
+        PSS_Properties::IPropertyIterator it(&props);
+        std::size_t                       counterEnableEmpty = 0;
 
         // iterate through the properties
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -2777,8 +2782,8 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPr
     else
     if (prop.GetCategoryID() == ZS_BP_PROP_RULELIST)
     {
-        ZBPropertyIterator it(&props);
-        std::size_t        counterEnableEmpty = 0;
+        PSS_Properties::IPropertyIterator it(&props);
+        std::size_t                       counterEnableEmpty = 0;
 
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
             if (pProp->GetCategoryID() == ZS_BP_PROP_RULELIST)
@@ -2823,23 +2828,23 @@ bool PSS_DeliverableLinkSymbolBP::OnPostPropertyChanged(PSS_Property& prop, ZBPr
     else
     if (prop.GetCategoryID() == ZS_BP_PROP_UNIT && prop.GetItemID() == M_Unit_Name_ID)
     {
-        ZBPropertyIterator it(&props);
-        CString            GUID;
+        PSS_Properties::IPropertyIterator it(&props);
+        CString                           guid;
 
         // iterate through the properties and get the GUID
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
             if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_GUID_ID)
             {
-                GUID = pProp->GetValueString();
+                guid = pProp->GetValueString();
                 break;
             }
 
-        if (!GUID.IsEmpty())
+        if (!guid.IsEmpty())
             for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == M_Unit_Cost_ID)
                 {
                     bool        error;
-                    const float unitCost = RetrieveUnitCost(GUID, error);
+                    const float unitCost = RetrieveUnitCost(guid, error);
 
                     if (!error)
                     {
@@ -2958,7 +2963,10 @@ bool PSS_DeliverableLinkSymbolBP::OnToolTip(CString& toolTipText, const CPoint& 
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_DeliverableLinkSymbolBP::OnAddNewRisk(PSS_Property&                 prop,
+                                               CString&                      value,
+                                               PSS_Properties::IPropertySet& props,
+                                               bool&                         refresh)
 {
     // add a new risk
     if (AddNewRisk() >= 0)
@@ -2969,7 +2977,10 @@ void PSS_DeliverableLinkSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& valu
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, ZBPropertySet& props, bool& refresh)
+void PSS_DeliverableLinkSymbolBP::OnDelCurrentRisk(PSS_Property&                 prop,
+                                                   CString&                      value,
+                                                   PSS_Properties::IPropertySet& props,
+                                                   bool&                         refresh)
 {
     const int count = GetRiskCount();
 
@@ -3641,9 +3652,9 @@ void PSS_DeliverableLinkSymbolBP::CheckDeliverableStatus()
     ShowInError(!pSrc || !pDst);
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const ZBPropertySet& props)
+void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const PSS_Properties::IPropertySet& props)
 {
-    ZBPropertyIterator it(&props);
+    PSS_Properties::IPropertyIterator it(&props);
 
     // iterate through the data list and fill the property set
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
@@ -3682,9 +3693,9 @@ void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const ZBPropertySet& 
     m_Quantity.CalculatePercents();
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::SetNewNumberAndEqualize(const PSS_Property& prop, const ZBPropertySet& props)
+void PSS_DeliverableLinkSymbolBP::SetNewNumberAndEqualize(const PSS_Property& prop, const PSS_Properties::IPropertySet& props)
 {
-    ZBPropertyIterator it(&props);
+    PSS_Properties::IPropertyIterator it(&props);
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {
@@ -3712,9 +3723,9 @@ void PSS_DeliverableLinkSymbolBP::SetNewNumberAndEqualize(const PSS_Property& pr
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::SaveEqualizerToProperties(ZBPropertySet& props)
+void PSS_DeliverableLinkSymbolBP::SaveEqualizerToProperties(PSS_Properties::IPropertySet& props)
 {
-    ZBPropertyIterator it(&props);
+    PSS_Properties::IPropertyIterator it(&props);
 
     for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
     {

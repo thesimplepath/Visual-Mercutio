@@ -7,8 +7,8 @@
 #include "zProperty\PSS_PropertyItem.h"
 
 // Observer message classes
-#include "zProperty\ZBPropertyObserverMsg.h"
-#include "zProperty\ZBPropertyItemObserverMsg.h"
+#include "zProperty\PSS_PropertyObserverMsg.h"
+#include "zProperty\PSS_PropertyItemObserverMsg.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 
@@ -116,12 +116,12 @@ ZCPropertyListCtrl::~ZCPropertyListCtrl()
 
 void ZCPropertyListCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBPropertyObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_PropertyObserverMsg))
     {
 
-        if (((ZBPropertyObserverMsg*)pMsg)->GetProperties() && m_pPropertyItemManager)
+        if (((PSS_PropertyObserverMsg*)pMsg)->GetProperties() && m_pPropertyItemManager)
         {
-            Initialize(((ZBPropertyObserverMsg*)pMsg)->GetProperties());
+            Initialize(((PSS_PropertyObserverMsg*)pMsg)->GetProperties());
         }
         else
         {
@@ -208,7 +208,7 @@ void ZCPropertyListCtrl::LoadStateFromIniFile(const CString IniFile)
     }
 }
 
-void ZCPropertyListCtrl::Initialize(ZIProperties* pProperties /*= NULL*/, LPCTSTR pIniFile /*= NULL*/)
+void ZCPropertyListCtrl::Initialize(PSS_Properties* pProperties /*= NULL*/, LPCTSTR pIniFile /*= NULL*/)
 {
     // Check if the value has changed, 
     // then request the control to save its value
@@ -248,7 +248,7 @@ void ZCPropertyListCtrl::Initialize(ZIProperties* pProperties /*= NULL*/, LPCTST
     Refresh();
 }
 
-void ZCPropertyListCtrl::Initialize(ZBPropertySet& PropSet, LPCTSTR pIniFile /*= NULL*/)
+void ZCPropertyListCtrl::Initialize(PSS_Properties::IPropertySet& PropSet, LPCTSTR pIniFile /*= NULL*/)
 {
     // Check if the value has changed, 
     // then request the control to save its value
@@ -1141,10 +1141,10 @@ void ZCPropertyListCtrl::CreateInPlaceControl(int nItem, int nPreviousItem /*= -
 
     // Notify all observers
     PSS_Property* pProperty = m_pPropertyItemManager->GetCorrespondingProperty(pPropertyItem);
-    ZBPropertyItemObserverMsg Msg(pProperty);
+    PSS_PropertyItemObserverMsg msg(pProperty);
 
     // Notify all observers
-    NotifyAllObservers(&Msg);
+    NotifyAllObservers(&msg);
 }
 
 void ZCPropertyListCtrl::ShowInPlaceControl(bool bShow)
