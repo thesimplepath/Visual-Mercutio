@@ -66,9 +66,9 @@ class AFX_EXT_CLASS PSS_PropertyItem : public CObject
 
         /**
         * Constructor
-        *@param pName - the property name
-        *@param isReadOnly - if true, the property will be read-only
-        *@param canBeEdited - if true, the property can be edited
+        *@param pName - the item name
+        *@param isReadOnly - if true, the item will be read-only
+        *@param canBeEdited - if true, the item can be edited
         */
         inline PSS_PropertyItem(LPCTSTR pName = NULL, bool isReadOnly = false, bool canBeEdited = true);
 
@@ -87,50 +87,50 @@ class AFX_EXT_CLASS PSS_PropertyItem : public CObject
         virtual inline void SetName(LPCTSTR pName);
 
         /**
-        * Gets if the property is enabled
-        *@return true if the property is enabled, otherwise false
+        * Gets if the item is enabled
+        *@return true if the item is enabled, otherwise false
         */
         virtual inline bool GetEnabled() const;
 
         /**
-        * Gets if the property is enabled
-        *@param enabled - if true, the property is enabled
+        * Sets if the item is enabled
+        *@param enabled - if true, the item will be enabled
         */
         virtual inline bool SetEnabled(bool enabled = true);
 
         /**
-        * Gets if the property is read-only
-        *@return true if the property is read-only, otherwise false
+        * Gets if the item is read-only
+        *@return true if the item is read-only, otherwise false
         */
         virtual inline bool IsReadOnly() const;
 
         /**
-        * Gets if the property can be edited
-        *@return true if the property can be edited, otherwise false
+        * Gets if the item can be edited
+        *@return true if the item can be edited, otherwise false
         */
         virtual inline bool CanBeEdited() const;
 
         /**
-        * Gets if the property has changed
-        *@return true if the property has changed, otherwise false
+        * Gets if the item has changed
+        *@return true if the item has changed, otherwise false
         */
         virtual inline bool GetHasChanged() const;
 
         /**
-        * Sets if the property has changed
-        *@param value - if true, the property has changed
+        * Sets if the item has changed
+        *@param value - if true, the item has changed
         */
         virtual inline void SetHasChanged(bool value = true);
 
         /**
-        * Gets the property identifier
-        *@return the property identifier
+        * Gets the property item identifier
+        *@return the property item identifier
         */
         virtual inline int GetPropertyID() const;
 
         /**
-        * Sets the property identifier
-        *@param propID - the property identifier
+        * Sets the property item identifier
+        *@param propID - the property item identifier
         */
         virtual inline void SetPropertyID(int propID);
 

@@ -148,7 +148,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ZBPropertyItems.cpp">
+    <ClCompile Include="PSS_PropertyItems.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -251,7 +251,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="_ZCFriendPropertyListCtrl.cpp">
+    <ClCompile Include="PSS_FriendPropertyListCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -274,7 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="ZBPropertyItems.h" />
+    <ClInclude Include="PSS_PropertyItems.h" />
     <ClInclude Include="ZBPropertyManager.h" />
     <ClInclude Include="ZCInPlaceDateEdit.h" />
     <ClInclude Include="ZCInPlaceDurationEdit.h" />
@@ -294,7 +294,7 @@
     <ClInclude Include="ZVChoosePropertyDlg.h" />
     <ClInclude Include="ZVInputDurationDlg.h" />
     <ClInclude Include="ZVProperties.h" />
-    <ClInclude Include="_ZCFriendPropertyListCtrl.h" />
+    <ClInclude Include="PSS_FriendPropertyListCtrl.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\bitmap1.bmp" />
