@@ -45,7 +45,7 @@ public:
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Attributes
-    void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager)
+    void SetPropertyItemManager(PSS_PropertyItemManager* pPropertyItemManager)
     {
         m_listctrl.SetPropertyItemManager(pPropertyItemManager);
     };

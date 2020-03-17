@@ -136,7 +136,7 @@ BOOL ZVChoosePropertyDlg::OnInitDialog()
     CDialog::OnInitDialog();
 
     // Sets the right type
-    m_PropertyList.SetDisplayType((PropertyDisplayType)m_PropType);
+    m_PropertyList.SetDisplayType((PSS_PropertyItemManager::IEPropertyShowType)m_PropType);
     // Read-only list
     m_PropertyList.SetListInReadOnly();
     // Initialize the control
@@ -166,7 +166,7 @@ void ZVChoosePropertyDlg::OnProptype()
     UpdateData(TRUE);
 
     // Sets the right type
-    m_PropertyList.SetDisplayType((PropertyDisplayType)m_PropType);
+    m_PropertyList.SetDisplayType((PSS_PropertyItemManager::IEPropertyShowType)m_PropType);
     // Re-Initialize the control
     if (m_pPropSet)
         m_PropertyList.Initialize(*m_pPropSet);

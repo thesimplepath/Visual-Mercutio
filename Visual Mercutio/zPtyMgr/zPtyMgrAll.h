@@ -33,12 +33,12 @@
 
 // ***********************************************************
 // *
-// *  ZBPropertyItemManager 
+// *  PSS_PropertyItemManager 
 // *
 // ***********************************************************
 
 #ifndef _ZBPropertyManager_H__
-#include "zPtyMgr\ZBPropertyManager.h"
+#include "zPtyMgr\PSS_PropertyItemManager.h"
 #endif
 
 // ***********************************************************

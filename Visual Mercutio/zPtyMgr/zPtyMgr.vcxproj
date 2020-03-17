@@ -154,7 +154,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPropertyManager.cpp">
+    <ClCompile Include="PSS_PropertyItemManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -275,7 +275,7 @@
   <ItemGroup>
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_PropertyItems.h" />
-    <ClInclude Include="ZBPropertyManager.h" />
+    <ClInclude Include="PSS_PropertyItemManager.h" />
     <ClInclude Include="ZCInPlaceDateEdit.h" />
     <ClInclude Include="ZCInPlaceDurationEdit.h" />
     <ClInclude Include="ZCInPlaceEditPropItemString.h" />

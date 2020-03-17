@@ -18,7 +18,7 @@
 // processsoft
 #include "zProperty\PSS_InPlaceEdit.h"
 #include "zProperty\PSS_PropertyItem.h"
-#include "ZBPropertyManager.h"
+#include "PSS_PropertyItemManager.h"
 
 // forward class declaration
 class PSS_Properties;
@@ -40,7 +40,7 @@ class PSS_Properties;
 
 class AFX_EXT_CLASS ZCPropertyListCtrl : public CDragListBox, public PSS_Subject, public PSS_Observer
 {
-    friend class ZBPropertyItemManager;
+    friend class PSS_PropertyItemManager;
 
     DECLARE_DYNAMIC(ZCPropertyListCtrl)
 
@@ -58,11 +58,11 @@ public:
     void Refresh(bool DeleteEditCtrl = true, bool ReloadControlData = false);
     void Empty();
 
-    void SetDisplayType(PropertyDisplayType tp)
+    void SetDisplayType(PSS_PropertyItemManager::IEPropertyShowType tp)
     {
         if (m_pPropertyItemManager)
         {
-            m_pPropertyItemManager->SetDisplayType(tp);
+            m_pPropertyItemManager->SetShowType(tp);
         }
     };
 
@@ -105,7 +105,7 @@ public:
     {
         if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->GetCorrespondingProperty(pPropertyItem);
+            return m_pPropertyItemManager->GetMatchingProperty(pPropertyItem);
         }
 
         return NULL;
@@ -209,7 +209,7 @@ public:
         return false;
     };
 
-    _ZBPropertyState* GetPropertyState(PSS_PropertyItem* pPropertyItem)
+    PSS_PropertyItemManager::IPropertyState* GetPropertyState(PSS_PropertyItem* pPropertyItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -242,7 +242,7 @@ public:
         return false;
     };
 
-    _ZBPropertyState* GetPropertyCategoryState(PSS_PropertyItemCategory* pPropertyCategoryItem)
+    PSS_PropertyItemManager::IPropertyState* GetPropertyCategoryState(PSS_PropertyItemCategory* pPropertyCategoryItem)
     {
         if (m_pPropertyItemManager)
         {
@@ -254,7 +254,7 @@ public:
     };
 
     // Attributes
-    void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager);
+    void SetPropertyItemManager(PSS_PropertyItemManager* pPropertyItemManager);
 
     // Return the current property item element
     PSS_PropertyItem* GetCurrentPropertyItem();
@@ -340,7 +340,7 @@ private:
     CFont                    m_Font;
     CFont                    m_FontBold;
 
-    ZBPropertyItemManager*    m_pPropertyItemManager;
+    PSS_PropertyItemManager*    m_pPropertyItemManager;
     PSS_Properties*            m_pCurrentProperties;
 
     CString                    m_IniFile;

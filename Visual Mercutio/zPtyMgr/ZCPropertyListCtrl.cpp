@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "ZCPropertyListCtrl.h"
-#include "ZBPropertyManager.h"
+#include "PSS_PropertyItemManager.h"
 
 #include "zProperty\PSS_PropertyItem.h"
 
@@ -67,7 +67,7 @@ ZCPropertyListCtrl::ZCPropertyListCtrl(LPCTSTR pIniFile /*= NULL*/)
     m_SrcDragPropertyItemIndex(-1),
     m_ListInReadOnly(false)
 {
-    m_pPropertyItemManager = new ZBPropertyItemManager;
+    m_pPropertyItemManager = new PSS_PropertyItemManager;
 
     // If an ini file pointer is defined
     if (pIniFile)
@@ -308,7 +308,7 @@ void ZCPropertyListCtrl::Refresh(bool DeleteEditCtrl /*= true*/, bool ReloadCont
     int nItem = 0;
 
     // Run through all items
-    ZBItemCategoryIterator i(&m_pPropertyItemManager->GetItemCategorySet());
+    PSS_PropertyItemManager::IItemCategoryIterator i(&m_pPropertyItemManager->GetItemCategorySet());
 
     // RS-MODIF 08.08.2005: correction affichage attribut dynamique temps
     //for ( ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext() )
@@ -449,7 +449,7 @@ void ZCPropertyListCtrl::DeletePropertyItem(PSS_PropertyItem* pPropertyItem)
     }
 }
 
-void ZCPropertyListCtrl::SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager)
+void ZCPropertyListCtrl::SetPropertyItemManager(PSS_PropertyItemManager* pPropertyItemManager)
 {
     if (m_pPropertyItemManager)
     {
@@ -1094,7 +1094,7 @@ void ZCPropertyListCtrl::CreateInPlaceControl(int nItem, int nPreviousItem /*= -
     if (pPropertyItem->CanBeEdited())
     {
         // First, retreive the property state
-        _ZBPropertyState* pPropState = GetPropertyState(pPropertyItem);
+        PSS_PropertyItemManager::IPropertyState* pPropState = GetPropertyState(pPropertyItem);
 
         if (pPropState                                &&
             pPropState->GetExtendedSize().cx != 0 &&
@@ -1140,7 +1140,7 @@ void ZCPropertyListCtrl::CreateInPlaceControl(int nItem, int nPreviousItem /*= -
     }
 
     // Notify all observers
-    PSS_Property* pProperty = m_pPropertyItemManager->GetCorrespondingProperty(pPropertyItem);
+    PSS_Property* pProperty = m_pPropertyItemManager->GetMatchingProperty(pPropertyItem);
     PSS_PropertyItemObserverMsg msg(pProperty);
 
     // Notify all observers
@@ -1231,7 +1231,7 @@ bool ZCPropertyListCtrl::IsListInPhase()
 
     // run trough the item list and check simulatenously the property item manager
     // run through all items
-    ZBItemCategoryIterator  i(&m_pPropertyItemManager->GetItemCategorySet());
+    PSS_PropertyItemManager::IItemCategoryIterator  i(&m_pPropertyItemManager->GetItemCategorySet());
     PSS_PropertyItemCategory* pPropertyItemTab = i.GetFirst();
     int                     index = 0;
 
