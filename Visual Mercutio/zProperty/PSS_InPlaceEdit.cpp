@@ -36,7 +36,7 @@ BOOL PSS_InPlaceEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
 }
 //---------------------------------------------------------------------------
 BOOL PSS_InPlaceEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                                PSS_Date&         initValue,
+                                                const PSS_Date&   initValue,
                                                 CWnd*             pWndParent,
                                                 const CRect&      rect,
                                                 DWORD             style)
@@ -44,20 +44,20 @@ BOOL PSS_InPlaceEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_InPlaceEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                                PSS_TimeSpan&     initValue,
-                                                CWnd*             pWndParent,
-                                                const CRect&      rect,
-                                                DWORD             style)
+BOOL PSS_InPlaceEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                                const PSS_TimeSpan& initValue,
+                                                CWnd*               pWndParent,
+                                                const CRect&        rect,
+                                                DWORD               style)
 {
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_InPlaceEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                                PSS_Duration&     initValue,
-                                                CWnd*             pWndParent,
-                                                const CRect&      rect,
-                                                DWORD             style)
+BOOL PSS_InPlaceEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                                const PSS_Duration& initValue,
+                                                CWnd*               pWndParent,
+                                                const CRect&        rect,
+                                                DWORD               style)
 {
     return FALSE;
 }
@@ -87,13 +87,13 @@ void PSS_InPlaceEdit::SetEditText(float value)
 void PSS_InPlaceEdit::SetEditText(double value)
 {}
 //---------------------------------------------------------------------------
-void PSS_InPlaceEdit::SetEditText(PSS_Date& value)
+void PSS_InPlaceEdit::SetEditText(const PSS_Date& value)
 {}
 //---------------------------------------------------------------------------
-void PSS_InPlaceEdit::SetEditText(PSS_TimeSpan& value)
+void PSS_InPlaceEdit::SetEditText(const PSS_TimeSpan& value)
 {}
 //---------------------------------------------------------------------------
-void PSS_InPlaceEdit::SetEditText(PSS_Duration& value)
+void PSS_InPlaceEdit::SetEditText(const PSS_Duration& value)
 {}
 //---------------------------------------------------------------------------
 void PSS_InPlaceEdit::SetEditText(const CString& value)

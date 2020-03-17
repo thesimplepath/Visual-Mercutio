@@ -160,19 +160,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCInPlaceDateEdit.cpp">
+    <ClCompile Include="PSS_InPlaceDateEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCInPlaceDurationEdit.cpp">
+    <ClCompile Include="PSS_InPlaceDurationEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCInPlaceEditPropItemString.cpp">
+    <ClCompile Include="PSS_InPlaceDragEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -276,9 +276,9 @@
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_PropertyItems.h" />
     <ClInclude Include="PSS_PropertyItemManager.h" />
-    <ClInclude Include="ZCInPlaceDateEdit.h" />
-    <ClInclude Include="ZCInPlaceDurationEdit.h" />
-    <ClInclude Include="ZCInPlaceEditPropItemString.h" />
+    <ClInclude Include="PSS_InPlaceDateEdit.h" />
+    <ClInclude Include="PSS_InPlaceDurationEdit.h" />
+    <ClInclude Include="PSS_InPlaceDragEdit.h" />
     <ClInclude Include="ZCInPlaceExtendedEdit.h" />
     <ClInclude Include="ZCInPlaceIntelliEdit.h" />
     <ClInclude Include="ZCInPlaceListBox.h" />

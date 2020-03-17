@@ -9,15 +9,15 @@
 #include "PSS_PropertyItems.h"
 
 // processsoft
-#include "ZCInPlaceEditPropItemString.h"
+#include "PSS_InPlaceDragEdit.h"
 #include "ZCInPlaceListBox.h"
 #include "ZCInPlaceExtendedEdit.h"
 #include "ZCInPlaceIntelliEdit.h"
 #include "ZCInPlaceMultiLineEdit.h"
 #include "ZCInPlaceSearchEdit.h"
-#include "ZCInPlaceDateEdit.h"
+#include "PSS_InPlaceDateEdit.h"
 #include "ZCInPlaceTimeEdit.h"
-#include "ZCInPlaceDurationEdit.h"
+#include "PSS_InPlaceDurationEdit.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -49,7 +49,7 @@ void PSS_StringPropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceEditPropItemString> pControl(new ZCInPlaceEditPropItemString());
+    std::unique_ptr<PSS_InPlacePropItemStringEdit> pControl(new PSS_InPlacePropItemStringEdit());
     pControl->InitializeInPlaceEditCtrl(this, m_StrValue, pWndParent, rect);
     pWndInPlaceControl = pControl.release();
 }
@@ -250,7 +250,7 @@ void PSS_DatePropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr< ZCInPlaceDateEdit> pControl(new ZCInPlaceDateEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceDateEdit> pControl(new PSS_InPlaceDateEdit(IsReadOnly()));
 
     // for processing extended command
     pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
@@ -324,7 +324,7 @@ void PSS_DurationPropertyItem::CreateInPlaceControl(CWnd*             pWndParent
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceDurationEdit> pControl(new ZCInPlaceDurationEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceDurationEdit> pControl(new PSS_InPlaceDurationEdit(IsReadOnly()));
 
     // for processing extended command
     pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
@@ -407,7 +407,7 @@ void PSS_NumberPropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
     {
         case IE_NT_Float:
         {
-            std::unique_ptr<ZCInPlaceEditPropItemNumber> pControl(new ZCInPlaceEditPropItemNumber(m_FloatValue, IsReadOnly()));
+            std::unique_ptr<PSS_InPlacePropItemNumberEdit> pControl(new PSS_InPlacePropItemNumberEdit(m_FloatValue, IsReadOnly()));
             pControl->InitializeInPlaceEditCtrl(this, m_FloatValue, pWndParent, rect);
             pWndInPlaceControl = pControl.release();
             return;
@@ -415,7 +415,7 @@ void PSS_NumberPropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
 
         case IE_NT_Double:
         {
-            std::unique_ptr<ZCInPlaceEditPropItemNumber> pControl(new ZCInPlaceEditPropItemNumber(m_DoubleValue, IsReadOnly()));
+            std::unique_ptr<PSS_InPlacePropItemNumberEdit> pControl(new PSS_InPlacePropItemNumberEdit(m_DoubleValue, IsReadOnly()));
             pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect);
             pWndInPlaceControl = pControl.release();
             return;

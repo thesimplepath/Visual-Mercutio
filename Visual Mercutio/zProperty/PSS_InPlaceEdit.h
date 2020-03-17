@@ -92,36 +92,36 @@ class AFX_EXT_CLASS PSS_InPlaceEdit : public PSS_Subject,
         *@param style - the edit style
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                               float             initValue,
-                                               CWnd*             pWndParent,
-                                               const CRect&      rect,
-                                               DWORD             style = 0);
-        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                               double            initValue,
-                                               CWnd*             pWndParent,
-                                               const CRect&      rect,
-                                               DWORD             style = 0);
-        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                               PSS_Date&         initValue,
-                                               CWnd*             pWndParent,
-                                               const CRect&      rect,
-                                               DWORD             style = 0);
-        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                               PSS_TimeSpan&     initValue,
-                                               CWnd*             pWndParent,
-                                               const CRect&      rect,
-                                               DWORD             style = 0);
-        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                               PSS_Duration&     initValue,
-                                               CWnd*             pWndParent,
-                                               const CRect&      rect,
-                                               DWORD             style = 0);
-        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                               const CString&    initValue,
-                                               CWnd*             pWndParent,
-                                               const CRect&      rect,
-                                               DWORD             style = 0);
+        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                               float               initValue,
+                                               CWnd*               pWndParent,
+                                               const CRect&        rect,
+                                               DWORD               style = 0);
+        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                               double              initValue,
+                                               CWnd*               pWndParent,
+                                               const CRect&        rect,
+                                               DWORD               style = 0);
+        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                               const PSS_Date&     initValue,
+                                               CWnd*               pWndParent,
+                                               const CRect&        rect,
+                                               DWORD               style = 0);
+        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                               const PSS_TimeSpan& initValue,
+                                               CWnd*               pWndParent,
+                                               const CRect&        rect,
+                                               DWORD               style = 0);
+        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                               const PSS_Duration& initValue,
+                                               CWnd*               pWndParent,
+                                               const CRect&        rect,
+                                               DWORD               style = 0);
+        virtual BOOL InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
+                                               const CString&      initValue,
+                                               CWnd*               pWndParent,
+                                               const CRect&        rect,
+                                               DWORD               style = 0);
 
         /**
         * Sets a new property item
@@ -139,12 +139,12 @@ class AFX_EXT_CLASS PSS_InPlaceEdit : public PSS_Subject,
         * Sets the edit text value
         *@param value - the edit text value
         */
-        virtual void SetEditText(float          value);
-        virtual void SetEditText(double         value);
-        virtual void SetEditText(PSS_Date&      value);
-        virtual void SetEditText(PSS_TimeSpan&  value);
-        virtual void SetEditText(PSS_Duration&  value);
-        virtual void SetEditText(const CString& value);
+        virtual void SetEditText(float               value);
+        virtual void SetEditText(double              value);
+        virtual void SetEditText(const PSS_Date&     value);
+        virtual void SetEditText(const PSS_TimeSpan& value);
+        virtual void SetEditText(const PSS_Duration& value);
+        virtual void SetEditText(const CString&      value);
 
         /**
         * Cancels the edition

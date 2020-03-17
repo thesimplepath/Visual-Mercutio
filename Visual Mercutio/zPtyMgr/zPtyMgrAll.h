@@ -37,28 +37,28 @@
 // *
 // ***********************************************************
 
-#ifndef _ZBPropertyManager_H__
-#include "zPtyMgr\PSS_PropertyItemManager.h"
+#ifndef PSS_PropertyItemManagerH
+    #include "zPtyMgr\PSS_PropertyItemManager.h"
 #endif
 
 // ***********************************************************
 // *
-// *  ZCInPlaceDurationEdit
+// *  PSS_InPlaceDurationEdit
 // *
 // ***********************************************************
 
-#ifndef _ZCInPlaceDurationEdit_H__
-#include "zPtyMgr\ZCInPlaceDurationEdit.h"
+#ifndef PSS_InPlaceDurationEditH
+    #include "zPtyMgr\PSS_InPlaceDurationEdit.h"
 #endif
 
 // ***********************************************************
 // *
-// *  ZCInPlaceEdit, ZCInPlaceEditPropItemString, ZCInPlaceEditPropItemNumber
+// *  PSS_InPlaceDragEdit, PSS_InPlacePropItemStringEdit, PSS_InPlacePropItemNumberEdit
 // *  
 // ***********************************************************
 
-#ifndef _ZCINPLACEEDITPROPITEMSTRING_H__
-#include "zPtyMgr\ZCInPlaceEditPropItemString.h"
+#ifndef PSS_InPlaceDragEditH
+    #include "zPtyMgr\PSS_InPlaceDragEdit.h"
 #endif 
 
 // ***********************************************************

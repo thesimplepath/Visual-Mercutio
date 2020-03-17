@@ -18,15 +18,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZCInPlaceDateEdit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZCInPlaceDurationEdit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZCInPlaceEditPropItemString.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZCInPlaceExtendedEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -75,6 +66,15 @@
     <ClCompile Include="PSS_PropertyItemManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_InPlaceDateEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InPlaceDurationEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InPlaceDragEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -94,15 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCInPlaceDateEdit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCInPlaceDurationEdit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCInPlaceEditPropItemString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZCInPlaceExtendedEdit.h">
@@ -157,6 +148,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_PropertyItemManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InPlaceDateEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InPlaceDurationEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InPlaceDragEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

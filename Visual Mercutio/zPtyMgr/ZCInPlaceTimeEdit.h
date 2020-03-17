@@ -75,14 +75,14 @@ public:
 private:
     // Overrides
     // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZCInPlaceDateEdit)
+    //{{AFX_VIRTUAL(PSS_InPlaceDateEdit)
 public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
     //}}AFX_VIRTUAL
 
     // Generated message map functions
 protected:
-    //{{AFX_MSG(ZCInPlaceDateEdit)
+    //{{AFX_MSG(PSS_InPlaceDateEdit)
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);

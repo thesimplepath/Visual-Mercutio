@@ -254,7 +254,7 @@ void ZCInPlaceTimeEdit::CancelEdit()
 
 
 /////////////////////////////////////////////////////////////////////////////
-// ZCInPlaceDateEdit message handlers
+// PSS_InPlaceDateEdit message handlers
 
 void ZCInPlaceTimeEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
