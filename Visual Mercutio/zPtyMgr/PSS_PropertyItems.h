@@ -24,8 +24,8 @@
 #include "zProperty\PSS_PropertyItem.h"
 
 // forward class declaration
-class ZCInPlaceListBox;
-class ZCInPlaceIntelliEdit;
+class PSS_InPlaceListBox;
+class PSS_InPlaceIntelliEdit;
 class ZCInPlaceMultiLineEdit;
 
 #ifdef _ZPTYMGREXPORT
@@ -167,7 +167,7 @@ class AFX_EXT_CLASS PSS_ListPropertyItem : public PSS_PropertyItem
         * Sets the item list data
         *@param pWndInPlaceControl - the window in-place control
         */
-        virtual void SetItemListData(ZCInPlaceListBox* pWndInPlaceControl);
+        virtual void SetItemListData(PSS_InPlaceListBox* pWndInPlaceControl);
 
         /**
         * Draws the value

@@ -272,9 +272,6 @@ BOOL PSS_InPlaceDateEdit::PreTranslateMessage(MSG* pMsg)
         return PSS_SearchEdit::PreTranslateMessage(pMsg);
 
     if (pMsg->message == WM_KEYDOWN)
-    {
-        CWnd* pOwner = GetOwner();
-
         switch (pMsg->wParam)
         {
             case VK_DELETE:
@@ -321,7 +318,6 @@ BOOL PSS_InPlaceDateEdit::PreTranslateMessage(MSG* pMsg)
             default:
                 break;
         }
-    }
 
     return PSS_SearchEdit::PreTranslateMessage(pMsg);
 }

@@ -10,9 +10,9 @@
 
 // processsoft
 #include "PSS_InPlaceDragEdit.h"
-#include "ZCInPlaceListBox.h"
-#include "ZCInPlaceExtendedEdit.h"
-#include "ZCInPlaceIntelliEdit.h"
+#include "PSS_InPlaceListBox.h"
+#include "PSS_InPlaceExtendedEdit.h"
+#include "PSS_InPlaceIntelliEdit.h"
 #include "ZCInPlaceMultiLineEdit.h"
 #include "ZCInPlaceSearchEdit.h"
 #include "PSS_InPlaceDateEdit.h"
@@ -75,7 +75,7 @@ void PSS_ListPropertyItem::SetData(const CString& value)
     m_StrValue = value;
 }
 //---------------------------------------------------------------------------
-void PSS_ListPropertyItem::SetItemListData(ZCInPlaceListBox* pWndInPlaceControl)
+void PSS_ListPropertyItem::SetItemListData(PSS_InPlaceListBox* pWndInPlaceControl)
 {
     LPCTSTR pStrText;
 
@@ -90,7 +90,7 @@ void PSS_ListPropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceListBox> pControl(new ZCInPlaceListBox(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceListBox> pControl(new PSS_InPlaceListBox(IsReadOnly()));
     pControl->InitializeInPlaceEditCtrl(this, GetData(), pWndParent, rect);
 
     SetItemListData(pControl.get());
@@ -123,7 +123,7 @@ void PSS_ExtendedPropertyItem::CreateInPlaceControl(CWnd*             pWndParent
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceExtendedEdit> pControl(new ZCInPlaceExtendedEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceExtendedEdit> pControl(new PSS_InPlaceExtendedEdit(IsReadOnly()));
 
     // for processing extended command
     pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
@@ -166,7 +166,7 @@ void PSS_IntelliEditPropertyItem::CreateInPlaceControl(CWnd*             pWndPar
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceIntelliEdit> pControl(new ZCInPlaceIntelliEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceIntelliEdit> pControl(new PSS_InPlaceIntelliEdit(IsReadOnly()));
 
     switch (m_Type)
     {

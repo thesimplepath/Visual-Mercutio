@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_InPlaceDurationEdit ---------------------------------------------*
+ * ==> PSS_InPlaceIntelliEdit ----------------------------------------------*
  ****************************************************************************
- * Description : Provides an in-place duration edit                         *
+ * Description : Provides an in-place intellisense edit                     *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_InPlaceDurationEdit.h"
+#include "PSS_InPlaceIntelliEdit.h"
 
 // processsoft
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
@@ -14,7 +14,6 @@
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 #include "zProperty\PSS_PropertyItem.h"
 #include "ZCPropertyListCtrl.h"
-#include "ZVInputDurationDlg.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -25,12 +24,12 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_InPlaceDurationEdit, PSS_SearchEdit)
+IMPLEMENT_DYNAMIC(PSS_InPlaceIntelliEdit, PSS_IntelliEdit)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_InPlaceDurationEdit, PSS_SearchEdit)
-    //{{AFX_MSG_MAP(PSS_InPlaceDurationEdit)
+BEGIN_MESSAGE_MAP(PSS_InPlaceIntelliEdit, PSS_IntelliEdit)
+    //{{AFX_MSG_MAP(PSS_InPlaceIntelliEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
     ON_WM_SETFOCUS()
@@ -38,27 +37,32 @@ BEGIN_MESSAGE_MAP(PSS_InPlaceDurationEdit, PSS_SearchEdit)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_InPlaceDurationEdit
+// PSS_InPlaceIntelliEdit
 //---------------------------------------------------------------------------
-PSS_InPlaceDurationEdit::PSS_InPlaceDurationEdit(const PSS_InPlaceDurationEdit& other)
+PSS_InPlaceIntelliEdit::PSS_InPlaceIntelliEdit(bool isReadOnly) :
+    PSS_InPlaceEdit(CString(_T("")), isReadOnly),
+    PSS_IntelliEdit()
+{}
+//---------------------------------------------------------------------------
+PSS_InPlaceIntelliEdit::PSS_InPlaceIntelliEdit(const PSS_InPlaceIntelliEdit& other)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-PSS_InPlaceDurationEdit& PSS_InPlaceDurationEdit::operator = (const PSS_InPlaceDurationEdit& other)
+PSS_InPlaceIntelliEdit& PSS_InPlaceIntelliEdit::operator = (const PSS_InPlaceIntelliEdit& other)
 {
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-BOOL PSS_InPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
-                                                        const CString&    initText,
-                                                        CWnd*             pWndParent,
-                                                        const CRect&      rect,
-                                                        DWORD             exStyle)
+BOOL PSS_InPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
+                                                       const CString&    initText,
+                                                       CWnd*             pWndParent,
+                                                       const CRect&      rect,
+                                                       DWORD             exStyle)
 {
     m_pItem = pItem;
 
-    const BOOL result = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exStyle, rect, pWndParent, 1);
+    const BOOL result = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exStyle, rect, pWndParent, 0);
 
     SetEditText(initText);
 
@@ -69,7 +73,7 @@ BOOL PSS_InPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+    m_Type = PSS_InPlaceEdit::IE_T_String;
 
     // set the current selection to all
     SetSelAll();
@@ -77,26 +81,26 @@ BOOL PSS_InPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     return result;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_InPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
-                                                        const PSS_Duration& durationInitValue,
-                                                        CWnd*               pWndParent,
-                                                        const CRect&        rect,
-                                                        DWORD               exStyle)
+BOOL PSS_InPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
+                                                       float             initValue,
+                                                       CWnd*             pWndParent,
+                                                       const CRect&      rect,
+                                                       DWORD             exStyle)
 {
     m_pItem = pItem;
 
-    const BOOL result = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exStyle, rect, pWndParent, 1);
+    const BOOL result = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exStyle, rect, pWndParent, 0);
 
-    SetEditText(durationInitValue);
+    SetEditText(initValue);
 
     // save the initial value
-    m_InitialDurationValue = durationInitValue;
+    m_FloatInitialValue = initValue;
 
     // reset the changed value
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Duration;
+    m_Type = PSS_InPlaceEdit::IE_T_Float;
 
     // set the current selection to all
     SetSelAll();
@@ -104,7 +108,34 @@ BOOL PSS_InPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*   pIte
     return result;
 }
 //---------------------------------------------------------------------------
-CString PSS_InPlaceDurationEdit::GetEditText() const
+BOOL PSS_InPlaceIntelliEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
+                                                       double            initValue,
+                                                       CWnd*             pWndParent,
+                                                       const CRect&      rect,
+                                                       DWORD             exStyle)
+{
+    m_pItem = pItem;
+
+    const BOOL result = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exStyle, rect, pWndParent, 0);
+
+    SetEditText(initValue);
+
+    // save the initial value
+    m_DoubleInitialValue = initValue;
+
+    // reset the changed value
+    SetHasChanged(false);
+
+    // set the type
+    m_Type = PSS_InPlaceEdit::IE_T_Double;
+
+    // set the current selection to all
+    SetSelAll();
+
+    return result;
+}
+//---------------------------------------------------------------------------
+CString PSS_InPlaceIntelliEdit::GetEditText() const
 {
     CString text;
 
@@ -114,25 +145,37 @@ CString PSS_InPlaceDurationEdit::GetEditText() const
     return text;
 }
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::SetEditText(const CString& strText)
+void PSS_InPlaceIntelliEdit::SetEditText(const CString& text)
 {
-    m_StrValue = strText;
+    m_StrValue = text;
 
     if (::IsWindow(GetSafeHwnd()))
-        SetWindowText(strText);
+        SetWindowText(text);
 }
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::SetEditText(const PSS_Duration& durationValue)
+void PSS_InPlaceIntelliEdit::SetEditText(float value)
 {
-    // set the duration value
-    m_DurationValue = durationValue;
+    // set the float value
+    m_FloatValue = value;
 
     // format the value using the specified string format
-    const CString initText = PSS_StringFormatter::GetFormattedBuffer(m_DurationValue, m_pItem->GetStringFormat());
+    CString initText = PSS_StringFormatter::GetFormattedBuffer(m_FloatValue, m_pItem->GetStringFormat());
+
     SetEditText(initText);
 }
 //---------------------------------------------------------------------------
-bool PSS_InPlaceDurationEdit::IsEditCtrlHit(const CPoint& point) const
+void PSS_InPlaceIntelliEdit::SetEditText(double value)
+{
+    // set the double value
+    m_DoubleValue = value;
+
+    // format the value using the specified string format
+    CString initText = PSS_StringFormatter::GetFormattedBuffer(m_DoubleValue, m_pItem->GetStringFormat());
+
+    SetEditText(initText);
+}
+//---------------------------------------------------------------------------
+bool PSS_InPlaceIntelliEdit::IsEditCtrlHit(const CPoint& point) const
 {
     CRect rect;
     GetClientRect(rect);
@@ -142,7 +185,7 @@ bool PSS_InPlaceDurationEdit::IsEditCtrlHit(const CPoint& point) const
     return rect.PtInRect(point);
 }
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::CancelEdit()
+void PSS_InPlaceIntelliEdit::CancelEdit()
 {
     switch (GetEditType())
     {
@@ -151,20 +194,25 @@ void PSS_InPlaceDurationEdit::CancelEdit()
             SetEditText(m_StrInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Duration:
-            // set back the initial duration value
-            SetEditText(m_InitialDurationValue);
+        case PSS_InPlaceEdit::IE_T_Double:
+            // set back the initial double value
+            SetEditText(m_DoubleInitialValue);
+            break;
+
+        case PSS_InPlaceEdit::IE_T_Float:
+            // set back the initial float value
+            SetEditText(m_FloatInitialValue);
             break;
     }
 
-    // Set the focus to properties control
+    // set the focus to properties control
     SetFocus();
 
-    // Reset the has changed value
+    // reset the changed value
     SetHasChanged(false);
 }
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::SaveValue()
+void PSS_InPlaceIntelliEdit::SaveValue()
 {
     if (GetHasChanged())
     {
@@ -185,14 +233,30 @@ void PSS_InPlaceDurationEdit::SaveValue()
                         // do nothing for string
                         break;
 
-                    case PSS_InPlaceEdit::IE_T_Duration:
+                    case PSS_InPlaceEdit::IE_T_Double:
                     {
-                        // check the conversion
-                        PSS_Duration value;
+                        double value;
+
                         conversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(proposedValue,
                                                                                         value,
                                                                                         m_pItem->GetStringFormat());
 
+                        // check the conversion
+                        if (!conversionCorrect)
+                            CancelEdit();
+
+                        break;
+                    }
+
+                    case PSS_InPlaceEdit::IE_T_Float:
+                    {
+                        float value;
+
+                        conversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(proposedValue,
+                                                                                        value,
+                                                                                        m_pItem->GetStringFormat());
+
+                        // check the conversion
                         if (!conversionCorrect)
                             CancelEdit();
 
@@ -200,17 +264,17 @@ void PSS_InPlaceDurationEdit::SaveValue()
                     }
                 }
 
-                // if the conversion succeeded and the value is checked, save the edit value
+                // if conversion succeeded and value is checked, save the edit value
                 if (conversionCorrect && pParent->CheckCurrentPropertyData(m_pItem, proposedValue))
                 {
-                    // notify that the property item changed
+                    // set the has changed flag for the property item
                     m_pItem->SetHasChanged();
 
-                    // notify observers about the changed value
+                    // notify observers for value changed
                     PSS_ToolbarObserverMsg msg(WM_VALUESAVED_EDIT);
                     NotifyAllObservers(&msg);
 
-                    // reset the changed flag
+                    // reset the change flag
                     m_HasChanged = false;
 
                     return;
@@ -222,60 +286,55 @@ void PSS_InPlaceDurationEdit::SaveValue()
         }
     }
 
-    // set the focus to the control
+    // set the focus to properties control
     SetFocus();
 }
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
+void PSS_InPlaceIntelliEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {}
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::OnExtendedCommand()
+void PSS_InPlaceIntelliEdit::OnExtendedCommand()
 {
     ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
 
     // process the extended command
     if (pParent)
     {
-        PSS_PropertyItem* pItem = pParent->GetCurrentPropertyItem();
-
-        CString proposedValue = GetEditText();
+        PSS_PropertyItem* pItem         = pParent->GetCurrentPropertyItem();
+        CString           proposedValue = GetEditText();
 
         // save the value
         SaveValue();
 
-        // the extended duration function is handled internally, the standard duration dialog should be owned by the caller
-        if (pItem)
+        bool refresh = false;
+
+        // process the data
+        if (pItem && pParent->ProcessExtendedCurrentPropertyData(pItem, proposedValue, refresh))
         {
-            PSS_Duration value;
-            bool         conversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(proposedValue,
-                                                                                         value,
-                                                                                         pItem->GetStringFormat());
+            // change the window text to the proposed value
+            SetEditText(proposedValue);
 
-            // check the conversion
-            if (conversionCorrect)
-            {
-                // show the duration dialog and change the window text to the proposed value
-                ZVInputDurationDlg dlg(value.GetDays(), value.GetHours(), value.GetMinutes(), value.GetSeconds());
-                dlg.DoModal();
+            // set the changed value
+            SetHasChanged(true);
 
-                // set the new duration
-                value.SetDuration(dlg.GetDays(), dlg.GetHours(), dlg.GetMinutes(), dlg.GetSeconds());
- 
-                // format the value using the specified string format
-                proposedValue = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)value, pItem->GetStringFormat());
-                SetEditText(proposedValue);
-
-                // set the changed value
-                SetHasChanged(true);
-            }
+            // if the control need to be refreshed
+            if (refresh)
+                // force the control list to reload values
+                pParent->Refresh(true, true);
         }
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_InPlaceDurationEdit::PreTranslateMessage(MSG* pMsg)
+void PSS_InPlaceIntelliEdit::OnItemSelectedFromList()
+{
+    // set the changed flag
+    SetHasChanged(true);
+}
+//---------------------------------------------------------------------------
+BOOL PSS_InPlaceIntelliEdit::PreTranslateMessage(MSG* pMsg)
 {
     if (!pMsg)
-        return PSS_SearchEdit::PreTranslateMessage(pMsg);
+        return PSS_IntelliEdit::PreTranslateMessage(pMsg);
 
     if (pMsg->message == WM_KEYDOWN)
         switch (pMsg->wParam)
@@ -325,14 +384,12 @@ BOOL PSS_InPlaceDurationEdit::PreTranslateMessage(MSG* pMsg)
                 break;
         }
 
-    return PSS_SearchEdit::PreTranslateMessage(pMsg);
+    return PSS_IntelliEdit::PreTranslateMessage(pMsg);
 }
 //---------------------------------------------------------------------------
-int PSS_InPlaceDurationEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int PSS_InPlaceIntelliEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    DoCreateButton(TRUE);
-
-    if (PSS_SearchEdit::OnCreate(lpCreateStruct) == -1)
+    if (PSS_IntelliEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     CRect rect;
@@ -342,33 +399,33 @@ int PSS_InPlaceDurationEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
     CWnd* pParent = GetParent();
     ASSERT(pParent);
 
-    CFont* pFont   = pParent->GetFont();
-    DWORD  dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;
+    CFont* pFont = pParent->GetFont();
+    DWORD  style = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;
 
     if (m_IsReadOnly)
-        dwStyle |= ES_READONLY;
+        style |= ES_READONLY;
 
     SetFont(pFont);
 
     return 0;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_InPlaceDurationEdit::OnEraseBkgnd(CDC* pDC)
+BOOL PSS_InPlaceIntelliEdit::OnEraseBkgnd(CDC* pDC)
 {
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+void PSS_InPlaceIntelliEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-    // set the changed flag
+    // set the has changed flag
     m_HasChanged = true;
 
     // call the base function
-    PSS_SearchEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_IntelliEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
-void PSS_InPlaceDurationEdit::OnSetFocus(CWnd* pOldWnd)
+void PSS_InPlaceIntelliEdit::OnSetFocus(CWnd* pOldWnd)
 {
-    PSS_SearchEdit::OnSetFocus(pOldWnd);
+    PSS_IntelliEdit::OnSetFocus(pOldWnd);
 }
 //---------------------------------------------------------------------------

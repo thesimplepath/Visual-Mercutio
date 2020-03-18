@@ -63,32 +63,32 @@
 
 // ***********************************************************
 // *
-// *  ZCInPlaceExtendedEdit
+// *  PSS_InPlaceExtendedEdit
 // *
 // ***********************************************************
 
-#ifndef _ZCInPlaceExtendedEdit_H__
-#include "zPtyMgr\ZCInPlaceExtendedEdit.h"
+#ifndef PSS_InPlaceExtendedEditH
+    #include "zPtyMgr\PSS_InPlaceExtendedEdit.h"
 #endif 
 
 // ***********************************************************
 // *
-// *  ZCInPlaceIntelliEdit
+// *  PSS_InPlaceIntelliEdit
 // *
 // ***********************************************************
 
-#ifndef _ZCInPlaceIntelliEdit_H__
-#include "zPtyMgr\ZCInPlaceIntelliEdit.h"
+#ifndef PSS_InPlaceIntelliEditH
+    #include "zPtyMgr\PSS_InPlaceIntelliEdit.h"
 #endif
 
 // ***********************************************************
 // *
-// *  ZCInPlaceListBox
+// *  PSS_InPlaceListBox
 // *
 // ***********************************************************
 
-#ifndef _ZCInPlaceListBox_H__
-#include "zPtyMgr\ZCInPlaceListBox.h"
+#ifndef PSS_InPlaceListBoxH
+    #include "zPtyMgr\PSS_InPlaceListBox.h"
 #endif
 
 
