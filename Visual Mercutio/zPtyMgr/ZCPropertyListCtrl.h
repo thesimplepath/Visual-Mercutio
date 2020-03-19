@@ -1,4 +1,9 @@
-// ZCPropertyListCtrl.h : header file
+/****************************************************************************
+ * ==> PSS_PropertyListCtrl ------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a property list controller                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #if !defined(_ZCPropertyListCtrl_H__)
 #define _ZCPropertyListCtrl_H__
@@ -33,11 +38,10 @@ class PSS_Properties;
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 10 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// ZCPropertyListCtrl
-
+/**
+* Property list controller
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZCPropertyListCtrl : public CDragListBox, public PSS_Subject, public PSS_Observer
 {
     friend class PSS_PropertyItemManager;

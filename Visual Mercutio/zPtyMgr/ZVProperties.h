@@ -18,7 +18,7 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "ZCPropertyListCtrl.h"
-#include "ZCPropertyDescription.h"
+#include "PSS_PropertyDescription.h"
 
 #ifdef _ZPTYMGREXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -177,7 +177,7 @@ private:
 
     _ZIFlatToolBar            m_FlatToolBar;
     ZCPropertyListCtrl        m_listctrl;
-    ZCPropertyDescription    m_PropDesc;
+    PSS_PropertyDescription    m_PropDesc;
 
     ZPropertiesView            m_CurrentView;
 };

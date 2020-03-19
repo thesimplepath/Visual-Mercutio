@@ -13,10 +13,10 @@
 #include "PSS_InPlaceListBox.h"
 #include "PSS_InPlaceExtendedEdit.h"
 #include "PSS_InPlaceIntelliEdit.h"
-#include "ZCInPlaceMultiLineEdit.h"
-#include "ZCInPlaceSearchEdit.h"
+#include "PSS_InPlaceMultiLineEdit.h"
+#include "PSS_InPlaceSearchEdit.h"
 #include "PSS_InPlaceDateEdit.h"
-#include "ZCInPlaceTimeEdit.h"
+#include "PSS_InPlaceTimeEdit.h"
 #include "PSS_InPlaceDurationEdit.h"
 
 #ifdef _DEBUG
@@ -209,7 +209,7 @@ void PSS_MultiLineEditPropertyItem::CreateInPlaceControl(CWnd*             pWndP
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceMultiLineEdit> pControl(new ZCInPlaceMultiLineEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceMultiLineEdit> pControl(new PSS_InPlaceMultiLineEdit(IsReadOnly()));
 
     switch (m_Type)
     {
@@ -287,7 +287,7 @@ void PSS_TimePropertyItem::CreateInPlaceControl(CWnd*           pWndParent,
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceTimeEdit> pControl(new ZCInPlaceTimeEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceTimeEdit> pControl(new PSS_InPlaceTimeEdit(IsReadOnly()));
 
     // for processing extended command
     pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
@@ -361,7 +361,7 @@ void PSS_MenuFileDirPropertyItem::CreateInPlaceControl(CWnd*             pWndPar
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<ZCInPlaceSearchEdit> pControl(new ZCInPlaceSearchEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceSearchEdit> pControl(new PSS_InPlaceSearchEdit(IsReadOnly()));
 
     switch (m_ControlType)
     {

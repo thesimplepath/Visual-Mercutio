@@ -26,7 +26,7 @@
 // forward class declaration
 class PSS_InPlaceListBox;
 class PSS_InPlaceIntelliEdit;
-class ZCInPlaceMultiLineEdit;
+class PSS_InPlaceMultiLineEdit;
 
 #ifdef _ZPTYMGREXPORT
     // put the values back to make AFX_EXT_CLASS export again

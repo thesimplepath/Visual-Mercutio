@@ -94,32 +94,32 @@
 
 // ***********************************************************
 // *
-// *  ZCInPlaceMultiLineEdit
+// *  PSS_InPlaceMultiLineEdit
 // *
 // ***********************************************************
 
-#ifndef _ZCInPlaceMultiLineEdit_H__
-#include "zPtyMgr\ZCInPlaceMultiLineEdit.h"
+#ifndef PSS_InPlaceMultiLineEditH
+    #include "zPtyMgr\PSS_InPlaceMultiLineEdit.h"
 #endif
 
 // ***********************************************************
 // *
-// *  ZCInPlaceSearchEdit
+// *  PSS_InPlaceSearchEdit
 // *
 // ***********************************************************
 
-#ifndef _ZCInPlaceSearchEdit_H__
-#include "zPtyMgr\ZCInPlaceSearchEdit.h"
+#ifndef PSS_InPlaceSearchEditH
+    #include "zPtyMgr\PSS_InPlaceSearchEdit.h"
 #endif
 
 // ***********************************************************
 // *
-// *  ZCPropertyDescription
+// *  PSS_PropertyDescription
 // *
 // ***********************************************************
 
-#ifndef _ZCPROPERTYDESCRIPTION_H__
-#include "zPtyMgr\ZCPropertyDescription.h"
+#ifndef PSS_PropertyDescriptionH
+    #include "zPtyMgr\PSS_PropertyDescription.h"
 #endif
 
 // ***********************************************************
