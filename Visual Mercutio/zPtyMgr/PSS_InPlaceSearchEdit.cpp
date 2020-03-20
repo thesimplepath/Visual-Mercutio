@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 #include "zProperty\PSS_PropertyItem.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -216,7 +216,7 @@ void PSS_InPlaceSearchEdit::SaveValue()
 {
     if (GetHasChanged())
     {
-        ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+        PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
         if (pParent)
         {
@@ -295,7 +295,7 @@ void PSS_InPlaceSearchEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
 //---------------------------------------------------------------------------
 void PSS_InPlaceSearchEdit::OnMenuCommand(int MenuCommand)
 {
-    ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+    PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
     // process the menu command
     if (pParent)
@@ -319,7 +319,7 @@ void PSS_InPlaceSearchEdit::OnMenuCommand(int MenuCommand)
 
             // force the control list to reload values
             if (refresh)
-                dynamic_cast<ZCPropertyListCtrl*>(GetParent())->Refresh(true, true);
+                pParent->Refresh(true, true);
         }
     }
 }
@@ -343,7 +343,7 @@ BOOL PSS_InPlaceSearchEdit::PreTranslateMessage(MSG* pMsg)
                 // cancel the edit
                 CancelEdit();
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)
@@ -360,7 +360,7 @@ BOOL PSS_InPlaceSearchEdit::PreTranslateMessage(MSG* pMsg)
             {
                 ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)

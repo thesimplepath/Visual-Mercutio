@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 #include "zProperty\PSS_PropertyItem.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -216,7 +216,7 @@ void PSS_InPlaceIntelliEdit::SaveValue()
 {
     if (GetHasChanged())
     {
-        ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+        PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
         if (pParent)
         {
@@ -295,7 +295,7 @@ void PSS_InPlaceIntelliEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pM
 //---------------------------------------------------------------------------
 void PSS_InPlaceIntelliEdit::OnExtendedCommand()
 {
-    ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+    PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
     // process the extended command
     if (pParent)
@@ -350,7 +350,7 @@ BOOL PSS_InPlaceIntelliEdit::PreTranslateMessage(MSG* pMsg)
                 // cancel the edit
                 CancelEdit();
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)
@@ -367,7 +367,7 @@ BOOL PSS_InPlaceIntelliEdit::PreTranslateMessage(MSG* pMsg)
             {
                 ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)

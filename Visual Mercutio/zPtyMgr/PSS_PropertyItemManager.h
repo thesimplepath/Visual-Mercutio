@@ -25,7 +25,7 @@
 #include "zProperty\PSS_Properties.h"
 
 // forward class declaration
-class ZCPropertyListCtrl;
+class PSS_PropertyListCtrl;
 
 #ifdef _ZPTYMGREXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -221,7 +221,7 @@ class AFX_EXT_CLASS PSS_PropertyItemManager
         * Sets the property list controller
         *@param pCtrl - the property list controller
         */
-        virtual void SetPropertyListCtrl(ZCPropertyListCtrl* pCtrl);
+        virtual void SetPropertyListCtrl(PSS_PropertyListCtrl* pCtrl);
 
         /**
         * Sets the show type
@@ -387,10 +387,10 @@ class AFX_EXT_CLASS PSS_PropertyItemManager
         *@param index - the index
         *@param refresh - if true, the item will be refreshed immediately
         */
-        virtual inline void OnDataChanged(PSS_PropertyItem*   pPropertyItem,
-                                          ZCPropertyListCtrl* pWndPropertyListCtrl,
-                                          int                 index,
-                                          bool&               refresh);
+        virtual inline void OnDataChanged(PSS_PropertyItem*     pPropertyItem,
+                                          PSS_PropertyListCtrl* pWndPropertyListCtrl,
+                                          int                   index,
+                                          bool&                 refresh);
 
         /**
         * Called when the internal property item was dropped
@@ -408,7 +408,7 @@ class AFX_EXT_CLASS PSS_PropertyItemManager
         IPropertyStateSet            m_PropertyState;
         PSS_Properties::IPropertySet m_PropSet;
         PSS_Properties*              m_pCurrentData;
-        ZCPropertyListCtrl*          m_pWndPropertyListCtrl;
+        PSS_PropertyListCtrl*        m_pWndPropertyListCtrl;
 
         /**
         * Checks if a tab exists and returns it if yes
@@ -695,10 +695,10 @@ PSS_PropertyItemCategory* PSS_PropertyItemManager::GetCategoryTab(int index) con
     return (index < int(GetCategoryCount()) ? m_PropertyItemTabSet.GetAt(index) : NULL);
 }
 //---------------------------------------------------------------------------
-void PSS_PropertyItemManager::OnDataChanged(PSS_PropertyItem*   pPropertyItem,
-                                            ZCPropertyListCtrl* pWndPropertyListCtrl,
-                                            int                 index,
-                                            bool&               refresh)
+void PSS_PropertyItemManager::OnDataChanged(PSS_PropertyItem*     pPropertyItem,
+                                            PSS_PropertyListCtrl* pWndPropertyListCtrl,
+                                            int                   index,
+                                            bool&                 refresh)
 {
     PSS_Property* pProp = GetMatchingProperty(pPropertyItem);
 

@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 #include "zProperty\PSS_PropertyItem.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -231,7 +231,7 @@ void PSS_InPlaceExtendedEdit::SaveValue()
 {
     if (GetHasChanged())
     {
-        ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+        PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
         if (pParent)
         {
@@ -310,12 +310,12 @@ void PSS_InPlaceExtendedEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* p
 //---------------------------------------------------------------------------
 void PSS_InPlaceExtendedEdit::OnExtendedCommand()
 {
-    ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+    PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
     // process the extended command
     if (pParent)
     {
-        PSS_PropertyItem* pItem         = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
+        PSS_PropertyItem* pItem         = pParent->GetCurrentPropertyItem();
         CString           proposedValue = GetEditText();
 
         // save the value
@@ -362,7 +362,7 @@ BOOL PSS_InPlaceExtendedEdit::PreTranslateMessage(MSG* pMsg)
                 // cancel the edit
                 CancelEdit();
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify observers
                 if (pParent)
@@ -379,7 +379,7 @@ BOOL PSS_InPlaceExtendedEdit::PreTranslateMessage(MSG* pMsg)
             {
                 ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify observers
                 if (pParent)

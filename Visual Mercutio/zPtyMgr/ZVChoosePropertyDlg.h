@@ -15,9 +15,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "ZCPropertyListCtrl.h"
+// processsoft
 #include "zPtyMgr\zPtyMgrRes.h"
+#include "PSS_PropertyListCtrl.h"
 
 // class name mapping
 #ifndef PSS_DynamicPropertiesManager
@@ -65,7 +65,7 @@ public:
     PSS_Property*    GetSelectedProperty()
     {
         if (m_pSelectedProperty)
-            return m_PropertyList.GetCorrespondingProperty( m_pSelectedProperty );
+            return m_PropertyList.GetMatchingProperty( m_pSelectedProperty );
         return NULL;
     };
 
@@ -78,7 +78,7 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZVChoosePropertyDlg)
     enum { IDD = IDD_ALL_PROPERTIES };
-    ZCPropertyListCtrl    m_PropertyList;
+    PSS_PropertyListCtrl    m_PropertyList;
     int        m_PropType;
     //}}AFX_DATA
 

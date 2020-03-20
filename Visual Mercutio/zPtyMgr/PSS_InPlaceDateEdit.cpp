@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 #include "zProperty\PSS_PropertyItem.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -168,7 +168,7 @@ void PSS_InPlaceDateEdit::SaveValue()
 {
     if (GetHasChanged())
     {
-        ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+        PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
         if (pParent)
         {
@@ -231,12 +231,12 @@ void PSS_InPlaceDateEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 //---------------------------------------------------------------------------
 void PSS_InPlaceDateEdit::OnExtendedCommand()
 {
-    ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+    PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
     // process the extended command
     if (pParent)
     {
-        PSS_PropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
+        PSS_PropertyItem* pItem = pParent->GetCurrentPropertyItem();
 
         CString proposedValue = GetEditText();
 
@@ -285,7 +285,7 @@ BOOL PSS_InPlaceDateEdit::PreTranslateMessage(MSG* pMsg)
                 // cancel the edit
                 CancelEdit();
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)
@@ -302,7 +302,7 @@ BOOL PSS_InPlaceDateEdit::PreTranslateMessage(MSG* pMsg)
             {
                 ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)

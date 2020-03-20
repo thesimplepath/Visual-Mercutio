@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_StringFormatter.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -144,7 +144,7 @@ void PSS_InPlaceDragEdit::SaveValue()
     // if the value has changed, save it
     if (m_HasChanged)
     {
-        ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+        PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
         if (pParent)
         {
@@ -236,7 +236,7 @@ BOOL PSS_InPlaceDragEdit::PreTranslateMessage(MSG* pMsg)
                 // cancel the edit
                 CancelEdit();
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)
@@ -253,7 +253,7 @@ BOOL PSS_InPlaceDragEdit::PreTranslateMessage(MSG* pMsg)
             {
                 ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
 
-                ZCPropertyListCtrl* pParent = dynamic_cast<ZCPropertyListCtrl*>(GetParent());
+                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
 
                 // notify the observers
                 if (pParent)

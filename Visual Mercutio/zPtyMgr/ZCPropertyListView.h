@@ -15,7 +15,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Observer.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 
 #ifdef _ZPTYMGREXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -92,7 +92,7 @@ protected:
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 protected:
-    ZCPropertyListCtrl m_listctrl;
+    PSS_PropertyListCtrl m_listctrl;
 
 };
 

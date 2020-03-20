@@ -1732,7 +1732,7 @@ bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(PSS_Property& prop, CString
     if (prop.GetCategoryID() == ZS_BP_PROP_QUANTITY && prop.GetItemID() == M_Number_Year_ID)
     {
         // check if the value entered is less than the sum of locked item
-        const double newTotal = atol(value);
+        const double newTotal = std::atol(value);
 
         if (newTotal < m_Quantity.GetSumOfLockedNumbers())
         {

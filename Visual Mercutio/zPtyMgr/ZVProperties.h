@@ -17,7 +17,7 @@
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 #include "PSS_PropertyDescription.h"
 
 #ifdef _ZPTYMGREXPORT
@@ -176,7 +176,7 @@ protected:
 private:
 
     _ZIFlatToolBar            m_FlatToolBar;
-    ZCPropertyListCtrl        m_listctrl;
+    PSS_PropertyListCtrl        m_listctrl;
     PSS_PropertyDescription    m_PropDesc;
 
     ZPropertiesView            m_CurrentView;

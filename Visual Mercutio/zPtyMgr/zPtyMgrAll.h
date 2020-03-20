@@ -124,12 +124,12 @@
 
 // ***********************************************************
 // *
-// *  ZCPropertyListCtrl
+// *  PSS_PropertyListCtrl
 // *
 // ***********************************************************
 
-#ifndef _ZCPropertyListCtrl_H__
-#include "zPtyMgr\ZCPropertyListCtrl.h"
+#ifndef PSS_PropertyListCtrlH
+    #include "zPtyMgr\PSS_PropertyListCtrl.h"
 #endif
 
 // ***********************************************************

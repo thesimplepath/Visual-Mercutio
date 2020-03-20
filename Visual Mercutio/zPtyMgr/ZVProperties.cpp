@@ -321,7 +321,7 @@ void ZVProperties::ShowAllTypes()
 {
     if (::IsWindow(m_listctrl.GetSafeHwnd()))
     {
-        m_listctrl.SetDisplayType(PSS_PropertyItemManager::IE_ST_AllProperties);
+        m_listctrl.SetShowType(PSS_PropertyItemManager::IE_ST_AllProperties);
     }
 }
 
@@ -329,7 +329,7 @@ void ZVProperties::ShowStaticType()
 {
     if (::IsWindow(m_listctrl.GetSafeHwnd()))
     {
-        m_listctrl.SetDisplayType(PSS_PropertyItemManager::IE_ST_StaticProperties);
+        m_listctrl.SetShowType(PSS_PropertyItemManager::IE_ST_StaticProperties);
     }
 }
 
@@ -337,7 +337,7 @@ void ZVProperties::ShowDynamicType()
 {
     if (::IsWindow(m_listctrl.GetSafeHwnd()))
     {
-        m_listctrl.SetDisplayType(PSS_PropertyItemManager::IE_ST_DynamicProperties);
+        m_listctrl.SetShowType(PSS_PropertyItemManager::IE_ST_DynamicProperties);
     }
 }
 

@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\PSS_SystemOption.h"
 #include "zBaseLib\PSS_Tokenizer.h"
-#include "ZCPropertyListCtrl.h"
+#include "PSS_PropertyListCtrl.h"
 #include "PSS_PropertyItems.h"
 
 #ifdef _DEBUG
@@ -44,7 +44,7 @@ void PSS_PropertyItemManager::Empty()
     m_pCurrentData = NULL;
 }
 //---------------------------------------------------------------------------
-void PSS_PropertyItemManager::SetPropertyListCtrl(ZCPropertyListCtrl* pCtrl)
+void PSS_PropertyItemManager::SetPropertyListCtrl(PSS_PropertyListCtrl* pCtrl)
 {
     m_pWndPropertyListCtrl = pCtrl;
 }
