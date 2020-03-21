@@ -221,7 +221,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCPropertyListView.cpp">
+    <ClCompile Include="PSS_PropertyListView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -287,7 +287,7 @@
     <ClInclude Include="PSS_InPlaceTimeEdit.h" />
     <ClInclude Include="PSS_PropertyDescription.h" />
     <ClInclude Include="PSS_PropertyListCtrl.h" />
-    <ClInclude Include="ZCPropertyListView.h" />
+    <ClInclude Include="PSS_PropertyListView.h" />
     <ClInclude Include="zPtyMgrAll.h" />
     <ClInclude Include="zPtyMgrLib.h" />
     <ClInclude Include="zPtyMgrRes.h" />

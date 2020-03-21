@@ -1,159 +1,54 @@
-/////////////////////////////////////////////////////////////////////////////
-//@doc 
-//@module zPtyMgrAll.h | 
-//
-// ProcessSoft Classes
-// <nl>Copyright <cp> 2001 - ProcessSoft SA,
-// All rights reserved.
-//
-// This source code is only intended as a supplement to
-// the ProcessSoft Class Reference and related
-// electronic documentation provided with the library.
-// See these sources for detailed information regarding
-// ProcessSoft products.
-//
-// Author:       Dom
-// <nl>Created:         02/2002
-// <nl>Description:  include file used to include all Property Manager classes
-//
-/////////////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> zPtyMgrAll.h --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a header that includes all the property manager   *
+ *               classes                                                    *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#ifndef __ZPTYMGRALL_H__
-#define __ZPTYMGRALL_H__
+#ifndef zPtyMgrAllH
+#define zPtyMgrAllH
 
-
-
-#include <zPtyMgr\zPtyMgrLib.h>        // The Property Manager library
-
+// processsoft
+#include <zPtyMgr\zPtyMgrLib.h>
+#ifndef PSS_PropertyItemManagerH
+    #include "zPtyMgr\PSS_PropertyItemManager.h"
+#endif
+#ifndef PSS_InPlaceDurationEditH
+    #include "zPtyMgr\PSS_InPlaceDurationEdit.h"
+#endif
+#ifndef PSS_InPlaceDragEditH
+    #include "zPtyMgr\PSS_InPlaceDragEdit.h"
+#endif 
+#ifndef PSS_InPlaceExtendedEditH
+    #include "zPtyMgr\PSS_InPlaceExtendedEdit.h"
+#endif 
+#ifndef PSS_InPlaceIntelliEditH
+    #include "zPtyMgr\PSS_InPlaceIntelliEdit.h"
+#endif
+#ifndef PSS_InPlaceListBoxH
+    #include "zPtyMgr\PSS_InPlaceListBox.h"
+#endif
+#ifndef PSS_InPlaceMultiLineEditH
+    #include "zPtyMgr\PSS_InPlaceMultiLineEdit.h"
+#endif
+#ifndef PSS_InPlaceSearchEditH
+    #include "zPtyMgr\PSS_InPlaceSearchEdit.h"
+#endif
+#ifndef PSS_PropertyDescriptionH
+    #include "zPtyMgr\PSS_PropertyDescription.h"
+#endif
+#ifndef PSS_PropertyListCtrlH
+    #include "zPtyMgr\PSS_PropertyListCtrl.h"
+#endif
+#ifndef PSS_PropertyListViewH
+    #include "zPtyMgr\PSS_PropertyListView.h"
+#endif
+#ifndef _ZVPROPERTIES_H__
+    #include "zPtyMgr\ZVProperties.h"
+#endif
 
 // resources
 #include "zPtyMgr\zPtyMgrRes.h"
 
-
-
-// ***********************************************************
-// *
-// *  PSS_PropertyItemManager 
-// *
-// ***********************************************************
-
-#ifndef PSS_PropertyItemManagerH
-    #include "zPtyMgr\PSS_PropertyItemManager.h"
 #endif
-
-// ***********************************************************
-// *
-// *  PSS_InPlaceDurationEdit
-// *
-// ***********************************************************
-
-#ifndef PSS_InPlaceDurationEditH
-    #include "zPtyMgr\PSS_InPlaceDurationEdit.h"
-#endif
-
-// ***********************************************************
-// *
-// *  PSS_InPlaceDragEdit, PSS_InPlacePropItemStringEdit, PSS_InPlacePropItemNumberEdit
-// *  
-// ***********************************************************
-
-#ifndef PSS_InPlaceDragEditH
-    #include "zPtyMgr\PSS_InPlaceDragEdit.h"
-#endif 
-
-// ***********************************************************
-// *
-// *  PSS_InPlaceExtendedEdit
-// *
-// ***********************************************************
-
-#ifndef PSS_InPlaceExtendedEditH
-    #include "zPtyMgr\PSS_InPlaceExtendedEdit.h"
-#endif 
-
-// ***********************************************************
-// *
-// *  PSS_InPlaceIntelliEdit
-// *
-// ***********************************************************
-
-#ifndef PSS_InPlaceIntelliEditH
-    #include "zPtyMgr\PSS_InPlaceIntelliEdit.h"
-#endif
-
-// ***********************************************************
-// *
-// *  PSS_InPlaceListBox
-// *
-// ***********************************************************
-
-#ifndef PSS_InPlaceListBoxH
-    #include "zPtyMgr\PSS_InPlaceListBox.h"
-#endif
-
-
-// ***********************************************************
-// *
-// *  PSS_InPlaceMultiLineEdit
-// *
-// ***********************************************************
-
-#ifndef PSS_InPlaceMultiLineEditH
-    #include "zPtyMgr\PSS_InPlaceMultiLineEdit.h"
-#endif
-
-// ***********************************************************
-// *
-// *  PSS_InPlaceSearchEdit
-// *
-// ***********************************************************
-
-#ifndef PSS_InPlaceSearchEditH
-    #include "zPtyMgr\PSS_InPlaceSearchEdit.h"
-#endif
-
-// ***********************************************************
-// *
-// *  PSS_PropertyDescription
-// *
-// ***********************************************************
-
-#ifndef PSS_PropertyDescriptionH
-    #include "zPtyMgr\PSS_PropertyDescription.h"
-#endif
-
-// ***********************************************************
-// *
-// *  PSS_PropertyListCtrl
-// *
-// ***********************************************************
-
-#ifndef PSS_PropertyListCtrlH
-    #include "zPtyMgr\PSS_PropertyListCtrl.h"
-#endif
-
-// ***********************************************************
-// *
-// *  ZCPropertyListView
-// *
-// ***********************************************************
-
-#ifndef _ZCPROPERTYLISTVIEW_H__
-#include "zPtyMgr\ZCPropertyListView.h"
-#endif
-
-
-// ***********************************************************
-// *
-// *  ZVProperties
-// *
-// ***********************************************************
-
-#ifndef _ZVPROPERTIES_H__
-#include "zPtyMgr\ZVProperties.h"
-#endif
-
-
-
-#endif // __ZPTYMGRALL_H__
-
