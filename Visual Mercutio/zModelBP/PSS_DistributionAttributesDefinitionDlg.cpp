@@ -15,7 +15,7 @@
 #include "zModel\PSS_SelectUserGroupDlg.h"
 #include "zModel\PSS_DynamicAttributesManipulator.h"
 #include "zProperty\PSS_DynamicPropertiesManager.h"
-#include "zPtyMgr\ZVChoosePropertyDlg.h"
+#include "zPtyMgr\PSS_SelectPropertyDlg.h"
 #include "PSS_DistributionAttributes.h"
 #include "PSS_DistributionRuleDefDlg.h"
 
@@ -135,7 +135,7 @@ BOOL PSS_DistributionAttributesDefinitionDlg::OnInitDialog()
 //---------------------------------------------------------------------------
 void PSS_DistributionAttributesDefinitionDlg::OnChooseDynattr()
 {
-    ZVChoosePropertyDlg selectPropDlg(m_pSet, 2);
+    PSS_SelectPropertyDlg selectPropDlg(m_pSet, 2);
 
     if (selectPropDlg.DoModal() == IDOK)
     {

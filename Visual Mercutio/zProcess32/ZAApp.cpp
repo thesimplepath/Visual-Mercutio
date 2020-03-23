@@ -20,7 +20,7 @@
 #include "zWinUtil32\PSS_FolderInfoDialog.h"
 #include "zWinUtil32\PSS_SystemOptionSheet.h"
 #include "zResMgr\PSS_ResourceManager.h"
-#include "zPtyMgr\ZVChoosePropertyDlg.h"
+#include "zPtyMgr\PSS_SelectPropertyDlg.h"
 #include "zModel\PSS_ProcessGraphModelMdl.h"
 #include "zModel\PSS_ProcessGraphChildFrame.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
@@ -2897,16 +2897,15 @@ void ZAApp::OnDynamicAttributesDisplay()
         PSS_Properties::IPropertySet set;
         PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pCurrentDoc->GetModel(), set);
 
-        ZVChoosePropertyDlg choose(&set,
-                                   2,
-                                   false,    // Selection
-                                   true,    // AllowItemSelection
-                                   false,    // AllowCategorySelection
-                                   pCurrentDoc->GetDynamicPropertiesManager(), pCurrentDoc->GetModel());
+        PSS_SelectPropertyDlg select(&set,
+                                     2,
+                                     false,    // Selection
+                                     true,    // AllowItemSelection
+                                     false,    // AllowCategorySelection
+                                     pCurrentDoc->GetDynamicPropertiesManager(), pCurrentDoc->GetModel());
 
-        if (choose.DoModal() == IDOK)
-        {
-        }
+        if (select.DoModal() == IDOK)
+        {}
 
         // Remove all properties
         PSS_Properties::IPropertyIterator i(&set);

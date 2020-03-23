@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 #include "zProperty\PSS_PropertyItem.h"
 #include "PSS_PropertyListCtrl.h"
-#include "ZVInputDurationDlg.h"
+#include "PSS_InputDurationDlg.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -255,7 +255,7 @@ void PSS_InPlaceDurationEdit::OnExtendedCommand()
             if (conversionCorrect)
             {
                 // show the duration dialog and change the window text to the proposed value
-                ZVInputDurationDlg dlg(value.GetDays(), value.GetHours(), value.GetMinutes(), value.GetSeconds());
+                PSS_InputDurationDlg dlg(value.GetDays(), value.GetHours(), value.GetMinutes(), value.GetSeconds());
                 dlg.DoModal();
 
                 // set the new duration

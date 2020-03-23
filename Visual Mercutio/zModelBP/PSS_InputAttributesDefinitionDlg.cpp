@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zModel\PSS_DynamicAttributesManipulator.h"
 #include "zProperty\PSS_DynamicPropertiesManager.h"
-#include "zPtyMgr\ZVChoosePropertyDlg.h"
+#include "zPtyMgr\PSS_SelectPropertyDlg.h"
 #include "PSS_InputAttributes.h"
 
 #ifdef _DEBUG
@@ -97,7 +97,7 @@ void PSS_InputAttributesDefinitionDlg::OnChooseDynAttr()
     if (!m_pSet)
         return;
 
-    ZVChoosePropertyDlg selectDlg(m_pSet, 2);
+    PSS_SelectPropertyDlg selectDlg(m_pSet, 2);
 
     if (selectDlg.DoModal() == IDOK)
     {

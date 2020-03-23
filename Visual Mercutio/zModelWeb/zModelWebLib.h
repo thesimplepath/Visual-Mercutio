@@ -14,12 +14,12 @@
 
 #ifdef _AFXDLL
     #ifdef _DEBUG
-        #pragma comment( lib, "zModelWebd.lib" )
-        #pragma message( "Automatically linking with zModelWebd.dll" )
+        #pragma comment(lib, "zModelWebd.lib")
+        #pragma message("Automatically linking with zModelWebd.dll")
     #endif
     #ifdef NDEBUG
-        #pragma comment( lib, "zModelWeb.lib" )
-        #pragma message( "Automatically linking with zModelWeb.dll" )
+        #pragma comment(lib, "zModelWeb.lib")
+        #pragma message("Automatically linking with zModelWeb.dll")
     #endif
 #endif
 

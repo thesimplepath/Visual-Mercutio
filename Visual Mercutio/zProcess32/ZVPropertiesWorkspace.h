@@ -32,7 +32,7 @@ public:
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
 
-    ZVProperties* GetPropertyView();
+    PSS_PropertiesView* GetPropertyView();
     PSS_InputAttributesView* GetInputAttributeView();
     PSS_DistributionAttributesView* GetDistributionAttributeView();
     PSS_SpanWnd* GetPanView();
@@ -61,14 +61,14 @@ protected:
 
 private:
 
-    ZVProperties                   m_PropertyView;
+    PSS_PropertiesView             m_PropertyView;
     PSS_InputAttributesView        m_InputAttributeView;
     PSS_DistributionAttributesView m_DistributionAttributeView;
     PSS_SpanWnd                    m_PanView;
     SEC3DTabWnd                    m_wndTab;
 };
 
-inline ZVProperties* ZVPropertiesWorkspace::GetPropertyView()
+inline PSS_PropertiesView* ZVPropertiesWorkspace::GetPropertyView()
 {
     return &m_PropertyView;
 }

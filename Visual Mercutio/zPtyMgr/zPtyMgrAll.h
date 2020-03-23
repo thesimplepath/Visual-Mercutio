@@ -44,8 +44,8 @@
 #ifndef PSS_PropertyListViewH
     #include "zPtyMgr\PSS_PropertyListView.h"
 #endif
-#ifndef _ZVPROPERTIES_H__
-    #include "zPtyMgr\ZVProperties.h"
+#ifndef PSS_PropertiesViewH
+    #include "zPtyMgr\PSS_PropertiesView.h"
 #endif
 
 // resources

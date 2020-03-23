@@ -21,15 +21,6 @@
     <ClCompile Include="zPtyMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZVChoosePropertyDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVInputDurationDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVProperties.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_FriendPropertyListCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -75,6 +66,15 @@
     <ClCompile Include="PSS_PropertyListView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_PropertiesView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectPropertyDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InputDurationDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cur00001.cur">
@@ -103,15 +103,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zPtyMgrRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVChoosePropertyDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVInputDurationDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVProperties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_FriendPropertyListCtrl.h">
@@ -157,6 +148,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_PropertyListView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PropertiesView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectPropertyDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InputDurationDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

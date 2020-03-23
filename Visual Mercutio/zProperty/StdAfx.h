@@ -14,8 +14,8 @@
     #pragma once
 #endif
 
-#define VC_EXTRALEAN        // Exclude rarely-used stuff from Windows headers
-#define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN        // exclude rarely-used stuff from Windows headers
+#define WIN32_LEAN_AND_MEAN // exclude rarely-used stuff from Windows headers
 
 #ifndef WINVER
     #define WINVER 0x0501
@@ -74,13 +74,12 @@ using namespace stingray;
 using namespace foundation;
 
 // processsoft
+#include <zBaseLib\zBaseLib.h>
+#include <zBaseSym\zBaseSymLib.h>
+#include "PlanFin.hdf"
 #include "PSS_Constants.h"
 #include "PSS_Defines.h"
 #include "PSS_Messages.h"
-#include "PlanFin.hdf"
-
-#include <zBaseLib\zBaseLib.h>    // the base library
-#include <zBaseSym\zBaseSymLib.h> // the base symbol library
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

@@ -5,8 +5,8 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef __ZPROPERTYLIB_H__
-#define __ZPROPERTYLIB_H__
+#ifndef zPropertyLibH
+#define zPropertyLibH
 
 #if _MSC_VER >= 1000
     #pragma once

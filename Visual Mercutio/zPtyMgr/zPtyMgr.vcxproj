@@ -233,19 +233,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVChoosePropertyDlg.cpp">
+    <ClCompile Include="PSS_SelectPropertyDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVInputDurationDlg.cpp">
+    <ClCompile Include="PSS_InputDurationDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVProperties.cpp">
+    <ClCompile Include="PSS_PropertiesView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -291,9 +291,9 @@
     <ClInclude Include="zPtyMgrAll.h" />
     <ClInclude Include="zPtyMgrLib.h" />
     <ClInclude Include="zPtyMgrRes.h" />
-    <ClInclude Include="ZVChoosePropertyDlg.h" />
-    <ClInclude Include="ZVInputDurationDlg.h" />
-    <ClInclude Include="ZVProperties.h" />
+    <ClInclude Include="PSS_SelectPropertyDlg.h" />
+    <ClInclude Include="PSS_InputDurationDlg.h" />
+    <ClInclude Include="PSS_PropertiesView.h" />
     <ClInclude Include="PSS_FriendPropertyListCtrl.h" />
   </ItemGroup>
   <ItemGroup>
