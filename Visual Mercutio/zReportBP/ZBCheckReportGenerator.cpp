@@ -57,7 +57,7 @@ bool ZBCheckReportGenerator::FillGrid(CGXGridCore& GridCore, size_t Index)
 
 bool ZBCheckReportGenerator::FillGridUnit(CGXGridCore& GridCore)
 {
-    ZBOStreamGrid ostream(&GridCore);
+    PSS_OStreamGrid ostream(&GridCore);
 
     // Default size
     GridCore.SetRowCount(60);        // 60 rows
@@ -177,7 +177,7 @@ bool ZBCheckReportGenerator::FillGridUnit(CGXGridCore& GridCore)
     return true;
 }
 
-void ZBCheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOStreamGrid &ostream)
+void ZBCheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PSS_OStreamGrid &ostream)
 {
     if (!pGroup)
     {
@@ -244,7 +244,7 @@ void ZBCheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOS
     }
 }
 
-void ZBCheckReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, ZBOStreamGrid &ostream)
+void ZBCheckReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, PSS_OStreamGrid &ostream)
 {
     // add the role line
     ostream << _T("\n");
@@ -285,7 +285,7 @@ bool ZBCheckReportGenerator::FillGridProcess(CGXGridCore& GridCore, size_t Index
     }
 
     // Construct the output stream grid object
-    ZBOStreamGrid ostream(&GridCore);
+    PSS_OStreamGrid ostream(&GridCore);
 
     // Default size
     GridCore.SetRowCount(60);        // 60 rows

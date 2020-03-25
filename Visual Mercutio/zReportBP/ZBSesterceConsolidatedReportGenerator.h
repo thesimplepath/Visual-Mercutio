@@ -79,14 +79,14 @@ protected:
 private:
 
     void RemoveAllData();
-    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
-    void FillGridUnitRole(PSS_UserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
+    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, size_t Index, PSS_OStreamGrid &ostream);
+    void FillGridUnitRole(PSS_UserRoleEntity* pRole, size_t Index, PSS_OStreamGrid &ostream);
 
     void FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
                             PSS_UserGroupCalculateTotals* pTotal,
                             PSS_UserGroupEntity*          pGroup,
                             size_t                        Index,
-                            ZBOStreamGrid                 &ostream);
+                            PSS_OStreamGrid&              ostream);
 
     // Implementation
 private:

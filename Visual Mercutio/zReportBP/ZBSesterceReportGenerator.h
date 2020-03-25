@@ -72,9 +72,9 @@ protected:
 private:
 
     bool FillGridUnit(CGXGridCore& GridCore);
-    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOStreamGrid &ostream);
-    void FillGridUnitRole(PSS_UserRoleEntity* pRole, ZBOStreamGrid &ostream);
-    bool FillGridProcess(CGXGridCore& GridCore, size_t Index);
+    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PSS_OStreamGrid &ostream);
+    void FillGridUnitRole(PSS_UserRoleEntity* pRole, PSS_OStreamGrid &ostream);
+    bool FillGridProcess(CGXGridCore& GridCore, std::size_t Index);
 
 private:
 

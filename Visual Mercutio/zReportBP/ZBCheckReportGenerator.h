@@ -61,7 +61,7 @@ public:
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
+    virtual bool FillGrid(CGXGridCore& GridCore, std::size_t Index);
 
     virtual const CString GetReportTitle() const;
 
@@ -72,9 +72,9 @@ protected:
 private:
 
     bool FillGridUnit(CGXGridCore& GridCore);
-    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOStreamGrid &ostream);
-    void FillGridUnitRole(PSS_UserRoleEntity* pRole, ZBOStreamGrid &ostream);
-    bool FillGridProcess(CGXGridCore& GridCore, size_t Index);
+    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PSS_OStreamGrid &ostream);
+    void FillGridUnitRole(PSS_UserRoleEntity* pRole, PSS_OStreamGrid &ostream);
+    bool FillGridProcess(CGXGridCore& GridCore, std::size_t Index);
 };
 
 #endif

@@ -122,7 +122,7 @@ bool ZBMercutioReportGenerator::FillGridProcedures( CGXGridCore& GridCore, size_
     }
 
     // Construct the output stream grid object
-    ZBOStreamGrid ostream( &GridCore );
+    PSS_OStreamGrid ostream( &GridCore );
 
     // Construct the navigation grid for procedure
     ZUGridMercutioRepProcedureNavigation Navigation( m_pModel, static_cast<void*>( &ostream ) );
@@ -145,7 +145,7 @@ bool ZBMercutioReportGenerator::FillGridDeliverables( CGXGridCore& GridCore, siz
     }
 
     // Construct the output stream grid object
-    ZBOStreamGrid ostream( &GridCore );
+    PSS_OStreamGrid ostream( &GridCore );
 
     // Construct the navigation grid for deliverables
     ZUGridMercutioRepDeliverableNavigation Navigation( m_pModel, static_cast<void*>( &ostream ) );

@@ -245,13 +245,13 @@ void _ZBPrestationsDatas::GenerateHierarchy(PSS_LogicalPrestationsEntity* pPrest
 }
 
 // Fonction d'inscription des données propres à chaque prestation dans le rapport.
-void _ZBPrestationsDatas::DisplayDatas(ZBOStreamGrid    &ostream,
+void _ZBPrestationsDatas::DisplayDatas(PSS_OStreamGrid& ostream,
                                        CStringArray&    ProcessNameArray,
-                                       CGXStyle        DisplayStyle,
-                                       CGXStyle        AmountStyle,
-                                       CGXStyle        NumericStyle,
-                                       int                Index,
-                                       bool            IncludeMonthDetails)
+                                       CGXStyle         DisplayStyle,
+                                       CGXStyle         AmountStyle,
+                                       CGXStyle         NumericStyle,
+                                       int              Index,
+                                       bool             IncludeMonthDetails)
 {
     int top = 0;
     int left = 0;
@@ -953,7 +953,7 @@ void ZBPrestationsReportGenerator::UpdateTotals()
 }
 
 // Contrôle et ajoute si nécessaire la quantité de colonnes souhaitées depuis la position courante dans le document.
-CPoint ZBPrestationsReportGenerator::CheckColumn(ZBOStreamGrid &ostream, int Quantity)
+CPoint ZBPrestationsReportGenerator::CheckColumn(PSS_OStreamGrid &ostream, int Quantity)
 {
     int top = 0;
     int left = 0;
@@ -976,7 +976,7 @@ CPoint ZBPrestationsReportGenerator::CheckColumn(ZBOStreamGrid &ostream, int Qua
 // Cette fonction permet la génération du rapport des prestations.
 bool ZBPrestationsReportGenerator::FillGridPrestationsReport(CGXGridCore& GridCore, int Index)
 {
-    ZBOStreamGrid ostream(&GridCore);
+    PSS_OStreamGrid ostream(&GridCore);
 
     // Taille par défaut.
     GridCore.SetRowCount(60);        // 60 lignes
@@ -1017,7 +1017,7 @@ bool ZBPrestationsReportGenerator::FillGridPrestationsReport(CGXGridCore& GridCo
 }
 
 // Cette fonction permet la génération des en-têtes pour le rapport des prestations.
-void ZBPrestationsReportGenerator::FillGridPrestationsHeaders(ZBOStreamGrid &ostream, ZVGridView* pView, int Index)
+void ZBPrestationsReportGenerator::FillGridPrestationsHeaders(PSS_OStreamGrid& ostream, ZVGridView* pView, int Index)
 {
     CString    s = _T("");
     int        Count = m_ProcessNameArray.GetSize() + 1;

@@ -39,4 +39,4 @@ public:
     virtual COLORREF GetColorValue( COLORREF rgb, BOOL bPrint );
 };
 
-#endif // !defined(AFX_ZCGRIDCHECKBOX_H__24661DBC_8BAD_403E_99C5_F14D20C6231C__INCLUDED_)
+#endif

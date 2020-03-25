@@ -18,7 +18,7 @@
 #include "zModelBP\PSS_StopSymbolBP.h"
 #include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
-#include "zReport\ZBOStreamGrid.h"
+#include "zReport\PSS_OStreamGrid.h"
 
 #include "zModelBP\zModelBPRes.h"
 #include "zReportBPRes.h"
@@ -62,7 +62,7 @@ ZUProcessConceptorNavigation::~ZUProcessConceptorNavigation()
 bool ZUProcessConceptorNavigation::OnStart()
 {
     // Start by casting the stream class
-    m_postream = static_cast<ZBOStreamGrid*>(m_pClass);
+    m_postream = static_cast<PSS_OStreamGrid*>(m_pClass);
 
     m_GrayStyle.SetTextColor(defCOLOR_WHITE)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))

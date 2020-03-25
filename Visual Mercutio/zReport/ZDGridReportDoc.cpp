@@ -8,7 +8,7 @@
 #include "ZDGridReportDoc.h"
 #include "ZVGridView.h"
 
-#include "ZBGenericGridReportGenerator.h"
+#include "PSS_GenericGridReportGenerator.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-static ZBGenericGridReportGenerator* g_pGenerator = NULL;
+static PSS_GenericGridReportGenerator* g_pGenerator = NULL;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZDGridReportDocument
@@ -70,7 +70,7 @@ ZDGridReportDocument::~ZDGridReportDocument()
     //}
 }
 
-bool ZDGridReportDocument::SetNewReportGridGenerator(ZBGenericGridReportGenerator* pGenerator)
+bool ZDGridReportDocument::SetNewReportGridGenerator(PSS_GenericGridReportGenerator* pGenerator)
 {
     if (GetPrimaryDocument() == this)
     {

@@ -23,14 +23,14 @@
 #define AFX_ZUGridSesterceProcessNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
+// processsoft
 #include "zModelBP\PSS_ProcessNavigation.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward declaration
-class ZBOStreamGrid;
+// forward class declaration
+class PSS_OStreamGrid;
 
 // JMR-MODIF - Le 7 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -49,7 +49,7 @@ public:
 
 private:
 
-    ZBOStreamGrid*    m_postream;
+    PSS_OStreamGrid*    m_postream;
 
     // Styles
     CGXStyle        m_NormalStyle;

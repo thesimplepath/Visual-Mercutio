@@ -94,8 +94,8 @@ private:
 
     void RemoveAllData();
     void FillTabUnitGroup(PSS_UserGroupEntity* pGroup);
-    bool FillSynthesis(ZBOStreamGrid& ostream, size_t Index);
-    bool FillGridAllProcess(ZBOStreamGrid& ostream, size_t Index);
+    bool FillSynthesis(PSS_OStreamGrid& ostream, std::size_t Index);
+    bool FillGridAllProcess(PSS_OStreamGrid& ostream, std::size_t Index);
 
 private:
 

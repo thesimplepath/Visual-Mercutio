@@ -169,7 +169,7 @@ bool ZBConceptorReportGenerator::FillGrid(CGXGridCore& GridCore, size_t Index)
     GridCore.SetRowCount(g_NbRows);
     GridCore.SetColCount(g_NbColumns);
 
-    ZBOStreamGrid ostream(&GridCore);
+    PSS_OStreamGrid ostream(&GridCore);
 
     CGXStyle Style;
 
@@ -215,7 +215,7 @@ bool ZBConceptorReportGenerator::FillGrid(CGXGridCore& GridCore, size_t Index)
 }
 
 // Cette fonction permet de générér les en-têtes des cellules.
-bool ZBConceptorReportGenerator::FillSynthesis(ZBOStreamGrid& ostream, size_t Index)
+bool ZBConceptorReportGenerator::FillSynthesis(PSS_OStreamGrid& ostream, size_t Index)
 {
     // Initialize the style for header cells
     CGXStyle Style;
@@ -294,7 +294,7 @@ bool ZBConceptorReportGenerator::FillSynthesis(ZBOStreamGrid& ostream, size_t In
     return true;
 }
 
-bool ZBConceptorReportGenerator::FillGridAllProcess(ZBOStreamGrid& ostream, size_t Index)
+bool ZBConceptorReportGenerator::FillGridAllProcess(PSS_OStreamGrid& ostream, size_t Index)
 {
     // Construct the synthesis for each page
     ZUProcessConceptorNavigation Navigation(m_pModel,

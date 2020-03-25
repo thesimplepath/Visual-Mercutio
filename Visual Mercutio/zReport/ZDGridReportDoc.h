@@ -20,9 +20,13 @@
 #include "ZDGridDoc.h"
 #include "ZIGridReportGenerator.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZBGenericGridReportGenerator;
+// old class name mapping
+#ifndef PSS_GenericGridReportGenerator
+    #define PSS_GenericGridReportGenerator ZBGenericGridReportGenerator
+#endif
+
+// forward class declaration
+class PSS_GenericGridReportGenerator;
 
 #ifdef _ZREPORTEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -52,8 +56,8 @@ public:
 // Operations
 public:
 
-    bool SetNewReportGridGenerator( ZBGenericGridReportGenerator* pGenerator );
-    ZBGenericGridReportGenerator* GetReportGridGenerator()
+    bool SetNewReportGridGenerator(PSS_GenericGridReportGenerator* pGenerator );
+    PSS_GenericGridReportGenerator* GetReportGridGenerator()
     {
         if ( GetPrimaryDocument() == this )
         {
@@ -65,7 +69,7 @@ public:
                     dynamic_cast<ZDGridReportDocument*>( GetPrimaryDocument() )->GetReportGridGenerator() : NULL;
     };
 
-    void AssignGeneratorPtr( ZBGenericGridReportGenerator* pGenerator )
+    void AssignGeneratorPtr(PSS_GenericGridReportGenerator* pGenerator )
     {
         m_pGenerator = pGenerator;
     }
@@ -151,13 +155,8 @@ protected:
     virtual bool InitializeGrid();
 
 private:
-
-    ZBGenericGridReportGenerator*    m_pGenerator;
+    PSS_GenericGridReportGenerator* m_pGenerator;
     bool                            m_ViewRequireDataRefresh;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZDGridReportDoc_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_)
+#endif

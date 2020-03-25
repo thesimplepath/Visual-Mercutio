@@ -71,7 +71,7 @@ bool ZBSesterceReportGenerator::FillGrid(CGXGridCore& GridCore, size_t Index)
 
 bool ZBSesterceReportGenerator::FillGridUnit(CGXGridCore& GridCore)
 {
-    ZBOStreamGrid ostream(&GridCore);
+    PSS_OStreamGrid ostream(&GridCore);
 
     // Default size
     GridCore.SetRowCount(60);        // 60 rows
@@ -176,7 +176,7 @@ bool ZBSesterceReportGenerator::FillGridUnit(CGXGridCore& GridCore)
     return true;
 }
 
-void ZBSesterceReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, ZBOStreamGrid &ostream)
+void ZBSesterceReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PSS_OStreamGrid& ostream)
 {
     if (!pGroup)
     {
@@ -256,7 +256,7 @@ void ZBSesterceReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, Z
     }
 }
 
-void ZBSesterceReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, ZBOStreamGrid &ostream)
+void ZBSesterceReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, PSS_OStreamGrid& ostream)
 {
     // Add the role line
     ostream << _T("\n");
@@ -306,7 +306,7 @@ bool ZBSesterceReportGenerator::FillGridProcess(CGXGridCore& GridCore, size_t In
     }
 
     // Construct the output stream grid object
-    ZBOStreamGrid ostream(&GridCore);
+    PSS_OStreamGrid ostream(&GridCore);
 
     // Default size
     GridCore.SetRowCount(60);        // 60 rows

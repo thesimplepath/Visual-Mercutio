@@ -18,7 +18,7 @@
 #include "zModelBP\PSS_StopSymbolBP.h"
 #include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
-#include "zReport\ZBOStreamGrid.h"
+#include "zReport\PSS_OStreamGrid.h"
 #include "zReport\ZVGridView.h"
 #include "zReport\ZCGridGroup.h"
 
@@ -50,7 +50,7 @@ ZUGridSesterceProcessNavigation::~ZUGridSesterceProcessNavigation()
 bool ZUGridSesterceProcessNavigation::OnStart()
 {
     // Start by casting the stream class
-    m_postream = static_cast<ZBOStreamGrid*>(m_pClass);
+    m_postream = static_cast<PSS_OStreamGrid*>(m_pClass);
 
     ASSERT(m_postream->GetGridCore() != NULL);
     ASSERT(m_pModel != NULL);

@@ -123,7 +123,7 @@ public:
     void Associate(PSS_ProcessSymbolBP* Process);
     void UpdateTotals();
 
-    void DisplayDatas(ZBOStreamGrid    &ostream,
+    void DisplayDatas(PSS_OStreamGrid& ostream,
                       CStringArray&    ProcessNameArray,
                       CGXStyle            DisplayStyle,
                       CGXStyle            AmountStyle,
@@ -187,13 +187,13 @@ protected:
 private:
 
     bool FillGridPrestationsReport(CGXGridCore& GridCore, int Index);
-    void FillGridPrestationsHeaders(ZBOStreamGrid &ostream, ZVGridView* pView, int Index);
+    void FillGridPrestationsHeaders(PSS_OStreamGrid& ostream, ZVGridView* pView, int Index);
     void FillPrestationsDatas();
     void Associate(PSS_ProcessGraphModelMdlBP* m_RootModel);
     void UpdateTotals();
     void RemoveObsoleteDatas();
 
-    CPoint CheckColumn(ZBOStreamGrid &ostream, int Quantity);
+    CPoint CheckColumn(PSS_OStreamGrid& ostream, int Quantity);
 
 private:
 

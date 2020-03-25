@@ -17,8 +17,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zReport\ZBGenericGridReportGenerator.h"
-#include "zReport\ZBOStreamGrid.h"
+// processsoft
+#include "zReport\PSS_GenericGridReportGenerator.h"
+#include "zReport\PSS_OStreamGrid.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc
@@ -45,7 +46,7 @@ class PSS_ProcessGraphModelDoc;
 
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBModelBPReportGenerator : public ZBGenericGridReportGenerator
+class AFX_EXT_CLASS ZBModelBPReportGenerator : public PSS_GenericGridReportGenerator
 {
     DECLARE_SERIAL(ZBModelBPReportGenerator)
 

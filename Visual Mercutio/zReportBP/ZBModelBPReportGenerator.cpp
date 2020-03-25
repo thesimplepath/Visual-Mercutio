@@ -22,7 +22,7 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZBModelBPReportGenerator, ZBGenericGridReportGenerator, g_DefVersion)
+IMPLEMENT_SERIAL(ZBModelBPReportGenerator, PSS_GenericGridReportGenerator, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -31,7 +31,7 @@ IMPLEMENT_SERIAL(ZBModelBPReportGenerator, ZBGenericGridReportGenerator, g_DefVe
 ZBModelBPReportGenerator::ZBModelBPReportGenerator( ZDGridDocument*                pDoc        /*= NULL*/,
                                                    PSS_ProcessGraphModelMdlBP*    pModel        /*= NULL*/,
                                                    PSS_ProcessGraphModelDoc*        pSourceDoc    /*= NULL*/ )
-    : ZBGenericGridReportGenerator    ( pDoc ),
+    : PSS_GenericGridReportGenerator(pDoc),
       m_pModel                        ( pModel ),
       m_pSourceDoc                    ( pSourceDoc ),
       m_InChargeOfClosingFile        ( false )
@@ -87,7 +87,7 @@ bool ZBModelBPReportGenerator::ReportDataMustBeReloaded() const
         }
     }
 
-    return ZBGenericGridReportGenerator::ReportDataMustBeReloaded();
+    return PSS_GenericGridReportGenerator::ReportDataMustBeReloaded();
 }
 
 void ZBModelBPReportGenerator::OnPostRead( CArchive& ar )
@@ -123,7 +123,7 @@ void ZBModelBPReportGenerator::OnPostDataFilled( size_t Index )
     }
     else
     {
-        ZBGenericGridReportGenerator::OnPostDataFilled( Index );
+        PSS_GenericGridReportGenerator::OnPostDataFilled( Index );
     }
 }
 
@@ -133,12 +133,12 @@ void ZBModelBPReportGenerator::OnPostDataFilled( size_t Index )
 #ifdef _DEBUG
 void ZBModelBPReportGenerator::AssertValid() const
 {
-    ZBGenericGridReportGenerator::AssertValid();
+    PSS_GenericGridReportGenerator::AssertValid();
 }
 
 void ZBModelBPReportGenerator::Dump( CDumpContext& dc ) const
 {
-    ZBGenericGridReportGenerator::Dump( dc );
+    PSS_GenericGridReportGenerator::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -147,7 +147,7 @@ void ZBModelBPReportGenerator::Dump( CDumpContext& dc ) const
 
 void ZBModelBPReportGenerator::Serialize( CArchive& ar )
 {
-    ZBGenericGridReportGenerator::Serialize( ar );
+    PSS_GenericGridReportGenerator::Serialize( ar );
 
     // Serialize the tab name array
     m_TabNameArray.Serialize( ar );

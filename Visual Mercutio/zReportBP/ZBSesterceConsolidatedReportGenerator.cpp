@@ -216,7 +216,7 @@ void ZBSesterceConsolidatedReportGenerator::FillTabArray()
 
 bool ZBSesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& GridCore, size_t Index)
 {
-    ZBOStreamGrid ostream(&GridCore);
+    PSS_OStreamGrid ostream(&GridCore);
 
     // Default size
     GridCore.SetRowCount(60);        // 60 rows
@@ -554,9 +554,9 @@ bool ZBSesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& GridCore, size
     return true;
 }
 
-void ZBSesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity*    pGroup,
-                                                              size_t                Index,
-                                                              ZBOStreamGrid        &ostream)
+void ZBSesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup,
+                                                              std::size_t          Index,
+                                                              PSS_OStreamGrid&     ostream)
 {
     if (!pGroup)
     {
@@ -651,8 +651,8 @@ void ZBSesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEntit
 void ZBSesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
                                                                PSS_UserGroupCalculateTotals* pTotal,
                                                                PSS_UserGroupEntity*          pGroup,
-                                                               size_t                        Index,
-                                                               ZBOStreamGrid                 &ostream)
+                                                               std::size_t                   Index,
+                                                               PSS_OStreamGrid&              ostream)
 {
     ASSERT(pGroup);
     ASSERT(pTotal);
@@ -784,9 +784,9 @@ void ZBSesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGraphM
     }
 }
 
-void ZBSesterceConsolidatedReportGenerator::FillGridUnitRole(PSS_UserRoleEntity*    pRole,
-                                                             size_t            Index,
-                                                             ZBOStreamGrid        &ostream)
+void ZBSesterceConsolidatedReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole,
+                                                             std::size_t         Index,
+                                                             PSS_OStreamGrid&    ostream)
 {
     // Do nothing for role
 }

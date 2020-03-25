@@ -66,7 +66,7 @@ public:
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
+    virtual bool FillGrid(CGXGridCore& GridCore, std::size_t Index);
 
     virtual const CString GetReportTitle() const;
 
@@ -77,14 +77,14 @@ protected:
 private:
 
     void RemoveAllData();
-    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, size_t Index, ZBOStreamGrid &ostream);
-    void FillGridUnitRole(PSS_UserRoleEntity* pRole, size_t Index, ZBOStreamGrid &ostream);
+    void FillGridUnitGroup(PSS_UserGroupEntity* pGroup, std::size_t Index, PSS_OStreamGrid& ostream);
+    void FillGridUnitRole(PSS_UserRoleEntity* pRole, std::size_t Index, PSS_OStreamGrid& ostream);
 
     void FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
                             PSS_UserGroupCalculateTotals* pTotal,
                             PSS_UserGroupEntity*          pGroup,
-                            size_t                        Index,
-                            ZBOStreamGrid                 &ostream);
+                            std::size_t                   Index,
+                            PSS_OStreamGrid&              ostream);
 
     // Implementation
 private:
