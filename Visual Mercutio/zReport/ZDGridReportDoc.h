@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZDGridDoc.h"
+#include "PSS_GridDocument.h"
 #include "ZIGridReportGenerator.h"
 
 // old class name mapping
@@ -40,55 +40,55 @@ class PSS_GenericGridReportGenerator;
 
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZDGridReportDocument : public ZDGridDocument, public ZIGridReportGenerator
+class AFX_EXT_CLASS ZDGridReportDocument : public PSS_GridDocument, public ZIGridReportGenerator
 {
 protected:
 
-    GXDECLARE_DYNCREATE( ZDGridReportDocument )
+    GXDECLARE_DYNCREATE(ZDGridReportDocument)
 
-    // Create from serialization only
-    ZDGridReportDocument();
+        // Create from serialization only
+        ZDGridReportDocument();
 
 public:
 
     virtual ~ZDGridReportDocument();
 
-// Operations
+    // Operations
 public:
 
-    bool SetNewReportGridGenerator(PSS_GenericGridReportGenerator* pGenerator );
+    bool SetNewReportGridGenerator(PSS_GenericGridReportGenerator* pGenerator);
     PSS_GenericGridReportGenerator* GetReportGridGenerator()
     {
-        if ( GetPrimaryDocument() == this )
+        if (GetPrimaryDocument() == this)
         {
             return m_pGenerator;
         }
 
-        return ( GetPrimaryDocument() &&
-                 ISA( GetPrimaryDocument(), ZDGridReportDocument ) ) ? 
-                    dynamic_cast<ZDGridReportDocument*>( GetPrimaryDocument() )->GetReportGridGenerator() : NULL;
+        return (GetPrimaryDocument() &&
+                ISA(GetPrimaryDocument(), ZDGridReportDocument)) ?
+            dynamic_cast<ZDGridReportDocument*>(GetPrimaryDocument())->GetReportGridGenerator() : NULL;
     };
 
-    void AssignGeneratorPtr(PSS_GenericGridReportGenerator* pGenerator )
+    void AssignGeneratorPtr(PSS_GenericGridReportGenerator* pGenerator)
     {
         m_pGenerator = pGenerator;
     }
 
     bool ViewRequireDataRefresh() const
     {
-        if ( GetPrimaryDocument() == const_cast<ZDGridReportDocument*>( this ) )
+        if (GetPrimaryDocument() == const_cast<ZDGridReportDocument*>(this))
         {
             return m_ViewRequireDataRefresh;
         }
 
-        return ( GetPrimaryDocument() &&
-                 ISA( GetPrimaryDocument(), ZDGridReportDocument ) ) ? 
-                    dynamic_cast<ZDGridReportDocument*>( GetPrimaryDocument() )->ViewRequireDataRefresh() : false;
+        return (GetPrimaryDocument() &&
+                ISA(GetPrimaryDocument(), ZDGridReportDocument)) ?
+            dynamic_cast<ZDGridReportDocument*>(GetPrimaryDocument())->ViewRequireDataRefresh() : false;
     };
 
     /////////////////////////////////////////////////////////////////////////////
     // ZIGridReportGenerator methods
-    
+
     // Initialization method
     virtual bool Initialize()
     {
@@ -99,14 +99,14 @@ public:
     virtual size_t GetGeneratorTabCount() const;
 
     // Returns the tab name corresponding to the index
-    virtual const CString GetGeneratorTabName( size_t Index );
+    virtual const CString GetGeneratorTabName(size_t Index);
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     // Report identifier methods
-    virtual void SetReportTypeID( int TypeID );
+    virtual void SetReportTypeID(int TypeID);
     virtual int GetReportTypeID() const;
     virtual const CString GetReportTitle() const;
 
@@ -116,10 +116,10 @@ public:
     virtual bool UseAutomaticReload() const;
 
     // Call-back methods
-    virtual void OnPreDataFilled( size_t Index );
-    virtual void OnPostDataFilled( size_t Index );
+    virtual void OnPreDataFilled(size_t Index);
+    virtual void OnPostDataFilled(size_t Index);
 
-    virtual bool OnPostInitialized( CGXTabWndMgr* pMgr, CGXAppAdapter* pAppAdapt, bool NewFile );
+    virtual bool OnPostInitialized(CGXTabWndMgr* pMgr, CGXAppAdapter* pAppAdapt, bool NewFile);
 
     // Reload all tab names from the generator
     bool SetAllTabNameToGrid();
@@ -127,21 +127,21 @@ public:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZDGridReportDocument)
-    public:
+public:
     virtual void WorkBookSerialize(CArchive& ar);
     //}}AFX_VIRTUAL
 
-    virtual BOOL OnOpenDocument( LPCTSTR pszPathName );
+    virtual BOOL OnOpenDocument(LPCTSTR pszPathName);
 
-// Implementation
+    // Implementation
 public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(ZDGridReportDocument)

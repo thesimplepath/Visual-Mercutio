@@ -2,11 +2,11 @@
 
 #include "stdafx.h"
 
-#include "ZDGridDoc.h"
+#include "PSS_GridDocument.h"
 #include "ZVGridView.h"
 
-#include "ZCGridCheckBox.h"
-#include "ZCGridGroup.h"
+#include "PSS_GridCheckBox.h"
+#include "PSS_GridGroup.h"
 
 #include "zRes32\zRes.h"
 #include "zBaseLib\PSS_MsgBox.h"
@@ -102,7 +102,7 @@ int ZVGridView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void ZVGridView::SetupControls()
 {
     // owner drawn checkbox
-    RegisterControl(GX_IDS_CTRL_CHECKBOX, new ZCGridCheckBox(this));
+    RegisterControl(GX_IDS_CTRL_CHECKBOX, new PSS_GridCheckBox(this));
 
 }
 
@@ -125,10 +125,10 @@ void ZVGridView::InsertGroupCtrl(ROWCOL        Row,
                                    ToolTipText);
 }
 
-ZCGridGroup* ZVGridView::FindGroupCtrl(ROWCOL Row, ROWCOL Col)
+PSS_GridGroup* ZVGridView::FindGroupCtrl(ROWCOL Row, ROWCOL Col)
 {
     ASSERT(GetDocument());
-    return GetDocument()->FindGroupCtrl(Row, Col);
+    return GetDocument()->SearchGroupCtrl(Row, Col);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ ZCGridGroup* ZVGridView::FindGroupCtrl(ROWCOL Row, ROWCOL Col)
 
 void ZVGridView::OnDraw(CDC* pDC)
 {
-    ZDGridDocument* pDoc = GetDocument();
+    PSS_GridDocument* pDoc = GetDocument();
     ASSERT_VALID(pDoc);
     CGXGridView::OnDraw(pDC);
 }
@@ -418,7 +418,7 @@ bool ZVGridView::ImportTextFile(const CString fileName)
 
 void ZVGridView::FreezeSplitter()
 {
-    ZDGridDocument* pDoc = GetDocument();
+    PSS_GridDocument* pDoc = GetDocument();
 
     if (pDoc &&
         (pDoc->GetFrozenRow() != 0 ||
@@ -508,7 +508,7 @@ void ZVGridView::OnUpdateViewZoomOut(CCmdUI* pCmdUI)
 
 void ZVGridView::OnClickedButtonRowCol(ROWCOL nRow, ROWCOL nCol)
 {
-    ZCGridGroup* pCtrl = FindGroupCtrl(nRow, nCol);
+    PSS_GridGroup* pCtrl = FindGroupCtrl(nRow, nCol);
 
     // Toggle the group control
     if (pCtrl)
@@ -545,7 +545,7 @@ void ZVGridView::OnUpdateFreezeSplitter(CCmdUI* pCmdUI)
     ROWCOL FrozenHeaderRow = GetHeaderRows();
     ROWCOL FrozenHeaderCol = GetHeaderCols();
 
-    ZDGridDocument* pDoc = GetDocument();
+    PSS_GridDocument* pDoc = GetDocument();
 
     if (pDoc)
     {
@@ -576,7 +576,7 @@ void ZVGridView::OnUpdateUnfreezeSplitter(CCmdUI* pCmdUI)
     ROWCOL FrozenHeaderRow = GetHeaderRows();
     ROWCOL FrozenHeaderCol = GetHeaderCols();
 
-    ZDGridDocument* pDoc = GetDocument();
+    PSS_GridDocument* pDoc = GetDocument();
 
     if (pDoc)
     {
@@ -616,26 +616,26 @@ void ZVGridView::Dump(CDumpContext& dc) const
 }
 
 // Non-debug version is inline
-ZDGridDocument* ZVGridView::GetDocument()
+PSS_GridDocument* ZVGridView::GetDocument()
 {
-    ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(ZDGridDocument)));
-    return (ZDGridDocument*)m_pDocument;
+    ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(PSS_GridDocument)));
+    return (PSS_GridDocument*)m_pDocument;
 }
 
 // Non-debug version is inline
-ZDGridDocument* ZVGridView::GetMasterDocument()
+PSS_GridDocument* ZVGridView::GetMasterDocument()
 {
-    if (m_pDocument && ISA(dynamic_cast<ZDGridDocument*>(m_pDocument)->GetPrimaryDocument(), ZDGridDocument))
+    if (m_pDocument && ISA(dynamic_cast<PSS_GridDocument*>(m_pDocument)->GetPrimaryDocument(), PSS_GridDocument))
     {
-        return dynamic_cast<ZDGridDocument*>(dynamic_cast<ZDGridDocument*>(m_pDocument)->GetPrimaryDocument());
+        return dynamic_cast<PSS_GridDocument*>(dynamic_cast<PSS_GridDocument*>(m_pDocument)->GetPrimaryDocument());
     }
 
     return NULL;
 }
 #else
 // Non-debug version is inline
-ZDGridDocument* ZVGridView::GetMasterDocument()
+PSS_GridDocument* ZVGridView::GetMasterDocument()
 {
-    return (GetDocument()) ? (ZDGridDocument*)(GetDocument()->GetPrimaryDocument()) : NULL;
+    return (GetDocument()) ? (PSS_GridDocument*)(GetDocument()->GetPrimaryDocument()) : NULL;
 }
 #endif

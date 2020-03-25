@@ -9,7 +9,7 @@
 #include "PSS_GenericGridReportGenerator.h"
 
 // processsoft
-#include "ZDGridDoc.h"
+#include "PSS_GridDocument.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -24,7 +24,7 @@ IMPLEMENT_SERIAL(PSS_GenericGridReportGenerator, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_GenericGridReportGenerator
 //---------------------------------------------------------------------------
-PSS_GenericGridReportGenerator::PSS_GenericGridReportGenerator(ZDGridDocument* pDoc) :
+PSS_GenericGridReportGenerator::PSS_GenericGridReportGenerator(PSS_GridDocument* pDoc) :
     CObject(),
     ZIGridReportGenerator(),
     m_pDoc(pDoc),

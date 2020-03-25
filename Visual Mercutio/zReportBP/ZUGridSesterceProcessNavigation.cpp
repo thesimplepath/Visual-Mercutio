@@ -6,7 +6,7 @@
 #include "ZUGridSesterceProcessNavigation.h"
 
 #include "zModel\PSS_ProcessGraphModelMdl.h"
-#include "zReport\ZDGridDoc.h"
+#include "zReport\PSS_GridDocument.h"
 
 #include "zModel\PSS_Symbol.h"
 #include "zModel\PSS_LinkSymbol.h"
@@ -20,7 +20,7 @@
 
 #include "zReport\PSS_OStreamGrid.h"
 #include "zReport\ZVGridView.h"
-#include "zReport\ZCGridGroup.h"
+#include "zReport\PSS_GridGroup.h"
 
 #include "ColorRefDefinition.h"
 
@@ -957,7 +957,7 @@ bool ZUGridSesterceProcessNavigation::OnFinish()
         pView = dynamic_cast<ZVGridView*>(pWnd);
     }
 
-    ZDGridDocument* pDoc = pView->GetDocument();
+    PSS_GridDocument* pDoc = pView->GetDocument();
 
     if (pDoc)
     {

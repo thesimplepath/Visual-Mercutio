@@ -30,7 +30,7 @@
 #include "ZIGridReportGenerator.h"
 
 // forward class declaration
-class ZDGridDocument;
+class PSS_GridDocument;
 
 #ifdef _ZREPORTEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -55,7 +55,7 @@ class AFX_EXT_CLASS PSS_GenericGridReportGenerator : public CObject, public ZIGr
         * Constructor
         *@param pDoc - the document from which the report should be generated
         */
-        PSS_GenericGridReportGenerator(ZDGridDocument* pDoc = NULL);
+        PSS_GenericGridReportGenerator(PSS_GridDocument* pDoc = NULL);
 
         virtual ~PSS_GenericGridReportGenerator();
 
@@ -69,13 +69,13 @@ class AFX_EXT_CLASS PSS_GenericGridReportGenerator : public CObject, public ZIGr
         * Gets the document
         *@return the document
         */
-        virtual inline ZDGridDocument* GetDocument() const;
+        virtual inline PSS_GridDocument* GetDocument() const;
 
         /**
         * Sets the document
         *@param pDoc - the document
         */
-        virtual inline void SetDocument(ZDGridDocument* pDoc);
+        virtual inline void SetDocument(PSS_GridDocument* pDoc);
 
         /**
         * Gets the document template
@@ -185,21 +185,21 @@ class AFX_EXT_CLASS PSS_GenericGridReportGenerator : public CObject, public ZIGr
         virtual void OnPostWrite(CArchive& ar);
 
     protected:
-        ZDGridDocument* m_pDoc;
-        PSS_Date        m_LastUpdateDateTime;
-        CString         m_FileName;
-        int             m_TypeID;
+        PSS_GridDocument* m_pDoc;
+        PSS_Date          m_LastUpdateDateTime;
+        CString           m_FileName;
+        int               m_TypeID;
 };
 
 //---------------------------------------------------------------------------
 // PSS_GenericGridReportGenerator
 //---------------------------------------------------------------------------
-ZDGridDocument* PSS_GenericGridReportGenerator::GetDocument() const
+PSS_GridDocument* PSS_GenericGridReportGenerator::GetDocument() const
 {
     return m_pDoc;
 }
 //---------------------------------------------------------------------------
-void PSS_GenericGridReportGenerator::SetDocument(ZDGridDocument* pDoc)
+void PSS_GenericGridReportGenerator::SetDocument(PSS_GridDocument* pDoc)
 {
     m_pDoc = pDoc;
 }

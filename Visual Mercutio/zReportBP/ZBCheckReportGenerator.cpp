@@ -7,7 +7,7 @@
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zReport\ZDGridDoc.h"
+#include "zReport\PSS_GridDocument.h"
 
 #include "zModelBP\PSS_ExtractProcessName.h"
 #include "ZUGridProcessNavigation.h"
@@ -36,7 +36,7 @@ IMPLEMENT_SERIAL(ZBCheckReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBCheckReportGenerator::ZBCheckReportGenerator(ZDGridDocument*                pDoc        /*= NULL*/,
+ZBCheckReportGenerator::ZBCheckReportGenerator(PSS_GridDocument*                pDoc        /*= NULL*/,
                                                PSS_ProcessGraphModelMdlBP*    pModel        /*= NULL*/,
                                                PSS_ProcessGraphModelDoc*        pSourceDoc    /*= NULL*/)
     : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc)

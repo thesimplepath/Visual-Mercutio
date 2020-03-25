@@ -181,19 +181,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCGridCheckBox.cpp">
+    <ClCompile Include="PSS_GridCheckBox.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCGridGroup.cpp">
+    <ClCompile Include="PSS_GridGroup.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDGridDoc.cpp">
+    <ClCompile Include="PSS_GridDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -262,9 +262,9 @@
     <ClInclude Include="PSS_IOStreamGrid.h" />
     <ClInclude Include="PSS_IStreamGrid.h" />
     <ClInclude Include="PSS_OStreamGrid.h" />
-    <ClInclude Include="ZCGridCheckBox.h" />
-    <ClInclude Include="ZCGridGroup.h" />
-    <ClInclude Include="ZDGridDoc.h" />
+    <ClInclude Include="PSS_GridCheckBox.h" />
+    <ClInclude Include="PSS_GridGroup.h" />
+    <ClInclude Include="PSS_GridDocument.h" />
     <ClInclude Include="ZDGridReportDoc.h" />
     <ClInclude Include="ZIGridReportGenerator.h" />
     <ClInclude Include="zReportLib.h" />

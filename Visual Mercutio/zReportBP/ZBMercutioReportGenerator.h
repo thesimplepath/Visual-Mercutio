@@ -22,10 +22,10 @@
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
-    #define PSS_UserGroupEntity ZBUserGroupEntity
+#define PSS_UserGroupEntity ZBUserGroupEntity
 #endif
 #ifndef PSS_UserRoleEntity
-    #define PSS_UserRoleEntity ZBUserRoleEntity
+#define PSS_UserRoleEntity ZBUserRoleEntity
 #endif
 
 // forward class declaration
@@ -46,41 +46,41 @@ class PSS_UserRoleEntity;
 
 class AFX_EXT_CLASS ZBMercutioReportGenerator : public ZBModelBPReportGenerator
 {
-    DECLARE_SERIAL( ZBMercutioReportGenerator )
+    DECLARE_SERIAL(ZBMercutioReportGenerator)
 
 public:
 
-    ZBMercutioReportGenerator( ZDGridDocument*                pDoc        = NULL,
-                              PSS_ProcessGraphModelMdlBP*    pModel        = NULL,
-                              PSS_ProcessGraphModelDoc*        pSourceDoc    = NULL );
+    ZBMercutioReportGenerator(PSS_GridDocument*                pDoc = NULL,
+                              PSS_ProcessGraphModelMdlBP*    pModel = NULL,
+                              PSS_ProcessGraphModelDoc*        pSourceDoc = NULL);
 
     virtual ~ZBMercutioReportGenerator();
 
     /////////////////////////////////////////////////////////////////////////////
     // ZIGridReportGenerator methods
-    
-    virtual void Initialize( ZDGridDocument*            pDoc,
+
+    virtual void Initialize(PSS_GridDocument*            pDoc,
                             PSS_ProcessGraphModelMdlBP*    pModel,
-                            PSS_ProcessGraphModelDoc*    pSourceDoc );
+                            PSS_ProcessGraphModelDoc*    pSourceDoc);
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation
-    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     virtual const CString GetReportTitle() const;
 
     // Serialization call-back
-    virtual void OnPostRead( CArchive& ar );
+    virtual void OnPostRead(CArchive& ar);
 
     // Serialization
     virtual void Serialize(CArchive& ar);
-    
-// Implementation
+
+    // Implementation
 public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 protected:
@@ -89,12 +89,12 @@ protected:
 
 private:
 
-    bool FillGridProcedures        ( CGXGridCore& GridCore, size_t Index );
-    bool FillGridDeliverables    ( CGXGridCore& GridCore, size_t Index );
+    bool FillGridProcedures(CGXGridCore& GridCore, size_t Index);
+    bool FillGridDeliverables(CGXGridCore& GridCore, size_t Index);
 
 private:
 
     CString m_SubModelName;
 };
 
-#endif // !defined(AFX_ZBMERCUTIOREPORTGENERATOR_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
+#endif

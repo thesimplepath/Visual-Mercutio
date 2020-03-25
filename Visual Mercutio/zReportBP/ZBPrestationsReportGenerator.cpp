@@ -788,7 +788,7 @@ IMPLEMENT_SERIAL(ZBPrestationsReportGenerator, ZBModelBPReportGenerator, g_DefVe
 // ******************************************************************************************************
 
 // Constructeur par défaut de la classe ZBPrestationsReportGenerator.
-ZBPrestationsReportGenerator::ZBPrestationsReportGenerator(ZDGridDocument*                pDoc                /*= NULL*/,
+ZBPrestationsReportGenerator::ZBPrestationsReportGenerator(PSS_GridDocument*                pDoc                /*= NULL*/,
                                                            PSS_ProcessGraphModelMdlBP*    pModel                /*= NULL*/,
                                                            PSS_ProcessGraphModelDoc*        pSourceDoc            /*= NULL*/,
                                                            bool                        IncludeMonthDetails    /*= true*/)
@@ -1290,7 +1290,7 @@ void ZBPrestationsReportGenerator::FillGridPrestationsHeaders(PSS_OStreamGrid& o
     }
 
     // Gèle les colonnes inamovibles.
-    ZDGridDocument* pDoc = pView->GetDocument();
+    PSS_GridDocument* pDoc = pView->GetDocument();
 
     if (pDoc)
     {

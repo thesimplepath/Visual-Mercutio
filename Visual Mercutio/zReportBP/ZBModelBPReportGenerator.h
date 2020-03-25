@@ -23,14 +23,14 @@
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc
-    #define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
+#define PSS_ProcessGraphModelDoc ZDProcessGraphModelDoc
 #endif
 #ifndef PSS_ProcessGraphModelMdlBP
-    #define PSS_ProcessGraphModelMdlBP ZDProcessGraphModelMdlBP
+#define PSS_ProcessGraphModelMdlBP ZDProcessGraphModelMdlBP
 #endif
 
 // forward class declaration
-class ZDGridDocument;
+class PSS_GridDocument;
 class PSS_ProcessGraphModelMdlBP;
 class PSS_ProcessGraphModelDoc;
 
@@ -52,13 +52,13 @@ class AFX_EXT_CLASS ZBModelBPReportGenerator : public PSS_GenericGridReportGener
 
 public:
 
-    ZBModelBPReportGenerator(ZDGridDocument*            pDoc = NULL,
+    ZBModelBPReportGenerator(PSS_GridDocument*            pDoc = NULL,
                              PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                              PSS_ProcessGraphModelDoc*    pSourceDoc = NULL);
 
     virtual ~ZBModelBPReportGenerator();
 
-    virtual void Initialize(ZDGridDocument*            pDoc,
+    virtual void Initialize(PSS_GridDocument*            pDoc,
                             PSS_ProcessGraphModelMdlBP*    pModel,
                             PSS_ProcessGraphModelDoc*    pSourceDoc);
 

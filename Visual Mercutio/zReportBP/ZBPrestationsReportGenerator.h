@@ -22,9 +22,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // Architecture document/vue
-#include "zReport\ZDGridDoc.h"
+#include "zReport\PSS_GridDocument.h"
 #include "zReport\ZVGridView.h"
-#include "zReport\ZDGridDoc.h"
 #include "zReport\zReportRes.h"
 
 #include "zBaseLib\PSS_Global.h"
@@ -164,7 +163,7 @@ class AFX_EXT_CLASS ZBPrestationsReportGenerator : public ZBModelBPReportGenerat
 
 public:
 
-    ZBPrestationsReportGenerator(ZDGridDocument*            pDoc = NULL,
+    ZBPrestationsReportGenerator(PSS_GridDocument*            pDoc = NULL,
                                  PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                                  PSS_ProcessGraphModelDoc*    pSourceDoc = NULL,
                                  bool                        IncludeMonthDetails = true);

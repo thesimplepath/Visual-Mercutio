@@ -27,12 +27,10 @@ static PSS_GenericGridReportGenerator* g_pGenerator = NULL;
 /////////////////////////////////////////////////////////////////////////////
 // ZDGridReportDocument
 
-GXIMPLEMENT_DYNCREATE(ZDGridReportDocument, ZDGridDocument)
+GXIMPLEMENT_DYNCREATE(ZDGridReportDocument, PSS_GridDocument)
 
-BEGIN_MESSAGE_MAP(ZDGridReportDocument, ZDGridDocument)
+BEGIN_MESSAGE_MAP(ZDGridReportDocument, PSS_GridDocument)
     //{{AFX_MSG_MAP(ZDGridReportDocument)
-        // NOTE - the ClassWizard will add and remove mapping macros here.
-        //    DO NOT EDIT what you see in these blocks of generated code!
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -379,7 +377,7 @@ void ZDGridReportDocument::OnPostDataFilled(size_t Index)
 
 void ZDGridReportDocument::WorkBookSerialize(CArchive& ar)
 {
-    ZDGridDocument::WorkBookSerialize(ar);
+    PSS_GridDocument::WorkBookSerialize(ar);
 
     if (ar.IsStoring())
     {
@@ -414,7 +412,7 @@ BOOL ZDGridReportDocument::OnOpenDocument(LPCTSTR pszPathName)
     // Set to false. If necessary, will be set to true later
     m_ViewRequireDataRefresh = false;
 
-    if (!ZDGridDocument::OnOpenDocument(pszPathName))
+    if (!PSS_GridDocument::OnOpenDocument(pszPathName))
     {
         return FALSE;
     }
@@ -509,11 +507,11 @@ bool ZDGridReportDocument::OnPostInitialized(CGXTabWndMgr* pMgr, CGXAppAdapter* 
 #ifdef _DEBUG
 void ZDGridReportDocument::AssertValid() const
 {
-    ZDGridDocument::AssertValid();
+    PSS_GridDocument::AssertValid();
 }
 
 void ZDGridReportDocument::Dump(CDumpContext& dc) const
 {
-    ZDGridDocument::Dump(dc);
+    PSS_GridDocument::Dump(dc);
 }
-#endif //_DEBUG
+#endif

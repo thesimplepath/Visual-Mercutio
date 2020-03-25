@@ -8,7 +8,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModel\PSS_ProcessGraphPage.h"
-#include "zReport\ZDGridDoc.h"
+#include "zReport\PSS_GridDocument.h"
 #include "zModel\PSS_UserGroupEntity.h"
 
 #include "zModelBP\PSS_StartSymbolBP.h"
@@ -41,7 +41,7 @@ IMPLEMENT_SERIAL(ZBConceptorReportGenerator, ZBModelBPReportGenerator, g_DefVers
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBConceptorReportGenerator::ZBConceptorReportGenerator(ZDGridDocument*                pDoc                    /*= NULL*/,
+ZBConceptorReportGenerator::ZBConceptorReportGenerator(PSS_GridDocument*                pDoc                    /*= NULL*/,
                                                        PSS_ProcessGraphModelMdlBP*    pModel                    /*= NULL*/,
                                                        PSS_ProcessGraphModelDoc*        pSourceDoc                /*= NULL*/,
                                                        BOOL                        bIncludeSynthesis        /*= TRUE*/,
@@ -60,7 +60,7 @@ ZBConceptorReportGenerator::ZBConceptorReportGenerator(ZDGridDocument*          
 ZBConceptorReportGenerator::~ZBConceptorReportGenerator()
 {}
 
-void ZBConceptorReportGenerator::Initialize(ZDGridDocument*            pDoc,
+void ZBConceptorReportGenerator::Initialize(PSS_GridDocument*            pDoc,
                                             PSS_ProcessGraphModelMdlBP*    pModel,
                                             PSS_ProcessGraphModelDoc*    pSourceDoc,
                                             BOOL                        bIncludeSynthesis        /*= TRUE*/,
@@ -138,6 +138,9 @@ void ZBConceptorReportGenerator::FillTabArray()
 
 void ZBConceptorReportGenerator::FillTabUnitGroup(PSS_UserGroupEntity* pGroup)
 {
+    if (!pGroup)
+        return;
+
     m_TabNameArray.Add(pGroup->GetEntityName());
     m_UnitCommentArray.Add((pGroup->GetEntityDescription().IsEmpty()) ? _T(" ") : pGroup->GetEntityDescription());
 

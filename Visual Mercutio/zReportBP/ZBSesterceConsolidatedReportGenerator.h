@@ -56,7 +56,7 @@ class AFX_EXT_CLASS ZBSesterceConsolidatedReportGenerator : public ZBModelBPRepo
 
 public:
 
-    ZBSesterceConsolidatedReportGenerator(ZDGridDocument*                pDoc = NULL,
+    ZBSesterceConsolidatedReportGenerator(PSS_GridDocument*                pDoc = NULL,
                                           PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                                           PSS_ProcessGraphModelDoc*        pSourceDoc = NULL,
                                           bool                            IncludeMonthDetail = true);

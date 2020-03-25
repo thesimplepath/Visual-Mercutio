@@ -17,10 +17,14 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
-class ZDGridDocument;
-class ZCGridGroup;
+// old class name mapping
+#ifndef PSS_GridGroup
+#define PSS_GridGroup ZCGridGroup
+#endif
+
+// forward class declaration
+class PSS_GridDocument;
+class PSS_GridGroup;
 
 #ifdef _ZREPORTEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -38,22 +42,22 @@ class AFX_EXT_CLASS ZVGridView : public CGXGridView
 {
 protected:
 
-    GXDECLARE_DYNCREATE( ZVGridView )
+    GXDECLARE_DYNCREATE(ZVGridView)
 
-    // Create from serialization only
-    ZVGridView();
+        // Create from serialization only
+        ZVGridView();
 
 public:
 
     virtual ~ZVGridView();
 
-// Attributes
+    // Attributes
 public:
 
-    ZDGridDocument* GetDocument();
-    ZDGridDocument* GetMasterDocument();
+    PSS_GridDocument* GetDocument();
+    PSS_GridDocument* GetMasterDocument();
 
-// Operations
+    // Operations
 public:
 
     // User attributes initialization 
@@ -62,22 +66,22 @@ public:
     // Setup special controls
     virtual void SetupControls();
 
-    void InsertGroupCtrl( ROWCOL        Row,
-                          ROWCOL        Col,
-                          int            CoveringCells,
-                          bool            Horizontal,
-                          bool            Collapsed,
-                          const CString    Label            = _T( "" ),
-                          const CString    ToolTipText        = _T( "" ) );
+    void InsertGroupCtrl(ROWCOL        Row,
+                         ROWCOL        Col,
+                         int            CoveringCells,
+                         bool            Horizontal,
+                         bool            Collapsed,
+                         const CString    Label = _T(""),
+                         const CString    ToolTipText = _T(""));
 
-    ZCGridGroup* FindGroupCtrl( ROWCOL Row, ROWCOL Col );
+    PSS_GridGroup* FindGroupCtrl(ROWCOL Row, ROWCOL Col);
 
-    void SetPopupMenu( UINT nIDRes );
+    void SetPopupMenu(UINT nIDRes);
     void ExportToTextFile();
-    bool ExportToTextFile( const CString fileName);
+    bool ExportToTextFile(const CString fileName);
 
     void ImportTextFile();
-    bool ImportTextFile( const CString fileName);
+    bool ImportTextFile(const CString fileName);
 
     virtual void FreezeSplitter();
     virtual void UnfreezeSplitter();
@@ -91,10 +95,10 @@ public:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVGridView)
-    public:
+public:
     virtual void OnDraw(CDC* pDC);  // overridden to draw this view
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-    protected:
+protected:
     virtual void OnInitialUpdate(); // called first time after construct
     virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
     virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
@@ -118,14 +122,14 @@ public:
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 protected:
 
     // Generated message map functions
     //{{AFX_MSG(ZVGridView)
-    afx_msg int OnCreate( LPCREATESTRUCT lpCreateStruct );
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnExportToTextFile();
     afx_msg void OnUpdateExportToTextFile(CCmdUI* pCmdUI);
     afx_msg void OnImportFromTextFile();
@@ -135,7 +139,7 @@ protected:
 
     // Called by the framework when the right button is clicked,
     // The default behaviour will display the popup-menu
-    virtual BOOL OnRButtonClickedRowCol( ROWCOL nRow, ROWCOL nCol, UINT nFlags, CPoint pt );
+    virtual BOOL OnRButtonClickedRowCol(ROWCOL nRow, ROWCOL nCol, UINT nFlags, CPoint pt);
 
 private:
 
@@ -144,14 +148,10 @@ private:
 
 #ifndef _DEBUG
 // Debug version in og70View.cpp
-inline ZDGridDocument* ZVGridView::GetDocument()
+inline PSS_GridDocument* ZVGridView::GetDocument()
 {
-    return (ZDGridDocument*)m_pDocument;
+    return (PSS_GridDocument*)m_pDocument;
 }
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVGridView_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_)
+#endif

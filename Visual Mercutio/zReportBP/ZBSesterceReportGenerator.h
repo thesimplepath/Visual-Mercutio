@@ -50,7 +50,7 @@ class AFX_EXT_CLASS ZBSesterceReportGenerator : public ZBModelBPReportGenerator
 
 public:
 
-    ZBSesterceReportGenerator(ZDGridDocument*                pDoc = NULL,
+    ZBSesterceReportGenerator(PSS_GridDocument*                pDoc = NULL,
                               PSS_ProcessGraphModelMdlBP*    pModel = NULL,
                               PSS_ProcessGraphModelDoc*        pSourceDoc = NULL);
 

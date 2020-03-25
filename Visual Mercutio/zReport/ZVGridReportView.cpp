@@ -16,9 +16,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVGridReportView
 
-GXIMPLEMENT_DYNCREATE( ZVGridReportView, ZVGridView )
+GXIMPLEMENT_DYNCREATE(ZVGridReportView, ZVGridView)
 
-BEGIN_MESSAGE_MAP( ZVGridReportView, ZVGridView )
+BEGIN_MESSAGE_MAP(ZVGridReportView, ZVGridView)
     //{{AFX_MSG_MAP(ZVGridReportView)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -27,21 +27,19 @@ END_MESSAGE_MAP()
 // ZVGridReportView construction/destruction
 
 ZVGridReportView::ZVGridReportView()
-{
-}
+{}
 
 ZVGridReportView::~ZVGridReportView()
-{
-}
+{}
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVGridReportView drawing
 
-void ZVGridReportView::OnDraw( CDC* pDC )
+void ZVGridReportView::OnDraw(CDC* pDC)
 {
-    ZDGridDocument* pDoc = GetDocument();
-    ASSERT_VALID( pDoc );
-    ZVGridView::OnDraw( pDC );
+    PSS_GridDocument* pDoc = GetDocument();
+    ASSERT_VALID(pDoc);
+    ZVGridView::OnDraw(pDC);
     // TODO: add draw code for native data here
 }
 
@@ -49,13 +47,13 @@ void ZVGridReportView::OnInitialUpdate()
 {
     ZVGridView::OnInitialUpdate();
 
-    EnableHints( FALSE );
+    EnableHints(FALSE);
 
     // Lock any drawing
     BOOL bOld = LockUpdate();
 
     // disable undo mechanism for the following commands
-    GetParam()->EnableUndo( FALSE );
+    GetParam()->EnableUndo(FALSE);
 
     // Retrieve the right view index
     int Index = -1;
@@ -63,55 +61,55 @@ void ZVGridReportView::OnInitialUpdate()
     // RS-MODIF 15.12.04 doc bug
     CGXTabWnd* pTabWnd = GetTabWnd();
 
-    if ( pTabWnd )
+    if (pTabWnd)
     {
-        Index = pTabWnd->GetBeam().FindTab( this );
+        Index = pTabWnd->GetBeam().FindTab(this);
     }
 
-    if ( Index != -1 )
+    if (Index != -1)
     {
         // Sets the correct tab name
         // RS-MODIF 15.12.04 test
-        pTabWnd->SetTabName( Index,
-                             dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->GetGeneratorTabName( Index ) );
+        pTabWnd->SetTabName(Index,
+                            dynamic_cast<ZDGridReportDocument*>(GetMasterDocument())->GetGeneratorTabName(Index));
     }
 
     // Cast the document pointer to the rigth class type
     // This is required, because the ZDGridReportDocument implements 
     // the ZIGridReportGenerator interface
-    ASSERT( ISA( GetMasterDocument(), ZDGridReportDocument ) );
+    ASSERT(ISA(GetMasterDocument(), ZDGridReportDocument));
 
     // Now asks the master document to fill the grid
-    if ( Index != -1 && dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->ViewRequireDataRefresh() )
+    if (Index != -1 && dynamic_cast<ZDGridReportDocument*>(GetMasterDocument())->ViewRequireDataRefresh())
     {
         // Cast the document pointer to the rigth class type
         // This is required, because the ZDGridReportDocument implements 
         // the ZIGridReportGenerator interface
-        ASSERT( ISA( GetMasterDocument(), ZDGridReportDocument ) );
+        ASSERT(ISA(GetMasterDocument(), ZDGridReportDocument));
 
         // Call the predata filled call-back
-        dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->OnPreDataFilled( Index );
+        dynamic_cast<ZDGridReportDocument*>(GetMasterDocument())->OnPreDataFilled(Index);
 
         // Now asks the master document to fill the grid
-        if ( !dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->FillGrid( *this, Index ) )
+        if (!dynamic_cast<ZDGridReportDocument*>(GetMasterDocument())->FillGrid(*this, Index))
         {
             // Log error
         }
 
         // Call the postdata filled call-back
-        dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->OnPostDataFilled( Index );
+        dynamic_cast<ZDGridReportDocument*>(GetMasterDocument())->OnPostDataFilled(Index);
     }
 
     // Create group control if necessary
-    ZDGridDocument* pDoc = GetDocument();
-    ASSERT_VALID( pDoc );
-    pDoc->InitializeGroupControls( this );
+    PSS_GridDocument* pDoc = GetDocument();
+    ASSERT_VALID(pDoc);
+    pDoc->InitializeGroupControls(this);
 
     // Reenable undo mechanism
-    GetParam()->EnableUndo( TRUE );
+    GetParam()->EnableUndo(TRUE);
 
     // Unlock drawing
-    LockUpdate( bOld );
+    LockUpdate(bOld);
 
     // Just to be sure that everything is redrawn
     Invalidate();
@@ -138,8 +136,8 @@ void ZVGridReportView::AssertValid() const
     ZVGridView::AssertValid();
 }
 
-void ZVGridReportView::Dump( CDumpContext& dc ) const
+void ZVGridReportView::Dump(CDumpContext& dc) const
 {
-    ZVGridView::Dump( dc );
+    ZVGridView::Dump(dc);
 }
-#endif //_DEBUG
+#endif

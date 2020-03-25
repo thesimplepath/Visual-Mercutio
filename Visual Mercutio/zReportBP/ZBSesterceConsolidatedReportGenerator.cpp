@@ -7,7 +7,7 @@
 
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zReport\ZDGridDoc.h"
+#include "zReport\PSS_GridDocument.h"
 
 #include "zModelBP\PSS_ExtractProcessName.h"
 #include "ZUGridProcessNavigation.h"
@@ -21,7 +21,7 @@
 #include "zModel\PSS_UserRoleEntity.h"
 
 #include "zReport\ZVGridView.h"
-#include "zReport\ZCGridGroup.h"
+#include "zReport\PSS_GridGroup.h"
 
 #include "zBaseLib\PSS_Global.h"
 
@@ -48,7 +48,7 @@ IMPLEMENT_SERIAL(ZBSesterceConsolidatedReportGenerator, ZBModelBPReportGenerator
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBSesterceConsolidatedReportGenerator::ZBSesterceConsolidatedReportGenerator(ZDGridDocument*            pDoc                /*= NULL*/,
+ZBSesterceConsolidatedReportGenerator::ZBSesterceConsolidatedReportGenerator(PSS_GridDocument*            pDoc                /*= NULL*/,
                                                                              PSS_ProcessGraphModelMdlBP*    pModel                /*= NULL*/,
                                                                              PSS_ProcessGraphModelDoc*    pSourceDoc            /*= NULL*/,
                                                                              bool                        IncludeMonthDetail    /*= true*/)
@@ -538,7 +538,7 @@ bool ZBSesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& GridCore, size
     FillGridUnitGroup(m_pModel->GetMainUserGroup(), Index, ostream);
 
     // To finish, just freeze the first column
-    ZDGridDocument* pDoc = pView->GetDocument();
+    PSS_GridDocument* pDoc = pView->GetDocument();
 
     if (pDoc)
     {

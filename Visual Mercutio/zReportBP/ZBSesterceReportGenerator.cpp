@@ -9,7 +9,7 @@
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 
-#include "zReport\ZDGridDoc.h"
+#include "zReport\PSS_GridDocument.h"
 
 #include "zModelBP\PSS_ExtractProcessName.h"
 #include "ZUGridSesterceProcessNavigation.h"
@@ -39,7 +39,7 @@ IMPLEMENT_SERIAL(ZBSesterceReportGenerator, ZBModelBPReportGenerator, g_DefVersi
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBSesterceReportGenerator::ZBSesterceReportGenerator(ZDGridDocument*            pDoc        /*= NULL*/,
+ZBSesterceReportGenerator::ZBSesterceReportGenerator(PSS_GridDocument*            pDoc        /*= NULL*/,
                                                      PSS_ProcessGraphModelMdlBP*    pModel        /*= NULL*/,
                                                      PSS_ProcessGraphModelDoc*    pSourceDoc    /*= NULL*/)
     : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc)
