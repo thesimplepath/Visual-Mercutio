@@ -237,7 +237,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVGridView.cpp">
+    <ClCompile Include="PSS_GridView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -274,7 +274,7 @@
     <ClInclude Include="PSS_GridChildFrame.h" />
     <ClInclude Include="PSS_GridReportChildFrame.h" />
     <ClInclude Include="PSS_GridReportView.h" />
-    <ClInclude Include="ZVGridView.h" />
+    <ClInclude Include="PSS_GridView.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="check_gr.bmp" />

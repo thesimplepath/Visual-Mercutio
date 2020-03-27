@@ -252,7 +252,7 @@
     <ResourceCompile Include="zReportBP.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColorRefDefinition.h" />
+    <ClInclude Include="PSS_ColorRefDefinition.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ZBCheckReportGenerator.h" />
     <ClInclude Include="ZBConceptorReportGenerator.h" />

@@ -20,11 +20,11 @@
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-GXIMPLEMENT_DYNCREATE(PSS_GridReportView, ZVGridView)
+GXIMPLEMENT_DYNCREATE(PSS_GridReportView, PSS_GridView)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_GridReportView, ZVGridView)
+BEGIN_MESSAGE_MAP(PSS_GridReportView, PSS_GridView)
     //{{AFX_MSG_MAP(PSS_GridReportView)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -32,7 +32,7 @@ END_MESSAGE_MAP()
 // PSS_GridReportView
 //---------------------------------------------------------------------------
 PSS_GridReportView::PSS_GridReportView() :
-    ZVGridView()
+    PSS_GridView()
 {}
 //---------------------------------------------------------------------------
 PSS_GridReportView::~PSS_GridReportView()
@@ -41,26 +41,26 @@ PSS_GridReportView::~PSS_GridReportView()
 void PSS_GridReportView::SetupUserAttributes()
 {
     // call the basic implementation
-    ZVGridView::SetupUserAttributes();
+    PSS_GridView::SetupUserAttributes();
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_GridReportView::AssertValid() const
     {
-        ZVGridView::AssertValid();
+        PSS_GridView::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_GridReportView::Dump(CDumpContext& dc) const
     {
-        ZVGridView::Dump(dc);
+        PSS_GridView::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------
 void PSS_GridReportView::OnInitialUpdate()
 {
-    ZVGridView::OnInitialUpdate();
+    PSS_GridView::OnInitialUpdate();
 
     EnableHints(FALSE);
 
@@ -129,6 +129,6 @@ void PSS_GridReportView::OnInitialUpdate()
 void PSS_GridReportView::OnDraw(CDC* pDC)
 {
     ASSERT_VALID(GetDocument());
-    ZVGridView::OnDraw(pDC);
+    PSS_GridView::OnDraw(pDC);
 }
 //---------------------------------------------------------------------------

@@ -800,7 +800,7 @@ ZBPrestationsReportGenerator::ZBPrestationsReportGenerator(PSS_GridDocument*    
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))    // Police du texte
                  .SetSize(10)                                        // Taille du texte
                  .SetBold(FALSE))                                // Gras
-        .SetInterior(defCOLOR_GREYPROCESS);                // Couleur de fond
+        .SetInterior(M_Color_GreyProcess);                // Couleur de fond
 
 // Initialise le style pour les cellules composant le corps des rapports.
     m_NormalStyle.SetTextColor(defCOLOR_BLACK)                    // Couleur du texte
@@ -983,12 +983,12 @@ bool ZBPrestationsReportGenerator::FillGridPrestationsReport(CGXGridCore& GridCo
     GridCore.SetColCount(15);        // 15 colonnes
 
     // Obtient le pointeur sur l'objet vue de la grille.
-    ZVGridView*    pView = NULL;
-    CWnd*        pWnd = GridCore.GridWnd();
+    PSS_GridView* pView = NULL;
+    CWnd*         pWnd = GridCore.GridWnd();
 
-    if (pWnd && ISA(pWnd, ZVGridView))
+    if (pWnd && ISA(pWnd, PSS_GridView))
     {
-        pView = dynamic_cast<ZVGridView*>(pWnd);
+        pView = dynamic_cast<PSS_GridView*>(pWnd);
     }
 
     // Publie les en-têtes du rapport.
@@ -1017,7 +1017,7 @@ bool ZBPrestationsReportGenerator::FillGridPrestationsReport(CGXGridCore& GridCo
 }
 
 // Cette fonction permet la génération des en-têtes pour le rapport des prestations.
-void ZBPrestationsReportGenerator::FillGridPrestationsHeaders(PSS_OStreamGrid& ostream, ZVGridView* pView, int Index)
+void ZBPrestationsReportGenerator::FillGridPrestationsHeaders(PSS_OStreamGrid& ostream, PSS_GridView* pView, int Index)
 {
     CString    s = _T("");
     int        Count = m_ProcessNameArray.GetSize() + 1;

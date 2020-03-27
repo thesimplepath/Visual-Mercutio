@@ -26,7 +26,7 @@
 #endif
 
 // forward class declaration
-class ZVGridView;
+class PSS_GridView;
 class PSS_GridGroup;
 
 #ifdef _ZREPORTEXPORT
@@ -102,7 +102,7 @@ class AFX_EXT_CLASS PSS_GridDocument : public CGXDocument
         *@param index - the index
         *@return the tab view, NULL if not found or on error
         */
-        virtual ZVGridView* GetTabView(std::size_t index);
+        virtual PSS_GridView* GetTabView(std::size_t index);
 
         /**
         * Gets the tab grid core at index
@@ -115,7 +115,7 @@ class AFX_EXT_CLASS PSS_GridDocument : public CGXDocument
         * Gets the first document view
         *@return the first document view, NULL on error
         */
-        virtual ZVGridView* GetFirstView();
+        virtual PSS_GridView* GetFirstView();
 
         /**
         * Gets the tab name at index
@@ -175,7 +175,7 @@ class AFX_EXT_CLASS PSS_GridDocument : public CGXDocument
         * Initializes the group controls
         *@param pView - the grid view
         */
-        virtual void InitializeGroupControls(ZVGridView* pView);
+        virtual void InitializeGroupControls(PSS_GridView* pView);
 
         /**
         * Inserts a group control

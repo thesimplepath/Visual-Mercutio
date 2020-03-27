@@ -12,7 +12,7 @@
 #include <memory>
 
 // processsoft
-#include "ZVGridView.h"
+#include "PSS_GridView.h"
 #include "PSS_GridChildFrame.h"
 #include "PSS_GridGroup.h"
 
@@ -104,7 +104,7 @@ CGXTabWnd* PSS_GridDocument::GetTabWnd(std::size_t index)
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZVGridView* PSS_GridDocument::GetTabView(std::size_t index)
+PSS_GridView* PSS_GridDocument::GetTabView(std::size_t index)
 {
     PSS_GridDocument* pDoc = GetDocumentAt(index);
     return (pDoc ? pDoc->GetFirstView() : NULL);
@@ -115,14 +115,14 @@ CGXGridCore* PSS_GridDocument::GetTabGridCore(std::size_t index)
     return GetTabView(index);
 }
 //---------------------------------------------------------------------------
-ZVGridView* PSS_GridDocument::GetFirstView()
+PSS_GridView* PSS_GridDocument::GetFirstView()
 {
     POSITION pPos  = GetFirstViewPosition();
     CView*   pView = GetNextView(pPos);
 
     while (pView)
     {
-        ZVGridView* pGridView = dynamic_cast<ZVGridView*>(pView);
+        PSS_GridView* pGridView = dynamic_cast<PSS_GridView*>(pView);
 
         if (pGridView)
             return pGridView;
@@ -219,7 +219,7 @@ bool PSS_GridDocument::DeleteGridTab(std::size_t index)
     return  false;
 }
 //---------------------------------------------------------------------------
-void PSS_GridDocument::InitializeGroupControls(ZVGridView* pView)
+void PSS_GridDocument::InitializeGroupControls(PSS_GridView* pView)
 {
     IGridGroupIterator it(&m_GroupCtrlSet);
 
@@ -239,7 +239,7 @@ void PSS_GridDocument::InsertGroupCtrl(ROWCOL         row,
                                        const CString& label,
                                        const CString& tooltipText)
 {
-    ZVGridView* pView = GetFirstView();
+    PSS_GridView* pView = GetFirstView();
 
     std::unique_ptr<PSS_GridGroup> pCtrl(new PSS_GridGroup(pView,
                                                            row,
@@ -479,7 +479,7 @@ void PSS_GridDocument::WorkBookSerialize(CArchive& ar)
 //---------------------------------------------------------------------------
 bool PSS_GridDocument::InsertNewGridTabAt(std::size_t index)
 {
-    ZVGridView* pView = GetFirstView();
+    PSS_GridView* pView = GetFirstView();
     ASSERT(pView);
 
     PSS_GridChildFrame* pFrame = dynamic_cast<PSS_GridChildFrame*>(pView->GetParentFrame());

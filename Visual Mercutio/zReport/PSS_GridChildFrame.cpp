@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_GridDocument.h"
-#include "ZVGridView.h"
+#include "PSS_GridView.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -39,8 +39,8 @@ END_MESSAGE_MAP()
 PSS_GridChildFrame::PSS_GridChildFrame() :
     CGXWChildFrame()
 {
-    SetDocRuntimeClass(RUNTIME_CLASS(PSS_GridDocument));
-    SetViewRuntimeClass(RUNTIME_CLASS(ZVGridView));
+    SetDocRuntimeClass (RUNTIME_CLASS(PSS_GridDocument));
+    SetViewRuntimeClass(RUNTIME_CLASS(PSS_GridView));
 
     // initialize the number of tabs to 1, and not 3, as the default
     SetNumberOfTabs(1);

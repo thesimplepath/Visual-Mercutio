@@ -20,12 +20,12 @@
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_UserRoleEntity.h"
 
-#include "zReport\ZVGridView.h"
+#include "zReport\PSS_GridView.h"
 #include "zReport\PSS_GridGroup.h"
 
 #include "zBaseLib\PSS_Global.h"
 
-#include "ColorRefDefinition.h"
+#include "PSS_ColorRefDefinition.h"
 
 #include "zReport\zReportRes.h"
 #include "zReportBPRes.h"
@@ -70,35 +70,35 @@ ZBSesterceUnitReportGenerator::ZBSesterceUnitReportGenerator(PSS_GridDocument*  
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(10)
                  .SetBold(FALSE))
-        .SetInterior(defCOLOR_ROSESESTERCE);
+        .SetInterior(M_Color_RoseSesterce);
 
     // Initialize the bold rose style for header cells
     m_BoldRoseStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(10)
                  .SetBold(TRUE))
-        .SetInterior(defCOLOR_ROSESESTERCE);
+        .SetInterior(M_Color_RoseSesterce);
 
     // Initialize the blue style 
     m_BlueStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(9)
                  .SetBold(FALSE))
-        .SetInterior(defCOLOR_BLUEMERCUTIO);
+        .SetInterior(M_Color_BlueMercutio);
 
     // Initialize the blue style 
     m_GreenStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(9)
                  .SetBold(FALSE))
-        .SetInterior(defCOLOR_STARTGREEN);
+        .SetInterior(M_Color_StartGreen);
 
     // Initialize the blue style 
     m_RedStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(9)
                  .SetBold(FALSE))
-        .SetInterior(defCOLOR_ENDRED);
+        .SetInterior(M_Color_EndRed);
 
     // Initialize the blue style for header cells
     m_GrayStyle.SetTextColor(defCOLOR_WHITE)
@@ -219,12 +219,12 @@ bool ZBSesterceUnitReportGenerator::FillGrid(CGXGridCore& GridCore, size_t Index
     GridCore.SetColCount(15);        // 15 columns
 
     // Retrieve the grid view
-    ZVGridView* pView = NULL;
+    PSS_GridView* pView = NULL;
     CWnd* pWnd = GridCore.GridWnd();
 
-    if (pWnd && ISA(pWnd, ZVGridView))
+    if (pWnd && ISA(pWnd, PSS_GridView))
     {
-        pView = dynamic_cast<ZVGridView*>(pWnd);
+        pView = dynamic_cast<PSS_GridView*>(pWnd);
     }
 
     // Display header

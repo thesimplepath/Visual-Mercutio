@@ -19,7 +19,7 @@
 
 #include "zReport\PSS_OStreamGrid.h"
 
-#include "ColorRefDefinition.h"
+#include "PSS_ColorRefDefinition.h"
 
 #include "zModelBP\zModelBPRes.h"
 #include "zReportBPRes.h"
@@ -67,13 +67,13 @@ bool ZUGridMercutioRepDeliverableNavigation::OnStart()
     m_BlueStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(10).SetBold(FALSE))
-        .SetInterior(defCOLOR_BLUEMERCUTIO);
+        .SetInterior(M_Color_BlueMercutio);
 
     // Initialize the bold blue style for header cells
     m_BoldBlueStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(10).SetBold(TRUE))
-        .SetInterior(defCOLOR_BLUEMERCUTIO);
+        .SetInterior(M_Color_BlueMercutio);
 
     // Initialize the blue style for header cells
     m_GrayStyle.SetTextColor(defCOLOR_WHITE)

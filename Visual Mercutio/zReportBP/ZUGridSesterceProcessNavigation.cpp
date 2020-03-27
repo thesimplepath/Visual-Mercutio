@@ -19,10 +19,10 @@
 #include "zModelBP\PSS_DeliverableLinkSymbolBP.h"
 
 #include "zReport\PSS_OStreamGrid.h"
-#include "zReport\ZVGridView.h"
+#include "zReport\PSS_GridView.h"
 #include "zReport\PSS_GridGroup.h"
 
-#include "ColorRefDefinition.h"
+#include "PSS_ColorRefDefinition.h"
 
 #include "zModelBP\zModelBPRes.h"
 #include "zReportBPRes.h"
@@ -56,12 +56,12 @@ bool ZUGridSesterceProcessNavigation::OnStart()
     ASSERT(m_pModel != NULL);
 
     // Retrieve the grid view
-    ZVGridView*    pView = NULL;
-    CWnd*        pWnd = m_postream->GetGridCore()->GridWnd();
+    PSS_GridView* pView = NULL;
+    CWnd*         pWnd = m_postream->GetGridCore()->GridWnd();
 
-    if (pWnd && ISA(pWnd, ZVGridView))
+    if (pWnd && ISA(pWnd, PSS_GridView))
     {
-        pView = dynamic_cast<ZVGridView*>(pWnd);
+        pView = dynamic_cast<PSS_GridView*>(pWnd);
     }
 
     // Find the right process, function of the model name
@@ -93,31 +93,31 @@ bool ZUGridSesterceProcessNavigation::OnStart()
     m_RoseStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(10).SetBold(FALSE))
-        .SetInterior(defCOLOR_ROSESESTERCE);
+        .SetInterior(M_Color_RoseSesterce);
 
     // Initialize the bold rose style for header cells
     m_BoldRoseStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(10).SetBold(TRUE))
-        .SetInterior(defCOLOR_ROSESESTERCE);
+        .SetInterior(M_Color_RoseSesterce);
 
     // Initialize the blue style
     m_BlueStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(9).SetBold(FALSE))
-        .SetInterior(defCOLOR_BLUEMERCUTIO);
+        .SetInterior(M_Color_BlueMercutio);
 
     // Initialize the blue style
     m_GreenStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(9).SetBold(FALSE))
-        .SetInterior(defCOLOR_STARTGREEN);
+        .SetInterior(M_Color_StartGreen);
 
     // Initialize the blue style
     m_RedStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(9).SetBold(FALSE))
-        .SetInterior(defCOLOR_ENDRED);
+        .SetInterior(M_Color_EndRed);
 
     // Initialize the blue style for header cells
     m_GrayStyle.SetTextColor(defCOLOR_WHITE)
@@ -949,12 +949,12 @@ bool ZUGridSesterceProcessNavigation::OnFinish()
     m_postream->GetCurSel(left, top);
 
     // Retrieve the grid view
-    ZVGridView*    pView = NULL;
-    CWnd*        pWnd = m_postream->GetGridCore()->GridWnd();
+    PSS_GridView* pView = NULL;
+    CWnd*         pWnd = m_postream->GetGridCore()->GridWnd();
 
-    if (pWnd && ISA(pWnd, ZVGridView))
+    if (pWnd && ISA(pWnd, PSS_GridView))
     {
-        pView = dynamic_cast<ZVGridView*>(pWnd);
+        pView = dynamic_cast<PSS_GridView*>(pWnd);
     }
 
     PSS_GridDocument* pDoc = pView->GetDocument();

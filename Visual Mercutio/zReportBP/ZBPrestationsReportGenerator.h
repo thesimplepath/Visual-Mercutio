@@ -23,7 +23,7 @@
 
 // Architecture document/vue
 #include "zReport\PSS_GridDocument.h"
-#include "zReport\ZVGridView.h"
+#include "zReport\PSS_GridView.h"
 #include "zReport\zReportRes.h"
 
 #include "zBaseLib\PSS_Global.h"
@@ -42,7 +42,7 @@
 
 #include "zProperty\PSS_Property.h"
 
-#include "ColorRefDefinition.h"
+#include "PSS_ColorRefDefinition.h"
 #include "zReportBPRes.h"
 #include "PSS_ModelResIDs.h"
 
@@ -186,7 +186,7 @@ protected:
 private:
 
     bool FillGridPrestationsReport(CGXGridCore& GridCore, int Index);
-    void FillGridPrestationsHeaders(PSS_OStreamGrid& ostream, ZVGridView* pView, int Index);
+    void FillGridPrestationsHeaders(PSS_OStreamGrid& ostream, PSS_GridView* pView, int Index);
     void FillPrestationsDatas();
     void Associate(PSS_ProcessGraphModelMdlBP* m_RootModel);
     void UpdateTotals();

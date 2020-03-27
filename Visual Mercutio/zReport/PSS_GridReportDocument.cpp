@@ -9,9 +9,9 @@
 #include "PSS_GridReportDocument.h"
 
 // processsoft
-#include "ZBaseLib\PSS_Global.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "ZVGridView.h"
+#include "PSS_GridView.h"
 #include "PSS_GenericGridReportGenerator.h"
 
 // resources
@@ -246,7 +246,7 @@ bool PSS_GridReportDocument::OnPostInitialized(CGXTabWndMgr* pMgr, CGXAppAdapter
     }
 
     // get the first document view
-    ZVGridView* pView = GetFirstView();
+    PSS_GridView* pView = GetFirstView();
 
     // set the popup submenu
     if (pView)

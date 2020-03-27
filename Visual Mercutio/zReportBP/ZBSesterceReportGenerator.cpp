@@ -20,7 +20,7 @@
 
 #include "zBaseLib\PSS_Global.h"
 
-#include "ColorRefDefinition.h"
+#include "PSS_ColorRefDefinition.h"
 
 #include "zReport\zReportRes.h"
 #include "zReportBPRes.h"
@@ -48,7 +48,7 @@ ZBSesterceReportGenerator::ZBSesterceReportGenerator(PSS_GridDocument*          
     m_HeaderStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))
                  .SetSize(12).SetBold(TRUE))
-        .SetInterior(defCOLOR_ROSESESTERCE);
+        .SetInterior(M_Color_RoseSesterce);
 
     m_NormalStyle.SetTextColor(defCOLOR_BLACK)
         .SetFont(CGXFont().SetFaceName(_T("Verdana"))

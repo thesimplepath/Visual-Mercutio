@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZVGridView.h"
+#include "PSS_GridView.h"
 
 // forward class declaration
 class PSS_GridReportDocument;
@@ -40,7 +40,7 @@ class PSS_GridReportDocument;
 * Grid report view
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_GridReportView : public ZVGridView
+class AFX_EXT_CLASS PSS_GridReportView : public PSS_GridView
 {
     GXDECLARE_DYNCREATE(PSS_GridReportView)
 
