@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZBModelBPReportGenerator.h"
+#include "PSS_ModelBPReportGenerator.h"
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
@@ -48,7 +48,7 @@ class PSS_UserGroupCalculateTotals;
 
 // JMR-MODIF - Le 8 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBSesterceUnitReportGenerator : public ZBModelBPReportGenerator
+class AFX_EXT_CLASS ZBSesterceUnitReportGenerator : public PSS_ModelBPReportGenerator
 {
     DECLARE_SERIAL(ZBSesterceUnitReportGenerator)
 

@@ -46,7 +46,7 @@
 #include "zReportBPRes.h"
 #include "PSS_ModelResIDs.h"
 
-#include "ZBModelBPReportGenerator.h"
+#include "PSS_ModelBPReportGenerator.h"
 
 // old class name mapping
 #ifndef PSS_LogicalPrestationsEntity
@@ -157,7 +157,7 @@ private:
 // *                                Classe ZBPrestationsReportGenerator                                    *
 // ******************************************************************************************************
 
-class AFX_EXT_CLASS ZBPrestationsReportGenerator : public ZBModelBPReportGenerator
+class AFX_EXT_CLASS ZBPrestationsReportGenerator : public PSS_ModelBPReportGenerator
 {
     DECLARE_SERIAL(ZBPrestationsReportGenerator)
 

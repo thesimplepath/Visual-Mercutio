@@ -38,7 +38,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 8 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZBSesterceUnitReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
+IMPLEMENT_SERIAL(ZBSesterceUnitReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -48,7 +48,7 @@ ZBSesterceUnitReportGenerator::ZBSesterceUnitReportGenerator(PSS_GridDocument*  
                                                              PSS_ProcessGraphModelMdlBP*    pModel                /*= NULL*/,
                                                              PSS_ProcessGraphModelDoc*    pSourceDoc            /*= NULL*/,
                                                              bool                        IncludeMonthDetail    /*= true*/)
-    : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc),
+    : PSS_ModelBPReportGenerator(pDoc, pModel, pSourceDoc),
     m_IncludeMonthDetail(IncludeMonthDetail)
 {
     // Initialize the normal style for cells

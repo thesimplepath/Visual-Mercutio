@@ -147,25 +147,25 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ZBCheckReportGenerator.cpp">
+    <ClCompile Include="PSS_CheckReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBConceptorReportGenerator.cpp">
+    <ClCompile Include="PSS_ConceptorReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBMercutioReportGenerator.cpp">
+    <ClCompile Include="PSS_MercutioReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBModelBPReportGenerator.cpp">
+    <ClCompile Include="PSS_ModelBPReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -254,10 +254,10 @@
   <ItemGroup>
     <ClInclude Include="PSS_ColorRefDefinition.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="ZBCheckReportGenerator.h" />
-    <ClInclude Include="ZBConceptorReportGenerator.h" />
-    <ClInclude Include="ZBMercutioReportGenerator.h" />
-    <ClInclude Include="ZBModelBPReportGenerator.h" />
+    <ClInclude Include="PSS_CheckReportGenerator.h" />
+    <ClInclude Include="PSS_ConceptorReportGenerator.h" />
+    <ClInclude Include="PSS_MercutioReportGenerator.h" />
+    <ClInclude Include="PSS_ModelBPReportGenerator.h" />
     <ClInclude Include="ZBPrestationsReportGenerator.h" />
     <ClInclude Include="ZBSesterceConsolidatedReportGenerator.h" />
     <ClInclude Include="ZBSesterceReportGenerator.h" />

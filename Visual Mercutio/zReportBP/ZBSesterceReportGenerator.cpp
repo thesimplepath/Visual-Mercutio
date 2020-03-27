@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZBSesterceReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
+IMPLEMENT_SERIAL(ZBSesterceReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -42,7 +42,7 @@ IMPLEMENT_SERIAL(ZBSesterceReportGenerator, ZBModelBPReportGenerator, g_DefVersi
 ZBSesterceReportGenerator::ZBSesterceReportGenerator(PSS_GridDocument*            pDoc        /*= NULL*/,
                                                      PSS_ProcessGraphModelMdlBP*    pModel        /*= NULL*/,
                                                      PSS_ProcessGraphModelDoc*    pSourceDoc    /*= NULL*/)
-    : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc)
+    : PSS_ModelBPReportGenerator(pDoc, pModel, pSourceDoc)
 {
     // Initialize the style for header cells
     m_HeaderStyle.SetTextColor(defCOLOR_BLACK)

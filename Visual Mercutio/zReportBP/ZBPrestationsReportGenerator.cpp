@@ -781,7 +781,7 @@ void _ZBPrestationsDatas::Associate(PSS_ProcessSymbolBP* Process)
 // *                                Classe ZBPrestationsReportGenerator                                    *
 // ******************************************************************************************************
 
-IMPLEMENT_SERIAL(ZBPrestationsReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
+IMPLEMENT_SERIAL(ZBPrestationsReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
 
 // ******************************************************************************************************
 // *                                   Construction et destruction                                        *
@@ -792,7 +792,7 @@ ZBPrestationsReportGenerator::ZBPrestationsReportGenerator(PSS_GridDocument*    
                                                            PSS_ProcessGraphModelMdlBP*    pModel                /*= NULL*/,
                                                            PSS_ProcessGraphModelDoc*        pSourceDoc            /*= NULL*/,
                                                            bool                        IncludeMonthDetails    /*= true*/)
-    : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc),
+    : PSS_ModelBPReportGenerator(pDoc, pModel, pSourceDoc),
     m_IncludeMonthDetail(IncludeMonthDetails)
 {
     // Initialise le stype pour les cellules d'en-tête.

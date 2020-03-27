@@ -53,14 +53,14 @@
 #include "zReport\PSS_GridReportChildFrame.h"
 #include "zReport\PSS_GridReportDocument.h"
 #include "zReport\PSS_GridReportView.h"
-#include "zReportBP\ZBCheckReportGenerator.h"
-#include "zReportBP\ZBMercutioReportGenerator.h"
+#include "zReportBP\PSS_CheckReportGenerator.h"
+#include "zReportBP\PSS_MercutioReportGenerator.h"
 #include "zReportBP\ZBSesterceReportGenerator.h"
 #include "zReportBP\ZBSesterceUnitReportGenerator.h"
 #include "zReportBP\ZBSesterceConsolidatedReportGenerator.h"
 #include "zReportBP\ZBPrestationsReportGenerator.h"
 #include "zReportBP\ZVReportCreationWizard.h"
-#include "zReportBP\ZBConceptorReportGenerator.h"
+#include "zReportBP\PSS_ConceptorReportGenerator.h"
 #include "zReportWeb\ZUPublishReportToHTML.h"
 #include "zWeb\PSS_HtmlDialog.h"
 #include "WelcomP.h"
@@ -3276,9 +3276,9 @@ void ZAApp::OnGenerateCheckReport()
     {
         // Now we have an empty grid report
 
-        pNewFile->SetNewReportGridGenerator(new ZBCheckReportGenerator(pNewFile,
-                                                                       dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
-                                                                       pCurrentDoc));
+        pNewFile->SetNewReportGridGenerator(new PSS_CheckReportGenerator(pNewFile,
+                                                                         dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                         pCurrentDoc));
 
         PSS_File file(pCurrentDoc->GetPathName());
         CString s;
@@ -3361,9 +3361,9 @@ void ZAApp::OnGenerateMercutioReport()
             if (Dlg.GetSelectedSymbol() && ISA(Dlg.GetSelectedSymbol(), PSS_ProcessSymbolBP))
             {
                 CWaitCursor Cursor2;
-                pNewFile->SetNewReportGridGenerator(new ZBMercutioReportGenerator(pNewFile,
-                                                                                  dynamic_cast<PSS_ProcessGraphModelMdlBP*>(dynamic_cast<PSS_ProcessSymbolBP*>(Dlg.GetSelectedSymbol())->GetChildModel()),
-                                                                                  pCurrentDoc));
+                pNewFile->SetNewReportGridGenerator(new PSS_MercutioReportGenerator(pNewFile,
+                                                                                    dynamic_cast<PSS_ProcessGraphModelMdlBP*>(dynamic_cast<PSS_ProcessSymbolBP*>(Dlg.GetSelectedSymbol())->GetChildModel()),
+                                                                                    pCurrentDoc));
 
                 PSS_File file(pCurrentDoc->GetPathName());
 
@@ -3446,12 +3446,12 @@ void ZAApp::OnGenerateConceptorReport()
             CWaitCursor Cursor2;
 
             // JMR-MODIF - Le 6 mars 2006 - Suppression de l'option Synthesys, car apparamment non implémentée.
-            pNewFile->SetNewReportGridGenerator(new ZBConceptorReportGenerator(pNewFile,
-                                                                               dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
-                                                                               pCurrentDoc,
-                                                                               TRUE,//Dlg.m_Synthesis,
-                                                                               Dlg.m_Detail,
-                                                                               Dlg.m_Deliverables));
+            pNewFile->SetNewReportGridGenerator(new PSS_ConceptorReportGenerator(pNewFile,
+                                                                                 dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                                 pCurrentDoc,
+                                                                                 TRUE,
+                                                                                 Dlg.m_Detail,
+                                                                                 Dlg.m_Deliverables));
 
             PSS_File file(pCurrentDoc->GetPathName());
             CString s;

@@ -42,7 +42,7 @@ static char THIS_FILE[] = __FILE__;
 // Static variable initialization
 int ZBSesterceConsolidatedReportGenerator::m_UnitLevel = 0;
 
-IMPLEMENT_SERIAL(ZBSesterceConsolidatedReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
+IMPLEMENT_SERIAL(ZBSesterceConsolidatedReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -52,7 +52,7 @@ ZBSesterceConsolidatedReportGenerator::ZBSesterceConsolidatedReportGenerator(PSS
                                                                              PSS_ProcessGraphModelMdlBP*    pModel                /*= NULL*/,
                                                                              PSS_ProcessGraphModelDoc*    pSourceDoc            /*= NULL*/,
                                                                              bool                        IncludeMonthDetail    /*= true*/)
-    : ZBModelBPReportGenerator(pDoc, pModel, pSourceDoc),
+    : PSS_ModelBPReportGenerator(pDoc, pModel, pSourceDoc),
     m_IncludeMonthDetail(IncludeMonthDetail)
 {
     // Initialize the normal style for cells

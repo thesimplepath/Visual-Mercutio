@@ -56,7 +56,12 @@ PSS_GridReportDocument::~PSS_GridReportDocument()
 //---------------------------------------------------------------------------
 bool PSS_GridReportDocument::SetNewReportGridGenerator(PSS_GenericGridReportGenerator* pGenerator)
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return false;
+
+    if (pPrimaryDoc == this)
         if (pGenerator)
         {
             if (m_pGenerator)
@@ -71,17 +76,22 @@ bool PSS_GridReportDocument::SetNewReportGridGenerator(PSS_GenericGridReportGene
             return InitializeGrid();
         }
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     return (pReportDoc ? pReportDoc->SetNewReportGridGenerator(pGenerator) : false);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_GridReportDocument::GetGeneratorTabCount() const
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return false;
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->GetGeneratorTabCount() : 0);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     return (pReportDoc ? pReportDoc->GetGeneratorTabCount() : 0);
@@ -89,10 +99,15 @@ std::size_t PSS_GridReportDocument::GetGeneratorTabCount() const
 //---------------------------------------------------------------------------
 const CString PSS_GridReportDocument::GetGeneratorTabName(std::size_t index)
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return _T("");
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->GetGeneratorTabName(index) : _T(""));
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     return (pReportDoc ? pReportDoc->GetGeneratorTabName(index) : _T(""));
@@ -100,10 +115,15 @@ const CString PSS_GridReportDocument::GetGeneratorTabName(std::size_t index)
 //---------------------------------------------------------------------------
 bool PSS_GridReportDocument::FillGrid(CGXGridCore& gridCore, std::size_t index)
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return false;
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->FillGrid(gridCore, index) : true);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     return (pReportDoc ? pReportDoc->FillGrid(gridCore, index) : true);
@@ -111,10 +131,15 @@ bool PSS_GridReportDocument::FillGrid(CGXGridCore& gridCore, std::size_t index)
 //---------------------------------------------------------------------------
 int PSS_GridReportDocument::GetReportTypeID() const
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return -1;
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->GetReportTypeID() : -1);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     return (pReportDoc ? pReportDoc->GetReportTypeID() : -1);
@@ -122,11 +147,16 @@ int PSS_GridReportDocument::GetReportTypeID() const
 //---------------------------------------------------------------------------
 void PSS_GridReportDocument::SetReportTypeID(int typeID)
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return;
+
+    if (pPrimaryDoc == this)
         if (m_pGenerator)
             m_pGenerator->SetReportTypeID(typeID);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     if (pReportDoc)
@@ -135,10 +165,15 @@ void PSS_GridReportDocument::SetReportTypeID(int typeID)
 //---------------------------------------------------------------------------
 const CString PSS_GridReportDocument::GetReportTitle() const
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return _T("");
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->GetReportTitle() : _T(""));
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // Call the function from the primary document
     return (pReportDoc ? pReportDoc->GetReportTitle() : _T(""));
@@ -146,10 +181,15 @@ const CString PSS_GridReportDocument::GetReportTitle() const
 //---------------------------------------------------------------------------
 bool PSS_GridReportDocument::IsReportDataExternal() const
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return false;
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->IsReportDataExternal() : false);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     return (pReportDoc ? pReportDoc->IsReportDataExternal() : false);
@@ -157,10 +197,15 @@ bool PSS_GridReportDocument::IsReportDataExternal() const
 //---------------------------------------------------------------------------
 bool PSS_GridReportDocument::ReportDataMustBeReloaded() const
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return false;
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->ReportDataMustBeReloaded() : false);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // Call the function from the primary document
     return (pReportDoc ? pReportDoc->ReportDataMustBeReloaded() : false);
@@ -168,10 +213,15 @@ bool PSS_GridReportDocument::ReportDataMustBeReloaded() const
 //---------------------------------------------------------------------------
 bool PSS_GridReportDocument::UseAutomaticReload() const
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return false;
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->UseAutomaticReload() : false);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     return (pReportDoc ? pReportDoc->UseAutomaticReload() : false);
@@ -283,7 +333,12 @@ BOOL PSS_GridReportDocument::OnOpenDocument(LPCTSTR pPathName)
 //---------------------------------------------------------------------------
 void PSS_GridReportDocument::OnPreDataFilled(std::size_t index)
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return;
+
+    if (pPrimaryDoc == this)
     {
         if (m_pGenerator)
             m_pGenerator->OnPreDataFilled(index);
@@ -291,7 +346,7 @@ void PSS_GridReportDocument::OnPreDataFilled(std::size_t index)
         return;
     }
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     if (pReportDoc)
@@ -300,7 +355,12 @@ void PSS_GridReportDocument::OnPreDataFilled(std::size_t index)
 //---------------------------------------------------------------------------
 void PSS_GridReportDocument::OnPostDataFilled(std::size_t index)
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return;
+
+    if (pPrimaryDoc == this)
     {
         if (m_pGenerator)
         {
@@ -313,7 +373,7 @@ void PSS_GridReportDocument::OnPostDataFilled(std::size_t index)
         return;
     }
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     if (pReportDoc)
@@ -359,10 +419,15 @@ void PSS_GridReportDocument::WorkBookSerialize(CArchive& ar)
 //---------------------------------------------------------------------------
 bool PSS_GridReportDocument::InitializeGenerator()
 {
-    if (GetPrimaryDocument() == this)
+    CGXDocument* pPrimaryDoc = GetPrimaryDocument();
+
+    if (!pPrimaryDoc)
+        return false;
+
+    if (pPrimaryDoc == this)
         return (m_pGenerator ? m_pGenerator->Initialize() : false);
 
-    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(GetPrimaryDocument());
+    PSS_GridReportDocument* pReportDoc = dynamic_cast<PSS_GridReportDocument*>(pPrimaryDoc);
 
     // call the function from the primary document
     return (pReportDoc ? pReportDoc->InitializeGenerator() : false);
@@ -373,20 +438,24 @@ bool PSS_GridReportDocument::InitializeGrid()
     if (!InitializeGenerator())
         return false;
 
+    const std::size_t genTabCount = GetGeneratorTabCount();
+
     // at least one tab is required
-    if (!GetGeneratorTabCount())
+    if (!genTabCount)
         return false;
 
+    const std::size_t gridTabCount = GetGridTabCount();
+
     // check if needed to remove tabs. Don't remove all tabs, just the difference if positive
-    if (GetGeneratorTabCount() < GetGridTabCount())
-        for (int i = GetGridTabCount() - GetGeneratorTabCount(); i > 0; --i)
+    if (genTabCount < gridTabCount)
+        for (int i = gridTabCount - genTabCount; i > 0; --i)
             DeleteGridTab();
 
     // for each tab, fill the grid param
-    const std::size_t existingGridTabCount = GetGridTabCount();
+    const std::size_t existingGridTabCount = gridTabCount;
 
     // if needed, create additional tabs
-    const std::size_t completeTabCount = GetGeneratorTabCount();
+    const std::size_t completeTabCount = genTabCount;
 
     for (std::size_t i = existingGridTabCount; i < completeTabCount; ++i)
         // by inserting new tab, a new view is created and the OnInitialUpdate() function
@@ -410,8 +479,11 @@ bool PSS_GridReportDocument::InitializeGrid()
         // lock any drawing
         const BOOL old = pGridCore->LockUpdate();
 
+        CGXGridParam* pParam = pGridCore->GetParam();
+
         // disable undo mechanism for the following commands
-        pGridCore->GetParam()->EnableUndo(FALSE);
+        if (pParam)
+            pParam->EnableUndo(FALSE);
 
         // Call the call-back function
         OnPreDataFilled(i);
@@ -423,7 +495,8 @@ bool PSS_GridReportDocument::InitializeGrid()
         OnPostDataFilled(i);
 
         // reenable undo mechanism
-        pGridCore->GetParam()->EnableUndo(TRUE);
+        if (pParam)
+            pParam->EnableUndo(TRUE);
 
         // unlock drawing
         pGridCore->LockUpdate(old);

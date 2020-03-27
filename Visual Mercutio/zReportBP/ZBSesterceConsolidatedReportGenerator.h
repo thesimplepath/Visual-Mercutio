@@ -19,7 +19,7 @@
 
 // processsoft
 #include "zModelBP\PSS_UserGroupCalculateTotals.h"
-#include "ZBModelBPReportGenerator.h"
+#include "PSS_ModelBPReportGenerator.h"
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
@@ -50,7 +50,7 @@ class PSS_UserGroupCalculateTotals;
 
 // JMR-MODIF - Le 8 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBSesterceConsolidatedReportGenerator : public ZBModelBPReportGenerator
+class AFX_EXT_CLASS ZBSesterceConsolidatedReportGenerator : public PSS_ModelBPReportGenerator
 {
     DECLARE_SERIAL(ZBSesterceConsolidatedReportGenerator)
 

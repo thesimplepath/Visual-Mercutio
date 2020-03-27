@@ -18,7 +18,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBModelBPReportGenerator.h"
+#include "PSS_ModelBPReportGenerator.h"
 
 // class name mapping
 #ifndef PSS_UserGroupEntity
@@ -44,7 +44,7 @@ class PSS_UserRoleEntity;
 
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBSesterceReportGenerator : public ZBModelBPReportGenerator
+class AFX_EXT_CLASS ZBSesterceReportGenerator : public PSS_ModelBPReportGenerator
 {
     DECLARE_SERIAL(ZBSesterceReportGenerator)
 
