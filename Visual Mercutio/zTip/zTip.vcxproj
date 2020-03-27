@@ -58,6 +58,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;$(LibraryPath)</LibraryPath>
+    <TargetName>zTipD</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -122,6 +123,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\ztipD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

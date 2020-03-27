@@ -60,6 +60,7 @@
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\Stingray Studio\Include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\CJ60Lib\lib;..\..\Third party\Stingray Studio\Lib;..\Lib;$(LibraryPath)</LibraryPath>
     <LibraryWPath>$(LibraryWPath)</LibraryWPath>
+    <TargetName>zDBD</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -124,6 +125,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zDBd.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

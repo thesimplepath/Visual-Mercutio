@@ -158,7 +158,7 @@ class AFX_EXT_CLASS PSS_ListCtrl : public CListCtrl
         *@param index - selection index
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL SetCurSel(std::size_t Index);
+        virtual BOOL SetCurSel(std::size_t index);
 
     protected:
         CCJFlatHeaderCtrl m_HeaderCtrl;

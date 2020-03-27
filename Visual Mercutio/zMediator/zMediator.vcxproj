@@ -47,6 +47,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Regex\include;..\..\Third party\Stingray Studio\Include;..\Include;..\zResMgr;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\Stingray Studio\Regex\lib\vc6;..\..\Third party\Stingray Studio\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>zMediatorD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\exeR\</OutDir>
@@ -82,6 +83,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zMediatorD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

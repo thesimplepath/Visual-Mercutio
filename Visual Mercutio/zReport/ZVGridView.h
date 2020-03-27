@@ -1,15 +1,18 @@
-// ZVGridView.h : interface of the ZVGridView class
-//
-/////////////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_GridView --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a grid view                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVGridView_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_)
-#define AFX_ZVGridView_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_
+#ifndef PSS_GridViewH
+#define PSS_GridViewH
 
 #if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -19,7 +22,7 @@
 
 // old class name mapping
 #ifndef PSS_GridGroup
-#define PSS_GridGroup ZCGridGroup
+    #define PSS_GridGroup ZCGridGroup
 #endif
 
 // forward class declaration
@@ -27,44 +30,38 @@ class PSS_GridDocument;
 class PSS_GridGroup;
 
 #ifdef _ZREPORTEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 8 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
+/**
+* Grid view
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZVGridView : public CGXGridView
 {
-protected:
-
     GXDECLARE_DYNCREATE(ZVGridView)
 
-        // Create from serialization only
-        ZVGridView();
-
 public:
+    #if _MFC_VER >= 0x0400
+        CGXGridDropTarget m_objDndDropTarget;
+    #endif
 
     virtual ~ZVGridView();
-
-    // Attributes
-public:
-
-    PSS_GridDocument* GetDocument();
-    PSS_GridDocument* GetMasterDocument();
-
-    // Operations
-public:
 
     // User attributes initialization 
     virtual void SetupUserAttributes();
 
     // Setup special controls
     virtual void SetupControls();
+
+    PSS_GridDocument* GetDocument();
+    PSS_GridDocument* GetMasterDocument();
 
     void InsertGroupCtrl(ROWCOL        Row,
                          ROWCOL        Col,
@@ -88,18 +85,26 @@ public:
 
     virtual void UnhideAll();
 
-#if _MFC_VER >= 0x0400
-    CGXGridDropTarget m_objDndDropTarget;
-#endif
+    /**
+    * Asserts the class validity
+    */
+    #ifdef _DEBUG
+        virtual void AssertValid() const;
+    #endif
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZVGridView)
-public:
-    virtual void OnDraw(CDC* pDC);  // overridden to draw this view
-    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    /**
+    * Dumps the class content
+    *@param dc - dump context
+    */
+    #ifdef _DEBUG
+        virtual void Dump(CDumpContext& dc) const;
+    #endif
+
 protected:
-    virtual void OnInitialUpdate(); // called first time after construct
+    /// ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(PSS_GridView)
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    virtual void OnInitialUpdate();
     virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
     virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
     virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
@@ -115,20 +120,11 @@ protected:
     afx_msg void OnUpdateUnfreezeSplitter(CCmdUI* pCmdUI);
     afx_msg void OnUnhideAll();
     afx_msg void OnUpdateUnhideAll(CCmdUI* pCmdUI);
+    virtual void OnDraw(CDC* pDC);
     //}}AFX_VIRTUAL
 
-// Implementation
-public:
-
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump(CDumpContext& dc) const;
-#endif
-
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(ZVGridView)
+    /// Generated message map functions
+    //{{AFX_MSG(PSS_GridView)
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnExportToTextFile();
     afx_msg void OnUpdateExportToTextFile(CCmdUI* pCmdUI);
@@ -137,21 +133,26 @@ protected:
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
+    ZVGridView();
+
     // Called by the framework when the right button is clicked,
     // The default behaviour will display the popup-menu
     virtual BOOL OnRButtonClickedRowCol(ROWCOL nRow, ROWCOL nCol, UINT nFlags, CPoint pt);
 
 private:
-
     static CMenu m_PopupMenu;
 };
 
+//---------------------------------------------------------------------------
+// PSS_GridView
+//---------------------------------------------------------------------------
 #ifndef _DEBUG
-// Debug version in og70View.cpp
-inline PSS_GridDocument* ZVGridView::GetDocument()
-{
-    return (PSS_GridDocument*)m_pDocument;
-}
+    // Debug version in og70View.cpp
+    inline PSS_GridDocument* ZVGridView::GetDocument()
+    {
+        return (PSS_GridDocument*)m_pDocument;
+    }
 #endif
+//---------------------------------------------------------------------------
 
 #endif

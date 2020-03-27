@@ -50,6 +50,7 @@
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\;$(IncludePath)</IncludePath>
+    <TargetName>zSplResD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\exeR\</OutDir>
@@ -84,6 +85,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\ZSplResD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

@@ -13,7 +13,7 @@
 
 // processsoft
 #include "ZVGridView.h"
-#include "ZVGridChildFrm.h"
+#include "PSS_GridChildFrame.h"
 #include "PSS_GridGroup.h"
 
 #ifdef _DEBUG
@@ -482,7 +482,7 @@ bool PSS_GridDocument::InsertNewGridTabAt(std::size_t index)
     ZVGridView* pView = GetFirstView();
     ASSERT(pView);
 
-    ZVGridChildFrame* pFrame = dynamic_cast<ZVGridChildFrame*>(pView->GetParentFrame());
+    PSS_GridChildFrame* pFrame = dynamic_cast<PSS_GridChildFrame*>(pView->GetParentFrame());
 
     if (!pFrame)
         return false;

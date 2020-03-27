@@ -5,7 +5,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include <StdAfx.h>
+#include "StdAfx.h"
 #include "PSS_PublishMessengerModelInformation.h"
 
  //---------------------------------------------------------------------------

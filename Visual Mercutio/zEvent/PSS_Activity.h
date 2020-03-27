@@ -294,14 +294,14 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         *@param index - index
         *@return the form file, NULL if not found or on error
         */
-        virtual PSS_File* GetFormFileAt(std::size_t Index);
+        virtual PSS_File* GetFormFileAt(std::size_t index);
 
         /**
         * Gets the process file at the specified index
         *@param index - index
         *@return the process file, NULL if not found or on error
         */
-        virtual PSS_File* GetProcFileAt(std::size_t Index);
+        virtual PSS_File* GetProcFileAt(std::size_t index);
 
         /**
         * Gets the rejected to activity

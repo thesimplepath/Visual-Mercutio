@@ -1023,15 +1023,15 @@ void PSS_AnnualNumberPropertiesBP::SetNumberYear(const double value)
     m_Equalizer.SetTotal(value);
 }
 //---------------------------------------------------------------------------
-double PSS_AnnualNumberPropertiesBP::GetNumberAt(size_t Index) const
+double PSS_AnnualNumberPropertiesBP::GetNumberAt(std::size_t index) const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt(Index, bError);
+    return m_Equalizer.GetNumberAt(index, bError);
 }
 //---------------------------------------------------------------------------
-void PSS_AnnualNumberPropertiesBP::SetNumberAt(size_t Index, const double value)
+void PSS_AnnualNumberPropertiesBP::SetNumberAt(std::size_t index, const double value)
 {
-    m_Equalizer.SetNumberAt(Index, value);
+    m_Equalizer.SetNumberAt(index, value);
 }
 //---------------------------------------------------------------------------
 double PSS_AnnualNumberPropertiesBP::GetNumberJanuary() const

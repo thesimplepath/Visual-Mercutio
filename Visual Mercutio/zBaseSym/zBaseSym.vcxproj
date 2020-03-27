@@ -51,6 +51,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\Stingray Studio\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>zBaseSymD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\exeR\</OutDir>
@@ -87,6 +88,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zBaseSymD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

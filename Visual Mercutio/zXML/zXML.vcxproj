@@ -50,6 +50,7 @@
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Include;..\;$(IncludePath)</IncludePath>
+    <TargetName>zXMLD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\exeR\</OutDir>
@@ -84,6 +85,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zXMLd.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

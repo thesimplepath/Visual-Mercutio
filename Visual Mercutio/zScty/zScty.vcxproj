@@ -58,6 +58,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\CJ60Lib\lib;..\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>zSctyD</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -123,6 +124,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zSctyD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

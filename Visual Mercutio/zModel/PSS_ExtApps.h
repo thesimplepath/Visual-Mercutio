@@ -233,7 +233,7 @@ class AFX_EXT_CLASS PSS_ExtApps : public CObject
         *@param index - the index
         *@param value - the command startup directory value
         */
-        virtual void SetCommandStartupDirectory(std::size_t Index, const CString& value);
+        virtual void SetCommandStartupDirectory(std::size_t index, const CString& value);
 
         /**
         * Gets the priority level at index

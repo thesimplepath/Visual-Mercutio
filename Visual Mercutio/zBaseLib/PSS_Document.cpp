@@ -2597,8 +2597,8 @@ void PSS_Document::ReplaceCalculatedFields(int documentIndex)
 void PSS_Document::CheckDocumentFontAndStyle()
 {
     // iterate through the document data array and check the font validity
-    for (size_t Index = 0; Index < GetDocumentDataCount(); ++Index)
-        GetDocumentDataAt(Index)->CheckFontValidity();
+    for (std::size_t index = 0; index < GetDocumentDataCount(); ++index)
+        GetDocumentDataAt(index)->CheckFontValidity();
 }
 //---------------------------------------------------------------------------
 CString PSS_Document::BuildAutomaticNewName(const CString& prefix, int documentIndex)

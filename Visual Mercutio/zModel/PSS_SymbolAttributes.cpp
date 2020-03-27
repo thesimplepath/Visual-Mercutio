@@ -1471,9 +1471,9 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
         m_pSymbol->RedrawSymbol();
 
     #ifdef _DEBUG
-        // check the of text boxes position 
-        std::unique_ptr<CODComponentPosition> pCompPosition(pSymComp->GetPosition());
-        CRect                                 rectFinalText = pCompPosition->GetBounds();
+        // check the of text boxes position
+        std::unique_ptr<CODComponentPosition> pTextCompPosition(pSymComp->GetPosition());
+        CRect                                 rectFinalText = pTextCompPosition->GetBounds();
 
         CString str;
         str.Format(_T("\nSymbol: top=%d left=%d bottom=%d right=%d\n"),

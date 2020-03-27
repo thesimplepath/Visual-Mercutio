@@ -269,7 +269,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         /**
         * Calculates all the formulas
         *@param pView - view
-        *@param allPages - if TURE, the formulas will be calculated on all the pages
+        *@param allPages - if TRUE, the formulas will be calculated on all the pages
         */
         virtual void CalculateAllFormula(CView* pView = NULL, BOOL allPages = FALSE);
 

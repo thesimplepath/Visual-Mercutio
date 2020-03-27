@@ -300,7 +300,7 @@ class AFX_EXT_CLASS PSS_FormulaAssociation : public CObject
         *@param index - index
         *@return formula, NULL if not found or on error
         */
-        virtual PSS_Formula* GetFormulaAt(int Index);
+        virtual PSS_Formula* GetFormulaAt(int index);
 
         /**
         * Finds a formula

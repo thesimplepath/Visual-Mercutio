@@ -1344,7 +1344,7 @@ void ZBPrestationsReportGenerator::FillTabArray()
 // *                    Fonctions publiques de la classe ZBPrestationsReportGenerator                    *
 // ******************************************************************************************************
 
-// Cette fonction est la fonction d'entrée appelée par le générateur de documents ZDGridReportDocument.
+// Cette fonction est la fonction d'entrée appelée par le générateur de documents PSS_GridReportDocument.
 bool ZBPrestationsReportGenerator::FillGrid(CGXGridCore& GridCore, size_t Index)
 {
     return FillGridPrestationsReport(GridCore, Index);

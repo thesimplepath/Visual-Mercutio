@@ -428,7 +428,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
     PSS_ProcedureSymbolBP* pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pState->GetSymbol());
 
-    if (!pProcedure);
+    if (!pProcedure)
     {
         // increment the error counter
         IncrementErrorCounter();

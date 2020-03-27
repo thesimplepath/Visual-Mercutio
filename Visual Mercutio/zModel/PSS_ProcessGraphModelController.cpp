@@ -3348,7 +3348,7 @@ void PSS_ProcessGraphModelController::OnEditPaste()
         for (POSITION pPos = translateSetMap.GetStartPosition(); pPos;)
         {
             translateSetMap.GetNextAssoc(pPos, pComp, pos);
-            ASSERT_VALID(pCurComp);
+            ASSERT_VALID(pComp);
             translateSet.SetAt(pos, pComp);
         }
 

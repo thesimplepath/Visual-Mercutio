@@ -57,7 +57,7 @@ public:
     virtual ~ZBSesterceReportGenerator();
 
     /////////////////////////////////////////////////////////////////////////////
-    // ZIGridReportGenerator methods
+    // PSS_GridReportGenerator methods
 
     // Called by the framework to request a grid to be filled
     // The implementation uses the delegation

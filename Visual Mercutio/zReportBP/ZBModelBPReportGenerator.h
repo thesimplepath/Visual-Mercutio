@@ -63,7 +63,7 @@ public:
                             PSS_ProcessGraphModelDoc*    pSourceDoc);
 
     /////////////////////////////////////////////////////////////////////////////
-    // ZIGridReportGenerator methods
+    // PSS_GridReportGenerator methods
 
     // Initialization method
     virtual bool Initialize()

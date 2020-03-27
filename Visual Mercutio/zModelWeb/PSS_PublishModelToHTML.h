@@ -31,7 +31,7 @@
 // forward class declarations
 class PSS_ProcessGraphModelDoc;
 class PSS_ProcessGraphModelView;
-class ZDGridReportDocument;
+class PSS_GridReportDocument;
 
 #ifdef _ZMODELWEBEXPORT
     // put the values back to make AFX_EXT_CLASS export again

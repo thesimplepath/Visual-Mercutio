@@ -58,6 +58,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\Stingray Studio\Regex\lib\vc6;..\..\Third party\Stingray Studio\Lib;..\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>zWkfD</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -122,6 +123,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zWkfD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

@@ -58,6 +58,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\Stingray Studio\Lib;..\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>zReportD</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -122,6 +123,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zReportD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -199,13 +201,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDGridReportDoc.cpp">
+    <ClCompile Include="PSS_GridReportDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIGridReportGenerator.cpp">
+    <ClCompile Include="PSS_GridReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -217,19 +219,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVGridChildFrm.cpp">
+    <ClCompile Include="PSS_GridChildFrame.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVGridReportChildFrm.cpp">
+    <ClCompile Include="PSS_GridReportChildFrame.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVGridReportView.cpp">
+    <ClCompile Include="PSS_GridReportView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -265,13 +267,13 @@
     <ClInclude Include="PSS_GridCheckBox.h" />
     <ClInclude Include="PSS_GridGroup.h" />
     <ClInclude Include="PSS_GridDocument.h" />
-    <ClInclude Include="ZDGridReportDoc.h" />
-    <ClInclude Include="ZIGridReportGenerator.h" />
+    <ClInclude Include="PSS_GridReportDocument.h" />
+    <ClInclude Include="PSS_GridReportGenerator.h" />
     <ClInclude Include="zReportLib.h" />
     <ClInclude Include="zReportRes.h" />
-    <ClInclude Include="ZVGridChildFrm.h" />
-    <ClInclude Include="ZVGridReportChildFrm.h" />
-    <ClInclude Include="ZVGridReportView.h" />
+    <ClInclude Include="PSS_GridChildFrame.h" />
+    <ClInclude Include="PSS_GridReportChildFrame.h" />
+    <ClInclude Include="PSS_GridReportView.h" />
     <ClInclude Include="ZVGridView.h" />
   </ItemGroup>
   <ItemGroup>

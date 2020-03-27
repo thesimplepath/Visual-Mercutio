@@ -27,7 +27,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Date.h"
-#include "ZIGridReportGenerator.h"
+#include "PSS_GridReportGenerator.h"
 
 // forward class declaration
 class PSS_GridDocument;
@@ -46,7 +46,7 @@ class PSS_GridDocument;
 * Generic report generator
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_GenericGridReportGenerator : public CObject, public ZIGridReportGenerator
+class AFX_EXT_CLASS PSS_GenericGridReportGenerator : public CObject, public PSS_GridReportGenerator
 {
     DECLARE_SERIAL(PSS_GenericGridReportGenerator)
 

@@ -58,6 +58,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\EasySoap++-0.6.1\include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\EasySoap++-0.6.1\win32\Debug;$(LibraryPath)</LibraryPath>
+    <TargetName>zSOAPD</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -131,6 +132,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zSOAPd.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

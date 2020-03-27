@@ -208,7 +208,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
 
         /**
         * Checks if the comment text edit box is read-only
-        *@return true if the comment text edit box is read-only, otherwise flase
+        *@return true if the comment text edit box is read-only, otherwise false
         */
         virtual bool CommentTextEditReadOnly() const = 0;
 

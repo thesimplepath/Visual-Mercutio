@@ -13,7 +13,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zReport\ZDGridReportDoc.h"
+#include "zReport\PSS_GridReportDocument.h"
 
 #include "ZUPublishReportInfo.h"
 #include "ZVPublishConceptorReport.h"

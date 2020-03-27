@@ -26,7 +26,7 @@ IMPLEMENT_SERIAL(PSS_GenericGridReportGenerator, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 PSS_GenericGridReportGenerator::PSS_GenericGridReportGenerator(PSS_GridDocument* pDoc) :
     CObject(),
-    ZIGridReportGenerator(),
+    PSS_GridReportGenerator(),
     m_pDoc(pDoc),
     m_TypeID(-1)
 {}
@@ -91,7 +91,7 @@ void PSS_GenericGridReportGenerator::Serialize(CArchive& ar)
 void PSS_GenericGridReportGenerator::OnPreDataFilled(std::size_t index)
 {}
 //---------------------------------------------------------------------------
-void PSS_GenericGridReportGenerator::OnPostDataFilled(size_t Index)
+void PSS_GenericGridReportGenerator::OnPostDataFilled(std::size_t index)
 {
     // save the last update date/time
     m_LastUpdateDateTime.SetToday();

@@ -600,7 +600,7 @@ const CString PSS_Global::GetWeekPrefix(WORD primaryLID)
 {
     const std::size_t index = GetLanguageTableIndex(primaryLID);
 
-    // check the language Index validity
+    // check the language index validity
     if (index >= std::size_t(m_WeekPrefixArray.GetSize()))
         return _T("");
 
@@ -616,7 +616,7 @@ const CString PSS_Global::GetWeekShortPrefix(WORD primaryLID)
 {
     const std::size_t index = GetLanguageTableIndex(primaryLID);
 
-    // check the language Index validity
+    // check the language index validity
     if (index >= std::size_t(m_WeekShortPrefixArray.GetSize()))
         return _T("");
 
@@ -648,7 +648,7 @@ const CString PSS_Global::GetDayShortPrefix(WORD primaryLID)
 {
     const std::size_t index = GetLanguageTableIndex(primaryLID);
 
-    // check the language Index validity
+    // check the language index validity
     if (index >= std::size_t(m_DayShortPrefixArray.GetSize()))
         return _T("");
 
@@ -664,7 +664,7 @@ const CString PSS_Global::GetHourPrefix(WORD primaryLID)
 {
     const std::size_t index = GetLanguageTableIndex(primaryLID);
 
-    // check the language Index validity
+    // check the language index validity
     if (index >= std::size_t(m_HourPrefixArray.GetSize()))
         return _T("");
 
@@ -680,7 +680,7 @@ const CString PSS_Global::GetHourShortPrefix(WORD primaryLID)
 {
     const std::size_t index = GetLanguageTableIndex(primaryLID);
 
-    // check the language Index validity
+    // check the language index validity
     if (index >= std::size_t(m_HourShortPrefixArray.GetSize()))
         return _T("");
 

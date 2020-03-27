@@ -50,9 +50,9 @@
 #include "zModelBP\PSS_RiskImpactContainer.h"
 #include "zModelBP\PSS_RiskProbabilityContainer.h"
 #include "zModelWeb\PSS_PublishModelToHTML.h"
-#include "zReport\ZVGridReportChildFrm.h"
-#include "zReport\ZDGridReportDoc.h"
-#include "zReport\ZVGridReportView.h"
+#include "zReport\PSS_GridReportChildFrame.h"
+#include "zReport\PSS_GridReportDocument.h"
+#include "zReport\PSS_GridReportView.h"
 #include "zReportBP\ZBCheckReportGenerator.h"
 #include "zReportBP\ZBMercutioReportGenerator.h"
 #include "zReportBP\ZBSesterceReportGenerator.h"
@@ -139,9 +139,9 @@ CDocTemplate* ZBGridAppAdapter::GetDocTemplate(CRuntimeClass* pViewClass, CRunti
     }
 
     m_pDocTemplate = new CMultiDocTemplate(IDR_MERCUTIOREPORT,
-                                           RUNTIME_CLASS(ZDGridReportDocument),
-                                           RUNTIME_CLASS(ZVGridReportChildFrame),    // custom MDI child frame
-                                           RUNTIME_CLASS(ZVGridReportView));
+                                           RUNTIME_CLASS(PSS_GridReportDocument),
+                                           RUNTIME_CLASS(PSS_GridReportChildFrame),
+                                           RUNTIME_CLASS(PSS_GridReportView));
 
     return m_pDocTemplate;
 }
@@ -454,9 +454,9 @@ BOOL ZAApp::InitAppl()
     // serve as the connection between documents, frame windows and views.
     CGXMultiDocTemplate* pReportDocTemplate;
     pReportDocTemplate = new CGXMultiDocTemplate(IDR_MERCUTIOREPORT,
-                                                 RUNTIME_CLASS(ZDGridReportDocument),
-                                                 RUNTIME_CLASS(ZVGridReportChildFrame),    // custom MDI child frame
-                                                 RUNTIME_CLASS(ZVGridReportView));
+                                                 RUNTIME_CLASS(PSS_GridReportDocument),
+                                                 RUNTIME_CLASS(PSS_GridReportChildFrame),
+                                                 RUNTIME_CLASS(PSS_GridReportView));
 
     AddDocTemplate(pReportDocTemplate);
     PSS_Global::SetReportDocumentTemplate(pReportDocTemplate);
@@ -466,7 +466,7 @@ BOOL ZAApp::InitAppl()
     PSS_ProcessModelDocTmpl* pProcessModelDocumentTemplate =
         new PSS_ProcessModelDocTmpl(IDR_MODEL,
                                     RUNTIME_CLASS(PSS_ProcessGraphModelDoc),
-                                    RUNTIME_CLASS(PSS_ProcessGraphChildFrame),                // custom MDI child frame
+                                    RUNTIME_CLASS(PSS_ProcessGraphChildFrame),
                                     RUNTIME_CLASS(PSS_ProcessGraphModelView),
                                     ID_FILE_MRU_MODEL1);
 
@@ -3253,7 +3253,7 @@ void ZAApp::OnGenerateCheckReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3269,8 +3269,8 @@ void ZAApp::OnGenerateCheckReport()
     CWaitCursor Cursor;
 
     // Create an empty report document file
-    ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_GridReportDocument* pNewFile =
+        (PSS_GridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3298,7 +3298,7 @@ void ZAApp::OnGenerateCheckReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3322,7 +3322,7 @@ void ZAApp::OnGenerateMercutioReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3338,8 +3338,8 @@ void ZAApp::OnGenerateMercutioReport()
     }
 
     // Create an empty report document file
-    ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_GridReportDocument* pNewFile =
+        (PSS_GridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3394,7 +3394,7 @@ void ZAApp::OnGenerateMercutioReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3418,7 +3418,7 @@ void ZAApp::OnGenerateConceptorReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3434,8 +3434,8 @@ void ZAApp::OnGenerateConceptorReport()
     }
 
     // Create an empty report document file
-    ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_GridReportDocument* pNewFile =
+        (PSS_GridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3478,7 +3478,7 @@ void ZAApp::OnGenerateConceptorReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3502,7 +3502,7 @@ void ZAApp::OnGenerateSesterceReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3513,8 +3513,8 @@ void ZAApp::OnGenerateSesterceReport()
     CWaitCursor Cursor;
 
     // Create an empty report document file
-    ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_GridReportDocument* pNewFile =
+        (PSS_GridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3541,7 +3541,7 @@ void ZAApp::OnGenerateSesterceReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3570,7 +3570,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3589,8 +3589,8 @@ void ZAApp::OnGenerateSesterceUnitReport()
     CWaitCursor Cursor;
 
     // Create an empty report document file
-    ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_GridReportDocument* pNewFile =
+        (PSS_GridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3618,7 +3618,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3634,7 +3634,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3653,8 +3653,8 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
     CWaitCursor Cursor;
 
     // Create an empty report document file
-    ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_GridReportDocument* pNewFile =
+        (PSS_GridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3682,7 +3682,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3699,7 +3699,7 @@ void ZAApp::OnGeneratePrestationsReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
@@ -3718,8 +3718,8 @@ void ZAApp::OnGeneratePrestationsReport()
     CWaitCursor Cursor;
 
     // Create an empty report document file
-    ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
+    PSS_GridReportDocument* pNewFile =
+        (PSS_GridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3752,7 +3752,7 @@ void ZAApp::OnGeneratePrestationsReport()
 
     if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        PSS_GenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
         GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif

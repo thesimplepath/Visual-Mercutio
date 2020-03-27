@@ -49,6 +49,7 @@
     <OutDir>..\exe\resdll\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
+    <TargetName>zRBPropGrD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\exeR\resdll\</OutDir>
@@ -80,6 +81,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zRBPropGrD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

@@ -68,7 +68,7 @@ class AFX_EXT_CLASS PSS_Log
         *@param index - index
         *@return the line, empty string on error or if not found
         */
-        virtual CString GetLineAt(std::size_t Index) const = 0;
+        virtual CString GetLineAt(std::size_t index) const = 0;
 
         /**
         * Gets the current selection

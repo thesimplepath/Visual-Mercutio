@@ -52,6 +52,7 @@
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Regex\include;..\;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\CJ60Lib\lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\..\Third party\Stingray Studio\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>zBaseLibD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\exeR\</OutDir>
@@ -90,6 +91,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\ZBaseLibD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

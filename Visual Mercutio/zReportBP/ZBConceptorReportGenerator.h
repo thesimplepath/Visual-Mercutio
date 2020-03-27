@@ -60,7 +60,7 @@ public:
     virtual ~ZBConceptorReportGenerator();
 
     /////////////////////////////////////////////////////////////////////////////
-    // ZIGridReportGenerator methods
+    // PSS_GridReportGenerator methods
 
     virtual void Initialize(PSS_GridDocument*            pDoc,
                             PSS_ProcessGraphModelMdlBP*    pModel,

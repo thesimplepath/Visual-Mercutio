@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PSS_WorkspaceGroupEntity : public PSS_WorkspaceEntity
         *@param index - index
         *@reuturn the entity, NULL if not found or on error
         */
-        virtual PSS_WorkspaceEntity* GetEntityAt(std::size_t Index);
+        virtual PSS_WorkspaceEntity* GetEntityAt(std::size_t index);
 
         /**
         * Gets the entity set
