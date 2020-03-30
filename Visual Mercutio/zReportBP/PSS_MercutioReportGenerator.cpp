@@ -60,21 +60,6 @@ void PSS_MercutioReportGenerator::Initialize(PSS_GridDocument*           pDoc,
     PSS_ModelBPReportGenerator::Initialize(pDoc, pModel, pSourceDoc);
 }
 //---------------------------------------------------------------------------
-bool PSS_MercutioReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index)
-{
-    // default size, 60 rows * 15 columns
-    gridCore.SetRowCount(60);
-    gridCore.SetColCount(15);
-
-    switch (index)
-    {
-        case 0: return FillGridProcedures  (gridCore, index);
-        case 1: return FillGridDeliverables(gridCore, index);
-    }
-
-    return false;
-}
-//---------------------------------------------------------------------------
 const CString PSS_MercutioReportGenerator::GetReportTitle() const
 {
     // build the model title function
@@ -98,6 +83,21 @@ const CString PSS_MercutioReportGenerator::GetReportTitle() const
     str += _T(" ]");
 
     return str;
+}
+//---------------------------------------------------------------------------
+bool PSS_MercutioReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index)
+{
+    // default size, 60 rows * 15 columns
+    gridCore.SetRowCount(60);
+    gridCore.SetColCount(15);
+
+    switch (index)
+    {
+        case 0: return FillGridProcedures  (gridCore, index);
+        case 1: return FillGridDeliverables(gridCore, index);
+    }
+
+    return false;
 }
 //---------------------------------------------------------------------------
 void PSS_MercutioReportGenerator::Serialize(CArchive& ar)

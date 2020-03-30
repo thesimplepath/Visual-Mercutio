@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CheckReportGenerator --------------------------------------------*
+ * ==> PSS_SesterceReportGenerator -----------------------------------------*
  ****************************************************************************
- * Description : Provides a check report generator                          *
+ * Description : Provides a Sesterce report generator                       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_CheckReportGenerator.h"
+#include "PSS_SesterceReportGenerator.h"
 
 // processsoft
 #include "zBaseLib\PSS_Global.h"
@@ -14,10 +14,12 @@
 #include "zModel\PSS_UserGroupEntity.h"
 #include "zModel\PSS_UserRoleEntity.h"
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
-#include "zModelBP\PSS_ExtractProcessName.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
+#include "zModelBP\PSS_ExtractProcessName.h"
+#include "zModelBP\PSS_ProcedureCalculateTotals.h"
 #include "zReport\PSS_GridDocument.h"
-#include "ZUGridProcessNavigation.h"
+#include "ZUGridSesterceProcessNavigation.h"
+#include "PSS_ColorRefDefinition.h"
 
 // resources
 #include "zReport\zReportRes.h"
@@ -32,29 +34,41 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_CheckReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_SesterceReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
 //---------------------------------------------------------------------------
-// PSS_CheckReportGenerator
+// PSS_SesterceReportGenerator
 //---------------------------------------------------------------------------
-PSS_CheckReportGenerator::PSS_CheckReportGenerator(PSS_GridDocument*           pDoc,
-                                                   PSS_ProcessGraphModelMdlBP* pModel,
-                                                   PSS_ProcessGraphModelDoc*   pSourceDoc) :
+PSS_SesterceReportGenerator::PSS_SesterceReportGenerator(PSS_GridDocument*           pDoc,
+                                                         PSS_ProcessGraphModelMdlBP* pModel,
+                                                         PSS_ProcessGraphModelDoc*   pSourceDoc) :
     PSS_ModelBPReportGenerator(pDoc, pModel, pSourceDoc)
-{}
-//---------------------------------------------------------------------------
-PSS_CheckReportGenerator::~PSS_CheckReportGenerator()
-{}
-//---------------------------------------------------------------------------
-const CString PSS_CheckReportGenerator::GetReportTitle() const
 {
-    // build the model title function
+    // initialize the style for header cells
+    m_HeaderStyle.SetTextColor(defCOLOR_BLACK)
+            .SetFont(CGXFont().SetFaceName(_T("Verdana"))
+            .SetSize(12).SetBold(TRUE))
+            .SetInterior(M_Color_RoseSesterce);
+
+    // initialize the style for cells
+    m_NormalStyle.SetTextColor(defCOLOR_BLACK)
+            .SetFont(CGXFont().SetFaceName(_T("Verdana"))
+            .SetSize(10).SetBold(FALSE))
+            .SetInterior(defCOLOR_WHITE);
+}
+//---------------------------------------------------------------------------
+PSS_SesterceReportGenerator::~PSS_SesterceReportGenerator()
+{}
+//---------------------------------------------------------------------------
+const CString PSS_SesterceReportGenerator::GetReportTitle() const
+{
+    // build the title function of the model
     CString str;
 
     if (m_pDoc)
         str = m_pDoc->GetTitle();
 
     CString reportType;
-    reportType.LoadString(IDS_CHECK_RPT_T);
+    reportType.LoadString(IDS_SESTERCE_RPT_T);
 
     str += _T(" [");
     str += reportType;
@@ -70,7 +84,7 @@ const CString PSS_CheckReportGenerator::GetReportTitle() const
     return str;
 }
 //---------------------------------------------------------------------------
-bool PSS_CheckReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index)
+bool PSS_SesterceReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index)
 {
     if (!index)
         return FillGridUnit(gridCore);
@@ -78,7 +92,7 @@ bool PSS_CheckReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index
     return FillGridProcess(gridCore, index);
 }
 //---------------------------------------------------------------------------
-void PSS_CheckReportGenerator::FillTabArray()
+void PSS_SesterceReportGenerator::FillTabArray()
 {
     // if no doc or model defined, nothing to do
     if (!m_pDoc || !m_pModel)
@@ -89,16 +103,14 @@ void PSS_CheckReportGenerator::FillTabArray()
 
     PSS_ExtractProcessName extractProcessName(m_pModel);
 
-    // first tab is for the units
-    CString str;
-    str.LoadString(IDS_UNITNAME_TAB);
-    m_TabNameArray.Add(str);
+    // first tab is for the model name
+    m_TabNameArray.Add(m_pModel->GetModelName());
 
-    // sort the list since the 1st tab
+    // sort the list from the 1st tab
     extractProcessName.FillProcessNameArray(&m_TabNameArray, 1);
 }
 //---------------------------------------------------------------------------
-bool PSS_CheckReportGenerator::FillGridUnit(CGXGridCore& gridCore)
+bool PSS_SesterceReportGenerator::FillGridUnit(CGXGridCore& gridCore)
 {
     PSS_OStreamGrid ostream(&gridCore);
 
@@ -106,44 +118,33 @@ bool PSS_CheckReportGenerator::FillGridUnit(CGXGridCore& gridCore)
     gridCore.SetRowCount(60);
     gridCore.SetColCount(15);
 
-    // initialize the header cells style
-    CGXStyle style;
-    style.SetTextColor(defCOLOR_WHITE)
-            .SetFont(CGXFont().SetFaceName(_T("Verdana"))
-            .SetSize(12).SetBold(TRUE))
-            .SetInterior(defCOLOR_GRAY);
-
-    CGXStyle normalStyle;
-    normalStyle.SetTextColor(defCOLOR_BLACK)
-            .SetFont(CGXFont().SetFaceName(_T("Verdana"))
-            .SetSize(9).SetBold(FALSE))
-            .SetInterior(defCOLOR_WHITE);
-
-    // show the header
+    // show header
     ostream << _T("\n\n");
 
     CString str;
     str.LoadString(IDS_UNITNAME_H);
+
     ostream << str;
-    ostream << CSize(150, 40); // set the cell size
-    ostream << style;
+    ostream << CSize(150, 60);
+    ostream << m_HeaderStyle;
     ostream << _T("\t");
 
     str.LoadString(IDS_UNITDES_H);
     ostream << str;
-    ostream << CSize(200, 0); // set the cell width only
-    ostream << style;
+    ostream << CSize(200, 0);
+    ostream << m_HeaderStyle;
     ostream << _T("\t");
 
     str.LoadString(IDS_UNITCOST_H);
     ostream << str;
-    ostream << style;
+    ostream << m_HeaderStyle;
     ostream << _T("\t");
 
     str.LoadString(IDS_UNITOWNER_H);
     ostream << str;
-    ostream << CSize(200, 0); // set the cell width only
-    ostream << style;
+    ostream << CSize(200, 0);
+    ostream << m_HeaderStyle;
+    ostream << _T("\t");
 
     // process the group
     FillGridUnitGroup(m_pModel->GetMainUserGroup(), ostream);
@@ -153,24 +154,24 @@ bool PSS_CheckReportGenerator::FillGridUnit(CGXGridCore& gridCore)
 
     str.LoadString(IDS_SYMBOLREF_H);
     ostream << str;
-    ostream << style;
+    ostream << m_HeaderStyle;
     ostream << _T("\t");
 
     str.LoadString(IDS_SYMBOLNAME_H);
     ostream << str;
-    ostream << style;
+    ostream << m_HeaderStyle;
     ostream << _T("\t");
 
     str.LoadString(IDS_SYMBOLDES_H);
     ostream << str;
-    ostream << style;
+    ostream << m_HeaderStyle;
 
-    const std::size_t count = m_TabNameArray.GetSize();
+    std::size_t count = m_TabNameArray.GetSize();
 
-    // iterate through all tabs and show the info. Start with the second tab, the first tab is this one
+    // iterate through all tabs and show their content. Start with the second tab, the first tab is this one
     for (std::size_t i = 1; i < count; ++i)
     {
-        // get the process matching with the model name, in case sensitive and only in local symbols
+        // find the process matching with the model name. Case sensitive, and only local symbol
         CODComponentSet* pSet = m_pModel->FindSymbol(m_TabNameArray.GetAt(i), _T(""), true, true, true);
 
         if (!pSet || pSet->GetSize() <= 0)
@@ -184,23 +185,24 @@ bool PSS_CheckReportGenerator::FillGridUnit(CGXGridCore& gridCore)
         ostream << _T("\n");
 
         ostream << pProcess->GetSymbolReferenceNumberStr();
-        ostream << normalStyle;
+        ostream << m_NormalStyle;
         ostream << _T("\t");
 
         ostream << pProcess->GetSymbolName();
-        ostream << normalStyle;
+        ostream << m_NormalStyle;
         ostream << _T("\t");
 
         ostream << pProcess->GetSymbolComment();
 
+        // check the row count
+        const ROWCOL rowCount = ostream.GetGridCore()->GetRowCount();
+
         int left;
         int top;
 
-        // check the row count
-        const ROWCOL rowCount = ostream.GetGridCore()->GetRowCount();
         ostream.GetCurSel(left, top);
 
-        // if not enough, add 5 rows
+        // If not enough, add 5 rows
         if ((top + 5) > int(rowCount))
             ostream.GetGridCore()->SetRowCount(rowCount + 5);
     }
@@ -208,21 +210,44 @@ bool PSS_CheckReportGenerator::FillGridUnit(CGXGridCore& gridCore)
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_CheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PSS_OStreamGrid& ostream)
+void PSS_SesterceReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PSS_OStreamGrid& ostream)
 {
     if (!pGroup)
         return;
+
+    CGXStyle numericCellStyle;
+    numericCellStyle.SetValueType(GX_VT_NUMERIC);
+
+    CGXStyle amountFormatStyle;
+    amountFormatStyle.SetFormat(GX_FMT_COMMA).SetPlaces(0);
+
+    // check the row count
+    const ROWCOL rowCount = ostream.GetGridCore()->GetRowCount();
+
+    int left;
+    int top;
+
+    ostream.GetCurSel(left, top);
+
+    // If not enough, add 10 rows
+    if ((top + 10) > int(rowCount))
+        ostream.GetGridCore()->SetRowCount(rowCount + 10);
 
     // add the group line
     ostream << _T("\n");
 
     ostream << pGroup->GetEntityName();
+    ostream << m_NormalStyle;
     ostream << _T("\t");
 
     ostream << pGroup->GetEntityDescription();
+    ostream << m_NormalStyle;
     ostream << _T("\t");
 
     ostream << pGroup->GetEntityCost();
+    ostream << m_NormalStyle;
+    ostream << numericCellStyle;
+    ostream << amountFormatStyle;
     ostream << _T("\t");
 
     if (pGroup->GetParent())
@@ -230,19 +255,11 @@ void PSS_CheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PS
     else
         ostream << _T("");
 
+    ostream << _T("\t");
+
     if (pGroup->ContainEntity())
     {
         const int count = pGroup->GetEntityCount();
-        int       left;
-        int       top;
-
-        // check the row count
-        const ROWCOL rowCount = ostream.GetGridCore()->GetRowCount();
-        ostream.GetCurSel(left, top);
-
-        // if not enough, add rows
-        if ((top + count + 5) > int(rowCount))
-            ostream.GetGridCore()->SetRowCount(rowCount + count + 5);
 
         for (int i = 0; i < count; ++i)
         {
@@ -267,15 +284,17 @@ void PSS_CheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PS
     }
 }
 //---------------------------------------------------------------------------
-void PSS_CheckReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, PSS_OStreamGrid& ostream)
+void PSS_SesterceReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, PSS_OStreamGrid& ostream)
 {
     // add the role line
     ostream << _T("\n");
 
     ostream << pRole->GetEntityName();
+    ostream << m_NormalStyle;
     ostream << _T("\t");
 
     ostream << pRole->GetEntityDescription();
+    ostream << m_NormalStyle;
     ostream << _T("\t");
 
     // no cost for a role
@@ -286,16 +305,22 @@ void PSS_CheckReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole, PSS_O
         ostream << pRole->GetParent()->GetEntityName();
     else
         ostream << _T("");
+
+    ostream << m_NormalStyle;
 }
 //---------------------------------------------------------------------------
-bool PSS_CheckReportGenerator::FillGridProcess(CGXGridCore& gridCore, std::size_t index)
+bool PSS_SesterceReportGenerator::FillGridProcess(CGXGridCore& gridCore, std::size_t index)
 {
-    // is index out of bounds?
+    // check the index validity
     if (index >= std::size_t(m_TabNameArray.GetSize()))
         return false;
 
-    // get the process matching with the model name, in case sensitive
-    PSS_ProcessGraphModelMdl* pModel = m_pModel->FindModel(m_TabNameArray.GetAt(index), true);
+    PSS_ProcessGraphModelMdl* pModel          = NULL;
+    PSS_ProcessGraphModelMdl* pProcGraphModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pModel);
+
+    // find the process matching with the model name, case sensitive
+    if (pProcGraphModel)
+        pModel = pProcGraphModel->FindModel(m_TabNameArray.GetAt(index), true);
 
     if (!pModel)
         return false;
@@ -308,7 +333,7 @@ bool PSS_CheckReportGenerator::FillGridProcess(CGXGridCore& gridCore, std::size_
     gridCore.SetColCount(15);
 
     // build the navigation grid process
-    ZUGridProcessNavigation processNavigation(pModel, static_cast<void*>(&ostream));
+    ZUGridSesterceProcessNavigation processNavigation(pModel, static_cast<void*>(&ostream));
 
     // navigate through the process symbols
     return processNavigation.Navigate();

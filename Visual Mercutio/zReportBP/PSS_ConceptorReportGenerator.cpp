@@ -73,6 +73,31 @@ void PSS_ConceptorReportGenerator::Initialize(PSS_GridDocument*           pDoc,
     PSS_ModelBPReportGenerator::Initialize(pDoc, pModel, pSourceDoc);
 }
 //---------------------------------------------------------------------------
+const CString PSS_ConceptorReportGenerator::GetReportTitle() const
+{
+    // build the model title function
+    CString str;
+
+    if (m_pDoc)
+        str = m_pDoc->GetTitle();
+
+    CString reportType;
+    reportType.LoadString(IDS_CONCEPTOR_RPT_T);
+
+    str += _T(" [");
+    str += reportType;
+    str += _T(" : ");
+
+    if (m_pModel)
+        str += m_pModel->GetModelName();
+    else
+        str += _T("???");
+
+    str += _T(" ]");
+
+    return str;
+}
+//---------------------------------------------------------------------------
 bool PSS_ConceptorReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index)
 {
     // default size (60 rows * 15 columns)
@@ -117,31 +142,6 @@ bool PSS_ConceptorReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t i
         return true;
 
     return FillGridAllProcess(ostream, index);
-}
-//---------------------------------------------------------------------------
-const CString PSS_ConceptorReportGenerator::GetReportTitle() const
-{
-    // build the model title function
-    CString str;
-
-    if (m_pDoc)
-        str = m_pDoc->GetTitle();
-
-    CString reportType;
-    reportType.LoadString(IDS_CONCEPTOR_RPT_T);
-
-    str += _T(" [");
-    str += reportType;
-    str += _T(" : ");
-
-    if (m_pModel)
-        str += m_pModel->GetModelName();
-    else
-        str += _T("???");
-
-    str += _T(" ]");
-
-    return str;
 }
 //---------------------------------------------------------------------------
 void PSS_ConceptorReportGenerator::OnPostRead(CArchive& ar)

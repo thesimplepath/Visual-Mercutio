@@ -55,10 +55,10 @@
 #include "zReport\PSS_GridReportView.h"
 #include "zReportBP\PSS_CheckReportGenerator.h"
 #include "zReportBP\PSS_MercutioReportGenerator.h"
-#include "zReportBP\ZBSesterceReportGenerator.h"
+#include "zReportBP\PSS_SesterceReportGenerator.h"
 #include "zReportBP\ZBSesterceUnitReportGenerator.h"
-#include "zReportBP\ZBSesterceConsolidatedReportGenerator.h"
-#include "zReportBP\ZBPrestationsReportGenerator.h"
+#include "zReportBP\PSS_SesterceConsolidatedReportGenerator.h"
+#include "zReportBP\PSS_PrestationsReportGenerator.h"
 #include "zReportBP\ZVReportCreationWizard.h"
 #include "zReportBP\PSS_ConceptorReportGenerator.h"
 #include "zReportWeb\ZUPublishReportToHTML.h"
@@ -3519,9 +3519,9 @@ void ZAApp::OnGenerateSesterceReport()
     if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator(new ZBSesterceReportGenerator(pNewFile,
-                                                                          dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
-                                                                          pCurrentDoc));
+        pNewFile->SetNewReportGridGenerator(new PSS_SesterceReportGenerator(pNewFile,
+                                                                            dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                            pCurrentDoc));
 
         PSS_File file(pCurrentDoc->GetPathName());
         CString s;
@@ -3659,10 +3659,10 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
     if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator(new ZBSesterceConsolidatedReportGenerator(pNewFile,
-                                                                                      dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
-                                                                                      pCurrentDoc,
-                                                                                      dlg.IncludeMonthDetail()));
+        pNewFile->SetNewReportGridGenerator(new PSS_SesterceConsolidatedReportGenerator(pNewFile,
+                                                                                        dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                                        pCurrentDoc,
+                                                                                        dlg.IncludeMonthDetail()));
 
         PSS_File file(pCurrentDoc->GetPathName());
         CString s;
@@ -3724,10 +3724,10 @@ void ZAApp::OnGeneratePrestationsReport()
     if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator(new ZBPrestationsReportGenerator(pNewFile,
-                                                                             dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
-                                                                             pCurrentDoc,
-                                                                             dlg.IncludeMonthDetail()));
+        pNewFile->SetNewReportGridGenerator(new PSS_PrestationsReportGenerator(pNewFile,
+                                                                               dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                               pCurrentDoc,
+                                                                               dlg.IncludeMonthDetail()));
 
         CString s;
         CString strFilterExt;

@@ -82,17 +82,17 @@ class AFX_EXT_CLASS PSS_MercutioReportGenerator : public PSS_ModelBPReportGenera
                                 PSS_ProcessGraphModelDoc*   pSourceDoc);
 
         /**
+        * Gets the report title
+        *@return the report title
+        */
+        virtual const CString GetReportTitle() const;
+
+        /**
         * Fills the grid
         *@param gridCore - the grid to fill
         *@param index - the generator tab index
         */
         virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
-
-        /**
-        * Gets the report title
-        *@return the report title
-        */
-        virtual const CString GetReportTitle() const;
 
         /**
         * Serializes the class content to an archive

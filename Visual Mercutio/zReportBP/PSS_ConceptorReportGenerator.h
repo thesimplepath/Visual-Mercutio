@@ -94,17 +94,17 @@ class AFX_EXT_CLASS PSS_ConceptorReportGenerator : public PSS_ModelBPReportGener
                                 BOOL                        includeDeliverables = TRUE);
 
         /**
+        * Gets the report title
+        *@return the report title
+        */
+        virtual const CString GetReportTitle() const;
+
+        /**
         * Fills the grid
         *@param gridCore - the grid to fill
         *@param index - the generator tab index
         */
         virtual bool FillGrid(CGXGridCore& gridCore, std::size_t index);
-
-        /**
-        * Gets the report title
-        *@return the report title
-        */
-        virtual const CString GetReportTitle() const;
 
         /**
         * Called after the report was read

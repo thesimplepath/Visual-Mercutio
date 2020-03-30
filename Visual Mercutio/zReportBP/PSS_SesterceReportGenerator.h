@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CheckReportGenerator --------------------------------------------*
+ * ==> PSS_SesterceReportGenerator -----------------------------------------*
  ****************************************************************************
- * Description : Provides a check report generator                          *
+ * Description : Provides a Sesterce report generator                       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CheckReportGeneratorH
-#define PSS_CheckReportGeneratorH
+#ifndef PSS_SesterceReportGeneratorH
+#define PSS_SesterceReportGeneratorH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,8 +21,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_CheckReportGenerator
-    #define PSS_CheckReportGenerator ZBCheckReportGenerator
+#ifndef PSS_SesterceReportGenerator
+    #define PSS_SesterceReportGenerator ZBSesterceReportGenerator
 #endif
 
 // processsoft
@@ -51,12 +51,12 @@ class PSS_UserRoleEntity;
 #endif
 
 /**
-* Check report generator
+* Sesterce report generator
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CheckReportGenerator : public PSS_ModelBPReportGenerator
+class AFX_EXT_CLASS PSS_SesterceReportGenerator : public PSS_ModelBPReportGenerator
 {
-    DECLARE_SERIAL(PSS_CheckReportGenerator)
+    DECLARE_SERIAL(PSS_SesterceReportGenerator)
 
     public:
         /**
@@ -65,11 +65,11 @@ class AFX_EXT_CLASS PSS_CheckReportGenerator : public PSS_ModelBPReportGenerator
         *@param pModel - the model
         *@param pSourceDoc - the source document
         */
-        PSS_CheckReportGenerator(PSS_GridDocument*           pDoc       = NULL,
-                                 PSS_ProcessGraphModelMdlBP* pModel     = NULL,
-                                 PSS_ProcessGraphModelDoc*   pSourceDoc = NULL);
+        PSS_SesterceReportGenerator(PSS_GridDocument*           pDoc       = NULL,
+                                    PSS_ProcessGraphModelMdlBP* pModel     = NULL,
+                                    PSS_ProcessGraphModelDoc*   pSourceDoc = NULL);
 
-        virtual ~PSS_CheckReportGenerator();
+        virtual ~PSS_SesterceReportGenerator();
 
         /**
         * Gets the report title
@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_CheckReportGenerator : public PSS_ModelBPReportGenerator
         *@param gridCore - the grid to fill
         *@param index - the generator tab index
         */
-        virtual bool FillGrid(CGXGridCore& gridCore, std::size_t index);
+        virtual bool FillGrid(CGXGridCore& GridCore, size_t Index);
 
     protected:
         /**
@@ -91,9 +91,12 @@ class AFX_EXT_CLASS PSS_CheckReportGenerator : public PSS_ModelBPReportGenerator
         virtual void FillTabArray();
 
     private:
+        CGXStyle m_HeaderStyle;
+        CGXStyle m_NormalStyle;
+
         /**
         * Fills the grid unit
-        *@param gridCore - the grid to fill
+        *@param ostream - the output stream
         */
         bool FillGridUnit(CGXGridCore& gridCore);
 
@@ -113,7 +116,7 @@ class AFX_EXT_CLASS PSS_CheckReportGenerator : public PSS_ModelBPReportGenerator
 
         /**
         * Fills the grid process at index
-        *@param gridCore - the grid to fill
+        *@param ostream - the output stream
         *@param index - the index
         */
         bool FillGridProcess(CGXGridCore& gridCore, std::size_t index);

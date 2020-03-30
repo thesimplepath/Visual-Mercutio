@@ -171,14 +171,14 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPrestationsReportGenerator.cpp" />
-    <ClCompile Include="ZBSesterceConsolidatedReportGenerator.cpp">
+    <ClCompile Include="PSS_PrestationsReportGenerator.cpp" />
+    <ClCompile Include="PSS_SesterceConsolidatedReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSesterceReportGenerator.cpp">
+    <ClCompile Include="PSS_SesterceReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -258,9 +258,9 @@
     <ClInclude Include="PSS_ConceptorReportGenerator.h" />
     <ClInclude Include="PSS_MercutioReportGenerator.h" />
     <ClInclude Include="PSS_ModelBPReportGenerator.h" />
-    <ClInclude Include="ZBPrestationsReportGenerator.h" />
-    <ClInclude Include="ZBSesterceConsolidatedReportGenerator.h" />
-    <ClInclude Include="ZBSesterceReportGenerator.h" />
+    <ClInclude Include="PSS_PrestationsReportGenerator.h" />
+    <ClInclude Include="PSS_SesterceConsolidatedReportGenerator.h" />
+    <ClInclude Include="PSS_SesterceReportGenerator.h" />
     <ClInclude Include="ZBSesterceUnitReportGenerator.h" />
     <ClInclude Include="zReportBPLib.h" />
     <ClInclude Include="zReportBPRes.h" />
