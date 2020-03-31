@@ -71,7 +71,7 @@ void PSS_ActivityEventUserOverviewCtrl::Initialize()
 
         for (int i = 0; i < m_pEventManager->GetEventCount(); ++i)
         {
-            PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
+            PSS_ActivityEvent* pEvent = dynamic_cast<PSS_ActivityEvent*>(m_pEventManager->GetEventAt(i));
 
             if (!pEvent)
                 continue;
@@ -96,10 +96,10 @@ PSS_ActivityEvent* PSS_ActivityEventUserOverviewCtrl::GetSelectedActivityItem()
  
     if (hSelected)
     {
-        CObject* pObj = (CObject*)GetItemData(hSelected);
+        CObject* pObj = reinterpret_cast<CObject*>(GetItemData(hSelected));
 
         if (pObj)
-            return reinterpret_cast<PSS_ActivityEvent*>(pObj);
+            return dynamic_cast<PSS_ActivityEvent*>(pObj);
     }
 
     return NULL;
@@ -110,17 +110,12 @@ CString PSS_ActivityEventUserOverviewCtrl::GetSelectedProcess()
     HTREEITEM hSelected = GetSelectedItem();
 
     if (hSelected)
-    {
-        CObject* pObj = (CObject*)GetItemData(hSelected);
-
-        if (!pObj)
-            return GetItemText(hSelected);
-    }
+        return GetItemText(hSelected);
 
     return "";
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityEventUserOverviewCtrl::Refresh ()
+void PSS_ActivityEventUserOverviewCtrl::Refresh()
 {
     DeleteAllItems(TRUE);
     Initialize();
@@ -176,7 +171,7 @@ void PSS_ActivityEventUserOverviewCtrl::BuildProcessArray()
 
     for (int i = 0; i < eventCount; ++i)
     {
-        PSS_ActivityEvent* pEvent = (PSS_ActivityEvent*)m_pEventManager->GetEventAt(i);
+        PSS_ActivityEvent* pEvent = dynamic_cast<PSS_ActivityEvent*>(m_pEventManager->GetEventAt(i));
 
         if (!pEvent)
             continue;

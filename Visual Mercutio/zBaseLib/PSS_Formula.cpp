@@ -180,14 +180,15 @@ PSS_FormulaAssociation* PSS_FormulaAssociation::Clone() const
 {
     std::unique_ptr<PSS_FormulaAssociation> pNewAssociation(new PSS_FormulaAssociation());
 
-    PSS_Formula* pObj;
-    POSITION     pPosition = m_Formulas.GetHeadPosition();
+    POSITION pPosition = m_Formulas.GetHeadPosition();
 
     // clone the formulas
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
-        pNewAssociation->m_Formulas.AddTail(pObj->Clone());
+        const PSS_Formula* pObj = dynamic_cast<const PSS_Formula*>(m_Formulas.GetNext(pPosition));
+
+        if (pObj)
+            pNewAssociation->m_Formulas.AddTail(pObj->Clone());
     }
 
     // copy members
@@ -209,9 +210,9 @@ void PSS_FormulaAssociation::DeleteFormula(const CString& name)
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetNext(pPosition));
 
-        if (pObj->GetObjectName() == name)
+        if (pObj && pObj->GetObjectName() == name)
         {
             DeleteFormula(pObj);
             return;
@@ -237,7 +238,7 @@ PSS_Formula* PSS_FormulaAssociation::GetFormulaAt(int index)
     POSITION pPosition = m_Formulas.FindIndex(index);
 
     if (pPosition)
-        return (PSS_Formula*)m_Formulas.GetAt(pPosition);
+        return dynamic_cast<PSS_Formula*>(m_Formulas.GetAt(pPosition));
 
     return NULL;
 }
@@ -249,9 +250,9 @@ PSS_Formula* PSS_FormulaAssociation::FindFormula(const CString& name)
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetNext(pPosition));
 
-        if (pObj->GetObjectName() == name)
+        if (pObj && pObj->GetObjectName() == name)
             return pObj;
     }
 
@@ -265,9 +266,9 @@ PSS_Formula* PSS_FormulaAssociation::FindFormulaFullString(const CString& formul
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetNext(pPosition));
 
-        if (pObj->GetFormula() == formula)
+        if (pObj && pObj->GetFormula() == formula)
             return pObj;
     }
 
@@ -283,8 +284,10 @@ std::size_t PSS_FormulaAssociation::GetFormulaArray(CStringArray& formulaArray)
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
-        formulaArray.Add(pObj->GetFormula());
+        pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetNext(pPosition));
+
+        if (pObj)
+            formulaArray.Add(pObj->GetFormula());
     }
 
     // return the element count
@@ -525,16 +528,18 @@ PSS_FormulaSchema* PSS_FormulaSchema::Clone() const
 {
     std::unique_ptr<PSS_FormulaSchema> pNewFormulaSchema(new PSS_FormulaSchema());
 
-    PSS_Formula* pObj;
-    POSITION     pPosition = m_Formulas.GetHeadPosition();
+    POSITION pPosition = m_Formulas.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
+        const PSS_Formula* pObj = dynamic_cast<const PSS_Formula*>(m_Formulas.GetNext(pPosition));
 
-        std::unique_ptr<PSS_Formula> pNewFormula(new PSS_Formula());
-        (PSS_Formula&)*pNewFormula = (PSS_Formula&)*pObj;
-        pNewFormulaSchema->m_Formulas.AddTail(pNewFormula.get());
+        if (pObj)
+        {
+            std::unique_ptr<PSS_Formula> pNewFormula(new PSS_Formula());
+            *pNewFormula = *pObj;
+            pNewFormulaSchema->m_Formulas.AddTail(pNewFormula.get());
+        }
     }
 
     // copy the name
@@ -552,9 +557,9 @@ BOOL PSS_FormulaSchema::DeletePageFormulas(int page, BOOL redistribute)
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetNext(pPosition));
 
-        if (pObj->GetPage() == page)
+        if (pObj && pObj->GetPage() == page)
         {
             // save the position within the list
             POSITION pElementPosition = m_Formulas.Find(pObj);
@@ -577,7 +582,10 @@ BOOL PSS_FormulaSchema::DeletePageFormulas(int page, BOOL redistribute)
 
         while (pPosition)
         {
-            pObj = (PSS_Formula*)m_Formulas.GetPrev(pPosition);
+            pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetPrev(pPosition));
+
+            if (!pObj)
+                continue;
 
             // test the object's page, if before the deleted page, continue the loop.
             // For formula it impossible to stop the loop because the formulas are not
@@ -604,9 +612,9 @@ BOOL PSS_FormulaSchema::CopyPageFormulas(PSS_FormulaSchema* pFormulaDst, int pag
     // formula corresponding to the page
     for (pPosition = m_Formulas.GetHeadPosition(), pos = 0; pPosition; ++pos)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetNext(pPosition));
 
-        if (pObj->GetPage() == page)
+        if (pObj && pObj->GetPage() == page)
         {
             foundOne = TRUE;
             break;
@@ -621,16 +629,15 @@ BOOL PSS_FormulaSchema::CopyPageFormulas(PSS_FormulaSchema* pFormulaDst, int pag
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)m_Formulas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_Formula*>(m_Formulas.GetNext(pPosition));
 
-        if (pObj->GetPage() == page)
+        if (pObj && pObj->GetPage() == page)
         {
             // if it's the first element to be inserted, make a loop to count the initial position
             if (!pInsertedPosition)
-            {
                 if (!pos)
                 {
-                    pInsertedPosition = pFormulaDst->m_Formulas.AddHead((CObject*)pObj->Clone());
+                    pInsertedPosition = pFormulaDst->m_Formulas.AddHead(pObj->Clone());
                     continue;
                 }
                 else
@@ -640,9 +647,8 @@ BOOL PSS_FormulaSchema::CopyPageFormulas(PSS_FormulaSchema* pFormulaDst, int pag
                     for (int searchPosition = 0; pInsertedPosition && searchPosition < pos; ++searchPosition)
                         pFormulaDst->m_Formulas.GetNext(pInsertedPosition);
                 }
-            }
 
-            pInsertedPosition = pFormulaDst->m_Formulas.InsertAfter(pInsertedPosition, (CObject*)pObj->Clone());
+            pInsertedPosition = pFormulaDst->m_Formulas.InsertAfter(pInsertedPosition, pObj->Clone());
         }
     }
 
@@ -727,12 +733,12 @@ PSS_SchemaManager::~PSS_SchemaManager()
 const PSS_SchemaManager& PSS_SchemaManager::operator = (const PSS_SchemaManager& other)
 {
     PSS_SchemaManager* pObj;
-    POSITION           pPosition = ((PSS_SchemaManager&)other).m_Schemas.GetHeadPosition();
+    POSITION           pPosition = other.m_Schemas.GetHeadPosition();
 
     // copy elements
     while (pPosition)
     {
-        pObj = (PSS_SchemaManager*)((PSS_SchemaManager&)other).m_Schemas.GetNext(pPosition);
+        pObj = (PSS_SchemaManager*)(other).m_Schemas.GetNext(pPosition);
         m_Schemas.AddTail(pObj->Clone());
     }
 

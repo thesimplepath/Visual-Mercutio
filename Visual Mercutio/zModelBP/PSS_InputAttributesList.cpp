@@ -106,7 +106,7 @@ PSS_InputAttribute* PSS_InputAttributesList::GetSelectedInputAttribute()
     if (pPos)
     {
         const int           index  = GetNextSelectedItem(pPos);
-        PSS_InputAttribute* pInput = dynamic_cast<PSS_InputAttribute*>((CObject*)GetItemData(index));
+        PSS_InputAttribute* pInput = dynamic_cast<PSS_InputAttribute*>(reinterpret_cast<CObject*>(GetItemData(index)));
 
         if (pInput)
             return pInput;

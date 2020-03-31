@@ -14,7 +14,7 @@
 #include "zModelBP\PSS_ProcessGraphModelMdlBP.h"
 #include "zReport\PSS_GridDocument.h"
 #include "ZUGridMercutioRepProcedureNavigation.h"
-#include "ZUGridMercutioRepDeliverableNavigation.h"
+#include "PSS_GridMercutioReportDeliverableNavigation.h"
 
 // resources
 #include "zReport\zReportRes.h"
@@ -201,7 +201,7 @@ bool PSS_MercutioReportGenerator::FillGridDeliverables(CGXGridCore& gridCore, st
     PSS_OStreamGrid ostream(&gridCore);
 
     // build the navigation grid for deliverables
-    ZUGridMercutioRepDeliverableNavigation navigation(m_pModel, static_cast<void*>(&ostream));
+    PSS_GridMercutioReportDeliverableNavigation navigation(m_pModel, static_cast<void*>(&ostream));
 
     // navigate through the process symbols
     return navigation.Navigate();

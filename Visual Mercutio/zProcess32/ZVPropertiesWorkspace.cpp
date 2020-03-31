@@ -175,20 +175,24 @@ void ZVPropertiesWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMs
     }
 
     // RS-MODIF 21.12.04 should only appear if messenger
-    bool IsMessenger = false;
+    bool isMessenger = false;
 
-    PSS_ProcessGraphModelDoc* test =
-        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
-    if (test != NULL)
+    if (pFrameWnd)
     {
-        if (test->GetUseWorkflow())
+        CFrameWnd* pActiveFrame = pFrameWnd->GetActiveFrame();
+
+        if (pActiveFrame)
         {
-            IsMessenger = true;
+            PSS_ProcessGraphModelDoc* pProcGraphMdl = dynamic_cast<PSS_ProcessGraphModelDoc*>(pActiveFrame->GetActiveDocument());
+
+            if (pProcGraphMdl && pProcGraphMdl->GetUseWorkflow())
+                isMessenger = true;
         }
     }
 
-    if (IsMessenger)
+    if (isMessenger)
     {
         m_wndTab.EnableTab(1, TRUE);
         m_wndTab.EnableTab(2, TRUE);

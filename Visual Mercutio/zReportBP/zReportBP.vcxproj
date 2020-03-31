@@ -184,7 +184,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSesterceUnitReportGenerator.cpp">
+    <ClCompile Include="PSS_SesterceUnitReportGenerator.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -196,7 +196,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUGridMercutioRepDeliverableNavigation.cpp">
+    <ClCompile Include="PSS_GridMercutioReportDeliverableNavigation.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -261,10 +261,10 @@
     <ClInclude Include="PSS_PrestationsReportGenerator.h" />
     <ClInclude Include="PSS_SesterceConsolidatedReportGenerator.h" />
     <ClInclude Include="PSS_SesterceReportGenerator.h" />
-    <ClInclude Include="ZBSesterceUnitReportGenerator.h" />
+    <ClInclude Include="PSS_SesterceUnitReportGenerator.h" />
     <ClInclude Include="zReportBPLib.h" />
     <ClInclude Include="zReportBPRes.h" />
-    <ClInclude Include="ZUGridMercutioRepDeliverableNavigation.h" />
+    <ClInclude Include="PSS_GridMercutioReportDeliverableNavigation.h" />
     <ClInclude Include="ZUGridMercutioRepProcedureNavigation.h" />
     <ClInclude Include="ZUGridProcessNavigation.h" />
     <ClInclude Include="ZUGridSesterceProcessNavigation.h" />

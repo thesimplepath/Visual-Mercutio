@@ -171,7 +171,7 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
         /**
         * Field export
         */
-        class IFieldExport
+        class IFieldExport : public CObject
         {
             public:
                 CString m_Key;
@@ -184,7 +184,7 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
                 */
                 IFieldExport(const CString& key = "", const CString& value = "");
 
-                ~IFieldExport();
+                virtual ~IFieldExport();
         };
 
         CObArray                   m_LineArray;

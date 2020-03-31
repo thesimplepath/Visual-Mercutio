@@ -82,7 +82,7 @@ PSS_User* PSS_UserTree::GetSelectedUser() const
 
     if (hSelected)
     {
-        CObject* pObj = (CObject*)m_pTreeCtrl->GetItemData(hSelected);
+        CObject* pObj = reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected));
 
         if (pObj)
             return dynamic_cast<PSS_User*>(pObj);
@@ -100,7 +100,7 @@ CString PSS_UserTree::GetSelectedDepartement() const
 
     if (hSelected)
     {
-        CObject* pObj = (CObject*)m_pTreeCtrl->GetItemData(hSelected);
+        CObject* pObj = reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected));
 
         if (!pObj)
             return m_pTreeCtrl->GetItemText(hSelected);

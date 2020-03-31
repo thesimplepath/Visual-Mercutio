@@ -236,26 +236,31 @@ void ZVOutputWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     }
 
     // RS-MODIF 21.12.04 should only appear if messenger
-    bool IsMessenger = false;
-    bool IsSesterces = false;
+    bool isMessenger = false;
+    bool isSesterces = false;
 
-    PSS_ProcessGraphModelDoc* test =
-        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
-    if (test != NULL)
+    if (pFrameWnd)
     {
-        if (test->GetUseWorkflow())
-        {
-            IsMessenger = true;
-        }
+        CFrameWnd* pActiveFrame = pFrameWnd->GetActiveFrame();
 
-        if (test->GetIntegrateCostSimulation())
+        if (pActiveFrame)
         {
-            IsSesterces = true;
+            PSS_ProcessGraphModelDoc* pProcGraphMdl = dynamic_cast<PSS_ProcessGraphModelDoc*>(pActiveFrame->GetActiveDocument());
+
+            if (pProcGraphMdl)
+            {
+                if (pProcGraphMdl->GetUseWorkflow())
+                    isMessenger = true;
+
+                if (pProcGraphMdl->GetIntegrateCostSimulation())
+                    isSesterces = true;
+            }
         }
     }
 
-    if (IsMessenger)
+    if (isMessenger)
     {
         m_wndTab.EnableTab(3, TRUE);
     }
@@ -265,7 +270,7 @@ void ZVOutputWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
         m_wndTab.EnableTab(3, FALSE);
     }
 
-    if (IsSesterces)
+    if (isSesterces)
     {
         m_wndTab.EnableTab(2, TRUE);
     }

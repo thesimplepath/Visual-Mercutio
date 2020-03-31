@@ -27,6 +27,7 @@ const char g_FieldHeaderNameKey[]  = "$$FieldHeaderName$$";
 // PSS_FieldDefinitionDataFeed::IFieldExport
 //---------------------------------------------------------------------------
 PSS_FieldDefinitionDataFeed::IFieldExport::IFieldExport(const CString& key, const CString& value) :
+    CObject(),
     m_Key(key),
     m_Value(value)
 {}
@@ -105,7 +106,7 @@ BOOL PSS_FieldDefinitionDataFeed::ProcessLine(const CString& line)
     value = tokenizer.GetNextToken();
 
     std::unique_ptr<IFieldExport> pFieldExport(new IFieldExport(key, value));
-    m_LineArray.Add((CObject*)pFieldExport.get());
+    m_LineArray.Add(pFieldExport.get());
     pFieldExport.release();
 
     return TRUE;
@@ -210,7 +211,7 @@ BOOL PSS_FieldDefinitionDataFeed::DoExportLoop()
     CString line;
 
     // only one object to export
-    line = GetExportedLine((CObject*)m_pObjectDefinition);
+    line = GetExportedLine(m_pObjectDefinition);
     WriteLine(line);
 
     return TRUE;
@@ -229,64 +230,44 @@ BOOL PSS_FieldDefinitionDataFeed::PostImport()
     CString helpUser;
     CString className;
     CString headerNames;
-    int     i = 0;
-    BOOL    readOnly        = FALSE;
-    BOOL    sorted          = TRUE;
-    BOOL    isMultiColumn   = FALSE;
-    BOOL    hasBeenAssigned = TRUE;
+    int     i             = 0;
+    BOOL    readOnly      = FALSE;
+    BOOL    sorted        = TRUE;
+    BOOL    isMultiColumn = FALSE;
 
     // iterate through line objects and find the fields
-    for (; i < m_LineArray.GetSize() && m_LineArray.GetAt(i) && hasBeenAssigned; ++i)
+    for (; i < m_LineArray.GetSize(); ++i)
     {
-        hasBeenAssigned = FALSE;
+        IFieldExport* pFieldExport = dynamic_cast<IFieldExport*>(m_LineArray.GetAt(i));
 
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldNameKey)
-        {
-            hasBeenAssigned = TRUE;
-            fieldName       = ((IFieldExport*)m_LineArray.GetAt(i))->m_Value;
-        }
+        if (!pFieldExport)
+            break;
+
+        if (pFieldExport->m_Key == g_FieldNameKey)
+            fieldName = pFieldExport->m_Value;
         else
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldDescriptionKey)
-        {
-            hasBeenAssigned = TRUE;
-            description     = ((IFieldExport*)m_LineArray.GetAt(i))->m_Value;
-        }
+        if (pFieldExport->m_Key == g_FieldDescriptionKey)
+            description = pFieldExport->m_Value;
         else
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldUserHelpKey)
-        {
-            hasBeenAssigned = TRUE;
-            helpUser        = ((IFieldExport*)m_LineArray.GetAt(i))->m_Value;
-        }
+        if (pFieldExport->m_Key == g_FieldUserHelpKey)
+            helpUser = pFieldExport->m_Value;
         else
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldReadOnlyKey)
-        {
-            hasBeenAssigned = TRUE;
-            readOnly        = (((IFieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
-        }
+        if (pFieldExport->m_Key == g_FieldReadOnlyKey)
+            readOnly = (pFieldExport->m_Value == "1" ? 1 : 0);
         else
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldListSortedKey)
-        {
-            hasBeenAssigned = TRUE;
-            sorted          = (((IFieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
-        }
+        if (pFieldExport->m_Key == g_FieldListSortedKey)
+            sorted = (pFieldExport->m_Value == "1" ? 1 : 0);
         else
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldClassNameKey)
-        {
-            hasBeenAssigned = TRUE;
-            className       = ((IFieldExport*)m_LineArray.GetAt(i))->m_Value;
-        }
+        if (pFieldExport->m_Key == g_FieldClassNameKey)
+            className = pFieldExport->m_Value;
         else
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldMultiColumnKey)
-        {
-            hasBeenAssigned = TRUE;
-            isMultiColumn   = (((IFieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
-        }
+        if (pFieldExport->m_Key == g_FieldMultiColumnKey)
+            isMultiColumn = (pFieldExport->m_Value == "1" ? 1 : 0);
         else
-        if (((IFieldExport*)m_LineArray.GetAt(i))->m_Key == g_FieldHeaderNameKey)
-        {
-            hasBeenAssigned = TRUE;
-            headerNames     = ((IFieldExport*)m_LineArray.GetAt(i))->m_Value;
-        }
+        if (pFieldExport->m_Key == g_FieldHeaderNameKey)
+            headerNames = pFieldExport->m_Value;
+        else
+            break;
     }
 
     // no field name found, error
@@ -339,8 +320,14 @@ BOOL PSS_FieldDefinitionDataFeed::PostImport()
     {
         // iterate through the remaining and add them to the history
         for (; i < m_LineArray.GetSize(); ++i)
-            if (m_LineArray.GetAt(i))
-                m_pSourceFieldRepository->AddFieldHistoryValue(fieldName, ((IFieldExport*)m_LineArray.GetAt(i))->m_Key);
+        {
+            IFieldExport* pFieldExport = dynamic_cast<IFieldExport*>(m_LineArray.GetAt(i));
+
+            if (!pFieldExport)
+                continue;
+
+            m_pSourceFieldRepository->AddFieldHistoryValue(fieldName, pFieldExport->m_Key);
+        }
 
         PSS_HistoryField* pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(fieldName);
 

@@ -85,7 +85,7 @@ PSS_FieldObjectDefinition* PSS_CommonFieldTreeCtrl::GetSelectedField()
 
     if (hSelected)
     {
-        CObject* pObj = (CObject*)GetItemData(hSelected);
+        CObject* pObj = reinterpret_cast<CObject*>(GetItemData(hSelected));
 
         if (pObj)
             return dynamic_cast<PSS_FieldObjectDefinition*>(pObj);

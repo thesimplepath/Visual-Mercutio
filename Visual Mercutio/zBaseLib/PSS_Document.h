@@ -1443,21 +1443,21 @@ std::size_t PSS_Document::GetDocumentDataCount() const
 PSS_DocumentData* PSS_Document::GetDocumentDataAt(int documentIndex) const
 {
     if (documentIndex < int(GetDocumentDataCount()) && documentIndex >= 0)
-        return (PSS_DocumentData*)m_DocumentDataArray.GetAt(documentIndex);
+        return dynamic_cast<PSS_DocumentData*>(m_DocumentDataArray.GetAt(documentIndex));
 
     return NULL;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::AddDocumentData(PSS_DocumentData* pDocData)
 {
-    return (m_DocumentDataArray.Add((CObject*)pDocData) >= 0);
+    return (m_DocumentDataArray.Add(pDocData) >= 0);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::AddDocumentDataAfter(PSS_DocumentData* pDocData, int index)
 {
     TRY
     {
-        m_DocumentDataArray.InsertAt(index, (CObject*)pDocData);
+        m_DocumentDataArray.InsertAt(index, pDocData);
         return TRUE;
     }
     CATCH(CMemoryException, e)

@@ -56,7 +56,7 @@
 #include "zReportBP\PSS_CheckReportGenerator.h"
 #include "zReportBP\PSS_MercutioReportGenerator.h"
 #include "zReportBP\PSS_SesterceReportGenerator.h"
-#include "zReportBP\ZBSesterceUnitReportGenerator.h"
+#include "zReportBP\PSS_SesterceUnitReportGenerator.h"
 #include "zReportBP\PSS_SesterceConsolidatedReportGenerator.h"
 #include "zReportBP\PSS_PrestationsReportGenerator.h"
 #include "zReportBP\ZVReportCreationWizard.h"
@@ -3595,10 +3595,10 @@ void ZAApp::OnGenerateSesterceUnitReport()
     if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator(new ZBSesterceUnitReportGenerator(pNewFile,
-                                                                              dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
-                                                                              pCurrentDoc,
-                                                                              dlg.IncludeMonthDetail()));
+        pNewFile->SetNewReportGridGenerator(new PSS_SesterceUnitReportGenerator(pNewFile,
+                                                                                dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                                pCurrentDoc,
+                                                                                dlg.IncludeMonthDetail()));
 
         PSS_File file(pCurrentDoc->GetPathName());
         CString s;

@@ -414,7 +414,7 @@ int PSS_TreeView::GetIndexOfNoDropImage() const
 //---------------------------------------------------------------------------
 CObject* PSS_TreeView::GetDragObject(HTREEITEM dragItem)
 {
-    return (CObject*)GetTreeCtrl().GetItemData(dragItem);
+    return reinterpret_cast<CObject*>(GetTreeCtrl().GetItemData(dragItem));
 }
 //---------------------------------------------------------------------------
 

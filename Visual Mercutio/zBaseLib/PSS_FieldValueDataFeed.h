@@ -224,9 +224,9 @@ const PSS_FieldRepository* PSS_FieldValueDataFeed::GetSourceFieldRepository() co
     return m_pSourceFieldRepository;
 }
 //---------------------------------------------------------------------------
-void PSS_FieldValueDataFeed::SetSourceFieldRepository(PSS_FieldRepository* value)
+void PSS_FieldValueDataFeed::SetSourceFieldRepository(PSS_FieldRepository* pRepository)
 {
-    m_pSourceFieldRepository = value;
+    m_pSourceFieldRepository = pRepository;
 }
 //---------------------------------------------------------------------------
 

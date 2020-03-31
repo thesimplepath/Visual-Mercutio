@@ -85,7 +85,7 @@ PSS_FieldObjectDefinition* PSS_FieldTree::GetSelectedRepositoryField()
     HTREEITEM hSelected = m_pTreeCtrl->GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<PSS_FieldObjectDefinition*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_FieldObjectDefinition*>(reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected)));
 
     return NULL;
 }
@@ -98,7 +98,7 @@ PSS_PlanFinObject* PSS_FieldTree::GetSelectedDocumentField()
     HTREEITEM hSelected = m_pTreeCtrl->GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<PSS_PlanFinObject*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_PlanFinObject*>(reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected)));
 
     return NULL;
 }
@@ -225,7 +225,7 @@ void PSS_FieldTree::CreateTree()
 
                 while (pPosition)
                 {
-                    pObjTemp = (PSS_PlanFinObject*)pDocData->GetObjectList().GetNext(pPosition);
+                    pObjTemp = dynamic_cast<PSS_PlanFinObject*>(pDocData->GetObjectList().GetNext(pPosition));
                     AddDocumentFieldItem(pObjTemp, hDocument);
                 }
             }

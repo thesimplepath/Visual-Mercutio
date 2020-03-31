@@ -86,7 +86,7 @@ PSS_DocumentData* PSS_ProjectTree::GetSelectedDocument()
     HTREEITEM hSelected = m_pTreeCtrl->GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<PSS_DocumentData*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_DocumentData*>(reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected)));
 
     return NULL;
 }
@@ -100,7 +100,7 @@ CString PSS_ProjectTree::GetSelectedDocumentTitle()
 
     if (hSelected)
     {
-        CObject* pObj = (CObject*)m_pTreeCtrl->GetItemData(hSelected);
+        CObject* pObj = reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected));
 
         if (pObj)
             return m_pTreeCtrl->GetItemText(hSelected);

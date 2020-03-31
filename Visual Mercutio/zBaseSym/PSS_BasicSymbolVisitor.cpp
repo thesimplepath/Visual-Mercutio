@@ -18,7 +18,8 @@
 //---------------------------------------------------------------------------
 // PSS_BasicSymbolVisitor
 //---------------------------------------------------------------------------
-PSS_BasicSymbolVisitor::PSS_BasicSymbolVisitor()
+PSS_BasicSymbolVisitor::PSS_BasicSymbolVisitor() :
+    CObject()
 {}
 //---------------------------------------------------------------------------
 PSS_BasicSymbolVisitor::~PSS_BasicSymbolVisitor()

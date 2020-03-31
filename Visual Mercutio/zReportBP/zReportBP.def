@@ -1,9 +1,9 @@
-; zReportBP.def : Declares the module parameters for the DLL.
+; zReportBP.def: Declares the module parameters for the DLL
 
-LIBRARY      "zReportBP"
+LIBRARY "zReportBP"
 
-; JMR-MODIF - Le 2 juin 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'zReportBP Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'zReportBP Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

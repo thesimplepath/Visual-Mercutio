@@ -496,7 +496,7 @@ int PSS_TreeCtrl::GetIndexOfNoDropImage() const
 //---------------------------------------------------------------------------
 CObject* PSS_TreeCtrl::GetDragObject(HTREEITEM hDragItem)
 {
-    return (CObject*)GetItemData(hDragItem);
+    return reinterpret_cast<CObject*>(GetItemData(hDragItem));
 }
 //---------------------------------------------------------------------------
 

@@ -70,7 +70,7 @@ BOOL PSS_FieldValueDataFeed::ProcessLine(const CString& line)
 //---------------------------------------------------------------------------
 CString PSS_FieldValueDataFeed::GetExportedLine(CObject* pObj) const
 {
-    PSS_FieldObjectDefinition* pObjectDefinition = (PSS_FieldObjectDefinition*)pObj;
+    PSS_FieldObjectDefinition* pObjectDefinition = dynamic_cast<PSS_FieldObjectDefinition*>(pObj);
 
     if (!pObjectDefinition || !m_pSourceFieldRepository)
         return "";
@@ -117,10 +117,8 @@ BOOL PSS_FieldValueDataFeed::DoExportLoop()
     if (!m_pObjectDefinition || !m_pSourceFieldRepository)
         return FALSE;
 
-    CString line;
-
     // only one object to export
-    line = GetExportedLine((CObject*)m_pObjectDefinition);
+    const CString line = GetExportedLine(m_pObjectDefinition);
     WriteLine(line);
     return TRUE;
 }

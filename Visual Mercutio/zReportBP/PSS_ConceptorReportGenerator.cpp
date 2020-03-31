@@ -22,7 +22,7 @@
 #include "ZUSynthesisNavigation.h"
 #include "ZUProcessConceptorNavigation.h"
 #include "ZUGridMercutioRepProcedureNavigation.h"
-#include "ZUGridMercutioRepDeliverableNavigation.h"
+#include "PSS_GridMercutioReportDeliverableNavigation.h"
 
 // resources
 #include "zReport\zReportRes.h"

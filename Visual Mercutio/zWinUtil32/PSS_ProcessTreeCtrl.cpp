@@ -49,7 +49,7 @@ const PSS_ProcessTreeCtrl& PSS_ProcessTreeCtrl::operator = (const PSS_ProcessTre
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessTreeCtrl::Initialize (PSS_Process* pProcess)
+void PSS_ProcessTreeCtrl::Initialize(PSS_Process* pProcess)
 {
     m_pProcess = pProcess;
     FillControl();
@@ -60,7 +60,7 @@ PSS_Process* PSS_ProcessTreeCtrl::GetSelectedProcessItem()
     HTREEITEM hSelected = GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<PSS_Process*>((CObject*)GetItemData(hSelected));
+        return dynamic_cast<PSS_Process*>(reinterpret_cast<CObject*>(GetItemData(hSelected)));
 
     return NULL;
 }
@@ -70,7 +70,7 @@ PSS_Process* PSS_ProcessTreeCtrl::GetRootProcessItem()
     HTREEITEM hRoot = GetRootItem();
 
     if (hRoot)
-        return dynamic_cast<PSS_Process*>((CObject*)GetItemData(hRoot));
+        return dynamic_cast<PSS_Process*>(reinterpret_cast<CObject*>(GetItemData(hRoot)));
 
     return NULL;
 }
@@ -80,7 +80,7 @@ PSS_Activity* PSS_ProcessTreeCtrl::GetSelectedActivityItem()
     HTREEITEM hSelected = GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<PSS_Activity*>((CObject*)GetItemData(hSelected));
+        return dynamic_cast<PSS_Activity*>(reinterpret_cast<CObject*>(GetItemData(hSelected)));
 
     return NULL;
 }
@@ -129,7 +129,7 @@ void PSS_ProcessTreeCtrl::AddProcess(PSS_BaseActivity* pBaseActivity, HTREEITEM 
                 AddProcess(pActivity, hParentTreeItem, 2);
         }
         else
-            AddSubItem((PSS_Activity*)pActivity, hParentTreeItem, 1);
+            AddSubItem(dynamic_cast<PSS_Activity*>(pActivity), hParentTreeItem, 1);
     }
 }
 //---------------------------------------------------------------------------

@@ -180,7 +180,7 @@ class AFX_EXT_CLASS PSS_FileManager : public CObject
 //---------------------------------------------------------------------------
 void PSS_FileManager::AddFile(PSS_File* pFile)
 {
-    m_FileArray.Add((CObject*)pFile);
+    m_FileArray.Add(pFile);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_FileManager::GetCount()
@@ -190,7 +190,7 @@ std::size_t PSS_FileManager::GetCount()
 //---------------------------------------------------------------------------
 PSS_File* PSS_FileManager::GetAt(int index)
 {
-    return (PSS_File*)m_FileArray.GetAt(index);
+    return dynamic_cast<PSS_File*>(m_FileArray.GetAt(index));
 }
 //---------------------------------------------------------------------------
 

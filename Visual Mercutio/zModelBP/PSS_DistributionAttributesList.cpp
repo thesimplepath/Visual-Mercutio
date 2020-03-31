@@ -110,7 +110,7 @@ PSS_DistributionAttribute* PSS_DistributionAttributesList::GetSelectedDistributi
     {
         const int                  index      = GetNextSelectedItem(pPos);
         const int                  item       = int(GetItemData(index));
-        PSS_DistributionAttribute* pAttribute = dynamic_cast<PSS_DistributionAttribute*>((CObject*)GetParam(item));
+        PSS_DistributionAttribute* pAttribute = dynamic_cast<PSS_DistributionAttribute*>(reinterpret_cast<CObject*>(GetParam(item)));
 
         if (pAttribute)
             return pAttribute;
@@ -127,7 +127,7 @@ PSS_DistributionRulesForRole* PSS_DistributionAttributesList::GetSelectedDistrib
     {
         const int                     index  = GetNextSelectedItem(pPos);
         const int                     item   = int(GetItemData(index));
-        PSS_DistributionRulesForRole* pRules = dynamic_cast<PSS_DistributionRulesForRole*>((CObject*)GetParam(item));
+        PSS_DistributionRulesForRole* pRules = dynamic_cast<PSS_DistributionRulesForRole*>(reinterpret_cast<CObject*>(GetParam(item)));
 
         if (pRules)
             return pRules;
@@ -144,7 +144,7 @@ PSS_DistributionRule* PSS_DistributionAttributesList::GetSelectedDistributionRul
     {
         const int             index = GetNextSelectedItem(pPos);
         const int             item  = int(GetItemData(index));
-        PSS_DistributionRule* pRule = dynamic_cast<PSS_DistributionRule*>((CObject*)GetParam(item));
+        PSS_DistributionRule* pRule = dynamic_cast<PSS_DistributionRule*>(reinterpret_cast<CObject*>(GetParam(item)));
 
         if (pRule)
             return pRule;

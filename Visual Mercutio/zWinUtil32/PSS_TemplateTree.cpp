@@ -188,7 +188,7 @@ PSS_TemplateDir* PSS_TemplateTree::GetSelectedItemFolder()
         if (!m_pTreeCtrl->GetRootItem())
             return NULL;
 
-        return dynamic_cast<PSS_TemplateDir*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_TemplateDir*>(reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected)));
     }
 
     return NULL;
@@ -206,7 +206,7 @@ PSS_TemplateFile* PSS_TemplateTree::GetSelectedItemFile()
         if (!m_pTreeCtrl->GetRootItem())
             return NULL;
 
-        return DYNAMIC_DOWNCAST(PSS_TemplateFile, (CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return DYNAMIC_DOWNCAST(PSS_TemplateFile, reinterpret_cast<CObject*>(m_pTreeCtrl->GetItemData(hSelected)));
     }
 
     return NULL;

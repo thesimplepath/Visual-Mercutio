@@ -35,7 +35,7 @@
 * Symbol interface which can navigate through other symbols and visit them
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_BasicSymbolVisitor
+class AFX_EXT_CLASS PSS_BasicSymbolVisitor : public CObject
 {
     public:
         PSS_BasicSymbolVisitor();

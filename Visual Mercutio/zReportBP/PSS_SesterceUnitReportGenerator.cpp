@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_SesterceConsolidatedReportGenerator -----------------------------*
+ * ==> PSS_SesterceUnitReportGenerator -------------------------------------*
  ****************************************************************************
- * Description : Provides a Sesterce consolidated report generator          *
+ * Description : Provides a Sesterce unit report generator                  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_SesterceConsolidatedReportGenerator.h"
+#include "PSS_SesterceUnitReportGenerator.h"
 
 // processsoft
 #include "zBaseLib\PSS_Global.h"
@@ -29,28 +29,24 @@
 #include "zReportBPRes.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
 //---------------------------------------------------------------------------
-// Global variables
-//---------------------------------------------------------------------------
-int PSS_SesterceConsolidatedReportGenerator::m_UnitLevel = 0;
-//---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_SesterceConsolidatedReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_SesterceUnitReportGenerator, PSS_ModelBPReportGenerator, g_DefVersion)
 //---------------------------------------------------------------------------
-// PSS_SesterceConsolidatedReportGenerator
+// PSS_SesterceUnitReportGenerator
 //---------------------------------------------------------------------------
-PSS_SesterceConsolidatedReportGenerator::PSS_SesterceConsolidatedReportGenerator(PSS_GridDocument*           pDoc,
-                                                                                 PSS_ProcessGraphModelMdlBP* pModel,
-                                                                                 PSS_ProcessGraphModelDoc*   pSourceDoc,
-                                                                                 bool                        includeMonthDetails) :
+PSS_SesterceUnitReportGenerator::PSS_SesterceUnitReportGenerator(PSS_GridDocument*           pDoc,
+                                                                 PSS_ProcessGraphModelMdlBP* pModel,
+                                                                 PSS_ProcessGraphModelDoc*   pSourceDoc,
+                                                                 bool                        includeMonthDetail) :
     PSS_ModelBPReportGenerator(pDoc, pModel, pSourceDoc),
-    m_IncludeMonthDetails(includeMonthDetails)
+    m_IncludeMonthDetail(includeMonthDetail)
 {
     // initialize the normal style for cells
     m_NormalStyle.SetTextColor(defCOLOR_BLACK)
@@ -80,7 +76,7 @@ PSS_SesterceConsolidatedReportGenerator::PSS_SesterceConsolidatedReportGenerator
             .SetBold(TRUE))
             .SetInterior(M_Color_RoseSesterce);
 
-    // initialize the blue style 
+    // initialize the blue style
     m_BlueStyle.SetTextColor(defCOLOR_BLACK)
             .SetFont(CGXFont().SetFaceName(_T("Verdana"))
             .SetSize(9)
@@ -126,22 +122,22 @@ PSS_SesterceConsolidatedReportGenerator::PSS_SesterceConsolidatedReportGenerator
     m_NumericCellStyle.SetValueType(GX_VT_NUMERIC).SetPlaces(0);
 }
 //---------------------------------------------------------------------------
-PSS_SesterceConsolidatedReportGenerator::~PSS_SesterceConsolidatedReportGenerator()
+PSS_SesterceUnitReportGenerator::~PSS_SesterceUnitReportGenerator()
 {
-    // NOTE use the fully qualified name here to avoid to call a pure virtual function on destruction
-    PSS_SesterceConsolidatedReportGenerator::RemoveAllData();
+    // NOTE use fully qualified name here to avoid to call a pure virtual function on destruction
+    PSS_SesterceUnitReportGenerator::RemoveAllData();
 }
 //---------------------------------------------------------------------------
-const CString PSS_SesterceConsolidatedReportGenerator::GetReportTitle() const
+const CString PSS_SesterceUnitReportGenerator::GetReportTitle() const
 {
     CString str;
 
-    // build the model title function
+    // build the model title
     if (m_pDoc)
         str = m_pDoc->GetTitle();
 
     CString reportType;
-    reportType.LoadString(IDS_SESTERCE_CONSOLIDATED_RPT_T);
+    reportType.LoadString(IDS_SESTERCE_UNIT_RPT_T);
 
     str += _T(" [");
     str += reportType;
@@ -157,7 +153,7 @@ const CString PSS_SesterceConsolidatedReportGenerator::GetReportTitle() const
     return str;
 }
 //---------------------------------------------------------------------------
-bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index)
+bool PSS_SesterceUnitReportGenerator::FillGrid(CGXGridCore& gridCore, std::size_t index)
 {
     PSS_OStreamGrid ostream(&gridCore);
 
@@ -168,17 +164,16 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
     // get the grid view
     PSS_GridView* pGridView = dynamic_cast<PSS_GridView*>(gridCore.GridWnd());
 
-    CString str;
-    int     top;
-    int     left;
-
-    // show the header
+    // show header
     ostream << _T("\n\n");
 
+    int       left;
+    int       top;
     const int count = m_ProcessNameArray.GetSize() + 1;
 
-    if (m_IncludeMonthDetails)
-        // If a grid view, insert a group control for all sub-processes
+    if (m_IncludeMonthDetail)
+    {
+        // if a grid view exists, insert a group control for all sub-processes
         if (pGridView)
         {
             ostream << _T("\t");
@@ -213,6 +208,7 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
                 ostream.Right(13);
             }
         }
+    }
 
     // check the report width
     ostream << _T("\t");
@@ -223,28 +219,30 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
     // check the column count
     const ROWCOL colCount = ostream.GetGridCore()->GetColCount();
 
-    if (m_IncludeMonthDetails)
+    if (m_IncludeMonthDetail)
     {
-        // if not enough, add 20 columns
+        // if not enough, add required columns
         if ((left + (count * 13)) > int(colCount))
             ostream.GetGridCore()->SetColCount(colCount + (count * 13));
     }
     else
     if ((left + count) > int(colCount))
-        // if not enough, add 20 columns
+        // if not enough, add required columns
         ostream.GetGridCore()->SetColCount(colCount + count);
 
     ostream << _T("\n");
 
+    CString str;
+
     switch (index)
     {
-        case 0: str.LoadString(IDS_WORKLOAD_LBLRPT2);    break;
-        case 1: str.LoadString(IDS_COSTUNIT_LBLRPT2);    break;
-        case 2: str.LoadString(IDS_COSTHMOUNIT_LBLRPT2); break;
+        case 0: str.LoadString(IDS_WORKLOAD_LBLRPT);    break;
+        case 1: str.LoadString(IDS_COSTUNIT_LBLRPT);    break;
+        case 2: str.LoadString(IDS_COSTHMOUNIT_LBLRPT); break;
     }
 
     ostream << str;
-    ostream << CSize(300, 40);
+    ostream << CSize(200, 40);
     ostream << m_RoseStyle;
     ostream << _T("\t");
 
@@ -253,11 +251,11 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
     ostream << CSize(150, 0);
     ostream << m_RoseStyle;
 
-    if (m_IncludeMonthDetails)
+    if (m_IncludeMonthDetail)
     {
+        // process each month
         ostream << _T("\t");
 
-        // process each month 
         str.LoadString(IDS_MONTH_LBLRPT1);
         ostream << str;
         ostream << CSize(80, 0);
@@ -348,11 +346,12 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
     for (int i = 0; i < processCount; ++i)
     {
         ostream << _T("\t");
+
         ostream << m_ProcessNameArray.GetAt(i);
         ostream << CSize(150, 0);
         ostream << m_RoseStyle;
 
-        if (m_IncludeMonthDetails)
+        if (m_IncludeMonthDetail)
         {
             ostream << _T("\t");
 
@@ -442,14 +441,12 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
         }
     }
 
-    m_UnitLevel = -1;
-
     // process all user groups
     FillGridUnitGroup(m_pModel->GetMainUserGroup(), index, ostream);
 
-    // freeze the first column
     if (pGridView)
     {
+        // freeze the first column
         PSS_GridDocument* pDoc = pGridView->GetDocument();
 
         if (pDoc)
@@ -466,7 +463,7 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_SesterceConsolidatedReportGenerator::FillTabArray()
+void PSS_SesterceUnitReportGenerator::FillTabArray()
 {
     // if no doc or model defined, nothing to do
     if (!m_pDoc || !m_pModel)
@@ -481,7 +478,7 @@ void PSS_SesterceConsolidatedReportGenerator::FillTabArray()
 
     // add all models to the model array
     m_ModelArray.Add(m_pModel);
-
+    
     const int countProcess = m_ProcessNameArray.GetSize();
 
     for (int i = 0; i < countProcess; ++i)
@@ -496,27 +493,27 @@ void PSS_SesterceConsolidatedReportGenerator::FillTabArray()
         m_ModelArray.Add(pModel);
     }
 
-    PSS_UserGroupCalculateTotals::IInfo info(true, m_pModel->GetMainUserGroup());
-    const int                           modelArrayCount = m_ModelArray.GetSize();
+    PSS_UserGroupCalculateTotals::IInfo info(false, m_pModel->GetMainUserGroup());
 
-    for (int i = 0; i < modelArrayCount; ++i)
+    for (int i = 0; i < m_ModelArray.GetSize(); ++i)
     {
-        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(m_ModelArray.GetAt(i));
+        PSS_ProcessGraphModelMdl* pGraphModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(m_ModelArray.GetAt(i));
 
-        if (!pModel)
+        if (!pGraphModel)
             continue;
 
         std::unique_ptr<PSS_UserGroupCalculateTotals> pUserGroupTotals(new PSS_UserGroupCalculateTotals());
 
-        if (!pUserGroupTotals->Navigate(pModel, (void*)(static_cast<PSS_UserGroupCalculateTotals::IInfo*>(&info))))
+        if (!pUserGroupTotals->Navigate(pGraphModel, (void*)(static_cast<PSS_UserGroupCalculateTotals::IInfo*>(&info))))
             return;
 
         m_NavigationTotalArray.Add(pUserGroupTotals.get());
         pUserGroupTotals.release();
     }
 
-    // fill tabs, the first one is the workload
     CString str;
+
+    // fill tabs, the first one is the workload
     str.LoadString(IDS_WORKLOAD_TAB);
     m_TabNameArray.Add(str);
 
@@ -524,12 +521,12 @@ void PSS_SesterceConsolidatedReportGenerator::FillTabArray()
     str.LoadString(IDS_COST_TAB);
     m_TabNameArray.Add(str);
 
-    // Third tab is the cost hmo
+    // third tab is the HMO cost
     str.LoadString(IDS_COSTHMO_TAB);
     m_TabNameArray.Add(str);
 }
 //---------------------------------------------------------------------------
-void PSS_SesterceConsolidatedReportGenerator::RemoveAllData()
+void PSS_SesterceUnitReportGenerator::RemoveAllData()
 {
     m_ProcessNameArray.RemoveAll();
     m_ModelArray.RemoveAll();
@@ -542,34 +539,16 @@ void PSS_SesterceConsolidatedReportGenerator::RemoveAllData()
     m_NavigationTotalArray.RemoveAll();
 }
 //---------------------------------------------------------------------------
-void PSS_SesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup,
-                                                                std::size_t          index,
-                                                                PSS_OStreamGrid&     ostream)
+void PSS_SesterceUnitReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup,
+                                                        std::size_t          index,
+                                                        PSS_OStreamGrid&     ostream)
 {
     if (!pGroup)
         return;
 
-    // increment the level
-    ++m_UnitLevel;
-
     // add the group line
     ostream << _T("\n");
-
-    CString unitName;
-
-    // to respect the hierarchy, the most the level is low, the most the text is shifted on the right, so:
-    // Level1
-    // ¦-Level2
-    // |   '-Level3
-    // '-Level2
-    //     '-Level3
-    //         '-Etc...
-    for (int i = m_UnitLevel; i > 0; --i)
-        unitName += _T("    ");
-
-    unitName += pGroup->GetEntityName();
-
-    ostream << unitName;
+    ostream << pGroup->GetEntityName();
     ostream << m_NormalStyle;
     ostream << _T("\t");
 
@@ -578,7 +557,7 @@ void PSS_SesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEnt
 
     for (int i = 0; i < modelCount && i < totalsCount; ++i)
     {
-        PSS_ProcessGraphModelMdl* pModel  = dynamic_cast<PSS_ProcessGraphModelMdl*>(m_ModelArray.GetAt(i));
+        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(m_ModelArray.GetAt(i));
 
         if (!pModel)
             continue;
@@ -593,7 +572,7 @@ void PSS_SesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEnt
 
     if (pGroup->ContainEntity())
     {
-        // check the row count
+        // check the number of row
         const ROWCOL rowCount = ostream.GetGridCore()->GetRowCount();
 
         int left;
@@ -628,30 +607,37 @@ void PSS_SesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEnt
                 FillGridUnitRole(pUserRole, index, ostream);
         }
     }
-
-    // decrement the level
-    --m_UnitLevel;
 }
 //---------------------------------------------------------------------------
-void PSS_SesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
-                                                                 PSS_UserGroupCalculateTotals* pTotal,
-                                                                 PSS_UserGroupEntity*          pGroup,
-                                                                 std::size_t                   index,
-                                                                 PSS_OStreamGrid&              ostream)
+void PSS_SesterceUnitReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole,
+                                                       std::size_t         index,
+                                                       PSS_OStreamGrid&    ostream)
 {
-    if (!pGroup || !pTotal)
+    // do nothing for role
+}
+//---------------------------------------------------------------------------
+void PSS_SesterceUnitReportGenerator::FillProcessFigures(PSS_ProcessGraphModelMdl*     pModel,
+                                                         PSS_UserGroupCalculateTotals* pTotal,
+                                                         PSS_UserGroupEntity*          pGroup,
+                                                         std::size_t                   index,
+                                                         PSS_OStreamGrid&              ostream)
+{
+    if (pTotal)
         return;
 
-    PSS_AnnualNumberPropertiesBP* pANP = NULL;
+    if (!pGroup)
+        return;
+
+    PSS_AnnualNumberPropertiesBP* pAnnualNumber;
 
     switch (index)
     {
         case 0:
             // the total unit procedure workload
-            pANP = pTotal->GetProcedureWorkloadForecast(pGroup->GetEntityName());
+            pAnnualNumber = pTotal->GetProcedureWorkloadForecast(pGroup->GetEntityName());
 
-            if (pANP)
-                ostream << pANP->GetNumberYear();
+            if (pAnnualNumber)
+                ostream << pAnnualNumber->GetNumberYear();
             else
                 ostream << 0.0;
 
@@ -659,21 +645,21 @@ void PSS_SesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGrap
 
         case 1:
             // the total unit procedure cost
-            pANP = pTotal->GetProcedureCostForecast(pGroup->GetEntityName());
+            pAnnualNumber = pTotal->GetProcedureCostForecast(pGroup->GetEntityName());
 
-            if (pANP)
-                ostream << pANP->GetNumberYear();
+            if (pAnnualNumber)
+                ostream << pAnnualNumber->GetNumberYear();
             else
                 ostream << 0.0;
 
             break;
 
         case 2:
-            // the total unit procedure cost hmo
-            pANP = pTotal->GetProcedureCost(pGroup->GetEntityName());
+            // the total unit procedure HMO cost
+            pAnnualNumber = pTotal->GetProcedureCost(pGroup->GetEntityName());
 
-            if (pANP)
-                ostream << pANP->GetNumberYear();
+            if (pAnnualNumber)
+                ostream << pAnnualNumber->GetNumberYear();
             else
                 ostream << 0.0;
 
@@ -685,7 +671,7 @@ void PSS_SesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGrap
     ostream << m_AmountFormatStyle;
     ostream << _T("\t");
 
-    if (m_IncludeMonthDetails)
+    if (m_IncludeMonthDetail)
         // the total unit procedure workload forecast
         for (int i = 0; i < 12; ++i)
         {
@@ -693,34 +679,34 @@ void PSS_SesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGrap
             {
                 case 0:
                     // the total unit procedure workload
-                    pANP = pTotal->GetProcedureWorkloadForecast(pGroup->GetEntityName());
+                    pAnnualNumber = pTotal->GetProcedureWorkloadForecast(pGroup->GetEntityName());
 
-                    if (pANP)
-                        ostream << pANP->GetNumberAt(i);
+                    if (pAnnualNumber)
+                        ostream << pAnnualNumber->GetNumberAt(i);
                     else
-                        ostream << (double)0;
+                        ostream << 0.0;
 
                     break;
 
                 case 1:
                     // the total unit procedure cost
-                    pANP = pTotal->GetProcedureCostForecast(pGroup->GetEntityName());
+                    pAnnualNumber = pTotal->GetProcedureCostForecast(pGroup->GetEntityName());
 
-                    if (pANP)
-                        ostream << pANP->GetNumberAt(i);
+                    if (pAnnualNumber)
+                        ostream << pAnnualNumber->GetNumberAt(i);
                     else
-                        ostream << (double)0;
+                        ostream << 0.0;
 
                     break;
 
                 case 2:
                     // the total unit procedure cost hmo
-                    pANP = pTotal->GetProcedureCost(pGroup->GetEntityName());
+                    pAnnualNumber = pTotal->GetProcedureCost(pGroup->GetEntityName());
 
-                    if (pANP)
-                        ostream << pANP->GetNumberAt(i);
+                    if (pAnnualNumber)
+                        ostream << pAnnualNumber->GetNumberAt(i);
                     else
-                        ostream << (double)0;
+                        ostream << 0.0;
 
                     break;
             }
@@ -730,12 +716,5 @@ void PSS_SesterceConsolidatedReportGenerator::FillProcessFigures(PSS_ProcessGrap
             ostream << m_AmountFormatStyle;
             ostream << _T("\t");
         }
-}
-//---------------------------------------------------------------------------
-void PSS_SesterceConsolidatedReportGenerator::FillGridUnitRole(PSS_UserRoleEntity* pRole,
-                                                               std::size_t         index,
-                                                               PSS_OStreamGrid&    ostream)
-{
-    // do nothing for role
 }
 //---------------------------------------------------------------------------

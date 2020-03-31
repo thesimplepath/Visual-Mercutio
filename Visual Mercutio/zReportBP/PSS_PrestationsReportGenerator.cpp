@@ -710,7 +710,8 @@ PSS_PrestationsReportGenerator::PSS_PrestationsReportGenerator(PSS_GridDocument*
 //---------------------------------------------------------------------------
 PSS_PrestationsReportGenerator::~PSS_PrestationsReportGenerator()
 {
-    RemoveObsoleteDatas();
+    // NOTE use the fully qualified name here to avoid to call a pure virtual function on destruction
+    PSS_PrestationsReportGenerator::RemoveObsoleteDatas();
 
     POSITION pPos = m_PrestationsArray.GetHeadPosition();
 

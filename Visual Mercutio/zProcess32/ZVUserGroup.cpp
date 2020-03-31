@@ -294,20 +294,24 @@ void _ZIUserGroupFlatToolBar::OnRefreshButton()
     NotifyAllObservers(&msg);
 
     // RS-MODIF 20.12.04 activate or deactivate role button depends on Messenger
-    bool IsMessenger = false;
+    bool isMessenger = false;
 
-    PSS_ProcessGraphModelDoc* test =
-        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
-    if (test != NULL)
+    if (pFrameWnd)
     {
-        if (test->GetUseWorkflow())
+        CFrameWnd* pActiveFrame = pFrameWnd->GetActiveFrame();
+
+        if (pActiveFrame)
         {
-            IsMessenger = true;
+            PSS_ProcessGraphModelDoc* pProcGraphMdl = dynamic_cast<PSS_ProcessGraphModelDoc*>(pActiveFrame->GetActiveDocument());
+
+            if (pProcGraphMdl && pProcGraphMdl->GetUseWorkflow())
+                isMessenger = true;
         }
     }
 
-    if (IsMessenger)
+    if (isMessenger)
     {
         m_AddRoleButton.EnableWindow(TRUE);
         m_RenameRoleButton.EnableWindow(TRUE);
@@ -324,20 +328,24 @@ void _ZIUserGroupFlatToolBar::OnRefreshButton()
 void _ZIUserGroupFlatToolBar::RefreshButtonNow()
 {
     // RS-MODIF 20.12.04 activate or deactivate role button depends on Messenger
-    bool IsMessenger = false;
+    bool isMessenger = false;
 
-    PSS_ProcessGraphModelDoc* test =
-        (PSS_ProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
+    CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
-    if (test != NULL)
+    if (pFrameWnd)
     {
-        if (test->GetUseWorkflow())
+        CFrameWnd* pActiveFrame = pFrameWnd->GetActiveFrame();
+
+        if (pActiveFrame)
         {
-            IsMessenger = true;
+            PSS_ProcessGraphModelDoc* pProcGraphMdl = dynamic_cast<PSS_ProcessGraphModelDoc*>(pActiveFrame->GetActiveDocument());
+
+            if (pProcGraphMdl && pProcGraphMdl->GetUseWorkflow())
+                isMessenger = true;
         }
     }
 
-    if (IsMessenger)
+    if (isMessenger)
     {
         m_AddRoleButton.EnableWindow(TRUE);
         m_RenameRoleButton.EnableWindow(TRUE);

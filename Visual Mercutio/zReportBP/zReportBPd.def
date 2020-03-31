@@ -1,9 +1,9 @@
-; zReportBPd.def : Declares the module parameters for the DLL.
+; zReportBPd.def: Declares the module parameters for the DLL
 
-LIBRARY      "zReportBPd"
+LIBRARY "zReportBPd"
 
-; JMR-MODIF - Le 30 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'zReportBPd Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'zReportBPd Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

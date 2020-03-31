@@ -170,7 +170,6 @@ BOOL PSS_UserExport::Import()
 //---------------------------------------------------------------------------
 double PSS_UserExport::GetForecastedTotalObject() const
 {
-    // call the user manager
     if (m_pUserManager)
         return m_pUserManager->GetCount();
 
@@ -179,18 +178,16 @@ double PSS_UserExport::GetForecastedTotalObject() const
 //---------------------------------------------------------------------------
 BOOL PSS_UserExport::DoExportLoop()
 {
-    // Call the user manager
     if (!m_pUserManager)
         return FALSE;
 
-          CString line;
-    const int     userCount = m_pUserManager->GetCount();
+    CString   line;
+    const int userCount = m_pUserManager->GetCount();
 
     for (int i = 0; i < userCount; ++i)
     {
-        line = GetExportedLine((CObject*)m_pUserManager->GetAt(i));
+        line = GetExportedLine(m_pUserManager->GetAt(i));
         WriteLine(line);
-
     }
 
     return TRUE;
@@ -198,7 +195,6 @@ BOOL PSS_UserExport::DoExportLoop()
 //---------------------------------------------------------------------------
 BOOL PSS_UserExport::PreImport()
 {
-    // call the user manager
     if (m_pUserManager)
         m_pUserManager->RemoveAllUsers();
 

@@ -18,13 +18,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBSesterceUnitReportGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zReportBP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUGridMercutioRepDeliverableNavigation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZUGridMercutioRepProcedureNavigation.cpp">
@@ -66,6 +60,12 @@
     <ClCompile Include="PSS_SesterceReportGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_SesterceUnitReportGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GridMercutioReportDeliverableNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zReportBP.rc2">
@@ -81,16 +81,10 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBSesterceUnitReportGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="zReportBPLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zReportBPRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUGridMercutioRepDeliverableNavigation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUGridMercutioRepProcedureNavigation.h">
@@ -133,6 +127,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_SesterceReportGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SesterceUnitReportGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GridMercutioReportDeliverableNavigation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
