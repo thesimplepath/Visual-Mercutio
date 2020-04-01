@@ -117,4 +117,4 @@ private:
     bool m_EnableExcelFormat;
 };
 
-#endif // !defined(AFX_ZVReportCreationWizard_H__5DA4C599_18FB_4411_B32C_FA6E5C4462DB__INCLUDED_)
+#endif

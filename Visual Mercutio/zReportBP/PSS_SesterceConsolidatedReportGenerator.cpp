@@ -21,7 +21,7 @@
 #include "zReport\PSS_GridDocument.h"
 #include "zReport\PSS_GridView.h"
 #include "zReport\PSS_GridGroup.h"
-#include "ZUGridProcessNavigation.h"
+#include "PSS_GridProcessNavigation.h"
 #include "PSS_ColorRefDefinition.h"
 
 // resources
@@ -191,7 +191,7 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
                 // check the number of column
                 const ROWCOL colCount = ostream.GetGridCore()->GetColCount();
 
-                // if not enough, add 20 columns
+                // if not enough, add the missing columns
                 if ((left + 20) > int(colCount))
                     ostream.GetGridCore()->SetColCount(colCount + 20);
 
@@ -225,13 +225,13 @@ bool PSS_SesterceConsolidatedReportGenerator::FillGrid(CGXGridCore& gridCore, st
 
     if (m_IncludeMonthDetails)
     {
-        // if not enough, add 20 columns
+        // if not enough, add the missing columns
         if ((left + (count * 13)) > int(colCount))
             ostream.GetGridCore()->SetColCount(colCount + (count * 13));
     }
     else
     if ((left + count) > int(colCount))
-        // if not enough, add 20 columns
+        // if not enough, add the missing columns
         ostream.GetGridCore()->SetColCount(colCount + count);
 
     ostream << _T("\n");
@@ -603,7 +603,7 @@ void PSS_SesterceConsolidatedReportGenerator::FillGridUnitGroup(PSS_UserGroupEnt
 
         const int count = pGroup->GetEntityCount();
 
-        // if not enough, add rows
+        // if not enough, add the missing rows
         if ((top + count + 5) > int(rowCount))
             ostream.GetGridCore()->SetRowCount(rowCount + count + 5);
 

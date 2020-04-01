@@ -17,7 +17,7 @@
 #include "zModelBP\PSS_ExtractProcessName.h"
 #include "zModelBP\PSS_ProcessSymbolBP.h"
 #include "zReport\PSS_GridDocument.h"
-#include "ZUGridProcessNavigation.h"
+#include "PSS_GridProcessNavigation.h"
 
 // resources
 #include "zReport\zReportRes.h"
@@ -200,7 +200,7 @@ bool PSS_CheckReportGenerator::FillGridUnit(CGXGridCore& gridCore)
         const ROWCOL rowCount = ostream.GetGridCore()->GetRowCount();
         ostream.GetCurSel(left, top);
 
-        // if not enough, add 5 rows
+        // if not enough, add the missing rows
         if ((top + 5) > int(rowCount))
             ostream.GetGridCore()->SetRowCount(rowCount + 5);
     }
@@ -240,7 +240,7 @@ void PSS_CheckReportGenerator::FillGridUnitGroup(PSS_UserGroupEntity* pGroup, PS
         const ROWCOL rowCount = ostream.GetGridCore()->GetRowCount();
         ostream.GetCurSel(left, top);
 
-        // if not enough, add rows
+        // if not enough, add the missing rows
         if ((top + count + 5) > int(rowCount))
             ostream.GetGridCore()->SetRowCount(rowCount + count + 5);
 
@@ -308,7 +308,7 @@ bool PSS_CheckReportGenerator::FillGridProcess(CGXGridCore& gridCore, std::size_
     gridCore.SetColCount(15);
 
     // build the navigation grid process
-    ZUGridProcessNavigation processNavigation(pModel, static_cast<void*>(&ostream));
+    PSS_GridProcessNavigation processNavigation(pModel, static_cast<void*>(&ostream));
 
     // navigate through the process symbols
     return processNavigation.Navigate();

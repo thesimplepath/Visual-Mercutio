@@ -1,13 +1,13 @@
 /****************************************************************************
- * ==> PSS_GridMercutioReportDeliverableNavigation -------------------------*
+ * ==> PSS_GridMercutioReportProcedureNavigation ---------------------------*
  ****************************************************************************
  * Description : Provides a navigator which will navigate through the       *
- *               deliverables and write the Mercutio info to the report     *
+ *               procedures and write the Mercutio info to the report       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_GridMercutioReportDeliverableNavigationH
-#define PSS_GridMercutioReportDeliverableNavigationH
+#ifndef PSS_GridMercutioReportProcedureNavigationH
+#define PSS_GridMercutioReportProcedureNavigationH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -38,10 +38,10 @@ class PSS_OStreamGrid;
 #endif
 
 /**
-* Navigator which will navigate through the deliverables and write the Mercutio info to the report
+* Navigator which will navigate through the procedures and write the Mercutio info to the report
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_GridMercutioReportDeliverableNavigation : public PSS_ProcessNavigation
+class PSS_GridMercutioReportProcedureNavigation : public PSS_ProcessNavigation
 {
     public:
         /**
@@ -49,9 +49,9 @@ class PSS_GridMercutioReportDeliverableNavigation : public PSS_ProcessNavigation
         *@param pModel - the model, can be NULL
         *@param pClass - the custom data class, can be NULL
         */
-        PSS_GridMercutioReportDeliverableNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+        PSS_GridMercutioReportProcedureNavigation(PSS_ProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
 
-        virtual ~PSS_GridMercutioReportDeliverableNavigation();
+        virtual ~PSS_GridMercutioReportProcedureNavigation();
 
         /**
         * Called when the navigation starts
@@ -66,11 +66,11 @@ class PSS_GridMercutioReportDeliverableNavigation : public PSS_ProcessNavigation
         virtual bool OnFinish();
 
         /**
-        * Called when a deliverable link symbol is visited
+        * Called when a procedure symbol is visited
         *@param pSymbol - the visited symbol
         *@return true on success, otherwise false
         */
-        virtual bool OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol);
+        virtual bool OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol);
 
     private:
         PSS_OStreamGrid* m_pOStream;
@@ -82,16 +82,18 @@ class PSS_GridMercutioReportDeliverableNavigation : public PSS_ProcessNavigation
         CGXStyle         m_LightGrayStyle;
         CGXStyle         m_BlackBorderStyle;
         CGXStyle         m_LeftOnlyBlackBorderStyle;
+        CGXStyle         m_PercentFormatStyle;
+        CGXStyle         m_NumericCellStyle;
         CString          m_DescriptionLabel;
+        CString          m_UnitLabel;
+        CString          m_CombinationLabel;
         CString          m_RuleListLabel;
-        CString          m_KeyInfoLabel;
-        CString          m_FormListLabel;
-        CString          m_InputProcedureLabel;
-        CString          m_OutputProcedureLabel;
-        CString          m_ComingFromProcedureLabel;
-        CString          m_GoingToProcedureLabel;
-        CString          m_InitialProcedureLabel;
-        CString          m_FinalProcedureLabel;
+        CString          m_TaskListLabel;
+        CString          m_DecisionListLabel;
+        CString          m_FormsLabel;
+        CString          m_AppsLabel;
+        CString          m_OutputDeliverableLabel;
+        CString          m_LateralDeliverableLabel;
 };
 
 #endif

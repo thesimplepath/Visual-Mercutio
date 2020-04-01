@@ -21,18 +21,6 @@
     <ClCompile Include="zReportBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUGridMercutioRepProcedureNavigation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUGridProcessNavigation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUGridSesterceProcessNavigation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUProcessConceptorNavigation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZUSynthesisNavigation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,6 +54,18 @@
     <ClCompile Include="PSS_GridMercutioReportDeliverableNavigation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_GridMercutioReportProcedureNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GridProcessNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GridSesterceProcessNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessConceptorNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zReportBP.rc2">
@@ -85,18 +85,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zReportBPRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUGridMercutioRepProcedureNavigation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUGridProcessNavigation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUGridSesterceProcessNavigation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUProcessConceptorNavigation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUSynthesisNavigation.h">
@@ -133,6 +121,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_GridMercutioReportDeliverableNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GridMercutioReportProcedureNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GridProcessNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GridSesterceProcessNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessConceptorNavigation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

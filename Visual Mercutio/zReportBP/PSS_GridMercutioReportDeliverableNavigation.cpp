@@ -39,7 +39,7 @@
 PSS_GridMercutioReportDeliverableNavigation::PSS_GridMercutioReportDeliverableNavigation(PSS_ProcessGraphModelMdl* pModel,
                                                                                          void*                     pClass) :
     PSS_ProcessNavigation(pModel, pClass),
-    m_pOstream(NULL)
+    m_pOStream(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_GridMercutioReportDeliverableNavigation::~PSS_GridMercutioReportDeliverableNavigation()
@@ -48,15 +48,15 @@ PSS_GridMercutioReportDeliverableNavigation::~PSS_GridMercutioReportDeliverableN
 bool PSS_GridMercutioReportDeliverableNavigation::OnStart()
 {
     // get the stream class
-    if (!m_pOstream)
+    if (!m_pOStream)
     {
-        m_pOstream = static_cast<PSS_OStreamGrid*>(m_pClass);
+        m_pOStream = static_cast<PSS_OStreamGrid*>(m_pClass);
 
-        if (!m_pOstream)
+        if (!m_pOStream)
             return false;
     }
 
-    if (!m_pOstream->GetGridCore())
+    if (!m_pOStream->GetGridCore())
         return false;
 
     // initialize the normal style for cells
@@ -112,20 +112,20 @@ bool PSS_GridMercutioReportDeliverableNavigation::OnStart()
     m_FinalProcedureLabel.LoadString(IDS_FINALPROC_LBLRPT);
 
     // size all cells width one time
-    *m_pOstream << CSize(70, 0);
-    *m_pOstream << _T("\t");
-    *m_pOstream << CSize(100, 0);
-    *m_pOstream << _T("\t");
-    *m_pOstream << CSize(100, 0);
-    *m_pOstream << _T("\t");
-    *m_pOstream << CSize(100, 0);
-    *m_pOstream << _T("\t");
-    *m_pOstream << CSize(100, 0);
-    *m_pOstream << _T("\t");
-    *m_pOstream << CSize(100, 0);
+    *m_pOStream << CSize(70, 0);
+    *m_pOStream << _T("\t");
+    *m_pOStream << CSize(100, 0);
+    *m_pOStream << _T("\t");
+    *m_pOStream << CSize(100, 0);
+    *m_pOStream << _T("\t");
+    *m_pOStream << CSize(100, 0);
+    *m_pOStream << _T("\t");
+    *m_pOStream << CSize(100, 0);
+    *m_pOStream << _T("\t");
+    *m_pOStream << CSize(100, 0);
 
     // set the default row height for all cells
-    m_pOstream->GetGridCore()->SetDefaultRowHeight(20);
+    m_pOStream->GetGridCore()->SetDefaultRowHeight(20);
 
     return true;
 }
@@ -133,24 +133,24 @@ bool PSS_GridMercutioReportDeliverableNavigation::OnStart()
 bool PSS_GridMercutioReportDeliverableNavigation::OnFinish()
 {
     // get the stream class
-    if (!m_pOstream)
+    if (!m_pOStream)
     {
-        m_pOstream = static_cast<PSS_OStreamGrid*>(m_pClass);
+        m_pOStream = static_cast<PSS_OStreamGrid*>(m_pClass);
 
-        if (!m_pOstream)
+        if (!m_pOStream)
             return false;
     }
 
-    if (!m_pOstream->GetGridCore())
+    if (!m_pOStream->GetGridCore())
         return false;
 
     int top;
     int left;
 
-    m_pOstream->GetCurSel(left, top);
+    m_pOStream->GetCurSel(left, top);
 
     // set the grid as read-only
-    m_pOstream->GetGridCore()->SetReadOnly(TRUE);
+    m_pOStream->GetGridCore()->SetReadOnly(TRUE);
 
     return true;
 }
@@ -158,151 +158,151 @@ bool PSS_GridMercutioReportDeliverableNavigation::OnFinish()
 bool PSS_GridMercutioReportDeliverableNavigation::OnDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
     // get the stream class
-    if (!m_pOstream)
+    if (!m_pOStream)
     {
-        m_pOstream = static_cast<PSS_OStreamGrid*>(m_pClass);
+        m_pOStream = static_cast<PSS_OStreamGrid*>(m_pClass);
 
-        if (!m_pOstream)
+        if (!m_pOStream)
             return false;
     }
 
-    if (!m_pOstream->GetGridCore())
+    if (!m_pOStream->GetGridCore())
         return false;
 
     // check the row count
-    const ROWCOL rowCount = m_pOstream->GetGridCore()->GetRowCount();
+    const ROWCOL rowCount = m_pOStream->GetGridCore()->GetRowCount();
 
     int left;
     int top;
 
-    m_pOstream->GetCurSel(left, top);
+    m_pOStream->GetCurSel(left, top);
 
-    // if not enough, add 60 rows
+    // if not enough, add the missing rows
     if ((top + 30) > int(rowCount))
-        m_pOstream->GetGridCore()->SetRowCount(rowCount + 60);
+        m_pOStream->GetGridCore()->SetRowCount(rowCount + 60);
 
     // build the first line with the deliverable reference number and the deliverable name.
-    m_pOstream->HomeLeft();
+    m_pOStream->HomeLeft();
 
-    *m_pOstream << pSymbol->GetSymbolReferenceNumberStr();
-    *m_pOstream << m_BlueStyle;
-    *m_pOstream << _T("\t");
+    *m_pOStream << pSymbol->GetSymbolReferenceNumberStr();
+    *m_pOStream << m_BlueStyle;
+    *m_pOStream << _T("\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
-    *m_pOstream << pSymbol->GetSymbolName();
-    *m_pOstream << m_BoldBlueStyle;
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
+    *m_pOStream << pSymbol->GetSymbolName();
+    *m_pOStream << m_BoldBlueStyle;
 
     // set the border
-     m_pOstream->HomeLeft();
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->SetCurSel(left, top, left + 5, top);
-    *m_pOstream << m_BlackBorderStyle;
+     m_pOStream->HomeLeft();
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->SetCurSel(left, top, left + 5, top);
+    *m_pOStream << m_BlackBorderStyle;
 
     // build the second line with the deliverable description
-    *m_pOstream << _T("\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 1);
-    *m_pOstream << m_DescriptionLabel;
-    *m_pOstream << m_GrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\t\t");
+    *m_pOStream << _T("\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 1);
+    *m_pOStream << m_DescriptionLabel;
+    *m_pOStream << m_GrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\t\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 3);
-    *m_pOstream << pSymbol->GetSymbolComment();
-    *m_pOstream << m_NormalStyle;
-    *m_pOstream << m_BlackBorderStyle;
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 3);
+    *m_pOStream << pSymbol->GetSymbolComment();
+    *m_pOStream << m_NormalStyle;
+    *m_pOStream << m_BlackBorderStyle;
 
     // build the third line with the key info label
-    *m_pOstream << _T("\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 5);
-    *m_pOstream << m_KeyInfoLabel;
-    *m_pOstream << m_GrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
+    *m_pOStream << _T("\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 5);
+    *m_pOStream << m_KeyInfoLabel;
+    *m_pOStream << m_GrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
 
     // build the next lines with the key info itself, at least one empty line
     std::size_t count = max(pSymbol->GetTextItemCount(), 1);
 
     for (std::size_t i = 0; i < count; ++i)
     {
-        *m_pOstream << _T("\n");
-        *m_pOstream << m_BlueStyle;
-        *m_pOstream << m_LeftOnlyBlackBorderStyle;
-        *m_pOstream << _T("\t");
+        *m_pOStream << _T("\n");
+        *m_pOStream << m_BlueStyle;
+        *m_pOStream << m_LeftOnlyBlackBorderStyle;
+        *m_pOStream << _T("\t");
 
-         m_pOstream->GetCurSel(left, top);
-         m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
-        *m_pOstream << pSymbol->GetTextItemAt(i);
-        *m_pOstream << m_NormalStyle;
-        *m_pOstream << m_BlackBorderStyle;
+         m_pOStream->GetCurSel(left, top);
+         m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
+        *m_pOStream << pSymbol->GetTextItemAt(i);
+        *m_pOStream << m_NormalStyle;
+        *m_pOStream << m_BlackBorderStyle;
     }
 
     // build the next line with the rule list label
-    *m_pOstream << _T("\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 5);
-    *m_pOstream << m_RuleListLabel;
-    *m_pOstream << m_GrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
+    *m_pOStream << _T("\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 5);
+    *m_pOStream << m_RuleListLabel;
+    *m_pOStream << m_GrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
 
     // build the next lines with the rules themselves, at least one empty line
     count = max(pSymbol->GetRuleCount(), 1);
 
     for (std::size_t i = 0; i < count; ++i)
     {
-        *m_pOstream << _T("\n");
-        *m_pOstream << m_BlueStyle;
-        *m_pOstream << m_LeftOnlyBlackBorderStyle;
-        *m_pOstream << _T("\t");
+        *m_pOStream << _T("\n");
+        *m_pOStream << m_BlueStyle;
+        *m_pOStream << m_LeftOnlyBlackBorderStyle;
+        *m_pOStream << _T("\t");
 
-         m_pOstream->GetCurSel(left, top);
-         m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
-        *m_pOstream << pSymbol->GetRuleAt(i);
-        *m_pOstream << m_NormalStyle;
-        *m_pOstream << m_BlackBorderStyle;
+         m_pOStream->GetCurSel(left, top);
+         m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
+        *m_pOStream << pSymbol->GetRuleAt(i);
+        *m_pOStream << m_NormalStyle;
+        *m_pOStream << m_BlackBorderStyle;
     }
 
     // build the third line with the forms, document label
-    *m_pOstream << _T("\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 5);
-    *m_pOstream << m_FormListLabel;
-    *m_pOstream << m_GrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
+    *m_pOStream << _T("\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 5);
+    *m_pOStream << m_FormListLabel;
+    *m_pOStream << m_GrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
 
     // build the next lines with the forms, document and other
     count = pSymbol->GetExtFileCount();
 
     for (std::size_t i = 0; i < count; ++i)
     {
-        *m_pOstream << _T("\n");
-        *m_pOstream << m_BlueStyle;
-        *m_pOstream << m_LeftOnlyBlackBorderStyle;
-        *m_pOstream << _T("\t");
+        *m_pOStream << _T("\n");
+        *m_pOStream << m_BlueStyle;
+        *m_pOStream << m_LeftOnlyBlackBorderStyle;
+        *m_pOStream << _T("\t");
 
-         m_pOstream->GetCurSel(left, top);
-         m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
-        *m_pOstream << pSymbol->GetFileTitle(i);
-        *m_pOstream << m_NormalStyle;
-        *m_pOstream << m_BlackBorderStyle;
+         m_pOStream->GetCurSel(left, top);
+         m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 4);
+        *m_pOStream << pSymbol->GetFileTitle(i);
+        *m_pOStream << m_NormalStyle;
+        *m_pOStream << m_BlackBorderStyle;
     }
 
     // build the third line with the input procedure name
-    *m_pOstream << _T("\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 3);
-    *m_pOstream << m_InputProcedureLabel;
-    *m_pOstream << m_GrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\t\t\t\t");
+    *m_pOStream << _T("\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 3);
+    *m_pOStream << m_InputProcedureLabel;
+    *m_pOStream << m_GrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\t\t\t\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 1);
-    *m_pOstream << m_GoingToProcedureLabel;
-    *m_pOstream << m_LightGrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 1);
+    *m_pOStream << m_GoingToProcedureLabel;
+    *m_pOStream << m_LightGrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
 
     CString procedureNumber;
     CString procedureName;
@@ -330,41 +330,41 @@ bool PSS_GridMercutioReportDeliverableNavigation::OnDeliverableLinkSymbol(PSS_De
         processName.Empty();
     }
 
-    *m_pOstream << _T("\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left);
-    *m_pOstream << procedureNumber;
-    *m_pOstream << m_BlueStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\t");
+    *m_pOStream << _T("\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left);
+    *m_pOStream << procedureNumber;
+    *m_pOStream << m_BlueStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 2);
-    *m_pOstream << procedureName;
-    *m_pOstream << m_BoldStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\t\t\t");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 2);
+    *m_pOStream << procedureName;
+    *m_pOStream << m_BoldStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\t\t\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 1);
-    *m_pOstream << processName;
-    *m_pOstream << m_NormalStyle;
-    *m_pOstream << m_BlackBorderStyle;
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 1);
+    *m_pOStream << processName;
+    *m_pOStream << m_NormalStyle;
+    *m_pOStream << m_BlackBorderStyle;
 
     // build the next line with the output procedure name. NOTE two newline, since we have written information on two lines
-    *m_pOstream << _T("\n\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 3);
-    *m_pOstream << m_OutputProcedureLabel;
-    *m_pOstream << m_GrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\t\t\t\t");
+    *m_pOStream << _T("\n\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 3);
+    *m_pOStream << m_OutputProcedureLabel;
+    *m_pOStream << m_GrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\t\t\t\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 1);
-    *m_pOstream << m_ComingFromProcedureLabel;
-    *m_pOstream << m_LightGrayStyle;
-    *m_pOstream << m_BlackBorderStyle;
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top, left + 1);
+    *m_pOStream << m_ComingFromProcedureLabel;
+    *m_pOStream << m_LightGrayStyle;
+    *m_pOStream << m_BlackBorderStyle;
 
     // empty the process name
     processName.Empty();
@@ -392,30 +392,30 @@ bool PSS_GridMercutioReportDeliverableNavigation::OnDeliverableLinkSymbol(PSS_De
         processName     = _T("");
     }
 
-    *m_pOstream << _T("\n");
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left);
-    *m_pOstream << procedureNumber;
-    *m_pOstream << m_BlueStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\t");
+    *m_pOStream << _T("\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left);
+    *m_pOStream << procedureNumber;
+    *m_pOStream << m_BlueStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 2);
-    *m_pOstream << procedureName;
-    *m_pOstream << m_BoldStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\t\t\t");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 2);
+    *m_pOStream << procedureName;
+    *m_pOStream << m_BoldStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\t\t\t");
 
-     m_pOstream->GetCurSel(left, top);
-     m_pOstream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 1);
-    *m_pOstream << processName;
-    *m_pOstream << m_NormalStyle;
-    *m_pOstream << m_BlackBorderStyle;
-    *m_pOstream << _T("\n\n");
+     m_pOStream->GetCurSel(left, top);
+     m_pOStream->GetGridCore()->SetCoveredCellsRowCol(top, left, top + 1, left + 1);
+    *m_pOStream << processName;
+    *m_pOStream << m_NormalStyle;
+    *m_pOStream << m_BlackBorderStyle;
+    *m_pOStream << _T("\n\n");
 
-    *m_pOstream << _T("\n");
-    *m_pOstream << _T("\n");
+    *m_pOStream << _T("\n");
+    *m_pOStream << _T("\n");
 
     return true;
 }

@@ -18,7 +18,7 @@
 #include "zModelBP\PSS_ExtractProcessName.h"
 #include "zModelBP\PSS_ProcedureCalculateTotals.h"
 #include "zReport\PSS_GridDocument.h"
-#include "ZUGridSesterceProcessNavigation.h"
+#include "PSS_GridSesterceProcessNavigation.h"
 #include "PSS_ColorRefDefinition.h"
 
 // resources
@@ -333,7 +333,7 @@ bool PSS_SesterceReportGenerator::FillGridProcess(CGXGridCore& gridCore, std::si
     gridCore.SetColCount(15);
 
     // build the navigation grid process
-    ZUGridSesterceProcessNavigation processNavigation(pModel, static_cast<void*>(&ostream));
+    PSS_GridSesterceProcessNavigation processNavigation(pModel, static_cast<void*>(&ostream));
 
     // navigate through the process symbols
     return processNavigation.Navigate();
