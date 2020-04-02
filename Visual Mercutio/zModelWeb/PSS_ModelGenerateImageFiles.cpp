@@ -427,34 +427,32 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         if (!htmlFile.OpenFileCreate())
             return false;
 
+        CString str;
+
         // write header
-        CString s;
-        s.Format(IDS_MODELGENHTML_1,
+        str.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
                  (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
-        htmlFile << s;
+        htmlFile << str;
 
         // build the CSS file name
         const CString ajPopupCSSFileName = m_IncludeDirectory + _T("\\") + g_AJPopupCSSFile;
-        s.Format(IDS_MODELGENHTML_50,
-                 (const char*)BuildFileNameAndPath(ajPopupCSSFileName, htmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_50, (const char*)BuildFileNameAndPath(ajPopupCSSFileName, htmlFileName));
+        htmlFile << str;
 
         // build the ajLib javascript file name
         const CString ajLibJSFileName = m_IncludeDirectory + _T("\\") + g_AJLibJSFile;
-        s.Format(IDS_MODELGENHTML_52,
-                 (const char*)BuildFileNameAndPath(ajLibJSFileName, htmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_52, (const char*)BuildFileNameAndPath(ajLibJSFileName, htmlFileName));
+        htmlFile << str;
 
         // build the ajPopup javascript file name
         CString ajPopupJSFileName = m_IncludeDirectory + _T("\\") + g_AJPopupJSFile;
-        s.Format(IDS_MODELGENHTML_52,
-                 (const char*)BuildFileNameAndPath(ajPopupJSFileName, htmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_52, (const char*)BuildFileNameAndPath(ajPopupJSFileName, htmlFileName));
+        htmlFile << str;
 
         // write the JavaScript header
-        s.LoadString(IDS_MODELGENHTML_79);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_79);
+        htmlFile << str;
 
         const CODComponentSet* pSet = pModel->GetComponents();
         ASSERT(pSet);
@@ -475,14 +473,14 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             if (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 // write it
-                s.Format(IDS_MODELGENHTML_86, objectCounter);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_86, objectCounter);
+                htmlFile << str;
                 ++objectCounter;
             }
         }
 
-        s.LoadString(IDS_MODELGENHTML_87);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_87);
+        htmlFile << str;
 
         objectCounter = 1;
 
@@ -499,14 +497,14 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             if (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 // Write it
-                s.Format(IDS_MODELGENHTML_82, objectCounter, objectCounter, objectCounter);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_82, objectCounter, objectCounter, objectCounter);
+                htmlFile << str;
                 ++objectCounter;
             }
         }
 
-        s.LoadString(IDS_MODELGENHTML_83);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_83);
+        htmlFile << str;
 
         objectCounter = 1;
 
@@ -528,37 +526,37 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 PSS_ProcessGraphModelMdl* pOwnerModel =
                         dynamic_cast<PSS_ProcessGraphModelMdl*>(pBasicSym->GetOwnerModel());
 
-                s.Format(IDS_MODELGENHTML_84, objectCounter);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_84, objectCounter);
+                htmlFile << str;
 
-                s.Format(IDS_MODELGENHTML_88,
-                         (const char*)BuildFileNameAndPath(BuildSymbolPropertyHTMLFileName(pBasicSym,
-                                                                                           pOwnerModel ? pOwnerModel : pModel),
-                                                           htmlFileName));
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_88,
+                           (const char*)BuildFileNameAndPath(BuildSymbolPropertyHTMLFileName(pBasicSym,
+                                                                                             pOwnerModel ? pOwnerModel : pModel),
+                                                             htmlFileName));
+                htmlFile << str;
 
-                s.Format(IDS_MODELGENHTML_89,
-                         objectCounter,
-                         objectCounter,
-                         objectCounter,
-                         objectCounter);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_89,
+                           objectCounter,
+                           objectCounter,
+                           objectCounter,
+                           objectCounter);
+                htmlFile << str;
 
                 ++objectCounter;
             }
         }
 
         // write the JavaScript footer
-        s.LoadString(IDS_MODELGENHTML_90);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_90);
+        htmlFile << str;
 
         // end of head and body
-        s.LoadString(IDS_MODELGENHTML_51);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_51);
+        htmlFile << str;
 
         // write the navigation table header
-        s.LoadString(IDS_MODELGENHTML_6);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_6);
+        htmlFile << str;
 
         CString logoImage;
 
@@ -570,12 +568,12 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             const CString parentHtmlFileName = BuildModelHTMLFileName(pModel->GetParent());
                           logoImage          = m_ImageDirectory + _T("\\") + g_ParentImageFile;
 
-            s.Format(IDS_MODELGENHTML_11,
-                     (const char*)BuildFileNameAndPath(parentHtmlFileName, htmlFileName),
-                     (const char*)BuildFileNameAndPath(logoImage,          htmlFileName),
-                     (const char*)BuildFileNameAndPath(parentHtmlFileName, htmlFileName),
-                     (const char*)parentName);
-            htmlFile << s;
+            str.Format(IDS_MODELGENHTML_11,
+                       (const char*)BuildFileNameAndPath(parentHtmlFileName, htmlFileName),
+                       (const char*)BuildFileNameAndPath(logoImage,          htmlFileName),
+                       (const char*)BuildFileNameAndPath(parentHtmlFileName, htmlFileName),
+                       (const char*)parentName);
+            htmlFile << str;
         }
         else
         {
@@ -583,38 +581,38 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             const CString parentName = _T("Index");
                           logoImage  = m_ImageDirectory + _T("\\") + g_HomeImageFile;
 
-            s.Format(IDS_MODELGENHTML_85,
-                     (const char*)BuildFileNameAndPath(m_IndexHtmlFileName, htmlFileName),
-                     (const char*)BuildFileNameAndPath(logoImage,           htmlFileName),
-                     (const char*)BuildFileNameAndPath(m_IndexHtmlFileName, htmlFileName),
-                     (const char*)parentName);
-            htmlFile << s;
+            str.Format(IDS_MODELGENHTML_85,
+                       (const char*)BuildFileNameAndPath(m_IndexHtmlFileName, htmlFileName),
+                       (const char*)BuildFileNameAndPath(logoImage,           htmlFileName),
+                       (const char*)BuildFileNameAndPath(m_IndexHtmlFileName, htmlFileName),
+                       (const char*)parentName);
+            htmlFile << str;
         }
 
         // write the print facilities
         logoImage = m_ImageDirectory + _T("\\") + g_PrinterImageFile;
-        s.Format(IDS_MODELGENHTML_15,
-                 (const char*)BuildFileNameAndPath(htmlFileNameForPrinter, htmlFileName),
-                 (const char*)BuildFileNameAndPath(logoImage,              htmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_15,
+                   (const char*)BuildFileNameAndPath(htmlFileNameForPrinter, htmlFileName),
+                   (const char*)BuildFileNameAndPath(logoImage,              htmlFileName));
+        htmlFile << str;
 
         // write the navigation table footer
-        s.LoadString(IDS_MODELGENHTML_9);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_9);
+        htmlFile << str;
 
         // write all the popups for all symbols. NOTE Javascript starts here
-        s.LoadString(IDS_MODELGENHTML_53);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_53);
+        htmlFile << str;
 
         // create a dummy object to avoid copyright on the first object
-        s.Format(IDS_MODELGENHTML_55, 0);
-        htmlFile << s;
-        s.Format(IDS_MODELGENHTML_57, 0, _T(""));
-        htmlFile << s;
-        s.Format(IDS_MODELGENHTML_58, 0, _T(""));
-        htmlFile << s;
-        s.Format(IDS_MODELGENHTML_61, 0);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_55, 0);
+        htmlFile << str;
+        str.Format(IDS_MODELGENHTML_57, 0, _T(""));
+        htmlFile << str;
+        str.Format(IDS_MODELGENHTML_58, 0, _T(""));
+        htmlFile << str;
+        str.Format(IDS_MODELGENHTML_61, 0);
+        htmlFile << str;
 
         objectCounter = 1;
 
@@ -637,31 +635,31 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 ASSERT(pBasicSym);
 
                 // allocate the new popup object
-                s.Format(IDS_MODELGENHTML_55, objectCounter);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_55, objectCounter);
+                htmlFile << str;
 
                 // the header is the symbol name
-                s.Format(IDS_MODELGENHTML_57,
-                         objectCounter,
-                         (const char*)ReplaceSpecialCharInString(pBasicSym->GetSymbolName()));
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_57,
+                           objectCounter,
+                           (const char*)ReplaceSpecialCharInString(pBasicSym->GetSymbolName()));
+                htmlFile << str;
 
                 CString dummy;
                 dummy.Format(IDS_SYMBOLDESCRIPTION_HTML, pBasicSym->GetSymbolComment());
 
                 // the text is the symbol description
-                s.Format(IDS_MODELGENHTML_58,
-                         objectCounter,
-                         (const char*)ReplaceSpecialCharInString(dummy));
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_58,
+                           objectCounter,
+                           (const char*)ReplaceSpecialCharInString(dummy));
+                htmlFile << str;
 
                 dummy.Format(IDS_SYMBOLREF_HTML, pBasicSym->GetSymbolReferenceNumber());
 
                 // the text is the symbol description
-                s.Format(IDS_MODELGENHTML_58,
-                         objectCounter,
-                         (const char*)dummy);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_58,
+                           objectCounter,
+                           (const char*)dummy);
+                htmlFile << str;
 
                 // check if has an external document
                 if ((pSymbol && pSymbol->AcceptExtFile()) || (pLinkSymbol && pLinkSymbol->AcceptExtFile()))
@@ -684,39 +682,44 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
 
                         dummy.Format(IDS_SYMBOLEXTFILE_HTML, idx + 1, (const char*)pFileProp->GetFileTitle());
 
-                        s.Format(IDS_MODELGENHTML_60,
-                                 objectCounter,
-                                 (const char*)dummy,
-                                 (const char*)ReplaceBackSlash(pFileProp->GetFileName()),
-                                 (const char*)g_BlankTarget);
-                        htmlFile << s;
+                        str.Format(IDS_MODELGENHTML_60,
+                                   objectCounter,
+                                   (const char*)dummy,
+                                   (const char*)ReplaceBackSlash(pFileProp->GetFileName()),
+                                   (const char*)g_BlankTarget);
+                        htmlFile << str;
                     }
                 }
 
                 // if has a unit defined, insert the unit link
                 if ((pSymbol && pSymbol->HasUnit()) || (pLinkSymbol && pLinkSymbol->HasUnit()))
                 {
-                    PSS_UserGroupEntity* pUserGroupEntity =
-                            dynamic_cast<PSS_UserGroupEntity*>
-                                    (pModel->GetMainUserGroup()->FindGroupByGUID(pBasicSym->GetUnitGUID(), true));
-                    ASSERT(pUserGroupEntity);
+                    PSS_UserGroupEntity* pMainUserGroupEntity = pModel->GetMainUserGroup();
 
-                    if (pUserGroupEntity)
+                    if (pMainUserGroupEntity)
                     {
-                        dummy.Format(IDS_SYMBOLUNIT_HTML, (const char*)pBasicSym->GetUnitName());
+                        PSS_UserGroupEntity* pUserGroupEntity =
+                                dynamic_cast<PSS_UserGroupEntity*>(pMainUserGroupEntity->FindGroupByGUID(pBasicSym->GetUnitGUID(),
+                                                                                                         true));
+                        ASSERT(pUserGroupEntity);
 
-                        s.Format(IDS_MODELGENHTML_59,
-                                 objectCounter,
-                                 (const char*)dummy,
-                                 (const char*)BuildFileNameAndPath(BuildHTMLFileNameUser(pUserGroupEntity),
-                                                                   htmlFileName));
+                        if (pUserGroupEntity)
+                        {
+                            dummy.Format(IDS_SYMBOLUNIT_HTML, (const char*)pBasicSym->GetUnitName());
 
-                        htmlFile << s;
+                            str.Format(IDS_MODELGENHTML_59,
+                                       objectCounter,
+                                       (const char*)dummy,
+                                       (const char*)BuildFileNameAndPath(BuildHTMLFileNameUser(pUserGroupEntity),
+                                                                         htmlFileName));
+
+                            htmlFile << str;
+                        }
                     }
                 }
 
                 // if has a system defined, insert the system link
-                if ((pSymbol && pLinkSymbol->AcceptExtApp()) || (pLinkSymbol && pLinkSymbol->AcceptExtApp()))
+                if ((pSymbol && pSymbol->AcceptExtApp()) || (pLinkSymbol && pLinkSymbol->AcceptExtApp()))
                 {
                     // get external file property manager
                     const PSS_ExtAppPropertyMgr* pExtAppPropMgr = dynamic_cast<PSS_ExtAppPropertyMgr*>(pComp);
@@ -732,22 +735,28 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
 
                         if (pAppProperty)
                         {
-                            PSS_LogicalSystemEntity* pLogicalSystemEntity =
-                                    dynamic_cast<PSS_LogicalSystemEntity*>(pModel->GetMainLogicalSystem()->FindSystemByGUID
-                                            (pAppProperty->GetCommandParameters().Right(pAppProperty->GetCommandParameters().GetLength() - g_LogicalSystemKey.GetLength()), true));
+                            PSS_LogicalSystemEntity* pMainLogicalSystemEntity = pModel->GetMainLogicalSystem();
 
-                            if (pLogicalSystemEntity)
+                            if (pMainLogicalSystemEntity)
                             {
-                                dummy.Format(IDS_SYMBOLEXTAPP_HTML,
-                                             idx + 1,
-                                             (const char*)pAppProperty->GetCommandTitle());
+                                PSS_LogicalSystemEntity* pLogicalSystemEntity =
+                                        dynamic_cast<PSS_LogicalSystemEntity*>(pMainLogicalSystemEntity->FindSystemByGUID
+                                                (pAppProperty->GetCommandParameters().Right(pAppProperty->GetCommandParameters().GetLength() - g_LogicalSystemKey.GetLength()),
+                                                                                            true));
 
-                                s.Format(IDS_MODELGENHTML_59,
-                                         objectCounter,
-                                         (const char*)dummy,
-                                         (const char*)BuildFileNameAndPath(BuildHTMLFileNameLogicalSystem(pLogicalSystemEntity),
-                                                                           htmlFileName));
-                                htmlFile << s;
+                                if (pLogicalSystemEntity)
+                                {
+                                    dummy.Format(IDS_SYMBOLEXTAPP_HTML,
+                                                 idx + 1,
+                                                 (const char*)pAppProperty->GetCommandTitle());
+
+                                    str.Format(IDS_MODELGENHTML_59,
+                                               objectCounter,
+                                               (const char*)dummy,
+                                               (const char*)BuildFileNameAndPath(BuildHTMLFileNameLogicalSystem(pLogicalSystemEntity),
+                                                                                 htmlFileName));
+                                    htmlFile << str;
+                                }
                             }
                         }
                     }
@@ -756,20 +765,19 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 // if has a sub-model defined, create a link to enter in the symbol child model
                 if (pSymbol && pSymbol->GetChildModel())
                 {
-                    PSS_ProcessGraphModelMdl* pSubModel =
-                            dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel());
+                    PSS_ProcessGraphModelMdl* pSubModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel());
                     ASSERT(pSubModel);
 
                     // retreive the html FileName for the reference
                     CString symbolChildModelHtmlFileName = BuildModelHTMLFileName(pSubModel);
                     dummy.Format(IDS_GOINSYMBOL_HTML, (const char*)pBasicSym->GetSymbolName());
 
-                    s.Format(IDS_MODELGENHTML_59,
-                             objectCounter,
-                             (const char*)dummy,
-                             (const char*)BuildFileNameAndPath(symbolChildModelHtmlFileName, htmlFileName));
+                    str.Format(IDS_MODELGENHTML_59,
+                               objectCounter,
+                               (const char*)dummy,
+                               (const char*)BuildFileNameAndPath(symbolChildModelHtmlFileName, htmlFileName));
 
-                    htmlFile << s;
+                    htmlFile << str;
 
                     // check if the symbol has more than one page
                     if (pSubModel->GetPageSet())
@@ -785,11 +793,11 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                                 symbolChildModelHtmlFileName = BuildModelHTMLFileName(pPage->GetModel());
                                 dummy.Format(IDS_GOINSYMBOL_HTML, (const char*)pPage->GetPageName());
 
-                                s.Format(IDS_MODELGENHTML_59,
-                                         objectCounter,
-                                         (const char*)dummy,
-                                         (const char*)BuildFileNameAndPath(symbolChildModelHtmlFileName, htmlFileName));
-                                htmlFile << s;
+                                str.Format(IDS_MODELGENHTML_59,
+                                           objectCounter,
+                                           (const char*)dummy,
+                                           (const char*)BuildFileNameAndPath(symbolChildModelHtmlFileName, htmlFileName));
+                                htmlFile << str;
                             }
                     }
                 }
@@ -802,16 +810,16 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                     // get the html file name for the reference
                     dummy.LoadString(IDS_GOINREPORT_HTML);
 
-                    s.Format(IDS_MODELGENHTML_59,
-                             objectCounter,
-                             (const char*)dummy,
-                             (const char*)processReportPath);
-                    htmlFile << s;
+                    str.Format(IDS_MODELGENHTML_59,
+                               objectCounter,
+                               (const char*)dummy,
+                               (const char*)processReportPath);
+                    htmlFile << str;
                 }
 
                 // create the new popup object
-                s.Format(IDS_MODELGENHTML_61, objectCounter);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_61, objectCounter);
+                htmlFile << str;
 
                 // next object
                 ++objectCounter;
@@ -819,14 +827,14 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         }
 
         // javascript end here
-        s.LoadString(IDS_MODELGENHTML_54);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_54);
+        htmlFile << str;
 
         // write the hotspot table header
-        s.Format(IDS_MODELGENHTML_2,
-                 (const char*)pModel->GetAbsolutePath(),
-                 (const char*)BuildFileNameAndPath(imageFileName, htmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_2,
+                   (const char*)pModel->GetAbsolutePath(),
+                   (const char*)BuildFileNameAndPath(imageFileName, htmlFileName));
+        htmlFile << str;
 
         // write all hot spots. Run throught the model elements and write the hotspot entities
         CString symbolHtmlFileName;
@@ -860,15 +868,15 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 else
                     symbolCoordinates = pLinkSymbol->GetBaseRgn().GetBounds();
 
-                s.Format(IDS_MODELGENHTML_91,
-                         objectCounter,
-                         objectCounter,
-                         (const char*)g_PSSLeftTarget,
-                         symbolCoordinates.left,
-                         symbolCoordinates.top,
-                         symbolCoordinates.right,
-                         symbolCoordinates.bottom);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_91,
+                           objectCounter,
+                           objectCounter,
+                           (const char*)g_PSSLeftTarget,
+                           symbolCoordinates.left,
+                           symbolCoordinates.top,
+                           symbolCoordinates.right,
+                           symbolCoordinates.bottom);
+                htmlFile << str;
 
                 // next object
                 ++objectCounter;
@@ -876,12 +884,12 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         }
 
         // write the hotspot table footer
-        s.LoadString(IDS_MODELGENHTML_4);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_4);
+        htmlFile << str;
 
         // write the footer
-        s.LoadString(IDS_MODELGENHTML_5);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_5);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -907,20 +915,20 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         if (!printableHtmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_1,
-                 (const char*)pModel->GetAbsolutePath(),
-                 (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
-        printableHtmlFile << s;
+        str.Format(IDS_MODELGENHTML_1,
+                   (const char*)pModel->GetAbsolutePath(),
+                   (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
+        printableHtmlFile << str;
 
-        s.Format(IDS_MODELGENHTML_16, (const char*)BuildFileNameAndPath(imageFileName, htmlFileName));
-        printableHtmlFile << s;
+        str.Format(IDS_MODELGENHTML_16, (const char*)BuildFileNameAndPath(imageFileName, htmlFileName));
+        printableHtmlFile << str;
 
         // write the footer
-        s.LoadString(IDS_MODELGENHTML_5);
-        printableHtmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_5);
+        printableHtmlFile << str;
 
         printableHtmlFile.CloseFile();
     }
@@ -962,13 +970,13 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write the complete html file with reference to the main banner and the main index pages
-        s.Format(IDS_MODELGENHTML_66,
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameBanner(), m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(m_RootHtmlFileName, m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_66,
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameBanner(), m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(m_RootHtmlFileName, m_RootHtmlFileName));
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -993,31 +1001,31 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_1,
-                 (const char*)pModel->GetAbsolutePath(),
-                 (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_1,
+                   (const char*)pModel->GetAbsolutePath(),
+                   (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
+        htmlFile << str;
 
-        s.Format(IDS_MODELGENHTML_68, (const char*)g_White);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_68, (const char*)g_White);
+        htmlFile << str;
 
         // write the model name table header
-        s.LoadString(IDS_MODELGENHTML_18a);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_18a);
+        htmlFile << str;
 
         // write the model name
         htmlFile << pModel->GetModelName();
 
         // write the model name table footer
-        s.LoadString(IDS_MODELGENHTML_22);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_22);
+        htmlFile << str;
 
         // write the table header
-        s.LoadString(IDS_MODELGENHTML_19);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_19);
+        htmlFile << str;
 
         CString subModelHtmlFileName;
 
@@ -1039,26 +1047,26 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
                     // get the html file name for the reference
                     subModelHtmlFileName = BuildModelHTMLFileName(pPageModel);
 
-                    s.LoadString(IDS_MODELGENHTML_20);
-                    htmlFile << s;
+                    str.LoadString(IDS_MODELGENHTML_20);
+                    htmlFile << str;
 
-                    s.LoadString(IDS_MODELGENHTML_24);
-                    htmlFile << s;
+                    str.LoadString(IDS_MODELGENHTML_24);
+                    htmlFile << str;
 
                     if (!GenerateFrameMainModelPage(pPageModel, subModelHtmlFileName))
                         return false;
 
-                    s.Format(IDS_MODELGENHTML_25,
-                             (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameMainFrame(pPageModel),
-                             m_RootHtmlFileName),
-                             (const char*)pPage->GetPageName());
-                    htmlFile << s;
+                    str.Format(IDS_MODELGENHTML_25,
+                               (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameMainFrame(pPageModel),
+                               m_RootHtmlFileName),
+                               (const char*)pPage->GetPageName());
+                    htmlFile << str;
                 }
         }
 
         // write blank lines
-        s.LoadString(IDS_MODELGENHTML_75);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_75);
+        htmlFile << str;
 
         // if a main user group is defined, generate the user group page
         if (pModel->GetMainUserGroup())
@@ -1070,30 +1078,30 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
             if (!GenerateFrameUserPage(pModel))
                 return false;
 
-            s.LoadString(IDS_MODELGENHTML_28);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_28);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_20);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_20);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_24);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_24);
+            htmlFile << str;
 
             // get the html FileName for the reference
             const CString htmlFileName = BuildModelHTMLFileNameUserMainFrame();
 
-            s.Format(IDS_MODELGENHTML_25,
-                     (const char*)BuildFileNameAndPath(htmlFileName, m_RootHtmlFileName),
-                     (const char*)pModel->GetMainUserGroup()->GetEntityName());
-            htmlFile << s;
+            str.Format(IDS_MODELGENHTML_25,
+                       (const char*)BuildFileNameAndPath(htmlFileName, m_RootHtmlFileName),
+                       (const char*)pModel->GetMainUserGroup()->GetEntityName());
+            htmlFile << str;
 
             if (!GenerateUnitGroupPage(pModel))
                 return false;
         }
 
         // write blank lines
-        s.LoadString(IDS_MODELGENHTML_75);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_75);
+        htmlFile << str;
 
         // if a main logical system is defined, generate the logical system page
         if (pModel->GetMainLogicalSystem())
@@ -1105,30 +1113,30 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
             if (!GenerateFrameSystemPage(pModel))
                 return false;
 
-            s.LoadString(IDS_MODELGENHTML_29);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_29);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_20);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_20);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_24);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_24);
+            htmlFile << str;
 
             // get the html FileName for the reference
             const CString htmlFileName = BuildModelHTMLFileNameSystemMainFrame();
 
-            s.Format(IDS_MODELGENHTML_25,
-                     (const char*)BuildFileNameAndPath(htmlFileName, m_RootHtmlFileName),
-                     (const char*)pModel->GetMainLogicalSystem()->GetEntityName());
-            htmlFile << s;
+            str.Format(IDS_MODELGENHTML_25,
+                       (const char*)BuildFileNameAndPath(htmlFileName, m_RootHtmlFileName),
+                       (const char*)pModel->GetMainLogicalSystem()->GetEntityName());
+            htmlFile << str;
 
             if (!GenerateLogicalSystemPage(pModel))
                 return false;
         }
 
         // write blank lines
-        s.LoadString(IDS_MODELGENHTML_75);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_75);
+        htmlFile << str;
 
         // if a main logical prestations is defined, generate the logical prestations page
         if (pModel->GetMainLogicalPrestations())
@@ -1140,70 +1148,70 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
             if (!GenerateFramePrestationsPage(pModel))
                 return false;
 
-            s.LoadString(IDS_MODELGENHTML_80);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_80);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_20);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_20);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_24);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_24);
+            htmlFile << str;
 
             // get the html FileName for the reference
             const CString htmlFileName = BuildModelHTMLFileNamePrestationsMainFrame();
 
-            s.Format(IDS_MODELGENHTML_25,
-                     (const char*)BuildFileNameAndPath(htmlFileName, m_RootHtmlFileName),
-                     (const char*)pModel->GetMainLogicalPrestations()->GetEntityName());
-            htmlFile << s;
+            str.Format(IDS_MODELGENHTML_25,
+                       (const char*)BuildFileNameAndPath(htmlFileName, m_RootHtmlFileName),
+                       (const char*)pModel->GetMainLogicalPrestations()->GetEntityName());
+            htmlFile << str;
 
             if (!GenerateLogicalPrestationsPage(pModel))
                 return false;
         }
 
         // write blank lines
-        s.LoadString(IDS_MODELGENHTML_75);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_75);
+        htmlFile << str;
 
         // if a main logical rule is defined, generate the rule book
         if (pModel->GetMainLogicalRules() && m_pInfo->GetIncludeRuleBook())
         {
-            s.LoadString(IDS_RULEBOOK_MTL_HTML_1);
-            htmlFile << s;
+            str.LoadString(IDS_RULEBOOK_MTL_HTML_1);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_20);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_20);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_24);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_24);
+            htmlFile << str;
 
-            s.Format(IDS_MODELGENHTML_25,
-                     _T("RuleBook.htm"),
-                     (const char*)pModel->GetMainLogicalRules()->GetEntityName());
-            htmlFile << s;
+            str.Format(IDS_MODELGENHTML_25,
+                       _T("RuleBook.htm"),
+                       (const char*)pModel->GetMainLogicalRules()->GetEntityName());
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_20);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_20);
+            htmlFile << str;
 
-            s.LoadString(IDS_MODELGENHTML_24);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_24);
+            htmlFile << str;
 
             CString ruleBookDetailsTitle = _T("");
             ruleBookDetailsTitle.LoadString(IDS_RULEBOOKDETAILS_MTL_HTML_6);
 
-            s.Format(IDS_MODELGENHTML_25,
-                     _T("RuleBookDetails.htm"),
-                     (const char*)ruleBookDetailsTitle);
-            htmlFile << s;
+            str.Format(IDS_MODELGENHTML_25,
+                       _T("RuleBookDetails.htm"),
+                       (const char*)ruleBookDetailsTitle);
+            htmlFile << str;
         }
 
         // write blank lines
-        s.LoadString(IDS_MODELGENHTML_75);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_75);
+        htmlFile << str;
 
         // write the table footer and end of html file
-        s.LoadString(IDS_MODELGENHTML_21);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_21);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1242,13 +1250,13 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameMainModelPage(PSS_ProcessGraphMod
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_69,
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptyPropertyPage(), m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(modelHtmlPage, m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_69,
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptyPropertyPage(), m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(modelHtmlPage, m_RootHtmlFileName));
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1286,13 +1294,13 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameUserPage(PSS_ProcessGraphModelMdl
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_69,
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameUnit(pModel), m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptyUser(), m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_69,
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameUnit(pModel), m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptyUser(), m_RootHtmlFileName));
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1330,13 +1338,13 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameSystemPage(PSS_ProcessGraphModelM
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_69,
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameSystem(pModel), m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptySystem(), m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_69,
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameSystem(pModel), m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptySystem(), m_RootHtmlFileName));
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1374,13 +1382,13 @@ bool PSS_ModelGenerateImageFiles::GenerateFramePrestationsPage(PSS_ProcessGraphM
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_78,
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNamePrestations(pModel), m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptyPrestations(), m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_78,
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNamePrestations(pModel), m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(BuildModelHTMLFileNameEmptyPrestations(), m_RootHtmlFileName));
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1415,11 +1423,11 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameEmptyUserPage()
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.LoadString(IDS_MODELGENHTML_70);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_70);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1454,11 +1462,11 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameEmptySystemPage()
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.LoadString(IDS_MODELGENHTML_71);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_71);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1493,11 +1501,11 @@ bool PSS_ModelGenerateImageFiles::GenerateFrameEmptyPrestationsPage()
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.LoadString(IDS_MODELGENHTML_81);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_81);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1532,11 +1540,11 @@ bool PSS_ModelGenerateImageFiles::GenerateEmptyPropertyPage()
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.LoadString(IDS_MODELGENHTML_72);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_72);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1574,20 +1582,20 @@ bool PSS_ModelGenerateImageFiles::GenerateBannerPage(PSS_ProcessGraphModelMdl* p
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_1,
-                 (const char*)pModel->GetAbsolutePath(),
-                 (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_1,
+                   (const char*)pModel->GetAbsolutePath(),
+                   (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
+        htmlFile << str;
 
-        s.Format(IDS_MODELGENHTML_68, (const char*)g_White);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_68, (const char*)g_White);
+        htmlFile << str;
 
         // write the copyright table with the processsoft image jpg
-        s.LoadString(IDS_MODELGENHTML_12);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_12);
+        htmlFile << str;
 
         // build the logo image file name
         CString logoImage  = m_ImageDirectory + _T("\\");
@@ -1595,17 +1603,17 @@ bool PSS_ModelGenerateImageFiles::GenerateBannerPage(PSS_ProcessGraphModelMdl* p
 
         const CString ref = m_pInfo->GetHyperLink().IsEmpty() ? _T("http://www.processsoft.com") : m_pInfo->GetHyperLink();
 
-        s.Format(IDS_MODELGENHTML_13,
-                 (const char*)ref,
-                 (const char*)BuildFileNameAndPath(logoImage, m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_13,
+                   (const char*)ref,
+                   (const char*)BuildFileNameAndPath(logoImage, m_RootHtmlFileName));
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_14);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_14);
+        htmlFile << str;
 
         // write the navigation table header
-        s.LoadString(IDS_MODELGENHTML_6);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_6);
+        htmlFile << str;
 
         // write the ref to root
         logoImage = m_ImageDirectory + _T("\\") + g_HomeImageFile;
@@ -1613,26 +1621,26 @@ bool PSS_ModelGenerateImageFiles::GenerateBannerPage(PSS_ProcessGraphModelMdl* p
         CString dummy;
         dummy.LoadString(IDS_INDEXPAGE_HTML);
 
-        s.Format(IDS_MODELGENHTML_7,
-                 (const char*)BuildFileNameAndPath(m_RootHtmlFileName, m_RootHtmlFileName),
-                 (const char*)g_PSSMainTarget,
-                 (const char*)BuildFileNameAndPath(logoImage, m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(m_RootHtmlFileName, m_RootHtmlFileName),
-                 (const char*)g_PSSMainTarget,
-                 (const char*)dummy);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_7,
+                   (const char*)BuildFileNameAndPath(m_RootHtmlFileName, m_RootHtmlFileName),
+                   (const char*)g_PSSMainTarget,
+                   (const char*)BuildFileNameAndPath(logoImage, m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(m_RootHtmlFileName, m_RootHtmlFileName),
+                   (const char*)g_PSSMainTarget,
+                   (const char*)dummy);
+        htmlFile << str;
 
         // write the navigation table header
-        s.LoadString(IDS_MODELGENHTML_8);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_8);
+        htmlFile << str;
 
         // write the model name table footer
-        s.LoadString(IDS_MODELGENHTML_9);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_9);
+        htmlFile << str;
 
         // write the table footer and end of html file
-        s.LoadString(IDS_MODELGENHTML_21);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_21);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1674,28 +1682,28 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupPage(PSS_ProcessGraphModelMdl
         const CString cssHtmlFileName = m_IncludeDirectory + _T("\\") + g_TreeCSSFile;
         const CString jsHtmlFileName  = m_IncludeDirectory + _T("\\") + g_TreeJSFile;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_23,
-                 (const char*)BuildFileNameAndPath(cssHtmlFileName, m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(jsHtmlFileName,  m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_23,
+                   (const char*)BuildFileNameAndPath(cssHtmlFileName, m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(jsHtmlFileName,  m_RootHtmlFileName));
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_26);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_26);
+        htmlFile << str;
 
         // add the style to the menu
         const CString plusHtmlFileName  = m_ImageDirectory + _T("\\") + g_PlusImageFile;
         const CString minusHtmlFileName = m_ImageDirectory + _T("\\") + g_MinusImageFile;
         const CString userHtmlFileName  = m_ImageDirectory + _T("\\") + g_UsersImageFile;
 
-        s.Format(IDS_MODELGENHTML_64,
-                 (const char*)BuildFileNameAndPath(userHtmlFileName,  m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(minusHtmlFileName, m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(plusHtmlFileName,  m_RootHtmlFileName),
-                 (const char*)g_PSSRightTarget);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_64,
+                   (const char*)BuildFileNameAndPath(userHtmlFileName,  m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(minusHtmlFileName, m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(plusHtmlFileName,  m_RootHtmlFileName),
+                   (const char*)g_PSSRightTarget);
+        htmlFile << str;
 
         if (!GenerateUnitObjects(pModel->GetMainUserGroup(), &htmlFile))
         {
@@ -1704,21 +1712,21 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupPage(PSS_ProcessGraphModelMdl
         }
 
         // body and end of html
-        s.Format(IDS_MODELGENHTML_27, (const char*)g_White);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_27, (const char*)g_White);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_53);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_53);
+        htmlFile << str;
 
         // generate the tree control
-        s.LoadString(IDS_MODELGENHTML_67);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_67);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_54);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_54);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_65);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_65);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1760,27 +1768,27 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(PSS_ProcessGraphMode
         const CString cssHtmlFileName = m_IncludeDirectory + _T("\\") + g_TreeCSSFile;
         const CString jsHtmlFileName  = m_IncludeDirectory + _T("\\") + g_TreeJSFile;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_23,
-                 (const char*)BuildFileNameAndPath(cssHtmlFileName, m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(jsHtmlFileName, m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_23,
+                   (const char*)BuildFileNameAndPath(cssHtmlFileName, m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(jsHtmlFileName, m_RootHtmlFileName));
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_26);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_26);
+        htmlFile << str;
 
         const CString plusHtmlFileName   = m_ImageDirectory + _T("\\") + g_PlusImageFile;
         const CString minusHtmlFileName  = m_ImageDirectory + _T("\\") + g_MinusImageFile;
         const CString systemHtmlFileName = m_ImageDirectory + _T("\\") + g_LogicalSystemImageFile;
 
-        s.Format(IDS_MODELGENHTML_64,
-                 (const char*)BuildFileNameAndPath(systemHtmlFileName, m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(minusHtmlFileName,  m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(plusHtmlFileName,   m_RootHtmlFileName),
-                 (const char*)g_PSSRightTarget);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_64,
+                   (const char*)BuildFileNameAndPath(systemHtmlFileName, m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(minusHtmlFileName,  m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(plusHtmlFileName,   m_RootHtmlFileName),
+                   (const char*)g_PSSRightTarget);
+        htmlFile << str;
 
         if (!GenerateLogicalSystemObjects(pModel->GetMainLogicalSystem(), &htmlFile))
         {
@@ -1789,21 +1797,21 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(PSS_ProcessGraphMode
         }
 
         // body and end of html
-        s.Format(IDS_MODELGENHTML_27, (const char*)g_White);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_27, (const char*)g_White);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_53);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_53);
+        htmlFile << str;
 
         // generate the tree control
-        s.LoadString(IDS_MODELGENHTML_67);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_67);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_54);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_54);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_65);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_65);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1845,27 +1853,27 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(PSS_ProcessGrap
         const CString cssHtmlFileName = m_IncludeDirectory + _T("\\") + g_TreeCSSFile;
         const CString jsHtmlFileName  = m_IncludeDirectory + _T("\\") + g_TreeJSFile;
 
-        CString s;
+        CString str;
 
         // write header
-        s.Format(IDS_MODELGENHTML_23,
-                 (const char*)BuildFileNameAndPath(cssHtmlFileName, m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(jsHtmlFileName,  m_RootHtmlFileName));
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_23,
+                   (const char*)BuildFileNameAndPath(cssHtmlFileName, m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(jsHtmlFileName,  m_RootHtmlFileName));
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_26);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_26);
+        htmlFile << str;
 
         const CString plusHtmlFileName        = m_ImageDirectory + _T("\\") + g_PlusImageFile;
         const CString minusHtmlFileName       = m_ImageDirectory + _T("\\") + g_MinusImageFile;
         const CString prestationsHtmlFileName = m_ImageDirectory + _T("\\") + g_LogicalPrestationsImageFile;
 
-        s.Format(IDS_MODELGENHTML_64,
-                 (const char*)BuildFileNameAndPath(prestationsHtmlFileName, m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(minusHtmlFileName,       m_RootHtmlFileName),
-                 (const char*)BuildFileNameAndPath(plusHtmlFileName,        m_RootHtmlFileName),
-                 (const char*)g_PSSRightTarget);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_64,
+                   (const char*)BuildFileNameAndPath(prestationsHtmlFileName, m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(minusHtmlFileName,       m_RootHtmlFileName),
+                   (const char*)BuildFileNameAndPath(plusHtmlFileName,        m_RootHtmlFileName),
+                   (const char*)g_PSSRightTarget);
+        htmlFile << str;
 
         if (!GenerateLogicalPrestationsObjects(pModel->GetMainLogicalPrestations(), &htmlFile))
         {
@@ -1874,21 +1882,21 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(PSS_ProcessGrap
         }
 
         // body and end of html
-        s.Format(IDS_MODELGENHTML_27, (const char*)g_White);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_27, (const char*)g_White);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_53);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_53);
+        htmlFile << str;
 
         // generate the tree control
-        s.LoadString(IDS_MODELGENHTML_67);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_67);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_54);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_54);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_65);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_65);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -1915,15 +1923,15 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(PSS_UserGroupEntity* 
     const std::size_t currentItem = m_IndexItem;
     const CString     refFile     = GenerateUserGroupList(pGroupEntity);
 
-    CString s;
+    CString str;
 
-    s.Format(IDS_MODELGENHTML_30,
-             m_IndexItem,
-             parentID,
-             (const char*)pGroupEntity->GetEntityName(),
-             refFile.IsEmpty() ? _T("null") : (const char*)BuildFileNameAndPath(refFile, m_RootHtmlFileName));
+    str.Format(IDS_MODELGENHTML_30,
+               m_IndexItem,
+               parentID,
+               (const char*)pGroupEntity->GetEntityName(),
+               refFile.IsEmpty() ? _T("null") : (const char*)BuildFileNameAndPath(refFile, m_RootHtmlFileName));
 
-    *pHtmlFile << s;
+    *pHtmlFile << str;
 
     if (pGroupEntity->ContainEntity())
     {
@@ -1957,14 +1965,14 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitRoleObjects(PSS_UserRoleEntity* pR
 {
     ++m_IndexItem;
 
-    CString s;
+    CString str;
 
-    s.Format(IDS_MODELGENHTML_30,
-             m_IndexItem,
-             parentID,
-             (const char*)pRoleEntity->GetEntityName(),
-             _T("null"));
-    *pHtmlFile << s;
+    str.Format(IDS_MODELGENHTML_30,
+               m_IndexItem,
+               parentID,
+               (const char*)pRoleEntity->GetEntityName(),
+               _T("null"));
+    *pHtmlFile << str;
 
     return true;
 }
@@ -2003,22 +2011,22 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(PSS_UserGroupEntity* 
         if (!htmlFile.OpenFileCreate())
             return _T("");
 
-        CString s;
-        CString s1;
+        CString str;
+        CString str1;
 
         // write the header and the document title
-        s1.LoadString(IDS_USERGROUP_HTML);
-        s.Format(IDS_MODELGENHTML_31, (const char*)s1);
-        htmlFile << s;
+        str1.LoadString(IDS_USERGROUP_HTML);
+        str.Format(IDS_MODELGENHTML_31, (const char*)str1);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_36);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_36);
+        htmlFile << str;
 
-        s.Format(IDS_MODELGENHTML_37, (const char*)s1);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_37, (const char*)str1);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_38);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_38);
+        htmlFile << str;
 
         const CString entityname = (const char*)pGroupEntity->GetEntityName();
 
@@ -2035,14 +2043,14 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(PSS_UserGroupEntity* 
             // write the unit name
             htmlFile << pGroupEntity->GetEntityName();
 
-        s.LoadString(IDS_MODELGENHTML_76);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_76);
+        htmlFile << str;
 
         // Write the model name
         htmlFile << m_pModel->GetAbsolutePath();
 
-        s.LoadString(IDS_MODELGENHTML_32);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_32);
+        htmlFile << str;
 
         CODComponentIterator it(&extract.GetComponentSet());
 
@@ -2067,21 +2075,21 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(PSS_UserGroupEntity* 
 
                 // if no reference
                 if (htmlFileNameOwnerModel.IsEmpty())
-                    s.Format(IDS_MODELGENHTML_35,
-                             (const char*)pBasicSym->GetSymbolName(),
-                             (const char*)symbolPath);
+                    str.Format(IDS_MODELGENHTML_35,
+                               (const char*)pBasicSym->GetSymbolName(),
+                               (const char*)symbolPath);
                 else
-                    s.Format(IDS_MODELGENHTML_33,
-                             (const char*)BuildFileNameAndPath(htmlFileNameOwnerModel, m_RootHtmlFileName),
-                             (const char*)pBasicSym->GetSymbolName(),
-                             (const char*)symbolPath);
+                    str.Format(IDS_MODELGENHTML_33,
+                               (const char*)BuildFileNameAndPath(htmlFileNameOwnerModel, m_RootHtmlFileName),
+                               (const char*)pBasicSym->GetSymbolName(),
+                               (const char*)symbolPath);
 
-                htmlFile << s;
+                htmlFile << str;
             }
         }
 
-        s.LoadString(IDS_MODELGENHTML_34);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_34);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -2112,14 +2120,14 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(PSS_LogicalSystem
     const std::size_t currentItem = m_IndexItem;
     const CString     refFile     = GenerateLogicalSystemList(pSystemEntity);
 
-    CString s;
-    s.Format(IDS_MODELGENHTML_30,
-             m_IndexItem,
-             parentID,
-             (const char*)pSystemEntity->GetEntityName(),
-             refFile.IsEmpty() ? _T("null") : (const char*)BuildFileNameAndPath(refFile, m_RootHtmlFileName));
+    CString str;
+    str.Format(IDS_MODELGENHTML_30,
+               m_IndexItem,
+               parentID,
+               (const char*)pSystemEntity->GetEntityName(),
+               refFile.IsEmpty() ? _T("null") : (const char*)BuildFileNameAndPath(refFile, m_RootHtmlFileName));
 
-    *pHtmlFile << s;
+    *pHtmlFile << str;
 
     if (pSystemEntity->ContainEntity())
     {
@@ -2178,33 +2186,33 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(PSS_LogicalSystem
         if (!htmlFile.OpenFileCreate())
             return _T("");
 
-        CString s;
-        CString s1;
+        CString str;
+        CString str1;
 
         // write the header and the document title
-        s1.LoadString(IDS_LOGICALSYSTEM_HTML);
-        s.Format(IDS_MODELGENHTML_31, (const char*)s1);
-        htmlFile << s;
+        str1.LoadString(IDS_LOGICALSYSTEM_HTML);
+        str.Format(IDS_MODELGENHTML_31, (const char*)str1);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_36);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_36);
+        htmlFile << str;
 
-        s.Format(IDS_MODELGENHTML_37, (const char*)s1);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_37, (const char*)str1);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_38);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_38);
+        htmlFile << str;
 
         // write the unit name
         htmlFile << pSystemEntity->GetEntityName();
-        s.LoadString(IDS_MODELGENHTML_76);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_76);
+        htmlFile << str;
 
         // write the model name
         htmlFile << m_pModel->GetAbsolutePath();
 
-        s.LoadString(IDS_MODELGENHTML_32);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_32);
+        htmlFile << str;
 
         CODComponentIterator it(&extract.GetComponentSet());
 
@@ -2229,21 +2237,21 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(PSS_LogicalSystem
 
                 // if no reference
                 if (htmlFileNameOwnerModel.IsEmpty())
-                    s.Format(IDS_MODELGENHTML_35,
-                             (const char*)pBasicSym->GetSymbolName(),
-                             (const char*)symbolPath);
+                    str.Format(IDS_MODELGENHTML_35,
+                               (const char*)pBasicSym->GetSymbolName(),
+                               (const char*)symbolPath);
                 else
-                    s.Format(IDS_MODELGENHTML_33,
-                             (const char*)BuildFileNameAndPath(htmlFileNameOwnerModel, m_RootHtmlFileName),
-                             (const char*)pBasicSym->GetSymbolName(),
-                             (const char*)symbolPath);
+                    str.Format(IDS_MODELGENHTML_33,
+                               (const char*)BuildFileNameAndPath(htmlFileNameOwnerModel, m_RootHtmlFileName),
+                               (const char*)pBasicSym->GetSymbolName(),
+                               (const char*)symbolPath);
 
-                htmlFile << s;
+                htmlFile << str;
             }
         }
 
-        s.LoadString(IDS_MODELGENHTML_34);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_34);
+        htmlFile << str;
 
         htmlFile.CloseFile();
 
@@ -2275,13 +2283,13 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(PSS_LogicalP
     const std::size_t currentItem = m_IndexItem;
     const CString     refFile     = GenerateLogicalPrestationsList(pPrestationsEntity);
 
-    CString s;
-    s.Format(IDS_MODELGENHTML_30, m_IndexItem,
-             parentID,
-             (const char*)pPrestationsEntity->GetEntityName(),
-             refFile.IsEmpty() ? _T("null") : (const char*)BuildFileNameAndPath(refFile, m_RootHtmlFileName));
+    CString str;
+    str.Format(IDS_MODELGENHTML_30, m_IndexItem,
+               parentID,
+               (const char*)pPrestationsEntity->GetEntityName(),
+               refFile.IsEmpty() ? _T("null") : (const char*)BuildFileNameAndPath(refFile, m_RootHtmlFileName));
 
-    *pHtmlFile << s;
+    *pHtmlFile << str;
 
     if (pPrestationsEntity->ContainEntity())
     {
@@ -2340,37 +2348,37 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(PSS_LogicalP
         if (!htmlFile.OpenFileCreate())
             return _T("");
 
-        CString s;
-        CString s1;
+        CString str;
+        CString str1;
 
         // write the header and the document title
-        s1.LoadString(IDS_LOGICALPRESTATIONS_HTML);
-        s.Format(IDS_MODELGENHTML_31, (const char*)s1);
-        htmlFile << s;
+        str1.LoadString(IDS_LOGICALPRESTATIONS_HTML);
+        str.Format(IDS_MODELGENHTML_31, (const char*)str1);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_36);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_36);
+        htmlFile << str;
 
-        s.Format(IDS_MODELGENHTML_37, (const char*)s1);
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_37, (const char*)str1);
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_38);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_38);
+        htmlFile << str;
 
         // write the prestation name
-        s.Format(IDS_MODELGENHTML_92,
-                 BuildPrestationsReportHTMLFileName(pPrestationsEntity->GetEntityName()),
-                 pPrestationsEntity->GetEntityName());
-        htmlFile << s;
+        str.Format(IDS_MODELGENHTML_92,
+                   BuildPrestationsReportHTMLFileName(pPrestationsEntity->GetEntityName()),
+                   pPrestationsEntity->GetEntityName());
+        htmlFile << str;
 
-        s.LoadString(IDS_MODELGENHTML_76);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_76);
+        htmlFile << str;
 
         // write the model name
         htmlFile << m_pModel->GetAbsolutePath();
 
-        s.LoadString(IDS_MODELGENHTML_32);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_32);
+        htmlFile << str;
 
         CODComponentIterator it(&extract.GetComponentSet());
 
@@ -2395,21 +2403,21 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(PSS_LogicalP
 
                 // no referential defined?
                 if (htmlFileNameOwnerModel.IsEmpty())
-                    s.Format(IDS_MODELGENHTML_35,
-                             (const char*)pBasicSym->GetSymbolName(),
-                             (const char*)symbolPath);
+                    str.Format(IDS_MODELGENHTML_35,
+                               (const char*)pBasicSym->GetSymbolName(),
+                               (const char*)symbolPath);
                 else
-                    s.Format(IDS_MODELGENHTML_33,
-                             (const char*)BuildFileNameAndPath(htmlFileNameOwnerModel, m_RootHtmlFileName),
-                             (const char*)pBasicSym->GetSymbolName(),
-                             (const char*)symbolPath);
+                    str.Format(IDS_MODELGENHTML_33,
+                               (const char*)BuildFileNameAndPath(htmlFileNameOwnerModel, m_RootHtmlFileName),
+                               (const char*)pBasicSym->GetSymbolName(),
+                               (const char*)symbolPath);
 
-                htmlFile << s;
+                htmlFile << str;
             }
         }
 
-        s.LoadString(IDS_MODELGENHTML_34);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_34);
+        htmlFile << str;
 
         htmlFile.CloseFile();
     }
@@ -2448,13 +2456,13 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pProperti
         PSS_Properties::IPropertySet propSet;
         pPropertiesObject->FillProperties(propSet);
 
-        CString s;
-        CString s1;
+        CString str;
+        CString str1;
 
         // write the header and the document title
-        s1.LoadString(IDS_SYMBOLPROPERTY_HTML);
-        s.Format(IDS_MODELGENHTML_39, (const char*)s1);
-        htmlFile << s;
+        str1.LoadString(IDS_SYMBOLPROPERTY_HTML);
+        str.Format(IDS_MODELGENHTML_39, (const char*)str1);
+        htmlFile << str;
 
         bool oneAtLeast = false;
 
@@ -2484,19 +2492,19 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pProperti
                 // previous section? Close the table section
                 if (!previousCategory.IsEmpty())
                 {
-                    s.LoadString(IDS_MODELGENHTML_43);
-                    htmlFile << s;
+                    str.LoadString(IDS_MODELGENHTML_43);
+                    htmlFile << str;
                 }
 
                 // add the section name
-                s.LoadString(IDS_MODELGENHTML_40);
-                htmlFile << s;
+                str.LoadString(IDS_MODELGENHTML_40);
+                htmlFile << str;
 
-                s.Format(IDS_MODELGENHTML_41, (const char*)pProp->GetCategory());
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_41, (const char*)pProp->GetCategory());
+                htmlFile << str;
 
-                s.LoadString(IDS_MODELGENHTML_42);
-                htmlFile << s;
+                str.LoadString(IDS_MODELGENHTML_42);
+                htmlFile << str;
 
                 // save the category for checking changes in categories
                 previousCategory = pProp->GetCategory();
@@ -2518,31 +2526,31 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pProperti
             if (!value.IsEmpty())
             {
                 // add the label
-                s.LoadString(IDS_MODELGENHTML_44);
-                htmlFile << s;
+                str.LoadString(IDS_MODELGENHTML_44);
+                htmlFile << str;
 
-                s.Format(IDS_MODELGENHTML_45, (const char*)pProp->GetLabel());
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_45, (const char*)pProp->GetLabel());
+                htmlFile << str;
 
                 // add the value
-                s.LoadString(IDS_MODELGENHTML_46);
-                htmlFile << s;
+                str.LoadString(IDS_MODELGENHTML_46);
+                htmlFile << str;
 
-                s.Format(IDS_MODELGENHTML_47, (const char*)value);
-                htmlFile << s;
+                str.Format(IDS_MODELGENHTML_47, (const char*)value);
+                htmlFile << str;
             }
         }
 
         // close the table if once have been opened
         if (oneAtLeast)
         {
-            s.LoadString(IDS_MODELGENHTML_43);
-            htmlFile << s;
+            str.LoadString(IDS_MODELGENHTML_43);
+            htmlFile << str;
         }
 
         // end of HTML
-        s.LoadString(IDS_MODELGENHTML_49);
-        htmlFile << s;
+        str.LoadString(IDS_MODELGENHTML_49);
+        htmlFile << str;
 
         htmlFile.CloseFile();
 

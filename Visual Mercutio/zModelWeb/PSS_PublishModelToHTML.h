@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zReportWeb\ZUPublishReportInfo.h"
+#include "zReportWeb\PSS_PublishReportInfo.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc
@@ -63,7 +63,7 @@ class AFX_EXT_CLASS PSS_PublishModelToHTML
         */
         static bool ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pDoc,
                                           PSS_ProcessGraphModelView* pView,
-                                          ZUPublishReportInfo*       pReportInfo,
+                                          PSS_PublishReportInfo*     pReportInfo,
                                           const CString&             iniFileName = _T(""));
 
         /**

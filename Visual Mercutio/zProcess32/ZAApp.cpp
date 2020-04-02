@@ -59,9 +59,9 @@
 #include "zReportBP\PSS_SesterceUnitReportGenerator.h"
 #include "zReportBP\PSS_SesterceConsolidatedReportGenerator.h"
 #include "zReportBP\PSS_PrestationsReportGenerator.h"
-#include "zReportBP\ZVReportCreationWizard.h"
+#include "zReportBP\PSS_ReportCreationWizard.h"
 #include "zReportBP\PSS_ConceptorReportGenerator.h"
-#include "zReportWeb\ZUPublishReportToHTML.h"
+#include "zReportWeb\PSS_PublishReportToHTML.h"
 #include "zWeb\PSS_HtmlDialog.h"
 #include "WelcomP.h"
 #include "PSS_ModifyView.h"
@@ -2568,27 +2568,26 @@ void ZAApp::OnUpdateFileSave(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Enregistrer en tant que page Web".
 void ZAApp::OnExportModelToHTMLFile()
 {
-    ZUPublishReportInfo* m_pReportInfo = new ZUPublishReportInfo();
+    std::unique_ptr<PSS_PublishReportInfo> pReportInfo(new PSS_PublishReportInfo());
 
-    if (m_pReportInfo != NULL)
+    if (pReportInfo)
     {
-        PSS_PublishModelToHTML::ExportModelToHTMLFile(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument()),
-                                                      dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())->GetFirstModelView(),
-                                                      m_pReportInfo,
+        PSS_ProcessGraphModelDoc* pBaseDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
+
+        if (!pBaseDoc)
+            return;
+
+        PSS_PublishModelToHTML::ExportModelToHTMLFile(pBaseDoc,
+                                                      pBaseDoc->GetFirstModelView(),
+                                                      pReportInfo.get(),
                                                       m_pszProfileName);
 
-        ZUPublishReportToHTML::ExportReportToHTMLFile(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument()),
-                                                      m_pReportInfo);
+        PSS_PublishReportToHTML::ExportReportToHTMLFile(pBaseDoc, pReportInfo.get());
 
-        if (m_pReportInfo->DoLaunchBrowser == TRUE)
-        {
-            PSS_PublishModelToHTML::LaunchBrowser(m_pReportInfo->IndexName);
-        }
+        if (pReportInfo->m_DoLaunchBrowser)
+            PSS_PublishModelToHTML::LaunchBrowser(pReportInfo->m_IndexName);
 
-        delete m_pReportInfo;
-        m_pReportInfo = NULL;
-
-        // JMR-MODIF - Le 28 février 2006 - La réattribution du langage d'origine se fait maintenant ici.
+        // restore the original language
         PSS_ResourceManager::ChangeLanguage(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())->GetLanguage());
     }
 }
@@ -3579,12 +3578,10 @@ void ZAApp::OnGenerateSesterceUnitReport()
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
-    ZVReportCreationWizard dlg(true, false);
+    PSS_ReportCreationWizard wizard(true, false);
 
-    if (dlg.DoModal() == IDCANCEL)
-    {
+    if (wizard.DoModal() == IDCANCEL)
         return;
-    }
 
     CWaitCursor Cursor;
 
@@ -3598,7 +3595,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
         pNewFile->SetNewReportGridGenerator(new PSS_SesterceUnitReportGenerator(pNewFile,
                                                                                 dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                                 pCurrentDoc,
-                                                                                dlg.IncludeMonthDetail()));
+                                                                                wizard.IncludeMonthDetail()));
 
         PSS_File file(pCurrentDoc->GetPathName());
         CString s;
@@ -3643,12 +3640,10 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
-    ZVReportCreationWizard dlg(true, false);
+    PSS_ReportCreationWizard wizard(true, false);
 
-    if (dlg.DoModal() == IDCANCEL)
-    {
+    if (wizard.DoModal() == IDCANCEL)
         return;
-    }
 
     CWaitCursor Cursor;
 
@@ -3662,7 +3657,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
         pNewFile->SetNewReportGridGenerator(new PSS_SesterceConsolidatedReportGenerator(pNewFile,
                                                                                         dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                                         pCurrentDoc,
-                                                                                        dlg.IncludeMonthDetail()));
+                                                                                        wizard.IncludeMonthDetail()));
 
         PSS_File file(pCurrentDoc->GetPathName());
         CString s;
@@ -3708,12 +3703,10 @@ void ZAApp::OnGeneratePrestationsReport()
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
-    ZVReportCreationWizard dlg(true, false);
+    PSS_ReportCreationWizard wizard(true, false);
 
-    if (dlg.DoModal() == IDCANCEL)
-    {
+    if (wizard.DoModal() == IDCANCEL)
         return;
-    }
 
     CWaitCursor Cursor;
 
@@ -3727,7 +3720,7 @@ void ZAApp::OnGeneratePrestationsReport()
         pNewFile->SetNewReportGridGenerator(new PSS_PrestationsReportGenerator(pNewFile,
                                                                                dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
                                                                                pCurrentDoc,
-                                                                               dlg.IncludeMonthDetail()));
+                                                                               wizard.IncludeMonthDetail()));
 
         CString s;
         CString strFilterExt;

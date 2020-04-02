@@ -41,7 +41,7 @@ PSS_PublishModelToHTML::~PSS_PublishModelToHTML()
 //---------------------------------------------------------------------------
 bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pDoc,
                                                    PSS_ProcessGraphModelView* pView,
-                                                   ZUPublishReportInfo*       pReportInfo,
+                                                   PSS_PublishReportInfo*     pReportInfo,
                                                    const CString&             iniFileName)
 {
     if (!pDoc || !pView)
@@ -93,42 +93,42 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pD
 
         if (pReportInfo)
         {
-            pReportInfo->Directory = publishModel.GetDir();
+            pReportInfo->m_Directory = publishModel.GetDir();
 
             if (publishModel.GetPublishConceptor())
             {
-                pReportInfo->DoExportConceptorReport = TRUE;
-                pReportInfo->DoIncludeDetails        = publishModel.GetPublishConceptorDetails()      ? TRUE : FALSE;
-                pReportInfo->DoIncludeDeliverables   = publishModel.GetPublishConceptorDeliverables() ? TRUE : FALSE;
+                pReportInfo->m_DoExportConceptorReport = TRUE;
+                pReportInfo->m_DoIncludeDetails        = publishModel.GetPublishConceptorDetails();
+                pReportInfo->m_DoIncludeDeliverables   = publishModel.GetPublishConceptorDeliverables();
             }
             else
             {
-                pReportInfo->DoExportConceptorReport = FALSE;
-                pReportInfo->DoIncludeDetails        = FALSE;
-                pReportInfo->DoIncludeDeliverables   = FALSE;
+                pReportInfo->m_DoExportConceptorReport = FALSE;
+                pReportInfo->m_DoIncludeDetails        = FALSE;
+                pReportInfo->m_DoIncludeDeliverables   = FALSE;
             }
 
             if (publishModel.GetPublishProcess())
             {
-                pReportInfo->DoExportProcessReport = TRUE;
-                pReportInfo->Attributes            = propAttributes;
+                pReportInfo->m_DoExportProcessReport = TRUE;
+                pReportInfo->m_Attributes            = propAttributes;
             }
             else
-                pReportInfo->DoExportProcessReport = FALSE;
+                pReportInfo->m_DoExportProcessReport = FALSE;
 
-            pReportInfo->DoExportPrestationsReport = TRUE;
-            pReportInfo->DoExportRuleBook          = publishModel.GetPublishRuleBook() ? TRUE : FALSE;
+            pReportInfo->m_DoExportPrestationsReport = TRUE;
+            pReportInfo->m_DoExportRuleBook          = publishModel.GetPublishRuleBook();
 
             // if the visualization is required
             if (publishModel.GetVisualizeResult())
             {
-                pReportInfo->IndexName       = modelGen.GetIndexHtmlFileName();
-                pReportInfo->DoLaunchBrowser = TRUE;
+                pReportInfo->m_IndexName       = modelGen.GetIndexHtmlFileName();
+                pReportInfo->m_DoLaunchBrowser = TRUE;
             }
             else
             {
-                pReportInfo->IndexName       = _T("");
-                pReportInfo->DoLaunchBrowser = FALSE;
+                pReportInfo->m_IndexName       = _T("");
+                pReportInfo->m_DoLaunchBrowser = FALSE;
             }
         }
     }

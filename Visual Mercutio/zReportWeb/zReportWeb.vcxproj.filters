@@ -18,9 +18,6 @@
     <ClCompile Include="zReportWeb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUPublishReportToHTML.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZVPublishConceptorReport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,6 +34,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PublishReportInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PublishReportToHTML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,12 +69,6 @@
     <ClInclude Include="zReportWebRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZUPublishReportInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUPublishReportToHTML.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZVPublishConceptorReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -85,6 +82,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVPublishRuleBookDetails.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PublishReportInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PublishReportToHTML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,15 +1,16 @@
-// ******************************************************************************************************
-// *                                  Classe ZVPublishConceptorReport                                    *
-// ******************************************************************************************************
-// * JMR-MODIF - Le 29 juin 2005 - Création de la nouvelle classe ZVPublishConceptorReport.                *
-// * Cette classe effectue la publication des rapports en tant que pages Internet.                        *
-// ******************************************************************************************************
+/****************************************************************************
+ * ==> PSS_PublishConceptorReport ------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a navigator which will publish the Conceptor      *
+ *               report as html files                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVPUBLISHCONCEPTORREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
-#define AFX_ZVPUBLISHCONCEPTORREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_
+#ifndef PSS_PublishConceptorReportH
+#define PSS_PublishConceptorReportH
 
 #if _MSC_VER > 1000
-#pragma once
+    #pragma once
 #endif
 
 // change the definition of AFX_EXT... to make it import

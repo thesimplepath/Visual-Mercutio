@@ -1,0 +1,74 @@
+/****************************************************************************
+ * ==> PSS_PublishReportToHTML ---------------------------------------------*
+ ****************************************************************************
+ * Description : Publishes a report to html file                            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#include "StdAfx.h"
+#include "PSS_PublishReportToHTML.h"
+
+#ifdef _DEBUG
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+#endif
+
+//---------------------------------------------------------------------------
+// PSS_PublishReportToHTML
+//---------------------------------------------------------------------------
+PSS_PublishReportToHTML::PSS_PublishReportToHTML()
+{}
+//---------------------------------------------------------------------------
+PSS_PublishReportToHTML::~PSS_PublishReportToHTML()
+{}
+//---------------------------------------------------------------------------
+bool PSS_PublishReportToHTML::ExportReportToHTMLFile(PSS_ProcessGraphModelDoc* pDoc, PSS_PublishReportInfo* pReportInfo)
+{
+    if (!pDoc)
+        return false;
+
+    if (!pReportInfo)
+        return false;
+
+    PSS_ProcessGraphModelMdlBP* pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pDoc->GetModel());
+
+    // export the Conceptor report content
+    if (pReportInfo->m_DoExportConceptorReport)
+    {
+        std::unique_ptr<ZVPublishConceptorReport> pConceptorReportGenerator
+                (new ZVPublishConceptorReport(pModel, pReportInfo->m_DoIncludeDetails, pReportInfo->m_DoIncludeDeliverables));
+
+        pConceptorReportGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
+    }
+
+    // export the process report content
+    if (pReportInfo->m_DoExportProcessReport)
+    {
+        std::unique_ptr<ZVPublishProcessReport> pProcessReportGenerator
+                (new ZVPublishProcessReport(pModel, &pReportInfo->m_Attributes));
+
+        pProcessReportGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
+    }
+
+    // export the prestations report content
+    if (pReportInfo->m_DoExportPrestationsReport)
+    {
+        std::unique_ptr<ZVPublishPrestationsReport> pPrestationsReportGenerator(new ZVPublishPrestationsReport(pModel));
+        pPrestationsReportGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
+    }
+
+    // export the rule report content
+    if (pReportInfo->m_DoExportRuleBook)
+    {
+        std::unique_ptr<ZVPublishRuleBook> pRuleBookGenerator(new ZVPublishRuleBook(pModel));
+        pRuleBookGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
+
+        // publish the publication details
+        std::unique_ptr<ZVPublishRuleBookDetails> pRuleBookDetailsGenerator(new ZVPublishRuleBookDetails(pModel));
+        pRuleBookDetailsGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
+    }
+
+    return true;
+}
+//---------------------------------------------------------------------------
