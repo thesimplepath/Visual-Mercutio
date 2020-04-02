@@ -21,9 +21,6 @@
     <ClCompile Include="zReportBP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUSynthesisNavigation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZVReportCreationWizard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,6 +63,9 @@
     <ClCompile Include="PSS_ProcessConceptorNavigation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_SynthesisNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zReportBP.rc2">
@@ -85,9 +85,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zReportBPRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUSynthesisNavigation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVReportCreationWizard.h">
@@ -133,6 +130,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ProcessConceptorNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SynthesisNavigation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

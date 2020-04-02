@@ -19,7 +19,7 @@
 #include "zModelBP\PSS_ProcedureSymbolBP.h"
 #include "zModelBP\PSS_ExtractProcessName.h"
 #include "zReport\PSS_GridDocument.h"
-#include "ZUSynthesisNavigation.h"
+#include "PSS_SynthesisNavigation.h"
 #include "PSS_ProcessConceptorNavigation.h"
 #include "PSS_GridMercutioReportProcedureNavigation.h"
 #include "PSS_GridMercutioReportDeliverableNavigation.h"
@@ -326,11 +326,11 @@ bool PSS_ConceptorReportGenerator::FillSynthesis(PSS_OStreamGrid& ostream, std::
     ostream << _T("\n");
 
     // build the synthesis for each page
-    ZUSynthesisNavigation navigation(m_pModel,
-                                     static_cast<void*>(&ostream),
-                                     m_pModel,
-                                     _T(""),
-                                     m_TabNameArray.GetAt(index));
+    PSS_SynthesisNavigation navigation(m_pModel,
+                                       static_cast<void*>(&ostream),
+                                       m_pModel,
+                                       _T(""),
+                                       m_TabNameArray.GetAt(index));
 
     // navigate through process symbols
     navigation.Navigate();

@@ -226,7 +226,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSynthesisNavigation.cpp">
+    <ClCompile Include="PSS_SynthesisNavigation.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -269,7 +269,7 @@
     <ClInclude Include="PSS_GridProcessNavigation.h" />
     <ClInclude Include="PSS_GridSesterceProcessNavigation.h" />
     <ClInclude Include="PSS_ProcessConceptorNavigation.h" />
-    <ClInclude Include="ZUSynthesisNavigation.h" />
+    <ClInclude Include="PSS_SynthesisNavigation.h" />
     <ClInclude Include="ZVReportCreationWizard.h" />
   </ItemGroup>
   <ItemGroup>
