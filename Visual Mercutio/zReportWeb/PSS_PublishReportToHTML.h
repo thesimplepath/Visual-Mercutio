@@ -1,7 +1,8 @@
 /****************************************************************************
  * ==> PSS_PublishReportToHTML ---------------------------------------------*
  ****************************************************************************
- * Description : Publishes a report to html file                            *
+ * Description : Provides a report generator which will publish its content *
+ *               to html files                                              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
@@ -23,9 +24,9 @@
 // processsoft
 #include "zReport\PSS_GridReportDocument.h"
 #include "PSS_PublishReportInfo.h"
-#include "ZVPublishConceptorReport.h"
+#include "PSS_PublishConceptorReport.h"
 #include "ZVPublishProcessReport.h"
-#include "ZVPublishPrestationsReport.h"
+#include "PSS_PublishPrestationsReport.h"
 #include "ZVPublishRuleBook.h"
 #include "ZVPublishRuleBookDetails.h"
 
@@ -40,7 +41,7 @@
 #endif
 
 /**
-* Publishes a report to html format
+* Publishes a report to html files
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
 class AFX_EXT_CLASS PSS_PublishReportToHTML

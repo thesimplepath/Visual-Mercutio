@@ -142,8 +142,8 @@
     <ClCompile Include="zReportWeb.cpp" />
     <ClCompile Include="PSS_PublishReportInfo.cpp" />
     <ClCompile Include="PSS_PublishReportToHTML.cpp" />
-    <ClCompile Include="ZVPublishConceptorReport.cpp" />
-    <ClCompile Include="ZVPublishPrestationsReport.cpp" />
+    <ClCompile Include="PSS_PublishConceptorReport.cpp" />
+    <ClCompile Include="PSS_PublishPrestationsReport.cpp" />
     <ClCompile Include="ZVPublishProcessReport.cpp" />
     <ClCompile Include="ZVPublishRuleBook.cpp" />
     <ClCompile Include="ZVPublishRuleBookDetails.cpp" />
@@ -162,8 +162,8 @@
     <ClInclude Include="zReportWebRes.h" />
     <ClInclude Include="PSS_PublishReportInfo.h" />
     <ClInclude Include="PSS_PublishReportToHTML.h" />
-    <ClInclude Include="ZVPublishConceptorReport.h" />
-    <ClInclude Include="ZVPublishPrestationsReport.h" />
+    <ClInclude Include="PSS_PublishConceptorReport.h" />
+    <ClInclude Include="PSS_PublishPrestationsReport.h" />
     <ClInclude Include="ZVPublishProcessReport.h" />
     <ClInclude Include="ZVPublishRuleBook.h" />
     <ClInclude Include="ZVPublishRuleBookDetails.h" />

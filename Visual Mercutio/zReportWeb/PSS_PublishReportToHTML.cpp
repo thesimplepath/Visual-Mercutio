@@ -1,7 +1,8 @@
 /****************************************************************************
  * ==> PSS_PublishReportToHTML ---------------------------------------------*
  ****************************************************************************
- * Description : Publishes a report to html file                            *
+ * Description : Provides a report generator which will publish its content *
+ *               to html files                                              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
@@ -36,8 +37,8 @@ bool PSS_PublishReportToHTML::ExportReportToHTMLFile(PSS_ProcessGraphModelDoc* p
     // export the Conceptor report content
     if (pReportInfo->m_DoExportConceptorReport)
     {
-        std::unique_ptr<ZVPublishConceptorReport> pConceptorReportGenerator
-                (new ZVPublishConceptorReport(pModel, pReportInfo->m_DoIncludeDetails, pReportInfo->m_DoIncludeDeliverables));
+        std::unique_ptr<PSS_PublishConceptorReport> pConceptorReportGenerator
+                (new PSS_PublishConceptorReport(pModel, pReportInfo->m_DoIncludeDetails, pReportInfo->m_DoIncludeDeliverables));
 
         pConceptorReportGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
     }
@@ -54,7 +55,7 @@ bool PSS_PublishReportToHTML::ExportReportToHTMLFile(PSS_ProcessGraphModelDoc* p
     // export the prestations report content
     if (pReportInfo->m_DoExportPrestationsReport)
     {
-        std::unique_ptr<ZVPublishPrestationsReport> pPrestationsReportGenerator(new ZVPublishPrestationsReport(pModel));
+        std::unique_ptr<PSS_PublishPrestationsReport> pPrestationsReportGenerator(new PSS_PublishPrestationsReport(pModel));
         pPrestationsReportGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
     }
 
