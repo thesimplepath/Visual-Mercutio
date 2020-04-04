@@ -73,7 +73,7 @@ class AFX_EXT_CLASS PSS_PublishPrestationsReport
         *@param dir - the directory in which the report should be published
         *@return true on success, otherwise false
         */
-        bool Publish(const CString& dir);
+        virtual bool Publish(const CString& dir);
 
     private:
         PSS_ProcessGraphModelMdl*      m_pRootModel;

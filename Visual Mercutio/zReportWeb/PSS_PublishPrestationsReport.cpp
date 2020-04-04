@@ -357,8 +357,10 @@ void PSS_PublishPrestationsReport::ExploreProcessHierarchy(const CString&       
         if (!pCompSet)
             continue;
 
+        const int compCount = pCompSet->GetSize();
+
         // iterate through the symbols contained in the page model controller
-        for (int i = 0; i < pCompSet->GetSize(); ++i)
+        for (int i = 0; i < compCount; ++i)
         {
             PSS_ProcessSymbolBP* pProcess = dynamic_cast<PSS_ProcessSymbolBP*>(pCompSet->GetAt(i));
 

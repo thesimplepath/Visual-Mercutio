@@ -46,8 +46,8 @@ bool PSS_PublishReportToHTML::ExportReportToHTMLFile(PSS_ProcessGraphModelDoc* p
     // export the process report content
     if (pReportInfo->m_DoExportProcessReport)
     {
-        std::unique_ptr<ZVPublishProcessReport> pProcessReportGenerator
-                (new ZVPublishProcessReport(pModel, &pReportInfo->m_Attributes));
+        std::unique_ptr<PSS_PublishProcessReport> pProcessReportGenerator
+                (new PSS_PublishProcessReport(pModel, &pReportInfo->m_Attributes));
 
         pProcessReportGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
     }

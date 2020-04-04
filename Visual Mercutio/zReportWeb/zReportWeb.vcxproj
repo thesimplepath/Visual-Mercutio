@@ -144,7 +144,7 @@
     <ClCompile Include="PSS_PublishReportToHTML.cpp" />
     <ClCompile Include="PSS_PublishConceptorReport.cpp" />
     <ClCompile Include="PSS_PublishPrestationsReport.cpp" />
-    <ClCompile Include="ZVPublishProcessReport.cpp" />
+    <ClCompile Include="PSS_PublishProcessReport.cpp" />
     <ClCompile Include="ZVPublishRuleBook.cpp" />
     <ClCompile Include="ZVPublishRuleBookDetails.cpp" />
   </ItemGroup>
@@ -164,7 +164,7 @@
     <ClInclude Include="PSS_PublishReportToHTML.h" />
     <ClInclude Include="PSS_PublishConceptorReport.h" />
     <ClInclude Include="PSS_PublishPrestationsReport.h" />
-    <ClInclude Include="ZVPublishProcessReport.h" />
+    <ClInclude Include="PSS_PublishProcessReport.h" />
     <ClInclude Include="ZVPublishRuleBook.h" />
     <ClInclude Include="ZVPublishRuleBookDetails.h" />
   </ItemGroup>

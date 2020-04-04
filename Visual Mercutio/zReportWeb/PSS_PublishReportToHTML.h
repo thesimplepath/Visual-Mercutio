@@ -25,7 +25,7 @@
 #include "zReport\PSS_GridReportDocument.h"
 #include "PSS_PublishReportInfo.h"
 #include "PSS_PublishConceptorReport.h"
-#include "ZVPublishProcessReport.h"
+#include "PSS_PublishProcessReport.h"
 #include "PSS_PublishPrestationsReport.h"
 #include "ZVPublishRuleBook.h"
 #include "ZVPublishRuleBookDetails.h"
