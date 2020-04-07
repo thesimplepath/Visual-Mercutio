@@ -33,7 +33,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZRES32.DLL Initializing!\n");
 
             // extension DLL one-time initialization
-            if (!AfxInitExtensionModule(g_zRes32DLL, hInstance))
+            if (!::AfxInitExtensionModule(g_zRes32DLL, hInstance))
                 return 0;
 
             break;
@@ -42,7 +42,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZRES32.DLL Terminating!\n");
 
             // terminate the library before destructors are called
-            AfxTermExtensionModule(g_zRes32DLL);
+            ::AfxTermExtensionModule(g_zRes32DLL);
 
             break;
     }

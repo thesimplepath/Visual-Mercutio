@@ -33,7 +33,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZSPLRES.DLL Initializing!\n");
 
             // extension DLL one-time initialization
-            if (!AfxInitExtensionModule(g_zSplResDLL, hInstance))
+            if (!::AfxInitExtensionModule(g_zSplResDLL, hInstance))
                 return 0;
 
             break;
@@ -42,7 +42,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZSPLRES.DLL Terminating!\n");
 
             // terminate the library before destructors are called
-            AfxTermExtensionModule(g_zSplResDLL);
+            ::AfxTermExtensionModule(g_zSplResDLL);
 
             break;
     }

@@ -33,7 +33,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZBASESYM.DLL Initializing!\n");
 
             // extension DLL one-time initialization
-            if (!AfxInitExtensionModule(g_zBaseSymDLL, hInstance))
+            if (!::AfxInitExtensionModule(g_zBaseSymDLL, hInstance))
                 return 0;
 
             // insert this DLL into the resource chain. NOTE: If this Extension DLL is being implicitly linked to by
@@ -50,7 +50,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZBASESYM.DLL Terminating!\n");
 
             // terminate the library before destructors are called
-            AfxTermExtensionModule(g_zBaseSymDLL);
+            ::AfxTermExtensionModule(g_zBaseSymDLL);
 
             break;
     }

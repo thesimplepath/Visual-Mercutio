@@ -145,8 +145,8 @@
     <ClCompile Include="PSS_PublishConceptorReport.cpp" />
     <ClCompile Include="PSS_PublishPrestationsReport.cpp" />
     <ClCompile Include="PSS_PublishProcessReport.cpp" />
-    <ClCompile Include="ZVPublishRuleBook.cpp" />
-    <ClCompile Include="ZVPublishRuleBookDetails.cpp" />
+    <ClCompile Include="PSS_PublishRuleBook.cpp" />
+    <ClCompile Include="PSS_PublishRuleBookDetails.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\zReportWeb.rc2" />
@@ -165,8 +165,8 @@
     <ClInclude Include="PSS_PublishConceptorReport.h" />
     <ClInclude Include="PSS_PublishPrestationsReport.h" />
     <ClInclude Include="PSS_PublishProcessReport.h" />
-    <ClInclude Include="ZVPublishRuleBook.h" />
-    <ClInclude Include="ZVPublishRuleBookDetails.h" />
+    <ClInclude Include="PSS_PublishRuleBook.h" />
+    <ClInclude Include="PSS_PublishRuleBookDetails.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">

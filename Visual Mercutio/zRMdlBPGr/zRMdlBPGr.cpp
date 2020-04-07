@@ -33,7 +33,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZRMDLBPGR.DLL Initializing!\n");
 
             // extension DLL one-time initialization
-            if (!AfxInitExtensionModule(g_zRMdlBPGrDLL, hInstance))
+            if (!::AfxInitExtensionModule(g_zRMdlBPGrDLL, hInstance))
                 return 0;
 
             // insert this DLL into the resource chain. NOTE: If this Extension DLL is being implicitly linked to by
@@ -50,7 +50,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZRMDLBPGR.DLL Terminating!\n");
 
             // terminate the library before destructors are called
-            AfxTermExtensionModule(g_zRMdlBPGrDLL);
+            ::AfxTermExtensionModule(g_zRMdlBPGrDLL);
 
             break;
     }

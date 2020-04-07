@@ -1,6 +1,9 @@
-; zReportWeb.def : déclare les paramètres de module pour la DLL.
+; zReportWeb.def: Declares the module parameters for the DLL
 
-LIBRARY      "zReportWebD"
+LIBRARY "zReportWebD"
+
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION  'zReportWebD Windows Dynamic Link Library'
 
 EXPORTS
-    ; Les exportations explicites peuvent être placées ici
+    ; explicit exports can go here

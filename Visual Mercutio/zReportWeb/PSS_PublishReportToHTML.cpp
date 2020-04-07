@@ -62,11 +62,11 @@ bool PSS_PublishReportToHTML::ExportReportToHTMLFile(PSS_ProcessGraphModelDoc* p
     // export the rule report content
     if (pReportInfo->m_DoExportRuleBook)
     {
-        std::unique_ptr<ZVPublishRuleBook> pRuleBookGenerator(new ZVPublishRuleBook(pModel));
+        std::unique_ptr<PSS_PublishRuleBook> pRuleBookGenerator(new PSS_PublishRuleBook(pModel));
         pRuleBookGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
 
         // publish the publication details
-        std::unique_ptr<ZVPublishRuleBookDetails> pRuleBookDetailsGenerator(new ZVPublishRuleBookDetails(pModel));
+        std::unique_ptr<PSS_PublishRuleBookDetails> pRuleBookDetailsGenerator(new PSS_PublishRuleBookDetails(pModel));
         pRuleBookDetailsGenerator->Publish(pReportInfo->m_Directory + _T("\\"));
     }
 

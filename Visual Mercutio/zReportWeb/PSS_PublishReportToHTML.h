@@ -27,8 +27,8 @@
 #include "PSS_PublishConceptorReport.h"
 #include "PSS_PublishProcessReport.h"
 #include "PSS_PublishPrestationsReport.h"
-#include "ZVPublishRuleBook.h"
-#include "ZVPublishRuleBookDetails.h"
+#include "PSS_PublishRuleBook.h"
+#include "PSS_PublishRuleBookDetails.h"
 
 #ifdef _ZREPORTWEBEXPORT
     // put the values back to make AFX_EXT_CLASS export again

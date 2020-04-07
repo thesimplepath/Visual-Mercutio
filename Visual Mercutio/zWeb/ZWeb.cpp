@@ -34,7 +34,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZWEB.DLL Initializing!\n");
 
             // extension DLL one-time initialization
-            if (!AfxInitExtensionModule(g_zWebDLL, hInstance))
+            if (!::AfxInitExtensionModule(g_zWebDLL, hInstance))
                 return 0;
 
             // insert this DLL into the resource chain. NOTE: If this Extension DLL is being implicitly linked to by
@@ -51,7 +51,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             TRACE0("ZWEB.DLL Terminating!\n");
 
             // terminate the library before destructors are called
-            AfxTermExtensionModule(g_zWebDLL);
+            ::AfxTermExtensionModule(g_zWebDLL);
 
             break;
     }
