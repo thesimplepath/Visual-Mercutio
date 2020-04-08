@@ -208,9 +208,20 @@ BOOL PSS_DocumentPageSetup::GetPrinterSettings(CSize& paperSize, short& standard
 
         try
         {
-            // get the device parameter structs
+            // get access to the device names
             pDevNames = (DEVNAMES FAR*)::GlobalLock(pPrintDlg->hDevNames);
-            pDevMode  = (DEVMODE  FAR*)::GlobalLock(pPrintDlg->hDevMode);
+
+            if (!pDevNames)
+                return FALSE;
+
+            // get access to the device mode
+            pDevMode = (DEVMODE FAR*)::GlobalLock(pPrintDlg->hDevMode);
+
+            if (!pDevMode)
+            {
+                ::GlobalUnlock(pPrintDlg->hDevNames);
+                return FALSE;
+            }
 
             // get the specific driver information
             const CString driver(LPTSTR(pDevNames) + pDevNames->wDriverOffset);
@@ -295,8 +306,11 @@ void PSS_DocumentPageSetup::ChangePrinterSettings(short standardSize, short orie
                 pDevMode->dmPaperSize   = standardSize;
                 pDevMode->dmOrientation = orientation;
 
-                // get the device name struct
+                // get access to the device names
                 pDevNames = LPDEVNAMES(GlobalLock(printDialog.hDevNames));
+
+                if (!pDevNames)
+                    return;
 
                 LPTSTR pDriverName = LPTSTR(pDevNames) + pDevNames->wDriverOffset;
                 LPTSTR pDeviceName = LPTSTR(pDevNames) + pDevNames->wDeviceOffset;

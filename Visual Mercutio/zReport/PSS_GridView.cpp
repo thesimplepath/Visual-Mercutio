@@ -216,21 +216,25 @@ bool PSS_GridView::ImportTextFile(const CString& fileName)
     CFile textFile;
 
     if (!textFile.Open(fileName, CFile::modeRead))
-    {
         return false;
-    }
 
     LPTSTR pszBuffer;
-    DWORD dwSize = (DWORD)textFile.GetLength();
-    pszBuffer = new TCHAR[dwSize];
+    DWORD  dwSize = (DWORD)textFile.GetLength();
+    pszBuffer     = new TCHAR[dwSize];
 
-    textFile.Read(pszBuffer, dwSize);
+    try
+    {
+        textFile.Read(pszBuffer, dwSize);
+        PasteTextFromBuffer(pszBuffer, dwSize, CGXRange(0, 1));
+        textFile.Close();
+    }
+    catch (...)
+    {
+        delete[] pszBuffer;
+        throw;
+    }
 
-    PasteTextFromBuffer(pszBuffer, dwSize, CGXRange(0, 1));
-
-    textFile.Close();
-
-    delete pszBuffer;
+    delete[] pszBuffer;
     return true;
 }
 //---------------------------------------------------------------------------

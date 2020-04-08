@@ -45,7 +45,10 @@ class AFX_EXT_CLASS PSS_SoapData_DistributionMap
         /**
         * Constructor
         */
-        PSS_SoapData_DistributionMap()
+        PSS_SoapData_DistributionMap() :
+            m_PdAttribID(-1),
+            m_AttribDefID(-1),
+            m_Mlop(-1)
         {}
 
         /**

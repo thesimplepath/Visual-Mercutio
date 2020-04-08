@@ -33,7 +33,9 @@ PSS_ProcRules::PSS_ProcRules(CODSymbolComponent* pParent) :
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------
-PSS_ProcRules::PSS_ProcRules(const PSS_ProcRules& other)
+PSS_ProcRules::PSS_ProcRules(const PSS_ProcRules& other) :
+    CObject(),
+    m_pParent(NULL)
 {
     *this = other;
 }

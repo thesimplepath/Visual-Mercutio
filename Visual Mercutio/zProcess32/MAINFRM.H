@@ -129,5 +129,4 @@ private:
     ZVPropertiesWorkspace m_wndPropertiesWorkspace;
 };
 
-#endif // __DSGNFRM_H
-/////////////////////////////////////////////////////////////////////////////
+#endif

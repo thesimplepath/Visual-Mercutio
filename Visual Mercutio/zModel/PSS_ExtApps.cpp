@@ -33,7 +33,9 @@ PSS_ExtApps::PSS_ExtApps(CODSymbolComponent* pParent) :
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------
-PSS_ExtApps::PSS_ExtApps(const PSS_ExtApps& other)
+PSS_ExtApps::PSS_ExtApps(const PSS_ExtApps& other) :
+    CObject(),
+    m_pParent(NULL)
 {
     *this = other;
 }

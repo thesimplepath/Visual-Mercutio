@@ -72,7 +72,7 @@ void PSS_CodeInputDialog::OnOK()
     CString wndDir;
 
     // check if the key file exists
-    GetWindowsDirectory(wndDir.GetBuffer(MAX_PATH), MAX_PATH);
+    ::GetWindowsDirectory(wndDir.GetBuffer(MAX_PATH), MAX_PATH);
     wndDir.ReleaseBuffer();
 
     wndDir += _T("\\winkeys.key");

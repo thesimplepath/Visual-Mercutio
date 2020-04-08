@@ -38,7 +38,8 @@ END_MESSAGE_MAP()
 // PSS_FileFormPreviewButtonToolBar
 //---------------------------------------------------------------------------
 PSS_FileFormPreviewButtonToolBar::PSS_FileFormPreviewButtonToolBar() :
-    CStatic()
+    CStatic(),
+    m_pParent(NULL)
 {
     // create the image list used by frame buttons.
     m_ImageList.Create(IDB_BUTTONSFILEPREVIEWDLG, 18, 1, RGB(255, 0, 255));

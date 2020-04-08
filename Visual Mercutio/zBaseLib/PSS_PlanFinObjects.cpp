@@ -36,7 +36,9 @@ PSS_PLFNRect::PSS_PLFNRect(BOOL round) :
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNRect::PSS_PLFNRect(const PSS_PLFNRect& other) :
-    PSS_PLFNGraphic()
+    PSS_PLFNGraphic(),
+    m_Round(FALSE),
+    m_ArcOffset(0)
 {
     *this = other;
 }
@@ -702,7 +704,13 @@ PSS_PLFNLong::PSS_PLFNLong() :
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNLong::PSS_PLFNLong(const PSS_PLFNLong& other) :
-    PSS_PLFNAscii()
+    PSS_PLFNAscii(),
+    m_Long(0.0),
+    m_IconDisplayType(IE_DT_NoIcon),
+    m_Rounded(0.0),
+    m_IsCalculatedField(FALSE),
+    m_KeepTheValue(FALSE),
+    m_IsRounded(FALSE)
 {
     *this = other;
 }
@@ -855,29 +863,29 @@ BOOL PSS_PLFNLong::ConvertFormattedObject(const CString& value, BOOL locateForma
     {
         // remove the ' char
         const char* pBuffer = (const char*)value;
-        char        szTemp[100];
+        char        valueBuf[100];
         std::size_t index = 0;
 
         for (int i = 0; *pBuffer; ++pBuffer)
             if (*pBuffer != '\'')
             {
-                szTemp[i] = *pBuffer;
+                valueBuf[i] = *pBuffer;
                 ++i;
                 index = i;
             }
 
-        szTemp[index] = 0x00;
+        valueBuf[index] = 0x00;
 
         // if dash or double-dash, remove it before converting to number
         if (b2Dash)
             // set artificial end of buffer
-            szTemp[index - 2] = 0x00;
+            valueBuf[index - 2] = 0x00;
         else
         if (b1Dash)
             // set artificial end of buffer
-            szTemp[index - 1] = 0x00;
+            valueBuf[index - 1] = 0x00;
 
-        m_Long = std::atof(szTemp);
+        m_Long = std::atof(valueBuf);
 
         if (locateFormat)
             if (std::strchr((const char*)value, ',') || std::strchr((const char*)value, '.'))

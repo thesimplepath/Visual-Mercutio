@@ -26,7 +26,9 @@ PSS_SymbolStamp::PSS_SymbolStamp() :
     m_SymbolVersion(1)
 {}
 //---------------------------------------------------------------------------
-PSS_SymbolStamp::PSS_SymbolStamp(const PSS_SymbolStamp& other)
+PSS_SymbolStamp::PSS_SymbolStamp(const PSS_SymbolStamp& other) :
+    CObject(),
+    m_SymbolVersion(1)
 {
     *this = other;
 }

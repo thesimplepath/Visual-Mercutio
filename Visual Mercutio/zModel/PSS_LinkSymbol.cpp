@@ -88,7 +88,21 @@ PSS_LinkSymbol::PSS_LinkSymbol(const PSS_LinkSymbol& other) :
     PSS_BasicSymbolAcceptVisitor(),
     PSS_Subject(),
     PSS_Observer(),
-    PSS_ToolTip()
+    PSS_ToolTip(),
+    m_pReference(NULL),
+    m_DynamicPropManager(NULL),
+    m_IsInCreationProcess(false),
+    m_IsLocal(true),
+    m_InitialLineColor(defCOLOR_BLACK),
+    m_InitialLabelLineColor(defCOLOR_BLACK),
+    m_CurrentLineColor(defCOLOR_BLACK),
+    m_CurrentLabelLineColor(defCOLOR_BLACK),
+    m_InitialLineWidth(1),
+    m_InitialLabelLineWidth(1),
+    m_InitialLineStyle(PS_SOLID),
+    m_CurrentLineWidth(1),
+    m_CurrentLineStyle(PS_SOLID),
+    m_IsCopy(FALSE)
 {
     *this = other;
 }

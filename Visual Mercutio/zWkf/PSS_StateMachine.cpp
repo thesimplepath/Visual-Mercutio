@@ -34,7 +34,8 @@ PSS_StateMachine::PSS_StateMachine(PSS_ProcessGraphModelMdl* pModel) :
 {}
 //---------------------------------------------------------------------------
 PSS_StateMachine::PSS_StateMachine(const PSS_StateMachine& other) :
-    CObject()
+    CObject(),
+    m_pModel(NULL)
 {
     *this = other;
 }

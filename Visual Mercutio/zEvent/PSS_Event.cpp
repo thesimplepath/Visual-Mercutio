@@ -37,7 +37,8 @@ PSS_Event::PSS_Event(const COleDateTime& timeStamp, int eventID, const CString& 
 {}
 //---------------------------------------------------------------------------
 PSS_Event::PSS_Event(const PSS_Event& other) :
-    CObject()
+    CObject(),
+    m_EventID(g_Evt_Undefined)
 {
     *this = other;
 }

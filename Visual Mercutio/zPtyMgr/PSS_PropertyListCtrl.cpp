@@ -496,7 +496,9 @@ void PSS_PropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
     #endif
 
     PSS_PropertyItem* pPropItem = (PSS_PropertyItem*)lpDrawItemStruct->itemData;
-    ASSERT(pPropItem);
+    
+    if (!pPropItem)
+        return;
 
     CDC dc;
     dc.Attach(lpDrawItemStruct->hDC);
@@ -855,7 +857,8 @@ BOOL PSS_PropertyListCtrl::BeginDrag(CPoint point)
     m_SrcDragPropItemIndex = ItemFromPt(point);
     m_pSrcDragPropItem     = GetPropertyItem(m_SrcDragPropItemIndex);
 
-    if ((!m_pSrcDragPropItem || !m_pSrcDragPropItem->IsDragNDropEnabled()) && !ISA(m_pSrcDragPropItem, PSS_PropertyItemCategory))
+    if ((!m_pSrcDragPropItem || !m_pSrcDragPropItem->IsDragNDropEnabled()) &&
+        ( m_pSrcDragPropItem && !ISA(m_pSrcDragPropItem, PSS_PropertyItemCategory)))
     {
         m_pSrcDragPropItem = NULL;
         return FALSE;

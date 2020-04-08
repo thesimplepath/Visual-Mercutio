@@ -984,9 +984,8 @@ void PSS_GridCtrl::SortEx(BOOL sortChildren)
     DeleteAllItems();
 
     // sort root items
-    IItem** ppSortArray = new IItem*[items];
-
-    POSITION pPosCur = m_RootItems.GetHeadPosition();
+    IItem**  ppSortArray = new IItem*[items];
+    POSITION pPosCur     = m_RootItems.GetHeadPosition();
 
     // fill array with children
     for (int i = 0; pPosCur; ++i)

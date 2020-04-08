@@ -263,7 +263,7 @@ WORD PSS_Network::GetNetworkErrorNo() const
         DWORD errorCode;
         char  errorBuf[200];
         char  nameBuf[200];
-        WNetGetLastError(&errorCode, errorBuf, sizeof(errorBuf), nameBuf, sizeof(nameBuf));
+        ::WNetGetLastError(&errorCode, errorBuf, sizeof(errorBuf), nameBuf, sizeof(nameBuf));
 
         // backward compatibility
         error = errorCode;

@@ -35,7 +35,10 @@ PSS_UnitPropertiesBP::PSS_UnitPropertiesBP() :
     m_DoubleValidationType(0)
 {}
 //---------------------------------------------------------------------------
-PSS_UnitPropertiesBP::PSS_UnitPropertiesBP(const PSS_UnitPropertiesBP& other)
+PSS_UnitPropertiesBP::PSS_UnitPropertiesBP(const PSS_UnitPropertiesBP& other) :
+    CObject(),
+    m_UnitCost(0.0f),
+    m_DoubleValidationType(0)
 {
     *this = other;
 }

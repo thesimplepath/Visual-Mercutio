@@ -30,7 +30,10 @@ END_MESSAGE_MAP()
 // PSS_GeneralPage
 //---------------------------------------------------------------------------
 PSS_GeneralPage::PSS_GeneralPage(PSS_ApplicationOption* pApplicationOptions) :
-    PSS_GenericPropPage(PSS_GeneralPage::IDD, pApplicationOptions)
+    PSS_GenericPropPage(PSS_GeneralPage::IDD, pApplicationOptions),
+    m_DontShowTaskList(FALSE),
+    m_DontShowTips(FALSE),
+    m_ForceNetwork(FALSE)
 {}
 //---------------------------------------------------------------------------
 PSS_GeneralPage::PSS_GeneralPage(const PSS_GeneralPage& other) :

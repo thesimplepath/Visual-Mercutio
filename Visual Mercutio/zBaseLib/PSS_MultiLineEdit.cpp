@@ -40,7 +40,8 @@ END_MESSAGE_MAP()
 // PSS_MultiLineEditBtn
 //---------------------------------------------------------------------------
 PSS_MultiLineEditBtn::PSS_MultiLineEditBtn() :
-    m_Size(0, 0)
+    CButton(),
+    m_pEdit(NULL)
 {
     NONCLIENTMETRICS ncm;
     ncm.cbSize = sizeof(NONCLIENTMETRICS);

@@ -24,7 +24,8 @@ IMPLEMENT_DYNAMIC(PSS_FieldObserverMsg, PSS_ObserverMsg)
 PSS_FieldObserverMsg::PSS_FieldObserverMsg(UINT messageID, PSS_PlanFinObject* pObject) :
     PSS_ObserverMsg(),
     m_MessageID(messageID),
-    m_pObject(pObject)
+    m_pObject(pObject),
+    m_pView(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_FieldObserverMsg::~PSS_FieldObserverMsg()

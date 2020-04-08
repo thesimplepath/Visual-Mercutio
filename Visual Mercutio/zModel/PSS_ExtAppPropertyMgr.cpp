@@ -44,7 +44,8 @@ PSS_ExtAppPropertyMgr::PSS_ExtAppPropertyMgr(CODSymbolComponent* pSymbol) :
     m_pSymbol(pSymbol)
 {}
 //---------------------------------------------------------------------------
-PSS_ExtAppPropertyMgr::PSS_ExtAppPropertyMgr(const PSS_ExtAppPropertyMgr& other)
+PSS_ExtAppPropertyMgr::PSS_ExtAppPropertyMgr(const PSS_ExtAppPropertyMgr& other) :
+    m_pSymbol(NULL)
 {
     *this = other;
 }

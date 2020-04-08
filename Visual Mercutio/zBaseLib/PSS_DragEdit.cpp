@@ -157,7 +157,7 @@ DROPEFFECT PSS_EditDropTarget::OnDragScroll(CWnd* pWnd, DWORD keyState, CPoint p
     if (rectClient.PtInRect(point) && !rect.PtInRect(point))
     {
         UINT        msg;
-        int         code;
+        int         code       = 0;
         CScrollBar* pScrollBar = NULL;
 
         // determine which way to scroll along both x and y axis
@@ -211,48 +211,55 @@ BOOL PSS_EditDropTarget::OnDrop(CWnd* pWnd, COleDataObject* pDataObject, DROPEFF
     if (m_pEditCtl->IsInDragging() && m_pEditCtl->IsInSelRange())
         return DROPEFFECT_NONE;
 
-    HGLOBAL hData = pDataObject->GetGlobalData(CF_TEXT);
-
-    if (!hData)
+    if ((dropEffect & DROPEFFECT_MOVE) && m_pEditCtl->IsInDragging())
     {
-        TRACE("Fail in getting data\n");
-        return FALSE;
+        // if the drag window is equal to drop window and user want to move string, let drag source
+        // to move string by itself
+        m_pEditCtl->SetDropEqualDrag(TRUE);
+
+        int line, pos;
+        m_pEditCtl->GetLinePosByCursor(line, pos);
+        m_pEditCtl->SetDropPos(line, pos);
     }
-
-    LPCSTR pData = LPCSTR(::GlobalLock(hData));
-
-    try
+    else
     {
-        if ((dropEffect & DROPEFFECT_MOVE) && m_pEditCtl->IsInDragging())
-        {
-            // if the drag window is equal to drop window and user want to move string, let drag source
-            // to move string by itself
-            m_pEditCtl->SetDropEqualDrag(TRUE);
+        HGLOBAL hData = pDataObject->GetGlobalData(CF_TEXT);
 
-            int line, pos;
-            m_pEditCtl->GetLinePosByCursor(line, pos);
-            m_pEditCtl->SetDropPos(line, pos);
+        if (!hData)
+        {
+            TRACE("PSS_EditDropTarget - OnDrop - Could not get data\n");
+            return FALSE;
         }
-        else
+
+        LPCSTR pData = LPCSTR(::GlobalLock(hData));
+
+        if (!pData)
+        {
+            TRACE("PSS_EditDropTarget - OnDrop - Failed to lock the data\n");
+            return FALSE;
+        }
+
+        try
         {
             // set dropped point
             m_pEditCtl->SetCaretByCursor();
 
-            // insert string and select the inserted string
             int begin, end;
+
+            // insert string and select the inserted string
             m_pEditCtl->GetSel(begin, end);
             end += std::strlen(pData);
             m_pEditCtl->ReplaceSel(pData, TRUE);
             m_pEditCtl->SetSel(begin, end);
         }
-    }
-    catch (...)
-    {
-        ::GlobalUnlock(hData);
-        throw;
-    }
+        catch (...)
+        {
+            ::GlobalUnlock(hData);
+            throw;
+        }
 
-    ::GlobalUnlock(hData);
+        ::GlobalUnlock(hData);
+    }
 
     return TRUE;
 }
@@ -474,9 +481,27 @@ void PSS_DragEdit::OnLButtonDown(UINT nFlags, CPoint point)
 
         // make a copy of selected text to a global memory
         HGLOBAL hData = ::GlobalAlloc(GHND | GMEM_SHARE, std::strlen(str) + 1);
-        std::strcpy(LPSTR(::GlobalLock(hData)), str);
+
+        if (!hData)
+            return;
+
+        LPSTR pData = LPSTR(::GlobalLock(hData));
+
+        if (!pData)
+            return;
+
+        try
+        {
+            std::strcpy(pData, str);
+            m_DropSource.CacheGlobalData(CF_TEXT, hData);
+        }
+        catch (...)
+        {
+            ::GlobalUnlock(hData);
+            throw;
+        }
+
         ::GlobalUnlock(hData);
-        m_DropSource.CacheGlobalData(CF_TEXT, hData);
 
         // defined dragging area
         CRect rc(point.x - 5, point.y - 5, point.x + 5, point.y + 5);

@@ -30,6 +30,8 @@ END_MESSAGE_MAP()
 PSS_SplashDialog::PSS_SplashDialog(UINT resID, const CString& info, CWnd* pParent) :
     CDialog(PSS_SplashDialog::IDD, pParent),
     m_Info(info),
+    m_FontColor(RGB(20, 20, 20)),
+    m_BackgroundColor(RGB(255, 255, 255)),
     m_BitmapResID(resID)
 {}
 //---------------------------------------------------------------------------
@@ -37,6 +39,8 @@ PSS_SplashDialog::PSS_SplashDialog(LPCTSTR pFileName, const CString& info, CWnd*
     CDialog(PSS_SplashDialog::IDD, pParent),
     m_BitmapFileName(pFileName),
     m_Info(info),
+    m_FontColor(RGB(20, 20, 20)),
+    m_BackgroundColor(RGB(255, 255, 255)),
     m_BitmapResID(0)
 {}
 //---------------------------------------------------------------------------

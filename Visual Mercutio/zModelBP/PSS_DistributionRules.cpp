@@ -22,12 +22,16 @@ IMPLEMENT_SERIAL(PSS_DistributionRule, CObject, g_DefVersion)
 // PSS_DistributionRule
 //---------------------------------------------------------------------------
 PSS_DistributionRule::PSS_DistributionRule(int ruleOp, const CString& value, int logicalOperator) :
+    CObject(),
     m_Value(value),
     m_Operator(ruleOp),
     m_LogicalOperator(logicalOperator)
 {}
 //---------------------------------------------------------------------------
-PSS_DistributionRule::PSS_DistributionRule(const PSS_DistributionRule& other)
+PSS_DistributionRule::PSS_DistributionRule(const PSS_DistributionRule& other) :
+    CObject(),
+    m_Operator(0),
+    m_LogicalOperator(0)
 {
     *this = other;
 }

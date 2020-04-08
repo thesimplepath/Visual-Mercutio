@@ -455,7 +455,7 @@ int PSS_WorkspaceTreeCtrl::HasContextMenu(CWnd* pWnd, const CPoint& point)
     CPoint pt(point);
     ScreenToClient(&pt);
 
-    UINT flags;
+    UINT      flags;
     HTREEITEM hItem = HitTest(pt, &flags);
 
     int menuID = -1;
@@ -492,9 +492,7 @@ void PSS_WorkspaceTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
     CPoint pt(point);
     ScreenToClient(&pt);
 
-    UINT flags;
-
-    // test the hit
+    UINT      flags;
     HTREEITEM hItem = HitTest(pt, &flags);
 
     if (hItem && (TVHT_ONITEM & flags))

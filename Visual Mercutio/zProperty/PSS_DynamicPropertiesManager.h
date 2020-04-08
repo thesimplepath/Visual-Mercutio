@@ -115,7 +115,11 @@ PSS_DynamicPropertyInfo::PSS_DynamicPropertyInfo() :
     m_SymbolRef(-1)
 {}
 //---------------------------------------------------------------------------
-PSS_DynamicPropertyInfo::PSS_DynamicPropertyInfo(const PSS_DynamicPropertyInfo& other)
+PSS_DynamicPropertyInfo::PSS_DynamicPropertyInfo(const PSS_DynamicPropertyInfo& other) :
+    CObject(),
+    m_pSelectableClass(NULL),
+    m_pProperty(NULL),
+    m_SymbolRef(-1)
 {
     *this = other;
 }

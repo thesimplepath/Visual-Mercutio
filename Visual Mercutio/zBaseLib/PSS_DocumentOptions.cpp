@@ -26,7 +26,16 @@ PSS_DocumentOptions::PSS_DocumentOptions() :
     m_PrintEmptyStyleWhenEmpty(FALSE)
 {}
 //---------------------------------------------------------------------------
-PSS_DocumentOptions::PSS_DocumentOptions(const PSS_DocumentOptions& other)
+PSS_DocumentOptions::PSS_DocumentOptions(const PSS_DocumentOptions& other) :
+    m_ShowHiddenField(E_OT_Application),
+    m_ShowEmptyLine(E_OT_Application),
+    m_EmptyStyle(E_LT_Dash),
+    m_AutomaticSynchronizeFileName(E_ST_AutomaticName),
+    m_SynchronizationSeparator(E_SS_Automatic),
+    m_SynchronizeTimeSequence(5),
+    m_IsSynchronizeExchangeFeedFile(FALSE),
+    m_SynchronizationHeader(FALSE),
+    m_PrintEmptyStyleWhenEmpty(FALSE)
 {
     *this = other;
 }

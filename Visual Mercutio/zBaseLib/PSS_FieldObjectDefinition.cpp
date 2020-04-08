@@ -27,7 +27,9 @@ PSS_FieldObjectDefinition::PSS_FieldObjectDefinition() :
 {}
 //---------------------------------------------------------------------------
 PSS_FieldObjectDefinition::PSS_FieldObjectDefinition(const PSS_FieldObjectDefinition& other) :
-    CObject()
+    CObject(),
+    m_pObject(NULL),
+    m_Sorted(FALSE)
 {
     *this = other;
 }

@@ -44,6 +44,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_DirTreeCtrl::PSS_DirTreeCtrl(bool includeFile) :
     PSS_TreeCtrl(),
+    m_hNetworkRoot(NULL),
     m_IsValid(false),
     m_IncludeFile(includeFile),
     m_HasBeenInitialized(false)
@@ -325,17 +326,12 @@ bool PSS_DirTreeCtrl::EnumNetwork(HTREEITEM hParent)
     // check if the item already has a network resource and use it
     NETRESOURCE* pNetResource = ((PSS_NetResourceWrapper*)GetItemData(hParent))->GetNetResource();
 
-    DWORD         result;
-    HANDLE        hEnum;
-    DWORD         buffer  = 16384;
-    DWORD         entries = 0xFFFFFFFF;
-    LPNETRESOURCE pDrv;
-
-    result = ::WNetOpenEnum(pNetResource ? RESOURCE_GLOBALNET : RESOURCE_CONTEXT,
-                            RESOURCETYPE_ANY,
-                            0,
-                            pNetResource ? pNetResource : NULL,
-                            &hEnum);
+    HANDLE hEnum;
+    DWORD  result = ::WNetOpenEnum(pNetResource ? RESOURCE_GLOBALNET : RESOURCE_CONTEXT,
+                                   RESOURCETYPE_ANY,
+                                   0,
+                                   pNetResource ? pNetResource : NULL,
+                                   &hEnum);
 
     // read sucessfully?
     if (result != NO_ERROR)
@@ -344,10 +340,18 @@ bool PSS_DirTreeCtrl::EnumNetwork(HTREEITEM hParent)
         return false;
     }
 
+    DWORD         buffer  = 16384;
+    DWORD         entries = 0xFFFFFFFF;
+    LPNETRESOURCE pDrv;
+
     // get items until none remains
     do
     {
-        pDrv   = (LPNETRESOURCE)::GlobalAlloc(GPTR, buffer);
+        pDrv = LPNETRESOURCE(::GlobalAlloc(GPTR, buffer));
+
+        if (!pDrv)
+            return false;
+
         result = ::WNetEnumResource(hEnum, &entries, pDrv, &buffer);
 
         if (result == NO_ERROR)
@@ -528,7 +532,18 @@ TCHAR* PSS_DirTreeCtrl::MakeObjectDynamic(LPTSTR pData)
     if (length > 0)
     {
         pRet = new TCHAR[length];
-        _tcscpy_s(pRet, _tcslen(pRet), pData);
+
+        try
+        {
+            _tcscpy_s(pRet, _tcslen(pRet), pData);
+        }
+        catch (...)
+        {
+            if (pRet)
+                delete[] pRet;
+
+            throw;
+        }
     }
 
     return pRet;

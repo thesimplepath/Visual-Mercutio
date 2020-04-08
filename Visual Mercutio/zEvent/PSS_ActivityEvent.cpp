@@ -26,7 +26,9 @@ IMPLEMENT_DYNAMIC(PSS_ActivityEvent, PSS_Event)
 // PSS_ActivityEvent
 //---------------------------------------------------------------------------
 PSS_ActivityEvent::PSS_ActivityEvent() :
-    PSS_Event(COleDateTime::GetCurrentTime(), g_Evt_Activity)
+    PSS_Event(COleDateTime::GetCurrentTime(), g_Evt_Activity),
+    m_ActivityEventType(IE_AT_InvalidEvent),
+    m_IsInBackup(FALSE)
 {}
 //---------------------------------------------------------------------------
 PSS_ActivityEvent::PSS_ActivityEvent(IEType              eventType,

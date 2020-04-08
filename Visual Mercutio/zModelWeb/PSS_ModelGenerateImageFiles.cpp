@@ -78,6 +78,7 @@ PSS_ModelGenerateImageFiles::PSS_ModelGenerateImageFiles(PSS_ProcessGraphModelMd
                                                          void*                     pClass,
                                                          PSS_PropertyAttributes*   pPropAttributes) :
     PSS_ModelNavigation(pModel, pClass),
+    m_pInfo(NULL),
     m_pPropAttributes(pPropAttributes)
 {}
 //---------------------------------------------------------------------------

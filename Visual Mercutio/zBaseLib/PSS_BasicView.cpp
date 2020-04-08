@@ -53,9 +53,20 @@ BOOL PSS_BasicView::GetPrinterPageSize(CSize& paperSize, short& standardSize, sh
 
         try
         {
-            // get pointers to the two setting structures
+            // get access to the device names
             pDevNames = (DEVNAMES FAR*)::GlobalLock(pPrintDlg->hDevNames);
-            pDevMode  = (DEVMODE  FAR*)::GlobalLock(pPrintDlg->hDevMode);
+
+            if (!pDevNames)
+                return FALSE;
+
+            // get access to the device mode
+            pDevMode = (DEVMODE FAR*)::GlobalLock(pPrintDlg->hDevMode);
+
+            if (!pDevMode)
+            {
+                ::GlobalUnlock(pPrintDlg->hDevNames);
+                return FALSE;
+            }
 
             // get the specific driver information
             const CString driver(LPTSTR(pDevNames) + pDevNames->wDriverOffset);

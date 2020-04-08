@@ -47,7 +47,10 @@ PSS_PackageSymbolBP::PSS_PackageSymbolBP(const CString& name, const CString& fil
         m_LinkedToFileBitmap.LoadBitmap(IDB_LINKTOMODEL);
 }
 //---------------------------------------------------------------------------
-PSS_PackageSymbolBP::PSS_PackageSymbolBP(const PSS_PackageSymbolBP& other)
+PSS_PackageSymbolBP::PSS_PackageSymbolBP(const PSS_PackageSymbolBP& other) :
+    PSS_Symbol(),
+    m_pPackageDoc(NULL),
+    m_ShowPreview(false)
 {
     *this = other;
 }

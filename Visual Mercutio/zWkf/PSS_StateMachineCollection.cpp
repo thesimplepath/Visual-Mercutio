@@ -32,7 +32,8 @@ PSS_StateMachineCollection::PSS_StateMachineCollection(PSS_ProcessGraphModelMdl*
 {}
 //---------------------------------------------------------------------------
 PSS_StateMachineCollection::PSS_StateMachineCollection(const PSS_StateMachineCollection& other) :
-    CObject()
+    CObject(),
+    m_pModel(NULL)
 {
     *this = other;
 }

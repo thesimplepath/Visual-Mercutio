@@ -19,7 +19,12 @@ PSS_ProcessDocumentOptions::PSS_ProcessDocumentOptions() :
     m_SynchronizationHeader(FALSE)
 {}
 //---------------------------------------------------------------------------
-PSS_ProcessDocumentOptions::PSS_ProcessDocumentOptions(const PSS_ProcessDocumentOptions& other)
+PSS_ProcessDocumentOptions::PSS_ProcessDocumentOptions(const PSS_ProcessDocumentOptions& other) :
+    m_AutomaticSynchronizeFileName(E_ST_AutomaticName),
+    m_SynchronizationSeparator(E_SS_Automatic),
+    m_SynchronizeTimeSequence(5),
+    m_IsSynchronizeExchangeFeedFile(FALSE),
+    m_SynchronizationHeader(FALSE)
 {
   *this = other;
 }

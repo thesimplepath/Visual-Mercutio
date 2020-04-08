@@ -21,7 +21,8 @@
 // PSS_ActivityReminderEvent
 //---------------------------------------------------------------------------
 PSS_ActivityReminderEvent::PSS_ActivityReminderEvent() :
-    PSS_Event(COleDateTime::GetCurrentTime(), g_Evt_Reminder)
+    PSS_Event(COleDateTime::GetCurrentTime(), g_Evt_Reminder),
+    m_RemainingDays(0)
 {}
 //---------------------------------------------------------------------------
 PSS_ActivityReminderEvent::PSS_ActivityReminderEvent(const COleDateTime& time,
@@ -49,7 +50,9 @@ PSS_ActivityReminderEvent::PSS_ActivityReminderEvent(const COleDateTime& time,
 PSS_ActivityReminderEvent::~PSS_ActivityReminderEvent()
 {}
 //---------------------------------------------------------------------------
-PSS_ActivityReminderEvent::PSS_ActivityReminderEvent(const PSS_ActivityReminderEvent& other)
+PSS_ActivityReminderEvent::PSS_ActivityReminderEvent(const PSS_ActivityReminderEvent& other) :
+    PSS_Event(),
+    m_RemainingDays(0)
 {
     *this = other;
 }

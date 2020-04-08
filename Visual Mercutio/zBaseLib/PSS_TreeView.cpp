@@ -337,7 +337,7 @@ HTREEITEM PSS_TreeView::GetLastItem(HTREEITEM hItem)
     // last child of the last child of the last child ...
     HTREEITEM hNext;
 
-    if (hItem == NULL)
+    if (!hItem)
     {
         // get the last item at the top level
         hNext = GetTreeCtrl().GetRootItem();

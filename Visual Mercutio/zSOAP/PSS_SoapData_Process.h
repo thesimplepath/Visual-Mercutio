@@ -46,7 +46,11 @@ class AFX_EXT_CLASS PSS_SoapData_Process
         /**
         * Constructor
         */
-        PSS_SoapData_Process()
+        PSS_SoapData_Process() :
+            m_ProcID(-1),
+            m_ProcType(-1),
+            m_DoubleSign(-1),
+            m_ProcIDProcessus(-1)
         {}
 
         /**

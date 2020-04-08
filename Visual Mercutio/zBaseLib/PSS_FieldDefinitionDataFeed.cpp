@@ -119,10 +119,12 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
     if (!pObjectDefinition)
         return "";
 
+    const CString fieldName = pObjectDefinition->GetFieldName();
+
     PSS_HistoryField* pObjectHistory = NULL;
 
     if (m_pSourceFieldRepository)
-        pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(pObjectDefinition->GetFieldName());
+        pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(fieldName);
 
     PSS_Tokenizer tokenizer;
 
@@ -137,7 +139,7 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
 
     // add the field name
     tokenizer.AddToken(g_FieldNameKey);
-    tokenizer.AddToken(pObjectDefinition->GetFieldName());
+    tokenizer.AddToken(fieldName);
     line  = tokenizer.GetString();
     line += "\r\n";
     tokenizer.ClearAllTokens();
@@ -158,7 +160,7 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
 
     // add the read only flag
     tokenizer.AddToken(g_FieldReadOnlyKey);
-    tokenizer.AddToken((pObjectHistory && pObjectHistory->IsReadOnly()) ? "1" : "0");
+    tokenizer.AddToken(pObjectHistory && pObjectHistory->IsReadOnly() ? "1" : "0");
     line += tokenizer.GetString();
     line += "\r\n";
     tokenizer.ClearAllTokens();
@@ -177,16 +179,19 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
     line += "\r\n";
     tokenizer.ClearAllTokens();
 
-    const std::size_t objectCount = pObjectHistory->GetCount();
-
-    // export the field history
-    for (std::size_t i = 0; pObjectHistory && i < objectCount; ++i)
+    if (pObjectHistory)
     {
-        // add the field history value
-        tokenizer.AddToken(pObjectHistory->GetValueArray().GetAt(i));
-        line += tokenizer.GetString();
-        line += "\r\n";
-        tokenizer.ClearAllTokens();
+        const std::size_t objectCount = pObjectHistory->GetCount();
+
+        // export the field history
+        for (std::size_t i = 0; i < objectCount; ++i)
+        {
+            // add the field history value
+            tokenizer.AddToken(pObjectHistory->GetValueArray().GetAt(i));
+            line += tokenizer.GetString();
+            line += "\r\n";
+            tokenizer.ClearAllTokens();
+        }
     }
 
     return line;

@@ -35,7 +35,9 @@ PSS_SoapPublishModelAttributes::PSS_SoapPublishModelAttributes(PSS_PublishMessen
                                                                void*                                 pClass) :
     PSS_ModelNavigation(pModel, pClass),
     m_pInfo(pInfo)
-{}
+{
+    std::memset(&m_IDArray, 0x0, 500);
+}
 //---------------------------------------------------------------------------
 PSS_SoapPublishModelAttributes::~PSS_SoapPublishModelAttributes()
 {}

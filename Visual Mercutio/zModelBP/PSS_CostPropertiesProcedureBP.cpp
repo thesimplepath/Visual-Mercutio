@@ -38,7 +38,13 @@ PSS_CostPropertiesProcedureBP::PSS_CostPropertiesProcedureBP() :
     m_UnitaryCost(0.0f)
 {}
 //---------------------------------------------------------------------------
-PSS_CostPropertiesProcedureBP::PSS_CostPropertiesProcedureBP(const PSS_CostPropertiesProcedureBP& other)
+PSS_CostPropertiesProcedureBP::PSS_CostPropertiesProcedureBP(const PSS_CostPropertiesProcedureBP& other) :
+    CObject(),
+    m_ProcessingTime(0.0),
+    m_ProcessingDuration(0.0),
+    m_ProcessingDurationMax(0.0),
+    m_Multiplier(1.0f),
+    m_UnitaryCost(0.0f)
 {
     *this = other;
 }

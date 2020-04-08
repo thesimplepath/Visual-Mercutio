@@ -29,12 +29,16 @@ PSS_PageUnits::PSS_PageUnits() :
     m_Units(0)
 {}
 //---------------------------------------------------------------------------
-PSS_PageUnits::PSS_PageUnits(const PSS_PageUnits& other)
+PSS_PageUnits::PSS_PageUnits(const PSS_PageUnits& other) :
+    CObject(),
+    m_Units(0)
 {
     *this = other;
 }
 //---------------------------------------------------------------------------
-PSS_PageUnits::PSS_PageUnits(const CODRuler& other)
+PSS_PageUnits::PSS_PageUnits(const CODRuler& other) :
+    CObject(),
+    m_Units(0)
 {
     *this = other;
 }

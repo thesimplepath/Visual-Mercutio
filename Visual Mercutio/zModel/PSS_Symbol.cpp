@@ -97,7 +97,19 @@ PSS_Symbol::PSS_Symbol(const PSS_Symbol& other) :
     PSS_BasicSymbolAcceptVisitor(),
     PSS_Subject(),
     PSS_Observer(),
-    PSS_ToolTip()
+    PSS_ToolTip(),
+    m_pModel(NULL),
+    m_pReference(NULL),
+    m_pDynamicPropManager(NULL),
+    m_IsInCreationProcess(false),
+    m_IsLocal(true),
+    m_CurrentLineColor(defCOLOR_BLACK),
+    m_CurrentLabelLineColor(defCOLOR_BLACK),
+    m_InitialLineColor(defCOLOR_BLACK),
+    m_InitialLabelLineColor(defCOLOR_BLACK),
+    m_InitialLineWidth(1),
+    m_InitialLabelLineWidth(1),
+    m_IsCopy(FALSE)
 {
     *this = other;
 }

@@ -442,7 +442,7 @@ BOOL ZAApp::InitAppl()
     // Register the application's document templates. Document templates
     // serve as the connection between documents, frame windows and views.
     PSS_DocTemplateEx* pDocTemplate = new PSS_DocTemplateEx(IDR_MDIPAGE,
-                                                            RUNTIME_CLASS(ZDDocumentReadWrite),
+                                                            RUNTIME_CLASS(PSS_DocumentReadWrite),
                                                             RUNTIME_CLASS(PSS_BaseMDIPage),
                                                             RUNTIME_CLASS(PSS_ModifyView),
                                                             ID_FILE_MRU_FORMS1);

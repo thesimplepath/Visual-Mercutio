@@ -27,22 +27,26 @@ IMPLEMENT_SERIAL(PSS_MailUserList, CObject, g_DefVersion)
 // PSS_MailUserList
 //---------------------------------------------------------------------------
 PSS_MailUserList::PSS_MailUserList() :
+    CObject(),
     m_MapiRecipDesc(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_MailUserList::PSS_MailUserList(CStringArray& personListName, ULONG recipClass) :
+    CObject(),
     m_MapiRecipDesc(NULL)
 {
     Fill(personListName, recipClass);
 }
 //---------------------------------------------------------------------------
 PSS_MailUserList::PSS_MailUserList(PSS_UserManager& personListName, ULONG recipClass) :
+    CObject(),
     m_MapiRecipDesc(NULL)
 {
     Fill(personListName, recipClass);
 }
 //---------------------------------------------------------------------------
 PSS_MailUserList::PSS_MailUserList(lpMapiRecipDesc* pMapiDesc, ULONG count) :
+    CObject(),
     m_MapiRecipDesc(NULL)
 {
     Fill(pMapiDesc, count);

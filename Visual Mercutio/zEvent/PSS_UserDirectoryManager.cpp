@@ -8,10 +8,13 @@
 #include "stdafx.h"
 #include "PSS_UserDirectoryManager.h"
 
+// std
+#include <memory>
+
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
 //---------------------------------------------------------------------------
@@ -20,7 +23,9 @@ static char THIS_FILE[] = __FILE__;
 PSS_UserDirectoryManager::PSS_UserDirectoryManager(const CString& directory) :
     m_Directory(directory),
     m_BufferLength(sizeof(m_CurrentDir) - 1)
-{}
+{
+    std::memset(&m_CurrentDir, 0x0, MAX_PATH);
+}
 //---------------------------------------------------------------------------
 PSS_UserDirectoryManager::~PSS_UserDirectoryManager()
 {}

@@ -1429,13 +1429,13 @@ void PSS_MultiColumnEdit::BuildColumns()
                 catch (...)
                 {
                     if (pBuffer)
-                        delete pBuffer;
+                        delete[] pBuffer;
 
                     throw;
                 }
 
                 if (pBuffer)
-                    delete pBuffer;
+                    delete[] pBuffer;
             }
         }
     }

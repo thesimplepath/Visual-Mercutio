@@ -108,7 +108,8 @@ class AFX_EXT_CLASS PSS_SmartString
 //---------------------------------------------------------------------------
 // PSS_SmartString
 //---------------------------------------------------------------------------
-PSS_SmartString::PSS_SmartString(LPCTSTR pText)
+PSS_SmartString::PSS_SmartString(LPCTSTR pText) :
+    m_pStrText(NULL)
 {
     SetLPCTSTR(pText);
 }

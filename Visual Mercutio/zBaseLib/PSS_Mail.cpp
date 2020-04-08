@@ -725,7 +725,7 @@ BOOL PSS_Mail::Address(PSS_MailUserList& personList)
     ULONG            addressCount = 2;
     ::MapiRecipDesc* pNewRecips[2];
 
-    ULONG error =
+    const ULONG error =
             g_hMAPIAddress(NULL,
                            MAKELONG(hWndParent, 0),
                            NULL,

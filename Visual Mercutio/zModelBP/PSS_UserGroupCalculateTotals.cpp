@@ -22,7 +22,9 @@
 // PSS_UserGroupCalculateTotals
 //---------------------------------------------------------------------------
 PSS_UserGroupCalculateTotals::PSS_UserGroupCalculateTotals(PSS_ProcessGraphModelMdl* pModel, void* pClass) :
-    PSS_ProcessNavigation(pModel, pClass)
+    PSS_ProcessNavigation(pModel, pClass),
+    m_pGroup(NULL),
+    m_Consolidated(false)
 {}
 //---------------------------------------------------------------------------
 PSS_UserGroupCalculateTotals::~PSS_UserGroupCalculateTotals()

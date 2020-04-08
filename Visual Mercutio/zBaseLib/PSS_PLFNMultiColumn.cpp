@@ -32,7 +32,8 @@ PSS_PLFNMultiColumn::PSS_PLFNMultiColumn() :
 }
 //---------------------------------------------------------------------------
 PSS_PLFNMultiColumn::PSS_PLFNMultiColumn(const PSS_PLFNMultiColumn& other) :
-    PSS_PlanFinObject()
+    PSS_PlanFinObject(),
+    m_ShowHeader(TRUE)
 {
     *this = other;
 }

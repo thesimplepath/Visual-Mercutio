@@ -142,7 +142,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DocWrite.cpp">
+    <ClCompile Include="PSS_DocumentReadWrite.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -303,7 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\zFormsRes\zFormsRes.h" />
-    <ClInclude Include="DocWrite.h" />
+    <ClInclude Include="PSS_DocumentReadWrite.h" />
     <ClInclude Include="IMPPRC.H" />
     <ClInclude Include="MAINFRM.H" />
     <ClInclude Include="MdlTMPLSAV.H" />

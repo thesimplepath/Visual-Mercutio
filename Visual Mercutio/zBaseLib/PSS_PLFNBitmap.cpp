@@ -37,7 +37,12 @@ PSS_PLFNBitmap::PSS_PLFNBitmap() :
 //---------------------------------------------------------------------------
 PSS_PLFNBitmap::PSS_PLFNBitmap(const PSS_PLFNBitmap& other) :
     PSS_PlanFinObject(),
-    m_DisplayStyle(IE_DS_InitialSize)
+    m_hBitmap(NULL),
+    m_pBitmapInfoHeader(NULL),
+    m_pBits(NULL),
+    m_DisplayStyle(IE_DS_InitialSize),
+    m_HeaderSize(0),
+    m_Bytes(0)
 {
     *this = other;
 }
@@ -365,7 +370,7 @@ BOOL PSS_PLFNBitmap::GetBitmapFile(const CString& fileName, CDC* pDC)
     {
         // free the memory
         if (pBitmapFileHeader)
-            delete pBitmapFileHeader;
+            delete[] pBitmapFileHeader;
 
         // close the file
         if (fileHandle)
@@ -376,7 +381,7 @@ BOOL PSS_PLFNBitmap::GetBitmapFile(const CString& fileName, CDC* pDC)
 
     // free the memory
     if (pBitmapFileHeader)
-        delete pBitmapFileHeader;
+        delete[] pBitmapFileHeader;
 
     return TRUE;
 }

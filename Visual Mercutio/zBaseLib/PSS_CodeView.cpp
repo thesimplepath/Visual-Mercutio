@@ -146,14 +146,14 @@ void PSS_CodeView::OnDraw(CDC* pDC)
             {
                 PSS_PLFNText* pTextObj = dynamic_cast<PSS_PLFNText*>(pObj);
 
-                if ((pTextObj && !pTextObj->GetIsStatic()) || pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
+                if ((pTextObj && !pTextObj->GetIsStatic()) || (pObj && pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered))))
                     pObj->ShowObjectName(pDC);
 
                 break;
             }
 
             case E_CT_Graphic:
-                if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNGraphic)) && pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap)))
+                if (pObj && (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNGraphic)) && pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap))))
                     pObj->ShowObjectName(pDC);
 
                 break;

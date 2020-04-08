@@ -82,7 +82,10 @@ PSS_NumberEqualizer::PSS_NumberEqualizer(double number, bool locked) :
     m_Locked(locked)
 {}
 //---------------------------------------------------------------------------
-PSS_NumberEqualizer::PSS_NumberEqualizer(const PSS_NumberEqualizer& other)
+PSS_NumberEqualizer::PSS_NumberEqualizer(const PSS_NumberEqualizer& other) :
+    m_Number(0.0),
+    m_Percent(0.0),
+    m_Locked(false)
 {
     *this = other;
 }
@@ -380,10 +383,15 @@ class AFX_EXT_CLASS PSS_NumbersEqualizer
 // PSS_NumbersEqualizer
 //---------------------------------------------------------------------------
 PSS_NumbersEqualizer::PSS_NumbersEqualizer(const double minValue) :
-    m_MinValue(minValue)
+    m_Total(0.0),
+    m_MinValue(minValue),
+    m_LockedTotal(false)
 {}
 //---------------------------------------------------------------------------
-PSS_NumbersEqualizer::PSS_NumbersEqualizer(const PSS_NumbersEqualizer& other)
+PSS_NumbersEqualizer::PSS_NumbersEqualizer(const PSS_NumbersEqualizer& other) :
+    m_Total(0.0),
+    m_MinValue(0.0),
+    m_LockedTotal(false)
 {
     *this = other;
 }

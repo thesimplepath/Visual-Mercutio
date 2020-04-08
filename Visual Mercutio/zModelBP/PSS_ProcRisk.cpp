@@ -33,7 +33,9 @@ PSS_ProcRisk::PSS_ProcRisk(CODSymbolComponent* pParent) :
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------
-PSS_ProcRisk::PSS_ProcRisk(const PSS_ProcRisk& other)
+PSS_ProcRisk::PSS_ProcRisk(const PSS_ProcRisk& other) :
+    CObject(),
+    m_pParent(NULL)
 {
     *this = other;
 }

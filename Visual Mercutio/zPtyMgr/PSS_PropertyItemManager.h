@@ -545,13 +545,19 @@ PSS_PropertyItemManager::IPropertyState::IPropertyState(PSS_Property& prop, doub
 PSS_PropertyItemManager::IPropertyState::IPropertyState(PSS_PropertyItemCategory& propItemCat, double objectReference) :
     m_ObjectReference(objectReference),
     m_CategoryID(propItemCat.GetPropertyID()),
-    m_ItemID(0), // sub-item equal to zero for categories
+    m_ItemID(0),
     m_CategoryOrder(propItemCat.GetCategoryOrder()),
     m_ItemOrder(-1),
     m_Collapsed(!propItemCat.GetChildrenVisible())
 {}
 //---------------------------------------------------------------------------
-PSS_PropertyItemManager::IPropertyState::IPropertyState(const IPropertyState& src)
+PSS_PropertyItemManager::IPropertyState::IPropertyState(const IPropertyState& src) :
+    m_ObjectReference(0.0),
+    m_CategoryID(-1),
+    m_ItemID(0),
+    m_CategoryOrder(-1),
+    m_ItemOrder(-1),
+    m_Collapsed(false)
 {
     *this = src;
 }

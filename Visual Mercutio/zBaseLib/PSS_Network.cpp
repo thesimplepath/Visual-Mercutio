@@ -511,7 +511,7 @@ HANDLE PSS_Network::GetLastTargetHandle() const
     if (!m_hInstWFWDriver)
         m_hInstWFWDriver = GetWFWNetDriverHandle();
 
-    if (!m_hInstWFWDriver)
+    if (m_hInstWFWDriver)
     {
         pMNetGetLastTarget = LPMNETGETLASTTARGET(::GetProcAddress(HINSTANCE(m_hInstWFWDriver),
                                                                   LPCSTR(MAKEINTRESOURCE(ORD_MNETGETLASTTARGET))));
@@ -531,7 +531,7 @@ WORD PSS_Network::SetNextTargetHandle(HANDLE hNetwork)
     if (!m_hInstWFWDriver)
         m_hInstWFWDriver = GetWFWNetDriverHandle();
 
-    if (!m_hInstWFWDriver)
+    if (m_hInstWFWDriver)
     {
         pMNetSetNextTarget = LPMNETSETNEXTTARGET(::GetProcAddress(HINSTANCE(m_hInstWFWDriver),
                                                                   LPCSTR(MAKEINTRESOURCE(ORD_MNETSETNEXTTARGET))));
@@ -569,7 +569,7 @@ BOOL PSS_Network::NetworkEnumAll()
     if (!m_hInstWFWDriver)
         m_hInstWFWDriver = GetWFWNetDriverHandle();
 
-    if (!m_hInstWFWDriver)
+    if (m_hInstWFWDriver)
     {
         pMNetNetworkEnum = LPMNETNETWORKENUM(::GetProcAddress(HINSTANCE(m_hInstWFWDriver),
                                                               LPCSTR(MAKEINTRESOURCE(ORD_MNETNETWORKENUM))));
@@ -590,7 +590,7 @@ BOOL PSS_Network::NetworkEnumAll()
                 {
                     // write message to the window debugger
                     ::wsprintf(LPSTR(buffer),
-                               LPSTR(_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                               LPSTR(_T(" Debug: values before call Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                LPINT(&hNetwork),
                                LPINT(&netInfo),
                                LPSTR(button),
@@ -611,7 +611,7 @@ BOOL PSS_Network::NetworkEnumAll()
                         TRACE0(_T(" MNetGetInfo returned valid information"));
 
                         ::wsprintf(LPSTR(buffer),
-                                   LPSTR(_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                   LPSTR(_T(" Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                    LPINT(&hNetwork),
                                    LPINT(&netInfo),
                                    LPSTR(button),
@@ -640,7 +640,7 @@ BOOL PSS_Network::NetworkEnumAll()
                         {
                             // write message to the window debugger
                             ::wsprintf(LPSTR(buffer),
-                                       LPSTR(_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                       LPSTR(_T(" Debug: values before call Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                        LPINT(&hNetwork),
                                        LPINT(&netInfo),
                                        LPSTR(button),
@@ -661,7 +661,7 @@ BOOL PSS_Network::NetworkEnumAll()
                                 TRACE0(_T(" MNetGetInfo returned valid information"));
 
                                 ::wsprintf(LPSTR(buffer),
-                                           LPSTR(_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                           LPSTR(_T(" Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                            LPINT(&hNetwork),
                                            LPINT(&netInfo),
                                            LPSTR(button),
@@ -698,8 +698,8 @@ bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManage
     // call the WNetOpenEnum function to begin the enumeration.
     DWORD result = ::WNetOpenEnum(RESOURCE_CONNECTED, RESOURCETYPE_ANY, 0, pNetResources, &hEnum);
 
+    // process errors with an application-defined error handler
     if (result != NO_ERROR)
-        // process errors with an application-defined error handler
         return false;
 
     LPNETRESOURCE pNRLocal = NULL;
@@ -711,6 +711,9 @@ bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManage
 
         // call the GlobalAlloc() function to allocate resources
         pNRLocal = LPNETRESOURCE(::GlobalAlloc(GPTR, buffer));
+
+        if (!pNRLocal)
+            return false;
 
         DWORD resultEnum;
 

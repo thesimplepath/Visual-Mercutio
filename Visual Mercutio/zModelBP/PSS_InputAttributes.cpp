@@ -22,10 +22,19 @@ IMPLEMENT_SERIAL(PSS_InputAttribute, CObject, g_DefVersion)
 // PSS_InputAttribute
 //---------------------------------------------------------------------------
 PSS_InputAttribute::PSS_InputAttribute() :
-    CObject()
+    CObject(),
+    m_CategoryID(-1),
+    m_ItemID(-1),
+    m_SymbolRef(-1),
+    m_Flag(0)
 {}
 //---------------------------------------------------------------------------
-PSS_InputAttribute::PSS_InputAttribute(const PSS_InputAttribute& other)
+PSS_InputAttribute::PSS_InputAttribute(const PSS_InputAttribute& other) :
+    CObject(),
+    m_CategoryID(-1),
+    m_ItemID(-1),
+    m_SymbolRef(-1),
+    m_Flag(0)
 {
     *this = other;
 }

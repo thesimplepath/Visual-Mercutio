@@ -118,7 +118,7 @@ PSS_EditDropTarget::PSS_EditDropTarget() :
 * Edit data source
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS ZBEditDataSource : public COleDataSource
+class AFX_EXT_CLASS PSS_EditDataSource : public COleDataSource
 {};
 
 /**
@@ -282,7 +282,7 @@ class AFX_EXT_CLASS PSS_DragEdit : public PSS_DragEditBase
 
     private:
         static BOOL        m_OleInit;
-        ZBEditDataSource   m_DropSource;
+        PSS_EditDataSource m_DropSource;
         PSS_EditDropTarget m_DropTarget;
         int                m_EnableFlags;
         int                m_DropPtLine;

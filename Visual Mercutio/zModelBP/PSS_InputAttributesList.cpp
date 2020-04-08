@@ -133,7 +133,8 @@ int PSS_InputAttributesList::Refresh()
             continue;
 
         // add the symbol type icon
-        InsertItem(LVIF_IMAGE | LVIF_PARAM, lineCounter,
+        InsertItem(LVIF_IMAGE | LVIF_PARAM,
+                   lineCounter,
                    NULL,
                    0,
                    0,

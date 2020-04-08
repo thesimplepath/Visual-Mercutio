@@ -34,12 +34,31 @@ END_MESSAGE_MAP()
 // PSS_SystemTrayWnd
 //---------------------------------------------------------------------------
 PSS_SystemTrayWnd::PSS_SystemTrayWnd() :
-    CWnd()
+    CWnd(),
+    m_hSavedIcon(NULL),
+    m_pSubMenu(NULL),
+    m_DefaultMenuItemID(0),
+    m_TimerID(0),
+    m_CurrentIcon(0),
+    m_AnimationPeriod(0),
+    m_Enabled(FALSE),
+    m_Hidden(FALSE),
+    m_DefaultMenuItemByPos(FALSE)
 {
     Initialise();
 }
 //---------------------------------------------------------------------------
-PSS_SystemTrayWnd::PSS_SystemTrayWnd(CWnd* pParent, UINT callbackMessage, LPCTSTR pToolTip, HICON hIcon, UINT id)
+PSS_SystemTrayWnd::PSS_SystemTrayWnd(CWnd* pParent, UINT callbackMessage, LPCTSTR pToolTip, HICON hIcon, UINT id) :
+    CWnd(),
+    m_hSavedIcon(NULL),
+    m_pSubMenu(NULL),
+    m_DefaultMenuItemID(0),
+    m_TimerID(0),
+    m_CurrentIcon(0),
+    m_AnimationPeriod(0),
+    m_Enabled(FALSE),
+    m_Hidden(FALSE),
+    m_DefaultMenuItemByPos(FALSE)
 {
     Initialise();
     Create(pParent, callbackMessage, pToolTip, hIcon, id);
@@ -55,7 +74,7 @@ PSS_SystemTrayWnd::~PSS_SystemTrayWnd()
 BOOL PSS_SystemTrayWnd::Create(CWnd* pParent, UINT callbackMessage, LPCTSTR pToolTip, HICON hIcon, UINT id)
 {
     // this is only for Windows 95 (or higher)
-    VERIFY(m_Enabled = (GetVersion() & 0xff) >= 4);
+    VERIFY(m_Enabled = (::GetVersion() & 0xff) >= 4);
 
     if (!m_Enabled)
         return FALSE;

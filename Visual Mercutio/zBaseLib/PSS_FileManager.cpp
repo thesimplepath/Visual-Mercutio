@@ -151,6 +151,8 @@ CString PSS_FileManager::GetTemporaryFileName(char drive, const CString& prefix)
 
         if (!drive)
             ::GetTempPath(sizeof(tempPath), tempPath);
+        else
+            tempPath[0] = '\0';
 
         // if no prefix defined, set it to a pre-defined value
         if (prefix.IsEmpty())

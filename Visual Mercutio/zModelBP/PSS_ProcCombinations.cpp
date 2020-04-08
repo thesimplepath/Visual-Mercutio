@@ -30,10 +30,13 @@ IMPLEMENT_SERIAL(PSS_ProcCombinations, CObject, g_DefVersion)
 // PSS_ProcCombinations
 //---------------------------------------------------------------------------
 PSS_ProcCombinations::PSS_ProcCombinations(CODSymbolComponent* pParent) :
+    CObject(),
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------
-PSS_ProcCombinations::PSS_ProcCombinations(const PSS_ProcCombinations& other)
+PSS_ProcCombinations::PSS_ProcCombinations(const PSS_ProcCombinations& other) :
+    CObject(),
+    m_pParent(NULL)
 {
     *this = other;
 }

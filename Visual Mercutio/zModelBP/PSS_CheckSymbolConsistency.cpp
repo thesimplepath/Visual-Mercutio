@@ -42,9 +42,11 @@ PSS_CheckSymbolConsistency::PSS_CheckSymbolConsistency(PSS_ProcessGraphModelMdl*
     PSS_BasicSymbolVisitor(),
     m_pModel(pModel),
     m_pLog(pLog),
-    m_IsLogging(false),
     m_pIDArray(NULL),
-    m_RefIDSize(0)
+    m_RefIDSize(0),
+    m_ErrorCounter(0),
+    m_WarningCounter(0),
+    m_IsLogging(false)
 {}
 //---------------------------------------------------------------------------
 PSS_CheckSymbolConsistency::~PSS_CheckSymbolConsistency()

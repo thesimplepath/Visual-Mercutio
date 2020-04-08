@@ -43,7 +43,10 @@ PSS_MsgBox::PSS_MsgBox(CWnd* pParent) :
     m_Style(0),
     m_IconIndex(0),
     m_DoShowUnlockButton(FALSE)
-{}
+{
+    std::memset(&m_pAnimIcons,  0x0, M_AnimIconNb);
+    std::memset(&m_pAnimIcons2, 0x0, M_AnimIcon2Nb);
+}
 //---------------------------------------------------------------------------
 PSS_MsgBox::~PSS_MsgBox()
 {}

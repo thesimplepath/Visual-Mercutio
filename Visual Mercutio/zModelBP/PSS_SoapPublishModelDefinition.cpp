@@ -585,10 +585,12 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
             }
         }
 
+    PSS_Symbol* pDstSymbol = dynamic_cast<PSS_Symbol*>(pDst);
+
     // publish the deliverable link symbol
     m_PubMdl.Add(PSS_SoapData_Deliverable(pSymbol->GetSymbolReferenceNumber(),
-                                          dynamic_cast<PSS_Symbol*>(pSrc)->GetSymbolReferenceNumber(),
-                                          dynamic_cast<PSS_Symbol*>(pDst)->GetSymbolReferenceNumber(),
+                                          pSrcSymbol ? pSrcSymbol->GetSymbolReferenceNumber() : -1,
+                                          pDstSymbol ? pDstSymbol->GetSymbolReferenceNumber() : -1,
                                           PSS_String16(pSymbol->GetSymbolName()),
                                           lateral ? 1 : 0,
                                           lateralDirection,

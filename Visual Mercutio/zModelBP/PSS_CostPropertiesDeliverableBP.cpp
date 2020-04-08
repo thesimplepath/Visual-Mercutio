@@ -41,7 +41,16 @@ PSS_CostPropertiesDeliverableBP::PSS_CostPropertiesDeliverableBP() :
     m_UnitaryCost(0.0f)
 {}
 //---------------------------------------------------------------------------
-PSS_CostPropertiesDeliverableBP::PSS_CostPropertiesDeliverableBP(const PSS_CostPropertiesDeliverableBP& other)
+PSS_CostPropertiesDeliverableBP::PSS_CostPropertiesDeliverableBP(const PSS_CostPropertiesDeliverableBP& other) :
+    CObject(),
+    m_ProcessingTime(0.0),
+    m_CaseDuration(0.0),
+    m_CaseDurationMax(0.0),
+    m_TargetDuration(0.0),
+    m_GreenLineDuration(0.0),
+    m_InWorkloadPercent(1.0f),
+    m_OutWorkloadPercent(1.0f),
+    m_UnitaryCost(0.0f)
 {
     *this = other;
 }

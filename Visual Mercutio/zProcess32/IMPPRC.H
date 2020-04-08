@@ -1,11 +1,15 @@
-// impprc.h : header file
-//
+/****************************************************************************
+ * ==> PSS_ImportProcessDlg ------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an import process dialog                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
+// processsoft
 #include "zBaseLib\PSS_Dialog.h"
-#include "resource.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// ZIImportProcess dialog
+// resources
+#include "resource.h"
 
 class ZIImportProcess : public PSS_Dialog
 {
@@ -25,7 +29,7 @@ private:
 
 // Implementation
 protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);
 
     // Generated message map functions
     //{{AFX_MSG(ZIImportProcess)

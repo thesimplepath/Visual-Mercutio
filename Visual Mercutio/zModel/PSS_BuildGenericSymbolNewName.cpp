@@ -25,7 +25,8 @@
 //---------------------------------------------------------------------------
 PSS_BuildGenericSymbolNewName::PSS_BuildGenericSymbolNewName(const CString& baseName) :
     PSS_BasicSymbolVisitor(),
-    m_BaseName(baseName)
+    m_BaseName(baseName),
+    m_Found(false)
 {}
 //---------------------------------------------------------------------------
 PSS_BuildGenericSymbolNewName::~PSS_BuildGenericSymbolNewName()

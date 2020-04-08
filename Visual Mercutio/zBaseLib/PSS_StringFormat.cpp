@@ -41,13 +41,20 @@ PSS_StringFormat::PSS_StringFormat(const CString& customFormat, LCID lcid) :
     CObject(),
     m_FormatType(IE_FT_Custom),
     m_CustomFormat(customFormat),
-    m_LCID(lcid)
+    m_LCID(lcid),
+    m_DecimalPlace(-1),
+    m_UseSeparator(false)
 {
     if (!m_LCID)
         m_LCID = ::GetUserDefaultLCID();
 }
 //---------------------------------------------------------------------------
-PSS_StringFormat::PSS_StringFormat(const PSS_StringFormat& other)
+PSS_StringFormat::PSS_StringFormat(const PSS_StringFormat& other) :
+    CObject(),
+    m_FormatType(IE_FT_General),
+    m_LCID(0),
+    m_DecimalPlace(-1),
+    m_UseSeparator(false)
 {
     *this = other;
 }

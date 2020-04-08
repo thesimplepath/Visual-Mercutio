@@ -1,11 +1,15 @@
-// impprc.cpp : implementation file
-//
+/****************************************************************************
+ * ==> PSS_ImportProcessDlg ------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an import process dialog                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ImpPrc.h"
-// FileDlg
-#include "zBaseLib\PSS_FileDialog.h"
 
+// processsoft
+#include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG

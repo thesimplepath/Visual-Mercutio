@@ -30,10 +30,13 @@ IMPLEMENT_SERIAL(PSS_ProcDeliveries, CObject, g_DefVersion)
 // PSS_ProcDeliveries
 //---------------------------------------------------------------------------
 PSS_ProcDeliveries::PSS_ProcDeliveries(CODSymbolComponent* pParent) :
+    CObject(),
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------
-PSS_ProcDeliveries::PSS_ProcDeliveries(const PSS_ProcDeliveries& other)
+PSS_ProcDeliveries::PSS_ProcDeliveries(const PSS_ProcDeliveries& other) :
+    CObject(),
+    m_pParent(NULL)
 {
     *this = other;
 }

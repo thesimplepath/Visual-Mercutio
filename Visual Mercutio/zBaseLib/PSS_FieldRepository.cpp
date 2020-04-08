@@ -158,13 +158,13 @@ BOOL PSS_FieldRepository::Import(PSS_FieldRepository& fieldRepository, BOOL repl
 
                 for (int index = 0; index < valueCount; ++index)
                     AddFieldHistoryValue(pObjectDefinition->GetFieldName(), values.GetAt(index));
+
+                // set the read-only flag
+                PSS_HistoryField* pHistory = FindFieldHistory(pObjectDefinition->GetFieldName());
+
+                if (pHistory)
+                    pHistory->SetReadOnly(pObjectHistory->IsReadOnly());
             }
-
-            // set the read-only flag
-            PSS_HistoryField* pHistory = FindFieldHistory(pObjectDefinition->GetFieldName());
-
-            if (pHistory)
-                pHistory->SetReadOnly(pObjectHistory->IsReadOnly());
         }
     }
 

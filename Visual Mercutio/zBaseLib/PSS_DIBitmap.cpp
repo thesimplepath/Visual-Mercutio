@@ -51,6 +51,8 @@ PSS_DIBitmap::PSS_DIBitmap(HANDLE hDIB, int bits) :
     m_pBits(NULL),
     m_UseGamma(FALSE)
 {
+    std::memset(&m_QuadCache, 0x0, 256);
+
     if (hDIB)
         CreateFromHandle(hDIB, bits);
 }
@@ -126,13 +128,19 @@ BOOL PSS_DIBitmap::CreateFromHandle(HANDLE hMem, int bits)
 
     UCHAR* pVoid = (UCHAR*)::GlobalLock(hMem);
 
+    if (!pVoid)
+        return FALSE;
+
     try
     {
         LPBITMAPINFOHEADER pHead = (LPBITMAPINFOHEADER)pVoid;
 
-        m_Width = pHead->biWidth;
+        if (!pHead)
+            return FALSE;
+
+        m_Width  = pHead->biWidth;
         m_Height = pHead->biHeight;
-        m_Bits = pHead->biBitCount;
+        m_Bits   = pHead->biBitCount;
 
         if (pHead->biCompression != BI_RGB)
         {
@@ -1007,13 +1015,18 @@ HANDLE PSS_DIBitmap::DIBHandle() const
     if (!hMem)
         return NULL;
 
-    UCHAR* pVoid = NULL;
+    UCHAR* pVoid = (UCHAR*)::GlobalLock(hMem);
+
+    if (!pVoid)
+        return NULL;
 
     try
     {
-        pVoid = (UCHAR*)::GlobalLock(hMem);
-
         LPBITMAPINFOHEADER pHead = LPBITMAPINFOHEADER(pVoid);
+
+        if (!pHead)
+            return NULL;
+
         std::memcpy(pHead, &m_pInfo->bmiHeader, sizeof(BITMAPINFOHEADER));
 
         RGBQUAD* pRgb = (RGBQUAD*)(pVoid + sizeof(BITMAPINFOHEADER));
@@ -1024,14 +1037,11 @@ HANDLE PSS_DIBitmap::DIBHandle() const
     }
     catch (...)
     {
-        if (pVoid)
-            ::GlobalUnlock(pVoid);
-
+        ::GlobalUnlock(pVoid);
         throw;
     }
 
-    if (pVoid)
-        ::GlobalUnlock(pVoid);
+    ::GlobalUnlock(pVoid);
 
     return hMem;
 }

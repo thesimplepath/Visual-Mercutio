@@ -821,7 +821,25 @@ class AFX_EXT_CLASS PSS_Property : public CObject
 //---------------------------------------------------------------------------
 // PSS_Property
 //---------------------------------------------------------------------------
-PSS_Property::PSS_Property(const PSS_Property& other)
+PSS_Property::PSS_Property(const PSS_Property& other) :
+    CObject(),
+    m_pValueArray(NULL),
+    m_pMenu(NULL),
+    m_Type(IE_T_EditString),
+    m_ValueType(IE_VT_Unknown),
+    m_Format(PSS_StringFormat(PSS_StringFormat::IE_FT_General)),
+    m_DoubleValue(0.0),
+    m_FloatValue(0.0f),
+    m_CategoryID(-1),
+    m_ItemID(-1),
+    m_CategoryOrder(-1),
+    m_ItemOrder(-1),
+    m_Dynamic(false),
+    m_Enabled(false),
+    m_HasChanged(false),
+    m_SaveState(false),
+    m_SaveStatePerProperty(false),
+    m_EnableDragNDrop(false)
 {
     *this = other;
 }

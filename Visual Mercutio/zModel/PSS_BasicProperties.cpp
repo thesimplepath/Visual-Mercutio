@@ -39,7 +39,8 @@ PSS_BasicProperties::PSS_BasicProperties(int id) :
 //---------------------------------------------------------------------------
 PSS_BasicProperties::PSS_BasicProperties(const PSS_BasicProperties& other) :
     CODIntProperty(other.GetId()),
-    CPropertyContainer< IODPropertyContainer, CODPropertyAccessor<PSS_BasicProperties> >()
+    CPropertyContainer< IODPropertyContainer, CODPropertyAccessor<PSS_BasicProperties> >(),
+    m_SymbolNumber(-1)
 {
     *this = other;
     VERIFY(RegisterProperties());

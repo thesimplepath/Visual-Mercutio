@@ -16,7 +16,7 @@
 
 // processsoft
 #include "ZAMApp.h"
-#include "DocWrite.h"
+#include "PSS_DocumentReadWrite.h"
 
 // class name mapping
 #ifndef PSS_WorkspaceEnv
@@ -275,7 +275,7 @@ public:
 
     //## Operation: GetCurrentDocument%910434306
     //    Returns the current document pointer.
-    ZDDocumentReadWrite* GetCurrentDocument() const;
+    PSS_DocumentReadWrite* GetCurrentDocument() const;
 
     //## Operation: OnIdle%910633441
     //    This function is used to not use a timer
@@ -499,34 +499,21 @@ private:
     PSS_RiskProbabilityContainer*        m_pRiskProbabilityContainer;
 };
 
-//## begin ZAApp%36441921033A.postscript preserve=yes
-//## end ZAApp%36441921033A.postscript
-
-// Class ZAApp
-
-//## Other Operations (inline)
 inline CString ZAApp::GetApplicationName() const
 {
-    //## begin ZAApp::GetApplicationName%910434300.body preserve=yes
     return(_T("ProcessSoft-Conceptor"));
-    //## end ZAApp::GetApplicationName%910434300.body
 }
 
-inline ZDDocumentReadWrite* ZAApp::GetCurrentDocument() const
+inline PSS_DocumentReadWrite* ZAApp::GetCurrentDocument() const
 {
-    //## begin ZAApp::GetCurrentDocument%910434306.body preserve=yes
-    return (ZDDocumentReadWrite*)m_pCurrentDocument;
-    //## end ZAApp::GetCurrentDocument%910434306.body
+    return (PSS_DocumentReadWrite*)m_pCurrentDocument;
 }
 
 inline ZAApp* ZAApp::ZAGetApp()
 {
-    //## begin ZAApp::ZAGetApp%910716403.body preserve=yes
     return (ZAApp*)AfxGetApp();
-    //## end ZAApp::ZAGetApp%910716403.body
 }
 
-//## begin module%364419D90317.epilog preserve=yes
 inline void ZAApp::SetGlobalIniFile(CString& value)
 {
     m_GlobalIniFile = value;

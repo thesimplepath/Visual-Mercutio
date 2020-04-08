@@ -69,7 +69,11 @@ PSS_ProcessSymbolBP::PSS_ProcessSymbolBP(const CString& name) :
     CreateSymbolProperties();
 }
 //---------------------------------------------------------------------------
-PSS_ProcessSymbolBP::PSS_ProcessSymbolBP(const PSS_ProcessSymbolBP& other)
+PSS_ProcessSymbolBP::PSS_ProcessSymbolBP(const PSS_ProcessSymbolBP& other) :
+    PSS_Symbol(),
+    m_Deliveries(this),
+    m_IsUserModified(false),
+    m_ShowPreview(false)
 {
     *this = other;
 }

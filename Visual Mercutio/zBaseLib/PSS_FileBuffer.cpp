@@ -24,6 +24,7 @@ IMPLEMENT_SERIAL(PSS_FileBuffer, CObject, g_DefVersion)
 // PSS_FileBuffer
 //---------------------------------------------------------------------------
 PSS_FileBuffer::PSS_FileBuffer(const CString& fileName) :
+    CObject(),
     m_pBuffer(NULL),
     m_Size(0)
 {
@@ -32,13 +33,17 @@ PSS_FileBuffer::PSS_FileBuffer(const CString& fileName) :
 }
 //---------------------------------------------------------------------------
 PSS_FileBuffer::PSS_FileBuffer(PSS_File& File) :
+    CObject(),
     m_pBuffer(NULL),
     m_Size(0)
 {
     CreateBufferFromFile(File);
 }
 //---------------------------------------------------------------------------
-PSS_FileBuffer::PSS_FileBuffer(const PSS_FileBuffer& other)
+PSS_FileBuffer::PSS_FileBuffer(const PSS_FileBuffer& other) :
+    CObject(),
+    m_pBuffer(NULL),
+    m_Size(0)
 {
     *this = other;
 }

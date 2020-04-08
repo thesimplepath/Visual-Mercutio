@@ -182,7 +182,7 @@ BOOL PSS_DeleteCorruptedSymbols::IsCorrupted(PSS_StopSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 BOOL PSS_DeleteCorruptedSymbols::IsCorrupted(PSS_DoorSymbolBP* pSymbol)
 {
-    if (pSymbol)
+    if (!pSymbol)
         return FALSE;
 
     // if the symbol is a duplicate, it should provide its original symbol. If not possible,
@@ -205,7 +205,7 @@ BOOL PSS_DeleteCorruptedSymbols::IsCorrupted(PSS_DoorSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 BOOL PSS_DeleteCorruptedSymbols::IsCorrupted(PSS_PageSymbolBP* pSymbol)
 {
-    if (pSymbol)
+    if (!pSymbol)
         return FALSE;
 
     // if the symbol is a duplicate, it should provide its original symbol. If not possible,

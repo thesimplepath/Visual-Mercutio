@@ -89,7 +89,8 @@ class AFX_EXT_CLASS PSS_Application
         * Constructor
         *@note Private to forbid any construction outside the singleton
         */
-        PSS_Application()
+        PSS_Application() :
+            m_pMainForm(NULL)
         {}
 
         /**

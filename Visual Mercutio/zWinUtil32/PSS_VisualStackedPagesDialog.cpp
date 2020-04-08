@@ -80,13 +80,15 @@ END_MESSAGE_MAP()
 // PSS_VisualStackedPagesDialog
 //---------------------------------------------------------------------------
 PSS_VisualStackedPagesDialog::PSS_VisualStackedPagesDialog(UINT placeholder, LPCTSTR pTemplateName, CWnd* pParent) :
-    CDialog(pTemplateName, pParent)
+    CDialog(pTemplateName, pParent),
+    m_PlaceHolder(0)
 {
     Init(placeholder);
 }
 //---------------------------------------------------------------------------
 PSS_VisualStackedPagesDialog::PSS_VisualStackedPagesDialog(UINT placeholder, UINT templateID, CWnd* pParent) :
-    CDialog(templateID, pParent)
+    CDialog(templateID, pParent),
+    m_PlaceHolder(0)
 {
     Init(placeholder);
 }
@@ -241,7 +243,8 @@ void PSS_VisualStackedPagesDialog::Flush()
 // PSS_VisualStackedPagesDialogIterator
 //---------------------------------------------------------------------------
 PSS_VisualStackedPagesDialogIterator::PSS_VisualStackedPagesDialogIterator(const PSS_VisualStackedPagesDialog& owner) :
-    m_Owner(owner)
+    m_Owner(owner),
+    m_pPos(NULL)
 {
     Reset();
 }

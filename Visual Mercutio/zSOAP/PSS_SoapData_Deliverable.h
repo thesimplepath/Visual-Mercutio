@@ -48,7 +48,13 @@ class AFX_EXT_CLASS PSS_SoapData_Deliverable
         /**
         * Constructor
         */
-        PSS_SoapData_Deliverable()
+        PSS_SoapData_Deliverable() :
+            m_DelivID(-1),
+            m_ProcIDSrc(-1),
+            m_ProcIDTrg(-1),
+            m_Lateral(-1),
+            m_LateralDirection(-1),
+            m_DoubleSign(-1)
         {}
 
         /**

@@ -109,8 +109,8 @@ void PSS_StatusBar::SetCurrentPercentage(int value)
         // to regulate the animation time, check the elapsed time between two
         // animation and change the image only if the time is greater than a
         // certain value
-        BOOL  show = TRUE;
-        DWORD temp = GetTickCount();
+        BOOL        show = TRUE;
+        const DWORD temp = ::GetTickCount();
 
         if (m_TickCount)
         {

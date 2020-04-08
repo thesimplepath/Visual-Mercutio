@@ -183,7 +183,7 @@ const PSS_PlanFinObject& PSS_PlanFinObject::operator = (const PSS_PlanFinObject*
     {
         m_pNotes         =  NULL;
         m_FormatType     =  E_FT_Standard;
-        m_ObjectRect     =  0, 0, 0, 0;
+        m_ObjectRect     =  PSS_Rect(0, 0, 0, 0);
         m_IsEmpty        =  TRUE;
         m_pColumn        =  NULL;
         m_pRectTracker   =  NULL;

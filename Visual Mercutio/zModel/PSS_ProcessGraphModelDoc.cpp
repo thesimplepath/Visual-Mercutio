@@ -1338,7 +1338,7 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
     if (m_pOutputLog)
     {
         CString message;
-        message.Format(IDS_MSG_SAVEMODEL_END, pModel->GetModelName(), GetPathName());
+        message.Format(IDS_MSG_SAVEMODEL_END, pModel ? pModel->GetModelName() : CString(), GetPathName());
         PSS_GenericSymbolErrorLine error(message);
         m_pOutputLog->AddLine(error);
     }

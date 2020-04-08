@@ -48,10 +48,12 @@ LOCAL double (*fMfncGetValue)(char*);
 //---------------------------------------------------------------------------
 // PSS_FormulaObjectParser
 //---------------------------------------------------------------------------
-PSS_FormulaObjectParser::PSS_FormulaObjectParser()
+PSS_FormulaObjectParser::PSS_FormulaObjectParser() :
+    CObject()
 {}
 //---------------------------------------------------------------------------
-PSS_FormulaObjectParser::PSS_FormulaObjectParser(const PSS_FormulaObjectParser& other)
+PSS_FormulaObjectParser::PSS_FormulaObjectParser(const PSS_FormulaObjectParser& other) :
+    CObject()
 {
     *this = other;
 }

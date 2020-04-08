@@ -25,7 +25,10 @@
 // PSS_SecurityCheck
 //---------------------------------------------------------------------------
 PSS_SecurityCheck::PSS_SecurityCheck() :
-    PSS_Security()
+    PSS_Security(),
+    m_DaysMax(0),
+    m_CounterMax(0),
+    m_CounterMin(0)
 {}
 //---------------------------------------------------------------------------
 PSS_SecurityCheck::PSS_SecurityCheck(const CString& fileName,
@@ -55,7 +58,7 @@ BOOL PSS_SecurityCheck::Check()
             CString winDir;
 
             // build key file name
-            GetWindowsDirectory(winDir.GetBuffer(MAX_PATH), MAX_PATH);
+            ::GetWindowsDirectory(winDir.GetBuffer(MAX_PATH), MAX_PATH);
             winDir.ReleaseBuffer();
             winDir += _T("\\winkeys.key");
 

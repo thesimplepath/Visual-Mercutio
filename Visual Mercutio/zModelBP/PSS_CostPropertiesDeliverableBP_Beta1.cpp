@@ -37,7 +37,11 @@ PSS_CostPropertiesDeliverableBP_Beta1::PSS_CostPropertiesDeliverableBP_Beta1(int
 }
 //---------------------------------------------------------------------------
 PSS_CostPropertiesDeliverableBP_Beta1::PSS_CostPropertiesDeliverableBP_Beta1(const PSS_CostPropertiesDeliverableBP_Beta1& other) :
-    CODIntProperty(other.GetId())
+    CODIntProperty(other.GetId()),
+    m_ProcessingTime(0.0),
+    m_InWorkloadPercent(1.0f),
+    m_OutWorkloadPercent(1.0f),
+    m_UnitaryCost(0.0f)
 {
     *this = other;
 

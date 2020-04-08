@@ -25,7 +25,7 @@
 #include "zBaseLib\PSS_FieldObserverMsg.h"
 #include "zWinUtil32\PSS_CalendarWindowDialog.h"
 #include "zWinUtil32\PSS_ObjectNotesDialog.h"
-#include "DocWrite.h"
+#include "PSS_DocumentReadWrite.h"
 #include "ZAApp.h"
 
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)

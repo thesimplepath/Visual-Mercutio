@@ -49,7 +49,9 @@ class AFX_EXT_CLASS PSS_SoapData_System
         /**
         * Constructor
         */
-        PSS_SoapData_System()
+        PSS_SoapData_System() :
+            m_Priority(-1),
+            m_Windowst(-1)
         {}
 
         /**

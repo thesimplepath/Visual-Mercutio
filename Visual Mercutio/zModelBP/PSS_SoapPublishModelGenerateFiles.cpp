@@ -48,7 +48,8 @@ PSS_SoapPublishModelGenerateFiles::PSS_SoapPublishModelGenerateFiles(PSS_Process
                                                                      void*                                 pClass,
                                                                      PSS_PublishMessengerModelInformation* pInfo) :
     PSS_ModelNavigation(pModel, pClass),
-    m_pModelInfo(pInfo)
+    m_pModelInfo(pInfo),
+    m_pInfo(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_SoapPublishModelGenerateFiles::~PSS_SoapPublishModelGenerateFiles()

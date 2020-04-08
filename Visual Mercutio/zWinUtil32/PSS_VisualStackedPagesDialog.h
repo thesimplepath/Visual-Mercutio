@@ -66,6 +66,15 @@ struct AFX_EXT_CLASS PSS_VisualStackedPageInfo
     DWORD                        m_Data1;    // user defined data
     DWORD                        m_Data2;    // user defined data
     BOOL                         m_Created;
+
+    PSS_VisualStackedPageInfo() :
+        m_pDialog(NULL),
+        m_DialogID(-1),
+        m_HelpID(-1),
+        m_Data1(0),
+        m_Data2(0),
+        m_Created(FALSE)
+    {}
 };
 
 /**

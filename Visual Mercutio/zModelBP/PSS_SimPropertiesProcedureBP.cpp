@@ -36,7 +36,14 @@ PSS_SimPropertiesProcedureBP::PSS_SimPropertiesProcedureBP() :
     m_ProcedureCostPerActivity(0.0)
 {}
 //---------------------------------------------------------------------------
-PSS_SimPropertiesProcedureBP::PSS_SimPropertiesProcedureBP(const PSS_SimPropertiesProcedureBP& other)
+PSS_SimPropertiesProcedureBP::PSS_SimPropertiesProcedureBP(const PSS_SimPropertiesProcedureBP& other) :
+    CObject(),
+    m_ProcedureActivation(1.0),
+    m_ProcedureCost(0.0),
+    m_ProcedureWorkloadForecast(1.0),
+    m_ProcedureCostForecast(0.0),
+    m_ProcedureWorkloadPerActivity(0.0),
+    m_ProcedureCostPerActivity(0.0)
 {
     *this = other;
 }

@@ -14,7 +14,12 @@
 //---------------------------------------------------------------------------
 // PSS_ServerOptions
 //---------------------------------------------------------------------------
-PSS_ServerOptions::PSS_ServerOptions(const CString& iniFile, const CString& sectionName)
+PSS_ServerOptions::PSS_ServerOptions(const CString& iniFile, const CString& sectionName) :
+    m_UseFolderNameAsFile(FALSE),
+    m_StoreUserFileByUser(FALSE),
+    m_UseLogTextFile(FALSE),
+    m_UseLogDatabaseFile(FALSE),
+    m_KeepHistoryOnProcess(FALSE)
 {
     Create(iniFile, sectionName);
 }

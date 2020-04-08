@@ -34,7 +34,9 @@ PSS_PropertyAttributes::IAttribute::IAttribute(int categoryID, int itemID) :
     m_ItemID(itemID)
 {}
 //---------------------------------------------------------------------------
-PSS_PropertyAttributes::IAttribute::IAttribute(IAttribute& other)
+PSS_PropertyAttributes::IAttribute::IAttribute(IAttribute& other) :
+    m_CategoryID(-1),
+    m_ItemID(-1)
 {
     *this = other;
 }
@@ -74,7 +76,8 @@ PSS_PropertyAttributes::PSS_PropertyAttributes() :
     m_ShowTitleText(true)
 {}
 //---------------------------------------------------------------------------
-PSS_PropertyAttributes::PSS_PropertyAttributes(PSS_PropertyAttributes& other)
+PSS_PropertyAttributes::PSS_PropertyAttributes(PSS_PropertyAttributes& other) :
+    m_ShowTitleText(true)
 {
     *this = other;
 }

@@ -53,7 +53,11 @@ PSS_DoorSymbolBP::PSS_DoorSymbolBP(const CString& name) :
         pText->SizeToText();
 }
 //---------------------------------------------------------------------------
-PSS_DoorSymbolBP::PSS_DoorSymbolBP(const PSS_DoorSymbolBP& other)
+PSS_DoorSymbolBP::PSS_DoorSymbolBP(const PSS_DoorSymbolBP& other) :
+    PSS_Symbol(),
+    m_pTwinDoorSymbol(NULL),
+    m_TwinDoorRefNumber(-1),
+    m_ShowPreview(false)
 {
     *this = other;
 }

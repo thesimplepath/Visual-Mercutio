@@ -35,7 +35,8 @@ END_MESSAGE_MAP()
 // PSS_RiskModifyStaticDlg
 //---------------------------------------------------------------------------
 PSS_RiskModifyStaticDlg::PSS_RiskModifyStaticDlg() :
-    CDialog(PSS_RiskModifyStaticDlg::IDD, NULL)
+    CDialog(PSS_RiskModifyStaticDlg::IDD, NULL),
+    m_ElementCount(0)
 {}
 //---------------------------------------------------------------------------
 PSS_RiskModifyStaticDlg::PSS_RiskModifyStaticDlg(const CString& fileName,

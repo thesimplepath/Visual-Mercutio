@@ -34,7 +34,10 @@ PSS_StateLink::PSS_StateLink(PSS_LinkSymbol*           pLinkSymbol,
 {}
 //---------------------------------------------------------------------------
 PSS_StateLink::PSS_StateLink(const PSS_StateLink& other) :
-    CObject()
+    CObject(),
+    m_pModel(NULL),
+    m_pLinkSymbol(NULL),
+    m_Direction(IE_LD_EnteringUp)
 {
     *this = other;
 }

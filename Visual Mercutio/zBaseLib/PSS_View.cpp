@@ -497,7 +497,17 @@ CSize PSS_View::GetReportPageSize()
         try
         {
             pDevNames = (DEVNAMES FAR*)::GlobalLock(printDlg.hDevNames);
-            pDevMode  = (DEVNAMES FAR*)::GlobalLock(printDlg.hDevMode);
+
+            if (!pDevNames)
+                return CSize();
+
+            pDevMode = (DEVNAMES FAR*)::GlobalLock(printDlg.hDevMode);
+
+            if (!pDevMode)
+            {
+                ::GlobalUnlock(printDlg.hDevNames);
+                return CSize();
+            }
 
             const CString driver(LPSTR(pDevNames) + pDevNames->wDriverOffset);
             const CString device(LPSTR(pDevNames) + pDevNames->wDeviceOffset);

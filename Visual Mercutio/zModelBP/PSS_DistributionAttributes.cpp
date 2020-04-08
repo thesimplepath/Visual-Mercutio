@@ -86,7 +86,11 @@ PSS_DistributionAttribute::PSS_DistributionAttribute() :
     m_SymbolRef(0)
 {}
 //---------------------------------------------------------------------------
-PSS_DistributionAttribute::PSS_DistributionAttribute(const PSS_DistributionAttribute& other)
+PSS_DistributionAttribute::PSS_DistributionAttribute(const PSS_DistributionAttribute& other) :
+    CObject(),
+    m_CategoryID(0),
+    m_ItemID(0),
+    m_SymbolRef(0)
 {
     *this = other;
 }

@@ -53,7 +53,12 @@ PSS_PageSymbolBP::PSS_PageSymbolBP(const CString& name) :
         pText->SizeToText();
 }
 //---------------------------------------------------------------------------
-PSS_PageSymbolBP::PSS_PageSymbolBP(const PSS_PageSymbolBP& other)
+PSS_PageSymbolBP::PSS_PageSymbolBP(const PSS_PageSymbolBP& other) :
+    PSS_Symbol(),
+    m_pPage(NULL),
+    m_pTwinPageSymbol(NULL),
+    m_TwinPageRefNumber(-1),
+    m_ShowPreview(false)
 {
     *this = other;
 }

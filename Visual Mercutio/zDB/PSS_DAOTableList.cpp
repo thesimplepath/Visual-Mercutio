@@ -98,13 +98,13 @@ int PSS_DAOTableList::GetSelectedTables(CStringArray& tableArray) const
         {
             // clear the memory
             if (pItems)
-                delete pItems;
+                delete[] pItems;
 
             throw;
         }
 
         // done with the item list
-        delete pItems;
+        delete[] pItems;
     }
 
     return count;

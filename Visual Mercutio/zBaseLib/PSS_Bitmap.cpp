@@ -287,7 +287,7 @@ HBITMAP PSS_Bitmap::DIBToDDB(HANDLE hDIB)
         pDIBBits = LPVOID(bmInfo.bmiColors + colors);
 
     CPalette  pal;
-    CPalette* pOldPal;
+    CPalette* pOldPal = NULL;
     CClientDC dc(NULL);
 
     // create and select a logical palette if needed

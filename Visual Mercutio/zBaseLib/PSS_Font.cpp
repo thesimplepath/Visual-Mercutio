@@ -22,12 +22,14 @@ IMPLEMENT_SERIAL(PSS_Font, CFont, g_DefVersion)
 //---------------------------------------------------------------------------
 PSS_Font::PSS_Font() :
     CFont(),
-    m_hFontNumber(-1)
+    m_hFontNumber(-1),
+    m_ColFont(RGB(20, 20, 20))
 {}
 //---------------------------------------------------------------------------
 PSS_Font::PSS_Font(const PSS_Font& other) :
     CFont(),
-    m_hFontNumber(-1)
+    m_hFontNumber(-1),
+    m_ColFont(RGB(20, 20, 20))
 {
     *this = other;
 }

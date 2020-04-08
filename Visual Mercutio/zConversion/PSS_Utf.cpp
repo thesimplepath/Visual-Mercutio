@@ -272,7 +272,7 @@ std::string PSS_Utf::UTF16toUTF8(const PSS_String16& str)
         throw;
     }
 
-    std::string ret = pOutput;
+    const std::string ret = pOutput;
     delete[] pOutput;
 
     return ret;

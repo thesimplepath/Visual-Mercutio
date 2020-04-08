@@ -8,13 +8,25 @@
 #include "StdAfx.h"
 #include "PSS_HtmlFile.h"
 
+// std
+#include <memory>
+
+#ifdef _DEBUG
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+#endif
+
 //---------------------------------------------------------------------------
 // PSS_HtmlFile
 //---------------------------------------------------------------------------
 PSS_HtmlFile::PSS_HtmlFile(const CString& fileName) :
     m_pCurrent(NULL),
+    m_pNext(NULL),
     m_FileName(fileName)
-{}
+{
+    std::memset(&m_FileBuffer, 0x0, 300);
+}
 //---------------------------------------------------------------------------
 PSS_HtmlFile::~PSS_HtmlFile()
 {}

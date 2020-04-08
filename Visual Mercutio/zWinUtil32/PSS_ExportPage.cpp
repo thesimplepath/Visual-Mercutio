@@ -29,7 +29,9 @@ END_MESSAGE_MAP()
 // PSS_ExportPage
 //---------------------------------------------------------------------------
 PSS_ExportPage::PSS_ExportPage(PSS_ApplicationOption* pApplicationOptions) :
-    PSS_GenericPropPage(PSS_ExportPage::IDD, pApplicationOptions)
+    PSS_GenericPropPage(PSS_ExportPage::IDD, pApplicationOptions),
+    m_Propagation(0),
+    m_EmptyWhenZero(FALSE)
 {}
 //---------------------------------------------------------------------------
 PSS_ExportPage::PSS_ExportPage(const PSS_ExportPage& other) :

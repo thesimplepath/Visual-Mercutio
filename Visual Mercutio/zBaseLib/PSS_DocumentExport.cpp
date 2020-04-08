@@ -27,7 +27,8 @@ PSS_DocumentExport::PSS_DocumentExport(const CString&                fileName,
                                        BOOL                          emptyWhenZero,
                                        PSS_StatusBar*                pStatusBar) :
     PSS_Export(fileName, generateHeader, separatorType, schema, propagationMode, emptyWhenZero, pStatusBar),
-    m_pDoc(pDoc)
+    m_pDoc(pDoc),
+    m_ObjectCounter(0)
 {}
 //---------------------------------------------------------------------------
 PSS_DocumentExport::PSS_DocumentExport(const PSS_DocumentExport& other)

@@ -34,8 +34,8 @@ class PSS_ExportPage : public PSS_GenericPropPage
             IDD = IDD_EXPORTPAGE
         };
 
-        int     m_Propagation;
         CString m_SchemaName;
+        int     m_Propagation;
         BOOL    m_EmptyWhenZero;
 
         /**

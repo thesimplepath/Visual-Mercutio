@@ -42,7 +42,9 @@ PSS_Export::PSS_Export(const CString&                fileName,
     m_TimeSynchronizationValue(5),
     m_GenerateHeader(generateHeader),
     m_EmptyWhenZero(emptyWhenZero)
-{}
+{
+    std::memset(&m_FileBuffer, 0x0, 300);
+}
 //---------------------------------------------------------------------------
 PSS_Export::PSS_Export(const PSS_Export& other)
 {

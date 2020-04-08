@@ -61,7 +61,9 @@ PSS_Formula::PSS_Formula(PSS_Document& doc, const CString& formula) :
 }
 //---------------------------------------------------------------------------
 PSS_Formula::PSS_Formula(const PSS_Formula& other) :
-    CObject()
+    CObject(),
+    m_pResultObject(NULL),
+    m_Page(0)
 {
     *this = other;
 }

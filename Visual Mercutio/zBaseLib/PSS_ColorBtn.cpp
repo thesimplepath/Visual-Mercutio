@@ -235,11 +235,15 @@ void PSS_ColorBtnDialog::OnOther()
                 }
 
         // this is the new MRU
-        for (int i = 0; i < 20; ++i)
-            if (m_Used[m_ColorIndex] > m_Used[i])
-                ++m_Used[i];
+        if (m_ColorIndex != -1)
+        {
+            for (int i = 0; i < 20; ++i)
+                if (m_Used[m_ColorIndex] > m_Used[i])
+                    ++m_Used[i];
 
-        m_Used[m_ColorIndex] = 1;
+            m_Used[m_ColorIndex] = 1;
+        }
+
         EndDialog(IDOK);
 
         return;

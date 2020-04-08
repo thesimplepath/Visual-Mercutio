@@ -58,7 +58,19 @@ PSS_DocumentData::PSS_DocumentData(PSS_Document* pDocument) :
     m_BinaryDrawMessage.LoadString(IDS_BINARYDOC_DRAWMESSAGE);
 }
 //---------------------------------------------------------------------------
-PSS_DocumentData::PSS_DocumentData(const PSS_DocumentData& other)
+PSS_DocumentData::PSS_DocumentData(const PSS_DocumentData& other) :
+    CObject(),
+    m_CurrentPage(1),
+    m_EndCalculateTime(CTime::GetCurrentTime()),
+    m_pDocument(NULL),
+    m_pFileBuffer(NULL),
+    m_pCurrentEditedObject(NULL),
+    m_pPosition(NULL),
+    m_LastTabOrder(0),
+    m_PageMax(0),
+    m_FlagElapsedTime(FALSE),
+    m_IsVisible(TRUE),
+    m_ReadOnlyAtRuntime(FALSE)
 {
     *this = other;
 }
@@ -286,7 +298,7 @@ void PSS_DocumentData::StyleHasBeenDeleted(PSS_Style::Handle hStyle)
 
         // if the object points to the deleted style
         if (pObj->GetStyle() == hStyle)
-            // Assigns Normal style
+            // assign the normal style
             pObj->SetStyle(g_NormalStyle);
     }
 }

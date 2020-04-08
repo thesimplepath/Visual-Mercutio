@@ -57,7 +57,11 @@ class AFX_EXT_CLASS PSS_SoapData_File
         /**
         * Constructor
         */
-        PSS_SoapData_File()
+        PSS_SoapData_File() :
+            m_Crc(0),
+            m_Len(0),
+            m_Folder(-1),
+            m_IsPublic(-1)
         {}
 
         /**

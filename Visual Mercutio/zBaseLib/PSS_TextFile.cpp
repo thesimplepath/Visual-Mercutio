@@ -20,7 +20,9 @@ PSS_TextFile::PSS_TextFile(const CString& fileName) :
     m_FileName(fileName),
     m_pCurrent(NULL),
     m_pNext(NULL)
-{}
+{
+    std::memset(m_FileBuffer, 0x0, 300);
+}
 //---------------------------------------------------------------------------
 PSS_TextFile::PSS_TextFile(const PSS_TextFile& other)
 {

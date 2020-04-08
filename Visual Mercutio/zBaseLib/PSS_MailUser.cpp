@@ -30,7 +30,8 @@ PSS_MailUser::PSS_MailUser(PSS_User& personName, ULONG recipClass) :
     m_RecipClass(recipClass)
 {}
 //---------------------------------------------------------------------------
-PSS_MailUser::PSS_MailUser(const PSS_MailUser& other)
+PSS_MailUser::PSS_MailUser(const PSS_MailUser& other) :
+    m_RecipClass(0)
 {
     *this = other;
 }

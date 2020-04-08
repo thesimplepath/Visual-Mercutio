@@ -22,7 +22,14 @@ PSS_Stamp::PSS_Stamp() :
     m_ReadOnly(FALSE)
 {}
 //---------------------------------------------------------------------------
-PSS_Stamp::PSS_Stamp(const PSS_Stamp& other)
+PSS_Stamp::PSS_Stamp(const PSS_Stamp& other) :
+    m_DocumentFileType(IE_FT_FormDocument),
+    m_FileType(IE_FD_DocumentType),
+    m_DocumentDataType(IE_DT_Form),
+    m_Stamp("ADSoft"),
+    m_PublishVersion(0),
+    m_InternalVersion(-1),
+    m_ReadOnly(FALSE)
 {
     *this = other;
 }
@@ -314,7 +321,7 @@ BOOL PSS_Stamp::WriteToFile(const CString& fileName)
     CATCH (CFileException, e)
     {
         if (pFileBuffer)
-            delete pFileBuffer;
+            std::free(pFileBuffer);
 
         // close the file and the archive
         saveArchive.Close();

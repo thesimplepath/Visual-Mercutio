@@ -414,7 +414,7 @@ BOOL PSS_Security::LoadSecurityTable()
 CString PSS_Security::GetSecurityFileName() const
 {
     char winDir[100];
-    GetWindowsDirectory(winDir, sizeof(winDir));
+    ::GetWindowsDirectory(winDir, sizeof(winDir));
 
     CString completeFileName(winDir);
     completeFileName += "\\" + m_FileName;

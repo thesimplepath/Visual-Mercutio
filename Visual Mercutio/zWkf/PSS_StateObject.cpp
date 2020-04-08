@@ -49,7 +49,10 @@ PSS_StateObject::PSS_StateObject(PSS_Symbol*               pSymbol,
         AddStateLink(pStateLink);
 }
 //---------------------------------------------------------------------------
-PSS_StateObject::PSS_StateObject(const PSS_StateObject& other)
+PSS_StateObject::PSS_StateObject(const PSS_StateObject& other) :
+    CObject(),
+    m_pModel(NULL),
+    m_pSymbol(NULL)
 {
     *this = other;
 }

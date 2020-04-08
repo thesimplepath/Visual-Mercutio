@@ -221,15 +221,17 @@ void PSS_MainPathRunnerThread::DoWork()
                                                             m_pLog))
                         return;
 
-                    // push the symbol and the state link
                     if (pOriginalStateMachine)
+                    {
+                        // push the symbol and the state link
                         pOriginalStateMachine->PushSymbol(symbolSet.GetAt(0), stateLinkSet.GetAt(0));
 
-                    // call the callback function
-                    if (!m_pPathMachine->OnNextSymbolAfterMoveForward(pOriginalStateMachine->GetCurrentStateObject(),
-                                                                      pOriginalStateMachine,
-                                                                      m_pLog))
-                        return;
+                        // call the callback function
+                        if (!m_pPathMachine->OnNextSymbolAfterMoveForward(pOriginalStateMachine->GetCurrentStateObject(),
+                                                                          pOriginalStateMachine,
+                                                                          m_pLog))
+                            return;
+                    }
                 }
                 else
                 if (symbolSet.GetSize() > 1)

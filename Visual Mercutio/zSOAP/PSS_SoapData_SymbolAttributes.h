@@ -46,15 +46,27 @@ class AFX_EXT_CLASS PSS_SoapData_SymbolAttributes
         /**
         * Constructor
         */
-        PSS_SoapData_SymbolAttributes()
+        PSS_SoapData_SymbolAttributes() :
+            m_PdAttribID(-1),
+            m_Prow(-1),
+            m_AttribDefID(-1),
+            m_StatICyn(-1)
         {}
 
-        PSS_SoapData_SymbolAttributes(int pdAttribID, int prow, int attribDefID, const PSS_String16& mValue, int statICyn) :
-            m_PdAttribID(pdAttribID),
-            m_Prow(prow),
+        /**
+        * Constructor
+        *@param attribID - the attribute identifier
+        *@param row - the row count
+        *@param attribDefID - the attribute default identifier
+        *@param value - the value
+        *@param isStatOrDyn - if 0 the attribute is static, if 1 the attribute is dynamic
+        */
+        PSS_SoapData_SymbolAttributes(int attribID, int row, int attribDefID, const PSS_String16& value, int isStatOrDyn) :
+            m_PdAttribID(attribID),
+            m_Prow(row),
             m_AttribDefID(attribDefID),
-            m_MValue(PSS_StringTools::ConvertTo(mValue)),
-            m_StatICyn(statICyn)
+            m_MValue(PSS_StringTools::ConvertTo(value)),
+            m_StatICyn(isStatOrDyn)
         {}
 };
 

@@ -26,7 +26,9 @@ PSS_WorkflowDefinition::PSS_WorkflowDefinition() :
     m_SaveModelInWorkflow(true)
 {}
 //---------------------------------------------------------------------------
-PSS_WorkflowDefinition::PSS_WorkflowDefinition(const PSS_WorkflowDefinition& other)
+PSS_WorkflowDefinition::PSS_WorkflowDefinition(const PSS_WorkflowDefinition& other) :
+    m_CheckConsistency(true),
+    m_SaveModelInWorkflow(true)
 {
     *this = other;
 }

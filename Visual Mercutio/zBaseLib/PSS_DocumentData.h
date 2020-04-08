@@ -145,8 +145,8 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         virtual void MoveContents(PSS_DocumentData* pDocument, BOOL copyFormat);
 
         /**
-        * Checks if the style has been deleted
-        *@param hStyle - style to check
+        * Checks if the style has been deleted, restore the default style if yes
+        *@param hStyle - the style to check
         */
         virtual void StyleHasBeenDeleted(PSS_Style::Handle hStyle);
 

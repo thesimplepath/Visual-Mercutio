@@ -33,7 +33,9 @@ PSS_ExtFiles::PSS_ExtFiles(CODSymbolComponent* pParent) :
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------
-PSS_ExtFiles::PSS_ExtFiles(const PSS_ExtFiles& other)
+PSS_ExtFiles::PSS_ExtFiles(const PSS_ExtFiles& other) :
+    CObject(),
+    m_pParent(NULL)
 {
     *this = other;
 }

@@ -27,7 +27,8 @@ IMPLEMENT_SERIAL(PSS_AnnualNumberPropertiesBP, CObject, g_DefVersion)
 // PSS_AnnualNumberPropertiesBP
 //---------------------------------------------------------------------------
 PSS_AnnualNumberPropertiesBP::PSS_AnnualNumberPropertiesBP(double totalNumber) :
-    CObject()
+    CObject(),
+    m_ForceEqualizer(0)
 {
     // set the year quantity to 1
     m_Equalizer.SetTotal(totalNumber);
@@ -71,7 +72,9 @@ PSS_AnnualNumberPropertiesBP::PSS_AnnualNumberPropertiesBP(double totalNumber) :
     SetForceEqualizer(false);
 }
 //---------------------------------------------------------------------------
-PSS_AnnualNumberPropertiesBP::PSS_AnnualNumberPropertiesBP(const PSS_AnnualNumberPropertiesBP& other)
+PSS_AnnualNumberPropertiesBP::PSS_AnnualNumberPropertiesBP(const PSS_AnnualNumberPropertiesBP& other) :
+    CObject(),
+    m_ForceEqualizer(0)
 {
     *this = other;
 }

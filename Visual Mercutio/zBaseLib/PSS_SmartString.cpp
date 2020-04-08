@@ -29,7 +29,9 @@ PSS_SmartString::PSS_SmartString(UINT textID) :
     #endif
 }
 //---------------------------------------------------------------------------
-PSS_SmartString::PSS_SmartString(const PSS_SmartString& other)
+PSS_SmartString::PSS_SmartString(const PSS_SmartString& other) :
+    m_pStrText(NULL),
+    m_CString(false)
 {
     if (other.m_CString)
         SetCString(*other.m_pStrText);

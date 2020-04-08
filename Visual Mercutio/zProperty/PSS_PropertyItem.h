@@ -359,6 +359,8 @@ class AFX_EXT_CLASS PSS_PropertyItem : public CObject
 PSS_PropertyItem::PSS_PropertyItem(LPCTSTR pName, bool readOnly, bool canBeEdited) :
     CObject(),
     m_Type(IE_NT_String),
+    m_DoubleValue(0.0),
+    m_FloatValue(0.0f),
     m_Name(pName ? pName : _T("")),
     m_PropertyID(0),
     m_CategoryOrder(-1),

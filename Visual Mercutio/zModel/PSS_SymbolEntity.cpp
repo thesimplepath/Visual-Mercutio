@@ -29,7 +29,9 @@ PSS_SymbolEntity::PSS_SymbolEntity() :
     m_pSymbol(NULL)
 {}
 //---------------------------------------------------------------------------
-PSS_SymbolEntity::PSS_SymbolEntity( const PSS_SymbolEntity& other)
+PSS_SymbolEntity::PSS_SymbolEntity( const PSS_SymbolEntity& other) :
+    CObject(),
+    m_pSymbol(NULL)
 {
     *this = other;
 }

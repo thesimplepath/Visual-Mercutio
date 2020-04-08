@@ -32,11 +32,11 @@ static CRect  g_InitialSymbolRect(0, 0, 0, 0);
 static CPoint g_InitialPoint(0, 0);
 static CPoint g_LastPoint(0, 0);
 static int    g_SplitterPositionY  = -1;
-static int    g_MaxUp              = 0;
-static int    g_MaxDown            = 0;
-static bool   g_InMoveSplitterMode = false;
-static bool   g_MoveSplitter1      = false;
-static bool   g_MoveSplitter2      = false;
+static int    g_MaxUp              =  0;
+static int    g_MaxDown            =  0;
+static bool   g_InMoveSplitterMode =  false;
+static bool   g_MoveSplitter1      =  false;
+static bool   g_MoveSplitter2      =  false;
 //---------------------------------------------------------------------------
 // PSS_SymbolAttributes
 //---------------------------------------------------------------------------
@@ -56,10 +56,23 @@ PSS_SymbolAttributes::PSS_SymbolAttributes(PSS_BasicSymbol* pSymbol) :
     m_ReinitializeAreaAtCreation(false)
 {}
 //---------------------------------------------------------------------------
-PSS_SymbolAttributes::PSS_SymbolAttributes(const PSS_SymbolAttributes& src)
+PSS_SymbolAttributes::PSS_SymbolAttributes(const PSS_SymbolAttributes& src) :
+    m_pSymbol(NULL),
+    m_pEditBoxArea(NULL),
+    m_pNameEditText(NULL),
+    m_pCommentEditText(NULL),
+    m_pAttributeEditText(NULL),
+    m_pSplitterComponent1(NULL),
+    m_pSplitterComponent2(NULL),
+    m_UseDynamicArea(true),
+    m_ShowNameArea(true),
+    m_ShowDescriptionArea(false),
+    m_ShowAttributeArea(false),
+    m_RelativeCoordinates(false),
+    m_ReinitializeAreaAtCreation(false)
 {
     *this = src;
-};
+}
 //---------------------------------------------------------------------------
 PSS_SymbolAttributes::~PSS_SymbolAttributes()
 {

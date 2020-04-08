@@ -729,7 +729,7 @@ void PSS_ProcessGraphModelMdlBP::ConvertDeliverables()
         if (pDeliverableSymbol)
         {
             const int          labelCount = pDeliverableSymbol->GetNumLabels();
-            CODLabelComponent* pLabelComp;
+            CODLabelComponent* pLabelComp = NULL;
 
             // set the new colors
             for (int j = 0; j < labelCount; ++j)

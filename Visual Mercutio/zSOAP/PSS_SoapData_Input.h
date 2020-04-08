@@ -46,22 +46,26 @@ class AFX_EXT_CLASS PSS_SoapData_Input
         /**
         * Constructor
         */
-        PSS_SoapData_Input()
+        PSS_SoapData_Input() :
+            m_PdAttribID(-1),
+            m_AttribDefID(-1),
+            m_MFlag(-1),
+            m_ConstraintID(-1)
         {}
 
         /**
         * Constructor
         *@param pdAttribID - attribute identifier
         *@param attribDefID - attribute def identifier
-        *@param mDefVal - default value
-        *@param mFlag - flags
+        *@param defVal - default value
+        *@param flags - flags
         *@param constraintID - constraint identifier
         */
-        PSS_SoapData_Input(int pdAttribID, int attribDefID, const PSS_String16& mDefVal, int mFlag, int constraintID) :
+        PSS_SoapData_Input(int pdAttribID, int attribDefID, const PSS_String16& defVal, int flags, int constraintID) :
             m_PdAttribID(pdAttribID),
             m_AttribDefID(attribDefID),
-            m_MDefVal(PSS_StringTools::ConvertTo(mDefVal)),
-            m_MFlag(mFlag),
+            m_MDefVal(PSS_StringTools::ConvertTo(defVal)),
+            m_MFlag(flags),
             m_ConstraintID(constraintID)
         {}
  };

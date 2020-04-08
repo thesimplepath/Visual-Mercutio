@@ -39,6 +39,8 @@ PSS_MessageDlg::PSS_MessageDlg(CWnd* pWnd) :
     m_BitmapID(0),
     m_TimerID(0)
 {
+    std::memset(&m_pIcon, 0x0, M_Message_Icon_Count);
+
     HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(IDC_CLICKTOCLOSE), RT_GROUP_CURSOR);
     m_Cursor        = ::LoadCursor(hInst, MAKEINTRESOURCE(IDC_CLICKTOCLOSE));
 

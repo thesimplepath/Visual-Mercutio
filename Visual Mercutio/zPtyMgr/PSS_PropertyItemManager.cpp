@@ -1346,12 +1346,15 @@ void PSS_PropertyItemManager::SetItemDataToProperty(PSS_PropertyItem* pPropertyI
         }
     }
 
-    // assign has changed flag
-    prop.SetHasChanged(pPropertyItem->GetHasChanged());
+    if (pPropertyItem)
+    {
+        // assign has changed flag
+        prop.SetHasChanged(pPropertyItem->GetHasChanged());
 
-    // set the order
-    prop.SetItemOrder(pPropertyItem->GetItemOrder());
-    prop.SetCategoryOrder(pPropertyItem->GetCategoryOrder());
+        // set the order
+        prop.SetItemOrder(pPropertyItem->GetItemOrder());
+        prop.SetCategoryOrder(pPropertyItem->GetCategoryOrder());
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_PropertyItemManager::FreePropertySet()

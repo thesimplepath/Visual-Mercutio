@@ -36,7 +36,8 @@ PSS_LanguageProperties::PSS_LanguageProperties(int id) :
 //---------------------------------------------------------------------------
 PSS_LanguageProperties::PSS_LanguageProperties(const PSS_LanguageProperties& other) :
     CODIntProperty(other.GetId()),
-    sfl::CPropertyContainer< IODPropertyContainer, CODPropertyAccessor<PSS_LanguageProperties> >()
+    sfl::CPropertyContainer< IODPropertyContainer, CODPropertyAccessor<PSS_LanguageProperties> >(),
+    m_Language(E_LN_French)
 {
     *this = other;
 

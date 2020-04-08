@@ -24,8 +24,11 @@
 // PSS_ExtractModelAttributes
 //---------------------------------------------------------------------------
 PSS_ExtractModelAttributes::PSS_ExtractModelAttributes(PSS_ProcessGraphModelMdl* pModel, void* pClass) :
-    PSS_ModelNavigation(pModel, pClass)
-{}
+    PSS_ModelNavigation(pModel, pClass),
+    m_pPropertySet(NULL)
+{
+    std::memset(&m_IDArray, 0x0, 500);
+}
 //---------------------------------------------------------------------------
 PSS_ExtractModelAttributes::~PSS_ExtractModelAttributes()
 {}

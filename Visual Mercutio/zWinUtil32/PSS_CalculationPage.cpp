@@ -26,7 +26,8 @@ END_MESSAGE_MAP()
 // PSS_CalculationPage
 //---------------------------------------------------------------------------
 PSS_CalculationPage::PSS_CalculationPage(PSS_ApplicationOption* pApplicationOptions) :
-    PSS_GenericPropPage(PSS_CalculationPage::IDD, pApplicationOptions)
+    PSS_GenericPropPage(PSS_CalculationPage::IDD, pApplicationOptions),
+    m_AutoCalculate(FALSE)
 {}
 //---------------------------------------------------------------------------
 PSS_CalculationPage::PSS_CalculationPage(const PSS_CalculationPage& other) :

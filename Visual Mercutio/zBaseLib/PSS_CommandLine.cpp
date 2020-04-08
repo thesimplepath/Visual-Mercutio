@@ -35,7 +35,10 @@ PSS_CommandLine::PSS_CommandLine(const CString& commandLine,
     m_HasBeenLaunched(FALSE)
 {}
 //---------------------------------------------------------------------------
-PSS_CommandLine::PSS_CommandLine(const PSS_CommandLine& other)
+PSS_CommandLine::PSS_CommandLine(const PSS_CommandLine& other) :
+    m_pProcessInfo(NULL),
+    m_Priority(0),
+    m_HasBeenLaunched(FALSE)
 {
     *this = other;
 }

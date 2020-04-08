@@ -35,10 +35,12 @@ static CMenu g_ExtFilesMenu;
 //---------------------------------------------------------------------------
 // PSS_ExtFilePropertyMgr
 //---------------------------------------------------------------------------
-PSS_ExtFilePropertyMgr::PSS_ExtFilePropertyMgr()
+PSS_ExtFilePropertyMgr::PSS_ExtFilePropertyMgr() :
+    m_pSymbol(NULL)
 {}
 //---------------------------------------------------------------------------
-PSS_ExtFilePropertyMgr::PSS_ExtFilePropertyMgr(const PSS_ExtFilePropertyMgr& other)
+PSS_ExtFilePropertyMgr::PSS_ExtFilePropertyMgr(const PSS_ExtFilePropertyMgr& other) :
+    m_pSymbol(NULL)
 {
     *this = other;
 }

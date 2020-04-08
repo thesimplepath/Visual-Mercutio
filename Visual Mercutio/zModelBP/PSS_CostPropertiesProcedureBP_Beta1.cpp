@@ -36,7 +36,10 @@ PSS_CostPropertiesProcedureBP_Beta1::PSS_CostPropertiesProcedureBP_Beta1(int pro
 }
 //---------------------------------------------------------------------------
 PSS_CostPropertiesProcedureBP_Beta1::PSS_CostPropertiesProcedureBP_Beta1(const PSS_CostPropertiesProcedureBP_Beta1& other) :
-    CODIntProperty(other.GetId())
+    CODIntProperty(other.GetId()),
+    m_ProcessingTime(0.0),
+    m_Multiplier(1.0f),
+    m_UnitaryCost(0.0f)
 {
     *this = other;
 

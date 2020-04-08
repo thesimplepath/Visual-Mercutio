@@ -271,49 +271,73 @@ class AFX_EXT_CLASS PSS_ErrorLine : public CString
 // PSS_ErrorLine
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(const CString& string) :
-    CString(string)
+    CString(string),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     Parse();
 }
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(TCHAR ch, int repeat) :
-    CString(ch, repeat)
+    CString(ch, repeat),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     Parse();
 }
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(LPCSTR pString) :
-    CString(pString)
+    CString(pString),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     Parse();
 }
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(LPCWSTR pString) :
-    CString(pString)
+    CString(pString),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     Parse();
 }
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(LPCSTR pCh, int length) :
-    CString(pCh, length)
+    CString(pCh, length),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     Parse();
 }
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(LPCWSTR pCh, int length) :
-    CString(pCh, length)
+    CString(pCh, length),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     Parse();
 }
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(const unsigned char* pCh) :
-    CString(pCh)
+    CString(pCh),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     Parse();
 }
 //---------------------------------------------------------------------------
 PSS_ErrorLine::PSS_ErrorLine(const PSS_ErrorLine& other) :
-    CString(other)
+    CString(other),
+    m_LineNumber(0),
+    m_ErrorNumber(0),
+    m_ErrorType(0)
 {
     *this = other;
 }

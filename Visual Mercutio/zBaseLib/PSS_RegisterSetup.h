@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_RegisterSetup
         virtual bool CreateEntry(HKEY           hRoot,
                                  const CString& entityName,
                                  const CString& keyName,
-                                 const CString& defaultValue = "",
+                                 const CString& defaultValue = _T(""),
                                  bool           silent       = false) const;
  
         /**

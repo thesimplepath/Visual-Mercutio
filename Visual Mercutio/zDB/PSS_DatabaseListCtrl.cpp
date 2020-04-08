@@ -30,6 +30,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_DatabaseListCtrl::PSS_DatabaseListCtrl(const CString& fileName, const CString& tableName) :
     PSS_ListCtrl(),
+    m_pImageList(NULL),
     m_pRecordset(NULL),
     m_pDataBase(NULL),
     m_FileName(fileName),
@@ -275,12 +276,12 @@ void PSS_DatabaseListCtrl::BuildColumns()
             catch (...)
             {
                 if (pBuffer)
-                    delete pBuffer;
+                    delete[] pBuffer;
 
                 throw;
             }
 
-            delete pBuffer;
+            delete[] pBuffer;
         }
 
         // set list view item count

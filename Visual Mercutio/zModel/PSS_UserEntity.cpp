@@ -38,7 +38,10 @@ PSS_UserEntity::PSS_UserEntity(const CString&  name,
     CreateGUID();
 }
 //---------------------------------------------------------------------------
-PSS_UserEntity::PSS_UserEntity(const PSS_UserEntity& other)
+PSS_UserEntity::PSS_UserEntity(const PSS_UserEntity& other) :
+    CObject(),
+    m_pParent(NULL),
+    m_EntityCost(0.0f)
 {
     *this = other;
 }

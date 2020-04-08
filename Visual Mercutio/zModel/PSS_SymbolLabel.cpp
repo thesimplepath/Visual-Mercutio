@@ -36,7 +36,9 @@ PSS_SymbolLabel::PSS_SymbolLabel(const OD_CONTROL_POINT align, bool notifyParent
     m_NotifyParent(notifyParent)
 {}
 //---------------------------------------------------------------------------
-PSS_SymbolLabel::PSS_SymbolLabel(const PSS_SymbolLabel& other)
+PSS_SymbolLabel::PSS_SymbolLabel(const PSS_SymbolLabel& other) :
+    CODLabelComponent(),
+    m_NotifyParent(false)
 {
     *this = other;
 }
