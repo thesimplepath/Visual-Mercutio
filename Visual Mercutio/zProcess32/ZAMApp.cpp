@@ -5,97 +5,68 @@
 // * fichiers, la gestion de base des documents, des serveurs, de la base de registre, etc...                    *
 // **************************************************************************************************************
 
-//## begin module%334FC4630327.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%334FC4630327.cm
-
-//## begin module%334FC4630327.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%334FC4630327.cp
-
-//## Module: ZAMApp%334FC4630327; Package body
-//## Subsystem: PlanFin%334FC46302B2
-//## Source file: z:\adsoft~1\ZDesigner\ZAMApp.cpp
-
-//## begin module%334FC4630327.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%334FC4630327.additionalIncludes
+#include "ZAMApp.h"
 
-//## begin module%334FC4630327.includes preserve=yes
-#include "planfin.hdf"
-#include "mainfrm.h"
+// this was previoulsy required because Visual Mercutio was a commercial product before being open source, but now...
+// uncomment the libe below to re-enable the product key protection
+//#define EVALUATION_VERSION
+
+// windows
+#ifdef _WIN32
+    #include <WinSpool.h>
+#endif
+#include <ctype.h>
+#include <locale.h>
+#include <htmlhelp.h>
+
+// processsoft
 #include "zBaseLib\PSS_PlanFinObjects.h"
 #include "zBaseLib\PSS_PLFNAutoNumbered.h"
 #include "zBaseLib\PSS_PLFNBitmap.h"
 #include "zBaseLib\PSS_PLFNBoundText.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Edit.h"
+#include "zBaseLib\PSS_UserLoader.h"
+#include "zBaseLib\PSS_MessageDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
+#include "zBaseLib\PSS_ObjectUtility.h"
+#include "zBaseLib\PSS_PaintResources.h"
+#include "zBaseLib\PSS_Directory.h"
+#include "zBaseLib\PSS_RegisterSetup.h"
+#include "zWinUtil32\PSS_SelectServerWizard.h"
+#ifdef EVALUATION_VERSION
+    #include "zScty\security.h"
+    #include "zScty\secuchk.h"
+#endif
+#include "zSplash\PSS_SplashController.h"
+#include "PSS_RegistryDefs.h"
+#include "PSS_ZEvent.h"
+#include "ZHelpContext.h"
+#include "planfin.hdf"
 
+// resources
 #include "Resource.h"
 #include "zRes32\zRes.h"
 
-// UserLd
-#include "zBaseLib\PSS_UserLoader.h"
-
-#include "zWinUtil32\PSS_SelectServerWizard.h"
-#include "zBaseLib\PSS_MessageDlg.h"
-
-// this was previoulsy necessary because Visual Mercutio was a commercial product before being open source, but now...
-// uncomment the libe below to re-enable the product key protection
-//#define _EVALUATION_VERSION
-
-#ifdef _EVALUATION_VERSION
-#include "zScty\security.h"
-#include "zScty\secuchk.h"
-#endif // _EVALUATION_VERSION
-
-// FileDlg
-#include "zBaseLib\PSS_FileDialog.h"
-// BObjUtil
-#include "zBaseLib\PSS_ObjectUtility.h"
-
-#include "PSS_ZEvent.h"
-
-// PaintRes
-#include "zBaseLib\PSS_PaintResources.h"
-
-#ifdef _WIN32
-#include <WinSpool.h>
-#endif
-
-#include "zBaseLib\PSS_Directory.h"
-
-#include "zSplash\PSS_SplashController.h"
-
-// Used to access predefined registry keys
-#include "PSS_RegistryDefs.h"
-#include "zBaseLib\PSS_RegisterSetup.h"
-
-#include <CTYPE.H>
-#include <locale.h>
-
-// ZAMApp
-#include "ZAMApp.h"
-
-// Includes html help constants
-#include <htmlhelp.h>
-#include "ZHelpContext.h"
-
+// external functions
 extern "C" extern void WINAPI InitZSplResDLL();
 extern "C" extern void WINAPI InitZRes32DLL();
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 20 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-// **************************************************************************************************************
-// *                                                Help ID Mapping                                                *
-// **************************************************************************************************************
-
+//---------------------------------------------------------------------------
+// Global defines
+//---------------------------------------------------------------------------
+#define szFirstUseEntry         _T( "First Use" )
+#define szSubDirectoryNameEntry _T( "Ref Sub Directory Name" )
+#define DEFAULT_ICON_INDEX      0
+//---------------------------------------------------------------------------
+// Global variables
+//---------------------------------------------------------------------------
 static const DWORD aMenuHelpIDs[] =
 {
     ID_FILE_NEW,            IDH_FILE_NEW,
@@ -109,15 +80,6 @@ static const DWORD aMenuHelpIDs[] =
     ID_FILE_PRINT_PREVIEW,    IDH_FILE_PRINT_PREVIEW,
     0,                        0
 };
-
-// **************************************************************************************************************
-// *                                           Ini global entry keys ZAMApp                                        *
-// **************************************************************************************************************
-
-#define    szFirstUseEntry            _T( "First Use" )
-#define    szSubDirectoryNameEntry _T( "Ref Sub Directory Name" )
-
-#define DEFAULT_ICON_INDEX        0
 
 static char BASED_CODE            szDefaultIcon[] = _T("%s\\DefaultIcon");
 
@@ -680,7 +642,7 @@ BOOL ZAMainApp::InitInstance()
     }
 #endif
 
-#ifdef _EVALUATION_VERSION
+#ifdef EVALUATION_VERSION
 
     // Create the class for the security
     ZASecurityCheck SecurityCheck;
@@ -1642,7 +1604,7 @@ BOOL ZAMainApp::LoadAllUsers()
 
 void ZAMainApp::DisplayWarningOnCommand()
 {
-#ifdef _EVALUATION_VERSION
+#ifdef EVALUATION_VERSION
     CString sTitle;
     sTitle.LoadString(IDS_WARNINGEVALVER);
 

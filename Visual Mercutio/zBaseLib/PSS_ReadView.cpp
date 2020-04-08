@@ -87,7 +87,7 @@ void PSS_ReadView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 //---------------------------------------------------------------------------
 BOOL PSS_ReadView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-    #ifdef _EVALUATION_VERSION
+    #ifdef EVALUATION_VERSION
         if (!pInfo->m_bPreview)
             if (!ZAApp::ZAGetApp()->GetSecurity().Check())
             {
@@ -112,7 +112,7 @@ void PSS_ReadView::OnEndPrinting(CDC* pDC, CPrintInfo* pInfo)
     // put back the current page
     GetDocument()->SetCurrentPage(m_SavePageForPrinting);
 
-    #ifdef _EVALUATION_VERSION
+    #ifdef EVALUATION_VERSION
         // increment the page only if is printing
         if (!pInfo->m_bPreview)
             ZAApp::ZAGetApp()->GetSecurity().IncrementCounter();

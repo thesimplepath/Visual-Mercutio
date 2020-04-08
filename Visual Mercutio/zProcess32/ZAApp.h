@@ -83,7 +83,7 @@ class ZAApp : public ZAMainApp, public ZBGridAppAdapter
 public:
     typedef ZAMainApp inherited;
 
-    ZIMainFrame*            GetMainFrame();
+    PSS_MainFrame*            GetMainFrame();
     ZVOutputWorkspace*        GetOutputWorkspace();
     ZVProcessWorkspace*        GetProcessWorkspace();
     ZVPropertiesWorkspace*    GetPropertiesWorkspace();

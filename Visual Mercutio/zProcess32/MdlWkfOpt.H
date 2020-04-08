@@ -199,4 +199,4 @@ private:
     MODELOPTIONDATA& m_Data;
 };
 
-#endif    // MdlWkfOpt_h
+#endif

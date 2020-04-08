@@ -44,7 +44,7 @@
 #include "ZTTemplateDocument.h"
 #include "PSS_ModifyView.h"
 #include "PSS_ExternalBoxFunctions.h"
-#include "mainfrm.h"
+#include "PSS_MainFrame.h"
 #include "planfin.hdf"
 
 // windows
@@ -68,13 +68,13 @@
     #endif
 #endif
 
-// JMR-MODIF - Le 24 avril 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
 // scope symbols in stingray foundation library
 using namespace sfl;
 
-// JMR-MODIF - Le 31 décembre 2006 - Modification de la hiérarchie de classes pour la prise en charge par le médiateur.
+/**
+* Main application
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class ZAMainApp : public PSS_SingleInstanceApplication,
                   public PSS_Subject,
                   public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
@@ -90,7 +90,7 @@ public:
     // Component windows
     PSS_StatusBar& GetStatusBar()
     {
-        return((ZIMainFrame*)AfxGetMainWnd())->GetStatusBar();
+        return((PSS_MainFrame*)::AfxGetMainWnd())->GetStatusBar();
     }
 
     virtual void SetVisualToolObject(const CString& sClassName) = 0;
@@ -458,9 +458,9 @@ public:
     {}
 
     // Advanced: virtual access to m_pMainWnd
-    virtual ZIMainFrame* GetMainWindow()
+    virtual PSS_MainFrame* GetMainWindow()
     {
-        return (ZIMainFrame*)m_pMainWnd;
+        return (PSS_MainFrame*)m_pMainWnd;
     }
 
     virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);

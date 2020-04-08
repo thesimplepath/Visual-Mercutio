@@ -431,7 +431,7 @@ BOOL ZAApp::InitAppl()
     GXGetEngineState()->SetDefaultWorksheetFunctions();
 
     // Create main MDI Frame window
-    ZIMainFrame* pMainFrame = new ZIMainFrame;
+    PSS_MainFrame* pMainFrame = new PSS_MainFrame();
     m_pMainWnd = pMainFrame;
 
     if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
@@ -1196,11 +1196,11 @@ BOOL ZAApp::LoadProbabilityRiskFile()
 // *                                                    MainFrame                                                *
 // **************************************************************************************************************
 
-ZIMainFrame* ZAApp::GetMainFrame()
+PSS_MainFrame* ZAApp::GetMainFrame()
 {
-    if (AfxGetMainWnd() && ISA(AfxGetMainWnd(), ZIMainFrame))
+    if (::AfxGetMainWnd() && ISA(::AfxGetMainWnd(), PSS_MainFrame))
     {
-        return (ZIMainFrame*)AfxGetMainWnd();
+        return (PSS_MainFrame*)::AfxGetMainWnd();
     }
 
     return NULL;
@@ -1423,7 +1423,7 @@ bool ZAApp::IsWorkspaceEnvironmentModified()
 // Cette fonction permet d'obtenir le pointeur sur l'espace de travail de la fenêtre des processus.
 ZVProcessWorkspace* ZAApp::GetProcessWorkspace()
 {
-    ZIMainFrame* pFrame = GetMainFrame();
+    PSS_MainFrame* pFrame = GetMainFrame();
 
     if (pFrame)
     {
@@ -1438,7 +1438,7 @@ ZVProcessWorkspace* ZAApp::GetProcessWorkspace()
 // Cette fonction permet d'obtenir le pointeur sur l'espace de travail de la fenêtre des messages.
 ZVOutputWorkspace* ZAApp::GetOutputWorkspace()
 {
-    ZIMainFrame* pFrame = GetMainFrame();
+    PSS_MainFrame* pFrame = GetMainFrame();
 
     if (pFrame)
     {
@@ -1453,7 +1453,7 @@ ZVOutputWorkspace* ZAApp::GetOutputWorkspace()
 // Cette fonction permet d'obtenir le pointeur sur l'espace de travail de la fenêtre des propriétés.
 ZVPropertiesWorkspace* ZAApp::GetPropertiesWorkspace()
 {
-    ZIMainFrame* pFrame = GetMainFrame();
+    PSS_MainFrame* pFrame = GetMainFrame();
 
     if (pFrame)
     {
@@ -1468,7 +1468,7 @@ ZVPropertiesWorkspace* ZAApp::GetPropertiesWorkspace()
 // Cette fonction permet d'obtenir le pointeur sur l'espace de travail de la barre d'outils des projets.
 PSS_ProjectBar* ZAApp::GetProjectWindowBar()
 {
-    ZIMainFrame* pFrame = GetMainFrame();
+    PSS_MainFrame* pFrame = GetMainFrame();
 
     if (pFrame)
         return &pFrame->GetProjectWindowBar();
@@ -1481,7 +1481,7 @@ PSS_ProjectBar* ZAApp::GetProjectWindowBar()
 // Cette fonction permet d'obtenir le pointeur sur l'espace de travail de la fenêtre "Tip of day".
 PSS_TipOfDayBar* ZAApp::GetwndTipOfDayBar()
 {
-    ZIMainFrame* pFrame = GetMainFrame();
+    PSS_MainFrame* pFrame = GetMainFrame();
 
     if (pFrame)
     {

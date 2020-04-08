@@ -149,21 +149,21 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="IMPPRC.CPP">
+    <ClCompile Include="PSS_ImportProcessDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="MAINFRM.CPP">
+    <ClCompile Include="PSS_MainFrame.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="MdlTMPLSAV.CPP">
+    <ClCompile Include="PSS_ModelTemplateCopyDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -304,9 +304,9 @@
   <ItemGroup>
     <ClInclude Include="..\zFormsRes\zFormsRes.h" />
     <ClInclude Include="PSS_DocumentReadWrite.h" />
-    <ClInclude Include="IMPPRC.H" />
-    <ClInclude Include="MAINFRM.H" />
-    <ClInclude Include="MdlTMPLSAV.H" />
+    <ClInclude Include="PSS_ImportProcessDlg.h" />
+    <ClInclude Include="PSS_MainFrame.h" />
+    <ClInclude Include="PSS_ModelTemplateCopyDlg.h" />
     <ClInclude Include="MdlWkfOpt.H" />
     <ClInclude Include="MdlWkfParam.H" />
     <ClInclude Include="POINTDLG.H" />
