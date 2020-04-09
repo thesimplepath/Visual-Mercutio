@@ -1,22 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="MdlWkfOpt.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MdlWkfParam.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="POINTDLG.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProcessNameDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WelcomP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZAApp.cpp">
@@ -73,29 +58,23 @@
     <ClCompile Include="PSS_ModelTemplateCopyDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ModelWorkflowOptionsWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ModelWorkflowParametersWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PointerDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessNameDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WelcomeProcessDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MdlWkfOpt.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MdlWkfParam.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="POINTDLG.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProcessNameDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="STDAFX.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WelcomP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZAApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -157,6 +136,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_ModelTemplateCopyDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ModelWorkflowOptionsWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ModelWorkflowParametersWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PointerDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessNameDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WelcomeProcessDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

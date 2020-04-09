@@ -9,7 +9,7 @@
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zModel\PSS_LogicalSystemObserverMsg.h"
-#include "Resource.h"
+#include "Resources.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

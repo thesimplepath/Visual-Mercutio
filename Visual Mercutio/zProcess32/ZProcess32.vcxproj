@@ -170,28 +170,28 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="MdlWkfOpt.CPP">
+    <ClCompile Include="PSS_ModelWorkflowOptionsWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="MdlWkfParam.CPP">
+    <ClCompile Include="PSS_ModelWorkflowParametersWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="POINTDLG.CPP">
+    <ClCompile Include="PSS_PointerDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ProcessNameDialog.cpp">
+    <ClCompile Include="PSS_ProcessNameDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -214,7 +214,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="WelcomP.cpp">
+    <ClCompile Include="PSS_WelcomeProcessDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -307,14 +307,14 @@
     <ClInclude Include="PSS_ImportProcessDlg.h" />
     <ClInclude Include="PSS_MainFrame.h" />
     <ClInclude Include="PSS_ModelTemplateCopyDlg.h" />
-    <ClInclude Include="MdlWkfOpt.H" />
-    <ClInclude Include="MdlWkfParam.H" />
-    <ClInclude Include="POINTDLG.H" />
-    <ClInclude Include="ProcessNameDialog.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="STDAFX.H" />
+    <ClInclude Include="PSS_ModelWorkflowOptionsWizard.h" />
+    <ClInclude Include="PSS_ModelWorkflowParametersWizard.h" />
+    <ClInclude Include="PSS_PointerDlg.h" />
+    <ClInclude Include="PSS_ProcessNameDialog.h" />
+    <ClInclude Include="resources.h" />
+    <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_ModifyView.h" />
-    <ClInclude Include="WelcomP.h" />
+    <ClInclude Include="PSS_WelcomeProcessDlg.h" />
     <ClInclude Include="ZAApp.h" />
     <ClInclude Include="ZAMApp.h" />
     <ClInclude Include="ZCProcessModelDocument.h" />

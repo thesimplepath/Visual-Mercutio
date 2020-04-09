@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Dialog.h"
 
 // resources
-#include "resource.h"
+#include "resources.h"
 
 /**
 * Import process dialog

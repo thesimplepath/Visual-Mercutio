@@ -14,7 +14,7 @@
 #include "zWinUtil32\PSS_SearchEdit.h"
 
 // resources
-#include "Resource.h"
+#include "Resources.h"
 
 /**
 * Model template copy dialog

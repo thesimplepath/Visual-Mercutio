@@ -25,7 +25,7 @@
 #endif
 #include "zModel\zModelRes.h"
 #include "zModelBP\zModelBPRes.h"
-#include "Resource.h"
+#include "Resources.h"
 #include "PSS_RegistryDefs.h"
 
 #ifdef _DEBUG

@@ -7,7 +7,7 @@
 // ZIUnitInfo.h : header file
 //
 
-#include "Resource.h"
+#include "Resources.h"
 #include "zWinUtil32\PSS_SearchEdit.h"
 
 

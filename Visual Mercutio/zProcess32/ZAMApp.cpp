@@ -46,7 +46,7 @@
 #include "planfin.hdf"
 
 // resources
-#include "Resource.h"
+#include "Resources.h"
 #include "zRes32\zRes.h"
 
 // external functions

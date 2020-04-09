@@ -63,9 +63,9 @@
 #include "zReportBP\PSS_ConceptorReportGenerator.h"
 #include "zReportWeb\PSS_PublishReportToHTML.h"
 #include "zWeb\PSS_HtmlDialog.h"
-#include "WelcomP.h"
+#include "PSS_WelcomeProcessDlg.h"
 #include "PSS_ModifyView.h"
-#include "MdlWkfOpt.h"
+#include "PSS_ModelWorkflowOptionsWizard.h"
 #include "ZVConceptorReportOptions.h"
 #include "ZVProcessWorkspace.h"
 #include "ZVOutputWorkspace.h"
@@ -84,7 +84,7 @@
 #endif
 
 // resources
-#include "Resource.h"
+#include "Resources.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -603,9 +603,9 @@ BOOL ZAApp::PostInitAppl()
     {
         if (ShowWelcomeScreen())
         {
-            ZIWelcomeProcess WelcomeDialog(&GetApplicationOptions());
+            PSS_WelcomeProcessDlg welcomeDialog(&GetApplicationOptions());
 
-            switch (WelcomeDialog.DoModal())
+            switch (welcomeDialog.DoModal())
             {
                 case ID_WELCOME_CREATE_NEWMODEL:
                 {
@@ -1580,9 +1580,9 @@ PSS_ProcessGraphModelDoc* ZAApp::FileNewModel()
         }
     }
 
-    ZVModelWorkflowOptions Opt(FALSE, pNewFile);
+    PSS_ModelWorkflowOptionsWizard wizard(FALSE, pNewFile);
 
-    if (Opt.DoModal() == IDCANCEL)
+    if (wizard.DoModal() == IDCANCEL)
     {
         pNewFile->OnCloseDocument();
         return NULL;
@@ -2844,15 +2844,15 @@ void ZAApp::OnUpdateFilePrint(CCmdUI *pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Propriétés".
 void ZAApp::OnFileProperty()
 {
-    ZVModelWorkflowOptions dlg(true, dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument()));
+    PSS_ModelWorkflowOptionsWizard wizard(true, dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument()));
 
     // If file properties have changed, set the modified flag
-    if (dlg.DoModal() == IDOK)
+    if (wizard.DoModal() == IDOK)
     {
-        // Request the change of the resource language
-        PSS_ResourceManager::ChangeLanguage(dlg.GetLanguage());
+        // get and update the newly selected resource language
+        PSS_ResourceManager::ChangeLanguage(wizard.GetLanguage());
 
-        // Modified flag
+        // modified flag
         GetActiveBaseDocument()->SetModifiedFlag();
     }
 }

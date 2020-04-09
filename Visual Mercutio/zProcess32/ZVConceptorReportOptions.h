@@ -10,7 +10,7 @@
 // JMR-MODIF - Le 6 mars 2006 - Ajout de l'en-tête ZWizard.h.
 #include "zBaseLib\PSS_WizardDialog.h"
 
-#include "Resource.h"
+#include "Resources.h"
 
 // JMR-MODIF - Le 6 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -52,7 +52,4 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVCONCEPTORREPORTOPTIONS_H__4ADDB473_588E_4D04_AD86_146AE0FB649B__INCLUDED_)
+#endif

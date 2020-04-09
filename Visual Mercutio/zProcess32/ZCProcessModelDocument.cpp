@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ZCProcessModelDocument.h"
 
-#include "Resource.h"
+#include "Resources.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

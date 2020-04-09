@@ -17,7 +17,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"
-#include "Resource.h"
+#include "Resources.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

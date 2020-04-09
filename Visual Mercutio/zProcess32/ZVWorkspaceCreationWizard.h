@@ -19,7 +19,7 @@
 #include "zWinUtil32\PSS_WorkspaceTemplateListCtrl.h"
 
 // resources
-#include "Resource.h"
+#include "Resources.h"
 
 // forward class declaration
 class PSS_WorkspaceWizardTemplateManager;

@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVOutputWorkspace.h"
 
-#include "Resource.h"
+#include "Resources.h"
 
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zModel\PSS_ProcessGraphModelDoc.h"

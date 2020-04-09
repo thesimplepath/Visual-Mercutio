@@ -12,7 +12,7 @@
 
 #include "zBaseLib\PSS_SpanView.h"
 
-#include "Resource.h"
+#include "Resources.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

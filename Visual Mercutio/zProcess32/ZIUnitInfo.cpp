@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZIUnitInfo.h"
 #include "zBaseLib\PSS_Directory.h"
-#include "Resource.h"
+#include "Resources.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

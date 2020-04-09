@@ -47,7 +47,7 @@
 #endif
 
 // resources
-#include "Resource.h"
+#include "Resources.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

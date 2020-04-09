@@ -1,18 +1,12 @@
-//## begin module%364419D90317.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%364419D90317.cm
+/****************************************************************************
+ * ==> PSS_App -------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the main application                              *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%364419D90317.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%364419D90317.cp
-
-//## Module: ZAApp%364419D90317; Package specification
-//## Subsystem: PlanFin%334FC46302B2
-//## Source file: z:\adsoft~1\ZPROCESS\ZAApp.h
-
-#ifndef ZAApp_h
-#define ZAApp_h 1
+#ifndef PSS_AppH
+#define PSS_AppH
 
 // processsoft
 #include "ZAMApp.h"
@@ -68,11 +62,12 @@ class ZBGridAppAdapter : public CGXAppAdapter
 public:
 
     ZBGridAppAdapter();
+
     virtual ~ZBGridAppAdapter();
+
     virtual CDocTemplate* GetDocTemplate(CRuntimeClass* pViewClass, CRuntimeClass* pDocClass);
 
 protected:
-
     CMultiDocTemplate* m_pDocTemplate;
 };
 
