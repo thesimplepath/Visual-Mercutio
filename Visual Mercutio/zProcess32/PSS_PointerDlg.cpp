@@ -9,7 +9,7 @@
 #include "PSS_PointerDlg.h"
 
 // processsoft
-#include "ZAApp.h"
+#include "PSS_App.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -52,7 +52,7 @@ void PSS_PointerDlg::Close()
 //---------------------------------------------------------------------------
 int PSS_PointerDlg::DoModal()
 {
-    ZAApp* pApp = ZAApp::ZAGetApp();
+    PSS_App* pApp = PSS_App::GetApp();
 
     if (!pApp)
         return IDABORT;

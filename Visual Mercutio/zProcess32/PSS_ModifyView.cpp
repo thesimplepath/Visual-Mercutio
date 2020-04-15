@@ -26,7 +26,7 @@
 #include "zWinUtil32\PSS_CalendarWindowDialog.h"
 #include "zWinUtil32\PSS_ObjectNotesDialog.h"
 #include "PSS_DocumentReadWrite.h"
-#include "ZAApp.h"
+#include "PSS_App.h"
 
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     #include "zDesigner\wizformc.h"
@@ -174,14 +174,17 @@ void PSS_ModifyView::EditObject(PSS_PlanFinObject* pObj)
     // control was successfully created?
     if (GetDocument()->GetEditControl())
     {
-        GetDocument()->GetEditControl()->Create(PSS_Global::IsFormDesigner(),
-                                                this,
-                                                pDC,
-                                                GetDocument(),
-                                                pObj,
-                                                ZAApp::ZAGetApp()->GetFieldRepository(),
-                                                ZAApp::ZAGetApp()->IsAutoCalculate(),
-                                                ZAApp::ZAGetApp()->GoNextEdit());
+        PSS_App* pApp = PSS_App::GetApp();
+
+        if (pApp)
+            GetDocument()->GetEditControl()->Create(PSS_Global::IsFormDesigner(),
+                                                    this,
+                                                    pDC,
+                                                    GetDocument(),
+                                                    pObj,
+                                                    pApp->GetFieldRepository(),
+                                                    pApp->IsAutoCalculate(),
+                                                    pApp->GoNextEdit());
 
         GetDocument()->SetModifiedFlag(TRUE);
     }
@@ -294,7 +297,9 @@ void PSS_ModifyView::OnDraw(CDC* pDC)
 //---------------------------------------------------------------------------
 void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 {
-    if (!ZAApp::ZAGetApp()->IsCursorCapturedValid(point, this))
+    PSS_App* pApp = PSS_App::GetApp();
+
+    if (pApp && !pApp->IsCursorCapturedValid(point, this))
         ReleaseCapture();
 
     // find the current select tool and keep its pointer, but if control key pressed,

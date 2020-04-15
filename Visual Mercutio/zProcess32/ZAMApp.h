@@ -1,23 +1,13 @@
-//## begin module%334FC4630329.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%334FC4630329.cm
+/****************************************************************************
+ * ==> PSS_MainApp ---------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the basic main application                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%334FC4630329.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%334FC4630329.cp
+#ifndef PSS_MainAppH
+#define PSS_MainAppH
 
-//## Module: ZAMApp%334FC4630329; Package specification
-//## Subsystem: PlanFin%334FC46302B2
-//## Source file: z:\adsoft~1\ZDesigner\ZAMApp.h
-
-#ifndef ZAMApp_h
-#define ZAMApp_h 1
-
-//## begin module%334FC4630329.additionalIncludes preserve=no
-//## end module%334FC4630329.additionalIncludes
-
-//## begin module%334FC4630329.includes preserve=yes
 #ifndef __AFXWIN_H__
     #error include 'stdafx.h' before including this file for PCH
 #endif
@@ -38,7 +28,7 @@
 #include "zBaseLib\PSS_GlobalFieldDocument.h"
 #include "zBaseLib\PSS_Global.h"
 #ifdef _ZCHECKINFO
-    #include "zBaseLib\ZBCriptedFileApplicationTypeInfo.h"
+    #include "zBaseLib\PSS_CryptedFileApplicationTypeInfo.h"
 #endif
 #include "zEvent\PSS_ActivityLog.h"
 #include "ZTTemplateDocument.h"
@@ -55,7 +45,7 @@
     extern "C" extern void WINAPI InitZResDLL();
     extern "C" extern void WINAPI InitZWinUtilDLL();
 
-    // Three external functions to enable 3d controls
+    // three external functions to enable 3d controls
     #ifdef __cplusplus
         extern "C"
         {
@@ -72,7 +62,7 @@
 using namespace sfl;
 
 /**
-* Main application
+* Basic main application
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
 class ZAMainApp : public PSS_SingleInstanceApplication,
@@ -109,7 +99,7 @@ public:
 
 #ifdef _ZCHECKINFO
     // Return the application directory
-    ZBCriptedFileApplicationTypeInfo::ApplicationInfoType GetApplicationInfoType() const;
+    PSS_CryptedFileApplicationTypeInfo::IEApplicationInfoType GetApplicationInfoType() const;
     CString GetProductKeyFileInfo() const
     {
         return m_ProductKeyFileInfo;
@@ -123,7 +113,7 @@ public:
     // except for new document without names
     virtual bool SaveAllModifiedNoPrompt();
 
-    BOOL ChooseServer();
+    BOOL SelectServer();
     BOOL BuildTemplateName(CString& str, PSS_Stamp& Stamp);
 
     // JMR-MODIF - Le 14 juillet 2005 - Supprimé les fonctions de modification des paramètres de l'imprimante,
@@ -553,7 +543,7 @@ public:
     virtual CString GetServerIniFile();
 
     //## Operation: ExitAppl%912537580
-    virtual BOOL ExitAppl();
+    virtual BOOL ExitApp();
 
     //## Operation: LoadApplicationOptions%912623191
     // Load the application options.
@@ -635,7 +625,7 @@ protected:
         return _T("");
     }
 
-    virtual BOOL InitAppl();
+    virtual BOOL InitApp();
 
     // Used to open a server session
     virtual BOOL OpenServerSession();
@@ -659,7 +649,7 @@ protected:
     void RegisterAdditionalTemplateShellFileTypes(BOOL bCompat = FALSE);
 
     //## Operation: PostInitAppl%910716404
-    virtual BOOL PostInitAppl();
+    virtual BOOL PostInitApp();
 
     //## Operation: LoadAllUsers%934529052
     //    Load all users and initialize the connected user.
@@ -732,8 +722,8 @@ private:
     //## end ZAMainApp::ActivityLog%369BC5AC0258.attr
 
 #ifdef _ZCHECKINFO
-    ZBCriptedFileApplicationTypeInfo::ApplicationInfoType    m_ApplicationInfoType;
-    CString                                                    m_ProductKeyFileInfo;
+    PSS_CryptedFileApplicationTypeInfo::IEApplicationInfoType m_ApplicationInfoType;
+    CString                                                   m_ProductKeyFileInfo;
 #endif
 };
 
@@ -879,7 +869,7 @@ inline PSS_ApplicationOption& ZAMainApp::GetApplicationOptions()
 }
 
 #ifdef _ZCHECKINFO
-inline ZBCriptedFileApplicationTypeInfo::ApplicationInfoType ZAMainApp::GetApplicationInfoType() const
+inline PSS_CryptedFileApplicationTypeInfo::IEApplicationInfoType ZAMainApp::GetApplicationInfoType() const
 {
     return m_ApplicationInfoType;
 }

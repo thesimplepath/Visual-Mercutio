@@ -169,7 +169,7 @@ ZAMainApp::ZAMainApp()
     m_pCurrentDocument(NULL),
     m_FieldRepository(NULL)
 #ifdef _ZCHECKINFO
-    , m_ApplicationInfoType(ZBCriptedFileApplicationTypeInfo::Unknown)
+    , m_ApplicationInfoType(PSS_CryptedFileApplicationTypeInfo::IE_AT_Unknown)
 #endif
 {
     PSS_Global::StartInitialization();
@@ -242,14 +242,14 @@ void ZAMainApp::OnServerChanged()
 // ***************************************** Initialisation et désallocation ************************************
 
 // Cette fonction est appelée lorsque l'application s'initialise.
-BOOL ZAMainApp::InitAppl()
+BOOL ZAMainApp::InitApp()
 {
     // No errors
     return(TRUE);
 }
 
 // Cette fonction est appelée lorsque l'initialisation a été effectuée, mais avant que le programme débute.
-BOOL ZAMainApp::PostInitAppl()
+BOOL ZAMainApp::PostInitApp()
 {
     //## begin ZAMainApp::PostInitAppl%910716404.body preserve=yes
     return TRUE;
@@ -322,7 +322,7 @@ BOOL ZAMainApp::InitInstance()
     // Load the application type
     LoadApplicationInfoType();
 
-    if (GetApplicationInfoType() == ZBCriptedFileApplicationTypeInfo::Unknown)
+    if (GetApplicationInfoType() == PSS_CryptedFileApplicationTypeInfo::IE_AT_Unknown)
     {
     #ifndef _ZNOSPLASH
         if (m_IDD_Splash != 0)
@@ -390,7 +390,7 @@ BOOL ZAMainApp::InitInstance()
 #endif // _ZCHECKINFO
 
     // Call the initializer for the application
-    if (!InitAppl())
+    if (!InitApp())
     {
     #ifndef _ZNOSPLASH
         if (m_IDD_Splash != 0)
@@ -442,7 +442,7 @@ BOOL ZAMainApp::InitInstance()
             return FALSE;
         }
 
-        if (!ChooseServer())
+        if (!SelectServer())
         {
             PSS_MessageDlg message;
             message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
@@ -478,7 +478,7 @@ BOOL ZAMainApp::InitInstance()
 
 #ifdef _ZCHECKINFO
     // Load users only for EntrepriseEdition
-    if (GetApplicationInfoType() == ZBCriptedFileApplicationTypeInfo::EntrepriseEdition)
+    if (GetApplicationInfoType() == PSS_CryptedFileApplicationTypeInfo::IE_AT_EntrepriseEdition)
     {
     #endif // _ZCHECKINFO
 
@@ -720,7 +720,7 @@ BOOL ZAMainApp::InitInstance()
         SaveApplicationOptions();
     }
 
-    if (!PostInitAppl())
+    if (!PostInitApp())
     {
         return FALSE;
     }
@@ -743,7 +743,7 @@ int ZAMainApp::ExitInstance()
 }
 
 // Cette fonction est appelée lorsque le programme est quitté.
-BOOL ZAMainApp::ExitAppl()
+BOOL ZAMainApp::ExitApp()
 {
     //## begin ZAMainApp::ExitAppl%912537580.body preserve=yes
     // If the field repository exists, close session properly
@@ -795,18 +795,16 @@ CString ZAMainApp::GetApplicationDir() const
 #ifdef _ZCHECKINFO
 void ZAMainApp::LoadApplicationInfoType()
 {
-    CString    AppDir = GetApplicationDirectory();
+    CString appDir = GetApplicationDirectory();
 
-    if (AppDir.IsEmpty())
-    {
+    if (appDir.IsEmpty())
         return;
-    }
 
-    CString    AppInfoFile = AppDir + _T("\\zAppInfo.inf");
-    ZBCriptedFileApplicationTypeInfo AppInfo(AppInfoFile);
+    CString                            appInfoFile = appDir + _T("\\zAppInfo.inf");
+    PSS_CryptedFileApplicationTypeInfo appInfo(appInfoFile);
 
-    m_ApplicationInfoType = AppInfo.LoadApplicationType();
-    m_ProductKeyFileInfo = AppInfo.LoadProductKey();
+    m_ApplicationInfoType = appInfo.LoadApplicationType();
+    m_ProductKeyFileInfo  = appInfo.LoadProductKey();
 }
 #endif
 
@@ -1932,7 +1930,7 @@ void ZAMainApp::SetPrinterSettings( short Orientation, short Format )
 
 // *************************************************** Serveurs *************************************************
 
-BOOL ZAMainApp::ChooseServer()
+BOOL ZAMainApp::SelectServer()
 {
     // save the previous server directory
     const CString prevServerDir = GetServerIniFile();
@@ -2011,7 +2009,7 @@ BOOL ZAMainApp::OpenServerSession()
                 return FALSE;
             }
 
-            if (!ChooseServer())
+            if (!SelectServer())
             {
                 PSS_MessageDlg message;
                 message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
@@ -2079,7 +2077,7 @@ BOOL ZAMainApp::OpenServerSession()
                     return FALSE;
                 }
 
-                if (!ChooseServer())
+                if (!SelectServer())
                 {
                     PSS_MessageDlg message;
                     message.ShowMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);

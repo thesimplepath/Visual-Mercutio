@@ -120,7 +120,7 @@
 #define ID_REMOVE_UNIT                           9095
 #define ID_FILE_OPTIONS                          9096
 #define ID_HELP_SUPPORT                          9097
-#define ID_CHOOSE_SERVER                         9098
+#define ID_SELECT_SERVER                         9098
 #define ID_FILE_PROPERTY                         9099
 #define ID_FILE_PROCESSOPTIONS                   9100
 #define ID_FILE_OPENMODEL_FORM                   9101

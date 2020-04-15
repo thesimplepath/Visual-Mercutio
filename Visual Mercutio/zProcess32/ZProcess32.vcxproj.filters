@@ -4,9 +4,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZAApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZAMApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -73,11 +70,11 @@
     <ClCompile Include="PSS_WelcomeProcessDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ZAApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZAMApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -157,6 +154,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_WelcomeProcessDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

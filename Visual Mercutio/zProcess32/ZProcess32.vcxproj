@@ -221,7 +221,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZAApp.cpp">
+    <ClCompile Include="PSS_App.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -315,7 +315,7 @@
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_ModifyView.h" />
     <ClInclude Include="PSS_WelcomeProcessDlg.h" />
-    <ClInclude Include="ZAApp.h" />
+    <ClInclude Include="PSS_App.h" />
     <ClInclude Include="ZAMApp.h" />
     <ClInclude Include="ZCProcessModelDocument.h" />
     <ClInclude Include="ZHelpContext.h" />

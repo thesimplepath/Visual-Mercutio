@@ -2450,7 +2450,7 @@ BEGIN
             MENUITEM "La définition d'un processus", ID_IMPORT_PROCESS
         END
         MENUITEM SEPARATOR
-        MENUITEM "Choisir le serveur local",    ID_CHOOSE_SERVER
+        MENUITEM "Choisir le serveur local",    ID_SELECT_SERVER
         MENUITEM SEPARATOR
         POPUP "Modèles récents"
         BEGIN
@@ -2620,7 +2620,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Référentiel"
         BEGIN
-            MENUITEM "Choisir le référentiel local ...", ID_CHOOSE_SERVER
+            MENUITEM "Choisir le référentiel local ...", ID_SELECT_SERVER
             MENUITEM SEPARATOR
             MENUITEM "Créer un référentiel local ...", ID_CREATE_SERVER
             MENUITEM "Déplacer un référentiel local ...", ID_MOVE_SERVER
@@ -2663,7 +2663,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Référentiel"
         BEGIN
-            MENUITEM "Choisir le référentiel local ...", ID_CHOOSE_SERVER
+            MENUITEM "Choisir le référentiel local ...", ID_SELECT_SERVER
             MENUITEM SEPARATOR
             MENUITEM "Créer un référentiel local ...", ID_CREATE_SERVER
             MENUITEM "Déplacer un référentiel local ...", ID_MOVE_SERVER
@@ -3325,7 +3325,7 @@ BEGIN
     SEPARATOR
     BUTTON      ID_PROCESS_FILENEW
     SEPARATOR
-    BUTTON      ID_CHOOSE_SERVER
+    BUTTON      ID_SELECT_SERVER
     SEPARATOR
     BUTTON      ID_FILE_PRINT_PREVIEW
     BUTTON      ID_FILE_PRINT
@@ -3467,7 +3467,7 @@ BEGIN
     SEPARATOR
     BUTTON      ID_PROCESS_FILENEW
     SEPARATOR
-    BUTTON      ID_CHOOSE_SERVER
+    BUTTON      ID_SELECT_SERVER
     SEPARATOR
     BUTTON      ID_FILE_PRINT_PREVIEW
     BUTTON      ID_FILE_PRINT
@@ -3544,7 +3544,7 @@ BEGIN
     BUTTON      ID_FILE_OPENMODEL
     BUTTON      ID_FILE_SAVE
     SEPARATOR
-    BUTTON      ID_CHOOSE_SERVER
+    BUTTON      ID_SELECT_SERVER
     SEPARATOR
     BUTTON      ID_FILE_PRINT_PREVIEW
     BUTTON      ID_FILE_PRINT
@@ -3583,7 +3583,7 @@ BEGIN
     SEPARATOR
     BUTTON      ID_VIEW_TIPOFDAY
     SEPARATOR
-    BUTTON      ID_CHOOSE_SERVER
+    BUTTON      ID_SELECT_SERVER
     BUTTON      ID_VIEW_FULLSCREEN
     SEPARATOR
     BUTTON      ID_GO_PARENTMODEL
@@ -3849,7 +3849,7 @@ BEGIN
     ID_VIEW_WORKSPACE       "Espace de travail.\nEspace de travail"
     ID_FILE_OPTIONS         "Changer les options de base du modèle."
     ID_HELP_SUPPORT         "Afficher les informations concernant le support."
-    ID_CHOOSE_SERVER        "Vous permet de changer de référentiel local.\nRéférentiel local"
+    ID_SELECT_SERVER        "Vous permet de changer de référentiel local.\nRéférentiel local"
     ID_FILE_PROPERTY        "Afficher les propriétés du fichier"
     ID_FILE_PROCESSOPTIONS  "Modifier les options du processus"
     ID_FILE_OPENMODEL_FORM  "Ouvrir une forme modèle existante.\nOuvrir une forme modèle"

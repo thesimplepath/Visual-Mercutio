@@ -17,7 +17,7 @@
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
 #include "ZCProcessModelDocument.h"
-#include "ZAApp.h"
+#include "PSS_App.h"
 
 // resources
 #ifdef _DEBUG
@@ -85,7 +85,7 @@ static UINT BASED_CODE g_FileButtons[] =
     ID_SEPARATOR,
     ID_VIEW_TIPOFDAY,
     ID_SEPARATOR,
-    ID_CHOOSE_SERVER,
+    ID_SELECT_SERVER,
     ID_VIEW_FULLSCREEN,
 };
 
@@ -484,12 +484,12 @@ int PSS_MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnClose()
 {
-    ZAApp* pApp = ZAApp::ZAGetApp();
+    PSS_App* pApp = PSS_App::GetApp();
 
     if (!pApp)
         return;
 
-    if (!pApp->ExitAppl())
+    if (!pApp->ExitApp())
         return;
 
     if (GetMustSaveBarState())

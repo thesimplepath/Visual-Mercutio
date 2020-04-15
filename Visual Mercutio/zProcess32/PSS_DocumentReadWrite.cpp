@@ -31,7 +31,7 @@
     #include "wzattach.h"
     #include "FrmMng.h"
 #endif
-#include "ZAApp.h"
+#include "PSS_App.h"
 
 // resources
 #include "Resources.h"
@@ -312,7 +312,7 @@ void PSS_DocumentReadWrite::OnUpdateFileSaveAs(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_DocumentReadWrite::OnImport()
 {
-    ZAApp* pApp = ZAApp::ZAGetApp();
+    PSS_App* pApp = PSS_App::GetApp();
 
     if (!pApp)
         return;
@@ -364,7 +364,7 @@ void PSS_DocumentReadWrite::OnImport()
 //---------------------------------------------------------------------------
 void PSS_DocumentReadWrite::OnExport()
 {
-    ZAApp* pApp = ZAApp::ZAGetApp();
+    PSS_App* pApp = PSS_App::GetApp();
 
     if (!pApp)
         return;
@@ -745,7 +745,7 @@ void PSS_DocumentReadWrite::OnFormManage()
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentReadWrite::BuildTemplateName(CString& str)
 {
-    ZAApp* pApp = ZAApp::ZAGetApp();
+    PSS_App* pApp = PSS_App::GetApp();
 
     if (!pApp)
         return FALSE;
@@ -766,7 +766,7 @@ BOOL PSS_DocumentReadWrite::SaveModified()
     if (DocumentIsTemplate())
         return FALSE;
 
-    ZAApp* pApp = ZAApp::ZAGetApp();
+    PSS_App* pApp = PSS_App::GetApp();
 
     if (!pApp)
         return FALSE;
@@ -880,7 +880,7 @@ BOOL PSS_DocumentReadWrite::OnSaveDocument(const char* pPathName)
         // set the last opened file name
         if (!DocumentIsTemplate())
         {
-            ZAApp* pApp = ZAApp::ZAGetApp();
+            PSS_App* pApp = PSS_App::GetApp();
 
             if (pApp)
                 pApp->SetLastLoadedFile(pPathName);
