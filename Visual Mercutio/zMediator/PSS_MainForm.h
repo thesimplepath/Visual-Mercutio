@@ -73,7 +73,7 @@ class AFX_EXT_CLASS PSS_MainForm : public CWinApp
         * Updates the last loaded file
         *@param fileName - file name to upload
         */
-        virtual void UpdateLastLoadedFile(const CString& fileName) = 0;
+        virtual void UpdateLastLoadedFileName(const CString& fileName) = 0;
 
         /**
         * Gets the Risk type container
@@ -93,15 +93,14 @@ class AFX_EXT_CLASS PSS_MainForm : public CWinApp
         */
         virtual PSS_RiskProbabilityContainer* GetRiskProbabilityContainer() = 0;
 
-        // JMR-MODIF - Le 16 octobre 2007 - Ajout de cette fonction pour corriger un bug du menu "Fichiers récents".
         /**
-        * Called after document is opened
-        *@param pDoc - opened document
-        *@param fileName - opened document file name
+        * Called after a document was opened
+        *@param pDoc - the opened document
+        *@param fileName - the document file name
         */
         virtual void OnAfterOpenDocument(CDocument* pDoc, const CString& fileName) = 0;
 
-        /// Message map
+        /// Generated message map
         //{{AFX_MSG(PSS_MainForm)
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()

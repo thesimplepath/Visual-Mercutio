@@ -1,11 +1,13 @@
-// Class ZITemplateDocument
+/****************************************************************************
+ * ==> PSS_TemplateDocument ------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a template document                               *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#ifndef ZTTemplateDocument_h
-#define ZTTemplateDocument_h 1
+#ifndef PSS_TemplateDocumentH
+#define PSS_TemplateDocumentH
 
-// JMR-MODIF - Le 3 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
 // scope symbols in stingray foundation library
 using namespace sfl;
 

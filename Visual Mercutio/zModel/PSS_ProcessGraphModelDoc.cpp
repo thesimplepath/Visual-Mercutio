@@ -1294,7 +1294,7 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
 
     PSS_MainForm* pMainForm = PSS_Application::Instance()->GetMainForm();
     ASSERT(pMainForm);
-    pMainForm->UpdateLastLoadedFile(pPathName);
+    pMainForm->UpdateLastLoadedFileName(pPathName);
 
     // Message to notify the start of filesave
     if (m_pOutputLog)

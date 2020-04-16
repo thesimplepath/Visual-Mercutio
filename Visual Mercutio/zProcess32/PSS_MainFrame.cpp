@@ -16,7 +16,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
-#include "ZCProcessModelDocument.h"
+#include "PSS_ProcessModelDocument.h"
 #include "PSS_App.h"
 
 // resources

@@ -322,7 +322,7 @@ void ZVProcessWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 // Initialize functions
 void ZVProcessWorkspace::InitializeModelDocumentTree(PSS_ModelSet* pModelSet)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -338,7 +338,7 @@ void ZVProcessWorkspace::InitializeModelUnitTree(PSS_ModelSet* pModelSet)
 // Empty functions
 void ZVProcessWorkspace::EmptyModelDocumentTree()
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -348,7 +348,7 @@ void ZVProcessWorkspace::EmptyModelDocumentTree()
 
 void ZVProcessWorkspace::EmptyModelUnitTree()
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -359,7 +359,7 @@ void ZVProcessWorkspace::EmptyModelUnitTree()
 // Refresh functions
 void ZVProcessWorkspace::RefreshModelDocumentTree()
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -369,7 +369,7 @@ void ZVProcessWorkspace::RefreshModelDocumentTree()
 
 void ZVProcessWorkspace::RefreshModelUnitTree()
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -379,7 +379,7 @@ void ZVProcessWorkspace::RefreshModelUnitTree()
 
 void ZVProcessWorkspace::AddModelDocument(PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -389,7 +389,7 @@ void ZVProcessWorkspace::AddModelDocument(PSS_ProcessGraphModelMdl* pModel)
 
 void ZVProcessWorkspace::RemoveModelDocument(PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -399,7 +399,7 @@ void ZVProcessWorkspace::RemoveModelDocument(PSS_ProcessGraphModelMdl* pModel)
 
 void ZVProcessWorkspace::AddModelDocumentSet(PSS_ModelSet* pModelSet)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -409,7 +409,7 @@ void ZVProcessWorkspace::AddModelDocumentSet(PSS_ModelSet* pModelSet)
 
 void ZVProcessWorkspace::RemoveModelDocumentSet(PSS_ModelSet* pModelSet)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -419,7 +419,7 @@ void ZVProcessWorkspace::RemoveModelDocumentSet(PSS_ModelSet* pModelSet)
 
 void ZVProcessWorkspace::AddModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -429,7 +429,7 @@ void ZVProcessWorkspace::AddModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS
 
 void ZVProcessWorkspace::RemoveModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -439,7 +439,7 @@ void ZVProcessWorkspace::RemoveModelDocumentSymbol(CODSymbolComponent* pSymbol, 
 
 void ZVProcessWorkspace::ModifyModelDocumentSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -450,7 +450,7 @@ void ZVProcessWorkspace::ModifyModelDocumentSymbol(CODSymbolComponent* pSymbol, 
 
 void ZVProcessWorkspace::AddModelUnit(PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -460,7 +460,7 @@ void ZVProcessWorkspace::AddModelUnit(PSS_ProcessGraphModelMdl* pModel)
 
 void ZVProcessWorkspace::RemoveModelUnit(PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -470,7 +470,7 @@ void ZVProcessWorkspace::RemoveModelUnit(PSS_ProcessGraphModelMdl* pModel)
 
 void ZVProcessWorkspace::AddModelUnitSet(PSS_ModelSet* pModelSet)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -480,7 +480,7 @@ void ZVProcessWorkspace::AddModelUnitSet(PSS_ModelSet* pModelSet)
 
 void ZVProcessWorkspace::RemoveModelUnitSet(PSS_ModelSet* pModelSet)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -490,7 +490,7 @@ void ZVProcessWorkspace::RemoveModelUnitSet(PSS_ModelSet* pModelSet)
 
 void ZVProcessWorkspace::AddModelUnitSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {
@@ -500,7 +500,7 @@ void ZVProcessWorkspace::AddModelUnitSymbol(CODSymbolComponent* pSymbol, PSS_Pro
 
 void ZVProcessWorkspace::RemoveModelUnitSymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphModelMdl* pModel)
 {
-    ZCProcessModelDocument* pTree = GetModelDocumentTree();
+    PSS_ProcessModelDocument* pTree = GetModelDocumentTree();
 
     if (pTree)
     {

@@ -883,7 +883,7 @@ BOOL PSS_DocumentReadWrite::OnSaveDocument(const char* pPathName)
             PSS_App* pApp = PSS_App::GetApp();
 
             if (pApp)
-                pApp->SetLastLoadedFile(pPathName);
+                pApp->SetLastLoadedFileName(pPathName);
         }
 
         result = CDocument::OnSaveDocument(pPathName);

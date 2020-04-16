@@ -138,11 +138,11 @@ CDocTemplate* PSS_AppGridAdapter::GetDocTemplate(CRuntimeClass* pViewClass, CRun
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_App, ZAMainApp)
+IMPLEMENT_DYNAMIC(PSS_App, PSS_MainApp)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_App, ZAMainApp)
+BEGIN_MESSAGE_MAP(PSS_App, PSS_MainApp)
     //{{AFX_MSG_MAP(PSS_App)
     ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
     ON_COMMAND(ID_HELP_SUPPORT, OnHelpSupport)
@@ -263,7 +263,7 @@ END_MESSAGE_MAP()
 // PSS_App
 //---------------------------------------------------------------------------
 PSS_App::PSS_App() :
-    ZAMainApp(),
+    PSS_MainApp(),
     PSS_AppGridAdapter(),
     m_pWorkspaceEnvDocument(NULL),
     m_pWorkspaceTemplateManager(NULL),
@@ -275,9 +275,9 @@ PSS_App::PSS_App() :
     m_pRiskImpactContainer(NULL),
     m_pRiskProbabilityContainer(NULL)
 {
-    m_IDD_Splash  = IDB_SPLASHLOGO_2000;
-    m_IDD_About   = IDB_SPLASHLOGO;
-    m_IDD_Support = IDB_SPLASHLOGO;
+    m_SplashID  = IDB_SPLASHLOGO_2000;
+    m_AboutID   = IDB_SPLASHLOGO;
+    m_SupportID = IDB_SPLASHLOGO;
 
     // assign DDE names
     m_CppServerName = _T("DDE_ZPROCESS_NAME");
@@ -321,12 +321,12 @@ const PSS_App& PSS_App::operator = (const PSS_App& other)
 //---------------------------------------------------------------------------
 BOOL PSS_App::InitInstance()
 {
-    return ZAMainApp::InitInstance();
+    return PSS_MainApp::InitInstance();
 }
 //---------------------------------------------------------------------------
 int PSS_App::ExitInstance()
 {
-    return ZAMainApp::ExitInstance();
+    return PSS_MainApp::ExitInstance();
 }
 //---------------------------------------------------------------------------
 void PSS_App::Release()
@@ -402,7 +402,7 @@ void PSS_App::Release()
     PSS_FloatingToolBar::Release();
 
     // call the function in the base class
-    ZAMainApp::Release();
+    PSS_MainApp::Release();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_App::IsCursorCapturedValid(const CPoint& point, PSS_View* pView)
@@ -640,7 +640,7 @@ bool PSS_App::CloseCurrentWorkspace(bool askClosingDocument)
         // before deleting the workspace environment, set the last open file to the workspace file name
         if (m_pWorkspaceEnvDocument)
         {
-            SetLastLoadedFile(m_pWorkspaceEnvDocument->GetPathName());
+            SetLastLoadedFileName(m_pWorkspaceEnvDocument->GetPathName());
             delete m_pWorkspaceEnvDocument;
         }
 
@@ -692,7 +692,7 @@ bool PSS_App::SaveCurrentWorkspace()
         m_pWorkspaceEnvDocument->SetModifiedFlag(FALSE);
 
         // set the last open file as the workspace file name
-        SetLastLoadedFile(m_pWorkspaceEnvDocument->GetPathName());
+        SetLastLoadedFileName(m_pWorkspaceEnvDocument->GetPathName());
     }
 
     return result;
@@ -899,7 +899,7 @@ BOOL PSS_App::ExitApp()
     appOptions.SetRiskImpactFileName(m_pRiskImpactContainer->GetFileName());
     appOptions.SetRiskProbabilityFileName(m_pRiskProbabilityContainer->GetFileName());
 
-    return ZAMainApp::ExitApp();
+    return PSS_MainApp::ExitApp();
 }
 //---------------------------------------------------------------------------
 void PSS_App::SetVisualToolObject(const CString& className)
@@ -1052,7 +1052,7 @@ void PSS_App::OnFileOpenModel()
         PSS_Global::GetProcessModelDocumentTemplate()->AddToRecentFileList(newName);
 
         // set the last loaded file
-        SetLastLoadedFile(newName);
+        SetLastLoadedFileName(newName);
     }
 
     g_FirstTimeChangeServerDirectory = true;
@@ -1317,7 +1317,7 @@ void PSS_App::OnUpdateCloseWorkspace(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnFileOpen()
 {
-    ZAMainApp::OnFileOpen();
+    PSS_MainApp::OnFileOpen();
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnProcessFileOpen()
@@ -3368,7 +3368,7 @@ BOOL PSS_App::InitApp()
 //---------------------------------------------------------------------------
 BOOL PSS_App::PostInitApp()
 {
-    if (!ZAMainApp::PostInitApp())
+    if (!PSS_MainApp::PostInitApp())
         return FALSE;
 
     // set the global historic value file name
@@ -3489,8 +3489,8 @@ BOOL PSS_App::PostInitApp()
                 case ID_WELCOME_OPENMODEL:         OnFileOpenModel(); break;
                 case ID_WELCOME_OPENPROJECT:       OnOpenWorkspace(); break;
                 case ID_WELCOME_LASTFILE:
-                    if (!GetLastLoadedFile().IsEmpty())
-                        OpenDocumentFile(GetLastLoadedFile());
+                    if (!GetLastLoadedFileName().IsEmpty())
+                        OpenDocumentFile(GetLastLoadedFileName());
 
                     break;
             }
@@ -3498,7 +3498,7 @@ BOOL PSS_App::PostInitApp()
         else
         if (MustOpenLastLoadedFile())
         {
-            const CString lastLoadedFile = GetLastLoadedFile();
+            const CString lastLoadedFile = GetLastLoadedFileName();
 
             // should reload the last opened file
             if (!lastLoadedFile.IsEmpty())
@@ -3874,64 +3874,56 @@ void PSS_App::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
 
     std::unique_ptr<PSS_File> pFile(new PSS_File(fileName));
 
-    if (!pFile.get())
-    {
-        pProcessGraphMdlDoc->SetReadOnly(FALSE);
-        return;
-    }
-
     if (!pFile->Exist())
-    {
         pProcessGraphMdlDoc->SetReadOnly(FALSE);
-        return;
-    }
-
+    else
     if (!pFile->IsReadOnly())
     {
         // lock the model while opened
         pFile->SetReadOnly(TRUE);
         pProcessGraphMdlDoc->SetReadOnly(FALSE);
     }
-
-    PSS_MsgBox mBox;
-
-    // change the cancel button to the unlock one
-    mBox.DoChangeCancelBtnToUnlockBtn();
-
-    // warn the user
-    switch (mBox.Show(IDS_FILE_READONLY, MB_YESNOCANCEL))
+    else
     {
-        case IDYES:
-            // the user wants to open the model in read-only mode
-            pProcessGraphMdlDoc->SetReadOnly(TRUE);
-            break;
+        PSS_MsgBox mBox;
 
-        // JMR-MODIF - Le 7 novembre 2006 - Autorise le déverrouillage du fichier.
-        case IDCANCEL:
+        // change the cancel button to the unlock one
+        mBox.DoChangeCancelBtnToUnlockBtn();
+
+        // warn the user
+        switch (mBox.Show(IDS_FILE_READONLY, MB_YESNOCANCEL))
         {
-            PSS_MsgBox mWarnBox;
-
-            if (mWarnBox.Show(IDS_FILE_WARN_UNLOCK, MB_YESNO) == IDNO)
-            {
+            case IDYES:
+                // the user wants to open the model in read-only mode
                 pProcessGraphMdlDoc->SetReadOnly(TRUE);
-                pDoc->OnCloseDocument();
+                break;
 
-                return;
+            case IDCANCEL:
+            {
+                PSS_MsgBox mWarnBox;
+
+                // allow the user to unlock the file
+                if (mWarnBox.Show(IDS_FILE_WARN_UNLOCK, MB_YESNO) == IDNO)
+                {
+                    pProcessGraphMdlDoc->SetReadOnly(TRUE);
+                    pDoc->OnCloseDocument();
+
+                    return;
+                }
+
+                // allow the file to be unlocked
+                pFile->SetReadOnly(TRUE);
+                pProcessGraphMdlDoc->SetReadOnly(FALSE);
+
+                break;
             }
 
-            // allow the file to be unlocked
-            pFile->SetReadOnly(TRUE);
-            pProcessGraphMdlDoc->SetReadOnly(FALSE);
-
-            break;
+            default:
+                // the user wan't open the model in read-only mode
+                pProcessGraphMdlDoc->SetReadOnly(TRUE);
+                pDoc->OnCloseDocument();
+                return;
         }
-
-        case IDNO:
-        default:
-            // the user wan't open the model in read-only mode
-            pProcessGraphMdlDoc->SetReadOnly(TRUE);
-            pDoc->OnCloseDocument();
-            return;
     }
 
     // assign the main user group
@@ -3958,7 +3950,7 @@ void PSS_App::OnAfterSaveDocument(CDocument* pDoc)
 //---------------------------------------------------------------------------
 void PSS_App::OnServerChanged()
 {
-    ZAMainApp::OnServerChanged();
+    PSS_MainApp::OnServerChanged();
 
     // save all the files
     OnFileSaveAll();

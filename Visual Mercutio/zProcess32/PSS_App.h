@@ -9,7 +9,7 @@
 #define PSS_AppH
 
 // processsoft
-#include "ZAMApp.h"
+#include "PSS_MainApp.h"
 #include "PSS_DocumentReadWrite.h"
 
 // class name mapping
@@ -82,12 +82,12 @@ class PSS_AppGridAdapter : public CGXAppAdapter
 * Main application
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_App : public ZAMainApp, public PSS_AppGridAdapter
+class PSS_App : public PSS_MainApp, public PSS_AppGridAdapter
 {
     DECLARE_DYNAMIC(PSS_App)
 
     public:
-        typedef ZAMainApp inherited;
+        typedef PSS_MainApp inherited;
 
         PSS_App();
         virtual ~PSS_App();
@@ -116,10 +116,10 @@ class PSS_App : public ZAMainApp, public PSS_AppGridAdapter
         virtual void Release();
 
         /**
-        * Updates the last loaded file
+        * Updates the last loaded file name
         *@param fileName - the last loaded file name
         */
-        virtual inline void UpdateLastLoadedFile(const CString& fileName);
+        virtual inline void UpdateLastLoadedFileName(const CString& fileName);
 
         /**
         * Gets the application name
@@ -723,9 +723,9 @@ PSS_App* PSS_App::GetApp()
     return dynamic_cast<PSS_App*>(::AfxGetApp());
 }
 //---------------------------------------------------------------------------
-void PSS_App::UpdateLastLoadedFile(const CString& fileName)
+void PSS_App::UpdateLastLoadedFileName(const CString& fileName)
 {
-    SetLastLoadedFile(fileName);
+    SetLastLoadedFileName(fileName);
 }
 //---------------------------------------------------------------------------
 CString PSS_App::GetApplicationName() const

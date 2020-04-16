@@ -14,7 +14,7 @@
 #include "zWinUtil32\PSS_FormTemplateTreeCtrl.h"
 #include "zWinUtil32\PSS_FileWnd.h"
 #include "zWinUtil32\PSS_UrlWnd.h"
-#include "ZCProcessModelDocument.h"
+#include "PSS_ProcessModelDocument.h"
 #include "ZVLogicalSystem.h"
 #include "ZVUserGroup.h"
 #include "ZVPrestations.h"
@@ -107,7 +107,7 @@ public:
 
     ///////////////////////////////////////////////////////////
     // Model document methods
-    ZCProcessModelDocument* GetModelDocumentTree();
+    PSS_ProcessModelDocument* GetModelDocumentTree();
 
     void ActivateModelDocumentTab()
     {
@@ -308,7 +308,7 @@ private:
     SEC3DTabWnd                m_wndTab;
 
     PSS_WorkspaceTreeCtrl    m_WorkspaceView;
-    ZCProcessModelDocument   m_ProcessModelView;
+    PSS_ProcessModelDocument   m_ProcessModelView;
     PSS_FormTemplateTreeCtrl m_FormTemplateView;
     ZVUserGroup                m_UserView;
     ZVLogicalSystem            m_LogicalSystemView;
@@ -318,7 +318,7 @@ private:
     PSS_UrlWnd                m_URLView;
 };
 
-inline ZCProcessModelDocument* ZVProcessWorkspace::GetModelDocumentTree()
+inline PSS_ProcessModelDocument* ZVProcessWorkspace::GetModelDocumentTree()
 {
     return &m_ProcessModelView;
 }
