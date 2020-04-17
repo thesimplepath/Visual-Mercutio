@@ -163,7 +163,7 @@ END_MESSAGE_MAP()
 PSS_MainApp::PSS_MainApp() :
     PSS_SingleInstanceApplication(),
     PSS_Subject(),
-    ZTTemplateDocument<_TemplateFunctionNoopAccessor>(),
+    PSS_TemplateDocument<PSS_TemplateFunctionNoopAccessor>(),
     m_pCurrentDocument(NULL),
     m_pOldSelectedObj(NULL),
     m_pFieldRepository(NULL),
@@ -734,7 +734,7 @@ CDocument* PSS_MainApp::OpenDocumentFile(LPCTSTR pFileName)
     if (!pFileName)
         return NULL;
 
-    _TemplateMapCollection::_TemplateEntry* pEntry = GetTemplateEntryByFileName(pFileName);
+    ITemplateMapCollection::ITemplateEntry* pEntry = GetTemplateEntryByFileName(pFileName);
     CDocument*                              pDoc   = NULL;
 
     if (pEntry)
@@ -1270,11 +1270,11 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
     CString   filterExt;
     CString   fileTypeId;
     CString   fileTypeName;
-    const int count = GetTemplateNumEntries();
+    const int count = GetTemplateCount();
 
     for (int i = 0; i < count; ++i)
     {
-        IClassInfo::_TemplateMapCollection::_TemplateEntry* pEntry = GetTemplateAt(i);
+        IClassInfo::ITemplateMapCollection::ITemplateEntry* pEntry = GetTemplateAt(i);
 
         if (!pEntry)
             continue;
@@ -1285,16 +1285,16 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
         CString defaultIconCommandLine = pathName;
 
         // check if the template must be registered
-        if (pEntry->GetTemplateString(mustBeRegistered, IClassInfo::TemplateMustBeRegisteredPosition) &&
+        if (pEntry->GetTemplateString(mustBeRegistered, IClassInfo::IE_SI_TemplateMustBeRegisteredPosition) &&
             !mustBeRegistered.IsEmpty())
             // if equal to zero, do not register
             if (!std::atoi(mustBeRegistered))
                 continue;
 
-        if (pEntry->GetTemplateString(fileTypeId, IClassInfo::regFileTypeId) && !fileTypeId.IsEmpty())
+        if (pEntry->GetTemplateString(fileTypeId, IClassInfo::IE_SI_RegFileTypeId) && !fileTypeId.IsEmpty())
         {
             if (compat)
-                if (pEntry->GetTemplateString(iconIndex, IClassInfo::DefaultIconPosition) && !iconIndex.IsEmpty())
+                if (pEntry->GetTemplateString(iconIndex, IClassInfo::IE_SI_DefaultIconPosition) && !iconIndex.IsEmpty())
                 {
                     const int index = std::atoi(iconIndex);
                     HICON     hIcon = ::ExtractIcon(hInstance, pathName, index);
@@ -1313,7 +1313,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
                 }
 
             // enough info to register it?
-            if (!pEntry->GetTemplateString(fileTypeName, IClassInfo::regFileTypeName))
+            if (!pEntry->GetTemplateString(fileTypeName, IClassInfo::IE_SI_RegFileTypeName))
                 // use id name
                 fileTypeName = fileTypeId;
 
@@ -1334,7 +1334,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
             }
 
             // if MDI application
-            if (!pEntry->GetTemplateString(tempStr, IClassInfo::windowTitle) || tempStr.IsEmpty())
+            if (!pEntry->GetTemplateString(tempStr, IClassInfo::IE_SI_WindowTitle) || tempStr.IsEmpty())
             {
                 // path\shell\open\ddeexec = [open("%1")]
                 tempStr.Format(g_AfxShellOpenFmt, LPCTSTR(fileTypeId), LPCTSTR(g_AfxDDEExec));
@@ -1401,7 +1401,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
                     continue;
             }
 
-            pEntry->GetTemplateString(filterExt, IClassInfo::filterExt);
+            pEntry->GetTemplateString(filterExt, IClassInfo::IE_SI_FilterExt);
 
             if (!filterExt.IsEmpty())
             {
@@ -1460,7 +1460,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
 
         // check if the template must be registered
         if (pTemplate->GetDocString(mustBeRegistered,
-                                    CDocTemplate::DocStringIndex(IClassInfo::TemplateMustBeRegisteredPosition)) &&
+                                    CDocTemplate::DocStringIndex(IClassInfo::IE_SI_TemplateMustBeRegisteredPosition)) &&
             !mustBeRegistered.IsEmpty())
             // if equal to zero, do not register
             if (!std::atoi(mustBeRegistered))
@@ -1471,7 +1471,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
             if (compat)
             {
                 if (pTemplate->GetDocString(iconIndex,
-                                            CDocTemplate::DocStringIndex(IClassInfo::DefaultIconPosition)) &&
+                                            CDocTemplate::DocStringIndex(IClassInfo::IE_SI_DefaultIconPosition)) &&
                     !iconIndex.IsEmpty())
                 {
                     const int index = std::atoi(iconIndex);

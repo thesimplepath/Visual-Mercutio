@@ -95,7 +95,7 @@ int ZVProcessWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
     }
 
     BOOL rtn_val;
-    rtn_val = m_wndTab.Create(this);
+    rtn_val = m_WndTab.Create(this);
 
     // Note: OT 5.0 and earlier would stretch a 32x32 icon resource down to
     // 16x16. 5.1 and above defaults to native 16x16 sized icons, when available
@@ -105,44 +105,44 @@ int ZVProcessWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     m_WorkspaceView.Create(WS_CHILD | WS_VISIBLE,
                            CRect(0, 0, 0, 0),
-                           &m_wndTab,
+                           &m_WndTab,
                            IDC_WORKSPACEVIEW);
 
     CString s;
     s.LoadString(IDS_APPWKS_PROJECT);
-    m_wndTab.AddTab(&m_WorkspaceView, s);
-    m_wndTab.SetTabIcon(def_WorkspaceTabIndex, IDI_IL_WORKSPACEVIEW);
+    m_WndTab.AddTab(&m_WorkspaceView, s);
+    m_WndTab.SetTabIcon(def_WorkspaceTabIndex, IDI_IL_WORKSPACEVIEW);
 
     m_ProcessModelView.Create(WS_CHILD | WS_VISIBLE,
                               CRect(0, 0, 0, 0),
-                              &m_wndTab,
+                              &m_WndTab,
                               IDC_MODELVIEW);
 
     s.LoadString(IDS_APPWKS_MODELNAV);
-    m_wndTab.AddTab(&m_ProcessModelView, s);
-    m_wndTab.SetTabIcon(def_ModelDocumentTabIndex, IDI_IL_MODELVIEW);
+    m_WndTab.AddTab(&m_ProcessModelView, s);
+    m_WndTab.SetTabIcon(def_ModelDocumentTabIndex, IDI_IL_MODELVIEW);
 
     m_UserView.Create(NULL,
                       NULL,
                       WS_CHILD | WS_VISIBLE,
                       CRect(0, 0, 0, 0),
-                      &m_wndTab,
+                      &m_WndTab,
                       IDC_USERVIEW);
 
     s.LoadString(IDS_APPWKS_UNITS);
-    m_wndTab.AddTab(&m_UserView, s);
-    m_wndTab.SetTabIcon(def_UserTabIndex, IDI_IL_USERVIEW);
+    m_WndTab.AddTab(&m_UserView, s);
+    m_WndTab.SetTabIcon(def_UserTabIndex, IDI_IL_USERVIEW);
 
     m_LogicalSystemView.Create(NULL,
                                NULL,
                                WS_CHILD | WS_VISIBLE,
                                CRect(0, 0, 0, 0),
-                               &m_wndTab,
+                               &m_WndTab,
                                IDC_LOGICALSYSTEMVIEW);
 
     s.LoadString(IDS_APPWKS_LOGICALSYSTEMS);
-    m_wndTab.AddTab(&m_LogicalSystemView, s);
-    m_wndTab.SetTabIcon(def_LogicalSystemTabIndex, IDI_IL_LOGICALSYSTEMVIEW);
+    m_WndTab.AddTab(&m_LogicalSystemView, s);
+    m_WndTab.SetTabIcon(def_LogicalSystemTabIndex, IDI_IL_LOGICALSYSTEMVIEW);
 
     // *********************************************************************************************
     // JMR-MODIF - Le 11 octobre 2005 - Ajout du code de création de la nouvelle vue de prestations.
@@ -150,12 +150,12 @@ int ZVProcessWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
                              NULL,
                              WS_CHILD | WS_VISIBLE,
                              CRect(0, 0, 0, 0),
-                             &m_wndTab,
+                             &m_WndTab,
                              IDC_PRESTATIONSVIEW);
 
     s.LoadString(IDS_APPWKS_PRESTATIONS);
-    m_wndTab.AddTab(&m_PrestationsView, s);
-    m_wndTab.SetTabIcon(def_PrestationsTabIndex, IDI_IL_PRESTATIONSVIEW);
+    m_WndTab.AddTab(&m_PrestationsView, s);
+    m_WndTab.SetTabIcon(def_PrestationsTabIndex, IDI_IL_PRESTATIONSVIEW);
     // *********************************************************************************************
 
     // ******************************************************************************************
@@ -164,35 +164,35 @@ int ZVProcessWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
                        NULL,
                        WS_CHILD | WS_VISIBLE,
                        CRect(0, 0, 0, 0),
-                       &m_wndTab,
+                       &m_WndTab,
                        IDC_RULESVIEW);
 
     s.LoadString(IDS_APPWKS_RULES);
-    m_wndTab.AddTab(&m_RulesView, s);
-    m_wndTab.SetTabIcon(def_RulesTabIndex, IDI_IL_RULESVIEW);
+    m_WndTab.AddTab(&m_RulesView, s);
+    m_WndTab.SetTabIcon(def_RulesTabIndex, IDI_IL_RULESVIEW);
     // ******************************************************************************************
 
     m_FileView.Create(NULL,
                       NULL,
                       WS_CHILD | WS_VISIBLE,
                       CRect(0, 0, 0, 0),
-                      &m_wndTab,
+                      &m_WndTab,
                       IDC_FILEVIEW);
 
     s.LoadString(IDS_APPWKS_FILEBROWSER);
-    m_wndTab.AddTab(&m_FileView, s);
-    m_wndTab.SetTabIcon(def_FileTabIndex, IDI_IL_FILEVIEW);
+    m_WndTab.AddTab(&m_FileView, s);
+    m_WndTab.SetTabIcon(def_FileTabIndex, IDI_IL_FILEVIEW);
 
     // JMR-MODIF - Le 13 novembre 2006 - Espace de travail Scriptor obsolète. Nouveau code rends l'affichage optionnel.
 #ifdef _DISPLAY_SCRIPTOR
     m_FormTemplateView.Create(WS_CHILD | WS_VISIBLE,
                               CRect(0, 0, 0, 0),
-                              &m_wndTab,
+                              &m_WndTab,
                               IDC_FORMVIEW);
 
     s.LoadString(IDS_APPWKS_FORMS);
-    m_wndTab.AddTab(&m_FormTemplateView, s);
-    m_wndTab.SetTabIcon(def_FormTemplateTabIndex, IDI_IL_FORMVIEW);
+    m_WndTab.AddTab(&m_FormTemplateView, s);
+    m_WndTab.SetTabIcon(def_FormTemplateTabIndex, IDI_IL_FORMVIEW);
 #endif // _DISPLAY_SCRIPTOR
 
 #ifdef _DISPLAY_WEBVIEW
@@ -200,12 +200,12 @@ int ZVProcessWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
                      NULL,
                      WS_CHILD | WS_VISIBLE,
                      CRect(0, 0, 0, 0),
-                     &m_wndTab,
+                     &m_WndTab,
                      IDC_WEBVIEW);
 
     s.LoadString(IDS_APPWKS_WEBBROWSER);
-    m_wndTab.AddTab(&m_URLView, s);
-    m_wndTab.SetTabIcon(def_WebTabIndex, IDI_IL_WEBVIEW);
+    m_WndTab.AddTab(&m_URLView, s);
+    m_WndTab.SetTabIcon(def_WebTabIndex, IDI_IL_WEBVIEW);
 #endif // _DISPLAY_WEBVIEW
 
     return 0;
@@ -214,15 +214,15 @@ int ZVProcessWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void ZVProcessWorkspace::Initialize()
 {
     // Set the first active view
-    m_wndTab.ActivateTab(def_ModelDocumentTabIndex);
-    m_wndTab.ScrollToTab(def_ModelDocumentTabIndex);
+    m_WndTab.ActivateTab(def_ModelDocumentTabIndex);
+    m_WndTab.ScrollToTab(def_ModelDocumentTabIndex);
 }
 
 void ZVProcessWorkspace::OnContextMenu(CWnd* pWnd, CPoint point)
 {
     // Try to locate the active tab
     CWnd* pActiveWnd;
-    m_wndTab.GetActiveTab(pActiveWnd);
+    m_WndTab.GetActiveTab(pActiveWnd);
 
     // Check which window
     if (pActiveWnd == GetWorkspaceView())
@@ -249,7 +249,7 @@ void ZVProcessWorkspace::OnContextMenu(CWnd* pWnd, CPoint point)
     {
         if (GetLogicalSystemView()->HasContextMenu(pWnd, point) != -1)
         {
-            GetLogicalSystemView()->DisplayContextMenu(pWnd, point);
+            GetLogicalSystemView()->ShowContextMenu(pWnd, point);
 
             // Done
             return;
@@ -516,7 +516,7 @@ void ZVProcessWorkspace::OnSize(UINT nType, int cx, int cy)
     CRect rectInside;
     GetInsideRect(rectInside);
 
-    ::SetWindowPos(m_wndTab.m_hWnd,
+    ::SetWindowPos(m_WndTab.m_hWnd,
                    NULL,
                    rectInside.left,
                    rectInside.top,

@@ -31,7 +31,7 @@
     #include "zBaseLib\PSS_CryptedFileApplicationTypeInfo.h"
 #endif
 #include "zEvent\PSS_ActivityLog.h"
-#include "ZTTemplateDocument.h"
+#include "PSS_TemplateDocument.h"
 #include "PSS_ModifyView.h"
 #include "PSS_ExternalBoxFunctions.h"
 #include "PSS_MainFrame.h"
@@ -67,7 +67,7 @@ using namespace sfl;
 */
 class PSS_MainApp : public PSS_SingleInstanceApplication,
                     public PSS_Subject,
-                    public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
+                    public PSS_TemplateDocument<PSS_TemplateFunctionNoopAccessor>
 {
     DECLARE_DYNAMIC(PSS_MainApp)
 
@@ -804,7 +804,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
         #endif
 
     protected:
-        typedef ZTTemplateDocument<_TemplateFunctionNoopAccessor> IClassInfo;
+        typedef PSS_TemplateDocument<PSS_TemplateFunctionNoopAccessor> IClassInfo;
 
         PSS_Document*         m_pCurrentDocument;
         PSS_PlanFinObject*    m_pOldSelectedObj;

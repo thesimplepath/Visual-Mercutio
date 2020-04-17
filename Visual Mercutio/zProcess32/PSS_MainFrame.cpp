@@ -681,7 +681,7 @@ LRESULT PSS_MainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
             if (pPropsWorkspace)
                 pDoc->AttachObserver(pPropsWorkspace);
 
-            ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+            PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
             if (pOutputWorkspace)
             {
@@ -690,9 +690,9 @@ LRESULT PSS_MainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
                 pOutputWorkspace->AttachObserver(pDoc);
 
                 pDoc->Initialize(pOutputWorkspace->GetLogView(),
-                                 pOutputWorkspace->GetLogAnalyzerView(),
-                                 pOutputWorkspace->GetLogSearchView(),
-                                 pOutputWorkspace->GetLogWorkflowView(),
+                                 pOutputWorkspace->GetAnalyzerLogView(),
+                                 pOutputWorkspace->GetSearchLogView(),
+                                 pOutputWorkspace->GetWorkflowLogView(),
                                  NULL,
                                  NULL,
                                  NULL);

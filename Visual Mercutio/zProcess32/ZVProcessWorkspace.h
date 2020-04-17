@@ -15,7 +15,7 @@
 #include "zWinUtil32\PSS_FileWnd.h"
 #include "zWinUtil32\PSS_UrlWnd.h"
 #include "PSS_ProcessModelDocument.h"
-#include "ZVLogicalSystem.h"
+#include "PSS_LogicalSystemView.h"
 #include "ZVUserGroup.h"
 #include "ZVPrestations.h"
 #include "ZVRules.h"
@@ -92,17 +92,17 @@ public:
 
     void ActivateWorkspaceTab()
     {
-        m_wndTab.ActivateTab(def_WorkspaceTabIndex);
+        m_WndTab.ActivateTab(def_WorkspaceTabIndex);
     };
 
     void ShowWorkspaceTab()
     {
-        m_wndTab.EnableTab(def_WorkspaceTabIndex, TRUE);
+        m_WndTab.EnableTab(def_WorkspaceTabIndex, TRUE);
     };
 
     void HideWorkspaceTab()
     {
-        m_wndTab.EnableTab(def_WorkspaceTabIndex, FALSE);
+        m_WndTab.EnableTab(def_WorkspaceTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -111,17 +111,17 @@ public:
 
     void ActivateModelDocumentTab()
     {
-        m_wndTab.ActivateTab(def_ModelDocumentTabIndex);
+        m_WndTab.ActivateTab(def_ModelDocumentTabIndex);
     };
 
     void ShowModelDocumentTab()
     {
-        m_wndTab.EnableTab(def_ModelDocumentTabIndex, TRUE);
+        m_WndTab.EnableTab(def_ModelDocumentTabIndex, TRUE);
     };
 
     void HideModelDocumentTab()
     {
-        m_wndTab.EnableTab(def_ModelDocumentTabIndex, FALSE);
+        m_WndTab.EnableTab(def_ModelDocumentTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -130,17 +130,17 @@ public:
 
     void ActivateFormTemplateTab()
     {
-        m_wndTab.ActivateTab(def_FormTemplateTabIndex);
+        m_WndTab.ActivateTab(def_FormTemplateTabIndex);
     };
 
     void ShowFormTemplateTab()
     {
-        m_wndTab.EnableTab(def_FormTemplateTabIndex, TRUE);
+        m_WndTab.EnableTab(def_FormTemplateTabIndex, TRUE);
     };
 
     void HideFormTemplateTab()
     {
-        m_wndTab.EnableTab(def_FormTemplateTabIndex, FALSE);
+        m_WndTab.EnableTab(def_FormTemplateTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -149,36 +149,36 @@ public:
 
     void ActivateUserTab()
     {
-        m_wndTab.ActivateTab(def_UserTabIndex);
+        m_WndTab.ActivateTab(def_UserTabIndex);
     };
 
     void ShowUserTab()
     {
-        m_wndTab.EnableTab(def_UserTabIndex, TRUE);
+        m_WndTab.EnableTab(def_UserTabIndex, TRUE);
     };
 
     void HideUserTab()
     {
-        m_wndTab.EnableTab(def_UserTabIndex, FALSE);
+        m_WndTab.EnableTab(def_UserTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
     // Logical System methods
-    ZVLogicalSystem* GetLogicalSystemView();
+    PSS_LogicalSystemView* GetLogicalSystemView();
 
     void ActivateLogicalSystemTab()
     {
-        m_wndTab.ActivateTab(def_LogicalSystemTabIndex);
+        m_WndTab.ActivateTab(def_LogicalSystemTabIndex);
     };
 
     void ShowLogicalSystemTab()
     {
-        m_wndTab.EnableTab(def_LogicalSystemTabIndex, TRUE);
+        m_WndTab.EnableTab(def_LogicalSystemTabIndex, TRUE);
     };
 
     void HideLogicalSystemTab()
     {
-        m_wndTab.EnableTab(def_LogicalSystemTabIndex, FALSE);
+        m_WndTab.EnableTab(def_LogicalSystemTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -187,17 +187,17 @@ public:
 
     void ActivateFileTab()
     {
-        m_wndTab.ActivateTab(def_FileTabIndex);
+        m_WndTab.ActivateTab(def_FileTabIndex);
     };
 
     void ShowFileTab()
     {
-        m_wndTab.EnableTab(def_FileTabIndex, TRUE);
+        m_WndTab.EnableTab(def_FileTabIndex, TRUE);
     };
 
     void HideFileTab()
     {
-        m_wndTab.EnableTab(def_FileTabIndex, FALSE);
+        m_WndTab.EnableTab(def_FileTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -206,17 +206,17 @@ public:
 
     void ActivateWebTab()
     {
-        m_wndTab.ActivateTab(def_WebTabIndex);
+        m_WndTab.ActivateTab(def_WebTabIndex);
     };
 
     void ShowWebTab()
     {
-        m_wndTab.EnableTab(def_WebTabIndex, TRUE);
+        m_WndTab.EnableTab(def_WebTabIndex, TRUE);
     };
 
     void HideWebTab()
     {
-        m_wndTab.EnableTab(def_WebTabIndex, FALSE);
+        m_WndTab.EnableTab(def_WebTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////////////////////
@@ -225,17 +225,17 @@ public:
 
     void ActivatePrestationsTab()
     {
-        m_wndTab.ActivateTab(def_PrestationsTabIndex);
+        m_WndTab.ActivateTab(def_PrestationsTabIndex);
     };
 
     void ShowPrestationsTab()
     {
-        m_wndTab.EnableTab(def_PrestationsTabIndex, TRUE);
+        m_WndTab.EnableTab(def_PrestationsTabIndex, TRUE);
     };
 
     void HidePrestationsTab()
     {
-        m_wndTab.EnableTab(def_PrestationsTabIndex, FALSE);
+        m_WndTab.EnableTab(def_PrestationsTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////////////////////
@@ -244,17 +244,17 @@ public:
 
     void ActivateRulesTab()
     {
-        m_wndTab.ActivateTab(def_RulesTabIndex);
+        m_WndTab.ActivateTab(def_RulesTabIndex);
     };
 
     void ShowRulesTab()
     {
-        m_wndTab.EnableTab(def_RulesTabIndex, TRUE);
+        m_WndTab.EnableTab(def_RulesTabIndex, TRUE);
     };
 
     void HideRulesTab()
     {
-        m_wndTab.EnableTab(def_RulesTabIndex, FALSE);
+        m_WndTab.EnableTab(def_RulesTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -302,20 +302,17 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    CDocument*                m_pActiveDocument;
-
-    SEC3DTabWnd                m_wndTab;
-
+    CDocument*               m_pActiveDocument;
+    SEC3DTabWnd              m_WndTab;
     PSS_WorkspaceTreeCtrl    m_WorkspaceView;
-    PSS_ProcessModelDocument   m_ProcessModelView;
+    PSS_ProcessModelDocument m_ProcessModelView;
     PSS_FormTemplateTreeCtrl m_FormTemplateView;
-    ZVUserGroup                m_UserView;
-    ZVLogicalSystem            m_LogicalSystemView;
-    ZVPrestations            m_PrestationsView;    // JMR-MODIF - Le 11 octobre 2005 - Ajout variable m_PrestationsView.
-    ZVRules                    m_RulesView;        // JMR-MODIF - Le 13 novembre 2006 - Ajout de la variable m_RulesView.
-    PSS_FileWnd                m_FileView;
-    PSS_UrlWnd                m_URLView;
+    ZVUserGroup              m_UserView;
+    PSS_LogicalSystemView    m_LogicalSystemView;
+    ZVPrestations            m_PrestationsView;
+    ZVRules                  m_RulesView;
+    PSS_FileWnd              m_FileView;
+    PSS_UrlWnd               m_URLView;
 };
 
 inline PSS_ProcessModelDocument* ZVProcessWorkspace::GetModelDocumentTree()
@@ -338,7 +335,7 @@ inline ZVUserGroup* ZVProcessWorkspace::GetUserView()
     return &m_UserView;
 }
 
-inline ZVLogicalSystem* ZVProcessWorkspace::GetLogicalSystemView()
+inline PSS_LogicalSystemView* ZVProcessWorkspace::GetLogicalSystemView()
 {
     return &m_LogicalSystemView;
 }

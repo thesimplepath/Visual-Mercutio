@@ -73,9 +73,9 @@
 #include "PSS_WelcomeProcessDlg.h"
 #include "PSS_ModifyView.h"
 #include "PSS_ModelWorkflowOptionsWizard.h"
-#include "ZVConceptorReportOptions.h"
+#include "PSS_ConceptorReportOptionsDlg.h"
 #include "ZVProcessWorkspace.h"
-#include "ZVOutputWorkspace.h"
+#include "PSS_OutputWorkspace.h"
 #include "ZVWorkspaceCreationWizard.h"
 
 // stingray studio
@@ -523,7 +523,7 @@ PSS_MainFrame* PSS_App::GetMainFrame()
     return dynamic_cast<PSS_MainFrame*>(::AfxGetMainWnd());
 }
 //---------------------------------------------------------------------------
-ZVOutputWorkspace* PSS_App::GetOutputWorkspace()
+PSS_OutputWorkspace* PSS_App::GetOutputWorkspace()
 {
     PSS_MainFrame* pFrame = GetMainFrame();
 
@@ -1900,12 +1900,12 @@ void PSS_App::OnAddLogicalSystem()
     if (!pWorkspace)
         return;
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
         return;
 
-    pLogicalSystem->OnAddSystem();
+    pLogicalSystemView->OnAddSystem();
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddLogicalSystem(CCmdUI* pCmdUI)
@@ -1918,15 +1918,15 @@ void PSS_App::OnUpdateAddLogicalSystem(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(pLogicalSystem->CanAddSystem());
+    pCmdUI->Enable(pLogicalSystemView->CanAddSystem());
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnDeleteLogicalSystem()
@@ -1936,12 +1936,12 @@ void PSS_App::OnDeleteLogicalSystem()
     if (!pWorkspace)
         return;
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
         return;
 
-    pLogicalSystem->OnDeleteSystem();
+    pLogicalSystemView->OnDeleteSystem();
     DoRefreshProperties();
 }
 //---------------------------------------------------------------------------
@@ -1955,15 +1955,15 @@ void PSS_App::OnUpdateDeleteLogicalSystem(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(pLogicalSystem->CanDeleteSystem());
+    pCmdUI->Enable(pLogicalSystemView->CanDeleteSystem());
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnRenameLogicalSystem()
@@ -1973,12 +1973,12 @@ void PSS_App::OnRenameLogicalSystem()
     if (!pWorkspace)
         return;
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
         return;
 
-    pLogicalSystem->OnRenameSystem();
+    pLogicalSystemView->OnRenameSystem();
     DoRefreshProperties();
 }
 //---------------------------------------------------------------------------
@@ -1992,15 +1992,15 @@ void PSS_App::OnUpdateRenameLogicalSystem(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(pLogicalSystem->CanRenameSystem());
+    pCmdUI->Enable(pLogicalSystemView->CanRenameSystem());
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnLogicalSystemProperties()
@@ -2010,12 +2010,12 @@ void PSS_App::OnLogicalSystemProperties()
     if (!pWorkspace)
         return;
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
         return;
 
-    pLogicalSystem->OnProperties();
+    pLogicalSystemView->OnProperties();
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateLogicalSystemProperties(CCmdUI* pCmdUI)
@@ -2028,15 +2028,15 @@ void PSS_App::OnUpdateLogicalSystemProperties(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVLogicalSystem* pLogicalSystem = pWorkspace->GetLogicalSystemView();
+    PSS_LogicalSystemView* pLogicalSystemView = pWorkspace->GetLogicalSystemView();
 
-    if (!pLogicalSystem)
+    if (!pLogicalSystemView)
     {
         pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable(pLogicalSystem->CanProperties());
+    pCmdUI->Enable(pLogicalSystemView->CanProperties());
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnAddPrestation()
@@ -2564,7 +2564,7 @@ void PSS_App::OnGenerateConceptorReport()
         return;
     }
 
-    ZVConceptorReportOptions optionsDlg;
+    PSS_ConceptorReportOptionsDlg optionsDlg;
 
     if (optionsDlg.DoModal() == IDOK)
     {
@@ -2574,8 +2574,8 @@ void PSS_App::OnGenerateConceptorReport()
                                                                                                         pModel,
                                                                                                         pCurrentDoc,
                                                                                                         TRUE,
-                                                                                                        optionsDlg.m_Detail,
-                                                                                                        optionsDlg.m_Deliverables));
+                                                                                                        optionsDlg.GetDetails(),
+                                                                                                        optionsDlg.GetDeliverables()));
 
         pNewFile->SetNewReportGridGenerator(pReportGenerator.get());
         pReportGenerator.release();
@@ -3006,7 +3006,7 @@ void PSS_App::OnSymbolReassignUserGroup()
 
     if (pCurrentDoc)
     {
-        ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+        PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
         if (pOutputWorkspace)
             pCurrentDoc->ReassignUnit(pOutputWorkspace->GetLogView());
@@ -3024,7 +3024,7 @@ void PSS_App::OnSymbolReassignLogicalSys()
 
     if (pCurrentDoc)
     {
-        ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+        PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
         if (pOutputWorkspace)
             pCurrentDoc->ReassignSystem(pOutputWorkspace->GetLogView());
@@ -3042,7 +3042,7 @@ void PSS_App::OnSymbolReassignPrestations()
 
     if (pCurrentDoc)
     {
-        ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+        PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
         if (pOutputWorkspace)
             pCurrentDoc->ReassignPrestations(pOutputWorkspace->GetLogView());
@@ -3060,7 +3060,7 @@ void PSS_App::OnSymbolReassignRules()
 
     if (pCurrentDoc)
     {
-        ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+        PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
         if (pOutputWorkspace)
             pCurrentDoc->ReassignRules(pOutputWorkspace->GetLogView());
@@ -3078,14 +3078,14 @@ void PSS_App::OnPublishToMessenger()
 
     if (pCurrentDoc)
     {
-        ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+        PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
         if (pOutputWorkspace)
         {
             // activate the log tab first
             pOutputWorkspace->ActivateWorkflowLogTab();
 
-            PSS_PublishToMessengerWizard wizard(pCurrentDoc, pOutputWorkspace->GetLogWorkflowView(), m_pszProfileName);
+            PSS_PublishToMessengerWizard wizard(pCurrentDoc, pOutputWorkspace->GetWorkflowLogView(), m_pszProfileName);
             wizard.DoModal();
         }
     }
@@ -3389,7 +3389,7 @@ BOOL PSS_App::PostInitApp()
     if (pProcessWorkspace)
         AttachObserver(pProcessWorkspace);
 
-    ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+    PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
     // attach the output workspace observers
     if (pOutputWorkspace)
@@ -3993,7 +3993,7 @@ void PSS_App::OnServerChanged()
 //---------------------------------------------------------------------------
 void PSS_App::OnServerHasBeenOpened()
 {
-    ZVOutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
+    PSS_OutputWorkspace* pOutputWorkspace = GetOutputWorkspace();
 
     if (!pOutputWorkspace)
         return;
@@ -4046,8 +4046,8 @@ CString PSS_App::OnBuildHelpFileName()
 void PSS_App::LogStartTime()
 {
     #ifdef _DEBUG
-        COleDateTime       start      = COleDateTime::GetCurrentTime();
-        ZVOutputWorkspace* pWorkspace = GetOutputWorkspace();
+        COleDateTime         start      = COleDateTime::GetCurrentTime();
+        PSS_OutputWorkspace* pWorkspace = GetOutputWorkspace();
 
         if (!pWorkspace)
             return;
@@ -4065,8 +4065,8 @@ void PSS_App::LogStartTime()
 void PSS_App::LogEndTime()
 {
     #ifdef _DEBUG
-        COleDateTime       end        = COleDateTime::GetCurrentTime();
-        ZVOutputWorkspace* pWorkspace = GetOutputWorkspace();
+        COleDateTime         end        = COleDateTime::GetCurrentTime();
+        PSS_OutputWorkspace* pWorkspace = GetOutputWorkspace();
 
         if (!pWorkspace)
             return;

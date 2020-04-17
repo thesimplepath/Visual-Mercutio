@@ -249,22 +249,22 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZTTemplateDocument.cpp" />
-    <ClCompile Include="ZVConceptorReportOptions.cpp">
+    <ClCompile Include="PSS_TemplateDocument.cpp" />
+    <ClCompile Include="PSS_ConceptorReportOptionsDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVLogicalSystem.cpp">
+    <ClCompile Include="PSS_LogicalSystemView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVOutputWorkspace.cpp">
+    <ClCompile Include="PSS_OutputWorkspace.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -321,10 +321,10 @@
     <ClInclude Include="PSS_ProcessModelDocument.h" />
     <ClInclude Include="zHelpContext.h" />
     <ClInclude Include="PSS_UnitInfoDlg.h" />
-    <ClInclude Include="ZTTemplateDocument.h" />
-    <ClInclude Include="ZVConceptorReportOptions.h" />
-    <ClInclude Include="ZVLogicalSystem.h" />
-    <ClInclude Include="ZVOutputWorkspace.h" />
+    <ClInclude Include="PSS_TemplateDocument.h" />
+    <ClInclude Include="PSS_ConceptorReportOptionsDlg.h" />
+    <ClInclude Include="PSS_LogicalSystemView.h" />
+    <ClInclude Include="PSS_OutputWorkspace.h" />
     <ClInclude Include="ZVPrestations.h" />
     <ClInclude Include="ZVProcessWorkspace.h" />
     <ClInclude Include="ZVPropertiesWorkspace.h" />
