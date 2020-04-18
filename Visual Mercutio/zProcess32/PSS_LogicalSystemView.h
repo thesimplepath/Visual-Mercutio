@@ -124,7 +124,7 @@ class PSS_LogicalSystemView : public CWnd,
                 virtual ~ILogicalSystemFlatToolBar();
 
             protected:
-                /// ClassWizard generated virtual function overrides
+                /// Generated virtual functions
                 //{{AFX_VIRTUAL(ILogicalSystemFlatToolBar)
                 virtual BOOL PreTranslateMessage(MSG* pMsg);
                 virtual void PreSubclassWindow();

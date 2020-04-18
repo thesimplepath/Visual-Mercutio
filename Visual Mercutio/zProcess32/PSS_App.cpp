@@ -2046,7 +2046,7 @@ void PSS_App::OnAddPrestation()
     if (!pWorkspace)
         return;
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
         return;
@@ -2064,7 +2064,7 @@ void PSS_App::OnUpdateAddPrestation(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
     {
@@ -2082,7 +2082,7 @@ void PSS_App::OnDeletePrestation()
     if (!pWorkspace)
         return;
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
         return;
@@ -2101,7 +2101,7 @@ void PSS_App::OnUpdateDeletePrestation(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
     {
@@ -2119,7 +2119,7 @@ void PSS_App::OnRenamePrestation()
     if (!pWorkspace)
         return;
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
         return;
@@ -2138,7 +2138,7 @@ void PSS_App::OnUpdateRenamePrestation(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
     {
@@ -2156,7 +2156,7 @@ void PSS_App::OnPrestationProperties()
     if (!pWorkspace)
         return;
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
         return;
@@ -2174,7 +2174,7 @@ void PSS_App::OnUpdatePrestationProperties(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVPrestations* pPrestations = pWorkspace->GetPrestationsView();
+    PSS_PrestationsView* pPrestations = pWorkspace->GetPrestationsView();
 
     if (!pPrestations)
     {

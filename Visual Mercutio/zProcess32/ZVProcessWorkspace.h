@@ -17,7 +17,7 @@
 #include "PSS_ProcessModelDocument.h"
 #include "PSS_LogicalSystemView.h"
 #include "ZVUserGroup.h"
-#include "ZVPrestations.h"
+#include "PSS_PrestationsView.h"
 #include "ZVRules.h"
 
 // JMR-MODIF - Le 11 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -221,7 +221,7 @@ public:
 
     ///////////////////////////////////////////////////////////////////////////
     // JMR-MODIF - Le 11 octobre 2005 - Ajout des méthodes pour les prestations
-    ZVPrestations* GetPrestationsView();
+    PSS_PrestationsView* GetPrestationsView();
 
     void ActivatePrestationsTab()
     {
@@ -309,7 +309,7 @@ private:
     PSS_FormTemplateTreeCtrl m_FormTemplateView;
     ZVUserGroup              m_UserView;
     PSS_LogicalSystemView    m_LogicalSystemView;
-    ZVPrestations            m_PrestationsView;
+    PSS_PrestationsView      m_PrestationsView;
     ZVRules                  m_RulesView;
     PSS_FileWnd              m_FileView;
     PSS_UrlWnd               m_URLView;
@@ -351,7 +351,7 @@ inline PSS_UrlWnd* ZVProcessWorkspace::GetWebView()
 }
 
 // JMR-MODIF - Le 11 octobre 2005 - Ajout de la fonction inline GetPrestationsView()
-inline ZVPrestations* ZVProcessWorkspace::GetPrestationsView()
+inline PSS_PrestationsView* ZVProcessWorkspace::GetPrestationsView()
 {
     return &m_PrestationsView;
 }
