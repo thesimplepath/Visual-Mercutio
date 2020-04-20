@@ -14,7 +14,7 @@
 #include "zWinUtil32\PSS_ProjectBar.h"
 #include "zTip\PSS_TipOfDayBar.h"
 #include "zTip\PSS_HelpContextBar.h"
-#include "ZVProcessWorkspace.h"
+#include "PSS_ProcessWorkspace.h"
 #include "PSS_OutputWorkspace.h"
 #include "ZVPropertiesWorkspace.h"
 
@@ -34,7 +34,7 @@ class PSS_MainFrame : public PSS_BaseMainFrame
         * Gets the workspace
         *@return the workspace
         */
-        virtual inline ZVProcessWorkspace* GetWorkspace();
+        virtual inline PSS_ProcessWorkspace* GetWorkspace();
 
         /**
         * Gets the output workspace
@@ -151,7 +151,7 @@ class PSS_MainFrame : public PSS_BaseMainFrame
     private:
         PSS_ProjectBar        m_ProjectWindowBar;
         PSS_TipOfDayBar       m_WndTipOfDayBar;
-        ZVProcessWorkspace    m_WndWorkspace;
+        PSS_ProcessWorkspace  m_WndWorkspace;
         PSS_OutputWorkspace   m_WndOutputWorkspace;
         ZVPropertiesWorkspace m_WndPropertiesWorkspace;
 };
@@ -159,7 +159,7 @@ class PSS_MainFrame : public PSS_BaseMainFrame
 //---------------------------------------------------------------------------
 // PSS_MainFrame
 //---------------------------------------------------------------------------
-ZVProcessWorkspace* PSS_MainFrame::GetWorkspace()
+PSS_ProcessWorkspace* PSS_MainFrame::GetWorkspace()
 {
     return &m_WndWorkspace;
 }

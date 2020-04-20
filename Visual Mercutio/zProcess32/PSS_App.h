@@ -38,7 +38,7 @@
 // forward class declaration
 class ZIMainFrame;
 class PSS_OutputWorkspace;
-class ZVProcessWorkspace;
+class PSS_ProcessWorkspace;
 class ZVPropertiesWorkspace;
 class PSS_WorkspaceEnvDocument;
 class PSS_WorkspaceEnv;
@@ -198,7 +198,7 @@ class PSS_App : public PSS_MainApp, public PSS_AppGridAdapter
         * Gets the process workspace
         *@return the process workspace
         */
-        virtual ZVProcessWorkspace* GetProcessWorkspace();
+        virtual PSS_ProcessWorkspace* GetProcessWorkspace();
 
         /**
         * Gets the properties workspace

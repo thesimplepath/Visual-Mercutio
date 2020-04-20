@@ -23,10 +23,10 @@
 //---------------------------------------------------------------------------
 // Tab Index constant definition
 //---------------------------------------------------------------------------
-const int g_DefSymbolLogTabIndex   = 0;
-const int g_DefSearchLogTabIndex   = 1;
-const int g_DefAnalyzerLogTabIndex = 2;
-const int g_DefWkfLogTabIndex      = 3;
+const int g_SymbolLogTabIndex   = 0;
+const int g_SearchLogTabIndex   = 1;
+const int g_AnalyzerLogTabIndex = 2;
+const int g_WkfLogTabIndex      = 3;
 //---------------------------------------------------------------------------
 
 /**
@@ -190,7 +190,7 @@ PSS_OutputSymbolLogView* PSS_OutputWorkspace::GetLogView()
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ActivateSymbolLogTab()
 {
-    m_WndTab.ActivateTab(g_DefSymbolLogTabIndex);
+    m_WndTab.ActivateTab(g_SymbolLogTabIndex);
 }
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ShowSymbolLogTab()
@@ -206,7 +206,7 @@ PSS_OutputSearchView* PSS_OutputWorkspace::GetSearchLogView()
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ActivateSearchLogTab()
 {
-    m_WndTab.ActivateTab(g_DefSearchLogTabIndex);
+    m_WndTab.ActivateTab(g_SearchLogTabIndex);
 }
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ShowSearchLogTab()
@@ -222,7 +222,7 @@ PSS_OutputAnalyzerLogView* PSS_OutputWorkspace::GetAnalyzerLogView()
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ActivateAnalyzerLogTab()
 {
-    m_WndTab.ActivateTab(g_DefAnalyzerLogTabIndex);
+    m_WndTab.ActivateTab(g_AnalyzerLogTabIndex);
 }
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ShowAnalyzerLogTab()
@@ -238,7 +238,7 @@ PSS_OutputWorkflowLogView* PSS_OutputWorkspace::GetWorkflowLogView()
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ActivateWorkflowLogTab()
 {
-    m_WndTab.ActivateTab(g_DefWkfLogTabIndex);
+    m_WndTab.ActivateTab(g_WkfLogTabIndex);
 }
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::ShowWorkflowLogTab()

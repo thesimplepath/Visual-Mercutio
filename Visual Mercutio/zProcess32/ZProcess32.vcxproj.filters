@@ -4,9 +4,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZVProcessWorkspace.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZVPropertiesWorkspace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -76,12 +73,12 @@
     <ClCompile Include="PSS_PrestationsView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ProcessWorkspace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\zFormsRes\zFormsRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVProcessWorkspace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVPropertiesWorkspace.h">
@@ -160,6 +157,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_PrestationsView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessWorkspace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

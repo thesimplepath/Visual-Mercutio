@@ -60,8 +60,8 @@ PSS_OutputWorkspace::~PSS_OutputWorkspace()
 void PSS_OutputWorkspace::Initialize()
 {
     // set the first active view
-    m_WndTab.ActivateTab(g_DefSymbolLogTabIndex);
-    m_WndTab.ScrollToTab(g_DefSymbolLogTabIndex);
+    m_WndTab.ActivateTab(g_SymbolLogTabIndex);
+    m_WndTab.ScrollToTab(g_SymbolLogTabIndex);
 
     PSS_OutputSymbolLogView* pLogView = GetLogView();
 
@@ -316,9 +316,6 @@ void PSS_OutputWorkspace::OnSize(UINT nType, int cx, int cy)
 //---------------------------------------------------------------------------
 void PSS_OutputWorkspace::OnListGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    LV_DISPINFO* lvdi;
-    lvdi = (LV_DISPINFO*)pNMHDR;
-
     *pResult = 0;
 }
 //---------------------------------------------------------------------------

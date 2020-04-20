@@ -669,7 +669,7 @@ LRESULT PSS_MainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
 
         if (pDoc)
         {
-            ZVProcessWorkspace* pProcessWorkspace = GetWorkspace();
+            PSS_ProcessWorkspace* pProcessWorkspace = GetWorkspace();
 
             // attach process workspace as observer
             if (pProcessWorkspace)

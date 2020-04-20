@@ -272,7 +272,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
     <ClCompile Include="PSS_PrestationsView.cpp" />
-    <ClCompile Include="ZVProcessWorkspace.cpp">
+    <ClCompile Include="PSS_ProcessWorkspace.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -326,7 +326,7 @@
     <ClInclude Include="PSS_LogicalSystemView.h" />
     <ClInclude Include="PSS_OutputWorkspace.h" />
     <ClInclude Include="PSS_PrestationsView.h" />
-    <ClInclude Include="ZVProcessWorkspace.h" />
+    <ClInclude Include="PSS_ProcessWorkspace.h" />
     <ClInclude Include="ZVPropertiesWorkspace.h" />
     <ClInclude Include="ZVRules.h" />
     <ClInclude Include="ZVUserGroup.h" />

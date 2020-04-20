@@ -74,7 +74,7 @@
 #include "PSS_ModifyView.h"
 #include "PSS_ModelWorkflowOptionsWizard.h"
 #include "PSS_ConceptorReportOptionsDlg.h"
-#include "ZVProcessWorkspace.h"
+#include "PSS_ProcessWorkspace.h"
 #include "PSS_OutputWorkspace.h"
 #include "ZVWorkspaceCreationWizard.h"
 
@@ -533,7 +533,7 @@ PSS_OutputWorkspace* PSS_App::GetOutputWorkspace()
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZVProcessWorkspace* PSS_App::GetProcessWorkspace()
+PSS_ProcessWorkspace* PSS_App::GetProcessWorkspace()
 {
     PSS_MainFrame* pFrame = GetMainFrame();
 
@@ -1328,7 +1328,7 @@ void PSS_App::OnProcessFileOpen()
 //---------------------------------------------------------------------------
 void PSS_App::OnWksNewGroup()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1343,7 +1343,7 @@ void PSS_App::OnWksNewGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksNewGroup(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1364,7 +1364,7 @@ void PSS_App::OnUpdateWksNewGroup(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnWksDeleteGroup()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1384,7 +1384,7 @@ void PSS_App::OnWksDeleteGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksDeleteGroup(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1405,7 +1405,7 @@ void PSS_App::OnUpdateWksDeleteGroup(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnWksRenameGroup()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1420,7 +1420,7 @@ void PSS_App::OnWksRenameGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksRenameGroup(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1441,7 +1441,7 @@ void PSS_App::OnUpdateWksRenameGroup(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnWksAddFile()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1456,7 +1456,7 @@ void PSS_App::OnWksAddFile()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksAddFile(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1477,7 +1477,7 @@ void PSS_App::OnUpdateWksAddFile(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnWksDeleteFile()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1497,7 +1497,7 @@ void PSS_App::OnWksDeleteFile()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksDeleteFile(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1518,7 +1518,7 @@ void PSS_App::OnUpdateWksDeleteFile(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnWksOpenFile()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1533,7 +1533,7 @@ void PSS_App::OnWksOpenFile()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksOpenFile(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1554,7 +1554,7 @@ void PSS_App::OnUpdateWksOpenFile(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnAddCurrentFileToProject()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1581,7 +1581,7 @@ void PSS_App::OnAddCurrentFileToProject()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddCurrentFileToProject(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1605,7 +1605,7 @@ void PSS_App::OnUpdateAddCurrentFileToProject(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnWksProperties()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1620,7 +1620,7 @@ void PSS_App::OnWksProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksProperties(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1641,7 +1641,7 @@ void PSS_App::OnUpdateWksProperties(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnUgpAddGroup()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1656,7 +1656,7 @@ void PSS_App::OnUgpAddGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpAddGroup(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1677,7 +1677,7 @@ void PSS_App::OnUpdateUgpAddGroup(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnUgpDeleteGroup()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1693,7 +1693,7 @@ void PSS_App::OnUgpDeleteGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpDeleteGroup(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1714,7 +1714,7 @@ void PSS_App::OnUpdateUgpDeleteGroup(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnUgpRenameGroup()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1730,7 +1730,7 @@ void PSS_App::OnUgpRenameGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpRenameGroup(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1751,7 +1751,7 @@ void PSS_App::OnUpdateUgpRenameGroup(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnUgpProperties()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1766,7 +1766,7 @@ void PSS_App::OnUgpProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpProperties(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1787,7 +1787,7 @@ void PSS_App::OnUpdateUgpProperties(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnUgpAddRole()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1802,7 +1802,7 @@ void PSS_App::OnUgpAddRole()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpAddRole(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1823,7 +1823,7 @@ void PSS_App::OnUpdateUgpAddRole(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnUgpDeleteRole()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1838,7 +1838,7 @@ void PSS_App::OnUgpDeleteRole()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpDeleteRole(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1859,7 +1859,7 @@ void PSS_App::OnUpdateUgpDeleteRole(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnUgpRenameRole()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1874,7 +1874,7 @@ void PSS_App::OnUgpRenameRole()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpRenameRole(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1895,7 +1895,7 @@ void PSS_App::OnUpdateUgpRenameRole(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnAddLogicalSystem()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1910,7 +1910,7 @@ void PSS_App::OnAddLogicalSystem()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddLogicalSystem(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1931,7 +1931,7 @@ void PSS_App::OnUpdateAddLogicalSystem(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnDeleteLogicalSystem()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1947,7 +1947,7 @@ void PSS_App::OnDeleteLogicalSystem()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateDeleteLogicalSystem(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -1968,7 +1968,7 @@ void PSS_App::OnUpdateDeleteLogicalSystem(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnRenameLogicalSystem()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -1984,7 +1984,7 @@ void PSS_App::OnRenameLogicalSystem()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRenameLogicalSystem(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2005,7 +2005,7 @@ void PSS_App::OnUpdateRenameLogicalSystem(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnLogicalSystemProperties()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2020,7 +2020,7 @@ void PSS_App::OnLogicalSystemProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateLogicalSystemProperties(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2041,7 +2041,7 @@ void PSS_App::OnUpdateLogicalSystemProperties(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnAddPrestation()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2056,7 +2056,7 @@ void PSS_App::OnAddPrestation()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddPrestation(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2077,7 +2077,7 @@ void PSS_App::OnUpdateAddPrestation(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnDeletePrestation()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2093,7 +2093,7 @@ void PSS_App::OnDeletePrestation()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateDeletePrestation(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2114,7 +2114,7 @@ void PSS_App::OnUpdateDeletePrestation(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnRenamePrestation()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2130,7 +2130,7 @@ void PSS_App::OnRenamePrestation()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRenamePrestation(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2151,7 +2151,7 @@ void PSS_App::OnUpdateRenamePrestation(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnPrestationProperties()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2166,7 +2166,7 @@ void PSS_App::OnPrestationProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdatePrestationProperties(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2187,7 +2187,7 @@ void PSS_App::OnUpdatePrestationProperties(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnAddRule()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2202,7 +2202,7 @@ void PSS_App::OnAddRule()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddRule(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2223,7 +2223,7 @@ void PSS_App::OnUpdateAddRule(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnDeleteRule()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2239,7 +2239,7 @@ void PSS_App::OnDeleteRule()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateDeleteRule(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2260,7 +2260,7 @@ void PSS_App::OnUpdateDeleteRule(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnRenameRule()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2276,7 +2276,7 @@ void PSS_App::OnRenameRule()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRenameRule(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -2297,7 +2297,7 @@ void PSS_App::OnUpdateRenameRule(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnRuleProperties()
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
         return;
@@ -2312,7 +2312,7 @@ void PSS_App::OnRuleProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRuleProperties(CCmdUI* pCmdUI)
 {
-    ZVProcessWorkspace* pWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
     {
@@ -3383,7 +3383,7 @@ BOOL PSS_App::PostInitApp()
     // initialize the model global state
     PSS_ModelGlobal::SetGlobalPropertyAttributesFileName(m_pszProfileName);
 
-    ZVProcessWorkspace* pProcessWorkspace = GetProcessWorkspace();
+    PSS_ProcessWorkspace* pProcessWorkspace = GetProcessWorkspace();
 
     // attach the process workspace observers
     if (pProcessWorkspace)
