@@ -1,0 +1,31 @@
+
+ATTACHEMENT DE DOCUMENTS-------------------------------------
+Il est possible d'attacher n'importe quel type de fichier présent dans windows explorer.
+
+Dans la mesure où les processus seront publiés sur HTML pour être accessibles à tous les utilisateurs, il est recommandé d'attacher des documents pouvant être automatiquement visualisés à partir de l'explorateur Internet (browser) disponibles sur les postes de travail.
+
+Par exemple :
+- Documents Word,
+- Présentations Powerpoint,
+- Images
+
+Il peut s'agir également de liens vers des pages Internet ou Intranet.
+
+ATTACHEMENT DE DOCUMENTS / APPLICATIONS ---------------------
+Les Tableurs peuvent être considérés comme des documents ou comme des applications décrites dans la nomenclature, onglet système.
+Choisir de les considérer comme des liens externes (documents) si on privilégie la publication HTML (majorité des mais les déclarer comme application si on privilégie la publication automatique du workflow. En cas de doute, il peut être utile de déclarer les executables de ce type à la fois comme document et comme application.
+
+LIENS ABSOLUS - LIENS RELATIFS ------------------------------------
+On peut attacher un document avec son adresse telle que celle présente dans l'explorateur Windows du PC ou du serveur utilisé.
+	Exemple : C:\document.txt
+Ceci est réalisé aisément à partir de l'explorateur Conceptor (Fenêtre des nomenclatures / onglet Fichiers) : cliquer et glisser le document sélectionné depuis cet explorateur sur l'objet Conceptor concerné dans la fenêtre graphique du modèle. Lacher. Le lien est créé.
+Aucun objet ne doit être sélectionné dans la fenêtre.
+
+Cependant, dans le cas de la publication HTML, il est probable que les documents vont être déplacés. Une solution efficace est de créer un lien RELATIF entre les objets conceptor et les attachements. 
+Exemple :
+Créer un répertoire "Attachements" dans le répertoire "Files" du Référentiel local utilisé, y copier les documents attachés. 
+Attacher le document à partir de l'explorateur Conceptor en le sélectionnant depuis ce dossier "Attachements".
+Rendre ensuite relatif le lien figurant dans la fenêtre des propriétés, selon la norme de gestion de  fichier DOS, en remplaçant le début du lien par ".."
+Exemple : ..\Files\Attachements\document.txt
+Publier les fichiers HTML dans le répertoire Files.
+En déplaçant le répertoire Files pour la publication sur le serveur Intranet, on déplace ainsi les document attachés.

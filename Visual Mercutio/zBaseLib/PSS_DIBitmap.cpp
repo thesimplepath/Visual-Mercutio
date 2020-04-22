@@ -51,7 +51,7 @@ PSS_DIBitmap::PSS_DIBitmap(HANDLE hDIB, int bits) :
     m_pBits(NULL),
     m_UseGamma(FALSE)
 {
-    std::memset(&m_QuadCache, 0x0, 256);
+    std::memset(&m_QuadCache, 0x0, sizeof(m_QuadCache));
 
     if (hDIB)
         CreateFromHandle(hDIB, bits);

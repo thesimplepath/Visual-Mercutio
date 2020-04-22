@@ -34,7 +34,7 @@ class PSS_ModelWorkflowOptionsWizard
         /**
         * Dialogs data
         */
-        typedef struct _IData
+        struct IData
         {
             ELanguage m_Language;
             CString   m_CurrencySymbol;
@@ -48,7 +48,9 @@ class PSS_ModelWorkflowOptionsWizard
             BOOL      m_IntegrateCostSimulation;
             BOOL      m_UseModelAsWorkflow;
             BOOL      m_BrowseInSameModel;
-        } IData;
+
+            IData();
+        };
 
         /**
         * Constructor

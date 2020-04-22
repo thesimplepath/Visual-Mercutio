@@ -61,9 +61,9 @@ extern "C" extern void WINAPI InitZRes32DLL();
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define szFirstUseEntry         _T("First Use")
-#define szSubDirectoryNameEntry _T("Ref Sub Directory Name")
-#define DEFAULT_ICON_INDEX      0
+#define M_FirstUseEntry         _T("First Use")
+#define M_SubDirectoryNameEntry _T("Ref Sub Directory Name")
+#define M_Default_Icon_Index    0
 //---------------------------------------------------------------------------
 // Global variables
 //---------------------------------------------------------------------------
@@ -330,12 +330,12 @@ BOOL PSS_MainApp::InitInstance()
         return FALSE;
 
     // check if first use
-    const CString firstLoad = pApp->GetProfileString(ApplicationConfigSectionName, szFirstUseEntry, _T("0"));
+    const CString firstLoad = pApp->GetProfileString(ApplicationConfigSectionName, M_FirstUseEntry, _T("0"));
 
     if (firstLoad == _T("1"))
     {
         const CString subDirectory = pApp->GetProfileString(ApplicationConfigSectionName,
-                                                            szSubDirectoryNameEntry,
+                                                            M_SubDirectoryNameEntry,
                                                             _T(""));
 
         const CString serverDirectory = PSS_Directory::NormalizeDirectory(GetApplicationDir()) + _T("\\") + subDirectory;
@@ -596,8 +596,8 @@ BOOL PSS_MainApp::InitInstance()
     if (firstLoad == _T("1"))
     {
         // reset parameters in the application ini file
-        pApp->WriteProfileString(ApplicationConfigSectionName, szFirstUseEntry,         _T("0"));
-        pApp->WriteProfileString(ApplicationConfigSectionName, szSubDirectoryNameEntry, _T(""));
+        pApp->WriteProfileString(ApplicationConfigSectionName, M_FirstUseEntry,         _T("0"));
+        pApp->WriteProfileString(ApplicationConfigSectionName, M_SubDirectoryNameEntry, _T(""));
 
         PSS_MessageDlg messageDlg;
         messageDlg.ShowMessage(IDS_ONFIRSTUSE_SUCCESS, IDS_ONFIRSTUSE_SUCCESS_TITLE);
@@ -1307,7 +1307,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
                     }
                     else
                         // register with the first available icon
-                        icon.Format(g_AfxIconIndexFmt, DEFAULT_ICON_INDEX);
+                        icon.Format(g_AfxIconIndexFmt, M_Default_Icon_Index);
 
                     defaultIconCommandLine += icon;
                 }
@@ -1485,7 +1485,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
                     }
                     else
                         // register with the first icon
-                        icon.Format(g_AfxIconIndexFmt, DEFAULT_ICON_INDEX);
+                        icon.Format(g_AfxIconIndexFmt, M_Default_Icon_Index);
 
                     defaultIconCommandLine += icon;
                 }

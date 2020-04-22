@@ -23,14 +23,28 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 //---------------------------------------------------------------------------
+// PSS_ModelWorkflowOptionsWizard::IData
+//---------------------------------------------------------------------------
+PSS_ModelWorkflowOptionsWizard::IData::IData() :
+    m_Language(E_LN_Unknown),
+    m_Notation(E_MN_Unknown),
+    m_HourPerDay(0),
+    m_DayPerWeek(0),
+    m_DayPerMonth(0),
+    m_DayPerYear(0),
+    m_Modify(FALSE),
+    m_CheckConsistency(FALSE),
+    m_IntegrateCostSimulation(FALSE),
+    m_UseModelAsWorkflow(FALSE),
+    m_BrowseInSameModel(FALSE)
+{}
+//---------------------------------------------------------------------------
 // PSS_ModelWorkflowOptionsWizard
 //---------------------------------------------------------------------------
 PSS_ModelWorkflowOptionsWizard::PSS_ModelWorkflowOptionsWizard(BOOL modify, PSS_ProcessGraphModelDoc* pDoc, CWnd* pParent) :
     m_pDoc(pDoc),
     m_Modify(modify)
-{
-    std::memset(&m_Data, 0x0, sizeof(m_Data));
-}
+{}
 //---------------------------------------------------------------------------
 PSS_ModelWorkflowOptionsWizard::~PSS_ModelWorkflowOptionsWizard()
 {}

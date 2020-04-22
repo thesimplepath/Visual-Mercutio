@@ -932,10 +932,15 @@ CString PSS_App::GetGlobalIniFile() const
 //---------------------------------------------------------------------------
 BOOL PSS_App::OnIdle(LONG count)
 {
+    // todo FIXME -cBug -oJean: There is a strange bug here, sometimes when all
+    //                          the children documents are closed on the MDI frame,
+    //                          an access violation happens here. This seems related
+    //                          to the multithreading and the usage of the m_pMainWnd
+    //                          variable
     if (!count)
         if (m_pMainWnd)
         {
-            // look for any top-level windows owned by this class. NOTE handles are used to
+            // look for any top-level windows owned by this class. NOTE handlers are used to
             // avoid generation of too many temporary CWnds
             for (HWND hWnd = ::GetWindow(m_pMainWnd->m_hWnd, GW_HWNDFIRST); hWnd; hWnd = ::GetNextWindow(hWnd, GW_HWNDNEXT))
                 if (::GetParent(hWnd) == m_pMainWnd->m_hWnd)
@@ -945,7 +950,7 @@ BOOL PSS_App::OnIdle(LONG count)
                         m_pMainWnd->SetActiveWindow();
 
                     // update the buttons for the top-level window
-                    SendMessage(hWnd, WM_IDLEUPDATECMDUI, WPARAM(TRUE), 0L);
+                    ::SendMessage(hWnd, WM_IDLEUPDATECMDUI, WPARAM(TRUE), 0L);
                 }
         }
 
