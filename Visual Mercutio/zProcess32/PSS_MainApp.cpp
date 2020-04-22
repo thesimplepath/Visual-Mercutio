@@ -61,8 +61,8 @@ extern "C" extern void WINAPI InitZRes32DLL();
 //---------------------------------------------------------------------------
 // Global defines
 //---------------------------------------------------------------------------
-#define szFirstUseEntry         _T( "First Use" )
-#define szSubDirectoryNameEntry _T( "Ref Sub Directory Name" )
+#define szFirstUseEntry         _T("First Use")
+#define szSubDirectoryNameEntry _T("Ref Sub Directory Name")
 #define DEFAULT_ICON_INDEX      0
 //---------------------------------------------------------------------------
 // Global variables
@@ -1405,7 +1405,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
 
             if (!filterExt.IsEmpty())
             {
-                ASSERT(g_FilterExt[0] == '.');
+                ASSERT(filterExt[0] == '.');
 
                 LONG       size   = _MAX_PATH * 2;
                 const LONG result = ::RegQueryValue(HKEY_CLASSES_ROOT, filterExt, tempStr.GetBuffer(size), &size);
