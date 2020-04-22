@@ -1,0 +1,126 @@
+
+Release 0.6
+=====================================
+
+The Expat XML parsing library 1.95.2 is required.  You can download it
+from expat.sourceforge.net. See below.
+
+Major changes in this release:
+
+1)  Header files are now in a sub-directory called "easysoap" so
+	you will need to change any includes from, for example:
+
+	#include <SOAP.h>
+
+	to:
+
+	#include <easysoap/SOAP.h>
+
+2)  All classes are now in the namespace "EasySoap" for compilers
+	which support namespaces.  There are some macros available to
+	help make this transparent.
+
+	USING_EASYSOAP_NAMESPACE
+	BEGIN_EASYSOAP_NAMESPACE
+	END_EASYSOAP_NAMESPACE
+
+	Your SOAPTypeTraits classes will have to be defined within the
+	EasySoap namespace.
+
+3)  I have temporarily disabled the SOAPHTTPServer class because
+	I was getting way too many bug reports on the underlying Abyss
+	library which it uses.  Sorry.  I added that class mostly as
+	a demonstration of how to write a transport with existing HTTP
+	servers, not as a production server, and also to have a simple
+	HTTP server out of the box.  But its existence is causing me too
+	many headaches (I take things too personally, I like code that
+	works and hate hearing about it when it doesn't, and really hate
+	fixing code I didn't write) and we need a better solution. 
+	An Apache module transport is the way to go, and it is in the
+	works.  Any help on it would be GREATLY appreciated.  If youd
+	insist on using the Abyss HTTP server, feel free.  You will have
+	to figure out on your own how to compile it and any bug reports
+	on it will be merrily :) ignored. 
+
+4)	Blaise added client SSL client certificate support for platforms
+	which use OpenSSL.  I changed the default client transport on
+	Win32 platforms to use the WinInet functions so on those platforms
+	all kinds of cool stuff comes for free (client certificates, SSL,
+	etc.)
+
+Numerous people (Scott Deerwester, Haitao Song, Patrick McConnell,
+I've missed many, apologies) have sent me great feedback and have
+helped me catch and fix many bugs.  I really appreciate the bug reports
+and the positive feedback I have received.  I also appreciate all
+the help Blaise has put in for this release.  Thanks to all of
+you!
+
+
+Please submit bug reports and constructive comments to:
+dcrowley@users.sourceforge.net.
+
+
+HOW TO BUILD EASYSOAP
+=====================================
+
+1) Install Expat (see below)
+2) Install OpenSSL (optional)
+3) If you're on Linux/Unix:
+	./configure
+	make
+	make install
+
+   If you're on Windows, VC6:
+	Load easysoap.dsw.  Build All.
+
+   Cygwin
+	./configure --disable-shared (see below)
+	make
+	make install
+
+
+HOW TO DOWNLOAD AND BUILD EXPAT
+=====================================
+
+
+For Linux :
+	Download source from:
+		http://prdownloads.sourceforge.net/expat/expat-1.95.2.tar.gz
+	
+	tar xzf expat-1.95.2.tar.gz
+	cd expat-1.95.2
+	./configure
+	make
+	make install (must be root to install into /usr/local)
+
+
+For Win32 :
+	Dowload the install binary from:
+		http://prdownloads.sourceforge.net/expat/expat_win32bin_1_95_2.exe
+	Run the program.  The EasySoap++ project file is set up to look
+	for Expat in a directory parallel to EasySoap++-0.5.  So if you
+	unpacked EasySoap++-0.5 into C:\code\EasySoap++-0.5 then install
+	Expat into C:\code\Expat-1.95.2.  Otherwise you will have to modify
+	the project settings to find the necessary include files.
+
+	Before running any of the example programs, you will need to make sure
+	that the file Expat.DLL is in your PATH.  You can do this in any
+	several ways:
+
+	1)  Copy Expat.DLL to the EasySoap++-0.5\win32\Release directory
+		(or Debug directory).
+	2)  Change your PATH environment variable to include the
+		Expat-1.95.2\libs directory.  The easiest way to do this is
+		to go to right click on "My Computer/Properties," select the
+		"Advacned" tab, then press the "Environment Variables..." button.
+		In there edit the value for PATH.
+
+For Cygwin:
+	I had trouble getting 1.95.2 to link properly with Cygwin.  I had to
+	make a small change to expat.h.in.  Take a look here for details:
+
+		http://sourceforge.net/tracker/index.php?func=detail&aid=454879&group_id=10127&atid=110127
+
+	Also, I wasn't able to build a shared library with Cygwin.  If you
+	figure it out, let me know.
+

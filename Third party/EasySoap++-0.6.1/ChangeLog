@@ -1,0 +1,73 @@
+
+0.6, 27-Mar-2002
+	Tons of stuff.  bug fixes, namespaces, bug fixes, changed header
+	file location.  Tons of stuff.  TONS of stuff.  Still no documentation.
+	Added Borland project files.  Moved MSVC project files to central
+	location.
+
+0.5
+	I forgot.  Too long ago.
+
+0.4, aka WROX
+	Added SOAPHTTPServer.   Bertrand nudged me at the right time.
+	Moved build system to autoconf/automake.  Thanks to Mike Anothony.
+	Switched keep-alive back to being default.
+	This release was pushed out for the WROX book.
+
+0.3, 21-Jun-2001
+	Mostly a bug fix release.
+	Default schema is now 2001.
+	HTTP bug fixes + robustness improvements.
+	Array parsing cleanup and fixes.
+	More error checking on double and float conversion.
+	Enchanced logging for debugging purposes.
+	Added initial support for handling wide characters (Assumes
+	wide char strings are UTF-16 or UTF-32, at least I think thats
+	what it's doing...)
+
+0.2, aka Infomercial 17-Apr-2001
+	Major changes.
+	Extensible type system.
+	Lots of changes and bug fixes for interop testing.
+	Initial support to run as a CGI server.
+	Servers for SOAPBuilders interop and Userland validator.
+
+0.1.4, aka Foot and Mouth 23-Mar-2001
+	No real new features.  Added some stuff for configuring on
+	a per compiler basis.  I don't like it.  I really need to
+	do autoconf.  Now compiles on Cygwin32, MS VC++, Linux, FreeBSD
+	Sun Solaris 5.8 (gcc), Compaq Tru64 (gcc), and maybe Codewarrior.
+	
+0.1.3, aka Roadkill 5-Feb-2001
+	Abstracted the transport mechanism by creating SOAPTransport
+	class and SOAPonHTTP class.  It should be trivial (easier) to
+	implement your own transport and add new ones.
+	Did some header cleanup.
+	Removed the funky operator() from SOAPProxy.  It was an
+	experiment.  I didn't like it.
+	Improved the HTTPProtocol to be more robust with dropped
+	connections.
+	Added interopability tests for Apache, SOAP::Lite.
+	See http://www.xmethods.net/detail.html?id=11 and
+	http://www.xmethods.net/detail.html?id=10
+
+0.1.2, aka Groundhog 2-Feb-2001
+	Fixed SSL, wasn't handling SSL_ERROR_WANT_READ/WRITE return codes.
+	Compiles cleanly with -Wall.
+	Fixed bug with error message for XML_Parse.
+	Converted all sprintf's to snprintf's.
+	Exceptions use printf() style for formatted messages.
+	A newline was added to the end of all header files.
+	XML is escaped properly now.
+	Added buffering to SOAPProtocolBase.
+	Turned TCP_NODELAY on in SOAPClientSocket.
+	Fixed User-Agent.
+	Use streams in tests.cpp.
+
+0.1.1, aka Burnt Chicken, 26-Jan-2001
+	A bit of cleanup to make it easier to compile.
+	Compiles on Linux.
+
+0.1 25-Jan-2001
+	Initial Release.
+

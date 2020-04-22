@@ -1,0 +1,8 @@
+USEUNIT("..\..\..\tests\interopserver.cpp");
+USEUNIT("..\..\..\tests\SOAPBuildersHeaderHandler.cpp");
+USEUNIT("..\..\..\tests\SOAPBuildersInteropHandler.cpp");
+USEUNIT("..\..\..\tests\SOAPBuildersInteropHandlerA.cpp");
+USEUNIT("..\..\..\tests\SOAPBuildersInteropHandlerB.cpp");
+USELIB("..\..\..\win32\release\easysoap.lib");
+//---------------------------------------------------------------------------
+#define WinMain

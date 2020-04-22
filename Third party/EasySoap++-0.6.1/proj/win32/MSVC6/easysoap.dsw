@@ -1,0 +1,125 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "easysoap"=.\easysoap.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "interopclient"=.\interopclient.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name interopserver
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "interopserver"=.\interopserver.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name easysoap
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "simpleclient"=.\simpleclient.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name simplecgi
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name simpleserver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name simpleisapi
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "simpleisapi"=.\simpleisapi.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name easysoap
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "simpleserver"=.\simpleserver.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name easysoap
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "validator"=.\validator.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name easysoap
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,39 @@
+
+Release 0.5  05-Sep-2001
+==========================
+
+1)  I made a change to the way serialization of objects work.  Instead
+	of specializing operator<<(SOAPParameter&,const MyType&) and
+	operator>>(const SOAPParameter&, MyType&) you should specialize the
+	templated class SOAPTypeTraits<MyType>.  The old way should still
+	work but you need to use the new class so arrays of your objects
+	will serialize properly.  Look in SOAPTypeTraits.h for examples.
+
+2)  I added some support for the STL classes string, map, vector.  Just
+	#include <SOAPSTL.h> and you should be good to go (except maps,
+	read below.)
+
+3)  I added some initial support for Map type classes (my SOAPHashMap and
+	STL map).  How this type is serialized isn't part of the SOAP spec or
+	part of the XML Schema specification but I have tested it against
+	SOAP::Lite maps and it appears to work fine.  It should also work with
+	Apache's Map serialization but I have not tested that...
+
+	Before you can serialize your map class though, you need to specialize
+	SOAPTypeTraits for your map class.  Example for SOAPHashMap:
+
+		class SOAPTypeTraits< SOAPHashMap<SOAPString, int> >
+			: public SOAPMapTypeTraits { };
+
+	Example for an STL map:
+
+		class SOAPTypeTraits< std::map<std::string, int> >
+			: public SOAPSTLMapTypeTraits { };
+
+4)  Tony Hong wrote a chapter in the upcoming WROX book "Professional XML
+	Web Services" which he discusses EasySoap++.  It should be published
+	and in your local bookstore sometime this month (Sept. 2001) or you
+	can buy it from Amazon:
+
+		http://www.amazon.com/exec/obidos/ASIN/1861005091/107-9609644-6199721
+

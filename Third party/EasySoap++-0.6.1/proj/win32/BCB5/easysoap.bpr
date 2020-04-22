@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="..\..\..\win32\Release\easysoap.dll"/>
+    <OBJFILES value="..\..\..\win32\Release\obj\isapi.obj 
+      ..\..\..\win32\Release\obj\SOAPBase64.obj 
+      ..\..\..\win32\Release\obj\SOAPBody.obj 
+      ..\..\..\win32\Release\obj\SOAPBodyHandler.obj 
+      ..\..\..\win32\Release\obj\SOAPCGIServer.obj 
+      ..\..\..\win32\Release\obj\SOAPCGITransport.obj 
+      ..\..\..\win32\Release\obj\SOAPClientSocketImp.obj 
+      ..\..\..\win32\Release\obj\SOAPDebugger.obj 
+      ..\..\..\win32\Release\obj\SOAPEnvelope.obj 
+      ..\..\..\win32\Release\obj\SOAPEnvelopeHandler.obj 
+      ..\..\..\win32\Release\obj\SOAPFault.obj 
+      ..\..\..\win32\Release\obj\SOAPHeader.obj 
+      ..\..\..\win32\Release\obj\SOAPHeaderHandler.obj 
+      ..\..\..\win32\Release\obj\SOAPHTTPServer.obj 
+      ..\..\..\win32\Release\obj\SOAPISAPIServer.obj 
+      ..\..\..\win32\Release\obj\SOAPMethod.obj 
+      ..\..\..\win32\Release\obj\SOAPMethodHandler.obj 
+      ..\..\..\win32\Release\obj\SOAPNamespaces.obj 
+      ..\..\..\win32\Release\obj\SOAPonHTTP.obj 
+      ..\..\..\win32\Release\obj\SOAPParameter.obj 
+      ..\..\..\win32\Release\obj\SOAPParameterHandler.obj 
+      ..\..\..\win32\Release\obj\SOAPParse.obj 
+      ..\..\..\win32\Release\obj\SOAPProxy.obj 
+      ..\..\..\win32\Release\obj\SOAPResponse.obj 
+      ..\..\..\win32\Release\obj\SOAPSecureSocketImp.obj 
+      ..\..\..\win32\Release\obj\SOAPServerDispatch.obj 
+      ..\..\..\win32\Release\obj\SOAPSocket.obj 
+      ..\..\..\win32\Release\obj\SOAPStructHandler.obj 
+      ..\..\..\win32\Release\obj\SOAPTypeTraits.obj 
+      ..\..\..\win32\Release\obj\SOAPUrl.obj 
+      ..\..\..\win32\Release\obj\SOAPWinInetTransport.obj 
+      ..\..\..\win32\Release\obj\XMLComposer.obj 
+      ..\..\..\win32\Release\obj\XMLParser.obj 
+      ..\..\..\win32\Release\obj\conn.obj ..\..\..\win32\Release\obj\data.obj 
+      ..\..\..\win32\Release\obj\file.obj ..\..\..\win32\Release\obj\http.obj 
+      ..\..\..\win32\Release\obj\server.obj 
+      ..\..\..\win32\Release\obj\socket.obj ..\..\..\win32\Release\obj\thread.obj 
+      ..\..\..\win32\Release\obj\threadpool.obj 
+      ..\..\..\win32\Release\obj\trace.obj"/>
+    <RESFILES value=""/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value="..\..\..\..\Expat-1.95.2\Libs\expat.lib"/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value=""/>
+    <PACKAGES value="VCL50.bpi VCLX50.bpi dclocx50.bpi bcbsmp50.bpi QRPT50.bpi VCLDB50.bpi 
+      VCLBDE50.bpi ibsmp50.bpi VCLDBX50.bpi TEEUI50.bpi TEEDB50.bpi TEE50.bpi 
+      TEEQR50.bpi VCLIB50.bpi bcbie50.bpi VCLIE50.bpi INETDB50.bpi INET50.bpi 
+      NMFAST50.bpi bcb2kaxserver50.bpi"/>
+    <PATHCPP value=".;..\..\..\src;..\..\..\src\abyss\src"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;EASYSOAP_DLL;_DEBUG"/>
+    <SYSDEFINES value="_NO_VCL;_ASSERTE;NO_STRICT;_RTLDLL"/>
+    <MAINSOURCE value="easysoap.bpf"/>
+    <INCLUDEPATH value="..\..\..\include;..\..\..\..\Expat-1.95.2\Source\Lib;..\..\..\src;..\..\..\src\abyss\src;$(BCB)\include"/>
+    <LIBPATH value="..\..\..\src;..\..\..\src\abyss\src;$(BCB)\lib"/>
+    <WARNINGS value="-w-8026 -w-8027 -w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I$(BCB)\include"/>
+    <CFLAG1 value="-WD -Od -w -X- -r- -a8 -5 -b -k -y -v -vi- -q -tWR -tWM -I../include 
+      -I../../expat-1.95.2/source/lib -Iabyss/src -c -tWD"/>
+    <PFLAGS value="-N2..\..\..\win32\Release\obj -N0..\..\..\win32\Release\obj -$YD -$W -$O-"/>
+    <RFLAGS value="/l 0x409 /d &quot;NDEBUG&quot; /i$(BCB)\include;$(BCB)\include\mfc"/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-I..\..\..\win32\Release\obj -D&quot;&quot; -aa -Tpd -x -Gn -Gi -v -q"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0d32.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) WININET.LIB import32.lib cw32mti.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=7
+Item0=..\..\..\include;..\..\..\..\Expat-1.95.2\Source\Lib;..\..\..\src;..\..\..\src\abyss\src;$(BCB)\include
+Item1=..\..\..\include;..\..\..\..\Expat-1.95.2\Source;..\..\..\src;..\..\..\src\abyss\src;$(BCB)\include
+Item2=..\..\..\include;C:\src\Expat-1.95.2\Source;..\..\..\src;..\..\..\src\abyss\src;$(BCB)\include
+Item3=..\..\..\src;..\..\..\src\abyss\src;$(BCB)\include;..\..\..\include
+Item4=..\..\..\src;..\..\..\src\abyss\src;$(BCB)\include
+Item5=abyss\src;$(BCB)\include
+Item6=abyss\src;$(BCB)\include;$(BCB)\include\mfc;$(BCB)\include\atl;
+
+[HistoryLists\hlLibraryPath]
+Count=3
+Item0=..\..\..\src;..\..\..\src\abyss\src;$(BCB)\lib
+Item1=abyss\src;$(BCB)\lib
+Item2=abyss\src;$(BCB)\lib;$(RELEASELIBPATH);;$(BCB)\lib\psdk;
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;EASYSOAP_DLL;_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=3
+Item0=..\..\..\win32\Release\obj
+Item1=..\win32\Release\obj
+Item2=../win32/Release\obj
+
+[HistoryLists\hlFinalOutputDir]
+Count=3
+Item0=..\..\..\win32\Release\
+Item1=..\win32\Release\
+Item2=../win32/Release\
+
+[Debugging]
+DebugSourceDirs=
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

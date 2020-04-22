@@ -1,0 +1,4 @@
+USEUNIT("..\..\..\simpleserver\simpleserver.cpp");
+USELIB("..\..\..\win32\release\easysoap.lib");
+//---------------------------------------------------------------------------
+#define WinMain

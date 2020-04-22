@@ -1,0 +1,53 @@
+Building EasySoap with Borland project files or makefiles.
+
+1. Preliminaries
+
+Borland project and makefiles are included to build EasySoap version 0.6 
+using Borland C++ Builder version 5.0 Update Pack 1 or the C++ compiler 5.5.
+You can probably use BCB6 too.
+
+I have done limited tests with the makefiles with the free stand-alone 
+comiler you can download from Borland. It seems to work ok.
+
+win9x DOS commands are used in the main makefile makefile.mak and in 
+setup.bat (which is used also by the projects). Adapting them to NT 
+shouldn't be hard but you'll have to do that yourself at this stage. The 
+easy way to do it is to delete the DOS commands in those files and do what
+they do manually, its not hard.
+
+You require Expat version 1.95.2 to be installed in a directory adjacent 
+to EasySoap. The project and makefiles depend on the export lib 
+expatrel.lib being in Expat-1.95.2/Libs, and setup.bat (invoked by both 
+the projects and make files) tries to copy expatrel.dll from the Expat 
+tree over to win32/release.
+
+Since Expat doent presently come with Borland project files, 
+you can get the Easysoap patch from version 0.5 which contains the Expat
+projects. Its located on the EasySoap page on Sourceforge. A Borland 
+patch will also (soon) be on the Expat page on Sourceforge.
+
+The default build is a debug configuration even though the output directory
+is called release.
+
+2. Building
+
+2.1 Using Makefiles
+
+At a dos prompt, cd to easysoap\proj\win32\BCB5 and type make. 
+If  everything  works, you have a bunch of .dll's, export libs, and 
+exe's in  C:\EasySoap++-0.6\win32\release.
+
+You can do a make clean to remove all the obj files, or a make cleanall 
+to remove the win32 directories and everything in them.
+
+2.2 Using Project Files
+Just open easysoap.bpg in the BCB5 project directory and do 
+a Build All.
+
+3. Running EasySoap.
+
+You should now be able to use EasySoap. You can immediately 
+run 2 of the test programs: interopclient.exe and simpletest.exe. Both of these 
+communicate with a soap server at sourceforge so you need your internet hookup 
+open.4. FeedbackPost feedback to the EasySoap discussion Forum on sourceforge or 
+email me at pmcconnell@users.sourceforge.net

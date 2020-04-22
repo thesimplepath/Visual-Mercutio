@@ -1,0 +1,37 @@
+SCC = This is a Source Code Control file
+
+[easysoap.sln]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[easysoap.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[google.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[interopclient.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[interopserver.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[simpleclient.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[simpleisapi.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[simpleserver.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA
+
+[validator.vcproj]
+SCC_Aux_Path = "\\Cryptmenas\cryptdatas\devteam"
+SCC_Project_Name = "$/processsoft/VisualMercutioNET/easysoap/easysoap/proj/win32/MSVC7", ULSAAAAA

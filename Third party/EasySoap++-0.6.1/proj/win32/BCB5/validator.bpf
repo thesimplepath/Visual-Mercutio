@@ -1,0 +1,6 @@
+USEUNIT("..\..\..\validator\UserlandValidatorHandler.cpp");
+USEUNIT("..\..\..\validator\validator.cpp");
+USEUNIT("..\..\..\validator\WhichToolkitHandler.cpp");
+USELIB("..\..\..\win32\release\easysoap.lib");
+//---------------------------------------------------------------------------
+#define WinMain

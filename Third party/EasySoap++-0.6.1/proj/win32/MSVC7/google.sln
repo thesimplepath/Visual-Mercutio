@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "google", "google.vcproj", "{581A7626-58C8-4AB0-BDF7-A0E792574BC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+		ConfigName.2 = ReleaseSymbols
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Debug.ActiveCfg = Debug|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Debug.Build.0 = Debug|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Release.ActiveCfg = Release|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Release.Build.0 = Release|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

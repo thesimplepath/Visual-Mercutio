@@ -1,0 +1,125 @@
+dnl
+dnl Process this file with autoconf to produce a configure script.
+dnl
+dnl
+
+AC_INIT(Makefile.am)
+AC_CONFIG_AUX_DIR(conftools)
+
+AM_INIT_AUTOMAKE(EasySoap++, 0.6.1)
+AM_CONFIG_HEADER(include/easysoap/es_config.h)
+
+dnl
+dnl Include other macros we need...
+sinclude(conftools/ac_cxx_namespaces.m4)
+sinclude(conftools/ac_cxx_template_keyword_qualifier.m4)
+sinclude(conftools/ac_cxx_partial_specialization.m4)
+sinclude(conftools/peti_with_dmalloc.m4)
+
+AC_CANONICAL_HOST
+AC_CYGWIN
+
+dnl Checks for programs.
+AC_PROG_CXX
+AC_PROG_AWK
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AM_PROG_LIBTOOL
+AC_PATH_PROG(MAKEDEPEND, makedepend, $TRUE)
+
+dnl Check C++ compiler characteristics
+AC_CXX_NAMESPACES
+AC_CXX_TEMPLATE_KEYWORD_QUALIFIER
+AC_CXX_PARTIAL_SPECIALIZATION
+
+dnl Checks for libraries.
+AC_CHECK_LIB(gcc, main)
+AC_CHECK_LIB(m, isnan)
+AC_CHECK_LIB(stdc++, main)
+AC_CHECK_LIB(nsl, gethostbyname)
+AC_CHECK_LIB(socket, send)
+AC_CHECK_LIB(wsock32, WSAStartup)
+AC_CHECK_LIB(crypto, ERR_put_error)
+AC_CHECK_LIB(ssl, SSL_connect)
+AC_CHECK_LIB(expat, XML_Parse,,
+	AC_MSG_ERROR("Could not find the XML parsing library 'expat'.  Download and install from http://expat.sourceforge.net/"))
+AC_CHECK_HEADER(expat.h,,
+	AC_MSG_ERROR("Could not find expat.h"))
+
+dnl Checks for header files.
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
+AC_CHECK_HEADER(wchar.h,
+	AC_DEFINE(HAVE_WCHAR_H, 1, "Define if you have the <wchar.h> header file."),
+	AC_EGREP_HEADER(wchar_t, stddef.h, 
+		AC_DEFINE(STDDEF_HAS_WCHART, 1, "Define if wchar_t is defined in the <stddef.h> header file.")))
+
+AC_CHECK_HEADERS( \
+	errno.h \
+	fcntl.h \
+	ieeefp.h \
+	malloc.h \
+	math.h \
+	memory.h \
+	netdb.h \
+	resolv.h \
+	stdlib.h \
+	string.h \
+	strings.h \
+	unistd.h \
+	arpa/inet.h \
+	arpa/nameser.h \
+	netinet/in.h \
+	netinet/tcp.h \
+	sys/filio.h \
+	sys/ioctl.h \
+	sys/socket.h \
+	sys/types.h \
+	sys/unistd.h \
+)
+
+dnl
+dnl Check if dmalloc is available and enabled
+PETI_WITH_DMALLOC
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_UID_T
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_HEADER_TIME
+AC_STRUCT_TM
+
+dnl Checks for library functions.
+AC_TYPE_SIGNAL
+AC_FUNC_VPRINTF
+AC_CHECK_FUNCS( \
+	mktime \
+	select \
+	socket \
+	strdup \
+	strtol \
+	snprintf \
+	strerror \
+)
+
+AC_OUTPUT( \
+	Makefile \
+	proj/Makefile \
+	proj/win32/Makefile \
+	proj/win32/BCB5/Makefile \
+	proj/win32/MSVC6/Makefile \
+	proj/win32/MSVC7/Makefile \
+	include/Makefile \
+	include/easysoap/Makefile \
+	src/Makefile \
+	simpleserver/Makefile \
+	validator/Makefile \
+	tests/Makefile \
+	google/Makefile \
+)
+

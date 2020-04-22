@@ -1,0 +1,6 @@
+USEUNIT("..\..\..\src\isapi.cpp");
+USEUNIT("..\..\..\simpleserver\simpleisapi.cpp");
+USEDEF("..\..\..\src\isapi.def");
+USELIB("..\..\..\win32\release\easysoap.lib");
+//---------------------------------------------------------------------------
+#define DllEntryPoint

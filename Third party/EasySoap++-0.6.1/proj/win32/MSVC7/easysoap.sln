@@ -1,0 +1,145 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "easysoap", "easysoap.vcproj", "{773D434E-C802-4322-9C38-4A0B17D71AA9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interopclient", "interopclient.vcproj", "{11D69A4F-CC9C-4DA0-81E9-C196A2E27AF4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{773D434E-C802-4322-9C38-4A0B17D71AA9} = {773D434E-C802-4322-9C38-4A0B17D71AA9}
+		{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB} = {F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interopserver", "interopserver.vcproj", "{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{773D434E-C802-4322-9C38-4A0B17D71AA9} = {773D434E-C802-4322-9C38-4A0B17D71AA9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simpleclient", "simpleclient.vcproj", "{BCA1D3B7-447B-4DA1-B659-C1E38F252202}"
+	ProjectSection(ProjectDependencies) = postProject
+		{773D434E-C802-4322-9C38-4A0B17D71AA9} = {773D434E-C802-4322-9C38-4A0B17D71AA9}
+		{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B} = {5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}
+		{E330086E-26F2-47A0-A1D5-74A041466584} = {E330086E-26F2-47A0-A1D5-74A041466584}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simpleisapi", "simpleisapi.vcproj", "{E330086E-26F2-47A0-A1D5-74A041466584}"
+	ProjectSection(ProjectDependencies) = postProject
+		{773D434E-C802-4322-9C38-4A0B17D71AA9} = {773D434E-C802-4322-9C38-4A0B17D71AA9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simpleserver", "simpleserver.vcproj", "{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{773D434E-C802-4322-9C38-4A0B17D71AA9} = {773D434E-C802-4322-9C38-4A0B17D71AA9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "validator", "validator.vcproj", "{07FDA48B-DF35-43EC-9BF2-0A3920F742AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{773D434E-C802-4322-9C38-4A0B17D71AA9} = {773D434E-C802-4322-9C38-4A0B17D71AA9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "google", "google.vcproj", "{581A7626-58C8-4AB0-BDF7-A0E792574BC1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{773D434E-C802-4322-9C38-4A0B17D71AA9} = {773D434E-C802-4322-9C38-4A0B17D71AA9}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 9
+		SccProjectName0 = \u0022$/processsoft/VisualMercutioNET/easysoap/easysoap\u0022,\u0020RLSAAAAA
+		SccLocalPath0 = ..\\..\\..
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection0 = proj\\win32\\MSVC7\\
+		SolutionUniqueID = {B9263684-4517-4BF9-B33C-9D8711C8C0D0}
+		SccProjectUniqueName1 = easysoap.vcproj
+		SccLocalPath1 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection1 = proj\\win32\\MSVC7\\
+		SccProjectUniqueName2 = google.vcproj
+		SccLocalPath2 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection2 = proj\\win32\\MSVC7\\
+		SccProjectUniqueName3 = interopclient.vcproj
+		SccLocalPath3 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection3 = proj\\win32\\MSVC7\\
+		SccProjectUniqueName4 = interopserver.vcproj
+		SccLocalPath4 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection4 = proj\\win32\\MSVC7\\
+		SccProjectUniqueName5 = simpleclient.vcproj
+		SccLocalPath5 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection5 = proj\\win32\\MSVC7\\
+		SccProjectUniqueName6 = simpleisapi.vcproj
+		SccLocalPath6 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection6 = proj\\win32\\MSVC7\\
+		SccProjectUniqueName7 = simpleserver.vcproj
+		SccLocalPath7 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection7 = proj\\win32\\MSVC7\\
+		SccProjectUniqueName8 = validator.vcproj
+		SccLocalPath8 = ..\\..\\..
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection8 = proj\\win32\\MSVC7\\
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+		ReleaseSymbols = ReleaseSymbols
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{773D434E-C802-4322-9C38-4A0B17D71AA9}.Debug.ActiveCfg = Debug|Win32
+		{773D434E-C802-4322-9C38-4A0B17D71AA9}.Debug.Build.0 = Debug|Win32
+		{773D434E-C802-4322-9C38-4A0B17D71AA9}.Release.ActiveCfg = Release|Win32
+		{773D434E-C802-4322-9C38-4A0B17D71AA9}.Release.Build.0 = Release|Win32
+		{773D434E-C802-4322-9C38-4A0B17D71AA9}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{773D434E-C802-4322-9C38-4A0B17D71AA9}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+		{11D69A4F-CC9C-4DA0-81E9-C196A2E27AF4}.Debug.ActiveCfg = Debug|Win32
+		{11D69A4F-CC9C-4DA0-81E9-C196A2E27AF4}.Debug.Build.0 = Debug|Win32
+		{11D69A4F-CC9C-4DA0-81E9-C196A2E27AF4}.Release.ActiveCfg = Release|Win32
+		{11D69A4F-CC9C-4DA0-81E9-C196A2E27AF4}.Release.Build.0 = Release|Win32
+		{11D69A4F-CC9C-4DA0-81E9-C196A2E27AF4}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{11D69A4F-CC9C-4DA0-81E9-C196A2E27AF4}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+		{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}.Debug.ActiveCfg = Debug|Win32
+		{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}.Debug.Build.0 = Debug|Win32
+		{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}.Release.ActiveCfg = Release|Win32
+		{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}.Release.Build.0 = Release|Win32
+		{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{F7AAB8C7-B76B-4A4A-976D-CFA256C012FB}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+		{BCA1D3B7-447B-4DA1-B659-C1E38F252202}.Debug.ActiveCfg = Debug|Win32
+		{BCA1D3B7-447B-4DA1-B659-C1E38F252202}.Debug.Build.0 = Debug|Win32
+		{BCA1D3B7-447B-4DA1-B659-C1E38F252202}.Release.ActiveCfg = Release|Win32
+		{BCA1D3B7-447B-4DA1-B659-C1E38F252202}.Release.Build.0 = Release|Win32
+		{BCA1D3B7-447B-4DA1-B659-C1E38F252202}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{BCA1D3B7-447B-4DA1-B659-C1E38F252202}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+		{E330086E-26F2-47A0-A1D5-74A041466584}.Debug.ActiveCfg = Debug|Win32
+		{E330086E-26F2-47A0-A1D5-74A041466584}.Debug.Build.0 = Debug|Win32
+		{E330086E-26F2-47A0-A1D5-74A041466584}.Release.ActiveCfg = Release|Win32
+		{E330086E-26F2-47A0-A1D5-74A041466584}.Release.Build.0 = Release|Win32
+		{E330086E-26F2-47A0-A1D5-74A041466584}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{E330086E-26F2-47A0-A1D5-74A041466584}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+		{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}.Debug.ActiveCfg = Debug|Win32
+		{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}.Debug.Build.0 = Debug|Win32
+		{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}.Release.ActiveCfg = Release|Win32
+		{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}.Release.Build.0 = Release|Win32
+		{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{5274D66D-DA4D-4EDF-AEA2-3EDABEF6475B}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+		{07FDA48B-DF35-43EC-9BF2-0A3920F742AE}.Debug.ActiveCfg = Debug|Win32
+		{07FDA48B-DF35-43EC-9BF2-0A3920F742AE}.Debug.Build.0 = Debug|Win32
+		{07FDA48B-DF35-43EC-9BF2-0A3920F742AE}.Release.ActiveCfg = Release|Win32
+		{07FDA48B-DF35-43EC-9BF2-0A3920F742AE}.Release.Build.0 = Release|Win32
+		{07FDA48B-DF35-43EC-9BF2-0A3920F742AE}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{07FDA48B-DF35-43EC-9BF2-0A3920F742AE}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Debug.ActiveCfg = Debug|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Debug.Build.0 = Debug|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Release.ActiveCfg = Release|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.Release.Build.0 = Release|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.ReleaseSymbols.ActiveCfg = ReleaseSymbols|Win32
+		{581A7626-58C8-4AB0-BDF7-A0E792574BC1}.ReleaseSymbols.Build.0 = ReleaseSymbols|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

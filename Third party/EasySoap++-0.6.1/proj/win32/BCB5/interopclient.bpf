@@ -1,0 +1,4 @@
+USEUNIT("..\..\..\tests\interopclient.cpp");
+USELIB("..\..\..\win32\release\easysoap.lib");
+//---------------------------------------------------------------------------
+#define WinMain

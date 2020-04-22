@@ -1,0 +1,54 @@
+
+List of things TODO
+==================================
+
+In order of how hard I think they are:
+
+*	Move everyting into a namespace.
+
+*	Implement copy constructors, copy operators for things that need
+	them.  Declare private ones that don't make sense.
+
+*	Move the XML payload serialization into a single class instead of
+	the ugly WriteSOAPPacket method on a bunch of classes.
+
+*	Write real regression tests.
+
+*	Write a file Transport that can be used to read/write files for
+	regression testing (files will have pre-composed SOAP payloads
+	that will be read/sent as the response to a method invocation.  The
+	request is also compared against a file.)
+
+*	Write POP/SMTP/FTP/raw TCP transports
+
+*	Improve the existing HTTP/HTTPS transports.
+
+*	Create a factory class for handing out transports.  Set things up
+	so a transport can be registered for a specific protocol.
+	
+*	SOAPUrl might need to keep protocol around as a string instead of
+	an enum to help the factory.  Need to get the full URL back as a
+	string as well as a partial URL containing only "proto://hostname."
+
+*	Need to be able to specify different encodingStyle (see
+	SOAPEnvelope::WriteSoapPacket())
+
+*	Have the SOAPProxy::Execute() method take a SOAPMethod AND
+	SOAPParameters instead of adding parameters to the SOAPMethod.
+
+*	Rename SOAPProxy to SOAPService.  Change SOAPService to contain
+	a map of methods (instead of the single funky method it has now).
+	Those are the methods that can be called on that service.  This
+	should map well with WSDL.
+
+*	More builtin types.  Since the type system is now pretty extensible
+	then this is less of an issue.  But we should have 64bit ints
+	and date/time stuff builtin.
+
+*	Read about WSDL.  Support WSDL.  Construct a SOAPService by parsing
+	a WSDL document.  Create stub code by parsing a WSDL document.
+
+*	Be able to write a SOAP server.  The validator is a CGI, but it needs
+	a ton of improvements.  Need to parse Headers, be able to serialize
+	Faults, etc.  TONS of work to do here.
+
