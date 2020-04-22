@@ -39,7 +39,7 @@
 class ZIMainFrame;
 class PSS_OutputWorkspace;
 class PSS_ProcessWorkspace;
-class ZVPropertiesWorkspace;
+class PSS_PropertiesWorkspace;
 class PSS_WorkspaceEnvDocument;
 class PSS_WorkspaceEnv;
 class PSS_ProcessGraphModelDoc;
@@ -204,7 +204,7 @@ class PSS_App : public PSS_MainApp, public PSS_AppGridAdapter
         * Gets the properties workspace
         *@return the properties workspace
         */
-        virtual ZVPropertiesWorkspace* GetPropertiesWorkspace();
+        virtual PSS_PropertiesWorkspace* GetPropertiesWorkspace();
 
         /**
         * Gets the project window bar

@@ -16,7 +16,7 @@
 #include "zTip\PSS_HelpContextBar.h"
 #include "PSS_ProcessWorkspace.h"
 #include "PSS_OutputWorkspace.h"
-#include "ZVPropertiesWorkspace.h"
+#include "PSS_PropertiesWorkspace.h"
 
 /**
 * Main frame
@@ -46,7 +46,7 @@ class PSS_MainFrame : public PSS_BaseMainFrame
         * Gets the properties workspace
         *@return the properties workspace
         */
-        virtual inline ZVPropertiesWorkspace* GetPropertiesWorkspace();
+        virtual inline PSS_PropertiesWorkspace* GetPropertiesWorkspace();
 
         /**
         * Gets the project window bar
@@ -149,11 +149,11 @@ class PSS_MainFrame : public PSS_BaseMainFrame
         virtual BOOL InitializeDockingWindows();
 
     private:
-        PSS_ProjectBar        m_ProjectWindowBar;
-        PSS_TipOfDayBar       m_WndTipOfDayBar;
-        PSS_ProcessWorkspace  m_WndWorkspace;
-        PSS_OutputWorkspace   m_WndOutputWorkspace;
-        ZVPropertiesWorkspace m_WndPropertiesWorkspace;
+        PSS_ProjectBar          m_ProjectWindowBar;
+        PSS_TipOfDayBar         m_WndTipOfDayBar;
+        PSS_ProcessWorkspace    m_WndWorkspace;
+        PSS_OutputWorkspace     m_WndOutputWorkspace;
+        PSS_PropertiesWorkspace m_WndPropertiesWorkspace;
 };
 
 //---------------------------------------------------------------------------
@@ -169,7 +169,7 @@ PSS_OutputWorkspace* PSS_MainFrame::GetOutputWorkspace()
     return &m_WndOutputWorkspace;
 }
 //---------------------------------------------------------------------------
-ZVPropertiesWorkspace* PSS_MainFrame::GetPropertiesWorkspace()
+PSS_PropertiesWorkspace* PSS_MainFrame::GetPropertiesWorkspace()
 {
     return &m_WndPropertiesWorkspace;
 }

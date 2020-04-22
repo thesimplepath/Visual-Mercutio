@@ -21,9 +21,9 @@
 #include "zWinUtil32\PSS_UrlWnd.h"
 #include "PSS_ProcessModelDocument.h"
 #include "PSS_LogicalSystemView.h"
-#include "ZVUserGroup.h"
+#include "PSS_UserGroupView.h"
 #include "PSS_PrestationsView.h"
-#include "ZVRules.h"
+#include "PSS_RulesView.h"
 
 //---------------------------------------------------------------------------
 // Tab index constant definition
@@ -252,7 +252,7 @@ class PSS_ProcessWorkspace : public SECControlBar,
         * Gets the user view
         *@return the user view
         */
-        virtual inline ZVUserGroup* GetUserView();
+        virtual inline PSS_UserGroupView* GetUserView();
 
         /**
         * Activates the user tab
@@ -357,7 +357,7 @@ class PSS_ProcessWorkspace : public SECControlBar,
         * Gets the rules view
         *@return the rules view
         */
-        virtual inline ZVRules* GetRulesView();
+        virtual inline PSS_RulesView* GetRulesView();
 
         /**
         * Activates the rules tab
@@ -424,10 +424,10 @@ class PSS_ProcessWorkspace : public SECControlBar,
         PSS_WorkspaceTreeCtrl    m_WorkspaceView;
         PSS_ProcessModelDocument m_ProcessModelView;
         PSS_FormTemplateTreeCtrl m_FormTemplateView;
-        ZVUserGroup              m_UserView;
+        PSS_UserGroupView        m_UserView;
         PSS_LogicalSystemView    m_LogicalSystemView;
         PSS_PrestationsView      m_PrestationsView;
-        ZVRules                  m_RulesView;
+        PSS_RulesView            m_RulesView;
         PSS_FileWnd              m_FileView;
         PSS_UrlWnd               m_URLView;
 };
@@ -495,7 +495,7 @@ void PSS_ProcessWorkspace::HideFormTemplateTab()
     m_WndTab.EnableTab(g_FormTemplateTabIndex, FALSE);
 }
 //---------------------------------------------------------------------------
-ZVUserGroup* PSS_ProcessWorkspace::GetUserView()
+PSS_UserGroupView* PSS_ProcessWorkspace::GetUserView()
 {
     return &m_UserView;
 }
@@ -595,7 +595,7 @@ void PSS_ProcessWorkspace::HidePrestationsTab()
     m_WndTab.EnableTab(g_PrestationsTabIndex, FALSE);
 }
 //---------------------------------------------------------------------------
-ZVRules* PSS_ProcessWorkspace::GetRulesView()
+PSS_RulesView* PSS_ProcessWorkspace::GetRulesView()
 {
     return &m_RulesView;
 }

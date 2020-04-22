@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_LogicalSystemView -----------------------------------------------*
+ * ==> PSS_RulesView -------------------------------------------------------*
  ****************************************************************************
- * Description : Provides a logical system view                             *
+ * Description : Provides a rules view                                      *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_LogicalSystemViewH
-#define PSS_LogicalSystemViewH
+#ifndef PSS_RulesViewH
+#define PSS_RulesViewH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -15,21 +15,21 @@
 // processsoft
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zModel\PSS_LogicalSystemTreeCtrl.h"
+#include "zModel\PSS_RulesTreeCtrl.h"
 
 /**
-* Logical system view
+* Rules view
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_LogicalSystemView : public CWnd,
-                              public PSS_Subject,
-                              public PSS_Observer
+class PSS_RulesView : public CWnd,
+                      public PSS_Subject,
+                      public PSS_Observer
 {
-    DECLARE_DYNCREATE(PSS_LogicalSystemView)
+    DECLARE_DYNCREATE(PSS_RulesView)
 
     public:
-        PSS_LogicalSystemView();
-        virtual ~PSS_LogicalSystemView();
+        PSS_RulesView();
+        virtual ~PSS_RulesView();
 
         /**
         * Releases the view content
@@ -37,22 +37,22 @@ class PSS_LogicalSystemView : public CWnd,
         virtual void Release();
 
         /**
-        * Checks if a system may be added to the view
-        *@return true if a system may be added to the view, otherwise false
+        * Checks if a rule may be added to the view
+        *@return true if a rule may be added to the view, otherwise false
         */
-        virtual bool CanAddSystem();
+        virtual bool CanAddRule();
 
         /**
-        * Checks if a system may be renamed in the view
-        *@return true if a system may be renamed in the view, otherwise false
+        * Checks if a rule may be renamed in the view
+        *@return true if a rule may be renamed in the view, otherwise false
         */
-        virtual bool CanRenameSystem();
+        virtual bool CanRenameRule();
 
         /**
-        * Checks if a system may be deleted from the view
-        *@return true if a system may be deleted from the view, otherwise false
+        * Checks if a rule may be deleted from the view
+        *@return true if a rule may be deleted from the view, otherwise false
         */
-        virtual bool CanDeleteSystem();
+        virtual bool CanDeleteRule();
 
         /**
         * Checks if the properties may be shown
@@ -82,24 +82,24 @@ class PSS_LogicalSystemView : public CWnd,
         virtual void OnRefresh();
 
         /**
-        * Called when a system is added to the view
+        * Called when a rule is added to the view
         */
-        virtual void OnAddSystem();
+        virtual void OnAddRule();
 
         /**
-        * Called when a system is renamed in the view
+        * Called when a rule is renamed in the view
         */
-        virtual void OnRenameSystem();
+        virtual void OnRenameRule();
 
         /**
-        * Called when a system is deleted from the view
+        * Called when a rule is deleted from the view
         */
-        virtual void OnDeleteSystem();
+        virtual void OnDeleteRule();
 
         /**
-        * Called when a system is moved in the view
+        * Called when a rule is moved in the view
         */
-        virtual void OnMoveSystem();
+        virtual void OnMoveRule();
 
         /**
         * Called when the properties are shown
@@ -115,46 +115,46 @@ class PSS_LogicalSystemView : public CWnd,
 
     protected:
         /**
-        * Logical system flat toolbar
+        * Rules flat toolbar
         */
-        class ILogicalSystemFlatToolBar : public CStatic, public PSS_Subject
+        class IRulesFlatToolBar : public CStatic, public PSS_Subject
         {
             public:
-                ILogicalSystemFlatToolBar();
-                virtual ~ILogicalSystemFlatToolBar();
+                IRulesFlatToolBar();
+                virtual ~IRulesFlatToolBar();
 
             protected:
-                /// Generated virtual functions
-                //{{AFX_VIRTUAL(ILogicalSystemFlatToolBar)
+                /// ClassWizard generated virtual function overrides
+                //{{AFX_VIRTUAL(IRulesFlatToolBar)
                 virtual BOOL PreTranslateMessage(MSG* pMsg);
                 virtual void PreSubclassWindow();
                 //}}AFX_VIRTUAL
 
                 /// Generated message map functions
-                //{{AFX_MSG(ILogicalSystemFlatToolBar)
+                //{{AFX_MSG(IRulesFlatToolBar)
                 afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-                afx_msg void OnAddSystemButton();
-                afx_msg void OnRenameSystemButton();
-                afx_msg void OnDeleteSystemButton();
-                afx_msg void OnMoveSystemButton();
+                afx_msg void OnAddRuleButton();
+                afx_msg void OnRenameRuleButton();
+                afx_msg void OnDeleteRuleButton();
+                afx_msg void OnMoveRuleButton();
                 afx_msg void OnPropertiesButton();
                 afx_msg void OnRefreshButton();
                 //}}AFX_MSG
                 DECLARE_MESSAGE_MAP()
 
             private:
-                CCJFlatButton m_RefreshButton;
-                CCJFlatButton m_AddSystemButton;
-                CCJFlatButton m_RenameSystemButton;
-                CCJFlatButton m_DeleteSystemButton;
-                CCJFlatButton m_MoveSystemButton;
-                CCJFlatButton m_PropertiesButton;
-                CToolTipCtrl  m_ToolTip;
-                CImageList    m_ImageList;
+                CCJFlatButton    m_RefreshButton;
+                CCJFlatButton    m_AddRuleButton;
+                CCJFlatButton    m_RenameRuleButton;
+                CCJFlatButton    m_DeleteRuleButton;
+                CCJFlatButton    m_MoveRuleButton;
+                CCJFlatButton    m_PropertiesButton;
+                CToolTipCtrl     m_ToolTip;
+                CImageList       m_ImageList;
         };
 
         /// Generated message map functions
-        //{{AFX_MSG(PSS_LogicalSystemView)
+        //{{AFX_MSG(PSS_RulesView)
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnPaint();
@@ -162,9 +162,9 @@ class PSS_LogicalSystemView : public CWnd,
         DECLARE_MESSAGE_MAP()
 
     private:
-        ILogicalSystemFlatToolBar m_FlatToolBar;
-        PSS_LogicalSystemTreeCtrl m_Ctrl;
-        COLORREF                  m_ClrBtnFace;
+        IRulesFlatToolBar m_FlatToolBar;
+        PSS_RulesTreeCtrl m_Ctrl;
+        COLORREF          m_ClrBtnFace;
 };
 
 #endif

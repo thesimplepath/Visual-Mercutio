@@ -675,7 +675,7 @@ LRESULT PSS_MainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
             if (pProcessWorkspace)
                 pDoc->AttachObserver(pProcessWorkspace);
 
-            ZVPropertiesWorkspace* pPropsWorkspace = GetPropertiesWorkspace();
+            PSS_PropertiesWorkspace* pPropsWorkspace = GetPropertiesWorkspace();
 
             // attach properties workspace as observer
             if (pPropsWorkspace)

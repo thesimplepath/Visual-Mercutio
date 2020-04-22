@@ -76,7 +76,7 @@
 #include "PSS_ConceptorReportOptionsDlg.h"
 #include "PSS_ProcessWorkspace.h"
 #include "PSS_OutputWorkspace.h"
-#include "ZVWorkspaceCreationWizard.h"
+#include "PSS_WorkspaceCreationWizard.h"
 
 // stingray studio
 #ifdef _OVDLL
@@ -543,7 +543,7 @@ PSS_ProcessWorkspace* PSS_App::GetProcessWorkspace()
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZVPropertiesWorkspace* PSS_App::GetPropertiesWorkspace()
+PSS_PropertiesWorkspace* PSS_App::GetPropertiesWorkspace()
 {
     PSS_MainFrame* pFrame = GetMainFrame();
 
@@ -1160,7 +1160,7 @@ void PSS_App::OnNewWorkspace()
         return;
 
     // start wizard for new workspace
-    ZVWorkspaceCreationWizard workspaceCreation(m_pWorkspaceTemplateManager, GetModelTemplateDirectory(), g_WorkspaceExtension);
+    PSS_WorkspaceCreationWizard workspaceCreation(m_pWorkspaceTemplateManager, GetModelTemplateDirectory(), g_WorkspaceExtension);
 
     if (workspaceCreation.DoModal() == IDOK)
     {
@@ -1646,7 +1646,7 @@ void PSS_App::OnUgpAddGroup()
     if (!pWorkspace)
         return;
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
         return;
@@ -1664,7 +1664,7 @@ void PSS_App::OnUpdateUgpAddGroup(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
     {
@@ -1682,7 +1682,7 @@ void PSS_App::OnUgpDeleteGroup()
     if (!pWorkspace)
         return;
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
         return;
@@ -1701,7 +1701,7 @@ void PSS_App::OnUpdateUgpDeleteGroup(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
     {
@@ -1719,7 +1719,7 @@ void PSS_App::OnUgpRenameGroup()
     if (!pWorkspace)
         return;
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
         return;
@@ -1738,7 +1738,7 @@ void PSS_App::OnUpdateUgpRenameGroup(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
     {
@@ -1756,7 +1756,7 @@ void PSS_App::OnUgpProperties()
     if (!pWorkspace)
         return;
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
         return;
@@ -1774,7 +1774,7 @@ void PSS_App::OnUpdateUgpProperties(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
     {
@@ -1792,7 +1792,7 @@ void PSS_App::OnUgpAddRole()
     if (!pWorkspace)
         return;
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
         return;
@@ -1810,7 +1810,7 @@ void PSS_App::OnUpdateUgpAddRole(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
     {
@@ -1828,7 +1828,7 @@ void PSS_App::OnUgpDeleteRole()
     if (!pWorkspace)
         return;
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
         return;
@@ -1846,7 +1846,7 @@ void PSS_App::OnUpdateUgpDeleteRole(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
     {
@@ -1864,7 +1864,7 @@ void PSS_App::OnUgpRenameRole()
     if (!pWorkspace)
         return;
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
         return;
@@ -1882,7 +1882,7 @@ void PSS_App::OnUpdateUgpRenameRole(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVUserGroup* pUserGroup = pWorkspace->GetUserView();
+    PSS_UserGroupView* pUserGroup = pWorkspace->GetUserView();
 
     if (!pUserGroup)
     {
@@ -2192,7 +2192,7 @@ void PSS_App::OnAddRule()
     if (!pWorkspace)
         return;
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
         return;
@@ -2210,7 +2210,7 @@ void PSS_App::OnUpdateAddRule(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
     {
@@ -2228,7 +2228,7 @@ void PSS_App::OnDeleteRule()
     if (!pWorkspace)
         return;
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
         return;
@@ -2247,7 +2247,7 @@ void PSS_App::OnUpdateDeleteRule(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
     {
@@ -2265,7 +2265,7 @@ void PSS_App::OnRenameRule()
     if (!pWorkspace)
         return;
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
         return;
@@ -2284,7 +2284,7 @@ void PSS_App::OnUpdateRenameRule(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
     {
@@ -2302,7 +2302,7 @@ void PSS_App::OnRuleProperties()
     if (!pWorkspace)
         return;
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
         return;
@@ -2320,7 +2320,7 @@ void PSS_App::OnUpdateRuleProperties(CCmdUI* pCmdUI)
         return;
     }
 
-    ZVRules* pRules = pWorkspace->GetRulesView();
+    PSS_RulesView* pRules = pWorkspace->GetRulesView();
 
     if (!pRules)
     {
@@ -3395,7 +3395,7 @@ BOOL PSS_App::PostInitApp()
     if (pOutputWorkspace)
         AttachObserver(pOutputWorkspace);
 
-    ZVPropertiesWorkspace* pPropsWorkspace = GetPropertiesWorkspace();
+    PSS_PropertiesWorkspace* pPropsWorkspace = GetPropertiesWorkspace();
 
     if (pPropsWorkspace)
     {

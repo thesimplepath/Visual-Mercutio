@@ -284,7 +284,7 @@ int PSS_ProcessWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
     if (SECControlBar::OnCreate(lpCreateStruct) == -1)
         return -1;
 
-    BOOL result = m_WndTab.Create(this);
+    const BOOL result = m_WndTab.Create(this);
 
     // NOTE OT 5.0 and earlier would stretch a 32x32 icon resource down to
     // 16x16. 5.1 and above defaults to native 16x16 sized icons, when available
@@ -426,12 +426,12 @@ void PSS_ProcessWorkspace::OnContextMenu(CWnd* pWnd, CPoint point)
             return;
         }
 
-    ZVUserGroup* pUserView = GetUserView();
+    PSS_UserGroupView* pUserView = GetUserView();
 
     if (pActiveWnd == pUserView)
         if (pUserView->HasContextMenu(pWnd, point) != -1)
         {
-            pUserView->DisplayContextMenu(pWnd, point);
+            pUserView->ShowContextMenu(pWnd, point);
             return;
         }
 
@@ -462,12 +462,12 @@ void PSS_ProcessWorkspace::OnContextMenu(CWnd* pWnd, CPoint point)
             return;
         }
 
-    ZVRules* pRulesView = GetRulesView();
+    PSS_RulesView* pRulesView = GetRulesView();
 
     if (pActiveWnd == pRulesView)
         if (pRulesView->HasContextMenu(pWnd, point) != -1)
         {
-            pRulesView->DisplayContextMenu(pWnd, point);
+            pRulesView->ShowContextMenu(pWnd, point);
             return;
         }
 

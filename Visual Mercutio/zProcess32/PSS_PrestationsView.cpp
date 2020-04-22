@@ -147,7 +147,7 @@ int PSS_PrestationsView::IPrestationsFlatToolBar::OnCreate(LPCREATESTRUCT lpCrea
         return -1;
     }
 
-    m_DeletePrestationButton.SetIcon(m_ImageList.ExtractIcon(++iconIndex), CSize(20, 20));
+    m_DeletePrestationButton.SetIcon(m_ImageList.ExtractIcon(iconIndex), CSize(20, 20));
     rc.OffsetRect(24, 0);
     ++iconIndex;
 

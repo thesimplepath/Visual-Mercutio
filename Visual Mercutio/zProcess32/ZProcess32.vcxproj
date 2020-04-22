@@ -279,22 +279,22 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVPropertiesWorkspace.cpp">
+    <ClCompile Include="PSS_PropertiesWorkspace.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVRules.cpp" />
-    <ClCompile Include="ZVUserGroup.cpp">
+    <ClCompile Include="PSS_RulesView.cpp" />
+    <ClCompile Include="PSS_UserGroupView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVWorkspaceCreationWizard.cpp">
+    <ClCompile Include="PSS_WorkspaceCreationWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -327,10 +327,10 @@
     <ClInclude Include="PSS_OutputWorkspace.h" />
     <ClInclude Include="PSS_PrestationsView.h" />
     <ClInclude Include="PSS_ProcessWorkspace.h" />
-    <ClInclude Include="ZVPropertiesWorkspace.h" />
-    <ClInclude Include="ZVRules.h" />
-    <ClInclude Include="ZVUserGroup.h" />
-    <ClInclude Include="ZVWorkspaceCreationWizard.h" />
+    <ClInclude Include="PSS_PropertiesWorkspace.h" />
+    <ClInclude Include="PSS_RulesView.h" />
+    <ClInclude Include="PSS_UserGroupView.h" />
+    <ClInclude Include="PSS_WorkspaceCreationWizard.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\3dADSoft.bmp" />
