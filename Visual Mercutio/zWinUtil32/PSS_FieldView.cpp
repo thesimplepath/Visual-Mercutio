@@ -140,21 +140,11 @@ afx_msg LRESULT PSS_FieldView::OnFieldRenamed(WPARAM wParam, LPARAM lParam)
 //---------------------------------------------------------------------------
 void PSS_FieldView::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     *pResult = 0;
 }
 //---------------------------------------------------------------------------
 void PSS_FieldView::OnDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     *pResult = 0;
 }
 //---------------------------------------------------------------------------

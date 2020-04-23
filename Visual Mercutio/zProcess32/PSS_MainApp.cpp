@@ -12,6 +12,9 @@
 // uncomment the libe below to re-enable the product key protection
 //#define EVALUATION_VERSION
 
+// uncomment the line below to remove the splash screen on opening
+//#define NO_SPLASH
+
 // windows
 #ifdef _WIN32
     #include <WinSpool.h>
@@ -171,7 +174,7 @@ PSS_MainApp::PSS_MainApp() :
     m_SplashID(0),
     m_AboutID(0),
     m_SupportID(0)
-    #ifdef _ZCHECKINFO
+    #ifdef CHECK_INFO
         ,
         m_ApplicationInfoType(PSS_CryptedFileApplicationTypeInfo::IE_AT_Unknown)
     #endif
@@ -222,7 +225,7 @@ BOOL PSS_MainApp::InitInstance()
     // assign globally the application directory
     PSS_Global::SetApplicationDirectory(GetApplicationDir());
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // start the splash
         PSS_SplashController splash;
 
@@ -246,13 +249,13 @@ BOOL PSS_MainApp::InitInstance()
     // load the standard ini file options (including MRU)
     LoadStdProfileSettings(0);
 
-    #ifdef _ZCHECKINFO
+    #ifdef CHECK_INFO
         // load the application type
         LoadApplicationInfoType();
 
         if (GetApplicationInfoType() == PSS_CryptedFileApplicationTypeInfo::IE_AT_Unknown)
         {
-            #ifndef _ZNOSPLASH
+            #ifndef NO_SPLASH
                 // hide the splash
                 if (m_SplashID)
                     splash.Hide();
@@ -264,7 +267,7 @@ BOOL PSS_MainApp::InitInstance()
             return FALSE;
         }
 
-        #ifndef _ZNOSPLASH
+        #ifndef NO_SPLASH
             // set the progress
             if (m_SplashID)
             {
@@ -282,7 +285,7 @@ BOOL PSS_MainApp::InitInstance()
 
     if (!LoadApplicationOptions())
     {
-        #ifndef _ZNOSPLASH
+        #ifndef NO_SPLASH
             // hide the splash
             if (m_SplashID)
                 splash.Hide();
@@ -291,11 +294,11 @@ BOOL PSS_MainApp::InitInstance()
         return FALSE;
     }
 
-    #ifdef _ZCHECKINFO
+    #ifdef CHECK_INFO
         // check the product key
         if (GetProductKeyFileInfo() != GetRegisteredProductKey())
         {
-            #ifndef _ZNOSPLASH
+            #ifndef NO_SPLASH
                 // hide the splash
                 if (m_SplashID)
                     splash.Hide();
@@ -311,7 +314,7 @@ BOOL PSS_MainApp::InitInstance()
     // initialize the application
     if (!InitApp())
     {
-        #ifndef _ZNOSPLASH
+        #ifndef NO_SPLASH
             // hide the splash
             if (m_SplashID)
                 splash.Hide();
@@ -375,7 +378,7 @@ BOOL PSS_MainApp::InitInstance()
         }
     }
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // set the progress
         if (m_SplashID)
         {
@@ -388,7 +391,7 @@ BOOL PSS_MainApp::InitInstance()
     if (!OpenServerSession())
         return FALSE;
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // set the progress
         if (m_SplashID)
         {
@@ -402,7 +405,7 @@ BOOL PSS_MainApp::InitInstance()
     if (!pWnd)
         return FALSE;
 
-    #ifdef _ZCHECKINFO
+    #ifdef CHECK_INFO
         // only load users for entreprise edition
         if (GetApplicationInfoType() == PSS_CryptedFileApplicationTypeInfo::IE_AT_EntrepriseEdition)
     #endif
@@ -435,7 +438,7 @@ BOOL PSS_MainApp::InitInstance()
                 pWnd->SendMessageToDescendants(UM_INITIALIZE_USERMANAGER, 0, LPARAM(&PSS_Global::GetUserManager()));
             }
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // set the progress
         if (m_SplashID)
         {
@@ -449,7 +452,7 @@ BOOL PSS_MainApp::InitInstance()
 
     pWnd->SendMessageToDescendants(UM_INITIALIZE_TEMPLATEMANAGER, 1, LPARAM(&PSS_Global::GetTemplateManager()));
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // set the progress
         if (m_SplashID)
         {
@@ -464,7 +467,7 @@ BOOL PSS_MainApp::InitInstance()
 
     pWnd->SendMessageToDescendants(UM_INITIALIZE_PROCESSTEMPLATEMANAGER, 1, LPARAM(&PSS_Global::GetTemplateManager()));
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // set the progress
         if (m_SplashID)
         {
@@ -489,8 +492,8 @@ BOOL PSS_MainApp::InitInstance()
 
     m_pMainWnd->DragAcceptFiles();
 
-    #if defined( _ZDESIGNER ) || defined( _ZSCRIPTOR ) || defined( _ZWRITER ) || defined( _ZPROCESS )
-        #ifndef _ZNOSPLASH
+    #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR) || defined(_ZWRITER) || defined(_ZPROCESS)
+        #ifndef NO_SPLASH
             // set the progress
             if (m_SplashID)
             {
@@ -538,7 +541,7 @@ BOOL PSS_MainApp::InitInstance()
         ClearLogo();
     #endif
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // set the progress
         if (m_SplashID)
             splash.SetProgress(100);
@@ -582,7 +585,7 @@ BOOL PSS_MainApp::InitInstance()
         }
     #endif
 
-    #ifndef _ZNOSPLASH
+    #ifndef NO_SPLASH
         // hide the splash
         if (m_SplashID)
             splash.Hide();
@@ -1798,7 +1801,7 @@ BOOL PSS_MainApp::LoadGlobalFieldRepository()
     return m_pFieldRepository->OpenRepository(GetGlobalFieldNameRepository(), OpenFieldRepositoryReadOnly());
 }
 //---------------------------------------------------------------------------
-#ifdef _ZCHECKINFO
+#ifdef CHECK_INFO
     void PSS_MainApp::LoadApplicationInfoType()
     {
         const CString appDir = GetApplicationDirectory();

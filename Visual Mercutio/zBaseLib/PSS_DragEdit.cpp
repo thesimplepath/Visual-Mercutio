@@ -506,7 +506,7 @@ void PSS_DragEdit::OnLButtonDown(UINT nFlags, CPoint point)
         // defined dragging area
         CRect rc(point.x - 5, point.y - 5, point.x + 5, point.y + 5);
 
-        // it seems it's a MFC's bug that MFC will set capture to AfxGetMainWnd() and use its coordinates
+        // it seems it's a MFC's bug that MFC will set capture to ::AfxGetMainWnd() and use its coordinates
         // to test the lpRectStartDrag. So, we need to first translate the rc's coordinate
         MapWindowPoints(::AfxGetMainWnd(), &rc);
 

@@ -134,12 +134,6 @@ afx_msg LRESULT PSS_UserView::OnRefreshUserManager(WPARAM wParam, LPARAM lParam)
 //---------------------------------------------------------------------------
 void PSS_UserView::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
-    // call the Event Handler
     OnSelChangedEvent();
 
     *pResult = 0;
@@ -147,12 +141,6 @@ void PSS_UserView::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_UserView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
-    // call the Event Handler
     OnClickEvent();
 
     *pResult = 0;
@@ -160,12 +148,6 @@ void PSS_UserView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_UserView::OnDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
-    // call the Event Handler
     OnDblClickEvent();
 
     *pResult = 0;
@@ -173,12 +155,6 @@ void PSS_UserView::OnDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_UserView::OnRightClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
-    // call the Event Handler
     OnRightClickEvent();
 
     *pResult = 0;
@@ -186,12 +162,6 @@ void PSS_UserView::OnRightClick(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_UserView::OnRightDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
-    // call the Event Handler
     OnRightDblClickEvent();
 
     *pResult = 0;

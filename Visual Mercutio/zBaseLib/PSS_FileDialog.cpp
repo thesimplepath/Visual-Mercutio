@@ -68,9 +68,14 @@ const PSS_FileDialog& PSS_FileDialog::operator = (const PSS_FileDialog& other)
 //---------------------------------------------------------------------------
 int PSS_FileDialog::DoModal()
 {
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+        return IDABORT;
+
     m_ofn.nMaxCustFilter += m_FilterCount;
     m_ofn.lpstrFilter     = m_Filters;
-    m_ofn.hwndOwner       = AfxGetMainWnd()->GetSafeHwnd();
+    m_ofn.hwndOwner       = pWnd->GetSafeHwnd();
     m_ofn.lpstrTitle      = m_Title;
 
     // set the initial directory
@@ -81,7 +86,7 @@ int PSS_FileDialog::DoModal()
     try
     {
         m_ofn.lpstrFile = m_FileName.GetBuffer(_MAX_PATH);
-        result          = (CFileDialog::DoModal() == IDOK);
+        result          = CFileDialog::DoModal();
     }
     catch (...)
     {

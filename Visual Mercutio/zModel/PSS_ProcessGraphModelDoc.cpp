@@ -502,12 +502,14 @@ bool PSS_ProcessGraphModelDoc::InsertUnit(const CString& fileName)
 
     m_pUnitManager->FillModelSet(m_UnitModelSet);
 
-    CWnd* pMainWnd = AfxGetMainWnd();
-    ASSERT(pMainWnd);
+    CWnd* pMainWnd = ::AfxGetMainWnd();
 
     // build the message
-    PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, NULL, pUnit);
-    pMainWnd->SendMessageToDescendants(UM_ADDUNITMODEL, 0, LPARAM(&unitMsg));
+    if (pMainWnd)
+    {
+        PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, NULL, pUnit);
+        pMainWnd->SendMessageToDescendants(UM_ADDUNITMODEL, 0, LPARAM(&unitMsg));
+    }
 
     // model has been modified
     SetModifiedFlag();
@@ -595,9 +597,14 @@ void PSS_ProcessGraphModelDoc::SetNewModel(PSS_ProcessGraphModelMdl* pModel)
         // switch the context
         PSS_FloatingToolBar::SwitchContext(m_pModel->GetNotation());
 
+        CWnd* pWnd = ::AfxGetMainWnd();
+
         // build the message
-        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
-        AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
+        if (pWnd)
+        {
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+            pWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
+        }
     }
 }
 //---------------------------------------------------------------------------
@@ -664,7 +671,7 @@ CView* PSS_ProcessGraphModelDoc::ActivateView(const CString& name)
 
         if (pWnd)
         {
-            CMDIFrameWnd* pMainWnd = dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd());
+            CMDIFrameWnd* pMainWnd = dynamic_cast<CMDIFrameWnd*>(::AfxGetMainWnd());
 
             if (pMainWnd)
             {
@@ -679,7 +686,7 @@ CView* PSS_ProcessGraphModelDoc::ActivateView(const CString& name)
 //---------------------------------------------------------------------------
 CView* PSS_ProcessGraphModelDoc::SwitchView(CView* pNewView, std::size_t index)
 {
-    CFrameWnd* pMainWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+    CFrameWnd* pMainWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
     if (!pMainWnd)
         return NULL;
@@ -1183,23 +1190,25 @@ BOOL PSS_ProcessGraphModelDoc::OnNewDocument()
     // set model name for new document
     pModel->SetModelName(GetTitle());
 
-    CWnd* pMainWnd = AfxGetMainWnd();
-    ASSERT(pMainWnd);
+    CWnd* pMainWnd = ::AfxGetMainWnd();
 
-    if (!IsUnit() && HasUnit())
+    if (pMainWnd)
     {
-        // build the message
-        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
-        pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
+        if (!IsUnit() && HasUnit())
+        {
+            // build the message
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+            pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
+
+            // build the message even if the unit manager is NULL
+            PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
+            pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
+        }
 
         // build the message even if the unit manager is NULL
-        PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
-        pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+        pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
     }
-
-    // build the message even if the unit manager is NULL
-    PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
-    pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
 
     // assign the current system def, user def, prestations def and rules def
     AssignCurrentSystemDefGUID();
@@ -1229,23 +1238,25 @@ BOOL PSS_ProcessGraphModelDoc::OnOpenDocument(LPCTSTR pPathName)
     if (!PSS_BaseDocument::OnOpenDocument(pPathName))
         return FALSE;
 
-    CWnd* pMainWnd = AfxGetMainWnd();
-    ASSERT(pMainWnd);
+    CWnd* pMainWnd = ::AfxGetMainWnd();
 
-    if (!IsUnit() && HasUnit())
+    if (pMainWnd)
     {
-        // build the message
-        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
-        pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
+        if (!IsUnit() && HasUnit())
+        {
+            // build the message
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+            pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
+
+            // build the message even if the unit manager is NULL
+            PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
+            pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
+        }
 
         // build the message even if the unit manager is NULL
-        PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
-        pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+        pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
     }
-
-    // build the message even if the unit manager is NULL
-    PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
-    pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
 
     return TRUE;
 }
@@ -1327,12 +1338,14 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
     // lock the file again once the save is completed
     SetFileReadOnly(pPathName, TRUE);
 
-    CWnd* pMainWnd = AfxGetMainWnd();
-    ASSERT(pMainWnd);
+    CWnd* pMainWnd = ::AfxGetMainWnd();
 
     // build the message
-    PSS_DocObserverMsg docMsg;
-    pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+    if (pMainWnd)
+    {
+        PSS_DocObserverMsg docMsg;
+        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+    }
 
     // message to notify the file save end
     if (m_pOutputLog)
@@ -1350,11 +1363,13 @@ void PSS_ProcessGraphModelDoc::OnCloseDocument()
 {
     m_IsDocumentClosing = TRUE;
 
-    CWnd* pMainWnd = AfxGetMainWnd();
-    ASSERT(pMainWnd);
+    CWnd* pMainWnd = ::AfxGetMainWnd();
 
-    pMainWnd->SendMessageToDescendants(UM_CLOSEDOCUMENTMODELTREE);
-    pMainWnd->SendMessageToDescendants(UM_CLOSEUNITMODELTREE);
+    if (pMainWnd)
+    {
+        pMainWnd->SendMessageToDescendants(UM_CLOSEDOCUMENTMODELTREE);
+        pMainWnd->SendMessageToDescendants(UM_CLOSEUNITMODELTREE);
+    }
 
     // when an user locked a model, its file is locked on the disk, but the m_IsReadOnly wrongly
     // remains on FALSE. The user is the only one which can unlock the file if he closes it

@@ -201,8 +201,14 @@ PSS_PlanFinObject* PSS_View::ActiveSelectedObject(CPoint& point, BOOL autoReset)
                 else
                 {
                     pObj->SelectObject(this, pDC, TRUE);
-                    PSS_FieldObserverMsg msg(UM_NOTIFY_OBJECTSELECTED, pObj);
-                    dynamic_cast<PSS_Subject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
+
+                    PSS_Subject* pSubject = dynamic_cast<PSS_Subject*>(::AfxGetMainWnd());
+
+                    if (pSubject)
+                    {
+                        PSS_FieldObserverMsg msg(UM_NOTIFY_OBJECTSELECTED, pObj);
+                        pSubject->NotifyAllObservers(&msg);
+                    }
                 }
 
                 // assign the current object to proceed
@@ -644,17 +650,23 @@ void PSS_View::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
     PSS_DropScrollView::OnVScroll(nSBCode, nPos, pScrollBar);
 
+    CPoint pt   = GetScrollPosition();
+    CWnd*  pWnd = ::AfxGetMainWnd();
+
     // if the PSS_ViewScroll view exists, send message to synchronize the scrollbars
-    CPoint pt = GetScrollPosition();
-    AfxGetMainWnd()->SendMessageToDescendants(ID_SYNCHRONIZE_VSCROLL, 0, LPARAM(&pt));
+    if (pWnd)
+        pWnd->SendMessageToDescendants(ID_SYNCHRONIZE_VSCROLL, 0, LPARAM(&pt));
 }
 //---------------------------------------------------------------------------
 void PSS_View::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
     PSS_DropScrollView::OnHScroll(nSBCode, nPos, pScrollBar);
 
+    CPoint pt   = GetScrollPosition();
+    CWnd*  pWnd = ::AfxGetMainWnd();
+
     // if the PSS_ViewScroll view exists, send message to synchronize the scrollbars
-    CPoint pt = GetScrollPosition();
-    AfxGetMainWnd()->SendMessageToDescendants(ID_SYNCHRONIZE_HSCROLL, 0, LPARAM(&pt));
+    if (pWnd)
+        pWnd->SendMessageToDescendants(ID_SYNCHRONIZE_HSCROLL, 0, LPARAM(&pt));
 }
 //---------------------------------------------------------------------------

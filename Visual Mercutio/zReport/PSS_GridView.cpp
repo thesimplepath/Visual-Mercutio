@@ -558,11 +558,9 @@ BOOL PSS_GridView::OnRButtonClickedRowCol(ROWCOL row, ROWCOL col, UINT flags, CP
     if (!pPopup)
         return FALSE;
 
-    CWnd* pWndPopupOwner = ::AfxGetMainWnd();
-
     // show the menu
     ClientToScreen(&point);
-    pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, pWndPopupOwner);
+    pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, ::AfxGetMainWnd());
 
     // the message was processed
     return TRUE;

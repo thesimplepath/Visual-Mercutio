@@ -991,8 +991,13 @@ void PSS_DocumentData::ResetCalcTimer()
 //---------------------------------------------------------------------------
 void PSS_DocumentData::SchemaListHasChanged()
 {
-    AfxGetMainWnd()->SendMessageToDescendants(ID_SCHEMALISTHASCHANGED);
-    AfxGetMainWnd()->SendMessageToDescendants(ID_SETDEFAULTSCHEMA, 0, LPARAM((const char*)GetCurrentSchema()));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+        return;
+
+    pWnd->SendMessageToDescendants(ID_SCHEMALISTHASCHANGED);
+    pWnd->SendMessageToDescendants(ID_SETDEFAULTSCHEMA, 0, LPARAM((const char*)GetCurrentSchema()));
 }
 //---------------------------------------------------------------------------
 void PSS_DocumentData::ShowDocumentData()

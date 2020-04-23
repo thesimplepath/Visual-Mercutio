@@ -74,9 +74,10 @@ void PSS_Edit::PreCreateEdit(BOOL                 designerMode,
     if (m_pFieldRepository && (pObjectDefinition = m_pFieldRepository->FindField(m_pEditedObj->GetObjectName())))
         m_IsSorted = pObjectDefinition->IsSorted();
 
-    AfxGetMainWnd()->SendMessageToDescendants(UM_NOTIFY_OBJECTSELECTED,
-                                              UM_NOTIFY_OBJECTSELECTED,
-                                              LPARAM(m_pEditedObj));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_NOTIFY_OBJECTSELECTED, UM_NOTIFY_OBJECTSELECTED, LPARAM(m_pEditedObj));
 
     m_Rect = CheckBounds(pDC, pParentWnd, m_pEditedObj->GetClientRect());
 
@@ -282,15 +283,20 @@ void PSS_StrEdit::DestroyEdit()
         GetWindowText(strTemp);
         m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
-        // to notify the view that the field changed, pass the adress of the object,
-        // thus the routine that proceed the message can know which object has changed
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
+        CWnd* pWnd = ::AfxGetMainWnd();
 
-        // save only one time
-        m_Save = FALSE;
+        if (pWnd)
+        {
+            // to notify the view that the field changed, pass the adress of the object,
+            // thus the routine that proceed the message can know which object has changed
+            pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
 
-        if (m_GoNext)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+            // save only one time
+            m_Save = FALSE;
+
+            if (m_GoNext)
+                pWnd->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+        }
     }
 
     // hide the window, the DestroyWindow() function will be used in the destructor
@@ -423,18 +429,23 @@ void PSS_NumEdit::DestroyEdit()
         else
             m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
-        if (m_AutoCalculateOption)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_CALCULATE_MESSAGE, 0, 0);
+        CWnd* pWnd = ::AfxGetMainWnd();
 
-        // to notify the view that the field changed, pass the adress of the object,
-        // thus the routine that proceed the message can know which object has changed
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
+        if (pWnd)
+        {
+            if (m_AutoCalculateOption)
+                pWnd->SendMessageToDescendants(ID_CALCULATE_MESSAGE, 0, 0);
 
-        // save only one time
-        m_Save = FALSE;
+            // to notify the view that the field changed, pass the adress of the object,
+            // thus the routine that proceed the message can know which object has changed
+            pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
 
-        if (m_GoNext)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+            // save only one time
+            m_Save = FALSE;
+
+            if (m_GoNext)
+                pWnd->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+        }
     }
 
     // hide the window, the DestroyWindow() function will be used in the destructor
@@ -649,15 +660,20 @@ void PSS_TimeEdit::DestroyEdit()
         else
             m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
+        CWnd* pWnd = ::AfxGetMainWnd();
+
         // to notify the view that the field changed, pass the adress of the object,
         // thus the routine that proceed the message can know which object has changed
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
+        if (pWnd)
+        {
+            pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
 
-        // save only one time
-        m_Save = FALSE;
+            // save only one time
+            m_Save = FALSE;
 
-        if (m_GoNext)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+            if (m_GoNext)
+                pWnd->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+        }
 
         break;
     }
@@ -777,15 +793,20 @@ void PSS_StrEditHistoric::DestroyEdit()
         // keep the historical changes
         AddToHistoric(strTemp);
 
-        // to notify the view that the field changed, pass the adress of the object,
-        // thus the routine that proceed the message can know which object has changed
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
+        CWnd* pWnd = ::AfxGetMainWnd();
 
-        // save only one time
-        m_Save = FALSE;
+        if (pWnd)
+        {
+            // to notify the view that the field changed, pass the adress of the object,
+            // thus the routine that proceed the message can know which object has changed
+            pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
 
-        if (m_GoNext)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+            // save only one time
+            m_Save = FALSE;
+
+            if (m_GoNext)
+                pWnd->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+        }
     }
 
     // hide the window, the DestroyWindow() function will be used in the destructor
@@ -918,19 +939,24 @@ void PSS_NumEditHistoric::DestroyEdit()
             m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
         }
 
-        // notify the application that a number changed
-        if (m_AutoCalculateOption)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_CALCULATE_MESSAGE, 0, 0);
+        CWnd* pWnd = ::AfxGetMainWnd();
 
-        // to notify the view that the field changed, pass the adress of the object,
-        // thus the routine that proceed the message can know which object has changed
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
+        if (pWnd)
+        {
+            // notify the application that a number changed
+            if (m_AutoCalculateOption)
+                pWnd->SendMessageToDescendants(ID_CALCULATE_MESSAGE, 0, 0);
 
-        // save only one time
-        m_Save = FALSE;
+            // to notify the view that the field changed, pass the adress of the object,
+            // thus the routine that proceed the message can know which object has changed
+            pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
 
-        if (m_GoNext)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+            // save only one time
+            m_Save = FALSE;
+
+            if (m_GoNext)
+                pWnd->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+        }
     }
 
     // hide the window, the DestroyWindow() function will be used in the destructor
@@ -1169,15 +1195,20 @@ void PSS_MaskEdit::DestroyEdit()
         CString strTemp = GetData();
         m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
-        // to notify the view that the field changed, pass the adress of the object,
-        // thus the routine that proceed the message can know which object has changed
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
+        CWnd* pWnd = ::AfxGetMainWnd();
 
-        // save only one time
-        m_Save = FALSE;
+        if (pWnd)
+        {
+            // to notify the view that the field changed, pass the adress of the object,
+            // thus the routine that proceed the message can know which object has changed
+            pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
 
-        if (m_GoNext)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+            // save only one time
+            m_Save = FALSE;
+
+            if (m_GoNext)
+                pWnd->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+        }
     }
 
     // hide the window, the DestroyWindow() function will be used in the destructor
@@ -1317,15 +1348,20 @@ void PSS_MultiColumnEdit::DestroyEdit()
                 pColumn->SetWidth(GetColumnWidth(i));
         }
 
-        // to notify the view that the field changed, pass the adress of the object,
-        // thus the routine that proceed the message can know which object has changed
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
+        CWnd* pWnd = ::AfxGetMainWnd();
 
-        // save only one time
-        m_Save = FALSE;
+        if (pWnd)
+        {
+            // to notify the view that the field changed, pass the adress of the object,
+            // thus the routine that proceed the message can know which object has changed
+            pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(m_pEditedObj));
 
-        if (m_GoNext)
-            AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+            // save only one time
+            m_Save = FALSE;
+
+            if (m_GoNext)
+                pWnd->SendMessageToDescendants(ID_FIELD_EDITNEXT, 0, LPARAM(m_pEditedObj));
+        }
     }
 
     // hide the window, the DestroyWindow() function will be used in the destructor

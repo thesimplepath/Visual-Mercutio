@@ -140,7 +140,12 @@ void PSS_PLFNAutoNumbered::SizePositionHasChanged()
 
     // if automatic recalculation of section
     if (GetAutoCalculate())
-        AfxGetMainWnd()->SendMessageToDescendants(UM_REBUILDAUTOMATICNUMBER);
+    {
+        CWnd* pWnd = ::AfxGetMainWnd();
+
+        if (pWnd)
+            pWnd->SendMessageToDescendants(UM_REBUILDAUTOMATICNUMBER);
+    }
 }
 //---------------------------------------------------------------------------
 CString PSS_PLFNAutoNumbered::GetUnformattedObject()

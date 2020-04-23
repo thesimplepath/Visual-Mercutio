@@ -91,7 +91,7 @@ HDDEDATA PSS_SingleInstanceApplication::AppDdeCallback(WORD     type,
 
             if (!std::strcmp(buffer, m_CppTopicName))
             {
-                CWnd* pWnd = AfxGetMainWnd();
+                CWnd* pWnd = ::AfxGetMainWnd();
 
                 if (!pWnd)
                     return NULL;

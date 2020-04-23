@@ -57,12 +57,17 @@ int PSS_PointerDlg::DoModal()
     if (!pApp)
         return IDABORT;
 
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+        return IDABORT;
+
     PSS_Document* pDoc = pApp->GetActiveDocument();
 
     if (!pDoc)
         return IDABORT;
 
-    m_PointerWindow.AssignMessageWnd(::AfxGetMainWnd());
+    m_PointerWindow.AssignMessageWnd(pWnd);
 
     pApp->SetCurrentDocument(pDoc);
 

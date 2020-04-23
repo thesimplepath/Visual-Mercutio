@@ -74,32 +74,32 @@ afx_msg LRESULT PSS_ProjectBar::OnDocumentHasBeenSelected(WPARAM wParam, LPARAM 
 //---------------------------------------------------------------------------
 void PSS_ProjectBar::OnSelChanged(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     // something selected?
     if (!m_ProjectWindowCtrl.GetSelectedDocumentTitle().IsEmpty())
-        AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE,
-                                                  1,
-                                                  LPARAM((const char*)m_ProjectWindowCtrl.GetSelectedDocumentTitle()));
+    {
+        CWnd* pWnd = ::AfxGetMainWnd();
+
+        if (pWnd)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE,
+                                           1,
+                                           LPARAM((const char*)m_ProjectWindowCtrl.GetSelectedDocumentTitle()));
+    }
 
     *pResult = 0;
 }
 //---------------------------------------------------------------------------
 void PSS_ProjectBar::OnDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     // something selected?
     if (!m_ProjectWindowCtrl.GetSelectedDocumentTitle().IsEmpty())
-        AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE_OPEN,
-                                                  1,
-                                                  LPARAM((const char*)m_ProjectWindowCtrl.GetSelectedDocumentTitle()));
+    {
+        CWnd* pWnd = ::AfxGetMainWnd();
+
+        if (pWnd)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE_OPEN,
+                                           1,
+                                           LPARAM((const char*)m_ProjectWindowCtrl.GetSelectedDocumentTitle()));
+    }
 
     *pResult = 0;
 }

@@ -1866,7 +1866,11 @@ BOOL PSS_DocumentData::CalculateFormula(PSS_Formula* pFormula, CWnd* pWnd, CDC* 
     if (newValue != pField->GetValue())
     {
         pField->SetValue(newValue);
-        AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(pField));
+
+        CWnd* pMainWnd = ::AfxGetMainWnd();
+
+        if (pMainWnd)
+            pMainWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(pField));
 
         if (pWnd && pDC && GetCurrentPage() == pField->GetObjectPage())
             pField->InvalidateObjectRect(pDC, pWnd);

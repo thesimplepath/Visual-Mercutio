@@ -322,7 +322,7 @@ BOOL PSS_PaletteBar::SetButtons(const UINT FAR* pIDArray, int idCount, UINT colu
     {
         // show the context menu
         ClientToScreen(&point);
-        m_Menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, AfxGetMainWnd());
+        m_Menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, ::AfxGetMainWnd());
         CToolBar::OnRButtonDown(nFlags, point);
     }
 #endif

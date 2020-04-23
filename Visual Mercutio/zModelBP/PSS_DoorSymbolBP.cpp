@@ -465,7 +465,7 @@ bool PSS_DoorSymbolBP::OnPostCreation(CODModel* pModel, CODController* pCtrl)
         }
     }
 
-    CWnd* pWnd = AfxGetMainWnd();
+    CWnd* pWnd = ::AfxGetMainWnd();
 
     // build the message
     if (pWnd)

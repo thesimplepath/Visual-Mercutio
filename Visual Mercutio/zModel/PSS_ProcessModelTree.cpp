@@ -252,13 +252,21 @@ void PSS_ProcessModelTree::OnContextMenu(CWnd* pWnd, CPoint point)
 void PSS_ProcessModelTree::OnModelBrowserEditName()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_EDIT_NAME);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_EDIT_NAME);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnModelBrowserGoInSymbol()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_GOIN_SYMBOL);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_GOIN_SYMBOL);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnModelBrowserEditCut()
@@ -270,25 +278,41 @@ void PSS_ProcessModelTree::OnModelBrowserEditCut()
 void PSS_ProcessModelTree::OnModelBrowserEditCopy()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_EDIT_COPY);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_EDIT_COPY);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnModelBrowserEditClear()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_EDIT_CLEAR);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_EDIT_CLEAR);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnModelBrowserProperties()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_OD_PROPERTIES);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_OD_PROPERTIES);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnModelBrowserBrowseSourceSymbol()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_BROWSE_SOURCESYMBOL);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_BROWSE_SOURCESYMBOL);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnModelBrowserSelectSymbol()
@@ -298,19 +322,30 @@ void PSS_ProcessModelTree::OnModelBrowserSelectSymbol()
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnInsertModelPage()
 {
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_INSERT_MODELPAGE);
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_INSERT_MODELPAGE);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnRenameModelPage()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_RENAME_CURRENTMODELPAGE);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_RENAME_CURRENTMODELPAGE);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnDeleteModelPage()
 {
     m_ModelTree.DoSelectSymbol();
-    AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_DELETE_CURRENTMODELPAGE);
+
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessage(WM_COMMAND, ID_DELETE_CURRENTMODELPAGE);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessModelTree::OnRefresh()

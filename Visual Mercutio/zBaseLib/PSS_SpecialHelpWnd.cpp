@@ -131,32 +131,50 @@ BOOL PSS_SpecialHelpWnd::DestroyWindow()
 //---------------------------------------------------------------------------
 void PSS_SpecialHelpWnd::OnObjectProperty(const CPoint& point)
 {
-    AfxGetMainWnd()->SendMessageToDescendants(UM_SPHELP_PROPERTYOBJECT, 0, LPARAM(m_pObj));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_SPHELP_PROPERTYOBJECT, 0, LPARAM(m_pObj));
 }
 //---------------------------------------------------------------------------
 void PSS_SpecialHelpWnd::OnAssociationMenu(const CPoint& point)
 {
-    AfxGetMainWnd()->SendMessageToDescendants(UM_SPHELP_ASSOCIATIONOBJECT, 0, LPARAM(m_pObj));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_SPHELP_ASSOCIATIONOBJECT, 0, LPARAM(m_pObj));
 }
 //---------------------------------------------------------------------------
 void PSS_SpecialHelpWnd::OnWizard(const CPoint& point)
 {
-    AfxGetMainWnd()->SendMessageToDescendants(UM_SPHELP_WIZARDMENU, 0, LPARAM(m_pObj));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_SPHELP_WIZARDMENU, 0, LPARAM(m_pObj));
 }
 //---------------------------------------------------------------------------
 void PSS_SpecialHelpWnd::OnCalendar(const CPoint& point)
 {
-    AfxGetMainWnd()->SendMessageToDescendants(UM_SPHELP_CALENDAROBJECT, 0, LPARAM(m_pObj));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_SPHELP_CALENDAROBJECT, 0, LPARAM(m_pObj));
 }
 //---------------------------------------------------------------------------
 void PSS_SpecialHelpWnd::OnEmpty(const CPoint& point)
 {
-    AfxGetMainWnd()->SendMessageToDescendants(UM_SPHELP_EMPTYOBJECT, 0, LPARAM(m_pObj));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_SPHELP_EMPTYOBJECT, 0, LPARAM(m_pObj));
 }
 //---------------------------------------------------------------------------
 void PSS_SpecialHelpWnd::OnNote(const CPoint& point)
 {
-    AfxGetMainWnd()->SendMessageToDescendants(UM_SPHELP_NOTEOBJECT, 0, LPARAM(m_pObj));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_SPHELP_NOTEOBJECT, 0, LPARAM(m_pObj));
 }
 //---------------------------------------------------------------------------
 void PSS_SpecialHelpWnd::OnPaint()

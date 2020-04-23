@@ -203,7 +203,7 @@ void PSS_CodeView::OnRButtonDown(UINT nFlags, CPoint point)
     ASSERT(pMenu);
 
     ClientToScreen(&pt);
-    pMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, AfxGetMainWnd());
+    pMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, ::AfxGetMainWnd());
 
     CScrollView::OnRButtonDown(nFlags, point);
 }

@@ -74,7 +74,12 @@ void PSS_ProcessGraphChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWn
     SECMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
     if (m_pLastActivatedDocument && m_pLastActivatedDocument != GetActiveDocument())
-        AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(GetActiveDocument()));
+    {
+        CWnd* pWnd = ::AfxGetMainWnd();
+
+        if (pWnd)
+            pWnd->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(GetActiveDocument()));
+    }
 
     m_pLastActivatedDocument = GetActiveDocument();
 

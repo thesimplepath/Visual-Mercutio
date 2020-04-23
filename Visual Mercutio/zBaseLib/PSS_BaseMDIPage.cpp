@@ -295,7 +295,7 @@ void PSS_BaseMDIPage::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pD
 {
     CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
-    CWnd* pMainWnd = AfxGetMainWnd();
+    CWnd* pMainWnd = ::AfxGetMainWnd();
 
     if (!pMainWnd)
         return;
@@ -304,9 +304,9 @@ void PSS_BaseMDIPage::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pD
 
     PSS_Subject* pSubject = dynamic_cast<PSS_Subject*>(pMainWnd);
 
+    // send a message to the shema view to specify that current schema has changed
     if (pSubject)
     {
-        // send a message to the shema view to specify that current schema has changed
         PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
         pSubject->NotifyAllObservers(&msg);
     }
@@ -388,9 +388,14 @@ afx_msg void PSS_BaseMDIPage::OnSchemaChange()
 
         pDocument->ChangeCurrentSchema(selection);
 
+        PSS_Subject* pSubject = dynamic_cast<PSS_Subject*>(::AfxGetMainWnd());
+
         // send a message to the shema view to specify that current schema has changed
-        PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
-        dynamic_cast<PSS_Subject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
+        if (pSubject)
+        {
+            PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
+            pSubject->NotifyAllObservers(&msg);
+        }
 
         // redraw all views
         pDocument->UpdateAllViews(NULL);
@@ -399,20 +404,19 @@ afx_msg void PSS_BaseMDIPage::OnSchemaChange()
 //---------------------------------------------------------------------------
 afx_msg void PSS_BaseMDIPage::OnFileChange()
 {
-    CComboBox* pDrop = (CComboBox*)CWnd::FromHandle( (HWND)LOWORD( GetCurrentMessage()->lParam ) );
+    CComboBox* pDrop = (CComboBox*)CWnd::FromHandle((HWND)LOWORD(GetCurrentMessage()->lParam));
 
-    ASSERT( pDrop != NULL );
-    ASSERT( pDrop->IsKindOf( RUNTIME_CLASS( CWnd ) ) );
+    ASSERT(pDrop != NULL);
+    ASSERT(pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
 
-    if ( GetActiveDocument() && ISA( GetActiveDocument(), PSS_Document) )
+    PSS_Document* pActiveDoc = dynamic_cast<PSS_Document*>(GetActiveDocument());
+
+    // assign the new zoom percentage
+    if (pActiveDoc && pDrop->GetCurSel() != CB_ERR)
     {
-        // Assign the new zoom percentage
-        if ( pDrop->GetCurSel() != CB_ERR )
-        {
-            CWaitCursor    Cursor;
-            ( (PSS_Document*)GetActiveDocument() )->ChangeCurrentFile ( pDrop->GetCurSel() );
-            ( (PSS_Document*)GetActiveDocument() )->UpdateAllViews( NULL );
-        }
+        CWaitCursor cursor;
+        pActiveDoc->ChangeCurrentFile(pDrop->GetCurSel());
+        pActiveDoc->UpdateAllViews(NULL);
     }
 }
 //---------------------------------------------------------------------------
@@ -604,6 +608,9 @@ void PSS_BaseMDIPage::OnClose()
 {
     PSS_BaseTitleMDIPage::OnClose();
 
-    AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(NULL));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(NULL));
 }
 //---------------------------------------------------------------------------

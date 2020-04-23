@@ -957,8 +957,11 @@ void PSS_PropertyListCtrl::CreateInPlaceControl(int item, int previousItem)
         else
             pPropItem->CreateInPlaceControl(this, rect, m_pWndInPlaceControl);
 
+        CWnd* pWnd = ::AfxGetMainWnd();
+
         // notify windows about editing properties
-        AfxGetMainWnd()->SendMessageToDescendants(UM_START_PROPERTY_EDITION, 0, LPARAM(NULL));
+        if (pWnd)
+            pWnd->SendMessageToDescendants(UM_START_PROPERTY_EDITION, 0, LPARAM(NULL));
     }
     else
         pPropItem->DestroyInPlaceControl(m_pWndInPlaceControl);

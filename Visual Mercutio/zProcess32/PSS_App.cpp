@@ -3302,7 +3302,7 @@ void PSS_App::OnUpdateFilePrint(CCmdUI *pCmdUI)
 //---------------------------------------------------------------------------
 BOOL PSS_App::InitApp()
 {
-    #ifdef _ZCHECKINFO
+    #ifdef CHECK_INFO
         // check the application type. zProcess is only available in Entreprise edition
         if (GetApplicationInfoType() != PSS_CryptedFileApplicationTypeInfo::IE_AT_EntrepriseEdition)
         {

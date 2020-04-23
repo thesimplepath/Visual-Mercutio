@@ -1404,22 +1404,31 @@ BOOL PSS_Document::CheckMultiColumnMemberField(PSS_PlanFinObject* pObj, int docu
 //---------------------------------------------------------------------------
 void PSS_Document::StyleListHasChanged()
 {
+    CWnd* pWnd = ::AfxGetMainWnd();
+
     // send a message to the MDI page to specify that the style list has changed
-    AfxGetMainWnd()->SendMessageToDescendants(ID_STYLELISTHASCHANGED);
+    if (pWnd)
+        pWnd->SendMessageToDescendants(ID_STYLELISTHASCHANGED);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::FileListHasChanged()
 {
     CalculateVisibleDocumentDataCount();
 
+    CWnd* pWnd = ::AfxGetMainWnd();
+
     // send a message to the MDI Page to specify that the file list has changed
-    AfxGetMainWnd()->SendMessageToDescendants(UM_FILELISTHASCHANGED);
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_FILELISTHASCHANGED);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::SelectStyleInList(const CString& style)
 {
+    CWnd* pWnd = ::AfxGetMainWnd();
+
     // send a message to the MDI Page to select a style in the style list
-    AfxGetMainWnd()->SendMessageToDescendants(ID_SETSTYLEINLIST, 0, (LPARAM)(const char*)style);
+    if (pWnd)
+        pWnd->SendMessageToDescendants(ID_SETSTYLEINLIST, 0, (LPARAM)(const char*)style);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::IsRealTimeExported() const

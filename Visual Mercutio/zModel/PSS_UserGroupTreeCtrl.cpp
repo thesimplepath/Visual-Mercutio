@@ -274,7 +274,7 @@ void PSS_UserGroupTreeCtrl::OnUgpNewGroup()
 {
     bool isSesterces = false;
 
-    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
     // check if sesterces is used
     if (pWnd)
@@ -348,7 +348,7 @@ void PSS_UserGroupTreeCtrl::OnUgpRenameGroup()
 
     bool isSesterces = false;
 
-    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
     // check if sesterces is used
     if (pWnd)
@@ -504,7 +504,7 @@ void PSS_UserGroupTreeCtrl::OnUgpProperties()
 {
     bool isSesterces = false;
 
-    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
     // check if sesterces is used
     if (pWnd)
@@ -784,7 +784,7 @@ void PSS_UserGroupTreeCtrl::ProcessGroup(PSS_UserGroupEntity* pGroup, HTREEITEM 
 {
     bool isMessenger = true;
 
-    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+    CFrameWnd* pWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
     // check if sesterces is used
     if (pWnd)

@@ -280,52 +280,59 @@ void PSS_Document::ChangeCurrentFile(const CString& name, BOOL notify)
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeCurrentFile(std::size_t fileIndex, BOOL notify)
 {
-    if (GetDocumentDataAt(fileIndex))
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+        return;
+
+    PSS_DocumentData* pDocData = GetDocumentDataAt(fileIndex);
+
+    if (!pDocData)
+        return;
+
+    if (pDocData->IsExternalBinaryData())
+    {}
+    else
+    if (pDocData->IsURLData())
     {
-        if (GetDocumentDataAt(fileIndex)->IsExternalBinaryData())
-        {}
-        else
-        if (GetDocumentDataAt(fileIndex)->IsURLData())
-        {
-            if (notify)
-                AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate()));
+        if (notify)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE,
+                                            0,
+                                            LPARAM((const char*)pDocData->GetStamp().GetTemplate()));
 
-            AfxGetMainWnd()->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
+        pWnd->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
 
-            if (!GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate().IsEmpty() && GetHtmlView())
-                AfxGetMainWnd()->SendMessageToDescendants(UM_NAVIGATEURL,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate()));
-        }
-        else
-        if (GetDocumentDataAt(fileIndex)->IsBinaryDataValid())
-        {
-            if (notify)
-                AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate()));
-
-            AfxGetMainWnd()->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
-
-            if (!GetDocumentDataAt(fileIndex)->GetFileBufferTemporaryFile().IsEmpty() && GetHtmlView())
-                AfxGetMainWnd()->SendMessageToDescendants(UM_NAVIGATEURL,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetFileBufferTemporaryFile()));
-        }
-        else
-        {
-            AfxGetMainWnd()->SendMessageToDescendants(UM_HIDEHTMLVIEW, 0, LPARAM(this));
-
-            if (notify)
-                AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTitle()));
-        }
-
-        SetActiveDocumentIndex(fileIndex);
+        if (!pDocData->GetStamp().GetTemplate().IsEmpty() && GetHtmlView())
+            pWnd->SendMessageToDescendants(UM_NAVIGATEURL,
+                                            0,
+                                            LPARAM((const char*)pDocData->GetStamp().GetTemplate()));
     }
+    else
+    if (pDocData->IsBinaryDataValid())
+    {
+        if (notify)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE,
+                                            0,
+                                            LPARAM((const char*)pDocData->GetStamp().GetTemplate()));
+
+        pWnd->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
+
+        if (!pDocData->GetFileBufferTemporaryFile().IsEmpty() && GetHtmlView())
+            pWnd->SendMessageToDescendants(UM_NAVIGATEURL,
+                                            0,
+                                            LPARAM((const char*)pDocData->GetFileBufferTemporaryFile()));
+    }
+    else
+    {
+        pWnd->SendMessageToDescendants(UM_HIDEHTMLVIEW, 0, LPARAM(this));
+
+        if (notify)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE,
+                                            0,
+                                            LPARAM((const char*)pDocData->GetStamp().GetTitle()));
+    }
+
+    SetActiveDocumentIndex(fileIndex);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeCurrentFileOpen(const CString& name, BOOL notify)
@@ -339,52 +346,59 @@ void PSS_Document::ChangeCurrentFileOpen(const CString& name, BOOL notify)
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeCurrentFileOpen(std::size_t fileIndex, BOOL notify)
 {
-    if (GetDocumentDataAt(fileIndex))
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+        return;
+
+    PSS_DocumentData* pDocData = GetDocumentDataAt(fileIndex);
+
+    if (!pDocData)
+        return;
+
+    if (pDocData->IsExternalBinaryData())
+    {}
+    else
+    if (pDocData->IsURLData())
     {
-        if (GetDocumentDataAt(fileIndex)->IsExternalBinaryData())
-        {}
-        else
-        if (GetDocumentDataAt(fileIndex)->IsURLData())
-        {
-            if (notify)
-                AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate()));
+        if (notify)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE,
+                                           0,
+                                           LPARAM((const char*)pDocData->GetStamp().GetTemplate()));
 
-            AfxGetMainWnd()->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
+        pWnd->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
 
-            if (!GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate().IsEmpty() && GetHtmlView())
-                AfxGetMainWnd()->SendMessageToDescendants(UM_NAVIGATEURL,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate()));
-        }
-        else
-        if (GetDocumentDataAt(fileIndex)->IsBinaryDataValid())
-        {
-            if (notify)
-                AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTemplate()));
-
-            AfxGetMainWnd()->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
-
-            if (!GetDocumentDataAt(fileIndex)->GetFileBufferTemporaryFile().IsEmpty() && GetHtmlView())
-                AfxGetMainWnd()->SendMessageToDescendants(UM_NAVIGATEURL,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetFileBufferTemporaryFile()));
-        }
-        else
-        {
-            AfxGetMainWnd()->SendMessageToDescendants(UM_HIDEHTMLVIEW, 0, LPARAM(this));
-
-            if (notify)
-                AfxGetMainWnd()->SendMessageToDescendants(UM_SETDEFAULTFILE,
-                                                          0,
-                                                          LPARAM((const char*)GetDocumentDataAt(fileIndex)->GetStamp().GetTitle()));
-        }
-
-        SetActiveDocumentIndex(fileIndex);
+        if (!pDocData->GetStamp().GetTemplate().IsEmpty() && GetHtmlView())
+            pWnd->SendMessageToDescendants(UM_NAVIGATEURL,
+                                           0,
+                                           LPARAM((const char*)pDocData->GetStamp().GetTemplate()));
     }
+    else
+    if (pDocData->IsBinaryDataValid())
+    {
+        if (notify)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE,
+                                           0,
+                                           LPARAM((const char*)pDocData->GetStamp().GetTemplate()));
+
+        pWnd->SendMessageToDescendants(UM_SHOWHTMLVIEW, 0, LPARAM(this));
+
+        if (!pDocData->GetFileBufferTemporaryFile().IsEmpty() && GetHtmlView())
+            pWnd->SendMessageToDescendants(UM_NAVIGATEURL,
+                                           0,
+                                           LPARAM((const char*)pDocData->GetFileBufferTemporaryFile()));
+    }
+    else
+    {
+        pWnd->SendMessageToDescendants(UM_HIDEHTMLVIEW, 0, LPARAM(this));
+
+        if (notify)
+            pWnd->SendMessageToDescendants(UM_SETDEFAULTFILE,
+                                           0,
+                                           LPARAM((const char*)pDocData->GetStamp().GetTitle()));
+    }
+
+    SetActiveDocumentIndex(fileIndex);
 }
 //---------------------------------------------------------------------------
 CObList& PSS_Document::GetObjectList(int documentIndex)
@@ -2110,8 +2124,13 @@ void PSS_Document::OnCloseDocument()
     PSS_BaseDocument::OnCloseDocument();
 
     if (!PSS_Global::OpenFileInSilentMode())
+    {
+        CWnd* pWnd = ::AfxGetMainWnd();
+
         // notify the framework, that this file is closed
-        AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(NULL));
+        if (pWnd)
+            pWnd->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(NULL));
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Document::Serialize(CArchive& ar)
@@ -2349,7 +2368,10 @@ void PSS_Document::OnPageRecalculate()
     if (IsReadOnlyAtRuntime())
         return;
 
-    AfxGetMainWnd()->SendMessageToDescendants(ID_CALCULATE_MESSAGE, 0, 0);
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(ID_CALCULATE_MESSAGE, 0, 0);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::OnPagePrev()

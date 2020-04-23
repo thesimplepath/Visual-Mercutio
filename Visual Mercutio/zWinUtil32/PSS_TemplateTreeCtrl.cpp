@@ -149,11 +149,6 @@ afx_msg LRESULT PSS_TemplateTreeCtrl::OnReloadTemplateManager(WPARAM wParam, LPA
 //---------------------------------------------------------------------------
 void PSS_TemplateTreeCtrl::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     // call the virtual method
     OnSelChangedEvent();
 
@@ -162,11 +157,6 @@ void PSS_TemplateTreeCtrl::OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_TemplateTreeCtrl::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     // call the virtual method
     OnClickEvent();
 
@@ -175,14 +165,14 @@ void PSS_TemplateTreeCtrl::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_TemplateTreeCtrl::OnDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     // something selected?
     if (GetSelectedFileItem())
-        AfxGetMainWnd()->SendMessage(UM_FORM_OPEN, 1, (LPARAM)(const char*)GetSelectedFileItem()->GetFileName());
+    {
+        CWnd* pWnd = ::AfxGetMainWnd();
+
+        if (pWnd)
+            pWnd->SendMessage(UM_FORM_OPEN, 1, LPARAM((const char*)GetSelectedFileItem()->GetFileName()));
+    }
 
     // call the virtual method
     OnDblClickEvent();
@@ -192,11 +182,6 @@ void PSS_TemplateTreeCtrl::OnDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_TemplateTreeCtrl::OnRightClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     // call the virtual method
     OnRightClickEvent();
 
@@ -205,11 +190,6 @@ void PSS_TemplateTreeCtrl::OnRightClick(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 void PSS_TemplateTreeCtrl::OnRightDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
-    if (!AfxGetMainWnd())
-        return;
-
     // call the virtual method
     OnRightDblClickEvent();
 

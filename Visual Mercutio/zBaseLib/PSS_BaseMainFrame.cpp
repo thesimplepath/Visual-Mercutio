@@ -388,9 +388,11 @@ LRESULT PSS_BaseMainFrame::OnFSModeChange(WPARAM wParam, LPARAM)
 //---------------------------------------------------------------------------
 BOOL PSS_BaseMainFrame::OnCommand(WPARAM wParam, LPARAM lParam)
 {
-    if (wParam >= MENU_COMMAND && wParam <= MAX_MENU_COMMAND)
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd && wParam >= MENU_COMMAND && wParam <= MAX_MENU_COMMAND)
     {
-        AfxGetMainWnd()->SendMessageToDescendants(ID_SPECIALHELPMENU, wParam);
+        pWnd->SendMessageToDescendants(ID_SPECIALHELPMENU, wParam);
         return 1;
     }
 

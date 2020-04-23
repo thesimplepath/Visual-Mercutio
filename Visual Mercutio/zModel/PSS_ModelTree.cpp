@@ -540,23 +540,28 @@ void PSS_ModelTree::ModifySymbol(CODSymbolComponent* pSymbol, PSS_ProcessGraphMo
 //---------------------------------------------------------------------------
 void PSS_ModelTree::DoSelectSymbol()
 {
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+        return;
+
     CODSymbolComponent* pComp = GetSelectedSymbol();
 
+    // send the message
     if (pComp && (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol)))
     {
-        // send the message
         PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_SelectElement, NULL, NULL, pComp);
-        AfxGetMainWnd()->SendMessageToDescendants(UM_ENSUREVISIBLE_SYMBOL, 0, LPARAM(&mdlMsg));
+        pWnd->SendMessageToDescendants(UM_ENSUREVISIBLE_SYMBOL, 0, LPARAM(&mdlMsg));
         return;
     }
 
     PSS_ProcessGraphPage* pPage = GetSelectedPage();
 
+    // send the message
     if (pPage)
     {
-        // send the message
         PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, NULL, pPage);
-        AfxGetMainWnd()->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
+        pWnd->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
     }
 }
 //---------------------------------------------------------------------------
@@ -567,6 +572,11 @@ void PSS_ModelTree::OnModelChange()
 //---------------------------------------------------------------------------
 void PSS_ModelTree::OnDoubleClick()
 {
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+        return;
+
     PSS_ModelObserverMsg::IEActionType actionType = PSS_ModelObserverMsg::IE_AT_None;
     UINT                               message    = 0;
 
@@ -587,25 +597,25 @@ void PSS_ModelTree::OnDoubleClick()
 
         // send the message
         PSS_ModelObserverMsg mdlMsg(actionType, NULL, NULL, pSymbol);
-        AfxGetMainWnd()->SendMessageToDescendants(message, 0, LPARAM(&mdlMsg));
+        pWnd->SendMessageToDescendants(message, 0, LPARAM(&mdlMsg));
         return;
     }
 
     PSS_ProcessGraphPage* pPage = GetSelectedPage();
 
+    // send the message
     if (pPage)
     {
-        // send the message
         PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, NULL, pPage);
-        AfxGetMainWnd()->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
+        pWnd->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
         return;
     }
 
+    // send the message
     if (IsRootSelected() && m_pModelSet && m_pModelSet->GetModelAt(0))
     {
-        // send the message
         PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, m_pModelSet->GetModelAt(0));
-        AfxGetMainWnd()->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
+        pWnd->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
     }
 }
 //---------------------------------------------------------------------------

@@ -126,7 +126,7 @@ BOOL PSS_ReadView::PreTranslateMessage(MSG* pMsg)
     {
         if (pMsg->message >= WM_KEYFIRST && pMsg->message <= WM_KEYLAST)
         {
-            CFrameWnd* pFrameWnd = (CFrameWnd*)AfxGetMainWnd();
+            CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
             // translate accelerators for frame and any children
             if (pFrameWnd                &&
@@ -297,7 +297,7 @@ void PSS_ReadView::OnRButtonDown(UINT nFlags, CPoint point)
     if (pMenu)
     {
         ClientToScreen(&pt);
-        pMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, AfxGetMainWnd());
+        pMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, ::AfxGetMainWnd());
         SetCapture();
     }
 

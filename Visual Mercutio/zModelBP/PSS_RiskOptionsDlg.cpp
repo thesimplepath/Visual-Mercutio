@@ -411,6 +411,14 @@ void PSS_RiskOptionsDlg::UpdateSeverity()
 //---------------------------------------------------------------------------
 void PSS_RiskOptionsDlg::SelectFileToOpen(const CString& dir, const CString& caption, const CString& extension, CString& fileName)
 {
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (!pWnd)
+    {
+        fileName = _T("");
+        return;
+    }
+
     CFileDialog dlgFile(TRUE);
 
     CString title;
@@ -418,7 +426,7 @@ void PSS_RiskOptionsDlg::SelectFileToOpen(const CString& dir, const CString& cap
 
     // configure the open file dialog
     dlgFile.m_ofn.lpstrTitle  = title;
-    dlgFile.m_ofn.hwndOwner   = AfxGetMainWnd()->GetSafeHwnd();
+    dlgFile.m_ofn.hwndOwner   = pWnd->GetSafeHwnd();
     dlgFile.m_ofn.Flags      |= OFN_HIDEREADONLY | OFN_FILEMUSTEXIST;
 
     CString filter;

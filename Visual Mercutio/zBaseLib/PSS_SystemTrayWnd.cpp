@@ -371,7 +371,7 @@ LRESULT PSS_SystemTrayWnd::OnTrayNotification(UINT wParam, LONG lParam)
     if (wParam != m_NotifyIconData.uID)
         return 0L;
 
-    CWnd* pTarget = AfxGetMainWnd();
+    CWnd* pTarget = ::AfxGetMainWnd();
 
     // no main window assigned
     if (!pTarget)

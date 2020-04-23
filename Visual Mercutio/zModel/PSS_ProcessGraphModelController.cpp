@@ -163,7 +163,10 @@ PSS_ProcessGraphModelController::PSS_ProcessGraphModelController(PSS_ProcessGrap
     m_IsEditingSymbolComment(false),
     m_NewSymbolCreated(false)
 {
-    GetCanvasVp()->Invalidate();
+    CODViewport* pCanvasVp = GetCanvasVp();
+
+    if (pCanvasVp)
+        pCanvasVp->Invalidate();
 }
 //---------------------------------------------------------------------------
 PSS_ProcessGraphModelController::~PSS_ProcessGraphModelController()
@@ -247,7 +250,7 @@ PSS_ProcessGraphModelMdl* PSS_ProcessGraphModelController::GetRootModel()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::RefreshModelTree()
 {
-    CWnd* pMainWnd = AfxGetMainWnd();
+    CWnd* pMainWnd = ::AfxGetMainWnd();
 
     if (!pMainWnd)
         return;
@@ -287,7 +290,7 @@ PSS_ProcessGraphModelViewport* PSS_ProcessGraphModelController::CreateViewFromMo
         if (pDocument)
             pDocument->UpdateAllViews(pView);
 
-        CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+        CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
         // force the refresh of the active window title
         if (pFrameWnd && pFrameWnd->GetActiveFrame())
@@ -565,7 +568,11 @@ bool PSS_ProcessGraphModelController::AcceptDropItem(CObject* pObj, const CPoint
     CPoint pt = point;
     VpDPtoLP(&pt);
 
-    CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(pt);
+    CODViewport*  pCanvasVp = GetCanvasVp();
+    CODComponent* pCompHit  = NULL;
+
+    if (pCanvasVp)
+        pCompHit = pCanvasVp->ComponentHitTest(pt);
 
     // if no object hit, test the drop on the model
     if (!pCompHit)
@@ -601,7 +608,11 @@ bool PSS_ProcessGraphModelController::DropItem(CObject* pObj, const CPoint& poin
     CPoint ptInView(point);
     VpDPtoLP(&ptInView);
 
-    CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(ptInView);
+    CODViewport*  pCanvasVp = GetCanvasVp();
+    CODComponent* pCompHit  = NULL;
+
+    if (pCanvasVp)
+        pCompHit = pCanvasVp->ComponentHitTest(ptInView);
 
     // if no object hit, drag symbol on the model
     if (!pCompHit)
@@ -692,8 +703,10 @@ void PSS_ProcessGraphModelController::EditName(CODComponent* pCompToEdit)
                 // set the text edition flag
                 m_IsEditingSymbolName = true;
 
-                if (m_pTextEdit->BeginEdit(GetCanvasVp()))
-                    GetCanvasVp()->UpdateComponents(&setUpdate);
+                CODViewport* pCanvasVp = GetCanvasVp();
+
+                if (pCanvasVp && m_pTextEdit->BeginEdit(pCanvasVp))
+                    pCanvasVp->UpdateComponents(&setUpdate);
             }
         }
 
@@ -749,8 +762,10 @@ void PSS_ProcessGraphModelController::EditComment(CODComponent* pCompToEdit)
                 // set the comment edition flag
                 m_IsEditingSymbolComment = true;
 
-                if (m_pTextEdit->BeginEdit(GetCanvasVp()))
-                    GetCanvasVp()->UpdateComponents(&setUpdate);
+                CODViewport* pCanvasVp = GetCanvasVp();
+
+                if (pCanvasVp && m_pTextEdit->BeginEdit(pCanvasVp))
+                    pCanvasVp->UpdateComponents(&setUpdate);
             }
         }
 
@@ -764,28 +779,38 @@ void PSS_ProcessGraphModelController::EditComment(CODComponent* pCompToEdit)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::ViewZoomIn()
 {
-    CSize magnification = GetCanvasVp()->GetMagnification();
+    CODViewport* pCanvasVp = GetCanvasVp();
+
+    if (!pCanvasVp)
+        return;
+
+    CSize magnification = pCanvasVp->GetMagnification();
     magnification.cx   += 25;
     magnification.cy   += 25;
 
-    GetCanvasVp()->SetMagnification(magnification.cx, magnification.cy);
+    pCanvasVp->SetMagnification(magnification.cx, magnification.cy);
 
     UpdateTextEdit();
 
-    GetCanvasVp()->Invalidate();
+    pCanvasVp->Invalidate();
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::ViewZoomOut()
 {
-    CSize magnification = GetCanvasVp()->GetMagnification();
-    magnification.cx -= 25;
-    magnification.cy -= 25;
+    CODViewport* pCanvasVp = GetCanvasVp();
 
-    GetCanvasVp()->SetMagnification(magnification.cx, magnification.cy);
+    if (!pCanvasVp)
+        return;
+
+    CSize magnification  = pCanvasVp->GetMagnification();
+    magnification.cx    -= 25;
+    magnification.cy    -= 25;
+
+    pCanvasVp->SetMagnification(magnification.cx, magnification.cy);
 
     UpdateTextEdit();
 
-    GetCanvasVp()->Invalidate();
+    pCanvasVp->Invalidate();
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::RedrawComponent(CODComponent& comp)
@@ -799,8 +824,13 @@ void PSS_ProcessGraphModelController::RedrawComponent(CODComponent& comp)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::RedrawComponentSet(CODComponentSet& set)
 {
+    CODViewport* pCanvasVp = GetCanvasVp();
+
+    if (!pCanvasVp)
+        return;
+
     // update symbols
-    GetCanvasVp()->UpdateComponents(&set);
+    pCanvasVp->UpdateComponents(&set);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::SelectAllComponents()
@@ -838,9 +868,11 @@ void PSS_ProcessGraphModelController::UnselectAllComponents()
     // clear selection list
     ClearSelection();
 
+    CODViewport* pCanvasVp = GetCanvasVp();
+
     // update the viewport
-    ASSERT(GetCanvasVp());
-    GetCanvasVp()->UpdateAll();
+    if (pCanvasVp)
+        pCanvasVp->UpdateAll();
 
     NotifySymbolSelected(NULL);
 }
@@ -868,9 +900,11 @@ void PSS_ProcessGraphModelController::UnselectComponent(CODComponent& comp)
     set.Add(&comp);
     Deselect(&set);
 
+    CODViewport* pCanvasVp = GetCanvasVp();
+
     // update the viewport
-    ASSERT(GetCanvasVp());
-    GetCanvasVp()->UpdateAll();
+    if (pCanvasVp)
+        pCanvasVp->UpdateAll();
 
     NotifySymbolSelected(NULL);
 }
@@ -1829,7 +1863,11 @@ bool PSS_ProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoi
     CPoint pt(point);
     VpDPtoLP(&pt);
 
-    CODComponent* pCompHit = GetCanvasVp()->ComponentHitTest(pt);
+    CODComponent* pCompHit  = NULL;
+    CODViewport*  pCanvasVp = GetCanvasVp();
+
+    if (pCanvasVp)
+        pCompHit = pCanvasVp->ComponentHitTest(pt);
 
     // if a label, reassign the hit symbol
     if (pCompHit && ISA(pCompHit, CODLabelComponent))
@@ -1920,7 +1958,12 @@ BOOL PSS_ProcessGraphModelController::StartTextEdit(UINT flags, CPoint point)
     CPoint ptLog = point;
     VpDPtoLP(&ptLog);
 
-    m_pCompHit                    = GetCanvasVp()->ComponentHitTest(ptLog);
+    CODViewport* pCanvasVp = GetCanvasVp();
+    m_pCompHit             = NULL;
+
+    if (pCanvasVp)
+        m_pCompHit = GetCanvasVp()->ComponentHitTest(ptLog);
+
     PSS_Symbol*       pSymbol     =                  dynamic_cast<PSS_Symbol*>(m_pCompHit);
     PSS_LinkSymbol*   pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pCompHit);
     CODTextComponent* pTextComp   = NULL;
@@ -2023,10 +2066,15 @@ BOOL PSS_ProcessGraphModelController::StartTextEdit(UINT flags, CPoint point)
             m_pTextEdit = pTextComp;
             m_pTextEdit->AddRef();
 
-            editing = m_pTextEdit->BeginEdit(GetCanvasVp());
+            CODViewport* pCanvasVp = GetCanvasVp();
 
-            if (editing)
-                GetCanvasVp()->UpdateComponents(&setUpdate);
+            if (pCanvasVp)
+            {
+                editing = m_pTextEdit->BeginEdit(pCanvasVp);
+
+                if (editing)
+                    pCanvasVp->UpdateComponents(&setUpdate);
+            }
         }
     }
 
@@ -2204,9 +2252,10 @@ void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
                                       GetModel(),
                                       static_cast<CODSymbolComponent*>(pComp));
 
-            CWnd* pMainWnd = AfxGetMainWnd();
-            ASSERT(pMainWnd);
-            pMainWnd->SendMessageToDescendants(UM_ELEMENTADDEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
+            CWnd* pMainWnd = ::AfxGetMainWnd();
+
+            if (pMainWnd)
+                pMainWnd->SendMessageToDescendants(UM_ELEMENTADDEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
 
             // call the utility class for manipulating dynamic attributes and
             // assign required dynamic properties on new symbol
@@ -2416,12 +2465,14 @@ void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCo
             if (pLinkSymbol)
                 pLinkSymbol->RemoveReferenceSymbol();
 
-            CWnd* pMainWnd = AfxGetMainWnd();
-            ASSERT(pMainWnd);
+            CWnd* pMainWnd = ::AfxGetMainWnd();
 
             // build the message
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_RemoveElement, NULL, pModel, static_cast<CODSymbolComponent*>(pComp));
-            pMainWnd->SendMessageToDescendants(UM_ELEMENTREMOVEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
+            if (pMainWnd)
+            {
+                PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_RemoveElement, NULL, pModel, static_cast<CODSymbolComponent*>(pComp));
+                pMainWnd->SendMessageToDescendants(UM_ELEMENTREMOVEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
+            }
         }
     }
 }
@@ -2530,12 +2581,17 @@ void PSS_ProcessGraphModelController::CopyToClipboardSet(CODComponentSet* pCompS
         // copy selected components to clipboard in enhanced metafile format
         if (ClipboardEnhMetafileEnabled())
         {
-            std::unique_ptr<CMetaFileDC> pMetaDC(GetCanvasVp()->CreateMetafile(*pCompSet));
+            CODViewport* pCanvasVp = GetCanvasVp();
 
-            if (pMetaDC.get())
+            if (pCanvasVp)
             {
-                HENHMETAFILE hMetaFile = pMetaDC->CloseEnhanced();
-                ::SetClipboardData(CF_ENHMETAFILE, hMetaFile);
+                std::unique_ptr<CMetaFileDC> pMetaDC(pCanvasVp->CreateMetafile(*pCompSet));
+
+                if (pMetaDC.get())
+                {
+                    HENHMETAFILE hMetaFile = pMetaDC->CloseEnhanced();
+                    ::SetClipboardData(CF_ENHMETAFILE, hMetaFile);
+                }
             }
         }
 
@@ -3375,7 +3431,9 @@ void PSS_ProcessGraphModelController::OnEditPaste()
         }
 
         CODViewport* pCanvasViewport = GetCanvasVp();
-        ASSERT(pCanvasViewport);
+
+        if (!pCanvasViewport)
+            THROW("The canvas viewport could not be found");
 
         // get the current paste insertion point
         CPoint insertPoint     = pCanvasViewport->GetPasteInsertionPoint();
@@ -3391,7 +3449,9 @@ void PSS_ProcessGraphModelController::OnEditPaste()
         }
 
         CODModel* pCanvasModel = GetCanvasModel();
-        ASSERT(pCanvasModel);
+        
+        if (!pCanvasModel)
+            THROW("The canvas model could not be found");
 
         // make sure components will be inserted inside the model
         pCanvasModel->FindValidMove(m_CutSet, moveX, moveY, &allCompRect);
@@ -3671,11 +3731,14 @@ void PSS_ProcessGraphModelController::OnChangeTextEdit()
     if (!m_pTextEdit)
         return;
 
-    CODViewport*         pCanvasViewport = GetCanvasVp();
+    CODViewport* pCanvasViewport = GetCanvasVp();
+
+    if (!pCanvasViewport)
+        return;
+
     sfl::MvcViewport::DC dc(pCanvasViewport, TRUE);
 
     CODComponentSet updateSet;
-
     updateSet.Add(m_pTextEdit);
 
     if (ISA(m_pTextEdit, CODLabelComponent))
@@ -3807,12 +3870,14 @@ void PSS_ProcessGraphModelController::OnInsertPage()
 
         BrowseModel(pEmptyModel, dlg.GetParentModel());
 
-        CWnd* pMainWnd = AfxGetMainWnd();
-        ASSERT(pMainWnd);
+        CWnd* pMainWnd = ::AfxGetMainWnd();
 
         // build the message
-        PSS_DocObserverMsg docMsg;
-        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        if (pMainWnd)
+        {
+            PSS_DocObserverMsg docMsg;
+            pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        }
 
         CDocument* pDocument = GetDocument();
         ASSERT(pDocument);
@@ -3852,12 +3917,14 @@ void PSS_ProcessGraphModelController::OnRenamePage()
             pRoot->OnPageNameChanged(pPage, oldPageName);
         }
 
-        CWnd* pMainWnd = AfxGetMainWnd();
-        ASSERT(pMainWnd);
+        CWnd* pMainWnd = ::AfxGetMainWnd();
 
         // build the message
-        PSS_DocObserverMsg docMsg;
-        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        if (pMainWnd)
+        {
+            PSS_DocObserverMsg docMsg;
+            pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        }
 
         // set the modification flag
         GetDocument()->SetModifiedFlag(TRUE);
@@ -3893,12 +3960,14 @@ void PSS_ProcessGraphModelController::OnDeletePage()
             // delete the page and its associated model
             pRoot->DeletePage(pPage->GetPageName(), true);
 
-            CWnd* pMainWnd = AfxGetMainWnd();
-            ASSERT(pMainWnd);
+            CWnd* pMainWnd = ::AfxGetMainWnd();
 
             // build the message
-            PSS_DocObserverMsg docMsg;
-            pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+            if (pMainWnd)
+            {
+                PSS_DocObserverMsg docMsg;
+                pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+            }
 
             CDocument* pDocument = GetDocument();
 
@@ -3941,12 +4010,14 @@ void PSS_ProcessGraphModelController::OnRenameCurrentPage()
             pRoot->OnPageNameChanged(pPage, oldPageName);
         }
 
-        CWnd* pMainWnd = AfxGetMainWnd();
-        ASSERT(pMainWnd);
+        CWnd* pMainWnd = ::AfxGetMainWnd();
 
         // build the message
-        PSS_DocObserverMsg docMsg;
-        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        if (pMainWnd)
+        {
+            PSS_DocObserverMsg docMsg;
+            pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        }
 
         CDocument* pDocument = GetDocument();
 
@@ -4000,12 +4071,14 @@ void PSS_ProcessGraphModelController::OnDeleteCurrentPage()
         // delete the page and its associated model
         pRoot->DeletePage(pCurrentPage->GetPageName(), true);
 
-        CWnd* pMainWnd = AfxGetMainWnd();
-        ASSERT(pMainWnd);
+        CWnd* pMainWnd = ::AfxGetMainWnd();
 
         // build the message
-        PSS_DocObserverMsg docMsg;
-        pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        if (pMainWnd)
+        {
+            PSS_DocObserverMsg docMsg;
+            pMainWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+        }
 
         CDocument* pDocument = GetDocument();
 

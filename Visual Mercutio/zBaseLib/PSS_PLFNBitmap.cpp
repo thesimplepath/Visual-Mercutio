@@ -70,7 +70,10 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap& other)
         delete m_pBitmapInfoHeader;
 
     if (m_hBitmap)
+    {
         DeleteObject(m_hBitmap);
+        m_hBitmap = NULL;
+    }
 
     m_HeaderSize = other.m_HeaderSize;
     m_Bytes      = other.m_Bytes;
@@ -81,15 +84,26 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap& other)
     m_pBits = (BYTE*)new char[m_Bytes];
     std::memcpy(m_pBits, other.m_pBits, m_Bytes);
 
-    m_hBitmap = CreateDIBitmap(AfxGetMainWnd()->GetDC()->GetSafeHdc(),
-                               m_pBitmapInfoHeader,
-                               CBM_INIT,
-                               m_pBits,
-                               PBITMAPINFO(m_pBitmapInfoHeader),
-                               DIB_RGB_COLORS);
+    CWnd* pWnd = ::AfxGetMainWnd();
 
-    m_Bitmap.Attach(m_hBitmap);
-    m_Bitmap.DDBToDIB(BI_RGB, NULL);
+    if (pWnd)
+    {
+        CDC* pDC = pWnd->GetDC();
+
+        if (pDC)
+            m_hBitmap = ::CreateDIBitmap(pDC->GetSafeHdc(),
+                                         m_pBitmapInfoHeader,
+                                         CBM_INIT,
+                                         m_pBits,
+                                         PBITMAPINFO(m_pBitmapInfoHeader),
+                                         DIB_RGB_COLORS);
+    }
+
+    if (m_hBitmap)
+    {
+        m_Bitmap.Attach(m_hBitmap);
+        m_Bitmap.DDBToDIB(BI_RGB, NULL);
+    }
 
     return *this;
 }
@@ -102,10 +116,16 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap* pOther)
         delete m_pBits;
 
     if (m_pBitmapInfoHeader)
+    {
         delete m_pBitmapInfoHeader;
+        m_pBitmapInfoHeader = NULL;
+    }
 
     if (m_hBitmap)
+    {
         DeleteObject(m_hBitmap);
+        m_hBitmap = NULL;
+    }
 
     if (!pOther)
     {
@@ -127,15 +147,26 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap* pOther)
         m_pBits = (BYTE*)new char[m_Bytes];
         std::memcpy(m_pBits, pOther->m_pBits, m_Bytes);
 
-        m_hBitmap = CreateDIBitmap(AfxGetMainWnd()->GetDC()->GetSafeHdc(),
-                                   m_pBitmapInfoHeader,
-                                   CBM_INIT,
-                                   m_pBits,
-                                   (PBITMAPINFO)m_pBitmapInfoHeader,
-                                   DIB_RGB_COLORS);
+        CWnd* pWnd = ::AfxGetMainWnd();
 
-        m_Bitmap.Attach(m_hBitmap);
-        m_Bitmap.DDBToDIB(BI_RGB, NULL);
+        if (pWnd)
+        {
+            CDC* pDC = pWnd->GetDC();
+
+            if (pDC)
+                m_hBitmap = ::CreateDIBitmap(pDC->GetSafeHdc(),
+                                             m_pBitmapInfoHeader,
+                                             CBM_INIT,
+                                             m_pBits,
+                                             PBITMAPINFO(m_pBitmapInfoHeader),
+                                             DIB_RGB_COLORS);
+        }
+
+        if (m_hBitmap)
+        {
+            m_Bitmap.Attach(m_hBitmap);
+            m_Bitmap.DDBToDIB(BI_RGB, NULL);
+        }
     }
 
     return *this;
@@ -232,12 +263,20 @@ void PSS_PLFNBitmap::Serialize(CArchive& ar)
             ((BYTE*)m_pBits)[i] = byte;
         }
 
-        m_hBitmap = ::CreateDIBitmap(AfxGetMainWnd()->GetDC()->GetSafeHdc(),
-                                     m_pBitmapInfoHeader,
-                                     CBM_INIT,
-                                     m_pBits,
-                                     (PBITMAPINFO)m_pBitmapInfoHeader,
-                                     DIB_RGB_COLORS);
+        CWnd* pWnd = ::AfxGetMainWnd();
+
+        if (pWnd)
+        {
+            CDC* pDC = pWnd->GetDC();
+
+            if (pDC)
+                m_hBitmap = ::CreateDIBitmap(pDC->GetSafeHdc(),
+                                             m_pBitmapInfoHeader,
+                                             CBM_INIT,
+                                             m_pBits,
+                                             PBITMAPINFO(m_pBitmapInfoHeader),
+                                             DIB_RGB_COLORS);
+        }
 
         m_Bitmap.Attach(m_hBitmap);
         m_Bitmap.DDBToDIB(BI_RGB, NULL);

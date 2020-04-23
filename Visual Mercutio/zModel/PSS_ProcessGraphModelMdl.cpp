@@ -2221,12 +2221,14 @@ void PSS_ProcessGraphModelMdl::SetModelName(const CString& value)
         basicProps.SetModelName(value);
         SetProperty(&basicProps);
 
-        CWnd* pMainWnd = AfxGetMainWnd();
-        ASSERT(pMainWnd);
+        CWnd* pMainWnd = ::AfxGetMainWnd();
 
         // build the message
-        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, this);
-        pMainWnd->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, (LPARAM)&docMsg);
+        if (pMainWnd)
+        {
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, this);
+            pMainWnd->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, (LPARAM)&docMsg);
+        }
     }
 
     // recalculate all references

@@ -1114,9 +1114,12 @@ UINT PSS_PlanFinObject::GetPropertyTabs() const
 //---------------------------------------------------------------------------
 void PSS_PlanFinObject::NotifyObjectHasChanged()
 {
+    CWnd* pWnd = ::AfxGetMainWnd();
+
     // to notify the view that the field has changed, pass the object address, then the function that process
     // the message can know wich object has changed
-    AfxGetMainWnd()->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(this));
+    if (pWnd)
+        pWnd->SendMessageToDescendants(ID_FIELD_CHANGE, 0, LPARAM(this));
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PlanFinObject::HasBeenChanged() const

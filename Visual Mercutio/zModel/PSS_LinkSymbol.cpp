@@ -316,10 +316,14 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
             PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_NameHasChanged, this);
             NotifyAllObservers(&msg);
 
-            // build the message
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, pRootModel, this);
+            CWnd* pWnd = ::AfxGetMainWnd();
 
-            AfxGetMainWnd()->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
+            // build and send the message
+            if (pWnd)
+            {
+                PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, pRootModel, this);
+                pWnd->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
+            }
 
             // redraw the symbol
             RedrawSymbol();

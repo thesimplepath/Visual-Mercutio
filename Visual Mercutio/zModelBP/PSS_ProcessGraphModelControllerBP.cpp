@@ -868,12 +868,17 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateInsOPAP3(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnInsTextZone()
 {
+    CODViewport* pCanvasVp = GetCanvasVp();
+
+    if (!pCanvasVp)
+        return;
+
     // create a default anchor point
     CPoint ptLog;
 
     // get the client DC to draw to
     CClientDC dc(GetWnd());
-    GetCanvasVp()->PrepareDC(&dc, FALSE);
+    pCanvasVp->PrepareDC(&dc, FALSE);
 
     ClearSelectionToSet();
 
@@ -1175,7 +1180,7 @@ void PSS_ProcessGraphModelControllerBP::OnViewModelGenToolbar()
 
     if (m_pWndModelGenerationBar)
     {
-        CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+        CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
         if (pFrameWnd)
             pFrameWnd->ShowControlBar(m_pWndModelGenerationBar, !(m_pWndModelGenerationBar->GetStyle() & WS_VISIBLE), FALSE);
@@ -1216,7 +1221,7 @@ void PSS_ProcessGraphModelControllerBP::OnViewModelToolbar()
 
     if (m_pWndModelisationBar)
     {
-        CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+        CFrameWnd* pFrameWnd = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
 
         if (pFrameWnd)
             pFrameWnd->ShowControlBar(m_pWndModelisationBar, !(m_pWndModelisationBar->GetStyle() & WS_VISIBLE), FALSE);
@@ -1485,13 +1490,13 @@ void PSS_ProcessGraphModelControllerBP::OnInsertPage()
         PSS_ProcessGraphPage*     pPage  = pRoot->CreateNewPage(pModel, dlg.GetPageName(), dlg.GetParentModel());
         BrowseModel(pModel, dlg.GetParentModel());
 
-        CWnd* pWnd = AfxGetMainWnd();
+        CWnd* pWnd = ::AfxGetMainWnd();
 
         // build the message
         if (pWnd)
         {
             PSS_DocObserverMsg docMsg;
-            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+            pWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
         }
 
         CDocument* pDocument = GetDocument();
@@ -1539,7 +1544,7 @@ void PSS_ProcessGraphModelControllerBP::OnRenamePage()
             pRoot->OnPageNameChanged(pPage, OldPageName);
         }
 
-        CWnd* pWnd = AfxGetMainWnd();
+        CWnd* pWnd = ::AfxGetMainWnd();
 
         // build the message
         if (pWnd)
@@ -1587,7 +1592,7 @@ void PSS_ProcessGraphModelControllerBP::OnDeletePage()
             // delete the page and its associated model
             pRoot->DeletePage(pPage->GetPageName(), true);
 
-            CWnd* pWnd = AfxGetMainWnd();
+            CWnd* pWnd = ::AfxGetMainWnd();
 
             // build the message
             if (pWnd)
@@ -1639,7 +1644,7 @@ void PSS_ProcessGraphModelControllerBP::OnRenameCurrentPage()
             // notify the owner model about page changes
             pRoot->OnPageNameChanged(pCurrentPage, oldPageName);
 
-            CFrameWnd* pFrameWnd    = dynamic_cast<CFrameWnd*>(AfxGetMainWnd());
+            CFrameWnd* pFrameWnd    = dynamic_cast<CFrameWnd*>(::AfxGetMainWnd());
             CFrameWnd* pActiveFrame = pFrameWnd ? pFrameWnd->GetActiveFrame() : NULL;
 
             // force the active window title to refresh
@@ -1647,13 +1652,13 @@ void PSS_ProcessGraphModelControllerBP::OnRenameCurrentPage()
                 pActiveFrame->OnUpdateFrameTitle(TRUE);
         }
 
-        CWnd* pWnd = AfxGetMainWnd();
+        CWnd* pWnd = ::AfxGetMainWnd();
 
         // build the message
         if (pWnd)
         {
             PSS_DocObserverMsg docMsg;
-            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
+            pWnd->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, LPARAM(&docMsg));
         }
 
         CDocument* pDocument = GetDocument();

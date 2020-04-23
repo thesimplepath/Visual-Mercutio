@@ -270,7 +270,7 @@ BOOL PSS_Symbol::SetSymbolName(const CString& value)
                                       dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel()),
                                       this);
 
-            CWnd* pMainWnd = AfxGetMainWnd();
+            CWnd* pMainWnd = ::AfxGetMainWnd();
 
             if (pMainWnd)
                 pMainWnd->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, LPARAM(&docMsg));

@@ -979,7 +979,10 @@ void PSS_PlanFinObject::ShowObjectName(CDC* pDC)
 //---------------------------------------------------------------------------
 void PSS_PlanFinObject::SizePositionHasChanged()
 {
-    AfxGetMainWnd()->SendMessageToDescendants(UM_MOVEOBJECTINORDER, 0, LPARAM(this));
+    CWnd* pWnd = ::AfxGetMainWnd();
+
+    if (pWnd)
+        pWnd->SendMessageToDescendants(UM_MOVEOBJECTINORDER, 0, LPARAM(this));
 }
 //---------------------------------------------------------------------------
 PSS_Font* PSS_PlanFinObject::GetFont(PSS_View* pView)

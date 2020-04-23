@@ -12,6 +12,9 @@
     #error include 'stdafx.h' before including this file for PCH
 #endif
 
+// uncomment this line to enable special security checks
+//#define CHECK_INFO
+
 // processsoft
 #include "zBaseLib\PSS_PlanFinObsoleteObjects.h"
 #include "zBaseLib\PSS_Document.h"
@@ -27,7 +30,7 @@
 #include "zBaseLib\PSS_FieldRepository.h"
 #include "zBaseLib\PSS_GlobalFieldDocument.h"
 #include "zBaseLib\PSS_Global.h"
-#ifdef _ZCHECKINFO
+#ifdef CHECK_INFO
     #include "zBaseLib\PSS_CryptedFileApplicationTypeInfo.h"
 #endif
 #include "zEvent\PSS_ActivityLog.h"
@@ -791,7 +794,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
         * Gets the application directory
         *@return the application directory
         */
-        #ifdef _ZCHECKINFO
+        #ifdef CHECK_INFO
             virtual inline PSS_CryptedFileApplicationTypeInfo::IEApplicationInfoType GetApplicationInfoType() const;
         #endif
 
@@ -799,7 +802,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
         * Gets the product key file info
         *@return the product key file info
         */
-        #ifdef _ZCHECKINFO
+        #ifdef CHECK_INFO
             virtual inline CString GetProductKeyFileInfo() const;
         #endif
 
@@ -952,7 +955,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
         PSS_CltServer   m_Server;
         PSS_ActivityLog m_ActivityLog;
 
-        #ifdef _ZCHECKINFO
+        #ifdef CHECK_INFO
             PSS_CryptedFileApplicationTypeInfo::IEApplicationInfoType m_ApplicationInfoType;
             CString                                                   m_ProductKeyFileInfo;
         #endif
@@ -979,7 +982,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
         /**
         * Loads the application info type
         */
-        #ifdef _ZCHECKINFO
+        #ifdef CHECK_INFO
             void LoadApplicationInfoType();
         #endif
 };
@@ -1460,14 +1463,14 @@ PSS_StatusBar& PSS_MainApp::GetStatusBar()
     return pMainFrame->GetStatusBar();
 }
 //---------------------------------------------------------------------------
-#ifdef _ZCHECKINFO
+#ifdef CHECK_INFO
     PSS_CryptedFileApplicationTypeInfo::IEApplicationInfoType PSS_MainApp::GetApplicationInfoType() const
     {
         return m_ApplicationInfoType;
     }
 #endif
 //---------------------------------------------------------------------------
-#ifdef _ZCHECKINFO
+#ifdef CHECK_INFO
     CString PSS_MainApp::GetProductKeyFileInfo() const
     {
         return m_ProductKeyFileInfo;
