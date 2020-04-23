@@ -65,6 +65,9 @@ PSS_SingleInstanceApplication::PSS_SingleInstanceApplication() :
     g_pOneApp = this;
 }
 //---------------------------------------------------------------------------
+PSS_SingleInstanceApplication::~PSS_SingleInstanceApplication()
+{}
+//---------------------------------------------------------------------------
 HDDEDATA PSS_SingleInstanceApplication::AppDdeCallback(WORD     type,
                                                        WORD     format,
                                                        HCONV    hConv,

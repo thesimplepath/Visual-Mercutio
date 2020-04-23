@@ -48,6 +48,7 @@ class AFX_EXT_CLASS PSS_SingleInstanceApplication : public PSS_MainForm
 {
     public:
         PSS_SingleInstanceApplication();
+        virtual ~PSS_SingleInstanceApplication();
 
         /**
         * DDE callback
