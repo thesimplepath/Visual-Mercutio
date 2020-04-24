@@ -302,11 +302,17 @@ void PSS_DocumentReadWrite::StyleHasBeenDeleted(PSS_Style::Handle hStyle, int do
 //---------------------------------------------------------------------------
 void PSS_DocumentReadWrite::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(IsModified());
 }
 //---------------------------------------------------------------------------
 void PSS_DocumentReadWrite::OnUpdateFileSaveAs(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(!GetKeepOnlyFLF());
 }
 //---------------------------------------------------------------------------

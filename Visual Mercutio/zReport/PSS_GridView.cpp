@@ -438,11 +438,17 @@ void PSS_GridView::OnViewZoomOut()
 //---------------------------------------------------------------------------
 void PSS_GridView::OnUpdateViewZoomIn(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(GetParam() && GetZoom() < 300);
 }
 //---------------------------------------------------------------------------
 void PSS_GridView::OnUpdateViewZoomOut(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(GetParam() && GetZoom() > 40);
 }
 //---------------------------------------------------------------------------
@@ -453,6 +459,9 @@ void PSS_GridView::OnFreezeSplitter()
 //---------------------------------------------------------------------------
 void PSS_GridView::OnUpdateFreezeSplitter(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     const ROWCOL frozenRow       = GetFrozenRows();
     const ROWCOL frozenCol       = GetFrozenCols();
     const ROWCOL frozenHeaderRow = GetHeaderRows();
@@ -468,7 +477,7 @@ void PSS_GridView::OnUpdateFreezeSplitter(CCmdUI* pCmdUI)
                        (pDoc->GetFrozenRow()       ||
                         pDoc->GetFrozenCol()       ||
                         pDoc->GetFrozenHeaderRow() ||
-                        pDoc->GetFrozenHeaderCol() ));
+                        pDoc->GetFrozenHeaderCol()));
     else
         pCmdUI->Enable(FALSE);
 }
@@ -480,6 +489,9 @@ void PSS_GridView::OnUnfreezeSplitter()
 //---------------------------------------------------------------------------
 void PSS_GridView::OnUpdateUnfreezeSplitter(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     const ROWCOL frozenRow       = GetFrozenRows();
     const ROWCOL frozenCol       = GetFrozenCols();
     const ROWCOL frozenHeaderRow = GetHeaderRows();
@@ -500,6 +512,9 @@ void PSS_GridView::OnUnhideAll()
 //---------------------------------------------------------------------------
 void PSS_GridView::OnUpdateUnhideAll(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------

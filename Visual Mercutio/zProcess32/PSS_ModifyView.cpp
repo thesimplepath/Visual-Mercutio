@@ -97,10 +97,10 @@ BEGIN_MESSAGE_MAP(PSS_ModifyView, PSS_ReadView)
         ON_COMMAND(ID_SUBMENU1_FONTCHANGE, OnSubmenu1Fontchange)
         ON_UPDATE_COMMAND_UI(ID_SUBMENU1_FONTCHANGE, OnUpdateSubmenu1Fontchange)
         ON_COMMAND(ID_SUBMENU_FORMAT, OnSubmenuFormat)
-        ON_COMMAND(ID_WIZARD_MODIFYfORMULA, OnSubmenuModifyFormula)
+        ON_COMMAND(ID_WIZARD_MODIFYFORMULA, OnSubmenuModifyFormula)
         ON_UPDATE_COMMAND_UI(ID_SUBMENU_FORMAT, OnUpdateSubMenuFormat)
         ON_UPDATE_COMMAND_UI(ID_SUBMENU1_ALIGN, OnUpdateSubmenuAlign)
-        ON_UPDATE_COMMAND_UI(ID_WIZARD_MODIFYfORMULA, OnUpdateSubmenuModifyFormula)
+        ON_UPDATE_COMMAND_UI(ID_WIZARD_MODIFYFORMULA, OnUpdateSubmenuModifyFormula)
         ON_COMMAND(ID_SUBMENU1_ALIGN, OnSubmenuAlign)
         ON_COMMAND(ID_SUBMENU1_HIDEPRTOBJECT, OnSubmenuHidePrtObject)
         ON_UPDATE_COMMAND_UI(ID_SUBMENU1_HIDEPRTOBJECT, OnUpdateSubmenuHidePrtObject)
@@ -437,6 +437,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateEditionProtectObject(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -731,6 +734,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateDeleteObjectNotes(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -1219,6 +1225,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateInsertFile(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -1572,6 +1581,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubMenuFormat(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -1599,6 +1611,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuAlign(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -1633,6 +1648,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuModifyFormula(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -1753,6 +1771,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuHidePrtObject(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -1796,6 +1817,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuObjectHide(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -2001,6 +2025,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateFieldAlignCenter(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -2018,6 +2045,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateFieldAlignLeft(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)
@@ -2036,6 +2066,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateFieldAlignRight(CCmdUI* pCmdUI)
     {
+        if (!pCmdUI)
+            return;
+
         PSS_Document* pDocument = GetDocument();
 
         if (!pDocument)

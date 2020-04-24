@@ -295,6 +295,7 @@ class AFX_EXT_CLASS PSS_WorkspaceTreeCtrl : public PSS_TreeCtrl,
         afx_msg void OnLButtonDblClk(UINT nFlags, CPoint pt);
         afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
         afx_msg void OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult);
+        afx_msg LRESULT OnIdleUpdateCmdUI(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 

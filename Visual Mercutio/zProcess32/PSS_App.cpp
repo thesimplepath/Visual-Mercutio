@@ -1065,17 +1065,28 @@ void PSS_App::OnFileOpenModel()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateFileOpenModel(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateFileNewModel(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(GetActiveCDocument() && GetActiveCDocument()->IsModified());
+    if (!pCmdUI)
+        return;
+
+    CDocument* pDocument = GetActiveCDocument();
+
+    pCmdUI->Enable(pDocument && pDocument->IsModified());
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnFileSaveAll()
@@ -1156,6 +1167,9 @@ void PSS_App::OnFileSaveAll()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdadeFileSaveAll(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -1304,6 +1318,9 @@ void PSS_App::OnSaveWorkspace()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateSaveWorkspace(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(WorkspaceEnvironmentExist()    &&
                    IsWorkspaceEnvironmentLoaded() &&
                    IsWorkspaceEnvironmentModified());
@@ -1317,6 +1334,9 @@ void PSS_App::OnCloseWorkspace()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateCloseWorkspace(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(WorkspaceEnvironmentExist() && IsWorkspaceEnvironmentLoaded());
 }
 //---------------------------------------------------------------------------
@@ -1348,6 +1368,9 @@ void PSS_App::OnWksNewGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksNewGroup(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1389,6 +1412,9 @@ void PSS_App::OnWksDeleteGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksDeleteGroup(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1425,6 +1451,9 @@ void PSS_App::OnWksRenameGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksRenameGroup(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1461,6 +1490,9 @@ void PSS_App::OnWksAddFile()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksAddFile(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1502,6 +1534,9 @@ void PSS_App::OnWksDeleteFile()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksDeleteFile(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1538,6 +1573,9 @@ void PSS_App::OnWksOpenFile()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksOpenFile(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1586,6 +1624,9 @@ void PSS_App::OnAddCurrentFileToProject()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddCurrentFileToProject(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1625,6 +1666,9 @@ void PSS_App::OnWksProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateWksProperties(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1661,6 +1705,9 @@ void PSS_App::OnUgpAddGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpAddGroup(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1698,6 +1745,9 @@ void PSS_App::OnUgpDeleteGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpDeleteGroup(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1735,6 +1785,9 @@ void PSS_App::OnUgpRenameGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpRenameGroup(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1771,6 +1824,9 @@ void PSS_App::OnUgpProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpProperties(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1807,6 +1863,9 @@ void PSS_App::OnUgpAddRole()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpAddRole(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1843,6 +1902,9 @@ void PSS_App::OnUgpDeleteRole()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpDeleteRole(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1879,6 +1941,9 @@ void PSS_App::OnUgpRenameRole()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateUgpRenameRole(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1915,6 +1980,9 @@ void PSS_App::OnAddLogicalSystem()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddLogicalSystem(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1952,6 +2020,9 @@ void PSS_App::OnDeleteLogicalSystem()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateDeleteLogicalSystem(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -1989,6 +2060,9 @@ void PSS_App::OnRenameLogicalSystem()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRenameLogicalSystem(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2025,6 +2099,9 @@ void PSS_App::OnLogicalSystemProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateLogicalSystemProperties(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2061,6 +2138,9 @@ void PSS_App::OnAddPrestation()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddPrestation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2098,6 +2178,9 @@ void PSS_App::OnDeletePrestation()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateDeletePrestation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2135,6 +2218,9 @@ void PSS_App::OnRenamePrestation()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRenamePrestation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2171,6 +2257,9 @@ void PSS_App::OnPrestationProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdatePrestationProperties(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2207,6 +2296,9 @@ void PSS_App::OnAddRule()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAddRule(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2244,6 +2336,9 @@ void PSS_App::OnDeleteRule()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateDeleteRule(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2281,6 +2376,9 @@ void PSS_App::OnRenameRule()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRenameRule(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2317,6 +2415,9 @@ void PSS_App::OnRuleProperties()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateRuleProperties(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessWorkspace* pWorkspace = GetProcessWorkspace();
 
     if (!pWorkspace)
@@ -2398,6 +2499,9 @@ void PSS_App::OnGenerateCheckReport()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateGenerateCheckReport(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pGraphModelDoc)
@@ -2517,6 +2621,9 @@ void PSS_App::OnGenerateMercutioReport()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateGenerateMercutioReport(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pGraphModelDoc)
@@ -2610,6 +2717,9 @@ void PSS_App::OnGenerateConceptorReport()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateGenerateConceptorReport(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pGraphModelDoc)
@@ -2688,6 +2798,9 @@ void PSS_App::OnGenerateSesterceReport()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateGenerateSesterceReport(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pGraphModelDoc)
@@ -2917,6 +3030,9 @@ void PSS_App::OnGeneratePrestationsReport()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateGeneratePrestationsReport(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pGraphModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     if (!pGraphModelDoc)
@@ -2950,6 +3066,9 @@ void PSS_App::OnFileProperty()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateFileProperty(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -2963,6 +3082,9 @@ void PSS_App::OnAssignCurrentSystemDef()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAssignCurrentSystemDef(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -2976,6 +3098,9 @@ void PSS_App::OnAssignCurrentUserDef()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAssignCurrentUserDef(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -2989,6 +3114,9 @@ void PSS_App::OnAssignCurrentPrestationsDef()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAssignCurrentPrestationsDef(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -3002,6 +3130,9 @@ void PSS_App::OnAssignCurrentRulesDef()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateAssignCurrentRulesDef(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -3020,6 +3151,9 @@ void PSS_App::OnSymbolReassignUserGroup()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateSymbolReassignUserGroup(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -3038,6 +3172,9 @@ void PSS_App::OnSymbolReassignLogicalSys()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateSymbolReassignLogicalSys(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -3056,6 +3193,9 @@ void PSS_App::OnSymbolReassignPrestations()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateSymbolReassignPrestations(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -3074,6 +3214,9 @@ void PSS_App::OnSymbolReassignRules()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateSymbolReassignRules(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -3098,6 +3241,9 @@ void PSS_App::OnPublishToMessenger()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdatePublishToMessenger(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
@@ -3132,6 +3278,9 @@ void PSS_App::OnDynamicAttributesDisplay()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateDynamicAttributesDisplay(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     BOOL                      enable = FALSE;
     PSS_ProcessGraphModelDoc* pDoc   = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
@@ -3169,11 +3318,17 @@ void PSS_App::OnExportModelToHTMLFile()
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateExportModelToHTMLFile(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(BOOL(dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument())));
 }
 //---------------------------------------------------------------------------
-void PSS_App::OnUpdateFilePrintPreview(CCmdUI *pCmdUI)
+void PSS_App::OnUpdateFilePrintPreview(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     CWinApp* pApp = ::AfxGetApp();
 
     if (!pApp)
@@ -3236,8 +3391,11 @@ void PSS_App::OnUpdateFilePrintPreview(CCmdUI *pCmdUI)
         pCmdUI->Enable(FALSE);
 }
 //---------------------------------------------------------------------------
-void PSS_App::OnUpdateFilePrint(CCmdUI *pCmdUI)
+void PSS_App::OnUpdateFilePrint(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     CWinApp* pApp = ::AfxGetApp();
 
     if (!pApp)

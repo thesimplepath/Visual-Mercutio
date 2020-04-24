@@ -2342,11 +2342,11 @@ void PSS_ProcessGraphModelController::AssignSymbolHit()
     }
 
     if (ISA(pSelection->GetAt(0), PSS_Symbol) || ISA(pSelection->GetAt(0), PSS_LinkSymbol))
-        m_pSymbolHit = static_cast<CODSymbolComponent*>(pSelection->GetAt(0));
+        m_pSymbolHit = dynamic_cast<CODSymbolComponent*>(pSelection->GetAt(0));
     else
     if (ISA(pSelection->GetAt(0), CODLabelComponent))
         // select the symbol behind
-        m_pSymbolHit = static_cast<CODLabelComponent*>(GetSelection()->GetAt(0))->GetOwner();
+        m_pSymbolHit = dynamic_cast<CODLabelComponent*>(GetSelection()->GetAt(0))->GetOwner();
     else
         m_pSymbolHit = NULL;
 }
@@ -3276,6 +3276,9 @@ void PSS_ProcessGraphModelController::OnEditCopy()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateEditCopy(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(ValidateCutCopyOperations());
 }
 //---------------------------------------------------------------------------
@@ -3339,6 +3342,9 @@ void PSS_ProcessGraphModelController::OnEditCut()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateEditCut(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(ValidateCutCopyOperations());
 }
 //---------------------------------------------------------------------------
@@ -3585,6 +3591,9 @@ void PSS_ProcessGraphModelController::OnEditDuplicate()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateEditDuplicate(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     // allow duplicates only if the selection set contains at least one object
     pCmdUI->Enable(m_CopySet.GetSize() > 0 && CanDuplicateObject(&m_CopySet));
 }
@@ -3660,6 +3669,9 @@ void PSS_ProcessGraphModelController::OnEditName()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateEditName(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -3702,6 +3714,9 @@ void PSS_ProcessGraphModelController::OnEditComment()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateEditComment(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -3767,6 +3782,9 @@ void PSS_ProcessGraphModelController::OnGoParentModel()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateGoParentModel(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelMdl* pModel = GetModel();
     pCmdUI->Enable(pModel && pModel->GetParent());
 }
@@ -3788,6 +3806,9 @@ void PSS_ProcessGraphModelController::OnBrowseSourceSymbol()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateBrowseSourceSymbol(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol* pSymbolHit = dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4160,6 +4181,9 @@ void PSS_ProcessGraphModelController::OnAddNewExtApp()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateAddNewExtApp(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4191,6 +4215,9 @@ void PSS_ProcessGraphModelController::OnAddNewExtFile()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateAddNewExtFile(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4244,9 +4271,15 @@ void PSS_ProcessGraphModelController::OnShowModelBorder()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateShowModelBorder(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelMdl* pModel = GetRootModel();
-    ASSERT(pModel);
-    pCmdUI->SetCheck(pModel->GetShowPageBorder());
+
+    if (pModel)
+        pCmdUI->SetCheck(pModel->GetShowPageBorder());
+    else
+        pCmdUI->SetCheck(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnAddWatermarkModelLogo()
@@ -4300,6 +4333,9 @@ void PSS_ProcessGraphModelController::OnSymbolShowNameArea()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateSymbolShowNameArea(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4363,6 +4399,9 @@ void PSS_ProcessGraphModelController::OnSymbolShowDescriptionArea()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateSymbolShowDescriptionArea(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4434,6 +4473,9 @@ void PSS_ProcessGraphModelController::OnSymbolShowAttributeArea()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateSymbolShowAttributeArea(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4487,6 +4529,9 @@ void PSS_ProcessGraphModelController::OnSymbolShowLabelAttributes()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateSymbolShowLabelAttributes(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4612,6 +4657,9 @@ void PSS_ProcessGraphModelController::OnSymbolSelectAttributes()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateSymbolSelectAttributes(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
@@ -4722,6 +4770,9 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesAdd(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     // no distinction
     pCmdUI->Enable(TRUE);
 }
@@ -4825,6 +4876,9 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesDuplicate(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -4833,6 +4887,9 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDelete()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesDelete(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     // no distinction
     pCmdUI->Enable(TRUE);
 }

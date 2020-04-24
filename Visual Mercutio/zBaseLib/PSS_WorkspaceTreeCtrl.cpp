@@ -41,6 +41,7 @@ BEGIN_MESSAGE_MAP(PSS_WorkspaceTreeCtrl, PSS_TreeCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
     ON_NOTIFY_REFLECT(TVN_ITEMEXPANDED, OnItemExpanded)
+    ON_MESSAGE(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
     ON_WM_CONTEXTMENU()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -570,6 +571,11 @@ void PSS_WorkspaceTreeCtrl::OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult)
         }
 
     *pLResult = TRUE;
+}
+//---------------------------------------------------------------------------
+LRESULT PSS_WorkspaceTreeCtrl::OnIdleUpdateCmdUI(WPARAM wParam, LPARAM lParam)
+{
+    return 0L;
 }
 //---------------------------------------------------------------------------
 void PSS_WorkspaceTreeCtrl::CreateTree()

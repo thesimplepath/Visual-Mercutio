@@ -326,11 +326,17 @@ void PSS_ReadView::OnViewZoomOut()
 //---------------------------------------------------------------------------
 void PSS_ReadView::OnUpdateViewZoomIn(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(GetZoomPercentage() + 25 <= 400);
 }
 //---------------------------------------------------------------------------
 void PSS_ReadView::OnUpdateViewZoomOut(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(GetZoomPercentage() - 25 >= 25);
 }
 //---------------------------------------------------------------------------

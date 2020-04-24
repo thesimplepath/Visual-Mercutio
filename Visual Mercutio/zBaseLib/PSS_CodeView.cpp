@@ -216,6 +216,9 @@ void PSS_CodeView::OnOnlyNumericFields()
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnUpdateOnlyNumericFields(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CodeType == E_CT_Long);
 }
 //---------------------------------------------------------------------------
@@ -246,6 +249,9 @@ void PSS_CodeView::OnDisplayCalculatedCode()
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnUpdateDisplayCalculatedCode(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CodeType == E_CT_Calculated);
 }
 //---------------------------------------------------------------------------
@@ -257,6 +263,9 @@ void PSS_CodeView::OnDisplayallCode()
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnUpdateDisplayallCode(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CodeType == E_CT_AllObjects);
 }
 //---------------------------------------------------------------------------
@@ -268,6 +277,9 @@ void PSS_CodeView::OnDisplayStaticCode()
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnUpdateDisplayStaticCode(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CodeType == E_CT_Static);
 }
 //---------------------------------------------------------------------------
@@ -279,6 +291,9 @@ void PSS_CodeView::OnDisplayTextCode()
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnUpdateDisplayTextCode(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CodeType == E_CT_Text);
 }
 //---------------------------------------------------------------------------
@@ -290,6 +305,9 @@ void PSS_CodeView::OnDisplayGraphicCode()
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnUpdateDisplayGraphicCode(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CodeType == E_CT_Graphic);
 }
 //---------------------------------------------------------------------------

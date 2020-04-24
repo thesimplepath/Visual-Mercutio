@@ -350,7 +350,12 @@ void PSS_BaseMDIPage::OnViewFullScreen()
 //---------------------------------------------------------------------------
 void PSS_BaseMDIPage::OnUpdateViewFullScreen(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck(((PSS_BaseMainFrame*)GetMDIFrame())->IsFullScreen());
+    if (!pCmdUI)
+        return;
+
+    PSS_BaseMainFrame* pMainFrame = dynamic_cast<PSS_BaseMainFrame*>(GetMDIFrame());
+
+    pCmdUI->SetCheck(pMainFrame && pMainFrame->IsFullScreen());
 }
 //---------------------------------------------------------------------------
 afx_msg void PSS_BaseMDIPage::OnZoomChange()

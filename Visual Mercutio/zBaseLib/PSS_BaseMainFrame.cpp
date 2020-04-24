@@ -352,16 +352,25 @@ void PSS_BaseMainFrame::OnViewPointer()
 //---------------------------------------------------------------------------
 void PSS_BaseMainFrame::OnUpdateViewPointer(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(PointerWindowIsVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_BaseMainFrame::OnUpdateHelpIndex(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_BaseMainFrame::OnUpdateHelpUsing(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(FALSE);
 }
 //---------------------------------------------------------------------------

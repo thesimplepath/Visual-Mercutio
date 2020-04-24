@@ -303,6 +303,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsProcedure()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsProcedure(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_PROCEDURE);
 }
 //---------------------------------------------------------------------------
@@ -328,6 +331,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsProcess()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsProcess(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_PROCESS);
 }
 //---------------------------------------------------------------------------
@@ -345,6 +351,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsPage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsPage(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_PAGE);
 }
 //---------------------------------------------------------------------------
@@ -362,6 +371,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsDoor()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsDoor(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_DOOR);
 }
 //---------------------------------------------------------------------------
@@ -387,6 +399,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsStop()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsStop(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_STOP);
 }
 //---------------------------------------------------------------------------
@@ -412,6 +427,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsStart()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsStart(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_START);
 }
 //---------------------------------------------------------------------------
@@ -438,6 +456,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsDeliverable()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsDeliverable(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_DELIVERABLE);
 }
 //---------------------------------------------------------------------------
@@ -463,6 +484,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsPackage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsPackage(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_PACKAGE);
 }
 //---------------------------------------------------------------------------
@@ -488,6 +512,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsAlert()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsAlert(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_ALERT);
 }
 //---------------------------------------------------------------------------
@@ -513,6 +540,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsDocument()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsDocument(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_DOCUMENT);
 }
 //---------------------------------------------------------------------------
@@ -538,6 +568,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsIndicator()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsIndicator(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_INDICATOR);
 }
 //---------------------------------------------------------------------------
@@ -563,6 +596,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsQuality()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsQuality(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_QUALITY);
 }
 //---------------------------------------------------------------------------
@@ -588,6 +624,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsDelay()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsDelay(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_DELAY);
 }
 //---------------------------------------------------------------------------
@@ -613,6 +652,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsInProcess()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsInProcess(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_IN_PROCESS);
 }
 //---------------------------------------------------------------------------
@@ -638,6 +680,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsNotValidated()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsNotValidated(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_NOT_VALIDATED);
 }
 //---------------------------------------------------------------------------
@@ -663,6 +708,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsValidated()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsValidated(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_VALIDATED);
 }
 //---------------------------------------------------------------------------
@@ -688,6 +736,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsRisk()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsRisk(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_RISK);
 }
 //---------------------------------------------------------------------------
@@ -713,6 +764,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsIncident()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsIncident(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_INCIDENT);
 }
 //---------------------------------------------------------------------------
@@ -738,6 +792,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsCRI()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsCRI(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_CRI);
 }
 //---------------------------------------------------------------------------
@@ -763,6 +820,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsCRE()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsCRE(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_CRE);
 }
 //---------------------------------------------------------------------------
@@ -788,6 +848,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsCRO()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsCRO(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_CRO);
 }
 //---------------------------------------------------------------------------
@@ -813,6 +876,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsOPAP1()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsOPAP1(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_OPAP1);
 }
 //---------------------------------------------------------------------------
@@ -838,6 +904,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsOPAP2()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsOPAP2(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_OPAP2);
 }
 //---------------------------------------------------------------------------
@@ -863,6 +932,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsOPAP3()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsOPAP3(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_OPAP3);
 }
 //---------------------------------------------------------------------------
@@ -900,6 +972,9 @@ void PSS_ProcessGraphModelControllerBP::OnInsTextZone()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateInsTextZone(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(m_CurrentCommandID == ID_INS_BP_TEXTZONE);
 }
 //---------------------------------------------------------------------------
@@ -933,7 +1008,8 @@ void PSS_ProcessGraphModelControllerBP::OnShowProcessPreview()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateShowProcessPreview(CCmdUI* pCmdUI)
 {
-    CODComponent* pComp = NULL;
+    if (!pCmdUI)
+        return;
 
     AssignSymbolHit();
 
@@ -1069,6 +1145,9 @@ void PSS_ProcessGraphModelControllerBP::OnUnlinkFromFilePackage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateUnlinkFromFilePackage(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
     pCmdUI->Enable(pPackage && pPackage->IsLinkedToFileName());
 }
@@ -1113,6 +1192,9 @@ void PSS_ProcessGraphModelControllerBP::OnLoadPackage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateLoadPackage(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
@@ -1153,6 +1235,9 @@ void PSS_ProcessGraphModelControllerBP::OnUnloadPackage()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateUnloadPackage(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_PackageSymbolBP* pPackage = dynamic_cast<PSS_PackageSymbolBP*>(m_pSymbolHit);
@@ -1189,6 +1274,9 @@ void PSS_ProcessGraphModelControllerBP::OnViewModelGenToolbar()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateViewModelGenToolbar(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     if (!m_pWndModelGenerationBar)
     {
         ASSERT(PSS_FloatingToolBar::GetToolBarManager());
@@ -1230,6 +1318,9 @@ void PSS_ProcessGraphModelControllerBP::OnViewModelToolbar()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateViewModelToolbar(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     if (!m_pWndModelisationBar)
     {
         ASSERT(PSS_FloatingToolBar::GetToolBarManager());
@@ -1285,6 +1376,9 @@ void PSS_ProcessGraphModelControllerBP::OnCheckModel()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateCheckModel(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (!pModelDoc)
@@ -1335,6 +1429,9 @@ void PSS_ProcessGraphModelControllerBP::OnRecalculateModelParameters()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateRecalculateModelParameters(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (!pModelDoc)
@@ -1395,6 +1492,9 @@ void PSS_ProcessGraphModelControllerBP::OnRecalculateModelDurations()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateRecalculateModelDurations(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     AssignSymbolHit();
 
     PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
@@ -1451,6 +1551,9 @@ void PSS_ProcessGraphModelControllerBP::OnCalculateRisks()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateCalculateRisks(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pModelDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (!pModelDoc)
@@ -1674,6 +1777,9 @@ void PSS_ProcessGraphModelControllerBP::OnPlaySimulation()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdatePlaySimulation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -1682,6 +1788,9 @@ void PSS_ProcessGraphModelControllerBP::OnPauseSimulation()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdatePauseSimulation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -1690,6 +1799,9 @@ void PSS_ProcessGraphModelControllerBP::OnStopSimulation()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateStopSimulation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -1698,6 +1810,9 @@ void PSS_ProcessGraphModelControllerBP::OnRewSimulation()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateRewSimulation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -1706,6 +1821,9 @@ void PSS_ProcessGraphModelControllerBP::OnFwdSimulation()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateFwdSimulation(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -1727,6 +1845,9 @@ void PSS_ProcessGraphModelControllerBP::OnShowInputAttributes()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateShowInputAttributes(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
 
     if (!pDoc)
@@ -1758,6 +1879,9 @@ void PSS_ProcessGraphModelControllerBP::OnFormatPainter()
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelControllerBP::OnUpdateFormatPainter(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     PSS_Symbol*     pSymbolHit     =                     dynamic_cast<PSS_Symbol*>(m_pSymbolHit);
     PSS_LinkSymbol* pLinkSymbolHit = pSymbolHit ? NULL : dynamic_cast<PSS_LinkSymbol*>(m_pSymbolHit);
 

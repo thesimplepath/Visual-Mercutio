@@ -502,8 +502,11 @@ void PSS_MainFrame::OnClose()
     PSS_BaseMainFrame::OnClose();
 }
 //---------------------------------------------------------------------------
-void PSS_MainFrame::OnUpdatePage(CCmdUI *pCmdUI)
+void PSS_MainFrame::OnUpdatePage(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable();
 
     char pageName[50];
@@ -518,6 +521,9 @@ void PSS_MainFrame::OnViewFullScreen()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewFullScreen(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->SetCheck(PSS_BaseMainFrame::IsFullScreen());
 }
 //---------------------------------------------------------------------------
@@ -528,6 +534,9 @@ void PSS_MainFrame::OnViewProjectWindow()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewProjectWindow(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->m_nID = ID_VIEW_PROJECTWINDOW;
     OnUpdateControlBarMenu(pCmdUI);
 }
@@ -539,6 +548,9 @@ void PSS_MainFrame::OnViewTipOfDayBar()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewTipOfDayBar(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->m_nID = ID_VIEW_TIPOFDAY;
     OnUpdateControlBarMenu(pCmdUI);
 }
@@ -550,6 +562,9 @@ void PSS_MainFrame::OnViewHelpContextBar()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewHelpContextBar(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->m_nID = ID_VIEW_HELPCONTEXT;
     OnUpdateControlBarMenu(pCmdUI);
 }
@@ -561,6 +576,9 @@ void PSS_MainFrame::OnViewWorkspace()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewWorkspace(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->m_nID = ID_VIEW_WORKSPACE;
     OnUpdateControlBarMenu(pCmdUI);
 }
@@ -572,6 +590,9 @@ void PSS_MainFrame::OnViewOutputWorkspace()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewOutputWorkspace(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->m_nID = ID_VIEW_OUTPUTWORKSPACE;
     OnUpdateControlBarMenu(pCmdUI);
 }
@@ -583,6 +604,9 @@ void PSS_MainFrame::OnViewProperties()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewProperties(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->m_nID = ID_VIEW_PROPERTIES;
     OnUpdateControlBarMenu(pCmdUI);
 }
@@ -655,6 +679,9 @@ void PSS_MainFrame::OnViewToolbar()
 //---------------------------------------------------------------------------
 void PSS_MainFrame::OnUpdateViewToolbar(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(TRUE);
 }
 //---------------------------------------------------------------------------

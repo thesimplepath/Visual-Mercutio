@@ -2402,11 +2402,17 @@ void PSS_Document::OnPageNext()
 //---------------------------------------------------------------------------
 void PSS_Document::OnUpdatePagePrev(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(GetCurrentPage() > 1);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::OnUpdatePageNext(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(GetCurrentPage() < GetPageCount());
 }
 //---------------------------------------------------------------------------
@@ -2442,11 +2448,17 @@ void PSS_Document::OnFileNext()
 //---------------------------------------------------------------------------
 void PSS_Document::OnUpdateFilePrev(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(PreviousVisibleDocumentAvailable(GetActiveDocumentIndex()) != -1);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::OnUpdateFileNext(CCmdUI* pCmdUI)
 {
+    if (!pCmdUI)
+        return;
+
     pCmdUI->Enable(NextVisibleDocumentAvailable(GetActiveDocumentIndex()) != -1);
 }
 //---------------------------------------------------------------------------
