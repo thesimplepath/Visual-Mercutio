@@ -144,8 +144,8 @@ BOOL PSS_TextZone::SetVerticalAlignement(int value)
 //---------------------------------------------------------------------------
 void PSS_TextZone::Serialize(CArchive& ar)
 {
-    TRACE(_T("PSS_TextZone::Serialize : Start\n"));
+    TRACE("PSS_TextZone::Serialize - Start\n");
     CODTextComponent::Serialize(ar);
-    TRACE(_T("PSS_TextZone::Serialize : End\n"));
+    TRACE("PSS_TextZone::Serialize - End\n");
 }
 //---------------------------------------------------------------------------

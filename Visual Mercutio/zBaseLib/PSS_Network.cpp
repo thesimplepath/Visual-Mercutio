@@ -350,12 +350,12 @@ CString PSS_Network::GetUserName() const
         if (::MNetDetect())
         {
             // write message to the window debugger
-            TRACE(_T(" Multinet detected in GetUser"));
+            TRACE("Multinet detected in GetUser\n");
 
             if (hNetwork != 0)
             {
                 // write message to the window debugger
-                TRACE(_T(" MNetGetlastTarget returned with handle %u"), LPINT(hNetwork));
+                TRACE("MNetGetlastTarget returned with handle %u\n", LPINT(hNetwork));
 
                 if (notFirst)
                 {
@@ -365,12 +365,12 @@ CString PSS_Network::GetUserName() const
                 else
                 {
                     // write message to the window debugger
-                    TRACE0(_T(" First time through -- don't believe WFW"));
+                    TRACE0("First time through -- don't believe WFW\n");
 
                     if (::NetworkEnumAll())
                     {
                         // write message to the window debugger
-                        TRACE1(_T(" MNetNetworkEnum returned %d Multinets, setting first as target"), m_MNets);
+                        TRACE1("MNetNetworkEnum returned %d Multinets, setting first as target\n", m_MNets);
 
                         notFirst = TRUE;
 
@@ -380,18 +380,18 @@ CString PSS_Network::GetUserName() const
                             ::SetNextTargetHandle(m_hInstMNet[0]);
                     }
                     else
-                        TRACE0(_T(" MNetNetworkEnum returned No Multinets--strange response"));
+                        TRACE0("MNetNetworkEnum returned No Multinets--strange response\n");
                 }
             }
             else
             {
                 // write message to the window debugger
-                TRACE0(_T(" MNetGetLastTarget returned a NULL handle"));
+                TRACE0("MNetGetLastTarget returned a NULL handle\n");
 
                 if (::NetworkEnumAll())
                 {
                     // write message to the window debugger
-                    TRACE0(_T(" MNetNetworkEnum returned Multinets, setting first as target"));
+                    TRACE0("MNetNetworkEnum returned Multinets, setting first as target\n");
 
                     if (m_Primary != 0)
                         ::SetNextTargetHandle(m_Primary);
@@ -400,7 +400,7 @@ CString PSS_Network::GetUserName() const
                 }
                 else
                     // write message to the window debugger
-                    TRACE0(_T(" MNetNetworkEnum returned No Multinets--strange response"));
+                    TRACE0("MNetNetworkEnum returned No Multinets--strange response\n");
             }
         }
 
@@ -590,14 +590,14 @@ BOOL PSS_Network::NetworkEnumAll()
                 {
                     // write message to the window debugger
                     ::wsprintf(LPSTR(buffer),
-                               LPSTR(_T(" Debug: values before call Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
+                               LPSTR(_T("Debug: values before call Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                LPINT(&hNetwork),
                                LPINT(&netInfo),
                                LPSTR(button),
                                LPINT(&cbButton),
                                LPINT(&hInstance));
 
-                    TRACE1(_T("%s"), buffer);
+                    TRACE1("%s\n", buffer);
 
                     errInfo = (*pMNetGetNetInfo)(HANDLE(hNetwork),
                                                  (WORD*)&netInfo,
@@ -608,24 +608,24 @@ BOOL PSS_Network::NetworkEnumAll()
                     if (errInfo == WN_SUCCESS)
                     {
                         // write message to the window debugger
-                        TRACE0(_T(" MNetGetInfo returned valid information"));
+                        TRACE0("MNetGetInfo returned valid information\n");
 
                         ::wsprintf(LPSTR(buffer),
-                                   LPSTR(_T(" Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                   LPSTR(_T("Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                    LPINT(&hNetwork),
                                    LPINT(&netInfo),
                                    LPSTR(button),
                                    LPINT(&cbButton),
                                    LPINT(&hInstance));
 
-                        TRACE1(_T("%s"), buffer);
+                        TRACE1("%s\n", buffer);
 
                         if (netInfo == MNM_NET_PRIMARY)
                             m_Primary = hNetwork;
                     }
                     else
                         // write message to the window debugger
-                        TRACE0(_T(" MNetGetInfo returned invalid information"));
+                        TRACE0("MNetGetInfo returned invalid information");
                 }
 
                 while (error != WN_BAD_VALUE && i < g_MaxMNets)
@@ -640,14 +640,14 @@ BOOL PSS_Network::NetworkEnumAll()
                         {
                             // write message to the window debugger
                             ::wsprintf(LPSTR(buffer),
-                                       LPSTR(_T(" Debug: values before call Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                       LPSTR(_T("Debug: values before call Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                        LPINT(&hNetwork),
                                        LPINT(&netInfo),
                                        LPSTR(button),
                                        LPINT(&cbButton),
                                        LPINT(&hInstance));
 
-                            TRACE1(_T("%s"), buffer);
+                            TRACE1("%s\n", buffer);
 
                             errInfo = (*pMNetGetNetInfo)(HANDLE(hNetwork),
                                                          (WORD*)&netInfo,
@@ -658,17 +658,17 @@ BOOL PSS_Network::NetworkEnumAll()
                             if (errInfo == WN_SUCCESS)
                             {
                                 // write message to the window debugger
-                                TRACE0(_T(" MNetGetInfo returned valid information"));
+                                TRACE0("MNetGetInfo returned valid information");
 
                                 ::wsprintf(LPSTR(buffer),
-                                           LPSTR(_T(" Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
+                                           LPSTR(_T("Handle: %p, NetInfo: %p, Text: %s, Button Text length: %u, DLL handle: %u")),
                                            LPINT(&hNetwork),
                                            LPINT(&netInfo),
                                            LPSTR(button),
                                            LPINT(&cbButton),
                                            LPINT(&hInstance));
 
-                                TRACE1(_T("%s"), buffer);
+                                TRACE1("%s\n", buffer);
 
                                 if (netInfo == MNM_NET_PRIMARY)
                                     m_Primary = hNetwork;
@@ -735,7 +735,7 @@ bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManage
                     // if the net resource structure is a container resource, call the EnumerateFunc function recursively
                     if (RESOURCEUSAGE_CONTAINER == (pNRLocal[i].dwUsage & RESOURCEUSAGE_CONTAINER))
                         if (!EnumConnect(&pNRLocal[i], resourceManager))
-                            TRACE(_T("EnumerateFunc returned FALSE."));
+                            TRACE("EnumerateFunc returned FALSE.");
                 }
             }
             // process errors

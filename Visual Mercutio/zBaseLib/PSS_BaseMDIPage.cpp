@@ -131,7 +131,7 @@ int PSS_BaseMDIPage::CreateZoom()
     if (!m_Percentage.Create(WS_CHILD | WS_BORDER | WS_VISIBLE | CBS_DROPDOWNLIST, rect, &m_ToolBar, IDC_ZOOM))
     {
         // fail to create
-        TRACE(_T("Failed to create combobox inside toolbar\n"));
+        TRACE("Failed to create combobox inside toolbar\n");
         return -1;
     }
 
@@ -161,7 +161,7 @@ int PSS_BaseMDIPage::CreateSchema()
     if (!m_Schema.Create(WS_CHILD | WS_BORDER | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_SORT, rect, &m_ToolBar, IDC_SCHEMA))
     {
         // fail to create
-        TRACE(_T("Failed to create combobox inside toolbar\n"));
+        TRACE("Failed to create combobox inside toolbar\n");
         return -1;
     }
 
@@ -184,7 +184,7 @@ int PSS_BaseMDIPage::CreateFileList()
     if (!m_FileList.Create(WS_CHILD | WS_BORDER | WS_VISIBLE | CBS_DROPDOWNLIST, rect, &m_ToolBar, IDC_FILELIST))
     {
         // fail to create
-        TRACE(_T("Failed to create File List combobox inside toolbar\n"));
+        TRACE("Failed to create File List combobox inside toolbar\n");
         return -1;
     }
 

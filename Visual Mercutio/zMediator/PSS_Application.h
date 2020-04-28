@@ -107,7 +107,7 @@ class AFX_EXT_CLASS PSS_Application
         */
         PSS_Application& operator = (const PSS_Application& other)
         {
-            throw new std::runtime_error("Copy of the PSS_Application singleton is prohibited");
+            THROW("Copy of the PSS_Application singleton is prohibited");
         }
 };
 

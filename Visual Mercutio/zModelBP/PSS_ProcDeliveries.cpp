@@ -491,7 +491,7 @@ void PSS_ProcDeliveries::Serialize(CArchive& ar)
     if (ar.m_pDocument)
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_ProcDeliveries::Serialize - Start save\n"));
+            TRACE("PSS_ProcDeliveries::Serialize - Start save\n");
 
             // serialize the size
             ar << int(m_Set.GetSize());
@@ -501,11 +501,11 @@ void PSS_ProcDeliveries::Serialize(CArchive& ar)
             for (PSS_DeliveriesPropertiesBP* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 ar << pProp;
 
-            TRACE(_T("PSS_ProcDeliveries::Serialize - End save\n"));
+            TRACE("PSS_ProcDeliveries::Serialize - End save\n");
         }
         else
         {
-            TRACE(_T("PSS_ProcDeliveries::Serialize - Start read\n"));
+            TRACE("PSS_ProcDeliveries::Serialize - Start read\n");
 
             RemoveAllDeliveries();
 
@@ -521,7 +521,7 @@ void PSS_ProcDeliveries::Serialize(CArchive& ar)
                 AddDelivery(pProp);
             }
 
-            TRACE(_T("PSS_ProcDeliveries::Serialize - End read\n"));
+            TRACE("PSS_ProcDeliveries::Serialize - End read\n");
         }
 }
 //---------------------------------------------------------------------------

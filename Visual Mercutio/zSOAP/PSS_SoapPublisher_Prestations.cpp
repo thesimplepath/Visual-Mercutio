@@ -46,7 +46,7 @@ bool pPublishPrestations::Send()
 
     try
     {
-        TRACE(_T("pPublishPrestations.send()"));
+        TRACE("pPublishPrestations.send()");
 
         // create the SOAP proxy
         SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
@@ -76,7 +76,7 @@ bool pPublishPrestations::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         result = false;
     }
 

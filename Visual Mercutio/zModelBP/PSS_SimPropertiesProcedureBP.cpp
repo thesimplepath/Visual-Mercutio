@@ -258,18 +258,18 @@ void PSS_SimPropertiesProcedureBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_SimPropertiesProcedureBP::Serialize - Start save\n"));
+        TRACE("PSS_SimPropertiesProcedureBP::Serialize - Start save\n");
 
         PUT_SCHEMA(ar, PSS_SimPropertiesProcedureBP);
 
         ar << m_ProcedureWorkloadPerActivity;
         ar << m_ProcedureCostPerActivity;
 
-        TRACE(_T("PSS_SimPropertiesProcedureBP::Serialize - End save\n"));
+        TRACE("PSS_SimPropertiesProcedureBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_SimPropertiesProcedureBP::Serialize - Start read\n"));
+        TRACE("PSS_SimPropertiesProcedureBP::Serialize - Start read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
@@ -277,7 +277,7 @@ void PSS_SimPropertiesProcedureBP::Serialize(CArchive& ar)
         ar >> m_ProcedureWorkloadPerActivity;
         ar >> m_ProcedureCostPerActivity;
 
-        TRACE(_T("PSS_SimPropertiesProcedureBP::Serialize - End read\n"));
+        TRACE("PSS_SimPropertiesProcedureBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

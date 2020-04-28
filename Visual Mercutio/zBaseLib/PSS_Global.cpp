@@ -190,12 +190,12 @@ void PSS_Global::Initialize(PSS_Server*       pServer,
     LoadDateArray();
     LoadPrefixArrays();
 
-    TRACE(_T("ZAGlobal::Initialize() initialized"));
+    TRACE("ZAGlobal::Initialize() initialized");
 }
 //---------------------------------------------------------------------------
 const bool PSS_Global::InitializeNetwork()
 {
-    TRACE(_T("ZAGlobal::InitializeNetwork() initialized"));
+    TRACE("ZAGlobal::InitializeNetwork() initialized");
 
     // get the connected user name
     const CString userName = GetNetWork().GetUserName();

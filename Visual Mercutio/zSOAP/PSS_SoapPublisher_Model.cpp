@@ -77,15 +77,15 @@ bool PSS_SoapPublisher_Model::Send()
 {
     SOAPDebugger::SetFile(_T("c:\\psssoap.log"));
 
-    TRACE(_T("pPublishModel::send()\n"));
-    TRACE(_T("pPublishModel::send().init\n"));
+    TRACE("pPublishModel::send()\n");
+    TRACE("pPublishModel::send().init\n");
 
     // create the SOAP proxy
     SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubInit\n"));
+        TRACE("pPublishModel::send().pubInit\n");
 
         // open the SOAP protocol
         SOAPMethod pubInit(_T("pubInit"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
@@ -99,7 +99,7 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
@@ -107,7 +107,7 @@ bool PSS_SoapPublisher_Model::Send()
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubModel\n"));
+        TRACE("pPublishModel::send().pubModel\n");
 
         // open the SOAP protocol
         SOAPMethod pubModel(_T("pubModel"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
@@ -128,13 +128,13 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubProc\n"));
+        TRACE("pPublishModel::send().pubProc\n");
 
         // model contains processes?
         if (m_DataSet_Proc.size() > 0)
@@ -166,13 +166,13 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubDeliv\n"));
+        TRACE("pPublishModel::send().pubDeliv\n");
 
         // model contains deliverables?
         if (m_DataSet_Deliv.size() > 0)
@@ -204,13 +204,13 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubPdattr\n"));
+        TRACE("pPublishModel::send().pubPdattr\n");
 
         // model contains symbol attributes?
         if (m_DataSet_SymAttr.size() > 0)
@@ -261,13 +261,13 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubDistrib\n"));
+        TRACE("pPublishModel::send().pubDistrib\n");
 
         // model contains distributions?
         if (m_DataSet_Distrib.size() > 0)
@@ -298,13 +298,13 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubDistribmap\n"));
+        TRACE("pPublishModel::send().pubDistribmap\n");
 
         // model contains distribution map?
         if (m_DataSet_DistribMap.size() > 0)
@@ -336,13 +336,13 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubInput\n"));
+        TRACE("pPublishModel::send().pubInput\n");
 
         // model contains inputs?
         if (m_DataSet_Inputs.size() > 0)
@@ -373,13 +373,13 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
     try
     {
-        TRACE(_T("pPublishModel::send().pubDone\n"));
+        TRACE("pPublishModel::send().pubDone\n");
 
         // notify that publication was processed
         SOAPMethod pubDone(_T("pubDone"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
@@ -390,11 +390,11 @@ bool PSS_SoapPublisher_Model::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return false;
     }
 
-    TRACE(_T("pPublishModel::send().complete\n"));
+    TRACE("pPublishModel::send().complete\n");
     return true;
 }
 //---------------------------------------------------------------------------
@@ -404,7 +404,7 @@ int PSS_SoapPublisher_Model::GetModelVersion(const std::string& modelref )
 
     try
     {
-        TRACE(_T("pPublishModel::getModelVersion %s\n"), modelref.c_str());
+        TRACE("pPublishModel::getModelVersion %s\n", modelref.c_str());
 
         // create the SOAP proxy
         SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
@@ -421,7 +421,7 @@ int PSS_SoapPublisher_Model::GetModelVersion(const std::string& modelref )
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
     }
 
     return -1;

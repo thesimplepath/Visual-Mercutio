@@ -122,7 +122,7 @@ AFX_STATIC BOOL AFXAPI SetRegKey(LPCTSTR pKey, LPCTSTR pValue, LPCTSTR pValueNam
                           pValue,
                           lstrlen(pValue) * sizeof(TCHAR)) != ERROR_SUCCESS)
         {
-            TRACE1(_T("Warning - registration database update failed for key '%s'.\n"), pKey);
+            TRACE1("Warning - registration database update failed for key '%s'.\n", pKey);
             return FALSE;
         }
 
@@ -145,7 +145,7 @@ AFX_STATIC BOOL AFXAPI SetRegKey(LPCTSTR pKey, LPCTSTR pValue, LPCTSTR pValueNam
                 return TRUE;
         }
 
-        TRACE1(_T("Warning: registration database update failed for key '%s'.\n"), pKey);
+        TRACE1("Warning: registration database update failed for key '%s'.\n", pKey);
         return FALSE;
     }
 }

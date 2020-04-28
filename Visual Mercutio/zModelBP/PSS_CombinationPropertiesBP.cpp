@@ -97,7 +97,7 @@ void PSS_CombinationPropertiesBP::SetCombinationName(LPCTSTR pValue)
         m_CombinationName = pValue;
     else
     {
-        TRACE0(_T("PSS_CombinationPropertiesBP - Invalid combination name!\n"));
+        TRACE0("PSS_CombinationPropertiesBP - Invalid combination name!\n");
         ASSERT(FALSE);
     }
 }
@@ -108,7 +108,7 @@ void PSS_CombinationPropertiesBP::SetCombinationDeliverables(LPCTSTR pValue)
         m_CombinationDeliverables = pValue;
     else
     {
-        TRACE0(_T("PSS_CombinationPropertiesBP - Invalid combination deliverable list!\n"));
+        TRACE0("PSS_CombinationPropertiesBP - Invalid combination deliverable list!\n");
         ASSERT(FALSE);
     }
 }
@@ -142,7 +142,7 @@ void PSS_CombinationPropertiesBP::SetCombinationMaster(LPCTSTR pValue)
         m_CombinationMaster = pValue;
     else
     {
-        TRACE0(_T("PSS_CombinationPropertiesBP - Invalid Combination master name!\n"));
+        TRACE0("PSS_CombinationPropertiesBP - Invalid Combination master name!\n");
         ASSERT(FALSE);
     }
 }
@@ -292,18 +292,18 @@ void PSS_CombinationPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - Start Save\n"));
+        TRACE("PSS_CombinationPropertiesBP::Serialize - Start Save\n");
 
         ar << m_CombinationName;
         ar << m_CombinationDeliverables;
         ar << m_CombinationActivationPerc;
         ar << m_CombinationMaster;
 
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - End Save\n"));
+        TRACE("PSS_CombinationPropertiesBP::Serialize - End Save\n");
     }
     else
     {
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - Start Read\n"));
+        TRACE("PSS_CombinationPropertiesBP::Serialize - Start Read\n");
 
         ar >> m_CombinationName;
         ar >> m_CombinationDeliverables;
@@ -317,7 +317,7 @@ void PSS_CombinationPropertiesBP::Serialize(CArchive& ar)
         else
             m_CombinationMaster.Empty();
 
-        TRACE(_T("PSS_CombinationPropertiesBP::Serialize - End Read\n"));
+        TRACE("PSS_CombinationPropertiesBP::Serialize - End Read\n");
     }
 }
 //---------------------------------------------------------------------------

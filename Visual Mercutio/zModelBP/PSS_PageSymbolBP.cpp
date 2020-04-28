@@ -340,7 +340,7 @@ void PSS_PageSymbolBP::Serialize(CArchive& ar)
     if (ar.m_pDocument)
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_PageSymbolBP::Serialize - Start save\n"));
+            TRACE("PSS_PageSymbolBP::Serialize - Start save\n");
 
             ar << WORD(m_ShowPreview);
             ar << m_pPage->GetPageName();
@@ -358,11 +358,11 @@ void PSS_PageSymbolBP::Serialize(CArchive& ar)
 
             ar << m_TwinPageRefNumber;
 
-            TRACE(_T("PSS_PageSymbolBP::Serialize : End save\n"));
+            TRACE("PSS_PageSymbolBP::Serialize : End save\n");
         }
         else
         {
-            TRACE(_T("PSS_PageSymbolBP::Serialize : Start read\n"));
+            TRACE("PSS_PageSymbolBP::Serialize : Start read\n");
 
             m_pPage = NULL;
 
@@ -374,7 +374,7 @@ void PSS_PageSymbolBP::Serialize(CArchive& ar)
             ar >> m_SubModelPathName;
             ar >> m_TwinPageRefNumber;
 
-            TRACE(_T("PSS_PageSymbolBP::Serialize : End read\n"));
+            TRACE("PSS_PageSymbolBP::Serialize : End read\n");
         }
 }
 //---------------------------------------------------------------------------

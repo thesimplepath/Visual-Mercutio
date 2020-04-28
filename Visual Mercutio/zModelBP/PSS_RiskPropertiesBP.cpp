@@ -127,7 +127,7 @@ void PSS_RiskPropertiesBP::SetRiskName(LPCTSTR pValue)
         m_RiskName = pValue;
     else
     {
-        TRACE0(_T("PSS_RiskPropertiesBP - Invalid risk name!\n"));
+        TRACE0("PSS_RiskPropertiesBP - Invalid risk name!\n");
         ASSERT(FALSE);
     }
 }
@@ -138,7 +138,7 @@ void PSS_RiskPropertiesBP::SetRiskDesc(LPCTSTR pValue)
         m_RiskDesc = pValue;
     else
     {
-        TRACE0(_T("PSS_RiskPropertiesBP - Invalid risk description!\n"));
+        TRACE0("PSS_RiskPropertiesBP - Invalid risk description!\n");
         ASSERT(FALSE);
     }
 }
@@ -149,7 +149,7 @@ void PSS_RiskPropertiesBP::SetRiskType(LPCTSTR pValue)
         m_RiskType = pValue;
     else
     {
-        TRACE0(_T("PSS_RiskPropertiesBP - Invalid risk type!\n"));
+        TRACE0("PSS_RiskPropertiesBP - Invalid risk type!\n");
         ASSERT(FALSE);
     }
 }
@@ -332,7 +332,7 @@ void PSS_RiskPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_RiskPropertiesBP::Serialize - Start save\n"));
+        TRACE("PSS_RiskPropertiesBP::Serialize - Start save\n");
 
         ar << m_RiskName;
         ar << m_RiskDesc;
@@ -344,11 +344,11 @@ void PSS_RiskPropertiesBP::Serialize(CArchive& ar)
         ar << m_RiskPOA;
         ar << (WORD)m_RiskAction;
 
-        TRACE(_T("PSS_RiskPropertiesBP::Serialize - End save\n"));
+        TRACE("PSS_RiskPropertiesBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_RiskPropertiesBP::Serialize - Start read\n"));
+        TRACE("PSS_RiskPropertiesBP::Serialize - Start read\n");
 
         ar >> m_RiskName;
         ar >> m_RiskDesc;
@@ -363,7 +363,7 @@ void PSS_RiskPropertiesBP::Serialize(CArchive& ar)
         ar >> wValue;
         m_RiskAction = ((wValue == 1) ? (true) : (false));
 
-        TRACE(_T("PSS_RiskPropertiesBP::Serialize - End read\n"));
+        TRACE("PSS_RiskPropertiesBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

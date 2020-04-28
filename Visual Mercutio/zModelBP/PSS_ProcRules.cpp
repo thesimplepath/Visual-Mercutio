@@ -236,7 +236,7 @@ void PSS_ProcRules::Serialize(CArchive& ar)
     if (ar.m_pDocument)
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_ProcRules::Serialize - Start save\n"));
+            TRACE("PSS_ProcRules::Serialize - Start save\n");
 
             // serialize the size
             ar << int(m_Set.GetSize());
@@ -246,11 +246,11 @@ void PSS_ProcRules::Serialize(CArchive& ar)
             for (PSS_RulesPropertiesBP* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 ar << pProp;
 
-            TRACE(_T("PSS_ProcRules::Serialize - End save\n"));
+            TRACE("PSS_ProcRules::Serialize - End save\n");
         }
         else
         {
-            TRACE(_T("PSS_ProcRules::Serialize - Start read\n"));
+            TRACE("PSS_ProcRules::Serialize - Start read\n");
 
             RemoveAllRules();
 
@@ -266,7 +266,7 @@ void PSS_ProcRules::Serialize(CArchive& ar)
                 AddRule(pProp);
             }
 
-            TRACE(_T("PSS_ProcRules::Serialize - End read\n"));
+            TRACE("PSS_ProcRules::Serialize - End read\n");
         }
 }
 //---------------------------------------------------------------------------

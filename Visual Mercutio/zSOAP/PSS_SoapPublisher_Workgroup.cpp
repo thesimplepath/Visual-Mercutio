@@ -46,7 +46,7 @@ bool PSS_SoapPublisher_Workgroup::Send()
 
     try
     {
-        TRACE(_T("pPublishWorkgroup.send()\n"));
+        TRACE("pPublishWorkgroup.send()\n");
 
         // create the SOAP proxy
         SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
@@ -76,7 +76,7 @@ bool PSS_SoapPublisher_Workgroup::Send()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n" ), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         result = false;
     }
 

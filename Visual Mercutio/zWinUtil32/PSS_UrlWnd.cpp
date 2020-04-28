@@ -115,7 +115,7 @@ int PSS_UrlWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     if (!m_PrevWebButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER, rc, this, IDC_PREVWEB))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -124,7 +124,7 @@ int PSS_UrlWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     if (!m_NextWebButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER, rc, this, IDC_NEXTWEB))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -133,7 +133,7 @@ int PSS_UrlWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     if (!m_StopWebButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER, rc, this, IDC_STOPWEB))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -142,7 +142,7 @@ int PSS_UrlWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     if (!m_RefreshWebButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER, rc, this, IDC_REFRESHWEB))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -250,7 +250,7 @@ int PSS_UrlWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     if (!m_pBrowser->Create(NULL, NULL, WS_VISIBLE, CRect(0, 0, 0, 0), this, IDC_URLWND_WEBBROWSER))
     {
-        TRACE(_T( "failed to create browser\n"));
+        TRACE("Failed to create browser\n");
         delete m_pBrowser;
         m_pBrowser = NULL;
         return -1;

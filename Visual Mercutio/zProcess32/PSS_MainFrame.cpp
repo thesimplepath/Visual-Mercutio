@@ -760,7 +760,7 @@ LRESULT PSS_MainFrame::OnDDEExecute(WPARAM wParam, LPARAM lParam)
         if (commandLength >= arrayLen)
         {
             // the command would be truncated. This may be a security problem
-            TRACE0(_T("Warning: Command was ignored because it was too long.\n"));
+            TRACE0("Warning: Command was ignored because it was too long.\n");
             return 0L;
         }
 
@@ -1025,7 +1025,7 @@ BOOL PSS_MainFrame::CreateStatusBar()
 {
     if (!m_StatusBar.Create(this) || !m_StatusBar.SetIndicators(g_Indicators, sizeof(g_Indicators) / sizeof(UINT)))
     {
-        TRACE(_T("Failed to create status bar\n"));
+        TRACE("Failed to create status bar\n");
         return FALSE;
     }
 
@@ -1059,7 +1059,7 @@ BOOL PSS_MainFrame::InitializeDockingWindows()
                                CBRS_EX_STDCONTEXTMENU | CBRS_EX_ALLOW_MDI_FLOAT | CBRS_EX_COOL | CBRS_EX_BORDERSPACE,
                                ID_VIEW_WORKSPACE))
     {
-        TRACE0(_T("Failed to create dialog bar m_wndWorkspace\n"));
+        TRACE0("Failed to create dialog bar m_wndWorkspace\n");
         return -1;
     }
 
@@ -1076,7 +1076,7 @@ BOOL PSS_MainFrame::InitializeDockingWindows()
                                          CBRS_EX_STDCONTEXTMENU | CBRS_EX_ALLOW_MDI_FLOAT | CBRS_EX_COOL | CBRS_EX_BORDERSPACE,
                                          ID_VIEW_PROPERTIES))
     {
-        TRACE0(_T("Failed to create dialog bar m_wndPropertiesWorkspace\n"));
+        TRACE0("Failed to create dialog bar m_wndPropertiesWorkspace\n");
         return -1;
     }
 
@@ -1093,7 +1093,7 @@ BOOL PSS_MainFrame::InitializeDockingWindows()
                                      CBRS_EX_STDCONTEXTMENU | CBRS_EX_ALLOW_MDI_FLOAT | CBRS_EX_COOL | CBRS_EX_BORDERSPACE,
                                      ID_VIEW_OUTPUTWORKSPACE))
     {
-        TRACE0(_T("Failed to create dialog bar m_wndOutputWorkspace\n"));
+        TRACE0("Failed to create dialog bar m_wndOutputWorkspace\n");
         return -1;
     }
 

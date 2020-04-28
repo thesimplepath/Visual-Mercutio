@@ -48,7 +48,7 @@ void PSS_Prestation::SetName(LPCTSTR pValue)
         m_Name = pValue;
     else
     {
-        TRACE0(_T("PSS_Prestation - Invalid name!\n"));
+        TRACE0("PSS_Prestation - Invalid name!\n");
         ASSERT(FALSE);
     }
 }
@@ -64,7 +64,7 @@ void PSS_Prestation::SetGUID(LPCTSTR pValue)
         m_GUID = pValue;
     else
     {
-        TRACE0(_T("PSS_Prestation - Invalid GUID!\n"));
+        TRACE0("PSS_Prestation - Invalid GUID!\n");
         ASSERT(FALSE);
     }
 }
@@ -93,7 +93,7 @@ void PSS_Prestation::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_Prestation::Serialize - Start save\n"));
+        TRACE("PSS_Prestation::Serialize - Start save\n");
 
         PUT_SCHEMA(ar, PSS_Prestation);
 
@@ -101,11 +101,11 @@ void PSS_Prestation::Serialize(CArchive& ar)
         ar << m_GUID;
         ar << m_PercentageActivity;
 
-        TRACE(_T("PSS_Prestation::Serialize - End save\n"));
+        TRACE("PSS_Prestation::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_Prestation::Serialize - Start read\n"));
+        TRACE("PSS_Prestation::Serialize - Start read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
@@ -114,7 +114,7 @@ void PSS_Prestation::Serialize(CArchive& ar)
         ar >> m_GUID;
         ar >> m_PercentageActivity;
 
-        TRACE(_T("PSS_Prestation::Serialize - End read\n"));
+        TRACE("PSS_Prestation::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------
@@ -229,7 +229,7 @@ void PSS_PrestationsPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_PrestationsPropertiesBP::Serialize - Start save\n"));
+        TRACE("PSS_PrestationsPropertiesBP::Serialize - Start save\n");
 
         ar << m_Prestations.GetCount();
 
@@ -247,11 +247,11 @@ void PSS_PrestationsPropertiesBP::Serialize(CArchive& ar)
 
         GetHeadPosition();
 
-        TRACE(_T("PSS_PrestationsPropertiesBP::Serialize - End save\n"));
+        TRACE("PSS_PrestationsPropertiesBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_PrestationsPropertiesBP::Serialize - Start read\n"));
+        TRACE("PSS_PrestationsPropertiesBP::Serialize - Start read\n");
 
         INT_PTR prestations;
         ar >> prestations;
@@ -267,7 +267,7 @@ void PSS_PrestationsPropertiesBP::Serialize(CArchive& ar)
 
         GetHeadPosition();
 
-        TRACE(_T("PSS_PrestationsPropertiesBP::Serialize - End read\n"));
+        TRACE("PSS_PrestationsPropertiesBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

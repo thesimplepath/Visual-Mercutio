@@ -226,20 +226,20 @@ void PSS_SimPropertiesProcessBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_SimPropertiesProcessBP::Serialize - Start save\n"));
+        TRACE("PSS_SimPropertiesProcessBP::Serialize - Start save\n");
 
         PUT_SCHEMA(ar, PSS_SimPropertiesProcessBP);
 
-        TRACE(_T("PSS_SimPropertiesProcessBP::Serialize - End save\n"));
+        TRACE("PSS_SimPropertiesProcessBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_SimPropertiesProcessBP::Serialize - Start read\n"));
+        TRACE("PSS_SimPropertiesProcessBP::Serialize - Start read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
 
-        TRACE(_T("PSS_SimPropertiesProcessBP::Serialize - End read\n"));
+        TRACE("PSS_SimPropertiesProcessBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

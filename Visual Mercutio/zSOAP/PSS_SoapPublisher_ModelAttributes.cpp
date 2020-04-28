@@ -71,13 +71,13 @@ bool PSS_SoapPublisher_ModelAttributes::Send()
         // send the data to SOAP proxy and check the result
         if (int(proxy.Execute(pubAttribDef).GetReturnValue()) < 0)
         {
-            TRACE(_T("Pub Attrib Def failed\n"));
+            TRACE("Pub Attrib Def failed\n");
             result = false;
         }
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n" ), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         result = false;
     }
 

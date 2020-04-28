@@ -105,7 +105,7 @@ void PSS_ExtAppProperties::SetCommandTitle(LPCTSTR pValue)
         m_CommandTitle = pValue;
     else
     {
-        TRACE0(_T("Z -> Invalid command title pointer!\n"));
+        TRACE0("Z -> Invalid command title pointer!\n");
         ASSERT(FALSE);
     }
 }
@@ -116,7 +116,7 @@ void PSS_ExtAppProperties::SetCommandLine(LPCTSTR pValue)
         m_CommandLine = pValue;
     else
     {
-        TRACE0(_T("Z -> Invalid command line pointer!\n"));
+        TRACE0("Z -> Invalid command line pointer!\n");
         ASSERT(FALSE);
     }
 }
@@ -127,7 +127,7 @@ void PSS_ExtAppProperties::SetCommandParameters(LPCTSTR pValue)
         m_CommandParameters = pValue;
     else
     {
-        TRACE0(_T("Z -> Invalid command parameters pointer!\n"));
+        TRACE0("Z -> Invalid command parameters pointer!\n");
         ASSERT(FALSE);
     }
 }
@@ -138,7 +138,7 @@ void PSS_ExtAppProperties::SetCommandStartupDirectory(LPCTSTR pValue)
         m_CommandStartupDirectory = pValue;
     else
     {
-        TRACE0(_T("Z -> Invalid command startup directory pointer!\n"));
+        TRACE0("Z -> Invalid command startup directory pointer!\n");
         ASSERT(FALSE);
     }
 }

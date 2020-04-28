@@ -42,7 +42,7 @@ int PSS_SoapPublisher_MessengerInfo::GetVersion()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
     }
 
     SOAPDebugger::Close();
@@ -72,7 +72,7 @@ std::string PSS_SoapPublisher_MessengerInfo::GetLanguage()
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
     }
 
     SOAPDebugger::Close();
@@ -105,7 +105,7 @@ int PSS_SoapPublisher_MessengerInfo::Authenticate(const std::string& login, cons
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
     }
 
     SOAPDebugger::Close();

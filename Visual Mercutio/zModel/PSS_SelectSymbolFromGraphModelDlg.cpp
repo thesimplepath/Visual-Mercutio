@@ -385,7 +385,7 @@ int PSS_SelectSymbolFromGraphModelDlg::ISelectSymbolFlatToolBar::OnCreate(LPCREA
                                 this,
                                 g_RefreshViewsID))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -401,7 +401,7 @@ int PSS_SelectSymbolFromGraphModelDlg::ISelectSymbolFlatToolBar::OnCreate(LPCREA
                              this,
                              g_GoUpID))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 

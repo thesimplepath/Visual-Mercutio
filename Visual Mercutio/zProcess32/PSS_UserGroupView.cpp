@@ -144,7 +144,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                 this,
                                 IDC_UGP_REFRESHVIEWS))
     {
-        TRACE0(_T("Unable to create refresh button in user group workspace.\n"));
+        TRACE0("Unable to create refresh button in user group workspace.\n");
         return -1;
     }
 
@@ -158,7 +158,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                  this,
                                  IDC_UGP_ADDGROUP))
     {
-        TRACE0(_T("Unable to create add group button in user group workspace.\n"));
+        TRACE0("Unable to create add group button in user group workspace.\n");
         return -1;
     }
 
@@ -172,7 +172,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                     this,
                                     IDC_UGP_RENAMEGROUP))
     {
-        TRACE0(_T("Unable to create rename group button in user group workspace.\n"));
+        TRACE0("Unable to create rename group button in user group workspace.\n");
         return -1;
     }
 
@@ -186,7 +186,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                     this,
                                     IDC_UGP_DELETEGROUP))
     {
-        TRACE0(_T("Unable to create delete group button in user group workspace.\n"));
+        TRACE0("Unable to create delete group button in user group workspace.\n");
         return -1;
     }
 
@@ -200,7 +200,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                 this,
                                 IDC_UGP_ADDROLE))
     {
-        TRACE0(_T("Unable to create add role button in user group workspace.\n"));
+        TRACE0("Unable to create add role button in user group workspace.\n");
         return -1;
     }
 
@@ -214,7 +214,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                    this,
                                    IDC_UGP_RENAMEROLE))
     {
-        TRACE0(_T("Unable to create rename role button in user group workspace.\n"));
+        TRACE0("Unable to create rename role button in user group workspace.\n");
         return -1;
     }
 
@@ -228,7 +228,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                    this,
                                    IDC_UGP_DELETEROLE))
     {
-        TRACE0(_T("Unable to create delete role button in user group workspace.\n"));
+        TRACE0("Unable to create delete role button in user group workspace.\n");
         return -1;
     }
 
@@ -242,7 +242,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                              this,
                              IDC_UGP_MOVE))
     {
-        TRACE0(_T("Unable to create move button in user group workspace.\n"));
+        TRACE0("Unable to create move button in user group workspace.\n");
         return -1;
     }
 
@@ -256,7 +256,7 @@ int PSS_UserGroupView::IUserGroupFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateSt
                                    this,
                                    IDC_UGP_PROPERTIES))
     {
-        TRACE0(_T("Unable to create properties button in user group workspace.\n"));
+        TRACE0("Unable to create properties button in user group workspace.\n");
         return -1;
     }
 

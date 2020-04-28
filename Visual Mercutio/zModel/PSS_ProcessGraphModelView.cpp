@@ -573,7 +573,7 @@ void PSS_ProcessGraphModelView::OnDrawPan(CDC* pDC)
 
         // update the window with the viewport buffer contents
         m_PanVp.Draw(pDC);
-        TRACE(_T("DRAW PAN"));
+        TRACE("DRAW PAN");
     }
 }
 //---------------------------------------------------------------------------
@@ -603,7 +603,7 @@ void PSS_ProcessGraphModelView::OnInitialUpdate()
         m_ToolTip.SendMessage(TTM_SETTIPBKCOLOR,   defCOLOR_BLUE,  0L);
     }
     else
-        TRACE(_T("Error while the ToolTip was created"));
+        TRACE("Error while the ToolTip was created");
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelView::OnDraw(CDC* pDC)

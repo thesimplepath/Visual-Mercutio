@@ -101,7 +101,7 @@ int PSS_RulesView::IRulesFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                 this,
                                 IDC_RUL_REFRESHVIEWS))
     {
-        TRACE0(_T("Unable to create refresh button in Rules workspace.\n"));
+        TRACE0("Unable to create refresh button in Rules workspace.\n");
         return -1;
     }
 
@@ -115,7 +115,7 @@ int PSS_RulesView::IRulesFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                 this,
                                 IDC_RUL_ADDRULE))
     {
-        TRACE0(_T("Unable to create add button in Rules workspace.\n"));
+        TRACE0("Unable to create add button in Rules workspace.\n");
         return -1;
     }
 
@@ -129,7 +129,7 @@ int PSS_RulesView::IRulesFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                    this,
                                    IDC_RUL_RENAMERULE))
     {
-        TRACE0(_T("Unable to create rename button in Rules workspace.\n"));
+        TRACE0("Unable to create rename button in Rules workspace.\n");
         return -1;
     }
 
@@ -143,7 +143,7 @@ int PSS_RulesView::IRulesFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                    this,
                                    IDC_RUL_DELETERULE))
     {
-        TRACE0(_T("Unable to create delete button in Rules workspace.\n"));
+        TRACE0("Unable to create delete button in Rules workspace.\n");
         return -1;
     }
 
@@ -157,7 +157,7 @@ int PSS_RulesView::IRulesFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                  this,
                                  IDC_RUL_MOVERULE))
     {
-        TRACE0(_T("Unable to create move button in Rules workspace.\n"));
+        TRACE0("Unable to create move button in Rules workspace.\n");
         return -1;
     }
 
@@ -171,7 +171,7 @@ int PSS_RulesView::IRulesFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                    this,
                                    IDC_RUL_PROPERTIES))
     {
-        TRACE0(_T("Unable to create properties button in Rules workspace.\n"));
+        TRACE0("Unable to create properties button in Rules workspace.\n");
         return -1;
     }
 

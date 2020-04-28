@@ -1385,7 +1385,7 @@ void PSS_PlanFinObject::AssignFont()
 //---------------------------------------------------------------------------
 void PSS_PlanFinObject::DCDrawMoveObject(CDC* pDC)
 {
-    TRACE(_T("DRAW DC"));
+    TRACE("DRAW DC");
 
     CBrush brush;
     CPen   pen;

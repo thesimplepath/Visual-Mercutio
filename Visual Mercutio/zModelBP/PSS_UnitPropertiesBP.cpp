@@ -96,7 +96,7 @@ void PSS_UnitPropertiesBP::SetUnitName(LPCTSTR pValue)
         m_UnitName = pValue;
     else
     {
-        TRACE0(_T("PSS_UnitPropertiesBP - Invalid task list!\n"));
+        TRACE0("PSS_UnitPropertiesBP - Invalid task list!\n");
         ASSERT(FALSE);
     }
 }
@@ -107,7 +107,7 @@ void PSS_UnitPropertiesBP::SetUnitGUID(LPCTSTR pValue)
         m_UnitGUID = pValue;
     else
     {
-        TRACE0(_T("PSS_UnitPropertiesBP - Invalid unit GUID!\n"));
+        TRACE0("PSS_UnitPropertiesBP - Invalid unit GUID!\n");
         ASSERT(FALSE);
     }
 }
@@ -301,7 +301,7 @@ void PSS_UnitPropertiesBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_UnitPropertiesBP::Serialize - Start save\n"));
+        TRACE("PSS_UnitPropertiesBP::Serialize - Start save\n");
 
         PUT_SCHEMA(ar, PSS_UnitPropertiesBP);
 
@@ -310,11 +310,11 @@ void PSS_UnitPropertiesBP::Serialize(CArchive& ar)
         ar << m_UnitGUID;
         ar << m_DoubleValidationType;
 
-        TRACE(_T("PSS_UnitPropertiesBP::Serialize - End save\n"));
+        TRACE("PSS_UnitPropertiesBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_UnitPropertiesBP::Serialize - Start read\n"));
+        TRACE("PSS_UnitPropertiesBP::Serialize - Start read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
@@ -337,7 +337,7 @@ void PSS_UnitPropertiesBP::Serialize(CArchive& ar)
         if (!ar.m_pDocument || (pBaseDoc && pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 20))
             ar >> m_DoubleValidationType;
 
-        TRACE(_T("PSS_UnitPropertiesBP::Serialize - End read\n"));
+        TRACE("PSS_UnitPropertiesBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

@@ -93,7 +93,7 @@ void PSS_ExtFileProperties::SetFileTitle(LPCTSTR pValue)
         m_FileTitle = pValue;
     else
     {
-        TRACE0(_T("Z -> Invalid Task List pointer!\n"));
+        TRACE0("Z -> Invalid Task List pointer!\n");
         ASSERT(FALSE);
     }
 }
@@ -104,7 +104,7 @@ void PSS_ExtFileProperties::SetFileName(LPCTSTR pValue)
         m_FileName = pValue;
     else
     {
-        TRACE0(_T("Z -> Invalid Decision List pointer!\n"));
+        TRACE0("Z -> Invalid Decision List pointer!\n");
         ASSERT(FALSE);
     }
 }

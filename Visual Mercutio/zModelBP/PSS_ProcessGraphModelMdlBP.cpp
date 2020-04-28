@@ -361,7 +361,7 @@ void PSS_ProcessGraphModelMdlBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_ProcessGraphModelMdlBP::Serialize : Start Save\n"));
+        TRACE("PSS_ProcessGraphModelMdlBP::Serialize - Start Save\n");
 
         // serialize the input attributes only for the root model
         if (GetRoot() == this)
@@ -373,11 +373,11 @@ void PSS_ProcessGraphModelMdlBP::Serialize(CArchive& ar)
         else
             ar << int(0);
 
-        TRACE(_T("PSS_ProcessGraphModelMdlBP::Serialize : End Save\n"));
+        TRACE("PSS_ProcessGraphModelMdlBP::Serialize - End Save\n");
     }
     else
     {
-        TRACE(_T("PSS_ProcessGraphModelMdlBP::Serialize : Start Read\n"));
+        TRACE("PSS_ProcessGraphModelMdlBP::Serialize - Start Read\n");
 
         PSS_BaseDocument* pDocument = dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument);
 
@@ -394,7 +394,7 @@ void PSS_ProcessGraphModelMdlBP::Serialize(CArchive& ar)
             }
         }
 
-        TRACE(_T("PSS_ProcessGraphModelMdlBP::Serialize : End Read\n"));
+        TRACE("PSS_ProcessGraphModelMdlBP::Serialize - End Read\n");
     }
 }
 //---------------------------------------------------------------------------

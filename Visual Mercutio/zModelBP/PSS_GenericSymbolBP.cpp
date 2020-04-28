@@ -69,10 +69,10 @@ CODComponent* PSS_GenericSymbolBP::Dup() const
 //---------------------------------------------------------------------------
 void PSS_GenericSymbolBP::Serialize(CArchive& ar)
 {
-    TRACE(_T("PSS_GenericSymbolBP::Serialize - Start\n"));
+    TRACE("PSS_GenericSymbolBP::Serialize - Start\n");
 
     PSS_Symbol::Serialize(ar);
 
-    TRACE(_T("PSS_GenericSymbolBP::Serialize - End\n"));
+    TRACE("PSS_GenericSymbolBP::Serialize - End\n");
 }
 //---------------------------------------------------------------------------

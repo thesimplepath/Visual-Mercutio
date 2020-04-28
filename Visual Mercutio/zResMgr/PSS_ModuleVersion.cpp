@@ -74,7 +74,7 @@ bool PSS_ModuleVersion::GetFileVersionInfo(LPCTSTR pModuleName)
     if (::VerQueryValue(m_pVersionInfo, _T("\\VarFileInfo\\Translation"), &pVersionInfo, &infoLen ) && infoLen >= 4)
     {
         m_Translation = *(ITranslation*)pVersionInfo;
-        TRACE(_T("code page = %d\n"), m_Translation.m_Charset);
+        TRACE("code page = %d\n", m_Translation.m_Charset);
     }
 
     return dwSignature == VS_FFI_SIGNATURE;

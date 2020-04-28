@@ -72,7 +72,7 @@ BOOL PSS_FilePreviewDlg::OnInitDialog()
 
         if (!m_pBrowser->Create(NULL, NULL, WS_VISIBLE, rect, this, NULL))
         {
-            TRACE(_T("failed to create browser\n"));
+            TRACE("failed to create browser\n");
             delete m_pBrowser;
             m_pBrowser = NULL;
 

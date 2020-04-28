@@ -103,7 +103,7 @@ void PSS_DeliveriesPropertiesBP::SetDeliveryName(LPCTSTR pValue)
         m_DeliveryName = pValue;
     else
     {
-        TRACE0(_T("PSS_DeliveriesPropertiesBP - Invalid delivery name!\n"));
+        TRACE0("PSS_DeliveriesPropertiesBP - Invalid delivery name!\n");
         ASSERT(FALSE);
     }
 }
@@ -114,7 +114,7 @@ void PSS_DeliveriesPropertiesBP::SetDeliveryDeliverables(LPCTSTR pValue)
         m_DeliveryDeliverables = pValue;
     else
     {
-        TRACE0(_T("PSS_DeliveriesPropertiesBP - Invalid delivery deliverables list!\n"));
+        TRACE0("PSS_DeliveriesPropertiesBP - Invalid delivery deliverables list!\n");
         ASSERT(FALSE);
     }
 }
@@ -148,7 +148,7 @@ void PSS_DeliveriesPropertiesBP::SetDeliveryMain(LPCTSTR pValue)
         m_DeliveryMain = pValue;
     else
     {
-        TRACE0(_T("PSS_DeliveriesPropertiesBP - Invalid delivery main name!\n"));
+        TRACE0("PSS_DeliveriesPropertiesBP - Invalid delivery main name!\n");
         ASSERT(FALSE);
     }
 }
@@ -306,7 +306,7 @@ void PSS_DeliveriesPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_DeliveriesPropertiesBP::Serialize - Start save\n"));
+        TRACE("PSS_DeliveriesPropertiesBP::Serialize - Start save\n");
 
         ar << m_DeliveryName;
         ar << m_DeliveryDeliverables;
@@ -314,11 +314,11 @@ void PSS_DeliveriesPropertiesBP::Serialize(CArchive& ar)
         ar << m_DeliveryPercentage;
         ar << m_DeliveryMain;
 
-        TRACE(_T("PSS_DeliveriesPropertiesBP::Serialize - End save\n"));
+        TRACE("PSS_DeliveriesPropertiesBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_DeliveriesPropertiesBP::Serialize - Start read\n"));
+        TRACE("PSS_DeliveriesPropertiesBP::Serialize - Start read\n");
 
         ar >> m_DeliveryName;
         ar >> m_DeliveryDeliverables;
@@ -326,7 +326,7 @@ void PSS_DeliveriesPropertiesBP::Serialize(CArchive& ar)
         ar >> m_DeliveryPercentage;
         ar >> m_DeliveryMain;
 
-        TRACE(_T("PSS_DeliveriesPropertiesBP::Serialize - End read\n"));
+        TRACE("PSS_DeliveriesPropertiesBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

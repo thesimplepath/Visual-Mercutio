@@ -156,7 +156,7 @@ bool PSS_DurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
 
             if (pSymbol)
             {
-                TRACE1(_T("OnNextSymbolAfterMoveForward - Symbol in the stack is %s\n"), pSymbol->GetSymbolName());
+                TRACE1("OnNextSymbolAfterMoveForward - Symbol in the stack is %s\n", pSymbol->GetSymbolName());
             }
         #endif
 
@@ -165,7 +165,7 @@ bool PSS_DurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
         // the symbol and the link should be found
         if (pProcedure)
         {
-            TRACE1(_T("OnNextSymbolAfterMoveForward - Current Procedure is %s\n"), pProcedure->GetSymbolName());
+            TRACE1("OnNextSymbolAfterMoveForward - Current Procedure is %s\n", pProcedure->GetSymbolName());
 
             // normally should have at least one link
             if (!pState->GetStateLinkCount())
@@ -201,7 +201,7 @@ bool PSS_DurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pS
 
             if (pSymbol)
             {
-                TRACE1(_T("OnBeforeMoveForward - Symbol in the stack is %s\n"), pSymbol->GetSymbolName());
+                TRACE1("OnBeforeMoveForward - Symbol in the stack is %s\n", pSymbol->GetSymbolName());
             }
         #endif
 
@@ -210,7 +210,7 @@ bool PSS_DurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pS
         // is a start symbol? Calculate the deliverables down durations
         if (pStartSymbol)
         {
-            TRACE1(_T("OnBeforeMoveForward - Start in the stack is %s\n"), pStartSymbol->GetSymbolName());
+            TRACE1("OnBeforeMoveForward - Start in the stack is %s\n", pStartSymbol->GetSymbolName());
 
             CODEdgeArray      leavingEdges;
             const std::size_t leavingLinkCount = pStartSymbol->GetEdgesLeaving(leavingEdges);
@@ -226,7 +226,7 @@ bool PSS_DurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pS
         // if is a door symbol, duplicate the deliverable symbols duration information
         if (pDoorSymbol)
         {
-            TRACE1(_T("OnBeforeMoveForward - Door in the stack is %s\n"), pDoorSymbol->GetSymbolName());
+            TRACE1("OnBeforeMoveForward - Door in the stack is %s\n", pDoorSymbol->GetSymbolName());
 
             CODEdgeArray      enteringEdges;
             const std::size_t enteringLinkCount = pDoorSymbol->GetEdgesEntering(enteringEdges);
@@ -285,7 +285,7 @@ bool PSS_DurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pS
         // if is a page symbol, duplicate the deliverable symbols duration information
         if (pPageSymbol)
         {
-            TRACE1(_T("OnBeforeMoveForward - Page in the stack is %s\n"), pPageSymbol->GetSymbolName());
+            TRACE1("OnBeforeMoveForward - Page in the stack is %s\n", pPageSymbol->GetSymbolName());
 
             CODEdgeArray      enteringEdges;
             const std::size_t enteringLinkCount = pPageSymbol->GetEdgesEntering(enteringEdges);
@@ -347,7 +347,7 @@ bool PSS_DurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pS
         // if is a procedure symbol, calculate the deliverable durations
         if (pProcedure)
         {
-            TRACE1(_T("OnBeforeMoveForward: procedure in the stack is %s\n"), pProcedure->GetSymbolName());
+            TRACE1("OnBeforeMoveForward: procedure in the stack is %s\n", pProcedure->GetSymbolName());
 
             PSS_ProcedureSymbolBP* pLocalProcedureBefore = NULL;
 

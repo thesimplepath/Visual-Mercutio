@@ -94,7 +94,7 @@ void PSS_ProcessPropertiesBP::SetManagementCase(LPCTSTR pName)
         m_ManagementCase = pName;
     else
     {
-        TRACE0(_T("PSS_ProcessPropertiesBP - Invalid management case name!\n"));
+        TRACE0("PSS_ProcessPropertiesBP - Invalid management case name!\n");
         ASSERT(FALSE);
     }
 }
@@ -218,24 +218,24 @@ void PSS_ProcessPropertiesBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_ProcessPropertiesBP::Serialize - Start save\n"));
+        TRACE("PSS_ProcessPropertiesBP::Serialize - Start save\n");
 
         PUT_SCHEMA(ar, PSS_ProcessPropertiesBP);
 
         ar << m_ManagementCase;
 
-        TRACE(_T("PSS_ProcessPropertiesBP::Serialize - End save\n"));
+        TRACE("PSS_ProcessPropertiesBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_ProcessPropertiesBP::Serialize - Start read\n"));
+        TRACE("PSS_ProcessPropertiesBP::Serialize - Start read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
 
         ar >> m_ManagementCase;
 
-        TRACE(_T("PSS_ProcessPropertiesBP::Serialize : End read\n"));
+        TRACE("PSS_ProcessPropertiesBP::Serialize : End read\n");
     }
 }
 //---------------------------------------------------------------------------

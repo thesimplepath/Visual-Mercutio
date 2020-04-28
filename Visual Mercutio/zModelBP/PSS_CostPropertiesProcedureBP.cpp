@@ -237,7 +237,7 @@ void PSS_CostPropertiesProcedureBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_CostPropertiesProcedureBP::Serialize - Start Save\n"));
+        TRACE("PSS_CostPropertiesProcedureBP::Serialize - Start Save\n");
 
         PUT_SCHEMA(ar, PSS_CostPropertiesProcedureBP);
 
@@ -247,11 +247,11 @@ void PSS_CostPropertiesProcedureBP::Serialize(CArchive& ar)
         ar << m_ProcessingDuration;
         ar << m_ProcessingDurationMax;
 
-        TRACE(_T("PSS_CostPropertiesProcedureBP::Serialize - End Save\n"));
+        TRACE("PSS_CostPropertiesProcedureBP::Serialize - End Save\n");
     }
     else
     {
-        TRACE(_T("PSS_CostPropertiesProcedureBP::Serialize - Start Read\n"));
+        TRACE("PSS_CostPropertiesProcedureBP::Serialize - Start Read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
@@ -271,7 +271,7 @@ void PSS_CostPropertiesProcedureBP::Serialize(CArchive& ar)
                 ar >> m_ProcessingDurationMax;
         }
 
-        TRACE(_T("PSS_CostPropertiesProcedureBP::Serialize - End Read\n"));
+        TRACE("PSS_CostPropertiesProcedureBP::Serialize - End Read\n");
     }
 }
 //---------------------------------------------------------------------------

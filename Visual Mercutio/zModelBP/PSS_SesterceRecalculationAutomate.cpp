@@ -176,7 +176,7 @@ bool PSS_SesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
         return true;
 
     #ifdef _DEBUG
-        TRACE1(_T("OnNextSymbolAfterMoveForward - Symbol in the stack is %s\n"), pSymbol->GetSymbolName());
+        TRACE1("OnNextSymbolAfterMoveForward - Symbol in the stack is %s\n", pSymbol->GetSymbolName());
     #endif
 
     PSS_ProcedureSymbolBP* pProcedure =                     dynamic_cast<PSS_ProcedureSymbolBP*>(pState->GetSymbol());
@@ -195,7 +195,7 @@ bool PSS_SesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
     // 7. The procedure cost per activity
     if (pProcedure || pPage || pDoor || pStop)
     {
-        TRACE1(_T("OnNextSymbolAfterMoveForward - Current symbol is %s\n"), pSymbol->GetSymbolName());
+        TRACE1("OnNextSymbolAfterMoveForward - Current symbol is %s\n", pSymbol->GetSymbolName());
 
         // normally should contain only one link
         if (!pState->GetStateLinkCount())
@@ -210,7 +210,7 @@ bool PSS_SesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
         // not necessarily an error so return true
         if (!pStateObjectBefore->GetSymbol())
         {
-            TRACE(_T("OnNextSymbolAfterMoveForward - No object before\n"));
+            TRACE("OnNextSymbolAfterMoveForward - No object before\n");
             return true;
         }
 
@@ -230,10 +230,10 @@ bool PSS_SesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
                 if (!pLocalProcedureBefore)
                     return false;
 
-                TRACE1(_T("OnNextSymbolAfterMoveForward - Get local procedure %s\n"), pLocalProcedureBefore->GetSymbolName());
+                TRACE1("OnNextSymbolAfterMoveForward - Get local procedure %s\n", pLocalProcedureBefore->GetSymbolName());
             }
 
-            TRACE1(_T("OnNextSymbolAfterMoveForward: procedure before is %s\n"), pProcedureBefore->GetSymbolName());
+            TRACE1("OnNextSymbolAfterMoveForward: procedure before is %s\n", pProcedureBefore->GetSymbolName());
 
             // iterate through all links and calculate their quantities
             for (std::size_t index = 0; index < pState->GetStateLinkCount(); ++index)
@@ -249,7 +249,7 @@ bool PSS_SesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
                 // check if a deliverable was found
                 if (pDeliverable)
                 {
-                    TRACE1(_T("OnNextSymbolAfterMoveForward: deliverable in the stack%s\n"), pDeliverable->GetSymbolName());
+                    TRACE1("OnNextSymbolAfterMoveForward: deliverable in the stack%s\n", pDeliverable->GetSymbolName());
 
                     // check if it's a local symbol
                     if (!pDeliverable->IsLocal())
@@ -260,7 +260,7 @@ bool PSS_SesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
                         if (!pDeliverable)
                             return false;
 
-                        TRACE1(_T("OnNextSymbolAfterMoveForward: retrieve local deliverable %s\n"), pDeliverable->GetSymbolName());
+                        TRACE1("OnNextSymbolAfterMoveForward: retrieve local deliverable %s\n", pDeliverable->GetSymbolName());
                     }
 
                     PSS_AnnualNumberPropertiesBP qValue;
@@ -406,7 +406,7 @@ bool PSS_SesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateOb
                 if (!pLocalProcedureBefore)
                     return false;
 
-                TRACE1(_T("OnNextSymbolAfterMoveForward: retrieve local procedure %s\n"), pLocalProcedureBefore->GetSymbolName());
+                TRACE1("OnNextSymbolAfterMoveForward: retrieve local procedure %s\n", pLocalProcedureBefore->GetSymbolName());
             }
 
             PSS_AnnualNumberPropertiesBP qValue;
@@ -584,7 +584,7 @@ bool PSS_SesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pS
 
         if (pSymbol)
         {
-            TRACE1(_T("OnBeforeMoveForward - Symbol in the stack is %s\n"), pSymbol->GetSymbolName());
+            TRACE1("OnBeforeMoveForward - Symbol in the stack is %s\n", pSymbol->GetSymbolName());
         }
     #endif
 
@@ -604,10 +604,10 @@ bool PSS_SesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pS
             if (!pLocalProcedureBefore)
                 return false;
 
-            TRACE1(_T("OnNextSymbolAfterMoveForward - Get local procedure %s\n"), pLocalProcedureBefore->GetSymbolName());
+            TRACE1("OnNextSymbolAfterMoveForward - Get local procedure %s\n", pLocalProcedureBefore->GetSymbolName());
         }
 
-        TRACE1(_T("OnBeforeMoveForward - Procedure in the stack is %s\n"), pProcedure->GetSymbolName());
+        TRACE1("OnBeforeMoveForward - Procedure in the stack is %s\n", pProcedure->GetSymbolName());
 
         if (pLocalProcedureBefore)
             pLocalProcedureBefore->SetProcedureActivation(pLocalProcedureBefore->CalculateProcedureActivation());

@@ -313,7 +313,7 @@ void PSS_ProcRisk::Serialize(CArchive& ar)
     if (ar.m_pDocument)
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_ProcRisk::Serialize - Start save\n"));
+            TRACE("PSS_ProcRisk::Serialize - Start save\n");
 
             // serialize the size
             ar << int(m_Set.GetSize());
@@ -323,11 +323,11 @@ void PSS_ProcRisk::Serialize(CArchive& ar)
             for (PSS_RiskPropertiesBP* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 ar << pProp;
 
-            TRACE(_T("PSS_ProcRisk::Serialize - End save\n"));
+            TRACE("PSS_ProcRisk::Serialize - End save\n");
         }
         else
         {
-            TRACE(_T("PSS_ProcRisk::Serialize - Start read\n"));
+            TRACE("PSS_ProcRisk::Serialize - Start read\n");
 
             RemoveAllRisks();
 
@@ -343,7 +343,7 @@ void PSS_ProcRisk::Serialize(CArchive& ar)
                 AddRisk(pProp);
             }
 
-            TRACE(_T("PSS_ProcRisk::Serialize - End read\n"));
+            TRACE("PSS_ProcRisk::Serialize - End read\n");
         }
 }
 //---------------------------------------------------------------------------

@@ -99,7 +99,7 @@ int PSS_PrestationsView::IPrestationsFlatToolBar::OnCreate(LPCREATESTRUCT lpCrea
                                 this,
                                 IDC_PRS_REFRESHVIEWS))
     {
-        TRACE0(_T("Unable to create refresh button in prestations workspace.\n"));
+        TRACE0("Unable to create refresh button in prestations workspace.\n");
         return -1;
     }
 
@@ -115,7 +115,7 @@ int PSS_PrestationsView::IPrestationsFlatToolBar::OnCreate(LPCREATESTRUCT lpCrea
                                       this,
                                       IDC_PRS_ADDPRESTATION))
     {
-        TRACE0(_T("Unable to create add button in prestations workspace.\n"));
+        TRACE0("Unable to create add button in prestations workspace.\n");
         return -1;
     }
 
@@ -129,7 +129,7 @@ int PSS_PrestationsView::IPrestationsFlatToolBar::OnCreate(LPCREATESTRUCT lpCrea
                                          this,
                                          IDC_PRS_RENAMEPRESTATION))
     {
-        TRACE0(_T("Unable to create rename button in prestations workspace.\n"));
+        TRACE0("Unable to create rename button in prestations workspace.\n");
         return -1;
     }
 
@@ -143,7 +143,7 @@ int PSS_PrestationsView::IPrestationsFlatToolBar::OnCreate(LPCREATESTRUCT lpCrea
                                          this,
                                          IDC_PRS_DELETEPRESTATION))
     {
-        TRACE0(_T("Unable to create delete button in prestations workspace.\n"));
+        TRACE0("Unable to create delete button in prestations workspace.\n");
         return -1;
     }
 
@@ -157,7 +157,7 @@ int PSS_PrestationsView::IPrestationsFlatToolBar::OnCreate(LPCREATESTRUCT lpCrea
                                        this,
                                        IDC_PRS_MOVEPRESTATION))
     {
-        TRACE0(_T("Unable to create move button in prestations workspace.\n"));
+        TRACE0("Unable to create move button in prestations workspace.\n");
         return -1;
     }
 
@@ -171,7 +171,7 @@ int PSS_PrestationsView::IPrestationsFlatToolBar::OnCreate(LPCREATESTRUCT lpCrea
                                    this,
                                    IDC_PRS_PROPERTIES))
     {
-        TRACE0(_T("Unable to create properties button in prestations workspace.\n"));
+        TRACE0("Unable to create properties button in prestations workspace.\n");
         return -1;
     }
 

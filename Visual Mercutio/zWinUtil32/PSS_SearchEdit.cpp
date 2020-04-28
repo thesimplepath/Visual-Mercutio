@@ -559,7 +559,7 @@ void PSS_SearchEdit::CreateButton(bool resize)
                              m_NoNotify,
                              resize))
         {
-            TRACE0(_T("Failed to create browse button.\n"));
+            TRACE0("Failed to create browse button.\n");
             return;
         }
     }
@@ -575,7 +575,7 @@ void PSS_SearchEdit::CreateButton(bool resize)
                          m_NoNotify,
                          resize))
     {
-        TRACE0(_T("Failed to create browse button.\n"));
+        TRACE0("Failed to create browse button.\n");
         return;
     }
 }

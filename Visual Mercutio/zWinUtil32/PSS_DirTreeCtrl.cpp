@@ -64,7 +64,7 @@ void PSS_DirTreeCtrl::Initialize(const CString& initialPath, bool clear, bool in
 
         // setup the Image lists
         if(!m_ImageListTree.Create(IDB_FILE_TYPES, 17, 1, RGB(255, 255, 255)))
-            TRACE(_T("Image list creation fault"));
+            TRACE("Image list creation fault");
 
         SetImageList(&m_ImageListTree, TVSIL_NORMAL);
         m_HasBeenInitialized = true;
@@ -171,18 +171,18 @@ int PSS_DirTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //---------------------------------------------------------------------------
 void PSS_DirTreeCtrl::OnDestroy()
 {
-    TRACE(_T("ZIDirTreeCtrl::OnDestroy beginning\n"));
+    TRACE("ZIDirTreeCtrl::OnDestroy beginning\n");
 
     ClearNetRessources();
 
     PSS_TreeCtrl::OnDestroy();
 
-    TRACE(_T("ZIDirTreeCtrl::OnDestroy terminating.\n"));
+    TRACE("ZIDirTreeCtrl::OnDestroy terminating.\n");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DirTreeCtrl::OnItemexpandingTree(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    TRACE(_T("ZIDirTreeCtrl::OnItemexpandingTree(%p)\n"), pNMHDR);
+    TRACE("ZIDirTreeCtrl::OnItemexpandingTree(%p)\n", pNMHDR);
 
     // show the wait cursor while expanding
     CWaitCursor cursorWaiting;
@@ -213,7 +213,7 @@ BOOL PSS_DirTreeCtrl::OnItemexpandingTree(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 BOOL PSS_DirTreeCtrl::OnSelchangedTree(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    TRACE(_T("CDlgGetPath::OnSelchangedTree(%p)\n"), pNMHDR);
+    TRACE("CDlgGetPath::OnSelchangedTree(%p)\n", pNMHDR);
 
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
@@ -230,7 +230,7 @@ BOOL PSS_DirTreeCtrl::OnSelchangedTree(NMHDR* pNMHDR, LRESULT* pResult)
 //---------------------------------------------------------------------------
 CString PSS_DirTreeCtrl::GetItemPath(HTREEITEM hItem)
 {
-    TRACE(_T("ZIDirTreeCtrl::GetItemPath(%p)\n"), hItem);
+    TRACE("ZIDirTreeCtrl::GetItemPath(%p)\n", hItem);
 
     CString result;
 
@@ -255,7 +255,7 @@ CString PSS_DirTreeCtrl::GetItemPath(HTREEITEM hItem)
 //---------------------------------------------------------------------------
 bool PSS_DirTreeCtrl::PopulateTree(const CString& path, HTREEITEM hParent)
 {
-    TRACE(_T("ZIDirTreeCtrl::PopulateTree( %s )\n"), path);
+    TRACE("ZIDirTreeCtrl::PopulateTree( %s )\n", path);
 
     // true if at least one child is added
     bool childrenAdded = false;
@@ -318,7 +318,7 @@ bool PSS_DirTreeCtrl::PopulateTree(const CString& path, HTREEITEM hParent)
 //---------------------------------------------------------------------------
 bool PSS_DirTreeCtrl::EnumNetwork(HTREEITEM hParent)
 {
-    TRACE(_T("ZIDirTreeCtrl::EnumNetwork( %p )\n"), hParent);
+    TRACE("ZIDirTreeCtrl::EnumNetwork( %p )\n", hParent);
 
     // true if at least one child is added
     bool childrenAdded = false;
@@ -336,7 +336,7 @@ bool PSS_DirTreeCtrl::EnumNetwork(HTREEITEM hParent)
     // read sucessfully?
     if (result != NO_ERROR)
     {
-        TRACE(_T("*** ERROR %d - Cannot enumerate network drives.\n"), result);
+        TRACE("*** ERROR %d - Cannot enumerate network drives.\n", result);
         return false;
     }
 
@@ -406,7 +406,7 @@ bool PSS_DirTreeCtrl::EnumNetwork(HTREEITEM hParent)
 
         if (result != ERROR_NO_MORE_ITEMS)
         {
-            TRACE(_T("*** ERROR %d - Cannot complete network drive enumeration\n"), result);
+            TRACE("*** ERROR %d - Cannot complete network drive enumeration\n", result);
             break;
         }
     }
@@ -425,7 +425,7 @@ HTREEITEM PSS_DirTreeCtrl::InsertPathItem(HTREEITEM      hParent,
                                           int            imageIndex,
                                           int            imageSelectedIndex)
 {
-    TRACE(_T("ZIDirTreeCtrl::InsertPathItem(%p,%p,%s +++)\n"), hParent, pNetResource, text);
+    TRACE("ZIDirTreeCtrl::InsertPathItem(%p,%p,%s +++)\n", hParent, pNetResource, text);
 
     CString formattedText = FormatName(text);
 
@@ -454,7 +454,7 @@ HTREEITEM PSS_DirTreeCtrl::InsertFileItem(HTREEITEM      hParent,
                                           int            imageIndex,
                                           int            imageSelectedIndex)
 {
-    TRACE(_T("ZIDirTreeCtrl::InsertFileItem(%p,%p,%s +++)\n"), hParent, pNetResource, text);
+    TRACE("ZIDirTreeCtrl::InsertFileItem(%p,%p,%s +++)\n", hParent, pNetResource, text);
 
     CString formattedText = FormatName(text);
 
@@ -520,7 +520,7 @@ void PSS_DirTreeCtrl::ClearNetRessources()
 //---------------------------------------------------------------------------
 TCHAR* PSS_DirTreeCtrl::MakeObjectDynamic(LPTSTR pData)
 {
-    TRACE(_T("MakeObjectDynamic( %s )\n"), pData);
+    TRACE("MakeObjectDynamic(%s)\n", pData);
 
     // assume a NULL empty string
     TCHAR*      pRet   = NULL;

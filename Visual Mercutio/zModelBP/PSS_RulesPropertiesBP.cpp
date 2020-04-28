@@ -89,7 +89,7 @@ void PSS_RulesPropertiesBP::SetRuleName(LPCTSTR pValue)
         m_RuleName = pValue;
     else
     {
-        TRACE0(_T("PSS_RulesPropertiesBP - Invalid rule name!\n"));
+        TRACE0("PSS_RulesPropertiesBP - Invalid rule name!\n");
         ASSERT(FALSE);
     }
 }
@@ -100,7 +100,7 @@ void PSS_RulesPropertiesBP::SetRuleDescription(LPCTSTR pValue)
         m_RuleDescription = pValue;
     else
     {
-        TRACE0(_T("PSS_RulesPropertiesBP - Invalid rule description!\n"));
+        TRACE0("PSS_RulesPropertiesBP - Invalid rule description!\n");
         ASSERT(FALSE);
     }
 }
@@ -111,7 +111,7 @@ void PSS_RulesPropertiesBP::SetRuleGUID(LPCTSTR pValue)
         m_RuleGUID = pValue;
     else
     {
-        TRACE0(_T("PSS_RulesPropertiesBP - Invalid rule GUID!\n"));
+        TRACE0("PSS_RulesPropertiesBP - Invalid rule GUID!\n");
         ASSERT(FALSE);
     }
 }
@@ -253,23 +253,23 @@ void PSS_RulesPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_RulesPropertiesBP::Serialize - Start save\n"));
+        TRACE("PSS_RulesPropertiesBP::Serialize - Start save\n");
 
         ar << m_RuleName;
         ar << m_RuleDescription;
         ar << m_RuleGUID;
 
-        TRACE(_T("PSS_RulesPropertiesBP::Serialize - End save\n"));
+        TRACE("PSS_RulesPropertiesBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_RulesPropertiesBP::Serialize - Start read\n"));
+        TRACE("PSS_RulesPropertiesBP::Serialize - Start read\n");
 
         ar >> m_RuleName;
         ar >> m_RuleDescription;
         ar >> m_RuleGUID;
 
-        TRACE(_T("PSS_RulesPropertiesBP::Serialize - End read\n"));
+        TRACE("PSS_RulesPropertiesBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

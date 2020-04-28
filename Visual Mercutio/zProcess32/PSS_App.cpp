@@ -125,13 +125,11 @@ PSS_AppGridAdapter::~PSS_AppGridAdapter()
 //---------------------------------------------------------------------------
 CDocTemplate* PSS_AppGridAdapter::GetDocTemplate(CRuntimeClass* pViewClass, CRuntimeClass* pDocClass)
 {
-    if (m_pDocTemplate)
-        return m_pDocTemplate;
-
-    m_pDocTemplate = new CMultiDocTemplate(IDR_MERCUTIOREPORT,
-                                           RUNTIME_CLASS(PSS_GridReportDocument),
-                                           RUNTIME_CLASS(PSS_GridReportChildFrame),
-                                           RUNTIME_CLASS(PSS_GridReportView));
+    if (!m_pDocTemplate)
+        m_pDocTemplate = new CMultiDocTemplate(IDR_MERCUTIOREPORT,
+                                               RUNTIME_CLASS(PSS_GridReportDocument),
+                                               RUNTIME_CLASS(PSS_GridReportChildFrame),
+                                               RUNTIME_CLASS(PSS_GridReportView));
 
     return m_pDocTemplate;
 }
@@ -306,8 +304,7 @@ PSS_App::~PSS_App()
 
     if (!pApplication)
         ::OutputDebugString("Application instance was no longer accessible on destruction");
-
-    if (pApplication)
+    else
     {
         pApplication->UnregisterMainForm();
         pApplication->Release();

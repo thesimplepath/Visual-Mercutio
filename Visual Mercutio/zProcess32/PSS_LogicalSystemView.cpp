@@ -99,7 +99,7 @@ int PSS_LogicalSystemView::ILogicalSystemFlatToolBar::OnCreate(LPCREATESTRUCT lp
                                 this,
                                 IDC_LGS_REFRESHVIEWS))
     {
-        TRACE0(_T("Unable to create refresh button in system workspace.\n"));
+        TRACE0("Unable to create refresh button in system workspace.\n");
         return -1;
     }
 
@@ -115,7 +115,7 @@ int PSS_LogicalSystemView::ILogicalSystemFlatToolBar::OnCreate(LPCREATESTRUCT lp
                                   this,
                                   IDC_LGS_ADDSYSTEM))
     {
-        TRACE0(_T("Unable to create add button in system workspace.\n"));
+        TRACE0("Unable to create add button in system workspace.\n");
         return -1;
     }
 
@@ -129,7 +129,7 @@ int PSS_LogicalSystemView::ILogicalSystemFlatToolBar::OnCreate(LPCREATESTRUCT lp
                                      this,
                                      IDC_LGS_RENAMESYSTEM))
     {
-        TRACE0(_T("Unable to create rename button in system workspace.\n"));
+        TRACE0("Unable to create rename button in system workspace.\n");
         return -1;
     }
 
@@ -143,7 +143,7 @@ int PSS_LogicalSystemView::ILogicalSystemFlatToolBar::OnCreate(LPCREATESTRUCT lp
                                      this,
                                      IDC_LGS_DELETESYSTEM))
     {
-        TRACE0(_T("Unable to create delete button in system workspace.\n"));
+        TRACE0("Unable to create delete button in system workspace.\n");
         return -1;
     }
 
@@ -157,7 +157,7 @@ int PSS_LogicalSystemView::ILogicalSystemFlatToolBar::OnCreate(LPCREATESTRUCT lp
                                    this,
                                    IDC_LGS_MOVESYSTEM))
     {
-        TRACE0(_T("Unable to create move button in system workspace.\n"));
+        TRACE0("Unable to create move button in system workspace.\n");
         return -1;
     }
 
@@ -171,7 +171,7 @@ int PSS_LogicalSystemView::ILogicalSystemFlatToolBar::OnCreate(LPCREATESTRUCT lp
                                    this,
                                    IDC_LGS_PROPERTIES))
     {
-        TRACE0(_T("Unable to create properties button in system workspace.\n"));
+        TRACE0("Unable to create properties button in system workspace.\n");
         return -1;
     }
 

@@ -42,13 +42,13 @@ bool PSS_SoapPublisher_File::Add(const PSS_SoapData_File& file)
         // send the data to SOAP proxy and check the result
         if (int(proxy.Execute(pubFile).GetReturnValue()) < 0)
         {
-            TRACE(_T("Pub file failed\n"));
+            TRACE("Pub file failed\n");
             result = false;
         }
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         result = false;
     }
 
@@ -96,7 +96,7 @@ PSS_SoapData_File PSS_SoapPublisher_File::GetFile(int folder, const std::string&
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE("Caught SOAP exception:%s\n", ex.What().Str());
         return PSS_SoapData_File();
     }
 

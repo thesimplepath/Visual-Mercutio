@@ -637,7 +637,7 @@ int PSS_PropertyListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
                            0,
                            _T("Tahoma")))
     {
-        TRACE0(_T("Unable to create caption font.\n"));
+        TRACE0("Unable to create caption font.\n");
         return -1;
     }
 
@@ -657,7 +657,7 @@ int PSS_PropertyListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                0,
                                _T("Tahoma")))
     {
-        TRACE0(_T("Unable to create caption font.\n"));
+        TRACE0("Unable to create caption font.\n");
         return -1;
     }
 

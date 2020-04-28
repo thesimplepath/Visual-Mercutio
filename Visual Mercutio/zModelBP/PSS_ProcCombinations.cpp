@@ -478,7 +478,7 @@ void PSS_ProcCombinations::Serialize(CArchive& ar)
     if (ar.m_pDocument)
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_ProcCombinations::Serialize - Start save\n"));
+            TRACE("PSS_ProcCombinations::Serialize - Start save\n");
 
             // serialize the size
             ar << int(m_Set.GetSize());
@@ -488,11 +488,11 @@ void PSS_ProcCombinations::Serialize(CArchive& ar)
             for (PSS_CombinationPropertiesBP* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
                 ar << pProp;
 
-            TRACE(_T("PSS_ProcCombinations::Serialize - End save\n"));
+            TRACE("PSS_ProcCombinations::Serialize - End save\n");
         }
         else
         {
-            TRACE(_T("PSS_ProcCombinations::Serialize - Start read\n"));
+            TRACE("PSS_ProcCombinations::Serialize - Start read\n");
 
             RemoveAllCombinations();
 
@@ -508,7 +508,7 @@ void PSS_ProcCombinations::Serialize(CArchive& ar)
                 AddCombination(pProp);
             }
 
-            TRACE(_T("PSS_ProcCombinations::Serialize - End read\n"));
+            TRACE("PSS_ProcCombinations::Serialize - End read\n");
         }
 }
 //---------------------------------------------------------------------------

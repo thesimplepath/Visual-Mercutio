@@ -121,7 +121,7 @@ int PSS_OutputView::OnCreate(LPCREATESTRUCT lpCreateStruct)
                             this,
                             IDC_OUTPUTVIEW_LIST))
     {
-        TRACE0(_T("Failed to create view for the CListBox in ZVOutputView\n"));
+        TRACE0("Failed to create view for the CListBox in ZVOutputView\n");
         return -1;
     }
 

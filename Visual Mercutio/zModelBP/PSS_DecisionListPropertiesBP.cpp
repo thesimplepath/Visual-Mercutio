@@ -92,7 +92,7 @@ void PSS_DecisionListPropertiesBP::SetDecisionList(LPCTSTR pValue)
         m_DecisionList = pValue;
     else
     {
-        TRACE0(_T("PSS_DecisionListPropertiesBP - Invalid decision list!\n"));
+        TRACE0("PSS_DecisionListPropertiesBP - Invalid decision list!\n");
         ASSERT(FALSE);
     }
 }
@@ -216,23 +216,23 @@ void PSS_DecisionListPropertiesBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_DecisionListPropertiesBP::Serialize - Start Save\n"));
+        TRACE("PSS_DecisionListPropertiesBP::Serialize - Start Save\n");
 
         PUT_SCHEMA(ar, PSS_DecisionListPropertiesBP);
         ar << m_DecisionList;
 
-        TRACE(_T("PSS_DecisionListPropertiesBP::Serialize - End Save\n"));
+        TRACE("PSS_DecisionListPropertiesBP::Serialize - End Save\n");
     }
     else
     {
-        TRACE(_T("PSS_DecisionListPropertiesBP::Serialize - Start Read\n"));
+        TRACE("PSS_DecisionListPropertiesBP::Serialize - Start Read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
 
         ar >> m_DecisionList;
 
-        TRACE(_T("PSS_DecisionListPropertiesBP::Serialize - End Read\n"));
+        TRACE("PSS_DecisionListPropertiesBP::Serialize - End Read\n");
     }
 }
 //---------------------------------------------------------------------------

@@ -153,7 +153,7 @@ BOOL PSS_DocTemplateEx::OnOpenRecentFile(UINT id)
 
     ASSERT((*m_pRecentFileList)[index].GetLength());
 
-    TRACE2(_T("MRU: open file (%d) '%s'.\n"), index + 1, LPCTSTR((*m_pRecentFileList)[index]));
+    TRACE2("MRU: open file (%d) '%s'.\n", index + 1, LPCTSTR((*m_pRecentFileList)[index]));
 
     // get opened document and its related file name
     LPCTSTR    pFile = (*m_pRecentFileList)[index];
@@ -188,7 +188,7 @@ BOOL PSS_DocTemplateEx::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
     {
         ASSERT(pExtra);
 
-        CCmdUI* pCmdUI = (CCmdUI*)pExtra;
+        CCmdUI* pCmdUI = reinterpret_cast<CCmdUI*>(pExtra);
 
         // idle - not set
         ASSERT(!pCmdUI->m_bContinueRouting);
@@ -207,7 +207,7 @@ BOOL PSS_DocTemplateEx::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
     {
         #ifdef _DEBUG
             if (afxTraceFlags & traceCmdRouting)
-                TRACE2(_T("SENDING command id 0x%04X to %hs target.\n"),
+                TRACE2("SENDING command id 0x%04X to %hs target.\n",
                        nID,
                        GetRuntimeClass()->m_lpszClassName);
         #endif

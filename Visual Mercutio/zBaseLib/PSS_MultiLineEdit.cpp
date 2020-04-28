@@ -216,7 +216,7 @@ BOOL PSS_ExpandedMultiLineEdit::Create(PSS_MultiLineEdit* pEditCtrl, const CSize
 
     if (!PSS_DragEdit::Create(WS_CHILD | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL | WS_THICKFRAME | ES_LEFT, rect, pWndParent, 0))
     {
-        TRACE0(_T("Failed to create the second edit box.\n"));
+        TRACE0("Failed to create the second edit box.\n");
         return FALSE;
     }
 
@@ -352,19 +352,19 @@ void PSS_MultiLineEdit::Initialize()
 
     if (!m_ExpandedEditBox.Create(this, m_Size))
     {
-        TRACE0(_T("Failed to create the second edit box.\n"));
+        TRACE0("Failed to create the second edit box.\n");
         return;
     }
 
     if (!m_ExpandedButton.Create(this, &m_Size, true, true))
     {
-        TRACE0(_T("Failed to create down button.\n"));
+        TRACE0("Failed to create down button.\n");
         return;
     }
 
     if (!m_CollapsedButton.Create(this, &m_Size, false, false))
     {
-        TRACE0(_T("Failed to create down button.\n"));
+        TRACE0("Failed to create down button.\n");
         return;
     }
 

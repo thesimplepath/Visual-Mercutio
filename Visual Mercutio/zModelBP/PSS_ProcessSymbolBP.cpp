@@ -1354,16 +1354,16 @@ void PSS_ProcessSymbolBP::Serialize(CArchive& ar)
 
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_ProcessSymbolBP::Serialize - Start save\n"));
+            TRACE("PSS_ProcessSymbolBP::Serialize - Start save\n");
 
             ar << WORD(m_ShowPreview);
             ar << WORD(m_IsUserModified);
 
-            TRACE(_T("PSS_ProcessSymbolBP::Serialize - End save\n"));
+            TRACE("PSS_ProcessSymbolBP::Serialize - End save\n");
         }
         else
         {
-            TRACE(_T("PSS_ProcessSymbolBP::Serialize - Start read\n"));
+            TRACE("PSS_ProcessSymbolBP::Serialize - Start read\n");
 
             WORD wValue;
             ar >> wValue;
@@ -1375,7 +1375,7 @@ void PSS_ProcessSymbolBP::Serialize(CArchive& ar)
                 m_IsUserModified = bool(wValue);
             }
 
-            TRACE(_T("PSS_ProcessSymbolBP::Serialize - End read\n"));
+            TRACE("PSS_ProcessSymbolBP::Serialize - End read\n");
         }
 
         if (m_pModel)

@@ -335,16 +335,16 @@ void PSS_DoorSymbolBP::Serialize(CArchive& ar)
     {
         if (ar.IsStoring())
         {
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - Start save\n"));
+            TRACE("PSS_DoorSymbolBP::Serialize - Start save\n");
 
             ar << WORD(m_ShowPreview);
             ar << m_TwinDoorRefNumber;
 
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - End save\n"));
+            TRACE("PSS_DoorSymbolBP::Serialize - End save\n");
         }
         else
         {
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - Start read\n"));
+            TRACE("PSS_DoorSymbolBP::Serialize - Start read\n");
 
             WORD wValue;
             ar >> wValue;
@@ -352,7 +352,7 @@ void PSS_DoorSymbolBP::Serialize(CArchive& ar)
 
             ar >> m_TwinDoorRefNumber;
 
-            TRACE(_T("PSS_DoorSymbolBP::Serialize - End read\n"));
+            TRACE("PSS_DoorSymbolBP::Serialize - End read\n");
         }
 
         if (m_pModel)

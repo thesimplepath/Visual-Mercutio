@@ -174,7 +174,7 @@ static unsigned char g_Padding[64]      =
             }
 
         if (errors)
-            TRACE(_T("Base 64 decoding error\n"));
+            TRACE("Base 64 decoding error\n");
 
         // convert the decoded buffer to string
         pBuffer[offset] = 0;
@@ -248,7 +248,7 @@ std::string PSS_Encoding::Base64Encode(const char* pStr, std::size_t len)
             ++pos;
 
             if (c > 255)
-                TRACE(_T("Base 64 encoding encountered char > 255\n"));
+                TRACE("Base 64 encoding encountered char > 255\n");
 
             // encode the string. Encoded chars are 6 bit long, so the encoded string will be bigger than the
             // source one, because one extra char will be inserted every 3 chars. The encoded string contain
@@ -323,7 +323,7 @@ std::string PSS_Encoding::MD5Encode(const std::string& data, std::size_t len)
 {
     if (len < 1 || len > (2 * M_MD5_HASH_LENGTH))
     {
-        TRACE0(_T("MD5Encode - out of boundaries...\n"));
+        TRACE0("MD5Encode - out of boundaries...\n");
         return data;
     }
 

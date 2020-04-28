@@ -2004,8 +2004,8 @@ PSS_AnnualNumberPropertiesBP PSS_ProcedureSymbolBP::CalculateProcedureActivation
         // add it to the procedure activation
         for (int j = 0; j < count; ++j)
         {
-            TRACE1(_T("Master = %s"),        GetCombinationMaster(j));
-            TRACE1(_T("   Livrable = %s\n"), pDeliverable->GetSymbolName());
+            TRACE1("Master   = %s\n", GetCombinationMaster(j));
+            TRACE1("Livrable = %s\n", pDeliverable->GetSymbolName());
 
             // found a master?
             if (!GetCombinationMaster(j).IsEmpty() && GetCombinationMaster(j) == pDeliverable->GetSymbolName())
@@ -2355,7 +2355,7 @@ void PSS_ProcedureSymbolBP::Serialize(CArchive& ar)
         }
         else
         {
-            TRACE(_T("PSS_ProcedureSymbolBP::Serialize - Start read\n"));
+            TRACE("PSS_ProcedureSymbolBP::Serialize - Start read\n");
 
             // transfer the properties to new format
             PSS_CostPropertiesProcedureBP_Beta1* pCostProps =
@@ -2388,7 +2388,7 @@ void PSS_ProcedureSymbolBP::Serialize(CArchive& ar)
                     SetCombinationMaster(i, deliverables);
             }
 
-            TRACE(_T("PSS_ProcedureSymbolBP::Serialize - End read\n"));
+            TRACE("PSS_ProcedureSymbolBP::Serialize - End read\n");
         }
     }
 }

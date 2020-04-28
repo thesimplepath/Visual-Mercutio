@@ -120,7 +120,7 @@ void PSS_View::Initialize()
     }
     else
     {
-        TRACE(_T("Error in creating ToolTip"));
+        TRACE("Error in creating ToolTip");
     }
 }
 //---------------------------------------------------------------------------

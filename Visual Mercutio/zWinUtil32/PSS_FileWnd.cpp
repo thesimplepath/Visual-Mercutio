@@ -84,7 +84,7 @@ int PSS_FileWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                 this,
                                 IDC_STOPFILE))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -97,7 +97,7 @@ int PSS_FileWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                    this,
                                    IDC_REFRESHFILE))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 

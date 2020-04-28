@@ -30,7 +30,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-            TRACE0(_T("ZMODELWEB.DLL Initializing!\n"));
+            TRACE0("ZMODELWEB.DLL Initializing!\n");
 
             // extension DLL one-time initialization
             if (!::AfxInitExtensionModule(g_zModelWebDLL, hInstance))
@@ -47,7 +47,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
             break;
 
         case DLL_PROCESS_DETACH:
-            TRACE0(_T("ZMODELWEB.DLL Terminating!\n"));
+            TRACE0("ZMODELWEB.DLL Terminating!\n");
 
             // terminate the library before destructors are called
             ::AfxTermExtensionModule(g_zModelWebDLL);

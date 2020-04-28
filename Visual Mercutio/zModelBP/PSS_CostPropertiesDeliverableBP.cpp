@@ -271,7 +271,7 @@ void PSS_CostPropertiesDeliverableBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_CostPropertiesDeliverableBP::Serialize - Start Save\n"));
+        TRACE("PSS_CostPropertiesDeliverableBP::Serialize - Start Save\n");
 
         PUT_SCHEMA(ar, PSS_CostPropertiesDeliverableBP);
 
@@ -284,11 +284,11 @@ void PSS_CostPropertiesDeliverableBP::Serialize(CArchive& ar)
         ar << m_TargetDuration;
         ar << m_GreenLineDuration;
 
-        TRACE(_T("PSS_CostPropertiesDeliverableBP::Serialize - End Save\n"));
+        TRACE("PSS_CostPropertiesDeliverableBP::Serialize - End Save\n");
     }
     else
     {
-        TRACE(_T("PSS_CostPropertiesDeliverableBP::Serialize - Start Read\n"));
+        TRACE("PSS_CostPropertiesDeliverableBP::Serialize - Start Read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
@@ -312,7 +312,7 @@ void PSS_CostPropertiesDeliverableBP::Serialize(CArchive& ar)
             ar >> m_GreenLineDuration;
         }
 
-        TRACE(_T("PSS_CostPropertiesDeliverableBP::Serialize - End Read\n"));
+        TRACE("PSS_CostPropertiesDeliverableBP::Serialize - End Read\n");
     }
 }
 //---------------------------------------------------------------------------

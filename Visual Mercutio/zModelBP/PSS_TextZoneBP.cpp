@@ -69,8 +69,8 @@ BOOL PSS_TextZoneBP::InitializeStyle()
 //---------------------------------------------------------------------------
 void PSS_TextZoneBP::Serialize(CArchive& ar)
 {
-    TRACE(_T("PSS_TextZoneBP::Serialize - Start\n"));
+    TRACE("PSS_TextZoneBP::Serialize - Start\n");
     PSS_TextZone::Serialize(ar);
-    TRACE(_T("PSS_TextZoneBP::Serialize - End\n"));
+    TRACE("PSS_TextZoneBP::Serialize - End\n");
 }
 //---------------------------------------------------------------------------

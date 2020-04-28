@@ -94,7 +94,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
                                              1,
                                              (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
                                              (const char*)g_HomeImageFile)))
-            TRACE(_T("Problem publishing the Home image file\n"));
+            TRACE("Problem publishing the Home image file\n");
 
     // publish the parent image file, if it exists
     if (PSS_File::Exist(PSS_Directory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
@@ -102,7 +102,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
                                              1,
                                              (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
                                              (const char*)g_ParentImageFile)))
-            TRACE(_T("Problem publishing the Parent image file\n"));
+            TRACE("Problem publishing the Parent image file\n");
 
     // reset the generated file name array
     ResetStringsArray();
@@ -195,10 +195,10 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(PSS_ProcessGraphModelMdl* p
                                                  1,
                                                  (const char*)m_TargetDirectory,
                                                  (const char*)file.GetFileName())))
-                TRACE1(_T("Problem publishing the file %s\n"), (const char*)imageFileName);
+                TRACE1("Problem publishing the file %s\n", (const char*)imageFileName);
         }
         else
-            TRACE1(_T("Problem exporting the file %s\n"), (const char*)imageFileName);
+            TRACE1("Problem exporting the file %s\n", (const char*)imageFileName);
 
     // create the html page
     CreateHtmlPage(pModel, imageFileName);
@@ -419,7 +419,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl*
                                          1,
                                          (const char*)m_TargetDirectory,
                                          (const char*)file.GetFileName())))
-        TRACE(_T("Problem publishing html file\n"));
+        TRACE("Problem publishing html file\n");
 
     return true;
 }

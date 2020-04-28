@@ -366,7 +366,7 @@ void PSS_IntelliEdit::Initialize()
 
     if (!m_Button.Create(this, m_pArrayOfValues, &m_Size))
     {
-        TRACE0(_T("Failed to create down button.\n"));
+        TRACE0("Failed to create down button.\n");
         return;
     }
 

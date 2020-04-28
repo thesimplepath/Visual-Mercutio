@@ -182,10 +182,7 @@ void PSS_ProcessGraphModelMdl::DeleteModelSet()
     MvcTransactionModel* pTransactionModel = GetTransactionModel();
 
     if (pTransactionModel)
-    {
         pTransactionModel->Reset();
-        pTransactionModel = NULL;
-    }
 
     // cleanup the background image
     if (m_pBkgndComponent)
@@ -845,8 +842,8 @@ CString PSS_ProcessGraphModelMdl::GetValidNextPageName()
         #ifdef _DEBUG
             for (int i = 0; i < pageNameCount; ++i)
             {
-                TRACE(_T("Existing page:\n"));
-                TRACE1(_T("%s\n"), (const char*)pArray->GetAt(i));
+                TRACE("Existing page:\n");
+                TRACE1("%s\n", (const char*)pArray->GetAt(i));
             }
         #endif
 
@@ -916,9 +913,9 @@ bool PSS_ProcessGraphModelMdl::DeletePage(const CString& pageName, bool deleteMo
 
         for (PSS_ProcessGraphPage* pPage = it.GetFirst(); pPage; pPage = it.GetNext())
         {
-            TRACE(_T("Page checked for delete : "));
+            TRACE("Page checked for delete: ");
             TRACE(pPage->GetPageName());
-            TRACE(_T("\n"));
+            TRACE("\n");
 
             PSS_ProcessGraphModelMdl* pPageModel = pPage->GetModel();
 

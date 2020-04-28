@@ -1079,7 +1079,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     afx_msg LONG PSS_ModifyView::OnPointerSelection(WPARAM wParam, LPARAM lParam)
     {
-        TRACE(_T(" On Pointer In Selection PSS_View 1 "));
+        TRACE("On Pointer In Selection PSS_View 1\n");
 
         PSS_Document* pDocument = GetDocument();
 
@@ -1113,7 +1113,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             m_pOldPointerSelectedObj = pObj;
         }
 
-        TRACE(_T(" On Pointer In Selection PSS_View 2 "));
+        TRACE("On Pointer In Selection PSS_View 2\n");
         VERIFY(ReleaseDC(pDC));
 
         return 1;

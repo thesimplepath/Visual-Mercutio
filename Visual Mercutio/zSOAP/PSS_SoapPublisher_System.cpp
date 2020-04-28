@@ -46,7 +46,7 @@ bool PSS_SoapPublisher_System::Send()
 
     try
     {
-        TRACE(_T("pPublishSystem.send()"));
+        TRACE("pPublishSystem.send()");
 
         // create the SOAP proxy
         SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());

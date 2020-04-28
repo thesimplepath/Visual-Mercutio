@@ -24,7 +24,7 @@ PSS_HtmlDialog::PSS_HtmlDialog() :
     m_hParent(NULL),
     m_hMSHTML(NULL)
 {
-    TRACE0(_T("Warning: Initialization may not be done: Non Functional contructor"));
+    TRACE0("Warning: Initialization may not be done: Non Functional contructor");
 }
 //---------------------------------------------------------------------------
 PSS_HtmlDialog::PSS_HtmlDialog(UINT resID, CWnd* pParent) :

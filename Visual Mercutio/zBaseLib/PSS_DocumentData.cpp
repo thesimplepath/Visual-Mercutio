@@ -1129,7 +1129,7 @@ int PSS_DocumentData::CountAndSetPages()
     }
     while ((pObj = GetNext()) != NULL);
 
-    TRACE1(_T(" Max Pages %d"), GetMaxPage());
+    TRACE1("Max Pages %d", GetMaxPage());
 
     return GetMaxPage();
 }

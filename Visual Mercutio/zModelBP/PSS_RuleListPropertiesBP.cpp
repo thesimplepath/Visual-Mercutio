@@ -95,7 +95,7 @@ void PSS_RuleListPropertiesBP::SetRuleList(LPCTSTR pValue)
         m_RuleList = pValue;
     else
     {
-        TRACE0(_T("PSS_RuleListPropertiesBP - Invalid task list!\n"));
+        TRACE0("PSS_RuleListPropertiesBP - Invalid task list!\n");
         ASSERT(FALSE);
     }
 }
@@ -219,24 +219,24 @@ void PSS_RuleListPropertiesBP::Serialize(CArchive& ar)
 
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_RuleListPropertiesBP::Serialize - Start save\n"));
+        TRACE("PSS_RuleListPropertiesBP::Serialize - Start save\n");
 
         PUT_SCHEMA(ar, PSS_RuleListPropertiesBP);
 
         ar << m_RuleList;
 
-        TRACE(_T("PSS_RuleListPropertiesBP::Serialize - End save\n"));
+        TRACE("PSS_RuleListPropertiesBP::Serialize - End save\n");
     }
     else
     {
-        TRACE(_T("PSS_RuleListPropertiesBP::Serialize - Start read\n"));
+        TRACE("PSS_RuleListPropertiesBP::Serialize - Start read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
 
         ar >> m_RuleList;
 
-        TRACE(_T("PSS_RuleListPropertiesBP::Serialize - End read\n"));
+        TRACE("PSS_RuleListPropertiesBP::Serialize - End read\n");
     }
 }
 //---------------------------------------------------------------------------

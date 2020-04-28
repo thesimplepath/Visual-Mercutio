@@ -1224,7 +1224,7 @@ bool PSS_CheckSymbolConsistency::CheckUniqueRef(PSS_BasicSymbol* pSymbol)
 {
     ASSERT(pSymbol);
 
-    TRACE1(_T("Ref %s\n"), (const char*)pSymbol->GetSymbolName());
+    TRACE1("Ref %s\n", (const char*)pSymbol->GetSymbolName());
 
     // if the ref already exists, allocate a new one
     if (RefExist(pSymbol->GetSymbolReferenceNumber()))

@@ -122,7 +122,7 @@ int PSS_PropertiesView::IFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                 this,
                                 IDC_REFRESHVIEWS))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -136,7 +136,7 @@ int PSS_PropertiesView::IFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                      this,
                                      IDC_SHOWALLTYPES))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -150,7 +150,7 @@ int PSS_PropertiesView::IFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                        this,
                                        IDC_SHOWSTATICTYPE))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 
@@ -164,7 +164,7 @@ int PSS_PropertiesView::IFlatToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
                                         this,
                                         IDC_SHOWDYNAMICTYPE))
     {
-        TRACE0(_T("Unable to create button.\n"));
+        TRACE0("Unable to create button.\n");
         return -1;
     }
 

@@ -776,7 +776,7 @@ void PSS_AnnualNumberPropertiesBP::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - Start Save\n"));
+        TRACE("PSS_AnnualNumberPropertiesBP::Serialize - Start Save\n");
 
         PUT_SCHEMA(ar, PSS_AnnualNumberPropertiesBP);
 
@@ -809,11 +809,11 @@ void PSS_AnnualNumberPropertiesBP::Serialize(CArchive& ar)
         ar << UINT(GetLockNumberDecember());
         ar << UINT(GetForceEqualizer());
 
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - End Save\n"));
+        TRACE("PSS_AnnualNumberPropertiesBP::Serialize - End Save\n");
     }
     else
     {
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - Start Read\n"));
+        TRACE("PSS_AnnualNumberPropertiesBP::Serialize - Start Read\n");
 
         UINT schema;
         GET_SCHEMA(ar, schema);
@@ -876,7 +876,7 @@ void PSS_AnnualNumberPropertiesBP::Serialize(CArchive& ar)
         ar >> lock;
         SetForceEqualizerEx(lock);
 
-        TRACE(_T("PSS_AnnualNumberPropertiesBP::Serialize - End Read\n"));
+        TRACE("PSS_AnnualNumberPropertiesBP::Serialize - End Read\n");
 
         CalculatePercents();
     }
