@@ -77,7 +77,7 @@ PSS_Vector2D::PSS_Vector2D(float x, float y) :
 //---------------------------------------------------------------------------
 PSS_Vector2D PSS_Vector2D::Normalize() const
 {
-    const float n = std::sqrt((m_X * m_X) + (m_Y * m_Y));
+    const float n = std::sqrtf((m_X * m_X) + (m_Y * m_Y));
 
     if (!n)
         return PSS_Vector2D();
