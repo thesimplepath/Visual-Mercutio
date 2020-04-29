@@ -203,7 +203,7 @@ void PSS_ColorSelectionWnd::OnMouseMove(UINT flags, CPoint point)
     if (indexOld != indexNew)
     {
         CDC* pDC = GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
 
         if (indexOld != g_ErrorSelection)
             ShowHighlight(*pDC, rectOld, FALSE);

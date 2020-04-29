@@ -61,6 +61,7 @@
 #endif
 
 // processsoft
+#include "PSS_Macros.h"
 #include "zSOAPIncAll.h"
 #include "zConversion\zConversionLib.h"
 

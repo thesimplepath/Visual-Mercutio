@@ -134,7 +134,6 @@ void PSS_HistoricValueDocument::Serialize(CArchive& ar)
 //---------------------------------------------------------------------------
 BOOL PSS_HistoricValueDocument::OnNewDocument()
 {
-    ASSERT(FALSE);
     return FALSE;
 }
 //---------------------------------------------------------------------------

@@ -3684,8 +3684,8 @@ void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const PSS_Properties:
                     case PSS_Property::IE_VT_Double:   m_Quantity.SetValue(pProp->GetItemID(), float(     pProp->GetValueDouble())); break;
                     case PSS_Property::IE_VT_Float:    m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueFloat());   break;
                     case PSS_Property::IE_VT_Date:     m_Quantity.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate())));  break;
-                    case PSS_Property::IE_VT_TimeSpan: ASSERT(FALSE);                                                                break;
-                    case PSS_Property::IE_VT_Duration: ASSERT(FALSE);                                                                break;
+                    case PSS_Property::IE_VT_TimeSpan:
+                    case PSS_Property::IE_VT_Duration: THROW("Unsupported value");
                 }
         }
 

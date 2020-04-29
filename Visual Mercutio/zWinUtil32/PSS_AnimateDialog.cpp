@@ -74,7 +74,7 @@ BOOL PSS_AnimateDialog::ShowNext()
     m_ID = (m_ID > g_LastID) ? g_FirstID : m_ID + 1;
     
     CDC* pDC = GetDC();
-    ASSERT(pDC);
+    PSS_Assert(pDC);
 
     #ifndef _WIN32
         // 16 bit only

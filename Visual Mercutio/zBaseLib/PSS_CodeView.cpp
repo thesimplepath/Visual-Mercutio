@@ -83,7 +83,7 @@ void PSS_CodeView::OnInitialUpdate()
 void PSS_CodeView::OnDraw(CDC* pDC)
 {
     PSS_Document* pDoc = GetDocument();
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     // translate to absolute coordinates
     OnPrepareDC(pDC);
@@ -200,7 +200,7 @@ void PSS_CodeView::OnRButtonDown(UINT nFlags, CPoint point)
     dummyMenu.LoadMenu(IDR_CONTEXT_VIEWCODE);
 
     CMenu* pMenu = dummyMenu.GetSubMenu(0);
-    ASSERT(pMenu);
+    PSS_Assert(pMenu);
 
     ClientToScreen(&pt);
     pMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, ::AfxGetMainWnd());

@@ -448,7 +448,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
         if (!followingSymbolCount)
             return true;
 
-        ASSERT(followingNodes.GetSize() > 0);
+        PSS_Assert(followingNodes.GetSize() > 0);
         IODNode* pINode = followingNodes.GetAt(0);
         pSrc = static_cast<CODSymbolComponent*>(pINode);
     }
@@ -473,7 +473,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
         if (!followingSymbolCount)
             return true;
 
-        ASSERT(followingNodes.GetSize() > 0);
+        PSS_Assert(followingNodes.GetSize() > 0);
         IODNode* pINode = followingNodes.GetAt(0);
         pSrc = static_cast<CODSymbolComponent*>(pINode);
     }
@@ -503,7 +503,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
         if (!followingSymbolCount)
             return true;
 
-        ASSERT(followingNodes.GetSize() > 0);
+        PSS_Assert(followingNodes.GetSize() > 0);
         IODNode* pINode = followingNodes.GetAt(0);
         pDst = static_cast<CODSymbolComponent*>(pINode);
     }
@@ -528,7 +528,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
         if (!followingSymbolCount)
             return true;
 
-        ASSERT(followingNodes.GetSize() > 0);
+        PSS_Assert(followingNodes.GetSize() > 0);
         IODNode* pINode = followingNodes.GetAt(0);
         pDst = static_cast<CODSymbolComponent*>(pINode);
     }
@@ -537,7 +537,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
     int  lateralDirection = 0;
 
     PSS_Symbol* pSrcSymbol = dynamic_cast<PSS_Symbol*>(pSrc);
-    ASSERT(pSrcSymbol);
+    PSS_Assert(pSrcSymbol);
 
     // get right edges
     CODEdgeArray      leavingRightEdges;

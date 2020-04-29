@@ -354,7 +354,7 @@ std::string PSS_Encoding::MD5Encode(const std::string& data, std::size_t len)
 //---------------------------------------------------------------------------
 void PSS_Encoding::MD5Init(IMD5Context* pContext)
 {
-    ASSERT(pContext);
+    PSS_Assert(pContext);
 
     pContext->m_Count[0] = pContext->m_Count[1] = 0;
 
@@ -367,7 +367,7 @@ void PSS_Encoding::MD5Init(IMD5Context* pContext)
 //---------------------------------------------------------------------------
 void PSS_Encoding::MD5Update(IMD5Context* pContext, char* pStr, std::size_t len)
 {
-    ASSERT(pContext);
+    PSS_Assert(pContext);
 
     unsigned i, index, partLen;
 
@@ -512,8 +512,8 @@ void PSS_Encoding::MD5Transform(unsigned state[4], char block[64])
 //---------------------------------------------------------------------------
 void PSS_Encoding::MD5Encode(char* pOutput, unsigned* pInput, std::size_t len)
 {
-    ASSERT(pInput);
-    ASSERT(pOutput);
+    PSS_Assert(pInput);
+    PSS_Assert(pOutput);
 
     for (std::size_t i = 0, j = 0; j < len; ++i, j += 4)
     {
@@ -526,8 +526,8 @@ void PSS_Encoding::MD5Encode(char* pOutput, unsigned* pInput, std::size_t len)
 //---------------------------------------------------------------------------
 void PSS_Encoding::MD5Decode(unsigned* pOutput, char* pInput, std::size_t len)
 {
-    ASSERT(pInput);
-    ASSERT(pOutput);
+    PSS_Assert(pInput);
+    PSS_Assert(pOutput);
 
     for (std::size_t i = 0, j = 0; j < len; ++i, j += 4)
     {
@@ -540,8 +540,8 @@ void PSS_Encoding::MD5Decode(unsigned* pOutput, char* pInput, std::size_t len)
 //---------------------------------------------------------------------------
 void PSS_Encoding::MD5MemCpy(char* pOutput, char* pInput, std::size_t len)
 {
-    ASSERT(pInput);
-    ASSERT(pOutput);
+    PSS_Assert(pInput);
+    PSS_Assert(pOutput);
 
     // todo -cImprovement -oJean: Replace "for loop" with standard memcpy if possible
     for (std::size_t i = 0; i < len; ++i)
@@ -550,7 +550,7 @@ void PSS_Encoding::MD5MemCpy(char* pOutput, char* pInput, std::size_t len)
 //---------------------------------------------------------------------------
 void PSS_Encoding::MD5MemSet(char* pOutput, int value, std::size_t len)
 {
-    ASSERT(pOutput);
+    PSS_Assert(pOutput);
 
     // todo -cImprovement -oJean: Replace "for loop" with standard memset if possible
     for (std::size_t i = 0; i < len; ++i)

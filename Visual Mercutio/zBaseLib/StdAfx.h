@@ -83,6 +83,7 @@
 
 // processsoft
 #include "PSS_Constants.h"
+#include "PSS_Macros.h"
 #include "PSS_Defines.h"
 #include "PSS_Messages.h"
 #include "Planfin.hdf"

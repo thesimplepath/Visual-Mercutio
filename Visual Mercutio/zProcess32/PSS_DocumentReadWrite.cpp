@@ -706,7 +706,6 @@ void PSS_DocumentReadWrite::OnFormAttach()
                     return;
 
                 default:
-                    ASSERT(FALSE);
                     break;
             }
         }
@@ -733,7 +732,6 @@ void PSS_DocumentReadWrite::OnPageDelete()
             return;
 
         default:
-            ASSERT(FALSE);
             break;
     }
 
@@ -825,7 +823,6 @@ BOOL PSS_DocumentReadWrite::SaveModified()
             return FALSE;
 
         default:
-            ASSERT(FALSE);
             break;
     }
 

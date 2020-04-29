@@ -160,7 +160,7 @@ void PSS_MvcScrollView::OnInitialUpdate()
 //---------------------------------------------------------------------------
 void PSS_MvcScrollView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 {
-    ASSERT(PSS_DropScrollView::m_nMapMode == MM_TEXT);
+    PSS_Assert(PSS_DropScrollView::m_nMapMode == MM_TEXT);
     MvcWrapper_T<PSS_ProcessGraphModelViewport>::OnPrepareDC(pDC);
 
     // for default printing behavior
@@ -977,7 +977,7 @@ void PSS_ProcessGraphModelView::SetRatio()
     // the overview window shows the entire view in it's borders, so setup the device size to
     // the client size
     m_pOverview->GetClientRect(&clientRect);
-    ASSERT(!clientRect.top && !clientRect.left);
+    PSS_Assert(!clientRect.top && !clientRect.left);
 
     CPoint point;
 

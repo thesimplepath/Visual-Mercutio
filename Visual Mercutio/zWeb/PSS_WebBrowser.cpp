@@ -131,9 +131,9 @@ CString PSS_WebBrowser::BuildResourceToURL(LPCTSTR pURL, HINSTANCE hInstance)
     CString strURL;
 
     if (!hInstance)
-        hInstance = AfxGetResourceHandle();
+        hInstance = ::AfxGetResourceHandle();
 
-    ASSERT(hInstance);
+    PSS_Assert(hInstance);
 
     LPTSTR pModule = NULL;
 

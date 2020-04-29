@@ -405,7 +405,6 @@ void PSS_InputAttributesView::OnAddInputAttribute()
     {
         // allocate a new attribute
         std::unique_ptr<PSS_InputAttribute> pInputAttribute(new PSS_InputAttribute());
-        ASSERT(pInputAttribute.get());
 
         // assign value members
         pInputAttribute->SetCategoryID(dlg.GetCategoryID());

@@ -104,10 +104,7 @@ void PSS_ExtAppProperties::SetCommandTitle(LPCTSTR pValue)
     if (pValue)
         m_CommandTitle = pValue;
     else
-    {
-        TRACE0("Z -> Invalid command title pointer!\n");
-        ASSERT(FALSE);
-    }
+        THROW("Invalid command title pointer");
 }
 //---------------------------------------------------------------------------
 void PSS_ExtAppProperties::SetCommandLine(LPCTSTR pValue)
@@ -115,10 +112,7 @@ void PSS_ExtAppProperties::SetCommandLine(LPCTSTR pValue)
     if (pValue)
         m_CommandLine = pValue;
     else
-    {
-        TRACE0("Z -> Invalid command line pointer!\n");
-        ASSERT(FALSE);
-    }
+        THROW("Invalid command line pointer");
 }
 //---------------------------------------------------------------------------
 void PSS_ExtAppProperties::SetCommandParameters(LPCTSTR pValue)
@@ -126,10 +120,7 @@ void PSS_ExtAppProperties::SetCommandParameters(LPCTSTR pValue)
     if (pValue)
         m_CommandParameters = pValue;
     else
-    {
-        TRACE0("Z -> Invalid command parameters pointer!\n");
-        ASSERT(FALSE);
-    }
+        THROW("Invalid command parameters pointer");
 }
 //---------------------------------------------------------------------------
 void PSS_ExtAppProperties::SetCommandStartupDirectory(LPCTSTR pValue)
@@ -137,10 +128,7 @@ void PSS_ExtAppProperties::SetCommandStartupDirectory(LPCTSTR pValue)
     if (pValue)
         m_CommandStartupDirectory = pValue;
     else
-    {
-        TRACE0("Z -> Invalid command startup directory pointer!\n");
-        ASSERT(FALSE);
-    }
+        THROW("Invalid command startup directory pointer");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ExtAppProperties::GetValue(const int propId, int& value) const

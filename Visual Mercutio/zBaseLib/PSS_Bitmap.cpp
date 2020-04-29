@@ -34,7 +34,7 @@ bool PSS_Bitmap::LoadBitmap(UINT resID)
 //---------------------------------------------------------------------------
 bool PSS_Bitmap::LoadBitmapFromFile(LPCTSTR fileName)
 {
-    ASSERT(fileName);
+    PSS_Assert(fileName);
     DeleteObject();
 
     HBITMAP hBitmap = HBITMAP(LoadImage(NULL,
@@ -109,7 +109,7 @@ bool PSS_Bitmap::LoadDIBSectionFromFile(LPCTSTR pFileName, LPVOID* pPixels, HAND
 //---------------------------------------------------------------------------
 HANDLE PSS_Bitmap::DDBToDIB(DWORD compression, CPalette* pPal)
 {
-    ASSERT(GetSafeHandle());
+    PSS_Assert(GetSafeHandle());
 
     // the function has no arg for bitfields
     if (compression == BI_BITFIELDS)

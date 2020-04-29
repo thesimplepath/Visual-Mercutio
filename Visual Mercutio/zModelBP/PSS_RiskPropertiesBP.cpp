@@ -126,10 +126,7 @@ void PSS_RiskPropertiesBP::SetRiskName(LPCTSTR pValue)
     if (pValue)
         m_RiskName = pValue;
     else
-    {
-        TRACE0("PSS_RiskPropertiesBP - Invalid risk name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_RiskPropertiesBP - Invalid risk name");
 }
 //---------------------------------------------------------------------------
 void PSS_RiskPropertiesBP::SetRiskDesc(LPCTSTR pValue)
@@ -137,10 +134,7 @@ void PSS_RiskPropertiesBP::SetRiskDesc(LPCTSTR pValue)
     if (pValue)
         m_RiskDesc = pValue;
     else
-    {
-        TRACE0("PSS_RiskPropertiesBP - Invalid risk description!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_RiskPropertiesBP - Invalid risk description");
 }
 //---------------------------------------------------------------------------
 void PSS_RiskPropertiesBP::SetRiskType(LPCTSTR pValue)
@@ -148,10 +142,7 @@ void PSS_RiskPropertiesBP::SetRiskType(LPCTSTR pValue)
     if (pValue)
         m_RiskType = pValue;
     else
-    {
-        TRACE0("PSS_RiskPropertiesBP - Invalid risk type!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_RiskPropertiesBP - Invalid risk type");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_RiskPropertiesBP::GetValue(const int propId, int& value) const
@@ -161,7 +152,7 @@ BOOL PSS_RiskPropertiesBP::GetValue(const int propId, int& value) const
         case M_Risk_Impact_ID:      value = m_RiskImpact;      break;
         case M_Risk_Probability_ID: value = m_RiskProbability; break;
         case M_Risk_Severity_ID:    value = m_RiskSeverity;    break;
-        default:                    ASSERT(FALSE);             return FALSE;
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;
@@ -179,8 +170,8 @@ BOOL PSS_RiskPropertiesBP::GetValue(const int propId, UINT& value) const
         case M_Risk_Severity_ID:
         case M_Risk_UE_ID:
         case M_Risk_POA_ID:
-        case M_Risk_Action_ID:      ASSERT(FALSE); return FALSE;
-        default:                    ASSERT(FALSE); return FALSE;
+        case M_Risk_Action_ID:
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;
@@ -198,8 +189,8 @@ BOOL PSS_RiskPropertiesBP::GetValue(const int propId, DWORD& value) const
         case M_Risk_Severity_ID:
         case M_Risk_UE_ID:
         case M_Risk_POA_ID:
-        case M_Risk_Action_ID:      ASSERT(FALSE); return FALSE;
-        default:                    ASSERT(FALSE); return FALSE;
+        case M_Risk_Action_ID:
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;
@@ -211,7 +202,7 @@ BOOL PSS_RiskPropertiesBP::GetValue(const int propId, float& value) const
     {
         case M_Risk_UE_ID:  value = m_RiskUE;  break;
         case M_Risk_POA_ID: value = m_RiskPOA; break;
-        default:            ASSERT(FALSE);     return FALSE;
+        default:            THROW("Unsupported value");
     }
 
     return TRUE;
@@ -222,7 +213,7 @@ BOOL PSS_RiskPropertiesBP::GetValue(const int propId, bool& value) const
     switch (propId)
     {
         case M_Risk_Action_ID: value = m_RiskAction; break;
-        default:               ASSERT(FALSE);        return FALSE;
+        default:               THROW("Unsupported value");
     }
 
     return TRUE;
@@ -235,7 +226,7 @@ BOOL PSS_RiskPropertiesBP::GetValue(const int propId, CString& value) const
         case M_Risk_Name_ID: value = m_RiskName; break;
         case M_Risk_Desc_ID: value = m_RiskDesc; break;
         case M_Risk_Type_ID: value = m_RiskType; break;
-        default:             ASSERT(FALSE);      return FALSE;
+        default:             THROW("Unsupported value");
     }
 
     return TRUE;
@@ -248,7 +239,7 @@ BOOL PSS_RiskPropertiesBP::SetValue(const int propId, const int value)
         case M_Risk_Impact_ID:      m_RiskImpact = value;      break;
         case M_Risk_Probability_ID: m_RiskProbability = value; break;
         case M_Risk_Severity_ID:    m_RiskSeverity = value;    break;
-        default:                    ASSERT(FALSE);             return FALSE;
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;
@@ -266,8 +257,8 @@ BOOL PSS_RiskPropertiesBP::SetValue(const int propId, const UINT value)
         case M_Risk_Severity_ID:
         case M_Risk_UE_ID:
         case M_Risk_POA_ID:
-        case M_Risk_Action_ID:      ASSERT(FALSE); return FALSE;
-        default:                    ASSERT(FALSE); return FALSE;
+        case M_Risk_Action_ID:
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;
@@ -285,8 +276,8 @@ BOOL PSS_RiskPropertiesBP::SetValue(const int propId, const DWORD value)
         case M_Risk_Severity_ID:
         case M_Risk_UE_ID:
         case M_Risk_POA_ID:
-        case M_Risk_Action_ID:      ASSERT(FALSE); return FALSE;
-        default:                    ASSERT(FALSE); return FALSE;
+        case M_Risk_Action_ID:
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;
@@ -298,7 +289,7 @@ BOOL PSS_RiskPropertiesBP::SetValue(const int propId, const float value)
     {
         case M_Risk_UE_ID:  m_RiskUE  = value; break;
         case M_Risk_POA_ID: m_RiskPOA = value; break;
-        default:            ASSERT(FALSE);     return FALSE;
+        default:            THROW("Unsupported value");
     }
 
     return TRUE;
@@ -309,7 +300,7 @@ BOOL PSS_RiskPropertiesBP::SetValue(const int propId, const bool value)
     switch (propId)
     {
         case M_Risk_Action_ID: m_RiskAction = value; break;
-        default:               ASSERT(FALSE);        return FALSE;
+        default:               THROW("Unsupported value");
     }
 
     return TRUE;
@@ -322,7 +313,7 @@ BOOL PSS_RiskPropertiesBP::SetValue(const int propId, LPCTSTR pValue)
         case M_Risk_Name_ID: m_RiskName = pValue; break;
         case M_Risk_Desc_ID: m_RiskDesc = pValue; break;
         case M_Risk_Type_ID: m_RiskType = pValue; break;
-        default:             ASSERT(FALSE);       return FALSE;
+        default:             THROW("Unsupported value");
     }
 
     return TRUE;

@@ -138,7 +138,7 @@ void PSS_PublishModel::AddAttribute(PSS_PropertyAttributes::IAttribute* pAttribu
         return;
 
     PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
-    ASSERT(pPropTemp);
+    PSS_Assert(pPropTemp);
 
     if (!FindAttribute(pAttribute->GetCategoryID(), pAttribute->GetItemID()))
         pPropTemp->GetAttributeSet().Add(pAttribute);
@@ -150,7 +150,7 @@ void PSS_PublishModel::AddAttribute(PSS_PropertyAttributes::IAttribute* pAttribu
 PSS_PropertyAttributes::IAttribute* PSS_PublishModel::FindAttribute(int categoryID, int itemID)
 {
     PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
-    ASSERT(pPropTemp);
+    PSS_Assert(pPropTemp);
 
     PSS_PropertyAttributes::IAttributeIterator it(&(pPropTemp->GetAttributeSet()));
 
@@ -164,7 +164,7 @@ PSS_PropertyAttributes::IAttribute* PSS_PublishModel::FindAttribute(int category
 void PSS_PublishModel::RemoveAllAttributes()
 {
     PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
-    ASSERT(pPropTemp);
+    PSS_Assert(pPropTemp);
 
     PSS_PropertyAttributes::IAttributeIterator it(&(pPropTemp->GetAttributeSet()));
 
@@ -326,7 +326,7 @@ bool PSS_PublishModel::SaveAttributesToIniFile()
     CString     keyName;
 
     PSS_PropertyAttributes* pPropTemp = GetPropAttributes();
-    ASSERT(pPropTemp);
+    PSS_Assert(pPropTemp);
 
     PSS_PropertyAttributes::IAttributeIterator it(&(pPropTemp->GetAttributeSet()));
 

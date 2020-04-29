@@ -91,10 +91,7 @@ void PSS_TextItemListPropertiesBP::SetTextItemList(LPCTSTR pValue)
     if (pValue)
         m_TextItemList = pValue;
     else
-    {
-        TRACE0("PSS_TextItemListPropertiesBP - Invalid decision list!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_TextItemListPropertiesBP - Invalid decision list");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_TextItemListPropertiesBP::GetValue(const int propId, int& value) const

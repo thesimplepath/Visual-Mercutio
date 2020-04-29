@@ -63,8 +63,8 @@ bool PSS_ExtractProcessName::Visit(CODComponent& component)
 //---------------------------------------------------------------------------
 bool PSS_ExtractProcessName::AddProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
-    ASSERT(m_pArray);
+    PSS_Assert(pSymbol);
+    PSS_Assert(m_pArray);
 
     if (!Exist(*m_pArray, pSymbol->GetSymbolName()))
         m_pArray->Add(pSymbol->GetSymbolName());

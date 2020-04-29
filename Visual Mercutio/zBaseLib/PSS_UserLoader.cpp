@@ -26,7 +26,7 @@ const PSS_UserLoader& PSS_UserLoader::operator = (const PSS_UserLoader& other)
 //---------------------------------------------------------------------------
 BOOL PSS_UserLoader::LoadAllUsers()
 {
-    ASSERT(m_pUserManager);
+    PSS_Assert(m_pUserManager);
     m_UserImport.Create(m_FileName, m_pUserManager, FALSE, E_SS_Tab);
 
     return m_UserImport.Import();
@@ -34,19 +34,19 @@ BOOL PSS_UserLoader::LoadAllUsers()
 //---------------------------------------------------------------------------
 BOOL PSS_UserLoader::SaveAllUsers()
 {
-    ASSERT(m_pUserManager);
+    PSS_Assert(m_pUserManager);
     return TRUE;
 }
 //---------------------------------------------------------------------------
 void PSS_UserLoader::AssignUserManager(PSS_UserManager* pUserManager)
 {
-    ASSERT(pUserManager);
+    PSS_Assert(pUserManager);
     m_pUserManager = pUserManager;
 }
 //---------------------------------------------------------------------------
 void PSS_UserLoader::AssignFileName(CString FileName)
 {
-    ASSERT(!FileName.IsEmpty());
+    PSS_Assert(!FileName.IsEmpty());
     m_FileName = FileName;
 }
 //---------------------------------------------------------------------------

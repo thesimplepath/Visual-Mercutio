@@ -47,10 +47,7 @@ void PSS_Prestation::SetName(LPCTSTR pValue)
     if (pValue)
         m_Name = pValue;
     else
-    {
-        TRACE0("PSS_Prestation - Invalid name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_Prestation - Invalid name");
 }
 //---------------------------------------------------------------------------
 CString PSS_Prestation::GetGUID() const
@@ -63,10 +60,7 @@ void PSS_Prestation::SetGUID(LPCTSTR pValue)
     if (pValue)
         m_GUID = pValue;
     else
-    {
-        TRACE0("PSS_Prestation - Invalid GUID!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_Prestation - Invalid GUID");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Prestation::GetValue(int propID, float &value) const

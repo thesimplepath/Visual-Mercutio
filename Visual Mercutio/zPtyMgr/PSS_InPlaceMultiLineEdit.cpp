@@ -403,7 +403,7 @@ int PSS_InPlaceMultiLineEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
     rect.DeflateRect(0, 1);
 
     CWnd* pParent = GetParent();
-    ASSERT(pParent);
+    PSS_Assert(pParent);
 
     CFont* pFont = pParent->GetFont();
     DWORD  style = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;

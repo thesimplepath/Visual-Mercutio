@@ -80,10 +80,10 @@ BOOL PSS_SystemTrayWnd::Create(CWnd* pParent, UINT callbackMessage, LPCTSTR pToo
         return FALSE;
 
     // make sure to avoid conflict with other messages
-    ASSERT(callbackMessage >= WM_USER);
+    PSS_Assert(callbackMessage >= WM_USER);
 
     // tray only supports tooltip text up to 64 characters
-    ASSERT(std::_tcslen(pToolTip) <= 64);
+    PSS_Assert(std::_tcslen(pToolTip) <= 64);
 
     // create an invisible window
     CWnd::CreateEx(0, AfxRegisterWndClass(0), _T(""), WS_POPUP, 0, 0, 10, 10, NULL, 0);
@@ -221,8 +221,8 @@ BOOL PSS_SystemTrayWnd::SetIconList(UINT firstIconID, UINT lastIconID)
         return FALSE;
 
     const UINT     iconArraySize = lastIconID - firstIconID + 1;
-    const CWinApp* pApp          = AfxGetApp();
-    ASSERT(pApp != 0);
+    const CWinApp* pApp          = ::AfxGetApp();
+    PSS_Assert(pApp);
 
     m_IconList.RemoveAll();
 
@@ -356,8 +356,8 @@ BOOL PSS_SystemTrayWnd::SetNotificationWnd(CWnd* pWnd)
     if (!m_Enabled)
         return FALSE;
 
-    // make sure Notification window is valid
-    ASSERT(pWnd && ::IsWindow(pWnd->GetSafeHwnd()));
+    // make sure notification window is valid
+    PSS_Assert(pWnd && ::IsWindow(pWnd->GetSafeHwnd()));
 
     m_NotifyIconData.hWnd   = pWnd->GetSafeHwnd();
     m_NotifyIconData.uFlags = 0;
@@ -436,7 +436,7 @@ void PSS_SystemTrayWnd::Initialise()
 //---------------------------------------------------------------------------
 void PSS_SystemTrayWnd::OnTimer(UINT eventID)
 {
-    ASSERT(eventID == m_EventID);
+    PSS_Assert(eventID == m_EventID);
 
     COleDateTime     currentTime = COleDateTime::GetCurrentTime();
     COleDateTimeSpan period      = currentTime - m_StartTime;

@@ -146,7 +146,6 @@ bool PSS_ProcessGraphModelMdlBP::CheckModelWorkflow(PSS_Log* pLog, BOOL modelIsC
 bool PSS_ProcessGraphModelMdlBP::GenerateModelWorkflow(PSS_Log* pLog, PSS_ProcessGraphModelDoc* pDoc)
 {
     // todo -cFeature -oJean: implement that
-    ASSERT(FALSE);
     return false;
 }
 //---------------------------------------------------------------------------

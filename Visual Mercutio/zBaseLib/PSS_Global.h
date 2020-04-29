@@ -1096,13 +1096,13 @@ CStringArray* PSS_Global::GetArrayYesNo()
 //---------------------------------------------------------------------------
 CString PSS_Global::GetYesFromArrayYesNo()
 {
-    ASSERT(m_ArrayYesNo.GetSize() >= 2);
+    PSS_Assert(m_ArrayYesNo.GetSize() >= 2);
     return m_ArrayYesNo.GetAt(1);
 }
 //---------------------------------------------------------------------------
 CString PSS_Global::GetNoFromArrayYesNo()
 {
-    ASSERT(m_ArrayYesNo.GetSize() >= 2);
+    PSS_Assert(m_ArrayYesNo.GetSize() >= 2);
     return m_ArrayYesNo.GetAt(0);
 }
 //---------------------------------------------------------------------------

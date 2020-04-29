@@ -185,7 +185,7 @@ void PSS_BaseMainFrame::OnReloadBarState(bool reset)
                 LoadBarState(M_Def_SaveWindowStateStr);
 
             SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
-            ASSERT(pToolBarManager);
+            PSS_Assert(pToolBarManager);
 
             if (reset)
                 pToolBarManager->LoadState(_T("Unknown profile"));
@@ -198,7 +198,7 @@ void PSS_BaseMainFrame::OnReloadBarState(bool reset)
     else
     {
         SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
-        ASSERT(pToolBarManager);
+        PSS_Assert(pToolBarManager);
         pToolBarManager->SetDefaultDockState();
     }
 }
@@ -218,7 +218,7 @@ void PSS_BaseMainFrame::OnSaveBarState()
             SaveBarState(M_Def_SaveWindowStateStr);
 
             SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
-            ASSERT(pToolBarManager);
+            PSS_Assert(pToolBarManager);
             pToolBarManager->SaveState(M_Def_SaveWindowStateStr);
         }
     }
@@ -242,7 +242,7 @@ void PSS_BaseMainFrame::LoadMenuBar(UINT menuID)
     if (m_pMenuBar && m_pControlBarManager)
     {
         SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
-        ASSERT(pToolBarManager);
+        PSS_Assert(pToolBarManager);
         pToolBarManager->SetMenuInfo(1, menuID);
     }
 }
@@ -314,7 +314,7 @@ int PSS_BaseMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     // if you are going immediately use LoadBarState/LoadState below,
     // as these functions will call it anyways on nonexistant state info
     SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
-    ASSERT(pToolBarManager);
+    PSS_Assert(pToolBarManager);
 
     pToolBarManager->EnableCoolLook();
 

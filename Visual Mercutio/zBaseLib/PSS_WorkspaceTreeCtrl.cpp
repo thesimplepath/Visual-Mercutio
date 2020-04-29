@@ -259,7 +259,7 @@ void PSS_WorkspaceTreeCtrl::OnWksNewGroup()
     // if a group selected
     if (pGroup)
     {
-        ASSERT(m_pWorkspaceEnv);
+        PSS_Assert(m_pWorkspaceEnv);
 
         // ask for the name
         PSS_WorkspaceGroupNameDlg dlg(pGroup);
@@ -291,7 +291,7 @@ void PSS_WorkspaceTreeCtrl::OnWksDeleteGroup()
 
     if (pGroup)
     {
-        ASSERT(m_pWorkspaceEnv);
+        PSS_Assert(m_pWorkspaceEnv);
 
         // remove group from the workspace
         m_pWorkspaceEnv->RemoveGroup(pGroup);
@@ -313,7 +313,7 @@ void PSS_WorkspaceTreeCtrl::OnWksRenameGroup()
 
     if (pGroup)
     {
-        ASSERT(m_pWorkspaceEnv);
+        PSS_Assert(m_pWorkspaceEnv);
 
         PSS_WorkspaceRenameGroupNameDlg dlg(pGroup->GetEntityName(), dynamic_cast<PSS_WorkspaceGroupEntity*>(pGroup->GetParent()));
 
@@ -349,7 +349,7 @@ void PSS_WorkspaceTreeCtrl::OnWksAddFile()
 
         if (fileDialog.DoModal() == IDOK)
         {
-            ASSERT(m_pWorkspaceEnv);
+            PSS_Assert(m_pWorkspaceEnv);
 
             // if the root is selected, use add file to project for inserting the file at the best place
             if (IsRootSelected())
@@ -375,7 +375,7 @@ void PSS_WorkspaceTreeCtrl::OnWksDeleteFile()
 
     if (pFile)
     {
-        ASSERT(m_pWorkspaceEnv);
+        PSS_Assert(m_pWorkspaceEnv);
 
         // remove file from the workspace
         m_pWorkspaceEnv->RemoveFile(pFile);
@@ -394,7 +394,7 @@ void PSS_WorkspaceTreeCtrl::OnWksOpenFile()
     {
         GetSelectedFile()->OpenFile();
 
-        ASSERT(m_pWorkspaceEnv);
+        PSS_Assert(m_pWorkspaceEnv);
 
         // modified
         m_pWorkspaceEnv->SetModifiedFlag();
@@ -419,7 +419,7 @@ void PSS_WorkspaceTreeCtrl::OnAddFileToProject(const CString& fileName)
 
     if (pGroup)
     {
-        ASSERT(m_pWorkspaceEnv);
+        PSS_Assert(m_pWorkspaceEnv);
 
         // add file to the workspace
         PSS_WorkspaceFileEntity* pFile = m_pWorkspaceEnv->AddFile(fileName, pGroup);
@@ -483,7 +483,7 @@ void PSS_WorkspaceTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
         return;
 
     CMenu* pPopup = m_SubMenu.GetSubMenu(menuID);
-    ASSERT(pPopup);
+    PSS_Assert(pPopup);
 
     CWnd* pWndPopupOwner = this;
 

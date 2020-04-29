@@ -67,9 +67,7 @@ void PSS_SpanView::AssignSpanWnd(PSS_SpanWnd* pWnd)
     m_pOverview = pWnd;
 
     if (pWnd)
-    {
-        ASSERT(m_pOverview);
-    }
+        PSS_Assert(m_pOverview);
 
     if (m_pOverview)
     {
@@ -81,25 +79,32 @@ void PSS_SpanView::AssignSpanWnd(PSS_SpanWnd* pWnd)
 //---------------------------------------------------------------------------
 void PSS_SpanView::SetPanMode(IEPanMode mode)
 {
-    ASSERT(mode != IE_PM_Delay || mode != IE_PM_Instant);
+    PSS_Assert(mode != IE_PM_Delay || mode != IE_PM_Instant);
 
     m_PanMode = mode;
 }
 //---------------------------------------------------------------------------
 void PSS_SpanView::StartPan(CPoint* pPanPoint, UINT cursorID)
 {
-    ASSERT(pPanPoint);
+    PSS_Assert(pPanPoint);
     ASSERT_VALID(this);
 
     m_Panning = TRUE;
 
+    CWinApp* pApp = ::AfxGetApp();
+
     // change the cursor
-    m_CursorID    = cursorID;
-    m_hDragCursor = AfxGetApp()->LoadCursor(m_CursorID);
+    if (pApp)
+    {
+        m_CursorID = cursorID;
+        m_hDragCursor = pApp->LoadCursor(m_CursorID);
+    }
+    else
+        m_hDragCursor = NULL;
 
     // on assertion, there's a problem with the resource setup in the DLL/LIB.
     // Be sure to follow what the SEC samples are doing
-    ASSERT(m_hDragCursor);
+    PSS_Assert(m_hDragCursor);
 
     OnSetCursor(NULL, HTCLIENT, 0);
 
@@ -110,7 +115,7 @@ void PSS_SpanView::StartPan(CPoint* pPanPoint, UINT cursorID)
 //---------------------------------------------------------------------------
 void PSS_SpanView::ContinuePan(CPoint* pPanPoint)
 {
-    ASSERT(m_Panning);
+    PSS_Assert(m_Panning);
 
     // move the pan rectangle to reflect the new panning
     if (m_PanMode == IE_PM_Instant)
@@ -122,7 +127,7 @@ void PSS_SpanView::ContinuePan(CPoint* pPanPoint)
 //---------------------------------------------------------------------------
 void PSS_SpanView::EndPan(CPoint* pPanPoint)
 {
-    ASSERT(m_Panning);
+    PSS_Assert(m_Panning);
 
     ReleaseCapture();
 
@@ -175,7 +180,7 @@ CPoint PSS_SpanView::GetLogicalCenterPoint()
 //---------------------------------------------------------------------------
 void PSS_SpanView::ViewDPtoLP(LPPOINT pPoints, int count)
 {
-    ASSERT(m_nMapMode > 0);
+    PSS_Assert(m_nMapMode > 0);
 
     // convert to logical units. Called from view when no DC is available
     CWindowDC dc(this);
@@ -186,7 +191,7 @@ void PSS_SpanView::ViewDPtoLP(LPPOINT pPoints, int count)
 void PSS_SpanView::ViewLPtoDP(LPPOINT pPoints, int count)
 {
     // convert to logical units. Called from view when no DC is available
-    ASSERT(m_nMapMode > 0);
+    PSS_Assert(m_nMapMode > 0);
 
     CWindowDC dc(this);
     OnPrepareDC(&dc);
@@ -337,7 +342,7 @@ void PSS_SpanView::UpdateOverviewRect()
 //---------------------------------------------------------------------------
 void PSS_SpanView::PreOverview()
 {
-    ASSERT(m_pOverview);
+    PSS_Assert(m_pOverview);
 
     CPoint pt;
     CRect  clientRect;
@@ -354,7 +359,7 @@ void PSS_SpanView::PreOverview()
     // the overview window shows the entire view in it's borders, so setup the device size to the client size
     m_pOverview->GetClientRect(&clientRect);
 
-    ASSERT(!clientRect.top && !clientRect.left);
+    PSS_Assert(!clientRect.top && !clientRect.left);
     m_totalDev.cx = clientRect.right;
     m_totalDev.cy = clientRect.bottom;
 
@@ -381,7 +386,7 @@ void PSS_SpanView::OverviewDestroyed()
 void PSS_SpanView::UpdatePanViewport(CPoint* pNewLog)
 {
     ASSERT_VALID(this);
-    ASSERT(pNewLog);
+    PSS_Assert(pNewLog);
 
     PerformPan(pNewLog, TRUE);
 }

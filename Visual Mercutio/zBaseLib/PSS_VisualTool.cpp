@@ -121,7 +121,7 @@ void PSS_VisualToolEdit::OnLButtonDown(PSS_View* pView, UINT flags, const CPoint
     pView->ClientToDoc(local);
 
     PSS_Document* pDoc = pView->GetDocument();
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     PSS_PlanFinObject* pObj;
 
@@ -214,7 +214,7 @@ void PSS_VisualToolEdit::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& 
         if (PSS_Global::ShowAnimation())
         {
             PSS_Document* pDoc = pView->GetDocument();
-            ASSERT(pDoc);
+            PSS_Assert(pDoc);
 
             PSS_PlanFinObject* pObj;
 
@@ -361,7 +361,7 @@ void PSS_VisualToolObjectCreator::OnLButtonUp(PSS_View* pView, UINT flags, const
         }
 
         PSS_Document* pDoc = pView->GetDocument();
-        ASSERT(pDoc);
+        PSS_Assert(pDoc);
 
         // the position have changed
         pDoc->SetModifiedFlag(TRUE);

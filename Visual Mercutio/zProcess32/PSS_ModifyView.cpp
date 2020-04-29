@@ -162,7 +162,7 @@ void PSS_ModifyView::EditObject(PSS_PlanFinObject* pObj)
         return;
 
     CDC* pDC = GetDC();
-    ASSERT(pDC);
+    PSS_Assert(pDC);
 
     OnPrepareDC(pDC);
     DeselectAllObject(this, pDC, pDocument);
@@ -362,7 +362,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             return;
 
         PSS_DocumentReadWrite* pDoc = dynamic_cast<PSS_DocumentReadWrite*>(pDocument);
-        ASSERT(pDoc);
+        PSS_Assert(pDoc);
 
         PSS_PlanFinObject* pObj = pDocument->GetSelectedObject();
 
@@ -501,7 +501,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         PSS_PlanFinObject*     pNextEditObj          = NULL;
         double                 currentEditedTabOrder = pObj->GetTabOrder();
         PSS_DocumentReadWrite* pDoc                  = dynamic_cast<PSS_DocumentReadWrite*>(pDocument);
-        ASSERT(pDoc);
+        PSS_Assert(pDoc);
 
         if (!pDoc->GetEditedObject() || !pObj)
             return 1;
@@ -557,7 +557,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         {
             // translate the point in logical coordinates
             CDC* pDC = GetDC();
-            ASSERT(pDC);
+            PSS_Assert(pDC);
             OnPrepareDC(pDC);
 
             // save the pointer to the object, to be able to remove the flag later
@@ -1044,7 +1044,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             {
                 // translate the point in logical coordinates
                 CDC* pDC = GetDC();
-                ASSERT(pDC);
+                PSS_Assert(pDC);
                 OnPrepareDC(pDC);
 
                 pObj->SelectObject(this, pDC, FALSE);
@@ -1066,7 +1066,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             return;
 
         CDC* pDC = GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
         OnPrepareDC(pDC);
 
         DeselectAllObject(this, pDC, pDocument);
@@ -1094,7 +1094,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         // translate the point in logical coordinates
         CDC* pDC = GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
         OnPrepareDC(pDC);
         pDC->DPtoLP(pPoint);
 
@@ -1133,7 +1133,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         // translate the point in logical coordinates
         CDC* pDC = GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
         OnPrepareDC(pDC);
 
         PSS_FieldObserverMsg msg(UM_NOTIFY_POINTEROBJSELECTED, m_pOldPointerSelectedObj);
@@ -1172,11 +1172,11 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             return;
 
         CDC* pDC = GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
         OnPrepareDC(pDC);
 
         PSS_Document* pDoc = pDocument;
-        ASSERT(pDoc);
+        PSS_Assert(pDoc);
 
         PSS_PlanFinObject* pObj;
 
@@ -1917,7 +1917,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             return;
 
         PSS_DocumentReadWrite* pDoc = dynamic_cast<PSS_DocumentReadWrite*>(pDocument);
-        ASSERT(pDoc);
+        PSS_Assert(pDoc);
 
         PSS_PlanFinObject* pObj = pDocument->GetSelectedObject();
 

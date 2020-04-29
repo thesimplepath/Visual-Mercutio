@@ -171,19 +171,17 @@ bool PSS_CalculateRisks::Visit(CODComponent& component)
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckDoorSymbol(PSS_DoorSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
     return true;
 }
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
     return true;
 }
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     CString   riskLevel;
     CString   message;
@@ -270,7 +268,7 @@ bool PSS_CalculateRisks::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     CString   riskLevel;
     CString   message;
@@ -357,7 +355,7 @@ bool PSS_CalculateRisks::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     CString   riskLevel;
     CString   message;
@@ -444,7 +442,7 @@ bool PSS_CalculateRisks::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     CString   riskLevel;
     CString   message;
@@ -531,7 +529,7 @@ bool PSS_CalculateRisks::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     CString   riskLevel;
     CString   message;
@@ -618,13 +616,11 @@ bool PSS_CalculateRisks::CheckDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP*
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckSymbol(PSS_Symbol* pSymbol)
 {
-    ASSERT(pSymbol);
     return true;
 }
 //---------------------------------------------------------------------------
 bool PSS_CalculateRisks::CheckLink(PSS_LinkSymbol* pLink)
 {
-    ASSERT(pLink);
     return true;
 }
 //---------------------------------------------------------------------------

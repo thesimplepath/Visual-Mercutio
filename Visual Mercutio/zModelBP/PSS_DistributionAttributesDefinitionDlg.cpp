@@ -213,7 +213,7 @@ void PSS_DistributionAttributesDefinitionDlg::OnAddruleButton()
         return;
     }
 
-    ASSERT(m_pDistributionAttr);
+    PSS_Assert(m_pDistributionAttr);
 
     PSS_DistributionRuleDefDlg dlg;
 

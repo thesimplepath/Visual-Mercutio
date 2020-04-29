@@ -67,17 +67,12 @@ void PSS_OutlookSplitterWnd::OnDrawSplitter(CDC* pDC, ESplitType nType, const CR
             return;
 
         case splitIntersection:
-            break;
-
         case splitBox:
-            break;
-
         case splitBar:
             break;
 
         default:
-            // unknown splitter type
-            ASSERT(FALSE);
+            THROW("unknown splitter type");
     }
 
     // fill the middle

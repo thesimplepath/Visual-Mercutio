@@ -96,10 +96,7 @@ void PSS_CombinationPropertiesBP::SetCombinationName(LPCTSTR pValue)
     if (pValue)
         m_CombinationName = pValue;
     else
-    {
-        TRACE0("PSS_CombinationPropertiesBP - Invalid combination name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_CombinationPropertiesBP - Invalid combination name");
 }
 //---------------------------------------------------------------------------
 void PSS_CombinationPropertiesBP::SetCombinationDeliverables(LPCTSTR pValue)
@@ -107,10 +104,7 @@ void PSS_CombinationPropertiesBP::SetCombinationDeliverables(LPCTSTR pValue)
     if (pValue)
         m_CombinationDeliverables = pValue;
     else
-    {
-        TRACE0("PSS_CombinationPropertiesBP - Invalid combination deliverable list!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_CombinationPropertiesBP - Invalid combination deliverable list");
 }
 //---------------------------------------------------------------------------
 bool PSS_CombinationPropertiesBP::IsDeliverableInCombination(LPCTSTR pValue)
@@ -141,10 +135,7 @@ void PSS_CombinationPropertiesBP::SetCombinationMaster(LPCTSTR pValue)
     if (pValue)
         m_CombinationMaster = pValue;
     else
-    {
-        TRACE0("PSS_CombinationPropertiesBP - Invalid Combination master name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_CombinationPropertiesBP - Invalid Combination master name");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, int& value) const
@@ -154,8 +145,8 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, int& value) const
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
         case M_Combination_Activation_Perc_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
-        default:                                              return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
+        default:                               return FALSE;
     }
 
     return TRUE;
@@ -168,8 +159,8 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, UINT& value) const
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
         case M_Combination_Activation_Perc_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
-        default:                                              return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
+        default:                               return FALSE;
     }
 
     return TRUE;
@@ -182,8 +173,8 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, DWORD& value) const
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
         case M_Combination_Activation_Perc_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
-        default:                                              return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
+        default:                               return FALSE;
     }
 
     return TRUE;
@@ -195,7 +186,7 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, float& value) const
     {
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE);                       return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
         case M_Combination_Activation_Perc_ID: value = m_CombinationActivationPerc; break;
         default:                                                                    return FALSE;
     }
@@ -210,7 +201,7 @@ BOOL PSS_CombinationPropertiesBP::GetValue(const int propId, CString& value) con
         case M_Combination_Name_ID:         value = m_CombinationName;         break;
         case M_Combination_Deliverables_ID: value = m_CombinationDeliverables; break;
         case M_Combination_Master_ID:       value = m_CombinationMaster;       break;
-        default:                            ASSERT(FALSE);                     return FALSE;
+        default:                            THROW("Unsupported value");
     }
 
     return TRUE;
@@ -223,8 +214,8 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const int value)
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
         case M_Combination_Activation_Perc_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
-        default:                                              return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
+        default:                               return FALSE;
     }
 
     return TRUE;
@@ -237,8 +228,8 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const UINT value)
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
         case M_Combination_Activation_Perc_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
-        default:                                              return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
+        default:                               return FALSE;
     }
 
     return TRUE;
@@ -251,8 +242,8 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const DWORD value)
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
         case M_Combination_Activation_Perc_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE); return FALSE;
-        default:                                              return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
+        default:                               return FALSE;
     }
 
     return TRUE;
@@ -264,7 +255,7 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, const float value)
     {
         case M_Combination_Name_ID:
         case M_Combination_Deliverables_ID:
-        case M_Combination_Master_ID:          ASSERT(FALSE);                       return FALSE;
+        case M_Combination_Master_ID:          THROW("Unsupported value");
         case M_Combination_Activation_Perc_ID: m_CombinationActivationPerc = value; break;
         default:                                                                    return FALSE;
     }
@@ -282,7 +273,7 @@ BOOL PSS_CombinationPropertiesBP::SetValue(const int propId, LPCTSTR pValue)
         case M_Combination_Name_ID:         m_CombinationName         = pValue; break;
         case M_Combination_Deliverables_ID: m_CombinationDeliverables = pValue; break;
         case M_Combination_Master_ID:       m_CombinationMaster       = pValue; break;
-        default:                            ASSERT(FALSE);                      return FALSE;
+        default:                            THROW("Unsupported value");
     }
 
     return TRUE;

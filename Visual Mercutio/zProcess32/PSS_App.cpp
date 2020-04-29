@@ -445,7 +445,7 @@ CDocument* PSS_App::OpenWorkspaceFile(LPCSTR pFileName)
 //---------------------------------------------------------------------------
 void PSS_App::SaveWorkspaceFile(LPCSTR pFileName)
 {
-    ASSERT(m_pWorkspaceEnvDocument);
+    PSS_Assert(m_pWorkspaceEnvDocument);
 
     // save the workspace document
     m_pWorkspaceEnvDocument->SaveToFile(pFileName);
@@ -671,7 +671,7 @@ bool PSS_App::SaveCurrentWorkspace()
 
     if (WorkspaceEnvironmentExist() && IsWorkspaceEnvironmentLoaded())
     {
-        ASSERT(m_pWorkspaceEnvDocument);
+        PSS_Assert(m_pWorkspaceEnvDocument);
 
         // set the loaded files
         if (GetCurrentWorkspaceEnvironment())
@@ -756,12 +756,13 @@ BOOL PSS_App::LoadProbabilityRiskFile()
 //---------------------------------------------------------------------------
 PSS_ProcessGraphModelDoc* PSS_App::FileNewModel()
 {
-    ASSERT(PSS_Global::GetProcessModelDocumentTemplate());
+    PSS_ProcessModelDocTmpl* pModelDocTmpl = PSS_Global::GetProcessModelDocumentTemplate();
+    PSS_Assert(pModelDocTmpl);
 
     CWaitCursor cursor;
 
     PSS_ProcessGraphModelDoc* pNewFile =
-            dynamic_cast<PSS_ProcessGraphModelDoc*>(PSS_Global::GetProcessModelDocumentTemplate()->OpenDocumentFile(NULL));
+            dynamic_cast<PSS_ProcessGraphModelDoc*>(pModelDocTmpl->OpenDocumentFile(NULL));
 
     if (!pNewFile)
     {
@@ -1029,7 +1030,8 @@ void PSS_App::OnFileNewModel()
 //---------------------------------------------------------------------------
 void PSS_App::OnFileOpenModel()
 {
-    ASSERT(PSS_Global::GetProcessModelDocumentTemplate() != NULL);
+    PSS_ProcessModelDocTmpl* pModelDocTmpl = PSS_Global::GetProcessModelDocumentTemplate();
+    PSS_Assert(pModelDocTmpl);
 
     // prompt the user (with all document templates)
     CString       newName;
@@ -1040,7 +1042,7 @@ void PSS_App::OnFileOpenModel()
                           AFX_IDS_OPENFILE,
                           OFN_HIDEREADONLY | OFN_FILEMUSTEXIST,
                           TRUE,
-                          PSS_Global::GetProcessModelDocumentTemplate()))
+                          pModelDocTmpl))
         // open cancelled
         return;
 
@@ -1344,7 +1346,6 @@ void PSS_App::OnFileOpen()
 //---------------------------------------------------------------------------
 void PSS_App::OnProcessFileOpen()
 {
-    ASSERT(FALSE);
     return;
 }
 //---------------------------------------------------------------------------
@@ -2436,8 +2437,6 @@ void PSS_App::OnUpdateRuleProperties(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateCheckReport()
 {
-    ASSERT(PSS_Global::GetReportDocumentTemplate());
-
     LogStartTime();
 
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
@@ -2512,8 +2511,6 @@ void PSS_App::OnUpdateGenerateCheckReport(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateMercutioReport()
 {
-    ASSERT(PSS_Global::GetReportDocumentTemplate());
-
     LogStartTime();
 
     CWaitCursor cursor;
@@ -2634,8 +2631,6 @@ void PSS_App::OnUpdateGenerateMercutioReport(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateConceptorReport()
 {
-    ASSERT(PSS_Global::GetReportDocumentTemplate());
-
     LogStartTime();
 
     CWaitCursor cursor;
@@ -2730,8 +2725,6 @@ void PSS_App::OnUpdateGenerateConceptorReport(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateSesterceReport()
 {
-    ASSERT(PSS_Global::GetReportDocumentTemplate());
-
     LogStartTime();
 
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
@@ -2811,8 +2804,6 @@ void PSS_App::OnUpdateGenerateSesterceReport(CCmdUI* pCmdUI)
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateSesterceUnitReport()
 {
-    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
-
     LogStartTime();
 
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
@@ -2883,8 +2874,6 @@ void PSS_App::OnGenerateSesterceUnitReport()
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateSesterceConsolidatedReport()
 {
-    ASSERT(PSS_Global::GetReportDocumentTemplate());
-
     LogStartTime();
 
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
@@ -2955,8 +2944,6 @@ void PSS_App::OnGenerateSesterceConsolidatedReport()
 //---------------------------------------------------------------------------
 void PSS_App::OnGeneratePrestationsReport()
 {
-    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
-
     LogStartTime();
 
     PSS_ProcessGraphModelDoc* pCurrentDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
@@ -3571,7 +3558,6 @@ BOOL PSS_App::PostInitApp()
 
     // initialize the workspace template manager. It's processed manually since a template manager tool is written
     m_pWorkspaceTemplateManager = new PSS_WorkspaceWizardTemplateManager();
-    ASSERT(m_pWorkspaceTemplateManager);
 
     std::unique_ptr<PSS_WorkspaceWizardTemplateItem> pTmpItem0
             (new PSS_WorkspaceWizardTemplateItem(_T("Projet vide"),
@@ -4025,7 +4011,7 @@ bool PSS_App::OnRegisterAdditionalTemplate()
 //---------------------------------------------------------------------------
 void PSS_App::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
 {
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     PSS_ProcessGraphModelDoc* pProcessGraphMdlDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pDoc);
 

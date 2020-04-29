@@ -1012,7 +1012,7 @@ BOOL PSS_MainApp::IsCapturedCursorValid(const CPoint& point, PSS_View* pView)
 void PSS_MainApp::GetDocumentList(CObList& docList) const
 {
     #ifdef _WIN32
-        ASSERT(docList.IsEmpty());
+        PSS_Assert(docList.IsEmpty());
         POSITION pPos = GetFirstDocTemplatePosition();
 
         while (pPos)
@@ -1321,7 +1321,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
                 fileTypeName = fileTypeId;
 
             // no spaces allowed
-            ASSERT(fileTypeId.Find(' ') == -1);
+            PSS_Assert(fileTypeId.Find(' ') == -1);
 
             // register the server type ID
             if (!SetRegKey(fileTypeId, fileTypeName))
@@ -1408,7 +1408,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
 
             if (!filterExt.IsEmpty())
             {
-                ASSERT(filterExt[0] == '.');
+                PSS_Assert(filterExt[0] == '.');
 
                 LONG       size   = _MAX_PATH * 2;
                 const LONG result = ::RegQueryValue(HKEY_CLASSES_ROOT, filterExt, tempStr.GetBuffer(size), &size);
@@ -1500,7 +1500,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
                 fileTypeName = fileTypeId;
 
             // no spaces allowed
-            ASSERT(fileTypeId.Find(' ') == -1);
+            PSS_Assert(fileTypeId.Find(' ') == -1);
 
             // register the server type ID
             if (!SetRegKey(fileTypeId, fileTypeName))
@@ -1587,7 +1587,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
 
             if (!filterExt.IsEmpty())
             {
-                ASSERT(filterExt[0] == '.');
+                PSS_Assert(filterExt[0] == '.');
 
                 LONG       size   = _MAX_PATH * 2;
                 const LONG result = ::RegQueryValue(HKEY_CLASSES_ROOT, filterExt, tempStr.GetBuffer(size), &size);
@@ -1613,7 +1613,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
 //---------------------------------------------------------------------------
 void PSS_MainApp::EnableShellOpen()
 {
-    ASSERT(!m_atomApp && !m_atomSystemTopic);
+    PSS_Assert(!m_atomApp && !m_atomSystemTopic);
 
     TCHAR longPathName[_MAX_PATH];
     ::GetModuleFileName(m_hInstance, longPathName, _MAX_PATH);
@@ -1728,7 +1728,6 @@ BOOL PSS_MainApp::DoPromptFileName(const CString& fileName,
 void PSS_MainApp::AppendFilterSuffix(CString& filter, OPENFILENAME& ofn, CDocTemplate* pTemplate, CString* pDefaultExt)
 {
     ASSERT_VALID(pTemplate);
-    ASSERT(pTemplate->IsKindOf(RUNTIME_CLASS(CDocTemplate)));
 
     CString filterExt;
     CString filterName;
@@ -1739,7 +1738,7 @@ void PSS_MainApp::AppendFilterSuffix(CString& filter, OPENFILENAME& ofn, CDocTem
         !filterName.IsEmpty())
     {
         // a file based document template, add it to filter list
-        ASSERT(filterExt[0] == '.');
+        PSS_Assert(filterExt[0] == '.');
 
         if (pDefaultExt)
         {
@@ -1751,7 +1750,7 @@ void PSS_MainApp::AppendFilterSuffix(CString& filter, OPENFILENAME& ofn, CDocTem
 
         // add to filter. NOTE must have a file type name
         filter += filterName;
-        ASSERT(!filter.IsEmpty());
+        PSS_Assert(!filter.IsEmpty());
         filter += (char)'\0';
         filter += _T("*") + filterExt;
         filter += (char)'\0';

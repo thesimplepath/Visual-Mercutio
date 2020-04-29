@@ -310,7 +310,7 @@ void PSS_SymbolAttributesTreeCtrl::EmptyDataSet()
 //---------------------------------------------------------------------------
 bool PSS_SymbolAttributesTreeCtrl::ProcessProperty(PSS_Property* pProp)
 {
-    ASSERT(pProp);
+    PSS_Assert(pProp);
 
     bool result = true;
 
@@ -332,7 +332,7 @@ bool PSS_SymbolAttributesTreeCtrl::ProcessProperty(PSS_Property* pProp)
 //---------------------------------------------------------------------------
 HTREEITEM PSS_SymbolAttributesTreeCtrl::GetParentProperty(PSS_Property* pProp)
 {
-    ASSERT(pProp);
+    PSS_Assert(pProp);
 
     HTREEITEM hTreeItem = NULL;
 
@@ -347,7 +347,7 @@ HTREEITEM PSS_SymbolAttributesTreeCtrl::GetParentProperty(PSS_Property* pProp)
 //---------------------------------------------------------------------------
 void PSS_SymbolAttributesTreeCtrl::CheckAttribute(PSS_PropertyAttributes::IAttribute* pAttribute)
 {
-    ASSERT(pAttribute);
+    PSS_Assert(pAttribute);
 
     HTREEITEM hTreeItem = NULL;
 

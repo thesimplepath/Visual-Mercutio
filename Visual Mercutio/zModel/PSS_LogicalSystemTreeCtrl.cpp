@@ -198,7 +198,7 @@ void PSS_LogicalSystemTreeCtrl::OnNewLogicalSystem()
     // if a group selected
     if (pLogicalSystem)
     {
-        ASSERT(m_pLogicalSystemRoot);
+        PSS_Assert(m_pLogicalSystemRoot);
 
         // asks for the name
         PSS_LogicalSystemInfoDlg dlg(IDS_NEW_LOGICALSYSTEM_T, pLogicalSystem);
@@ -230,7 +230,7 @@ void PSS_LogicalSystemTreeCtrl::OnDeleteLogicalSystem()
 
     if (pLogicalSystem && pLogicalSystem != m_pLogicalSystemRoot)
     {
-        ASSERT(m_pLogicalSystemRoot);
+        PSS_Assert(m_pLogicalSystemRoot);
 
         // remove system from the workspace
         m_pLogicalSystemRoot->RemoveSystem(pLogicalSystem);
@@ -252,7 +252,7 @@ void PSS_LogicalSystemTreeCtrl::OnRenameLogicalSystem()
 
     if (pLogicalSystem)
     {
-        ASSERT(m_pLogicalSystemRoot);
+        PSS_Assert(m_pLogicalSystemRoot);
 
         PSS_LogicalSystemEntity* pParent = dynamic_cast<PSS_LogicalSystemEntity*>(pLogicalSystem->GetParent());
 
@@ -281,7 +281,7 @@ void PSS_LogicalSystemTreeCtrl::OnMoveLogicalSystem()
 
     if (pSystem)
     {
-        ASSERT(m_pLogicalSystemRoot);
+        PSS_Assert(m_pLogicalSystemRoot);
 
         PSS_SelectLogicalSystemDlg dlg(IDS_LGS_MOVE_T, m_pLogicalSystemRoot);
 
@@ -312,7 +312,7 @@ void PSS_LogicalSystemTreeCtrl::OnLogicalSystemProperties()
     if (pEntity)
     {
         PSS_LogicalSystemEntity* pLogicalSystem = GetSelectedLogicalSystem();
-        ASSERT(m_pLogicalSystemRoot);
+        PSS_Assert(m_pLogicalSystemRoot);
 
         PSS_LogicalSystemEntity* pParent = dynamic_cast<PSS_LogicalSystemEntity*>(pEntity->GetParent());
 
@@ -407,7 +407,7 @@ void PSS_LogicalSystemTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
         return;
 
     CMenu* pPopup = m_SubMenu.GetSubMenu(idMenu);
-    ASSERT(pPopup);
+    PSS_Assert(pPopup);
 
     CWnd* pWndPopupOwner = this;
 

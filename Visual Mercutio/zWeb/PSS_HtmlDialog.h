@@ -123,8 +123,8 @@ class AFX_EXT_CLASS PSS_HtmlDialog
 //---------------------------------------------------------------------------
 void PSS_HtmlDialog::ResourceToURL(LPCTSTR pURL)
 {
-    HINSTANCE hInstance = AfxGetResourceHandle();
-    ASSERT(hInstance);
+    HINSTANCE hInstance = ::AfxGetResourceHandle();
+    PSS_Assert(hInstance);
 
     LPTSTR pModule = new TCHAR[_MAX_PATH];
 

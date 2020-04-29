@@ -513,7 +513,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
     if (!UseDynamicArea())
         return;
 
-    ASSERT(m_pSymbol);
+    PSS_Assert(m_pSymbol);
 
     CODComponent* pSymComp = dynamic_cast<CODComponent*>(m_pSymbol);
 
@@ -636,7 +636,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the splitter
                     CODComponentPosition* pPosition = pSplitter1->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcSplitter1 = pPosition->GetBounds();
                     rcSplitter1.left  = rect.left + g_SplitterLineSpaceFromBorder;
@@ -693,7 +693,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move in absolute coordinates
                     CODComponentPosition* pPosition = pTextName->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcTextBox = pPosition->GetBounds();
                     rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -743,7 +743,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move in absolute coordinates
                     CODComponentPosition* pPosition = pTextComment->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcTextBox = pPosition->GetBounds();
                     rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -829,7 +829,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move in absolute coordinates
                     CODComponentPosition* pPosition = pSplitter2->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcSplitter2 = pPosition->GetBounds();
                     rcSplitter2.left  = rect.left + g_SplitterLineSpaceFromBorder;
@@ -888,7 +888,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move in absolute coordinates
                     CODComponentPosition* pPosition = pTextAttribute->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcTextBox = pPosition->GetBounds();
                     rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -976,7 +976,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move in absolute coordinates
                     CODComponentPosition* pPosition = pSplitter1->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcSplitter1 = pPosition->GetBounds();
                     rcSplitter1.left  = rect.left + g_SplitterLineSpaceFromBorder;
@@ -1046,7 +1046,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in absolute coordinates
                             CODComponentPosition* pPosition = pTextName->GetPosition();
-                            ASSERT(pPosition);
+                            PSS_Assert(pPosition);
 
                             CRect rcTextBox = pPosition->GetBounds();
                             rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1091,7 +1091,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in absolute coordinates
                             CODComponentPosition* pPosition = pTextName->GetPosition();
-                            ASSERT(pPosition);
+                            PSS_Assert(pPosition);
 
                             CRect rcTextBox  = pPosition->GetBounds();
                             rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1154,7 +1154,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in absolute coordinates
                             CODComponentPosition* pPosition = pTextComment->GetPosition();
-                            ASSERT(pPosition);
+                            PSS_Assert(pPosition);
 
                             CRect rcTextBox = pPosition->GetBounds();
                             rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1212,7 +1212,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in absolute coordinates
                             CODComponentPosition* pPosition = pTextComment->GetPosition();
-                            ASSERT(pPosition);
+                            PSS_Assert(pPosition);
 
                             CRect rcTextBox  = pPosition->GetBounds();
                             rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1258,7 +1258,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in absolute coordinates
                             CODComponentPosition* pPosition = pTextAttribute->GetPosition();
-                            ASSERT(pPosition);
+                            PSS_Assert(pPosition);
 
                             CRect rcTextBox = pPosition->GetBounds();
                             rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1300,7 +1300,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in absolute coordinates
                             CODComponentPosition* pPosition = pTextAttribute->GetPosition();
-                            ASSERT(pPosition);
+                            PSS_Assert(pPosition);
 
                             CRect rcTextBox  = pPosition->GetBounds();
                             rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1343,7 +1343,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
 
         // move the splitters
         CODComponent* pEditBoxArea = GetEditBoxArea();
-        ASSERT(pEditBoxArea);
+        PSS_Assert(pEditBoxArea);
 
         std::unique_ptr<CODComponentPosition> pCompPosition(pEditBoxArea ? pEditBoxArea->GetPosition() : pSymComp->GetPosition());
         const CRect           rect          = pCompPosition->GetBounds();
@@ -1374,7 +1374,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the text box in absolute coordinates
                     CODComponentPosition* pPosition = pTextName->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcTextBox  = pPosition->GetBounds();
                     rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1406,7 +1406,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the text box in absolute coordinates
                     CODComponentPosition* pPosition = pTextComment->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcTextBox  = pPosition->GetBounds();
                     rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1438,7 +1438,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the text box in absolute coordinates
                     CODComponentPosition* pPosition = pTextAttribute->GetPosition();
-                    ASSERT(pPosition);
+                    PSS_Assert(pPosition);
 
                     CRect rcTextBox  = pPosition->GetBounds();
                     rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
@@ -1588,7 +1588,7 @@ void PSS_SymbolAttributes::AdjustElementPosition()
 //---------------------------------------------------------------------------
 CODComponent* PSS_SymbolAttributes::GetEditBoxArea()
 {
-    ASSERT(m_pSymbol);
+    PSS_Assert(m_pSymbol);
 
     if (!m_pEditBoxArea)
     {
@@ -1612,7 +1612,7 @@ CODComponent* PSS_SymbolAttributes::GetEditBoxArea()
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_SymbolAttributes::GetSymbolNameTextEdit()
 {
-    ASSERT(m_pSymbol);
+    PSS_Assert(m_pSymbol);
 
     if (!m_pNameEditText)
     {
@@ -1631,7 +1631,7 @@ CODTextComponent* PSS_SymbolAttributes::GetSymbolNameTextEdit()
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_SymbolAttributes::GetCommentTextEdit()
 {
-    ASSERT(m_pSymbol);
+    PSS_Assert(m_pSymbol);
 
     if (!m_pCommentEditText)
     {
@@ -1650,7 +1650,7 @@ CODTextComponent* PSS_SymbolAttributes::GetCommentTextEdit()
 //---------------------------------------------------------------------------
 CODTextComponent* PSS_SymbolAttributes::GetAttributeTextEdit()
 {
-    ASSERT(m_pSymbol);
+    PSS_Assert(m_pSymbol);
 
     if (!m_pAttributeEditText)
     {
@@ -1669,7 +1669,7 @@ CODTextComponent* PSS_SymbolAttributes::GetAttributeTextEdit()
 //---------------------------------------------------------------------------
 CODLineComponent* PSS_SymbolAttributes::GetSplitter1()
 {
-    ASSERT(m_pSymbol);
+    PSS_Assert(m_pSymbol);
 
     if (!m_pSplitterComponent1)
     {
@@ -1688,7 +1688,7 @@ CODLineComponent* PSS_SymbolAttributes::GetSplitter1()
 //---------------------------------------------------------------------------
 CODLineComponent* PSS_SymbolAttributes::GetSplitter2()
 {
-    ASSERT(m_pSymbol);
+    PSS_Assert(m_pSymbol);
 
     if (!m_pSplitterComponent2)
     {
@@ -1811,7 +1811,7 @@ bool PSS_SymbolAttributes::OnLButtonDown(UINT nFlags, const CPoint& point, CODCo
         return false;
 
     CODComponent* pSymComp = dynamic_cast<CODComponent*>(m_pSymbol);
-    ASSERT(pSymComp);
+    PSS_Assert(pSymComp);
 
     // check if positioned above a splitter
     if (GetSplitter1() && GetSplitter1()->IsVisible())

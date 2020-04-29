@@ -71,7 +71,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include <zWeb\zWebLib.h>
+#include "Include\PSS_Macros.h"
+#include "zWeb\zWebLib.h"
 
 // use Objective Toolkit as a DLL
 #define _SECDLL

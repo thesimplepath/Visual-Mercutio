@@ -244,9 +244,11 @@ int PSS_UrlWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_GoButton.SetTooltipText(IDS_GOWEB);
     m_GoButton.DrawTransparent();
 
+    if (m_pBrowser)
+        delete m_pBrowser;
+
     // create the control
-    m_pBrowser = new PSS_WebBrowser;
-    ASSERT(m_pBrowser);
+    m_pBrowser = new PSS_WebBrowser();
 
     if (!m_pBrowser->Create(NULL, NULL, WS_VISIBLE, CRect(0, 0, 0, 0), this, IDC_URLWND_WEBBROWSER))
     {

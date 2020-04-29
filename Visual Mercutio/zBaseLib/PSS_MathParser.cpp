@@ -546,7 +546,7 @@ double PSS_FormulaParser::GetValue(const char* pName)
     while (pPosition)
     {
         PSS_FormulaObjectParser* pObj = static_cast<PSS_FormulaObjectParser*>(m_pObjParser->GetNext(pPosition));
-        ASSERT(pObj);
+        PSS_Assert(pObj);
 
         if (pObj->CompareByName(pName))
             return pObj->GetValue();

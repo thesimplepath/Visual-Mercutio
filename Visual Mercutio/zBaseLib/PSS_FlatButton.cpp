@@ -25,7 +25,7 @@
         m_MemDC(FALSE),
         m_Printing(FALSE)
     {
-        ASSERT(pDC);
+        PSS_Assert(pDC);
 
         m_MemDC = !pDC->IsPrinting();
 

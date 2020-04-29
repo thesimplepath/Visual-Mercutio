@@ -290,10 +290,8 @@ void PSS_SelectModelSymbolDlg::OnOK()
                 }
             }
             else
-            {
                 // not possible, should have been checked before
-                ASSERT(FALSE);
-            }
+                THROW("Internal corruption");
         }
     }
     else
@@ -325,10 +323,8 @@ void PSS_SelectModelSymbolDlg::OnOK()
                 }
             }
             else
-            {
                 // not possible, should have been checked before
-                ASSERT(FALSE);
-            }
+                THROW("Internal corruption");
         }
         else
         if (pSelectedSymbol)
@@ -361,10 +357,8 @@ void PSS_SelectModelSymbolDlg::OnOK()
                 m_SymbolName = pSelectedLinkSymbol->GetSymbolName();
             }
             else
-            {
                 // not possible, should have been checked before
-                ASSERT(FALSE);
-            }
+                THROW("Internal corruption");
         }
     }
 

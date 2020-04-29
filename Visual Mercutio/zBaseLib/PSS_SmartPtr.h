@@ -760,11 +760,11 @@ void PSS_BaseMultiRefSmartPtr<T, U>::Copy(const PSS_BaseMultiRefSmartPtr<T, U>& 
 
     if (m_pRefCount)
     {
-        ASSERT(m_pPtr);
+        PSS_Assert(m_pPtr);
         ++*m_pRefCount;
     }
     else
-        ASSERT(!m_pPtr);
+        PSS_Assert(!m_pPtr);
 
     return;
 }
@@ -789,11 +789,11 @@ void PSS_BaseMultiRefSmartPtr<T, U>::Delete()
 {
     if (!m_pRefCount)
     {
-        ASSERT(!m_pPtr);
+        PSS_Assert(!m_pPtr);
         return;
     }
 
-    ASSERT(m_pPtr);
+    PSS_Assert(m_pPtr);
 
     if (--*m_pRefCount == 0)
     {
@@ -1353,9 +1353,9 @@ void PSS_GenSmartPtrArray<T, U>::InsertAt(int index, U* pPtr)
 template<class T, class U>
 void PSS_GenSmartPtrArray<T, U>::Swap(int i, int j)
 {
-    ASSERT(i >= 0 && i < GetSize());
-    ASSERT(j >= 0 && j < GetSize());
-    ASSERT(i != j);
+    PSS_Assert(i >= 0 && i < GetSize());
+    PSS_Assert(j >= 0 && j < GetSize());
+    PSS_Assert(i != j);
 
     ElementAt(i).Swap(ElementAt(j));
 }
@@ -1604,10 +1604,7 @@ void SerializeArray(T& arr, U* pPtr, CArchive& ar, int version)
             LoadSmartPtr(ar, arr.ElementAt(i), (U*)NULL);
 
             if (arr.ElementAt(i).IsNull())
-            { 
-                ASSERT(0);
-                AfxThrowArchiveException(CArchiveException::badSchema, ar.m_strFileName);
-            }
+                ::AfxThrowArchiveException(CArchiveException::badSchema, ar.m_strFileName);
         }
     }
 }
@@ -1687,10 +1684,7 @@ inline int SerializeVersion(CArchive& ar, const int version, BOOL throwEx = TRUE
         ar >> v;
 
         if (throwEx && version != v)
-        {
-            ASSERT(0);
-            AfxThrowArchiveException(CArchiveException::badSchema, ar.m_strFileName);
-        }
+            ::AfxThrowArchiveException(CArchiveException::badSchema, ar.m_strFileName);
 
         return v;
     }

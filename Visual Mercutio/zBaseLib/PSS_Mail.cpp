@@ -126,7 +126,7 @@ PSS_Mail::PSS_Mail()
 {
     // open the mapi32.dll library
     m_hInstMail = ::LoadLibrary(szMAPIDLL);
-    ASSERT(m_hInstMail);
+    PSS_Assert(m_hInstMail);
 
     // hook mapi32.dll library functions
     g_hMAPILogon         = LPMAPILOGON        (::GetProcAddress(m_hInstMail, "MAPILogon"));
@@ -191,7 +191,7 @@ BOOL PSS_Mail::SendMail(const CString&    subject,
         return FALSE;
     }
 
-    ASSERT(g_hMAPISendMail);
+    PSS_Assert(g_hMAPISendMail);
 
     // prepare the message (empty with 1 attachment)
     ::MapiMessage message;
@@ -276,7 +276,7 @@ BOOL PSS_Mail::SendMail(PSS_MailMessage& mailMessage)
         return FALSE;
     }
 
-    ASSERT(g_hMAPISendMail);
+    PSS_Assert(g_hMAPISendMail);
 
     // prepare the message (empty with 1 attachment)
     ::MapiMessage message;
@@ -377,7 +377,7 @@ BOOL PSS_Mail::SendDocument(CDocument&        doc,
         return FALSE;
     }
 
-    ASSERT(g_hMAPISendMail);
+    PSS_Assert(g_hMAPISendMail);
 
     doc.BeginWaitCursor();
 
@@ -424,7 +424,7 @@ BOOL PSS_Mail::SendDocument(CDocument&        doc,
 
         if (pTemplate && pTemplate->GetDocString(ext, CDocTemplate::filterExt) && !ext.IsEmpty())
         {
-            ASSERT(ext[0] == '.');
+            PSS_Assert(ext[0] == '.');
 
             const int len = lstrlen(title);
             lstrcpyn(title + len, ext, sizeof(title) - len);
@@ -529,7 +529,7 @@ BOOL PSS_Mail::SendDocuments(PSS_MailFileDescription& fileList,
         return FALSE;
     }
 
-    ASSERT(g_hMAPISendMail);
+    PSS_Assert(g_hMAPISendMail);
 
     // prepare the message (empty with 1 attachment)
     ::MapiMessage message;
@@ -625,11 +625,11 @@ BOOL PSS_Mail::ResolveName(const CString& name, PSS_MailUserList& personList, BO
 {
     if (!g_hMAPIFreeBuffer || !g_hMAPIResolveName)
     {
-        AfxMessageBox(AFX_IDP_INVALID_MAPI_DLL);
+        ::AfxMessageBox(AFX_IDP_INVALID_MAPI_DLL);
         return NULL;
     }
 
-    ASSERT(g_hMAPIFreeBuffer && g_hMAPIResolveName);
+    PSS_Assert(g_hMAPIFreeBuffer && g_hMAPIResolveName);
 
     #ifndef _WIN32
         // allow MAPI to send the mail message
@@ -693,11 +693,11 @@ BOOL PSS_Mail::Address(PSS_MailUserList& personList)
 {
     if (!g_hMAPIFreeBuffer || !g_hMAPIAddress)
     {
-        AfxMessageBox(AFX_IDP_INVALID_MAPI_DLL);
+        ::AfxMessageBox(AFX_IDP_INVALID_MAPI_DLL);
         return NULL;
     }
 
-    ASSERT(g_hMAPIFreeBuffer && g_hMAPIAddress);
+    PSS_Assert(g_hMAPIFreeBuffer && g_hMAPIAddress);
 
     #ifndef _WIN32
         // allow MAPI to send the mail message

@@ -66,9 +66,12 @@ BOOL PSS_FilePreviewDlg::OnInitDialog()
         GetDlgItem(IDC_WEBBROWSER_CONTROL)->GetClientRect(&rect);
         GetDlgItem(IDC_WEBBROWSER_CONTROL)->MapWindowPoints(this, &rect);
 
+        if (m_pBrowser)
+            delete m_pBrowser;
+
         // create the control
-        m_pBrowser = new PSS_WebBrowser;
-        ASSERT(m_pBrowser);
+        m_pBrowser = new PSS_WebBrowser();
+        PSS_Assert(m_pBrowser);
 
         if (!m_pBrowser->Create(NULL, NULL, WS_VISIBLE, rect, this, NULL))
         {

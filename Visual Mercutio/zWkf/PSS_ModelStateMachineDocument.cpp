@@ -126,7 +126,7 @@ bool PSS_ModelStateMachineDocument::SaveToFile(const CString& fileName, PSS_Stat
 //---------------------------------------------------------------------------
 void PSS_ModelStateMachineDocument::Serialize(CArchive& ar)
 {
-    ASSERT(m_pStateMachineCollection);
+    PSS_Assert(m_pStateMachineCollection);
 
     // serialize the environement
     m_pStateMachineCollection->Serialize(ar);
@@ -148,7 +148,6 @@ void PSS_ModelStateMachineDocument::Dump(CDumpContext& dc) const
 //---------------------------------------------------------------------------
 BOOL PSS_ModelStateMachineDocument::OnNewDocument()
 {
-    ASSERT(FALSE);
     return FALSE;
 }
 //---------------------------------------------------------------------------

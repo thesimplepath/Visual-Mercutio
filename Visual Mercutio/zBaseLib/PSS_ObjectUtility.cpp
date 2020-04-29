@@ -208,38 +208,38 @@ PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
     switch (index)
     {
         case 0:
-            pObj.reset(new PSS_PLFNLong);
+            pObj.reset(new PSS_PLFNLong());
             break;
 
         case 1:
-            pObj.reset(new PSS_PLFNLong);
-            ((PSS_PLFNLong*)pObj.get())->SetKeepHistory(TRUE);
+            pObj.reset(new PSS_PLFNLong());
+            static_cast<PSS_PLFNLong*>(pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 2:
-            pObj.reset(new PSS_PLFNLong);
-            ((PSS_PLFNLong*)pObj.get())->SetCalculatedField();
+            pObj.reset(new PSS_PLFNLong());
+            static_cast<PSS_PLFNLong*>(pObj.get())->SetCalculatedField();
             break;
 
         case 3:
-            pObj.reset(new PSS_PLFNTime);
+            pObj.reset(new PSS_PLFNTime());
             break;
 
         case 4:
-            pObj.reset(new PSS_PLFNString);
+            pObj.reset(new PSS_PLFNString());
             break;
 
         case 5:
             pObj.reset(new PSS_PLFNString);
-            ((PSS_PLFNString*)pObj.get())->SetKeepHistory(TRUE);
+            static_cast<PSS_PLFNString*>(pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 6:
-            pObj.reset(new PSS_PLFNStatic);
+            pObj.reset(new PSS_PLFNStatic());
             break;
 
         case 7:
-            pObj.reset(new PSS_PLFNBoundText);
+            pObj.reset(new PSS_PLFNBoundText());
             break;
 
         case 8:
@@ -248,19 +248,19 @@ PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 9:
-            pObj.reset(new PSS_PLFNAutoNumbered);
+            pObj.reset(new PSS_PLFNAutoNumbered());
             break;
 
         case 10:
-            pObj.reset(new PSS_PLFNSquare);
+            pObj.reset(new PSS_PLFNSquare());
             break;
 
         case 11:
-            pObj.reset(new PSS_PLFNLine);
+            pObj.reset(new PSS_PLFNLine());
             break;
 
         case 12:
-            pObj.reset(new PSS_PLFNRect);
+            pObj.reset(new PSS_PLFNRect());
             break;
 
         case 13:
@@ -268,32 +268,32 @@ PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 14:
-            pObj.reset(new PSS_PLFNBitmap);
+            pObj.reset(new PSS_PLFNBitmap());
             break;
 
         case 15:
-            pObj.reset(new PSS_PLFNCheckBtn);
+            pObj.reset(new PSS_PLFNCheckBtn());
             break;
 
         case 16:
-            pObj.reset(new PSS_PLFNRadioBtn);
+            pObj.reset(new PSS_PLFNRadioBtn());
             break;
 
         case 17:
-            pObj.reset(new PSS_PLFNMaskString);
+            pObj.reset(new PSS_PLFNMaskString());
             break;
 
         case 18:
-            pObj.reset(new PSS_PLFNMaskString);
-            ((PSS_PLFNMaskString*)pObj.get())->SetKeepHistory(TRUE);
+            pObj.reset(new PSS_PLFNMaskString());
+            static_cast<PSS_PLFNMaskString*>(pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 19:
-            pObj.reset(new PSS_PLFNMultiColumn);
+            pObj.reset(new PSS_PLFNMultiColumn());
             break;
 
         default:
-            ASSERT(FALSE);
+            return NULL;
     }
 
     return pObj.release();

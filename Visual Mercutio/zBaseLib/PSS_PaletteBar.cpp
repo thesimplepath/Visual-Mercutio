@@ -68,7 +68,7 @@ PSS_PaletteBar::~PSS_PaletteBar()
 #ifndef _WIN32
     BOOL PSS_PaletteBar::Create(CWnd* pParent, int x, int y)
     {
-        ASSERT(pParent);
+        PSS_Assert(pParent);
         m_pParent = pParent;
 
         return CWnd::CreateEx(0,
@@ -146,8 +146,8 @@ BOOL PSS_PaletteBar::SetButtons(const UINT FAR* pIDArray, int idCount, UINT colu
 #ifndef _WIN32
     void PSS_PaletteBar::GetItemRect(int index, LPRECT pRect) const
     {
-        ASSERT(index >= 0 && index < m_nCount);
-        ASSERT(AfxIsValidAddress(pRect, sizeof(RECT)));
+        PSS_Assert(index >= 0 && index < m_nCount);
+        PSS_Assert(::AfxIsValidAddress(pRect, sizeof(RECT)));
 
         pRect->left  = m_cxLeftBorder + (index - (index / m_Columns) * m_Columns) * (m_sizeButton.cx - 1);
         pRect->right = pRect->left + m_sizeButton.cx;

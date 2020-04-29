@@ -57,10 +57,12 @@
     #include <afxcmn.h>           // MFC support for Windows Common Controls
 #endif
 
-// processsoft
 #ifdef _ENABLETRACE
     #include "zBaseLib\ZGTrace.h" // if enabled, trace is defined
 #endif
+
+// processsoft
+#include "Include\PSS_Macros.h"
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

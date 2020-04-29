@@ -243,13 +243,13 @@ bool PSS_PathMachine::MergeAllStateObjects(PSS_StateMachineCollection& collectio
     for (int i = 0; i < int(collection.GetStateMachineCount()); ++i)
     {
         PSS_StateMachine* pSrcStateMachine = collection.GetStateMachine(i);
-        ASSERT(pSrcStateMachine);
+        PSS_Assert(pSrcStateMachine);
 
         // from the next element till then end of the collection, compare if the state machine last element is equals
         for (int j = i + 1; j < int(collection.GetStateMachineCount()); ++j)
         {
             PSS_StateMachine* pDstStateMachine = collection.GetStateMachine(j);
-            ASSERT(pDstStateMachine);
+            PSS_Assert(pDstStateMachine);
 
             // try to locate the same state machine object id
             if (pSrcStateMachine->IsLastObjectEqual(pDstStateMachine))
@@ -272,10 +272,10 @@ bool PSS_PathMachine::MergeStateMachine(std::size_t                 srcIndex,
 {
     // get and merge the state machines together
     PSS_StateMachine* pSrcStateMachine = collection.GetStateMachine(srcIndex);
-    ASSERT(pSrcStateMachine);
+    PSS_Assert(pSrcStateMachine);
 
     PSS_StateMachine* pDstStateMachine = collection.GetStateMachine(dstIndex);
-    ASSERT(pDstStateMachine);
+    PSS_Assert(pDstStateMachine);
 
     if (!pSrcStateMachine->Merge(pDstStateMachine))
         return false;

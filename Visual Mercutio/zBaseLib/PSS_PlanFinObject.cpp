@@ -288,7 +288,7 @@ void PSS_PlanFinObject::SelectObject(CWnd* pWnd, CDC* pDC, BOOL state, BOOL eras
     {
         // create a rect tracker object
         m_pRectTracker = new CRectTracker(&rect, CRectTracker::dottedLine | CRectTracker::resizeInside);
-        ASSERT(m_pRectTracker);
+        PSS_Assert(m_pRectTracker);
     }
     else
     if (m_pRectTracker)
@@ -1071,7 +1071,7 @@ CSize PSS_PlanFinObject::GetTextExtent(CDC* pDC, const CString& str, int angle)
 void PSS_PlanFinObject::GetTextExtentOrg(CDC* pDC, const CString& str, CSize& size, CPoint& org, int angle)
 {
     // angle must be positive
-    ASSERT(angle >= 0);
+    PSS_Assert(angle >= 0);
 
     const CSize textSize = pDC->GetTextExtent(str, str.GetLength());
 
@@ -1232,7 +1232,7 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
         ar >> str;
         SetObjectName(str);
 
-        ASSERT(!GetObjectName().IsEmpty());
+        PSS_Assert(!GetObjectName().IsEmpty());
 
         PSS_BaseDocument* pBaseDoc = dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument);
         WORD              wValue;
@@ -1244,7 +1244,7 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
 
         ar >> wValue;
         m_Page = int(wValue);
-        ASSERT(m_Page >= 0);
+        PSS_Assert(m_Page >= 0);
 
         ar >> wValue;
 

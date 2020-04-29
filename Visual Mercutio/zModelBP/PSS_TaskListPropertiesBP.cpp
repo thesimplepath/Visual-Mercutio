@@ -90,10 +90,7 @@ void PSS_TaskListPropertiesBP::SetTaskList(LPCTSTR pValue)
     if (pValue)
         m_TaskList = pValue;
     else
-    {
-        TRACE0("PSS_TaskListPropertiesBP - Invalid task list!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_TaskListPropertiesBP - Invalid task list");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_TaskListPropertiesBP::GetValue(const int propId, int& value) const

@@ -144,7 +144,7 @@ void PSS_DistributionAttribute::AddDistributionRulesForRole(const CString& roleG
         pRole = pNewRole.release();
     }
 
-    ASSERT(pRole);
+    PSS_Assert(pRole);
     pRole->AddDistributionRule(ruleOp, value, logicalOperator);
 }
 //---------------------------------------------------------------------------

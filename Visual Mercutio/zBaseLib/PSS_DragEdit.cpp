@@ -88,7 +88,7 @@ BOOL PSS_EditDropTarget::Register(PSS_DragEdit* pEdit)
 //---------------------------------------------------------------------------
 DROPEFFECT PSS_EditDropTarget::OnDragEnter(CWnd* pWnd, COleDataObject* pDataObject, DWORD keyState, CPoint point)
 {
-    ASSERT(m_pEditCtl);
+    PSS_Assert(m_pEditCtl);
 
     if (!m_pEditCtl->EnableDrop() || !pDataObject->IsDataAvailable(CF_TEXT))
         return DROPEFFECT_NONE;
@@ -110,14 +110,14 @@ DROPEFFECT PSS_EditDropTarget::OnDragEnter(CWnd* pWnd, COleDataObject* pDataObje
 //---------------------------------------------------------------------------
 void PSS_EditDropTarget::OnDragLeave(CWnd* pWnd)
 {
-    ASSERT(m_pEditCtl);
+    PSS_Assert(m_pEditCtl);
 
     m_BeginDrop = FALSE;
 }
 //---------------------------------------------------------------------------
 DROPEFFECT PSS_EditDropTarget::OnDragOver(CWnd* pWnd, COleDataObject* pDataObject, DWORD keyState, CPoint point)
 {
-    ASSERT(m_pEditCtl);
+    PSS_Assert(m_pEditCtl);
 
     if (!m_BeginDrop)
         return DROPEFFECT_NONE;
@@ -136,7 +136,7 @@ DROPEFFECT PSS_EditDropTarget::OnDragOver(CWnd* pWnd, COleDataObject* pDataObjec
 //---------------------------------------------------------------------------
 DROPEFFECT PSS_EditDropTarget::OnDragScroll(CWnd* pWnd, DWORD keyState, CPoint point)
 {
-    ASSERT(m_pEditCtl);
+    PSS_Assert(m_pEditCtl);
 
     // if pWnd is kind of CView, let COleDropTarget handle it
     if (pWnd->IsKindOf(RUNTIME_CLASS(CView)))
@@ -203,7 +203,7 @@ DROPEFFECT PSS_EditDropTarget::OnDragScroll(CWnd* pWnd, DWORD keyState, CPoint p
 //---------------------------------------------------------------------------
 BOOL PSS_EditDropTarget::OnDrop(CWnd* pWnd, COleDataObject* pDataObject, DROPEFFECT dropEffect, CPoint point)
 {
-    ASSERT(m_pEditCtl);
+    PSS_Assert(m_pEditCtl);
 
     if (!m_BeginDrop)
         return FALSE;
@@ -643,7 +643,7 @@ BOOL PSS_DragEdit::GetSelText(CString& str)
 {
     int line1, pos1, line2, pos2;
     GetCurRange(line1, pos1, line2, pos2);
-    ASSERT(line1 >= 0 && pos1 >= 0 && line2 >= 0 && pos2 >= 0);
+    PSS_Assert(line1 >= 0 && pos1 >= 0 && line2 >= 0 && pos2 >= 0);
 
     char buffer[M_MaxLineLen];
     int  len;

@@ -945,7 +945,7 @@ void PSS_PropertyListCtrl::CreateInPlaceControl(int item, int previousItem)
 
     // get the requested property item
     PSS_PropertyItem* pPropItem = GetPropertyItem(item);
-    ASSERT(pPropItem);
+    PSS_Assert(pPropItem);
 
     if (pPropItem->CanBeEdited())
     {
@@ -1041,7 +1041,7 @@ void PSS_PropertyListCtrl::EditNextItem()
 //---------------------------------------------------------------------------
 void PSS_PropertyListCtrl::DoCollapse(PSS_PropertyItemCategory* pPropItemTab, int item)
 {
-    ASSERT(pPropItemTab && pPropItemTab->GetChildrenVisible());
+    PSS_Assert(pPropItemTab && pPropItemTab->GetChildrenVisible());
 
     ++item;
 
@@ -1243,7 +1243,7 @@ int PSS_PropertyListCtrl::SearchPropertyItem(char startChar, int fromIndex, int 
     while (--count)
     {
         PSS_PropertyItem* pPropItem = reinterpret_cast<PSS_PropertyItem*>(GetItemData(fromIndex));
-        ASSERT(pPropItem);
+        PSS_Assert(pPropItem);
 
         if (pPropItem->GetName().Left(1).CompareNoCase(ch) == 0)
             return fromIndex;

@@ -204,17 +204,18 @@ void PSS_FilePreviewDialog::OnFolderChange()
 //---------------------------------------------------------------------------
 BOOL PSS_FilePreviewDialog::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    ASSERT(pResult);
+    PSS_Assert(pResult);
 
     // allow message map to override
-    OFNOTIFY* pNotify = (OFNOTIFY*)lParam;
+    OFNOTIFY* pNotify = reinterpret_cast<OFNOTIFY*>(lParam);
 
-    switch (pNotify->hdr.code)
-    {
-        case CDN_SELCHANGE:    OnFileNameChange(); return TRUE;
-        case CDN_FOLDERCHANGE: OnFolderChange();   return TRUE;
-        case CDN_INITDONE:     OnInitDone();       return TRUE;
-    }
+    if (pNotify)
+        switch (pNotify->hdr.code)
+        {
+            case CDN_SELCHANGE:    OnFileNameChange(); return TRUE;
+            case CDN_FOLDERCHANGE: OnFolderChange();   return TRUE;
+            case CDN_INITDONE:     OnInitDone();       return TRUE;
+        }
 
     return CFileDialog::OnNotify(wParam, lParam, pResult);
 }

@@ -88,10 +88,7 @@ void PSS_RulesPropertiesBP::SetRuleName(LPCTSTR pValue)
     if (pValue)
         m_RuleName = pValue;
     else
-    {
-        TRACE0("PSS_RulesPropertiesBP - Invalid rule name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_RulesPropertiesBP - Invalid rule name");
 }
 //---------------------------------------------------------------------------
 void PSS_RulesPropertiesBP::SetRuleDescription(LPCTSTR pValue)
@@ -99,10 +96,7 @@ void PSS_RulesPropertiesBP::SetRuleDescription(LPCTSTR pValue)
     if (pValue)
         m_RuleDescription = pValue;
     else
-    {
-        TRACE0("PSS_RulesPropertiesBP - Invalid rule description!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_RulesPropertiesBP - Invalid rule description");
 }
 //---------------------------------------------------------------------------
 void PSS_RulesPropertiesBP::SetRuleGUID(LPCTSTR pValue)
@@ -110,10 +104,7 @@ void PSS_RulesPropertiesBP::SetRuleGUID(LPCTSTR pValue)
     if (pValue)
         m_RuleGUID = pValue;
     else
-    {
-        TRACE0("PSS_RulesPropertiesBP - Invalid rule GUID!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_RulesPropertiesBP - Invalid rule GUID");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_RulesPropertiesBP::GetValue(const int propId, int& value) const
@@ -122,8 +113,8 @@ BOOL PSS_RulesPropertiesBP::GetValue(const int propId, int& value) const
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -135,8 +126,8 @@ BOOL PSS_RulesPropertiesBP::GetValue(const int propId, UINT& value) const
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -148,8 +139,8 @@ BOOL PSS_RulesPropertiesBP::GetValue(const int propId, DWORD& value) const
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -161,8 +152,8 @@ BOOL PSS_RulesPropertiesBP::GetValue(const int propId, float& value) const
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -175,7 +166,7 @@ BOOL PSS_RulesPropertiesBP::GetValue(const int propId, CString& value) const
         case M_Rule_Name_ID:        value = m_RuleName;        break;
         case M_Rule_Description_ID: value = m_RuleDescription; break;
         case M_Rule_Identifier_ID:  value = m_RuleGUID;        break;
-        default:                    ASSERT(FALSE);             return FALSE;
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;
@@ -187,8 +178,8 @@ BOOL PSS_RulesPropertiesBP::SetValue(const int propId, const int value)
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -200,8 +191,8 @@ BOOL PSS_RulesPropertiesBP::SetValue(const int propId, const UINT value)
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -213,8 +204,8 @@ BOOL PSS_RulesPropertiesBP::SetValue(const int propId, const DWORD value)
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -226,8 +217,8 @@ BOOL PSS_RulesPropertiesBP::SetValue(const int propId, const float value)
     {
         case M_Rule_Name_ID:
         case M_Rule_Description_ID:
-        case M_Rule_Identifier_ID:  ASSERT(FALSE); return FALSE;
-        default:                                   return FALSE;
+        case M_Rule_Identifier_ID:  THROW("Unsupported value");
+        default:                    return FALSE;
     }
 
     return TRUE;
@@ -243,7 +234,7 @@ BOOL PSS_RulesPropertiesBP::SetValue(const int propId, LPCTSTR pValue)
         case M_Rule_Name_ID:        m_RuleName        = pValue; break;
         case M_Rule_Description_ID: m_RuleDescription = pValue; break;
         case M_Rule_Identifier_ID:  m_RuleGUID        = pValue; break;
-        default:                    ASSERT(FALSE);              return FALSE;
+        default:                    THROW("Unsupported value");
     }
 
     return TRUE;

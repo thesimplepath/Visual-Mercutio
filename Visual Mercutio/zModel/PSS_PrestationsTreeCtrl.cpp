@@ -198,7 +198,7 @@ void PSS_PrestationsTreeCtrl::OnNewPrestation()
     // if a group selected
     if (pLogicalPrestation)
     {
-        ASSERT(m_pLogicalPrestationRoot);
+        PSS_Assert(m_pLogicalPrestationRoot);
 
         // ask for the name
         PSS_PrestationsInfoDlg dlg(IDS_NEW_PRESTATION_T, pLogicalPrestation);
@@ -230,7 +230,7 @@ void PSS_PrestationsTreeCtrl::OnDeletePrestation()
 
     if (pLogicalPrestation && pLogicalPrestation != m_pLogicalPrestationRoot)
     {
-        ASSERT(m_pLogicalPrestationRoot);
+        PSS_Assert(m_pLogicalPrestationRoot);
 
         // remove prestation from the workspace
         m_pLogicalPrestationRoot->RemovePrestation(pLogicalPrestation);
@@ -252,7 +252,7 @@ void PSS_PrestationsTreeCtrl::OnRenamePrestation()
 
     if (pLogicalPrestation)
     {
-        ASSERT(m_pLogicalPrestationRoot);
+        PSS_Assert(m_pLogicalPrestationRoot);
 
         PSS_LogicalPrestationsEntity* pParent = dynamic_cast<PSS_LogicalPrestationsEntity*>(pLogicalPrestation->GetParent());
 
@@ -281,7 +281,7 @@ void PSS_PrestationsTreeCtrl::OnMovePrestation()
 
     if (pPrestation)
     {
-        ASSERT(m_pLogicalPrestationRoot);
+        PSS_Assert(m_pLogicalPrestationRoot);
 
         PSS_SelectPrestationDlg dlg(IDS_PRS_MOVE_T, m_pLogicalPrestationRoot, true);
 
@@ -312,7 +312,7 @@ void PSS_PrestationsTreeCtrl::OnPrestationProperties()
     if (pEntity)
     {
         PSS_LogicalPrestationsEntity* pLogicalPrestation = GetSelectedLogicalPrestation();
-        ASSERT(m_pLogicalPrestationRoot);
+        PSS_Assert(m_pLogicalPrestationRoot);
 
         PSS_LogicalPrestationsEntity* pParent = dynamic_cast<PSS_LogicalPrestationsEntity*>(pEntity->GetParent());
 
@@ -408,7 +408,7 @@ void PSS_PrestationsTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
         return;
 
     CMenu* pPopup = m_SubMenu.GetSubMenu(idMenu);
-    ASSERT(pPopup);
+    PSS_Assert(pPopup);
 
     CWnd* pWndPopupOwner = this;
 

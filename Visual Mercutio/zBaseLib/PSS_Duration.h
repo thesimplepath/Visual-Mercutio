@@ -20,6 +20,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "PSS_Macros.h"
+
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
     #undef AFX_EXT_CLASS
@@ -480,29 +483,25 @@ BOOL PSS_Duration::operator != (const PSS_Duration& other) const
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator < (const PSS_Duration& other) const
 {
-    ASSERT(m_Status == IE_S_Valid);
-    ASSERT(other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid && other.m_Status == IE_S_Valid);
     return (m_Span < other.m_Span);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator > (const PSS_Duration& other) const
 {
-    ASSERT(m_Status == IE_S_Valid);
-    ASSERT(other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid && other.m_Status == IE_S_Valid);
     return (m_Span > other.m_Span);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator <= (const PSS_Duration& other) const
 {
-    ASSERT(m_Status == IE_S_Valid);
-    ASSERT(other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid && other.m_Status == IE_S_Valid);
     return (m_Span <= other.m_Span);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator >= (const PSS_Duration& other) const
 {
-    ASSERT(m_Status == IE_S_Valid);
-    ASSERT(other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid &&  other.m_Status == IE_S_Valid);
     return (m_Span >= other.m_Span);
 }
 //---------------------------------------------------------------------------
@@ -590,31 +589,31 @@ void PSS_Duration::SetDayPerYear(int value)
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalDays() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
     return m_Span;
 }
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalHours() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
     return long(m_Span * double(m_HourPerDay) + GetHalfSecond());
 }
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalMinutes() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
     return long(m_Span * double(m_HourPerDay) * 60.0 + GetHalfSecond());
 }
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalSeconds() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
     return long(m_Span * double(m_HourPerDay) * 60.0 * 60.0 + GetHalfSecond());
 }
 //---------------------------------------------------------------------------
 long PSS_Duration::GetDays() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
     return long(m_Span);
 }
 //---------------------------------------------------------------------------

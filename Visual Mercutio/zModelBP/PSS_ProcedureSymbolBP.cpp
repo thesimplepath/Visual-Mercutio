@@ -1365,8 +1365,8 @@ bool PSS_ProcedureSymbolBP::SaveProperties(PSS_Properties::IPropertySet& propSet
                 case PSS_Property::IE_VT_Double:   pCombProps->SetValue(itemID - (i * g_MaxCombinationListSize), float(     pProp->GetValueDouble())); break;
                 case PSS_Property::IE_VT_Float:    pCombProps->SetValue(itemID - (i * g_MaxCombinationListSize),            pProp->GetValueFloat());   break;
                 case PSS_Property::IE_VT_Date:     pCombProps->SetValue(itemID - (i * g_MaxCombinationListSize), float(DATE(pProp->GetValueDate())));  break;
-                case PSS_Property::IE_VT_TimeSpan: ASSERT(FALSE);                                                                                      break;
-                case PSS_Property::IE_VT_Duration: ASSERT(FALSE);                                                                                      break;
+                case PSS_Property::IE_VT_TimeSpan:
+                case PSS_Property::IE_VT_Duration: THROW("Unsupported value");
             }
         }
     }

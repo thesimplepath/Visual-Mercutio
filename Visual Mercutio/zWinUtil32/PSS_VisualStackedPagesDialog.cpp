@@ -61,9 +61,9 @@ BOOL PSS_VisualStackedPageDialog::OnInitDialog()
     CDialog::OnInitDialog();
 
     const DWORD style = GetStyle();
-    ASSERT((style & WS_CHILD)    != 0);
-    ASSERT((style & WS_BORDER)   == 0);
-    ASSERT((style & WS_DISABLED) != 0);
+    PSS_Assert((style & WS_CHILD)    != 0);
+    PSS_Assert((style & WS_BORDER)   == 0);
+    PSS_Assert((style & WS_DISABLED) != 0);
 
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
     return TRUE;
@@ -115,12 +115,10 @@ PSS_VisualStackedPageInfo* PSS_VisualStackedPagesDialog::AddPage(LPCTSTR pTitle,
 
     pPage->m_pDialog = CreatePage(pPage->m_Title, pPage->m_DialogID);
     pPage->m_pDialog->Create(pPage->m_DialogID, this);
-    ASSERT(pPage->m_pDialog);
-    ASSERT(::IsWindow(pPage->m_pDialog->m_hWnd));
+    PSS_Assert(pPage->m_pDialog && ::IsWindow(pPage->m_pDialog->m_hWnd));
 
     CWnd* pWnd = GetDlgItem(m_PlaceHolder);
-    ASSERT(pWnd);
-    ASSERT(::IsWindow(pWnd->m_hWnd));
+    PSS_Assert(pWnd && ::IsWindow(pWnd->m_hWnd));
 
     CRect rect;
     pWnd->GetWindowRect(&rect);
@@ -135,13 +133,13 @@ PSS_VisualStackedPageInfo* PSS_VisualStackedPagesDialog::AddPage(LPCTSTR pTitle,
 //---------------------------------------------------------------------------
 void PSS_VisualStackedPagesDialog::DelPage(PSS_VisualStackedPageInfo* pPage)
 {
-    ASSERT(pPage);
+    PSS_Assert(pPage);
 
     if (pPage->m_Created)
     {
         pPage->m_Created = FALSE;
 
-        ASSERT(pPage->m_pDialog);
+        PSS_Assert(pPage->m_pDialog);
         pPage->m_pDialog->OnKillActive();
         pPage->m_pDialog->OnDestroyPage();
         pPage->m_pDialog->DestroyWindow();
@@ -173,9 +171,9 @@ void PSS_VisualStackedPagesDialog::DelAllPages(void)
 //---------------------------------------------------------------------------
 void PSS_VisualStackedPagesDialog::ActivatePage(PSS_VisualStackedPageInfo* pPage)
 {
-    ASSERT(pPage);
-    ASSERT(pPage->m_pDialog);
-    ASSERT(pPage->m_Created);
+    PSS_Assert(pPage);
+    PSS_Assert(pPage->m_pDialog);
+    PSS_Assert(pPage->m_Created);
 
     PSS_VisualStackedPageDialog* pDialog = pPage->m_pDialog;
     pDialog->ShowWindow(SW_SHOW);
@@ -186,9 +184,9 @@ void PSS_VisualStackedPagesDialog::ActivatePage(PSS_VisualStackedPageInfo* pPage
 //---------------------------------------------------------------------------
 void PSS_VisualStackedPagesDialog::DeactivatePage(PSS_VisualStackedPageInfo* pPage)
 {
-    ASSERT(pPage);
-    ASSERT(pPage->m_pDialog);
-    ASSERT(pPage->m_Created);
+    PSS_Assert(pPage);
+    PSS_Assert(pPage->m_pDialog);
+    PSS_Assert(pPage->m_Created);
 
     PSS_VisualStackedPageDialog* pDialog = pPage->m_pDialog;
     pDialog->OnKillActive();

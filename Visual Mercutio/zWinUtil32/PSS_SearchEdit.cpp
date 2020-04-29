@@ -66,7 +66,7 @@ BOOL PSS_SearchEditButton::Create(PSS_SearchEdit* pWnd,
                                   bool            noNotify,
                                   bool            resize)
 {
-    ASSERT(type != -1);
+    PSS_Assert(type != -1);
     ASSERT_VALID(pWnd);
 
     // assign values
@@ -95,7 +95,7 @@ BOOL PSS_SearchEditButton::Create(PSS_SearchEdit* pWnd,
                                   bool            noNotify,
                                   bool            resize)
 {
-    ASSERT(type != -1);
+    PSS_Assert(type != -1);
     ASSERT_VALID(pWnd);
 
     // assign values
@@ -225,7 +225,7 @@ void PSS_SearchEditButton::OnClicked()
 
         case IE_T_Popup:
         {
-            ASSERT(m_Menu != -1 || m_pMenu);
+            PSS_Assert(m_Menu != -1 || m_pMenu);
             SetState(TRUE);
 
             CRect rc;
@@ -243,7 +243,7 @@ void PSS_SearchEditButton::OnClicked()
                 pPopup = menu.GetSubMenu(0);
             }
 
-            ASSERT(pPopup);
+            PSS_Assert(pPopup);
 
             CWnd* pWndPopupOwner = this;
 

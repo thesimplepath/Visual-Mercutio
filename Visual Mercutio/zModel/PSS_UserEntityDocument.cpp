@@ -171,7 +171,6 @@ bool PSS_UserEntityDocument::SaveToFile(const CString& fileName)
 //---------------------------------------------------------------------------
 BOOL PSS_UserEntityDocument::OnNewDocument()
 {
-    ASSERT(FALSE);
     return FALSE;
 }
 //---------------------------------------------------------------------------

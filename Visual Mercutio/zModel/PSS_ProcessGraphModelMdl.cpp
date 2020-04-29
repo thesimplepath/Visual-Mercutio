@@ -305,7 +305,7 @@ const CDocument* PSS_ProcessGraphModelMdl::GetDocument() const
 bool PSS_ProcessGraphModelMdl::GetCheckConsistency() const
 {
     PSS_ProcessGraphModelMdl* pRoot = const_cast<PSS_ProcessGraphModelMdl*>(this)->GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     const PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -318,7 +318,7 @@ bool PSS_ProcessGraphModelMdl::GetCheckConsistency() const
 void PSS_ProcessGraphModelMdl::SetCheckConsistency(bool value)
 {
     PSS_ProcessGraphModelMdl* pRoot = GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -329,7 +329,7 @@ void PSS_ProcessGraphModelMdl::SetCheckConsistency(bool value)
 bool PSS_ProcessGraphModelMdl::GetIntegrateCostSimulation() const
 {
     const PSS_ProcessGraphModelMdl* pRoot = const_cast<PSS_ProcessGraphModelMdl*>(this)->GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     const PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<const PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -342,7 +342,7 @@ bool PSS_ProcessGraphModelMdl::GetIntegrateCostSimulation() const
 void PSS_ProcessGraphModelMdl::SetIntegrateCostSimulation(bool value)
 {
     PSS_ProcessGraphModelMdl* pRoot = GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -353,7 +353,7 @@ void PSS_ProcessGraphModelMdl::SetIntegrateCostSimulation(bool value)
 bool PSS_ProcessGraphModelMdl::GetUseWorkflow() const
 {
     const PSS_ProcessGraphModelMdl* pRoot = const_cast<PSS_ProcessGraphModelMdl*>(this)->GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     const PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<const PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -366,7 +366,7 @@ bool PSS_ProcessGraphModelMdl::GetUseWorkflow() const
 void PSS_ProcessGraphModelMdl::SetUseWorkflow(bool value)
 {
     PSS_ProcessGraphModelMdl* pRoot = GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -377,7 +377,7 @@ void PSS_ProcessGraphModelMdl::SetUseWorkflow(bool value)
 bool PSS_ProcessGraphModelMdl::GetShowPageBorder() const
 {
     const PSS_ProcessGraphModelMdl* pRoot = const_cast<PSS_ProcessGraphModelMdl*>(this)->GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     const PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<const PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -390,7 +390,7 @@ bool PSS_ProcessGraphModelMdl::GetShowPageBorder() const
 void PSS_ProcessGraphModelMdl::SetShowPageBorder(bool value)
 {
     PSS_ProcessGraphModelMdl* pRoot = GetRoot();
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(pRoot->GetDocument());
 
@@ -1663,7 +1663,7 @@ void PSS_ProcessGraphModelMdl::RecalculateReference()
         if (pSymbol && pSymbol->IsReferenced())
         {
             PSS_ProcessGraphModelMdl* pRoot = GetRoot();
-            ASSERT(pRoot);
+            PSS_Assert(pRoot);
 
             CODComponentSet* pSet = pRoot->FindSymbolByRefNumber(std::atoi(pSymbol->GetReferenceName()), true);
 
@@ -1679,7 +1679,7 @@ void PSS_ProcessGraphModelMdl::RecalculateReference()
         if (pLinkSymbol && pLinkSymbol->IsReferenced())
         {
             PSS_ProcessGraphModelMdl* pRoot = GetRoot();
-            ASSERT(pRoot);
+            PSS_Assert(pRoot);
 
             CODComponentSet* pSet = pRoot->FindSymbolByRefNumber(std::atoi(pLinkSymbol->GetReferenceName()), true);
 

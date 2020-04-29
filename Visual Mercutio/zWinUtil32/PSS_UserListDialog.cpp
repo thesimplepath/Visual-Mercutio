@@ -123,7 +123,7 @@ void PSS_UserListDialog::LoadSource()
     for (std::size_t index = 0; index < m_UserManager.GetCount(); ++index)
     {
         PSS_User* pObj = m_UserManager.GetAt(index);
-        ASSERT(pObj);
+        PSS_Assert(pObj);
 
         m_UserList.AddString((const char*)pObj->GetUserName());
 

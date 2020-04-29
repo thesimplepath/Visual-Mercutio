@@ -196,7 +196,7 @@ CView* PSS_BaseMDIPage::SwitchBottomView(CView* pView)
     CView*     pOldActiveView = GetBottomView();
     CDocument* pDoc           = pOldActiveView->GetDocument();
 
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     int row;
     int col;
@@ -238,7 +238,7 @@ CView* PSS_BaseMDIPage::SwitchTopView(CView* pView)
     CView*     pOldActiveView = GetTopView();
     CDocument* pDoc           = pOldActiveView->GetDocument();
 
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     int row;
     int col;
@@ -278,16 +278,14 @@ CView* PSS_BaseMDIPage::SwitchTopView(CView* pView)
 CView* PSS_BaseMDIPage::GetBottomView()
 {
     CView* pView = DYNAMIC_DOWNCAST(CView, m_Splitter.GetPane(1, 0));
-
-    ASSERT(pView);
+    PSS_Assert(pView);
     return pView;
 }
 //---------------------------------------------------------------------------
 CView* PSS_BaseMDIPage::GetTopView()
 {
     CView* pView = DYNAMIC_DOWNCAST(CView, m_Splitter.GetPane(0, 0));
-
-    ASSERT( pView );
+    PSS_Assert(pView);
     return pView;
 }
 //---------------------------------------------------------------------------
@@ -361,9 +359,7 @@ void PSS_BaseMDIPage::OnUpdateViewFullScreen(CCmdUI* pCmdUI)
 afx_msg void PSS_BaseMDIPage::OnZoomChange()
 {
     CComboBox* pDrop = (CComboBox*)CWnd::FromHandle(HWND(LOWORD(GetCurrentMessage()->lParam)));
-
-    ASSERT(pDrop);
-    ASSERT(pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
+    PSS_Assert(pDrop && pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
 
     PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
@@ -378,9 +374,7 @@ afx_msg void PSS_BaseMDIPage::OnZoomChange()
 afx_msg void PSS_BaseMDIPage::OnSchemaChange()
 {
     CComboBox* pDrop = (CComboBox*)CWnd::FromHandle(HWND(LOWORD(GetCurrentMessage()->lParam)));
-
-    ASSERT(pDrop);
-    ASSERT(pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
+    PSS_Assert(pDrop && pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
 
     PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
@@ -410,9 +404,7 @@ afx_msg void PSS_BaseMDIPage::OnSchemaChange()
 afx_msg void PSS_BaseMDIPage::OnFileChange()
 {
     CComboBox* pDrop = (CComboBox*)CWnd::FromHandle((HWND)LOWORD(GetCurrentMessage()->lParam));
-
-    ASSERT(pDrop != NULL);
-    ASSERT(pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
+    PSS_Assert(pDrop && pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
 
     PSS_Document* pActiveDoc = dynamic_cast<PSS_Document*>(GetActiveDocument());
 

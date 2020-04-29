@@ -1254,9 +1254,6 @@ void PSS_ProcessGraphModelControllerBP::OnViewModelGenToolbar()
 {
     if (!m_pWndModelGenerationBar)
     {
-        ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
-
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
 
         if (pMgr)
@@ -1279,9 +1276,6 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateViewModelGenToolbar(CCmdUI* pCmd
 
     if (!m_pWndModelGenerationBar)
     {
-        ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
-
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
 
         if (pMgr)
@@ -1298,9 +1292,6 @@ void PSS_ProcessGraphModelControllerBP::OnViewModelToolbar()
 {
     if (!m_pWndModelisationBar)
     {
-        ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
-
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
 
         if (pMgr)
@@ -1323,9 +1314,6 @@ void PSS_ProcessGraphModelControllerBP::OnUpdateViewModelToolbar(CCmdUI* pCmdUI)
 
     if (!m_pWndModelisationBar)
     {
-        ASSERT(PSS_FloatingToolBar::GetToolBarManager());
-        ASSERT_KINDOF(SECToolBarManager, PSS_FloatingToolBar::GetToolBarManager());
-
         SECToolBarManager* pMgr = PSS_FloatingToolBar::GetToolBarManager();
 
         if (pMgr)
@@ -1453,7 +1441,7 @@ void PSS_ProcessGraphModelControllerBP::OnRecalculateModelDurations()
     AssignSymbolHit();
 
     PSS_StartSymbolBP* pStartSymbol = dynamic_cast<PSS_StartSymbolBP*>(m_pSymbolHit);
-    ASSERT(pStartSymbol);
+    PSS_Assert(pStartSymbol);
 
     // check if cost simulation is set
     if (pModelDoc->GetIntegrateCostSimulation())

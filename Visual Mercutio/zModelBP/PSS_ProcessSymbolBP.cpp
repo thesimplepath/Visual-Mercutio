@@ -999,8 +999,8 @@ bool PSS_ProcessSymbolBP::SaveProperties(PSS_Properties::IPropertySet& PropSet)
                 case PSS_Property::IE_VT_Double:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(pProp->GetValueDouble()));     break;
                 case PSS_Property::IE_VT_Float:    pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueFloat());             break;
                 case PSS_Property::IE_VT_Date:     pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(DATE(pProp->GetValueDate()))); break;
-                case PSS_Property::IE_VT_TimeSpan: ASSERT(FALSE);                                                                                                   break;
-                case PSS_Property::IE_VT_Duration: ASSERT(FALSE);                                                                                                   break;
+                case PSS_Property::IE_VT_TimeSpan:
+                case PSS_Property::IE_VT_Duration: THROW("Unsupported value");
             }
         }
     }

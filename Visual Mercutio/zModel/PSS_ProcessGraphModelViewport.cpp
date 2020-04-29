@@ -39,7 +39,7 @@ void PSS_ProcessGraphModelViewport::SizeVp(PSS_DocumentPageSetup* pPageSetup)
     SetMapMode(MM_ANISOTROPIC);
 
     CODRuler* pRuler = GetRuler();
-    ASSERT(pRuler);
+    PSS_Assert(pRuler);
 
     // set the right units for the ruler
     pRuler->SetUnitOfMeasure(OD_CENTIMETERS);

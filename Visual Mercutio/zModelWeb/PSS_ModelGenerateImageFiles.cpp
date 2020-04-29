@@ -89,7 +89,7 @@ bool PSS_ModelGenerateImageFiles::OnStart()
 {
     // get info from model class
     m_pInfo = static_cast<PSS_InfoModelGraphicGeneration*>(m_pClass);
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     // create the window for file generation feedback
     m_FileGenerateWindow.Create();
@@ -169,7 +169,7 @@ bool PSS_ModelGenerateImageFiles::OnSymbol(PSS_Symbol* pSymbol)
     if (!pSymbol)
         return false;
 
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     // get the html page owner model
     PSS_ProcessGraphModelMdl* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetOwnerModel());
@@ -224,7 +224,7 @@ bool PSS_ModelGenerateImageFiles::OnLink(PSS_LinkSymbol* pLink)
     if (!pLink)
         return false;
 
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     // get the html page owner model
     PSS_ProcessGraphModelMdl* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pLink->GetOwnerModel());
@@ -240,7 +240,7 @@ bool PSS_ModelGenerateImageFiles::GenerateModel(PSS_ProcessGraphModelMdl* pModel
     if (!pModel)
         return false;
 
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     if (!m_pInfo->GetDC() || !m_pInfo->GetCtlr())
         return false;
@@ -456,7 +456,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         htmlFile << str;
 
         const CODComponentSet* pSet = pModel->GetComponents();
-        ASSERT(pSet);
+        PSS_Assert(pSet);
 
         const int setCount      = pSet->GetSize();
               int objectCounter = 1;
@@ -633,7 +633,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             if (pSymbol || pLinkSymbol)
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
-                ASSERT(pBasicSym);
+                PSS_Assert(pBasicSym);
 
                 // allocate the new popup object
                 str.Format(IDS_MODELGENHTML_55, objectCounter);
@@ -667,7 +667,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 {
                     // get external file property manager
                     const PSS_ExtFilePropertyMgr* pExtFilePropMgr = dynamic_cast<PSS_ExtFilePropertyMgr*>(pComp);
-                    ASSERT(pExtFilePropMgr);
+                    PSS_Assert(pExtFilePropMgr);
 
                     // get link count
                     const std::size_t linkCount = pExtFilePropMgr->GetExtFileCount();
@@ -702,7 +702,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                         PSS_UserGroupEntity* pUserGroupEntity =
                                 dynamic_cast<PSS_UserGroupEntity*>(pMainUserGroupEntity->FindGroupByGUID(pBasicSym->GetUnitGUID(),
                                                                                                          true));
-                        ASSERT(pUserGroupEntity);
+                        PSS_Assert(pUserGroupEntity);
 
                         if (pUserGroupEntity)
                         {
@@ -724,7 +724,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 {
                     // get external file property manager
                     const PSS_ExtAppPropertyMgr* pExtAppPropMgr = dynamic_cast<PSS_ExtAppPropertyMgr*>(pComp);
-                    ASSERT(pExtAppPropMgr);
+                    PSS_Assert(pExtAppPropMgr);
 
                     // get link count
                     const std::size_t appCount = pExtAppPropMgr->GetExtAppCount();
@@ -767,7 +767,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 if (pSymbol && pSymbol->GetChildModel())
                 {
                     PSS_ProcessGraphModelMdl* pSubModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel());
-                    ASSERT(pSubModel);
+                    PSS_Assert(pSubModel);
 
                     // retreive the html FileName for the reference
                     CString symbolChildModelHtmlFileName = BuildModelHTMLFileName(pSubModel);
@@ -1041,7 +1041,7 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(PSS_ProcessGraphModelMdl* pM
                 {
                     // get page model
                     PSS_ProcessGraphModelMdl* pPageModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pPage->GetModel());
-                    ASSERT(pPageModel);
+                    PSS_Assert(pPageModel);
 
                     GenerateModel(pPageModel);
 
@@ -2061,7 +2061,7 @@ CString PSS_ModelGenerateImageFiles::GenerateUserGroupList(PSS_UserGroupEntity* 
             if (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
-                ASSERT(pBasicSym);
+                PSS_Assert(pBasicSym);
 
                 CString                   htmlFileNameOwnerModel;
                 CString                   symbolPath(_T("#NA"));
@@ -2223,7 +2223,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalSystemList(PSS_LogicalSystem
             if (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
-                ASSERT(pBasicSym);
+                PSS_Assert(pBasicSym);
 
                 CString                   htmlFileNameOwnerModel;
                 CString                   symbolPath(_T("#NA"));
@@ -2389,7 +2389,7 @@ CString PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsList(PSS_LogicalP
             if (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol))
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
-                ASSERT(pBasicSym);
+                PSS_Assert(pBasicSym);
 
                 CString                   htmlFileNameOwnerModel;
                 CString                   symbolPath(_T("#NA"));
@@ -2720,7 +2720,7 @@ CString PSS_ModelGenerateImageFiles::BuildSymbolPropertyHTMLFileName(PSS_BasicSy
     if (!pModel)
         return _T("");
 
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     // build the file name using the full object path + the symbol name and the reference number to avoid collision
     CString fileName  = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");

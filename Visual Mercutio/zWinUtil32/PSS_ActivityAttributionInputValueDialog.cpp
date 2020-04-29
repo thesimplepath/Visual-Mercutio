@@ -61,7 +61,7 @@ PSS_ActivityAttributionInputValueDialog::PSS_ActivityAttributionInputValueDialog
     m_TimeAttribution(timeAttribution),
     m_VisibilityAttribution(visibilityAttribution)
 {
-    ASSERT(m_pActivity);
+    PSS_Assert(m_pActivity);
 }
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputValueDialog::DoDataExchange(CDataExchange* pDX)
@@ -80,7 +80,7 @@ BOOL PSS_ActivityAttributionInputValueDialog::OnInitDialog()
 {
     PSS_WizardDialog::OnInitDialog();
 
-    ASSERT(m_pActivity);
+    PSS_Assert(m_pActivity);
     m_ActivityName = m_pActivity->GetName();
 
     const std::size_t userCount = m_pActivity->GetUserCount();
@@ -229,7 +229,7 @@ void PSS_ActivityAttributionInputValueDialog::SaveState()
 {
     UpdateData();
 
-    ASSERT(m_pActivity);
+    PSS_Assert(m_pActivity);
 
     m_pActivity->SetDurationDays( m_TimeOutDays );
 

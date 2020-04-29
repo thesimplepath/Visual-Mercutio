@@ -123,7 +123,7 @@ void PSS_StatusBar::SetCurrentPercentage(int value)
             m_TickCount = temp;
 
         CDC* pDC = GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
 
         if (m_LeftStart < m_BackWidth)
         {
@@ -183,7 +183,7 @@ void PSS_StatusBar::BeginAniPercentage()
     GetItemRect(0, &m_ItemRect);
 
     CDC* pDC = GetDC();
-    ASSERT(pDC);
+    PSS_Assert(pDC);
 
     ShowBitmap(m_hBtmBack,
                pDC->m_hDC,

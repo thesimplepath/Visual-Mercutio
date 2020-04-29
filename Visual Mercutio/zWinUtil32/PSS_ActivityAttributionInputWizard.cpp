@@ -41,7 +41,7 @@ PSS_ActivityAttributionInputWizard::PSS_ActivityAttributionInputWizard(PSS_UserM
     m_TimeAttribution(timeAttribution),
     m_VisibilityAttribution(visibilityAttribution)
 {
-    ASSERT(m_pActivity);
+    PSS_Assert(m_pActivity);
 }
 //---------------------------------------------------------------------------
 int PSS_ActivityAttributionInputWizard::Execute()

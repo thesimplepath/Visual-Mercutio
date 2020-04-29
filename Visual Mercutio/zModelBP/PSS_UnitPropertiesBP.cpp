@@ -95,10 +95,7 @@ void PSS_UnitPropertiesBP::SetUnitName(LPCTSTR pValue)
     if (pValue)
         m_UnitName = pValue;
     else
-    {
-        TRACE0("PSS_UnitPropertiesBP - Invalid task list!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_UnitPropertiesBP - Invalid task list");
 }
 //---------------------------------------------------------------------------
 void PSS_UnitPropertiesBP::SetUnitGUID(LPCTSTR pValue)
@@ -106,10 +103,7 @@ void PSS_UnitPropertiesBP::SetUnitGUID(LPCTSTR pValue)
     if (pValue)
         m_UnitGUID = pValue;
     else
-    {
-        TRACE0("PSS_UnitPropertiesBP - Invalid unit GUID!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_UnitPropertiesBP - Invalid unit GUID");
 }
 //---------------------------------------------------------------------------
 void PSS_UnitPropertiesBP::GetUnitDoubleValidationTypeStringArray(CStringArray& strArray) const

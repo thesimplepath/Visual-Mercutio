@@ -542,7 +542,7 @@ void PSS_TreeView::OnBeginDrag(LPNMHDR pnmhdr, LRESULT* pLResult)
     if (!m_pDragImage)
         m_pDragImage = GetTreeCtrl().GetImageList(LVSIL_SMALL);
 
-    ASSERT(m_pDragImage);
+    PSS_Assert(m_pDragImage);
 
     // change the cursor to the drag image (DragMove() is still required in OnMouseMove())
     VERIFY(m_pDragImage->BeginDrag(m_DragImageIndex, CPoint(0, 0)));
@@ -602,7 +602,7 @@ void PSS_TreeView::OnMouseMove(UINT nFlags, CPoint point)
 
         // get the window under the mouse cursor
         CWnd* pDropWnd = WindowFromPoint(pt);
-        ASSERT(pDropWnd);
+        PSS_Assert(pDropWnd);
 
         // save current window
         m_pDropWnd = pDropWnd;
@@ -662,7 +662,7 @@ void PSS_TreeView::OnButtonUp(const CPoint& point)
 
         // get the window under the mouse cursor
         CWnd* pDropWnd = WindowFromPoint(pt);
-        ASSERT(pDropWnd);
+        PSS_Assert(pDropWnd);
 
         PSS_DropView*       pDropView       = dynamic_cast<PSS_DropView*>(pDropWnd);
         PSS_DropScrollView* pDropScrollView = dynamic_cast<PSS_DropScrollView*>(pDropWnd);

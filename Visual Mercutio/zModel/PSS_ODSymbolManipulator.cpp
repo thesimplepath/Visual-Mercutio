@@ -971,7 +971,7 @@ bool PSS_ODSymbolManipulator::IsSymbolFollowingByPortName(CODSymbolComponent* pS
 //---------------------------------------------------------------------------
 std::size_t PSS_ODSymbolManipulator::GetPortName(CODSymbolComponent* pSymbol, const CString& portName, CODPortSet& ports)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     CODPortSet setPorts;
 

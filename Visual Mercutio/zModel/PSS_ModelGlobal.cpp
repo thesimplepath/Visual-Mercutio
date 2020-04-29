@@ -64,7 +64,7 @@ PSS_PropertyAttributes& PSS_ModelGlobal::GetGlobalPropertyAttributes(int objectI
         pPropAtt = pNewPropAtt.release();
     }
 
-    ASSERT(pPropAtt);
+    PSS_Assert(pPropAtt);
     return *pPropAtt;
 }
 //---------------------------------------------------------------------------

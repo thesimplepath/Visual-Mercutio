@@ -60,7 +60,7 @@ const PSS_NewFormPropertySheet& PSS_NewFormPropertySheet::operator = (const PSS_
 //---------------------------------------------------------------------------
 void PSS_NewFormPropertySheet::Initialize()
 {
-    ASSERT(m_pTemplateManager);
+    PSS_Assert(m_pTemplateManager);
 
     // set the size of the internal array for pointer page
     if (m_FirstInitialization)
@@ -140,7 +140,7 @@ PSS_NewFormDialog::PSS_NewFormDialog(PSS_TemplateManager*      pTemplateManager,
     m_Type(type),
     m_ExtensionType(extensionType)
 {
-    ASSERT(m_pTemplateManager);
+    PSS_Assert(m_pTemplateManager);
     m_pSystemPropertySheet = new PSS_NewFormPropertySheet(m_pTemplateManager);
 }
 //---------------------------------------------------------------------------
@@ -337,11 +337,12 @@ BOOL PSS_NewFormDialog::OnInitDialog()
 //---------------------------------------------------------------------------
 afx_msg LONG PSS_NewFormDialog::OnCommentChange(UINT message, LONG lParam)
 {
-    ASSERT(m_pTemplateManager);
+    PSS_Assert(m_pTemplateManager);
+    PSS_Assert(m_pSystemPropertySheet);
 
     PSS_GenericFormPage* pFormPage =
-            ((PSS_GenericFormPage*)m_pSystemPropertySheet->GetPageArray()[m_pSystemPropertySheet->GetCurPage()]);
-    ASSERT(pFormPage);
+            dynamic_cast<PSS_GenericFormPage*>(m_pSystemPropertySheet->GetPageArray()[m_pSystemPropertySheet->GetCurPage()]);
+    PSS_Assert(pFormPage);
 
     // find the right template directory
     m_pCurrentTemplateDir = m_pTemplateManager->FindTemplateDir(pFormPage->GetCaption());
@@ -386,7 +387,7 @@ afx_msg LONG PSS_NewFormDialog::OnFormsSelected(UINT message, LONG lParam)
 //---------------------------------------------------------------------------
 void PSS_NewFormDialog::OnMoveToGeneralTab()
 {
-    ASSERT(m_pTemplateManager);
+    PSS_Assert(m_pTemplateManager);
 
     // find the right template directory
     if (m_pTemplateManager->MoveTemplateFile(m_pCurrentTemplateFile->GetFileName(),

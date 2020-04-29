@@ -78,6 +78,7 @@ using namespace foundation;
 #include <zBaseSym\zBaseSymLib.h>
 #include "PlanFin.hdf"
 #include "PSS_Constants.h"
+#include "PSS_Macros.h"
 #include "PSS_Defines.h"
 #include "PSS_Messages.h"
 

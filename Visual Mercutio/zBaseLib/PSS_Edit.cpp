@@ -166,7 +166,7 @@ void PSS_Edit::LoadFromHistoric(CComboBox& combobox)
 //---------------------------------------------------------------------------
 void PSS_Edit::CreateSpecialHelp(BOOL designer)
 {
-    ASSERT(m_pEditedObj);
+    PSS_Assert(m_pEditedObj);
 
     if (m_pEditedObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTime)))
     {
@@ -1332,10 +1332,10 @@ void PSS_MultiColumnEdit::DestroyEdit()
     {
         // get the size of each header
         CHeaderCtrl* pHeader = GetHeaderCtrl();
-        ASSERT(pHeader);
+        PSS_Assert(pHeader);
 
         PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(m_pEditedObj);
-        ASSERT(pMultiColumn);
+        PSS_Assert(pMultiColumn);
 
         const int colCount = pHeader->GetItemCount();
 
@@ -1427,7 +1427,7 @@ void PSS_MultiColumnEdit::BuildColumns()
         return;
 
     PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(m_pEditedObj);
-    ASSERT(pMultiColumn);
+    PSS_Assert(pMultiColumn);
 
     if (pMultiColumn->GetColumnCount() > 0)
     {
@@ -1482,7 +1482,7 @@ void PSS_MultiColumnEdit::BuildColumns()
 void PSS_MultiColumnEdit::FillControl()
 {
     PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(m_pEditedObj);
-    ASSERT(pMultiColumn);
+    PSS_Assert(pMultiColumn);
 
     if (pMultiColumn->GetColumnCount() <= 0)
         return;

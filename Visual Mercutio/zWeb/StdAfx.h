@@ -56,9 +56,11 @@
     #include <afxcmn.h>           // MFC support for Windows Common Controls
 #endif                            // _AFX_NO_AFXCMN_SUPPORT
 
-// processsoft
 #ifdef _ENABLETRACE
     #include "zBaseLib\ZGTrace.h" // if enabled, trace is defined
 #endif
+
+// processsoft
+#include "PSS_Macros.h"
 
 #endif

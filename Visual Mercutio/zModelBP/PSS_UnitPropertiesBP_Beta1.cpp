@@ -105,10 +105,7 @@ void PSS_UnitPropertiesBP_Beta1::SetUnitName(LPCTSTR pValue)
     if (pValue)
         m_UnitName = pValue;
     else
-    {
-        TRACE0("PSS_UnitPropertiesBP_Beta1 -> Invalid unit name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_UnitPropertiesBP_Beta1 - Invalid unit name");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_UnitPropertiesBP_Beta1::GetValue(const int propId, int& value) const

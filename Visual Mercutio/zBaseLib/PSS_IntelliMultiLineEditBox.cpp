@@ -123,7 +123,7 @@ PSS_IntelliMultiLineEditBox::~PSS_IntelliMultiLineEditBox()
 //---------------------------------------------------------------------------
 BOOL PSS_IntelliMultiLineEditBox::Create(PSS_MultiLineEdit* pEditCtrl, CSize* pSize)
 {
-    ASSERT(pEditCtrl);
+    PSS_Assert(pEditCtrl);
 
     // create the bubble window but leave it invisible
     m_pEditCtrl      = pEditCtrl;

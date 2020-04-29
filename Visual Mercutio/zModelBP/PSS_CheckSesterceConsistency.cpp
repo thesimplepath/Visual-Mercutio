@@ -106,19 +106,17 @@ bool PSS_CheckSesterceConsistency::Visit(CODComponent& component)
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckDoorSymbol(PSS_DoorSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
     return true;
 }
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
     return true;
 }
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check if it's a local symbol
     if (!pSymbol->IsLocal())
@@ -197,7 +195,7 @@ bool PSS_CheckSesterceConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* p
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     const int count = pSymbol->GetDeliveriesCount();
 
@@ -221,7 +219,7 @@ bool PSS_CheckSesterceConsistency::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymb
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check if an unit is defined for the procedure
     if (pSymbol->GetUnitName().IsEmpty())
@@ -257,7 +255,7 @@ bool PSS_CheckSesterceConsistency::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check if an unit is defined for the procedure
     if (pSymbol->GetUnitName().IsEmpty())
@@ -293,7 +291,7 @@ bool PSS_CheckSesterceConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check if it's a local symbol
     if (!pSymbol->IsLocal())
@@ -354,13 +352,11 @@ bool PSS_CheckSesterceConsistency::CheckDeliverableLinkSymbol(PSS_DeliverableLin
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckSymbol(PSS_Symbol* pSymbol)
 {
-    ASSERT(pSymbol);
     return true;
 }
 //---------------------------------------------------------------------------
 bool PSS_CheckSesterceConsistency::CheckLink(PSS_LinkSymbol* pLink)
 {
-    ASSERT(pLink);
     return true;
 }
 //---------------------------------------------------------------------------

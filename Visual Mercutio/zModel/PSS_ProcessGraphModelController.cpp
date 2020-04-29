@@ -1228,12 +1228,13 @@ void PSS_ProcessGraphModelController::RefreshAllSymbols()
 {
     PSS_ProcessGraphModelViewport* pViewport = GetViewport();
 
-    ASSERT(pViewport);
+    PSS_Assert(pViewport);
     pViewport->UpdateAll();
 
     // refresh all symbol attributes
-    ASSERT(GetRootModel());
-    GetRootModel()->RefreshSymbolAttributes(true);
+    PSS_ProcessGraphModelMdl* pRootModel = GetRootModel();
+    PSS_Assert(pRootModel);
+    pRootModel->RefreshSymbolAttributes(true);
 
     // refresh also the model tree
     RefreshModelTree();
@@ -1249,7 +1250,7 @@ void PSS_ProcessGraphModelController::ReleaseClipboard()
 void PSS_ProcessGraphModelController::SetImage(const CString& fileName, BOOL isLogo)
 {
     PSS_ProcessGraphModelMdl* pModel = GetRootModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     std::unique_ptr<SECImage> pImage(PSS_ProcessGraphModelView::LoadImageFromFile(fileName));
 
@@ -1276,8 +1277,6 @@ void PSS_ProcessGraphModelController::SetImage(const CString& fileName, BOOL isL
     }
 
     std::unique_ptr<SECDib> pDibImage(new SECDib());
-    ASSERT(pDibImage.get());
-
     pDibImage->ConvertImage(pImage.get());
 
     if (!isLogo)
@@ -1313,21 +1312,23 @@ void PSS_ProcessGraphModelController::SetImage(const CString& fileName, BOOL isL
     pModel->SetBkGndFileName(fileName);
 
     // refresh the viewport
-    ASSERT(GetViewport());
-    GetViewport()->UpdateAll();
+    PSS_ProcessGraphModelViewport* pViewport = GetViewport();
+    PSS_Assert(pViewport);
+    pViewport->UpdateAll();
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::ClearImage()
 {
     PSS_ProcessGraphModelMdl* pModel = GetRootModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     pModel->ClearBackgroundComponent(true);
     pModel->SetBkGndFileName(_T(""));
 
     // refresh the viewport
-    ASSERT(GetViewport());
-    GetViewport()->UpdateAll();
+    PSS_ProcessGraphModelViewport* pViewport = GetViewport();
+    PSS_Assert(pViewport);
+    pViewport->UpdateAll();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ProcessGraphModelController::GetImageFileName(CString& fileName)
@@ -2234,7 +2235,7 @@ void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
     DetermineReferencedSymbol(pCompSet);
 
     PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     // notify observers for all added symbols
     CODComponentIterator it(pCompSet);
@@ -2376,7 +2377,7 @@ void PSS_ProcessGraphModelController::DetermineReferencedSymbol(CODComponentSet*
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
     PSS_ProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
-    ASSERT(pRoot);
+    PSS_Assert(pRoot);
 
     CODComponentIterator it(&m_CopySet);
 
@@ -2557,7 +2558,7 @@ void PSS_ProcessGraphModelController::CopySymbolsToSymbolAddedSet(CODComponentSe
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::CopyToClipboardSet(CODComponentSet* pCompSet)
 {
-    ASSERT(pCompSet);
+    PSS_Assert(pCompSet);
 
     if (pCompSet && pCompSet->GetSize() > 0)
     {
@@ -2648,7 +2649,7 @@ void PSS_ProcessGraphModelController::StoreComponentsToSet(const CODComponentSet
     for (int connectIndex = 0; connectIndex < movingConnectionCount; ++connectIndex)
     {
         CODConnection* pConnection = movingConnectionSet.GetAt(connectIndex);
-        ASSERT(pConnection);
+        PSS_Assert(pConnection);
 
         ASSERT_VALID(pConnection->GetSourcePort());
         CODSymbolComponent* pSourceSymbol = pConnection->GetSourcePort()->GetOwner();
@@ -3305,13 +3306,13 @@ void PSS_ProcessGraphModelController::OnEditCut()
     if (m_pTextEdit && m_pTextEdit->IsEditing())
     {
         CEdit* pEdit = m_pTextEdit->GetEditControl();
-        ASSERT(pEdit);
+        PSS_Assert(pEdit);
         pEdit->Cut();
         return;
     }
 
     PSS_ProcessGraphModelMdl* pRootModel = GetRootModel();
-    ASSERT(pRootModel);
+    PSS_Assert(pRootModel);
     pRootModel->SetInCutOperation(true);
 
     CODComponentSet* pSelection = GetSelection();
@@ -3352,8 +3353,9 @@ void PSS_ProcessGraphModelController::OnEditPaste()
 {
     if (m_CutCommand)
     {
-        ASSERT(GetRootModel());
-        GetRootModel()->SetInCutOperation(true);
+        PSS_ProcessGraphModelMdl* pRootModel = GetRootModel();
+        PSS_Assert(pRootModel);
+        pRootModel->SetInCutOperation(true);
 
         CODComponent*        pComp = NULL;
         CODComponentIterator it(&m_CutSet);
@@ -3533,9 +3535,6 @@ void PSS_ProcessGraphModelController::OnEditPaste()
 
         pCanvasViewport->SetPasteInsertionPoint(holdInsertPoint);
 
-        PSS_ProcessGraphModelMdl* pRootModel = GetRootModel();
-
-        ASSERT(pRootModel);
         pRootModel->SetInCutOperation(false);
 
         // recalculate all references
@@ -3901,7 +3900,7 @@ void PSS_ProcessGraphModelController::OnInsertPage()
         }
 
         CDocument* pDocument = GetDocument();
-        ASSERT(pDocument);
+        PSS_Assert(pDocument);
 
         // set the modification flag
         pDocument->SetModifiedFlag(TRUE);
@@ -4254,7 +4253,7 @@ void PSS_ProcessGraphModelController::OnClearBackgroundImage()
 void PSS_ProcessGraphModelController::OnShowModelBorder()
 {
     PSS_ProcessGraphModelMdl* pModel = GetRootModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     pModel->SetShowPageBorder(!pModel->GetShowPageBorder());
 
@@ -4683,12 +4682,10 @@ void PSS_ProcessGraphModelController::OnUpdateSymbolSelectAttributes(CCmdUI* pCm
 void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
 {
     PSS_ProcessGraphModelDoc* pDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetDocument());
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     if (!pDoc->HasDynamicPropertiesManager())
         pDoc->AllocatePropertiesManager();
-
-    ASSERT(pDoc->GetDynamicPropertiesManager());
 
     AssignSymbolHit();
 
@@ -4714,6 +4711,9 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
         symbolRef  = pBasicSymbol->GetSymbolReferenceNumber();
     }
 
+    PSS_DynamicPropertiesManager* pDynPropMgr = pDoc->GetDynamicPropertiesManager();
+    PSS_Assert(pDynPropMgr);
+
     PSS_Property*    pProperty = NULL;
     PSS_StringFormat ft;
 
@@ -4723,13 +4723,13 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
         case 0:
             if (pBasicSymbol)
             {
-                pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
-                                                                                  dlg.GetAttributeName(),
-                                                                                  dlg.GetAttributeDescription(),
-                                                                                  dlg.GetPropertyType(),
-                                                                                  ft,
-                                                                                  symbolName,
-                                                                                  symbolRef);
+                pProperty = pDynPropMgr->RegisterProperty(dlg.GetCategoryName(),
+                                                          dlg.GetAttributeName(),
+                                                          dlg.GetAttributeDescription(),
+                                                          dlg.GetPropertyType(),
+                                                          ft,
+                                                          symbolName,
+                                                          symbolRef);
 
                 // add the property directly to the symbol
                 pBasicSymbol->GetDynamicPropertiesManager()->AddDynamicProperty(pProperty->Dup());
@@ -4739,12 +4739,12 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
 
         // same class type
         case 1:
-            pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
-                                                                              dlg.GetAttributeName(),
-                                                                              dlg.GetAttributeDescription(),
-                                                                              dlg.GetPropertyType(),
-                                                                              ft,
-                                                                              pRTClass);
+            pProperty = pDynPropMgr->RegisterProperty(dlg.GetCategoryName(),
+                                                      dlg.GetAttributeName(),
+                                                      dlg.GetAttributeDescription(),
+                                                      dlg.GetPropertyType(),
+                                                      ft,
+                                                      pRTClass);
 
             // add the property to all symbols with the same class type
             PSS_DynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty, pRTClass);
@@ -4753,11 +4753,11 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesAdd()
 
         // all symbols
         case 2:
-            pProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty(dlg.GetCategoryName(),
-                                                                              dlg.GetAttributeName(),
-                                                                              dlg.GetAttributeDescription(),
-                                                                              dlg.GetPropertyType(),
-                                                                              ft);
+            pProperty = pDynPropMgr->RegisterProperty(dlg.GetCategoryName(),
+                                                      dlg.GetAttributeName(),
+                                                      dlg.GetAttributeDescription(),
+                                                      dlg.GetPropertyType(),
+                                                      ft);
 
             // add the property to all symbols
             PSS_DynamicAttributesManipulator::AssignProperty(GetRootModel(), pProperty);
@@ -4786,7 +4786,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
         pDoc->AllocatePropertiesManager();
 
     PSS_DynamicPropertiesManager* pPropMgr = pDoc->GetDynamicPropertiesManager();
-    ASSERT(pPropMgr);
+    PSS_Assert(pPropMgr);
 
     AssignSymbolHit();
 
@@ -4897,12 +4897,12 @@ void PSS_ProcessGraphModelController::OnUpdateDynamicAttributesDelete(CCmdUI* pC
 void PSS_ProcessGraphModelController::OnRefresh()
 {
     PSS_ProcessGraphModelViewport* pViewport = GetViewport();
-    ASSERT(pViewport);
+    PSS_Assert(pViewport);
 
     pViewport->UpdateAll();
 
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     // refresh all symbol attributes
     pModel->RefreshSymbolAttributes(true);

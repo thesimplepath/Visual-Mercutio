@@ -175,7 +175,7 @@ void PSS_DoorSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 PSS_ProcessGraphModelMdl* PSS_DoorSymbolBP::GetDoorModel()
 {
     PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(m_pModel);
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     return pModel;
 }

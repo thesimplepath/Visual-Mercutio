@@ -92,10 +92,7 @@ void PSS_ExtFileProperties::SetFileTitle(LPCTSTR pValue)
     if (pValue)
         m_FileTitle = pValue;
     else
-    {
-        TRACE0("Z -> Invalid Task List pointer!\n");
-        ASSERT(FALSE);
-    }
+        THROW("Invalid Task List pointer");
 }
 //---------------------------------------------------------------------------
 void PSS_ExtFileProperties::SetFileName(LPCTSTR pValue)
@@ -103,10 +100,7 @@ void PSS_ExtFileProperties::SetFileName(LPCTSTR pValue)
     if (pValue)
         m_FileName = pValue;
     else
-    {
-        TRACE0("Z -> Invalid Decision List pointer!\n");
-        ASSERT(FALSE);
-    }
+        THROW("Invalid Decision List pointer");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ExtFileProperties::GetValue(const int propId, int& value) const

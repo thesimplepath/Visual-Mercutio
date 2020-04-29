@@ -249,8 +249,8 @@ bool PSS_GridReportDocument::OnPostInitialized(CGXTabWndMgr* pMgr, CGXAppAdapter
         // to the last document. This generates a situation where the last document has
         // a primary document pointer to itself and all the others have the primary
         // document pointer set to this document
-        ASSERT(pMgr);
-        ASSERT(pAppAdapt);
+        PSS_Assert(pMgr);
+        PSS_Assert(pAppAdapt);
 
         // get the tab create info array
         CArray<CGXTabCreateInfo*, CGXTabCreateInfo*>* pTabInfoArray = pMgr->GetTabCreateInfoArray();
@@ -261,7 +261,7 @@ bool PSS_GridReportDocument::OnPostInitialized(CGXTabWndMgr* pMgr, CGXAppAdapter
         for (int i = 0; i < count; ++i)
         {
             CGXTabCreateInfo* pInfo = pTabInfoArray->GetAt(i);
-            ASSERT(pInfo);
+            PSS_Assert(pInfo);
 
             if (pInfo->GetDocument())
                 pInfo->GetDocument()->SetPrimaryDocument(this);

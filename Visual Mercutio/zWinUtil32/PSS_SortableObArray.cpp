@@ -54,8 +54,8 @@ void PSS_SortableObArray::Sort(int startPos, int elements, int(*CompareFunc)(COb
 {
     // this variation allows to sort only a portion of the array
     ASSERT_VALID(this);
-    ASSERT(startPos >= 0 && startPos <= GetUpperBound());
-    ASSERT(GetSize() - startPos >= elements);
+    PSS_Assert(startPos >= 0 && startPos <= GetUpperBound());
+    PSS_Assert(GetSize() - startPos >= elements);
 
     BOOL      found;
     int       inner, outer, stride = 1;

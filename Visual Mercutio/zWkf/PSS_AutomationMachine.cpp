@@ -303,13 +303,13 @@ bool PSS_AutomationMachine::MergeAllStateObjects(PSS_StateMachineCollection& col
     for (int i = 0; i < int(collection.GetStateMachineCount()); ++i)
     {
         PSS_StateMachine* pSrcStateMachine = collection.GetStateMachine(i);
-        ASSERT(pSrcStateMachine);
+        PSS_Assert(pSrcStateMachine);
 
         // from the next element till then end of the collection, compare if the state machine last element is equals
         for (int j = i + 1; j < int(collection.GetStateMachineCount()); ++j)
         {
             PSS_StateMachine* pDstStateMachine = collection.GetStateMachine(j);
-            ASSERT(pDstStateMachine);
+            PSS_Assert(pDstStateMachine);
 
             // try to locate the same state machine object id
             if (pSrcStateMachine->IsLastObjectEqual(pDstStateMachine))
@@ -332,11 +332,11 @@ bool PSS_AutomationMachine::MergeStateMachine(std::size_t                 srcInd
 {
     // get the source state machine
     PSS_StateMachine* pSrcStateMachine = collection.GetStateMachine(srcIndex);
-    ASSERT(pSrcStateMachine);
+    PSS_Assert(pSrcStateMachine);
 
     // get the destination state machine
     PSS_StateMachine* pDstStateMachine = collection.GetStateMachine(dstIndex);
-    ASSERT(pDstStateMachine);
+    PSS_Assert(pDstStateMachine);
 
     // merge the state machines together
     if (!pSrcStateMachine->Merge(pDstStateMachine))

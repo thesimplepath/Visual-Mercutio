@@ -81,7 +81,7 @@ void PSS_View::Initialize()
 {
     // get the screen logical size
     CDC* pDC = GetDC();
-    ASSERT(pDC);
+    PSS_Assert(pDC);
 
     try
     {
@@ -163,7 +163,7 @@ void PSS_View::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 PSS_PlanFinObject* PSS_View::ActiveSelectedObject(CPoint& point, BOOL autoReset)
 {
     PSS_Document* pDoc = GetDocument();
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     PSS_PlanFinObject* pObj;
     PSS_PlanFinObject* pReturnedObject = NULL;
@@ -173,7 +173,7 @@ PSS_PlanFinObject* PSS_View::ActiveSelectedObject(CPoint& point, BOOL autoReset)
 
     // translate the point in logical coordinates
     CDC* pDC = GetDC();
-    ASSERT(pDC);
+    PSS_Assert(pDC);
 
     CPoint pt(point);
     OnPrepareDC(pDC);
@@ -229,7 +229,7 @@ PSS_PlanFinObject* PSS_View::ActiveSelectedObject(CPoint& point, BOOL autoReset)
 void PSS_View::SelectObjectInRect(const CRect& rect, CWnd* pWnd, CDC* pDC)
 {
     PSS_Document* pDoc = GetDocument();
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     PSS_PlanFinObject* pObj;
 
@@ -262,7 +262,7 @@ void PSS_View::SelectObjectInRect(const CRect& rect, CWnd* pWnd, CDC* pDC)
 BOOL PSS_View::GetRectOfSelectedObject(CRect& rect)
 {
     PSS_Document* pDoc = GetDocument();
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     PSS_PlanFinObject* pObj;
     BOOL               result = FALSE;
@@ -342,7 +342,7 @@ void PSS_View::DocToClient(CRect& rect)
 PSS_PlanFinObject* PSS_View::FindHitObject(CPoint& point)
 {
     PSS_Document* pDoc = GetDocument();
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     PSS_PlanFinObject* pObj;
 
@@ -387,7 +387,7 @@ PSS_PlanFinObject* PSS_View::SelectAndGet()
     if (m_pSelectedObject)
     {
         CDC* pDC = GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
         OnPrepareDC(pDC);
 
         m_pSelectedObject->SelectObject(this, pDC, TRUE);
@@ -400,7 +400,7 @@ PSS_PlanFinObject* PSS_View::SelectAndGet()
 CObArray& PSS_View::GetArrayOfSelectedObject()
 {
     PSS_Document* pDoc = GetDocument();
-    ASSERT(pDoc);
+    PSS_Assert(pDoc);
 
     // remove all elements
     m_ArrayOfSelectedObject.RemoveAll();
@@ -624,7 +624,7 @@ BOOL PSS_View::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
     {
         // test all tracked objects
         CDocument* pDoc = GetDocument();
-        ASSERT(pDoc);
+        PSS_Assert(pDoc);
 
         PSS_PlanFinObject* pObj;
 

@@ -194,7 +194,7 @@ PSS_ExpandedMultiLineEdit::~PSS_ExpandedMultiLineEdit()
 //---------------------------------------------------------------------------
 BOOL PSS_ExpandedMultiLineEdit::Create(PSS_MultiLineEdit* pEditCtrl, const CSize& size)
 {
-    ASSERT(pEditCtrl);
+    PSS_Assert(pEditCtrl);
 
     m_pEditCtrl = pEditCtrl;
 

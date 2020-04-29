@@ -57,7 +57,7 @@ PSS_Formula::PSS_Formula(PSS_Document& doc, const CString& formula) :
 
     // get the result object pointer
     m_pResultObject = doc.GetObject(m_ObjectName);
-    ASSERT(m_pResultObject);
+    PSS_Assert(m_pResultObject);
 }
 //---------------------------------------------------------------------------
 PSS_Formula::PSS_Formula(const PSS_Formula& other) :
@@ -136,8 +136,8 @@ void PSS_Formula::ConstructObjectPointer(PSS_DocumentData& doc, CObList& formula
 
     while (pPosition)
     {
-        pObj = (PSS_Formula*)formulas.GetNext(pPosition);
-        ASSERT(pObj);
+        pObj = dynamic_cast<PSS_Formula*>(formulas.GetNext(pPosition));
+        PSS_Assert(pObj);
 
         // get the object
         pObj->m_pResultObject = doc.GetObject(pObj->m_ObjectName);
@@ -734,13 +734,13 @@ PSS_SchemaManager::~PSS_SchemaManager()
 //---------------------------------------------------------------------------
 const PSS_SchemaManager& PSS_SchemaManager::operator = (const PSS_SchemaManager& other)
 {
-    PSS_SchemaManager* pObj;
-    POSITION           pPosition = other.m_Schemas.GetHeadPosition();
+    const PSS_SchemaManager* pObj;
+    POSITION                 pPosition = other.m_Schemas.GetHeadPosition();
 
     // copy elements
     while (pPosition)
     {
-        pObj = (PSS_SchemaManager*)(other).m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<const PSS_SchemaManager*>(other.m_Schemas.GetNext(pPosition));
         m_Schemas.AddTail(pObj->Clone());
     }
 
@@ -776,7 +776,7 @@ void PSS_SchemaManager::InitializeSchemaObjectPointer(PSS_DocumentData& doc)
 
     while (pPosition)
     {
-        pObj = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
         PSS_Formula::ConstructObjectPointer(doc, pObj->GetFormulaList());
     }
 }
@@ -807,7 +807,7 @@ CObList* PSS_SchemaManager::GetFormulaList(const CString& name)
 
     while (pPosition)
     {
-        pObj = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
 
         if (pObj->GetSchemaName() == name)
             return &(pObj->GetFormulaList());
@@ -826,7 +826,7 @@ CObList* PSS_SchemaManager::GetFormulaSchema(const CString& name)
 
     while (pPosition)
     {
-        pObj = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
 
         if (pObj->GetSchemaName() == name)
             return (CObList*)pObj;
@@ -842,7 +842,7 @@ BOOL PSS_SchemaManager::DeleteFormulaList(const CString& name)
 
     while (pPosition)
     {
-        pObj = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
 
         if (pObj->GetSchemaName() == name)
         {
@@ -864,8 +864,8 @@ BOOL PSS_SchemaManager::DeleteFormulaList(const CString& name)
 //---------------------------------------------------------------------------
 BOOL PSS_SchemaManager::CopyPageFormulas(const CString& name, PSS_SchemaManager& schemaDst, int page)
 {
-    PSS_FormulaSchema* pFormula    = (PSS_FormulaSchema*)GetFormulaSchema(name);
-    PSS_FormulaSchema* pFormulaDst = (PSS_FormulaSchema*)schemaDst.GetFormulaSchema(name);
+    PSS_FormulaSchema* pFormula    = dynamic_cast<PSS_FormulaSchema*>(GetFormulaSchema(name));
+    PSS_FormulaSchema* pFormulaDst = dynamic_cast<PSS_FormulaSchema*>(schemaDst.GetFormulaSchema(name));
 
     if (!pFormula)
         return FALSE;
@@ -880,8 +880,8 @@ BOOL PSS_SchemaManager::CopyPageFormulas(const CString& name, PSS_SchemaManager&
     {
         // if the association does not exist, create it before
         schemaDst.Create(name);
-        pFormulaDst = (PSS_FormulaSchema*)schemaDst.GetFormulaSchema(name);
-        ASSERT(pFormulaDst);
+        pFormulaDst = dynamic_cast<PSS_FormulaSchema*>(schemaDst.GetFormulaSchema(name));
+        PSS_Assert(pFormulaDst);
     }
 
     return pFormula->CopyPageFormulas(pFormulaDst, page);
@@ -889,7 +889,7 @@ BOOL PSS_SchemaManager::CopyPageFormulas(const CString& name, PSS_SchemaManager&
 //---------------------------------------------------------------------------
 BOOL PSS_SchemaManager::DeletePageFormulas(const CString& name, int page)
 {
-    PSS_FormulaSchema* pFormula = (PSS_FormulaSchema*)GetFormulaSchema(name);
+    PSS_FormulaSchema* pFormula = dynamic_cast<PSS_FormulaSchema*>(GetFormulaSchema(name));
     return pFormula->DeletePageFormulas(page);
 }
 //---------------------------------------------------------------------------
@@ -901,7 +901,7 @@ BOOL PSS_SchemaManager::DeletePageFormulas(int page)
 
     while (pPosition)
     {
-        pObj    = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj    = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
         result |= !DeletePageFormulas(pObj->GetSchemaName(), page);
     }
 
@@ -917,7 +917,7 @@ CStringArray& PSS_SchemaManager::GetFormulaArrayName()
 
     while (pPosition)
     {
-        pObj = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
         m_SchemaNameArray.Add(pObj->GetSchemaName());
     }
 
@@ -933,7 +933,7 @@ CStringArray& PSS_SchemaManager::GetFormulaUserArrayName()
 
     while (pPosition)
     {
-        pObj = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
 
         if (pObj->GetFormulaSchemaType() == PSS_FormulaSchema::IE_T_User)
             m_SchemaNameArray.Add(pObj->GetSchemaName());
@@ -951,7 +951,7 @@ CStringArray& PSS_SchemaManager::GetFormulaSystemArrayName()
 
     while (pPosition)
     {
-        pObj = (PSS_FormulaSchema*)m_Schemas.GetNext(pPosition);
+        pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
 
         if (pObj->GetFormulaSchemaType() == PSS_FormulaSchema::IE_T_System)
             m_SchemaNameArray.Add(pObj->GetSchemaName());

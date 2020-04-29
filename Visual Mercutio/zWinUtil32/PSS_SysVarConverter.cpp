@@ -140,8 +140,8 @@ CString PSS_SysVarConverter::GetVariableContent(const CString& variable)
 //---------------------------------------------------------------------------
 CString PSS_SysVarConverter::FindKeyword(const CString& line, int* pStartPos, int* pEndPos)
 {
-    ASSERT(pStartPos);
-    ASSERT(pEndPos);
+    PSS_Assert(pStartPos);
+    PSS_Assert(pEndPos);
 
     const int     start = line.Find("$$");
           CString keyword;

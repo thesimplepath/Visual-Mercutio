@@ -292,8 +292,6 @@ HANDLE PSS_DIBitmap::GetDIBits(int startX, int startY, int cx, int cy) const
 //---------------------------------------------------------------------------
 CBitmap* PSS_DIBitmap::GetBitmap(const CDC& dc) const
 {
-    ASSERT(m_pVoid);
-
     // create a bitmap with the device context content
     HBITMAP hBitmap = ::CreateDIBitmap(dc.m_hDC,
                                        PBITMAPINFOHEADER(m_pInfo),
@@ -348,8 +346,6 @@ CBitmap* PSS_DIBitmap::GetBitmap(const CDC& dc) const
 //---------------------------------------------------------------------------
 CBitmap* PSS_DIBitmap::GetTempBitmap(const CDC& dc) const
 {
-    ASSERT(m_pVoid != NULL);
-
     // create a bitmap with the device context content
     HBITMAP hBitmap = ::CreateDIBitmap(dc.m_hDC,
                                        PBITMAPINFOHEADER(m_pInfo),
@@ -388,7 +384,7 @@ int PSS_DIBitmap::GetPaletteSize() const
 int PSS_DIBitmap::GetColorCount() const
 {
     // works only for 256 colors pallettized bitmaps
-    ASSERT(GetBitCount() == 8);
+    PSS_Assert(GetBitCount() == 8);
 
     BYTE colors[256];
     std::memset(colors, 0, 256);
@@ -416,8 +412,8 @@ int PSS_DIBitmap::GetColorCount() const
 int PSS_DIBitmap::EnumColors(BYTE* pColors) const
 {
     // works only for 256 colors pallettized bitmaps
-    ASSERT(GetBitCount() == 8);
-    ASSERT(pColors);
+    PSS_Assert(GetBitCount() == 8);
+    PSS_Assert(pColors);
 
     // initialize the palette
     std::memset(pColors, 0, 256);
@@ -444,8 +440,8 @@ int PSS_DIBitmap::EnumColors(BYTE* pColors) const
 //---------------------------------------------------------------------------
 void PSS_DIBitmap::CopyLine(int source, int dest)
 {
-    ASSERT(source <= m_Height && source >= 0);
-    ASSERT(dest   <= m_Height && dest   >= 0);
+    PSS_Assert(source <= m_Height && source >= 0);
+    PSS_Assert(dest   <= m_Height && dest   >= 0);
 
     // nothing to copy?
     if (source == dest)
@@ -498,7 +494,7 @@ void PSS_DIBitmap::SetPalette(RGBQUAD* pRGB)
 //---------------------------------------------------------------------------
 COLORREF PSS_DIBitmap::PaletteColor(int index) const
 {
-    ASSERT(index < 256);
+    PSS_Assert(index < 256);
 
     RGBQUAD* pRGB = m_pRGB + index;
 
@@ -507,19 +503,19 @@ COLORREF PSS_DIBitmap::PaletteColor(int index) const
 //---------------------------------------------------------------------------
 COLORREF PSS_DIBitmap::GetPixel(int x, int y) const
 {
-    ASSERT(x >= 0       && y >= 0);
-    ASSERT(x <  m_Width && y <  m_Height);
+    PSS_Assert(x >= 0       && y >= 0);
+    PSS_Assert(x <  m_Width && y <  m_Height);
 
     unsigned char* pLine = GetLine(y) + (x * 3);
-    ASSERT(pLine);
+    PSS_Assert(pLine);
 
     return RGB(*(pLine + 2), *(pLine + 1), *pLine);
 }
 //---------------------------------------------------------------------------
 void PSS_DIBitmap::GetPixel(UINT x, UINT y, int& pixel) const
 {
-    ASSERT(x < UINT(m_Width));
-    ASSERT(y < UINT(m_Height));
+    PSS_Assert(x < UINT(m_Width));
+    PSS_Assert(y < UINT(m_Height));
 
     if (x >= UINT(m_Width))
         return;
@@ -532,11 +528,11 @@ void PSS_DIBitmap::GetPixel(UINT x, UINT y, int& pixel) const
 //---------------------------------------------------------------------------
 void PSS_DIBitmap::SetPixel(int x, int y, COLORREF color)
 {
-    ASSERT(x >= 0       && y >= 0);
-    ASSERT(x <  m_Width && y <  m_Height);
+    PSS_Assert(x >= 0       && y >= 0);
+    PSS_Assert(x <  m_Width && y <  m_Height);
 
     unsigned char* pLine = (unsigned char*)(m_pLine[y] + (x * 3));
-    ASSERT(pLine);
+    PSS_Assert(pLine);
 
     *pLine = unsigned char(GetBValue(color)); ++pLine;
     *pLine = unsigned char(GetGValue(color)); ++pLine;
@@ -545,10 +541,11 @@ void PSS_DIBitmap::SetPixel(int x, int y, COLORREF color)
 //---------------------------------------------------------------------------
 void PSS_DIBitmap::SetPixel8(int x, int y, unsigned char color)
 {
-    ASSERT(x >= 0       && y >= 0);
-    ASSERT(x <  m_Width && y <  m_Height);
+    PSS_Assert(x >= 0       && y >= 0);
+    PSS_Assert(x <  m_Width && y <  m_Height);
 
     unsigned char* pLine = GetLine(y) + x;
+    PSS_Assert(pLine);
 
     *pLine = color;
 }
@@ -813,8 +810,8 @@ unsigned char* PSS_DIBitmap::GetLine(int line) const
 //---------------------------------------------------------------------------
 BOOL PSS_DIBitmap::Make8Bit(const PSS_DIBitmap& dib)
 {
-    ASSERT(m_Width  == dib.m_Width);
-    ASSERT(m_Height == dib.m_Height);
+    PSS_Assert(m_Width  == dib.m_Width);
+    PSS_Assert(m_Height == dib.m_Height);
 
     const int bits = dib.GetBitCount();
 
@@ -1115,8 +1112,8 @@ void PSS_DIBitmap::Expand(int                 xDest,
                           int                 widthSrc,
                           int                 heightSrc) const
 {
-    ASSERT(xRatio);
-    ASSERT(yRatio);
+    PSS_Assert(xRatio);
+    PSS_Assert(yRatio);
 
     int widthDest  = widthSrc  * xRatio;
     int heightDest = heightSrc * yRatio;

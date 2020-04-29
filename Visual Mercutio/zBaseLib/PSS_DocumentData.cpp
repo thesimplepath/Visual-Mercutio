@@ -435,7 +435,7 @@ void PSS_DocumentData::CalculateAllFormula(CView* pView, BOOL allPages)
     if (pView)
     {
         pDC = pView->GetDC();
-        ASSERT(pDC);
+        PSS_Assert(pDC);
 
         if (::IsWindow(pView->GetSafeHwnd()) && IsWindowVisible(pView->GetSafeHwnd()))
             pView->OnPrepareDC(pDC);
@@ -501,7 +501,7 @@ void PSS_DocumentData::CheckForClearCalcField(CView* pView)
             if (pView)
             {
                 pDC = pView->GetDC();
-                ASSERT(pDC);
+                PSS_Assert(pDC);
 
                 if (::IsWindow(pView->GetSafeHwnd()) && IsWindowVisible(pView->GetSafeHwnd()))
                     pView->OnPrepareDC(pDC);
@@ -547,7 +547,7 @@ void PSS_DocumentData::ChangeCurrentSchema(const CString& name, BOOL notify)
     if (notify)
     {
         SchemaListHasChanged();
-        ASSERT(m_pDocument);
+        PSS_Assert(m_pDocument);
         m_pDocument->UpdateAllViews(NULL);
     }
 }
@@ -1265,7 +1265,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
         return;
 
     PSS_View* pView = m_pDocument->GetMainView();
-    ASSERT(pView);
+    PSS_Assert(pView);
 
     CString fieldName;
     CString member;
@@ -1294,7 +1294,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
     {
         if (pView->IsWindowVisible())
         {
-            ASSERT(pDC);
+            PSS_Assert(pDC);
             pView->OnPrepareDC(pDC);
         }
 
@@ -2071,7 +2071,7 @@ BOOL PSS_DocumentData::CopyPageObjects(PSS_DocumentData* pDocumentDst, int page)
         if (pObj->GetObjectPage() == page)
         {
             PSS_PlanFinObject* pNewObjTemp = pObj->Clone();
-            ASSERT(pNewObjTemp);
+            PSS_Assert(pNewObjTemp);
 
             // insert the object in the destination document
             if (!pDocumentDst->InsertObject(pNewObjTemp))

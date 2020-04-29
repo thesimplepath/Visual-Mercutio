@@ -117,8 +117,8 @@ HDDEDATA PSS_SingleInstanceApplication::AppDdeCallback(WORD     type,
 BOOL PSS_SingleInstanceApplication::InitInstance()
 {
     // must be defined, used for DDE single instance
-    ASSERT(!m_CppServerName.IsEmpty());
-    ASSERT(!m_CppTopicName.IsEmpty());
+    PSS_Assert(!m_CppServerName.IsEmpty());
+    PSS_Assert(!m_CppTopicName.IsEmpty());
 
     // check DDE
     if (::DdeInitialize(&m_IdInst, (PFNCALLBACK)DdeCallback, 0, 0))

@@ -173,7 +173,7 @@ bool PSS_UserGroupCalculateTotals::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSym
 //---------------------------------------------------------------------------
 void PSS_UserGroupCalculateTotals::AddProcedureToTotal(PSS_ProcedureSymbolBP* pSymbol, IUserGroupTotal& total)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     if (double(pSymbol->GetProcedureCost() > 0))
         total.m_ProcedureCost += pSymbol->GetProcedureCost();

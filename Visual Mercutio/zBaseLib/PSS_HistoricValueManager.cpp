@@ -49,11 +49,11 @@ void PSS_HistoricValueManager::AddHistoryValue(const CString& fieldName, const C
     // if not found, create a new entity
     if (!pHistoricValue)
     {
-        pHistoricValue = new PSS_HistoricValue(fieldName);
-        ASSERT(pHistoricValue);
+        std::unique_ptr<PSS_HistoricValue> pNewHistoricValue(new PSS_HistoricValue(fieldName));
 
-        // Add it to the array of entity value
-        m_HistoricValueSet.Add(pHistoricValue);
+        // add it to the array of entity value
+        m_HistoricValueSet.Add(pNewHistoricValue.get());
+        pHistoricValue = pNewHistoricValue.release();
     }
 
     // add the new historic value to the field        

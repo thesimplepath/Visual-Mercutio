@@ -119,7 +119,7 @@ int PSS_SystemOptionSheet::DoModal()
         for (int i = 0; i < pageCount; ++i)
         {
             PSS_GenericPropPage* pPage = (PSS_GenericPropPage*)pageArray[i];
-            ASSERT(pPage);
+            PSS_Assert(pPage);
 
             if (pPage->Initialized())
                 pPage->SaveValuesToObject();

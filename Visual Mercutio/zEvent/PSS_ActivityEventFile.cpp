@@ -36,8 +36,8 @@ const PSS_ActivityEventFile& PSS_ActivityEventFile::operator = (const PSS_Activi
 //---------------------------------------------------------------------------
 void PSS_ActivityEventFile::BuildLine(const CString& path, const CString& fileName)
 {
-    PSS_ActivityEvent* pActivityEvent = static_cast<PSS_ActivityEvent*>(m_pEvent);
-    ASSERT(pActivityEvent);
+    PSS_ActivityEvent* pActivityEvent = dynamic_cast<PSS_ActivityEvent*>(m_pEvent);
+    PSS_Assert(pActivityEvent);
 
     m_FileBuffer.Format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\r\n",
                         (const char*)pActivityEvent->GetActivityEventTypeString(),
@@ -73,8 +73,8 @@ BOOL PSS_ActivityEventFile::ParseLine()
     if (!pNext)
         return FALSE;
 
-    PSS_ActivityEvent* pActivityEvent = static_cast<PSS_ActivityEvent*>(m_pEvent);
-    ASSERT(pActivityEvent);
+    PSS_ActivityEvent* pActivityEvent = dynamic_cast<PSS_ActivityEvent*>(m_pEvent);
+    PSS_Assert(pActivityEvent);
 
     // where next is found, put end of string char
     *pNext = 0x00;

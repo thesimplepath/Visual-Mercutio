@@ -91,10 +91,7 @@ void PSS_DecisionListPropertiesBP::SetDecisionList(LPCTSTR pValue)
     if (pValue)
         m_DecisionList = pValue;
     else
-    {
-        TRACE0("PSS_DecisionListPropertiesBP - Invalid decision list!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_DecisionListPropertiesBP - Invalid decision list");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DecisionListPropertiesBP::GetValue(const int propId, int& value) const

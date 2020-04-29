@@ -183,7 +183,7 @@ bool PSS_CheckSymbolConsistency::Visit(CODComponent& component)
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckDoorSymbol(PSS_DoorSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check unique reference number
     CheckUniqueRef(pSymbol);
@@ -268,7 +268,7 @@ bool PSS_CheckSymbolConsistency::CheckDoorSymbol(PSS_DoorSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check unique reference number
     CheckUniqueRef(pSymbol);
@@ -353,7 +353,7 @@ bool PSS_CheckSymbolConsistency::CheckPageSymbol(PSS_PageSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check unique reference number
     CheckUniqueRef(pSymbol);
@@ -751,7 +751,7 @@ bool PSS_CheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSy
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check the unique reference number
     CheckUniqueRef(pSymbol);
@@ -876,7 +876,7 @@ bool PSS_CheckSymbolConsistency::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check unique reference number
     CheckUniqueRef(pSymbol);
@@ -975,7 +975,7 @@ bool PSS_CheckSymbolConsistency::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check the unique reference number
     CheckUniqueRef(pSymbol);
@@ -1074,7 +1074,7 @@ bool PSS_CheckSymbolConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckDeliverableLinkSymbol(PSS_DeliverableLinkSymbolBP* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check unique reference number
     CheckUniqueRef(pSymbol);
@@ -1173,7 +1173,7 @@ bool PSS_CheckSymbolConsistency::CheckDeliverableLinkSymbol(PSS_DeliverableLinkS
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckSymbol(PSS_Symbol* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     // check unique reference number
     CheckUniqueRef(pSymbol);
@@ -1186,7 +1186,7 @@ bool PSS_CheckSymbolConsistency::CheckSymbol(PSS_Symbol* pSymbol)
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckLink(PSS_LinkSymbol* pLink)
 {
-    ASSERT(pLink);
+    PSS_Assert(pLink);
 
     // check unique reference number
     CheckUniqueRef(pLink);
@@ -1199,7 +1199,7 @@ bool PSS_CheckSymbolConsistency::CheckLink(PSS_LinkSymbol* pLink)
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckInvalidCharInSymbolName(PSS_BasicSymbol* pSymbol, const CString& path)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     const char* pStr = (const char*)pSymbol->GetSymbolName();
 
@@ -1222,7 +1222,7 @@ bool PSS_CheckSymbolConsistency::CheckInvalidCharInSymbolName(PSS_BasicSymbol* p
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::CheckUniqueRef(PSS_BasicSymbol* pSymbol)
 {
-    ASSERT(pSymbol);
+    PSS_Assert(pSymbol);
 
     TRACE1("Ref %s\n", (const char*)pSymbol->GetSymbolName());
 

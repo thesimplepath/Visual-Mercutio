@@ -62,7 +62,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
 
     // get class info
     m_pInfo = static_cast<PSS_InfoModelGraphicGeneration*>(m_pClass);
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     // copy the publication address from source info
     if (m_pModelInfo)
@@ -133,7 +133,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnSymbol(PSS_Symbol* pSymbol)
     if (!pSymbol)
         return false;
 
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     if (pSymbol->GetChildModel() && m_pInfo->GetDC() && m_pInfo->GetCtlr())
         if (!PublishModel(dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel())))
@@ -152,7 +152,7 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(PSS_ProcessGraphModelMdl* p
     if (!pModel)
         return false;
 
-    ASSERT(m_pInfo);
+    PSS_Assert(m_pInfo);
 
     PSS_ProcessGraphModelController* pCtrl = m_pInfo->GetCtlr();
     CDC*                             pDC   = m_pInfo->GetDC();

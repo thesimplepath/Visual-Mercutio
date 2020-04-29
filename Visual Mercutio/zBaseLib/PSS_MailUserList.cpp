@@ -81,7 +81,7 @@ MapiRecipDesc* PSS_MailUserList::GetMapiRecipDesc()
     for (register int i = 0; i < count; ++i)
     {
         PSS_MailUser* pMailUser = GetAt(i);
-        ASSERT(pMailUser);
+        PSS_Assert(pMailUser);
 
         std::memset(lpMapiFileDesc(&m_MapiRecipDesc[i]), 0, sizeof(MapiRecipDesc));
         m_MapiRecipDesc[i].ulRecipClass = pMailUser->GetRecipClass();

@@ -66,8 +66,8 @@ void PSS_HtmlView::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 void PSS_HtmlView::ResourceToURL(LPCTSTR pUrl)
 {
-    HINSTANCE hInstance = AfxGetResourceHandle();
-    ASSERT(hInstance != NULL);
+    HINSTANCE hInstance = ::AfxGetResourceHandle();
+    PSS_Assert(hInstance);
 
     LPTSTR pModule = new TCHAR[_MAX_PATH];
 

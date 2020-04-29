@@ -74,20 +74,20 @@ PSS_StateMachineHandle PSS_StateMachineCollection::CreateNewStateMachine(PSS_Sym
                                                                          PSS_LinkSymbol*                pLinkSymbol,
                                                                          PSS_StateLink::IELinkDirection direction)
 {
-    PSS_StateMachine* pNewStateMachine = new PSS_StateMachine(m_pModel);
-    ASSERT(pNewStateMachine);
-
+    std::unique_ptr<PSS_StateMachine> pNewStateMachine(new PSS_StateMachine(m_pModel));
     pNewStateMachine->PushSymbol(pSymbol, pLinkSymbol, direction);
-    return AddStateMachine(pNewStateMachine);
+    PSS_StateMachineHandle hStateMachine = AddStateMachine(pNewStateMachine.get());
+    pNewStateMachine.release();
+    return hStateMachine;
 }
 //---------------------------------------------------------------------------
 PSS_StateMachineHandle PSS_StateMachineCollection::CreateNewStateMachine(PSS_StateObject* pStateObj)
 {
-    PSS_StateMachine* pNewStateMachine = new PSS_StateMachine(m_pModel);
-    ASSERT(pNewStateMachine);
-
+    std::unique_ptr<PSS_StateMachine> pNewStateMachine(new PSS_StateMachine(m_pModel));
     pNewStateMachine->PushStateObject(pStateObj);
-    return AddStateMachine(pNewStateMachine);
+    PSS_StateMachineHandle hStateMachine = AddStateMachine(pNewStateMachine.get());
+    pNewStateMachine.release();
+    return hStateMachine;
 }
 //---------------------------------------------------------------------------
 bool PSS_StateMachineCollection::DeleteStateMachine(PSS_StateMachineHandle hStateMachine)
@@ -168,15 +168,12 @@ bool PSS_StateMachineCollection::CopyCurrentStateObjects(const PSS_StateMachineC
         if (mergeObjectsFirst)
         {
             // clone the state machine
-            PSS_StateMachine* pStateMachineClone = pStateMachine->Clone();
-            ASSERT(pStateMachineClone);
+            std::unique_ptr<PSS_StateMachine> pStateMachineClone(pStateMachine->Clone());
+            PSS_Assert(pStateMachineClone.get());
             pStateMachineClone->MergeAllStates();
 
             if (pStateMachineClone->GetCurrentStateObject())
                 pStateObj = pStateMachineClone->GetCurrentStateObject()->Clone();
-
-            // delete cloned state machine, useless since now
-            delete pStateMachineClone;
         }
         else
         if (pStateMachine->GetCurrentStateObject())

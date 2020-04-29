@@ -65,7 +65,7 @@ BOOL PSS_MainAutomationRunnerThread::StartThread()
 //---------------------------------------------------------------------------
 void PSS_MainAutomationRunnerThread::StartWork()
 {
-    ASSERT(m_pAutomationMachine && m_pAutomationMachine->GetModel());
+    PSS_Assert(m_pAutomationMachine && m_pAutomationMachine->GetModel());
 
     // delete all state machines
     m_pAutomationMachine->DeleteAllStateMachines();

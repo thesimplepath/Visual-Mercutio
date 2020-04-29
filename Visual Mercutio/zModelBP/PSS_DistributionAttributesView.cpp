@@ -399,7 +399,7 @@ void PSS_DistributionAttributesView::OnAddDistributionAttrib()
         if (pDistributionAttrib)
         {
             PSS_DistributionAttribute* pDistr = pDistributionAttrib->Dup();
-            ASSERT(pDistr);
+            PSS_Assert(pDistr);
 
             PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(m_pSymbol);
 

@@ -131,7 +131,6 @@ void PSS_WorkspaceEnvDocument::Serialize(CArchive& ar)
 //---------------------------------------------------------------------------
 BOOL PSS_WorkspaceEnvDocument::OnNewDocument()
 {
-    ASSERT(FALSE);
     return FALSE;
 }
 //---------------------------------------------------------------------------

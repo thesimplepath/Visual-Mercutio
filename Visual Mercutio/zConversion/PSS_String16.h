@@ -74,7 +74,7 @@ class AFX_EXT_CLASS PSS_String16
         */
         inline void SetAt(std::size_t i, char c)
         {
-            ASSERT(i < Length());
+            PSS_Assert(i < Length());
             m_pSz[i] = c;
         }
 

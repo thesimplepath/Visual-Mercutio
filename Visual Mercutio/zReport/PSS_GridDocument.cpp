@@ -186,7 +186,7 @@ void PSS_GridDocument::SetPathName(LPCTSTR pPathName, BOOL addToMRU)
         for (int i = 0; i < count; ++i)
         {
             CGXTabCreateInfo* pInfo = pTabInfoArray->GetAt(i);
-            ASSERT(pInfo);
+            PSS_Assert(pInfo);
 
             PSS_GridDocument* pDoc = dynamic_cast<PSS_GridDocument*>(pInfo->GetDocument());
 
@@ -202,21 +202,24 @@ void PSS_GridDocument::SetPathName(LPCTSTR pPathName, BOOL addToMRU)
 //---------------------------------------------------------------------------
 std::size_t PSS_GridDocument::GetGridTabCount() const
 {
-    ASSERT(GetPrimaryDocument());
-    CGXTabWndMgr* pTabManager = GetPrimaryDocument()->GetTabManager();
+    CGXDocument* pDoc = GetPrimaryDocument();
+    PSS_Assert(pDoc);
+
+    CGXTabWndMgr* pTabManager = pDoc->GetTabManager();
     return (pTabManager ? pTabManager->GetTabCount() : 0);
 }
 //---------------------------------------------------------------------------
 bool PSS_GridDocument::DeleteGridTab(std::size_t index)
 {
-    ASSERT(GetPrimaryDocument());
+    CGXDocument* pDoc = GetPrimaryDocument();
+    PSS_Assert(pDoc);
 
-    CGXTabWndMgr* pTabManager = GetPrimaryDocument()->GetTabManager();
+    CGXTabWndMgr* pTabManager = pDoc->GetTabManager();
 
     if (pTabManager)
         return pTabManager->DeleteWorkSheet(index);
 
-    return  false;
+    return false;
 }
 //---------------------------------------------------------------------------
 void PSS_GridDocument::InitializeGroupControls(PSS_GridView* pView)
@@ -480,7 +483,7 @@ void PSS_GridDocument::WorkBookSerialize(CArchive& ar)
 bool PSS_GridDocument::InsertNewGridTabAt(std::size_t index)
 {
     PSS_GridView* pView = GetFirstView();
-    ASSERT(pView);
+    PSS_Assert(pView);
 
     PSS_GridChildFrame* pFrame = dynamic_cast<PSS_GridChildFrame*>(pView->GetParentFrame());
 

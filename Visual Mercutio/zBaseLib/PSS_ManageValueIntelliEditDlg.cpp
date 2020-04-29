@@ -80,7 +80,7 @@ void PSS_ManageValueIntelliEditDlg::OnAddvalue()
 void PSS_ManageValueIntelliEditDlg::OnDelvalue()
 {
     const int curSel = m_Values.GetCurSel();
-    ASSERT(curSel != LB_ERR);
+    PSS_Assert(curSel != LB_ERR);
     m_Values.DeleteString(curSel);
 }
 //---------------------------------------------------------------------------

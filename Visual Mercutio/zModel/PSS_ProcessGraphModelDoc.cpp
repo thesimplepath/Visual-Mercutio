@@ -200,7 +200,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentUserDefGUID()
 void PSS_ProcessGraphModelDoc::ReassignUnit(PSS_Log* pLog)
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     if (pLog)
     {
@@ -279,7 +279,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentSystemDefGUID()
 void PSS_ProcessGraphModelDoc::ReassignSystem(PSS_Log* pLog)
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     if (pLog)
     {
@@ -358,7 +358,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentPrestationsDefGUID()
 void PSS_ProcessGraphModelDoc::ReassignPrestations(PSS_Log* pLog)
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     if (pLog)
     {
@@ -437,7 +437,7 @@ bool PSS_ProcessGraphModelDoc::AssignCurrentRulesDefGUID()
 void PSS_ProcessGraphModelDoc::ReassignRules(PSS_Log* pLog /*= NULL*/)
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     if (pLog)
     {
@@ -528,14 +528,14 @@ bool PSS_ProcessGraphModelDoc::LoadAllUnits()
 bool PSS_ProcessGraphModelDoc::GenerateModelWorkflow()
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
     return pModel->GenerateModelWorkflow(m_pOutputLog, this);
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::CheckModelWorkflow(BOOL ModelIsClean)
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
     return pModel->CheckModelWorkflow(m_pOutputLog, ModelIsClean);
 }
 //---------------------------------------------------------------------------
@@ -1016,7 +1016,7 @@ void PSS_ProcessGraphModelDoc::Serialize(CArchive& ar)
 void PSS_ProcessGraphModelDoc::OnPostOpenDocument()
 {
     PSS_ProcessGraphModelMdl* pModel = GetModel();
-    ASSERT(pModel);
+    PSS_Assert(pModel);
 
     // call the PostOpenDocument method
     pModel->OnPostOpenDocument(GetDocumentStamp().GetInternalVersion());
@@ -1304,7 +1304,7 @@ BOOL PSS_ProcessGraphModelDoc::OnSaveDocument(const char* pPathName)
         pModel->SetModelName(GetTitle());
 
     PSS_MainForm* pMainForm = PSS_Application::Instance()->GetMainForm();
-    ASSERT(pMainForm);
+    PSS_Assert(pMainForm);
     pMainForm->UpdateLastLoadedFileName(pPathName);
 
     // Message to notify the start of filesave

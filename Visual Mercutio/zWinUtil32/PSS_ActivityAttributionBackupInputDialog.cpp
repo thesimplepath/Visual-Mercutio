@@ -50,7 +50,7 @@ PSS_ActivityAttributionInputBackupDialog::PSS_ActivityAttributionInputBackupDial
     m_pActivity(pActivity),
     m_LastActivity(lastActivity)
 {
-    ASSERT(m_pActivity);
+    PSS_Assert(m_pActivity);
 }
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputBackupDialog::DoDataExchange(CDataExchange* pDX)
@@ -65,7 +65,7 @@ void PSS_ActivityAttributionInputBackupDialog::DoDataExchange(CDataExchange* pDX
 //---------------------------------------------------------------------------
 BOOL PSS_ActivityAttributionInputBackupDialog::OnInitDialog()
 {
-    ASSERT(m_pActivity);
+    PSS_Assert(m_pActivity);
     m_ActivityName = m_pActivity->GetName();
 
     PSS_WizardDialog::OnInitDialog();
@@ -172,7 +172,7 @@ void PSS_ActivityAttributionInputBackupDialog::SaveState()
 {
     UpdateData();
 
-    ASSERT(m_pActivity);
+    PSS_Assert(m_pActivity);
 
     // save data
     m_pActivity->RemoveAllBackupUsers();

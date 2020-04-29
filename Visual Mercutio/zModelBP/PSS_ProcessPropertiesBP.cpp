@@ -93,10 +93,7 @@ void PSS_ProcessPropertiesBP::SetManagementCase(LPCTSTR pName)
     if (pName)
         m_ManagementCase = pName;
     else
-    {
-        TRACE0("PSS_ProcessPropertiesBP - Invalid management case name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_ProcessPropertiesBP - Invalid management case name");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ProcessPropertiesBP::GetValue(const int propId, int& value) const

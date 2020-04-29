@@ -102,10 +102,7 @@ void PSS_DeliveriesPropertiesBP::SetDeliveryName(LPCTSTR pValue)
     if (pValue)
         m_DeliveryName = pValue;
     else
-    {
-        TRACE0("PSS_DeliveriesPropertiesBP - Invalid delivery name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_DeliveriesPropertiesBP - Invalid delivery name");
 }
 //---------------------------------------------------------------------------
 void PSS_DeliveriesPropertiesBP::SetDeliveryDeliverables(LPCTSTR pValue)
@@ -113,10 +110,7 @@ void PSS_DeliveriesPropertiesBP::SetDeliveryDeliverables(LPCTSTR pValue)
     if (pValue)
         m_DeliveryDeliverables = pValue;
     else
-    {
-        TRACE0("PSS_DeliveriesPropertiesBP - Invalid delivery deliverables list!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_DeliveriesPropertiesBP - Invalid delivery deliverables list");
 }
 //---------------------------------------------------------------------------
 bool PSS_DeliveriesPropertiesBP::IsDeliverableInDelivery(LPCTSTR pValue)
@@ -147,10 +141,7 @@ void PSS_DeliveriesPropertiesBP::SetDeliveryMain(LPCTSTR pValue)
     if (pValue)
         m_DeliveryMain = pValue;
     else
-    {
-        TRACE0("PSS_DeliveriesPropertiesBP - Invalid delivery main name!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_DeliveriesPropertiesBP - Invalid delivery main name");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DeliveriesPropertiesBP::GetValue(const int propId, int& nValue) const
@@ -161,8 +152,8 @@ BOOL PSS_DeliveriesPropertiesBP::GetValue(const int propId, int& nValue) const
         case M_Delivery_Deliverables_ID:
         case M_Delivery_Quantity_ID:
         case M_Delivery_Percentage_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE); return FALSE;
-        default:                                        return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
+        default:                         return FALSE;
     }
 
     return TRUE;
@@ -176,8 +167,8 @@ BOOL PSS_DeliveriesPropertiesBP::GetValue(const int propId, UINT& value) const
         case M_Delivery_Deliverables_ID:
         case M_Delivery_Quantity_ID:
         case M_Delivery_Percentage_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE); return FALSE;
-        default:                                        return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
+        default:                         return FALSE;
     }
 
     return TRUE;
@@ -191,8 +182,8 @@ BOOL PSS_DeliveriesPropertiesBP::GetValue(const int propId, DWORD& value) const
         case M_Delivery_Deliverables_ID:
         case M_Delivery_Quantity_ID:
         case M_Delivery_Percentage_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE); return FALSE;
-        default:                                        return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
+        default:                         return FALSE;
     }
 
     return TRUE;
@@ -204,7 +195,7 @@ BOOL PSS_DeliveriesPropertiesBP::GetValue(const int propId, float& value) const
     {
         case M_Delivery_Name_ID:
         case M_Delivery_Deliverables_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE);                return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
         case M_Delivery_Quantity_ID:     value = m_DeliveryQuantity;   break;
         case M_Delivery_Percentage_ID:   value = m_DeliveryPercentage; break;
         default:                                                       return FALSE;
@@ -220,7 +211,7 @@ BOOL PSS_DeliveriesPropertiesBP::GetValue(const int propId, CString& value) cons
         case M_Delivery_Name_ID:         value = m_DeliveryName;         break;
         case M_Delivery_Deliverables_ID: value = m_DeliveryDeliverables; break;
         case M_Delivery_Main_ID:         value = m_DeliveryMain;         break;
-        default:                         ASSERT(FALSE);                  return FALSE;
+        default:                         THROW("Unsupported value");
     }
 
     return TRUE;
@@ -234,8 +225,8 @@ BOOL PSS_DeliveriesPropertiesBP::SetValue(const int propId, const int value)
         case M_Delivery_Deliverables_ID:
         case M_Delivery_Quantity_ID:
         case M_Delivery_Percentage_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE); return FALSE;
-        default:                                        return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
+        default:                         return FALSE;
     }
 
     return TRUE;
@@ -249,8 +240,8 @@ BOOL PSS_DeliveriesPropertiesBP::SetValue(const int propId, const UINT value)
         case M_Delivery_Deliverables_ID:
         case M_Delivery_Quantity_ID:
         case M_Delivery_Percentage_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE); return FALSE;
-        default:                                        return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
+        default:                         return FALSE;
     }
 
     return TRUE;
@@ -264,8 +255,8 @@ BOOL PSS_DeliveriesPropertiesBP::SetValue(const int propId, const DWORD value)
         case M_Delivery_Deliverables_ID:
         case M_Delivery_Quantity_ID:
         case M_Delivery_Percentage_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE); return FALSE;
-        default:                                        return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
+        default:                         return FALSE;
     }
 
     return TRUE;
@@ -277,7 +268,7 @@ BOOL PSS_DeliveriesPropertiesBP::SetValue(const int propId, const float value)
     {
         case M_Delivery_Name_ID:
         case M_Delivery_Deliverables_ID:
-        case M_Delivery_Main_ID:         ASSERT(FALSE);                return FALSE;
+        case M_Delivery_Main_ID:         THROW("Unsupported value");
         case M_Delivery_Quantity_ID:     m_DeliveryQuantity = value;   break;
         case M_Delivery_Percentage_ID:   m_DeliveryPercentage = value; break;
         default:                                                       return FALSE;
@@ -296,7 +287,7 @@ BOOL PSS_DeliveriesPropertiesBP::SetValue(const int propId, LPCTSTR pValue)
         case M_Delivery_Name_ID:         m_DeliveryName         = pValue; break;
         case M_Delivery_Deliverables_ID: m_DeliveryDeliverables = pValue; break;
         case M_Delivery_Main_ID:         m_DeliveryMain         = pValue; break;
-        default:                         ASSERT(FALSE);                   return FALSE;
+        default:                         THROW("Unsupported value");
     }
 
     return TRUE;

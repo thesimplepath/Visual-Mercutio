@@ -64,7 +64,7 @@ BOOL PSS_MainPathRunnerThread::StartThread()
 //---------------------------------------------------------------------------
 void PSS_MainPathRunnerThread::StartWork()
 {
-    ASSERT(m_pPathMachine && m_pPathMachine->GetModel());
+    PSS_Assert(m_pPathMachine && m_pPathMachine->GetModel());
 
     // delete all state machines
     m_pPathMachine->DeleteAllStateMachines();

@@ -38,7 +38,7 @@ PSS_GenericFormPage::PSS_GenericFormPage(CWnd* pMain, const CString& title, PSS_
     CPropertyPage(PSS_GenericFormPage::IDD),
     m_pTemplateManager(pTemplateManager)
 {
-    ASSERT(m_pTemplateManager);
+    PSS_Assert(m_pTemplateManager);
 
     m_strCaption = title;
 
@@ -53,7 +53,7 @@ PSS_GenericFormPage::~PSS_GenericFormPage()
 //---------------------------------------------------------------------------
 BOOL PSS_GenericFormPage::OnSetActive()
 {
-    ASSERT(m_pTemplateManager);
+    PSS_Assert(m_pTemplateManager);
 
     const BOOL result = CPropertyPage::OnSetActive();
 

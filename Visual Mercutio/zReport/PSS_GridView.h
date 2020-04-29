@@ -218,18 +218,10 @@ class AFX_EXT_CLASS PSS_GridView : public CGXGridView
 //---------------------------------------------------------------------------
 // PSS_GridView
 //---------------------------------------------------------------------------
-#ifdef _DEBUG
-    PSS_GridDocument* PSS_GridView::GetDocument()
-    {
-        ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(PSS_GridDocument)));
-        return dynamic_cast<PSS_GridDocument*>(m_pDocument);
-    }
-#else
-    PSS_GridDocument* PSS_GridView::GetDocument()
-    {
-        return dynamic_cast<PSS_GridDocument*>(m_pDocument);
-    }
-#endif
+PSS_GridDocument* PSS_GridView::GetDocument()
+{
+    return dynamic_cast<PSS_GridDocument*>(m_pDocument);
+}
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     PSS_GridDocument* PSS_GridView::GetMasterDocument()

@@ -471,7 +471,7 @@ int PSS_InPlaceListBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
     rect.right -= m_ButtonDx;
 
     CWnd* pParent = GetParent();
-    ASSERT(pParent);
+    PSS_Assert(pParent);
 
     CFont* pFont = pParent->GetFont();
     DWORD  style = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;

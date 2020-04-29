@@ -275,7 +275,7 @@ void PSS_ReadView::OnRButtonDown(UINT nFlags, CPoint point)
     ReleaseCapture();
 
     CDC* pDC = GetDC();
-    ASSERT(pDC);
+    PSS_Assert(pDC);
     OnPrepareDC(pDC);
 
     // translate the point in logical coordinates

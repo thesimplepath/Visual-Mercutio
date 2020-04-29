@@ -101,18 +101,19 @@
 
 // processsoft
 #include "zConversion\zConversionLib.h"
-#include <zBaseLib\zBaseLib.h>
-#include <zBaseSym\zBaseSymLib.h>
-#include <zProperty\zPropertyLib.h>
-#include <zDB\zDBLib.h>
-#include <zWinUtil32\zWinUtil32Lib.h>
-#include <zEvent\zEventLib.h>
-#include <zRes32\zRes32Lib.h>
-#include <zModel\zModelLib.h>
-#include <zModelBP\zModelBPLib.h>
-#include <zModelWeb\zModelWebLib.h>
-#include <zWeb\zWebLib.h>
-#include <zResMgr\zResMgrLib.h>
+#include "zBaseLib\zBaseLib.h"
+#include "zBaseSym\zBaseSymLib.h"
+#include "zProperty\zPropertyLib.h"
+#include "zDB\zDBLib.h"
+#include "zWinUtil32\zWinUtil32Lib.h"
+#include "zEvent\zEventLib.h"
+#include "zRes32\zRes32Lib.h"
+#include "zModel\zModelLib.h"
+#include "zModelBP\zModelBPLib.h"
+#include "zModelWeb\zModelWebLib.h"
+#include "zWeb\zWebLib.h"
+#include "zResMgr\zResMgrLib.h"
+#include "PSS_Macros.h"
 
 // resources
 #include "zFormsRes\zFormsRes.h"

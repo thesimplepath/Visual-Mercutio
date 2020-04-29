@@ -47,7 +47,7 @@ const PSS_DocumentExport& PSS_DocumentExport::operator = (const PSS_DocumentExpo
 CString PSS_DocumentExport::GetExportedLine(CObject* pObj)
 {
     PSS_PlanFinObject* pPlanFinObj = dynamic_cast<PSS_PlanFinObject*>(pObj);
-    ASSERT(pPlanFinObj);
+    PSS_Assert(pPlanFinObj);
 
     CString lineBuffer;
 
@@ -65,7 +65,7 @@ CString PSS_DocumentExport::GetExportedLine(CObject* pObj)
 BOOL PSS_DocumentExport::IsExportedField(CObject* pObj) const
 {
     PSS_PlanFinObject* pPlanFinObj = dynamic_cast<PSS_PlanFinObject*>(pObj);
-    ASSERT(pPlanFinObj);
+    PSS_Assert(pPlanFinObj);
     
     // is the object exportable?
     if (!pPlanFinObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&

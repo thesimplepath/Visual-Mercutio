@@ -142,7 +142,6 @@ bool PSS_LogicalSystemDocument::SaveToFile(const CString& fileName)
 //---------------------------------------------------------------------------
 BOOL PSS_LogicalSystemDocument::OnNewDocument()
 {
-    ASSERT(FALSE);
     return FALSE;
 }
 //---------------------------------------------------------------------------

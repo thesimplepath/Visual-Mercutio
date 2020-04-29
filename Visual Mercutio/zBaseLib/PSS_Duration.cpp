@@ -89,7 +89,7 @@ PSS_Duration PSS_Duration::operator - (const PSS_Duration& other) const
 //---------------------------------------------------------------------------
 long PSS_Duration::GetHours() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
 
     double dblTemp;
 
@@ -106,7 +106,7 @@ long PSS_Duration::GetHours() const
 //---------------------------------------------------------------------------
 long PSS_Duration::GetMinutes() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
 
     double dblTemp;
 
@@ -123,7 +123,7 @@ long PSS_Duration::GetMinutes() const
 //---------------------------------------------------------------------------
 long PSS_Duration::GetSeconds() const
 {
-    ASSERT(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IE_S_Valid);
 
     double dblTemp;
 

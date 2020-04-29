@@ -149,7 +149,7 @@ void PSS_SpanWnd::SetPanRect(CRect& rectNewLogPan)
 void PSS_SpanWnd::DrawPanRect(CDC* pDC)
 {
     ASSERT_VALID(this);
-    ASSERT(pDC);
+    PSS_Assert(pDC);
 
     pDC->SaveDC();
     pDC->SetROP2(R2_NOTXORPEN);
@@ -165,7 +165,7 @@ void PSS_SpanWnd::DrawPanRect(CDC* pDC)
 //---------------------------------------------------------------------------
 void PSS_SpanWnd::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-    ASSERT(pSender);
+    PSS_Assert(pSender);
     ASSERT_VALID(this);
 
     CClientDC dc(this);
@@ -237,7 +237,7 @@ void PSS_SpanWnd::ClipOverviewCursor()
 void PSS_SpanWnd::OverviewDPtoLP(CPoint* pPoint)
 {
     ASSERT_VALID(this);
-    ASSERT(pPoint);
+    PSS_Assert(pPoint);
 
     m_pPanView->PreOverview();
 
@@ -253,7 +253,7 @@ void PSS_SpanWnd::OverviewDPtoLP(CPoint* pPoint)
     void PSS_SpanWnd::AssertValid() const
     {
         CWnd::AssertValid();
-        ASSERT(m_pPanView);
+        PSS_Assert(m_pPanView);
     }
 #endif
 //---------------------------------------------------------------------------

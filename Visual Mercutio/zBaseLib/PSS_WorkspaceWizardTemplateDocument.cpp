@@ -128,7 +128,6 @@ void PSS_WorkspaceWizardTemplateDocument::Serialize(CArchive& ar)
 //---------------------------------------------------------------------------
 BOOL PSS_WorkspaceWizardTemplateDocument::OnNewDocument()
 {
-    ASSERT(FALSE);
     return FALSE;
 }
 //---------------------------------------------------------------------------

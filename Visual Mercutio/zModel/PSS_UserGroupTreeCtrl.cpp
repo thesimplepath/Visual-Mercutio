@@ -295,7 +295,7 @@ void PSS_UserGroupTreeCtrl::OnUgpNewGroup()
     // if a group selected
     if (pGroup)
     {
-        ASSERT(m_pUserGroupRoot);
+        PSS_Assert(m_pUserGroupRoot);
 
         // ask for the name
         PSS_UserGroupInfoDlg dlg(IDS_UGP_NEWGROUP_T, pGroup, _T(""), _T(""), 0, !isSesterces);
@@ -328,7 +328,7 @@ void PSS_UserGroupTreeCtrl::OnUgpDeleteGroup()
 
     if (pGroup && pGroup != m_pUserGroupRoot)
     {
-        ASSERT(m_pUserGroupRoot);
+        PSS_Assert(m_pUserGroupRoot);
 
         // remove group from the workspace
         m_pUserGroupRoot->RemoveGroup(pGroup);
@@ -368,7 +368,7 @@ void PSS_UserGroupTreeCtrl::OnUgpRenameGroup()
 
     if (pGroup)
     {
-        ASSERT(m_pUserGroupRoot);
+        PSS_Assert(m_pUserGroupRoot);
 
         PSS_UserGroupEntity* pParent = dynamic_cast<PSS_UserGroupEntity*>(pGroup->GetParent());
 
@@ -406,7 +406,7 @@ void PSS_UserGroupTreeCtrl::OnUgpAddRole()
 
         if (dlg.DoModal() == IDOK)
         {
-            ASSERT(m_pUserGroupRoot);
+            PSS_Assert(m_pUserGroupRoot);
 
             // add the role to the group
             PSS_UserRoleEntity* pRole = m_pUserGroupRoot->AddRole(dlg.GetName(), dlg.GetDescription(), pGroup);
@@ -426,7 +426,7 @@ void PSS_UserGroupTreeCtrl::OnUgpDeleteRole()
 
     if (pRole)
     {
-        ASSERT(m_pUserGroupRoot);
+        PSS_Assert(m_pUserGroupRoot);
 
         // remove file from the workspace
         m_pUserGroupRoot->RemoveRole(pRole);
@@ -445,7 +445,7 @@ void PSS_UserGroupTreeCtrl::OnUgpRenameRole()
 
     if (pRole)
     {
-        ASSERT(m_pUserGroupRoot);
+        PSS_Assert(m_pUserGroupRoot);
 
         PSS_UserGroupEntity* pParent = dynamic_cast<PSS_UserGroupEntity*>(pRole->GetParent());
 
@@ -476,7 +476,7 @@ void PSS_UserGroupTreeCtrl::OnUgpMove()
 
     if (pEntity)
     {
-        ASSERT(m_pUserGroupRoot);
+        PSS_Assert(m_pUserGroupRoot);
 
         PSS_SelectUserGroupDlg dlg(IDS_UGP_MOVE_T, m_pUserGroupRoot, true, false);
 
@@ -525,7 +525,7 @@ void PSS_UserGroupTreeCtrl::OnUgpProperties()
     if (pEntity)
     {
         PSS_UserGroupEntity* pGroup = GetSelectedGroup();
-        ASSERT(m_pUserGroupRoot);
+        PSS_Assert(m_pUserGroupRoot);
 
         PSS_UserGroupEntity* pParent = dynamic_cast<PSS_UserGroupEntity*>(pEntity->GetParent());
 
@@ -644,7 +644,7 @@ void PSS_UserGroupTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
         return;
 
     CMenu* pPopup = m_SubMenu.GetSubMenu(idMenu);
-    ASSERT(pPopup);
+    PSS_Assert(pPopup);
 
     CWnd* pWndPopupOwner = this;
 

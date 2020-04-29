@@ -23,7 +23,7 @@ PSS_MemoryDC::PSS_MemoryDC(CDC* pDC) :
     m_pOldBitmap(NULL),
     m_MemDC(FALSE)
 {
-    ASSERT(m_pDC);
+    PSS_Assert(m_pDC);
 
     #ifndef WCE_NO_PRINTING
         m_MemDC = !pDC->IsPrinting();

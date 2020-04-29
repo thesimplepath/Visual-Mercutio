@@ -25,11 +25,11 @@ PSS_ThinThread::PSS_ThinThread() :
 {
     // create a signaled, manual-reset event to synchronize destruction
     m_pExitEvent = new CEvent(TRUE, TRUE);
-    ASSERT(m_pExitEvent); 
+    PSS_Assert(m_pExitEvent); 
 
     // create a non-signaled, auto-reset event to wait on for work cycle
     m_pWorkEvent = new CEvent();
-    ASSERT(m_pWorkEvent);
+    PSS_Assert(m_pWorkEvent);
 }
 //---------------------------------------------------------------------------
 PSS_ThinThread::~PSS_ThinThread()

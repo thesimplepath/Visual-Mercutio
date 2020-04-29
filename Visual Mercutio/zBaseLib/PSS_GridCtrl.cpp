@@ -275,10 +275,6 @@ PSS_GridCtrl::~PSS_GridCtrl()
 //---------------------------------------------------------------------------
 PSS_GridCtrl::IItemInfo* PSS_GridCtrl::CopyData(IItemInfo* lpSrc)
 {
-    // debug
-    ASSERT(FALSE);
-
-    // release
     return NULL;
 }
 //---------------------------------------------------------------------------
@@ -1063,7 +1059,7 @@ void PSS_GridCtrl::Sort(IItem* pParent, BOOL sortChildren)
             // fill children array
             for (int i = 0; pPos; ++i)
             {
-                ASSERT(i < children);
+                PSS_Assert(i < children);
                 ppSortArray[i] = (IItem*)pParent->m_ListChild.GetAt(pPos);
                 pParent->m_ListChild.GetNext(pPos);
             }
@@ -1075,7 +1071,7 @@ void PSS_GridCtrl::Sort(IItem* pParent, BOOL sortChildren)
 
             for (int i = 0; pPos; ++i)
             {
-                ASSERT(i < children);
+                PSS_Assert(i < children);
                 pParent->m_ListChild.SetAt(pPos, ppSortArray[i]);
                 pParent->m_ListChild.GetNext(pPos);
             }
@@ -2048,7 +2044,7 @@ void PSS_GridCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
         GetItemRect(item, labelRect, LVIR_LABEL);
 
         CDC* pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
-        ASSERT(pDC);
+        PSS_Assert(pDC);
 
         CRect clipboxRect;
         pDC->GetClipBox(clipboxRect);
@@ -2862,7 +2858,7 @@ void PSS_GridCtrl::MakeColumnVisible(int col)
     CHeaderCtrl* pHeader = GetHeaderCtrl();
 
     const int colCount = pHeader->GetItemCount();
-    ASSERT(col < colCount);
+    PSS_Assert(col < colCount);
 
     int  offset      = 0;
     int  colWidth    = 0;

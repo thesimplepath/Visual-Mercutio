@@ -57,8 +57,8 @@ PSS_DocTemplateEx::~PSS_DocTemplateEx()
 void PSS_DocTemplateEx::AddToRecentFileList(LPCTSTR pPathName)
 {
     ASSERT_VALID(this);
-    ASSERT(pPathName);
-    ASSERT(AfxIsValidString(pPathName));
+    PSS_Assert(pPathName);
+    PSS_Assert(::AfxIsValidString(pPathName));
 
     if (m_pRecentFileList)
         m_pRecentFileList->Add(pPathName);
@@ -94,7 +94,7 @@ void PSS_DocTemplateEx::AddToRecentFileList(LPCTSTR pPathName)
 void PSS_DocTemplateEx::LoadStdProfileSettings(UINT maxMRU)
 {
     ASSERT_VALID(this);
-    ASSERT(!m_pRecentFileList);
+    PSS_Assert(!m_pRecentFileList);
 
     CString fileEntry = _T("File%d");
     CString fileSection;
@@ -144,14 +144,14 @@ void PSS_DocTemplateEx::OnUpdateRecentFileMenu(CCmdUI* pCmdUI)
 BOOL PSS_DocTemplateEx::OnOpenRecentFile(UINT id)
 {
     ASSERT_VALID(this);
-    ASSERT(m_pRecentFileList);
+    PSS_Assert(m_pRecentFileList);
 
-    ASSERT(id >= m_MenuID);
-    ASSERT(id <  m_MenuID + UINT(m_pRecentFileList->GetSize()));
+    PSS_Assert(id >= m_MenuID);
+    PSS_Assert(id <  m_MenuID + UINT(m_pRecentFileList->GetSize()));
 
     const int index = id - m_MenuID;
 
-    ASSERT((*m_pRecentFileList)[index].GetLength());
+    PSS_Assert((*m_pRecentFileList)[index].GetLength());
 
     TRACE2("MRU: open file (%d) '%s'.\n", index + 1, LPCTSTR((*m_pRecentFileList)[index]));
 
@@ -186,12 +186,12 @@ BOOL PSS_DocTemplateEx::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
 
     if ((code == CN_UPDATE_COMMAND_UI) && (nID >= m_MenuID) && (nID <= m_MenuID + M_MRU_RANGE))
     {
-        ASSERT(pExtra);
+        PSS_Assert(pExtra);
 
         CCmdUI* pCmdUI = reinterpret_cast<CCmdUI*>(pExtra);
 
         // idle - not set
-        ASSERT(!pCmdUI->m_bContinueRouting);
+        PSS_Assert(!pCmdUI->m_bContinueRouting);
 
         OnUpdateRecentFileMenu(pCmdUI);
 

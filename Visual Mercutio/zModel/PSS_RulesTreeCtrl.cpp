@@ -197,7 +197,7 @@ void PSS_RulesTreeCtrl::OnNewRule()
     // if a group selected
     if (pLogicalRule)
     {
-        ASSERT(m_pLogicalRuleRoot);
+        PSS_Assert(m_pLogicalRuleRoot);
 
         // ask for the name
         PSS_RulesInfoDlg dlg(IDS_NEW_RULE_T, pLogicalRule);
@@ -229,7 +229,7 @@ void PSS_RulesTreeCtrl::OnDeleteRule()
 
     if (pLogicalRule && pLogicalRule != m_pLogicalRuleRoot)
     {
-        ASSERT(m_pLogicalRuleRoot);
+        PSS_Assert(m_pLogicalRuleRoot);
 
         // remove rule from the workspace
         m_pLogicalRuleRoot->RemoveRule(pLogicalRule);
@@ -251,7 +251,7 @@ void PSS_RulesTreeCtrl::OnRenameRule()
 
     if (pLogicalRule)
     {
-        ASSERT(m_pLogicalRuleRoot);
+        PSS_Assert(m_pLogicalRuleRoot);
 
         PSS_LogicalRulesEntity* pParent = dynamic_cast<PSS_LogicalRulesEntity*>(pLogicalRule->GetParent());
 
@@ -280,7 +280,7 @@ void PSS_RulesTreeCtrl::OnMoveRule()
 
     if (pRule)
     {
-        ASSERT(m_pLogicalRuleRoot);
+        PSS_Assert(m_pLogicalRuleRoot);
 
         PSS_SelectRuleDlg dlg(IDS_RUL_MOVE_T, m_pLogicalRuleRoot, true);
 
@@ -311,7 +311,7 @@ void PSS_RulesTreeCtrl::OnRuleProperties()
     if (pEntity)
     {
         PSS_LogicalRulesEntity* pLogicalRule = GetSelectedLogicalRule();
-        ASSERT(m_pLogicalRuleRoot);
+        PSS_Assert(m_pLogicalRuleRoot);
 
         PSS_LogicalRulesEntity* pParent = dynamic_cast<PSS_LogicalRulesEntity*>(pEntity->GetParent());
 
@@ -406,7 +406,7 @@ void PSS_RulesTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
         return;
 
     CMenu* pPopup = m_SubMenu.GetSubMenu(idMenu);
-    ASSERT(pPopup);
+    PSS_Assert(pPopup);
 
     CWnd* pWndPopupOwner = this;
 

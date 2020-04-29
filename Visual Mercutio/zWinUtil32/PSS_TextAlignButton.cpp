@@ -72,7 +72,7 @@ void PSS_TextAlignButton::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
     CBrush* pOldBrush;
     CBrush  newBrush;
     CDC*    pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
-    ASSERT(pDC);
+    PSS_Assert(pDC);
 
     CRect rect;
     GetClientRect(&rect);

@@ -591,13 +591,13 @@ PSS_PropertyItemManager::IPropertyState* PSS_PropertyListCtrl::GetPropertyCatego
 //---------------------------------------------------------------------------
 void PSS_PropertyListCtrl::InsertPropertyItem(PSS_PropertyItem* pPropItem, int index)
 {
-    ASSERT(pPropItem);
+    PSS_Assert(pPropItem);
     InsertString(index, LPCTSTR(pPropItem));
 }
 //---------------------------------------------------------------------------
 void PSS_PropertyListCtrl::DeletePropertyItem(int index)
 {
-    ASSERT(index >= 0);
+    PSS_Assert(index >= 0);
     DeleteString(index);
 }
 //---------------------------------------------------------------------------

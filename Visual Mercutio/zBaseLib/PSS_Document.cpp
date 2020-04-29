@@ -110,8 +110,12 @@ void PSS_Document::GetStyleArrayName(CStringArray& styleArray)
     const std::size_t styleCount = styles.GetCount();
 
     for (std::size_t i = 0; i < styleCount; ++i)
-        if (styles.GetStyle(i))
-            styleArray.Add(styles.GetStyle(i)->GetStyleName());
+    {
+        PSS_Style* pStyle = styles.GetStyle(i);
+
+        if (pStyle)
+            styleArray.Add(pStyle->GetStyleName());
+    }
 }
 //---------------------------------------------------------------------------
 int PSS_Document::PreviousVisibleDocumentAvailable(std::size_t documentIndex) const
@@ -119,8 +123,12 @@ int PSS_Document::PreviousVisibleDocumentAvailable(std::size_t documentIndex) co
     int i = documentIndex;
 
     while (--i >= 0)
-        if (GetDocumentDataAt(i) && GetDocumentDataAt(i)->DocumentDataIsVisible())
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData && pDocData->DocumentDataIsVisible())
             return i;
+    }
 
     return -1;
 }
@@ -130,8 +138,12 @@ int PSS_Document::NextVisibleDocumentAvailable(std::size_t documentIndex) const
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = documentIndex + 1; i < count; ++i)
-        if (GetDocumentDataAt(i) && GetDocumentDataAt(i)->DocumentDataIsVisible())
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData && pDocData->DocumentDataIsVisible())
             return i;
+    }
 
     return -1;
 }
@@ -158,107 +170,137 @@ void PSS_Document::InitializeAllAssociations(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->InitializeAllAssociations();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->InitializeAllAssociations();
 
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->InitializeAllAssociations();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->InitializeAllAssociations();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::CalculateAllFormula(CView* pView, BOOL allPages, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->CalculateAllFormula(pView, allPages);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->CalculateAllFormula(pView, allPages);
 
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->CalculateAllFormula(pView, allPages);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->CalculateAllFormula(pView, allPages);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::CheckForClearCalcField(CView* pView, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->CheckForClearCalcField(pView);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->CheckForClearCalcField(pView);
 
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->CheckForClearCalcField(pView);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->CheckForClearCalcField(pView);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ClearCurrentAssociation(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->ClearCurrentAssociation();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->ClearCurrentAssociation();
 
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->ClearCurrentAssociation();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->ClearCurrentAssociation();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeFieldForCalculation(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->ChangeFieldForCalculation();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->ChangeFieldForCalculation();
 
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->ChangeFieldForCalculation();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->ChangeFieldForCalculation();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::SchemaListHasChanged(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SchemaListHasChanged();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SchemaListHasChanged();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetActiveDocumentData()->SchemaListHasChanged();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SchemaListHasChanged();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::IsCalculatedFieldInSchema(PSS_PlanFinObject* pObj, int documentIndex)
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData() ? GetActiveDocumentData()->IsCalculatedFieldInSchema(pObj) : FALSE);
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->IsCalculatedFieldInSchema(pObj);
+        if (!pDocData)
+            return FALSE;
+
+        return pDocData->IsCalculatedFieldInSchema(pObj);
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->IsCalculatedFieldInSchema(pObj);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::RefreshCurrentSchema(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->RefreshCurrentSchema();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->RefreshCurrentSchema();
 
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->RefreshCurrentSchema();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->RefreshCurrentSchema();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::InitializeAllObjects()
@@ -266,7 +308,12 @@ void PSS_Document::InitializeAllObjects()
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < count; ++i)
-        GetDocumentDataAt(i)->InitializeAllObjectPointers();
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData)
+            pDocData->InitializeAllObjectPointers();
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeCurrentFile(const CString& name, BOOL notify)
@@ -274,8 +321,12 @@ void PSS_Document::ChangeCurrentFile(const CString& name, BOOL notify)
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < count; ++i)
-        if (GetDocumentDataAt(i)->GetStamp().GetTitle() == name)
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData && pDocData->GetStamp().GetTitle() == name)
             ChangeCurrentFile(i, notify);
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeCurrentFile(std::size_t fileIndex, BOOL notify)
@@ -340,8 +391,12 @@ void PSS_Document::ChangeCurrentFileOpen(const CString& name, BOOL notify)
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < count; ++i)
-        if (GetDocumentDataAt(i)->GetStamp().GetTitle() == name)
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData && pDocData->GetStamp().GetTitle() == name)
             ChangeCurrentFileOpen(i, notify);
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeCurrentFileOpen(std::size_t fileIndex, BOOL notify)
@@ -405,21 +460,32 @@ CObList& PSS_Document::GetObjectList(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->GetObjectList();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->GetObjectList();
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetObjectList();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetObjectList();
 }
 //---------------------------------------------------------------------------
 int PSS_Document::GetObjectCount(int documentIndex)
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData() ? GetActiveDocumentData()->GetObjectCount() : 0);
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetObjectCount();
+        if (!pDocData)
+            return 0;
+
+        return pDocData->GetObjectCount();
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetObjectCount();
 
     return 0;
 }
@@ -427,10 +493,19 @@ int PSS_Document::GetObjectCount(int documentIndex)
 PSS_PlanFinObject* PSS_Document::GetHead(int documentIndex)
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData() ? GetActiveDocumentData()->GetHead() : NULL);
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetHead();
+        if (!pDocData)
+            return NULL;
+
+        return pDocData->GetHead();
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetHead();
 
     return NULL;
 }
@@ -438,10 +513,19 @@ PSS_PlanFinObject* PSS_Document::GetHead(int documentIndex)
 PSS_PlanFinObject* PSS_Document::GetNext(int documentIndex)
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData() ? GetActiveDocumentData()->GetNext() : NULL);
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetNext();
+        if (!pDocData)
+            return NULL;
+
+        return pDocData->GetNext();
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetNext();
 
     return NULL;
 }
@@ -454,10 +538,19 @@ CString PSS_Document::GetStandardSchema() const
 CString PSS_Document::GetCurrentSchema(int documentIndex) const
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData()) ? GetActiveDocumentData()->GetCurrentSchema() : _T("");
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetCurrentSchema();
+        if (!pDocData)
+            return _T("");
+
+        return pDocData->GetCurrentSchema();
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetCurrentSchema();
 
     return _T("");
 }
@@ -466,47 +559,64 @@ void PSS_Document::SetCurrentSchema(const CString& name, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SetCurrentSchema(name);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SetCurrentSchema(name);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->SetCurrentSchema(name);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SetCurrentSchema(name);
 }
 //---------------------------------------------------------------------------
 PSS_Formula* PSS_Document::GetFormula(const CString& name, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->GetFormula(name);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->GetFormula(name);
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetFormula(name);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetFormula(name);
 }
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_Document::GetObject(CString& name, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->GetObject(name);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->GetObject(name);
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetObject(name);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetObject(name);
 }
 //---------------------------------------------------------------------------
 int PSS_Document::GetPageCount(int documentIndex)
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData() ? GetActiveDocumentData()->GetMaxPage() : 0);
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetMaxPage();
+        if (!pDocData)
+            return 0;
+
+        return pDocData->GetMaxPage();
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetMaxPage();
 
     return NULL;
 }
@@ -515,14 +625,18 @@ void PSS_Document::SetPageCount(int page, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SetMaxPage(page);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SetMaxPage(page);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->SetMaxPage(page);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SetMaxPage(page);
 }
 //---------------------------------------------------------------------------
 CString PSS_Document::GetDefaultAssociationString() const
@@ -533,10 +647,19 @@ CString PSS_Document::GetDefaultAssociationString() const
 int PSS_Document::GetCurrentPage(int documentIndex) const
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData() ? GetActiveDocumentData()->GetCurrentPage() : -1);
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetCurrentPage();
+        if (!pDocData)
+            return -1;
+
+        return pDocData->GetCurrentPage();
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetCurrentPage();
 
     return -1;
 }
@@ -545,28 +668,36 @@ void PSS_Document::SetCurrentPage(int page, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SetCurrentPage(page);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SetCurrentPage(page);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->SetCurrentPage(page);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SetCurrentPage(page);
 }
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_Document::GetSelectedObject(BOOL checkPage, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->GetSelectedObject(checkPage);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->GetSelectedObject(checkPage);
 
         return NULL;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetSelectedObject(checkPage);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetSelectedObject(checkPage);
 
     return NULL;
 }
@@ -575,14 +706,18 @@ BOOL PSS_Document::ObjectExist(const CString& name, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->ObjectExist(name);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->ObjectExist(name);
 
         return FALSE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->ObjectExist(name);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->ObjectExist(name);
 
     return FALSE;
 }
@@ -616,12 +751,20 @@ BOOL PSS_Document::StartRealTimeExport(BOOL doExport, BOOL doImport)
                 return FALSE;
 
         if (doExport)
-            if (GetRealTimeExport())
-                GetRealTimeExport()->Export();
+        {
+            PSS_DocumentExport* pDocExport = GetRealTimeExport();
+
+            if (pDocExport)
+                pDocExport->Export();
+        }
 
         if (doImport)
-            if (GetRealTimeExport())
-                GetRealTimeExport()->Import();
+        {
+            PSS_DocumentExport* pDocExport = GetRealTimeExport();
+
+            if (pDocExport)
+                pDocExport->Import();
+        }
     }
 
     return TRUE;
@@ -633,7 +776,12 @@ void PSS_Document::DocumentHasBeenModified()
 void PSS_Document::FieldHasBeenModified()
 {
     if (IsRealTimeExported())
-        GetRealTimeExport()->SourceHasBeenModified();
+    {
+        PSS_DocumentExport* pDocExport = GetRealTimeExport();
+
+        if (pDocExport)
+            pDocExport->SourceHasBeenModified();
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Document::RemoveAllDocumentData()
@@ -653,24 +801,28 @@ PSS_Stamp& PSS_Document::GetStamp(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->GetStamp();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->GetStamp();
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetStamp();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetStamp();
 }
 //---------------------------------------------------------------------------
 PSS_SchemaManager& PSS_Document::GetSchema(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->GetSchema();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->GetSchema();
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetSchema();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetSchema();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::CalculateForecastedObjectCount()
@@ -687,28 +839,36 @@ void PSS_Document::ShowDocumentData(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->ShowDocumentData();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->ShowDocumentData();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->ShowDocumentData();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->ShowDocumentData();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::HideDocumentData(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->HideDocumentData();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->HideDocumentData();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->HideDocumentData();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->HideDocumentData();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ShowAllDocumentData()
@@ -731,14 +891,18 @@ BOOL PSS_Document::DocumentDataIsVisible(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->DocumentDataIsVisible();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->DocumentDataIsVisible();
 
         return FALSE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->DocumentDataIsVisible();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->DocumentDataIsVisible();
 
     return FALSE;
 }
@@ -750,13 +914,17 @@ BOOL PSS_Document::CopyDocumentDataArray(PSS_Document* pDocSrc, BOOL insertAsRea
 //---------------------------------------------------------------------------
 BOOL PSS_Document::CopyDocumentDataArray(CObArray& arraySrc, BOOL insertAsReadOnly)
 {
-    BOOL              error = FALSE;
     PSS_DocumentData* pDocData;
     const int         arrayCount = arraySrc.GetSize();
+    BOOL              error      = FALSE;
 
     for (int i = 0; i < arrayCount; ++i)
     {
-        pDocData = ((PSS_DocumentData*)arraySrc.GetAt(i))->Clone();
+        PSS_DocumentData* pSrcDocData = dynamic_cast<PSS_DocumentData*>(arraySrc.GetAt(i));
+        PSS_Assert(pSrcDocData);
+
+        pDocData = pSrcDocData->Clone();
+        PSS_Assert(pDocData);
         pDocData->SetDocument(this);
 
         // set the read-only flag
@@ -780,7 +948,11 @@ BOOL PSS_Document::CopyDocumentDataArrayAfter(CObArray& arraySrc, int index, BOO
 
     for (int i = 0; i < arrayCount; ++i)
     {
+        PSS_DocumentData* pSrcDocData = dynamic_cast<PSS_DocumentData*>(arraySrc.GetAt(i));
+        PSS_Assert(pSrcDocData);
+
         pDocData = ((PSS_DocumentData*)arraySrc.GetAt(i))->Clone();
+        PSS_Assert(pDocData);
         pDocData->SetDocument(this);
 
         // Set the read-only flag
@@ -795,24 +967,28 @@ PSS_FontManager& PSS_Document::GetFontManager(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->GetFontManager();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->GetFontManager();
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetFontManager();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetFontManager();
 }
 //---------------------------------------------------------------------------
 PSS_StyleManager& PSS_Document::GetStyleManager(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->GetStyleManager();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->GetStyleManager();
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetStyleManager();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetStyleManager();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::PropagateFieldValue(PSS_PlanFinObject* pObj, int documentIndex)
@@ -824,22 +1000,35 @@ void PSS_Document::PropagateFieldValue(PSS_PlanFinObject* pObj, int documentInde
             const std::size_t count = GetDocumentDataCount();
 
             for (std::size_t i = 0; i < count; ++i)
-                GetDocumentDataAt(i)->PropagateFieldValue(pObj);
+            {
+                PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+                if (pDocData)
+                    pDocData->PropagateFieldValue(pObj);
+            }
 
             return;
         }
 
         case -1:
-            if (GetActiveDocumentData())
-                GetActiveDocumentData()->PropagateFieldValue(pObj);
+        {
+            PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+            if (pDocData)
+                pDocData->PropagateFieldValue(pObj);
 
             return;
+        }
 
         default:
-            if (GetDocumentDataAt(documentIndex))
-                GetDocumentDataAt(documentIndex)->PropagateFieldValue(pObj);
+        {
+            PSS_DocumentData* pDocData = GetDocumentDataAt(documentIndex);
+
+            if (pDocData)
+                pDocData->PropagateFieldValue(pObj);
 
             return;
+        }
     }
 }
 //---------------------------------------------------------------------------
@@ -850,15 +1039,25 @@ void PSS_Document::GetDocumentDataName(CStringArray& stringArray, BOOL onlyVisib
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < GetDocumentDataCount(); ++i)
-        if (!onlyVisible || (onlyVisible && GetDocumentDataAt(i)->DocumentDataIsVisible()))
-            stringArray.Add(GetDocumentDataAt(i)->GetStamp().GetTitle());
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+
+        if (!onlyVisible || (onlyVisible && pDocData->DocumentDataIsVisible()))
+            stringArray.Add(pDocData->GetStamp().GetTitle());
+    }
 }
 //---------------------------------------------------------------------------
 int PSS_Document::FindDocumentData(const CString& name)
 {
     for (size_t i = 0; i < GetDocumentDataCount(); ++i)
-        if (GetDocumentDataAt(i)->GetStamp().GetTitle() == name)
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+
+        if (pDocData->GetStamp().GetTitle() == name)
             return i;
+    }
 
     return -1;
 }
@@ -867,14 +1066,18 @@ BOOL PSS_Document::DocumentDataIsReadOnly(int documentIndex) const
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->IsReadOnly();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->IsReadOnly();
 
         return TRUE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->IsReadOnly();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->IsReadOnly();
 
     return TRUE;
 }
@@ -883,28 +1086,36 @@ void PSS_Document::SetDocumentDataAsReadOnly(BOOL value, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SetAsReadOnly(value);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SetAsReadOnly(value);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->SetAsReadOnly(value);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SetAsReadOnly(value);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::DocumentDataIsStandardForm(int documentIndex) const
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->IsStandardForm();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->IsStandardForm();
 
         return FALSE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->IsStandardForm();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->IsStandardForm();
 
     return FALSE;
 }
@@ -913,14 +1124,18 @@ BOOL PSS_Document::DocumentDataIsInternalKeyEqualTo(const CString& key, int docu
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->IsInternalKeyEqualTo(key);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->IsInternalKeyEqualTo(key);
 
         return FALSE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->IsInternalKeyEqualTo(key);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->IsInternalKeyEqualTo(key);
 
     return FALSE;
 }
@@ -929,14 +1144,18 @@ BOOL PSS_Document::IsReadOnlyAtRuntime(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->IsReadOnlyAtRuntime();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->IsReadOnlyAtRuntime();
 
         return NULL;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->IsReadOnlyAtRuntime();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->IsReadOnlyAtRuntime();
 
     return NULL;
 }
@@ -945,14 +1164,18 @@ void PSS_Document::SetReadOnlyAtRuntime(BOOL value, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SetReadOnlyAtRuntime(value);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SetReadOnlyAtRuntime(value);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->SetReadOnlyAtRuntime(value);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SetReadOnlyAtRuntime(value);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::SetAllDocReadOnlyAtRuntime(BOOL value)
@@ -960,8 +1183,12 @@ void PSS_Document::SetAllDocReadOnlyAtRuntime(BOOL value)
     std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < count; ++i)
-        if (GetDocumentDataAt(i))
-            GetDocumentDataAt(i)->SetReadOnlyAtRuntime(value);
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData)
+            pDocData->SetReadOnlyAtRuntime(value);
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ChangeCurrentSchema(const CString& name, BOOL notify, int documentIndex)
@@ -969,53 +1196,70 @@ void PSS_Document::ChangeCurrentSchema(const CString& name, BOOL notify, int doc
     switch (documentIndex)
     {
         case -1:
-            if (GetActiveDocumentData())
-                GetActiveDocumentData()->ChangeCurrentSchema(name, notify);
+        {
+            PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+            if (pDocData)
+                pDocData->ChangeCurrentSchema(name, notify);
 
             return;
+        }
 
         case -2:
         {
             const std::size_t count = GetDocumentDataCount();
 
             for (std::size_t i = 0; i < count; ++i)
-                if (GetDocumentDataAt(i))
-                    GetDocumentDataAt(i)->ChangeCurrentSchema(name, notify);
+            {
+                PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+                if (pDocData)
+                    pDocData->ChangeCurrentSchema(name, notify);
+            }
 
             return;
         }
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->ChangeCurrentSchema(name, notify);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->ChangeCurrentSchema(name, notify);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::StartCalcTimer(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->StartCalcTimer();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->StartCalcTimer();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->StartCalcTimer();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->StartCalcTimer();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::ResetCalcTimer(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->ResetCalcTimer();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->ResetCalcTimer();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->ResetCalcTimer();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->ResetCalcTimer();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::CreateAllTemporaryFileFromBuffer()
@@ -1023,8 +1267,12 @@ BOOL PSS_Document::CreateAllTemporaryFileFromBuffer()
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < count; ++i)
-        if (GetDocumentDataAt(i))
-            GetDocumentDataAt(i)->CreateTemporaryFileFromBuffer();
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData)
+            pDocData->CreateTemporaryFileFromBuffer();
+    }
 
     return TRUE;
 }
@@ -1034,8 +1282,12 @@ BOOL PSS_Document::DeleteAllTemporaryFiles()
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < count; ++i)
-        if (GetDocumentDataAt(i))
-            GetDocumentDataAt(i)->DeleteTemporaryFile();
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData)
+            pDocData->DeleteTemporaryFile();
+    }
 
     return TRUE;
 }
@@ -1079,42 +1331,54 @@ void PSS_Document::OnDraw(CDC* pDC, PSS_View* pView, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->OnDraw(pDC, pView);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->OnDraw(pDC, pView);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->OnDraw(pDC, pView);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->OnDraw(pDC, pView);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::SwitchTabOrder(PSS_PlanFinObject* pObject, double tabOrder, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SwitchTabOrder(pObject, tabOrder);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SwitchTabOrder(pObject, tabOrder);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->SwitchTabOrder(pObject, tabOrder);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SwitchTabOrder(pObject, tabOrder);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::AssignMultiColumnMemberFields(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->AssignMultiColumnMemberFields();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->AssignMultiColumnMemberFields();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->AssignMultiColumnMemberFields();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->AssignMultiColumnMemberFields();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::AssignAllMultiColumnMemberFields()
@@ -1122,22 +1386,30 @@ void PSS_Document::AssignAllMultiColumnMemberFields()
     const std::size_t count = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < count; ++i)
-        if (GetDocumentDataAt(i))
-            GetDocumentDataAt(i)->AssignMultiColumnMemberFields();
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+
+        if (pDocData)
+            pDocData->AssignMultiColumnMemberFields();
+    }
 }
 //---------------------------------------------------------------------------
 CStringArray* PSS_Document::GetObjectFieldNameArrayOfDocument(int documentIndex) const
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->GetObjectFieldNameArray();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->GetObjectFieldNameArray();
 
         return NULL;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->GetObjectFieldNameArray();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->GetObjectFieldNameArray();
 
     return NULL;
 }
@@ -1174,24 +1446,32 @@ bool PSS_Document::BuildObjectFieldNameArray()
     // free the object fieldname array
     m_FieldNameArray.RemoveAll();
 
+    const std::size_t docDataCount = GetDocumentDataCount();
+
     // iterate through all documents
-    for (size_t i = 0; i < GetDocumentDataCount(); ++i)
-        if (GetDocumentDataAt(i))
-            // if elements have been built
-            if (GetDocumentDataAt(i)->BuildObjectFieldNameArray())
-            {
-                CStringArray* pFieldNameArrayOfDocData = GetDocumentDataAt(i)->GetObjectFieldNameArray();
+    for (std::size_t i = 0; i < docDataCount; ++i)
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
 
-                if (pFieldNameArrayOfDocData == NULL)
-                    continue;
+        if (!pDocData)
+            continue;
 
-                const std::size_t docDataCount = pFieldNameArrayOfDocData->GetSize();
+        // if elements have been built
+        if (pDocData->BuildObjectFieldNameArray())
+        {
+            CStringArray* pFieldNameArrayOfDocData = pDocData->GetObjectFieldNameArray();
 
-                // iterate through all elements, check if exists, and insert it in the list
-                for (std::size_t elementIndex = 0; elementIndex < docDataCount; ++elementIndex)
-                    if (!FieldNameExistInObectArray(pFieldNameArrayOfDocData->GetAt(elementIndex)))
-                        m_FieldNameArray.Add(pFieldNameArrayOfDocData->GetAt(elementIndex));
-            }
+            if (!pFieldNameArrayOfDocData)
+                continue;
+
+            const std::size_t elementCount = pFieldNameArrayOfDocData->GetSize();
+
+            // iterate through all elements, check if exists, and insert it in the list
+            for (std::size_t elementIndex = 0; elementIndex < elementCount; ++elementIndex)
+                if (!FieldNameExistInObectArray(pFieldNameArrayOfDocData->GetAt(elementIndex)))
+                    m_FieldNameArray.Add(pFieldNameArrayOfDocData->GetAt(elementIndex));
+        }
+    }
 
     return m_FieldNameArray.GetSize() > 0;
 }
@@ -1200,14 +1480,18 @@ bool PSS_Document::BuildObjectFieldNameArrayOfDocument(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->BuildObjectFieldNameArray();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->BuildObjectFieldNameArray();
 
         return false;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->BuildObjectFieldNameArray();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->BuildObjectFieldNameArray();
 
     return false;
 }
@@ -1215,24 +1499,35 @@ bool PSS_Document::BuildObjectFieldNameArrayOfDocument(int documentIndex)
 PSS_PlanFinObject* PSS_Document::GetEditedObject(BOOL checkPage, int documentIndex)
 {
     if (documentIndex == -1)
-        return (GetActiveDocumentData() ? GetActiveDocumentData()->GetEditedObject(checkPage) : NULL);
+    {
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->GetEditedObject(checkPage);
+        if (!pDocData)
+            return NULL;
+
+        return pDocData->GetEditedObject(checkPage);
+    }
+
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->GetEditedObject(checkPage);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::SetEditedObject(PSS_PlanFinObject* pObj, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SetEditedObject(pObj);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SetEditedObject(pObj);
 
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->SetEditedObject(pObj);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->SetEditedObject(pObj);
 }
 //---------------------------------------------------------------------------
 void PSS_Document::CreateAutomaticNewName(PSS_PlanFinObject* pObj)
@@ -1250,14 +1545,18 @@ void PSS_Document::AssignPredefinedField(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->AssignPredefinedField();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->AssignPredefinedField();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->AssignPredefinedField();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->AssignPredefinedField();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::ChangeObjectType(PSS_PlanFinObject* pObj,
@@ -1268,19 +1567,23 @@ BOOL PSS_Document::ChangeObjectType(PSS_PlanFinObject* pObj,
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
         {
             SetModifiedFlag();
-            return GetActiveDocumentData()->ChangeObjectType(pObj, name, finalValue, propagate);
+            return pDocData->ChangeObjectType(pObj, name, finalValue, propagate);
         }
 
         return FALSE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
     {
         SetModifiedFlag();
-        return GetDocumentDataAt(documentIndex)->ChangeObjectType(pObj, name, finalValue, propagate);
+        return pDocDataAt->ChangeObjectType(pObj, name, finalValue, propagate);
     }
 
     return FALSE;
@@ -1292,26 +1595,30 @@ BOOL PSS_Document::InsertObject(PSS_PlanFinObject*   pObj,
                                 int                  documentIndex,
                                 BOOL                 refresh)
 {
+    if (!pObj)
+        return FALSE;
+
     if (documentIndex == -1)
     {
-        if (pObj && GetActiveDocumentData())
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
         {
             SetModifiedFlag();
             AddFieldNameInObectArray(pObj->GetObjectName());
-            return GetActiveDocumentData()->InsertObject(pObj, pFieldRepository, insertInGlobalRepository, refresh);
+            return pDocData->InsertObject(pObj, pFieldRepository, insertInGlobalRepository, refresh);
         }
 
         return FALSE;
     }
 
-    if (pObj && GetDocumentDataAt(documentIndex))
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
     {
         SetModifiedFlag();
         AddFieldNameInObectArray(pObj->GetObjectName(), documentIndex);
-        return GetDocumentDataAt(documentIndex)->InsertObject(pObj,
-                                                              pFieldRepository,
-                                                              insertInGlobalRepository,
-                                                              refresh);
+        return pDocDataAt->InsertObject(pObj, pFieldRepository, insertInGlobalRepository, refresh);
     }
 
     return FALSE;
@@ -1323,31 +1630,30 @@ BOOL PSS_Document::InsertObjectAtHead(PSS_PlanFinObject*   pObj,
                                       int                  documentIndex,
                                       BOOL                 refresh)
 {
+    if (!pObj)
+        return FALSE;
+
     if (documentIndex == -1)
     {
-        if (pObj && GetActiveDocumentData())
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
         {
             SetModifiedFlag();
             AddFieldNameInObectArray(pObj->GetObjectName());
-
-            return GetActiveDocumentData()->InsertObjectAtHead(pObj,
-                                                               pFieldRepository,
-                                                               insertInGlobalRepository,
-                                                               refresh);
+            return pDocData->InsertObjectAtHead(pObj, pFieldRepository, insertInGlobalRepository, refresh);
         }
 
         return FALSE;
     }
 
-    if (pObj && GetDocumentDataAt(documentIndex))
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
     {
         SetModifiedFlag();
         AddFieldNameInObectArray(pObj->GetObjectName(), documentIndex);
-
-        return GetDocumentDataAt(documentIndex)->InsertObjectAtHead(pObj,
-                                                                    pFieldRepository,
-                                                                    insertInGlobalRepository,
-                                                                    refresh);
+        return pDocDataAt->InsertObjectAtHead(pObj, pFieldRepository, insertInGlobalRepository, refresh);
     }
 
     return FALSE;
@@ -1360,19 +1666,23 @@ BOOL PSS_Document::DeleteObject(PSS_PlanFinObject* pObj,
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
         {
             SetModifiedFlag();
-            return GetActiveDocumentData()->DeleteObject(pObj, deleteFromMemory, refresh);
+            return pDocData->DeleteObject(pObj, deleteFromMemory, refresh);
         }
 
         return FALSE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
     {
         SetModifiedFlag();
-        return GetDocumentDataAt(documentIndex)->DeleteObject(pObj, deleteFromMemory, refresh);
+        return pDocDataAt->DeleteObject(pObj, deleteFromMemory, refresh);
     }
 
     return FALSE;
@@ -1382,19 +1692,23 @@ BOOL PSS_Document::MoveObjectInOrder(PSS_PlanFinObject* pObj, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
         {
             SetModifiedFlag();
-            return GetActiveDocumentData()->MoveObjectInOrder(pObj);
+            return pDocData->MoveObjectInOrder(pObj);
         }
 
         return FALSE;
     }
 
-    if (GetDocumentDataAt(documentIndex))
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
     {
         SetModifiedFlag();
-        return GetDocumentDataAt(documentIndex)->MoveObjectInOrder(pObj);
+        return pDocDataAt->MoveObjectInOrder(pObj);
     }
 
     return FALSE;
@@ -1409,19 +1723,23 @@ void PSS_Document::AssignObjectValue(const CString& name,
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
         {
             SetModifiedFlag();
-            GetActiveDocumentData()->AssignObjectValue(name, value, page, propagationMode, emptyWhenZero);
+            pDocData->AssignObjectValue(name, value, page, propagationMode, emptyWhenZero);
         }
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
     {
         SetModifiedFlag();
-        GetDocumentDataAt(documentIndex)->AssignObjectValue(name, value, page, propagationMode, emptyWhenZero);
+        pDocDataAt->AssignObjectValue(name, value, page, propagationMode, emptyWhenZero);
     }
 }
 //---------------------------------------------------------------------------
@@ -1429,14 +1747,18 @@ void PSS_Document::SetCurrentPageToObject(PSS_PlanFinObject* pObj, int documentI
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->SetCurrentPageToObject(pObj);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->SetCurrentPageToObject(pObj);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->SetCurrentPageToObject(pObj);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->SetCurrentPageToObject(pObj);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::InsertDocument(const CString& fileName, BOOL insertAsReadOnly, int propagateValue)
@@ -1452,7 +1774,8 @@ BOOL PSS_Document::InsertDocumentAfter(const CString& fileName,
     // set silent mode before opening the file
     PSS_Global::SetOpenFileInSilentMode();
 
-    PSS_Document* pNewDocument = dynamic_cast<PSS_Document*>(PSS_Global::GetDocTemplate()->OpenDocumentFile((const char*)fileName));
+    PSS_Document* pNewDocument =
+            dynamic_cast<PSS_Document*>(PSS_Global::GetDocTemplate()->OpenDocumentFile((const char*)fileName));
 
     if (!pNewDocument)
         return FALSE;
@@ -1512,16 +1835,13 @@ BOOL PSS_Document::InsertExternalDocumentAfter(const CString& fileName,
                                                BOOL           insertAsReadOnly,
                                                int            propagateValue)
 {
-    std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
-
-    if (!pNewDocData.get())
-        return FALSE;
-
-    PSS_File File(fileName);
+    PSS_File file(fileName);
 
     // check if file exists
-    if (!File.Exist())
+    if (!file.Exist())
         return FALSE;
+
+    std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
 
     // set the type for Document
     pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
@@ -1578,9 +1898,6 @@ BOOL PSS_Document::InsertBinaryDocumentAfter(const CString& fileName,
                                              const CString& infoDescription)
 {
     std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
-
-    if (!pNewDocData.get())
-        return FALSE;
 
     // set the type for Document
     pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
@@ -1648,16 +1965,13 @@ BOOL PSS_Document::InsertExternalBinaryDocumentAfter(const CString& fileName,
                                                      const CString& infoName,
                                                      const CString& infoDescription)
 {
-    std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
-
-    if (!pNewDocData.get())
-        return FALSE;
-
-    PSS_File File(fileName);
+    PSS_File file(fileName);
 
     // check if file exists
-    if (!File.Exist())
+    if (!file.Exist())
         return FALSE;
+
+    std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
 
     // set the type for Document
     pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
@@ -1715,9 +2029,6 @@ BOOL PSS_Document::InsertURL(const CString& url)
 BOOL PSS_Document::InsertURLAfter(const CString& url, int indexAfter)
 {
     std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
-
-    if (!pNewDocData.get())
-        return FALSE;
 
     // set the type for Document
     pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
@@ -1824,15 +2135,23 @@ BOOL PSS_Document::PropagateDocumentValue(const CString& name,
     {
         case g_LocateAllDocumentsEmptyOnly:
             // for each document data, call the document function to change the object value
-            for (size_t i = 0; i < GetDocumentDataCount(); ++i)
-                GetDocumentDataAt(i)->AssignObjectValue(name, value, 0, g_LocateAllPagesEmptyOnly, emptyWhenZero);
+            for (std::size_t i = 0; i < GetDocumentDataCount(); ++i)
+            {
+                PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+                PSS_Assert(pDocData);
+                pDocData->AssignObjectValue(name, value, 0, g_LocateAllPagesEmptyOnly, emptyWhenZero);
+            }
 
             break;
 
         case g_LocateAllDocuments:
             // for each document data, call the document function to change the object value
-            for (size_t i = 0; i < GetDocumentDataCount(); ++i)
-                GetDocumentDataAt(i)->AssignObjectValue(name, value, 0, g_LocateAllPages, emptyWhenZero);
+            for (std::size_t i = 0; i < GetDocumentDataCount(); ++i)
+            {
+                PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+                PSS_Assert(pDocData);
+                pDocData->AssignObjectValue(name, value, 0, g_LocateAllPages, emptyWhenZero);
+            }
 
             break;
 
@@ -1842,7 +2161,7 @@ BOOL PSS_Document::PropagateDocumentValue(const CString& name,
         case g_LocatePageOnly:
         case g_LocateForwardPage:
         case g_LocateAllPages:
-            ASSERT(pData);
+            PSS_Assert(pData);
             return pData->AssignObjectValue(name, value, page, propagationMode, emptyWhenZero);
     }
 
@@ -1868,7 +2187,11 @@ BOOL PSS_Document::PropagateDocumentValueFromTo(const CString& name,
 
     // for each document data, call the document function to change the object value
     for (std::size_t i = documentIndexFrom; i <= documentIndexTo; ++i)
-        GetDocumentDataAt(i)->AssignObjectValue(name, value, 0, propagationMode, emptyWhenZero);
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+        pDocData->AssignObjectValue(name, value, 0, propagationMode, emptyWhenZero);
+    }
 
     // set modification flag
     SetModifiedFlag();
@@ -1881,18 +2204,25 @@ BOOL PSS_Document::PropagateExternDocumentAllValues(PSS_Document* pDoc,
                                                     int           documentIndex,
                                                     int           page)
 {
+    PSS_Assert(pDoc);
+
     PSS_PlanFinObject* pObj;
+    const std::size_t  docDataCount = pDoc->GetDocumentDataCount();
 
     // for all fields coming from the extern document, propagate all values. Process only one time per field name.
     // For each object, assign the new value
-    for (std::size_t i = 0; i < pDoc->GetDocumentDataCount(); ++i)
-        if ((pObj = pDoc->GetDocumentDataAt(i)->GetHead()) != NULL)
+    for (std::size_t i = 0; i < docDataCount; ++i)
+    {
+        PSS_DocumentData* pDocData = pDoc->GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+
+        if ((pObj = pDocData->GetHead()) != NULL)
             do
             {
                 // if the object is exportable
-                if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
+                if (!pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&
+                    !pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
+                    !pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
                     continue;
 
                 PSS_PLFNText* pTextObj = dynamic_cast<PSS_PLFNText*>(pObj);
@@ -1908,7 +2238,8 @@ BOOL PSS_Document::PropagateExternDocumentAllValues(PSS_Document* pDoc,
                                             page))
                     return FALSE;
             }
-            while ((pObj = pDoc->GetDocumentDataAt(i)->GetNext()) != NULL);
+            while ((pObj = pDocData->GetNext()) != NULL);
+    }
 
     // set modification flag
     SetModifiedFlag();
@@ -1934,13 +2265,17 @@ BOOL PSS_Document::PropagateInternalDocumentAllValues(int  indexFrom,
 
     // for each object, assign the new value
     for (std::size_t i = indexFrom; i <= indexTo; ++i)
-        if ((pObj = GetDocumentDataAt(i)->GetHead()) != NULL)
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+
+        if ((pObj = pDocData->GetHead()) != NULL)
             do
             {
                 // if the object is exportable
-                if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
+                if (!pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&
+                    !pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
+                    !pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
                     continue;
 
                 PSS_PLFNText* pTextObj = dynamic_cast<PSS_PLFNText*>(pObj);
@@ -1956,7 +2291,8 @@ BOOL PSS_Document::PropagateInternalDocumentAllValues(int  indexFrom,
                                             page))
                     return FALSE;
             }
-            while ((pObj = GetDocumentDataAt(i)->GetNext()) != NULL);
+            while ((pObj = pDocData->GetNext()) != NULL);
+    }
 
     // set modification flag
     SetModifiedFlag();
@@ -1982,20 +2318,24 @@ BOOL PSS_Document::PropagateInternalDocumentOnDocumentValues(int  inIndexFrom,
         return FALSE;
 
     for (std::size_t i = inIndexFrom; i <= inIndexTo; ++i)
-        if ((pObj = GetDocumentDataAt(i)->GetHead()) != NULL)
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+
+        if ((pObj = pDocData->GetHead()) != NULL)
             do
             {
                 // if the object is exportable
-                if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
+                if (!pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
+                    !pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
+                    !pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
                     continue;
 
                 PSS_PLFNText* pTextObj = dynamic_cast<PSS_PLFNText*>(pObj);
 
                 if (pTextObj && pTextObj->GetIsStatic())
                     continue;
- 
+
                 if (!PropagateDocumentValueFromTo(pObj->GetObjectName(),
                                                   pObj->GetUnformattedObject(),
                                                   propagationMode,
@@ -2004,7 +2344,8 @@ BOOL PSS_Document::PropagateInternalDocumentOnDocumentValues(int  inIndexFrom,
                                                   toIndexTo))
                     return FALSE;
             }
-            while ((pObj = GetDocumentDataAt(i)->GetNext()) != NULL);
+            while ((pObj = pDocData->GetNext()) != NULL);
+    }
 
     // set modification flag
     SetModifiedFlag();
@@ -2014,20 +2355,16 @@ BOOL PSS_Document::PropagateInternalDocumentOnDocumentValues(int  inIndexFrom,
 //---------------------------------------------------------------------------
 CString PSS_Document::GetAutomaticNewName(PSS_PlanFinObject* pObj, int documentIndex)
 {
+    PSS_Assert(pObj);
+
     PSS_DocumentData* pDocData = NULL;
 
     if (documentIndex == -1)
-    {
-        ASSERT(GetActiveDocumentData());
         pDocData = GetActiveDocumentData();
-    }
     else
-    {
-        ASSERT(GetDocumentDataAt(documentIndex));
         pDocData = GetDocumentDataAt(documentIndex);
-    }
 
-    ASSERT(pDocData);
+    PSS_Assert(pDocData);
 
     // check the class type
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
@@ -2040,10 +2377,7 @@ CString PSS_Document::GetAutomaticNewName(PSS_PlanFinObject* pObj, int documentI
         return pDocData->BuildAutomaticNewName(_T("Rct"));
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumbered)))
-    {
-        ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("Numb"));
-    }
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNStatic)))
         return pDocData->BuildAutomaticNewName(_T("Stc"));
@@ -2052,10 +2386,7 @@ CString PSS_Document::GetAutomaticNewName(PSS_PlanFinObject* pObj, int documentI
         return pDocData->BuildAutomaticNewName(_T("Tm"));
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumbEdit)))
-    {
-        ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("NumbEdt"));
-    }
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMaskString)))
     {
@@ -2069,25 +2400,16 @@ CString PSS_Document::GetAutomaticNewName(PSS_PlanFinObject* pObj, int documentI
         return pDocData->BuildAutomaticNewName(_T("BndTxt"));
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNStringHistory)))
-    {
-        ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("StrHist"));
-    }
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNString)))
         return pDocData->BuildAutomaticNewName(_T("Str"));
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumHistory)))
-    {
-        ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("$NumHist"));
-    }
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumbNumEdit)))
-    {
-        ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("$NumbNumEdt"));
-    }
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)))
         return pDocData->BuildAutomaticNewName(_T("$Number"));
@@ -2471,27 +2793,30 @@ BOOL PSS_Document::OpenDocument(const char* pPathName, BOOL setLastLoaded)
 {
     PSS_Global::SetCurrentDocumentForSerialization(this);
 
-    CWaitCursor Cursor;
+    CWaitCursor cursor;
 
     if (!CDocument::OnOpenDocument(pPathName))
         return FALSE;
 
     SetPathName(pPathName);
 
-    // if the formula list is empty, load the standard list instead
-    if (GetActiveDocumentData()               &&
-        GetActiveDocumentData()->IsFormData() &&
-       !GetActiveDocumentData()->GetSchema().GetFormulaList(GetCurrentSchema()))
-    {
-        PSS_MsgBox mBox;
-        mBox.Show(IDS_FILECORRUPTED, MB_OK);
-        return FALSE;
-    }
+    PSS_DocumentData* pDocData = GetActiveDocumentData();
 
-    // because in the previous versions, the calculated fields and the number have different classes,
-    // it is necessary to replace calculated fields with number fields with a flag
-    if (GetActiveDocumentData() && GetActiveDocumentData()->GetStamp().GetInternalVersion() < 1)
-        ReplaceCalculatedFields();
+    if (pDocData)
+    {
+        // if the formula list is empty, load the standard list instead
+        if (pDocData->IsFormData() && pDocData->GetSchema().GetFormulaList(GetCurrentSchema()))
+        {
+            PSS_MsgBox mBox;
+            mBox.Show(IDS_FILECORRUPTED, MB_OK);
+            return FALSE;
+        }
+
+        // because in the previous versions, the calculated fields and the number have different classes,
+        // it is necessary to replace calculated fields with number fields with a flag
+        if (pDocData->GetStamp().GetInternalVersion() < 1)
+            ReplaceCalculatedFields();
+    }
 
     if (!PSS_Global::OpenFileInSilentMode())
     {
@@ -2531,14 +2856,18 @@ void PSS_Document::CheckFormulaObject(PSS_PlanFinObject* pOld, PSS_PlanFinObject
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->CheckFormulaObject(pOld, pNew);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->CheckFormulaObject(pOld, pNew);
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->CheckFormulaObject(pOld, pNew);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->CheckFormulaObject(pOld, pNew);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Document::CreateRealTimeExport()
@@ -2554,6 +2883,9 @@ BOOL PSS_Document::CreateRealTimeExport()
     if (file.IsEmpty())
         return TRUE;
 
+    if (m_pRealTimeExport)
+        delete m_pRealTimeExport;
+
     // create the object
     m_pRealTimeExport = new PSS_DocumentExport(file,
                                                this,
@@ -2562,7 +2894,6 @@ BOOL PSS_Document::CreateRealTimeExport()
                                                _T(""),
                                                g_LocateAllPages);
 
-    ASSERT(m_pRealTimeExport);
     m_pRealTimeExport->StartSynchronization(GetDocOptions().GetSynchronizeTimeSequence());
 
     return TRUE;
@@ -2572,25 +2903,29 @@ void PSS_Document::DeleteAllObjects(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        GetActiveDocumentData()->DeleteAllObjects();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        pDocData->DeleteAllObjects();
         return;
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    GetDocumentDataAt(documentIndex)->DeleteAllObjects();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    pDocDataAt->DeleteAllObjects();
 }
 //---------------------------------------------------------------------------
 int PSS_Document::CountAndSetPages(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        ASSERT(GetActiveDocumentData());
-        return GetActiveDocumentData()->CountAndSetPages();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+        PSS_Assert(pDocData);
+        return pDocData->CountAndSetPages();
     }
 
-    ASSERT(GetDocumentDataAt(documentIndex));
-    return GetDocumentDataAt(documentIndex)->CountAndSetPages();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+    PSS_Assert(pDocDataAt);
+    return pDocDataAt->CountAndSetPages();
 }
 //---------------------------------------------------------------------------
 int PSS_Document::DocumentCountAndSetPages()
@@ -2598,7 +2933,11 @@ int PSS_Document::DocumentCountAndSetPages()
     int pages = 0;
 
     for (std::size_t i = 0; i < GetDocumentDataCount(); ++i)
-        pages += GetDocumentDataAt(i)->CountAndSetPages();
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+        pages += pDocData->CountAndSetPages();
+    }
 
     return pages;
 }
@@ -2618,35 +2957,47 @@ void PSS_Document::ReplaceCalculatedFields(int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            GetActiveDocumentData()->ReplaceCalculatedFields();
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            pDocData->ReplaceCalculatedFields();
 
         return;
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        GetDocumentDataAt(documentIndex)->ReplaceCalculatedFields();
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        pDocDataAt->ReplaceCalculatedFields();
 }
 //---------------------------------------------------------------------------
 void PSS_Document::CheckDocumentFontAndStyle()
 {
     // iterate through the document data array and check the font validity
-    for (std::size_t index = 0; index < GetDocumentDataCount(); ++index)
-        GetDocumentDataAt(index)->CheckFontValidity();
+    for (std::size_t i = 0; i < GetDocumentDataCount(); ++i)
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+        pDocData->CheckFontValidity();
+    }
 }
 //---------------------------------------------------------------------------
 CString PSS_Document::BuildAutomaticNewName(const CString& prefix, int documentIndex)
 {
     if (documentIndex == -1)
     {
-        if (GetActiveDocumentData())
-            return GetActiveDocumentData()->BuildAutomaticNewName(prefix);
+        PSS_DocumentData* pDocData = GetActiveDocumentData();
+
+        if (pDocData)
+            return pDocData->BuildAutomaticNewName(prefix);
 
         return _T("");
     }
 
-    if (GetDocumentDataAt(documentIndex))
-        return GetDocumentDataAt(documentIndex)->BuildAutomaticNewName(prefix);
+    PSS_DocumentData* pDocDataAt = GetDocumentDataAt(documentIndex);
+
+    if (pDocDataAt)
+        return pDocDataAt->BuildAutomaticNewName(prefix);
 
     return _T("");
 }
@@ -2658,12 +3009,12 @@ int PSS_Document::GetDocumentDataIndex(PSS_DocumentData* pDocData)
 
     const int docCount = GetDocumentDataCount();
 
-    for (int index = 0; index < docCount; ++index)
+    for (int i = 0; i < docCount; ++i)
     {
-        PSS_DocumentData* pData = GetDocumentDataAt(index);
+        PSS_DocumentData* pData = GetDocumentDataAt(i);
 
         if (pData && pData == pDocData)
-            return index;
+            return i;
     }
 
     return -1;
@@ -2677,8 +3028,13 @@ std::size_t PSS_Document::CalculateVisibleDocumentDataCount()
     const std::size_t docCount = GetDocumentDataCount();
 
     for (std::size_t i = 0; i < docCount; ++i)
-        if (GetDocumentDataAt(i)->DocumentDataIsVisible())
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+
+        if (pDocData->DocumentDataIsVisible())
             ++m_VisibleDocumentDataCount;
+    }
 
     return m_VisibleDocumentDataCount;
 }
@@ -2696,7 +3052,11 @@ void PSS_Document::SerializeDocumentDataArrayRead(CArchive& ar)
     m_DocumentDataArray.Serialize(ar);
 
     for (size_t i = 0; i < GetDocumentDataCount(); ++i)
-        GetDocumentDataAt(i)->SetDocument(this);
+    {
+        PSS_DocumentData* pDocData = GetDocumentDataAt(i);
+        PSS_Assert(pDocData);
+        pDocData->SetDocument(this);
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Document::SerializeDocumentDataArrayWrite(CArchive& ar)

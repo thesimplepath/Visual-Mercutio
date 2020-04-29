@@ -66,6 +66,7 @@
 #include <zModel\zModelLib.h>
 #include <zRes32\zRes32Lib.h>
 #include "PSS_Constants.h"
+#include "PSS_Macros.h"
 #include "PSS_Defines.h"
 #include "PSS_Messages.h"
 #include "PlanFin.hdf"

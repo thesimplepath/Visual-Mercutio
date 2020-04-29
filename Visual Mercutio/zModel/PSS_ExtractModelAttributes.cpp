@@ -96,7 +96,7 @@ bool PSS_ExtractModelAttributes::OnLink(PSS_LinkSymbol* pLink)
 //---------------------------------------------------------------------------
 void PSS_ExtractModelAttributes::ProcessAttrib(PSS_Properties::IPropertySet& propSet)
 {
-    ASSERT(m_pPropertySet);
+    PSS_Assert(m_pPropertySet);
 
     PSS_Properties::IPropertyIterator it(&propSet);
 

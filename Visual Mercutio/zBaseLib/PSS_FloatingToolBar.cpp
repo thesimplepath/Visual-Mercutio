@@ -447,7 +447,7 @@ bool PSS_FloatingToolBar::ShowMenuBars(EModelNotation notation)
             }
             else
             {
-                ASSERT(pData->m_pFrame);
+                PSS_Assert(pData->m_pFrame);
                 ASSERT_KINDOF(SECMDIFrameWnd, pData->m_pFrame);
                 SECMDIFrameWnd* pMainWnd = (SECMDIFrameWnd*)pData->m_pFrame;
 

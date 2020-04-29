@@ -94,10 +94,7 @@ void PSS_RuleListPropertiesBP::SetRuleList(LPCTSTR pValue)
     if (pValue)
         m_RuleList = pValue;
     else
-    {
-        TRACE0("PSS_RuleListPropertiesBP - Invalid task list!\n");
-        ASSERT(FALSE);
-    }
+        THROW("PSS_RuleListPropertiesBP - Invalid task list");
 }
 //---------------------------------------------------------------------------
 BOOL PSS_RuleListPropertiesBP::GetValue(const int propId, int& value) const

@@ -87,7 +87,7 @@ LPCVARIANT PSS_HtmlDialog::GetReturnVariant()
 //---------------------------------------------------------------------------
 CString PSS_HtmlDialog::GetReturnString()
 {
-    ASSERT(m_Return.vt == VT_BSTR);
+    PSS_Assert(m_Return.vt == VT_BSTR);
     return m_Return.bstrVal;
 }
 //---------------------------------------------------------------------------

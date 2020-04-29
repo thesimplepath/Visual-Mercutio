@@ -203,7 +203,8 @@ void PSS_ProcessModelTree::ShowContextMenu(CWnd* pWnd, const CPoint& point)
         else
             pPopup = m_SymbolRefPopupMainMenu.GetSubMenu(idMenu);
 
-        ASSERT(pPopup);
+        PSS_Assert(pPopup);
+
         CWnd* pWndPopupOwner = this;
 
         while (pWndPopupOwner->GetStyle() & WS_CHILD)

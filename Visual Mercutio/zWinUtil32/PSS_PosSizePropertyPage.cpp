@@ -34,7 +34,7 @@ PSS_PosSizePropertyPage::PSS_PosSizePropertyPage(PSS_PlanFinObject* pObj) :
     m_Width(0.0),
     m_Height(0.0)
 {
-    ASSERT(pObj);
+    PSS_Assert(pObj);
 
     const CSize pos = PSS_PaintOperations::ConvertLogicalUnitsMillimeters(CSize(pObj->GetClientRect().left, 
                                                                                 pObj->GetClientRect().bottom));
