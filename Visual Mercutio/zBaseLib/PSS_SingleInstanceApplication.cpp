@@ -101,7 +101,7 @@ HDDEDATA PSS_SingleInstanceApplication::AppDdeCallback(WORD     type,
                 pWnd->SetForegroundWindow();
 
                 // add any code for the first instance, have found the second one is launch
-                result = (HDDEDATA)DDE_FACK;
+                result = HDDEDATA(DDE_FACK);
             }
 
             if (buffer)

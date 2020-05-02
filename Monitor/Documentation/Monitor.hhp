@@ -1,0 +1,23 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Monitor.chm
+Contents file=Monitor.hhc
+Default topic=HTML\monitor.htm
+Display compile progress=No
+Language=0x100c Français (Suisse)
+
+
+[FILES]
+HTML\monitor.htm
+HTML\installation.htm
+HTML\configuration.htm
+HTML\basededonnees.htm
+HTML\XMLBuilder.htm
+HTML\publicationconceptor.htm
+HTML\teameditor.htm
+HTML\teameditormapping.htm
+HTML\teameditorindicateurs.htm
+HTML\SOAPFeeder.htm
+
+[INFOTYPES]
+

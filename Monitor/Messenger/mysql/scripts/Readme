@@ -1,0 +1,5 @@
+This script directory contains some useful MySQL script written in
+perl.  To use them you should first install Activestate perl.
+
+Note that these scripts are mostly written for Unix and you may have to
+tweak them a little to get them to run under Win32.

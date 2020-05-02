@@ -1,0 +1,3 @@
+#Thu Jul 13 13:47:48 CEST 2006
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<watchExpressions>\r\n<expression enabled\="true" text\="_psGetWkgID"/>\r\n</watchExpressions>\r\n
+eclipse.preferences.version=1

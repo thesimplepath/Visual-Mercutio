@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="file:/C:/Documents%20and%20Settings/michelet.INSTITUTICARE/Bureau/BACKUP_LOCAL_PSS/soap_messages/MessagesSOAP.xsd" caseid="10" caseidremark="11" externmessageid="12" externprocid="13" externsystemid="14" externuserid="15" messagetime="04.05.2005 18:45:59" statut="1" timestampproc="08.11.2007 14:25:45">
+    <messagedeliv doublecontrol="1" externdelivid="12" externuserid="user 1" timestampdeliv="14.05.2006 12:34:45"/>
+    <messagedeliv doublecontrol="1" externdelivid="22" externuserid="user 2" timestampdeliv="14.05.2006 12:34:45"/>
+    <messagedeliv doublecontrol="1" externdelivid="32" externuserid="user 3" timestampdeliv="14.05.2006 12:34:45"/>
+    <messagedeliv doublecontrol="1" externdelivid="42" externuserid="user 4" timestampdeliv="14.05.2006 12:34:45"/>
+    <messagedeliv doublecontrol="1" externdelivid="52" externuserid="user 5" timestampdeliv="14.05.2006 12:34:45"/>
+</message>
+

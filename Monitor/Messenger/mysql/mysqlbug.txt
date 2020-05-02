@@ -1,0 +1,29 @@
+From: <your mail address>
+To:   mysql-win32@lists.mysql.com
+Subject: [50 character or so descriptive subject here (for reference)]
+
+Description:
+	<precise description of the problem (multiple lines)>
+
+How-To-Repeat:
+	<code/input/activities to reproduce the problem (multiple lines)>
+
+Fix:
+	<how to correct or work around the problem, if known (multiple lines)>
+
+Synopsis:	<synopsis of the problem (one line)>
+Submitter-Id:	<submitter ID>
+Originator:	<your name>
+Organization:   <your organization>
+MySQL support:  [none | licence | email support | extended email support ]
+Severity:	[non-critical | serious | critical ]
+Priority:	[low | medium | high ]
+Category:	[mysqld, mysql client, C, PHP, PERL,  ...]
+Class:		[ sw-bug | doc-bug | change-request | support ]
+Release:	mysql-3.23.38
+
+Exectutable:   [mysqld, mysqld-shareware, mysqld-nt or mysqld-opt]
+Environment:   <machine description>
+System:        <Win95, Win98, NT or Win200>
+Compiler:      VC++ 6.0
+Architecture:  i

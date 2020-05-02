@@ -1,0 +1,11 @@
+create table foo (x char(10) primary key);
+insert into foo values ('a_b');
+insert into foo values ('ac_b');
+insert into foo values ('aa_b');
+insert into foo values ('aab');
+insert into foo values ('a_ab');
+insert into foo values ('a_a');
+insert into foo values ('b_a');
+insert into foo values ('ba');
+insert into foo values ('b__a');
+select * from foo where x = 'a_ab';

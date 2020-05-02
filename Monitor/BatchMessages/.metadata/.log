@@ -1,0 +1,225 @@
+!SESSION 2006-03-08 09:02:09.767 -----------------------------------------------
+eclipse.buildId=M20050929-0840
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CH
+Command-line arguments:  -data C:\Documents and Settings\michelet.INSTITUTICARE\Bureau\processSoft\batchWorkspace -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2006-03-08 09:02:53.48
+!MESSAGE While loading class "org.tigris.subversion.subclipse.ui.console.ConsoleDocument$ConsoleLine", thread "main" timed out waiting (5000ms) for thread "Worker-3" to finish starting bundle "org.tigris.subversion.subclipse.ui". To avoid deadlock, thread "main" is proceeding but "org.tigris.subversion.subclipse.ui.console.ConsoleDocument$ConsoleLine" may not be fully initialized.
+!STACK 0
+java.lang.Exception: Generated exception.
+	at org.eclipse.core.runtime.adaptor.EclipseClassLoader.findLocalClass(EclipseClassLoader.java:108)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findLocalClass(BundleLoader.java:337)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:389)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:350)
+	at org.eclipse.osgi.framework.adaptor.core.AbstractClassLoader.loadClass(AbstractClassLoader.java:78)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClassInternal(Unknown Source)
+	at org.tigris.subversion.subclipse.ui.console.ConsoleDocument.getLines(ConsoleDocument.java:79)
+	at org.tigris.subversion.subclipse.ui.console.SVNOutputConsole.dump(SVNOutputConsole.java:202)
+	at org.tigris.subversion.subclipse.ui.console.SVNOutputConsole.access$1(SVNOutputConsole.java:199)
+	at org.tigris.subversion.subclipse.ui.console.SVNOutputConsole$1.run(SVNOutputConsole.java:124)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:123)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3057)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2716)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1699)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1663)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:367)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+	at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:103)
+	at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:226)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:376)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:163)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.core.launcher.Main.invokeFramework(Main.java:334)
+	at org.eclipse.core.launcher.Main.basicRun(Main.java:278)
+	at org.eclipse.core.launcher.Main.run(Main.java:973)
+	at org.eclipse.core.launcher.Main.main(Main.java:948)
+!SESSION 2006-07-12 10:28:20.367 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.jdt.debug 4 120 2006-07-13 13:49:27.164
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: Invalid stack frame
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getUnderlyingStackFrame(JDIStackFrame.java:1013)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getUnderlyingThisObject(JDIStackFrame.java:703)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getThis(JDIStackFrame.java:1061)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo(JavaDebugHover.java:193)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo(BestMatchHover.java:102)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo(JavaEditorTextHoverProxy.java:69)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:160)
+!SUBENTRY 1 org.eclipse.jdt.debug 4 100 2006-07-13 13:49:27.164
+!MESSAGE Invalid stack frame
+!SESSION 2006-07-24 11:25:36.045 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.debug.ui 4 2 2006-07-24 13:28:31.830
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.ui".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.done(DebugUIPlugin.java:924)
+	at org.eclipse.core.internal.jobs.JobListeners$3.notify(JobListeners.java:39)
+	at org.eclipse.core.internal.jobs.JobListeners.doNotify(JobListeners.java:112)
+	at org.eclipse.core.internal.jobs.JobListeners.done(JobListeners.java:152)
+	at org.eclipse.core.internal.jobs.JobManager.endJob(JobManager.java:540)
+	at org.eclipse.core.internal.jobs.WorkerPool.endJob(WorkerPool.java:100)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:74)
+
+!ENTRY org.eclipse.debug.ui 4 2 2006-07-24 13:28:31.830
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.ui".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.done(DebugUIPlugin.java:924)
+	at org.eclipse.core.internal.jobs.JobListeners$3.notify(JobListeners.java:39)
+	at org.eclipse.core.internal.jobs.JobListeners.doNotify(JobListeners.java:112)
+	at org.eclipse.core.internal.jobs.JobListeners.done(JobListeners.java:152)
+	at org.eclipse.core.internal.jobs.JobManager.endJob(JobManager.java:540)
+	at org.eclipse.core.internal.jobs.WorkerPool.endJob(WorkerPool.java:100)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:74)
+
+!ENTRY org.eclipse.core.jobs 4 2 2006-07-24 13:28:31.846
+!MESSAGE An internal error occurred during: "Launching".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:377)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:356)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:350)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:116)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:179)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$6.run(DebugUIPlugin.java:911)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SESSION 2006-07-24 13:28:37.804 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.jdt.debug.ui 4 150 2006-07-24 13:29:08.345
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.debug.core.DebugException: com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine occurred retrieving this from stack frame.
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.throwDebugException(JDIDebugElement.java:207)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.requestFailed(JDIDebugElement.java:162)
+	at org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.targetRequestFailed(JDIDebugElement.java:147)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getUnderlyingThisObject(JDIStackFrame.java:705)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getVariables0(JDIStackFrame.java:306)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getVariables(JDIStackFrame.java:254)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.findVariable(JDIStackFrame.java:643)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.generateHoverForLocal(JavaDebugHover.java:257)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo(JavaDebugHover.java:224)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo(BestMatchHover.java:102)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo(JavaEditorTextHoverProxy.java:69)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:160)
+org.eclipse.debug.core.DebugException[5010]: com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine
+	at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java:162)
+	at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java:177)
+	at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:174)
+	at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:192)
+	at org.eclipse.jdi.internal.StackFrameImpl.thisObject(StackFrameImpl.java:206)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getUnderlyingThisObject(JDIStackFrame.java:703)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getVariables0(JDIStackFrame.java:306)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getVariables(JDIStackFrame.java:254)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.findVariable(JDIStackFrame.java:643)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.generateHoverForLocal(JavaDebugHover.java:257)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo(JavaDebugHover.java:224)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo(BestMatchHover.java:102)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo(JavaEditorTextHoverProxy.java:69)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:160)
+!SUBENTRY 1 org.eclipse.jdt.debug 4 5010 2006-07-24 13:29:08.345
+!MESSAGE com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine occurred retrieving this from stack frame.
+!STACK 0
+com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine
+	at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java:162)
+	at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java:177)
+	at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:174)
+	at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:192)
+	at org.eclipse.jdi.internal.StackFrameImpl.thisObject(StackFrameImpl.java:206)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getUnderlyingThisObject(JDIStackFrame.java:703)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getVariables0(JDIStackFrame.java:306)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.getVariables(JDIStackFrame.java:254)
+	at org.eclipse.jdt.internal.debug.core.model.JDIStackFrame.findVariable(JDIStackFrame.java:643)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.generateHoverForLocal(JavaDebugHover.java:257)
+	at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo(JavaDebugHover.java:224)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo(BestMatchHover.java:102)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo(JavaEditorTextHoverProxy.java:69)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:160)
+!SESSION 2006-12-19 17:07:28.618 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.php.debug.core 4 4 2006-12-19 17:07:57.047
+!MESSAGE Port 10000 is in use. Please select a different port for the debugger.
+!SESSION 2007-01-10 09:24:06.379 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 4 0 2007-01-10 09:24:34.863
+!MESSAGE While loading class "org.tigris.subversion.subclipse.ui.console.SVNOutputConsole$2", thread "main" timed out waiting (5000ms) for thread "Worker-3" to finish starting bundle "org.tigris.subversion.subclipse.ui". To avoid deadlock, thread "main" is proceeding but "org.tigris.subversion.subclipse.ui.console.SVNOutputConsole$2" may not be fully initialized.
+!STACK 0
+java.lang.Exception: Generated exception.
+	at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.preFindLocalClass(EclipseLazyStarter.java:75)
+	at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:409)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(DefaultClassLoader.java:188)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findLocalClass(BundleLoader.java:334)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:386)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:347)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:83)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClassInternal(Unknown Source)
+	at org.tigris.subversion.subclipse.ui.console.SVNOutputConsole.createPage(SVNOutputConsole.java:160)
+	at org.eclipse.ui.internal.console.ConsoleView.doCreatePage(ConsoleView.java:274)
+	at org.eclipse.ui.part.PageBookView.createPage(PageBookView.java:399)
+	at org.eclipse.ui.part.PageBookView.partActivated(PageBookView.java:743)
+	at org.eclipse.ui.internal.console.ConsoleView$1.run(ConsoleView.java:347)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:123)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3325)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2971)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1914)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1878)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:419)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:95)
+	at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:78)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:92)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:68)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:177)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.core.launcher.Main.invokeFramework(Main.java:336)
+	at org.eclipse.core.launcher.Main.basicRun(Main.java:280)
+	at org.eclipse.core.launcher.Main.run(Main.java:977)
+	at org.eclipse.core.launcher.Main.main(Main.java:952)
+!SESSION 2007-01-10 15:56:07.286 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2007-01-10 15:56:09.632
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.

@@ -1,0 +1,42 @@
+Etapes pour installer le service SOAP MessagesSOAP :
+----------------------------------------------------
+
+1. copier tous les fichiers (sauf .txt,.xsd,.ini) dans le répertoire Tomcat "webapps\emessenger\soap".
+
+2. lancer la compilation de la classe avec le batch compile_msgSOAP_13.bat
+
+3. vérifier que le service n'est pas déjà déployé
+   3.1 lancer tomcat
+   3.2 ouvrir l'url : http://localhost:8080/soap/admin/index.html
+   3.3 si l'url est déjà déployé (urn:MessagesSOAP), aller dans l'option Undeploy et la désintallé
+
+4. déployer le service avec le batch deploy_msgSOAP.bat
+
+5. copier le fichier "alias.ini" dans le répertoire "bin" de Tomcat
+////5. copier le fichier "configMessagesSOAP.ini" dans le répertoire "bin" de Tomcat
+
+
+Utilisation : accès
+-------------------
+Un fichier de description .wsdl est fourni. Il permet de générer le stub pour n'importe quelle application. Il faut juste modifier dans celui-ci l'élément "location" qui indique l'adresse du service SOAP.
+
+
+Utilisation : paramètres
+------------------------
+La fonction prend un fichier XML sous forme de String comme unique paramètre. Un fichier .xsd est fourni pour décrire le contenu du fichier xml à fournir.
+Par simplification tous les attributs sont passés en string (y compris les nombres).
+Tous les attributs sont obligatoies.
+
+Utilisation : retour
+--------------------
+La méthode retourne un int qui indique le résultat de l'opération :
+0 = ERROR_NO_ERROR : tout est ok
+1 = ERROR_UNKNOW_ERROR : une erreur inconnue est survenue (voir dans le log de Tomcat pour le détail)
+2 = ERROR_STATUT_NOT_VALID : le statut du message n'est pas valide
+3 = ERROR_TIME_STAMP_PROC_NOT_VALID : le timestamp ou messagetime du message n'est pas valide (= impossible de le convertir en object date - cf. ci-dessous)
+4 = ERROR_MESSAGE_DELIV_DOUBLECONTROL_NOT_VALID : le double control du deliv n'est pas valide
+5 = ERROR_MESSAGE_DELIV_TIMESTAMP_NOT_VALID : le timestamp du deliv n'est pas valide
+
+TimeStamp
+---------
+Le format du timestamp en string est le suivant : dd.MM.yyyy HH:mm:ss

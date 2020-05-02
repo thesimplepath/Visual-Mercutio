@@ -1,0 +1,210 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{273C809D-6116-4C20-BF71-7759E75F9DA6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeamEditor</RootNamespace>
+    <AssemblyName>TeamEditor</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmAILE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAILE.Designer.cs">
+      <DependentUpon>FrmAILE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAIP.Designer.cs">
+      <DependentUpon>FrmAIP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChargeEquipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChargeEquipe.Designer.cs">
+      <DependentUpon>FrmChargeEquipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChooseAlias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChooseAlias.Designer.cs">
+      <DependentUpon>FrmChooseAlias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIndicCasProcEquipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIndicCasProcEquipe.Designer.cs">
+      <DependentUpon>FrmIndicCasProcEquipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIndicNbrCasTraite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIndicNbrCasTraite.Designer.cs">
+      <DependentUpon>FrmIndicNbrCasTraite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIndicStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIndicStock.Designer.cs">
+      <DependentUpon>FrmIndicStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMapping.Designer.cs">
+      <DependentUpon>FrmMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIndicProducTeam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIndicProducTeam.Designer.cs">
+      <DependentUpon>FrmIndicProducTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTeam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTeam.Designer.cs">
+      <DependentUpon>FrmTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUser.Designer.cs">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAILE.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmAILE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAIP.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmAIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChargeEquipe.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmChargeEquipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChooseAlias.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmChooseAlias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIndicCasProcEquipe.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmIndicCasProcEquipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIndicNbrCasTraite.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmIndicNbrCasTraite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIndicStock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmIndicStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMapping.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIndicProducTeam.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmIndicProducTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTeam.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcesssoftDLL\ProcesssoftDLL.csproj">
+      <Project>{337B81BA-151A-49B0-8E23-E2DE4C55F844}</Project>
+      <Name>ProcesssoftDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

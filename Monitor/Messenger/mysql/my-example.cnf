@@ -1,0 +1,73 @@
+# Example mysql config file.
+# Copy this file to c:\my.cnf to set global options
+# 
+# One can use all long options that the program supports.
+# Run the program with --help to get a list of available options
+
+# This will be passed to all mysql clients
+[client]
+#password=my_password
+port=3306
+#socket=MySQL
+
+# Here is entries for some specific programs
+# The following values assume you have at least 32M ram
+
+# The MySQL server
+[mysqld]
+port=3306
+#socket=MySQL
+skip-locking
+default-character-set=latin1
+set-variable = key_buffer=16M
+set-variable = max_allowed_packet=1M
+set-variable = thread_stack=128K
+set-variable = flush_time=1800
+
+# Uncomment the following rows if you move the MySQL distribution to another
+# location
+#basedir = d:/mysql/
+#datadir = d:/mysql/data/
+
+# Uncomment the following rows if you are using InnoDB tables
+# Create the directories ibdata and iblogs before to start the server.
+# If necessary, modify the size of the files
+
+#innodb_data_file_path = ibdata1:200M
+#innodb_data_home_dir = c:\ibdata
+#set-variable = innodb_mirrored_log_groups=1
+#innodb_log_group_home_dir = c:\iblogs
+#set-variable = innodb_log_files_in_group=3
+#set-variable = innodb_log_file_size=30M
+#set-variable = innodb_log_buffer_size=8M
+#innodb_flush_log_at_trx_commit=1
+#innodb_log_arch_dir = c:\iblogs
+#innodb_log_archive=0
+#set-variable = innodb_buffer_pool_size=80M
+#set-variable=lower_case_table_names =0
+#set-variable = innodb_additional_mem_pool_size=10M
+#set-variable = innodb_file_io_threads=4
+#set-variable = innodb_lock_wait_timeout=50
+
+# Uncomment the following row if you are using a Max server and you don't want the
+# InnoDb tables
+
+#skip-innodb
+
+[mysqldump]
+quick
+set-variable = max_allowed_packet=16M
+
+[mysql]
+no-auto-rehash
+
+[isamchk]
+set-variable= key=16M
+
+[client_fltk]
+help_file= c:\mysql\sql_client\MySQL.help
+client_file= c:\mysql\MySQL.options
+history_length=20
+database = test
+queries_root= c:\mysql\queries
+last_database_file= c:\mysql\lastdb

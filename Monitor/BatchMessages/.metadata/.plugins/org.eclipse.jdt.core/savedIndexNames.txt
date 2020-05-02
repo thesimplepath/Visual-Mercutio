@@ -1,0 +1,8 @@
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\3236852990.index
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\241174357.index
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\826128741.index
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\3418296825.index
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\1722104295.index
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\3530734587.index
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\2537468741.index
+D:\processsoft\batchWorkspace\.metadata\.plugins\org.eclipse.jdt.core\989563514.index

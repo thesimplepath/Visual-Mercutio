@@ -156,7 +156,7 @@ DROPEFFECT PSS_EditDropTarget::OnDragScroll(CWnd* pWnd, DWORD keyState, CPoint p
     // hit-test against insert region
     if (rectClient.PtInRect(point) && !rect.PtInRect(point))
     {
-        UINT        msg;
+        UINT        msg        = 0;
         int         code       = 0;
         CScrollBar* pScrollBar = NULL;
 
@@ -189,7 +189,9 @@ DROPEFFECT PSS_EditDropTarget::OnDragScroll(CWnd* pWnd, DWORD keyState, CPoint p
             code       = SB_LINEDOWN;
         }
 
-        m_pEditCtl->SendMessage(msg, MAKEWPARAM(code, 0), LPARAM(pScrollBar ? pScrollBar->GetSafeHwnd() : NULL));
+        if (msg)
+            m_pEditCtl->SendMessage(msg, MAKEWPARAM(code, 0), LPARAM(pScrollBar ? pScrollBar->GetSafeHwnd() : NULL));
+
         m_pEditCtl->DrawCaretByCursor();
 
         if (keyState & MK_CONTROL)

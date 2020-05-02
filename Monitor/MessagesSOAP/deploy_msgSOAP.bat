@@ -1,0 +1,1 @@
+mydeploy.bat messagesSOAP.xml
