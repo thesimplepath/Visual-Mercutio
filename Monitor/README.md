@@ -5,6 +5,8 @@ The Monitor server is a set of several services which allows to publish data exp
 - **Team editor**. This is a tool allowing to show all the existing universes and to select the active one.
 - **BatchMessages**. This is a directory server containing the configuration files required for the java environment.
 
+The project contains also several tools required to administer the Monitor server.
+
 ## Prerequisites
 In order to compile and install the Monitor server applications and services, you will need the following features:
 - **MySQL server**. You can download it at https://www.mysql.com/

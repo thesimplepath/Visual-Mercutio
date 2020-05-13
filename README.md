@@ -34,14 +34,7 @@ The Monitor server is a set of several services which allows to publish data exp
 - **Team editor**. This is a tool allowing to show all the existing universes and to select the active one.
 - **BatchMessages**. This is a directory server containing the configuration files required for the java environment.
 
-## Future
-Several features would be required to modernize the project, among others:
-- Replace the closed source Rogue Wave Stingray Studio components library by a more modern an open-source library, like e.g Qt
-- Replace the DDAO API by something more modern
-- Get rid of the CJ60Lib library
-- Modernize the whole user interface aspect
-
-However I not plan to continue the development of Visual Mercutio for now.
+The project contains also several tools required to administer the Monitor server.
 
 ## Side note
 The paper size visible on the application depends directly on the selected paper size of your default printer. Since the latest Windows 10 updates, there is an option to let the printer manager to automatically select you default printer. This may cause previously created models to be shown on a page with an incorrect size, which may crop a part of your model. If this situation happens, please disable the "Let Windows manage my default printer" option in the "Printers & Scanners" tab, and select your correct default printer, which contain the expected paper size manually.

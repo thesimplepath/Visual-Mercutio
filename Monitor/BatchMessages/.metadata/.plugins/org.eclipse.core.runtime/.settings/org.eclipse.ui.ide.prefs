@@ -1,4 +1,6 @@
-#Tue Dec 19 17:14:26 CET 2006
+EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false
+PROBLEMS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
+platformState=1588375265157
+quickStart=false
 tipsAndTricks=true
-platformState=1152692901594
