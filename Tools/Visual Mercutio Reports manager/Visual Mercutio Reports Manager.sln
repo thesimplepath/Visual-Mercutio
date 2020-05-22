@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visual Mercutio Reports Manager", "Visual Mercutio Reports Manager\Visual Mercutio Reports Manager.csproj", "{7EC6A3D8-E715-4EA2-9194-6A973879C4F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichTextEditor", "RichTextEditor\RichTextEditor.csproj", "{0CF51DD1-875C-4A3A-972C-0B696040AC57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EC6A3D8-E715-4EA2-9194-6A973879C4F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC6A3D8-E715-4EA2-9194-6A973879C4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC6A3D8-E715-4EA2-9194-6A973879C4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC6A3D8-E715-4EA2-9194-6A973879C4F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF51DD1-875C-4A3A-972C-0B696040AC57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF51DD1-875C-4A3A-972C-0B696040AC57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF51DD1-875C-4A3A-972C-0B696040AC57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF51DD1-875C-4A3A-972C-0B696040AC57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0765A16E-4CBA-4025-BACA-0D7EC136511B}
+	EndGlobalSection
+EndGlobal

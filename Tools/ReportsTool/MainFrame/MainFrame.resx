@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="&gt;&gt;tsc_MainFrame.BottomToolStripPanel.Name" xml:space="preserve">
+    <value>tsc_MainFrame.BottomToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.BottomToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.BottomToolStripPanel.Parent" xml:space="preserve">
+    <value>tsc_MainFrame</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.BottomToolStripPanel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tsc_MainFrame.ContentPanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="web_MainDoc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="web_MainDoc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="web_MainDoc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>292, 217</value>
+  </data>
+  <data name="web_MainDoc.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;web_MainDoc.Name" xml:space="preserve">
+    <value>web_MainDoc</value>
+  </data>
+  <data name="&gt;&gt;web_MainDoc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.WebBrowser, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;web_MainDoc.Parent" xml:space="preserve">
+    <value>tsc_MainFrame.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;web_MainDoc.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tsc_MainFrame.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>292, 217</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.ContentPanel.Name" xml:space="preserve">
+    <value>tsc_MainFrame.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.ContentPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContentPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.ContentPanel.Parent" xml:space="preserve">
+    <value>tsc_MainFrame</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.ContentPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tsc_MainFrame.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.LeftToolStripPanel.Name" xml:space="preserve">
+    <value>tsc_MainFrame.LeftToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.LeftToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.LeftToolStripPanel.Parent" xml:space="preserve">
+    <value>tsc_MainFrame</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.LeftToolStripPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tsc_MainFrame.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.RightToolStripPanel.Name" xml:space="preserve">
+    <value>tsc_MainFrame.RightToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.RightToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.RightToolStripPanel.Parent" xml:space="preserve">
+    <value>tsc_MainFrame</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.RightToolStripPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tsc_MainFrame.Size" type="System.Drawing.Size, System.Drawing">
+    <value>292, 266</value>
+  </data>
+  <data name="tsc_MainFrame.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tsc_MainFrame.Text" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <metadata name="mnu_Frame.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <data name="mnu_Frame.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="mnu_Import.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
+  </data>
+  <data name="mnu_Import.Text" xml:space="preserve">
+    <value>Import report...</value>
+  </data>
+  <data name="mnu_Quit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
+  </data>
+  <data name="mnu_Quit.Text" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="mnu_File.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="mnu_File.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="mnu_StyleAndFonts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="mnu_StyleAndFonts.Text" xml:space="preserve">
+    <value>Style and fonts...</value>
+  </data>
+  <data name="mnu_ReportTypeTextOnly.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 22</value>
+  </data>
+  <data name="mnu_ReportTypeTextOnly.Text" xml:space="preserve">
+    <value>Text only</value>
+  </data>
+  <data name="mnu_ReportTypeTextWithTitles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 22</value>
+  </data>
+  <data name="mnu_ReportTypeTextWithTitles.Text" xml:space="preserve">
+    <value>Text with titles</value>
+  </data>
+  <data name="mnu_ReportType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="mnu_ReportType.Text" xml:space="preserve">
+    <value>Report type...</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 6</value>
+  </data>
+  <data name="mnu_LanguageEnglish.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Transparent</value>
+  </data>
+  <data name="mnu_LanguageEnglish.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 22</value>
+  </data>
+  <data name="mnu_LanguageEnglish.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="mnu_LanguageFrancais.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 22</value>
+  </data>
+  <data name="mnu_LanguageFrancais.Text" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="mnu_LanguageDeutsh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 22</value>
+  </data>
+  <data name="mnu_LanguageDeutsh.Text" xml:space="preserve">
+    <value>Deutsh</value>
+  </data>
+  <data name="mnu_Language.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="mnu_Language.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="mnu_Settings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="mnu_Settings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="mnu_ConvertToWord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 22</value>
+  </data>
+  <data name="mnu_ConvertToWord.Text" xml:space="preserve">
+    <value>Word...</value>
+  </data>
+  <data name="mnu_ConvertTo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 22</value>
+  </data>
+  <data name="mnu_ConvertTo.Text" xml:space="preserve">
+    <value>Convert to...</value>
+  </data>
+  <data name="mnu_Tools.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="mnu_Tools.Text" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="mnu_Frame.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mnu_Frame.Size" type="System.Drawing.Size, System.Drawing">
+    <value>292, 24</value>
+  </data>
+  <data name="mnu_Frame.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mnu_Frame.Text" xml:space="preserve">
+    <value>Menus</value>
+  </data>
+  <data name="&gt;&gt;mnu_Frame.Name" xml:space="preserve">
+    <value>mnu_Frame</value>
+  </data>
+  <data name="&gt;&gt;mnu_Frame.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Frame.Parent" xml:space="preserve">
+    <value>tsc_MainFrame.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;mnu_Frame.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="tos_Tools.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>3, 24</value>
+  </metadata>
+  <data name="tos_Tools.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="tsb_ConvertToWord.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tsb_ConvertToWord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="tsb_ConvertToWord.Text" xml:space="preserve">
+    <value>Convert to Word</value>
+  </data>
+  <data name="tsb_ConvertToWord.ToolTipText" xml:space="preserve">
+    <value>Convert to Word</value>
+  </data>
+  <data name="tos_Tools.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 24</value>
+  </data>
+  <data name="tos_Tools.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 25</value>
+  </data>
+  <data name="tos_Tools.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tos_Tools.Text" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="&gt;&gt;tos_Tools.Name" xml:space="preserve">
+    <value>tos_Tools</value>
+  </data>
+  <data name="&gt;&gt;tos_Tools.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tos_Tools.Parent" xml:space="preserve">
+    <value>tsc_MainFrame.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;tos_Tools.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.TopToolStripPanel.Name" xml:space="preserve">
+    <value>tsc_MainFrame.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.TopToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.TopToolStripPanel.Parent" xml:space="preserve">
+    <value>tsc_MainFrame</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.TopToolStripPanel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.Name" xml:space="preserve">
+    <value>tsc_MainFrame</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tsc_MainFrame.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>292, 266</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAQAAAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
+        AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAA
+        ABkQAAAAAAAAAAAAAAAAAAGZkQAAAAAAAAAAAAAAAAAZmZkQAAAAAAAAAAAAAAABmZmZkQAAAAAAAAAA
+        AAAAGREREREQAAAAAAAAAAAAMiIiIkRERAAAAAAAAAAAM7MqqqIkzMxEAAAAAAAAM7uzKqqqokzMzEYA
+        AAAAVTu7uzKqqqokzMzEZgAABd1Tu7szIiIiIkTMzE7mAF3d1TMzERERERERRETG7mBd3VUREZmZmZmZ
+        mRERRG5gXVERmZmZmZmZmZmZmREWYFEZmZmZmZmZmZmZmZmZEAARmZmZmZmZmZmZmZmZmZEAGZmZmZmZ
+        mZmZmZmZmZmZEBmZmZmZmREREZmZmZmZmRAZmZmZmZkYiIEZmZmZmZkQAZmZmZmZmJmAGZmZmZmRAAAZ
+        mZmZmZgRgBmZmZmZkAAAARGZmZmYiIAZmZmZERAAAAAAERGZmACAGZkREQAAAAAAAAAAERgAgBERAAAA
+        AAAAAAAAAAAIAIAAAAAAAAAAAAAAAAAAMzMzAAAAAAAAAAAAAAAAADu7swAAAAAAAAAAAAAAAAAwu7MA
+        AAAAAAAAAAAAAAAAAzMzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////+f////D////gf///w
+        D///4Af//8AD//8AAP/8AAA/8AAAD8AAAAOAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AACAAAABwAAAA+AAAAf8AwA//8MD///7P///8B////Af///0H///+D///////w==
+</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Report converter</value>
+  </data>
+  <data name="&gt;&gt;mnu_File.Name" xml:space="preserve">
+    <value>mnu_File</value>
+  </data>
+  <data name="&gt;&gt;mnu_File.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Import.Name" xml:space="preserve">
+    <value>mnu_Import</value>
+  </data>
+  <data name="&gt;&gt;mnu_Import.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Quit.Name" xml:space="preserve">
+    <value>mnu_Quit</value>
+  </data>
+  <data name="&gt;&gt;mnu_Quit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Settings.Name" xml:space="preserve">
+    <value>mnu_Settings</value>
+  </data>
+  <data name="&gt;&gt;mnu_Settings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_StyleAndFonts.Name" xml:space="preserve">
+    <value>mnu_StyleAndFonts</value>
+  </data>
+  <data name="&gt;&gt;mnu_StyleAndFonts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportType.Name" xml:space="preserve">
+    <value>mnu_ReportType</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportTypeTextOnly.Name" xml:space="preserve">
+    <value>mnu_ReportTypeTextOnly</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportTypeTextOnly.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportTypeTextWithTitles.Name" xml:space="preserve">
+    <value>mnu_ReportTypeTextWithTitles</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportTypeTextWithTitles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Language.Name" xml:space="preserve">
+    <value>mnu_Language</value>
+  </data>
+  <data name="&gt;&gt;mnu_Language.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_LanguageEnglish.Name" xml:space="preserve">
+    <value>mnu_LanguageEnglish</value>
+  </data>
+  <data name="&gt;&gt;mnu_LanguageEnglish.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_LanguageFrancais.Name" xml:space="preserve">
+    <value>mnu_LanguageFrancais</value>
+  </data>
+  <data name="&gt;&gt;mnu_LanguageFrancais.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_LanguageDeutsh.Name" xml:space="preserve">
+    <value>mnu_LanguageDeutsh</value>
+  </data>
+  <data name="&gt;&gt;mnu_LanguageDeutsh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Tools.Name" xml:space="preserve">
+    <value>mnu_Tools</value>
+  </data>
+  <data name="&gt;&gt;mnu_Tools.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ConvertTo.Name" xml:space="preserve">
+    <value>mnu_ConvertTo</value>
+  </data>
+  <data name="&gt;&gt;mnu_ConvertTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ConvertToWord.Name" xml:space="preserve">
+    <value>mnu_ConvertToWord</value>
+  </data>
+  <data name="&gt;&gt;mnu_ConvertToWord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsb_ConvertToWord.Name" xml:space="preserve">
+    <value>tsb_ConvertToWord</value>
+  </data>
+  <data name="&gt;&gt;tsb_ConvertToWord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainFrame</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

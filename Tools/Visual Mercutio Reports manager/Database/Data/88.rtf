@@ -1,0 +1,106 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang4108{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Verdana;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fnil\fcharset0 Microsoft Sans Serif;}{\f4\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green128\blue0;\red0\green0\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+\viewkind4\uc1\pard\keepn\hyphpar0\s2\sb360\sa240\lang1036\b\f0\fs28 (88) Bug dans l'op\'e9ration de couper/copier/coller\par
+\pard\hyphpar0\qj\b0\f1\fs20\par
+\b Description\par
+\b0\par
+L\rquote op\'e9ration de couper/copier/coller semble parfois effectuer des actions qui compromettent la stabilit\'e9 du mod\'e8le. De plus, certains symboles, comme les portes, les pages et les paquets ne devraient pas \'eatre copi\'e9s ou coup\'e9s, car ces op\'e9rations conduisent ces symboles \'e0 \'eatre corrompus. En effet, une porte ou une page ne peut exister sans son jumeau, qui est d\'e9truit lors de ces op\'e9rations, et les paquets peuvent produire un comportement al\'e9atoire. De plus, il serait n\'e9cessaire d\rquote impl\'e9menter une fonction de contr\'f4le de la validit\'e9 des symboles du mod\'e8le lors du contr\'f4le de la coh\'e9rence.\par
+\par
+\b Solution\par
+\b0\par
+1 - Contr\'f4ler les fonctions g\'e9rant les op\'e9rations de couper/copier/coller. Impl\'e9menter une fonction permettant la suppression automatique des symboles non copiables dans la s\'e9lection effectu\'e9e par l\rquote utilisateur.\par
+2 - Impl\'e9menter une fonction de nettoyage du mod\'e8le en fonction les r\'e8gles suivantes :\par
+\tab Un symbole est corrompu si :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Il s\rquote agit d\rquote une porte ou d\rquote une page, et le jumeau n\rquote existe plus.\par
+{\pntext\f4\'B7\tab}Il s\rquote agit d\rquote une copie et le symbole original n\rquote existe plus.\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\b{\pntext\f4\'B7\tab}Modifications techniques\par
+\b0{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}Point 1 :\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Dans la classe ZDProcessGraphModelController du projet zModel, ajout\'e9 les fonctions EmptyClipboardSet, OnUpdateEditCut, OnUpdateEditCopy, ValidateCutCopyOperations, ReleaseClipboard et FilterSelection.\par
+{\pntext\f4\'B7\tab}Dans la fonction OnEditCopy de la classe ZDProcessGraphModelController, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 // JMR-MODIF - Le 27 septembre 2006 - Vide le presse-papier avant la nouvelle op\'e9ration.\par
+\cf0{\pntext\f4\'B7\tab}ReleaseClipboard();\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}// JMR-MODIF - Le 17 septembre 2006 - Filtre la s\'e9lection avant d'autoriser l'op\'e9ration "copier".\par
+\cf2{\pntext\f4\'B7\tab}if\cf0  ( FilterSelection() == TRUE )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab RefreshAllSymbols();\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab MsgBox mBox;\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab CString s = _T( "" );\par
+{\pntext\f4\'B7\tab}\tab s.Format( IDS_WARNING_COPY_SELECTION );\par
+{\pntext\f4\'B7\tab}\tab mBox.DisplayMsgBox( s, MB_OK );\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnEditCut de la classe ZDProcessGraphModelController, Ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 // JMR-MODIF - Le 27 septembre 2006 - Vide le presse-papier avant la nouvelle op\'e9ration.\par
+\cf0{\pntext\f4\'B7\tab}ReleaseClipboard();\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}ClearSelectionToSet();\par
+{\pntext\f4\'B7\tab}RemoveReferenceSymbol( GetSelection() );\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}// JMR-MODIF - Le 17 septembre 2006 - Filtre la s\'e9lection avant d'autoriser l'op\'e9ration "couper".\par
+\cf2{\pntext\f4\'B7\tab}if\cf0  ( FilterSelection() == TRUE )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab RefreshAllSymbols();\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab MsgBox mBox;\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab CString s = _T( "" );\par
+{\pntext\f4\'B7\tab}\tab s.Format( IDS_WARNING_CUT_SELECTION );\par
+{\pntext\f4\'B7\tab}\tab mBox.DisplayMsgBox( s, MB_OK );\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnEditPaste de la classe ZDProcessGraphModelController, modifi\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 RefreshModelTree();\par
+{\pntext\f4\'B7\tab}\par
+\f1\fs20{\pntext\f4\'B7\tab}En\par
+\f2\fs16{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}RefreshAllSymbols();\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnEditPaste de la classe ZDProcessGraphModelController, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 ReleaseClipboard();\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f1\fs20\par
+{\pntext\f4\'B7\tab}Point 2 :\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Dans le projet zModelBP, ajout\'e9 la classe ZUDeleteCorruptedSymbol, qui prend en charge le contr\'f4le de la validit\'e9 des symboles, et la suppression de ceux-ci en cas d\rquote erreur.\par
+{\pntext\f4\'B7\tab}Dans la fonction OnCheckModel de la classe ZDProcessGraphModelController (projet zModelBP), ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 BOOL ModelIsClean = FALSE;\par
+{\pntext\f4\'B7\tab}\par
+\cf2{\pntext\f4\'B7\tab}if\cf0  ( pDoc->GetModel() != NULL )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab ZUDeleteCorruptedSymbols VerifySymbols;\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab VerifySymbols.CheckModel( \cf2 reinterpret_cast\cf0 <ZDProcessGraphModelMdlBP*>( pDoc->GetModel() ) );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2 if\cf0  ( VerifySymbols.GetCorruptedSymbolList()->GetCount() > 0 )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab DeleteComponents( VerifySymbols.GetCorruptedSymbolList() );\par
+{\pntext\f4\'B7\tab}\tab\tab pDoc->SetModifiedFlag();\par
+{\pntext\f4\'B7\tab}\tab\tab ModelIsClean = TRUE;\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnCheckModel de la classe ZDProcessGraphModelController, modifi\'e9 l\rquote appel \'e0 la fonction CheckModelWorkflow, en ajoutant le param\'e8tre ModelIsClean.\par
+{\pntext\f4\'B7\tab}Ajout\'e9 un nouveau param\'e8tre, ModelIsClean, dans les fonctions CheckModelWorkflow des classes ZDProcessGraphModelDoc, ZDProcessGraphModelMdl et ZDProcessGraphModelMdlBP. Ajout\'e9 le param\'e8tre ModelIsClean dans la fonction CheckSymbol de la classe ZUCheckSymbolConsistency.\par
+{\pntext\f4\'B7\tab}Dans la fonction CheckSymbol de la classe ZUCheckSymbolConsistency, ajout\'e9 le code suivant pour l\rquote affichage du message d\rquote information \'e0 l\rquote utilisateur dans la fen\'eatre de log :\par
+\pard\hyphpar0\f2\fs16\par
+\pard\hyphpar0\li300\cf2 if\cf0  ( ModelIsClean == TRUE )\par
+\{\par
+\tab message.Format( IDS_ZS_DELETE_CORRUPED_SYMBOLS, m_pModel->GetModelName() );\par
+\tab ZBGenericSymbolErrorLine e( message );\par
+\tab m_pLog->AddLine( e );\par
+\}\par
+\pard\li300\lang4108\f3\fs17\par
+}
+ 

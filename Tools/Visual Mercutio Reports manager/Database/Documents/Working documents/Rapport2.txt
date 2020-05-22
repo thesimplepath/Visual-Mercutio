@@ -1,0 +1,20 @@
+Hello,
+ 
+Dominique a testé et m'a indiqué que cela fonctionnait bien.
+Pour ma part, je n'ai noté aucun problème particulier, si ce n'est une remarque pour le rapport :
+En l'état, on ne peut pas l'exporter vers Word et le transformer facilement. Il faudrait au moins que la taille des titres (police) varie selon le niveau de titre.
+ 
+D'autre part, il faudrait constituer le deuxième rapport des règles.
+Après réflexion, je crois qu'il faudrait qu'il ait le format suivant :
+Un tableau
+Première colonne, numéro de la règle idem numéro du premier rapport
+Deuxième colonne titre de la règle
+Troisième colonne type de l'objet utilisant la règle (processus, livrable, procédure)
+Quatrième colonne nom de l'objet
+Cinquième colonne nom de l'unité responsable de l'objet (sauf pour les processus...)
+ 
+Une ligne par objet pour une règle donnée.
+ 
+Merci
+ 
+Eric

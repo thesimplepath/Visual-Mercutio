@@ -1,0 +1,12 @@
+Hello Milost,
+ 
+On pourrait effectivement améliorer ce rapport processus. Voici quelques idées à priori pas trop délicates (sauf la 5 peut être)
+ 
+OK : 1 - largeur soit effectivement pleine page à l'impression comme à l'affichage, ou en copier coller dans Word. En gros, il faut rajouter 25% à la largeur
+OK : 2 - titre du processus prenne les deux cases bleues à coté de l'orange et non seulement la première
+OK : 3 - lignes de titre des rubriques vides disparaissent (ainsi, si pas de règle dans une procédure, la ligne de titre "Règles" disparait)
+OK : 4 - diminuer la taille des caractères des titres des lignes grisées (Livraisons ; Règles...) et augmenter légèrement la taille des contenus des cases blanches, tout en gardant une différence de taille
+5 - voir si il serait possible que les couleurs soient maintenues à l'impression et dans les copies sur Word
+ 
+Merci
+Eric

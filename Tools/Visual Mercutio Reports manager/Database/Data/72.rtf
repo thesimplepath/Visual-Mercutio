@@ -1,0 +1,277 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang4108{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Verdana;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fnil\fcharset0 Microsoft Sans Serif;}}
+{\colortbl ;\red0\green128\blue0;\red0\green0\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+\viewkind4\uc1\pard\keepn\s2\sb360\sa240\b\f0\fs28  (72) Notion de livraison\par
+\pard\qj\f1\fs20 Description\par
+\b0 La notion de livraison intervient pour d\'e9finir l'ex\'e9cution d'un processus. Plusieurs livrables sont possibles dans un processus, une combinaison de ceux-ci impliquent que le processus est r\'e9alis\'e9 et participent \'e0 la livraison du processus.\par
+\par
+\b Solution\par
+\lang1036\b0 Int\'e9grer la notion de livraison par l'ajout d'attributs aux livrables.\par
+\par
+\lang4108\b Modifications techniques\par
+\par
+\pard\fi-360\li720\qj\tx720\b0 -\tab Dans le projet zModelBP, Ajout des classes ZBProcDeliveries et ZBBPDeliveriesProp, pour permettre la gestion des propri\'e9t\'e9s des livraisons.\par
+\pard\fi-360\li720\qj -\tab Dans la classe ZBBPProcessSymbol du projet zModelBP, ajout des variables m_Deliveries et m_IsUserModified, pour la gestion des livraisons.\par
+-\tab Dans la classe ZBBPProcessSymbol du projet zModelBP, ajout des fonctions GetDeliveries, GetDeliveriesCount, GetDeliveryProperty, GetDeliveryName, SetDeliveryName, GetDeliveryDeliverables, SetDeliveryDeliverables, AddDeliveryDeliverable, RemoveDeliveryDeliverable, RemoveAllDeliveryDeliverable, GetDeliveryQuantity, SetDeliveryQuantity, GetDeliveryPercentage, SetDeliveryPercentage, GetDeliveryMain, SetDeliveryMain, ProcessExtendedInput, ProcessMenuCommand, OnAddNewDelivery, OnDelCurrentDelivery, AddNewDelivery, DeleteDelivery, GetPossibleListOfMainDeliverables, GetAvailableDeliverables, CheckMainDeliverable, UpdateValuesForThisDeliveryProperty, GetDeliverablesInChildPages, FindQuantity, CalculateDeliveryPercentage, CalculateSumOfDeliveries, SaveProperty et OnPostPropertyChanged, pour la gestion des livraisons.\par
+-\tab Dans la fonction FillProperties de la classe ZBBPProcessSymbol, ajout du code de mise \'e0 jour des livraisons :\par
+\pard\qj\par
+\pard\li300\cf1\lang1036\f2\fs16 // Obtient le menu des livraisons si celui-ci n'est pas encore pr\'e9sent.\par
+\cf2 if\cf0  ( gDeliveriesMenu.GetSafeHmenu() == NULL )\par
+\{\par
+\tab gDeliveriesMenu.LoadMenu( IDR_DELIVERIES_MENU );\par
+\}\par
+\par
+CString FinalPropName;\par
+CString FinalPropTitle;\par
+CString PropTitle;\par
+CString PropName;\par
+CString PropDesc;\par
+\par
+PropTitle.LoadString( IDS_ZS_BP_PROP_DELIVERY_TITLE );\par
+\par
+\cf2 for\cf0  ( i = 0; i < GetDeliveriesCount(); ++i )\par
+\{\par
+\tab\cf1 // Contr\'f4le et mets \'e0 jour la livraison initiale.\par
+\cf0\tab UpdateValuesForThisDeliveryProperty( i );\par
+\par
+\tab FinalPropTitle.Format( _T( "%s (%d)" ), PropTitle, i + 1 );\par
+\par
+\tab PropName.LoadString( IDS_Z_DELIVERY_NAME_NAME );\par
+\tab PropDesc.LoadString( IDS_Z_DELIVERY_NAME_DESC );\par
+\par
+\tab\cf1 // Propri\'e9t\'e9 "Titre livraison" du groupe "Livraisons (x)"\par
+\cf0\tab ZBProperty* pDelivery = \cf2 new\cf0  ZBProperty( FinalPropTitle,\par
+\tab\tab     ( GroupValue == \cf2 true\cf0  ) ? ZS_BP_PROP_DELIVERIES : ( ZS_BP_PROP_DELIVERIES + i ),\par
+\tab\tab     PropName,\par
+\tab\tab     ( GroupValue == \cf2 true\cf0  ) ? Z_DELIVERY_NAME :\par
+                                             ( Z_DELIVERY_NAME + ( i * _MaxDeliveryListSize ) ),\par
+\tab\tab     PropDesc,\par
+\tab\tab     GetDeliveryName( i ),\par
+\tab\tab     ZBProperty::PT_EDIT_MENU,\par
+\tab\tab     \cf2 true\cf0 ,\par
+\tab\tab     ZBStringFormat( ZBStringFormat::General ),\par
+\tab\tab     NULL,\par
+\tab\tab     &gDeliveriesMenu );\par
+\par
+\tab PropSet.Add( pDelivery );\par
+\par
+\tab PropName.LoadString( IDS_Z_DELIVERY_DELIVERABLES_NAME );\par
+\tab PropDesc.LoadString( IDS_Z_DELIVERY_DELIVERABLES_DESC );\par
+\par
+\tab\cf1 // Propri\'e9t\'e9 "Livrables" du groupe "Livraisons (x)"\par
+\cf0\tab pDelivery = \cf2 new\cf0  ZBProperty( FinalPropTitle,\par
+\tab\tab     ( GroupValue == \cf2 true\cf0  ) ? ZS_BP_PROP_DELIVERIES : ( ZS_BP_PROP_DELIVERIES + i ),\par
+\tab\tab     PropName,\par
+\tab\tab     ( GroupValue == \cf2 true\cf0  ) ?\par
+                           Z_DELIVERY_DELIVERABLES :\par
+                                     ( Z_DELIVERY_DELIVERABLES + ( i * _MaxDeliveryListSize ) ),\par
+\tab\tab     PropDesc,\par
+\tab\tab     GetDeliveryDeliverables( i ),\par
+\tab\tab     ZBProperty::PT_EDIT_EXTENDED_READONLY );\par
+\par
+\tab PropSet.Add( pDelivery );\par
+\par
+\tab\cf1 // JMR-MODIF - Le 14 mars 2006 - La(les) prestation(s) suivante(s) est(sont) d\'e9pendante(s) de \par
+    // Sesterce.\par
+\cf0\tab\cf2 if\cf0  ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&\par
+\tab\tab\cf2 dynamic_cast\cf0 <ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )\par
+\tab\{\par
+\tab\tab PropName.LoadString( IDS_Z_DELIVERY_QUANTITY_NAME );\par
+\tab\tab PropDesc.LoadString( IDS_Z_DELIVERY_QUANTITY_DESC );\par
+\tab\tab\cf2 float\cf0  Quantity = FindQuantity( GetDeliveryMain( i ) );\par
+\par
+\tab\tab\cf1 // Propri\'e9t\'e9 "Quantit\'e9" du groupe "Livraisons (x)"\par
+\cf0\tab\tab pDelivery = \cf2 new\cf0  ZBProperty( FinalPropTitle,\par
+\tab\tab\tab ( GroupValue == \cf2 true\cf0  ) ? ZS_BP_PROP_DELIVERIES : ( ZS_BP_PROP_DELIVERIES + i ),\par
+\tab\tab\tab PropName,\par
+\tab\tab\tab ( GroupValue == \cf2 true\cf0  ) ? Z_DELIVERY_QUANTITY :\par
+                                            ( Z_DELIVERY_QUANTITY + ( i * _MaxDeliveryListSize ) ),\par
+\tab\tab\tab PropDesc,\par
+\tab\tab\tab Quantity,\par
+\tab\tab\tab ZBProperty::PT_EDIT_NUMBER_READONLY,\par
+\tab\tab\tab\cf2 true\cf0 ,\par
+\tab\tab\tab ZBStringFormat( ZBStringFormat::Accounting, \cf2 false\cf0 , 0 ) );\par
+\par
+\tab\tab PropSet.Add( pDelivery );\par
+\par
+\tab\tab PropName.LoadString( IDS_Z_DELIVERY_PERCENTAGE_NAME );\par
+\tab\tab PropDesc.LoadString( IDS_Z_DELIVERY_PERCENTAGE_DESC );\par
+\tab\tab\cf2 float\cf0  Percentage = GetDeliveryPercentage( i );\par
+\par
+\tab\tab\cf1 // Propri\'e9t\'e9 "Pourcentage" du groupe "Livraisons (x)"\par
+\cf0\tab\tab pDelivery = \cf2 new\cf0  ZBProperty( FinalPropTitle,\par
+\tab\tab\tab ( GroupValue == \cf2 true\cf0  ) ? ZS_BP_PROP_DELIVERIES : ( ZS_BP_PROP_DELIVERIES + i ),\par
+\tab\tab\tab PropName,\par
+\tab\tab\tab ( GroupValue == \cf2 true\cf0  ) ? Z_DELIVERY_PERCENTAGE :\par
+                                          ( Z_DELIVERY_PERCENTAGE + ( i * _MaxDeliveryListSize ) ),\par
+\tab\tab\tab PropDesc,\par
+\tab\tab\tab Percentage,\par
+\tab\tab\tab ZBProperty::PT_EDIT_NUMBER_READONLY,\par
+\tab\tab\tab\cf2 true\cf0 ,\par
+\tab\tab\tab ZBStringFormat( ZBStringFormat::Percentage ) );\par
+\par
+\tab\tab PropSet.Add( pDelivery );\par
+\tab\}\par
+\par
+\tab PropName.LoadString( IDS_Z_DELIVERY_MAIN_NAME );\par
+\tab PropDesc.LoadString( IDS_Z_DELIVERY_MAIN_DESC );\par
+\par
+\tab\cf1 // Propri\'e9t\'e9 "Principal" du groupe "Livraisons (x)"\par
+\cf0\tab pDelivery = \cf2 new\cf0  ZBProperty( FinalPropTitle,\par
+\tab\tab ( GroupValue == \cf2 true\cf0  ) ? ZS_BP_PROP_DELIVERIES : ( ZS_BP_PROP_DELIVERIES + i ),\par
+\tab\tab PropName,\par
+\tab\tab ( GroupValue == \cf2 true\cf0  ) ? Z_DELIVERY_MAIN :\par
+                                         ( Z_DELIVERY_MAIN + ( i * _MaxDeliveryListSize ) ),\par
+\tab\tab PropDesc,\par
+\tab\tab GetDeliveryMain( i ),\par
+\tab\tab ZBProperty::PT_EDIT_EXTENDED_READONLY );\par
+\par
+\tab PropSet.Add( pDelivery );\par
+\pard\li300\qj\}\par
+\pard\qj\lang4108\f1\par
+\pard\fi-360\li720\qj\tx720\fs20 -\tab Dans la fonction SaveProperties de la classe ZBBPProcessSymbol, ajout du code pour la sauvegarde des livraisons :\par
+\pard\qj\par
+\pard\li300\lang1036\f2\fs16 ZBPropertyIterator l( &PropSet );\par
+\par
+\cf2 for\cf0  ( pProp = l.GetFirst(); pProp; pProp = l.GetNext() )\par
+\{\par
+\tab\cf2 if\cf0  ( pProp->GetCategoryID() >= ZS_BP_PROP_DELIVERIES &&\par
+\tab\tab  pProp->GetCategoryID() <= ZS_BP_PROP_DELIVERIES + GetDeliveriesCount() )\par
+\tab\{\par
+\tab\tab\cf2 int\cf0  i = pProp->GetCategoryID() - ZS_BP_PROP_DELIVERIES;\par
+\tab\tab ZBBPDeliveriesProperties* pDelyProp = GetDeliveryProperty( i );\par
+\par
+\tab\tab\cf2 if\cf0  ( !pDelyProp )\par
+\tab\tab\{\par
+\tab\tab\tab\cf2 return\cf0  \cf2 false\cf0 ;\par
+\tab\tab\}\par
+\par
+\tab\tab\cf2 switch\cf0  ( pProp->GetPTValueType() )\par
+\tab\tab\{\par
+\tab\tab\tab\cf2 case\cf0  ZBProperty::PT_STRING:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab pDelyProp->SetValue( pProp->GetItemID() - ( i * _MaxDeliveryListSize ),\par
+\tab\tab\tab\tab\tab\tab\tab  pProp->GetValueString() );\par
+\tab\tab\tab\tab\cf2 break\cf0 ;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab\cf2 case\cf0  ZBProperty::PT_DOUBLE:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab pDelyProp->SetValue( pProp->GetItemID() - ( i * _MaxDeliveryListSize ),\par
+\tab\tab\tab\tab\tab\tab  \cf2 static_cast\cf0 <\cf2 float\cf0 >( pProp->GetValueDouble() ) );\par
+\tab\tab\tab\tab\cf2 break\cf0 ;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab\cf2 case\cf0  ZBProperty::PT_FLOAT:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab pDelyProp->SetValue( pProp->GetItemID() - ( i * _MaxDeliveryListSize ),\par
+\tab\tab\tab\tab\tab\tab  pProp->GetValueFloat() );\par
+\tab\tab\tab\tab\cf2 break\cf0 ;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab\cf2 case\cf0  ZBProperty::PT_DATE:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab pDelyProp->SetValue( pProp->GetItemID() - ( i * _MaxDeliveryListSize ),\par
+\tab\tab\tab\tab\tab  \cf2 static_cast\cf0 <\cf2 float\cf0 >((DATE)pProp->GetValueDate()) );\par
+\tab\tab\tab\tab\cf2 break\cf0 ;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab\cf2 case\cf0  ZBProperty::PT_TIMESPAN:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab ASSERT( FALSE );\par
+\tab\tab\tab\tab\cf2 break\cf0 ;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab\cf2 case\cf0  ZBProperty::PT_DURATION:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab ASSERT( FALSE );\par
+\tab\tab\tab\tab\cf2 break\cf0 ;\par
+\tab\tab\tab\}\par
+\tab\tab\}\par
+\tab\}\par
+\pard\li300\qj\}\lang4108\f1\par
+\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans la fonction Serialize de la classe ZBBPProcessSymbol, ajout du code pour la s\'e9rialisation des nouvelles donn\'e9es.\par
+\pard\fi-360\li720\qj -\tab Dans la fonction FillProperties de la classe ZBBPProcessSymbol, ajout\'e9 les propri\'e9t\'e9s li\'e9es aux prestations dans la section \'ab Calculs et pr\'e9visions \'bb :\par
+\pard\qj\par
+\pard\li300\cf1\lang1036\f2\fs16 // JMR-MODIF - Le 14 mars 2006 - Ajout propri\'e9t\'e9 "Co\'fbt HMO" du groupe "Calculs et pr\'e9visions"\par
+\cf0 pSimProp = \cf2 new\cf0  ZBProperty( IDS_ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab    ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab    IDS_Z_SIM_PROCESS_COST_NAME,\par
+\tab\tab    Z_SIM_PROCESS_COST_HMO,\par
+\tab\tab    IDS_Z_SIM_PROCESS_COST_DESC,\par
+\tab\tab    (\cf2 double\cf0 )GetProcessCost(),\par
+\tab\tab    ZBProperty::PT_EDIT_NUMBER_READONLY,\par
+\tab\tab    \cf2 true\cf0 ,\par
+\tab\tab    ZBStringFormat( ZBStringFormat::Currency, \cf2 true\cf0 , 2, CurrencySymbol ) );\par
+\par
+PropSet.Add( pSimProp );\par
+\par
+\cf1 // JMR-MODIF - Le 21 f\'e9vrier 2006 - Ajout propri\'e9t\'e9 "Somme livraisons" du groupe "Calculs et pr\'e9visions"\par
+\cf0 pSimProp = \cf2 new\cf0  ZBProperty( IDS_ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab\tab    ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab\tab    IDS_Z_SIM_PROCESS_SUM_DELIVERIES_NAME,\par
+\tab\tab\tab    Z_SIM_PROCESS_SUM_DELIVERIES,\par
+\tab\tab\tab    IDS_Z_SIM_PROCESS_SUM_DELIVERIES_DESC,\par
+\tab\tab\tab    m_SumOfDeliveries,\par
+\tab\tab\tab    ZBProperty::PT_EDIT_NUMBER_READONLY,\par
+\tab\tab\tab    \cf2 true\cf0 ,\par
+\tab\tab\tab    ZBStringFormat( ZBStringFormat::Accounting, \cf2 false\cf0 , 0 ) );\par
+\par
+PropSet.Add( pSimProp );\par
+\par
+\cf2 float\cf0  m_WorkloadByDeliveries\tab = 0.0f;\par
+\cf2 float\cf0  m_CostByDeliveries\tab\tab = 0.0f;\par
+\par
+\cf2 if\cf0  ( m_SumOfDeliveries != 0.0f )\par
+\{\par
+\tab m_WorkloadByDeliveries = (\cf2 float\cf0 )GetProcessWorkloadForecast() / m_SumOfDeliveries;\par
+\tab m_CostByDeliveries = (\cf2 float\cf0 )GetProcessCostForecast() / m_SumOfDeliveries;\par
+\}\par
+\par
+\cf1 // JMR-MODIF - Le 27 f\'e9vrier 2006 - Ajout propri\'e9t\'e9 "Charge / livraison" du groupe "Calculs et pr\'e9visions"\par
+\cf0 pSimProp = \cf2 new\cf0  ZBProperty( IDS_ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab\tab    ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab\tab    IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES,\par
+\tab\tab\tab    Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES,\par
+\tab\tab\tab    IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES_DESC,\par
+\tab\tab\tab    m_WorkloadByDeliveries,\par
+\tab\tab\tab    ZBProperty::PT_EDIT_NUMBER_READONLY );\par
+\par
+PropSet.Add( pSimProp );\par
+\par
+\cf1 // JMR-MODIF - Le 27 f\'e9vrier 2006 - Ajout propri\'e9t\'e9 "Co\'fbt / livraison" du groupe "Calculs et pr\'e9visions"\par
+\cf0 pSimProp = \cf2 new\cf0  ZBProperty( IDS_ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab\tab    ZS_BP_PROP_SIM_PROCESS,\par
+\tab\tab\tab    IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES,\par
+\tab\tab\tab    Z_SIM_PROCESS_COST_BY_DELIVERIES,\par
+\tab\tab\tab    IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES_DESC,\par
+\tab\tab\tab    m_CostByDeliveries,\par
+\tab\tab\tab    ZBProperty::PT_EDIT_NUMBER_READONLY );\par
+\par
+PropSet.Add( pSimProp );\par
+\pard\f1\par
+\pard\fi-360\li720\tx720\fs20 -\tab Dans la fonction CheckProcessSymbol de la classe ZUCheckSesterceConsistency (projet zModelBP), ajout\'e9 le code suivant :\par
+\pard\par
+\pard\li300\cf2\f2\fs16 int\cf0  Count = pSymbol->GetDeliveriesCount();\par
+\par
+\cf2 for\cf0  ( \cf2 int\cf0  i = 0; i < Count; ++i )\par
+\{\par
+\tab\cf2 if\cf0  ( pSymbol->GetDeliveryMain( i ).IsEmpty() )\par
+\tab\{\par
+\tab\tab\cf2 if\cf0  ( m_pLog )\par
+\tab\tab\{\par
+\tab\tab\tab CString s;\par
+\tab\tab\tab s.Format( IDS_AL_PROCESS_INC_1, pSymbol->GetDeliveryName( i ) );\par
+\tab\tab\tab ZBGenericSymbolErrorLine e\par
+                            ( s, pSymbol->GetSymbolName(), pSymbol->GetAbsolutePath(), -1, 1 );\par
+\tab\tab\tab m_pLog->AddLine( e );\par
+\tab\tab\}\par
+\par
+\tab\tab\cf1 // Increment error counter\par
+\cf0\tab\tab ++m_ErrorCounter;\par
+\tab\}\par
+\}\par
+\pard\lang4108\f3\fs17\par
+}
+ 

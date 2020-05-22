@@ -1,0 +1,488 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang4108{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Verdana;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fnil\fcharset0 Microsoft Sans Serif;}{\f4\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;\red0\green128\blue0;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+\viewkind4\uc1\pard\keepn\hyphpar0\s2\sb360\sa240\lang1036\b\f0\fs28 (92) Gestion des risques\par
+\pard\hyphpar0\qj\b0\f1\fs20\par
+\b Description\par
+\b0\par
+\ul\i L\rquote attribut risque\par
+\ulnone\i0\par
+\pard\qj Il faut d\'e9j\'e0 cr\'e9er un nouvel attribut texte pour tous les objets (Start, Final, Livrable, Proc\'e9dure, Processus), qui figurera dans la cat\'e9gorie G\'e9n\'e9ral, sous le nom : "Niveau de Risque" avec pour l\'e9gende (Niveau \'e9valu\'e9 par le syst\'e8me en fonction des risques saisis pour cet objet). L'attribut prend trois valeurs (Vert par d\'e9faut, Orange, Rouge).\par
+\par
+Il s'agit de cr\'e9er pour tous les objets du mod\'e8le (Start, Final, Livrable, Proc\'e9dure, Processus) une nouvelle cat\'e9gorie : Risque. Cette cat\'e9gorie est li\'e9e \'e0 Conceptor.\par
+\par
+Elle comprend plusieurs attributs, et peut \'e0 la volont\'e9 de l'utilisateur \'eatre pr\'e9sent plusieurs fois dans un objet (comme par exemple la cat\'e9gorie "Combinaison")\par
+\par
+Les attributs sont les suivants :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Titre Risque (Champ Texte) \par
+{\pntext\f4\'B7\tab}Description (Champ Texte) \par
+{\pntext\f4\'B7\tab}Type Risque (Une valeur Texte s\'e9lectionn\'e9e dans une liste \'e9ditable par l'utilisateur) \par
+{\pntext\f4\'B7\tab}Impact (Une valeur num\'e9rique s\'e9lectionn\'e9e dans une liste pr\'e9d\'e9finie : 1-Pour la Transaction 2-Pour le client 3-Pour l'activit\'e9 4-Pour l'organisation) \par
+{\pntext\f4\'B7\tab}Probabilit\'e9 (Une valeur num\'e9rique s\'e9lectionn\'e9e dans une liste pr\'e9d\'e9finie : 1-Peu probable 2-Possible 3-Probable 4-Av\'e9r\'e9 5-Fr\'e9quent) \par
+{\pntext\f4\'B7\tab}S\'e9v\'e9rit\'e9 : valeur num\'e9rique, produit de impact par probabilit\'e9 : (donc de 1 \'e0 15) \par
+{\pntext\f4\'B7\tab}Estimation Unitaire: (Champ Num\'e9rique en monnaie) \par
+{\pntext\f4\'B7\tab}POA : (Perte op\'e9rationnelle annuelle) (Champ Num\'e9rique en monnaie) \par
+{\pntext\f4\'B7\tab}Action en cours : Champ s\'e9lectionn\'e9 oui/non \par
+\pard\qj\par
+Pour Type Risque, Impact, Probabilit\'e9, la s\'e9lection peut se faire sur le mod\'e8le de celle du mode d'insertion des liens externes.\par
+\par
+La nouveaut\'e9 r\'e9side dans le "type risque", puisque pour l'instant, nous n'avons jamais pu cr\'e9er ce type de liste customis\'e9e par l'utilisateur (\'e0 part les r\'e9f\'e9rentiels). Le principe serait une liste qui peut \'eatre mise \'e0 jour :\par
+\pard\fi-360\li720\sb100\sa100\qj\tx720 1.\tab si une valeur est renomm\'e9e, elle est modifi\'e9e dans l'attribut des objets concern\'e9s \par
+\pard\fi-360\li720\sb100\sa100\qj 2.\tab si une valeur est d\'e9truite, elle reste inchang\'e9e (pour que l'utilisateur puisse s\'e9lectionner les objets et les mettre \'e0 jour) \par
+\pard\qj Il y aurait deux traitements associ\'e9s, le moteur de risque, et le rapport.\par
+\par
+\ul\i Le moteur de risque\par
+\ulnone\i0\par
+Le moteur de risque (comme il y a les moteurs de calcul de charges et de d\'e9lais, et le contr\'f4le de coh\'e9rence). Lorsque l'utilisateur lance ce moteur, un prompt appara\'eet pour lui demander de faire une s\'e9lection par rapport \'e0 deux valeurs :\par
+\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Orange.\par
+{\pntext\f4\'B7\tab}Rouge.\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\qj\par
+{\pntext\f4\'B7\tab}Il s\'e9lectionne pour chacune des deux valeurs la s\'e9v\'e9rit\'e9 minimale (donc rouge a une s\'e9v\'e9rit\'e9 plus grande que orange), et il coche la case Action en cours ou pas. Si cette case est coch\'e9e pour orange, elle l'est automatiquement pour rouge.\par
+{\pntext\f4\'B7\tab}Exemple :\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Orange 12 - Action en cours d\'e9coch\'e9.\par
+{\pntext\f4\'B7\tab}Rouge 14  - Action en cours coch\'e9.\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\qj\par
+{\pntext\f4\'B7\tab}Dans le m\'eame Prompt, une case \'e0 cocher indique : Objets aux couleurs par d\'e9faut (D\'e9coch\'e9 par d\'e9faut).\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}Le moteur parcours le mod\'e8le, comme le moteur "contr\'f4ler la coh\'e9rence du mod\'e8le". Pour chaque objet, il \'e9value :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 si un risque pr\'e9sente un niveau rouge, l'attribut niveau de risque passe au rouge.\par
+{\pntext\f4\'B7\tab}si un risque pr\'e9sente un niveau orange, l'attribut niveau de risque passe \'e0 l'orange.\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\qj Le rouge l'emporte sur l'orange\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 si aucun risque n'est orange ou rouge, le niveau de risque est au vert.\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\qj\par
+{\pntext\f4\'B7\tab}Si le niveau est au vert, l'objet est dans la couleur par d\'e9faut \'e0 la finesse de trait par d\'e9faut.\par
+{\pntext\f4\'B7\tab}Si le niveau est orange, le contour de l'objet passe \'e0 l'orange en gras.\par
+{\pntext\f4\'B7\tab}Si le niveau est rouge, le contour de l'objet passe au rouge en gras.\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}Si la case (Objets aux couleurs) par d\'e9faut \'e0 \'e9t\'e9 coch\'e9e, tous les objets du mod\'e8le sont remis \'e0 leurs couleurs par d\'e9faut (ceci exclut \'e9videmment les sauts de page et les portes qui ne sont pas concern\'e9s par ce traitement).\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}Un message appara\'eet dans la fen\'eatre mod\'e8le, indiquant le d\'e9but du traitement, puis la fin du traitement avec (si possible) le nombre d'objets orange et le nombre d'objets rouges.\par
+{\pntext\f4\'B7\tab}\par
+\ul\i{\pntext\f4\'B7\tab}Le rapport\par
+\ulnone\i0{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}Le rapport est pr\'e9sent comme un nouvelle entr\'e9e dans le HTML (recueil des risques). Il se pr\'e9sente comme le rapport d\'e9taill\'e9 des r\'e8gles (tableau en colonne). Les colonnes sont Nom du risque, Processus de l'objet, Objet, Type Risque, Impact, Probabilit\'e9, S\'e9v\'e9rit\'e9, Estimation unitaire, POA, Plan d'Action. Tous les risques sont pr\'e9sents.\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\b{\pntext\f4\'B7\tab}Solution\par
+\b0{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}Cr\'e9er la nouvelle gestion des risques, selon la description ci-dessus, et en s\rquote inspirant des propri\'e9t\'e9s similaires telles que les livraisons, les prestations, les liens externes, etc\'85\par
+{\pntext\f4\'B7\tab}\par
+\b{\pntext\f4\'B7\tab}Modifications techniques\par
+\b0{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}1 - Les propri\'e9t\'e9s\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Dans les projets zRBPropEn, zRBPropFr, zRBPropGr, zRMdlBPEn, zRMdlBPFr et zRMdlBPGr, ajout\'e9 les ressources linguistiques pour les risques.\par
+{\pntext\f4\'B7\tab}Dans le fichier planfin.hdf du projet Include, ajout\'e9 les cl\'e9s szRiskTypeFileEntry, szRiskImpactFileEntry, et szRiskProbabilityFileEntry, afin de d\'e9finir les nouvelles entr\'e9es dans le fichier de configuration de l\rquote application.\par
+{\pntext\f4\'B7\tab}Dans le fichier Define.h du projet Include, ajout\'e9 les cl\'e9s szRiskTypeFilename, szRiskImpactFilename et szRiskProbabilityFilename, afin de d\'e9finir les noms des nouveaux fichiers par d\'e9faut des \'e9l\'e9ments de menus.\par
+{\pntext\f4\'B7\tab}Dans le fichier Define.h du projet Include, ajout\'e9 les cl\'e9s szRiskDirectory, sRiskTypeExtension, sRiskImpactExtension, sRiskProbabilityExtension, sRiskTypeExtensionNoDot, sRiskImpactExtensionNoDot et sRiskProbabilityExtensionNoDot, afin de permettre la gestion des fichiers concernant les risques.\par
+{\pntext\f4\'B7\tab}Dans le projet zModelBP, cr\'e9e les nouvelles classes ZBBPRiskProperties et ZBProcRisk, afin de permettre la gestion des nouvelles propri\'e9t\'e9s concernant les risques.\par
+{\pntext\f4\'B7\tab}Dans le projet zModelBP, cr\'e9e les nouvelles classes ZVRiskOptionsDlg, ZVRiskModifyDlg, ZVRiskModifyStaticDlg et ZVRiskNewFileDlg, afin de permettre la gestion des propri\'e9t\'e9s des risques.\par
+{\pntext\f4\'B7\tab}Dans le projet zModelBP, cr\'e9e les classes ZVRiskTypeContainer, ZVRiskImpactContainer, et ZVRiskProbabilityContainer, afin de g\'e9rer les \'e9l\'e9ments des menus d\'e9roulants directement depuis la m\'e9moire.\par
+{\pntext\f4\'B7\tab}Dans les classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 la variable m_Risks.\par
+{\pntext\f4\'B7\tab}Dans les classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 les fonctions GetRiskCount, GetRiskName, SetRiskName, GetRiskDesc, SetRiskDesc, GetRiskType, SetRiskType, GetRiskImpact, SetRiskImpact, GetRiskProbability, SetRiskProbability, GetRiskSeverity, SetRiskSeverity, GetRiskUE, SetRiskUE, GetRiskPOA, SetRiskPOA, GetRiskAction, SetRiskAction, AddNewRisk, DeleteRisk, OnAddNewRisk et OnDelCurrentRisk.\par
+{\pntext\f4\'B7\tab}Dans les fonctions ProcessExtendedInput des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300\cf1\lang2057 if\cf0  ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&\par
+{\pntext\f4\'B7\tab}\tab  Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab\cf1 int\cf0  i = Property.GetCategoryID() - ZS_BP_PROP_RISK;\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab ZVRiskOptionsDlg m_RiskOptions( GetRiskName( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab GetRiskDesc( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab ( GetRiskType( i ).IsEmpty() ) ? \lang1036 "<Aucun type d\'e9fini>" : GetRiskType( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab\lang2057 GetRiskImpact( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab GetRiskProbability( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab GetRiskUE( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab GetRiskPOA( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab GetRiskAction( i ) );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf1 if\cf0  ( m_RiskOptions.DoModal() == IDOK )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskName( i, m_RiskOptions.GetRiskTitle() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskDesc( i, m_RiskOptions.GetRiskDescription() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskType( i, m_RiskOptions.GetRiskType() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskImpact( i, m_RiskOptions.GetRiskImpact() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskProbability( i, m_RiskOptions.GetRiskProbability() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskSeverity( i, m_RiskOptions.GetRiskSeverity() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskUE( i, m_RiskOptions.GetRiskUE() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskPOA( i, m_RiskOptions.GetRiskPOA() );\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskAction( i, m_RiskOptions.GetRiskAction() );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab SetModifiedFlag( TRUE );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab Refresh = \cf1 true\cf0 ;\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 return\cf0  \cf1 true\cf0 ;\par
+{\pntext\f4\'B7\tab}\tab\lang1036\}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les ressources du projet zModelBP, ajout\'e9 le menu des risques. Dans les classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, d\'e9fini les variables globales :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\cf1\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300 static\cf0  CMenu\tab gRiskMenu;\par
+{\pntext\f4\'B7\tab}\par
+\f1\fs20{\pntext\f4\'B7\tab}et\par
+\f2\fs16{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}const\cf0  size_t\tab _MaxRisksSize\tab\tab\tab = 20;\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les fonctions ProcessMenuCommand des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\cf2\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300\cf1\lang2057 if\cf0  ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&\par
+{\pntext\f4\'B7\tab}\tab  Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab\cf1 switch\cf0 ( MenuCommand )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 case\cf0  ID_ADD_NEWRISK:\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab OnAddNewRisk( Property, value, Properties, Refresh );\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\cf1 break\cf0 ;\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 case\cf0  ID_DEL_CURRENTRISK:\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab OnDelCurrentRisk( Property, value, Properties, Refresh );\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\cf1 break\cf0 ;\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 default\cf0 :\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\cf1 break\cf0 ;\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf1 return\cf0  \cf1 true\cf0 ;\par
+\lang1036{\pntext\f4\'B7\tab}\}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les fonctions FillProperties des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\cf2\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300\cf1 if\cf0  ( gRiskMenu.GetSafeHmenu() == NULL )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab gRiskMenu.LoadMenu( IDR_RISK_MENU );\par
+\lang2057{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}CString FinalRiskName\tab = _T( "" );\par
+{\pntext\f4\'B7\tab}CString FinalRiskTitle\tab = _T( "" );\par
+{\pntext\f4\'B7\tab}CString RiskTitle\tab\tab = _T( "" );\par
+{\pntext\f4\'B7\tab}CString RiskName\tab\tab = _T( "" );\par
+{\pntext\f4\'B7\tab}CString RiskDesc\tab\tab = _T( "" );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}RiskTitle.LoadString( IDS_ZS_BP_PROP_RISK_TITLE );\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}for\cf0  ( i = 0; i < GetRiskCount(); ++i )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab FinalRiskTitle.Format( _T( "%s (%d)" ), RiskTitle, i + 1 );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_NAME_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_NAME_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "Titre Risque" du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab\lang2057 ZBProperty* pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_NAME : ( Z_RISK_NAME + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab GetRiskName( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ZBProperty::PT_EDIT_MENU,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\cf1 true\cf0 ,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ZBStringFormat( ZBStringFormat::General ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab NULL,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab &gRiskMenu );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_DESC_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_DESC_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "Description" du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab\lang2057 pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_DESC : ( Z_RISK_DESC + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab GetRiskDesc( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ZBProperty::PT_EDIT_EXTENDED );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_TYPE_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_TYPE_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_TYPE : ( Z_RISK_TYPE + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab GetRiskType( i ).IsEmpty() ? "<Aucun type d\'e9fini>" : GetRiskType( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ZBProperty::PT_EDIT_EXTENDED_READONLY );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_IMPACT_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_IMPACT_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "Impact" du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab\lang2057 pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab               ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab               RiskName,\par
+{\pntext\f4\'B7\tab}\tab               ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_IMPACT : ( Z_RISK_IMPACT + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab               RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab               ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->\par
+{\pntext\f4\'B7\tab}                                                          GetElementAt( GetRiskImpact( i ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab        ZBProperty::PT_EDIT_EXTENDED_READONLY );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_PROBABILITY_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_PROBABILITY_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "Probabilit\'e9" du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab\lang2057 pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_PROBABILITY : ( Z_RISK_PROBABILITY +\par
+{\pntext\f4\'B7\tab}                                                         ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->\par
+{\pntext\f4\'B7\tab}                                                       GetElementAt( GetRiskProbability( i ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab ZBProperty::PT_EDIT_EXTENDED_READONLY );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_SEVERITY_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_SEVERITY_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "S\'e9v\'e9rit\'e9" du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab\lang2057 pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_SEVERITY : ( Z_RISK_SEVERITY + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab (\cf1 double\cf0 )GetRiskSeverity( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab ZBProperty::PT_EDIT_NUMBER_READONLY );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_UE_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_UE_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "Est. unit." du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab\lang2057 pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_UE : ( Z_RISK_UE + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab GetRiskUE( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab ZBProperty::PT_EDIT_NUMBER,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab\cf1 true\cf0 ,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab ZBStringFormat( ZBStringFormat::Currency, \cf1 true\cf0 , 2, CurrencySymbol ) );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_POA_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_POA_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "POA" du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab\lang2057 pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_POA : ( Z_RISK_POA + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab GetRiskPOA( i ),\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ZBProperty::PT_EDIT_NUMBER,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\cf1 true\cf0 ,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab ZBStringFormat( ZBStringFormat::Currency, \cf1 true\cf0 , 2, CurrencySymbol ) );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab RiskName.LoadString( IDS_Z_RISK_ACTION_NAME );\par
+{\pntext\f4\'B7\tab}\tab RiskDesc.LoadString( IDS_Z_RISK_ACTION_DESC );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf2\lang1036 // Propri\'e9t\'e9 "Action" du groupe "Risque (x)"\par
+\cf0{\pntext\f4\'B7\tab}\tab pRisk = \cf1 new\cf0  ZBProperty( FinalRiskTitle,\par
+{\pntext\f4\'B7\tab}\tab\tab\lang2057 ( GroupValue == \cf1 true\cf0  ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),\par
+{\pntext\f4\'B7\tab}\tab\tab RiskName,\par
+{\pntext\f4\'B7\tab}\tab\tab ( GroupValue == \cf1 true\cf0  ) ? Z_RISK_ACTION : ( Z_RISK_ACTION + ( i * _MaxRisksSize ) ),\par
+{\pntext\f4\'B7\tab}\tab\tab RiskDesc,\par
+{\pntext\f4\'B7\tab}\tab\tab ( GetRiskAction( i ) == \cf1 true\cf0  ) ? ZAGlobal::GetYesFromArrayYesNo() : \par
+{\pntext\f4\'B7\tab}                                                              ZAGlobal::GetNoFromArrayYesNo(),\par
+{\pntext\f4\'B7\tab}\tab\tab ZBProperty::PT_COMBO_STRING_READONLY,\par
+{\pntext\f4\'B7\tab}\tab\tab TRUE,\par
+{\pntext\f4\'B7\tab}\tab\tab ZBStringFormat( ZBStringFormat::General ),\par
+{\pntext\f4\'B7\tab}\tab\tab ZAGlobal::GetArrayYesNo() );\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\lang1036 PropSet.Add( pRisk );\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les fonctions SaveProperty des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\cf2\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300\cf1\lang2057 if\cf0  ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&\par
+{\pntext\f4\'B7\tab}\tab  Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )\par
+\lang1036{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab\cf1\lang2057 int\cf0  i = Property.GetCategoryID() - ZS_BP_PROP_RISK;\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf1 if\cf0  ( Property.GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskName( i, Property.GetValueString() );\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf1 if\cf0  ( Property.GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskDesc( i, Property.GetValueString() );\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf1 if\cf0  ( Property.GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskUE( i, Property.GetValueFloat() );\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf1 if\cf0  ( Property.GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskPOA( i, Property.GetValueFloat() );\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\cf1 if\cf0  ( Property.GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab SetRiskAction( i, ( Property.GetValueString() ==\lang1036\par
+\lang2057{\pntext\f4\'B7\tab}                                                     ZAGlobal::GetYesFromArrayYesNo() ? \lang1036 1 : 0 ) );\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les fonctions SaveProperties des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\cf2\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300\cf0\lang2057 ZBPropertyIterator j( &PropSet );\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}for\cf0  ( pProp = j.GetFirst(); pProp; pProp = j.GetNext() )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab\cf1 if\cf0  ( pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&\par
+{\pntext\f4\'B7\tab}\tab\tab  pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )\par
+{\pntext\f4\'B7\tab}\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 int\cf0  i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 if\cf0  ( pProp->GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab SetRiskName( i, pProp->GetValueString() );\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 if\cf0  ( pProp->GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab SetRiskDesc( i, pProp->GetValueString() );\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 if\cf0  ( pProp->GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab SetRiskUE( i, pProp->GetValueFloat() );\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 if\cf0  ( pProp->GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab SetRiskPOA( i, pProp->GetValueFloat() );\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\par
+{\pntext\f4\'B7\tab}\tab\tab\cf1 if\cf0  ( pProp->GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )\par
+{\pntext\f4\'B7\tab}\tab\tab\{\par
+{\pntext\f4\'B7\tab}\tab\tab\tab SetRiskAction( i, ( pProp->GetValueString() ==\lang1036\par
+\lang2057{\pntext\f4\'B7\tab}                                                     ZAGlobal::GetYesFromArrayYesNo() ? \lang1036 1 : 0 ) );\par
+{\pntext\f4\'B7\tab}\tab\tab\}\par
+{\pntext\f4\'B7\tab}\tab\}\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les fonctions Serialize des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300\cf1 if\cf0  ( \cf1 dynamic_cast\cf0 <ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab m_Risks.Serialize( ar );\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans le projet zBaseLib, cr\'e9e la nouvelle classe ZDTextFile, afin de g\'e9rer des fichiers de texte.\par
+{\pntext\f4\'B7\tab}Dans la classe ZAApp du projet zProcess32, ajout\'e9 les variables pRiskTypeContainer, pRiskImpactContainer et pRiskProbabilityContainer.\par
+{\pntext\f4\'B7\tab}Dans la fonction Release de la classe ZAApp, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\cf1\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300 if\cf0  ( m_pRiskTypeContainer )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab\cf1 delete\cf0  m_pRiskTypeContainer;\par
+{\pntext\f4\'B7\tab}\tab m_pRiskTypeContainer = NULL;\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}if\cf0  ( m_pRiskImpactContainer )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab\cf1 delete\cf0  m_pRiskImpactContainer;\par
+{\pntext\f4\'B7\tab}\tab m_pRiskImpactContainer = NULL;\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}if\cf0  ( m_pRiskProbabilityContainer )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab\cf1 delete\cf0  m_pRiskProbabilityContainer;\par
+{\pntext\f4\'B7\tab}\tab m_pRiskProbabilityContainer = NULL;\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe zMediatorZAApp du projet zMediator, ajout\'e9 les fonctions virtuelles GetRiskTypeContainer, GetRiskImpactContainer et GetRiskProbabilityContainer.\par
+{\pntext\f4\'B7\tab}Dans la classe ZAApp du projet zProcess32, ajout\'e9 les fonctions GetRiskTypeContainer, GetRiskImpactContainer, GetRiskProbabilityContainer, LoadTypeRiskFile, LoadImpactRiskFile et LoadProbabilityRiskFile.\par
+{\pntext\f4\'B7\tab}Dans la fonction PostInitAppl de la classe ZAApp, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\cf1\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300 if\cf0  ( !LoadTypeRiskFile() )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab MsgBox mbox;\par
+{\pntext\f4\'B7\tab}\tab mbox.DisplayMsgBox( IDS_FAILOPEN_RISKTYPEFILE, MB_OK );\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}if\cf0  ( !LoadImpactRiskFile() )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab MsgBox mbox;\par
+{\pntext\f4\'B7\tab}\tab mbox.DisplayMsgBox( IDS_FAILOPEN_RISKIMPACTFILE, MB_OK );\par
+{\pntext\f4\'B7\tab}\}\par
+{\pntext\f4\'B7\tab}\par
+\cf1{\pntext\f4\'B7\tab}if\cf0  ( !LoadProbabilityRiskFile() )\par
+{\pntext\f4\'B7\tab}\{\par
+{\pntext\f4\'B7\tab}\tab MsgBox mbox;\par
+{\pntext\f4\'B7\tab}\tab mbox.DisplayMsgBox( IDS_FAILOPEN_RISKPROBABILITYFILE, MB_OK );\par
+{\pntext\f4\'B7\tab}\}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction ExitAppl de la clase ZAApp, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\lang2057\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300 GetApplicationOptions().SetRiskTypeFile( m_pRiskTypeContainer->GetFilename() );\par
+\lang1036{\pntext\f4\'B7\tab}GetApplicationOptions().SetRiskImpactFile( ZVRiskImpactContainer->GetFilename() );\par
+{\pntext\f4\'B7\tab}GetApplicationOptions().SetRiskProbabilityFile( ZVRiskProbabilityContainer->GetFilename() );\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZAApplicationOption du projet zBaseLib, ajout\'e9 les variables _RiskTypeFile, m_RiskImpactFile et m_RiskProbabilityFile.\par
+{\pntext\f4\'B7\tab}Dans la classe ZAApplicationOption du projet zBaseLib, ajout\'e9 les fonctions GetRiskTypeFile, SetRiskTypeFile, GetRiskImpactFile, SetRiskImpactFile, GetRiskProbabilityFile et SetRiskProbabilityFile.\par
+{\pntext\f4\'B7\tab}Dans la fonction LoadOption de la classe ZAApplicationOption, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300\lang2057 m_RiskTypeFile = m_SystemOption.ReadOption( szRiskTypeFileEntry,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab\tab\lang1036 m_AppDir + szRiskDirectory + szRiskTypeFilename );\par
+{\pntext\f4\'B7\tab}\par
+\lang2057{\pntext\f4\'B7\tab}m_RiskImpactFile = m_SystemOption.ReadOption( szRiskImpactFileEntry,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab\tab\lang1036 m_AppDir + szRiskDirectory + szRiskImpactFilename );\par
+{\pntext\f4\'B7\tab}\par
+\lang2057{\pntext\f4\'B7\tab}m_RiskProbabilityFile = m_SystemOption.ReadOption( szRiskProbabilityFileEntry,\par
+{\pntext\f4\'B7\tab}\tab\tab\tab\tab\tab\lang1036 m_AppDir + szRiskDirectory + szRiskProbabilityFilename );\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction SaveOption de la classe ZAApplicationOption, ajout\'e9 le code suivant :\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\f2\fs16\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\li300 m_SystemOption.WriteOption( szRiskTypeFileEntry, m_RiskTypeFile );\par
+{\pntext\f4\'B7\tab}m_SystemOption.WriteOption( szRiskImpactFileEntry, m_RiskImpactFile );\par
+{\pntext\f4\'B7\tab}m_SystemOption.WriteOption( szRiskProbabilityFileEntry, m_RiskProbabilityFile );\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlcont\pnf4\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f1\fs20 2 - Le moteur des risques\par
+{\pntext\f4\'B7\tab}\par
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Dans le projet zFormsRes, ajout\'e9 la ressource globale ID_CALCULATE_RISKS. Dans les projets zProcess32 et zModelBP, ajout\'e9 les \'e9l\'e9ments li\'e9s \'e0 la ressource ID_CALCULATE_RISKS. Dans l\rquote\'e9num\'e9rateur modelGenerationButtons du fichier MAINFRM (projet zProcess32), ajout\'e9 la nouvelle entr\'e9e ID_CALCULATE_RISKS.\par
+{\pntext\f4\'B7\tab}Dans la classe ZDProcessGraphModelControllerBP du projet zModelBP, cr\'e9e les nouvelles fonctions OnCalculateRisks et OnUpdateCalculateRisks, en r\'e9ponse aux nouvelles ressources ajout\'e9es ci-dessus\par
+{\pntext\f4\'B7\tab}Dans le projet zModelBP, cr\'e9e la classe ZVRiskCalculateParametersDlg.\par
+{\pntext\f4\'B7\tab}Dans le projet zModelBP, cr\'e9e la classe ZUCalculateRisks.\par
+{\pntext\f4\'B7\tab}Dans la classe ZUODSymbolManipulator du projet zModel, ajout\'e9 les fonctions SetLabelItalic, ChangeLabelTextColor, SetTextItalic et ChangeTextColor.\par
+{\pntext\f4\'B7\tab}Dans les classes ZBSymbol et ZBLinkSymbol du projet zModel, ajout\'e9 la fonction UpdateGraphicFromRisk, afin de modifier la couleur du texte d\rquote un symbole.\par
+{\pntext\f4\'B7\tab}Dans la classe ZBBasicProperties du projet zModel, ajout\'e9 la nouvelle propri\'e9t\'e9 m_SymbolRiskLevel, ainsi que l\rquote impl\'e9mentation concernant cette nouvelle donn\'e9e.\par
+{\pntext\f4\'B7\tab}Dans les classes ZBSymbol et ZBLinkSymbol du projet zModel, ajout\'e9 les fonction GetRiskLevel et SetRiskLevel.\par
+{\pntext\f4\'B7\tab}Dans la fonction FillProperties des classes ZBSymbol et ZBLinkSymbol (projet zModel), ajout\'e9 le code suivant :\par
+\pard\lang2057\f2\fs16\par
+\pard\li300 ZBProperty* pRiskProp = \cf1 new\cf0  ZBProperty( IDS_ZS_BP_PROP_BASIC_TITLE,\par
+\tab\tab\tab\tab\tab          ZS_BP_PROP_BASIC,\par
+\tab\tab\tab\tab\tab          IDS_Z_SYMBOL_RISK_LEVEL_NAME,\par
+\tab\tab\tab\tab\tab          Z_SYMBOL_RISK_LEVEL,\par
+\tab\tab\tab\tab\tab          IDS_Z_SYMBOL_RISK_LEVEL_DESC,\par
+\tab\tab\tab\tab\tab          pBasicProps->GetSymbolRiskLevel(),\par
+\tab\tab\tab\tab\tab          ZBProperty::PT_EDIT_STRING_READONLY );\par
+\lang1036 PropSet.Add( pRiskProp );\par
+\par
+\pard\lang4108\f3\fs17\par
+}
+ 

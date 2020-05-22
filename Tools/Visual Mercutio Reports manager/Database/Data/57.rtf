@@ -1,0 +1,194 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang4108{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Verdana;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fnil\fcharset0 Microsoft Sans Serif;}}
+{\colortbl ;\red0\green0\blue255;\red128\green128\blue128;\red0\green128\blue0;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+\viewkind4\uc1\pard\keepn\s2\sb360\sa240\b\f0\fs28 (57) Copie d\rquote attributs dynamiques\par
+\pard\f1\fs20 Description\par
+\b0 Cr\'e9er une fonction qui permettrait la copie d\rquote attributs dynamiques.\par
+\par
+\b Solution\par
+\lang1036\b0\par
+\lang4108\b Modifications techniques\par
+\lang1036\b0\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans le projet zModel, ajout\'e9 une ressource pour une bo\'eete de dialogue, appel\'e9e IDD_WZ_DYNAMICATTR_S3.\par
+\pard\fi-360\li720\qj -\tab Dans le projet zModel, ajout\'e9 la classe ZVDynamicAttributesDuplication, qui permet la gestion des options de copie des attributs.\par
+-\tab Dans la classe ZBDynamicPropertiesManager du projet zProperty, ajout\'e9 une fonction permettant d\rquote obtenir la liste des propri\'e9t\'e9s contenus dans une cat\'e9gorie :\par
+\pard\qj\par
+\pard\li300\cf1\lang2057\f2\fs16 void\cf0  ZBDynamicPropertiesManager::CreatePropertyList( CString Category, CStringArray& m_PropList )\par
+\{\par
+\tab ZBDynamicPropertiesInfoIterator i( &m_Set );\par
+\par
+\tab\cf1 for\cf0  ( _ZBDynamicPropertyInfo* pProp = i.GetFirst(); pProp; pProp = i.GetNext() )\par
+\tab\{\par
+\tab\tab\cf1 if\cf0  ( pProp->m_pProperty &&\par
+\tab\tab\tab  pProp->m_pProperty->GetCategory()\tab == Category )\par
+\tab\tab\{\par
+\tab\tab\tab m_PropList.Add( pProp->m_pProperty->GetLabel() );\par
+\tab\tab\lang1036\}\par
+\tab\}\par
+\pard\li300\qj\}\f1\par
+\pard\qj\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans le bloc \f2 BEGIN_MESSAGE_MAP\f1  de la classe ZDProcessGraphModelController (projet zModel), ajout\'e9 les entr\'e9es \cf2\f2\fs18 ON_COMMAND(ID_DYNATTR_DUPLICATE, OnDynamicAttributesDuplicate)\cf0\f1\fs20  et\cf2\f2  \fs16 ON_UPDATE_COMMAND_UI(ID_DYNATTR_DUPLICATE, OnUpdateDynamicAttributesDuplicate)\cf0\f1\fs20 .\par
+\pard\fi-360\li720\qj -\tab Dans le bloc \f2 DECLARE_MESSAGE_MAP\f1  de la classe ZDProcessGraphModelController (projet zModel), ajout\'e9 les entr\'e9es : \cf2\f2\fs16 afx_msg void OnDynamicAttributesDuplicate()\cf0\f1\fs20  et\cf2\f2  \fs16 afx_msg void OnUpdateDynamicAttributesDuplicate(CCmdUI* pCmdUI)\cf0\f1\fs20 .\par
+-\tab Dans la classe ZDProcessGraphModelController du projet zModel, ajout\'e9 deux fonctions : \fs18 OnDynamicAttributesDuplicate et OnUpdateDynamicAttributesDuplicate\fs20 .\par
+\pard\qj\par
+\pard\li300\cf1\f2\fs16 void\cf0  ZDProcessGraphModelController::OnDynamicAttributesDuplicate()\par
+\{\par
+\tab\cf3 // Teste la validit\'e9 du document.\par
+\cf0\tab ASSERT( GetDocument() );\par
+\tab ASSERT( ISA( GetDocument(),ZDProcessGraphModelDoc ) );\par
+\par
+\tab\cf3 // Obtient le pointeur sur le document.\par
+\cf0\tab ZDProcessGraphModelDoc* pDoc = \cf1 dynamic_cast\cf0 <ZDProcessGraphModelDoc*>( GetDocument() );\par
+\par
+\tab\cf3 // Si le document n'a pas de gestionnaire de propri\'e9t\'e9s dynamiques, on en cr\'e9e un par d\'e9faut.\par
+\cf0\tab\cf1\lang2057 if\cf0  ( !pDoc->HasDynamicPropertiesManager() )\par
+\tab\tab pDoc->AllocatePropertiesManager();\par
+\par
+\tab\cf3\lang1036 // Teste la validit\'e9 du gestionnaire de propri\'e9t\'e9s dynamiques.\par
+\cf0\tab ASSERT( pDoc->GetDynamicPropertiesManager() );\par
+\par
+\tab AssignSymbolHit();\par
+\par
+\tab\cf3 // Cr\'e9e et affiche la bo\'eete de dialogue pour la duplication.\par
+\cf0\tab ZVDynamicAttributesDuplication m_Dlg( pDoc,\par
+\tab\tab\tab\tab\tab\tab    ( m_pSymbolHit != \lang2057 NULL && ( ISA( m_pSymbolHit, ZBSymbol ) ||\par
+\tab\tab\tab\tab\tab\tab         ISA( m_pSymbolHit, ZBLinkSymbol ) ) ) ? \cf1 true\cf0  : \cf1 false\cf0  );\par
+\par
+\tab\cf1 if\cf0  ( m_Dlg.DoModal() == IDCANCEL )\par
+\tab\tab\cf1 return\cf0 ;\par
+\par
+\tab CString\tab\tab SymbolName;\par
+\tab\cf1 int\cf0\tab\tab\tab SymbolRef\tab = -1;\par
+\tab ZBProperty*\tab\tab pSrcProperty\tab = NULL;\par
+\tab ZBProperty*\tab\tab pDestProperty\tab = NULL;\par
+\tab ZBStringFormat\tab ft;\par
+\tab ZBPropertySet\tab        PropSet;\par
+\tab CStringArray\tab        m_PropList;\par
+\par
+\tab\cf3\lang1036 // Retrouve le nom et la r\'e9f\'e9rence du symbole propri\'e9taire.\par
+\cf0\tab\cf1 if\cf0  ( m_pSymbolHit != NULL && ( ISA( m_pSymbolHit, ZBSymbol ) ||\par
+                                                              ISA( m_pSymbolHit, ZBLinkSymbol ) ) )\par
+\tab\{\par
+\tab\tab  SymbolName\tab = \cf1 dynamic_cast\cf0 <ZIBasicSymbol*>( m_pSymbolHit )->GetSymbolName();\par
+\tab\tab  \lang2057 SymbolRef\tab = \cf1 dynamic_cast\cf0 <ZIBasicSymbol*>( m_pSymbolHit )->GetSymbolReferenceNumber();\par
+\tab\lang1036\}\par
+\par
+\tab\cf3 // Obtient les propri\'e9t\'e9s dynamiques contenues dans le symbole. Cela servira pour obtenir les \par
+    // donn\'e9es.\par
+\cf0\tab\cf1 if\cf0  ( m_pSymbolHit != NULL )\par
+\tab\lang2057\{\par
+\tab\tab\cf1 if\cf0  ( ISA( m_pSymbolHit, ZBSymbol ) )\par
+\tab\tab\{\par
+\tab\tab\tab\cf1 dynamic_cast\cf0 <ZBSymbol*>( m_pSymbolHit )->FillProperties( PropSet );\par
+\tab\tab\}\par
+\par
+\tab\tab\cf1 if\cf0  ( ISA( m_pSymbolHit, ZBLinkSymbol ) )\par
+\tab\tab\{\par
+\tab\tab\tab\cf1 dynamic_cast\cf0 <ZBLinkSymbol*>( m_pSymbolHit )->FillProperties( PropSet );\par
+\tab\tab\lang1036\}\par
+\tab\}\par
+\par
+\tab\cf3 // Obtient la liste des propri\'e9t\'e9s contenues dans la cat\'e9gorie choisie.\par
+\cf0\tab\lang2057 pDoc->GetDynamicPropertiesManager()->CreatePropertyList( m_Dlg.m_Category, m_PropList );\par
+\par
+\tab\cf3\lang1036 // Copie les propri\'e9t\'e9s. A ce stade, seuls les "conteneurs" de propri\'e9t\'e9s sont copi\'e9s, c'est \'e0 \par
+    // dire que l'on obtient\par
+\cf0\tab\cf3 // des propri\'e9t\'e9s portant les m\'eames noms et descriptions que dans la source de donn\'e9es, mais les \par
+    // valeurs ne sont pas\par
+\cf0\tab\cf3 // copi\'e9es. La copie des valeurs se fera un peu plus bas dans le code.\par
+\cf0\tab\cf1\lang2057 for\cf0  ( INT_PTR i = 0; i < m_PropList.GetSize(); i++ )\par
+\tab\{\par
+\tab\tab CString sProperty = m_PropList.GetAt( i );\par
+\par
+\tab\tab pSrcProperty  = pDoc->GetDynamicPropertiesManager()->GetPropertyItem\par
+                                                                ( m_Dlg.m_Category, sProperty );\par
+\tab\tab pDestProperty = pDoc->GetDynamicPropertiesManager()->RegisterProperty\par
+                         ( m_Dlg.m_Name,\par
+\tab\tab\tab\tab    pSrcProperty->GetLabel(),\par
+\tab\tab\tab\tab    pSrcProperty->GetDescription(),\par
+\tab\tab\tab\tab    pSrcProperty->GetPTType(),\par
+\tab\tab\tab\tab    \lang1036 ft,\par
+\tab\tab\tab\tab    SymbolName,\par
+\tab\tab\tab\tab    SymbolRef );\par
+\par
+\tab\tab\cf3 // Si l'option "Copier les valeurs" est coch\'e9e dans la bo\'eete de dialogue, on copie les \par
+           // valeurs.\par
+\cf0\tab\tab\cf1\lang2057 if\cf0  ( m_Dlg.m_bDupValuesIsChecked == TRUE )\par
+\tab\tab\{\par
+\tab\tab\tab ZBPropertyIterator\tab j( &PropSet );\par
+\tab\tab\tab ZBProperty*\tab\tab pProp;\par
+\par
+\tab\tab\tab\cf1 for\cf0  ( pProp = j.GetFirst(); pProp; pProp = j.GetNext() )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab\cf1 if\cf0  ( pProp->GetCategory() == m_Dlg.m_Category &&\par
+\tab\tab\tab\tab\tab  pProp->GetLabel() == pSrcProperty->GetLabel() )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab pDestProperty->SetStringFormat( pProp->GetStringFormat() );\par
+\par
+\tab\tab\tab\tab\tab\cf1 switch\cf0  ( pSrcProperty->GetPTValueType() )\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\cf1 case\cf0  ZBProperty::PT_DATE:\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab pDestProperty->SetValueDate( pProp->GetValueDate() );\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 break\cf0 ;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab\tab\cf1 case\cf0  ZBProperty::PT_DOUBLE:\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab pDestProperty->SetValueDouble\par
+                                                                      ( pProp->GetValueDouble() );\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 break\cf0 ;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab\tab\cf1 case\cf0  ZBProperty::PT_DURATION:\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab pDestProperty->SetValueDuration\par
+                                                                 ( pProp->GetValueDuration() );\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 break\cf0 ;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab\tab\cf1 case\cf0  ZBProperty::PT_FLOAT:\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab pDestProperty->SetValueFloat( pProp->GetValueFloat() );\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 break\cf0 ;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab\tab\cf1 case\cf0  ZBProperty::PT_STRING:\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab pDestProperty->SetValueString\par
+                                                                        ( pProp->GetValueString() );\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 break\cf0 ;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab\tab\cf1 case\cf0  ZBProperty::PT_TIMESPAN:\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab pDestProperty->SetValueTimeSpan\par
+                                                                      ( pProp->GetValueTimeSpan() );\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 break\cf0 ;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab\tab\cf1 case\cf0  ZBProperty::PT_UNKNOWN:\par
+\tab\tab\tab\tab\tab\tab\lang1036\{\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 break\cf0 ;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\}\par
+\tab\tab\}\par
+\par
+\tab\tab\cf3 // Copie la nouvelle propri\'e9t\'e9 directement dans le symbole.\par
+\cf0\tab\tab\cf1\lang2057 dynamic_cast\cf0 <ZIBasicSymbol*>( m_pSymbolHit )->\par
+                         GetDynamicPropertiesManager()->AddDynamicProperty( pDestProperty->Dup() );\par
+\tab\}\par
+\par
+\tab\cf3 // Rafra\'eechit l'affichage.\par
+\cf0\tab NotifySymbolSelected( m_pSymbolHit );\par
+\}\par
+\f1\fs20\par
+\cf1\f2\fs16 void\cf0  ZDProcessGraphModelController::OnUpdateDynamicAttributesDuplicate( CCmdUI* pCmdUI )\par
+\lang1036\{\par
+\tab pCmdUI->Enable( TRUE );\par
+\}\par
+\pard\li300\lang4108\f3\fs17\par
+}
+ 

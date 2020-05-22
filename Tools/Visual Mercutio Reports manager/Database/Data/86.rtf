@@ -1,0 +1,453 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang4108{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Verdana;}{\f2\fswiss\fprq2\fcharset0 Tahoma;}{\f3\fmodern\fprq1\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue255;\red0\green128\blue0;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+\viewkind4\uc1\pard\keepn\s2\sb360\sa240\b\f0\fs28  (86) Int\'e9grer porte dans processus HTML\par
+\pard\qj\f1\fs20 Description\par
+\lang1036\b0 Le rapport des processus en HTML ne prend pas en charge les symboles de porte.\par
+\lang4108\par
+\b Solution\par
+\lang1036\b0 Modifier le rapport processus de la mani\'e8re suivante :\f2\fs22\par
+\pard\fi-360\li720\qj\tx720\f1\fs20 -\tab Le livrable qui sort d'un point start doit appara\'eetre sous le point start (comme les livrables li\'e9s aux proc\'e9dures apparaissent sous les proc\'e9dures)\f2\fs22\par
+\pard\fi-360\li720\qj\f1\fs20 -\tab M\'eame principe pour les points stop, mais pour les entr\'e9es.\f2\fs22\par
+\f1\fs20 -\tab Les sauts de porte doivent appara\'eetre comme des points start (quand ils sont en entr\'e9e) ou des points stop (quand ils sont en sortie)\f2\fs22\par
+\pard\qj\par
+\f1\fs20 De cette mani\'e8re, il y aura tous les objets du mod\'e8le, et chaque livrable sera cit\'e9 deux fois : par l'objet d'o\'f9 il vient et par l'objet o\'f9 il va.\f2\fs22\par
+\f1\fs20\par
+\lang4108\b Modifications techniques\par
+\b0\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans la fonction CreateReport de la classe ZVPublishProcessReport (projet zReportWeb), ajout\'e9 les codes suivants :\par
+\pard\qj\par
+\pard\li300\cf1\lang1036\f3\fs16 if\cf0  ( m_StartSymbol != NULL )\par
+\{\par
+\tab _ZVSymbolContainer m_DeliverableContainer;\par
+\par
+\tab\cf2 // Cr\'e9e la ligne de s\'e9paration pour les paragraphes.\par
+\cf0\tab GenerateSeparation();\par
+\tab GenerateHTMLTableHead();\par
+\par
+\tab Output.LoadString( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_4 );\par
+\tab GenerateHTMLSectionTitle( Output );\par
+\par
+\tab GenerateHTMLTableFoot();\par
+\par
+\tab\cf2 // Retrouve tous les livrables en sortie.\par
+\cf0\tab CODEdgeArray Edges;\par
+\par
+\tab\cf1 if\cf0  ( m_StartSymbol->GetEdgesLeaving( Edges ) > 0 )\par
+\tab\{\par
+\tab\tab\cf1 for\cf0  ( \cf1 int\cf0  nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )\par
+\tab\tab\{\par
+\tab\tab\tab IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );\par
+\tab\tab\tab ZBDeliverableLinkSymbol* pComp = \cf1 static_cast\cf0 <ZBDeliverableLinkSymbol*>( pIEdge );\par
+\par
+\tab\tab\tab\cf2 // Teste si le pointeur est vide, et passe \'e0 l'it\'e9ration suivante si c'est le cas.\par
+\cf0\tab\tab\tab\cf1 if\cf0  ( !pComp )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab\cf1 continue\cf0 ;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab _ZVSymbolEntity* m_DeliverableEntity =\par
+\tab\tab\tab\tab\cf1 new\cf0  _ZVSymbolEntity( 0, pComp->GetSymbolName(), _T( "" ) );\par
+\par
+\tab\tab\tab m_DeliverableContainer.AddSymbol( m_DeliverableEntity );\par
+\tab\tab\}\par
+\par
+\tab\tab m_DeliverableContainer.Sort();\par
+\par
+\tab\tab POSITION myDelivPos = m_DeliverableContainer.GetHeadPosition();\par
+\par
+\tab\tab\cf1 while\cf0  ( myDelivPos != NULL )\par
+\tab\tab\{\par
+\tab\tab\tab _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt( myDelivPos );\par
+\par
+\tab\tab\tab ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;\par
+\par
+\tab\tab\tab\cf1 if\cf0  ( FindLinkSymbol( myDelivCurNode->GetName() ) != NULL &&\par
+\tab\tab\tab\tab\tab ISA ( FindLinkSymbol( myDelivCurNode->GetName() ), \par
+                                                                    ZBDeliverableLinkSymbol ) )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab m_LinkSymbol =\par
+\tab\tab\tab\tab\tab\cf1 dynamic_cast\cf0 <ZBDeliverableLinkSymbol*>( FindLinkSymbol\par
+                                                                ( myDelivCurNode->GetName() ) );\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab\cf1 if\cf0  ( m_LinkSymbol != NULL )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab CString ObjType = _T( "" );\par
+\tab\tab\tab\tab ObjType.LoadString( IDS_OBJECTTYPE_DELIVERABLE );\par
+\par
+\tab\tab\tab\tab GenerateHTMLSymbolTitle( m_LinkSymbol->GetSymbolReferenceNumber(),\par
+\tab\tab\tab\tab\tab\tab\tab     m_LinkSymbol->GetSymbolName(),\par
+\tab\tab\tab\tab\tab\tab\tab     ObjType,\par
+\tab\tab\tab\tab\tab\tab\tab     RGB( 162, 221, 198 ) );\par
+\par
+\tab\tab\tab\tab ZBPropertySet PropSet;\par
+\tab\tab\tab\tab m_LinkSymbol->FillProperties( PropSet );\par
+\par
+\tab\tab\tab\tab GenerateSection( PropSet );\par
+\par
+\tab\tab\tab\tab ZBPropertyIterator i( &PropSet );\par
+\tab\tab\tab\tab ZBProperty* pProp = NULL;\par
+\par
+\tab\tab\tab\tab\cf1 for\cf0  ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\cf1 if\cf0  ( pProp != NULL )\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\cf1 delete\cf0  pProp;\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab GenerateHTMLTableFoot();\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab myDelivPos = m_DeliverableContainer.GetNextPosition();\par
+\tab\tab\}\par
+\par
+\tab\tab m_DeliverableContainer.RemoveAll();\par
+\tab\}\par
+\par
+\tab GenerateSeparation();\par
+\}\par
+\pard\li300\qj\lang4108\f1\par
+\'85\par
+\par
+\pard\li300\lang1036\f3 myPos = m_DoorContainer.GetHeadPosition();\par
+\par
+\cf1 if\cf0  ( myPos != NULL )\par
+\{\par
+\tab\cf2 // Cr\'e9e la ligne de s\'e9paration pour les paragraphes.\par
+\cf0\tab GenerateBlackLine();\par
+\}\par
+\par
+\cf1 while\cf0  ( myPos != NULL )\par
+\{\par
+\tab _ZVSymbolEntity* myCurNode = m_DoorContainer.GetAt( myPos );\par
+\par
+\tab ZBBPDoorSymbol* m_DoorSymbol = NULL;\par
+\par
+\tab\cf1 if\cf0  ( FindSymbol( myCurNode->GetName() ) != NULL &&\par
+\tab\tab  ISA ( FindSymbol( myCurNode->GetName() ), ZBBPDoorSymbol ) )\par
+\tab\{\par
+\tab\tab m_DoorSymbol = \cf1 dynamic_cast\cf0 <ZBBPDoorSymbol*>( FindSymbol( myCurNode->GetName() ) );\par
+\tab\}\par
+\par
+\tab\cf1 if\cf0  ( m_DoorSymbol != NULL )\par
+\tab\{\par
+\tab\tab\cf2 // Inscrit le symbole porte dans le rapport uniquement si un livrable lui est attribu\'e9.\par
+\cf0\tab\tab CODEdgeArray Edges;\par
+\par
+\tab\tab\cf2 // Retrouve les livrables en sortie.\par
+\cf0\tab\tab\cf1 if\cf0  ( m_DoorSymbol->GetEdgesLeaving( Edges ) > 0 )\par
+\tab\tab\{\par
+\tab\tab\tab CString ObjType = _T( "" );\par
+\tab\tab\tab ObjType.LoadString( IDS_OBJECTTYPE_DOOR );\par
+\par
+\tab\tab\tab GenerateHTMLSymbolTitle( myCurNode->GetRef(),\par
+\tab\tab\tab\tab\tab\tab     myCurNode->GetName(),\par
+\tab\tab\tab\tab\tab\tab     ObjType,\par
+\tab\tab\tab\tab\tab\tab     RGB( 155, 255, 155 ) );\par
+\par
+\tab\tab\tab ZBPropertySet PropSet;\par
+\tab\tab\tab m_DoorSymbol->FillProperties( PropSet );\par
+\par
+\tab\tab\tab GenerateSection( PropSet );\par
+\par
+\tab\tab\tab ZBPropertyIterator i( &PropSet );\par
+\tab\tab\tab ZBProperty* pProp = NULL;\par
+\par
+\tab\tab\tab\cf1 for\cf0  ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab\cf1 if\cf0  ( pProp != NULL )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\cf1 delete\cf0  pProp;\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab GenerateHTMLTableFoot();\par
+\par
+\tab\tab\tab\cf2 // Cr\'e9e la ligne de s\'e9paration pour les paragraphes.\par
+\cf0\tab\tab\tab GenerateSeparation();\par
+\tab\tab\tab GenerateHTMLTableHead();\par
+\par
+\tab\tab\tab Output.LoadString( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_4 );\par
+\tab\tab\tab GenerateHTMLSectionTitle( Output );\par
+\par
+\tab\tab\tab GenerateHTMLTableFoot();\par
+\par
+\tab\tab\tab\cf1 for\cf0  ( \cf1 int\cf0  nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );\par
+\tab\tab\tab\tab ZBDeliverableLinkSymbol* pComp =\par
+                                         \cf1 static_cast\cf0 <ZBDeliverableLinkSymbol*>( pIEdge );\par
+\par
+\tab\tab\tab\tab\cf2 // Check if null and continue if the case\par
+\cf0\tab\tab\tab\tab\cf1 if\cf0  ( !pComp )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\cf1 continue\cf0 ;\par
+\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;\par
+\par
+\tab\tab\tab\tab\cf1 if\cf0  ( FindLinkSymbol( pComp->GetSymbolName() ) != NULL &&\par
+\tab\tab\tab\tab\tab  ISA ( FindLinkSymbol( pComp->GetSymbolName() ), \par
+                                                      ZBDeliverableLinkSymbol ) )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab m_LinkSymbol = \cf1 dynamic_cast\cf0 <ZBDeliverableLinkSymbol*>\par
+                                                     ( FindLinkSymbol( pComp->GetSymbolName() ) );\par
+\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\cf1 if\cf0  ( m_LinkSymbol != NULL )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab CString ObjType = _T( "" );\par
+\tab\tab\tab\tab\tab ObjType.LoadString( IDS_OBJECTTYPE_DELIVERABLE );\par
+\par
+\tab\tab\tab\tab\tab GenerateHTMLSymbolTitle( m_LinkSymbol->GetSymbolReferenceNumber(),\par
+\tab\tab\tab\tab\tab\tab\tab\tab     m_LinkSymbol->GetSymbolName(),\par
+\tab\tab\tab\tab\tab\tab\tab\tab     ObjType,\par
+\tab\tab\tab\tab\tab\tab\tab\tab     RGB( 162, 221, 198 ) );\par
+\par
+\tab\tab\tab\tab\tab ZBPropertySet PropSet;\par
+\tab\tab\tab\tab\tab m_LinkSymbol->FillProperties( PropSet );\par
+\par
+\tab\tab\tab\tab\tab GenerateSection( PropSet );\par
+\par
+\tab\tab\tab\tab\tab ZBPropertyIterator i( &PropSet );\par
+\tab\tab\tab\tab\tab ZBProperty* pProp = NULL;\par
+\par
+\tab\tab\tab\tab\tab\cf1 for\cf0  ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\cf1 if\cf0  ( pProp != NULL )\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 delete\cf0  pProp;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab GenerateHTMLTableFoot();\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab GenerateSeparation();\par
+\tab\tab\}\par
+\tab\}\par
+\par
+\tab myPos = m_DoorContainer.GetNextPosition();\par
+\}\par
+\pard\li300\qj\lang4108\f1\par
+\'85\par
+\par
+\pard\li300\lang1036\f3 myPos = m_DoorContainer.GetHeadPosition();\par
+\par
+\cf1 if\cf0  ( myPos != NULL )\par
+\{\par
+\tab\cf2 // Cr\'e9e la ligne de s\'e9paration pour les paragraphes.\par
+\cf0\tab GenerateBlackLine();\par
+\}\par
+\par
+\cf1 while\cf0  ( myPos != NULL )\par
+\{\par
+\tab _ZVSymbolEntity* myCurNode = m_DoorContainer.GetAt( myPos );\par
+\par
+\tab ZBBPDoorSymbol* m_DoorSymbol = NULL;\par
+\par
+\tab\cf1 if\cf0  ( FindSymbol( myCurNode->GetName() ) != NULL &&\par
+\tab\tab  ISA ( FindSymbol( myCurNode->GetName() ), ZBBPDoorSymbol ) )\par
+\tab\{\par
+\tab\tab m_DoorSymbol = \cf1 dynamic_cast\cf0 <ZBBPDoorSymbol*>( FindSymbol( myCurNode->GetName() ) );\par
+\tab\}\par
+\par
+\tab\cf1 if\cf0  ( m_DoorSymbol != NULL )\par
+\tab\{\par
+\tab\tab\cf2 // Inscrit le symbole porte dans le rapport uniquement si un livrable lui est attribu\'e9.\par
+\cf0\tab\tab CODEdgeArray Edges;\par
+\par
+\tab\tab\cf2 // Retrouve les livrables en sortie.\par
+\cf0\tab\tab\cf1 if\cf0  ( m_DoorSymbol->GetEdgesEntering( Edges ) > 0 )\par
+\tab\tab\{\par
+\tab\tab\tab CString ObjType = _T( "" );\par
+\tab\tab\tab ObjType.LoadString( IDS_OBJECTTYPE_DOOR );\par
+\par
+\tab\tab\tab GenerateHTMLSymbolTitle( myCurNode->GetRef(),\par
+\tab\tab\tab\tab\tab\tab     myCurNode->GetName(),\par
+\tab\tab\tab\tab\tab\tab     ObjType,\par
+\tab\tab\tab\tab\tab\tab     RGB( 255, 155, 155 ) );\par
+\par
+\tab\tab\tab ZBPropertySet PropSet;\par
+\tab\tab\tab m_DoorSymbol->FillProperties( PropSet );\par
+\par
+\tab\tab\tab GenerateSection( PropSet );\par
+\par
+\tab\tab\tab ZBPropertyIterator i( &PropSet );\par
+\tab\tab\tab ZBProperty* pProp = NULL;\par
+\par
+\tab\tab\tab\cf1 for\cf0  ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab\cf1 if\cf0  ( pProp != NULL )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\cf1 delete\cf0  pProp;\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab GenerateHTMLTableFoot();\par
+\par
+\tab\tab\tab\cf2 // Cr\'e9e la ligne de s\'e9paration pour les paragraphes.\par
+\cf0\tab\tab\tab GenerateSeparation();\par
+\tab\tab\tab GenerateHTMLTableHead();\par
+\par
+\tab\tab\tab Output.LoadString( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_4 );\par
+\tab\tab\tab GenerateHTMLSectionTitle( Output );\par
+\par
+\tab\tab\tab GenerateHTMLTableFoot();\par
+\par
+\tab\tab\tab\cf1 for\cf0  ( \cf1 int\cf0  nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );\par
+\tab\tab\tab\tab ZBDeliverableLinkSymbol* pComp =\par
+                                              \cf1 static_cast\cf0 <ZBDeliverableLinkSymbol*>( pIEdge );\par
+\par
+\tab\tab\tab\tab\cf2 // Check if null and continue if the case\par
+\cf0\tab\tab\tab\tab\cf1 if\cf0  ( !pComp )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\cf1 continue\cf0 ;\par
+\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;\par
+\par
+\tab\tab\tab\tab\cf1 if\cf0  ( FindLinkSymbol( pComp->GetSymbolName() ) != NULL &&\par
+\tab\tab\tab\tab\tab  ISA ( FindLinkSymbol( pComp->GetSymbolName() ),\par
+                                      ZBDeliverableLinkSymbol ) )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab m_LinkSymbol = \cf1 dynamic_cast\cf0 <ZBDeliverableLinkSymbol*>\par
+                                                     ( FindLinkSymbol( pComp->GetSymbolName() ) );\par
+\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\cf1 if\cf0  ( m_LinkSymbol != NULL )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab CString ObjType = _T( "" );\par
+\tab\tab\tab\tab\tab ObjType.LoadString( IDS_OBJECTTYPE_DELIVERABLE );\par
+\par
+\tab\tab\tab\tab\tab GenerateHTMLSymbolTitle( m_LinkSymbol->GetSymbolReferenceNumber(),\par
+\tab\tab\tab\tab\tab\tab\tab\tab     m_LinkSymbol->GetSymbolName(),\par
+\tab\tab\tab\tab\tab\tab\tab\tab     ObjType,\par
+\tab\tab\tab\tab\tab\tab\tab\tab     RGB( 162, 221, 198 ) );\par
+\par
+\tab\tab\tab\tab\tab ZBPropertySet PropSet;\par
+\tab\tab\tab\tab\tab m_LinkSymbol->FillProperties( PropSet );\par
+\par
+\tab\tab\tab\tab\tab GenerateSection( PropSet );\par
+\par
+\tab\tab\tab\tab\tab ZBPropertyIterator i( &PropSet );\par
+\tab\tab\tab\tab\tab ZBProperty* pProp = NULL;\par
+\par
+\tab\tab\tab\tab\tab\cf1 for\cf0  ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\cf1 if\cf0  ( pProp != NULL )\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab\cf1 delete\cf0  pProp;\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab GenerateHTMLTableFoot();\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab GenerateSeparation();\par
+\tab\tab\}\par
+\tab\}\par
+\par
+\tab myPos = m_DoorContainer.GetNextPosition();\par
+\}\par
+\pard\li300\qj\lang4108\f1\par
+\'85\par
+\par
+\pard\li300\cf1\lang1036\f3 if\cf0  ( m_StopSymbol != NULL )\par
+\{\par
+\tab\cf2 // Cr\'e9e la ligne de s\'e9paration pour les paragraphes.\par
+\cf0\tab GenerateSeparation();\par
+\tab GenerateHTMLTableHead();\par
+\par
+\tab Output.LoadString( IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_1 );\par
+\tab GenerateHTMLSectionTitle( Output );\par
+\par
+\tab GenerateHTMLTableFoot();\par
+\par
+\tab CODEdgeArray\tab\tab Edges;\par
+\tab _ZVSymbolContainer\tab m_DeliverableContainer;\par
+\par
+\tab\cf2 // Retrouve tous les livrables en entr\'e9e en haut du symbole.\par
+\cf0\tab\cf1 if\cf0  ( m_StopSymbol->GetEdgesEntering( Edges ) > 0 )\par
+\tab\{\par
+\tab\tab\cf1 for\cf0  ( \cf1 int\cf0  nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )\par
+\tab\tab\{\par
+\tab\tab\tab IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );\par
+\tab\tab\tab ZBDeliverableLinkSymbol* pComp = \cf1 static_cast\cf0 <ZBDeliverableLinkSymbol*>( pIEdge );\par
+\par
+\tab\tab\tab\cf2 // Teste si le pointeur est vide, et passe \'e0 l'it\'e9ration suivante si c'est le cas.\par
+\cf0\tab\tab\tab\cf1 if\cf0  ( !pComp )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab\cf1 continue\cf0 ;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab _ZVSymbolEntity* m_DeliverableEntity =\par
+\tab\tab\tab\tab\cf1 new\cf0  _ZVSymbolEntity( 0, pComp->GetSymbolName(), _T( "" ) );\par
+\tab\tab\tab m_DeliverableContainer.AddSymbol( m_DeliverableEntity );\par
+\tab\tab\}\par
+\par
+\tab\tab m_DeliverableContainer.Sort();\par
+\par
+\tab\tab POSITION myDelivPos = m_DeliverableContainer.GetHeadPosition();\par
+\par
+\tab\tab\cf1 while\cf0  ( myDelivPos != NULL )\par
+\tab\tab\{\par
+\tab\tab\tab _ZVSymbolEntity* myDelivCurNode = m_DeliverableContainer.GetAt( myDelivPos );\par
+\par
+\tab\tab\tab ZBDeliverableLinkSymbol* m_LinkSymbol = NULL;\par
+\par
+\tab\tab\tab\cf1 if\cf0  ( FindLinkSymbol( myDelivCurNode->GetName() ) != NULL &&\par
+\tab\tab\tab\tab\tab ISA ( FindLinkSymbol( myDelivCurNode->GetName() ), \par
+                                     ZBDeliverableLinkSymbol ) )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab m_LinkSymbol =\par
+\tab\tab\tab\tab\tab\cf1 dynamic_cast\cf0 <ZBDeliverableLinkSymbol*>\par
+                                                 ( FindLinkSymbol( myDelivCurNode->GetName() ) );\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab\cf1 if\cf0  ( m_LinkSymbol != NULL )\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab CString ObjType = _T( "" );\par
+\tab\tab\tab\tab ObjType.LoadString( IDS_OBJECTTYPE_DELIVERABLE );\par
+\par
+\tab\tab\tab\tab GenerateHTMLSymbolTitle( m_LinkSymbol->GetSymbolReferenceNumber(),\par
+\tab\tab\tab\tab\tab\tab\tab     m_LinkSymbol->GetSymbolName(),\par
+\tab\tab\tab\tab\tab\tab\tab     ObjType,\par
+\tab\tab\tab\tab\tab\tab\tab     RGB( 162, 221, 198 ) );\par
+\par
+\tab\tab\tab\tab ZBPropertySet PropSet;\par
+\tab\tab\tab\tab m_LinkSymbol->FillProperties( PropSet );\par
+\par
+\tab\tab\tab\tab GenerateSection( PropSet );\par
+\par
+\tab\tab\tab\tab ZBPropertyIterator i( &PropSet );\par
+\tab\tab\tab\tab ZBProperty* pProp = NULL;\par
+\par
+\tab\tab\tab\tab\cf1 for\cf0  ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\cf1 if\cf0  ( pProp != NULL )\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\cf1 delete\cf0  pProp;\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab GenerateHTMLTableFoot();\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab myDelivPos = m_DeliverableContainer.GetNextPosition();\par
+\tab\tab\}\par
+\par
+\tab\tab m_DeliverableContainer.RemoveAll();\par
+\tab\}\par
+\par
+\tab GenerateSeparation();\par
+\}\par
+\pard\lang4108\b\f0\fs28\par
+}
+ 

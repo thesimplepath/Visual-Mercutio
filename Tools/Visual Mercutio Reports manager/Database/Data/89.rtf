@@ -1,0 +1,545 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang4108{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Verdana;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fswiss\fprq2\fcharset0 Tahoma;}{\f4\fnil\fcharset0 Microsoft Sans Serif;}{\f5\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;\red0\green128\blue0;\red128\green128\blue128;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+\viewkind4\uc1\pard\keepn\hyphpar0\s2\sb360\sa240\lang1036\b\f0\fs28  (89) Cr\'e9ation d\rquote une liste des r\'e8gles\par
+\pard\hyphpar0\qj\b0\f1\fs20\par
+\b Description\par
+\b0\par
+Il s'agit d'un nouvel onglet dans la fen\'eatre espace de travail qui comprend toutes les nomenclatures. Cet onglet peut remplacer l'onglet Scriptor qui n'est pas utilis\'e9. Le principe est de cr\'e9er une arborescence des r\'e8gles qui peuvent \'eatre gliss\'e9es coll\'e9es sur les objets Proc\'e9dure et Livrable. C'est une nouvelle nomenclature, et elle a un comportement proche de celui des prestations (prestationsdef.xml).\par
+\par
+Quand on glisse sur le symbole, la r\'e8gle cr\'e9e une r\'e8gle dans le groupe d'attributs correspondant (r\'e8gles). Si on glisse plusieurs r\'e8gles, cela cr\'e9e autant de r\'e8gles dans le groupe d'attributs.\par
+\par
+La r\'e8gle a deux attributs \'e9ditables par l'utilisateur :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Le nom de la r\'e8gle (idem nom de la prestation); c'est celui qui appara\'eet comme r\'e8gle dans l'objet.\par
+{\pntext\f5\'B7\tab}Le num\'e9ro de r\'e8gle; c'est comme un commentaire, qui ne sert que dans les rapports et les Queries.\par
+\pard\hyphpar0\qj\par
+La r\'e8gle a un identifiant unique qui permet de la retrouver et de la mettre \'e0 jour; Ce n'est pas n\'e9cessaire de le publier \'e0 l'\'e9cran. La mise \'e0 jour du nom de la r\'e8gle dans le r\'e9pertoire met \'e0 jour le nom de la r\'e8gle dans tous les objets (idem nom des prestations). On ne pourra plus que supprimer une r\'e8gle \'e0 partir de l'objet, mais plus mettre \'e0 jour le nom de la r\'e8gle. L'ajout de r\'e8gle se fait uniquement par glisser coller\par
+\par
+Dans Messenger, le r\'e9pertoire des r\'e8gles est publi\'e9 comme les autres r\'e9pertoires. Il faudra donc cr\'e9er une table des r\'e8gles comme celle des prestations avec le lien sur les r\'e8gles figurant dans les objets. Cependant, cela peut \'eatre repouss\'e9, la priorit\'e9 est la mise \'e0 jour dans Conceptor.\par
+\par
+Au niveau des rapports, il y a donc un nouvel acc\'e8s dans le rapport HTML, comme les prestations, qui permet de lister tous les objets tributaires d'une r\'e8gle et d'\'e9diter un rapport HTML qui les liste; cependant, cela peut \'eatre repouss\'e9, ce n'est pas une priorit\'e9.\par
+\par
+\b Solution\par
+\b0\par
+Ajouter la nouvelle option d\'e9crite ci-dessus. Utiliser la documentation concernant l\rquote ajout d\rquote un nouvel espace de travail comme point de d\'e9part.\par
+\par
+\b Modifications techniques\par
+\b0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Cr\'e9e nouvelles classes ZDLogicalRulesDocument, ZBLogicalRulesEntity, ZBRulesEntity, ZBRulesObserverMsg, _ZIRulesFlatToolBar, ZCRulesTreeCtrl, _ZInternalRulesTreeData, ZVSelectRuleDlg et ZVRulesInfoDlg dans le projet zModel. Cr\'e9e nouvelle classe ZVRules dans le projet zProcess32.\par
+{\pntext\f5\'B7\tab}Dans la classe ZAApp du projet zProcess32, ajout\'e9 les variables m_RulesFilename et m_pRulesDocument.\par
+{\pntext\f5\'B7\tab}Dans la classe ZAApp, ajout\'e9 les fonctions LoadRulesFile et SaveRulesFile.\par
+{\pntext\f5\'B7\tab}Dans les fonctions OnFileSaveAll et ExitAppl de la classe ZAApp, ajout\'e9 le code :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( !SaveRulesFile() )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Error message\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab MsgBox mbox;\par
+{\pntext\f5\'B7\tab}\tab\tab mbox.DisplayMsgBox( IDS_FAILSAVE_RULESFILE , MB_OK );\par
+{\pntext\f5\'B7\tab}\tab\tab\cf1 return\cf0  FALSE;\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction PostInitAppl de la classe ZAApp, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 if\cf0  ( !LoadRulesFile() )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf2 // Warn the user\par
+\cf0{\pntext\f5\'B7\tab}\tab MsgBox mbox;\par
+{\pntext\f5\'B7\tab}\tab mbox.DisplayMsgBox( IDS_FAILOPEN_RULESFILE, MB_OK );\par
+{\pntext\f5\'B7\tab}\}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction FileNewModel, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 pNewFile->AssignMainLogicalRules( GetMainLogicalRules() );\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\f1\fs20 et\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\f2\fs16\par
+{\pntext\f5\'B7\tab}pNewFile->AssignCurrentRulesDefGUID();\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZAApp, ajout\'e9 le code pour l\rquote initialisation et le nettoyage du document :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\f2\fs16 m_pRulesDocument ( NULL )\par
+\f1\fs20{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}et\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1\f2\fs16 if\cf0  ( m_pRulesDocument )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 delete\cf0  m_pRulesDocument;\par
+{\pntext\f5\'B7\tab}\tab m_pRulesDocument = NULL;\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}m_RulesFilename.Empty();\par
+\fs20{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1 Dans la classe ZVProcessWorkspace du projet zProcess32, ajout\'e9 la d\'e9claration :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj const\cf0  \cf1 int\cf0  def_RulesTabIndex = 5;\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZVProcessWorkspace du projet zProcess32, ajout\'e9 la d\'e9claration de l\rquote ID :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj #define\cf0  IDC_RULESVIEW 118\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZVProcessWorkspace du projet zProcess32, ajout\'e9 la d\'e9claration de la vue des r\'e8gles :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj ZVRules m_RulesView;\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZVProcessWorkspace du projet zProcess32, ajout\'e9 les fonctions GetRulesView, ActivateRulesTab, ShowRulesTab et HideRulesTab.\par
+{\pntext\f5\'B7\tab}Dans la fonction OnCreate de la classe ZVProcessWorkspace, ajout\'e9 le code pour la cr\'e9ation du nouveau formulaire :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 m_RulesView.Create( NULL,\par
+{\pntext\f5\'B7\tab}                    NULL,\par
+{\pntext\f5\'B7\tab}                    WS_CHILD | WS_VISIBLE,\par
+{\pntext\f5\'B7\tab}                    CRect( 0, 0, 0, 0 ),\par
+{\pntext\f5\'B7\tab}                    &m_wndTab,\par
+{\pntext\f5\'B7\tab}                    IDC_RULESVIEW );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}s.LoadString( IDS_APPWKS_RULES );\par
+{\pntext\f5\'B7\tab}m_wndTab.AddTab( &m_RulesView, s );\par
+{\pntext\f5\'B7\tab}m_wndTab.SetTabIcon( def_RulesTabIndex, IDI_IL_RULESVIEW );\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnUpdate de la classe ZVProcessWorkspace, ajout\'e9 le code pour la mise \'e0 jour du nouveau formulaire :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj m_RulesView.OnUpdate( pSubject, pMsg );\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnCOntextMenu de la classe ZVProcessWorkspace, ajout\'e9 le code pour l\rquote affichage du menu contextuel de l\rquote espace des r\'e8gles :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 else\cf0  \cf1 if\cf0  ( pActiveWnd == GetRulesView() )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( GetRulesView()->HasContextMenu( pWnd, point ) != -1 )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab GetRulesView()->DisplayContextMenu( pWnd, point );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Done\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab\cf1 return\cf0 ;\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction Release de la classe ZVProcessWorkspace, ajout\'e9 le code de nettoyage de la vue :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 m_RulesView.Release();\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la table des d\'e9clarations MFC de la classe ZAApp, ajout\'e9 les entr\'e9es :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf3\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 ON_COMMAND(ID_PR_ADDRULE, OnAddRule)\par
+{\pntext\f5\'B7\tab}ON_UPDATE_COMMAND_UI(ID_PR_ADDRULE, OnUpdateAddRule)\par
+{\pntext\f5\'B7\tab}ON_COMMAND(ID_PR_DELRULE, OnDeleteRule)\par
+{\pntext\f5\'B7\tab}ON_UPDATE_COMMAND_UI(ID_PR_DELRULE, OnUpdateDeleteRule)\par
+{\pntext\f5\'B7\tab}ON_COMMAND(ID_PR_RENAMERULE, OnRenameRule)\par
+{\pntext\f5\'B7\tab}ON_UPDATE_COMMAND_UI(ID_PR_RENAMERULE, OnUpdateRenameRule)\par
+{\pntext\f5\'B7\tab}ON_COMMAND(ID_PR_PROPRULE, OnRuleProperties)\par
+{\pntext\f5\'B7\tab}ON_UPDATE_COMMAND_UI(ID_PR_PROPRULE, OnUpdateRuleProperties)\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}afx_msg void OnAddRule();\par
+{\pntext\f5\'B7\tab}afx_msg void OnUpdateAddRule(CCmdUI* pCmdUI);\par
+{\pntext\f5\'B7\tab}afx_msg void OnDeleteRule();\par
+{\pntext\f5\'B7\tab}afx_msg void OnUpdateDeleteRule(CCmdUI* pCmdUI);\par
+{\pntext\f5\'B7\tab}afx_msg void OnRenameRule();\par
+{\pntext\f5\'B7\tab}afx_msg void OnUpdateRenameRule(CCmdUI* pCmdUI);\par
+{\pntext\f5\'B7\tab}afx_msg void OnRuleProperties();\par
+{\pntext\f5\'B7\tab}afx_msg void OnUpdateRuleProperties(CCmdUI* pCmdUI);\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\cf0\f1\fs20 Dans la classe ZAApp, ajout\'e9 l\rquote impl\'e9mentation des fonctions susmentionn\'e9es.\par
+{\pntext\f5\'B7\tab}Ajout\'e9 l\rquote ensemble des ressources pour la gestion du nouvel espace de travail.\par
+{\pntext\f5\'B7\tab}Dans la classe ZAApp, ajout\'e9 les fonction GetRulesFilename et GetMainLogicalRules.\par
+{\pntext\f5\'B7\tab}Dans la fonction OnAfterOpenDocument de la classe ZAApp, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf2\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 // Assigns the Main Rules\par
+\cf1{\pntext\f5\'B7\tab}dynamic_cast\cf0 <ZDProcessGraphModelDoc*>( pDoc )->AssignMainLogicalRules( GetMainLogicalRules() );\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnServerChanged de la classe ZAApp, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 if\cf0  ( !LoadRulesFile() )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf2 // Warn the user\par
+\cf0{\pntext\f5\'B7\tab}\tab MsgBox mbox;\par
+{\pntext\f5\'B7\tab}\tab mbox.DisplayMsgBox( IDS_FAILOPEN_PRESTATIONSFILEFILE, MB_OK );\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZDProcessGraphModelDoc du projet zModel, ajout\'e9 les fonctions HasRulesDefsAssigned, GetRulesDefGUID, AssignRulesDefGUID, AssignCurrentRulesDefGUID, ReassignRules, GetMainLogicalRules et AssignMainLogicalRules.\par
+{\pntext\f5\'B7\tab}Dans la classe ZDProcessGraphModelDoc, ajout\'e9 la variable m_RulesDefGUID.\par
+{\pntext\f5\'B7\tab}Dans la fonction OnPostOpenDocument de la classe ZDProcessGraphModelDoc, ajout\'e9 le code suivant:\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 ZBLogicalRulesEntity* pRules = GetMainLogicalRules();\par
+{\pntext\f5\'B7\tab}\par
+\cf2{\pntext\f5\'B7\tab}// No Rules, error\par
+\cf1{\pntext\f5\'B7\tab}if\cf0  ( !pRules )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( m_pOutputLog )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab CString message;\par
+{\pntext\f5\'B7\tab}\tab\tab message.LoadString( IDS_ERR_MISSING_RULESDEF );\par
+{\pntext\f5\'B7\tab}\tab\tab ZBGenericSymbolErrorLine e( message );\par
+{\pntext\f5\'B7\tab}\tab\tab m_pOutputLog->AddLine( e );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Main logical Rules is not valid\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab GetModel()->SetMainLogicalRulesValid( \cf1 false\cf0  );\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\}\par
+\cf1{\pntext\f5\'B7\tab}else\par
+\cf0{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf2 // If the current Rulesdef GUID is not empty and is different\par
+\cf0{\pntext\f5\'B7\tab}\tab\cf2 // then display an error message\par
+\cf0{\pntext\f5\'B7\tab}\tab\cf2 // and set the flag for avoiding updates on Rules's linked items\par
+\cf0{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( !m_RulesDefGUID.IsEmpty() && m_RulesDefGUID != pRules->GetGUID() )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\cf1 if\cf0  ( m_pOutputLog )\par
+{\pntext\f5\'B7\tab}\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab CString message;\par
+{\pntext\f5\'B7\tab}\tab\tab\tab message.LoadString( IDS_ERR_RULESDEFXML_DIFFMODEL );\par
+{\pntext\f5\'B7\tab}\tab\tab\tab ZBGenericSymbolErrorLine e( message );\par
+{\pntext\f5\'B7\tab}\tab\tab\tab m_pOutputLog->AddLine( e );\par
+{\pntext\f5\'B7\tab}\tab\tab\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Main logical rules is not valid\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab GetModel()->SetMainLogicalRulesValid( \cf1 false\cf0  );\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\tab\cf1 else\par
+\cf0{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Main logical rules is valid\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab GetModel()->SetMainLogicalRulesValid();\par
+{\pntext\f5\'B7\tab}\tab\}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnNewDocument de la classe ZDProcessGraphModelDoc, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 AssignCurrentRulesDefGUID();\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction OnSaveDocument de la classe ZDProcessGraphModelDoc, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 if\cf0  ( m_RulesDefGUID.IsEmpty() )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab AssignCurrentRulesDefGUID();\par
+{\pntext\f5\'B7\tab}\}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction Serialize de la classe ZDProcessGraphModelDoc, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 if\cf0  ( ar.m_pDocument &&\par
+{\pntext\f5\'B7\tab}     \cf1 dynamic_cast\cf0 <ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 25 )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab ar << m_RulesDefGUID;\par
+{\pntext\f5\'B7\tab}\}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans le fichier ProcGraphModelMdl.h, ajout\'e9 les d\'e9clarations de classes suivantes :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 class\cf0  ZBLogicalRulesEntity;\par
+\cf1{\pntext\f5\'B7\tab}class\cf0  ZBRulesEntity;\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZDProcessGraphModelMdl, ajout\'e9 les fonctions GetMainLogicalRules, AssignMainLogicalRules, MainLogicalRulesIsValid, SetMainLogicalRulesValid, RetreiveRuleName et ReassignRules.\par
+{\pntext\f5\'B7\tab}Dans la classe ZDProcessGraphModelMdl, ajout\'e9 les variables m_pMainLogicalRules et m_MainLogicalRulesIsValid.\par
+{\pntext\f5\'B7\tab}Dans le fichier ProcGraphModelMdl.cpp, Ajout\'e9 de la d\'e9claration externe de la variables statique des r\'e8gles m_pMainLogicalRules.\par
+{\pntext\f5\'B7\tab}Dans la classe ZDProcessGraphModelMdl, ajout\'e9 le code d\rquote initialisation de la variable m_MainLogicalRulesIsValid.\par
+{\pntext\f5\'B7\tab}Dans la classe ZBDeliverableLinkSymbol, ajout\'e9 les fonctions surcharg\'e9es AcceptDropItem et DropItem.\par
+{\pntext\f5\'B7\tab}Dans le projet zModelBP, cr\'e9e les classes ZBProcRules et ZBBPRulesProp.\par
+{\pntext\f5\'B7\tab}Dans le fichier zPropertyIds.h du projet Include, ajout\'e9 un nouvel ID pour la cat\'e9gorie de propri\'e9t\'e9 des r\'e8gles.\par
+{\pntext\f5\'B7\tab}Ajout\'e9 ressources pour un nouveau menu pour les r\'e8gles dans le projet zModelBP.\par
+{\pntext\f5\'B7\tab}Dans les fichiers .cpp des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 la variable externe gRulesMenu.\par
+{\pntext\f5\'B7\tab}Dans les classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol du projet zModelBP, ajout\'e9 la variable m_Rules.\par
+{\pntext\f5\'B7\tab}Dans les classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol du projet zModelBP, ajout\'e9 la constante _MaxRulesSize.\par
+{\pntext\f5\'B7\tab}Dans les fonctions AcceptDropItem des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 if\cf0  ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 return\cf0  \cf1 true\cf0 ;\par
+{\pntext\f5\'B7\tab}\}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les fonctions DropItem des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf2\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 if\cf0  ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf2 // First, check if the rule is valid\par
+\cf0{\pntext\f5\'B7\tab}\tab CODModel* pModel = GetRootModel();\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&\par
+{\pntext\f5\'B7\tab}\tab\tab  !\cf1 dynamic_cast\cf0 <ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Cannot delete all rules\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab MsgBox mbox;\par
+{\pntext\f5\'B7\tab}\tab\tab mbox.DisplayMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );\par
+{\pntext\f5\'B7\tab}\tab\tab\cf1 return\cf0  \cf1 false\cf0 ;\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab ZBLogicalRulesEntity* pRule = \cf1 dynamic_cast\cf0 <ZBLogicalRulesEntity*>( pObj );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab ZBBPRulesProperties* m_NewRule = \cf1 new\cf0  ZBBPRulesProperties();\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab m_NewRule->SetRuleName( pRule->GetEntityName() );\par
+{\pntext\f5\'B7\tab}\tab m_NewRule->SetRuleDescription( pRule->GetEntityDescription() );\par
+{\pntext\f5\'B7\tab}\tab m_NewRule->SetRuleGUID( pRule->GetGUID() );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab m_Rules.AddRule( m_NewRule );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf2 // Set flag for modification\par
+\cf0{\pntext\f5\'B7\tab}\tab SetModifiedFlag( TRUE );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf2 // Refresh the attribute area and redraw the symbol\par
+\cf0{\pntext\f5\'B7\tab}\tab RefreshAttributeAreaText( \cf1 true\cf0  );\par
+{\pntext\f5\'B7\tab}\tab\cf1 return\cf0  \cf1 true\cf0 ;\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 la fonction GetRuleNameByGUID.\par
+{\pntext\f5\'B7\tab}Dans la fonction FillProperties des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf2 // If the menu is not loaded, load it\par
+\cf1{\pntext\f5\'B7\tab}if\cf0  ( gRulesMenu.GetSafeHmenu() == NULL )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab gRulesMenu.LoadMenu( IDR_RULES_MENU );\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\cf1{\pntext\f5\'B7\tab}if\cf0  ( m_Rules.GetRulesCount() > 0 )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab CString RuleSectionTitle\tab = _T( "" );\par
+{\pntext\f5\'B7\tab}\tab CString RuleName\tab\tab = _T( "" );\par
+{\pntext\f5\'B7\tab}\tab CString RuleDesc\tab\tab = _T( "" );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab RuleSectionTitle.LoadString( IDS_Z_RULES_TITLE );\par
+{\pntext\f5\'B7\tab}\tab RuleDesc.LoadString( IDS_Z_RULES_DESC );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab ZBLogicalRulesEntity* p_MainRule = NULL;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab ZDProcessGraphModelMdlBP* p_Model = \par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 reinterpret_cast\cf0 <ZDProcessGraphModelMdlBP*>( GetOwnerModel() );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 if\cf0  ( p_Model != NULL\tab\tab\tab\tab &&\par
+{\pntext\f5\'B7\tab}\tab\tab\tab      p_Model->GetController() != NULL\tab &&\par
+{\pntext\f5\'B7\tab}\tab\tab\tab      ISA( p_Model->GetController(), ZDProcessGraphModelControllerBP ) )\par
+{\pntext\f5\'B7\tab}\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab ZDProcessGraphModelControllerBP* p_Controller =\par
+{\pntext\f5\'B7\tab}\tab\tab\tab     \cf1 reinterpret_cast\cf0 <ZDProcessGraphModelControllerBP*>( p_Model->GetController() );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 if\cf0  ( p_Controller != NULL && ISA( p_Controller->GetDocument(), \par
+{\pntext\f5\'B7\tab}                                                    ZDProcessGraphModelDoc ) )\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab ZDProcessGraphModelDoc* p_Document =\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab    \cf1 reinterpret_cast\cf0 <ZDProcessGraphModelDoc*>( p_Controller->GetDocument() );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\cf1 if\cf0  ( p_Document->GetMainLogicalRules() != NULL )\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab p_MainRule = p_Document->GetMainLogicalRules();\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\}\par
+{\pntext\f5\'B7\tab}\tab\tab\}\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf1 for\cf0  ( \cf1 int\cf0  i = 0; i < m_Rules.GetRulesCount(); i++ )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Le contr\'f4le des r\'e8gles ne peut \'eatre appliqu\'e9 que si le mod\'e8le est en phase avec le \par
+{\pntext\f5\'B7\tab}              syst\'e8me des r\'e8gles.\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab\cf1 if\cf0  ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 dynamic_cast\cf0 <ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )\par
+{\pntext\f5\'B7\tab}\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 if\cf0  ( m_SafeName.IsEmpty() )\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab m_Rules.DeleteRule( i );\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 else\cf0  \cf1 if\cf0  ( m_SafeName != m_Rules.GetRuleName( i ) )\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab m_Rules.SetRuleName( i, m_SafeName );\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\}\par
+{\pntext\f5\'B7\tab}\tab\tab\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab RuleName.Format( IDS_Z_RULES_NAME, i + 1 );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\cf2 // Propri\'e9t\'e9 "R\'e8gle x" du groupe "R\'e8gles"\par
+\cf0{\pntext\f5\'B7\tab}\tab\tab ZBProperty* pRule = \cf1 new\cf0  ZBProperty( RuleSectionTitle,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab ZS_BP_PROP_RULES,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab RuleName,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab Z_RULE_NAME + ( i * _MaxRulesSize ),\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab RuleDesc,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab m_Rules.GetRuleName( i ),\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab ZBProperty::PT_EDIT_MENU,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab\cf1 true\cf0 ,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab ZBStringFormat( ZBStringFormat::General ),\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab NULL,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab &gRulesMenu );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab pRule->EnableDragNDrop();\par
+{\pntext\f5\'B7\tab}\tab\tab PropSet.Add( pRule );\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les fonctions SaveProperty des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\tx720\f3\fs22\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\tx720\cf1\f2\fs16 if\cf0  ( Property.GetCategoryID() == ZS_BP_PROP_RULES )\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 int\cf0  Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( m_Rules.GetRuleName( Index ) != Property.GetValueString() )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab Property.SetValueString( m_Rules.GetRuleName( Index ) );\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\tx720\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les classes ZBDeliverableLinkSymbol, ZBBPStartSymbol et ZBBPStopSymbol du projet zModelBP, ajout\'e9 la fonction ProcessMenuCommand.\par
+{\pntext\f5\'B7\tab}Dans la fonction ProcessMenuCommand des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 if\cf0  ( Property.GetCategoryID() == ZS_BP_PROP_RULES )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 switch\cf0 ( MenuCommand )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\cf1 case\cf0  ID_DEL_CURRENTRULE:\par
+{\pntext\f5\'B7\tab}\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 int\cf0  Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab m_Rules.DeleteRule( Index );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab Refresh = \cf1 true\cf0 ;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 break\cf0 ;\par
+{\pntext\f5\'B7\tab}\tab\tab\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\tab\cf1 default\cf0 :\par
+{\pntext\f5\'B7\tab}\tab\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\cf1 break\cf0 ;\par
+{\pntext\f5\'B7\tab}\tab\tab\}\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les classes ZBBPProcessSymbol, ZBBPStartSymbol et ZBBPStopSymbol, ajout\'e9 la fonction OnDropInternalPropertyItem.\par
+{\pntext\f5\'B7\tab}Dans la fonction OnDropInternalPropertyItem des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 RetValue = ::SwapInternalPropertyItem( SrcProperty,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab   DstProperty,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab   Top2Down,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab   Properties,\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab   ZS_BP_PROP_RULES );\par
+{\pntext\f5\'B7\tab}\par
+\cf2{\pntext\f5\'B7\tab}// If done, return\par
+\cf1{\pntext\f5\'B7\tab}if\cf0  ( RetValue )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 int\cf0  SrcIndex = ( SrcProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;\par
+{\pntext\f5\'B7\tab}\tab\cf1 int\cf0  DstIndex = ( DstProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab CString SrcRuleName = m_Rules.GetRuleName( SrcIndex );\par
+{\pntext\f5\'B7\tab}\tab CString SrcRuleDesc = m_Rules.GetRuleDescription( SrcIndex );\par
+{\pntext\f5\'B7\tab}\tab CString SrcRuleGUID = m_Rules.GetRuleGUID( SrcIndex );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab CString DstRuleName = m_Rules.GetRuleName( DstIndex );\par
+{\pntext\f5\'B7\tab}\tab CString DstRuleDesc = m_Rules.GetRuleDescription( DstIndex );\par
+{\pntext\f5\'B7\tab}\tab CString DstRuleGUID = m_Rules.GetRuleGUID( DstIndex );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab m_Rules.SetRuleName( SrcIndex, DstRuleName );\par
+{\pntext\f5\'B7\tab}\tab m_Rules.SetRuleDescription( SrcIndex, DstRuleDesc );\par
+{\pntext\f5\'B7\tab}\tab m_Rules.SetRuleGUID( SrcIndex, DstRuleGUID );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab m_Rules.SetRuleName( DstIndex, SrcRuleName );\par
+{\pntext\f5\'B7\tab}\tab m_Rules.SetRuleDescription( DstIndex, SrcRuleDesc );\par
+{\pntext\f5\'B7\tab}\tab m_Rules.SetRuleGUID( DstIndex, SrcRuleGUID );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf1 return\cf0  \cf1 true\cf0 ;\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, modifi\'e9 l\rquote op\'e9rateur = et la fonction CopySymbolDefinitionFrom afin d\rquote y int\'e9grer le code pour la copie des r\'e8gles.\par
+{\pntext\f5\'B7\tab}Dans la fonction Serialize des classes ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableLinkSymbol, ajout\'e9 les codes pour la lecture et l\rquote\'e9criture des r\'e8gles :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 m_Rules.Serialize( ar );\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\f1 et\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1\f2\par
+{\pntext\f5\'B7\tab}if\cf0  ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab m_Rules.Serialize( ar );\par
+{\pntext\f5\'B7\tab}\}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZAApp du projet zProcess32, ajout\'e9 les entr\'e9es de menu \'ab Assigner au mod\'e8le le fichier des r\'e8gles \'bb et \'ab R\'e9assigner les r\'e8gles aux symboles \'bb, ainsi que les fonctions OnAssignCurrentRulesDef, OnUpdateAssignCurrentRulesDef, OnSymbolReassignRules et OnUpdateSymbolReassignRules.\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\b{\pntext\f5\'B7\tab}Publication du Rule Book en HTML :\par
+\b0{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720 Dans la classe ZVPublishModelOptions du projet zModelWeb, ajout\'e9 les ressources pour le nouveau bouton \'ab Publier le livre des r\'e8gles \'bb, ainsi que les variables et routines li\'e9es \'e0 cette nouvelle option.\par
+{\pntext\f5\'B7\tab}Dans la classe ZVPublishModel du projet zModelWeb, ajout\'e9 une nouvelle variable nomm\'e9e m_PublishRuleBook, ainsi qu\rquote une nouvelle fonction nomm\'e9e GetPublishRuleBook.\par
+{\pntext\f5\'B7\tab}Dans la fonction Choose de la classe ZVPublishModel, ajout\'e9 m_PublishRuleBook dans la construction de l\rquote objet ZVPublishModelOptions, ainsi que le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300 m_PublishRuleBook = ( Options.GetPublishRuleBool() ) ? \cf1 true\cf0  : \cf1 false\cf0 ;\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les d\'e9finitions globales du fichier ZVPublishModel.cpp, ajout\'e9 la nouvelle cl\'e9 suivante :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\cf1\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj const\cf0  CString gPublishModelHTMLPublishRuleBook = _T( "PublishRuleBook" );\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction LoadStateFromIniFile de la classe ZVPublishModel, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj m_PublishRuleBook = SystemOption.ReadOption( gPublishModelHTMLPublishRuleBook, \cf1 true\cf0  );\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la fonction SaveStateToIniFile de la classe ZVPublishModel, ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj SystemOption.WriteOption( gPublishModelHTMLPublishRuleBook,\tab  m_PublishRuleBook );\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans le projet zReportWeb, cr\'e9e la classe ZVPublishRuleBook.\par
+{\pntext\f5\'B7\tab}Dans la fonction ExportReportToHTMLFile de la classe ZUPublishReportToHTML, ajout\'e9 le code suivant:\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 if\cf0  ( ReportInfo->DoExportRuleBook == TRUE )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab ZVPublishRuleBook* m_pRuleBookGenerator =\par
+{\pntext\f5\'B7\tab}\tab\tab\cf1 new\cf0  ZVPublishRuleBook( \cf1 dynamic_cast\cf0 <ZDProcessGraphModelMdlBP*>( pDoc->GetModel() ) );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf1 if\cf0  ( !m_pRuleBookGenerator )\par
+{\pntext\f5\'B7\tab}\tab\{\par
+{\pntext\f5\'B7\tab}\tab\tab\cf1 return\cf0  \cf1 false\cf0 ;\par
+{\pntext\f5\'B7\tab}\tab\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab m_pRuleBookGenerator->Publish( ReportInfo->Directory + _T( "\\\\" ) );\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab\cf1 delete\cf0  m_pRuleBookGenerator;\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans la classe ZBInfoModelGraphicGeneration du projet zModel, ajout\'e9 un nouveau param\'e8tre, IncludeRuleBook, dans le constructeur, ainsi que la variable m_IncludeRuleBook et les fonctions GetIncludeRuleBook et SetIncludeRuleBook.\par
+{\pntext\f5\'B7\tab}Dans la fonction ExportModelToHTMLFile de la classe ZUPublishModelToHTML, ajout\'e9 le param\'e8tre PublishModel.GetPublishRuleBook() dans la construction de la classe ZBInfoModelGraphicGeneration ModelInfo.\par
+{\pntext\f5\'B7\tab}Dans la fonction GenerateIndexPage de la classe ZUModelGenerateImageFiles (projet zModelWeb), ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\f2\fs16\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\cf1 if\cf0  ( pModel->GetMainLogicalRules() && m_pInfo->GetIncludeRuleBook() )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab s.LoadString( IDS_RULEBOOK_MTL_HTML_1 );\par
+{\pntext\f5\'B7\tab}\tab HtmlFile << s;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab s.LoadString( IDS_MODELGENHTML_20 );\par
+{\pntext\f5\'B7\tab}\tab HtmlFile << s;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab s.LoadString( IDS_MODELGENHTML_24 );\par
+{\pntext\f5\'B7\tab}\tab HtmlFile << s;\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}\tab s.Format( IDS_MODELGENHTML_25, (\cf1 const\cf0  \cf1 char\cf0 *)_T( "RuleBook.htm" ),\par
+{\pntext\f5\'B7\tab}\tab\tab\tab\tab\tab\tab\tab\tab    (\cf1 const\cf0  \cf1 char\cf0 *)pModel->GetMainLogicalRules()->GetEntityName() );\par
+{\pntext\f5\'B7\tab}\tab HtmlFile << s;\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+\cf2{\pntext\f5\'B7\tab}// Write blank lines\par
+\cf0{\pntext\f5\'B7\tab}s.LoadString( IDS_MODELGENHTML_75 );\par
+{\pntext\f5\'B7\tab}HtmlFile << s;\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\b\f1\fs20 Publication du d\'e9tail du RuleBook en HTML\par
+{\pntext\f5\'B7\tab}\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\b0 Dans le projet zReportWeb, ajout\'e9 la classe ZVPublishRuleBookDetails\par
+{\pntext\f5\'B7\tab}Dans la fonction ExportReportToHTML de la classe ZUPublishReportToHTML (projet zReportWeb), ajout\'e9 le code suivant :\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\qj\f3\fs22\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\f2\fs16 ZVPublishRuleBookDetails* m_pRuleBookDetailsGenerator =\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\tab\cf1 new\cf0  ZVPublishRuleBookDetails( \cf1 dynamic_cast\cf0 <ZDProcessGraphModelMdlBP*>( pDoc->GetModel() ) );\par
+{\pntext\f5\'B7\tab}\par
+\cf1{\pntext\f5\'B7\tab}if\cf0  ( !m_pRuleBookDetailsGenerator )\par
+{\pntext\f5\'B7\tab}\{\par
+{\pntext\f5\'B7\tab}\tab\cf1 return\cf0  \cf1 false\cf0 ;\par
+{\pntext\f5\'B7\tab}\}\par
+{\pntext\f5\'B7\tab}\par
+{\pntext\f5\'B7\tab}m_pRuleBookDetailsGenerator->Publish( ReportInfo->Directory + _T( "\\\\" ) );\par
+{\pntext\f5\'B7\tab}\par
+\cf1{\pntext\f5\'B7\tab}delete\cf0  m_pRuleBookDetailsGenerator;\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlcont\pnf5\pnindent0{\pntxtb\'B7}}\hyphpar0\li300\qj\par
+\pard{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\hyphpar0\fi-360\li720\qj\tx720\f1\fs20 Dans les clases ZBBPProcessSymbol, ZBBPProcedureSymbol, ZBBPStartSymbol, ZBBPStopSymbol et ZBDeliverableSymbol du projet zModelBP, ajout\'e9 une nouvelle fonction nomm\'e9e ContainsRule.\par
+{\pntext\f5\'B7\tab}Dans la fonction GenerateIndexPage de la classe ZUModelGenerateImageFiles (projet zModelWeb), ajout\'e9 le code suivant :\par
+\pard\hyphpar0\qj\f3\fs22\par
+\pard\hyphpar0\li300\qj\f2\fs16 s.LoadString( IDS_MODELGENHTML_20 );\par
+\pard\hyphpar0\li300 HtmlFile << s;\par
+\par
+s.LoadString( IDS_MODELGENHTML_24 );\par
+HtmlFile << s;\par
+\par
+CString RuleBookDetailsTitle = _T( "" );\par
+RuleBookDetailsTitle.LoadString( IDS_RULEBOOKDETAILS_MTL_HTML_6 );\par
+\par
+s.Format( IDS_MODELGENHTML_25, (\cf1 const\cf0  \cf1 char\cf0 *)_T( "RuleBookDetails.htm" ),\par
+\tab\tab\tab\tab\tab\tab\tab    (\cf1 const\cf0  \cf1 char\cf0 *)RuleBookDetailsTitle );\par
+HtmlFile << s;\par
+\pard\hyphpar0\qj\par
+\pard\lang4108\f4\fs17\par
+}
+ 

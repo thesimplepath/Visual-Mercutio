@@ -1,0 +1,157 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang4108{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Verdana;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fnil\fcharset0 Microsoft Sans Serif;}}
+{\colortbl ;\red0\green0\blue255;\red0\green128\blue0;\red128\green128\blue128;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+\viewkind4\uc1\pard\keepn\s2\sb360\sa240\b\f0\fs28 (61) Boite \'e0 outils symboles\par
+\pard\qj\f1\fs20 Description\par
+\b0 Ajouter une boite \'e0 outils permettant d'ins\'e9rer des symboles graphiques dans les mod\'e8les.\par
+\par
+\b Solution\par
+\lang1036\b0 Cr\'e9er les nouveaux objets graphiques et les int\'e9grer dans les mod\'e8les.\par
+\par
+\lang4108\b Modifications techniques\par
+\pard\fi-360\li720\qj\tx720\b0 -\tab Dans le projet zModelBP, ajout\'e9 la classe ZBBPGenericSymbol.\par
+\pard\fi-360\li720\qj -\tab Dans le projet zBaseSym, ajout\'e9 les symboles : Alerte.sym, CRE.sym, CRI.sym, CRO.sym, D\'e9lai.sym, Document.sym, En cours.sym, Incident.sym, Indicateur.sym, Non valid\'e9.sym, OPAP 1.sym, OPAP 2.sym, OPAP 3.sym, Qualit\'e9.sym, Risque.sym et Valid\'e9.sym.\par
+-\tab Dans le projet zBaseSym, \'e9dit\'e9 le fichier zBaseSym.rc, et ajout\'e9 les lignes suivantes :\par
+\pard\qj\par
+\pard\li300\lang1036\f2\fs16 IDR_INDICATOR\tab SYMBOL\tab\tab "res\\\\Indicateur.sym"\par
+IDR_ALERT\tab\tab SYMBOL\tab\tab "res\\\\Alerte.sym"\par
+IDR_CRE\tab\tab SYMBOL\tab\tab "res\\\\CRE.sym"\par
+IDR_CRI\tab\tab SYMBOL\tab\tab "res\\\\CRI.sym"\par
+IDR_CRO\tab\tab SYMBOL\tab\tab "res\\\\CRO.sym"\par
+IDR_DOCUMENT\tab SYMBOL\tab\tab "res\\\\Document.sym"\par
+IDR_DELAY\tab\tab SYMBOL\tab\tab "res\\\\D\'e9lai.sym"\par
+IDR_IN_PROCESS\tab SYMBOL\tab\tab "res\\\\En cours.sym"\par
+IDR_INCIDENT\tab SYMBOL\tab\tab "res\\\\Incident.sym"\par
+IDR_NOT_VALIDATED\tab SYMBOL\tab\tab "res\\\\Non valid\'e9.sym"\par
+IDR_OPAP1\tab\tab SYMBOL\tab\tab "res\\\\OPAP 1.sym"\par
+IDR_OPAP2\tab\tab SYMBOL\tab\tab "res\\\\OPAP 2.sym"\par
+IDR_OPAP3\tab\tab SYMBOL\tab\tab "res\\\\OPAP 3.sym"\par
+IDR_QUALITY\tab SYMBOL\tab\tab "res\\\\Qualit\'e9.sym"\par
+IDR_RISK\tab\tab SYMBOL\tab\tab "res\\\\Risque.sym"\par
+IDR_VALIDATED\tab SYMBOL\tab\tab "res\\\\Valid\'e9.sym"\par
+\pard\qj\lang4108\f1\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans l\rquote en-t\'eate zBaseSymRes.h du projet zBaseSym, ajout\'e9 les IDs : \lang1036 IDR_ALERT, IDR_CRE, IDR_CRI, IDR_CRO, IDR_DELAY, IDR_DOCUMENT, IDR_IN_PROCESS, IDR_INCIDENT, IDR_INDICATOR, IDR_NOT_VALIDATED, IDR_OPAP1, IDR_OPAP2, IDR_OPAP3, IDR_QUALITY, IDR_RISK et IDR_VALIDATED.\lang4108\par
+\pard\fi-360\li720\qj\lang1036 -\tab Pour la zone de texte, cr\'e9e nouvelles classes ZBTextZone dans le projet zModel et ZBBPTextZone dans zModelBP.\lang4108\par
+\lang1036 -\tab Dans le projet zModelBP, cr\'e9e une nouvelle barre d\rquote outils IDR_BP_ADDSYMBOLS.\lang4108\par
+\lang1036 -\tab Dans le projet zModelBP, cr\'e9e les curseurs : IDC_INS_ALERTBP, IDC_INS_CREBP, IDC_INS_CRIBP, IDC_INS_CROBP, IDC_INS_DELAYBP, IDC_INS_DOCUMENTBP, IDC_INS_IN_PROCESSBP, IDC_INS_INCIDENTBP, IDC_INS_INDICATORBP, IDC_INS_NOT_VALIDATEDBP, IDC_INS_OPAP1BP, IDC_INS_OPAP2BP, IDC_INS_OPAP3BP, IDC_INS_QUALITYBP, IDC_INS_RISKBP, IDC_INS_TEXTZONEBP et IDC_INS_VALIDATEDBP.\lang4108\par
+\lang1036 -\tab Dans la barre d\rquote outils ADDSYMBOLS, cr\'e9e les ic\'f4nes pour chaque symbole, et attribu\'e9 les IDs : ID_INS_BP_ALERT, ID_INS_BP_CRE, ID_INS_BP_CRI, ID_INS_BP_CRO, ID_INS_BP_DELAY, ID_INS_BP_DOCUMENT, ID_INS_BP_IN_PROCESS, ID_INS_BP_INCIDENT, ID_INS_BP_INDICATOR, ID_INS_BP_NOT_VALIDATED, ID_INS_BP_OPAP1, ID_INS_BP_OPAP2, ID_INS_BP_OPAP3, ID_INS_BP_QUALITY, ID_INS_BP_RISK, ID_INS_BP_TEXTZONE et ID_INS_BP_VALIDATED. D\'e9plac\'e9 ces IDs depuis le fichier zModelBPRes.h vers le fichier zFormsRes.h\lang4108\par
+-\tab Dans le menu IDR_MAINFRAME du projet zProcess32, ajout\'e9 une nouvelle entr\'e9e, appel\'e9e \'ab Symboles \'bb, dans le menu \'ab Insertion \'bb. Ajout\'e9 une entr\'e9e pour chaque symbole dans ce sous-menu, et attribu\'e9 les IDs identiques aux boutons pour chaque entr\'e9e.\par
+-\tab Dans le fichier MainFrm.cpp du projet zPropcess32, ajout\'e9 la d\'e9claration :\par
+\pard\qj\par
+\pard\li300\cf1\lang1036\f2\fs16 static\cf0  UINT BASED_CODE addSymbolsButtons[] =\par
+\{\par
+\tab ID_INS_BP_ALERT,\par
+\tab ID_INS_BP_DOCUMENT,\par
+\tab ID_INS_BP_INDICATOR,\par
+\tab ID_INS_BP_QUALITY,\par
+\tab ID_SEPARATOR,\par
+\tab ID_INS_BP_DELAY,\par
+\tab ID_SEPARATOR,\par
+\tab ID_INS_BP_IN_PROCESS,\par
+\tab ID_INS_BP_NOT_VALIDATED,\par
+\tab ID_INS_BP_VALIDATED,\par
+\tab ID_SEPARATOR,\par
+\tab ID_INS_BP_RISK,\par
+\tab ID_INS_BP_INCIDENT,\par
+\tab ID_INS_BP_CRI,\par
+\tab ID_SEPARATOR,\par
+\tab ID_INS_BP_CRE,\par
+\tab ID_INS_BP_CRO,\par
+\tab ID_SEPARATOR,\par
+\tab ID_INS_BP_OPAP1,\par
+\tab ID_INS_BP_OPAP2,\par
+\tab ID_INS_BP_OPAP3,\par
+\tab ID_SEPARATOR,\par
+\tab ID_INS_BP_TEXTZONE\par
+\};\par
+\pard\qj\lang4108\f1\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans la fonction CreateToolBars de la classe ZIMainFrame, ajout\'e9 le code suivant :\par
+\pard\qj\par
+\pard\li300\lang1036\f2\fs16 pMgr->AddToolBarResource ( MAKEINTRESOURCE( IDR_BP_ADDSYMBOLS ),\tab\tab NULL );\par
+\pard\li300\qj\lang4108\f1\fs20\par
+et\par
+\par
+\pard\li300\lang1036\f2\fs16 Title.LoadString( IDS_TB_BPSYMBOLSBUTTONS );\par
+\par
+pMgr->DefineDefaultToolBar( AFX_IDW_TOOLBAR + 22,\par
+\tab\tab\tab\tab Title,\par
+\tab\tab\tab\tab NUMELEMENTS( addSymbolsButtons ),\par
+\tab\tab\tab\tab addSymbolsButtons,\par
+\tab\tab\tab\tab CBRS_ALIGN_ANY,\par
+\tab\tab\tab\tab AFX_IDW_DOCKBAR_TOP,\par
+\tab\tab\tab\tab AFX_IDW_TOOLBAR + 13,  \cf2 // Plac\'e9 \'e0 c\'f4t\'e9 de la barre de dessin\par
+\cf0\tab\tab\tab\tab TRUE,\tab\tab\tab   \cf2 // Docking\par
+\cf0\tab\tab\tab\tab TRUE );\tab\tab   \cf2 // Show\par
+\pard\li300\qj\cf0\lang4108\f1\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans la fonction OnCustomize de la classe ZIMainFrame, ajout\'e9 le code suivant :\par
+\pard\qj\par
+\pard\li300\lang1036\f2\fs16 Title.LoadString( IDS_TB_BPSYMBOLSBUTTONS );\par
+cmdPage.DefineBtnGroup( Title, NUMELEMENTS( addSymbolsButtons ), addSymbolsButtons );\par
+\pard\li300\qj\lang4108\f1\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans la classe ZDProcessGraphModelControllerBP du projet zModelBP, ajout\'e9 les \'e9v\'e9nements suivants:\par
+\pard\qj\par
+\pard\li300\cf3\lang1036\f2\fs16 ON_COMMAND(ID_INS_BP_ALERT, OnInsAlert)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_ALERT, OnUpdateInsAlert)\par
+ON_COMMAND(ID_INS_BP_DOCUMENT, OnInsDocument)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_DOCUMENT, OnUpdateInsDocument)\par
+ON_COMMAND(ID_INS_BP_INDICATOR, OnInsIndicator)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_INDICATOR, OnUpdateInsIndicator)\par
+ON_COMMAND(ID_INS_BP_QUALITY, OnInsQuality)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_QUALITY, OnUpdateInsQuality)\par
+ON_COMMAND(ID_INS_BP_DELAY, OnInsDelay)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_DELAY, OnUpdateInsDelay)\par
+ON_COMMAND(ID_INS_BP_IN_PROCESS, OnInsInProcess)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_IN_PROCESS, OnUpdateInsInProcess)\par
+ON_COMMAND(ID_INS_BP_NOT_VALIDATED, OnInsNotValidated)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_NOT_VALIDATED, OnUpdateInsNotValidated)\par
+ON_COMMAND(ID_INS_BP_VALIDATED, OnInsValidated)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_VALIDATED, OnUpdateInsValidated)\par
+ON_COMMAND(ID_INS_BP_RISK, OnInsRisk)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_RISK, OnUpdateInsRisk)\par
+ON_COMMAND(ID_INS_BP_INCIDENT, OnInsIncident)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_INCIDENT, OnUpdateInsIncident)\par
+ON_COMMAND(ID_INS_BP_CRI, OnInsCRI)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_CRI, OnUpdateInsCRI)\par
+ON_COMMAND(ID_INS_BP_CRE, OnInsCRE)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_CRE, OnUpdateInsCRE)\par
+ON_COMMAND(ID_INS_BP_CRO, OnInsCRO)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_CRO, OnUpdateInsCRO)\par
+ON_COMMAND(ID_INS_BP_OPAP1, OnInsOPAP1)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_OPAP1, OnUpdateInsOPAP1)\par
+ON_COMMAND(ID_INS_BP_OPAP2, OnInsOPAP2)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_OPAP2, OnUpdateInsOPAP2)\par
+ON_COMMAND(ID_INS_BP_OPAP3, OnInsOPAP3)\par
+ON_UPDATE_COMMAND_UI(ID_INS_BP_OPAP3, OnUpdateInsOPAP3)\par
+ON_COMMAND(ID_INS_BP_TEXTZONE, OnInsTextZone)\par
+\pard\li300\qj ON_UPDATE_COMMAND_UI(ID_INS_BP_TEXTZONE, OnUpdateInsTextZone)\cf0\lang4108\f1\par
+\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans la classe ZDProcessGraphModelControllerBP, ajout\'e9 les fonctions : OnInsAlert, OnUpdateInsAlert, OnInsDocument, OnUpdateInsDocument, OnInsIndicator, OnUpdateInsIndicator, OnInsQuality, OnUpdateInsQuality, OnInsDelay, OnUpdateInsDelay, OnInsInProcess, OnUpdateInsInProcess, OnInsNotValidated, OnUpdateInsNotValidated, OnInsValidated, OnUpdateInsValidated, OnInsRisk, OnUpdateInsRisk, OnInsIncident, OnUpdateInsIncident, OnInsCRI, OnUpdateInsCRI, OnInsCRE, OnUpdateInsCRE, OnInsCRO, OnUpdateInsCRO, OnInsOPAP1, OnUpdateInsOPAP1, OnInsOPAP2, OnUpdateInsOPAP2, OnInsOPAP3, OnUpdateInsOPAP3, OnInsTextZone et OnUpdateInsTextZone.\par
+\pard\fi-360\li720\qj -\tab Dans les classes ZVSymbol et ZVLinkSymbol, ajout\'e9 la fonction virtuelle IsGeneric.\par
+-\tab Dans le projet zModel, ajout\'e9 la classe ZUBuildGenericSymbolNewName, pour permettre la g\'e9n\'e9ration de noms appropri\'e9s aux symboles g\'e9n\'e9riques.\par
+-\tab Dans la fonction InsertSymbol de la classe ZDProcessGraphModelController, ajout\'e9 / modifi\'e9 le code suivant :\par
+\pard\qj\par
+\pard\li300\cf2\lang1036\f2\fs16 // JMR-MODIF - Le 22 mars 2006 - Teste si le symbole est un symbole g\'e9n\'e9rique.\par
+\cf1 if\cf0  ( ( (ZBSymbol*)pComp )->IsGeneric() == TRUE )\par
+\{\par
+\tab\cf2 // JMR-MODIF - Le 22 mars 2006 - Si le symbole est g\'e9n\'e9rique, attribue un autre type de nom.\par
+\cf0\tab ZUBuildGenericSymbolNewName BuildNewName;\par
+\tab ( (ZBSymbol*)pComp )->SetSymbolName( BuildNewName.GetNextAvailableSymbolName\par
+                                                                      ( *GetRootModel() ) );\par
+\}\par
+\cf1 else\par
+\cf0\{\par
+\tab\cf2 // Retreive the next available name\par
+\cf0\tab ZUBuildSymbolNewName BuildNewName;\par
+\tab ( (ZBSymbol*)pComp )->SetSymbolName( BuildNewName.GetNextAvailableSymbolName\par
+                                                                      ( *GetRootModel() ) );\par
+\}\par
+\pard\li300\qj\lang4108\f1\fs20\par
+\pard\fi-360\li720\qj\tx720 -\tab Dans la fonction RefExist de la classe ZUCheckSymbolConsistency (Projet zModelBP), ajout\'e9 le code suivant, afin d\rquote\'e9viter que les symboles g\'e9n\'e9riques soient inclus dans les tests de v\'e9rifications :\par
+\pard\qj\par
+\pard\li300\cf1\lang1036\f2\fs16 if\cf0  ( ref == -1 )\par
+\{\par
+\tab\cf1 return\cf0  \cf1 false\cf0 ;\par
+\}\par
+\pard\lang4108\f3\fs17\par
+}
+ 

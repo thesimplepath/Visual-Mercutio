@@ -1,0 +1,194 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C42FE7E0-56D5-4307-A2E2-B5F51A9F5C0B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReportsTool</RootNamespace>
+    <AssemblyName>ReportsTool</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ReportsToolCulture, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Culture\bin\Debug\ReportsToolCulture.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Conversions\BaseConversions.cs" />
+    <Compile Include="Conversions\ProcessReportToWord.cs" />
+    <Compile Include="Conversions\RulebookToWord.cs" />
+    <Compile Include="Culture\Culture.cs" />
+    <Compile Include="FilesManager\ConfigFile.cs" />
+    <Compile Include="Forms\Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Style.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Style.Designer.cs">
+      <DependentUpon>Style.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFrame.Designer.cs">
+      <DependentUpon>MainFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Report.fr-CH.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Style.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Style.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFrame.de-DE.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFrame.en-GB.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFrame.fr-CH.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFrame.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\text-editor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\gnome-dev-floppy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\gnome-fs-directory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\gnome-mime-application-msword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\gnome-settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\stock_new-html.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\stock_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\stock_exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\gnome-run.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\stock_task-assigned-to.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\gnome-window-manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\stock_font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\stock_print-layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\stock_print-options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\config-language.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Français.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Deutsh.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\English.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
