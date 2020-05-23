@@ -323,7 +323,7 @@ if (longExpression      +
 When strictly following a rule makes your code look bad, feel free to break it. If there is a dispute in any given source code file, the maintainer has the final say on the accepted style.
 
 # Annexe
-##Modules explanation
+## Modules explanation
 The Visual Mercutio modules are organized as follow:
 
 ### Include
