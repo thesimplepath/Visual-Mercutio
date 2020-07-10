@@ -1,3 +1,6 @@
 [submodule "Third party/libExpat"]
 	path = Third party/libExpat
 	url = https://github.com/libexpat/libexpat
+[submodule "Third party/Stingray Studio"]
+	path = Third party/Stingray Studio
+	url = https://github.com/Jeanmilost/StingrayStudio.git
