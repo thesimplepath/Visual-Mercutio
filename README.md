@@ -12,7 +12,7 @@ Also several third party libraries are required:
 - **CJ60Lib**. The CodeJockeys library is an extended component set for MFC applications. This library is no longer developed, but you can find the source code in the Third Party directory.
 - **easysoap++**. The easysoap+ + is a c++ library for SOAP (Simple Object Access Protocol). The project seems no longer active since 2006, however a working copy may be found in the Third Party directory. Further info about this project may be found here: http://easysoap.sourceforge.net
 - **expat**. Expat is a c library for parsing XML. A submodule to the official project may be found in the Third Party directory. Further info about this project may be found here: https://libexpat.github.io/
-- **Stingray Studio**. This library isn't open source, for that reason it cannot be found in the Third Party directory. Please contact the developer website to get a copy: https://www.roguewave.com/products-services/stingray/components-demos
+- **Stingray Studio**. This library isn't open source, for that reason it cannot be found in the Third Party directory. Please contact the developer website to get a copy: https://www.roguewave.com/
 - Additionaly you may need the following DLLs: ddao35.dll, msvcp71.dll, msvcr71.dll and vc6-re200l.dll
 
 ## Compilation
