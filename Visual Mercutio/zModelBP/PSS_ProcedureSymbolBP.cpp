@@ -292,7 +292,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet
         AddNewExtApp();
 
     // the "Name", "Description" and "Reference" properties of the "General" group can be found in the base class.
-    // The "Extrenal Files" and "External Apps" properties are also available from there
+    // The "External Files" and "External Apps" properties are also available from there
     if (!PSS_Symbol::FillProperties(propSet, numericValues, groupValues))
         return false;
 
@@ -385,7 +385,7 @@ bool PSS_ProcedureSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet
     }
 
     // NOTE BE CAREFUL the previous rules architecture below has now changed, and is designed as controls, because
-    // they became obsolete after the new rules system was implemented since november 2006. But as the two architectures
+    // they became obsolete after the new rules system was implemented since November 2006. But as the two architectures
     // are too different one from the other, and the both needed to cohabit together, for compatibility reasons with the
     // previous serialization process, the texts referencing to the previous architecture were modified, and the "Rules"
     // words were replaced by "Controls" in the text resources, however the code side was not updated, due to a too huge
@@ -416,49 +416,38 @@ bool PSS_ProcedureSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet
     propDesc.LoadString(IDS_Z_RULE_LIST_DESC);
 
     CString finalPropName;
-    int     index = 0;
     int     count = GetRuleCount() + 1;
 
-    // iterate through all controls properties, and define at least one control
-    for (int i = 0; i < count; ++i)
-    {
-        index = i;
-
-        finalPropName.Format(_T("%s %d"), propName, i + 1);
-
-        // the "Control x" property of the "Controls" group
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_RULELIST,
-                                     finalPropName,
-                                     M_Rule_List_ID + (i * g_MaxRuleListSize),
-                                     propDesc,
-                                     GetRuleAt(i),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pValueArray));
-
-        pProp->EnableDragNDrop();
-        propSet.Add(pProp.get());
-        pProp.release();
-    }
-
-    // continue to add empty controls until reaching the maximum size
-    for (int i = index; i < g_MaxRuleListSize; ++i)
+    // iterate through all control properties, and define at least one control
+    for (int i = 0; i < g_MaxRuleListSize; ++i)
     {
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
-        // the "Control X" of the "Controls" group, but it is empty and not shown
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_RULELIST,
-                                     finalPropName,
-                                     M_Rule_List_ID + (i * g_MaxRuleListSize),
-                                     propDesc,
-                                     _T(""),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pValueArray));
+        // add control, if count is reached continue to add empty control until reaching the maximum size
+        if (i < count)
+            // the "Control x" property of the "Controls" group
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_RULELIST,
+                                         finalPropName,
+                                         M_Rule_List_ID + (i * g_MaxRuleListSize),
+                                         propDesc,
+                                         GetRuleAt(i),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
+        else
+            // the "Control X" of the "Controls" group, but it is empty and not shown
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_RULELIST,
+                                         finalPropName,
+                                         M_Rule_List_ID + (i * g_MaxRuleListSize),
+                                         propDesc,
+                                         _T(""),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         false,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -674,48 +663,36 @@ bool PSS_ProcedureSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet
     propName.LoadString(IDS_Z_TASK_LIST_NAME);
     propDesc.LoadString(IDS_Z_TASK_LIST_DESC);
 
-    index = 0;
-
-    // iterate through all tasks properties, and define at least one task
-    for (int i = 0; i < count; ++i)
-    {
-        index = i;
-
-        finalPropName.Format(_T("%s %d"), propName, i + 1);
-
-        // the "Task x" property of the "Tasks" group
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_TASKLIST,
-                                     finalPropName,
-                                     M_Task_List_ID + (i * g_MaxTaskListSize),
-                                     propDesc,
-                                     GetTaskAt(i),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pValueArray));
-
-        pProp->EnableDragNDrop();
-        propSet.Add(pProp.get());
-        pProp.release();
-    }
-
-    // continue to add empty tasks until reaching the maximum size
-    for (int i = index; i < g_MaxTaskListSize; ++i)
+    // iterate through all task properties, and define at least one task
+    for (int i = 0; i < g_MaxTaskListSize; ++i)
     {
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
-        // the "Task x" property of the "Tasks" group, but it is empty and not shown
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_TASKLIST,
-                                     finalPropName,
-                                     M_Task_List_ID + (i * g_MaxTaskListSize),
-                                     propDesc,
-                                     _T(""),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pValueArray));
+        // add task, if count is reached continue to add empty task until reaching the maximum size
+        if (i < count)
+            // the "Task x" property of the "Tasks" group
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_TASKLIST,
+                                         finalPropName,
+                                         M_Task_List_ID + (i * g_MaxTaskListSize),
+                                         propDesc,
+                                         GetTaskAt(i),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
+        else
+            // the "Task x" property of the "Tasks" group, but empty and not shown
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_TASKLIST,
+                                         finalPropName,
+                                         M_Task_List_ID + (i * g_MaxTaskListSize),
+                                         propDesc,
+                                         _T(""),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         false,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -736,48 +713,36 @@ bool PSS_ProcedureSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet
     propName.LoadString(IDS_Z_DECISION_LIST_NAME);
     propDesc.LoadString(IDS_Z_DECISION_LIST_DESC);
 
-    index = 0;
-
     // iterate through all decision properties, and define at least one decision
-    for (int i = 0; i < count; ++i)
-    {
-        index = i;
-
-        finalPropName.Format(_T("%s %d"), propName, i + 1);
-
-        // the "Decision x" property of the "Decisions" group
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_DECISIONLIST,
-                                     finalPropName,
-                                     M_Decision_List_ID + (i * g_MaxDecisionListSize),
-                                     propDesc,
-                                     GetDecisionAt(i),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pValueArray));
-
-        pProp->EnableDragNDrop();
-        propSet.Add(pProp.get());
-        pProp.release();
-    }
-
-    // continue to add empty decisions until the maximum size
-    for (int i = index; i < g_MaxDecisionListSize; ++i)
+    for (int i = 0; i < g_MaxDecisionListSize; ++i)
     {
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
-        // the "Decision x" property of the "Decisions" group, but it is empty and not shown
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_DECISIONLIST,
-                                     finalPropName,
-                                     M_Decision_List_ID + (i * g_MaxDecisionListSize),
-                                     propDesc,
-                                     _T(""),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pValueArray));
+        // add decision, if count is reached continue to add empty decision until reaching the maximum size
+        if (i < count)
+            // the "Decision x" property of the "Decisions" group
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_DECISIONLIST,
+                                         finalPropName,
+                                         M_Decision_List_ID + (i * g_MaxDecisionListSize),
+                                         propDesc,
+                                         GetDecisionAt(i),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
+        else
+            // the "Decision x" property of the "Decisions" group, but it is empty and not shown
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_DECISIONLIST,
+                                         finalPropName,
+                                         M_Decision_List_ID + (i * g_MaxDecisionListSize),
+                                         propDesc,
+                                         _T(""),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         false,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -1005,13 +970,9 @@ bool PSS_ProcedureSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet
         // necessary to check if the initial combination is correct
         CheckInitialCombination();
 
-        index = 0;
-
         // iterate through all combination properties
         for (int i = 0; i < count; ++i)
         {
-            index = i;
-
             finalPropTitle.Format(_T("%s (%d)"), propTitle, i + 1);
 
             propName.LoadString(IDS_Z_COMBINATION_NAME_NAME);
@@ -1804,7 +1765,7 @@ int PSS_ProcedureSymbolBP::GetLeavingDownDeliverable(CODEdgeArray& edges)
 
                 // copy additional edges to the main edges
                 for (int j = 0; j < edgeCount; ++j)
-                    // get the link 
+                    // get the link
                     edges.AddEdge(additionalEdges.GetAt(j));
             }
         }

@@ -287,7 +287,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
         AddNewExtFile();
 
     // the "Name", "Description" and "Reference" properties of the "General" group can be found in the base class.
-    // The "Extrenal Files" and "External Apps" properties are also available from there
+    // The "External Files" and "External Apps" properties are also available from there
     if (!PSS_LinkSymbol::FillProperties(propSet, numericValues, groupValues))
         return false;
 
@@ -379,7 +379,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
     }
 
     // NOTE BE CAREFUL the previous rules architecture below has now changed, and is designed as controls, because
-    // they became obsolete after the new rules system was implemented since november 2006. But as the two architectures
+    // they became obsolete after the new rules system was implemented since November 2006. But as the two architectures
     // are too different one from the other, and the both needed to cohabit together, for compatibility reasons with the
     // previous serialization process, the texts referencing to the previous architecture were modified, and the "Rules"
     // words were replaced by "Controls" in the text resources, however the code side was not updated, due to a too huge
@@ -401,7 +401,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
 
     CString propTitle;
     propTitle.LoadString(IDS_ZS_BP_PROP_RULELST_TITLE);
-    CStringArray* pArrayOfValues = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
+    CStringArray* pValueArray = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
     CString propName;
     propName.LoadString(IDS_Z_RULE_LIST_NAME);
@@ -412,48 +412,37 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
     CString finalPropName;
 
     int count = GetRuleCount() + 1;
-    int index = 0;
 
-    // iterate through all tasks properties, and define at least one task
-    for (int i = 0; i < count; ++i)
-    {
-        index = i;
-
-        finalPropName.Format(_T("%s %d"), propName, i + 1);
-
-        // the "Control x" property of the "Controls" group
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_RULELIST,
-                                     finalPropName,
-                                     M_Rule_List_ID + (i * g_MaxRuleListSize),
-                                     propDesc,
-                                     GetRuleAt(i),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pArrayOfValues));
-
-        pProp->EnableDragNDrop();
-        propSet.Add(pProp.get());
-        pProp.release();
-    }
-
-    // continue to add empty controls until the maximum size
-    for (int i = index; i < g_MaxRuleListSize; ++i)
+    // iterate through all control properties, and define at least one control
+    for (int i = 0; i < g_MaxRuleListSize; ++i)
     {
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
-        // the "Control X" of the "Controls" group, but it is empty and not shown
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_RULELIST,
-                                     finalPropName,
-                                     M_Rule_List_ID + (i * g_MaxRuleListSize),
-                                     propDesc,
-                                     _T(""),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pArrayOfValues));
+        // add control, if count is reached continue to add empty control until reaching the maximum size
+        if (i < count)
+            // the "Control x" property of the "Controls" group
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_RULELIST,
+                                         finalPropName,
+                                         M_Rule_List_ID + (i * g_MaxRuleListSize),
+                                         propDesc,
+                                         GetRuleAt(i),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
+        else
+            // the "Control X" of the "Controls" group, but it is empty and not shown
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_RULELIST,
+                                         finalPropName,
+                                         M_Rule_List_ID + (i * g_MaxRuleListSize),
+                                         propDesc,
+                                         _T(""),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         false,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -467,13 +456,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
     CString riskTitle;
     riskTitle.LoadString(IDS_ZS_BP_PROP_RISK_TITLE);
 
-    index = 0;
-
     // iterate through the risks and add their properties
     for (int i = 0; i < GetRiskCount(); ++i)
     {
-        index = i;
-
         CString finalRiskTitle;
         finalRiskTitle.Format(_T("%s (%d)"), riskTitle, i + 1);
 
@@ -665,55 +650,43 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
     if (!pTextItemProps)
         return false;
 
-    count          = GetTextItemCount() + 1;
+    count       = GetTextItemCount() + 1;
     propTitle.LoadString(IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE);
-    pArrayOfValues = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
+    pValueArray = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
     propName.LoadString(IDS_Z_TEXTITEM_LIST_NAME);
     propDesc.LoadString(IDS_Z_TEXTITEM_LIST_DESC);
 
-    index = 0;
-
-    // iterate through all text items properties, and define at least one text item
-    for (int i = 0; i < count; ++i)
-    {
-        index = i;
-
-        finalPropName.Format(_T("%s %d"), propName, i + 1);
-
-        // the "Info x" property of the "Info list" group
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_TEXTITEMLIST,
-                                     finalPropName,
-                                     M_TextItem_List_ID + (i * g_MaxTextItemListSize),
-                                     propDesc,
-                                     GetTextItemAt(i),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pArrayOfValues));
-
-        pProp->EnableDragNDrop();
-        propSet.Add(pProp.get());
-        pProp.release();
-    }
-
-    // continue to add empty text items until reaching the maximum size
-    for (int i = index; i < g_MaxTextItemListSize; ++i)
+    // iterate through all info properties, and define at least one info
+    for (int i = 0; i < g_MaxTextItemListSize; ++i)
     {
         finalPropName.Format(_T("%s %d"), propName, i + 1);
 
-        // the "Info x" property of the "Info list" group, but it is empty and not shown
-        pProp.reset(new PSS_Property(propTitle,
-                                     ZS_BP_PROP_TEXTITEMLIST,
-                                     finalPropName,
-                                     M_TextItem_List_ID + (i * g_MaxTextItemListSize),
-                                     propDesc,
-                                     _T(""),
-                                     PSS_Property::IE_T_EditIntelli,
-                                     false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
-                                     pArrayOfValues));
+        // add info, if count is reached continue to add empty info until reaching the maximum size
+        if (i < count)
+            // the "Info x" property of the "Info list" group
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_TEXTITEMLIST,
+                                         finalPropName,
+                                         M_TextItem_List_ID + (i * g_MaxTextItemListSize),
+                                         propDesc,
+                                         GetTextItemAt(i),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         true,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
+        else
+            // the "Info x" property of the "Info list" group, but it is empty and not shown
+            pProp.reset(new PSS_Property(propTitle,
+                                         ZS_BP_PROP_TEXTITEMLIST,
+                                         finalPropName,
+                                         M_TextItem_List_ID + (i * g_MaxTextItemListSize),
+                                         propDesc,
+                                         _T(""),
+                                         PSS_Property::IE_T_EditIntelli,
+                                         false,
+                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         pValueArray));
 
         pProp->EnableDragNDrop();
         propSet.Add(pProp.get());
@@ -3389,7 +3362,7 @@ bool PSS_DeliverableLinkSymbolBP::DoProcedureDoorConnection(PSS_ProcedureSymbolB
 
             if (leavingLinkCount > 0)
             {
-                // Get the link 
+                // get the link
                 IODEdge*                     pIEdge       = leavingEdges.GetAt(0);
                 PSS_DeliverableLinkSymbolBP* pLinkIndexed =
                         dynamic_cast<PSS_DeliverableLinkSymbolBP*>(static_cast<CODLinkComponent*>(pIEdge));
@@ -3787,7 +3760,7 @@ void PSS_DeliverableLinkSymbolBP::AdjustPoints()
         int            spacing          = 0;
         CODComponent*  pParentLinkShape = pLinkShape->GetParent();
         CODIntProperty propSpacing;
-        
+
         if (pParentLinkShape)
             spacing = (pParentLinkShape->GetProperty(OD_PROP_LINK_SPACING, propSpacing) ?
                                                      propSpacing.GetValue() : odg_nDefaultLinkSpacing);
