@@ -1133,12 +1133,12 @@ END
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#include ""afxres.h""\r\n"
     "#include ""zFormsRes\\zFormsRes.h""\r\n"
@@ -1150,7 +1150,7 @@ BEGIN
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "#include ""afxres.rc""  \t// Standard components\r\n"
     "#include ""afxprint.rc""\t// printing/print preview resources\r\n"
@@ -1158,18 +1158,18 @@ BEGIN
     "\0"
 END
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "#include ""res\\planfin.rc2""  // non-App Studio edited resources\r\n"
     "\r\n"
@@ -1653,100 +1653,100 @@ END
 IDD_OD_CANVAS_SIZE_PAGE DLGINIT
 BEGIN
     IDC_OD_UNIT_OF_MEASURE, 0x403, 7, 0
-0x6e49, 0x6863, 0x7365, "\000" 
+0x6e49, 0x6863, 0x7365, "\000"
     IDC_OD_UNIT_OF_MEASURE, 0x403, 5, 0
-0x6546, 0x7465, "\000" 
+0x6546, 0x7465, "\000"
     IDC_OD_UNIT_OF_MEASURE, 0x403, 6, 0
-0x6159, 0x6472, 0x0073, 
+0x6159, 0x6472, 0x0073,
     IDC_OD_UNIT_OF_MEASURE, 0x403, 6, 0
-0x694d, 0x656c, 0x0073, 
+0x694d, 0x656c, 0x0073,
     IDC_OD_UNIT_OF_MEASURE, 0x403, 12, 0
-0x694d, 0x6c6c, 0x6d69, 0x7465, 0x7265, 0x0073, 
+0x694d, 0x6c6c, 0x6d69, 0x7465, 0x7265, 0x0073,
     IDC_OD_UNIT_OF_MEASURE, 0x403, 12, 0
-0x6543, 0x746e, 0x6d69, 0x7465, 0x7265, 0x0073, 
+0x6543, 0x746e, 0x6d69, 0x7465, 0x7265, 0x0073,
     IDC_OD_UNIT_OF_MEASURE, 0x403, 7, 0
-0x654d, 0x6574, 0x7372, "\000" 
+0x654d, 0x6574, 0x7372, "\000"
     IDC_OD_UNIT_OF_MEASURE, 0x403, 11, 0
-0x694b, 0x6f6c, 0x656d, 0x6574, 0x7372, "\000" 
+0x694b, 0x6f6c, 0x656d, 0x6574, 0x7372, "\000"
     0
 END
 
 IDD_OD_COORDINATE_MAPPING_PAGE DLGINIT
 BEGIN
     IDC_OD_MAPPING_MODE, 0x403, 8, 0
-0x4d4d, 0x545f, 0x5845, 0x0054, 
+0x4d4d, 0x545f, 0x5845, 0x0054,
     IDC_OD_MAPPING_MODE, 0x403, 15, 0
-0x4d4d, 0x415f, 0x494e, 0x4f53, 0x5254, 0x504f, 0x4349, "\000" 
+0x4d4d, 0x415f, 0x494e, 0x4f53, 0x5254, 0x504f, 0x4349, "\000"
     IDC_OD_MAPPING_MODE, 0x403, 13, 0
-0x4d4d, 0x495f, 0x4f53, 0x5254, 0x504f, 0x4349, "\000" 
+0x4d4d, 0x495f, 0x4f53, 0x5254, 0x504f, 0x4349, "\000"
     IDC_OD_MAPPING_MODE, 0x403, 12, 0
-0x4d4d, 0x485f, 0x4d49, 0x5445, 0x4952, 0x0043, 
+0x4d4d, 0x485f, 0x4d49, 0x5445, 0x4952, 0x0043,
     IDC_OD_MAPPING_MODE, 0x403, 12, 0
-0x4d4d, 0x4c5f, 0x4d4f, 0x5445, 0x4952, 0x0043, 
+0x4d4d, 0x4c5f, 0x4d4f, 0x5445, 0x4952, 0x0043,
     IDC_OD_MAPPING_MODE, 0x403, 13, 0
-0x4d4d, 0x485f, 0x4549, 0x474e, 0x494c, 0x4853, "\000" 
+0x4d4d, 0x485f, 0x4549, 0x474e, 0x494c, 0x4853, "\000"
     IDC_OD_MAPPING_MODE, 0x403, 13, 0
-0x4d4d, 0x4c5f, 0x454f, 0x474e, 0x494c, 0x4853, "\000" 
+0x4d4d, 0x4c5f, 0x454f, 0x474e, 0x494c, 0x4853, "\000"
     IDC_OD_MAPPING_MODE, 0x403, 9, 0
-0x4d4d, 0x545f, 0x4957, 0x5350, "\000" 
+0x4d4d, 0x545f, 0x4957, 0x5350, "\000"
     0
 END
 
 IDD_OD_DRAWING_SCALE DLGINIT
 BEGIN
     IDC_OD_SCALEFROM_UNITS, 0x403, 7, 0
-0x6e49, 0x6863, 0x7365, "\000" 
+0x6e49, 0x6863, 0x7365, "\000"
     IDC_OD_SCALEFROM_UNITS, 0x403, 5, 0
-0x6546, 0x7465, "\000" 
+0x6546, 0x7465, "\000"
     IDC_OD_SCALEFROM_UNITS, 0x403, 6, 0
-0x6159, 0x6472, 0x0073, 
+0x6159, 0x6472, 0x0073,
     IDC_OD_SCALEFROM_UNITS, 0x403, 6, 0
-0x694d, 0x656c, 0x0073, 
+0x694d, 0x656c, 0x0073,
     IDC_OD_SCALEFROM_UNITS, 0x403, 12, 0
-0x694d, 0x6c6c, 0x6d69, 0x7465, 0x7265, 0x0073, 
+0x694d, 0x6c6c, 0x6d69, 0x7465, 0x7265, 0x0073,
     IDC_OD_SCALEFROM_UNITS, 0x403, 12, 0
-0x6543, 0x746e, 0x6d69, 0x7465, 0x7265, 0x0073, 
+0x6543, 0x746e, 0x6d69, 0x7465, 0x7265, 0x0073,
     IDC_OD_SCALEFROM_UNITS, 0x403, 7, 0
-0x654d, 0x6574, 0x7372, "\000" 
+0x654d, 0x6574, 0x7372, "\000"
     IDC_OD_SCALEFROM_UNITS, 0x403, 11, 0
-0x694b, 0x6f6c, 0x656d, 0x6574, 0x7372, "\000" 
+0x694b, 0x6f6c, 0x656d, 0x6574, 0x7372, "\000"
     IDC_OD_SCALETO_UNITS, 0x403, 7, 0
-0x6e49, 0x6863, 0x7365, "\000" 
+0x6e49, 0x6863, 0x7365, "\000"
     IDC_OD_SCALETO_UNITS, 0x403, 5, 0
-0x6546, 0x7465, "\000" 
+0x6546, 0x7465, "\000"
     IDC_OD_SCALETO_UNITS, 0x403, 6, 0
-0x6159, 0x6472, 0x0073, 
+0x6159, 0x6472, 0x0073,
     IDC_OD_SCALETO_UNITS, 0x403, 6, 0
-0x694d, 0x656c, 0x0073, 
+0x694d, 0x656c, 0x0073,
     IDC_OD_SCALETO_UNITS, 0x403, 12, 0
-0x694d, 0x6c6c, 0x6d69, 0x7465, 0x7265, 0x0073, 
+0x694d, 0x6c6c, 0x6d69, 0x7465, 0x7265, 0x0073,
     IDC_OD_SCALETO_UNITS, 0x403, 12, 0
-0x6543, 0x746e, 0x6d69, 0x7465, 0x7265, 0x0073, 
+0x6543, 0x746e, 0x6d69, 0x7465, 0x7265, 0x0073,
     IDC_OD_SCALETO_UNITS, 0x403, 7, 0
-0x654d, 0x6574, 0x7372, "\000" 
+0x654d, 0x6574, 0x7372, "\000"
     IDC_OD_SCALETO_UNITS, 0x403, 11, 0
-0x694b, 0x6f6c, 0x656d, 0x6574, 0x7372, "\000" 
+0x694b, 0x6f6c, 0x656d, 0x6574, 0x7372, "\000"
     0
 END
 
 IDD_OD_ZOOM DLGINIT
 BEGIN
     IDC_OD_MAGNIFICATION, 0x403, 3, 0
-0x3532, "\000" 
+0x3532, "\000"
     IDC_OD_MAGNIFICATION, 0x403, 3, 0
-0x3035, "\000" 
+0x3035, "\000"
     IDC_OD_MAGNIFICATION, 0x403, 3, 0
-0x3537, "\000" 
+0x3537, "\000"
     IDC_OD_MAGNIFICATION, 0x403, 4, 0
-0x3031, 0x0030, 
+0x3031, 0x0030,
     IDC_OD_MAGNIFICATION, 0x403, 4, 0
-0x3531, 0x0030, 
+0x3531, 0x0030,
     IDC_OD_MAGNIFICATION, 0x403, 4, 0
-0x3032, 0x0030, 
+0x3032, 0x0030,
     IDC_OD_MAGNIFICATION, 0x403, 4, 0
-0x3033, 0x0030, 
+0x3033, 0x0030,
     IDC_OD_MAGNIFICATION, 0x403, 4, 0
-0x3034, 0x0030, 
+0x3034, 0x0030,
     0
 END
 
@@ -3670,7 +3670,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDR_MAINFRAME           "ProcessSoft Visual Mercutio 2007 SP1 Release 2"
+    IDR_MAINFRAME           "ProcessSoft Visual Mercutio 2021 SP1 Release 1"
     IDS_APPWKS_PRESTATIONS  "Prestations"
     IDR_MDIPAGE             "\nPLF\nFormulaires\nFormulaires (*.plf)\n.plf\nPLF.Document\nFormulaires PLF\n0\n7"
     IDS_PRS_ADDPRESTATION   "Ajouter une prestation enfant dans la sélection"
@@ -3679,14 +3679,14 @@ BEGIN
     IDS_PRS_PROPERTIES      "Propriétés"
     IDR_DEFINITIONFILEFIELD "\nPLD\nPLD Document \nDocument PLD (*.pld)\n.pld\nPLD.Document\nPLD\n0\n24"
     IDR_PROCESS             "\nWLF\nFormulaires WorkFlow\nFormulaires WorkFlow (*.wlf)\n.wlf\nWLF.Document\nFormulaires WorkFlow WLF\n0\n27"
-    IDS_CONF_SAVE_PRESTATIONS_DOC 
+    IDS_CONF_SAVE_PRESTATIONS_DOC
                             "La définition des prestations a changé. Voulez-vous sauvegarder les modifications apportées?"
-    IDS_UNABLETOSAVE_PRESTATIONS 
+    IDS_UNABLETOSAVE_PRESTATIONS
                             "Le fichier de définition des prestations <%s> ne peut pas être sauvegardé. Veuillez vérifier que le fichier n'est pas en lecture seule."
-    IDS_FAILSAVE_PRESTATIONSFILE 
+    IDS_FAILSAVE_PRESTATIONSFILE
                             "Un problème s'est produit lors de la sauvegarde de la définition des prestations."
     IDR_WORKSPACE_REG       "\nKLF\nProjet Mercutio\nProjet Mercutio (*.klf)\n.klf\nKLF.Document\nProjet Mercutio Conceptor\n1\n57"
-    IDS_FAILOPEN_PRESTATIONSFILE 
+    IDS_FAILOPEN_PRESTATIONSFILE
                             "Un problème s'est produit lors de l'ouverture de la définition des prestations."
 END
 
@@ -3694,20 +3694,20 @@ STRINGTABLE
 BEGIN
     IDS_TB_BPSYMBOLSBUTTONS "Symboles"
     IDS_DIRECTORY_MISSING   "Un emplacement est requis."
-    IDS_FAILOPEN_PRESTATIONSFILEFILE 
+    IDS_FAILOPEN_PRESTATIONSFILEFILE
                             "Un problème s'est produit lors de l'ouverture des définitions des prestations."
     IDS_BUILDNUMBER         "Build 200703"
     IDR_HISTORYFILEFIELD    "\nPLH\nPLH Document \nDocument PLH (*.plh)\n.plh\nPLH.Document\nPLH\n0\n26"
-    IDS_MERCUTIOREP_SELECTPROCESS 
+    IDS_MERCUTIOREP_SELECTPROCESS
                             "Veuillez sélectionner le processus pour le rapport Mercutio"
     IDS_RENAMEACTIVITY      "Renommer une activité"
     IDR_FEEDFILEFIELD       "\nFLF\nFLF Document \nDocument FLF (*.flf)\n.flf\nFLF.Document\nFLF\n0\n25"
     IDS_CHOOSEDIRECTORY     "Choisir un répertoire"
-    IDS_FAILSAVE_USERGROUPFILE 
+    IDS_FAILSAVE_USERGROUPFILE
                             "Un problème s'est produit lors de la sauvegarde de la définition des groupes et des équipes."
-    IDS_FAILSAVE_INTERNALDEFINITION 
+    IDS_FAILSAVE_INTERNALDEFINITION
                             "Un problème s'est produit lors de la sauvegarde des paramètres internes de l'application."
-    IDS_FAILSAVE_OPENDOCUMENT 
+    IDS_FAILSAVE_OPENDOCUMENT
                             "Un problème s'est produit lors de la sauvegarde d'un document ouvert."
 END
 
@@ -3869,10 +3869,10 @@ BEGIN
     ID_SUBMENU1_MOVE        "Déplacer l'élément."
     ID_PAGE_PREV2           "Passer à la page précédente.\nPage précédente"
     ID_SUBMENU2_FORMAT      "Changer le format du champ que vous êtes en train de modifier."
-    ID_SUBMENU2_SETPREDVALUE 
+    ID_SUBMENU2_SETPREDVALUE
                             "Il existe une liste de valeure par défaut dans le système."
     ID_SUBMENU1_DISPLAYCODE "Insérer une activité.\nInsérer une activité"
-    ID_SUBMENU1_DISPLAYNUMCODE 
+    ID_SUBMENU1_DISPLAYNUMCODE
                             "Tracer un lien orthogonal (diamant).\nTracer un lien orthogonal (diamant)"
     ID_SUBMENU1_FONTCHANGE  "Tracer un lien orthogonal (cercle).\nTracer un lien orthogonal (cercle)"
 END
@@ -3880,21 +3880,21 @@ END
 STRINGTABLE
 BEGIN
     ID_OD_LINKARROW_SYMBOLS "Tracer un lien événement.\nTracer un lien événement"
-    ID_OD_LINKCIRCLE_O_SYMBOLS 
+    ID_OD_LINKCIRCLE_O_SYMBOLS
                             "Tracer un lien (cercle).\nTracer un lien (cercle)"
-    ID_OD_LINKCIRCLE_SYMBOLS 
+    ID_OD_LINKCIRCLE_SYMBOLS
                             "Tracer un lien (cercle).\nTracer un lien (cercle)"
     ID_OD_LINKDASH_O_SYMBOLS "Tracer une dépendance.\nTracer une dépendance"
     ID_OD_LINKDASH_SYMBOLS  "Tracer une dépendance.\nTracer une dépendance"
-    ID_OD_LINKDIAMOND_O_SYMBOLS 
+    ID_OD_LINKDIAMOND_O_SYMBOLS
                             "Tracer un lien (diamant).\nTracer un lien (diamant)"
-    ID_OD_LINKDIAMOND_SYMBOLS 
+    ID_OD_LINKDIAMOND_SYMBOLS
                             "Tracer un lien (diamant).\nTracer un lien (diamant)"
-    ID_WKF_ACTIVITY_PROPERTY 
+    ID_WKF_ACTIVITY_PROPERTY
                             "Modifier les paramètres de l'activité.\nParamètres de l'activité"
-    ID_WKF_BASEACTIVITY_CREATE_DEFPROP 
+    ID_WKF_BASEACTIVITY_CREATE_DEFPROP
                             "Initialiser les paramètres par défaut.\nInitialiser les paramètres par défaut"
-    ID_WKF_CLEARUSEFORWORKFLOW 
+    ID_WKF_CLEARUSEFORWORKFLOW
                             "Enlever la référence pour le workflow.\nEnlever la référence du workflow"
     ID_WKF_GENERATEMODEL    "Générer le workflow.\nGénérer le workflow"
     ID_WKF_PROCESS_PROPERTY "Modifier les paramètres du processus.\nParamètres du processus"
@@ -3913,29 +3913,29 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_VIEW_NAVIGATIONTOOLBAR 
+    ID_VIEW_NAVIGATIONTOOLBAR
                             "Montrer ou cacher la barre d'outils de navigation"
     ID_VIEW_LAYOUTTOOLBAR   "Montrer ou cacher la barre d'outils d'organisation des composants"
-    ID_VIEW_STRUCTURETOOLBAR 
+    ID_VIEW_STRUCTURETOOLBAR
                             "Montrer ou cacher la barre d'outils de structure des objets"
     ID_CHANGE_FILEVERSION   "Modifier le numéro de version du fichier\nModifier numéro de version"
     ID_VIEW_TIPOFDAY        "Voir/Cacher la fenêtre des astuces.\nAstuces"
     ID_VIEW_HELPCONTEXT     "Voir/Cacher la fenêtre des aides contextuelles.\nQue dois-je faire"
-    ID_WKF_MAINRES_RESPONSIBLE 
+    ID_WKF_MAINRES_RESPONSIBLE
                             "Définir la ressource principale comme le responsable.\nResponsable (ressource principale)"
-    ID_WKF_MAINRES_ATTRIBUTED 
+    ID_WKF_MAINRES_ATTRIBUTED
                             "Définir les ressources principales comme étant attribuées.\nAttribuée (ressource principale)"
-    ID_WKF_MAINRES_FROMACTIVITY 
+    ID_WKF_MAINRES_FROMACTIVITY
                             "Définir les ressources principales comme étant celle d'une activité précédente.\nProvenant d'une activité (ressource principale)"
     ID_WKF_MAINRES_CHOOSE   "Choisir les ressources principales.\nChoisir les ressources principales"
     ID_WKF_BACKRES_CHOOSE   "Choisir les ressources de remplacement.\nChoisir les ressources de remplacement"
-    ID_WKF_BACKRES_RESPONSIBLE 
+    ID_WKF_BACKRES_RESPONSIBLE
                             "Définir la ressource de remplacement comme le responsable.\nResponsable (ressource remplacement)"
-    ID_WKF_BACKRES_ATTRIBUTED 
+    ID_WKF_BACKRES_ATTRIBUTED
                             "Définir les ressources de remplacement comme étant attribuées.\nAttribuée (ressource remplacement)"
-    ID_WKF_BACKRES_FROMACTIVITY 
+    ID_WKF_BACKRES_FROMACTIVITY
                             "Définir les ressources de remplacement comme étant celle d'une activité précédente.\nProvenant d'une activité (ressource remplacement)"
-    ID_WKF_USE_BACKRESSOURCE 
+    ID_WKF_USE_BACKRESSOURCE
                             "Utilise des ressources de remplacement.\nUtilise ressources remplacement"
 END
 
@@ -3966,7 +3966,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_DISPLAYCALCULATEDCODE 
+    ID_DISPLAYCALCULATEDCODE
                             "Insérer un point d'entrée du processus.\nPoint d'entrée"
     ID_DISPLAYTEXTCODE      "Afficher les codes des champs textes."
     ID_DISPLAYALLCODE       "Tracer un lien événement orthogonal.\nTracer un lien événement orthogonal"
@@ -3976,9 +3976,9 @@ BEGIN
     ID_WIZARD_CALCULATED    "Magicien d'aide pour les champs calculés"
     ID_WIZARD_CREATEFORMULA "Magicien pour la création d'une nouvelle formule"
     ID_TODAY                "Insérer la date du jour"
-    ID_DISPLAYFIELDNAME_EXPORT_SVM 
+    ID_DISPLAYFIELDNAME_EXPORT_SVM
                             "Afficher les champs exportés pour l'application O.C.L. 97"
-    ID_FILEPRINT_PAGE_FIELDNAME 
+    ID_FILEPRINT_PAGE_FIELDNAME
                             "Imprimer la page contenant les noms des champs."
 END
 
@@ -3987,7 +3987,7 @@ BEGIN
     ID_SUBMENU1_DISPLAYCALCNUMCODE "Afficher les codes des champs numériques."
     ID_PALETTESELECT        "Passer en mode sélection."
     ID_PALETTEROUNDRECT     "Créer un rectangle avec bord arrondis."
-    IDS_CONFIRMCLEARWORKFLOWACTIVITIES 
+    IDS_CONFIRMCLEARWORKFLOWACTIVITIES
                             "Voulez-vous également supprimer tous les paramètres liés à la génération du workflow?"
 END
 
@@ -4004,7 +4004,7 @@ BEGIN
     ID_INS_PROCESS          "Insérer un processus.\nInsérer un processus"
     ID_INS_UML_END          "Insérer un point de sortie.\nPoint de sortie"
     ID_INS_UML_START        "Insérer un point d'entrée.\nPoint d'entrée"
-    ID_OD_LINKARROW_O_SYMBOLS 
+    ID_OD_LINKARROW_O_SYMBOLS
                             "Tracer un lien événement.\nTracer un lien événement"
 END
 
@@ -4015,7 +4015,7 @@ BEGIN
     ID_EDIT_DESIGNMODE      "Contrôler si le modèle est cohérent.\nContrôler cohérence"
     ID_SUBMENU1_WIZARD      "Appeler le magicien."
     ID_SUBMENU1_SELECTOBJECT "Editer la description.\nEditer la description"
-    ID_SUBMENU1_UNSELECTOBJECT 
+    ID_SUBMENU1_UNSELECTOBJECT
                             "Voir la l'espace de travail.\nEspace de travail"
     ID_PALETTEMENU_PROPRITS "Changer les propriétés de la boîte à outils flottante."
     ID_VUE_OUTILS           "Montrer ou cacher les outils."
@@ -4068,7 +4068,7 @@ BEGIN
     ID_FORM_SAVEAS          "Sauvegarder la forme ouverte sous un autre nom"
     ID_FORM_OPEN            "Ouvrir une forme pour en changer le design"
     ID_FORM_SAVEFILE        "Sauvegarder les modifications de la forme"
-    ID_EDITION_PROTECTOBJECT 
+    ID_EDITION_PROTECTOBJECT
                             "Bloquer la valeur du champ (pour les champs calculés)"
     ID_SUBMENU1_OBJECTHIDE  "Cacher l'object du formulaire."
     ID_SUBMENU1_HIDEPRTOBJECT "Cacher l'objet seulement lors de l'impression."
@@ -4080,28 +4080,28 @@ END
 STRINGTABLE
 BEGIN
     IDS_CONFIRMPROPAGATE    "Vous avez sélectionné l'option pour changer le type sur tous les champs qui ont le même nom et non uniquement le champ que vous avez sélectionné. Voulez-vous continuer?"
-    IDS_CANNOTDELETE_ORIGINALSCENARIO 
+    IDS_CANNOTDELETE_ORIGINALSCENARIO
                             "Vous ne pouvez pas détruire le scénario 'Standard'. Ce scénario est un scénario prédéfini."
-    IDS_CONFIRMDELETION_CURRENTSCENARIO 
+    IDS_CONFIRMDELETION_CURRENTSCENARIO
                             "Voulez-vous continuer la destruction du scénario '%1' ?"
-    IDS_UNABLETOCOPY_CURRENTSCENARIO 
+    IDS_UNABLETOCOPY_CURRENTSCENARIO
                             "Il n'est pas possible de copier le scénario '%1'. Voulez-vous réessayer ?"
-    IDS_ALREADYEXIST_SCENARIO 
+    IDS_ALREADYEXIST_SCENARIO
                             "Le scénario '%1' existe déjà, voulez-vous donner un autre nom ?"
-    IDS_NOTCALCULATEDORNUMBER 
+    IDS_NOTCALCULATEDORNUMBER
                             "Le champ que vous avez sélectionné n'est ni un nombre ni un champ calculé. Vous pouvez sélectionner des nombres ou des champs calculés. Pour transformer un champ en nombre ou champ calculé, veuillez vous référer à l'aide électronique."
     IDS_WZ_MODELNOTATION_S  "Notation"
     IDS_WZ_MODELNOTATION_T  "Lors de la création du modèle vous pouvez choisir la notation que vous voulez utiliser."
     IDS_CONFIRMSAVEFORM     "Voulez-vous sauvegarder le nouveau design de la forme '%s'. Sauvegarder la forme signifie que tous les nouveaux formulaires '%s' auront le nouveau design. Si vous n'êtes pas sûr du nouveaux design vous pouvez utiliser"
     IDS_FAILSAVE_WORKSPACE  "Un problème s'est produit lors de la sauvegarde du projet courant."
     IDS_WZ_MODELPARAM_S     "Paramètres"
-    IDS_FAILSAVE_LOGICALSYSTEMFILE 
+    IDS_FAILSAVE_LOGICALSYSTEMFILE
                             "Un problème s'est produit lors de la sauvegarde de la définition des systèmes logiques."
     IDS_WZ_MODELPARAM_T     "Votre modèle, basé sur une notation, vous donne accès à certaines options. Vous pourrez par la suite changer ces options."
-    IDS_FAILOPEN_USERGROUPFILE 
+    IDS_FAILOPEN_USERGROUPFILE
                             "Un problème s'est produit lors de l'ouverture des définitions des groupes et des équipes"
     IDS_TB_FILEBUTTONS      "Principal"
-    IDS_FAILOPEN_LOGICALSYSTEMFILEFILE 
+    IDS_FAILOPEN_LOGICALSYSTEMFILEFILE
                             "Un problèmes s'est produit lors de l'ouverture des définitions des systèmes logiques."
 END
 
@@ -4155,9 +4155,9 @@ BEGIN
     ID_PAGE_DELETE          "Détruire la page courante"
     ID_FORM_MANAGE          "Gérer les différentes pages des formes"
     ID_SUBMENU1_CHANGECOLOR "Appliquer une nouvelle couleur."
-    ID_SUBMENU1_CHANGEFILLCOLOR 
+    ID_SUBMENU1_CHANGEFILLCOLOR
                             "Appliquer une nouvelle couleur pour le remplissage."
-    ID_EDIT_SHOWEDITIONTOOLS 
+    ID_EDIT_SHOWEDITIONTOOLS
                             "Voir ou cacher la boîte d'outils pour l'édition."
     ID_FORMUL_SCENARIO_ASSOCIATE "Associer le scénario courant à un champ."
     ID_EDITION_RENAME       "Renommer le champ."
@@ -4174,7 +4174,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_CONFIRMCURRENTPAGEDELETION 
+    IDS_CONFIRMCURRENTPAGEDELETION
                             "Cette action détruit la page courante d'une manière définitive. Voulez-vous détruire la page courante ?"
     IDS_CONFIRMPAGECOPY     "Cette action copie la page sélectionnée d'une manière définitive. Voulez-vous continuer ?"
     IDS_PROPERTYWKS_PROP    "Propriétés"
@@ -4184,42 +4184,42 @@ BEGIN
     IDS_MENUCONTEXTROUNDED  "Appliquer ou non les arrondis"
     IDS_PROPERTYWKS_PANVIEW "Vue"
     IDS_OUTPUTWKS_ANALYZER  "Sesterces"
-    IDS_NORMALTMPL_CANNOTBEUSED 
+    IDS_NORMALTMPL_CANNOTBEUSED
                             "Le fichier que vous avez spécifié est réservé. Veuillez choisir un autre nom de fichier."
     IDS_DISTRIBUTIONATTRIBUTEWKS_PROP "Distribution (attributs)"
     IDS_SELWORKSPACE_DIR_T  "Sélectionner le répertoire de l'espace de travail"
-    IDS_WKSPACE_DIR_NEEDCREATE 
+    IDS_WKSPACE_DIR_NEEDCREATE
                             "Le répertoire que vous avez spécifié n'existe pas. Voulez-vous le créer?"
     IDS_DELETEFORMULA       "Cette action détruit la formule sélectionnée d'une manière définitive. Détruire une formule peut altérer le fonctionnement du formulaire. Etes-vous sûr de vouloir détruire la formule sélectionnée."
     IDS_DELETEOBJECT        "Cette action détruit le champ sélectionné d'une manière définitive. Détruire un champ peut altérer le fonctionnement du formulaire. Etes-vous sûr de vouloir détruire le champ sélectionnée."
-    IDS_WKSPACE_DIR_FAILCREATE 
+    IDS_WKSPACE_DIR_FAILCREATE
                             "Le répertoire spécifié ne peut pas être créé. Veuillez vérifier que le répertoire mentionné ne contient pas de caractères spéciaux."
 END
 
 STRINGTABLE
 BEGIN
     IDS_INVALIDPAGENUMBER   "Le numéro de page que vous avez spécifié n'existe pas."
-    IDS_WARNING_GROUP_FIELDS 
+    IDS_WARNING_GROUP_FIELDS
                             "Pour pouvoir grouper des champs, il vous faut en sélectionner au moins deux."
-    IDS_WARNING_ALIGN_FIELDS 
+    IDS_WARNING_ALIGN_FIELDS
                             "Pour pouvoir aligner des champs, il vous faut sélectionner au moins un champ."
-    IDS_WARNING_ALIGN_FIELDS_NEEDREF 
+    IDS_WARNING_ALIGN_FIELDS_NEEDREF
                             "Pour pouvoir aligner des champs, il vous faut après avoir sélectionner un ou plusieurs champs, définir la référence qui va permettre au système de les aligner par rapport à celle-ci."
     IDS_CANNOTDELETENORMALSTYLE "Le style Normal ne peut être détruit."
-    IDS_PROBLEMREMOVINGSTYLE 
+    IDS_PROBLEMREMOVINGSTYLE
                             "Le système n'arrive pas à détruire le style sélectionné."
     IDS_NOSTYLENAME         "Vous devez préalablement définir un nom de style."
     IDS_STYLEALREADYDEFINED "Le style que vous essayez de créer existe déjà."
     IDS_MODIFYSTYLETITLE    "Modifier le style"
     IDS_WZ_WORKSPACE_TMPL_S "Projet"
     IDS_WZ_WORKSPACE_TMPL_T "Il existe plusieurs type de projets prédéfinis. Vous pouvez baser votre projet sur un de ceux-ci."
-    IDS_WKSPACE_ALREADYEXIST 
+    IDS_WKSPACE_ALREADYEXIST
                             "Le projet que vous avez spécifié existe déjà. Voulez-vous quand même continuer la création et remplacer le projet existant et les fichiers associés?"
-    IDS_CONF_CLOSESAVE_CURRENT_WKSPACE 
+    IDS_CONF_CLOSESAVE_CURRENT_WKSPACE
                             "Voulez-vous sauvegarder et fermer le projet courant?"
     IDS_PENWIDTH_VALIDVALUE "La taille du stylo est valide entre 1 et 30. La valeur 1 par défaut a été convservée."
     IDS_RAYON_VALIDVALUE    "Le rayon est valide entre 2 et 50. La valeur de 5 comme défaut a été conservée."
-    IDS_CONF_CLOSEALLDOCS_CURRENT_WKSPACE 
+    IDS_CONF_CLOSEALLDOCS_CURRENT_WKSPACE
                             "Voulez-vous fermer tous les documents ouverts?"
 END
 
@@ -4250,9 +4250,9 @@ STRINGTABLE
 BEGIN
     IDS_UGP_ADDGROUP        "Ajouter un groupe"
     IDS_UGP_RENAMEGROUP     "Renommer le groupe sélectionné"
-    IDS_WARNING_RESIZE_FIELDS 
+    IDS_WARNING_RESIZE_FIELDS
                             "Pour pouvoir retailler des champs, il vous faut sélectionner au moins un champ."
-    IDS_WARNING_ALIGN_RESIZE_NEEDREF 
+    IDS_WARNING_ALIGN_RESIZE_NEEDREF
                             "Pour pouvoir retailler des champs, il vous faut après avoir sélectionner un ou plusieurs champs, définir la référence qui va permettre au système de les retailler par rapport à celle-ci."
     IDS_NOTNUMBER           "Le champ que vous avez sélectionné n'est pas un nombre. Vous pouvez uniquement sélectionner un nombre."
     IDS_ALREADYCALCULATED   "Le champ que vous avez sélectionné est déjà un champ calculé. Vous ne pouvez créer une formule sur un champ déjà calculé."
@@ -4292,20 +4292,20 @@ STRINGTABLE
 BEGIN
     IDS_ASSOCIATIONCREATION "Choix du champ pour une assocation"
     IDS_UGP_PROPERTIES      "Afficher les propriétés du groupe ou de l'équipe sélectionné"
-    IDS_CONF_SAVE_USERGROUP_DOC 
+    IDS_CONF_SAVE_USERGROUP_DOC
                             "La définition des groupes et des rôles a changé. Voulez-vous sauvegarder les modifications apportées?"
     IDS_TB_WORKSPACEBUTTONS "Projet"
     IDS_WZ_MODELCOSTS_S     "Coûts"
-    IDS_WARNING_SAMESPACE_FIELDS 
+    IDS_WARNING_SAMESPACE_FIELDS
                             "Pour pouvoir appliquer le même écartement entre des champs, il vous faut sélectionner au moins deux champs."
     ID_INDICATOR_PAGE       "Page"
-    IDS_WARNING_ALIGNCENTERPAGE_FIELDS 
+    IDS_WARNING_ALIGNCENTERPAGE_FIELDS
                             "Pour pouvoir aligner des champs au centre de la page, il vous faut sélectionner au moins un champ."
-    IDS_BITMAPFILE_UNDEFINED 
+    IDS_BITMAPFILE_UNDEFINED
                             "Pour créer un champ du type bitmap, il faut obligatoirement choisir un fichier bitmap. Voulez-vous à nouveau sélectionner un fichier bitmap sur disque?"
     IDS_WZ_MODELCOSTS_T     "Lors de la création du modèle vous pouvez définir vos propres paramètres liés aux calculs des coûts."
     IDS_NORMALTEMPLATE_NF   "Le fichier permettant de créer des formes n'est pas disponible sur le disque. Veuillez vérifier votre installation."
-    IDS_CONF_SAVE_LOGICALSYSTEM_DOC 
+    IDS_CONF_SAVE_LOGICALSYSTEM_DOC
                             "La définition des systèmes logiques a changé. Voulez-vous sauvegarder les modifications apportées?"
     IDS_LOCALSERVER_OPEN    "Le serveur local <%s> a été ouvert."
     IDS_UGP_MOVE            "Déplacer un groupe ou une équipe"
@@ -4341,7 +4341,7 @@ BEGIN
     ID_IMPORT               "Importer les données d'un fichier texte."
     ID_FIELD_ALIGNRIGHT     "Aligner le contenu à droite"
     ID_SECTION_ALIGN        "Changer l'alignement de la section."
-    ID_SECTION_CHANGEFILLCOLOR 
+    ID_SECTION_CHANGEFILLCOLOR
                             "Appliquer une nouvelle couleur pour le remplissage de la section."
     ID_SECTION_CHANGECOLOR  "Changer la couleur du texte de la section."
     ID_SECTION_FONTCHANGE   "Définir une nouvelle police de caractères."
@@ -4369,7 +4369,7 @@ STRINGTABLE
 BEGIN
     ID_DISPLAYSTATICCODE    "Afficher les codes des champs textes qui sont statiques."
     ID_DISPLAYGRAPHICCODE   "Afficher les champs graphiques."
-    ID_FILEPRINTPREVIEW_PAGE_FIELDNAME 
+    ID_FILEPRINTPREVIEW_PAGE_FIELDNAME
                             "Aperçu des codes avant l'impression définitive."
 END
 
@@ -4401,21 +4401,21 @@ BEGIN
     ID_MOVE_SERVER          "Vous permet de déplacer un référentiel local existant."
     ID_DELETE_SERVER        "Supprimer un référentiel local."
     ID_CLEAR_MODELBKIMAGE   "Supprimer le fond de page.\nSupprimer le fond de page"
-    ID_CLEARWATERMARKLOGOMODEL 
+    ID_CLEARWATERMARKLOGOMODEL
                             "Supprimer le logo en fond de page.\nSupprimer le logo"
     ID_DYNATTR_ADD          "Ajouter un attribut dynamique.\nAjouter attribut dynamique"
     ID_DYNATTR_DISPLAY      "Afficher la liste des attributs.\nAfficher la liste des attributs"
     ID_SHOWINPUTATTRIBUTES  "Afficher les attributs de saises.\nAfficher attributs de saises."
-    ID_RECALCULATE_MODEL_DURATION 
+    ID_RECALCULATE_MODEL_DURATION
                             "Contrôler et Calculer les délais en partant d'un point de démarrage.\nContrôler et Calculer les délais"
     ID_EDIT_FORMATPAINTER   "La reproduction de mise en forme.\nReproduction de mise en forme"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_UNABLETOSAVE_USERGROUP 
+    IDS_UNABLETOSAVE_USERGROUP
                             "Le fichier de définition des groupes <%s> ne peut pas être sauvegardé. Veuillez vérifier que le fichier n'est pas en lecture seule."
-    IDS_UNABLETOSAVE_LOGSYSTEM 
+    IDS_UNABLETOSAVE_LOGSYSTEM
                             "Le fichier de définition des systèmes <%s> ne peut pas être sauvegardé. Veuillez vérifier que le fichier n'est pas en lecture seule."
     IDS_ONEOPTIONREQUIRED   "Veuillez cocher au moins une option."
 END
@@ -4425,9 +4425,9 @@ BEGIN
     ID_EDIT_DUPLICATE       "Dupliquer l'objet.\nDupliquer l'objet"
     ID_COLLAPSE_BRANCH      "Refermer complètement l'arbre depuis cette branche.\nRefermer"
     ID_EXPAND_BRANCH        "Etendre complètement depuis cette branche.\nEtendre"
-    ID_GENERATE_REPORT_SESTERCE_UNIT 
+    ID_GENERATE_REPORT_SESTERCE_UNIT
                             "Générer le rapport Sesterces Unités.\nRapport Sesterces Unités"
-    ID_GENERATE_REPORT_SESTERCE_CONSOLIDATED 
+    ID_GENERATE_REPORT_SESTERCE_CONSOLIDATED
                             "Générer le rapport Sesterces Consolidé.\nRapport Sesterces Consolidé"
     ID_UNFREEZE_SPLITTER    "Libérer les volets.\nLibérer les volets"
     ID_FREEZE_SPLITTER      "Figer les volets.\nFiger les volets"
@@ -4446,9 +4446,9 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_WORKFLOWMODEREQUIRED_DROP 
+    IDS_WORKFLOWMODEREQUIRED_DROP
                             "Le mode flux d'activité est obligatoire pour pouvoir ajouter des resources ou des formes formulaires. Veuillez déclencher le mode flux d'activité depuis le menu Modèle."
-    IDS_CONFIRMCLEARWORKFLOW 
+    IDS_CONFIRMCLEARWORKFLOW
                             "Cette commande va enlever le lien avec le fichier utilisé dans la génération du workflow. Veuillez confirmer la suppression de ce lien."
     IDR_MODEL               "\nMLF\nModèle\nModèle (*.mlf)\n.mlf\nMLF.Document\nModèle ProcessSoft Conceptor\n1\n8"
     IDR_MERCUTIOREPORT      "\nRLF\nRapport\nRapports (*.rlf)\n.rlf\nRLF.Document\nRapport ProcessSoft Conceptor\n1\n12"
@@ -4514,12 +4514,12 @@ STRINGTABLE
 BEGIN
     IDS_OD_TEXT             "Texte"
     IDS_OD_ZOOM_PAN         "Zoom/Pan"
-    IDS_OD_SYMCONV_ARCHIVEREADERROR 
+    IDS_OD_SYMCONV_ARCHIVEREADERROR
                             "Impossible de lire le symbole depuis le fichier"
     IDS_OD_SYMCONV_FORMATERROR "Format de fichier invalide"
-    IDS_OD_SYMCONV_FILECORRUPTED 
+    IDS_OD_SYMCONV_FILECORRUPTED
                             "Une erreur s'est produite durant l'importation du symbole (fichier corrompu)"
-    IDS_OD_SYMCONV_USERDATAENCOUNTERED 
+    IDS_OD_SYMCONV_USERDATAENCOUNTERED
                             "Erreur d'importation du symbol - les symboles contiennent des données utilisateurs qui ne sont pas supportées"
     IDS_OD_INCHES           "Pouces"
     IDS_OD_FEET             "Pieds"
@@ -4647,11 +4647,11 @@ BEGIN
     ID_MBRS_SELECT_SYMBOL   "Sélectionner le symbole sur le modèle."
     ID_RENAME_CURRENTMODELPAGE "Renommer la page.\nRenommer la page"
     ID_DELETE_CURRENTMODELPAGE "Supprimer la page.\nSupprimer la page"
-    ID_GENERATE_REPORT_MERCUTIO 
+    ID_GENERATE_REPORT_MERCUTIO
                             "Générer le rapport Mercutio.\nRapport Mercutio"
-    ID_GENERATE_REPORT_SESTERCE 
+    ID_GENERATE_REPORT_SESTERCE
                             "Générer le rapport Sesterces.\nRapport Sesterces"
-    ID_GENERATE_REPORT_CHECK 
+    ID_GENERATE_REPORT_CHECK
                             "Générer le rapport de contrôle.\nRapport de contrôle"
     ID_ADD_NEWEXTFILE       "Ajouter un lien externe.\nAjouter un lien externe"
     ID_ADD_NEWEXTAPP        "Ajouter une application.\nAjouter une application"
@@ -4659,7 +4659,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_RECALCULATE_MODEL_PARAM 
+    ID_RECALCULATE_MODEL_PARAM
                             "Recalculer les paramètres Sesterces.\nRecalculer les paramètres Sesterces"
 END
 
@@ -4667,18 +4667,18 @@ STRINGTABLE
 BEGIN
     ID_SET_MODELBKIMAGE     "Définir le fond de page.\nDéfinir le fond de page"
     ID_SHOWMODELBORDER      "Montrer ou Cacher les bords de pages\nMontrer ou Cacher bords de pages"
-    ID_ADDWATERMARKLOGOMODEL 
+    ID_ADDWATERMARKLOGOMODEL
                             "Insérer un logo en fond de page.\nInsérer un logo en fond de page"
     ID_FILE_EXPORTTEXTFILE  "Exporter vers un fichier texte séparé par des tabulateurs.\nExporter vers un fichier texte"
     ID_FILE_IMPORTTEXTFILE  "Importer depuis fichier texte séparé par des tabulateurs.\nImporter depuis un fichier texte"
-    ID_RECALCULATE_SELECTEDMODEL_PARAM 
+    ID_RECALCULATE_SELECTEDMODEL_PARAM
                             "Recalculer les paramètres Sesterces du modèle sélectionné uniquement.\nRecalculer paramètres Sesterces (modèle sélectionné uniquement)"
     ID_SYM_SHOWNAMEAREA     "Montrer ou cacher la zone contenant le nom du symbole.\nMontrer/Cacher la zone du Nom"
-    ID_SYM_SHOWDESCRIPTIONAREA 
+    ID_SYM_SHOWDESCRIPTIONAREA
                             "Montrer ou cacher la zone contenant la description du symbole.\nMontrer/Cacher la zone de Description"
-    ID_SYM_SHOWATTRIBUTEAREA 
+    ID_SYM_SHOWATTRIBUTEAREA
                             "Montrer ou cacher la zone contenant les attributs du symbole.\nMontrer/Cacher la zone des Attributs"
-    ID_SYM_SHOWLABELATTRIBUTES 
+    ID_SYM_SHOWLABELATTRIBUTES
                             "Montrer/Cacher le label des attributs.\nLabel des attributs"
     ID_SYM_SELECTATTRIBUTES "Sélectionner les attributs à afficher.\nSélectionner les attributs"
     ID_FILE_SAVE_ALL        "Enregistrer tous les fichiers ouverts.\nTout enregistrer"
@@ -4690,20 +4690,20 @@ STRINGTABLE
 BEGIN
     ID_CLEAR_WINDOW         "Effacer le contenu de la fenêtre de log"
     ID_SETDEBUGMODE_WINDOW  "Passer en mode de messages détaillés"
-    IDS_USERFILEBETA1_CONVERTED 
+    IDS_USERFILEBETA1_CONVERTED
                             "Le fichier des unités a été créé à l'aide de Conceptor - Sesterces Beta 1. Il a été converti en format valide pour la Beta 2."
     IDS_USERFILEBETA1_CONVERTED_TITLE "Conversion réussie"
-    ID_ASSIGN_CURRENTSYSTEMDEF 
+    ID_ASSIGN_CURRENTSYSTEMDEF
                             "Assigner au modèle courant le fichier des systèmes logiques ouvert du référentiel local"
-    ID_ASSIGN_CURRENTUSERDEF 
+    ID_ASSIGN_CURRENTUSERDEF
                             "Assigner au modèle courant le fichier des groupes ouvert du référentiel local"
 END
 
 STRINGTABLE
 BEGIN
-    ID_SYMBOL_REASSIGN_USERGROUP 
+    ID_SYMBOL_REASSIGN_USERGROUP
                             "Utiliser cette commande pour réassigner le nom des groupes et les coûts à tous les symboles du modèle.\nReassigner les groupes aux symboles"
-    ID_SYMBOL_REASSIGN_LOGICALSYS 
+    ID_SYMBOL_REASSIGN_LOGICALSYS
                             "Utiliser cette commande pour réassigner le nom des systèmes logique à tous les symboles du modèle.\nReassigner les groupes aux symboles"
     ID_PUBLISH_TOMESSENGER  "Publier le modèle vers Messenger.\nPublier vers Messenger"
 END
@@ -4716,7 +4716,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_GENERATE_REPORT_CONCEPTOR 
+    ID_GENERATE_REPORT_CONCEPTOR
                             "Générer le rapport Conceptor.\nRapport Conceptor"
 END
 
@@ -4727,7 +4727,7 @@ BEGIN
     ID_INS_BP_QUALITY       "Insérer un symbole indiquant un problème de qualité spécifique traité\nInsérer un symbole indiquant un problème de qualité spécifique traité"
     ID_INS_BP_RISK          "Insérer un symbole indiquant qu'un risque opérationnel significatif est décrit\nInsérer un symbole indiquant qu'un risque opérationnel significatif est décrit"
     ID_INS_BP_VALIDATED     "Insérer un symbole indiquant que le processus est validé et opérationnel\nInsérer un symbole indiquant que le processus est validé et opérationnel"
-    ID_GENERATE_REPORT_PRESTATIONS 
+    ID_GENERATE_REPORT_PRESTATIONS
                             "Générer le rapport Prestations.\nRapport Prestations"
     ID_INS_BP_IN_PROCESS    "Insérer un symbole indiquant que le processus est en cours d’élaboration\nInsérer un symbole indiquant que le processus est en cours d’élaboration"
     ID_INS_BP_INCIDENT      "Insérer un symbole indiquant un relevé d’incident possible dans Mercutio DB\nInsérer un symbole indiquant un relevé d’incident possible dans Mercutio DB"
@@ -4766,7 +4766,7 @@ BEGIN
     IDS_UNABLETOSAVE_RULES  "Le fichier de définition des règles <%s> ne peut pas être sauvegardé. Veuillez vérifier que le fichier n'est pas en lecture seule."
     IDS_FAILSAVE_RULESFILE  "Un problème s'est produit lors de la sauvegarde de la définition des règles."
     IDS_FAILOPEN_RULESFILE  "Un problème s'est produit lors de l'ouverture de la définition des règles"
-    IDS_FAILOPEN_RISKTYPEFILE 
+    IDS_FAILOPEN_RISKTYPEFILE
                             "Un problème s'est produit lors de l'ouverture du fichier contenant les types de risques."
 END
 
@@ -4777,9 +4777,9 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FAILOPEN_RISKIMPACTFILE 
+    IDS_FAILOPEN_RISKIMPACTFILE
                             "Un problème s'est produit lors de l'ouverture du fichier contenant les impacts."
-    IDS_FAILOPEN_RISKPROBABILITYFILE 
+    IDS_FAILOPEN_RISKPROBABILITYFILE
                             "Un problème s'est produit lors de l'ouverture du fichier contenant les probabilités."
 END
 

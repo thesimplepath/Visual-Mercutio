@@ -203,7 +203,9 @@ const UINT g_DefVersion = 1;
 // Version 25 for Conceptor Release 2006 - SP2
 // Version 26 for Conceptor Release 2007 - SP1 Prima
 // Version 27 for Conceptor Release 2007 - SP1
-const long g_VersionFile = 27;
+// ...
+// Version 35 for Conceptor Release 2021 - SP1
+const long g_VersionFile = 35;
 
 // default object list
 #define def_szObjectKey _T("Object")
