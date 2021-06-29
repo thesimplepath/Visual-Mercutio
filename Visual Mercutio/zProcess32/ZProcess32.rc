@@ -3696,7 +3696,7 @@ BEGIN
     IDS_DIRECTORY_MISSING   "Un emplacement est requis."
     IDS_FAILOPEN_PRESTATIONSFILEFILE
                             "Un problème s'est produit lors de l'ouverture des définitions des prestations."
-    IDS_BUILDNUMBER         "Build 200703"
+    IDS_BUILDNUMBER         "Build 202101"
     IDR_HISTORYFILEFIELD    "\nPLH\nPLH Document \nDocument PLH (*.plh)\n.plh\nPLH.Document\nPLH\n0\n26"
     IDS_MERCUTIOREP_SELECTPROCESS
                             "Veuillez sélectionner le processus pour le rapport Mercutio"
@@ -3713,7 +3713,7 @@ END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_APP_TITLE       "ProcessSoft Conceptor 2007  - Sesterces 2007 - Messenger 2007"
+    AFX_IDS_APP_TITLE       "ProcessSoft Conceptor 2021  - Sesterces 2021 - Messenger 2021"
     AFX_IDS_IDLEMESSAGE     "Pour obtenir de l'Aide, appuyer sur F1"
     AFX_IDS_HELPMODEMESSAGE "Selectionner un objet pour lequel vous voulez de l'Aide"
 END
@@ -3799,7 +3799,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNITEXIST_REPLACE   "Une librairie du même nom existe déjà. Voulez-vous la remplacer?"
-    IDV_VERSION_NUMBER      "2.1 Build 200703"
+    IDV_VERSION_NUMBER      "2.1 Build 202101"
     IDS_VERSION_NUMBER      "Version"
 END
 
