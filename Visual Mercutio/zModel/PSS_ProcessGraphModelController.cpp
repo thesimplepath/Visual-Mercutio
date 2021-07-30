@@ -4815,7 +4815,7 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
         symbolRef  = pBasicSymbol->GetSymbolReferenceNumber();
     }
 
-    // Obtient les propriétés dynamiques contenues dans le symbole. Cela servira pour obtenir les données.
+    // get the dynamic properties contained in the symbol. They will be used to get the data
     if (pSymbolHit)
         pSymbolHit->FillProperties(propSet);
     else

@@ -262,7 +262,7 @@ bool PSS_DeliverableLinkSymbolBP::AcceptExtApp() const
     if (pModel && pModel->GetUseWorkflow())
         return true;
 
-    // external app should appear in conceptor
+    // external app should appear in Conceptor
     return true;
 }
 //---------------------------------------------------------------------------
@@ -274,7 +274,7 @@ bool PSS_DeliverableLinkSymbolBP::AcceptExtFile() const
     if (pModel && pModel->GetUseWorkflow())
         return true;
 
-    // external file should appear in conceptor
+    // external file should appear in Conceptor
     return true;
 }
 //---------------------------------------------------------------------------
