@@ -59,9 +59,9 @@ PSS_StopSymbolBP::PSS_StopSymbolBP(const CString& name) :
     PSS_Symbol::SetSymbolName(name);
 
     // configure what to show first
-    m_ShowNameArea        = true;
-    m_ShowDescriptionArea = false;
-    m_ShowAttributeArea   = true;
+    ShowNameArea(true);
+    ShowDescriptionArea(false);
+    ShowAttributeArea(true);
 
     CreateSymbolProperties();
 }

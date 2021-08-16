@@ -10,6 +10,7 @@
 
 // processsoft
 #include "PSS_ODSymbolManipulator.h"
+#include "PSS_LinkSymbol.h"
 
 // resources
 #include "zModelRes.h"
@@ -24,6 +25,7 @@
 // Global constants
 //---------------------------------------------------------------------------
 const int g_EditBoxSpaceFromBorder      = 1;
+const int g_LinkEditBoxSpaceFromBorder  = 0;
 const int g_SplitterLineSpaceFromBorder = 1;
 //---------------------------------------------------------------------------
 // Global variables
@@ -116,6 +118,9 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
     if (!pSymComp)
         THROW("The owning symbol isn't a CODComponent child - incorrect runtime class type");
 
+    // is symbol a link?
+    const bool isLink = dynamic_cast<PSS_LinkSymbol*>(m_pSymbol);
+
     // check if needed to include the name area
     if (m_pSymbol->IncludeNameArea())
     {
@@ -161,7 +166,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
 
                 CODLineProperties* pLine = static_cast<CODLineProperties*>(pText->GetProperty(OD_PROP_LINE));
 
-                // no line
+                // no line?
                 if (pLine)
                 {
                     std::unique_ptr<CODLineProperties> pNewLine(new CODLineProperties(*pLine));
@@ -177,7 +182,7 @@ BOOL PSS_SymbolAttributes::InitializeAttributeAreas()
                 {
                     std::unique_ptr<CODFontProperties> pNewfontProp(new CODFontProperties(*pFontProp));
                     pNewfontProp->SetFaceName(_T("Arial"));
-                    pNewfontProp->SetWeight(FW_BOLD);
+                    pNewfontProp->SetWeight(isLink ? FW_NORMAL : FW_BOLD);
                     pNewfontProp->SetPointSize(8);
                     pText->SetProperty(pNewfontProp.get());
                     pNewfontProp.release();
@@ -524,6 +529,12 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
     if (!GetEditBoxArea())
         return;
 
+    // is symbol a link?
+    const bool isLink = dynamic_cast<PSS_LinkSymbol*>(m_pSymbol);
+
+    // select the correct edit box border space to apply
+    const int editBoxSpaceFromBorder = isLink ? g_LinkEditBoxSpaceFromBorder : g_EditBoxSpaceFromBorder;
+
     std::size_t counterSplitter            = 0;
     bool        nameAreaMustBeShown        = false;
     bool        attributeAreaMustBeShown   = false;
@@ -563,7 +574,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
     int                                   yPositionSplitter2 = 0;
     bool                                  redraw             = false;
 
-    // check if the splitter should be show or hide
+    // check if the splitter should be shown or hidden
     if (counterSplitter > 2)
     {
         // move the splitters, only resize edit control if the rect is not empty
@@ -572,9 +583,9 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
             int segmentHeight;
 
             if (m_RelativeCoordinates)
-                segmentHeight = (rectEdgeRgn.Height() - (2 * g_EditBoxSpaceFromBorder)) / 3;
+                segmentHeight = (rectEdgeRgn.Height() - (2 * editBoxSpaceFromBorder)) / 3;
             else
-                segmentHeight = (rect.Height()        - (2 * g_EditBoxSpaceFromBorder)) / 3;
+                segmentHeight = (rect.Height()        - (2 * editBoxSpaceFromBorder)) / 3;
 
             CODLineComponent* pSplitter1   = GetSplitter1();
             CODTextComponent* pTextComment = GetCommentTextEdit();
@@ -612,7 +623,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         // apply to the default one
                         if (!pComp)
                         {
-                            rcSplitter1.top    = rectEdgeRgn.top + segmentHeight + g_EditBoxSpaceFromBorder;
+                            rcSplitter1.top    = rectEdgeRgn.top + segmentHeight + editBoxSpaceFromBorder;
                             rcSplitter1.bottom = rcSplitter1.top;
                         }
 
@@ -647,7 +658,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     else
                     if (!pComp)
                     {
-                        rcSplitter1.top    = rect.top + segmentHeight + g_EditBoxSpaceFromBorder;
+                        rcSplitter1.top    = rect.top + segmentHeight + editBoxSpaceFromBorder;
                         rcSplitter1.bottom = rcSplitter1.top;
                     }
 
@@ -672,21 +683,21 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the text box in relative coordinates
                     CRect rcTextBox = pTextName->GetEdgeRgn().GetBounds();
-                    rcTextBox.left  = rectEdgeRgn.left + g_EditBoxSpaceFromBorder;
+                    rcTextBox.left  = rectEdgeRgn.left + editBoxSpaceFromBorder;
 
                     // check if applied to correct splitter
                     if (pComp == pSplitter1 && y != 1)
                     {
-                        rcTextBox.top    = rectEdgeRgn.top + g_EditBoxSpaceFromBorder;
+                        rcTextBox.top    = rectEdgeRgn.top + editBoxSpaceFromBorder;
                         rcTextBox.bottom = (y - rect.top + offsetTop) * rectEdgeRgn.Height() / rect.Height();
                     }
                     else
                     {
-                        rcTextBox.top    = rectEdgeRgn.top + g_EditBoxSpaceFromBorder;
+                        rcTextBox.top    = rectEdgeRgn.top + editBoxSpaceFromBorder;
                         rcTextBox.bottom = yPositionSplitter1;
                     }
 
-                    rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
+                    rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
                     pTextName->MoveTo(rcTextBox);
                 }
                 else
@@ -696,7 +707,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     PSS_Assert(pPosition);
 
                     CRect rcTextBox = pPosition->GetBounds();
-                    rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.left  = rect.left + editBoxSpaceFromBorder - rectSymbol.left;
 
                     // check if applied to correct splitter
                     if (pComp == pSplitter1 && y != 1)
@@ -706,11 +717,11 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     }
                     else
                     {
-                        rcTextBox.top    = rect.top + g_EditBoxSpaceFromBorder - rectSymbol.top;
+                        rcTextBox.top    = rect.top + editBoxSpaceFromBorder - rectSymbol.top;
                         rcTextBox.bottom = yPositionSplitter1 - rectSymbol.top;
                     }
 
-                    rcTextBox.right = rect.right - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.right = rect.right - editBoxSpaceFromBorder - rectSymbol.left;
                     pTextName->MoveTo(rcTextBox);
                 }
 
@@ -719,7 +730,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move in relative coordinates
                     CRect rcTextBox = pTextComment->GetEdgeRgn().GetBounds();
-                    rcTextBox.left  = rectEdgeRgn.left + g_EditBoxSpaceFromBorder;
+                    rcTextBox.left  = rectEdgeRgn.left + editBoxSpaceFromBorder;
 
                     // check if applied to correct splitter
                     if (pComp == pSplitter1 && y != 1)
@@ -736,7 +747,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             rcTextBox.bottom = (y - rect.top + offsetTop) * rectEdgeRgn.Height() / rect.Height();
                     }
 
-                    rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
+                    rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
                     pTextComment->MoveTo(rcTextBox);
                 }
                 else
@@ -746,7 +757,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     PSS_Assert(pPosition);
 
                     CRect rcTextBox = pPosition->GetBounds();
-                    rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.left  = rect.left + editBoxSpaceFromBorder - rectSymbol.left;
 
                     // check if applied to correct splitter
                     if (pComp == pSplitter1 && y != 1)
@@ -762,12 +773,12 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
 
                         // apply to the default one
                         if (!pComp)
-                            rcTextBox.bottom = rect.top + (segmentHeight * 2) + g_EditBoxSpaceFromBorder - 2 - rectSymbol.top;
+                            rcTextBox.bottom = rect.top + (segmentHeight * 2) + editBoxSpaceFromBorder - 2 - rectSymbol.top;
                         else
                             rcTextBox.bottom = y;
                     }
 
-                    rcTextBox.right = rect.right - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.right = rect.right - editBoxSpaceFromBorder - rectSymbol.left;
                     pTextComment->MoveTo(rcTextBox);
                 }
             }
@@ -805,7 +816,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         // apply to the default one
                         if (!pComp)
                         {
-                            rcSplitter2.top    = rectEdgeRgn.top + (segmentHeight * 2) + g_EditBoxSpaceFromBorder;
+                            rcSplitter2.top    = rectEdgeRgn.top + (segmentHeight * 2) + editBoxSpaceFromBorder;
                             rcSplitter2.bottom = rcSplitter2.top;
                         }
 
@@ -840,7 +851,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     else
                     if (!pComp)
                     {
-                        rcSplitter2.top    = rect.top + (segmentHeight * 2) + g_EditBoxSpaceFromBorder;
+                        rcSplitter2.top    = rect.top + (segmentHeight * 2) + editBoxSpaceFromBorder;
                         rcSplitter2.bottom = rcSplitter2.top;
                     }
 
@@ -865,7 +876,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move in relative coordinates
                     CRect rcTextBox = pTextAttribute->GetEdgeRgn().GetBounds();
-                    rcTextBox.left  = rectEdgeRgn.left + g_EditBoxSpaceFromBorder;
+                    rcTextBox.left  = rectEdgeRgn.left + editBoxSpaceFromBorder;
 
                     // check if applied to correct splitter
                     if (pComp == pSplitter2 && y != 1)
@@ -873,15 +884,15 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         rcTextBox.top = (y - rect.top + offsetTop) * rectEdgeRgn.Height() / rect.Height();
 
                         // don't adjust the bottom
-                        rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - g_EditBoxSpaceFromBorder;
+                        rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - editBoxSpaceFromBorder;
                     }
                     else
                     {
                         rcTextBox.top    = yPositionSplitter2;
-                        rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - g_EditBoxSpaceFromBorder;
+                        rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - editBoxSpaceFromBorder;
                     }
 
-                    rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
+                    rcTextBox.right  = rcTextBox.left + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
                     pTextAttribute->MoveTo(rcTextBox);
                 }
                 else
@@ -891,7 +902,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     PSS_Assert(pPosition);
 
                     CRect rcTextBox = pPosition->GetBounds();
-                    rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.left  = rect.left + editBoxSpaceFromBorder - rectSymbol.left;
 
                     // check if applied to correct splitter
                     if (pComp == pSplitter2 && y != 1)
@@ -904,10 +915,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     else
                     {
                         rcTextBox.top    = yPositionSplitter2 - rectSymbol.top;
-                        rcTextBox.bottom = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
+                        rcTextBox.bottom = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
                     }
 
-                    rcTextBox.right = rect.right - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.right = rect.right - editBoxSpaceFromBorder - rectSymbol.left;
                     pTextAttribute->MoveTo(rcTextBox);
                 }
             }
@@ -922,9 +933,9 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
             int segmentHeight;
 
             if (m_RelativeCoordinates)
-                segmentHeight = (rectEdgeRgn.Height() - (2 * g_EditBoxSpaceFromBorder)) / 2;
+                segmentHeight = (rectEdgeRgn.Height() - (2 * editBoxSpaceFromBorder)) / 2;
             else
-                segmentHeight = (rect.Height()        - (2 * g_EditBoxSpaceFromBorder)) / 2;
+                segmentHeight = (rect.Height()        - (2 * editBoxSpaceFromBorder)) / 2;
 
             CODLineComponent* pSplitter1 = GetSplitter1();
 
@@ -953,7 +964,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     }
                     else
                     {
-                        rcSplitter1.top    = rectEdgeRgn.top + segmentHeight + g_EditBoxSpaceFromBorder;
+                        rcSplitter1.top    = rectEdgeRgn.top + segmentHeight + editBoxSpaceFromBorder;
                         rcSplitter1.bottom = rcSplitter1.top;
 
                         // save the y position of the splitter
@@ -989,8 +1000,8 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     }
                     else
                     {
-                        rcSplitter1.top    = rect.top + segmentHeight + g_EditBoxSpaceFromBorder;
-                        rcSplitter1.bottom = rect.top + segmentHeight + g_EditBoxSpaceFromBorder;
+                        rcSplitter1.top    = rect.top + segmentHeight + editBoxSpaceFromBorder;
+                        rcSplitter1.bottom = rect.top + segmentHeight + editBoxSpaceFromBorder;
                     }
 
                     rcSplitter1.right = rect.right - g_SplitterLineSpaceFromBorder;
@@ -1025,21 +1036,21 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in relative coordinates
                             CRect rcTextBox = pTextName->GetEdgeRgn().GetBounds();
-                            rcTextBox.left  = rectEdgeRgn.left + g_EditBoxSpaceFromBorder;
+                            rcTextBox.left  = rectEdgeRgn.left + editBoxSpaceFromBorder;
 
                             // check if applied to correct splitter
                             if (pComp == pSplitter1 && y != 1)
                             {
-                                rcTextBox.top    = rectEdgeRgn.top + g_EditBoxSpaceFromBorder;
+                                rcTextBox.top    = rectEdgeRgn.top + editBoxSpaceFromBorder;
                                 rcTextBox.bottom = (y - rect.top + offsetTop) * rectEdgeRgn.Height() / rect.Height();
                             }
                             else
                             {
-                                rcTextBox.top    = rectEdgeRgn.top + g_EditBoxSpaceFromBorder;
+                                rcTextBox.top    = rectEdgeRgn.top + editBoxSpaceFromBorder;
                                 rcTextBox.bottom = yPositionSplitter1;
                             }
 
-                            rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
+                            rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
                             pTextName->MoveTo(rcTextBox);
                         }
                         else
@@ -1049,21 +1060,21 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             PSS_Assert(pPosition);
 
                             CRect rcTextBox = pPosition->GetBounds();
-                            rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.left  = rect.left + editBoxSpaceFromBorder - rectSymbol.left;
 
                             // check if applied to correct splitter
                             if (pComp == pSplitter1 && y != 1)
                             {
-                                rcTextBox.top    = rect.top + g_EditBoxSpaceFromBorder - rectSymbol.top;
+                                rcTextBox.top    = rect.top + editBoxSpaceFromBorder - rectSymbol.top;
                                 rcTextBox.bottom = y - rectSymbol.top;
                             }
                             else
                             {
-                                rcTextBox.top    = rect.top + g_EditBoxSpaceFromBorder - rectSymbol.top;
+                                rcTextBox.top    = rect.top + editBoxSpaceFromBorder - rectSymbol.top;
                                 rcTextBox.bottom = yPositionSplitter1 - rectSymbol.top;
                             }
 
-                            rcTextBox.right = rect.right - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.right = rect.right - editBoxSpaceFromBorder - rectSymbol.left;
                             pTextName->MoveTo(rcTextBox);
                         }
 
@@ -1081,10 +1092,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in relative coordinates
                             CRect rcTextBox  = pTextName->GetEdgeRgn().GetBounds();
-                            rcTextBox.left   = rectEdgeRgn.left     + g_EditBoxSpaceFromBorder;
-                            rcTextBox.top    = rectEdgeRgn.Height() - g_EditBoxSpaceFromBorder - 2;
-                            rcTextBox.bottom = rectEdgeRgn.Height() - g_EditBoxSpaceFromBorder;
-                            rcTextBox.right  = rectEdgeRgn.Width()  - g_EditBoxSpaceFromBorder;
+                            rcTextBox.left   = rectEdgeRgn.left     + editBoxSpaceFromBorder;
+                            rcTextBox.top    = rectEdgeRgn.Height() - editBoxSpaceFromBorder - 2;
+                            rcTextBox.bottom = rectEdgeRgn.Height() - editBoxSpaceFromBorder;
+                            rcTextBox.right  = rectEdgeRgn.Width()  - editBoxSpaceFromBorder;
                             pTextName->MoveTo(rcTextBox);
                         }
                         else
@@ -1094,10 +1105,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             PSS_Assert(pPosition);
 
                             CRect rcTextBox  = pPosition->GetBounds();
-                            rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
-                            rcTextBox.top    = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
-                            rcTextBox.bottom = rect.bottom - 1                        - rectSymbol.top;
-                            rcTextBox.right  = rect.right  - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.left   = rect.left   + editBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.top    = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
+                            rcTextBox.bottom = rect.bottom - 1                      - rectSymbol.top;
+                            rcTextBox.right  = rect.right  - editBoxSpaceFromBorder - rectSymbol.left;
                             pTextName->MoveTo(rcTextBox);
                         }
                     }
@@ -1117,7 +1128,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in relative coordinates
                             CRect rcTextBox = pTextComment->GetEdgeRgn().GetBounds();
-                            rcTextBox.left  = rectEdgeRgn.left + g_EditBoxSpaceFromBorder;
+                            rcTextBox.left  = rectEdgeRgn.left + editBoxSpaceFromBorder;
 
                             // check if applied to correct splitter
                             if (pComp == pSplitter1 && y != 1)
@@ -1125,11 +1136,11 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                                 if (doneFirst)
                                 {
                                     rcTextBox.top    = (y - rect.top + offsetTop) * rectEdgeRgn.Height() / rect.Height();
-                                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - g_EditBoxSpaceFromBorder;
+                                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - editBoxSpaceFromBorder;
                                 }
                                 else
                                 {
-                                    rcTextBox.top    = rectEdgeRgn.top + g_EditBoxSpaceFromBorder;
+                                    rcTextBox.top    = rectEdgeRgn.top + editBoxSpaceFromBorder;
                                     rcTextBox.bottom = (y - rect.top + offsetTop) * rectEdgeRgn.Height() / rect.Height();
                                 }
                             }
@@ -1138,16 +1149,16 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                                 if (doneFirst)
                                 {
                                     rcTextBox.top    = yPositionSplitter1;
-                                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - g_EditBoxSpaceFromBorder;
+                                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - editBoxSpaceFromBorder;
                                 }
                                 else
                                 {
-                                    rcTextBox.top    = rectEdgeRgn.top + g_EditBoxSpaceFromBorder;
+                                    rcTextBox.top    = rectEdgeRgn.top + editBoxSpaceFromBorder;
                                     rcTextBox.bottom = yPositionSplitter1;
                                 }
                             }
 
-                            rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
+                            rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
                             pTextComment->MoveTo(rcTextBox);
                         }
                         else
@@ -1157,7 +1168,7 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             PSS_Assert(pPosition);
 
                             CRect rcTextBox = pPosition->GetBounds();
-                            rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.left  = rect.left + editBoxSpaceFromBorder - rectSymbol.left;
 
                             // check if applied to correct splitter
                             if (pComp == pSplitter1 && y != 1)
@@ -1177,15 +1188,15 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             if (doneFirst)
                             {
                                 rcTextBox.top    = yPositionSplitter1 - rectSymbol.top;
-                                rcTextBox.bottom = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
+                                rcTextBox.bottom = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
                             }
                             else
                             {
-                                rcTextBox.top    = rect.top + g_EditBoxSpaceFromBorder - rectSymbol.top;
+                                rcTextBox.top    = rect.top + editBoxSpaceFromBorder - rectSymbol.top;
                                 rcTextBox.bottom = yPositionSplitter1 - rectSymbol.top;
                             }
 
-                            rcTextBox.right = rect.right - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.right = rect.right - editBoxSpaceFromBorder - rectSymbol.left;
                             pTextComment->MoveTo(rcTextBox);
                         }
 
@@ -1202,10 +1213,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in relative coordinates
                             CRect rcTextBox  = pTextComment->GetEdgeRgn().GetBounds();
-                            rcTextBox.left   = rectEdgeRgn.left     + g_EditBoxSpaceFromBorder;
-                            rcTextBox.top    = rectEdgeRgn.Height() - g_EditBoxSpaceFromBorder - 2;
-                            rcTextBox.bottom = rectEdgeRgn.Height() - g_EditBoxSpaceFromBorder;
-                            rcTextBox.right  = rectEdgeRgn.Width()  - g_EditBoxSpaceFromBorder;
+                            rcTextBox.left   = rectEdgeRgn.left     + editBoxSpaceFromBorder;
+                            rcTextBox.top    = rectEdgeRgn.Height() - editBoxSpaceFromBorder - 2;
+                            rcTextBox.bottom = rectEdgeRgn.Height() - editBoxSpaceFromBorder;
+                            rcTextBox.right  = rectEdgeRgn.Width()  - editBoxSpaceFromBorder;
                             pTextComment->MoveTo(rcTextBox);
                         }
                         else
@@ -1215,10 +1226,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             PSS_Assert(pPosition);
 
                             CRect rcTextBox  = pPosition->GetBounds();
-                            rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
-                            rcTextBox.top    = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
-                            rcTextBox.bottom = rect.bottom - 1                        - rectSymbol.top;
-                            rcTextBox.right  = rect.right  - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.left   = rect.left   + editBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.top    = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
+                            rcTextBox.bottom = rect.bottom - 1                      - rectSymbol.top;
+                            rcTextBox.right  = rect.right  - editBoxSpaceFromBorder - rectSymbol.left;
                             pTextComment->MoveTo(rcTextBox);
                         }
                 }
@@ -1237,21 +1248,21 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in relative coordinates
                             CRect rcTextBox = pTextAttribute->GetEdgeRgn().GetBounds();
-                            rcTextBox.left  = rectEdgeRgn.left + g_EditBoxSpaceFromBorder;
+                            rcTextBox.left  = rectEdgeRgn.left + editBoxSpaceFromBorder;
 
                             // check if applied to correct splitter
                             if (pComp == pSplitter1 && y != 1)
                             {
                                 rcTextBox.top    = (y - rect.top + offsetTop) * rectEdgeRgn.Height() / rect.Height();
-                                rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - g_EditBoxSpaceFromBorder;
+                                rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - editBoxSpaceFromBorder;
                             }
                             else
                             {
                                 rcTextBox.top    = yPositionSplitter1;
-                                rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - g_EditBoxSpaceFromBorder;
+                                rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop - editBoxSpaceFromBorder;
                             }
 
-                            rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
+                            rcTextBox.right = rcTextBox.left + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
                             pTextAttribute->MoveTo(rcTextBox);
                         }
                         else
@@ -1261,21 +1272,21 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             PSS_Assert(pPosition);
 
                             CRect rcTextBox = pPosition->GetBounds();
-                            rcTextBox.left  = rect.left + g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.left  = rect.left + editBoxSpaceFromBorder - rectSymbol.left;
 
                             // check if applied to correct splitter
                             if (pComp == pSplitter1 && y != 1)
                             {
                                 rcTextBox.top    = y - rectSymbol.top;
-                                rcTextBox.bottom = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
+                                rcTextBox.bottom = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
                             }
                             else
                             {
                                 rcTextBox.top    = yPositionSplitter1 - rectSymbol.top;
-                                rcTextBox.bottom = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
+                                rcTextBox.bottom = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
                             }
 
-                            rcTextBox.right = rect.right - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.right = rect.right - editBoxSpaceFromBorder - rectSymbol.left;
                             pTextAttribute->MoveTo(rcTextBox);
                         }
                     }
@@ -1290,10 +1301,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                         {
                             // move the text box in relative coordinates
                             CRect rcTextBox  = pTextAttribute->GetEdgeRgn().GetBounds();
-                            rcTextBox.left   = rectEdgeRgn.left     + g_EditBoxSpaceFromBorder;
-                            rcTextBox.top    = rectEdgeRgn.Height() - g_EditBoxSpaceFromBorder - 2;
-                            rcTextBox.bottom = rectEdgeRgn.Height() - g_EditBoxSpaceFromBorder;
-                            rcTextBox.right  = rectEdgeRgn.Width()  - g_EditBoxSpaceFromBorder;
+                            rcTextBox.left   = rectEdgeRgn.left     + editBoxSpaceFromBorder;
+                            rcTextBox.top    = rectEdgeRgn.Height() - editBoxSpaceFromBorder - 2;
+                            rcTextBox.bottom = rectEdgeRgn.Height() - editBoxSpaceFromBorder;
+                            rcTextBox.right  = rectEdgeRgn.Width()  - editBoxSpaceFromBorder;
                             pTextAttribute->MoveTo(rcTextBox);
                         }
                         else
@@ -1303,10 +1314,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                             PSS_Assert(pPosition);
 
                             CRect rcTextBox  = pPosition->GetBounds();
-                            rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
-                            rcTextBox.top    = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
-                            rcTextBox.bottom = rect.bottom - 1                        - rectSymbol.top;
-                            rcTextBox.right  = rect.right  - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.left   = rect.left   + editBoxSpaceFromBorder - rectSymbol.left;
+                            rcTextBox.top    = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
+                            rcTextBox.bottom = rect.bottom - 1                      - rectSymbol.top;
+                            rcTextBox.right  = rect.right  - editBoxSpaceFromBorder - rectSymbol.left;
                             pTextAttribute->MoveTo(rcTextBox);
                         }
                 }
@@ -1364,10 +1375,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the text box in relative coordinates
                     CRect rcTextBox  = pTextName->GetEdgeRgn().GetBounds();
-                    rcTextBox.left   = rectEdgeRgn.left     + g_EditBoxSpaceFromBorder;
-                    rcTextBox.top    = rectEdgeRgn.top      + g_EditBoxSpaceFromBorder;
-                    rcTextBox.right  = rcTextBox.left       + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
-                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop           - g_EditBoxSpaceFromBorder;
+                    rcTextBox.left   = rectEdgeRgn.left     + editBoxSpaceFromBorder;
+                    rcTextBox.top    = rectEdgeRgn.top      + editBoxSpaceFromBorder;
+                    rcTextBox.right  = rcTextBox.left       + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
+                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop           - editBoxSpaceFromBorder;
                     pTextName->MoveTo(rcTextBox);
                 }
                 else
@@ -1377,10 +1388,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     PSS_Assert(pPosition);
 
                     CRect rcTextBox  = pPosition->GetBounds();
-                    rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
-                    rcTextBox.top    = rect.top    + g_EditBoxSpaceFromBorder - rectSymbol.top;
-                    rcTextBox.bottom = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
-                    rcTextBox.right  = rect.right  - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.left   = rect.left   + editBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.top    = rect.top    + editBoxSpaceFromBorder - rectSymbol.top;
+                    rcTextBox.bottom = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
+                    rcTextBox.right  = rect.right  - editBoxSpaceFromBorder - rectSymbol.left;
                     pTextName->MoveTo(rcTextBox);
                 }
             }
@@ -1396,10 +1407,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the text box in relative coordinates
                     CRect rcTextBox  = pTextComment->GetEdgeRgn().GetBounds();
-                    rcTextBox.left   = rectEdgeRgn.left     + g_EditBoxSpaceFromBorder;
-                    rcTextBox.top    = rectEdgeRgn.top      + g_EditBoxSpaceFromBorder;
-                    rcTextBox.right  = rcTextBox.left       + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
-                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop           - g_EditBoxSpaceFromBorder;
+                    rcTextBox.left   = rectEdgeRgn.left     + editBoxSpaceFromBorder;
+                    rcTextBox.top    = rectEdgeRgn.top      + editBoxSpaceFromBorder;
+                    rcTextBox.right  = rcTextBox.left       + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
+                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop           - editBoxSpaceFromBorder;
                     pTextComment->MoveTo(rcTextBox);
                 }
                 else
@@ -1409,10 +1420,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     PSS_Assert(pPosition);
 
                     CRect rcTextBox  = pPosition->GetBounds();
-                    rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
-                    rcTextBox.top    = rect.top    + g_EditBoxSpaceFromBorder - rectSymbol.top;
-                    rcTextBox.bottom = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
-                    rcTextBox.right  = rect.right  - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.left   = rect.left   + editBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.top    = rect.top    + editBoxSpaceFromBorder - rectSymbol.top;
+                    rcTextBox.bottom = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
+                    rcTextBox.right  = rect.right  - editBoxSpaceFromBorder - rectSymbol.left;
                     pTextComment->MoveTo(rcTextBox);
                 }
             }
@@ -1428,10 +1439,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                 {
                     // move the text box in relative coordinates
                     CRect rcTextBox  = pTextAttribute->GetEdgeRgn().GetBounds();
-                    rcTextBox.left   = rectEdgeRgn.left     + g_EditBoxSpaceFromBorder;
-                    rcTextBox.top    = rectEdgeRgn.top      + g_EditBoxSpaceFromBorder;
-                    rcTextBox.right  = rcTextBox.left       + rectEdgeRgn.Width() - g_EditBoxSpaceFromBorder;
-                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop           - g_EditBoxSpaceFromBorder;
+                    rcTextBox.left   = rectEdgeRgn.left     + editBoxSpaceFromBorder;
+                    rcTextBox.top    = rectEdgeRgn.top      + editBoxSpaceFromBorder;
+                    rcTextBox.right  = rcTextBox.left       + rectEdgeRgn.Width() - editBoxSpaceFromBorder;
+                    rcTextBox.bottom = rectEdgeRgn.Height() + offsetTop           - editBoxSpaceFromBorder;
                     pTextAttribute->MoveTo(rcTextBox);
                 }
                 else
@@ -1441,10 +1452,10 @@ void PSS_SymbolAttributes::AdjustAreaPosition(CODLineComponent* pComp, int y)
                     PSS_Assert(pPosition);
 
                     CRect rcTextBox  = pPosition->GetBounds();
-                    rcTextBox.left   = rect.left   + g_EditBoxSpaceFromBorder - rectSymbol.left;
-                    rcTextBox.top    = rect.top    + g_EditBoxSpaceFromBorder - rectSymbol.top;
-                    rcTextBox.bottom = rect.bottom - g_EditBoxSpaceFromBorder - rectSymbol.top;
-                    rcTextBox.right  = rect.right  - g_EditBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.left   = rect.left   + editBoxSpaceFromBorder - rectSymbol.left;
+                    rcTextBox.top    = rect.top    + editBoxSpaceFromBorder - rectSymbol.top;
+                    rcTextBox.bottom = rect.bottom - editBoxSpaceFromBorder - rectSymbol.top;
+                    rcTextBox.right  = rect.right  - editBoxSpaceFromBorder - rectSymbol.left;
                     pTextAttribute->MoveTo(rcTextBox);
                 }
             }
@@ -1637,7 +1648,7 @@ CODTextComponent* PSS_SymbolAttributes::GetCommentTextEdit()
     {
         CODComponent* pComp  = dynamic_cast<CODComponent*>(m_pSymbol);
         CODComponent* pFound = NULL;
-        
+
         if (pComp)
             pFound = PSS_ODSymbolManipulator::FindSymbol(pComp, M_CommentComponentControlLabel);
 

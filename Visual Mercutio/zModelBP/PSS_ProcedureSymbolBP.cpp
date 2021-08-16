@@ -75,7 +75,7 @@ PSS_ProcedureSymbolBP::PSS_ProcedureSymbolBP(const CString& name) :
     PSS_Symbol(),
     m_Combinations(this)
 {
-    m_ShowAttributeArea = true;
+    ShowAttributeArea(true);
 
     PSS_Symbol::SetSymbolName(name);
 
