@@ -8,6 +8,9 @@
 #include <StdAfx.h>
 #include "PSS_PlanFinObject.h"
 
+// std
+#include <cmath>
+
 // processsoft
 #include "PSS_Document.h"
 #include "PSS_View.h"

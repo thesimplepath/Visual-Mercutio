@@ -8,8 +8,9 @@
 #include "stdafx.h"
 #include "PSS_DIBitmap.h"
 
- // windows
-#include "math.h"
+ // std
+#include <math.h>
+#include <cmath>
 
 //---------------------------------------------------------------------------
 // Global defines
@@ -279,7 +280,7 @@ HANDLE PSS_DIBitmap::GetDIBits(int startX, int startY, int cx, int cy) const
         startX = startY = 0;
         cx     = m_Width;
         cy     = m_Height;
-        
+
         PSS_DIBitmap dib;
         dib.Create(cx, cy, 8);
         dib.BitBlt(0, 0, cx, cy, *this, 0, 0);
@@ -340,7 +341,7 @@ CBitmap* PSS_DIBitmap::GetBitmap(const CDC& dc) const
             throw;
         }
     }
-    
+
     return NULL;
 }
 //---------------------------------------------------------------------------

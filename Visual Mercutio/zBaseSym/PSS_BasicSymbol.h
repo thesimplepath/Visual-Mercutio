@@ -92,6 +92,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         /**
         * Sets the symbol name
         *@param value - the symbol name
+        *@return TRUE on success, otherwise FALSE
         */
         virtual BOOL SetSymbolName(const CString& value) = 0;
 
@@ -104,6 +105,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         /**
         * Sets the symbol comment
         *@param value - the symbol comment
+        *@return TRUE on success, otherwise FALSE
         */
         virtual BOOL SetSymbolComment(const CString& value) = 0;
 
@@ -116,6 +118,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         /**
         * Sets the symbol reference number
         *@param value - the symbol reference number
+        *@return TRUE on success, otherwise FALSE
         */
         virtual BOOL SetSymbolReferenceNumber(int value) = 0;
 
@@ -128,6 +131,7 @@ class AFX_EXT_CLASS PSS_BasicSymbol
         /**
         * Sets the symbol reference number as string
         *@param value - the symbol reference number as string
+        *@return TRUE on success, otherwise FALSE
         */
         virtual BOOL SetSymbolReferenceNumberStr(const CString& value) = 0;
 

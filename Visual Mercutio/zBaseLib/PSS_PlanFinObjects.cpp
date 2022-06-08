@@ -9,6 +9,7 @@
 #include "PSS_PlanFinObjects.h"
 
 // std
+#include <cmath>
 #include <float.h>
 
 // processsoft
@@ -826,7 +827,7 @@ BOOL PSS_PLFNLong::ConvertFormattedObject(const CString& value, BOOL locateForma
 
     if (pCpPos)
     {
-        // check if char ' exists at the same time 
+        // check if char ' exists at the same time
         if (std::strchr((const char*)value, '\''))
         {
             AfxMessageBox(IDS_WZFORMATNUMBERERROR);

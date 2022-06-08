@@ -10,6 +10,7 @@
 
 // std
 #include <Math.h>
+#include <cmath>
 #include <Ctype.h>
 
 //---------------------------------------------------------------------------
@@ -44,7 +45,7 @@
 // point the the Get value function. When the parser found a name that is not a token,
 // not a number and not a function, he calls this function to retrieve the corresponding
 // value
-LOCAL double (*fMfncGetValue)(char*); 
+LOCAL double (*fMfncGetValue)(char*);
 //---------------------------------------------------------------------------
 // PSS_FormulaObjectParser
 //---------------------------------------------------------------------------
@@ -487,7 +488,6 @@ int PSS_FormulaParser::Match(int token)
     return (token == m_LookAhead);
 }
 //---------------------------------------------------------------------------
-
 int PSS_FormulaParser::LegalLookAhead(int firstArg, ...)
 {
     // simple error detection and recovery. Arguments are a 0-terminated, list of those tokens that

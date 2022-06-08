@@ -8,6 +8,9 @@
 #include <StdAfx.h>
 #include "PSS_DocumentData.h"
 
+// std
+#include <cmath>
+
 // processsoft
 #include "PSS_PlanFinObject.h"
 #include "PSS_PlanFinObjects.h"
@@ -258,7 +261,6 @@ void PSS_DocumentData::MoveContents(PSS_DocumentData* pDocument, BOOL copyFormat
     {
         PSS_PlanFinObject* pObjDst = (PSS_PlanFinObject*)pDocument->m_ObjElements.GetNext(pPositionDst);
 
-        // for each element find the 
         POSITION pPositionSrc = m_ObjElements.GetHeadPosition();
 
         while (pPositionSrc)
@@ -1386,7 +1388,7 @@ void PSS_DocumentData::AssignNewStyle(PSS_Style::Handle hOldStyle, PSS_Style::Ha
     PSS_PlanFinObject* pObj;
     POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
-    // iterate through all objects    
+    // iterate through all objects
     while (pPosition)
     {
         pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);

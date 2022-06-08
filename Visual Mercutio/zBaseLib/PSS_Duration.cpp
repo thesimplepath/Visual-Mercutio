@@ -8,6 +8,9 @@
 #include "stdafx.h"
 #include "PSS_Duration.h"
 
+// std
+#include <cmath>
+
 #ifdef _DEBUG
     #undef THIS_FILE
     static char THIS_FILE[] = __FILE__;
