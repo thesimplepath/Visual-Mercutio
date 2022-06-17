@@ -59,27 +59,27 @@ PSS_DocOptionDialog::PSS_DocOptionDialog(PSS_DocumentOptions* pDocOptions, CWnd*
 {
     switch (m_pDocOptions->GetEmptyStyle())
     {
-        case E_LT_Dotted: m_EmptyStyle = 1; break;
-        case E_LT_Small:  m_EmptyStyle = 2; break;
-        case E_LT_Dash:   m_EmptyStyle = 3; break;
-        case E_LT_Solid:  m_EmptyStyle = 4; break;
-        default:          m_EmptyStyle = 0;
+        case ELineType::E_LT_Dotted: m_EmptyStyle = 1; break;
+        case ELineType::E_LT_Small:  m_EmptyStyle = 2; break;
+        case ELineType::E_LT_Dash:   m_EmptyStyle = 3; break;
+        case ELineType::E_LT_Solid:  m_EmptyStyle = 4; break;
+        default:                     m_EmptyStyle = 0;
     }
 
     switch (m_pDocOptions->GetShowEmptyLine())
     {
-        case E_OT_Yes: m_ShowEmptyLineYesNoDoc = 0; break;
-        case E_OT_No:  m_ShowEmptyLineYesNoDoc = 1; break;
-        default:       m_ShowEmptyLineYesNoDoc = 2;
+        case EOptionType::E_OT_Yes: m_ShowEmptyLineYesNoDoc = 0; break;
+        case EOptionType::E_OT_No:  m_ShowEmptyLineYesNoDoc = 1; break;
+        default:                    m_ShowEmptyLineYesNoDoc = 2;
     }
 
     m_PrintEmptyStyleWhenEmpty = m_pDocOptions->GetPrintEmptyStyleWhenEmpty();
 
     switch (m_pDocOptions->GetShowHiddenField())
     {
-        case E_OT_Yes: m_ShowHiddenFieldYesNoDoc = 0; break;
-        case E_OT_No:  m_ShowHiddenFieldYesNoDoc = 1; break;
-        default:       m_ShowHiddenFieldYesNoDoc = 2;
+        case EOptionType::E_OT_Yes: m_ShowHiddenFieldYesNoDoc = 0; break;
+        case EOptionType::E_OT_No:  m_ShowHiddenFieldYesNoDoc = 1; break;
+        default:                    m_ShowHiddenFieldYesNoDoc = 2;
     }
 
     if (m_pDocOptions->GetIsSynchronizeExchangeFeedFile())
@@ -92,20 +92,20 @@ PSS_DocOptionDialog::PSS_DocOptionDialog(PSS_DocumentOptions* pDocOptions, CWnd*
 
     switch (m_pDocOptions->GetAutomaticSynchronizeFileName())
     {
-        case E_ST_FileNameSpecified: m_AutomaticFileNameGeneration = 1; break;
-        case E_ST_FolderSpecified:   m_AutomaticFileNameGeneration = 2; break;
-        default:                     m_AutomaticFileNameGeneration = 0;
+        case ESynchronizationFileType::E_ST_FileNameSpecified: m_AutomaticFileNameGeneration = 1; break;
+        case ESynchronizationFileType::E_ST_FolderSpecified:   m_AutomaticFileNameGeneration = 2; break;
+        default:                                               m_AutomaticFileNameGeneration = 0;
     }
 
     m_GenerateHeader = (m_pDocOptions->GetSynchronizationHeader() == TRUE) ? 0 : 1;
 
     switch (m_pDocOptions->GetSynchronizationSeparator())
     {
-        case E_SS_Tab:        m_SeparatorType = 1; break;
-        case E_SS_Comma:      m_SeparatorType = 2; break;
-        case E_SS_SemiColumn: m_SeparatorType = 3; break;
-        case E_SS_Quote:      m_SeparatorType = 4; break;
-        default:              m_SeparatorType = 0;
+        case ESynchronizationSeparatorType::E_SS_Tab:       m_SeparatorType = 1; break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     m_SeparatorType = 2; break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: m_SeparatorType = 3; break;
+        case ESynchronizationSeparatorType::E_SS_Quote:     m_SeparatorType = 4; break;
+        default:                                            m_SeparatorType = 0;
     }
 }
 //---------------------------------------------------------------------------
@@ -135,7 +135,7 @@ void PSS_DocOptionDialog::DoDataExchange(CDataExchange* pDX)
 BOOL PSS_DocOptionDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
+
     CheckControlState();
 
     // return TRUE unless the focus is set to a control
@@ -265,29 +265,29 @@ void PSS_DocOptionDialog::OnOK()
 
     switch (m_EmptyStyle)
     {
-        case 1:  m_pDocOptions->SetEmptyStyle(E_LT_Dotted); break;
-        case 2:  m_pDocOptions->SetEmptyStyle(E_LT_Small);  break;
-        case 3:  m_pDocOptions->SetEmptyStyle(E_LT_Dash);   break;
-        case 4:  m_pDocOptions->SetEmptyStyle(E_LT_Solid);  break;
-        default: m_pDocOptions->SetEmptyStyle(E_LT_No);
+        case 1:  m_pDocOptions->SetEmptyStyle(ELineType::E_LT_Dotted); break;
+        case 2:  m_pDocOptions->SetEmptyStyle(ELineType::E_LT_Small);  break;
+        case 3:  m_pDocOptions->SetEmptyStyle(ELineType::E_LT_Dash);   break;
+        case 4:  m_pDocOptions->SetEmptyStyle(ELineType::E_LT_Solid);  break;
+        default: m_pDocOptions->SetEmptyStyle(ELineType::E_LT_No);
     }
 
     switch (m_ShowEmptyLineYesNoDoc)
     {
-        case 0:  m_pDocOptions->SetShowEmptyLine(E_OT_Yes);         break;
-        case 1:  m_pDocOptions->SetShowEmptyLine(E_OT_No);          break;
-        case 2:  m_pDocOptions->SetShowEmptyLine(E_OT_Application); break;
-        default: m_pDocOptions->SetShowEmptyLine(E_OT_Application);
+        case 0:  m_pDocOptions->SetShowEmptyLine(EOptionType::E_OT_Yes);         break;
+        case 1:  m_pDocOptions->SetShowEmptyLine(EOptionType::E_OT_No);          break;
+        case 2:  m_pDocOptions->SetShowEmptyLine(EOptionType::E_OT_Application); break;
+        default: m_pDocOptions->SetShowEmptyLine(EOptionType::E_OT_Application);
     }
 
     m_pDocOptions->SetPrintEmptyStyleWhenEmpty(m_PrintEmptyStyleWhenEmpty);
 
     switch (m_ShowHiddenFieldYesNoDoc)
     {
-        case 0:  m_pDocOptions->SetShowHiddenField(E_OT_Yes);         break;
-        case 1:  m_pDocOptions->SetShowHiddenField(E_OT_No);          break;
-        case 2:  m_pDocOptions->SetShowHiddenField(E_OT_Application); break;
-        default: m_pDocOptions->SetShowHiddenField(E_OT_Application);
+        case 0:  m_pDocOptions->SetShowHiddenField(EOptionType::E_OT_Yes);         break;
+        case 1:  m_pDocOptions->SetShowHiddenField(EOptionType::E_OT_No);          break;
+        case 2:  m_pDocOptions->SetShowHiddenField(EOptionType::E_OT_Application); break;
+        default: m_pDocOptions->SetShowHiddenField(EOptionType::E_OT_Application);
     }
 
     if (!m_SynchronisationYesNo)
@@ -300,9 +300,9 @@ void PSS_DocOptionDialog::OnOK()
 
     switch (m_AutomaticFileNameGeneration)
     {
-        case 1:  m_pDocOptions->SetAutomaticSynchronizeFileName(E_ST_FileNameSpecified); break;
-        case 2:  m_pDocOptions->SetAutomaticSynchronizeFileName(E_ST_FolderSpecified);   break;
-        default: m_pDocOptions->SetAutomaticSynchronizeFileName(E_ST_AutomaticName);
+        case 1:  m_pDocOptions->SetAutomaticSynchronizeFileName(ESynchronizationFileType::E_ST_FileNameSpecified); break;
+        case 2:  m_pDocOptions->SetAutomaticSynchronizeFileName(ESynchronizationFileType::E_ST_FolderSpecified);   break;
+        default: m_pDocOptions->SetAutomaticSynchronizeFileName(ESynchronizationFileType::E_ST_AutomaticName);
     }
 
     if (!m_GenerateHeader)
@@ -312,11 +312,11 @@ void PSS_DocOptionDialog::OnOK()
 
     switch (m_SeparatorType)
     {
-        case 1:  m_pDocOptions->SetSynchronizationSeparator(E_SS_Tab);        break;
-        case 2:  m_pDocOptions->SetSynchronizationSeparator(E_SS_Comma);      break;
-        case 3:  m_pDocOptions->SetSynchronizationSeparator(E_SS_SemiColumn); break;
-        case 4:  m_pDocOptions->SetSynchronizationSeparator(E_SS_Quote);      break;
-        default: m_pDocOptions->SetSynchronizationSeparator(E_SS_Automatic);
+        case 1:  m_pDocOptions->SetSynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Tab);       break;
+        case 2:  m_pDocOptions->SetSynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Comma);     break;
+        case 3:  m_pDocOptions->SetSynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Semicolon); break;
+        case 4:  m_pDocOptions->SetSynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Quote);     break;
+        default: m_pDocOptions->SetSynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Automatic);
     }
 }
 //---------------------------------------------------------------------------
@@ -352,7 +352,7 @@ void PSS_DocOptionDialog::CheckControlState()
 
     if (GetDlgItem(IDC_AUTOMATICFILENAME3))
         GetDlgItem(IDC_AUTOMATICFILENAME3)->ShowWindow(!m_SynchronisationYesNo ? SW_SHOW : SW_HIDE);
-       
+
     if (GetDlgItem(IDC_FLF_FILENAME))
         GetDlgItem(IDC_FLF_FILENAME)->ShowWindow(!m_AutomaticFileNameGeneration ? SW_HIDE : SW_SHOW);
 

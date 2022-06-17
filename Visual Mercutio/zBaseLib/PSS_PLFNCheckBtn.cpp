@@ -75,7 +75,7 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, PSS_View* pView)
 
         switch (GetCheckType())
         {
-            case E_CB_Rounded:
+            case ECheckButtonType::E_CB_Rounded:
                 pDC->Ellipse(rectControl.left, rectControl.top, rectControl.left + GetSize(), rectControl.top + GetSize());
 
                 // show a point
@@ -99,7 +99,7 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, PSS_View* pView)
 
                 break;
 
-            case E_CB_Squared:
+            case ECheckButtonType::E_CB_Squared:
                 // draw the square
                 pDC->MoveTo(rectControl.left,             rectControl.top);
                 pDC->LineTo(rectControl.left,             rectControl.top + GetSize());
@@ -128,7 +128,7 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, PSS_View* pView)
         pDC->SetTextColor(GetColor(pView));
         pDC->SetTextAlign(TA_LEFT | TA_BASELINE);
 
-        // if the text does not act as a control 
+        // if the text does not act as a control
         if (!GetTextIsCtrl() && !GetLeftText())
             pDC->TextOut(m_ObjectRect.left + GetSize() + GetOffsetText(), m_ObjectRect.top + GetSize(), GetText());
         else

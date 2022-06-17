@@ -59,9 +59,9 @@ class AFX_EXT_CLASS PSS_DeliveriesPropertiesBP : public CObject
     public:
         /**
         * Change type
-        *@note These items may be combinated
+        *@note These items may be combined
         */
-        enum IEChangeType
+        enum class IEChangeType
         {
             IE_CT_Change_Delivery_Name         = 0x0001,
             IE_CT_Change_Delivery_Deliverables = 0x0002,
@@ -106,7 +106,7 @@ class AFX_EXT_CLASS PSS_DeliveriesPropertiesBP : public CObject
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(PSS_DeliveriesPropertiesBP* pProp, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(PSS_DeliveriesPropertiesBP* pProp, DWORD changeFlags = (DWORD)IEChangeType::IE_CT_All);
 
         /**
         * Checks if another set of properties is equal to this one

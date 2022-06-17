@@ -275,7 +275,7 @@ class AFX_EXT_CLASS PSS_PackageSymbolBP : public PSS_Symbol
         */
         virtual bool OnToolTip(CString&                   toolTipText,
                                const CPoint&              point,
-                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
+                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IEToolTipMode::IE_TT_Normal);
 
     protected:
         /**

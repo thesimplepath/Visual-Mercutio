@@ -38,10 +38,10 @@ PSS_Activity::PSS_Activity(const CString& activityName,
     m_pCommandLine(NULL),
     m_pBaseOnFormFile(NULL),
     m_pBaseOnProcFile(NULL),
-    m_FormAttachmentType(PSS_File::IE_AT_InsertedFile),
-    m_ProcessAttachmentType(PSS_File::IE_AT_InsertedFile),
-    m_RequireFormFile(E_TS_False),
-    m_RequireProcFile(E_TS_False),
+    m_FormAttachmentType(PSS_File::IEAttachmentType::IE_AT_InsertedFile),
+    m_ProcessAttachmentType(PSS_File::IEAttachmentType::IE_AT_InsertedFile),
+    m_RequireFormFile(EThreeState::E_TS_False),
+    m_RequireProcFile(EThreeState::E_TS_False),
     m_RejectedToActivity(g_RejectActivityToPrevious),
     m_PreConditionsDone(FALSE),
     m_PostConditionsDone(FALSE),
@@ -124,13 +124,13 @@ CString PSS_Activity::GetDefaultString() const
 {
     CString line = "Activité:" + GetName() + GetActivityStatusString();
 
-    if (GetActivityStatus() != IE_AS_NotStarted)
+    if (GetActivityStatus() != IEStatus::IE_AS_NotStarted)
     {
         line += " Démarré le: ";
 
         char buffer[30];
         ::sprintf_s(buffer,
-                    ::_tcslen(buffer),
+                    30,
                     "%d.%d.%d",
                     GetStartDate().GetDay(),
                     GetStartDate().GetMonth(),
@@ -398,16 +398,16 @@ void PSS_Activity::DeleteProcessToStart()
 void PSS_Activity::DeleteBaseOnFormFile()
 {
     RemoveAllFormFiles();
-    SetRequireFormFile(E_TS_False);
-    SetFormAttachmentType(PSS_File::IE_AT_InsertedFile);
+    SetRequireFormFile(EThreeState::E_TS_False);
+    SetFormAttachmentType(PSS_File::IEAttachmentType::IE_AT_InsertedFile);
     SetPreFormReadOnly(TRUE);
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::DeleteBaseOnProcFile()
 {
     RemoveAllProcFiles();
-    SetRequireProcFile(E_TS_False);
-    SetProcessAttachmentType(PSS_File::IE_AT_InsertedFile);
+    SetRequireProcFile(EThreeState::E_TS_False);
+    SetProcessAttachmentType(PSS_File::IEAttachmentType::IE_AT_InsertedFile);
     SetPreProcReadOnly(TRUE);
 }
 //---------------------------------------------------------------------------
@@ -488,7 +488,7 @@ void PSS_Activity::Serialize(CArchive& ar)
         // flag for pre-conditions
         ar >> wValue;
         m_PreConditionsDone = BOOL(wValue);
- 
+
         // flag for post-conditions
         ar >> wValue;
         m_PostConditionsDone = BOOL(wValue);

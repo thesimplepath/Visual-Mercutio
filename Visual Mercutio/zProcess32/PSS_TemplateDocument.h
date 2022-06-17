@@ -146,7 +146,7 @@ class PSS_TemplateDocument
         /**
         * Template string index
         */
-        enum IEStringIndex
+        enum class IEStringIndex
         {
             IE_SI_WindowTitle,                      // default window title
             IE_SI_DocName,                          // user visible name for default document
@@ -190,7 +190,7 @@ class PSS_TemplateDocument
                             m_DefTemplate(defTemplate),
                             m_ResID(resID)
                         {
-                            GetTemplateString(m_Extension, IE_SI_FilterExt);
+                            GetTemplateString(m_Extension, (int)IEStringIndex::IE_SI_FilterExt);
                         }
 
                         /**
@@ -206,7 +206,7 @@ class PSS_TemplateDocument
                             m_DefTemplate(defTemplate),
                             m_ResID(resID)
                         {
-                            GetTemplateString(m_Extension, IE_SI_FilterExt);
+                            GetTemplateString(m_Extension, (int)IEStringIndex::IE_SI_FilterExt);
                             m_pAccessor = new TTemplateAccessor(accessor);
                         }
 

@@ -175,6 +175,16 @@ class AFX_EXT_CLASS PSS_LogicalSystemTreeCtrl : public PSS_TreeCtrl,
         virtual bool CanLogicalSystemProperties();
 
         /**
+        * Called when the branch should be expanded
+        */
+        virtual void OnExpandBranch();
+
+        /**
+        * Called when the branch should be collapsed
+        */
+        virtual void OnCollapseBranch();
+
+        /**
         * Called when the controller receives a message
         *@param pSubject - the subject which sent the message
         *@param pMsg - the received message
@@ -207,7 +217,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemTreeCtrl : public PSS_TreeCtrl,
                 /**
                 * Data type
                 */
-                enum IEDataType
+                enum class IEDataType
                 {
                     IE_DT_LogicalSystem,
                     IE_DT_String,
@@ -246,8 +256,6 @@ class AFX_EXT_CLASS PSS_LogicalSystemTreeCtrl : public PSS_TreeCtrl,
         afx_msg void OnLButtonDblClk(UINT nFlags, CPoint pt);
         afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
         afx_msg void OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult);
-        afx_msg void OnCollapseBranch();
-        afx_msg void OnExpandBranch();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -271,7 +279,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemTreeCtrl : public PSS_TreeCtrl,
         PSS_LogicalSystemEntity* m_pLogicalSystemRoot;
         HTREEITEM                m_hUserGroupRoot;
         ITreeDataSet             m_DataSet;
-        CMenu                    m_SubMenu;
+        CMenu                    m_LogicalSystemSubMenu;
         CString                  m_RootName;
         bool                     m_HasBeenInitialized;
 
@@ -279,7 +287,7 @@ class AFX_EXT_CLASS PSS_LogicalSystemTreeCtrl : public PSS_TreeCtrl,
         * Creates the tree
         */
         void CreateTree();
- 
+
         /**
         * Loads the tree
         */

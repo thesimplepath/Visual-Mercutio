@@ -48,7 +48,7 @@ class PSS_CreateFolderWizardExistDialog : public PSS_WizardDialog
         /**
         * Folder exists initial choice enumeration
         */
-        enum IEFolderExistInitialChoice
+        enum class IEFolderExistInitialChoice
         {
             IE_FC_FolderName,
             IE_FC_Directory,
@@ -67,7 +67,7 @@ class PSS_CreateFolderWizardExistDialog : public PSS_WizardDialog
         PSS_CreateFolderWizardExistDialog(const CString&             folderName,
                                           const CString&             fileDirectory,
                                           const CString&             initialFileName,
-                                          IEFolderExistInitialChoice initialChoice = IE_FC_FolderName,
+                                          IEFolderExistInitialChoice initialChoice = IEFolderExistInitialChoice::IE_FC_FolderName,
                                           CWnd*                      pParent       = NULL);
 
         /**

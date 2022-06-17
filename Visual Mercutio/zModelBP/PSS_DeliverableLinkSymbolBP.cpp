@@ -366,9 +366,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Rule_Name_ID + (i * g_MaxRulesSize),
                                          ruleDesc,
                                          m_Rules.GetRuleName(i),
-                                         PSS_Property::IE_T_EditMenu,
+                                         PSS_Property::IEType::IE_T_EditMenu,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          NULL,
                                          &g_RulesMenu));
 
@@ -427,9 +427,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Rule_List_ID + (i * g_MaxRuleListSize),
                                          propDesc,
                                          GetRuleAt(i),
-                                         PSS_Property::IE_T_EditIntelli,
+                                         PSS_Property::IEType::IE_T_EditIntelli,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          pValueArray));
         else
             // the "Control X" of the "Controls" group, but it is empty and not shown
@@ -439,9 +439,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Rule_List_ID + (i * g_MaxRuleListSize),
                                          propDesc,
                                          _T(""),
-                                         PSS_Property::IE_T_EditIntelli,
+                                         PSS_Property::IEType::IE_T_EditIntelli,
                                          false,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          pValueArray));
 
         pProp->EnableDragNDrop();
@@ -475,9 +475,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskName(i),
-                                     PSS_Property::IE_T_EditMenu,
+                                     PSS_Property::IEType::IE_T_EditMenu,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      NULL,
                                      &g_RiskMenu));
 
@@ -494,7 +494,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskDesc(i),
-                                     PSS_Property::IE_T_EditExtended));
+                                     PSS_Property::IEType::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -512,7 +512,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -545,7 +545,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      riskImpact,
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -570,7 +570,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      riskProbability,
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -585,7 +585,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      double(GetRiskSeverity(i)),
-                                     PSS_Property::IE_T_EditNumberReadOnly));
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -600,9 +600,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskUE(i),
-                                     PSS_Property::IE_T_EditNumber,
+                                     PSS_Property::IEType::IE_T_EditNumber,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -617,9 +617,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskPOA(i),
-                                     PSS_Property::IE_T_EditNumber,
+                                     PSS_Property::IEType::IE_T_EditNumber,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -634,9 +634,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      TRUE,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
         propSet.Add(pProp.get());
@@ -671,9 +671,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_TextItem_List_ID + (i * g_MaxTextItemListSize),
                                          propDesc,
                                          GetTextItemAt(i),
-                                         PSS_Property::IE_T_EditIntelli,
+                                         PSS_Property::IEType::IE_T_EditIntelli,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          pValueArray));
         else
             // the "Info x" property of the "Info list" group, but it is empty and not shown
@@ -683,9 +683,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_TextItem_List_ID + (i * g_MaxTextItemListSize),
                                          propDesc,
                                          _T(""),
-                                         PSS_Property::IE_T_EditIntelli,
+                                         PSS_Property::IEType::IE_T_EditIntelli,
                                          false,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          pValueArray));
 
         pProp->EnableDragNDrop();
@@ -718,7 +718,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Cost_Deliv_Processing_Time_ID,
                                          IDS_Z_COST_PROCESSING_TIME_DESC,
                                          GetProcessingTime(),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                          ZS_BP_PROP_DELIVERABLE_COST,
@@ -730,9 +730,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                                       dayPerWeek,
                                                       dayPerMonth,
                                                       dayPerYear),
-                                         PSS_Property::IE_T_EditDuration,
+                                         PSS_Property::IEType::IE_T_EditDuration,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -745,9 +745,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Cost_Deliv_Out_Workload_Percent_ID,
                                  IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
                                  GetOutWorkloadPercent(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  true,
-                                 PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
+                                 PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Percentage)));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -762,9 +762,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Cost_Deliv_Unitary_Cost_ID,
                                      IDS_Z_COST_UNITARY_COST_DESC,
                                      GetUnitaryCost(),
-                                     PSS_Property::IE_T_EditNumber,
+                                     PSS_Property::IEType::IE_T_EditNumber,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -777,7 +777,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Cost_Deliv_Case_Duration_ID,
                                          IDS_Z_COST_CASE_DURATION_DESC,
                                          GetCaseDuration(),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                          ZS_BP_PROP_DELIVERABLE_COST,
@@ -789,9 +789,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                                       dayPerWeek,
                                                       dayPerMonth,
                                                       dayPerYear),
-                                         PSS_Property::IE_T_EditDurationReadOnly,
+                                         PSS_Property::IEType::IE_T_EditDurationReadOnly,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -804,7 +804,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Cost_Deliv_Case_Duration_ID,
                                          IDS_Z_COST_CASE_DURATIONMAX_DESC,
                                          GetCaseDurationMax(),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                          ZS_BP_PROP_DELIVERABLE_COST,
@@ -816,9 +816,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                                       dayPerWeek,
                                                       dayPerMonth,
                                                       dayPerYear),
-                                         PSS_Property::IE_T_EditDurationReadOnly,
+                                         PSS_Property::IEType::IE_T_EditDurationReadOnly,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -831,7 +831,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Cost_Deliv_Target_Duration_ID,
                                          IDS_Z_COST_TARGET_DURATION_DESC,
                                          GetTargetDuration(),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                          ZS_BP_PROP_DELIVERABLE_COST,
@@ -843,9 +843,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                                       dayPerWeek,
                                                       dayPerMonth,
                                                       dayPerYear),
-                                         PSS_Property::IE_T_EditDuration,
+                                         PSS_Property::IEType::IE_T_EditDuration,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -858,7 +858,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                          M_Cost_Deliv_Green_Line_Duration_ID,
                                          IDS_Z_COST_GREENLINE_DURATION_DESC,
                                          GetGreenLineDuration(),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_COST_DELIV_TITLE,
                                          ZS_BP_PROP_DELIVERABLE_COST,
@@ -870,9 +870,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                                       dayPerWeek,
                                                       dayPerMonth,
                                                       dayPerYear),
-                                         PSS_Property::IE_T_EditDuration,
+                                         PSS_Property::IEType::IE_T_EditDuration,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -885,9 +885,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_Year_ID,
                                  IDS_Z_NUMBER_YEAR_DESC,
                                  GetQuantityYear(),
-                                 PSS_Property::IE_T_EditExtended,
+                                 PSS_Property::IEType::IE_T_EditExtended,
                                  true,
-                                 PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, 0)));
+                                 PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Accounting, true, 0)));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -909,9 +909,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_Year_ID,
                                      IDS_Z_LOCKED_YEAR_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -934,9 +934,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Force_Equalizer_ID,
                                      IDS_Z_FORCE_EQUALIZER_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -949,7 +949,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_January_ID,
                                  IDS_Z_NUMBER_JANUARY_DESC,
                                  GetQuantityJanuary(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -972,22 +972,22 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_January_ID,
                                      IDS_Z_LOCKED_JANUARY_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
-    // the "Feburuary quantity" property of the "Quantities" group
+    // the "February quantity" property of the "Quantities" group
     pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                  ZS_BP_PROP_QUANTITY,
                                  IDS_Z_NUMBER_FEBRUARY_NAME,
                                  M_Number_February_ID,
                                  IDS_Z_NUMBER_FEBRUARY_DESC,
                                  GetQuantityFebruary(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1010,9 +1010,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_February_ID,
                                      IDS_Z_LOCKED_FEBRUARY_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1025,7 +1025,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_March_ID,
                                  IDS_Z_NUMBER_MARCH_DESC,
                                  GetQuantityMarch(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1048,22 +1048,22 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_March_ID,
                                      IDS_Z_LOCKED_MARCH_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
     pProp.release();
 
-    // the "Abril quantity" property of the "Quantities" group
+    // the "April quantity" property of the "Quantities" group
     pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                  ZS_BP_PROP_QUANTITY,
                                  IDS_Z_NUMBER_APRIL_NAME,
                                  M_Number_April_ID,
                                  IDS_Z_NUMBER_APRIL_DESC,
                                  GetQuantityApril(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1071,7 +1071,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
 
     value = GetLockQuantityApril() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
-    // the "Lock Abril" property of the "Quantities" group
+    // the "Lock April" property of the "Quantities" group
     if (numericValues)
         pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_NUMBER_TITLE,
                                      ZS_BP_PROP_QUANTITY,
@@ -1086,9 +1086,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_April_ID,
                                      IDS_Z_LOCKED_APRIL_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1101,7 +1101,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_May_ID,
                                  IDS_Z_NUMBER_MAY_DESC,
                                  GetQuantityMay(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1124,9 +1124,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_May_ID,
                                      IDS_Z_LOCKED_MAY_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1139,7 +1139,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_June_ID,
                                  IDS_Z_NUMBER_JUNE_DESC,
                                  GetQuantityJune(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1162,9 +1162,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_June_ID,
                                      IDS_Z_LOCKED_JUNE_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1177,7 +1177,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_July_ID,
                                  IDS_Z_NUMBER_JULY_DESC,
                                  GetQuantityJuly(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1200,9 +1200,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_July_ID,
                                      IDS_Z_LOCKED_JULY_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1215,7 +1215,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_August_ID,
                                  IDS_Z_NUMBER_AUGUST_DESC,
                                  GetQuantityAugust(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1238,9 +1238,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_August_ID,
                                      IDS_Z_LOCKED_AUGUST_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1253,7 +1253,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_September_ID,
                                  IDS_Z_NUMBER_SEPTEMBER_DESC,
                                  GetQuantitySeptember(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1276,9 +1276,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_September_ID,
                                      IDS_Z_LOCKED_SEPTEMBER_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1291,7 +1291,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_October_ID,
                                  IDS_Z_NUMBER_OCTOBER_DESC,
                                  GetQuantityOctober(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1314,9 +1314,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_October_ID,
                                      IDS_Z_LOCKED_OCTOBER_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1329,7 +1329,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_November_ID,
                                  IDS_Z_NUMBER_NOVEMBER_DESC,
                                  GetQuantityNovember(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1352,9 +1352,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_November_ID,
                                      IDS_Z_LOCKED_NOVEMBER_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1367,7 +1367,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                  M_Number_December_ID,
                                  IDS_Z_NUMBER_DECEMBER_DESC,
                                  GetQuantityDecember(),
-                                 PSS_Property::IE_T_EditNumber,
+                                 PSS_Property::IEType::IE_T_EditNumber,
                                  false));
 
     propSet.Add(pProp.get());
@@ -1390,9 +1390,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Locked_December_ID,
                                      IDS_Z_LOCKED_DECEMBER_DESC,
                                      value,
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
     propSet.Add(pProp.get());
@@ -1408,9 +1408,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Sim_Deliv_Cost_ID,
                                      IDS_Z_SIM_DELIV_COST_DESC,
                                      double(GetCost()),
-                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -1426,9 +1426,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                                   dayPerWeek,
                                                   dayPerMonth,
                                                   dayPerYear),
-                                     PSS_Property::IE_T_EditDurationReadOnly,
+                                     PSS_Property::IEType::IE_T_EditDurationReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -1440,7 +1440,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Unit_GUID_ID,
                                      IDS_Z_UNIT_GUID_DESC,
                                      GetUnitGUID(),
-                                     PSS_Property::IE_T_EditExtendedReadOnly,
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly,
                                      false));
 
         propSet.Add(pProp.get());
@@ -1456,7 +1456,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Unit_Name_ID,
                                      IDS_Z_UNIT_NAME_DESC,
                                      unitName,
-                                     groupEnabled ? PSS_Property::IE_T_EditExtendedReadOnly : PSS_Property::IE_T_EditStringReadOnly,
+                                     groupEnabled ? PSS_Property::IEType::IE_T_EditExtendedReadOnly : PSS_Property::IEType::IE_T_EditStringReadOnly,
                                      false));
 
         propSet.Add(pProp.get());
@@ -1471,9 +1471,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Unit_Cost_ID,
                                      IDS_Z_UNIT_COST_DESC,
                                      unitCost,
-                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                      false,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol),
                                      false));
 
         propSet.Add(pProp.get());
@@ -1495,9 +1495,9 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
                                      M_Unit_Double_Validation_ID,
                                      IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
                                      GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      &m_UnitDoubleValidationTypeArray));
 
     propSet.Add(pProp.get());
@@ -1531,7 +1531,7 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(PSS_Properties::IPropertySet& p
         if (pProp->GetCategoryID() == ZS_BP_PROP_RULELIST)
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_String:
+                case PSS_Property::IEValueType::IE_VT_String:
                     // if not empty, add this new task
                     if (!pProp->GetValueString().IsEmpty())
                         AddRule(pProp->GetValueString());
@@ -1547,12 +1547,12 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(PSS_Properties::IPropertySet& p
 
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_String:   m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueString());    break;
-                case PSS_Property::IE_VT_Double:   m_CostDeliverableProperties.SetValue(itemID, float(     pProp->GetValueDouble()));   break;
-                case PSS_Property::IE_VT_Float:    m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueFloat());     break;
-                case PSS_Property::IE_VT_Date:     m_CostDeliverableProperties.SetValue(itemID, float(DATE(pProp->GetValueDate())));    break;
-                case PSS_Property::IE_VT_TimeSpan: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueTimeSpan())); break;
-                case PSS_Property::IE_VT_Duration: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueDuration())); break;
+                case PSS_Property::IEValueType::IE_VT_String:   m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueString());    break;
+                case PSS_Property::IEValueType::IE_VT_Double:   m_CostDeliverableProperties.SetValue(itemID, float(     pProp->GetValueDouble()));   break;
+                case PSS_Property::IEValueType::IE_VT_Float:    m_CostDeliverableProperties.SetValue(itemID,            pProp->GetValueFloat());     break;
+                case PSS_Property::IEValueType::IE_VT_Date:     m_CostDeliverableProperties.SetValue(itemID, float(DATE(pProp->GetValueDate())));    break;
+                case PSS_Property::IEValueType::IE_VT_TimeSpan: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueTimeSpan())); break;
+                case PSS_Property::IEValueType::IE_VT_Duration: m_CostDeliverableProperties.SetValue(itemID, double(    pProp->GetValueDuration())); break;
             }
         }
 
@@ -1589,12 +1589,12 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(PSS_Properties::IPropertySet& p
         if (pProp->GetCategoryID() == ZS_BP_PROP_SIM_DELIVERABLE)
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_String:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case PSS_Property::IE_VT_Double:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
-                case PSS_Property::IE_VT_Float:    m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case PSS_Property::IE_VT_Date:     m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
-                case PSS_Property::IE_VT_TimeSpan: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueTimeSpan()));  break;
-                case PSS_Property::IE_VT_Duration: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueDuration()));  break;
+                case PSS_Property::IEValueType::IE_VT_String:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
+                case PSS_Property::IEValueType::IE_VT_Double:   m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
+                case PSS_Property::IEValueType::IE_VT_Float:    m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
+                case PSS_Property::IEValueType::IE_VT_Date:     m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IEValueType::IE_VT_TimeSpan: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueTimeSpan()));  break;
+                case PSS_Property::IEValueType::IE_VT_Duration: m_SimProperties.SetValue(pProp->GetItemID(), double(pProp->GetValueDuration()));  break;
             }
 
     PSS_TextItemListPropertiesBP* pTextItemProps =
@@ -1611,7 +1611,7 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(PSS_Properties::IPropertySet& p
         if (pProp->GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST)
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_String:
+                case PSS_Property::IEValueType::IE_VT_String:
                     // if not empty, add this new text item
                     if (!pProp->GetValueString().IsEmpty())
                         AddTextItem(pProp->GetValueString());
@@ -1631,9 +1631,9 @@ bool PSS_DeliverableLinkSymbolBP::SaveProperties(PSS_Properties::IPropertySet& p
             else
                 switch (pProp->GetValueType())
                 {
-                    case PSS_Property::IE_VT_Double: m_UnitProp.SetValue(itemID, float(pProp->GetValueDouble())); break;
-                    case PSS_Property::IE_VT_Float:  m_UnitProp.SetValue(itemID,       pProp->GetValueFloat());   break;
-                    case PSS_Property::IE_VT_String: m_UnitProp.SetValue(itemID,       pProp->GetValueString());  break;
+                    case PSS_Property::IEValueType::IE_VT_Double: m_UnitProp.SetValue(itemID, float(pProp->GetValueDouble())); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  m_UnitProp.SetValue(itemID,       pProp->GetValueFloat());   break;
+                    case PSS_Property::IEValueType::IE_VT_String: m_UnitProp.SetValue(itemID,       pProp->GetValueString());  break;
                 }
         }
 
@@ -1723,6 +1723,35 @@ bool PSS_DeliverableLinkSymbolBP::CheckPropertyValue(PSS_Property& prop, CString
     }
 
     return PSS_LinkSymbol::CheckPropertyValue(prop, value, props);
+}
+//---------------------------------------------------------------------------
+CString PSS_DeliverableLinkSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
+{
+    if (!pRule)
+        return _T("");
+
+    if (pRule->GetGUID() == ruleGUID)
+        return pRule->GetEntityName();
+
+    if (pRule->ContainEntity())
+    {
+        const std::size_t count = pRule->GetEntityCount();
+
+        for (std::size_t i = 0; i < count; ++i)
+        {
+            PSS_LogicalRulesEntity* pEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pRule->GetEntityAt(i));
+
+            if (!pEntity)
+                continue;
+
+            const CString name = GetRuleNameByGUID(pEntity, ruleGUID);
+
+            if (!name.IsEmpty())
+                return name;
+        }
+    }
+
+    return _T("");
 }
 //---------------------------------------------------------------------------
 bool PSS_DeliverableLinkSymbolBP::ProcessExtendedInput(PSS_Property&                 prop,
@@ -2449,32 +2478,12 @@ BOOL PSS_DeliverableLinkSymbolBP::ContainsRule(const CString& ruleName) const
     return FALSE;
 }
 //---------------------------------------------------------------------------
-void PSS_DeliverableLinkSymbolBP::CheckRulesSync(CStringArray& rulesList)
+CString PSS_DeliverableLinkSymbolBP::GetRuleGUID(std::size_t index) const
 {
-    CODModel* pModel = GetRootModel();
+    if (index < m_Rules.GetRulesCount())
+        return m_Rules.GetRuleGUID(index);
 
-    if (!pModel)
-        return;
-
-    const int ruleCount = m_Rules.GetRulesCount();
-
-    if (ruleCount > 0)
-    {
-        PSS_ProcessGraphModelMdlBP* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
-
-        if (!pOwnerModel)
-            return;
-
-        PSS_LogicalRulesEntity* pMainRule = pOwnerModel->GetMainLogicalRules();
-
-        for (int i = 0; i < ruleCount; ++i)
-        {
-            const CString safeName = GetRuleNameByGUID(pMainRule, m_Rules.GetRuleGUID(i));
-
-            if (safeName.IsEmpty())
-                rulesList.Add(m_Rules.GetRuleName(i));
-        }
-    }
+    return _T("");
 }
 //---------------------------------------------------------------------------
 CString PSS_DeliverableLinkSymbolBP::GetRiskType(std::size_t index) const
@@ -2908,7 +2917,7 @@ bool PSS_DeliverableLinkSymbolBP::OnToolTip(CString& toolTipText, const CPoint& 
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (mode == PSS_ToolTip::IE_TT_Design)
+    if (mode == PSS_ToolTip::IEToolTipMode::IE_TT_Design)
     {
         const bool notConnectedFollowing = !GetFollowingSymbol();
         const bool notConnectedEntering  = !GetEnteringSymbol();
@@ -3653,12 +3662,12 @@ void PSS_DeliverableLinkSymbolBP::SavePropertiesToQuantity(const PSS_Properties:
             else
                 switch (pProp->GetValueType())
                 {
-                    case PSS_Property::IE_VT_String:   m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueString());  break;
-                    case PSS_Property::IE_VT_Double:   m_Quantity.SetValue(pProp->GetItemID(), float(     pProp->GetValueDouble())); break;
-                    case PSS_Property::IE_VT_Float:    m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueFloat());   break;
-                    case PSS_Property::IE_VT_Date:     m_Quantity.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate())));  break;
-                    case PSS_Property::IE_VT_TimeSpan:
-                    case PSS_Property::IE_VT_Duration: THROW("Unsupported value");
+                    case PSS_Property::IEValueType::IE_VT_String:   m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueString());  break;
+                    case PSS_Property::IEValueType::IE_VT_Double:   m_Quantity.SetValue(pProp->GetItemID(), float(     pProp->GetValueDouble())); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:    m_Quantity.SetValue(pProp->GetItemID(),            pProp->GetValueFloat());   break;
+                    case PSS_Property::IEValueType::IE_VT_Date:     m_Quantity.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate())));  break;
+                    case PSS_Property::IEValueType::IE_VT_TimeSpan:
+                    case PSS_Property::IEValueType::IE_VT_Duration: THROW("Unsupported value");
                 }
         }
 
@@ -4009,34 +4018,5 @@ void PSS_DeliverableLinkSymbolBP::AdjustPoints()
     }
     else
         CODLinkComponent::AdjustPoints();
-}
-//---------------------------------------------------------------------------
-CString PSS_DeliverableLinkSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
-{
-    if (!pRule)
-        return _T("");
-
-    if (pRule->GetGUID() == ruleGUID)
-        return pRule->GetEntityName();
-
-    if (pRule->ContainEntity())
-    {
-        const int count = pRule->GetEntityCount();
-
-        for (int i = 0; i < count; ++i)
-        {
-            PSS_LogicalRulesEntity* pEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pRule->GetEntityAt(i));
-
-            if (!pEntity)
-                continue;
-
-            const CString name = GetRuleNameByGUID(pEntity, ruleGUID);
-
-            if (!name.IsEmpty())
-                return name;
-        }
-    }
-
-    return _T("");
 }
 //---------------------------------------------------------------------------

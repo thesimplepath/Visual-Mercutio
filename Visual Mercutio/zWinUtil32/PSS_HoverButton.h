@@ -33,7 +33,7 @@
 /**
 * Hover button states
 */
-enum EHoverButtonState
+enum class EHoverButtonState
 {
     E_HB_OFF,
     E_HB_ON,

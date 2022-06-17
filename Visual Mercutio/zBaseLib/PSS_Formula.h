@@ -564,7 +564,7 @@ class AFX_EXT_CLASS PSS_FormulaSchema : public CObject
         /**
         * Formula schema type
         */
-        enum IEType
+        enum class IEType
         {
             IE_T_User,
             IE_T_System

@@ -89,7 +89,7 @@ BOOL PSS_GridCtrl::IRectangle::HitTest(const CPoint& pt) const
 // PSS_GridCtrl::IItemInfo
 //---------------------------------------------------------------------------
 PSS_GridCtrl::IItemInfo::IItemInfo() :
-    m_EnumCtrlType(IE_CT_Edit),
+    m_EnumCtrlType(IEControlType::IE_CT_Edit),
     m_LParam(NULL),
     m_Color(COLORREF(-1)),
     m_Image(-1),
@@ -630,7 +630,7 @@ PSS_GridCtrl::IItem* PSS_GridCtrl::InsertItem(IItem* pParent, IItemInfo* pInfo, 
     SetIndent(pItem.get(), GetIndent(pParent) + 1);
     SetParentItem(pItem.get(), pParent);
 
-    // add as the last child 
+    // add as the last child
     pParent->m_ListChild.AddTail(pItem.get());
 
     if (!update)
@@ -1194,7 +1194,7 @@ void PSS_GridCtrl::OnUpdateListViewItem(IItem* pItem, LV_ITEM* pLvItem)
 {
     if (!pItem)
         return;
-    
+
     if (!pLvItem)
         return;
 
@@ -2443,7 +2443,7 @@ BOOL PSS_GridCtrl::HitTestOnSign(const CPoint& point, LVHITTESTINFO& hitTest)
             // if has children and clicked on [+] or [-] then expand/collapse
             if (ItemHasChildren(pItem))
             {
-                // hit test on the plus/sign "button" 
+                // hit test on the plus/sign "button"
                 CRect rcBounds;
                 GetItemRect(hitTest.iItem, rcBounds, LVIR_BOUNDS);
 
@@ -2798,7 +2798,7 @@ void PSS_GridCtrl::DrawComboBox(CDC* pDC, IItem* pSelItem, int item, int column,
     IItemInfo::IEControlType ctrlType;
 
     if (pInfo->GetControlType(column - 1, ctrlType))
-        if (ctrlType == IItemInfo::IE_CT_ComboBox)
+        if (ctrlType == IItemInfo::IEControlType::IE_CT_ComboBox)
         {
             CRect rect;
             GetSubItemRect(item, column, LVIR_BOUNDS, rect);

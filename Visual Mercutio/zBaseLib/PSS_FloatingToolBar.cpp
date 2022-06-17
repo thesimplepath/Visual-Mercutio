@@ -26,7 +26,7 @@ PSS_FloatingToolBar::IMenuBarSet PSS_FloatingToolBar::m_MenuBarSet;
 PSS_WindowConfiguration*         PSS_FloatingToolBar::m_pWndConf        = NULL;
 SECToolBarManager*               PSS_FloatingToolBar::m_pToolBarManager = NULL;
 SECMenuBar*                      PSS_FloatingToolBar::m_pMenuBarManager = NULL;
-EModelNotation                   PSS_FloatingToolBar::m_CurrentNotation = E_MN_Unknown;
+EModelNotation                   PSS_FloatingToolBar::m_CurrentNotation = EModelNotation::E_MN_Unknown;
 //---------------------------------------------------------------------------
 // PSS_FloatingToolBar::IToolBarData
 //---------------------------------------------------------------------------

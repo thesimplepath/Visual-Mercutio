@@ -30,7 +30,7 @@ PSS_PLFNBitmap::PSS_PLFNBitmap() :
     m_hBitmap(NULL),
     m_pBitmapInfoHeader(NULL),
     m_pBits(NULL),
-    m_DisplayStyle(IE_DS_InitialSize),
+    m_DisplayStyle(IEDisplayStyles::IE_DS_InitialSize),
     m_HeaderSize(0),
     m_Bytes(0)
 {}
@@ -40,7 +40,7 @@ PSS_PLFNBitmap::PSS_PLFNBitmap(const PSS_PLFNBitmap& other) :
     m_hBitmap(NULL),
     m_pBitmapInfoHeader(NULL),
     m_pBits(NULL),
-    m_DisplayStyle(IE_DS_InitialSize),
+    m_DisplayStyle(IEDisplayStyles::IE_DS_InitialSize),
     m_HeaderSize(0),
     m_Bytes(0)
 {
@@ -132,7 +132,7 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap* pOther)
         m_hBitmap           = NULL;
         m_pBitmapInfoHeader = NULL;
         m_pBits             = NULL;
-        m_DisplayStyle      = IE_DS_InitialSize;
+        m_DisplayStyle      = IEDisplayStyles::IE_DS_InitialSize;
         m_HeaderSize        = 0;
         m_Bytes             = 0;
     }

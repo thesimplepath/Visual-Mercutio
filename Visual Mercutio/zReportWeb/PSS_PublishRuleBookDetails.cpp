@@ -14,9 +14,9 @@
 #include "PSS_ModelResIDs.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
 //---------------------------------------------------------------------------
@@ -27,7 +27,10 @@ PSS_PublishRuleBookDetails::PSS_PublishRuleBookDetails(PSS_ProcessGraphModelMdlB
     m_Level(0),
     m_Lvl1Counter(0),
     m_Lvl2Counter(0),
-    m_Lvl3Counter(0)
+    m_Lvl3Counter(0),
+    m_Lvl4Counter(0),
+    m_Lvl5Counter(0),
+    m_Lvl6Counter(0)
 {}
 //---------------------------------------------------------------------------
 PSS_PublishRuleBookDetails::~PSS_PublishRuleBookDetails()
@@ -102,6 +105,9 @@ void PSS_PublishRuleBookDetails::CreateReport(PSS_LogicalRulesEntity* pRules)
 
             m_Lvl2Counter = 0;
             m_Lvl3Counter = 0;
+            m_Lvl4Counter = 0;
+            m_Lvl5Counter = 0;
+            m_Lvl6Counter = 0;
 
             break;
 
@@ -112,13 +118,48 @@ void PSS_PublishRuleBookDetails::CreateReport(PSS_LogicalRulesEntity* pRules)
             ExploreProcessHierarchy(ruleNumber, ruleName);
 
             m_Lvl3Counter = 0;
+            m_Lvl4Counter = 0;
+            m_Lvl5Counter = 0;
+            m_Lvl6Counter = 0;
             break;
 
         case 3:
-        default:
             ++m_Lvl3Counter;
 
             ruleNumber.Format(_T("%d.%d.%d"), m_Lvl1Counter, m_Lvl2Counter, m_Lvl3Counter);
+            ExploreProcessHierarchy(ruleNumber, ruleName);
+
+            m_Lvl4Counter = 0;
+            m_Lvl5Counter = 0;
+            m_Lvl6Counter = 0;
+            break;
+
+        case 4:
+            ++m_Lvl4Counter;
+
+            ruleNumber.Format(_T("%d.%d.%d.%d"), m_Lvl1Counter, m_Lvl2Counter, m_Lvl3Counter, m_Lvl4Counter);
+            ExploreProcessHierarchy(ruleNumber,ruleName);
+
+            m_Lvl5Counter = 0;
+            m_Lvl6Counter = 0;
+
+            break;
+
+        case 5:
+            ++m_Lvl5Counter;
+
+            ruleNumber.Format(_T("%d.%d.%d.%d.%d"), m_Lvl1Counter, m_Lvl2Counter, m_Lvl3Counter, m_Lvl4Counter, m_Lvl5Counter);
+            ExploreProcessHierarchy(ruleNumber, ruleName);
+
+            m_Lvl6Counter = 0;
+
+            break;
+
+        case 6:
+        default:
+            ++m_Lvl6Counter;
+
+            ruleNumber.Format(_T("%d.%d.%d.%d.%d.%d"), m_Lvl1Counter, m_Lvl2Counter, m_Lvl3Counter, m_Lvl4Counter, m_Lvl5Counter, m_Lvl6Counter);
             ExploreProcessHierarchy(ruleNumber, ruleName);
 
             break;

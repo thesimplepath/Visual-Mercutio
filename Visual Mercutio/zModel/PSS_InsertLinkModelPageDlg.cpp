@@ -24,7 +24,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_InsertLinkModelPageDlg, PSS_Dialog)
+BEGIN_MESSAGE_MAP(PSS_InsertLinkModelPageDlg, PSS_FilteredDialog)
     //{{AFX_MSG_MAP(PSS_InsertLinkModelPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPAGES, OnSelchangedExistingPagetree)
@@ -40,7 +40,7 @@ PSS_InsertLinkModelPageDlg::PSS_InsertLinkModelPageDlg(PSS_ProcessGraphModelMdl*
                                                        CStringArray*             pArrayPageName,
                                                        PSS_RuntimeClassSet*      pSet,
                                                        CWnd*                     pParent) :
-    PSS_Dialog(PSS_InsertLinkModelPageDlg::IDD, TRUE, pParent),
+    PSS_FilteredDialog(PSS_InsertLinkModelPageDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
     m_pParentModel(NULL),
     m_pSet(pSet),
@@ -76,11 +76,11 @@ BOOL PSS_InsertLinkModelPageDlg::OnInitDialog()
         documentModelSet.AddModel(m_pModel);
 
         // initialize symbol model tree
-        m_SymbolTree.Initialize("Document", &documentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);
+        m_SymbolTree.Initialize(_T("Document"), &documentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);
         m_SymbolTree.SelectItemName(m_pModel->GetModelName());
 
         // Initialize existing pages tree
-        m_ExistingPages.Initialize("Document", &documentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);
+        m_ExistingPages.Initialize(_T("Document"), &documentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);
         m_ExistingPages.SelectItemName(m_pModel->GetModelName());
 
     }

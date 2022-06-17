@@ -204,7 +204,7 @@ int PSS_ActivityListCtrl::Refresh ()
                 imageIndex = 1;
             else
             if (pActivity->IsKindOf(RUNTIME_CLASS(PSS_Process)))
-                imageIndex = (static_cast<PSS_Process*>(pActivity)->GetRunMode() == PSS_BaseActivity::IE_RM_Sequence ? 0 : 2);
+                imageIndex = (static_cast<PSS_Process*>(pActivity)->GetRunMode() == PSS_BaseActivity::IERunMode::IE_RM_Sequence ? 0 : 2);
 
             // add the action icon
             InsertItem(LVIF_IMAGE | LVIF_PARAM, index, NULL, 0, 0, imageIndex, 0);

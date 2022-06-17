@@ -43,7 +43,7 @@ class AFX_EXT_CLASS PSS_EncryptedApplicationTypeInfoFile : public PSS_EncryptedI
         /**
         * Application type info
         */
-        enum IEType
+        enum class IEType
         {
             IE_IT_Unknown,
             IE_IT_HomeEdition,

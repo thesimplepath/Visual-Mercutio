@@ -60,6 +60,8 @@ BOOL PSS_WelcomeProcessDlg::OnInitDialog()
 {
     PSS_WelcomeDialog::OnInitDialog();
 
+    SetFocus();
+
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
     return TRUE;
 }

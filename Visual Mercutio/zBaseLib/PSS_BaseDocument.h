@@ -286,32 +286,32 @@ void PSS_BaseDocument::ClearPathName()
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentTypeIsForm() const
 {
-    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IE_FT_FormDocument;
+    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IEDocumentFileType::IE_FT_FormDocument;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentTypeIsProcess() const
 {
-    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IE_FT_ProcessDocument;
+    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IEDocumentFileType::IE_FT_ProcessDocument;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentTypeIsModel() const
 {
-    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IE_FT_ModelDocument;
+    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IEDocumentFileType::IE_FT_ModelDocument;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentIsDocument() const
 {
-    return m_DocumentStamp.GetFileType() == PSS_Stamp::IE_FD_DocumentType;
+    return m_DocumentStamp.GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentIsTemplate() const
 {
-    return m_DocumentStamp.GetFileType() == PSS_Stamp::IE_FD_TemplateType;
+    return m_DocumentStamp.GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_TemplateType;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentIsLibrary() const
 {
-    return m_DocumentStamp.GetFileType() == PSS_Stamp::IE_FD_LibraryType;
+    return m_DocumentStamp.GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_LibraryType;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::IsReadOnly()

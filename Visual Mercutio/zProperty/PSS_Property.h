@@ -30,6 +30,7 @@
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_TimeSpan.h"
 #include "zBaseLib\PSS_Duration.h"
+#include "zBaseLib\PSS_CharFilters.h"
 
 #ifdef _ZPROPERTYEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -53,7 +54,7 @@ class AFX_EXT_CLASS PSS_Property : public CObject
         /**
         * The property type
         */
-        enum IEType
+        enum class IEType
         {
             IE_T_EditString,
             IE_T_EditStringReadOnly,
@@ -87,7 +88,7 @@ class AFX_EXT_CLASS PSS_Property : public CObject
         /**
         * Property value type
         */
-        enum IEValueType
+        enum class IEValueType
         {
             IE_VT_Unknown,
             IE_VT_String,
@@ -122,9 +123,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID               = -1,
                      const CString&    description          =  _T(""),
                      const CString&    value                =  _T(""),
-                     IEType            type                 =  IE_T_EditString,
+                     IEType            type                 =  IEType::IE_T_EditString,
                      bool              enabled              =  true,
-                     PSS_StringFormat& format               =  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                     PSS_StringFormat& format               =  PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                      CStringArray*     pValueArray          =  NULL,
                      CMenu*            pMenu                =  NULL,
                      bool              saveState            =  true,
@@ -154,9 +155,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const UINT        descriptionResID,
                      const CString&    value,
-                     IEType            type                 = IE_T_EditString,
+                     IEType            type                 = IEType::IE_T_EditString,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -186,9 +187,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const CString&    description,
                      double            value,
-                     IEType            type                 = IE_T_EditNumber,
+                     IEType            type                 = IEType::IE_T_EditNumber,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -218,9 +219,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const UINT        descriptionResID,
                      double            value,
-                     IEType            type                 = IE_T_EditNumber,
+                     IEType            type                 = IEType::IE_T_EditNumber,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -250,9 +251,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const CString&    description,
                      float             value,
-                     IEType            type                 = IE_T_EditNumber,
+                     IEType            type                 = IEType::IE_T_EditNumber,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -282,9 +283,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const UINT        descriptionResID,
                      float             value,
-                     IEType            type                 = IE_T_EditNumber,
+                     IEType            type                 = IEType::IE_T_EditNumber,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -314,9 +315,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const CString&    description,
                      PSS_Date&         value,
-                     IEType            type                 = IE_T_EditDate,
+                     IEType            type                 = IEType::IE_T_EditDate,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_Date),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Date),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -346,9 +347,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const UINT        descriptionResID,
                      PSS_Date&         value,
-                     IEType            type                 = IE_T_EditDate,
+                     IEType            type                 = IEType::IE_T_EditDate,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_Date),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Date),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -378,9 +379,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                    int               itemID,
                    const CString     description,
                    PSS_TimeSpan&     value,
-                   IEType            type                 = IE_T_EditTime,
+                   IEType            type                 = IEType::IE_T_EditTime,
                    bool              enabled              = true,
-                   PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_Time1),
+                   PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Time1),
                    CStringArray*     pValueArray          = NULL,
                    CMenu*            pMenu                = NULL,
                    bool              saveState            = true,
@@ -410,9 +411,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                    int               itemID,
                    const UINT        descriptionResID,
                    PSS_TimeSpan&     value,
-                   IEType            type                 = IE_T_EditTime,
+                   IEType            type                 = IEType::IE_T_EditTime,
                    bool              enabled              = true,
-                   PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_Time1),
+                   PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Time1),
                    CStringArray*     pValueArray          = NULL,
                    CMenu*            pMenu                = NULL,
                    bool              saveState            = true,
@@ -442,9 +443,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                      int               itemID,
                      const CString&    description,
                      PSS_Duration&     value,
-                     IEType            type                 = IE_T_EditDuration,
+                     IEType            type                 = IEType::IE_T_EditDuration,
                      bool              enabled              = true,
-                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_Duration),
+                     PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration),
                      CStringArray*     pValueArray          = NULL,
                      CMenu*            pMenu                = NULL,
                      bool              saveState            = true,
@@ -474,9 +475,9 @@ class AFX_EXT_CLASS PSS_Property : public CObject
                    int               itemID,
                    const UINT        descriptionResID,
                    PSS_Duration&     value,
-                   IEType            type                 = IE_T_EditDuration,
+                   IEType            type                 = IEType::IE_T_EditDuration,
                    bool              enabled              = true,
-                   PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IE_FT_Duration),
+                   PSS_StringFormat& format               = PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration),
                    CStringArray*     pValueArray          = NULL,
                    CMenu*            pMenu                = NULL,
                    bool              saveState            = true,
@@ -502,6 +503,18 @@ class AFX_EXT_CLASS PSS_Property : public CObject
         *@return a copy of this object, NULL on error
         */
         virtual inline PSS_Property* Dup() const;
+
+        /**
+        * Gets if char filtering is enabled
+        *@return true if char filtering is enabled, otherwise false
+        */
+        virtual inline bool GetCharFilterState();
+
+        /**
+        * Enables or disables the char filtering
+        *@return true if char filter is enabled, otherwise false
+        */
+        virtual inline void EnableCharFilter(bool value = true);
 
         /**
         * Gets the category
@@ -816,6 +829,7 @@ class AFX_EXT_CLASS PSS_Property : public CObject
         bool             m_SaveState;
         bool             m_SaveStatePerProperty;
         bool             m_EnableDragNDrop;
+        bool             m_FilterChars;
 };
 
 //---------------------------------------------------------------------------
@@ -825,9 +839,9 @@ PSS_Property::PSS_Property(const PSS_Property& other) :
     CObject(),
     m_pValueArray(NULL),
     m_pMenu(NULL),
-    m_Type(IE_T_EditString),
-    m_ValueType(IE_VT_Unknown),
-    m_Format(PSS_StringFormat(PSS_StringFormat::IE_FT_General)),
+    m_Type(IEType::IE_T_EditString),
+    m_ValueType(IEValueType::IE_VT_Unknown),
+    m_Format(PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General)),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
     m_CategoryID(-1),
@@ -839,7 +853,8 @@ PSS_Property::PSS_Property(const PSS_Property& other) :
     m_HasChanged(false),
     m_SaveState(false),
     m_SaveStatePerProperty(false),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     *this = other;
 }
@@ -847,6 +862,16 @@ PSS_Property::PSS_Property(const PSS_Property& other) :
 PSS_Property* PSS_Property::Dup() const
 {
     return new PSS_Property(*this);
+}
+//---------------------------------------------------------------------------
+inline bool PSS_Property::GetCharFilterState()
+{
+    return m_FilterChars;
+}
+//---------------------------------------------------------------------------
+inline void PSS_Property::EnableCharFilter(bool value)
+{
+    m_FilterChars = value;
 }
 //---------------------------------------------------------------------------
 CString PSS_Property::GetCategory() const
@@ -906,8 +931,8 @@ CString PSS_Property::GetValueString() const
 //---------------------------------------------------------------------------
 void PSS_Property::SetValueString(const CString& value)
 {
-    m_StrValue  = value;
-    m_ValueType = IE_VT_String;
+    m_StrValue  = m_FilterChars ? PSS_CharFilters::FilterText(value) : value;
+    m_ValueType = IEValueType::IE_VT_String;
 }
 //---------------------------------------------------------------------------
 double PSS_Property::GetValueDouble() const
@@ -918,7 +943,7 @@ double PSS_Property::GetValueDouble() const
 void PSS_Property::SetValueDouble(double value)
 {
     m_DoubleValue = value;
-    m_ValueType   = IE_VT_Double;
+    m_ValueType   = IEValueType::IE_VT_Double;
 }
 //---------------------------------------------------------------------------
 float PSS_Property::GetValueFloat() const
@@ -929,7 +954,7 @@ float PSS_Property::GetValueFloat() const
 void PSS_Property::SetValueFloat(float value)
 {
     m_FloatValue = value;
-    m_ValueType  = IE_VT_Float;
+    m_ValueType  = IEValueType::IE_VT_Float;
 }
 //---------------------------------------------------------------------------
 PSS_Date PSS_Property::GetValueDate() const
@@ -940,7 +965,7 @@ PSS_Date PSS_Property::GetValueDate() const
 void PSS_Property::SetValueDate(const PSS_Date& value)
 {
     m_DateValue = value;
-    m_ValueType = IE_VT_Date;
+    m_ValueType = IEValueType::IE_VT_Date;
 }
 //---------------------------------------------------------------------------
 PSS_TimeSpan PSS_Property::GetValueTimeSpan() const
@@ -951,7 +976,7 @@ PSS_TimeSpan PSS_Property::GetValueTimeSpan() const
 void PSS_Property::SetValueTimeSpan(const PSS_TimeSpan& value)
 {
     m_TimeSpanValue = value;
-    m_ValueType     = IE_VT_TimeSpan;
+    m_ValueType     = IEValueType::IE_VT_TimeSpan;
 }
 //---------------------------------------------------------------------------
 PSS_Duration PSS_Property::GetValueDuration() const
@@ -962,7 +987,7 @@ PSS_Duration PSS_Property::GetValueDuration() const
 void PSS_Property::SetValueDuration(const PSS_Duration& value)
 {
     m_DurationValue = value;
-    m_ValueType     = IE_VT_Duration;
+    m_ValueType     = IEValueType::IE_VT_Duration;
 }
 //---------------------------------------------------------------------------
 bool PSS_Property::GetEnabled() const

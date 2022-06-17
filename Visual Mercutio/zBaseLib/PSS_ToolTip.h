@@ -40,7 +40,7 @@ class AFX_EXT_CLASS PSS_ToolTip
         /**
         * Tooltip mode
         */
-        enum IEToolTipMode
+        enum class IEToolTipMode
         {
             IE_TT_Normal,
             IE_TT_Design
@@ -56,7 +56,7 @@ class AFX_EXT_CLASS PSS_ToolTip
         *@param mode - tooltip mode
         *@return true if tooltip can be shown, otherwise false
         */
-        virtual bool OnToolTip(CString& toolTipText, const CPoint& point, IEToolTipMode mode = IE_TT_Normal) = 0;
+        virtual bool OnToolTip(CString& toolTipText, const CPoint& point, IEToolTipMode mode = IEToolTipMode::IE_TT_Normal) = 0;
 };
 
 #endif

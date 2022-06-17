@@ -45,15 +45,15 @@ PSS_CreateFolderWizardExistDialog::PSS_CreateFolderWizardExistDialog(const CStri
     m_InitialFileName(initialFileName),
     m_InitialChoice(initialChoice)
 {
-    m_FileName.SetSearchType(PSS_SearchEditButton::IE_T_File, IDS_CHOOSEFILENAMEFORFOLDER, fileDirectory, "", 0);
-    m_Directory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, IDS_CHOOSEDIRECTORYFORFOLDER, fileDirectory);
+    m_FileName.SetSearchType (PSS_SearchEditButton::IEType::IE_T_File,      IDS_CHOOSEFILENAMEFORFOLDER,  fileDirectory, "", 0);
+    m_Directory.SetSearchType(PSS_SearchEditButton::IEType::IE_T_Directory, IDS_CHOOSEDIRECTORYFORFOLDER, fileDirectory);
 
     switch (m_InitialChoice)
     {
-        case IE_FC_Directory: m_Choice = 1; break;
-        case IE_FC_FileName:  m_Choice = 2; break;
-        case IE_FC_Keep:      m_Choice = 3; break;
-        default:              m_Choice = 0; break;
+        case IEFolderExistInitialChoice::IE_FC_Directory: m_Choice = 1; break;
+        case IEFolderExistInitialChoice::IE_FC_FileName:  m_Choice = 2; break;
+        case IEFolderExistInitialChoice::IE_FC_Keep:      m_Choice = 3; break;
+        default:                                          m_Choice = 0; break;
     }
 }
 //---------------------------------------------------------------------------

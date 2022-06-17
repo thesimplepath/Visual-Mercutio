@@ -254,6 +254,42 @@ void PSS_ProcessWorkspace::RemoveModelUnitSymbol(CODSymbolComponent* pSymbol, PS
         pTree->RemoveSymbol(pSymbol, pModel);
 }
 //---------------------------------------------------------------------------
+void PSS_ProcessWorkspace::OnExpandBranch()
+{
+    CWnd* pWnd;
+    m_WndTab.GetActiveTab(pWnd);
+
+    if (pWnd == GetUserView())
+        GetUserView()->OnExpandBranch();
+    else
+    if (pWnd == GetLogicalSystemView())
+        GetLogicalSystemView()->OnExpandBranch();
+    else
+    if (pWnd == GetPrestationsView())
+        GetPrestationsView()->OnExpandBranch();
+    else
+    if (pWnd == GetRulesView())
+        GetRulesView()->OnExpandBranch();
+}
+//---------------------------------------------------------------------------
+void PSS_ProcessWorkspace::OnCollapseBranch()
+{
+    CWnd* pWnd;
+    m_WndTab.GetActiveTab(pWnd);
+
+    if (pWnd == GetUserView())
+        GetUserView()->OnCollapseBranch();
+    else
+    if (pWnd == GetLogicalSystemView())
+        GetLogicalSystemView()->OnCollapseBranch();
+    else
+    if (pWnd == GetPrestationsView())
+        GetPrestationsView()->OnCollapseBranch();
+    else
+    if (pWnd == GetRulesView())
+        GetRulesView()->OnCollapseBranch();
+}
+//---------------------------------------------------------------------------
 void PSS_ProcessWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     PSS_WorkspaceObserverMsg* pWorkspaceMsg = dynamic_cast<PSS_WorkspaceObserverMsg*>(pMsg);

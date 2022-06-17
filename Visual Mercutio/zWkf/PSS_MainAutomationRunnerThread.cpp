@@ -165,7 +165,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
                                                          stateLinkSet,
                                                          m_pLog))
         {
-            case PSS_AutomationMachine::IE_AS_IsWaitingForLinks:
+            case PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_IsWaitingForLinks:
                 // call the callback for waiting for other links object
                 m_pAutomationMachine->OnObjectIsWaitingForOtherLinks(pStateMachine->GetCurrentStateObject(),
                                                                      pStateMachine,
@@ -188,7 +188,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
 
                 break;
 
-            case PSS_AutomationMachine::IE_AS_IsPaused:
+            case PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_IsPaused:
                 // call the callback for in paused object
                 m_pAutomationMachine->OnObjectIsPaused(pStateMachine->GetCurrentStateObject(),
                                                        pStateMachine,
@@ -211,7 +211,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
 
                 break;
 
-            case PSS_AutomationMachine::IE_AS_IsFinished:
+            case PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_IsFinished:
                 // call the callback function
                 if ( !m_pAutomationMachine->OnBeforeMoveForward(pStateMachine->GetCurrentStateObject(),
                                                                 pStateMachine,
@@ -233,14 +233,14 @@ void PSS_MainAutomationRunnerThread::DoWork()
 
                 break;
 
-            case PSS_AutomationMachine::IE_AS_CanMoveForward:
+            case PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_CanMoveForward:
                 // call the callback function
                 if (!m_pAutomationMachine->OnBeforeMoveForward(pStateMachine->GetCurrentStateObject(),
                                                                pStateMachine,
                                                                m_pLog))
                     return;
 
-                // push the new symbol set and the associated state links 
+                // push the new symbol set and the associated state links
                 if (symbolSet.GetSize() == 1)
                 {
                     // no more demultiplication, just push the new symbol on the stack. First, locate the original

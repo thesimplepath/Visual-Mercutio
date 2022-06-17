@@ -207,9 +207,9 @@ bool PSS_ExtFilePropertyMgr::FillProperties(PSS_Properties::IPropertySet& propSe
                                      groupValue ? M_File_Title_ID : (M_File_Title_ID + (i * 40)),
                                      propDesc,
                                      GetFileTitle(i),
-                                     PSS_Property::IE_T_EditMenu,
+                                     PSS_Property::IEType::IE_T_EditMenu,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      NULL,
                                      &g_ExtFilesMenu));
 
@@ -226,7 +226,7 @@ bool PSS_ExtFilePropertyMgr::FillProperties(PSS_Properties::IPropertySet& propSe
                                      groupValue ? M_File_Name_ID : (M_File_Name_ID + (i * 40)),
                                      propDesc,
                                      GetFileName(i),
-                                     PSS_Property::IE_T_EditExtended));
+                                     PSS_Property::IEType::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -267,7 +267,7 @@ bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySe
                                          groupValue ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
                                          propDesc,
                                          double(GetInsertionType(i)),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(finalPropTitle,
                                          groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
@@ -275,9 +275,9 @@ bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySe
                                          groupValue ? M_Insertion_Type_ID : (M_Insertion_Type_ID + (i * 40)),
                                          propDesc,
                                          PSS_Global::GetInsertionTypeString(GetInsertionType(i)),
-                                         PSS_Property::IE_T_ComboStringReadOnly,
+                                         PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          PSS_Global::GetArrayInsertionType()));
 
         propSet.Add(pProp.get());
@@ -294,7 +294,7 @@ bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySe
                                          groupValue ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
                                          propDesc,
                                          double(GetActivationType(i)),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(finalPropTitle,
                                          groupValue ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
@@ -302,9 +302,9 @@ bool PSS_ExtFilePropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySe
                                          groupValue ? M_Activation_Type_ID : (M_Activation_Type_ID + (i * 40)),
                                          propDesc,
                                          PSS_Global::GetActivationTypeString(GetActivationType(i)),
-                                         PSS_Property::IE_T_ComboStringReadOnly,
+                                         PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          PSS_Global::GetArrayActivationType()));
 
         propSet.Add(pProp.get());

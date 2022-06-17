@@ -367,12 +367,12 @@ bool PSS_PropertyAttributes::Match(PSS_Properties::IPropertySet& propAttributes,
         // get the formatted value
         switch (pProp->GetValueType())
         {
-            case PSS_Property::IE_VT_Double:   value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Float:    value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Date:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_TimeSpan: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Duration: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_String:   value = pProp->GetValueString();                                                                                     break;
+            case PSS_Property::IEValueType::IE_VT_Double:   value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Float:    value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Date:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_TimeSpan: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Duration: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_String:   value = pProp->GetValueString();                                                                                     break;
             default:                                                                                                                                                break;
         }
 
@@ -441,12 +441,12 @@ CString PSS_PropertyAttributes::GetString(PSS_Properties::IPropertySet* pPropAtt
         // get the formatted value
         switch (pProp->GetValueType())
         {
-            case PSS_Property::IE_VT_Double:   value += PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Float:    value += PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Date:     value += PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_TimeSpan: value += PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Duration: value += PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_String:   value += pProp->GetValueString();                                                                                     break;
+            case PSS_Property::IEValueType::IE_VT_Double:   value += PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Float:    value += PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Date:     value += PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_TimeSpan: value += PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Duration: value += PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_String:   value += pProp->GetValueString();                                                                                     break;
             default:                                                                                                                                                 break;
         }
 

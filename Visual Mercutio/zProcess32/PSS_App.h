@@ -447,7 +447,7 @@ class PSS_App : public PSS_MainApp, public PSS_AppGridAdapter
         /// Generated message map functions
         //{{AFX_MSG(PSS_App)
         afx_msg void OnAppAbout();
-        afx_msg void OnHelpSupport();
+        //afx_msg void OnHelpSupport();
         afx_msg void OnAppExit();
         afx_msg void OnOptions();
         afx_msg void OnSelectServer();
@@ -558,6 +558,10 @@ class PSS_App : public PSS_MainApp, public PSS_AppGridAdapter
         afx_msg void OnUpdateExportModelToHTMLFile(CCmdUI* pCmdUI);
         afx_msg void OnUpdateFilePrintPreview(CCmdUI *pCmdUI);
         afx_msg void OnUpdateFilePrint(CCmdUI *pCmdUI);
+        afx_msg void OnUpdateExpandBranch(CCmdUI* pCmdUI);
+        afx_msg void OnExpandBranch();
+        afx_msg void OnUpdateCollapseBranch(CCmdUI* pCmdUI);
+        afx_msg void OnCollapseBranch();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -815,7 +819,7 @@ BOOL PSS_App::OpenFieldRepositoryReadOnly() const
 //---------------------------------------------------------------------------
 PSS_Global::IEApplicationType PSS_App::GetApplicationType() const
 {
-    return PSS_Global::IE_AT_Process;
+    return PSS_Global::IEApplicationType::IE_AT_Process;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_App::UserAuthenticationRequired() const

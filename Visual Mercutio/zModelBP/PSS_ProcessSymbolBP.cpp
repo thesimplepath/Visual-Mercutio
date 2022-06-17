@@ -62,6 +62,7 @@ IMPLEMENT_SERIAL(PSS_ProcessSymbolBP, PSS_Symbol, g_DefVersion)
 PSS_ProcessSymbolBP::PSS_ProcessSymbolBP(const CString& name) :
     PSS_Symbol(),
     m_Deliveries(this),
+    m_pLog(NULL),
     m_IsUserModified(false),
     m_ShowPreview(false)
 {
@@ -72,6 +73,7 @@ PSS_ProcessSymbolBP::PSS_ProcessSymbolBP(const CString& name) :
 PSS_ProcessSymbolBP::PSS_ProcessSymbolBP(const PSS_ProcessSymbolBP& other) :
     PSS_Symbol(),
     m_Deliveries(this),
+    m_pLog(NULL),
     m_IsUserModified(false),
     m_ShowPreview(false)
 {
@@ -136,6 +138,11 @@ BOOL PSS_ProcessSymbolBP::CreateEmptyChildModel(CODModel* pParent)
 CODComponent* PSS_ProcessSymbolBP::Dup() const
 {
     return new PSS_ProcessSymbolBP(*this);
+}
+//---------------------------------------------------------------------------
+bool PSS_ProcessSymbolBP::AcceptExtFile() const
+{
+    return true;
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessSymbolBP::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
@@ -272,6 +279,10 @@ bool PSS_ProcessSymbolBP::CreateSymbolProperties()
 //---------------------------------------------------------------------------
 bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, bool numericValues, bool groupValues)
 {
+    // if no file, add a new one
+    if (!GetExtFileCount())
+        AddNewExtFile();
+
     // the "Name", "Description" and "Reference" properties of the "General" group can be found in the base class
     if (!PSS_Symbol::FillProperties(propSet, numericValues, groupValues))
         return false;
@@ -346,9 +357,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                          M_Rule_Name_ID + (i * g_MaxRulesSize),
                                          ruleDesc,
                                          m_Rules.GetRuleName(i),
-                                         PSS_Property::IE_T_EditMenu,
+                                         PSS_Property::IEType::IE_T_EditMenu,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          NULL,
                                          &g_RulesMenu));
 
@@ -384,9 +395,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskName(i),
-                                     PSS_Property::IE_T_EditMenu,
+                                     PSS_Property::IEType::IE_T_EditMenu,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      NULL,
                                      &g_RiskMenu));
 
@@ -403,7 +414,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskDesc(i),
-                                     PSS_Property::IE_T_EditExtended));
+                                     PSS_Property::IEType::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -421,7 +432,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -436,7 +447,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -451,7 +462,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -466,7 +477,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      double(GetRiskSeverity(i)),
-                                     PSS_Property::IE_T_EditNumberReadOnly));
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -481,9 +492,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskUE(i),
-                                     PSS_Property::IE_T_EditNumber,
+                                     PSS_Property::IEType::IE_T_EditNumber,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -498,9 +509,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskPOA(i),
-                                     PSS_Property::IE_T_EditNumber,
+                                     PSS_Property::IEType::IE_T_EditNumber,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -515,9 +526,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      TRUE,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
         propSet.Add(pProp.get());
@@ -593,9 +604,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                          M_Prestation_Name,
                                          propDesc,
                                          pCurNode->GetName(),
-                                         PSS_Property::IE_T_EditMenu,
+                                         PSS_Property::IEType::IE_T_EditMenu,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          NULL,
                                          &g_PrestationsMenu));
 
@@ -615,9 +626,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                          M_Prestation_Percentage,
                                          propDesc,
                                          percentageActivity,
-                                         PSS_Property::IE_T_EditNumber,
+                                         PSS_Property::IEType::IE_T_EditNumber,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Percentage)));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -637,9 +648,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                              M_Prestation_Prest_Process,
                                              propDesc,
                                              propPrestProcessValue,
-                                             PSS_Property::IE_T_EditNumberReadOnly,
+                                             PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                              true,
-                                             PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
+                                             PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Accounting, false, 0)));
 
                 propSet.Add(pProp.get());
                 pProp.release();
@@ -653,7 +664,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                          M_Prestation_Identifier,
                                          "Identifiant de la prestation",
                                          pCurNode->GetGUID(),
-                                         PSS_Property::IE_T_EditStringReadOnly,
+                                         PSS_Property::IEType::IE_T_EditStringReadOnly,
                                          false));
 
             propSet.Add(pProp.get());
@@ -674,7 +685,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                          M_Sim_Process_Workload_Forecast_ID,
                                          IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC,
                                          double(GetProcessWorkloadForecast()),
-                                         PSS_Property::IE_T_EditNumber));
+                                         PSS_Property::IEType::IE_T_EditNumber));
         else
             pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_SIM_PROCESS,
                                          ZS_BP_PROP_SIM_PROCESS,
@@ -686,9 +697,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                                       dayPerWeek,
                                                       dayPerMonth,
                                                       dayPerYear),
-                                         PSS_Property::IE_T_EditDurationReadOnly,
+                                         PSS_Property::IEType::IE_T_EditDurationReadOnly,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -700,9 +711,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      M_Sim_Process_Cost_Forecast_ID,
                                      IDS_Z_SIM_PROCESS_COST_FORECAST_DESC,
                                      double(GetProcessCostForecast()),
-                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -714,9 +725,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      M_Sim_Process_Cost_HMO_ID,
                                      IDS_Z_SIM_PROCESS_COST_DESC,
                                      double(GetProcessCostHMO()),
-                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -728,9 +739,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      M_Sim_Process_Sum_Deliveries_ID,
                                      IDS_Z_SIM_PROCESS_SUM_DELIVERIES_DESC,
                                      sumOfDeliveries,
-                                     PSS_Property::IE_T_EditNumberReadOnly,
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Accounting, false, 0)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -755,9 +766,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                                   dayPerWeek,
                                                   dayPerMonth,
                                                   dayPerYear),
-                                     PSS_Property::IE_T_EditDurationReadOnly,
+                                     PSS_Property::IEType::IE_T_EditDurationReadOnly,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -769,7 +780,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      M_Sim_Process_Cost_By_Deliveries_ID,
                                      IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES_DESC,
                                      costByDeliveries,
-                                     PSS_Property::IE_T_EditNumberReadOnly));
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -805,9 +816,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Delivery_Name_ID : (M_Delivery_Name_ID + (i * g_MaxDeliveryListSize)),
                                      propDesc,
                                      GetDeliveryName(i),
-                                     PSS_Property::IE_T_EditMenu,
+                                     PSS_Property::IEType::IE_T_EditMenu,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      NULL,
                                      &g_DeliveriesMenu));
 
@@ -824,7 +835,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Delivery_Deliverables_ID : (M_Delivery_Deliverables_ID + (i * g_MaxDeliveryListSize)),
                                      propDesc,
                                      GetDeliveryDeliverables(i),
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -844,9 +855,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                          groupValues ? M_Delivery_Quantity_ID : (M_Delivery_Quantity_ID + (i * g_MaxDeliveryListSize)),
                                          propDesc,
                                          quantity,
-                                         PSS_Property::IE_T_EditNumberReadOnly,
+                                         PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Accounting, false, 0)));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -863,9 +874,9 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                          groupValues ? M_Delivery_Percentage_ID : (M_Delivery_Percentage_ID + (i * g_MaxDeliveryListSize)),
                                          propDesc,
                                          percentage,
-                                         PSS_Property::IE_T_EditNumberReadOnly,
+                                         PSS_Property::IEType::IE_T_EditNumberReadOnly,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Percentage)));
 
             propSet.Add(pProp.get());
             pProp.release();
@@ -881,7 +892,7 @@ bool PSS_ProcessSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, 
                                      groupValues ? M_Delivery_Main_ID : (M_Delivery_Main_ID + (i * g_MaxDeliveryListSize)),
                                      propDesc,
                                      GetDeliveryMain(i),
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -912,10 +923,10 @@ bool PSS_ProcessSymbolBP::SaveProperties(PSS_Properties::IPropertySet& PropSet)
         if (pProp->GetCategoryID() == ZS_BP_PROP_PROCESS)
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_String: processProps.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case PSS_Property::IE_VT_Double: processProps.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble()));     break;
-                case PSS_Property::IE_VT_Float:  processProps.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case PSS_Property::IE_VT_Date:   processProps.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IEValueType::IE_VT_String: processProps.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
+                case PSS_Property::IEValueType::IE_VT_Double: processProps.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble()));     break;
+                case PSS_Property::IEValueType::IE_VT_Float:  processProps.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
+                case PSS_Property::IEValueType::IE_VT_Date:   processProps.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
             }
 
     // set the new property
@@ -955,7 +966,7 @@ bool PSS_ProcessSymbolBP::SaveProperties(PSS_Properties::IPropertySet& PropSet)
             if (pProp->GetItemID() == M_Prestation_Percentage)
                 switch (pProp->GetValueType())
                 {
-                    case PSS_Property::IE_VT_Float:
+                    case PSS_Property::IEValueType::IE_VT_Float:
                         if (pPos)
                         {
                             PSS_Prestation* pCurNode = m_PrestProperties.GetAt(pPos);
@@ -974,10 +985,10 @@ bool PSS_ProcessSymbolBP::SaveProperties(PSS_Properties::IPropertySet& PropSet)
         if (pProp->GetCategoryID() == ZS_BP_PROP_SIM_PROCESS)
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_String: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
-                case PSS_Property::IE_VT_Double: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
-                case PSS_Property::IE_VT_Float:  m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
-                case PSS_Property::IE_VT_Date:   m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IEValueType::IE_VT_String: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());            break;
+                case PSS_Property::IEValueType::IE_VT_Double: m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());            break;
+                case PSS_Property::IEValueType::IE_VT_Float:  m_SimProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());             break;
+                case PSS_Property::IEValueType::IE_VT_Date:   m_SimProperties.SetValue(pProp->GetItemID(), float(DATE(pProp->GetValueDate()))); break;
             }
 
     // iterate through the deliveries and fill the property set
@@ -995,12 +1006,12 @@ bool PSS_ProcessSymbolBP::SaveProperties(PSS_Properties::IPropertySet& PropSet)
 
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_String:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueString());            break;
-                case PSS_Property::IE_VT_Double:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(pProp->GetValueDouble()));     break;
-                case PSS_Property::IE_VT_Float:    pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueFloat());             break;
-                case PSS_Property::IE_VT_Date:     pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(DATE(pProp->GetValueDate()))); break;
-                case PSS_Property::IE_VT_TimeSpan:
-                case PSS_Property::IE_VT_Duration: THROW("Unsupported value");
+                case PSS_Property::IEValueType::IE_VT_String:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueString());            break;
+                case PSS_Property::IEValueType::IE_VT_Double:   pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(pProp->GetValueDouble()));     break;
+                case PSS_Property::IEValueType::IE_VT_Float:    pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), pProp->GetValueFloat());             break;
+                case PSS_Property::IEValueType::IE_VT_Date:     pDeliveriesProp->SetValue(pProp->GetItemID() - (i * g_MaxDeliveryListSize), float(DATE(pProp->GetValueDate()))); break;
+                case PSS_Property::IEValueType::IE_VT_TimeSpan:
+                case PSS_Property::IEValueType::IE_VT_Duration: THROW("Unsupported value");
             }
         }
     }
@@ -1068,6 +1079,40 @@ bool PSS_ProcessSymbolBP::SaveProperty(PSS_Property& prop)
     SetModifiedFlag();
 
     return true;
+}
+//---------------------------------------------------------------------------
+CString PSS_ProcessSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
+{
+    if (!pRule)
+        return _T("");
+
+    if (pRule->GetGUID() == ruleGUID)
+        return pRule->GetEntityName();
+
+    if (pRule->ContainEntity())
+    {
+        const std::size_t count = pRule->GetEntityCount();
+
+        for (std::size_t i = 0; i < count; ++i)
+        {
+            PSS_RulesEntity* pEntity = pRule->GetEntityAt(i);
+
+            if (!pEntity)
+                continue;
+
+            PSS_LogicalRulesEntity* pRulesEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pEntity);
+
+            if (pRulesEntity)
+            {
+                const CString name = GetRuleNameByGUID(pRulesEntity, ruleGUID);
+
+                if (!name.IsEmpty())
+                    return name;
+            }
+        }
+    }
+
+    return _T("");
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessSymbolBP::ProcessExtendedInput(PSS_Property&                 prop,
@@ -1300,33 +1345,12 @@ BOOL PSS_ProcessSymbolBP::ContainsRule(const CString& ruleName) const
     return FALSE;
 }
 //---------------------------------------------------------------------------
-void PSS_ProcessSymbolBP::CheckRulesSync(CStringArray& rulesList)
+CString PSS_ProcessSymbolBP::GetRuleGUID(std::size_t index) const
 {
-    CODModel* pModel = GetRootModel();
+    if (index < m_Rules.GetRulesCount())
+        return m_Rules.GetRuleGUID(index);
 
-    if (!pModel)
-        return;
-
-    const std::size_t ruleCount = m_Rules.GetRulesCount();
-
-    if (ruleCount > 0)
-    {
-        PSS_ProcessGraphModelMdlBP* pProcessGraphModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
-        PSS_LogicalRulesEntity*     pMainRule          = NULL;
-
-        if (pProcessGraphModel)
-            pMainRule = pProcessGraphModel->GetMainLogicalRules();
-        else
-            return;
-
-        for (int i = 0; i < int(ruleCount); ++i)
-        {
-            const CString safeName = GetRuleNameByGUID(pMainRule, m_Rules.GetRuleGUID(i));
-
-            if (safeName.IsEmpty())
-                rulesList.Add(m_Rules.GetRuleName(i));
-        }
-    }
+    return _T("");
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessSymbolBP::Serialize(CArchive& ar)
@@ -1558,7 +1582,7 @@ void PSS_ProcessSymbolBP::OnDelCurrentPrestation(PSS_Property&                 p
         if (pCurNode)
             switch (prop.GetValueType())
             {
-                case PSS_Property::IE_VT_String:
+                case PSS_Property::IEValueType::IE_VT_String:
                     if (prop.GetValueString() == pCurNode->GetName())
                     {
                         m_PrestProperties.RemovePrestation(pPos);
@@ -1598,7 +1622,7 @@ bool PSS_ProcessSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, P
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (mode == PSS_Symbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IEToolTipMode::IE_TT_Design)
     {
         // todo -cFeature -oJean: need to implement the result of the control checking
     }
@@ -1623,8 +1647,8 @@ CString PSS_ProcessSymbolBP::GetPossibleListOfMainDeliverables(const PSS_Propert
             if ((pProp->GetItemID() - (index * g_MaxDeliveryListSize)) == M_Delivery_Deliverables_ID)
                 switch (pProp->GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: return pProp->GetValueString();
-                    default:                         return _T("");
+                    case PSS_Property::IEValueType::IE_VT_String: return pProp->GetValueString();
+                    default:                                      return _T("");
                 }
         }
 
@@ -1651,7 +1675,7 @@ CString PSS_ProcessSymbolBP::GetAvailableDeliverables(const PSS_Properties::IPro
             if ((pProp->GetItemID() - (index * g_MaxDeliveryListSize)) == M_Delivery_Deliverables_ID)
                 switch (pProp->GetValueType())
                 {
-                    case PSS_Property::IE_VT_String:
+                    case PSS_Property::IEValueType::IE_VT_String:
                     {
                         const CString list = pProp->GetValueString();
 
@@ -1916,40 +1940,6 @@ float PSS_ProcessSymbolBP::CalculateSumOfDeliveries()
         sumOfDeliveries += GetDeliveryQuantity(i);
 
     return sumOfDeliveries;
-}
-//---------------------------------------------------------------------------
-CString PSS_ProcessSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
-{
-    if (!pRule)
-        return _T("");
-
-    if (pRule->GetGUID() == ruleGUID)
-        return pRule->GetEntityName();
-
-    if (pRule->ContainEntity())
-    {
-        const int count = pRule->GetEntityCount();
-
-        for (int i = 0; i < count; ++i)
-        {
-            PSS_RulesEntity* pEntity = pRule->GetEntityAt(i);
-
-            if (!pEntity)
-                continue;
-
-            PSS_LogicalRulesEntity* pRulesEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pEntity);
-
-            if (pRulesEntity)
-            {
-                const CString name = GetRuleNameByGUID(pRulesEntity, ruleGUID);
-
-                if (!name.IsEmpty())
-                    return name;
-            }
-        }
-    }
-
-    return _T("");
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessSymbolBP::OnAddNewRisk(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)

@@ -103,12 +103,12 @@ public:
     * Creates a new state machine
     *@param pSymbol - symbol
     *@param pLinkSymbol - link symbol
-    *@param directiopn - link direction
+    *@param direction - link direction
     *@return newly created state machine handle, -1 on error
     */
     virtual PSS_StateMachineHandle CreateNewStateMachine(PSS_Symbol*                    pSymbol,
                                                          PSS_LinkSymbol*                pLinkSymbol,
-                                                         PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_UnknownDirection);
+                                                         PSS_StateLink::IELinkDirection direction = PSS_StateLink::IELinkDirection::IE_LD_UnknownDirection);
 
     /**
     * Creates a new state machine
@@ -152,7 +152,7 @@ public:
     virtual bool PushSymbol(PSS_StateMachineHandle         hStateMachine,
                             PSS_Symbol*                    pSymbol,
                             PSS_LinkSymbol*                pLinkSymbol,
-                            PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_UnknownDirection);
+                            PSS_StateLink::IELinkDirection direction = PSS_StateLink::IELinkDirection::IE_LD_UnknownDirection);
 
     /**
     * Pushes a new state object to an existing state machine

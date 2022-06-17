@@ -43,7 +43,7 @@ class AFX_EXT_CLASS PSS_SystemOptionSheet : public PSS_BasePropSheet
         * Available pages
         *@note These values may be combined
         */
-        enum IEOptionPage
+        enum class IEOptionPage
         {
             IE_OP_General     = 0x0001,
             IE_OP_Calculation = 0x0002,
@@ -58,13 +58,13 @@ class AFX_EXT_CLASS PSS_SystemOptionSheet : public PSS_BasePropSheet
         *@param pAppOptions - application options
         *@param optionPages - option pages to show
         */
-        PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions, IEOptionPage optionPages = IE_OP_General);
+        PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions, IEOptionPage optionPages = IEOptionPage::IE_OP_General);
 
         virtual ~PSS_SystemOptionSheet();
 
         /**
         * Shows the system option sheet in modal mode
-        *@return modal resolt
+        *@return modal result
         */
         virtual int DoModal();
 

@@ -84,7 +84,7 @@ PSS_WorkspaceStartDlg::PSS_WorkspaceStartDlg(const CString& initialDirectory,
     m_HasChanged(false)
 {
     // set the edit to search for file
-    m_Directory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, IDS_SELWORKSPACE_DIR_T, initialDirectory);
+    m_Directory.SetSearchType(PSS_SearchEditButton::IEType::IE_T_Directory, IDS_SELWORKSPACE_DIR_T, initialDirectory);
 }
 //---------------------------------------------------------------------------
 PSS_WorkspaceStartDlg::~PSS_WorkspaceStartDlg()

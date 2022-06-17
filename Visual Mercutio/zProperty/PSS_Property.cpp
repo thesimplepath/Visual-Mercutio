@@ -38,7 +38,7 @@ PSS_Property::PSS_Property(const CString&    category,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_Category(category),
     m_Label(label),
@@ -54,7 +54,8 @@ PSS_Property::PSS_Property(const CString&    category,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     SetValueString(value);
 }
@@ -76,7 +77,7 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
@@ -89,7 +90,8 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     m_Category.LoadString(categoryResID);
     m_Label.LoadString(labelResID);
@@ -115,7 +117,7 @@ PSS_Property::PSS_Property(const CString&    category,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_Category(category),
     m_Label(label),
@@ -131,7 +133,8 @@ PSS_Property::PSS_Property(const CString&    category,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     SetValueDouble(value);
 }
@@ -153,7 +156,7 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
@@ -166,7 +169,8 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     m_Category.LoadString(categoryResID);
     m_Label.LoadString(labelResID);
@@ -192,7 +196,7 @@ PSS_Property::PSS_Property(const CString&    category,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_Category(category),
     m_Label(label),
@@ -208,7 +212,8 @@ PSS_Property::PSS_Property(const CString&    category,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     SetValueFloat(value);
 }
@@ -230,7 +235,7 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
@@ -243,7 +248,8 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     m_Category.LoadString(categoryResID);
     m_Label.LoadString(labelResID);
@@ -269,7 +275,7 @@ PSS_Property::PSS_Property(const CString&    category,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_Category(category),
     m_Label(label),
@@ -285,7 +291,8 @@ PSS_Property::PSS_Property(const CString&    category,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     SetValueDate(value);
 }
@@ -307,7 +314,7 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
@@ -320,7 +327,8 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     m_Category.LoadString(categoryResID);
     m_Label.LoadString(labelResID);
@@ -346,7 +354,7 @@ PSS_Property::PSS_Property(const CString     category,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_Category(category),
     m_Label(label),
@@ -362,7 +370,8 @@ PSS_Property::PSS_Property(const CString     category,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     SetValueTimeSpan(value);
 }
@@ -384,7 +393,7 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
@@ -397,7 +406,8 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     m_Category.LoadString(categoryResID);
     m_Label.LoadString(labelResID);
@@ -423,7 +433,7 @@ PSS_Property::PSS_Property(const CString&    category,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_Category(category),
     m_Label(label),
@@ -439,7 +449,8 @@ PSS_Property::PSS_Property(const CString&    category,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     SetValueDuration(value);
 }
@@ -461,7 +472,7 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_pValueArray(pValueArray),
     m_pMenu(pMenu),
     m_Type(type),
-    m_ValueType(IE_VT_Unknown),
+    m_ValueType(IEValueType::IE_VT_Unknown),
     m_Format(format),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
@@ -474,7 +485,8 @@ PSS_Property::PSS_Property(const UINT        categoryResID,
     m_HasChanged(false),
     m_SaveState(saveState),
     m_SaveStatePerProperty(saveStatePerProperty),
-    m_EnableDragNDrop(false)
+    m_EnableDragNDrop(false),
+    m_FilterChars(false)
 {
     m_Category.LoadString(categoryResID);
     m_Label.LoadString(labelResID);
@@ -522,6 +534,7 @@ PSS_Property& PSS_Property::operator = (const PSS_Property& other)
     m_SaveState            = other.m_SaveState;
     m_SaveStatePerProperty = other.m_SaveStatePerProperty;
     m_EnableDragNDrop      = other.m_EnableDragNDrop;
+    m_FilterChars          = other.m_FilterChars;
 
     return *this;
 }

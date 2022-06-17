@@ -153,12 +153,12 @@ void PSS_SoapPublishModelAttributes::Publish(const PSS_Properties::IPropertySet&
         // search for property value type
         switch (pProp->GetValueType())
         {
-            case PSS_Property::IE_VT_Double:
-            case PSS_Property::IE_VT_Float:    type = 2; break;
-            case PSS_Property::IE_VT_Date:
-            case PSS_Property::IE_VT_TimeSpan:
-            case PSS_Property::IE_VT_Duration: type = 3; break;
-            default:                           type = 1; break;
+            case PSS_Property::IEValueType::IE_VT_Double:
+            case PSS_Property::IEValueType::IE_VT_Float:    type = 2; break;
+            case PSS_Property::IEValueType::IE_VT_Date:
+            case PSS_Property::IEValueType::IE_VT_TimeSpan:
+            case PSS_Property::IEValueType::IE_VT_Duration: type = 3; break;
+            default:                                        type = 1; break;
         }
 
         // check if property already exists in array, add it if not

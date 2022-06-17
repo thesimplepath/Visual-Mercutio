@@ -53,10 +53,10 @@ CString PSS_DocumentExport::GetExportedLine(CObject* pObj)
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      lineBuffer.Format("%s,%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
-        case E_SS_SemiColumn: lineBuffer.Format("%s;%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
-        case E_SS_Quote:      lineBuffer.Format("\"%s\" \"%s\"\r\n", (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
-        default:              lineBuffer.Format("%s\t%s\r\n",        (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     lineBuffer.Format("%s,%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: lineBuffer.Format("%s;%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
+        case ESynchronizationSeparatorType::E_SS_Quote:     lineBuffer.Format("\"%s\" \"%s\"\r\n", (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
+        default:                                            lineBuffer.Format("%s\t%s\r\n",        (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
     }
 
     return lineBuffer;
@@ -66,7 +66,7 @@ BOOL PSS_DocumentExport::IsExportedField(CObject* pObj) const
 {
     PSS_PlanFinObject* pPlanFinObj = dynamic_cast<PSS_PlanFinObject*>(pObj);
     PSS_Assert(pPlanFinObj);
-    
+
     // is the object exportable?
     if (!pPlanFinObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&
         !pPlanFinObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
@@ -94,7 +94,7 @@ BOOL PSS_DocumentExport::ProcessLine(const CString& line)
 
     switch (GetSeparatorType())
     {
-        case E_SS_Quote:
+        case ESynchronizationSeparatorType::E_SS_Quote:
         {
             separatorChar = '"';
 
@@ -106,13 +106,13 @@ BOOL PSS_DocumentExport::ProcessLine(const CString& line)
             break;
         }
 
-        case E_SS_Tab:        separatorChar = '\t'; break;
-        case E_SS_Comma:      separatorChar = ',';  break;
-        case E_SS_SemiColumn: separatorChar = ';';  break;
-        default:              separatorChar = '\t'; break;
+        case ESynchronizationSeparatorType::E_SS_Tab:       separatorChar = '\t'; break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     separatorChar = ',';  break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: separatorChar = ';';  break;
+        default:                                            separatorChar = '\t'; break;
     }
 
-    // extract the object name, locates the separator char 
+    // extract the object name, locates the separator char
     pNext = std::strchr(pCurrent, separatorChar);
 
     if (!pNext)
@@ -128,7 +128,7 @@ BOOL PSS_DocumentExport::ProcessLine(const CString& line)
     pCurrent = ++pNext;
 
     // on quote skips the "
-    if (GetSeparatorType() == E_SS_Quote)
+    if (GetSeparatorType() == ESynchronizationSeparatorType::E_SS_Quote)
     {
         // find the first quote char
         pNext = std::strchr(pCurrent, separatorChar);
@@ -167,12 +167,12 @@ CString PSS_DocumentExport::GetHeaderLine()
 {
     switch (GetSeparatorType())
     {
-        case E_SS_Automatic:
-        case E_SS_Tab:        return "Nom\tValeur\r\n";
-        case E_SS_Comma:      return "Nom,Valeur\r\n";
-        case E_SS_SemiColumn: return "Nom;Valeur\r\n";
-        case E_SS_Quote:      return "\"Nom\" \"Valeur\"\r\n";
-        default:              break;
+        case ESynchronizationSeparatorType::E_SS_Automatic:
+        case ESynchronizationSeparatorType::E_SS_Tab:       return "Nom\tValeur\r\n";
+        case ESynchronizationSeparatorType::E_SS_Comma:     return "Nom,Valeur\r\n";
+        case ESynchronizationSeparatorType::E_SS_Semicolon: return "Nom;Valeur\r\n";
+        case ESynchronizationSeparatorType::E_SS_Quote:     return "\"Nom\" \"Valeur\"\r\n";
+        default:                                            break;
     }
 
     return "Nom\tValeur\r\n";
@@ -193,7 +193,7 @@ BOOL PSS_DocumentExport::ExportAdditionalInfo()
     if (!m_pDoc)
         return FALSE;
 
-    if (m_pDoc->GetDocumentStamp().GetDocumentFileType() == PSS_Stamp::IE_FT_ProcessDocument)
+    if (m_pDoc->GetDocumentStamp().GetDocumentFileType() == PSS_Stamp::IEDocumentFileType::IE_FT_ProcessDocument)
     {
         WriteLine(BuildLine(g_ExportProcessNameKey, m_pDoc->GetDocumentStamp().GetTitle()));
         WriteLine(BuildLine(g_ExportTemplateNameKey, ""));

@@ -115,6 +115,12 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         virtual CODComponent* Dup() const;
 
         /**
+        * Checks if external files are accepted
+        *@return true if external files are accepted, otherwise false
+        */
+        virtual bool AcceptExtFile() const;
+
+        /**
         * Copies the symbol definition only from another symbol
         *@param src - the source symbol to copy from
         */
@@ -183,6 +189,20 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@return true on success, otherwise false
         */
         virtual bool SaveProperty(PSS_Property& prop);
+
+        /**
+        * Gets the symbol rule set
+        *@return the symbol rule set
+        */
+        virtual inline const PSS_ProcRules& GetRuleSet() const;
+
+        /**
+        * Gets the rule name by GUID
+        *@param pRule - the rule for which the name should be get
+        *@param ruleGUID - the rule GUID matching with the name to get
+        *@return the rule name matching with the GUID
+        */
+        virtual CString GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID);
 
         /**
         * Processes the extended input for the property value
@@ -559,10 +579,11 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         virtual BOOL ContainsRule(const CString& ruleName) const;
 
         /**
-        * Gets the rules which are no longer synchronized with this process
-        *@param[out] rulesList - the rules which are no longer synchronized with this process
+        * Gets the rule GUID
+        *@param index - the rule index for which the GUID should be get
+        *@return the rule GUID, empty string if not found or on error
         */
-        virtual void CheckRulesSync(CStringArray& rulesList);
+        virtual CString GetRuleGUID(std::size_t index) const;
 
         /**
         * Gets the unique object type identifier
@@ -681,7 +702,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         */
         virtual bool OnToolTip(CString&                   toolTipText,
                                const CPoint&              point,
-                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
+                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IEToolTipMode::IE_TT_Normal);
 
     protected:
         /**
@@ -695,6 +716,7 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         PSS_ProcDeliveries          m_Deliveries;
         PSS_ProcRules               m_Rules;
         PSS_ProcRisk                m_Risks;
+        PSS_Log*                    m_pLog;
         CRect                       m_CommentRect;
         bool                        m_IsUserModified;
         bool                        m_ShowPreview;
@@ -761,14 +783,6 @@ class AFX_EXT_CLASS PSS_ProcessSymbolBP : public PSS_Symbol
         *@return the sum of deliveries
         */
         float CalculateSumOfDeliveries();
-
-        /**
-        * Gets the rule name by GUID
-        *@param pRule - the rule for which the name should be get
-        *@param ruleGUID - the rule GUID matching with the name to get
-        *@return the rule name matching with the GUID
-        */
-        CString GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID);
 
         /**
         * Adds a new risk
@@ -852,6 +866,11 @@ BOOL PSS_ProcessSymbolBP::IsProcess() const
 bool PSS_ProcessSymbolBP::CanContainChildModel() const
 {
     return true;
+}
+//---------------------------------------------------------------------------
+const PSS_ProcRules& PSS_ProcessSymbolBP::GetRuleSet() const
+{
+    return m_Rules;
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessSymbolBP::IncludeDescriptionArea() const

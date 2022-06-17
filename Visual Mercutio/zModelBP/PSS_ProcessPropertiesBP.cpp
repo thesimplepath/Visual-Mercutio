@@ -63,7 +63,7 @@ void PSS_ProcessPropertiesBP::Merge(CODProperty* pProp, DWORD changeFlags)
     PSS_ProcessPropertiesBP* pProcessProps = dynamic_cast<PSS_ProcessPropertiesBP*>(pProp);
 
     if (pProcessProps)
-        if (changeFlags & IE_CT_Change_Management_Case)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Management_Case)
             m_ManagementCase = pProcessProps->GetManagementCase();
 }
 //---------------------------------------------------------------------------

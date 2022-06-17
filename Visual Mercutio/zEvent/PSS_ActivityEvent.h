@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_ActivityEvent : public PSS_Event
         /**
         * Activity event type
         */
-        enum IEType
+        enum class IEType
         {
             IE_AT_InvalidEvent,
             IE_AT_ToDo,

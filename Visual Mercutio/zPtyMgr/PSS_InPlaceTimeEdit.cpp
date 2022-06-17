@@ -68,7 +68,7 @@ BOOL PSS_InPlaceTimeEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_String;
 
     // set the current selection to all
     SetSelAll();
@@ -95,7 +95,7 @@ BOOL PSS_InPlaceTimeEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*   pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Time;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_Time;
 
     // set the current selection to all
     SetSelAll();
@@ -146,12 +146,12 @@ void PSS_InPlaceTimeEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case PSS_InPlaceEdit::IE_T_String:
+        case PSS_InPlaceEdit::IEType::IE_T_String:
             // set back the initial value
             SetEditText(m_StrInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Time:
+        case PSS_InPlaceEdit::IEType::IE_T_Time:
             // set back the initial duration value
             SetEditText(m_InitialTimeValue);
             break;
@@ -181,11 +181,11 @@ void PSS_InPlaceTimeEdit::SaveValue()
 
                 switch (GetEditType())
                 {
-                    case PSS_InPlaceEdit::IE_T_String:
+                    case PSS_InPlaceEdit::IEType::IE_T_String:
                         // do nothing for string
                         break;
 
-                    case PSS_InPlaceEdit::IE_T_Time:
+                    case PSS_InPlaceEdit::IEType::IE_T_Time:
                     {
                         PSS_TimeSpan value;
 
@@ -225,6 +225,13 @@ void PSS_InPlaceTimeEdit::SaveValue()
 
     // set the focus to properties control
     SetFocus();
+}
+//---------------------------------------------------------------------------
+void PSS_InPlaceTimeEdit::OnPropertieValueChanged()
+{
+    SetHasChanged(true);
+
+    PSS_PropertyEditControl::OnPropertieValueChanged();
 }
 //---------------------------------------------------------------------------
 void PSS_InPlaceTimeEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)

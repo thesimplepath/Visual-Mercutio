@@ -35,7 +35,7 @@ PSS_ScanContinueSelectDialog::PSS_ScanContinueSelectDialog(bool firstTime, CWnd*
     m_ScanType(1),
     m_FirstTime(firstTime)
 {
-    m_File.SetSearchType(PSS_SearchEditButton::IE_T_File, _T(""));
+    m_File.SetSearchType(PSS_SearchEditButton::IEType::IE_T_File, _T(""));
 }
 //---------------------------------------------------------------------------
 void PSS_ScanContinueSelectDialog::DoDataExchange(CDataExchange* pDX)
@@ -51,7 +51,7 @@ void PSS_ScanContinueSelectDialog::DoDataExchange(CDataExchange* pDX)
 BOOL PSS_ScanContinueSelectDialog::OnInitDialog()
 {
     PSS_WizardDialog::OnInitDialog();
-    
+
     if (m_FirstTime && GetDlgItem(IDOK))
         GetDlgItem(IDOK)->ShowWindow(SW_HIDE);
 

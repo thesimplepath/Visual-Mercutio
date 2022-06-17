@@ -29,12 +29,12 @@ IMPLEMENT_DYNAMIC(PSS_ActivityResources, CObject)
 //---------------------------------------------------------------------------
 PSS_ActivityResources::PSS_ActivityResources() :
     CObject(),
-    m_UserType(IE_UT_Users)
+    m_UserType(IEUserType::IE_UT_Users)
 {}
 //---------------------------------------------------------------------------
 PSS_ActivityResources::PSS_ActivityResources(const PSS_ActivityResources& other) :
     CObject(),
-    m_UserType(IE_UT_Users)
+    m_UserType(IEUserType::IE_UT_Users)
 {
     *this = other;
 }
@@ -130,7 +130,7 @@ PSS_MailUserList* PSS_ActivityResources::CreatePersonList(PSS_Process*          
                                                           const CString&         connectedUser)
 {
     // responsible requested?
-    if (GetUserType() == IE_UT_ResponsibleOfUser)
+    if (GetUserType() == IEUserType::IE_UT_ResponsibleOfUser)
     {
         // search the connected user
         PSS_User* pUser = userManager.FindUser(connectedUser);
@@ -151,7 +151,7 @@ PSS_MailUserList* PSS_ActivityResources::CreatePersonList(PSS_Process*          
     }
     else
     // if user of an activity requested
-    if (GetUserType() == IE_UT_UserFromActivity)
+    if (GetUserType() == IEUserType::IE_UT_UserFromActivity)
     {
         if (GetUserCount() > 0 && pMainProcess)
         {
@@ -207,7 +207,7 @@ BOOL PSS_ActivityResources::FillPersonArray(PSS_Process*           pMainProcess,
                                             const CString&         connectedUser)
 {
     // responsible requested?
-    if (GetUserType() == IE_UT_ResponsibleOfUser)
+    if (GetUserType() == IEUserType::IE_UT_ResponsibleOfUser)
     {
         // search the connected user
         PSS_User* pUser = userManager.FindUser(connectedUser);
@@ -228,7 +228,7 @@ BOOL PSS_ActivityResources::FillPersonArray(PSS_Process*           pMainProcess,
     }
     else
     // if user of an activity requested
-    if (GetUserType() == IE_UT_UserFromActivity)
+    if (GetUserType() == IEUserType::IE_UT_UserFromActivity)
     {
         if (GetUserCount() > 0 && pMainProcess)
         {
@@ -285,7 +285,7 @@ CString PSS_ActivityResources::CreatePersonDelimStr(PSS_Process*           pMain
                                                     const CString&         delimiter)
 {
     // responsible requested?
-    if (GetUserType() == IE_UT_ResponsibleOfUser)
+    if (GetUserType() == IEUserType::IE_UT_ResponsibleOfUser)
     {
         // search the connected user
         PSS_User* pUser = userManager.FindUser(connectedUser);
@@ -301,7 +301,7 @@ CString PSS_ActivityResources::CreatePersonDelimStr(PSS_Process*           pMain
     }
     else
     // if user of an activity requested
-    if (GetUserType() == IE_UT_UserFromActivity)
+    if (GetUserType() == IEUserType::IE_UT_UserFromActivity)
     {
         if (GetUserCount() > 0 && pMainProcess)
         {

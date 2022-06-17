@@ -43,7 +43,7 @@ class AFX_EXT_CLASS PSS_SymbolLoader
         /**
         * Connection type
         */
-        enum IEConnectionType
+        enum class IEConnectionType
         {
             IE_CT_FileConnection,
             IE_CT_FTPConnection,
@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_SymbolLoader
         */
         static int LoadSymbol(const CString&                location,
                               PSS_SymbolEntity::IEntitySet& compSet,
-                              IEConnectionType              connType = IE_CT_FileConnection);
+                              IEConnectionType              connType = IEConnectionType::IE_CT_FileConnection);
 
         /**
         * Loads the symbol
@@ -75,7 +75,7 @@ class AFX_EXT_CLASS PSS_SymbolLoader
         static int LoadSymbols(const CString&                location,
                                PSS_SymbolEntity::IEntitySet& compSet,
                                bool                          loadSubFolders = false,
-                               IEConnectionType              connType       = IE_CT_FileConnection);
+                               IEConnectionType              connType       = IEConnectionType::IE_CT_FileConnection);
 };
 
 #endif

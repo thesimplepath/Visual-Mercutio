@@ -26,7 +26,7 @@ IMPLEMENT_SERIAL(PSS_PLFNTwoStates, PSS_PLFNGraphic, g_DefVersion)
 //---------------------------------------------------------------------------
 PSS_PLFNTwoStates::PSS_PLFNTwoStates() :
     PSS_PLFNGraphic(),
-    m_CheckType(E_CB_Rounded),
+    m_CheckType(ECheckButtonType::E_CB_Rounded),
     m_OffsetText(10),
     m_Size(10),
     m_CheckState(FALSE),
@@ -37,7 +37,7 @@ PSS_PLFNTwoStates::PSS_PLFNTwoStates() :
 //---------------------------------------------------------------------------
 PSS_PLFNTwoStates::PSS_PLFNTwoStates(const PSS_PLFNTwoStates& other) :
     PSS_PLFNGraphic(),
-    m_CheckType(E_CB_Rounded),
+    m_CheckType(ECheckButtonType::E_CB_Rounded),
     m_OffsetText(10),
     m_Size(10),
     m_CheckState(FALSE),
@@ -71,7 +71,7 @@ const PSS_PLFNTwoStates& PSS_PLFNTwoStates::operator = (const PSS_PLFNTwoStates*
 
     if (!pOther)
     {
-        m_CheckType  = E_CB_Rounded;
+        m_CheckType  = ECheckButtonType::E_CB_Rounded;
         m_OffsetText = 10;
         m_Size       = 10;
         m_CheckState = FALSE;
@@ -137,7 +137,7 @@ void PSS_PLFNTwoStates::Serialize(CArchive& ar)
         PSS_BaseDocument* pDoc = dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument);
 
         // serialize the status if not a template or a default value is required
-        if (pDoc && pDoc->GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_TemplateType && !GetDefaultValue())
+        if (pDoc && pDoc->GetDocumentStamp().GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_TemplateType && !GetDefaultValue())
         {
             const BOOL checkState = FALSE;
             ar << WORD(checkState);

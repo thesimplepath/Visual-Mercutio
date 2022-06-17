@@ -40,7 +40,7 @@ class AFX_EXT_CLASS PSS_ProcessHistoryDatabase
         /**
         * Database type
         */
-        enum IEType
+        enum class IEType
         {
             IE_DT_DAO,
             IE_DT_ODBC
@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_ProcessHistoryDatabase
         *@param fileName - the database file name
         *@param type - the database type
         */
-        PSS_ProcessHistoryDatabase(const CString& fileName = "", IEType type = IE_DT_DAO);
+        PSS_ProcessHistoryDatabase(const CString& fileName = "", IEType type = IEType::IE_DT_DAO);
 
         virtual ~PSS_ProcessHistoryDatabase();
 
@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_ProcessHistoryDatabase
         *@param type - the database type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(const CString& fileName = "", IEType type = IE_DT_DAO);
+        virtual BOOL Create(const CString& fileName = "", IEType type = IEType::IE_DT_DAO);
 
         /**
         * Initializes the database

@@ -514,7 +514,7 @@ IMPLEMENT_SERIAL(PSS_FormulaSchema, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 PSS_FormulaSchema::PSS_FormulaSchema() :
     CObject(),
-    m_FormulaSchemaType(IE_T_User)
+    m_FormulaSchemaType(IEType::IE_T_User)
 {}
 //---------------------------------------------------------------------------
 PSS_FormulaSchema::~PSS_FormulaSchema()
@@ -684,7 +684,7 @@ void PSS_FormulaSchema::Serialize(CArchive& ar)
             CString text;
             text.LoadString(IDS_DESCRIPTIONSTANDARDSCHEMA);
             SetDescription(text);
-            SetFormulaSchemaType(IE_T_User);
+            SetFormulaSchemaType(IEType::IE_T_User);
         }
     }
 
@@ -754,7 +754,7 @@ PSS_SchemaManager* PSS_SchemaManager::Clone() const
 //---------------------------------------------------------------------------
 void PSS_SchemaManager::Create(const CString& name)
 {
-    // create the original 
+    // create the original
     std::unique_ptr<PSS_FormulaSchema> pOriginalSchema(new PSS_FormulaSchema());
 
     pOriginalSchema->SetSchemaName(name);
@@ -935,7 +935,7 @@ CStringArray& PSS_SchemaManager::GetFormulaUserArrayName()
     {
         pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
 
-        if (pObj->GetFormulaSchemaType() == PSS_FormulaSchema::IE_T_User)
+        if (pObj->GetFormulaSchemaType() == PSS_FormulaSchema::IEType::IE_T_User)
             m_SchemaNameArray.Add(pObj->GetSchemaName());
     }
 
@@ -953,7 +953,7 @@ CStringArray& PSS_SchemaManager::GetFormulaSystemArrayName()
     {
         pObj = dynamic_cast<PSS_FormulaSchema*>(m_Schemas.GetNext(pPosition));
 
-        if (pObj->GetFormulaSchemaType() == PSS_FormulaSchema::IE_T_System)
+        if (pObj->GetFormulaSchemaType() == PSS_FormulaSchema::IEType::IE_T_System)
             m_SchemaNameArray.Add(pObj->GetSchemaName());
     }
 

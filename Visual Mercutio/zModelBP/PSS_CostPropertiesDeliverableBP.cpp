@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "PSS_CostPropertiesDeliverableBP.h"
 
-// processsodt
+// processsoft
 #include "zBaseLib\PSS_BaseDocument.h"
 
 // resources
@@ -88,28 +88,28 @@ void PSS_CostPropertiesDeliverableBP::Merge(PSS_CostPropertiesDeliverableBP* pPr
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Cost_Processing_Time)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Processing_Time)
             m_ProcessingTime = pProp->GetProcessingTime();
 
-        if (changeFlags & IE_CT_Change_Cost_In_Workload_Percent)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_In_Workload_Percent)
             m_InWorkloadPercent = pProp->GetInWorkloadPercent();
 
-        if (changeFlags & IE_CT_Change_Cost_Out_Workload_Percent)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Out_Workload_Percent)
             m_OutWorkloadPercent = pProp->GetOutWorkloadPercent();
 
-        if (changeFlags & IE_CT_Change_Cost_Unitary_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Unitary_Cost)
             m_UnitaryCost = pProp->GetUnitaryCost();
 
-        if (changeFlags & IE_CT_Change_Cost_Case_Duration)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Case_Duration)
             m_CaseDuration = pProp->GetCaseDuration();
 
-        if (changeFlags & IE_CT_Change_Cost_Case_Duration_Max)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Case_Duration_Max)
             m_CaseDurationMax = pProp->GetCaseDurationMax();
 
-        if (changeFlags & IE_CT_Change_Cost_Target_Duration)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Target_Duration)
             m_TargetDuration = pProp->GetTargetDuration();
 
-        if (changeFlags & IE_CT_Change_Cost_Green_Line_Duration)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Green_Line_Duration)
             m_GreenLineDuration = pProp->GetGreenLineDuration();
     }
 }

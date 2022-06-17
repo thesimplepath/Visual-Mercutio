@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_Export : public CWnd
         */
         PSS_Export(const CString&                fileName        = "",
                    BOOL                          generateHeader  = FALSE,
-                   ESynchronizationSeparatorType separatorType   = E_SS_Automatic,
+                   ESynchronizationSeparatorType separatorType   = ESynchronizationSeparatorType::E_SS_Automatic,
                    const CString&                schema          = g_OriginalSchema,
                    int                           propagationMode = g_LocatePageOnly,
                    BOOL                          emptyWhenZero   = FALSE,
@@ -71,7 +71,7 @@ class AFX_EXT_CLASS PSS_Export : public CWnd
         */
         virtual inline void Create(const CString&                fileName,
                                    BOOL                          generateHeader  = FALSE,
-                                   ESynchronizationSeparatorType separatorType   = E_SS_Automatic,
+                                   ESynchronizationSeparatorType separatorType   = ESynchronizationSeparatorType::E_SS_Automatic,
                                    const CString&                schema          = g_OriginalSchema,
                                    int                           propagationMode = g_LocatePageOnly,
                                    BOOL                          emptyWhenZero   = FALSE,

@@ -189,6 +189,16 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         virtual PSS_SymbolEdit* CreateAndReplaceEditText(const CString& editName, CODComponent* pParent = NULL);
 
         /**
+        * Creates a new label and adds it to the symbol
+        *@param pText - label text
+        *@param point - control point
+        *@param pDC - device context to draw on
+        */
+        virtual CODLabelComponent* CreateLabel(const LPCTSTR          pText,
+                                               const OD_CONTROL_POINT ctlPoint,
+                                               CDC*                   pDC = NULL);
+
+        /**
         * Check if the name may be edited even if the dynamic area aren't enabled on the symbol
         *@return true if the name may be edited even if the dynamic area aren't enabled on the symbol, otherwise false
         */
@@ -1083,7 +1093,7 @@ class AFX_EXT_CLASS PSS_LinkSymbol : public CODLinkComponent,
         */
         virtual bool OnToolTip(CString&                   toolTipText,
                                const CPoint&              point,
-                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
+                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IEToolTipMode::IE_TT_Normal);
 
     protected:
         CODSymbolComponent*    m_pReference;

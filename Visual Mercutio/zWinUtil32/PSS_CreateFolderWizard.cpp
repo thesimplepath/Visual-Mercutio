@@ -70,7 +70,7 @@ BOOL PSS_CreateFolderWizard::Execute()
         fileName = createFolderWizardStart.GetFileName();
 
     PSS_CreateFolderWizardExistDialog::IEFolderExistInitialChoice initialChoice =
-                PSS_CreateFolderWizardExistDialog::IE_FC_FolderName;
+                PSS_CreateFolderWizardExistDialog::IEFolderExistInitialChoice::IE_FC_FolderName;
 
     while (CheckFolderExist(fileName))
         if (m_UseFolderNameAsFileName)
@@ -92,7 +92,7 @@ BOOL PSS_CreateFolderWizard::Execute()
                 fileName.Empty();
 
                 // keep choice for next use
-                initialChoice = PSS_CreateFolderWizardExistDialog::IE_FC_FolderName;
+                initialChoice = PSS_CreateFolderWizardExistDialog::IEFolderExistInitialChoice::IE_FC_FolderName;
             }
             else
             if (createFolderWizardExist.IsDirectorySelected())
@@ -104,7 +104,7 @@ BOOL PSS_CreateFolderWizard::Execute()
                 fileName.Empty();
 
                 // keep choice for next use
-                initialChoice = PSS_CreateFolderWizardExistDialog::IE_FC_Directory;
+                initialChoice = PSS_CreateFolderWizardExistDialog::IEFolderExistInitialChoice::IE_FC_Directory;
             }
             else
             if (createFolderWizardExist.IsFileNameSelected())
@@ -113,7 +113,7 @@ BOOL PSS_CreateFolderWizard::Execute()
                 fileName = createFolderWizardExist.GetFileName();
 
                 // keep choice for next use
-                initialChoice = PSS_CreateFolderWizardExistDialog::IE_FC_FileName;
+                initialChoice = PSS_CreateFolderWizardExistDialog::IEFolderExistInitialChoice::IE_FC_FileName;
             }
             else
             if (createFolderWizardExist.IsReWriteSelected())

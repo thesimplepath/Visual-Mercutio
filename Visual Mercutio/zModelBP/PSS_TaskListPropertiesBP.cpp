@@ -60,7 +60,7 @@ void PSS_TaskListPropertiesBP::Merge(CODProperty* pProp, DWORD changeFlags)
     PSS_TaskListPropertiesBP* pProcessProps = dynamic_cast<PSS_TaskListPropertiesBP*>(pProp);
 
     if (pProcessProps)
-        if (changeFlags & IE_CT_Change_Task_List)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Task_List)
             m_TaskList = pProcessProps->GetTaskList();
 }
 //---------------------------------------------------------------------------

@@ -47,7 +47,7 @@ class AFX_EXT_CLASS PSS_StringFormat : public CObject
         /**
         * Format type
         */
-        enum IEFormatType
+        enum class IEFormatType
         {
             IE_FT_General,
             IE_FT_Number,
@@ -92,7 +92,7 @@ class AFX_EXT_CLASS PSS_StringFormat : public CObject
         *@param currency - currency
         *@param lcid - language identifier
         */
-        PSS_StringFormat(IEFormatType   formatType   =  IE_FT_General,
+        PSS_StringFormat(IEFormatType   formatType   =  IEFormatType::IE_FT_General,
                          bool           useSeparator =  false,
                          int            decimalPlace = -1,
                          const CString& currency     = _T(""),

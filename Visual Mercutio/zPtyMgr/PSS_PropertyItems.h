@@ -481,7 +481,15 @@ class AFX_EXT_CLASS PSS_MultiLineEditPropertyItem : public PSS_PropertyItem
                                           PSS_InPlaceEdit*& pWndInPlaceControl,
                                           const CSize&      extendedSize = CSize(0, 0));
 
+        /**
+        * Enables or disables the char filtering
+        *@param value - if true, the char filtering will be enabled
+        */
+        virtual void EnableCharFilter(bool value = true);
+
     private:
+        bool m_FilterChars;
+
         /**
         * Copy constructor
         *@param other - other object to copy from
@@ -500,7 +508,8 @@ class AFX_EXT_CLASS PSS_MultiLineEditPropertyItem : public PSS_PropertyItem
 // PSS_MultiLineEditPropertyItem
 //---------------------------------------------------------------------------
 PSS_MultiLineEditPropertyItem::PSS_MultiLineEditPropertyItem(LPCTSTR pName, bool isReadOnly, bool canBeEdited) :
-    PSS_PropertyItem(pName, isReadOnly, canBeEdited)
+    PSS_PropertyItem(pName, isReadOnly, canBeEdited),
+    m_FilterChars(false)
 {}
 //---------------------------------------------------------------------------
 PSS_MultiLineEditPropertyItem::~PSS_MultiLineEditPropertyItem()
@@ -778,7 +787,7 @@ class AFX_EXT_CLASS PSS_MenuFileDirPropertyItem : public PSS_PropertyItem
         /**
         * The item type
         */
-        enum IEItemType
+        enum class IEItemType
         {
             IE_IT_Menu,
             IE_IT_File,
@@ -807,13 +816,13 @@ class AFX_EXT_CLASS PSS_MenuFileDirPropertyItem : public PSS_PropertyItem
 //---------------------------------------------------------------------------
 PSS_MenuFileDirPropertyItem::PSS_MenuFileDirPropertyItem(LPCTSTR pName, bool asFile, bool isReadOnly, bool canBeEdited) :
     PSS_PropertyItem(pName, isReadOnly, canBeEdited),
-    m_ControlType(asFile ? IE_IT_File : IE_IT_Directory),
+    m_ControlType(asFile ? IEItemType::IE_IT_File : IEItemType::IE_IT_Directory),
     m_pMenu(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_MenuFileDirPropertyItem::PSS_MenuFileDirPropertyItem(CMenu* pMenu, bool isReadOnly, bool canBeEdited) :
     PSS_PropertyItem(NULL, isReadOnly, canBeEdited),
-    m_ControlType(IE_IT_Menu),
+    m_ControlType(IEItemType::IE_IT_Menu),
     m_pMenu(pMenu)
 {}
 //---------------------------------------------------------------------------

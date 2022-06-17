@@ -38,19 +38,19 @@ const int g_LogicalSystemTreeItem     = 1;
 PSS_LogicalSystemTreeCtrl::ITreeData::ITreeData() :
     CObject(),
     m_pLogicalSystem(NULL),
-    m_Type(IE_DT_Unknown)
+    m_Type(IEDataType::IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_LogicalSystemTreeCtrl::ITreeData::ITreeData(PSS_LogicalSystemEntity* pLogicalSystem) :
     CObject(),
     m_pLogicalSystem(pLogicalSystem),
-    m_Type(IE_DT_LogicalSystem)
+    m_Type(IEDataType::IE_DT_LogicalSystem)
 {}
 //---------------------------------------------------------------------------
 PSS_LogicalSystemTreeCtrl::ITreeData::ITreeData(const CString& str) :
     CObject(),
     m_pLogicalSystem(NULL),
-    m_Type(IE_DT_String),
+    m_Type(IEDataType::IE_DT_String),
     m_Str(str)
 {}
 //---------------------------------------------------------------------------
@@ -65,8 +65,6 @@ BEGIN_MESSAGE_MAP(PSS_LogicalSystemTreeCtrl, PSS_TreeCtrl)
     ON_WM_LBUTTONDBLCLK()
     ON_NOTIFY_REFLECT(TVN_ITEMEXPANDED, OnItemExpanded)
     ON_WM_CONTEXTMENU()
-    ON_COMMAND(ID_COLLAPSE_BRANCH, OnCollapseBranch)
-    ON_COMMAND(ID_EXPAND_BRANCH, OnExpandBranch)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -78,7 +76,9 @@ PSS_LogicalSystemTreeCtrl::PSS_LogicalSystemTreeCtrl(const CString& rootName, PS
     m_hUserGroupRoot(NULL),
     m_RootName(rootName),
     m_HasBeenInitialized(false)
-{}
+{
+    m_LogicalSystemSubMenu.LoadMenu(IDR_LOGICAL_SUBMENUS);
+}
 //---------------------------------------------------------------------------
 PSS_LogicalSystemTreeCtrl::~PSS_LogicalSystemTreeCtrl()
 {}
@@ -353,6 +353,16 @@ bool PSS_LogicalSystemTreeCtrl::CanLogicalSystemProperties()
     return (GetSelectedSystemEntity() || IsRootSelected());
 }
 //---------------------------------------------------------------------------
+void PSS_LogicalSystemTreeCtrl::OnExpandBranch()
+{
+    ExpandBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_LogicalSystemTreeCtrl::OnCollapseBranch()
+{
+    CollapseBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
 void PSS_LogicalSystemTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     PSS_LogicalSystemObserverMsg* pLogicalSystemMsg = dynamic_cast<PSS_LogicalSystemObserverMsg*>(pMsg);
@@ -406,7 +416,7 @@ void PSS_LogicalSystemTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
     if (idMenu == -1)
         return;
 
-    CMenu* pPopup = m_SubMenu.GetSubMenu(idMenu);
+    CMenu* pPopup = m_LogicalSystemSubMenu.GetSubMenu(idMenu);
     PSS_Assert(pPopup);
 
     CWnd* pWndPopupOwner = this;
@@ -462,21 +472,11 @@ void PSS_LogicalSystemTreeCtrl::OnItemExpanded(LPNMHDR pnmhdr, LRESULT* pLResult
     *pLResult                = TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalSystemTreeCtrl::OnCollapseBranch()
-{
-    CollapseBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
-void PSS_LogicalSystemTreeCtrl::OnExpandBranch()
-{
-    ExpandBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
 CObject* PSS_LogicalSystemTreeCtrl::GetDragObject(HTREEITEM dragItem)
 {
     ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(dragItem));
 
-    if (pObj && pObj->m_Type == ITreeData::IE_DT_LogicalSystem)
+    if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_LogicalSystem)
         return pObj->m_pLogicalSystem;
 
     return NULL;
@@ -487,7 +487,7 @@ void PSS_LogicalSystemTreeCtrl::CreateTree()
     if (m_HasBeenInitialized)
         return;
 
-    VERIFY(m_SubMenu.LoadMenu(IDR_LOGICAL_SUBMENUS));
+    //VERIFY(m_SubMenu.LoadMenu(IDR_LOGICAL_SUBMENUS));
 
     // set styles
     HasButtons();
@@ -513,8 +513,8 @@ void PSS_LogicalSystemTreeCtrl::LoadTree()
 
     ProcessLogicalSystemGroup(m_pLogicalSystemRoot, m_hUserGroupRoot);
 
-    // expand the root
-    ExpandRoot(TRUE);
+    // by default, collapse the tree
+    ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_LogicalSystemTreeCtrl::DestroyTree()
@@ -600,7 +600,7 @@ PSS_SystemEntity* PSS_LogicalSystemTreeCtrl::GetSystemEntity(HTREEITEM hItem)
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_LogicalSystem)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_LogicalSystem)
             return pObj->m_pLogicalSystem;
     }
 
@@ -613,7 +613,7 @@ PSS_LogicalSystemEntity* PSS_LogicalSystemTreeCtrl::GetLogicalSystem(HTREEITEM h
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_LogicalSystem)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_LogicalSystem)
             return pObj->m_pLogicalSystem;
     }
 
@@ -646,7 +646,7 @@ PSS_LogicalSystemTreeCtrl::ITreeData* PSS_LogicalSystemTreeCtrl::FindElementFrom
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_LogicalSystem && pElement->m_pLogicalSystem == pLogicalSystem)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_LogicalSystem && pElement->m_pLogicalSystem == pLogicalSystem)
             return pElement;
 
     return NULL;
@@ -657,7 +657,7 @@ PSS_LogicalSystemTreeCtrl::ITreeData* PSS_LogicalSystemTreeCtrl::FindElementFrom
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_String && pElement->m_Str == str)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_String && pElement->m_Str == str)
             return pElement;
 
     return NULL;

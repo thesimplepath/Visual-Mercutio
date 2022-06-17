@@ -331,6 +331,18 @@ void PSS_PrestationsView::OnRefresh()
         m_Ctrl.Refresh();
 }
 //---------------------------------------------------------------------------
+void PSS_PrestationsView::OnExpandBranch()
+{
+    if (::IsWindow(m_Ctrl.GetSafeHwnd()))
+        m_Ctrl.OnExpandBranch();
+}
+//---------------------------------------------------------------------------
+void PSS_PrestationsView::OnCollapseBranch()
+{
+    if (::IsWindow(m_Ctrl.GetSafeHwnd()))
+        m_Ctrl.OnCollapseBranch();
+}
+//---------------------------------------------------------------------------
 void PSS_PrestationsView::OnAddPrestation()
 {
     // add a new prestation

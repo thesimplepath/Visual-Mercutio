@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_UnitObserverMsg : public PSS_ObserverMsg
         /**
         * Action type
         */
-        enum IEActionType
+        enum class IEActionType
         {
             IE_AT_None,
             IE_AT_OpenUnit,
@@ -79,7 +79,7 @@ class AFX_EXT_CLASS PSS_UnitObserverMsg : public PSS_ObserverMsg
         *@param pUnit - the unit
         *@param pElement - the owning symbol
         */
-        PSS_UnitObserverMsg(IEActionType     actionType   = IE_AT_None,
+        PSS_UnitObserverMsg(IEActionType     actionType   = IEActionType::IE_AT_None,
                             PSS_UnitManager* pUnitManager = NULL,
                             PSS_Unit*        pUnit        = NULL,
                             PSS_Symbol*      pElement     = NULL);

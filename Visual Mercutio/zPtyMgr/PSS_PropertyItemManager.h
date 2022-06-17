@@ -50,7 +50,7 @@ class AFX_EXT_CLASS PSS_PropertyItemManager
         /**
         * Property show type
         */
-        enum IEPropertyShowType
+        enum class IEPropertyShowType
         {
             IE_ST_AllProperties,
             IE_ST_StaticProperties,
@@ -664,7 +664,7 @@ void PSS_PropertyItemManager::IPropertyState::SetItemOrder(int value)
 PSS_PropertyItemManager::PSS_PropertyItemManager() :
     m_pCurrentData(NULL),
     m_pWndPropertyListCtrl(NULL),
-    m_ShowType(IE_ST_AllProperties)
+    m_ShowType(IEPropertyShowType::IE_ST_AllProperties)
 {
     DeleteAllTabs();
 }

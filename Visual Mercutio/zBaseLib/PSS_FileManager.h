@@ -57,7 +57,7 @@ class AFX_EXT_CLASS PSS_FileManager : public CObject
         *@param fileName - file name to add
         *@param attachment - attachment
         */
-        virtual void AddFile(const CString& fileName, PSS_File::IEAttachmentType attachement = PSS_File::IE_AT_InsertedFile);
+        virtual void AddFile(const CString& fileName, PSS_File::IEAttachmentType attachement = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Adds a new file

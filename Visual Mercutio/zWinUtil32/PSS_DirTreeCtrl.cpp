@@ -369,7 +369,7 @@ bool PSS_DirTreeCtrl::EnumNetwork(HTREEITEM hParent)
                     type       = 8;
                 }
 
-                // remove leading back slashes 
+                // remove leading back slashes
                 if (nameRemote.GetLength() > 0 && nameRemote[0] == _T('\\'))
                     nameRemote = nameRemote.Mid(1);
 
@@ -535,7 +535,7 @@ TCHAR* PSS_DirTreeCtrl::MakeObjectDynamic(LPTSTR pData)
 
         try
         {
-            _tcscpy_s(pRet, _tcslen(pRet), pData);
+            _tcscpy_s(pRet, length * sizeof(TCHAR), pData);
         }
         catch (...)
         {

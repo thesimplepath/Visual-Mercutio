@@ -105,7 +105,7 @@ class AFX_EXT_CLASS PSS_ActivityEventOverviewCtrl : public PSS_TreeCtrl
             /**
             * Activity type
             */
-            enum IEActivityType
+            enum class IEActivityType
             {
                 IE_AT_User,
                 IE_AT_Process,
@@ -121,7 +121,7 @@ class AFX_EXT_CLASS PSS_ActivityEventOverviewCtrl : public PSS_TreeCtrl
             *@param pData - element data, can be NULL
             *@param type - activity type
             */
-            IElementType(PSS_ActivityEvent* pData = NULL, IEActivityType type = IE_AT_Activity);
+            IElementType(PSS_ActivityEvent* pData = NULL, IEActivityType type = IEActivityType::IE_AT_Activity);
 
             /**
             * Constructor

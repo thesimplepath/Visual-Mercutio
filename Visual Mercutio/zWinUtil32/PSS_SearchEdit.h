@@ -46,7 +46,7 @@ class PSS_SearchEditButton : public CButton
         /**
         * Button type
         */
-        enum IEType
+        enum class IEType
         {
             IE_T_Directory = 0,
             IE_T_File,

@@ -20,6 +20,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib/PSS_FilteredDialogBox.h"
+
+// resources
 #include "zModelRes.h"
 
 // old class name mapping
@@ -44,7 +48,7 @@ class PSS_LogicalSystemEntity;
 * Logical system info dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_LogicalSystemInfoDlg : public CDialog
+class PSS_LogicalSystemInfoDlg : public PSS_FilteredDialogBox
 {
     public:
         /**
@@ -85,8 +89,10 @@ class PSS_LogicalSystemInfoDlg : public CDialog
 
         /// Generated message map functions
         //{{AFX_MSG(PSS_LogicalSystemInfoDlg)
-        virtual BOOL OnInitDialog();
-        virtual void OnOK();
+        afx_msg virtual BOOL OnInitDialog();
+        afx_msg virtual void OnEnSetfocusLogicalsystemName();
+        afx_msg virtual void OnEnKillfocusLogicalsystemName();
+        afx_msg virtual void OnOK();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 

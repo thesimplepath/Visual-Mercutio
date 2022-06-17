@@ -75,7 +75,7 @@ BOOL PSS_ProcessCloseActionsDialog::OnInitDialog()
         if (GetDlgItem(IDC_SENDCOMMAND))
             GetDlgItem(IDC_SENDCOMMAND)->EnableWindow(FALSE);
 
-        m_SendCommandBtn.SetButtonState(E_HB_Greyed);
+        m_SendCommandBtn.SetButtonState(EHoverButtonState::E_HB_Greyed);
     }
 
     if (!m_AcceptRejectCommand)
@@ -83,12 +83,12 @@ BOOL PSS_ProcessCloseActionsDialog::OnInitDialog()
         if (GetDlgItem(IDC_ACCEPTCOMMAND))
             GetDlgItem(IDC_ACCEPTCOMMAND)->EnableWindow(FALSE);
 
-        m_AcceptCommandBtn.SetButtonState(E_HB_Greyed);
+        m_AcceptCommandBtn.SetButtonState(EHoverButtonState::E_HB_Greyed);
 
         if (GetDlgItem(IDC_REJECTCOMMAND))
             GetDlgItem(IDC_REJECTCOMMAND)->EnableWindow(FALSE);
 
-        m_RejectCommandBtn.SetButtonState(E_HB_Greyed);
+        m_RejectCommandBtn.SetButtonState(EHoverButtonState::E_HB_Greyed);
     }
 
     if (!m_SuspendCommand)
@@ -96,7 +96,7 @@ BOOL PSS_ProcessCloseActionsDialog::OnInitDialog()
         if (GetDlgItem(IDC_SUSPENDCOMMAND))
             GetDlgItem(IDC_SUSPENDCOMMAND)->EnableWindow(FALSE);
 
-        m_SendCommandBtn.SetButtonState(E_HB_Greyed);
+        m_SendCommandBtn.SetButtonState(EHoverButtonState::E_HB_Greyed);
     }
 
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE

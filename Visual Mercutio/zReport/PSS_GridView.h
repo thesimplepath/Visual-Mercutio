@@ -48,7 +48,7 @@ class PSS_GridGroup;
 */
 class AFX_EXT_CLASS PSS_GridView : public CGXGridView
 {
-    GXDECLARE_DYNCREATE(PSS_GridView)
+    DECLARE_DYNCREATE(PSS_GridView)
 
     public:
         #if _MFC_VER >= 0x0400
@@ -58,7 +58,7 @@ class AFX_EXT_CLASS PSS_GridView : public CGXGridView
         virtual ~PSS_GridView();
 
         /**
-        * Iinitializes the user attributes
+        * Initializes the user attributes
         */
         virtual void SetupUserAttributes();
 
@@ -146,7 +146,7 @@ class AFX_EXT_CLASS PSS_GridView : public CGXGridView
         virtual void UnfreezeSplitter();
 
         /**
-        * Unhides all the cells
+        * Shows all the cells
         */
         virtual void UnhideAll();
 
@@ -168,13 +168,13 @@ class AFX_EXT_CLASS PSS_GridView : public CGXGridView
     protected:
         /// ClassWizard generated virtual function overrides
         //{{AFX_VIRTUAL(PSS_GridView)
-        virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-        virtual void OnInitialUpdate();
-        virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
-        virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-        virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
-        virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
-        virtual void OnClickedButtonRowCol(ROWCOL nRow, ROWCOL nCol);
+        afx_msg virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+        afx_msg virtual void OnInitialUpdate();
+        afx_msg virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
+        afx_msg virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
+        afx_msg virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+        afx_msg virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
+        afx_msg virtual void OnClickedButtonRowCol(ROWCOL nRow, ROWCOL nCol);
         afx_msg void OnViewZoomIn();
         afx_msg void OnViewZoomOut();
         afx_msg void OnUpdateViewZoomIn(CCmdUI* pCmdUI);

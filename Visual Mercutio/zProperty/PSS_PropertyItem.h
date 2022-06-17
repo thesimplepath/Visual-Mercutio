@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_PropertyItem : public CObject
         /**
         * Property item number type
         */
-        enum IENumberType
+        enum class IENumberType
         {
             IE_NT_String,
             IE_NT_Double,
@@ -358,7 +358,7 @@ class AFX_EXT_CLASS PSS_PropertyItem : public CObject
 //---------------------------------------------------------------------------
 PSS_PropertyItem::PSS_PropertyItem(LPCTSTR pName, bool readOnly, bool canBeEdited) :
     CObject(),
-    m_Type(IE_NT_String),
+    m_Type(IENumberType::IE_NT_String),
     m_DoubleValue(0.0),
     m_FloatValue(0.0f),
     m_Name(pName ? pName : _T("")),
@@ -501,34 +501,34 @@ CString PSS_PropertyItem::GetData() const
 
     switch (m_Type)
     {
-        case IE_NT_String:
+        case IENumberType::IE_NT_String:
             return m_StrValue;
 
-        case IE_NT_Double:
+        case IENumberType::IE_NT_Double:
             // convert the value to a string using the specified format
             text = PSS_StringFormatter::GetFormattedBuffer(m_DoubleValue,
                                                            const_cast<PSS_PropertyItem*>(this)->GetStringFormat());
             break;
 
-        case IE_NT_Float:
+        case IENumberType::IE_NT_Float:
             // convert the value to a string using the specified format
             text = PSS_StringFormatter::GetFormattedBuffer(m_FloatValue,
                                                            const_cast<PSS_PropertyItem*>(this)->GetStringFormat());
             break;
 
-        case IE_NT_Duration:
+        case IENumberType::IE_NT_Duration:
             // convert the value to a string using the specified format
             text = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)m_DurationValue,
                                                            const_cast<PSS_PropertyItem*>(this)->GetStringFormat());
             break;
 
-        case IE_NT_Date:
+        case IENumberType::IE_NT_Date:
             // convert the value to a string using the specified format
             text = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)m_DateValue,
                                                            const_cast<PSS_PropertyItem*>(this)->GetStringFormat());
             break;
 
-        case IE_NT_Time:
+        case IENumberType::IE_NT_Time:
             // convert the value to a string using the specified format
             text = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)m_TimeValue,
                                                            const_cast<PSS_PropertyItem*>(this)->GetStringFormat());
@@ -540,31 +540,31 @@ CString PSS_PropertyItem::GetData() const
 //---------------------------------------------------------------------------
 void PSS_PropertyItem::SetData(float value)
 {
-    m_Type       = IE_NT_Float;
+    m_Type       = IENumberType::IE_NT_Float;
     m_FloatValue = value;
 }
 //---------------------------------------------------------------------------
 void PSS_PropertyItem::SetData(double value)
 {
-    m_Type        = IE_NT_Double;
+    m_Type        = IENumberType::IE_NT_Double;
     m_DoubleValue = value;
 }
 //---------------------------------------------------------------------------
 void PSS_PropertyItem::SetData(const PSS_Date& value)
 {
-    m_Type      = IE_NT_Date;
+    m_Type      = IENumberType::IE_NT_Date;
     m_DateValue = value;
 }
 //---------------------------------------------------------------------------
 void PSS_PropertyItem::SetData(const PSS_TimeSpan& value)
 {
-    m_Type      = IE_NT_Time;
+    m_Type      = IENumberType::IE_NT_Time;
     m_TimeValue = value;
 }
 //---------------------------------------------------------------------------
 void PSS_PropertyItem::SetData(const PSS_Duration& value)
 {
-    m_Type          = IE_NT_Duration;
+    m_Type          = IENumberType::IE_NT_Duration;
     m_DurationValue = value;
 }
 //---------------------------------------------------------------------------
@@ -572,11 +572,11 @@ void PSS_PropertyItem::SetData(const CString& text)
 {
     switch (m_Type)
     {
-        case IE_NT_String:
+        case IENumberType::IE_NT_String:
             m_StrValue = text;
             break;
 
-        case IE_NT_Double:
+        case IENumberType::IE_NT_Double:
         {
             double value;
 
@@ -587,7 +587,7 @@ void PSS_PropertyItem::SetData(const CString& text)
 
         }
 
-        case IE_NT_Float:
+        case IENumberType::IE_NT_Float:
         {
             float value;
 
@@ -597,7 +597,7 @@ void PSS_PropertyItem::SetData(const CString& text)
             break;
         }
 
-        case IE_NT_Duration:
+        case IENumberType::IE_NT_Duration:
         {
             PSS_Duration value;
 
@@ -607,7 +607,7 @@ void PSS_PropertyItem::SetData(const CString& text)
             break;
         }
 
-        case IE_NT_Date:
+        case IENumberType::IE_NT_Date:
         {
             PSS_Date value;
 
@@ -617,7 +617,7 @@ void PSS_PropertyItem::SetData(const CString& text)
             break;
         }
 
-        case IE_NT_Time:
+        case IENumberType::IE_NT_Time:
         {
             PSS_TimeSpan value;
 

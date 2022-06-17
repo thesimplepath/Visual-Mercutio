@@ -33,7 +33,7 @@ PSS_PublishConceptorReport::PSS_PublishConceptorReport(PSS_ProcessGraphModelMdlB
     m_pModel(pModel),
     m_pSourceDoc(NULL),
     m_pPreviousProcess(NULL),
-    m_PublishProc(IE_EP_PublishConceptorHeaders),
+    m_PublishProc(IEExportProc::IE_EP_PublishConceptorHeaders),
     m_ShowDetails(showDetails),
     m_IncludeDeliverables(showDeliverables),
     m_First(false)
@@ -106,7 +106,7 @@ void PSS_PublishConceptorReport::GeneratePageFile(const CString& name, const CSt
     WriteLine(IDS_CONCEPTOR_MTL_HTML_6);
     WriteLine(IDS_CONCEPTOR_HTML_18);
 
-    m_PublishProc = IE_EP_PublishConceptorHeaders;
+    m_PublishProc = IEExportProc::IE_EP_PublishConceptorHeaders;
     m_pRootModel  = m_pModel;
     m_pModel->AcceptVisitor(*this);
 
@@ -117,7 +117,7 @@ void PSS_PublishConceptorReport::GeneratePageFile(const CString& name, const CSt
         WriteLine(IDS_CONCEPTOR_MTL_HTML_7);
         WriteLine(IDS_CONCEPTOR_HTML_21);
 
-        m_PublishProc = IE_EP_PublishConceptorDetails;
+        m_PublishProc = IEExportProc::IE_EP_PublishConceptorDetails;
         m_pRootModel  = m_pModel;
         m_pModel->AcceptVisitor(*this);
     }
@@ -288,7 +288,7 @@ bool PSS_PublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbo
     if (m_UnitName == unitName)
         switch (m_PublishProc)
         {
-            case IE_EP_PublishConceptorHeaders:
+            case IEExportProc::IE_EP_PublishConceptorHeaders:
                 WriteLine(IDS_CONCEPTOR_HTML_43);
                 WriteLine(m_DomainName);
                 WriteLine(IDS_CONCEPTOR_HTML_44);
@@ -298,7 +298,7 @@ bool PSS_PublishConceptorReport::OnProcedureSymbol(PSS_ProcedureSymbolBP* pSymbo
                 WriteLine(IDS_CONCEPTOR_HTML_46);
                 break;
 
-            case IE_EP_PublishConceptorDetails:
+            case IEExportProc::IE_EP_PublishConceptorDetails:
                 // show the process section
                 if (!m_First)
                     CreateProcess();
@@ -563,7 +563,7 @@ bool PSS_PublishConceptorReport::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
 {
     switch (m_PublishProc)
     {
-        case IE_EP_PublishConceptorHeaders:
+        case IEExportProc::IE_EP_PublishConceptorHeaders:
         {
             m_CurrentProcessName = pSymbol->GetSymbolName();
 
@@ -582,7 +582,7 @@ bool PSS_PublishConceptorReport::OnProcessSymbol(PSS_ProcessSymbolBP* pSymbol)
             break;
         }
 
-        case IE_EP_PublishConceptorDetails:
+        case IEExportProc::IE_EP_PublishConceptorDetails:
         {
             m_pPreviousProcess   = pSymbol;
             m_CurrentProcessName = pSymbol->GetSymbolName();

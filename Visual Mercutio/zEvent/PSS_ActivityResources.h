@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_ActivityResources : public CObject
         /**
         * User type
         */
-        enum IEUserType
+        enum class IEUserType
         {
             IE_UT_Users,
             IE_UT_ResponsibleOfUser,

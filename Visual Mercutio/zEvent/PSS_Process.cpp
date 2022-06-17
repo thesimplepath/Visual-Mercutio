@@ -245,7 +245,7 @@ WORD PSS_Process::GetDurationDays()
 CString PSS_Process::GetStatusKeyString(PSS_BaseActivity* pActivity)
 {
     // if in parallel mode, check the number of resources
-    if (GetRunMode() == PSS_BaseActivity::IE_RM_Select)
+    if (GetRunMode() == PSS_BaseActivity::IERunMode::IE_RM_Select)
         return PSS_BaseActivity::GetStatusKeyString(pActivity);
 
     // check the activity
@@ -253,10 +253,10 @@ CString PSS_Process::GetStatusKeyString(PSS_BaseActivity* pActivity)
     {
         switch (GetProcessStatus())
         {
-            case IE_PS_Completed:  return g_ActivityStatusProcessCompleted;
-            case IE_PS_Aborted:    return g_ActivityStatusProcessAborted;
-            case IE_PS_Suspend:    return g_ActivityStatusProcessPaused;
-            case IE_PS_NotStarted: return g_ActivityStatusProcessNotStarted;
+            case IEStatus::IE_PS_Completed:  return g_ActivityStatusProcessCompleted;
+            case IEStatus::IE_PS_Aborted:    return g_ActivityStatusProcessAborted;
+            case IEStatus::IE_PS_Suspend:    return g_ActivityStatusProcessPaused;
+            case IEStatus::IE_PS_NotStarted: return g_ActivityStatusProcessNotStarted;
         }
 
         return pActivity->GetStatusKeyString(pActivity);
@@ -265,12 +265,12 @@ CString PSS_Process::GetStatusKeyString(PSS_BaseActivity* pActivity)
     // check the current activity
     switch (GetProcessStatus())
     {
-        case IE_PS_Completed:  return g_ActivityStatusProcessCompleted;
-        case IE_PS_Aborted:    return g_ActivityStatusProcessAborted;
-        case IE_PS_Suspend:    return g_ActivityStatusProcessPaused;
-        case IE_PS_InProcess:  return g_ActivityStatusProcessInProcess;
-        case IE_PS_Started:    return g_ActivityStatusProcessStarted;
-        case IE_PS_NotStarted: return g_ActivityStatusProcessNotStarted;
+        case IEStatus::IE_PS_Completed:  return g_ActivityStatusProcessCompleted;
+        case IEStatus::IE_PS_Aborted:    return g_ActivityStatusProcessAborted;
+        case IEStatus::IE_PS_Suspend:    return g_ActivityStatusProcessPaused;
+        case IEStatus::IE_PS_InProcess:  return g_ActivityStatusProcessInProcess;
+        case IEStatus::IE_PS_Started:    return g_ActivityStatusProcessStarted;
+        case IEStatus::IE_PS_NotStarted: return g_ActivityStatusProcessNotStarted;
     }
 
     pActivity = GetCurrentActivity();
@@ -285,22 +285,22 @@ CString PSS_Process::GetStatusKeyString(PSS_BaseActivity* pActivity)
 void PSS_Process::SetStatusFromKeyString(const CString& key)
 {
     if (key == g_ActivityStatusProcessCompleted)
-        SetProcessStatus(IE_PS_Completed);
+        SetProcessStatus(IEStatus::IE_PS_Completed);
     else
     if (key == g_ActivityStatusProcessAborted)
-        SetProcessStatus(IE_PS_Aborted);
+        SetProcessStatus(IEStatus::IE_PS_Aborted);
     else
     if (key == g_ActivityStatusProcessPaused)
-        SetProcessStatus(IE_PS_Suspend);
+        SetProcessStatus(IEStatus::IE_PS_Suspend);
     else
     if (key == g_ActivityStatusProcessInProcess)
-        SetProcessStatus(IE_PS_InProcess);
+        SetProcessStatus(IEStatus::IE_PS_InProcess);
     else
     if (key == g_ActivityStatusProcessStarted)
-        SetProcessStatus(IE_PS_Started);
+        SetProcessStatus(IEStatus::IE_PS_Started);
     else
     if (key == g_ActivityStatusProcessNotStarted)
-        SetProcessStatus(IE_PS_NotStarted);
+        SetProcessStatus(IEStatus::IE_PS_NotStarted);
     else
         PSS_BaseActivity::SetStatusFromKeyString(key);
 }
@@ -317,7 +317,7 @@ void PSS_Process::SetVisibility(const EThreeState value)
 CString PSS_Process::GetActivityStatusString() const
 {
     // if in parallel mode, check the number of resources
-    if (GetRunMode() == IE_RM_Select)
+    if (GetRunMode() == IERunMode::IE_RM_Select)
         return PSS_BaseActivity::GetActivityStatusString();
 
     CString status;
@@ -325,13 +325,13 @@ CString PSS_Process::GetActivityStatusString() const
     // check the current activity
     switch (GetProcessStatus())
     {
-        case IE_PS_Started:    status.LoadString(IDS_PROCESS_STARTED);    break;
-        case IE_PS_InProcess:  status.LoadString(IDS_PROCESS_INPROCESS);  break;
-        case IE_PS_Completed:  status.LoadString(IDS_PROCESS_COMPLETED);  break;
-        case IE_PS_Aborted:    status.LoadString(IDS_PROCESS_ABORTED);    break;
-        case IE_PS_NotStarted: status.LoadString(IDS_PROCESS_NOTSTARTED); break;
-        case IE_PS_Suspend:    status.LoadString(IDS_PROCESS_SUSPENDED);  break;
-        default:               status.LoadString(IDS_PROCESS_UNKNOWNSTATE);
+        case IEStatus::IE_PS_Started:    status.LoadString(IDS_PROCESS_STARTED);    break;
+        case IEStatus::IE_PS_InProcess:  status.LoadString(IDS_PROCESS_INPROCESS);  break;
+        case IEStatus::IE_PS_Completed:  status.LoadString(IDS_PROCESS_COMPLETED);  break;
+        case IEStatus::IE_PS_Aborted:    status.LoadString(IDS_PROCESS_ABORTED);    break;
+        case IEStatus::IE_PS_NotStarted: status.LoadString(IDS_PROCESS_NOTSTARTED); break;
+        case IEStatus::IE_PS_Suspend:    status.LoadString(IDS_PROCESS_SUSPENDED);  break;
+        default:                         status.LoadString(IDS_PROCESS_UNKNOWNSTATE);
     }
 
     return status;

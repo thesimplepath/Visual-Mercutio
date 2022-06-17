@@ -46,7 +46,7 @@ class AFX_EXT_CLASS PSS_FileLauncher
         *      - IE_FM_Print   -> The function prints the document file specified by lpFile. If lpFile is not a document file, the function will fail
         *      - IE_FM_Properties
         */
-        enum IEMode
+        enum class IEMode
         {
             IE_FM_Edit,
             IE_FM_Explore,
@@ -63,7 +63,7 @@ class AFX_EXT_CLASS PSS_FileLauncher
         *@param directory - directory
         */
         PSS_FileLauncher(const CString& fileName   = "",
-                         IEMode         mode       = IE_FM_Open,
+                         IEMode         mode       = IEMode::IE_FM_Open,
                          const CString& parameters = "",
                          const CString& directory  = "");
 
@@ -78,7 +78,7 @@ class AFX_EXT_CLASS PSS_FileLauncher
         *@return TRUE on success, otherwise FALSE
         */
         virtual BOOL Initialize(const CString& fileName,
-                                IEMode         mode       = IE_FM_Open,
+                                IEMode         mode       = IEMode::IE_FM_Open,
                                 const CString& parameters = "",
                                 const CString& directory  = "");
 
@@ -91,7 +91,7 @@ class AFX_EXT_CLASS PSS_FileLauncher
         *@return TRUE on success, otherwise FALSE
         */
         virtual BOOL Launch(const CString& fileName,
-                            IEMode         mode       = IE_FM_Open,
+                            IEMode         mode       = IEMode::IE_FM_Open,
                             const CString& parameters = "",
                             const CString& directory  = "");
 

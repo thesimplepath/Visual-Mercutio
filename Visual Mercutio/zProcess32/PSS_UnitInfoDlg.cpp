@@ -39,7 +39,7 @@ PSS_UnitInfoDlg::PSS_UnitInfoDlg(const CString& name,
     m_Directory(directory),
     m_ShowOnly(showOnly)
 {
-    m_UnitDirectory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, "", m_Directory);
+    m_UnitDirectory.SetSearchType(PSS_SearchEditButton::IEType::IE_T_Directory, "", m_Directory);
 
     // if the directory is empty, use the current one
     if (m_Directory.IsEmpty())

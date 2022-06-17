@@ -156,12 +156,12 @@ class AFX_EXT_CLASS PSS_BaseMainFrame : public SECMDIFrameWnd
         virtual BOOL PointerWindowIsVisible();
 
         /**
-        * Shows the window pointer (i.e the mouse cursor) 
+        * Shows the window pointer (i.e the mouse cursor)
         */
         virtual void ShowPointerWindow();
 
         /**
-        * Hides the window pointer (i.e the mouse cursor) 
+        * Hides the window pointer (i.e the mouse cursor)
         */
         virtual void HidePointerWindow();
 
@@ -236,8 +236,8 @@ class AFX_EXT_CLASS PSS_BaseMainFrame : public SECMDIFrameWnd
         afx_msg void OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
         afx_msg void OnViewPointer();
         afx_msg void OnUpdateViewPointer(CCmdUI* pCmdUI);
-        afx_msg void OnUpdateHelpIndex(CCmdUI* pCmdUI);
-        afx_msg void OnUpdateHelpUsing(CCmdUI* pCmdUI);
+        //afx_msg void OnUpdateHelpIndex(CCmdUI* pCmdUI);
+        //afx_msg void OnUpdateHelpUsing(CCmdUI* pCmdUI);
         afx_msg void OnClose();
         afx_msg LRESULT OnFSModeChange(WPARAM wPar, LPARAM lPar);
         virtual BOOL OnCommand( WPARAM wParam, LPARAM lParam );

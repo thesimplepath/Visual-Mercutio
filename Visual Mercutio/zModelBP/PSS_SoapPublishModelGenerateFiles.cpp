@@ -90,7 +90,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
 
     // publish the home image file, if it exists
     if (PSS_File::Exist(PSS_Directory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_HomeImageFile))
-        if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+        if (!m_PubFile.Add(PSS_SoapData_File((int)PSS_SoapData_File::IEDirectoryMode::IE_DM_PublicFolder,
                                              1,
                                              (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
                                              (const char*)g_HomeImageFile)))
@@ -98,7 +98,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
 
     // publish the parent image file, if it exists
     if (PSS_File::Exist(PSS_Directory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
-        if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+        if (!m_PubFile.Add(PSS_SoapData_File((int)PSS_SoapData_File::IEDirectoryMode::IE_DM_PublicFolder,
                                              1,
                                              (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
                                              (const char*)g_ParentImageFile)))
@@ -191,7 +191,7 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(PSS_ProcessGraphModelMdl* p
             PSS_File file(imageFileName);
 
             // publish the file name
-            if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+            if (!m_PubFile.Add(PSS_SoapData_File((int)PSS_SoapData_File::IEDirectoryMode::IE_DM_PublicFolder,
                                                  1,
                                                  (const char*)m_TargetDirectory,
                                                  (const char*)file.GetFileName())))
@@ -264,7 +264,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl*
         return true;
 
     PSS_HtmlFile htmlFile(htmlFileName);
-    
+
     if (!htmlFile.OpenFileCreate())
         return false;
 
@@ -415,7 +415,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl*
     PSS_File file(htmlFileName);
 
     // publish the file name
-    if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+    if (!m_PubFile.Add(PSS_SoapData_File((int)PSS_SoapData_File::IEDirectoryMode::IE_DM_PublicFolder,
                                          1,
                                          (const char*)m_TargetDirectory,
                                          (const char*)file.GetFileName())))

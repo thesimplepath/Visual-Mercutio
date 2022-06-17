@@ -20,6 +20,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib/PSS_FilteredDialogBox.h"
+
 // resources
 #include "zModelRes.h"
 
@@ -45,7 +48,7 @@ class PSS_LogicalRulesEntity;
 * Rules information dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_RulesInfoDlg : public CDialog
+class PSS_RulesInfoDlg : public PSS_FilteredDialogBox
 {
     public:
         /**
@@ -86,8 +89,10 @@ class PSS_RulesInfoDlg : public CDialog
 
         /// Generated message map functions
         //{{AFX_MSG(PSS_RulesInfoDlg)
-        virtual BOOL OnInitDialog();
-        virtual void OnOK();
+        afx_msg virtual BOOL OnInitDialog();
+        afx_msg virtual void OnEnSetfocusRuleName();
+        afx_msg virtual void OnEnKillfocusRuleName();
+        afx_msg virtual void OnOK();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 

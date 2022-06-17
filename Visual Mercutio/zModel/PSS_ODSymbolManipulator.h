@@ -49,9 +49,6 @@ class PSS_SymbolLabel;
 class AFX_EXT_CLASS PSS_ODSymbolManipulator
 {
     public:
-        PSS_ODSymbolManipulator();
-        virtual ~PSS_ODSymbolManipulator();
-
         /**
         * Creates an edit text
         *@param pSymbol - the symbol for which an edit text should be created

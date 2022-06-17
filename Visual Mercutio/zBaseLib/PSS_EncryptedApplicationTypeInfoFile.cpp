@@ -25,7 +25,7 @@ const char        g_InvalidNoProductKey[]    = "xp0?ws5";
 //---------------------------------------------------------------------------
 PSS_EncryptedApplicationTypeInfoFile::PSS_EncryptedApplicationTypeInfoFile(const CString& fileName) :
     PSS_EncryptedInfoFile(fileName),
-    m_ApplicationType(IE_IT_Unknown)
+    m_ApplicationType(IEType::IE_IT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_EncryptedApplicationTypeInfoFile::~PSS_EncryptedApplicationTypeInfoFile()
@@ -40,7 +40,7 @@ BOOL PSS_EncryptedApplicationTypeInfoFile::Initialize(const CString& fileName)
 BOOL PSS_EncryptedApplicationTypeInfoFile::CreateEmpty(const CString& fileName)
 {
     CreateEmptyFile(fileName);
-    WriteApplicationType(IE_IT_Unknown);
+    WriteApplicationType(IEType::IE_IT_Unknown);
     WriteProductKey(g_InvalidNoProductKey);
     return !GetErrorStatus();
 }
@@ -58,12 +58,12 @@ BOOL PSS_EncryptedApplicationTypeInfoFile::CheckProductKey(const CString& produc
 PSS_EncryptedApplicationTypeInfoFile::IEType PSS_EncryptedApplicationTypeInfoFile::ReadApplicationType()
 {
     if (!ReadFileInfo())
-        return IE_IT_Unknown;
+        return IEType::IE_IT_Unknown;
 
     m_ApplicationType = IEType(GetInt(g_ApplicationTypeIndexFile));
 
     if (GetErrorStatus())
-        m_ApplicationType = IE_IT_Unknown;
+        m_ApplicationType = IEType::IE_IT_Unknown;
 
     return m_ApplicationType;
 }
@@ -82,7 +82,7 @@ BOOL PSS_EncryptedApplicationTypeInfoFile::WriteApplicationType(IEType value)
 
     if (!WriteFileInfo())
     {
-        m_ApplicationType = IE_IT_Unknown;
+        m_ApplicationType = IEType::IE_IT_Unknown;
         return FALSE;
     }
 

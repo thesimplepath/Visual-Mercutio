@@ -44,7 +44,7 @@ PSS_Event* PSS_ActivityMessageEventManager::LoadEventFromFile(const CString& fil
     PSS_Event*            pEvent         = activityEventFile.ImportActivityFromFile(fileName);
     PSS_ActivityEvent*    pActivityEvent = dynamic_cast<PSS_ActivityEvent*>(pEvent);
 
-    if (pActivityEvent && pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_Message)
+    if (pActivityEvent && pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IEType::IE_AT_Message)
     {
         const PSS_File file(fileName);
         const CString  path = PSS_Directory::NormalizeDirectory(file.GetFilePath());

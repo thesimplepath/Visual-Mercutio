@@ -93,15 +93,15 @@ BOOL PSS_ActivityAttributionInputValueDialog::OnInitDialog()
     // set the visibility type
     switch (m_pActivity->GetIsVisible())
     {
-        case E_TS_True:  m_VisibilityType =  0; break;
-        case E_TS_False: m_VisibilityType =  1; break;
-        default:         m_VisibilityType = -1;
+        case EThreeState::E_TS_True:  m_VisibilityType =  0; break;
+        case EThreeState::E_TS_False: m_VisibilityType =  1; break;
+        default:                      m_VisibilityType = -1;
     }
 
     // propagate changes
     UpdateData(FALSE);
 
-    // disable the posibility to change the name
+    // disable the possibility to change the name
     if (GetDlgItem(IDC_ACTIVITYNAME))
         GetDlgItem(IDC_ACTIVITYNAME)->EnableWindow(FALSE);
 
@@ -245,7 +245,7 @@ void PSS_ActivityAttributionInputValueDialog::SaveState()
     }
 
     // set the real state of the activity
-    m_pActivity->SetVisibility(!m_VisibilityType ? E_TS_True : E_TS_False);
+    m_pActivity->SetVisibility(!m_VisibilityType ? EThreeState::E_TS_True : EThreeState::E_TS_False);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ActivityAttributionInputValueDialog::CheckData()

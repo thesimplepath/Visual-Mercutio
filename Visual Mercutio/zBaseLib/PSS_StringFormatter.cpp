@@ -34,16 +34,18 @@ CString PSS_StringFormatter::GetFormattedBuffer(int                            v
 {
     CString str;
 
-    if (sf == PSS_StringFormat::IE_FT_Percentage)
-        str.Format("%d%c", value * 100, '%');
+    if (sf == PSS_StringFormat::IEFormatType::IE_FT_Percentage)
+        str.Format(_T("%d%c"), value * 100, _T('%'));
     else
-        str.Format("%d", value);
+        str.Format(_T("%d"), value);
 
-    return (useSeparator || sf == PSS_StringFormat::IE_FT_Accounting || sf == PSS_StringFormat::IE_FT_Accounting1) ?
-            ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
+    return (useSeparator                                           ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting1) ?
+                    ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
 }
 //---------------------------------------------------------------------------
-CString PSS_StringFormatter::GetFormattedBuffer(unsigned int                   value,
+CString PSS_StringFormatter::GetFormattedBuffer(unsigned                       value,
                                                 PSS_StringFormat::IEFormatType sf,
                                                 bool                           useSeparator,
                                                 LPCTSTR                        pCurrency,
@@ -51,13 +53,15 @@ CString PSS_StringFormatter::GetFormattedBuffer(unsigned int                   v
 {
     CString str;
 
-    if (sf == PSS_StringFormat::IE_FT_Percentage)
-        str.Format("%u%c", value * 100, '%');
+    if (sf == PSS_StringFormat::IEFormatType::IE_FT_Percentage)
+        str.Format(_T("%u%c"), value * 100, _T('%'));
     else
-        str.Format("%u", value);
+        str.Format(_T("%u"), value);
 
-    return (useSeparator || sf == PSS_StringFormat::IE_FT_Accounting || sf == PSS_StringFormat::IE_FT_Accounting1) ?
-            ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
+    return (useSeparator                                           ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting1) ?
+                    ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
 }
 //---------------------------------------------------------------------------
 CString PSS_StringFormatter::GetFormattedBuffer(short                          value,
@@ -68,13 +72,15 @@ CString PSS_StringFormatter::GetFormattedBuffer(short                          v
 {
     CString str;
 
-    if (sf == PSS_StringFormat::IE_FT_Percentage)
-        str.Format("%d%c", value * 100, '%');
+    if (sf == PSS_StringFormat::IEFormatType::IE_FT_Percentage)
+        str.Format(_T("%d%c"), value * 100, _T('%'));
     else
-        str.Format("%d", value);
+        str.Format(_T("%d"), value);
 
-    return (useSeparator || sf == PSS_StringFormat::IE_FT_Accounting || sf == PSS_StringFormat::IE_FT_Accounting1) ?
-            ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
+    return (useSeparator                                           ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting1) ?
+                    ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
 }
 //---------------------------------------------------------------------------
 CString PSS_StringFormatter::GetFormattedBuffer(float                          value,
@@ -86,18 +92,18 @@ CString PSS_StringFormatter::GetFormattedBuffer(float                          v
 {
     CString str;
 
-    if (sf == PSS_StringFormat::IE_FT_Percentage)
+    if (sf == PSS_StringFormat::IEFormatType::IE_FT_Percentage)
     {
         if (decimalPlace == -1)
         {
             // maximum of 5 decimals because of issues with the rounding between float and double
-            str.Format("%.5lf%c", double(value * 100), '%');
+            str.Format(_T("%.5lf%c"), double(value * 100), _T('%'));
             ReplaceDecimalPoint(str, lcid);
-            str = RemoveTrailingZero(str, lcid, "%");
+            str = RemoveTrailingZero(str, lcid, _T("%"));
         }
         else
         {
-            str.Format("%.*lf%c", decimalPlace, double(value * 100), '%');
+            str.Format(_T("%.*lf%c"), decimalPlace, double(value * 100), _T('%'));
             ReplaceDecimalPoint(str, lcid);
         }
     }
@@ -105,18 +111,20 @@ CString PSS_StringFormatter::GetFormattedBuffer(float                          v
     if (decimalPlace == -1)
     {
         // maximum of 5 decimals because of issues with the rounding between float and double
-        str.Format("%.5lf", double(value));
+        str.Format(_T("%.5lf"), double(value));
         ReplaceDecimalPoint(str, lcid);
         str = RemoveTrailingZero(str, lcid);
     }
     else
     {
-        str.Format("%.*lf", decimalPlace, double(value));
+        str.Format(_T("%.*lf"), decimalPlace, double(value));
         ReplaceDecimalPoint(str, lcid);
     }
 
-    return (useSeparator || sf == PSS_StringFormat::IE_FT_Accounting || sf == PSS_StringFormat::IE_FT_Accounting1) ?
-            ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
+    return (useSeparator                                           ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting1) ?
+                    ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
 }
 //---------------------------------------------------------------------------
 CString PSS_StringFormatter::GetFormattedBuffer(long                           value,
@@ -128,18 +136,18 @@ CString PSS_StringFormatter::GetFormattedBuffer(long                           v
 {
     CString str;
 
-    if (sf == PSS_StringFormat::IE_FT_Percentage)
+    if (sf == PSS_StringFormat::IEFormatType::IE_FT_Percentage)
     {
         if (decimalPlace == -1)
         {
             // maximum of 5 decimals because of issues with the rounding between float and double
-            str.Format("%.5lf%c", double(value * 100), '%');
+            str.Format(_T("%.5lf%c"), double(value * 100), _T('%'));
             ReplaceDecimalPoint(str, lcid);
             str = RemoveTrailingZero(str, lcid, "%");
         }
         else
         {
-            str.Format("%.*lf%c", decimalPlace, double(value * 100), '%');
+            str.Format(_T("%.*lf%c"), decimalPlace, double(value * 100), _T('%'));
             ReplaceDecimalPoint(str, lcid);
         }
     }
@@ -147,18 +155,20 @@ CString PSS_StringFormatter::GetFormattedBuffer(long                           v
     if (decimalPlace == -1)
     {
         // maximum of 5 decimals because of issues with the rounding between float and double
-        str.Format("%.5lf", double(value));
+        str.Format(_T("%.5lf"), double(value));
         ReplaceDecimalPoint(str, lcid);
         str = RemoveTrailingZero(str, lcid);
     }
     else
     {
-        str.Format("%.*lf", decimalPlace, double(value));
+        str.Format(_T("%.*lf"), decimalPlace, double(value));
         ReplaceDecimalPoint(str, lcid);
     }
 
-    return (useSeparator || sf == PSS_StringFormat::IE_FT_Accounting || sf == PSS_StringFormat::IE_FT_Accounting1) ?
-            ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
+    return (useSeparator                                           ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting1) ?
+                    ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
 }
 //---------------------------------------------------------------------------
 CString PSS_StringFormatter::GetFormattedBuffer(double                         value,
@@ -170,35 +180,37 @@ CString PSS_StringFormatter::GetFormattedBuffer(double                         v
 {
     CString str;
 
-    if (sf == PSS_StringFormat::IE_FT_Percentage)
+    if (sf == PSS_StringFormat::IEFormatType::IE_FT_Percentage)
     {
         if (decimalPlace == -1)
         {
-            str.Format("%lf%c", value * 100, '%');
+            str.Format(_T("%lf%c"), value * 100, _T('%'));
             ReplaceDecimalPoint(str, lcid);
-            str = RemoveTrailingZero(str, lcid, "%");
+            str = RemoveTrailingZero(str, lcid, _T("%"));
         }
         else
         {
-            str.Format("%.*lf%c", decimalPlace, value * 100, '%');
+            str.Format(_T("%.*lf%c"), decimalPlace, value * 100, _T('%'));
             ReplaceDecimalPoint(str, lcid);
         }
     }
     else
     if (decimalPlace == -1)
     {
-        str.Format("%lf", value);
+        str.Format(_T("%lf"), value);
         ReplaceDecimalPoint(str, lcid);
         str = RemoveTrailingZero(str, lcid);
     }
     else
     {
-        str.Format("%.*lf", decimalPlace, value);
+        str.Format(_T("%.*lf"), decimalPlace, value);
         ReplaceDecimalPoint(str, lcid);
     }
 
-    return (useSeparator || sf == PSS_StringFormat::IE_FT_Accounting || sf == PSS_StringFormat::IE_FT_Accounting1) ?
-            ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
+    return (useSeparator                                           ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IEFormatType::IE_FT_Accounting1) ?
+                    ConvertBufferToAmountBuffer(str, sf, pCurrency, lcid) : str;
 }
 //---------------------------------------------------------------------------
 CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringFormat::IEFormatType sf, LCID lcid)
@@ -211,9 +223,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
 
     switch (sf)
     {
-        case PSS_StringFormat::IE_FT_DateTime:
+        case PSS_StringFormat::IEFormatType::IE_FT_DateTime:
             // dd/mm/yy hour:min
-            str.Format("%d%c%d%c%d %d%c%d",
+            str.Format(_T("%d%c%d%c%d %d%c%d"),
                        value.GetDay(),
                        dateSep,
                        value.GetMonth(),
@@ -224,9 +236,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetMinute());
             break;
 
-        case PSS_StringFormat::IE_FT_DateTime1:
+        case PSS_StringFormat::IEFormatType::IE_FT_DateTime1:
             // dd/mm/yy hour:min:sec
-            str.Format("%d%c%d%c%d %d%c%d%c%d",
+            str.Format(_T("%d%c%d%c%d %d%c%d%c%d"),
                        value.GetDay(),
                        dateSep,
                        value.GetMonth(),
@@ -239,9 +251,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetSecond());
             break;
 
-        case PSS_StringFormat::IE_FT_DateTime2:
+        case PSS_StringFormat::IEFormatType::IE_FT_DateTime2:
             // dd/mth/yy hour:min
-            str.Format("%d%c%s%c%d %d%c%d",
+            str.Format(_T("%d%c%s%c%d %d%c%d"),
                        value.GetDay(),
                        dateSep,
                        (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
@@ -252,9 +264,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetMinute());
             break;
 
-        case PSS_StringFormat::IE_FT_DateTime3:
+        case PSS_StringFormat::IEFormatType::IE_FT_DateTime3:
             // dd/mth/yy hour:min:sec
-            str.Format("%d%c%s%c%d %d%c%d%c%d",
+            str.Format(_T("%d%c%s%c%d %d%c%d%c%d"),
                        value.GetDay(),
                        dateSep,
                        (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
@@ -267,9 +279,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetSecond());
             break;
 
-        case PSS_StringFormat::IE_FT_DateTime4:
+        case PSS_StringFormat::IEFormatType::IE_FT_DateTime4:
             // dd-mth-yy hour:min
-            str.Format("%d-%s-%d %d%c%d",
+            str.Format(_T("%d-%s-%d %d%c%d"),
                        value.GetDay(),
                        (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
                        value.GetYear(),
@@ -278,9 +290,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetMinute());
             break;
 
-        case PSS_StringFormat::IE_FT_DateTime5:
+        case PSS_StringFormat::IEFormatType::IE_FT_DateTime5:
             // dd-mth-yy hour::min::sec
-            str.Format("%d-%s-%d %d%c%d%c%d",
+            str.Format(_T("%d-%s-%d %d%c%d%c%d"),
                        value.GetDay(),
                        (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
                        value.GetYear(),
@@ -291,9 +303,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetSecond());
             break;
 
-        case PSS_StringFormat::IE_FT_Date:
+        case PSS_StringFormat::IEFormatType::IE_FT_Date:
             // dd/mm/yy
-            str.Format("%d%c%d%c%d",
+            str.Format(_T("%d%c%d%c%d"),
                        value.GetDay(),
                        dateSep,
                        value.GetMonth(),
@@ -301,9 +313,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetYear());
             break;
 
-        case PSS_StringFormat::IE_FT_Date1:
+        case PSS_StringFormat::IEFormatType::IE_FT_Date1:
             // dd/mth/yy
-            str.Format("%d%c%s%c%d",
+            str.Format(_T("%d%c%s%c%d"),
                        value.GetDay(),
                        dateSep,
                        (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
@@ -311,35 +323,35 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringForma
                        value.GetYear());
             break;
 
-        case PSS_StringFormat::IE_FT_Date2:
+        case PSS_StringFormat::IEFormatType::IE_FT_Date2:
             // mth-yy
-            str.Format("%s-%d", (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid), value.GetYear());
+            str.Format(_T("%s-%d"), (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid), value.GetYear());
             break;
 
-        case PSS_StringFormat::IE_FT_Date3:
+        case PSS_StringFormat::IEFormatType::IE_FT_Date3:
             // month-yy
-            str.Format("%s-%d", (const char*)PSS_Global::GetFullMonth(value.GetMonth(), lcid), value.GetYear());
+            str.Format(_T("%s-%d"), (const char*)PSS_Global::GetFullMonth(value.GetMonth(), lcid), value.GetYear());
             break;
 
-        case PSS_StringFormat::IE_FT_Date4:
+        case PSS_StringFormat::IEFormatType::IE_FT_Date4:
             // month dd, yy
-            str.Format("%s %d, %d",
+            str.Format(_T("%s %d, %d"),
                        (const char*)PSS_Global::GetFullMonth(value.GetMonth(), lcid),
                        value.GetDay(),
                        value.GetYear());
             break;
 
-        case PSS_StringFormat::IE_FT_Time:
+        case PSS_StringFormat::IEFormatType::IE_FT_Time:
             // hour:min
-            str.Format("%d%c%d%",
+            str.Format(_T("%d%c%d%"),
                        value.GetHour(),
                        timeSep,
                        value.GetMinute());
             break;
 
-        case PSS_StringFormat::IE_FT_Time1:
+        case PSS_StringFormat::IEFormatType::IE_FT_Time1:
             // hour:min:sec
-            str.Format("%d%c%d%c%d",
+            str.Format(_T("%d%c%d%c%d"),
                        value.GetHour(),
                        timeSep,
                        value.GetMinute(),
@@ -362,14 +374,14 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_TimeSpan& value, PSS_StringF
 
     switch (sf)
     {
-        case PSS_StringFormat::IE_FT_Time:
+        case PSS_StringFormat::IEFormatType::IE_FT_Time:
             // hour:min
-            str.Format("%02d%c%02d%", value.GetHours(), timeSep, value.GetMinutes());
+            str.Format(_T("%02d%c%02d%"), value.GetHours(), timeSep, value.GetMinutes());
             break;
 
-        case PSS_StringFormat::IE_FT_Time1:
+        case PSS_StringFormat::IEFormatType::IE_FT_Time1:
             // hour:min:sec
-            str.Format("%02d%c%02d%c%02d",
+            str.Format(_T("%02d%c%02d%c%02d"),
                        value.GetHours(),
                        timeSep,
                        value.GetMinutes(),
@@ -377,18 +389,18 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_TimeSpan& value, PSS_StringF
                        value.GetSeconds());
             break;
 
-        case PSS_StringFormat::IE_FT_Time2:
+        case PSS_StringFormat::IEFormatType::IE_FT_Time2:
             // days-hour:min
-            str.Format("%d-%02d%c%02d",
+            str.Format(_T("%d-%02d%c%02d"),
                        value.GetDays(),
                        value.GetHours(),
                        timeSep,
                        value.GetMinutes());
             break;
 
-        case PSS_StringFormat::IE_FT_Time3:
+        case PSS_StringFormat::IEFormatType::IE_FT_Time3:
             // days-hour:min:sec
-            str.Format("%d-%02d%c%02d%c%02d",
+            str.Format(_T("%d-%02d%c%02d%c%02d"),
                        value.GetDays(),
                        value.GetHours(),
                        timeSep,
@@ -412,18 +424,18 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
 
     switch (sf)
     {
-        case PSS_StringFormat::IE_FT_Duration:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration:
             // days-hour:min
-            str.Format("%d-%02d%c%02d",
+            str.Format(_T("%d-%02d%c%02d"),
                        value.GetDays(),
                        value.GetHours(),
                        timeSep,
                        value.GetMinutes());
             break;
 
-        case PSS_StringFormat::IE_FT_Duration1:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration1:
             // days-hour:min:sec
-            str.Format("%d-%02d%c%02d%c%02d",
+            str.Format(_T("%d-%02d%c%02d%c%02d"),
                        value.GetDays(),
                        value.GetHours(),
                        timeSep,
@@ -432,9 +444,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                        value.GetSeconds());
             break;
 
-        case PSS_StringFormat::IE_FT_Duration2:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration2:
             // nnd hour:min
-            str.Format("%d%s %02d%c%02d%c%02d",
+            str.Format(_T("%d%s %02d%c%02d%c%02d"),
                        value.GetDays(),
                        (const char*)PSS_Global::GetDayShortPrefix(lcid),
                        value.GetHours(),
@@ -444,9 +456,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                        value.GetSeconds());
             break;
 
-        case PSS_StringFormat::IE_FT_Duration3:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration3:
             // nnd hour:min:sec
-            str.Format("%d%s %02d%c%02d%c%02d",
+            str.Format(_T("%d%s %02d%c%02d%c%02d"),
                        value.GetDays(),
                        (const char*)PSS_Global::GetDayShortPrefix(lcid),
                        value.GetHours(),
@@ -456,9 +468,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                        value.GetSeconds());
             break;
 
-        case PSS_StringFormat::IE_FT_Duration4:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration4:
             // nn days hour:min
-            str.Format("%d %s %02d%c%02d%c%02d",
+            str.Format(_T("%d %s %02d%c%02d%c%02d"),
                        value.GetDays(),
                        (const char*)PSS_Global::GetDayPrefix(lcid),
                        value.GetHours(),
@@ -468,9 +480,9 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                        value.GetSeconds());
             break;
 
-        case PSS_StringFormat::IE_FT_Duration5:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration5:
             // nn days hour:min:sec
-            str.Format("%d%s %02d%c%02d%c%02d",
+            str.Format(_T("%d%s %02d%c%02d%c%02d"),
                        value.GetDays(),
                        (const char*)PSS_Global::GetDayShortPrefix(lcid),
                        value.GetHours(),
@@ -480,10 +492,10 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                        value.GetSeconds());
             break;
 
-        case PSS_StringFormat::IE_FT_Duration6:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration6:
             // nnd ##:##:##
             if (value.GetSeconds() > 0)
-                str.Format("%d%s %02d%c%02d%c%02d",
+                str.Format(_T("%d%s %02d%c%02d%c%02d"),
                            value.GetDays(),
                            (const char*)PSS_Global::GetDayShortPrefix(lcid),
                            value.GetHours(),
@@ -493,7 +505,7 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                            value.GetSeconds());
             else
             if (value.GetMinutes() > 0)
-                str.Format("%d%s %02d%c%02d",
+                str.Format(_T("%d%s %02d%c%02d"),
                            value.GetDays(),
                            (const char*)PSS_Global::GetDayShortPrefix(lcid),
                            value.GetHours(),
@@ -501,22 +513,22 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                            value.GetMinutes());
             else
             if (value.GetHours() > 0)
-                str.Format("%d%s %02d%s",
+                str.Format(_T("%d%s %02d%s"),
                            value.GetDays(),
                            (const char*)PSS_Global::GetDayShortPrefix(lcid),
                            value.GetHours(),
                            (const char*)PSS_Global::GetHourShortPrefix(lcid));
             else
-                str.Format("%d%s",
+                str.Format(_T("%d%s"),
                            value.GetDays(),
                            (const char*)PSS_Global::GetDayShortPrefix(lcid));
 
             break;
 
-        case PSS_StringFormat::IE_FT_Duration7:
+        case PSS_StringFormat::IEFormatType::IE_FT_Duration7:
             // nn days ##:##:##
             if (value.GetSeconds() > 0)
-                str.Format("%d %s %02d%c%02d%c%02d",
+                str.Format(_T("%d %s %02d%c%02d%c%02d"),
                            value.GetDays(),
                            (const char*)PSS_Global::GetDayPrefix(lcid),
                            value.GetHours(),
@@ -526,7 +538,7 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                            value.GetSeconds());
             else
             if (value.GetMinutes() > 0)
-                str.Format("%d %s %02d%c%02d",
+                str.Format(_T("%d %s %02d%c%02d"),
                            value.GetDays(),
                            (const char*)PSS_Global::GetDayPrefix(lcid),
                            value.GetHours(),
@@ -534,13 +546,13 @@ CString PSS_StringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringF
                            value.GetMinutes());
             else
             if (value.GetHours() > 0)
-                str.Format("%d %s %02d %s",
+                str.Format(_T("%d %s %02d %s"),
                            value.GetDays(),
                            (const char*)PSS_Global::GetDayPrefix(lcid),
                            value.GetHours(),
                            (const char*)PSS_Global::GetHourPrefix(lcid));
             else
-                str.Format("%d %s", value.GetDays(), (const char*)PSS_Global::GetDayPrefix(lcid));
+                str.Format(_T("%d %s"), value.GetDays(), (const char*)PSS_Global::GetDayPrefix(lcid));
 
         default:
             break;
@@ -769,9 +781,9 @@ bool PSS_StringFormatter::ConvertFormattedBuffer(const CString&                 
 {
     // convert a date. Get the separators
     const CString decimalStr = PSS_Global::GetDecimalSeparator(lcid);
-    const char    decimalSep = decimalStr.IsEmpty() ? '.' : decimalStr.GetAt(0);
+    const char    decimalSep = decimalStr.IsEmpty() ? _T('.') : decimalStr.GetAt(0);
     const CString timeStr    = PSS_Global::GetTimeSeparator(lcid);
-    const char    timeSep    = timeStr.IsEmpty() ? '.' : timeStr.GetAt(0);
+    const char    timeSep    = timeStr.IsEmpty() ? _T('.') : timeStr.GetAt(0);
 
     // parse the string
     const char* pBuffer = (const char*)buffer;
@@ -810,7 +822,7 @@ bool PSS_StringFormatter::ConvertFormattedBuffer(const CString&                 
 {
     // convert a time. Get the separators
     const CString timeStr = PSS_Global::GetTimeSeparator(lcid);
-    const char    timeSep = timeStr.IsEmpty() ? '.' : timeStr.GetAt(0);
+    const char    timeSep = timeStr.IsEmpty() ? _T('.') : timeStr.GetAt(0);
 
     // parse the string
     const char* pBuffer = (const char*)buffer;
@@ -868,15 +880,15 @@ bool PSS_StringFormatter::ConvertFormattedBuffer(const CString&                 
 {
     // convert a duration. Get the separators
     const CString decimalStr = PSS_Global::GetDecimalSeparator(lcid);
-    const char    decimalSep = decimalStr.IsEmpty() ? '.' : decimalStr.GetAt(0);
+    const char    decimalSep = decimalStr.IsEmpty() ? _T('.') : decimalStr.GetAt(0);
     const CString timeStr    = PSS_Global::GetTimeSeparator(lcid);
-    const char    timeSep    = timeStr.IsEmpty() ? '.' : timeStr.GetAt(0);
+    const char    timeSep    = timeStr.IsEmpty() ? _T('.') : timeStr.GetAt(0);
 
     // parse the string
-    const char* pBuffer = (const char*)buffer;
-    char        tempDigit[100];
-    char*       pTempDigit  = tempDigit;
-    bool        prefixFound = false;
+    const char* pBuffer        = (const char*)buffer;
+    char        tempDigit[100] = {0};
+    char*       pTempDigit     = tempDigit;
+    bool        prefixFound    = false;
 
     // check if only a number without any prefix
     for (; *pBuffer; ++pBuffer)
@@ -916,7 +928,7 @@ bool PSS_StringFormatter::ConvertFormattedBuffer(const CString&                 
     const CString hourShortPrefix  = PSS_Global::GetHourShortPrefix(lcid);
 
     // alpha buffer used to save prefixes
-    char tempAlpha[100];
+    char tempAlpha[100] = {0};
     char* pTempAlpha = tempAlpha;
 
     // reassign the buffer start pointer
@@ -1073,7 +1085,7 @@ bool PSS_StringFormatter::ConvertFormattedBuffer(const CString&                 
         else
         {
             // any other char should be copied to the alpha array. Before copy it, check if the alpha counter
-            // is equals to zero and if the digit counter is greather than zero. If it's the case, the digit
+            // is equals to zero and if the digit counter is greater than zero. If it's the case, the digit
             // should be moved to the alpha array
             if (digitCounter > 0 && !alphaCounter)
             {
@@ -1410,8 +1422,8 @@ void PSS_StringFormatter::ReplaceDecimalPoint(CString& buffer, LCID lcid)
 //---------------------------------------------------------------------------
 CString PSS_StringFormatter::RemoveTrailingZero(CString& buffer, LCID lcid, LPCTSTR pEndSymbol)
 {
-    char  strBuffer[500];
-    char* pFinal = strBuffer;
+    char  strBuffer[500] = {0};
+    char* pFinal         = strBuffer;
 
     // get decimal separator
     const CString decimalStr = PSS_Global::GetDecimalSeparator(lcid);
@@ -1492,11 +1504,11 @@ CString PSS_StringFormatter::ConvertBufferToAmountBuffer(CString&               
                                                          LPCTSTR                        pCurrency,
                                                          LCID                           lcid)
 {
-    char  strBuffer[500];
-    char* pFinal = strBuffer;
-    int   len    = buffer.GetLength();
-    char* pC     = buffer.GetBuffer(len + 1);
-    int   count  = 0;
+    char  strBuffer[500] = {0};
+    char* pFinal         = strBuffer;
+    int   len            = buffer.GetLength();
+    char* pC             = buffer.GetBuffer(len + 1);
+    int   count          = 0;
 
     // check if the string number is too long. Maximum is 500 for a number
     if (len > 500)
@@ -1519,7 +1531,7 @@ CString PSS_StringFormatter::ConvertBufferToAmountBuffer(CString&               
     // copy the string until the string end is reached or the decimal point is found
     for (; *pC && (*pC != decimalSep); ++count)
     {
-        // add the ' char every 3 digits, calculate if the third digit was reached by substracting
+        // add the ' char every 3 digits, calculate if the third digit was reached by subtracting
         // the count from the length
         if (count > 0 && ((len - count) % 3) == 0)
         {
@@ -1543,7 +1555,7 @@ CString PSS_StringFormatter::ConvertBufferToAmountBuffer(CString&               
     // if a currency is defined, copy the currency on the string end
     if (pCurrency && strlen(pCurrency) > 0)
     {
-        // sdd a space
+        // add a space
         *pFinal = ' ';
         ++pFinal;
 
@@ -1602,7 +1614,7 @@ bool PSS_StringFormatter::ConvertBufferToNumber(CString&                        
         value = std::atof((const char*)buffer) / 100.0;
 
         // set the right format
-        sf = PSS_StringFormat::IE_FT_Percentage;
+        sf = PSS_StringFormat::IEFormatType::IE_FT_Percentage;
         return true;
     }
 
@@ -1619,7 +1631,7 @@ bool PSS_StringFormatter::ConvertBufferToNumber(CString&                        
             newValue += buffer.Right(sizeRight);
 
         // set the currency format
-        sf = PSS_StringFormat::IE_FT_Currency;
+        sf = PSS_StringFormat::IEFormatType::IE_FT_Currency;
 
         // copy the new unformatted buffer to sValue
         buffer = newValue;
@@ -1631,13 +1643,13 @@ bool PSS_StringFormatter::ConvertBufferToNumber(CString&                        
     const int decimalPosition = buffer.Find(decimalSep);
     int       thousandPosition;
 
-    // check if the thousand separator char was foud
+    // check if the thousand separator char was found
     if ((thousandPosition = buffer.Find(thousandSep)) != -1)
     {
         // remove the thousand separator char
-        const char* pBuffer = (const char*)buffer;
-        char        temp[500];
-        char*       pTemp = temp;
+        const char* pBuffer   = (const char*)buffer;
+        char        temp[500] = {0};
+        char*       pTemp     = temp;
 
         for (int i = 0; *pBuffer; ++pBuffer)
             if (*pBuffer != thousandSep)
@@ -1658,7 +1670,7 @@ bool PSS_StringFormatter::ConvertBufferToNumber(CString&                        
 
     // if thousand separator was found, set the amount format, but if currency was found, don't change the currency format
     if (thousandPosition != -1 && currencyPosition == -1)
-        sf = PSS_StringFormat::IE_FT_Accounting;
+        sf = PSS_StringFormat::IEFormatType::IE_FT_Accounting;
 
     return true;
 }

@@ -637,7 +637,7 @@ bool PSS_PageSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS_
     else
         toolTipText.LoadString(IDS_FS_BPPAGE_ERR_TOOLTIP);
 
-    if (mode == PSS_Symbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IEToolTipMode::IE_TT_Design)
     {
         // todo -cFeature -oJean: do nothing for now, need to implement the check result
     }

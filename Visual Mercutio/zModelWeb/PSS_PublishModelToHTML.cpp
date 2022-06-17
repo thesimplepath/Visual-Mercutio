@@ -145,7 +145,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(PSS_ProcessGraphModelDoc*  pD
 //---------------------------------------------------------------------------
 void PSS_PublishModelToHTML::LaunchBrowser(const CString& index)
 {
-    PSS_FileLauncher fileLauncher(index, PSS_FileLauncher::IE_FM_Open);
+    PSS_FileLauncher fileLauncher(index, PSS_FileLauncher::IEMode::IE_FM_Open);
     fileLauncher.Launch();
 }
 //---------------------------------------------------------------------------

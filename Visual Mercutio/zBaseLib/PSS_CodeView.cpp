@@ -56,10 +56,10 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_CodeView::PSS_CodeView() :
     PSS_View(),
-    m_CodeType(E_CT_AllObjects),
+    m_CodeType(EClassType::E_CT_AllObjects),
     m_SavePageForPrinting(0)
 {
-    m_ViewType = PSS_View::IE_VT_FormFieldCode;
+    m_ViewType = PSS_View::IEType::IE_VT_FormFieldCode;
 }
 //---------------------------------------------------------------------------
 PSS_CodeView::PSS_CodeView(const PSS_CodeView& other)
@@ -95,7 +95,7 @@ void PSS_CodeView::OnDraw(CDC* pDC)
 
     PSS_PlanFinObject* pObj;
 
-    // optimisation first step, call the function list directly
+    // optimization first step, call the function list directly
     POSITION pPosition = (pDoc->GetObjectList()).GetHeadPosition();
 
     while (pPosition)
@@ -111,18 +111,18 @@ void PSS_CodeView::OnDraw(CDC* pDC)
 
         switch (GetDisplayCode())
         {
-            case E_CT_AllObjects:
+            case EClassType::E_CT_AllObjects:
                 // show object on the right page, if visible in the viewport
                 pObj->ShowObjectName(pDC);
                 break;
 
-            case E_CT_Long:
+            case EClassType::E_CT_Long:
                 if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)))
                     pObj->ShowObjectName(pDC);
 
                 break;
 
-            case E_CT_Calculated:
+            case EClassType::E_CT_Calculated:
             {
                 PSS_PLFNLong* pLongObj = dynamic_cast<PSS_PLFNLong*>(pObj);
 
@@ -132,7 +132,7 @@ void PSS_CodeView::OnDraw(CDC* pDC)
                 break;
             }
 
-            case E_CT_Static:
+            case EClassType::E_CT_Static:
             {
                 PSS_PLFNText* pTextObj = dynamic_cast<PSS_PLFNText*>(pObj);
 
@@ -142,7 +142,7 @@ void PSS_CodeView::OnDraw(CDC* pDC)
                 break;
             }
 
-            case E_CT_Text:
+            case EClassType::E_CT_Text:
             {
                 PSS_PLFNText* pTextObj = dynamic_cast<PSS_PLFNText*>(pObj);
 
@@ -152,7 +152,7 @@ void PSS_CodeView::OnDraw(CDC* pDC)
                 break;
             }
 
-            case E_CT_Graphic:
+            case EClassType::E_CT_Graphic:
                 if (pObj && (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNGraphic)) && pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap))))
                     pObj->ShowObjectName(pDC);
 
@@ -210,7 +210,7 @@ void PSS_CodeView::OnRButtonDown(UINT nFlags, CPoint point)
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnOnlyNumericFields()
 {
-    m_CodeType = (m_CodeType == E_CT_Long ? E_CT_AllObjects : E_CT_Long);
+    m_CodeType = (m_CodeType == EClassType::E_CT_Long ? EClassType::E_CT_AllObjects : EClassType::E_CT_Long);
     RedrawWindow();
 }
 //---------------------------------------------------------------------------
@@ -219,7 +219,7 @@ void PSS_CodeView::OnUpdateOnlyNumericFields(CCmdUI* pCmdUI)
     if (!pCmdUI)
         return;
 
-    pCmdUI->SetCheck(m_CodeType == E_CT_Long);
+    pCmdUI->SetCheck(m_CodeType == EClassType::E_CT_Long);
 }
 //---------------------------------------------------------------------------
 afx_msg LONG PSS_CodeView::OnDisplayFieldType(UINT message, LONG lParam)
@@ -243,7 +243,7 @@ afx_msg LONG PSS_CodeView::OnSynchronizeHScroll(UINT message, LONG lParam)
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnDisplayCalculatedCode()
 {
-    m_CodeType = (m_CodeType == E_CT_Calculated ? E_CT_AllObjects : E_CT_Calculated);
+    m_CodeType = (m_CodeType == EClassType::E_CT_Calculated ? EClassType::E_CT_AllObjects : EClassType::E_CT_Calculated);
     RedrawWindow();
 }
 //---------------------------------------------------------------------------
@@ -252,12 +252,12 @@ void PSS_CodeView::OnUpdateDisplayCalculatedCode(CCmdUI* pCmdUI)
     if (!pCmdUI)
         return;
 
-    pCmdUI->SetCheck(m_CodeType == E_CT_Calculated);
+    pCmdUI->SetCheck(m_CodeType == EClassType::E_CT_Calculated);
 }
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnDisplayallCode()
 {
-    m_CodeType = E_CT_AllObjects;
+    m_CodeType = EClassType::E_CT_AllObjects;
     RedrawWindow();
 }
 //---------------------------------------------------------------------------
@@ -266,12 +266,12 @@ void PSS_CodeView::OnUpdateDisplayallCode(CCmdUI* pCmdUI)
     if (!pCmdUI)
         return;
 
-    pCmdUI->SetCheck(m_CodeType == E_CT_AllObjects);
+    pCmdUI->SetCheck(m_CodeType == EClassType::E_CT_AllObjects);
 }
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnDisplayStaticCode()
 {
-    m_CodeType = (m_CodeType == E_CT_Static ? E_CT_AllObjects : E_CT_Static);
+    m_CodeType = (m_CodeType == EClassType::E_CT_Static ? EClassType::E_CT_AllObjects : EClassType::E_CT_Static);
     RedrawWindow();
 }
 //---------------------------------------------------------------------------
@@ -280,12 +280,12 @@ void PSS_CodeView::OnUpdateDisplayStaticCode(CCmdUI* pCmdUI)
     if (!pCmdUI)
         return;
 
-    pCmdUI->SetCheck(m_CodeType == E_CT_Static);
+    pCmdUI->SetCheck(m_CodeType == EClassType::E_CT_Static);
 }
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnDisplayTextCode()
 {
-    m_CodeType = (m_CodeType == E_CT_Text ? E_CT_AllObjects : E_CT_Text);
+    m_CodeType = (m_CodeType == EClassType::E_CT_Text ? EClassType::E_CT_AllObjects : EClassType::E_CT_Text);
     RedrawWindow();
 }
 //---------------------------------------------------------------------------
@@ -294,12 +294,12 @@ void PSS_CodeView::OnUpdateDisplayTextCode(CCmdUI* pCmdUI)
     if (!pCmdUI)
         return;
 
-    pCmdUI->SetCheck(m_CodeType == E_CT_Text);
+    pCmdUI->SetCheck(m_CodeType == EClassType::E_CT_Text);
 }
 //---------------------------------------------------------------------------
 void PSS_CodeView::OnDisplayGraphicCode()
 {
-    m_CodeType = (m_CodeType == E_CT_Graphic ? E_CT_AllObjects : E_CT_Graphic);
+    m_CodeType = (m_CodeType == EClassType::E_CT_Graphic ? EClassType::E_CT_AllObjects : EClassType::E_CT_Graphic);
     RedrawWindow();
 }
 //---------------------------------------------------------------------------
@@ -308,6 +308,6 @@ void PSS_CodeView::OnUpdateDisplayGraphicCode(CCmdUI* pCmdUI)
     if (!pCmdUI)
         return;
 
-    pCmdUI->SetCheck(m_CodeType == E_CT_Graphic);
+    pCmdUI->SetCheck(m_CodeType == EClassType::E_CT_Graphic);
 }
 //---------------------------------------------------------------------------

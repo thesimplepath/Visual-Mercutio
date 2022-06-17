@@ -17,17 +17,28 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_SymbolEdit, CODTextComponent, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_SymbolEdit, PSS_BasicTextComponent, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_SymbolEdit
 //---------------------------------------------------------------------------
 PSS_SymbolEdit::PSS_SymbolEdit() :
-    CODTextComponent(),
-    m_AutoSizeProp(TRUE)
+    PSS_BasicTextComponent(),
+    m_AutoSizeProp(TRUE),
+    m_AllowEmptyText(true)
 {}
 //---------------------------------------------------------------------------
 PSS_SymbolEdit::~PSS_SymbolEdit()
 {}
+//---------------------------------------------------------------------------
+bool PSS_SymbolEdit::GetAllowEmptyText() const
+{
+    return m_AllowEmptyText;
+}
+//---------------------------------------------------------------------------
+void PSS_SymbolEdit::SetAllowEmptyText(bool value)
+{
+    m_AllowEmptyText = value;
+}
 //---------------------------------------------------------------------------
 BOOL PSS_SymbolEdit::GetValue(const int propId, int& value) const
 {

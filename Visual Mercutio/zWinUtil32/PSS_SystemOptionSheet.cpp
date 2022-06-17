@@ -41,7 +41,7 @@ PSS_SystemOptionSheet::PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions,
     m_OptionPages(optionPages)
 {
     // add the general page
-    if (optionPages & IE_OP_General)
+    if ((DWORD)optionPages & (DWORD)IEOptionPage::IE_OP_General)
     {
         std::unique_ptr<PSS_GeneralPage> pGeneralPage(new PSS_GeneralPage(pAppOptions));
         GetPageArray().Add(pGeneralPage.get());
@@ -50,7 +50,7 @@ PSS_SystemOptionSheet::PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions,
     }
 
     // add the view page
-    if (optionPages & IE_OP_View)
+    if ((DWORD)optionPages & (DWORD)IEOptionPage::IE_OP_View)
     {
         std::unique_ptr<PSS_ViewPage> pViewPage(new PSS_ViewPage(pAppOptions));
         GetPageArray().Add(pViewPage.get());
@@ -59,16 +59,16 @@ PSS_SystemOptionSheet::PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions,
     }
 
     // add the view page (reduced version)
-    if (optionPages & IE_OP_ViewReduced)
+    if ((DWORD)optionPages & (DWORD)IEOptionPage::IE_OP_ViewReduced)
     {
         std::unique_ptr<PSS_ReducedViewPage> pViewPageReduced(new PSS_ReducedViewPage(pAppOptions));
         GetPageArray().Add(pViewPageReduced.get());
         AddPage(pViewPageReduced.get());
         pViewPageReduced.release();
     }
-    
+
     // add the calculation page
-    if (optionPages & IE_OP_Calculation)
+    if ((DWORD)optionPages & (DWORD)IEOptionPage::IE_OP_Calculation)
     {
         std::unique_ptr<PSS_CalculationPage> pCalculationPage(new PSS_CalculationPage(pAppOptions));
         GetPageArray().Add(pCalculationPage.get());
@@ -77,7 +77,7 @@ PSS_SystemOptionSheet::PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions,
     }
 
     // add the navigation page
-    if (optionPages & IE_OP_Navigation)
+    if ((DWORD)optionPages & (DWORD)IEOptionPage::IE_OP_Navigation)
     {
         std::unique_ptr<PSS_NavigationPage> pNavigationPage(new PSS_NavigationPage(pAppOptions));
         GetPageArray().Add(pNavigationPage.get());
@@ -86,7 +86,7 @@ PSS_SystemOptionSheet::PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions,
     }
 
     // add the export page
-    if (optionPages & IE_OP_Export)
+    if ((DWORD)optionPages & (DWORD)IEOptionPage::IE_OP_Export)
     {
         std::unique_ptr<PSS_ExportPage> pExportPage(new PSS_ExportPage(pAppOptions));
         GetPageArray().Add(pExportPage.get());

@@ -71,22 +71,22 @@ void PSS_ExtAppProperties::Merge(PSS_ExtAppProperties* pProp, DWORD changeFlags)
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Command_Title)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Command_Title)
             m_CommandTitle = pProp->GetCommandTitle();
 
-        if (changeFlags & IE_CT_Command_Line)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Command_Line)
             m_CommandLine = pProp->GetCommandLine();
 
-        if (changeFlags & IE_CT_Command_Param)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Command_Param)
             m_CommandParameters = pProp->GetCommandParameters();
 
-        if (changeFlags & IE_CT_Command_StartupDir)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Command_StartupDir)
             m_CommandStartupDirectory = pProp->GetCommandStartupDirectory();
 
-        if (changeFlags & IE_CT_Priority_Level)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Priority_Level)
             m_PriorityLevel = pProp->GetPriorityLevel();
 
-        if (changeFlags & IE_CT_Window_StartMode)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Window_StartMode)
             m_WindowStartMode = pProp->GetWindowStartMode();
     }
 }

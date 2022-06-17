@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------
 PSS_SysVarConverter::PSS_SysVarConverter(PSS_Document* pDoc, PSS_Process* pProcess) :
     m_pDoc(pDoc),
-    m_pProcess(pProcess) 
+    m_pProcess(pProcess)
 {}
 //---------------------------------------------------------------------------
 PSS_SysVarConverter::PSS_SysVarConverter(const PSS_SysVarConverter& other)
@@ -131,7 +131,7 @@ CString PSS_SysVarConverter::GetVariableContent(const CString& variable)
         if (m_pDoc)
         {
             char buffer[5];
-            ::sprintf_s(buffer, ::_tcslen(buffer), "%ld", m_pDoc->GetDocumentStamp().GetPublishVersion());
+            ::sprintf_s(buffer, 5, "%ld", m_pDoc->GetDocumentStamp().GetPublishVersion());
             return buffer;
         }
 

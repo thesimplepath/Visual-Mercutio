@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\PSS_Dialog.h"
+#include "zBaseLib\PSS_FilteredDialog.h"
 
 // resources
 #include "zModelRes.h"
@@ -48,7 +48,7 @@ class PSS_ProcessGraphModelMdl;
 * Rename model page in tree dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_RenameModelPageInTreeDlg : public PSS_Dialog
+class AFX_EXT_CLASS PSS_RenameModelPageInTreeDlg : public PSS_FilteredDialog
 {
     public:
         /**
@@ -77,9 +77,9 @@ class AFX_EXT_CLASS PSS_RenameModelPageInTreeDlg : public PSS_Dialog
 
         /// Generated message map functions
         //{{AFX_MSG(PSS_RenameModelPageInTreeDlg)
-        virtual BOOL OnInitDialog();
+        afx_msg virtual BOOL OnInitDialog();
         afx_msg void OnChangePageName();
-        virtual void OnOK();
+        afx_msg virtual void OnOK();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 

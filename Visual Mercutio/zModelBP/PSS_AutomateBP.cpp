@@ -72,7 +72,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
     // increment the error counter
     IncrementErrorCounter();
-    return PSS_AutomationMachine::IE_AS_Error;
+    return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
 }
 //---------------------------------------------------------------------------
 bool PSS_AutomateBP::OnStart(PSS_Log* pLog)
@@ -358,7 +358,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     PSS_StartSymbolBP* pStart = dynamic_cast<PSS_StartSymbolBP*>(pState->GetSymbol());
@@ -367,7 +367,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // get the following nodes
@@ -387,7 +387,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // get the leaving links
@@ -395,7 +395,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     const std::size_t leavingLinkCount = pStart->GetEdgesLeaving(leavingEdges);
 
     if (leavingLinkCount)
-        CopyEdgeArrayToStateLinksSet(leavingEdges, PSS_StateLink::IE_LD_EnteringUp, stateLinkSet);
+        CopyEdgeArrayToStateLinksSet(leavingEdges, PSS_StateLink::IELinkDirection::IE_LD_EnteringUp, stateLinkSet);
     else
     {
         // error, no following symbol attached to this start symbol
@@ -407,11 +407,11 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // ok to move forward
-    return PSS_AutomationMachine::IE_AS_CanMoveForward;
+    return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_CanMoveForward;
 }
 //---------------------------------------------------------------------------
 PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForwardProcedureSymbol(PSS_StateObject*   pState,
@@ -423,7 +423,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     PSS_ProcedureSymbolBP* pProcedure = dynamic_cast<PSS_ProcedureSymbolBP*>(pState->GetSymbol());
@@ -432,7 +432,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     bool enteringUpEdgesCompleted    = false;
@@ -456,7 +456,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     }
     else
         // the first step wasn't completed, it's not necessary to check further
-        return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_IsWaitingForLinks;
 
     // get the entering right links
     CODEdgeArray      enteringRightEdges;
@@ -500,14 +500,14 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
                         // increment the error counter
                         IncrementErrorCounter();
-                        return PSS_AutomationMachine::IE_AS_Error;
+                        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
                     }
 
                     CODEdgeArray      leavingRightEdges;
                     const std::size_t leavingRightLinkCount = pProcedure->GetEdgesLeaving_Right(leavingRightEdges);
 
                     if (leavingRightLinkCount)
-                        CopyEdgeArrayToStateLinksSet(leavingRightEdges, PSS_StateLink::IE_LD_EnteringRight, stateLinkSet);
+                        CopyEdgeArrayToStateLinksSet(leavingRightEdges, PSS_StateLink::IELinkDirection::IE_LD_EnteringRight, stateLinkSet);
                     else
                     {
                         // log error message
@@ -521,7 +521,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
                         // increment the error counter
                         IncrementErrorCounter();
-                        return PSS_AutomationMachine::IE_AS_Error;
+                        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
                     }
 
                     // before allowing to move forward, continue to check the remaining lateral links
@@ -558,14 +558,14 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
                         // increment the error counter
                         IncrementErrorCounter();
-                        return PSS_AutomationMachine::IE_AS_Error;
+                        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
                     }
 
                     CODEdgeArray      leavingLeftEdges;
                     const std::size_t leavingLeftLinkCount = pProcedure->GetEdgesLeaving_Left(leavingLeftEdges);
 
                     if (leavingLeftLinkCount)
-                        CopyEdgeArrayToStateLinksSet(leavingLeftEdges, PSS_StateLink::IE_LD_EnteringLeft, stateLinkSet);
+                        CopyEdgeArrayToStateLinksSet(leavingLeftEdges, PSS_StateLink::IELinkDirection::IE_LD_EnteringLeft, stateLinkSet);
                     else
                     {
                         // log error message
@@ -579,7 +579,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
                         // increment the error counter
                         IncrementErrorCounter();
-                        return PSS_AutomationMachine::IE_AS_Error;
+                        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
                     }
                 }
             }
@@ -591,14 +591,14 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
            (enteringLeftCount        && !enteringLeftEdgesCompleted)))
         {
             if (existingEnteringRightCount && !enteringRightEdgesCompleted)
-                return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
+                return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_IsWaitingForLinks;
 
             // entering links were already found and the up is completed, wait on all links
             if (existingEnteringLeftCount && !enteringLeftEdgesCompleted)
-                return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
+                return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_IsWaitingForLinks;
 
             // ok to move forward
-            return PSS_AutomationMachine::IE_AS_CanMoveForward;
+            return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_CanMoveForward;
         }
     }
 
@@ -623,14 +623,14 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
             // increment the error counter
             IncrementErrorCounter();
-            return PSS_AutomationMachine::IE_AS_Error;
+            return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
         }
 
         CODEdgeArray      leavingDownEdges;
         const std::size_t leavingDownLinkCount = pProcedure->GetEdgesLeaving_Down(leavingDownEdges);
 
         if (leavingDownLinkCount)
-            CopyEdgeArrayToStateLinksSet(leavingDownEdges, PSS_StateLink::IE_LD_EnteringUp, stateLinkSet);
+            CopyEdgeArrayToStateLinksSet(leavingDownEdges, PSS_StateLink::IELinkDirection::IE_LD_EnteringUp, stateLinkSet);
         else
         {
             // log error message
@@ -644,15 +644,15 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
             // increment the error counter
             IncrementErrorCounter();
-            return PSS_AutomationMachine::IE_AS_Error;
+            return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
         }
 
         // ok to move forward
-        return PSS_AutomationMachine::IE_AS_CanMoveForward;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_CanMoveForward;
     }
 
     // an issue occurred
-    return PSS_AutomationMachine::IE_AS_Error;
+    return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
 }
 //---------------------------------------------------------------------------
 PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForwardDoorSymbol(PSS_StateObject*   pState,
@@ -664,7 +664,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     PSS_DoorSymbolBP* pDoor = dynamic_cast<PSS_DoorSymbolBP*>(pState->GetSymbol());
@@ -673,7 +673,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     PSS_DoorSymbolBP* pTwinDoor = pDoor->GetTwinDoorSymbol();
@@ -691,7 +691,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // get the next symbol attached to the twin and get the following nodes
@@ -713,7 +713,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // get the leaving links
@@ -721,7 +721,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     const std::size_t leavingLinkCount = pTwinDoor->GetEdgesLeaving(leavingEdges);
 
     if (leavingLinkCount)
-        CopyEdgeArrayToStateLinksSet(leavingEdges, PSS_StateLink::IE_LD_EnteringUp, stateLinkSet);
+        CopyEdgeArrayToStateLinksSet(leavingEdges, PSS_StateLink::IELinkDirection::IE_LD_EnteringUp, stateLinkSet);
     else
     {
         // error, no following symbol attached to this start symbol
@@ -735,11 +735,11 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // ok to move forward
-    return PSS_AutomationMachine::IE_AS_CanMoveForward;
+    return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_CanMoveForward;
 }
 //---------------------------------------------------------------------------
 PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForwardPageSymbol(PSS_StateObject*   pState,
@@ -751,7 +751,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     PSS_PageSymbolBP* pPage = dynamic_cast<PSS_PageSymbolBP*>(pState->GetSymbol());
@@ -760,7 +760,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     PSS_PageSymbolBP* pTwinPage = pPage->GetTwinPageSymbol();
@@ -778,7 +778,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // get the next symbol attached to the twin and get the following nodes
@@ -800,7 +800,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // get the leaving links
@@ -808,7 +808,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     const std::size_t leavingLinkCount = pTwinPage->GetEdgesLeaving_Down(leavingEdges);
 
     if (leavingLinkCount)
-        CopyEdgeArrayToStateLinksSet(leavingEdges, PSS_StateLink::IE_LD_EnteringUp, stateLinkSet);
+        CopyEdgeArrayToStateLinksSet(leavingEdges, PSS_StateLink::IELinkDirection::IE_LD_EnteringUp, stateLinkSet);
     else
     {
         // error, no following symbol attached to this page symbol
@@ -822,11 +822,11 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
 
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // ok to move forward
-    return PSS_AutomationMachine::IE_AS_CanMoveForward;
+    return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_CanMoveForward;
 }
 //---------------------------------------------------------------------------
 PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForwardStopSymbol(PSS_StateObject*   pState,
@@ -838,7 +838,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     PSS_StopSymbolBP* pStop = dynamic_cast<PSS_StopSymbolBP*>(pState->GetSymbol());
@@ -847,10 +847,10 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomateBP::RequestMoveForward
     {
         // increment the error counter
         IncrementErrorCounter();
-        return PSS_AutomationMachine::IE_AS_Error;
+        return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_Error;
     }
 
     // the task ends when a stop symbol is reached
-    return PSS_AutomationMachine::IE_AS_IsFinished;
+    return PSS_AutomationMachine::IEAutomationMoveStatus::IE_AS_IsFinished;
 }
 //---------------------------------------------------------------------------

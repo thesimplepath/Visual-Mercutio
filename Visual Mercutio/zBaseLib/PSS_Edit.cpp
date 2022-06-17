@@ -14,6 +14,7 @@
 #include "PSS_PLFNMaskString.h"
 #include "PSS_PLFNMultiColumn.h"
 #include "PSS_Interfaces.h"
+#include "PSS_CharFilters.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -138,7 +139,7 @@ void PSS_Edit::AddToHistoric(const CString& str)
     // if global historic field value manager is defined, try to add the field value there
     if (m_pFieldRepository && m_pFieldRepository->FindFieldHistory(m_pEditedObj->GetObjectName()))
     {
-        // field exists in the global histo value and is not read only
+        // field exists in the global historic value and is not read only
         if (!m_ReadOnly)
             m_pFieldRepository->AddFieldHistoryValue(m_pEditedObj->GetObjectName(), str);
 
@@ -482,14 +483,7 @@ void PSS_NumEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     }
 
     // check the char validity
-    if (!::isdigit(nChar) &&
-        nChar != '.'      &&
-        nChar != '-'      &&
-        nChar != '+'      &&
-        nChar != '\''     &&
-        nChar != ','      &&
-        nChar != '%'      &&
-        nChar != 0x08)
+    if (!PSS_CharFilters::FilterNumEdit(nChar))
         return;
 
     PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
@@ -712,7 +706,7 @@ void PSS_TimeEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     }
 
     // check the char validity
-    if (!::isdigit(nChar) && nChar != '.' && nChar != '/' && nChar != 0x08)
+    if (!PSS_CharFilters::FilterTimeEdit(nChar))
         return;
 
     PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
@@ -985,14 +979,14 @@ void PSS_NumEditHistoric::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
             return;
 
         case 0x1B:
-            // on Esc
+            // on Escape
             PSS_Edit::SetModify(FALSE);
             DestroyEdit();
             return;
     }
 
-    // check the validity of the char
-    if (!::isdigit(nChar) && nChar != '.' && nChar != ',' && nChar != '\'' && nChar != '%' && nChar != 0x08)
+    // check the char validity
+    if (!PSS_CharFilters::FilterNumEditHistoric(nChar))
         return;
 
     PSS_IntelliEdit::OnChar(nChar, nRepCnt, nFlags);

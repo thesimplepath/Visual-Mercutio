@@ -35,7 +35,7 @@ const PSS_Duration& PSS_Duration::operator = (const PSS_Duration& other)
 const PSS_Duration& PSS_Duration::operator = (double value)
 {
     m_Span   = value;
-    m_Status = IE_S_Valid;
+    m_Status = IEStatus::IE_S_Valid;
 
     return *this;
 }
@@ -45,16 +45,16 @@ PSS_Duration PSS_Duration::operator + (const PSS_Duration& other) const
     PSS_Duration durationTemp;
 
     // if either operand IE_S_Null, result IE_S_Null
-    if (m_Status == IE_S_Null || other.m_Status == IE_S_Null)
+    if (m_Status == IEStatus::IE_S_Null || other.m_Status == IEStatus::IE_S_Null)
     {
-        durationTemp.m_Status = IE_S_Null;
+        durationTemp.m_Status = IEStatus::IE_S_Null;
         return durationTemp;
     }
 
     // if either operand IE_S_Invalid, result IE_S_Invalid
-    if (m_Status == IE_S_Invalid || other.m_Status == IE_S_Invalid)
+    if (m_Status == IEStatus::IE_S_Invalid || other.m_Status == IEStatus::IE_S_Invalid)
     {
-        durationTemp.m_Status = IE_S_Invalid;
+        durationTemp.m_Status = IEStatus::IE_S_Invalid;
         return durationTemp;
     }
 
@@ -70,16 +70,16 @@ PSS_Duration PSS_Duration::operator - (const PSS_Duration& other) const
     PSS_Duration durationTemp;
 
     // if either operand IE_S_Null, result IE_S_Null
-    if (m_Status == IE_S_Null || other.m_Status == IE_S_Null)
+    if (m_Status == IEStatus::IE_S_Null || other.m_Status == IEStatus::IE_S_Null)
     {
-        durationTemp.m_Status = IE_S_Null;
+        durationTemp.m_Status = IEStatus::IE_S_Null;
         return durationTemp;
     }
 
     // if either operand IE_S_Invalid, result IE_S_Invalid
-    if (m_Status == IE_S_Invalid || other.m_Status == IE_S_Invalid)
+    if (m_Status == IEStatus::IE_S_Invalid || other.m_Status == IEStatus::IE_S_Invalid)
     {
-        durationTemp.m_Status = IE_S_Invalid;
+        durationTemp.m_Status = IEStatus::IE_S_Invalid;
         return durationTemp;
     }
 
@@ -92,7 +92,7 @@ PSS_Duration PSS_Duration::operator - (const PSS_Duration& other) const
 //---------------------------------------------------------------------------
 long PSS_Duration::GetHours() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
 
     double dblTemp;
 
@@ -109,7 +109,7 @@ long PSS_Duration::GetHours() const
 //---------------------------------------------------------------------------
 long PSS_Duration::GetMinutes() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
 
     double dblTemp;
 
@@ -126,7 +126,7 @@ long PSS_Duration::GetMinutes() const
 //---------------------------------------------------------------------------
 long PSS_Duration::GetSeconds() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
 
     double dblTemp;
 

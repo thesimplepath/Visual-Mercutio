@@ -26,12 +26,6 @@
 //---------------------------------------------------------------------------
 // PSS_ODSymbolManipulator
 //---------------------------------------------------------------------------
-PSS_ODSymbolManipulator::PSS_ODSymbolManipulator()
-{}
-//---------------------------------------------------------------------------
-PSS_ODSymbolManipulator::~PSS_ODSymbolManipulator()
-{}
-//---------------------------------------------------------------------------
 PSS_SymbolEdit* PSS_ODSymbolManipulator::CreateEditText(CODComponent*  pSymbol,
                                                         const CString& areaName,
                                                         const CString& editName,

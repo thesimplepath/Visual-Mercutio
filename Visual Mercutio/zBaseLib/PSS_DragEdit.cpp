@@ -387,7 +387,7 @@ CPoint PSS_DragEdit::PosFromChar(UINT ch) const
         return CPoint(0, 0);
 
     CPoint pt = PSS_DragEditBase::PosFromChar(ch);
-    
+
     if (pt.x < 0 && pt.y < 0)
     {
         int line, pos;
@@ -535,7 +535,7 @@ void PSS_DragEdit::OnLButtonDown(UINT nFlags, CPoint point)
                     {
                         if (sel == E_DE_AFTERSEL)
                         {
-                            // if user want to move the string back, need to adjust the m_DropPtLine 
+                            // if user want to move the string back, need to adjust the m_DropPtLine
                             // and m_DropPtPos
                             int ch = LinePosToChar(m_DropPtLine, m_DropPtPos);
                             ch    -= str.GetLength();

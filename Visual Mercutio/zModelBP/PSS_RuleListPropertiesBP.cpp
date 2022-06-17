@@ -61,7 +61,7 @@ void PSS_RuleListPropertiesBP::Merge(CODProperty* pProp, DWORD changeFlags)
     PSS_RuleListPropertiesBP* pRuleProp = dynamic_cast<PSS_RuleListPropertiesBP*>(pProp);
 
     if (pRuleProp)
-        if (changeFlags & IE_CT_Change_Rule_List)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Rule_List)
             m_RuleList = pRuleProp->GetRuleList();
 }
 //---------------------------------------------------------------------------

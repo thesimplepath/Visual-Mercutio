@@ -143,7 +143,7 @@ IMPLEMENT_DYNAMIC(PSS_App, PSS_MainApp)
 BEGIN_MESSAGE_MAP(PSS_App, PSS_MainApp)
     //{{AFX_MSG_MAP(PSS_App)
     ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-    ON_COMMAND(ID_HELP_SUPPORT, OnHelpSupport)
+    //ON_COMMAND(ID_HELP_SUPPORT, OnHelpSupport)
     ON_COMMAND(ID_APP_EXIT, OnAppExit)
     ON_COMMAND(ID_OPTIONS, OnOptions)
     ON_COMMAND(ID_SELECT_SERVER, OnSelectServer)
@@ -255,6 +255,10 @@ BEGIN_MESSAGE_MAP(PSS_App, PSS_MainApp)
     ON_UPDATE_COMMAND_UI(ID_EXPORTHTML, OnUpdateExportModelToHTMLFile)
     ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_PREVIEW, OnUpdateFilePrintPreview)
     ON_UPDATE_COMMAND_UI(ID_FILE_PRINT, OnUpdateFilePrint)
+    ON_UPDATE_COMMAND_UI(ID_EXPAND_BRANCH, OnUpdateExpandBranch)
+    ON_COMMAND(ID_EXPAND_BRANCH, OnExpandBranch)
+    ON_UPDATE_COMMAND_UI(ID_COLLAPSE_BRANCH, OnUpdateCollapseBranch)
+    ON_COMMAND(ID_COLLAPSE_BRANCH, OnCollapseBranch)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -790,7 +794,7 @@ PSS_ProcessGraphModelDoc* PSS_App::FileNewModel()
 
     switch (pNewFile->GetNotation())
     {
-        case E_MN_Beryl:
+        case EModelNotation::E_MN_Beryl:
         {
             // get the language assigned to the document
             const ELanguage language = pNewFile->GetLanguage();
@@ -801,13 +805,13 @@ PSS_ProcessGraphModelDoc* PSS_App::FileNewModel()
             break;
         }
 
-        case E_MN_ABC: break;
-        case E_MN_UML: break;
-        default:       break;
+        case EModelNotation::E_MN_ABC: break;
+        case EModelNotation::E_MN_UML: break;
+        default:                       break;
     }
 
     // set the type for Template
-    pNewFile->SetFileType(PSS_Stamp::IE_FD_TemplateType);
+    pNewFile->SetFileType(PSS_Stamp::IEFileTypeDefinition::IE_FD_TemplateType);
 
     // set the path name to empty (NOTE no path name yet)
     pNewFile->ClearPathName();
@@ -918,8 +922,8 @@ void PSS_App::SetVisualToolObject(const CString& className)
     // set the appropriate tool
     switch (index)
     {
-        case 0:  PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IE_TT_VToolSelect; break;
-        default: PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IE_TT_VToolEdit;   break;
+        case 0:  PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IEToolType::IE_TT_VToolSelect; break;
+        default: PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IEToolType::IE_TT_VToolEdit;   break;
     }
 }
 //---------------------------------------------------------------------------
@@ -962,12 +966,14 @@ void PSS_App::OnAppAbout()
     about.DoModal();
 }
 //---------------------------------------------------------------------------
+/*
 void PSS_App::OnHelpSupport()
 {
     PSS_HtmlDialog about(IDR_SUPPORT_CONCEPTOR_02);
     about.SetSize(600, 600);
     about.DoModal();
 }
+*/
 //---------------------------------------------------------------------------
 void PSS_App::OnAppExit()
 {
@@ -987,10 +993,10 @@ void PSS_App::OnAppExit()
 void PSS_App::OnOptions()
 {
     PSS_SystemOptionSheet systemOptionsSheet(&GetApplicationOptions(),
-                                             PSS_SystemOptionSheet::IEOptionPage(PSS_SystemOptionSheet::IE_OP_General     |
-                                                                                 PSS_SystemOptionSheet::IE_OP_Calculation |
-                                                                                 PSS_SystemOptionSheet::IE_OP_Navigation  |
-                                                                                 PSS_SystemOptionSheet::IE_OP_ViewReduced));
+                                             PSS_SystemOptionSheet::IEOptionPage((DWORD)PSS_SystemOptionSheet::IEOptionPage::IE_OP_General     |
+                                                                                 (DWORD)PSS_SystemOptionSheet::IEOptionPage::IE_OP_Calculation |
+                                                                                 (DWORD)PSS_SystemOptionSheet::IEOptionPage::IE_OP_Navigation  |
+                                                                                 (DWORD)PSS_SystemOptionSheet::IEOptionPage::IE_OP_ViewReduced));
 
     // options have changed?
     if (systemOptionsSheet.DoModal() == IDOK)
@@ -2506,7 +2512,7 @@ void PSS_App::OnUpdateGenerateCheckReport(CCmdUI* pCmdUI)
         return;
     }
 
-    pCmdUI->Enable(pGraphModelDoc->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(pGraphModelDoc->GetNotation() == EModelNotation::E_MN_Beryl);
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateMercutioReport()
@@ -2626,7 +2632,7 @@ void PSS_App::OnUpdateGenerateMercutioReport(CCmdUI* pCmdUI)
         return;
     }
 
-    pCmdUI->Enable(pGraphModelDoc->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(pGraphModelDoc->GetNotation() == EModelNotation::E_MN_Beryl);
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateConceptorReport()
@@ -2720,7 +2726,7 @@ void PSS_App::OnUpdateGenerateConceptorReport(CCmdUI* pCmdUI)
         return;
     }
 
-    pCmdUI->Enable(pGraphModelDoc->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(pGraphModelDoc->GetNotation() == EModelNotation::E_MN_Beryl);
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateSesterceReport()
@@ -2799,7 +2805,7 @@ void PSS_App::OnUpdateGenerateSesterceReport(CCmdUI* pCmdUI)
         return;
     }
 
-    pCmdUI->Enable(pGraphModelDoc->GetIntegrateCostSimulation() && pGraphModelDoc->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(pGraphModelDoc->GetIntegrateCostSimulation() && pGraphModelDoc->GetNotation() == EModelNotation::E_MN_Beryl);
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnGenerateSesterceUnitReport()
@@ -3025,7 +3031,7 @@ void PSS_App::OnUpdateGeneratePrestationsReport(CCmdUI* pCmdUI)
         return;
     }
 
-    pCmdUI->Enable(pGraphModelDoc->GetIntegrateCostSimulation() && pGraphModelDoc->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(pGraphModelDoc->GetIntegrateCostSimulation() && pGraphModelDoc->GetNotation() == EModelNotation::E_MN_Beryl);
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnFileProperty()
@@ -3214,6 +3220,10 @@ void PSS_App::OnPublishToMessenger()
 
         if (pOutputWorkspace)
         {
+            // save the document before publishing, if needed
+            if (pCurrentDoc->IsModified())
+                pCurrentDoc->SaveDocument();
+
             // activate the log tab first
             pOutputWorkspace->ActivateWorkflowLogTab();
 
@@ -3442,6 +3452,28 @@ void PSS_App::OnUpdateFilePrint(CCmdUI* pCmdUI)
         pCmdUI->Enable(FALSE);
 }
 //---------------------------------------------------------------------------
+void PSS_App::OnUpdateExpandBranch(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(true);
+}
+//---------------------------------------------------------------------------
+void PSS_App::OnExpandBranch()
+{
+    if (GetProcessWorkspace())
+        GetProcessWorkspace()->OnExpandBranch();
+}
+//---------------------------------------------------------------------------
+void PSS_App::OnUpdateCollapseBranch(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(true);
+}
+//---------------------------------------------------------------------------
+void PSS_App::OnCollapseBranch()
+{
+    if (GetProcessWorkspace())
+        GetProcessWorkspace()->OnCollapseBranch();
+}
+//---------------------------------------------------------------------------
 BOOL PSS_App::InitApp()
 {
     #ifdef CHECK_INFO
@@ -3508,7 +3540,7 @@ BOOL PSS_App::InitApp()
     static PSS_VisualToolEdit visualToolEdit;
 
     PSS_ResourceManager::LoadFromDirectory(PSS_Directory::NormalizeDirectory(GetApplicationDir()) + _T("\\resdll"));
-    PSS_ResourceManager::ChangeLanguage(E_LN_French);
+    PSS_ResourceManager::ChangeLanguage(ELanguage::E_LN_French);
 
     return TRUE;
 }

@@ -68,16 +68,16 @@ void PSS_UnitPropertiesBP::Merge(PSS_UnitPropertiesBP* pProp, DWORD changeFlags)
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Unit_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Unit_Name)
             m_UnitName = pProp->GetUnitName();
 
-        if (changeFlags & IE_CT_Change_Unit_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Unit_Cost)
             m_UnitCost = pProp->GetUnitCost();
 
-        if (changeFlags & IE_CT_Change_Unit_GUID)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Unit_GUID)
             m_UnitGUID = pProp->GetUnitGUID();
 
-        if (changeFlags & IE_CT_Change_Unit_Double_Validation)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Unit_Double_Validation)
             m_DoubleValidationType = pProp->GetUnitDoubleValidationType();
     }
 }

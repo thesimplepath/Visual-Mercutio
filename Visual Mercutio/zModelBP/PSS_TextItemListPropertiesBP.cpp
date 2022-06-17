@@ -61,7 +61,7 @@ void PSS_TextItemListPropertiesBP::Merge(CODProperty* pProp, DWORD changeFlags)
     PSS_TextItemListPropertiesBP* pProcessProps = dynamic_cast<PSS_TextItemListPropertiesBP*>(pProp);
 
     if (pProcessProps)
-        if (changeFlags & IE_CT_Change_TextItem_List)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_TextItem_List)
             m_TextItemList = pProcessProps->GetTextItemList();
 }
 //---------------------------------------------------------------------------

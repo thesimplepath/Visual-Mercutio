@@ -147,7 +147,14 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PSS_BasicLabelComponent.cpp" />
+    <ClCompile Include="PSS_BasicTextComponent.cpp" />
+    <ClCompile Include="PSS_CharFilters.cpp" />
+    <ClCompile Include="PSS_ColorBtn.cpp" />
+    <ClCompile Include="PSS_FilteredDialog.cpp" />
+    <ClCompile Include="PSS_FilteredDialogBox.cpp" />
     <ClCompile Include="PSS_MathHelper.cpp" />
+    <ClCompile Include="PSS_PropertyEditControl.cpp" />
     <ClCompile Include="PSS_StatusBar.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -191,12 +198,6 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_CommandLine.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-    </ClCompile>
-    <ClCompile Include="PSS_ColorBtn.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1319,7 +1320,14 @@
     <ResourceCompile Include="zBaseLib.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PSS_BasicLabelComponent.h" />
+    <ClInclude Include="PSS_BasicTextComponent.h" />
+    <ClInclude Include="PSS_CharFilters.h" />
+    <ClInclude Include="PSS_ColorBtn.h" />
+    <ClInclude Include="PSS_FilteredDialog.h" />
+    <ClInclude Include="PSS_FilteredDialogBox.h" />
     <ClInclude Include="PSS_MathHelper.h" />
+    <ClInclude Include="PSS_PropertyEditControl.h" />
     <ClInclude Include="PSS_StatusBar.h" />
     <ClInclude Include="PSS_ApplicationOption.h" />
     <ClInclude Include="PSS_BaseDocument.h" />
@@ -1328,7 +1336,6 @@
     <ClInclude Include="PSS_BaseTitleMDIPage.h" />
     <ClInclude Include="PSS_ObjectUtility.h" />
     <ClInclude Include="PSS_CommandLine.h" />
-    <ClInclude Include="PSS_ColorBtn.h" />
     <ClInclude Include="PSS_DocumentData.h" />
     <ClInclude Include="PSS_DocumentOptions.h" />
     <ClInclude Include="PSS_DocTemplateEx.h" />

@@ -1057,32 +1057,32 @@ PSS_FileBuffer* PSS_DocumentData::GetFileBuffer()
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsFormData() const
 {
-    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Form;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_Form;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsBinaryData() const
 {
-    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_Binary;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsExternalFormData() const
 {
-    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_ExternalForm;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_ExternalForm;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsExternalBinaryData() const
 {
-    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_ExternalBinary;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_ExternalBinary;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsURLData() const
 {
-    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_URL;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_URL;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsBinaryDataValid() const
 {
-    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary && m_pFileBuffer != NULL;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_Binary && m_pFileBuffer != NULL;
 }
 //---------------------------------------------------------------------------
 CStringArray* PSS_DocumentData::GetObjectFieldNameArray() const

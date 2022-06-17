@@ -324,7 +324,7 @@ class AFX_EXT_CLASS PSS_NumbersEqualizer
         *@param delta - delta
         *@param indexToIgnore - index to ignore, none if -1
         *@return true if all numbers have been updated by the specific delta, false if the system has forced
-        *        one number due to the min value 
+        *        one number due to the min value
         */
         virtual bool AddDeltaToLockedNumbers(double delta, int indexToIgnore = -1);
 
@@ -338,7 +338,7 @@ class AFX_EXT_CLASS PSS_NumbersEqualizer
         virtual bool AddDeltaToUnlockedNumbers(double delta, int indexToIgnore = -1);
 
         /**
-        * Substracts a delta to locked numbers
+        * Subtracts a delta to locked numbers
         *@param delta - delta
         *@param indexToIgnore - index to ignore, none if -1
         *@return true if all numbers have been updated by the specific delta, false if the system has forced
@@ -347,7 +347,7 @@ class AFX_EXT_CLASS PSS_NumbersEqualizer
         virtual bool SubstDeltaToLockedNumbers(double delta, int indexToIgnore = -1);
 
         /**
-        * Substracts a delta to unlocked numbers
+        * Subtracts a delta to unlocked numbers
         *@param delta - delta
         *@param indexToIgnore - index to ignore, none if -1
         *@return true if all numbers have been updated by the specific delta, false if the system has forced

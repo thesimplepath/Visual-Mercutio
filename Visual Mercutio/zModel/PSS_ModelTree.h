@@ -367,7 +367,7 @@ class AFX_EXT_CLASS PSS_ModelTree
                 /**
                 * Model tree data type
                 */
-                enum IEType
+                enum class IEType
                 {
                     IE_DT_Symbol,
                     IE_DT_LinkSymbol,

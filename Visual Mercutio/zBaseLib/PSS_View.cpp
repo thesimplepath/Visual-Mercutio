@@ -52,7 +52,7 @@ PSS_PlanFinObject* PSS_View::m_pOldPointerSelectedObj = NULL;
 //---------------------------------------------------------------------------
 PSS_View::PSS_View() :
     PSS_DropScrollView(),
-    m_ViewType(IE_VT_Unknown),
+    m_ViewType(IEType::IE_VT_Unknown),
     m_LineSize(10, 10),
     m_hSelectorCursor(NULL),
     m_SelectObjectMode(FALSE),

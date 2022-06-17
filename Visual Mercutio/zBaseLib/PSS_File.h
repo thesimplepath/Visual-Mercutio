@@ -49,7 +49,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         /**
         * File attachment type
         */
-        enum IEAttachmentType
+        enum class IEAttachmentType
         {
             IE_AT_InsertedFile,
             IE_AT_HyperLinkFile,
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        PSS_File(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
+        PSS_File(const CString& fileName, IEAttachmentType attachement = IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Copy constructor
@@ -135,7 +135,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        virtual void SetCompleteFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
+        virtual void SetCompleteFileName(const CString& fileName, IEAttachmentType attachement = IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Gets the file name
@@ -148,7 +148,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param fileName - file name
         *@param attachment - attachment type
         */
-        virtual void SetFileName(const CString& fileName, IEAttachmentType attachement = IE_AT_InsertedFile);
+        virtual void SetFileName(const CString& fileName, IEAttachmentType attachement = IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Gets the file name path

@@ -540,7 +540,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameMainFrame(PSS_Process
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex() const
 {
-    // build the main index html FileName 
+    // build the main index html file name
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\index.htm");
 }
 //---------------------------------------------------------------------------
@@ -551,13 +551,13 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex(PSS_ProcessGrap
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameBanner() const
 {
-    // build the main banner html FileName 
+    // build the main banner html file name
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\banner.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameUserMainFrame() const
 {
-    // build the main index html FileName 
+    // build the main index html file name
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\users_mainframe.htm");
 }
 //---------------------------------------------------------------------------
@@ -578,7 +578,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNamePrestations(PSS_Proce
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameSystemMainFrame() const
 {
-    // build the main index html FileName 
+    // build the main index html file name
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\system_mainframe.htm");
 }
 //---------------------------------------------------------------------------
@@ -589,13 +589,13 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNamePrestationsMainFrame(
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptyUser() const
 {
-    // build the main index html FileName 
+    // build the main index html file name
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_users.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptySystem() const
 {
-    // build the main index html FileName 
+    // build the main index html file name
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_system.htm");
 }
 //---------------------------------------------------------------------------
@@ -606,7 +606,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptyPrestations() co
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptyPropertyPage() const
 {
-    // Build the main index html FileName 
+    // Build the main index html file name
     return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_prp.htm");
 }
 //---------------------------------------------------------------------------

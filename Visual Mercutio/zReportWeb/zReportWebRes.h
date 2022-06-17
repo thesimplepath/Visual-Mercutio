@@ -137,6 +137,9 @@
 #define IDS_RULEBOOKDETAILS_HTML_2   5129
 #define IDS_RULEBOOKDETAILS_HTML_3   5130
 #define IDS_RULEBOOKDETAILS_HTML_4   5131
+#define IDS_RULEBOOK_HTML_7          5132
+#define IDS_RULEBOOK_HTML_8          5133
+#define IDS_RULEBOOK_HTML_9          5134
 
 // next default values for new objects
 #ifdef APSTUDIO_INVOKED

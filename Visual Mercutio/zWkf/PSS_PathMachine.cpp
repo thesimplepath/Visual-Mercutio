@@ -88,7 +88,7 @@ PSS_PathMachine::IEPathMoveStatus PSS_PathMachine::RequestMoveForward(PSS_StateO
                                                                       PSS_Log*           pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
-    return IE_PS_Error;
+    return IEPathMoveStatus::IE_PS_Error;
 }
 //---------------------------------------------------------------------------
 bool PSS_PathMachine::OnStart(PSS_Log* pLog)

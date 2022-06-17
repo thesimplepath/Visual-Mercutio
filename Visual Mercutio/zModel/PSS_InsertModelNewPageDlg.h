@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\PSS_Dialog.h"
+#include "zBaseLib\PSS_FilteredDialog.h"
 #include "PSS_ObjectCollections.h"
 #include "PSS_ProcessModelTree.h"
 
@@ -42,7 +42,7 @@
 * Insert model new page dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_InsertModelNewPageDlg : public PSS_Dialog
+class AFX_EXT_CLASS PSS_InsertModelNewPageDlg : public PSS_FilteredDialog
 {
     public:
         /**

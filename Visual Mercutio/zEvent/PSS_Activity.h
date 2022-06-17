@@ -63,8 +63,8 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         */
         PSS_Activity(const CString& activityName        = "",
                      const CString& activityDescription = "",
-                     int            activityType        = IE_AT_InputInformation,
-                     IEStatus       activityStatus      = IE_AS_NotStarted);
+                     int            activityType        = (int)IEType::IE_AT_InputInformation,
+                     IEStatus       activityStatus      = IEStatus::IE_AS_NotStarted);
 
         virtual ~PSS_Activity();
 
@@ -167,7 +167,7 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         */
         virtual inline void SetActivityAsArchiving(BOOL value = TRUE);
 
-        /** 
+        /**
         * Fills a person array
         *@param userManager - user manager
         *@param[out] userArray - user array to populate with results
@@ -214,12 +214,12 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         virtual void DeleteCommandLine();
 
         /**
-        * Calculates the forecasted start date by taking all activities
+        * Calculates the forecast start date by taking all activities
         */
         virtual void CalculateForecastedStartDate();
 
         /**
-        * Calculates the forecasted end date by taking all activities
+        * Calculates the forecast end date by taking all activities
         */
         virtual void CalculateForecastedEndDate();
 
@@ -241,7 +241,7 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         *@param attachment - attachment type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL AddFormFile(const CString& fileName, PSS_File::IEAttachmentType attachment = PSS_File::IE_AT_InsertedFile);
+        virtual BOOL AddFormFile(const CString& fileName, PSS_File::IEAttachmentType attachment = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Adds form file names
@@ -249,7 +249,7 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         *@param attachment - attachment type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL AddFormFiles(const CStringArray& fileNameArray, PSS_File::IEAttachmentType attachement = PSS_File::IE_AT_InsertedFile);
+        virtual BOOL AddFormFiles(const CStringArray& fileNameArray, PSS_File::IEAttachmentType attachement = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Removes all form file names
@@ -261,7 +261,7 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         * Adds a process file name
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL AddProcFile(const CString& FileName, PSS_File::IEAttachmentType Attachement = PSS_File::IE_AT_InsertedFile);
+        virtual BOOL AddProcFile(const CString& FileName, PSS_File::IEAttachmentType Attachement = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Adds process file names
@@ -269,7 +269,7 @@ class AFX_EXT_CLASS PSS_Activity : public PSS_BaseActivity
         *@param attachment - attachment type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL AddProcFiles(const CStringArray& FileNameArray, PSS_File::IEAttachmentType Attachement = PSS_File::IE_AT_InsertedFile);
+        virtual BOOL AddProcFiles(const CStringArray& FileNameArray, PSS_File::IEAttachmentType Attachement = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Removes all process file names
@@ -551,73 +551,73 @@ CString PSS_Activity::GetTemplateAt(int index) const
 void PSS_Activity::SetActivityAsAttribution(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_Attribution;
+        m_ActivityType |= (DWORD)IEType::IE_AT_Attribution;
     else
-        m_ActivityType &= ~IE_AT_Attribution;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_Attribution;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsAcceptation(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_Acceptation;
+        m_ActivityType |= (DWORD)IEType::IE_AT_Acceptation;
     else
-        m_ActivityType &= ~IE_AT_Acceptation;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_Acceptation;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsInput(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_InputInformation;
+        m_ActivityType |= (DWORD)IEType::IE_AT_InputInformation;
     else
-        m_ActivityType &= ~IE_AT_InputInformation;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_InputInformation;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsSendMail(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_SendMail;
+        m_ActivityType |= (DWORD)IEType::IE_AT_SendMail;
     else
-        m_ActivityType &= ~IE_AT_SendMail;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_SendMail;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsStartProcess(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_StartProcess;
+        m_ActivityType |= (DWORD)IEType::IE_AT_StartProcess;
     else
-        m_ActivityType &= ~IE_AT_StartProcess;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_StartProcess;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsCommandLine(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_CommandLine;
+        m_ActivityType |= (DWORD)IEType::IE_AT_CommandLine;
     else
-        m_ActivityType &= ~IE_AT_CommandLine;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_CommandLine;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsScanning(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_Scanning;
+        m_ActivityType |= (DWORD)IEType::IE_AT_Scanning;
     else
-        m_ActivityType &= ~IE_AT_Scanning;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_Scanning;
 }
 //---------------------------------------------------------------------------
 void PSS_Activity::SetActivityAsArchiving(BOOL value)
 {
     if (value)
-        m_ActivityType |= IE_AT_Archiving;
+        m_ActivityType |= (DWORD)IEType::IE_AT_Archiving;
     else
-        m_ActivityType &= ~IE_AT_Archiving;
+        m_ActivityType &= ~(DWORD)IEType::IE_AT_Archiving;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Activity::IsAttributedActivity() const
 {
-    return (GetVisibilityType()             == IE_VT_AttributionOfVisibility                   ||
-            m_MainResources.GetUserType()   == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
-            m_BackupResources.GetUserType() == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
-            GetTimeType()                   == IE_TT_AttributionOfTimeout);
+    return (GetVisibilityType()             == IEVisibilityType::IE_VT_AttributionOfVisibility             ||
+            m_MainResources.GetUserType()   == PSS_ActivityResources::IEUserType::IE_UT_AttributionOfUsers ||
+            m_BackupResources.GetUserType() == PSS_ActivityResources::IEUserType::IE_UT_AttributionOfUsers ||
+            GetTimeType()                   == IETimeoutType::IE_TT_AttributionOfTimeout);
 }
 //---------------------------------------------------------------------------
 CString PSS_Activity::GetAttributedByActivity() const

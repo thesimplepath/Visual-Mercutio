@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_PublishConceptorReport : public PSS_BasicSymbolVisitor
         /**
         * Export process
         */
-        enum IExportProc
+        enum class IEExportProc
         {
             IE_EP_PublishConceptorHeaders,
             IE_EP_PublishConceptorDetails,
@@ -92,7 +92,7 @@ class AFX_EXT_CLASS PSS_PublishConceptorReport : public PSS_BasicSymbolVisitor
         PSS_ProcessGraphModelMdlBP*    m_pModel;
         PSS_ProcessGraphModelDoc*      m_pSourceDoc;
         PSS_ProcessSymbolBP*           m_pPreviousProcess;
-        IExportProc                    m_PublishProc;
+        IEExportProc                   m_PublishProc;
         CString                        m_DomainName;
         CString                        m_UnitName;
         CString                        m_CurrentProcessName;

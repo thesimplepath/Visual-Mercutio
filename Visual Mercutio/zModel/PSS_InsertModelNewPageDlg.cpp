@@ -24,7 +24,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_InsertModelNewPageDlg, PSS_Dialog)
+BEGIN_MESSAGE_MAP(PSS_InsertModelNewPageDlg, PSS_FilteredDialog)
     //{{AFX_MSG_MAP(PSS_InsertModelNewPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     //}}AFX_MSG_MAP
@@ -37,7 +37,7 @@ PSS_InsertModelNewPageDlg::PSS_InsertModelNewPageDlg(PSS_ProcessGraphModelMdl*  
                                                      CStringArray*                pArrayPageName,
                                                      PSS_RuntimeClassSet*         pSet,
                                                      CWnd*                        pParent) :
-    PSS_Dialog(PSS_InsertModelNewPageDlg::IDD, TRUE, pParent),
+    PSS_FilteredDialog(PSS_InsertModelNewPageDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
     m_pParentModel(pModel),
     m_pSet(pSet),

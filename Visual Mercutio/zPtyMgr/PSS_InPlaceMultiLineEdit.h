@@ -47,8 +47,9 @@ class AFX_EXT_CLASS PSS_InPlaceMultiLineEdit : public PSS_MultiLineEdit,
         /**
         * Constructor
         *@param isReadOnly - if true, the edit is read-only
+        *@param enableCharFilter - if true, the char filtering will be enabled
         */
-        PSS_InPlaceMultiLineEdit(bool isReadOnly = false);
+        PSS_InPlaceMultiLineEdit(bool isReadOnly = false, bool enableCharFilter = false);
 
         virtual inline ~PSS_InPlaceMultiLineEdit();
 
@@ -130,6 +131,11 @@ class AFX_EXT_CLASS PSS_InPlaceMultiLineEdit : public PSS_MultiLineEdit,
         virtual inline CSize GetExtendedSize() const;
 
         /**
+        * Called when a value changed in a property
+        */
+        virtual void OnPropertieValueChanged();
+
+        /**
         * Called when the observer receives a message from the subject
         *@param pSubject - subject which sent the message
         *@param pMsg - the message
@@ -162,6 +168,8 @@ class AFX_EXT_CLASS PSS_InPlaceMultiLineEdit : public PSS_MultiLineEdit,
         DECLARE_MESSAGE_MAP()
 
     private:
+        bool m_FilterChars;
+
         /**
         * Copy constructor
         *@param other - other object to copy from

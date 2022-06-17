@@ -307,10 +307,10 @@ PSS_Property* PSS_DynamicPropertiesManager::CreateProperty(const CString&       
 
     switch (dataType)
     {
-        case PSS_Property::IE_T_EditString:
-        case PSS_Property::IE_T_EditStringReadOnly:
-        case PSS_Property::IE_T_EditMultiline:
-        case PSS_Property::IE_T_EditMultilineReadOnly:
+        case PSS_Property::IEType::IE_T_EditString:
+        case PSS_Property::IEType::IE_T_EditStringReadOnly:
+        case PSS_Property::IEType::IE_T_EditMultiline:
+        case PSS_Property::IEType::IE_T_EditMultilineReadOnly:
             pProp.reset(new PSS_Property(category,
                                          categoryID,
                                          item,
@@ -322,8 +322,8 @@ PSS_Property* PSS_DynamicPropertiesManager::CreateProperty(const CString&       
                                          strFormat));
             break;
 
-        case PSS_Property::IE_T_EditDate:
-        case PSS_Property::IE_T_EditDateReadOnly:
+        case PSS_Property::IEType::IE_T_EditDate:
+        case PSS_Property::IEType::IE_T_EditDateReadOnly:
         {
             PSS_Date dt;
 
@@ -335,12 +335,12 @@ PSS_Property* PSS_DynamicPropertiesManager::CreateProperty(const CString&       
                                          dt,
                                          dataType,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Date)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Date)));
             break;
         }
 
-        case PSS_Property::IE_T_EditTime:
-        case PSS_Property::IE_T_EditTimeReadOnly:
+        case PSS_Property::IEType::IE_T_EditTime:
+        case PSS_Property::IEType::IE_T_EditTimeReadOnly:
         {
             PSS_TimeSpan ts;
 
@@ -352,12 +352,12 @@ PSS_Property* PSS_DynamicPropertiesManager::CreateProperty(const CString&       
                                          ts,
                                          dataType,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Time1)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Time1)));
             break;
         }
 
-        case PSS_Property::IE_T_EditDuration:
-        case PSS_Property::IE_T_EditDurationReadOnly:
+        case PSS_Property::IEType::IE_T_EditDuration:
+        case PSS_Property::IEType::IE_T_EditDurationReadOnly:
         {
             PSS_Duration dr;
 
@@ -369,12 +369,12 @@ PSS_Property* PSS_DynamicPropertiesManager::CreateProperty(const CString&       
                                          dr,
                                          dataType,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7)));
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Duration7)));
             break;
         }
 
-        case PSS_Property::IE_T_EditNumber:
-        case PSS_Property::IE_T_EditNumberReadOnly:
+        case PSS_Property::IEType::IE_T_EditNumber:
+        case PSS_Property::IEType::IE_T_EditNumberReadOnly:
             pProp.reset(new PSS_Property(category,
                                          categoryID,
                                          item,
@@ -386,21 +386,21 @@ PSS_Property* PSS_DynamicPropertiesManager::CreateProperty(const CString&       
                                          strFormat));
             break;
 
-        case PSS_Property::IE_T_EditMenu:
-        case PSS_Property::IE_T_EditMenuReadOnly:
-        case PSS_Property::IE_T_EditIntelli:
-        case PSS_Property::IE_T_EditIntelliReadOnly:
-        case PSS_Property::IE_T_ComboString:
-        case PSS_Property::IE_T_ComboStringReadOnly:
-        case PSS_Property::IE_T_ComboNumber:
-        case PSS_Property::IE_T_ComboNumberReadOnly:
-        case PSS_Property::IE_T_EditFont:
-        case PSS_Property::IE_T_EditFile:
-        case PSS_Property::IE_T_EditDirectory:
-        case PSS_Property::IE_T_EditMultiFiles:
-        case PSS_Property::IE_T_EditMultiDirectories:
-        case PSS_Property::IE_T_EditExtended:
-        case PSS_Property::IE_T_EditExtendedReadOnly:
+        case PSS_Property::IEType::IE_T_EditMenu:
+        case PSS_Property::IEType::IE_T_EditMenuReadOnly:
+        case PSS_Property::IEType::IE_T_EditIntelli:
+        case PSS_Property::IEType::IE_T_EditIntelliReadOnly:
+        case PSS_Property::IEType::IE_T_ComboString:
+        case PSS_Property::IEType::IE_T_ComboStringReadOnly:
+        case PSS_Property::IEType::IE_T_ComboNumber:
+        case PSS_Property::IEType::IE_T_ComboNumberReadOnly:
+        case PSS_Property::IEType::IE_T_EditFont:
+        case PSS_Property::IEType::IE_T_EditFile:
+        case PSS_Property::IEType::IE_T_EditDirectory:
+        case PSS_Property::IEType::IE_T_EditMultiFiles:
+        case PSS_Property::IEType::IE_T_EditMultiDirectories:
+        case PSS_Property::IEType::IE_T_EditExtended:
+        case PSS_Property::IEType::IE_T_EditExtendedReadOnly:
             break;
     }
 

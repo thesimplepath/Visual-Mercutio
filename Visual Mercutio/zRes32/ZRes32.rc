@@ -28,32 +28,30 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_CANTCONTINUE DIALOG  0, 0, 267, 221
+IDD_CANTCONTINUE DIALOGEX  0, 0, 267, 190
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
     WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
 CAPTION "Attention !!!"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    PUSHBUTTON      "Fermer",IDOK,90,204,50,14
+    PUSHBUTTON      "Fermer",IDOK,54,170,50,14
     LTEXT           "La période d'essai est maintenant dépassée. Vous ne pouvez plus utiliser cette version d'évaluation.",
                     IDC_STATIC,6,4,246,16
-    LTEXT           "envoyant un email à info@processsoft.com",IDC_STATIC,24,
-                    108,155,9
-    LTEXT           "téléphonant au numéro 0878 800 381",IDC_STATIC,24,128,
-                    157,9
-    GROUPBOX        "",IDC_STATIC,4,77,252,67
-    PUSHBUTTON      "",1005,13,110,6,5,WS_DISABLED
-    PUSHBUTTON      "",1006,13,130,6,5,WS_DISABLED
+    LTEXT           "Veuillez contacter ProcessSoft par email à info@processsoft.com",IDC_STATIC,24,
+                    110,155,9
+    GROUPBOX        "",IDC_STATIC,4,79,252,50
+    PUSHBUTTON      "",1005,13,112,6,6,WS_DISABLED
     LTEXT           "Vous pourrez à nouveau utiliser vos fichiers créés en acquérant la version finale.",
-                    IDC_STATIC,6,177,246,18
-    DEFPUSHBUTTON   "Déverrouiller",IDDELOCK,195,204,50,14
+                    IDC_STATIC,6,138,246,18
+    DEFPUSHBUTTON   "Déverrouiller",IDDELOCK,163,168,50,14
     LTEXT           "Si vous avez reçu le numéro du produit, veuillez clicker sur Déverrouiller.",
-                    IDC_STATIC,6,31,246,13
+                    IDC_STATIC,6,29,246,13
     LTEXT           "Si vous n'avez pas le numéro du produit et que vous possédez une version d'évaluation, alors vous pouvez acquérir la version finale en:",
-                    IDC_STATIC,6,49,246,19
+                    IDC_STATIC,6,51,246,19
     LTEXT           "allant sur le site http://www.processsoft.com",
-                    IDC_STATIC,25,88,220,9
-    PUSHBUTTON      "",1007,14,90,6,5,WS_DISABLED
+                    IDC_STATIC,24,90,220,9
+    PUSHBUTTON      "",1007,14,92,6,6,WS_DISABLED
 END
 
 IDD_CODE2INSTALL DIALOG  0, 0, 235, 105
@@ -90,6 +88,22 @@ BEGIN
     LTEXT           "Vous pouvez utiliser cette version d'évaluation uniquement dans les limites fixées pour la période d'évaluation.",
                     IDC_STATIC,4,140,223,23
 END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CANTCONTINUE, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 185
+    END
+END
+#endif    // APSTUDIO_INVOKED
 
 #endif    // Anglais (États-Unis) resources
 /////////////////////////////////////////////////////////////////////////////

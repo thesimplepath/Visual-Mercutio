@@ -41,28 +41,28 @@ PSS_UserGroupTreeCtrl::ITreeData::ITreeData() :
     CObject(),
     m_pGroup(NULL),
     m_pRole(NULL),
-    m_Type(IE_DT_Unknown)
+    m_Type(IEDataType::IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_UserGroupTreeCtrl::ITreeData::ITreeData(PSS_UserGroupEntity* pGroup) :
     CObject(),
     m_pGroup(pGroup),
     m_pRole(NULL),
-    m_Type(IE_DT_Group)
+    m_Type(IEDataType::IE_DT_Group)
 {}
 //---------------------------------------------------------------------------
 PSS_UserGroupTreeCtrl::ITreeData::ITreeData(PSS_UserRoleEntity* pRole) :
     CObject(),
     m_pGroup(NULL),
     m_pRole(pRole),
-    m_Type(IE_DT_Role)
+    m_Type(IEDataType::IE_DT_Role)
 {}
 //---------------------------------------------------------------------------
 PSS_UserGroupTreeCtrl::ITreeData::ITreeData(const CString& str) :
     CObject(),
     m_pGroup(NULL),
     m_pRole(NULL),
-    m_Type(IE_DT_String),
+    m_Type(IEDataType::IE_DT_String),
     m_Str(str)
 {}
 //---------------------------------------------------------------------------
@@ -77,8 +77,6 @@ BEGIN_MESSAGE_MAP(PSS_UserGroupTreeCtrl, PSS_TreeCtrl)
     ON_WM_LBUTTONDBLCLK()
     ON_NOTIFY_REFLECT(TVN_ITEMEXPANDED, OnItemExpanded)
     ON_WM_CONTEXTMENU()
-    ON_COMMAND(ID_COLLAPSE_BRANCH, OnCollapseBranch)
-    ON_COMMAND(ID_EXPAND_BRANCH, OnExpandBranch)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -590,6 +588,16 @@ bool PSS_UserGroupTreeCtrl::CanUgpProperties()
     return (GetSelectedEntity() || IsRootSelected());
 }
 //---------------------------------------------------------------------------
+void PSS_UserGroupTreeCtrl::OnExpandBranch()
+{
+    ExpandBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_UserGroupTreeCtrl::OnCollapseBranch()
+{
+    CollapseBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
 void PSS_UserGroupTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     PSS_UserGroupObserverMsg* pObserverMsg = dynamic_cast<PSS_UserGroupObserverMsg*>(pMsg);
@@ -699,16 +707,6 @@ void PSS_UserGroupTreeCtrl::OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult)
     *pLResult                = TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_UserGroupTreeCtrl::OnCollapseBranch()
-{
-    CollapseBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
-void PSS_UserGroupTreeCtrl::OnExpandBranch()
-{
-    ExpandBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
 CObject* PSS_UserGroupTreeCtrl::GetDragObject(HTREEITEM dragItem)
 {
     ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(dragItem));
@@ -716,8 +714,8 @@ CObject* PSS_UserGroupTreeCtrl::GetDragObject(HTREEITEM dragItem)
     if (pObj)
         switch (pObj->m_Type)
         {
-            case ITreeData::IE_DT_Group: return pObj->m_pGroup;
-            case ITreeData::IE_DT_Role:  return pObj->m_pRole;
+            case ITreeData::IEDataType::IE_DT_Group: return pObj->m_pGroup;
+            case ITreeData::IEDataType::IE_DT_Role:  return pObj->m_pRole;
         }
 
     return NULL;
@@ -755,8 +753,8 @@ void PSS_UserGroupTreeCtrl::LoadTree()
 
     ProcessGroup(m_pUserGroupRoot, m_hUserGroupRoot);
 
-    // expand the root
-    ExpandRoot(TRUE);
+    // collapse the root
+    ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_UserGroupTreeCtrl::DestroyTree()
@@ -906,8 +904,8 @@ PSS_UserEntity* PSS_UserGroupTreeCtrl::GetEntity(HTREEITEM hItem)
         if (pObj)
             switch (pObj->m_Type)
             {
-                case ITreeData::IE_DT_Group: return pObj->m_pGroup;
-                case ITreeData::IE_DT_Role:  return pObj->m_pRole;
+                case ITreeData::IEDataType::IE_DT_Group: return pObj->m_pGroup;
+                case ITreeData::IEDataType::IE_DT_Role:  return pObj->m_pRole;
             }
     }
 
@@ -920,7 +918,7 @@ PSS_UserGroupEntity* PSS_UserGroupTreeCtrl::GetGroup(HTREEITEM hItem)
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_Group)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Group)
             return pObj->m_pGroup;
     }
 
@@ -933,7 +931,7 @@ PSS_UserRoleEntity* PSS_UserGroupTreeCtrl::GetRole(HTREEITEM hItem)
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_Role)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Role)
             return pObj->m_pRole;
     }
 
@@ -977,7 +975,7 @@ PSS_UserGroupTreeCtrl::ITreeData* PSS_UserGroupTreeCtrl::FindElementFromDataSet(
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_Group && pElement->m_pGroup == pGroup)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_Group && pElement->m_pGroup == pGroup)
             return pElement;
 
     return NULL;
@@ -988,7 +986,7 @@ PSS_UserGroupTreeCtrl::ITreeData* PSS_UserGroupTreeCtrl::FindElementFromDataSet(
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_Role && pElement->m_pRole == pRole)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_Role && pElement->m_pRole == pRole)
             return pElement;
 
     return NULL;
@@ -999,7 +997,7 @@ PSS_UserGroupTreeCtrl::ITreeData* PSS_UserGroupTreeCtrl::FindElementFromDataSet(
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_String && pElement->m_Str == str)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_String && pElement->m_Str == str)
             return pElement;
 
     return NULL;

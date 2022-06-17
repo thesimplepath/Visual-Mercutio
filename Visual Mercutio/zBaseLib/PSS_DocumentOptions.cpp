@@ -15,11 +15,11 @@
  // PSS_DocumentOptions
  //---------------------------------------------------------------------------
 PSS_DocumentOptions::PSS_DocumentOptions() :
-    m_ShowHiddenField(E_OT_Application),
-    m_ShowEmptyLine(E_OT_Application),
-    m_EmptyStyle(E_LT_Dash),
-    m_AutomaticSynchronizeFileName(E_ST_AutomaticName),
-    m_SynchronizationSeparator(E_SS_Automatic),
+    m_ShowHiddenField(EOptionType::E_OT_Application),
+    m_ShowEmptyLine(EOptionType::E_OT_Application),
+    m_EmptyStyle(ELineType::E_LT_Dash),
+    m_AutomaticSynchronizeFileName(ESynchronizationFileType::E_ST_AutomaticName),
+    m_SynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Automatic),
     m_SynchronizeTimeSequence(5),
     m_IsSynchronizeExchangeFeedFile(FALSE),
     m_SynchronizationHeader(FALSE),
@@ -27,11 +27,11 @@ PSS_DocumentOptions::PSS_DocumentOptions() :
 {}
 //---------------------------------------------------------------------------
 PSS_DocumentOptions::PSS_DocumentOptions(const PSS_DocumentOptions& other) :
-    m_ShowHiddenField(E_OT_Application),
-    m_ShowEmptyLine(E_OT_Application),
-    m_EmptyStyle(E_LT_Dash),
-    m_AutomaticSynchronizeFileName(E_ST_AutomaticName),
-    m_SynchronizationSeparator(E_SS_Automatic),
+    m_ShowHiddenField(EOptionType::E_OT_Application),
+    m_ShowEmptyLine(EOptionType::E_OT_Application),
+    m_EmptyStyle(ELineType::E_LT_Dash),
+    m_AutomaticSynchronizeFileName(ESynchronizationFileType::E_ST_AutomaticName),
+    m_SynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Automatic),
     m_SynchronizeTimeSequence(5),
     m_IsSynchronizeExchangeFeedFile(FALSE),
     m_SynchronizationHeader(FALSE),
@@ -121,7 +121,7 @@ CArchive& operator << (CArchive& ar, const PSS_DocumentOptions& docOptions)
 CString PSS_DocumentOptions::BuildSynchronizationFileName(const CString& documentFileName)
 {
     // if the document option specifies a document file name, assigns it
-    if (GetAutomaticSynchronizeFileName() == E_ST_FileNameSpecified)
+    if (GetAutomaticSynchronizeFileName() == ESynchronizationFileType::E_ST_FileNameSpecified)
         return m_SynchronizeFileName;
 
     // if the file name does not exists, do nothing
@@ -142,7 +142,7 @@ CString PSS_DocumentOptions::BuildSynchronizationFileName(const CString& documen
     CString fileName;
 
     // if the document option specifies a folder, create the file name with the folder
-    if (m_AutomaticSynchronizeFileName == E_ST_FolderSpecified)
+    if (m_AutomaticSynchronizeFileName == ESynchronizationFileType::E_ST_FolderSpecified)
     {
         // in case where it is a folder, the GetSynchronizeFileName returns a folder
         fileName  = m_SynchronizeFileName;

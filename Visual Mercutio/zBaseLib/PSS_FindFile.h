@@ -21,10 +21,12 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // std
+#include <io.h>
+
+// windows
 #include <winver.h>
 #include <dos.h>
 #include <direct.h>
-#include <io.h>
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -116,7 +118,7 @@ class PSS_FindFile
         *@param pFileInfo - file info
         *@return TRUE if a sub-directory was found, otherwise FALSE
         */
-        BOOL NextSubDir(long hFile, struct ::_finddata_t* pFileInfo);
+        BOOL NextSubDir(std::intptr_t hFile, struct ::_finddata_t* pFileInfo);
 
         /**
         * Searches for a file in a sub-directory

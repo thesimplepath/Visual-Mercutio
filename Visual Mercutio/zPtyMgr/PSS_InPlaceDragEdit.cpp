@@ -13,6 +13,7 @@
 #include "zBaseLib\PSS_StringFormatter.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
+#include "zBaseLib\PSS_CharFilters.h"
 #include "PSS_PropertyListCtrl.h"
 
 #ifdef _DEBUG
@@ -119,17 +120,17 @@ void PSS_InPlaceDragEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case PSS_InPlaceEdit::IE_T_String:
+        case PSS_InPlaceEdit::IEType::IE_T_String:
             // set back the initial value
             SetEditText(m_StrInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Double:
+        case PSS_InPlaceEdit::IEType::IE_T_Double:
             // set back the initial double value
             SetEditText(m_DoubleInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Float:
+        case PSS_InPlaceEdit::IEType::IE_T_Float:
             // set back the initial float value
             SetEditText(m_FloatInitialValue);
             break;
@@ -157,11 +158,11 @@ void PSS_InPlaceDragEdit::SaveValue()
 
                 switch (GetEditType())
                 {
-                    case PSS_InPlaceEdit::IE_T_String:
+                    case PSS_InPlaceEdit::IEType::IE_T_String:
                         // do nothing for string
                         break;
 
-                    case PSS_InPlaceEdit::IE_T_Double:
+                    case PSS_InPlaceEdit::IEType::IE_T_Double:
                     {
                         double value;
                         conversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(proposedValue,
@@ -175,7 +176,7 @@ void PSS_InPlaceDragEdit::SaveValue()
                         break;
                     }
 
-                    case PSS_InPlaceEdit::IE_T_Float:
+                    case PSS_InPlaceEdit::IEType::IE_T_Float:
                     {
                         float value;
 
@@ -194,7 +195,7 @@ void PSS_InPlaceDragEdit::SaveValue()
                 // if the conversion succeeded and the value was checked, save the edit value
                 if (conversionCorrect && pParent->CheckCurrentPropertyData(m_pItem, proposedValue))
                 {
-                    // notify that the property ittem changed
+                    // notify that the property item changed
                     m_pItem->SetHasChanged();
 
                     // notify observers about the changed value
@@ -212,6 +213,13 @@ void PSS_InPlaceDragEdit::SaveValue()
             SetEditText(proposedValue);
         }
     }
+}
+//---------------------------------------------------------------------------
+void PSS_InPlaceDragEdit::OnPropertieValueChanged()
+{
+    SetHasChanged(true);
+
+    PSS_PropertyEditControl::OnPropertieValueChanged();
 }
 //---------------------------------------------------------------------------
 void PSS_InPlaceDragEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
@@ -451,14 +459,7 @@ void PSS_InPlacePropItemNumberEdit::OnUpdate(PSS_Subject* pSubject, PSS_Observer
 void PSS_InPlacePropItemNumberEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
     // check the char validity
-    if (!isdigit(nChar) &&
-        nChar != '.'    &&
-        nChar != '-'    &&
-        nChar != '+'    &&
-        nChar != '\''   &&
-        nChar != ','    &&
-        nChar != '%'    &&
-        nChar != 0x08)
+    if (!PSS_CharFilters::FilterInPlacePropItemNumberEdit(nChar))
         return;
 
     // call the base function

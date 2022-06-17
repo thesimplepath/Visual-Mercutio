@@ -42,9 +42,6 @@
     <ClCompile Include="PSS_CommandLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_ColorBtn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_DocumentData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -597,6 +594,27 @@
     <ClCompile Include="PSS_MathHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ColorBtn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CharFilters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PropertyEditControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_BasicLabelComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_BasicTextComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FilteredDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FilteredDialogBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -644,9 +662,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CommandLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_ColorBtn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DocumentData.h">
@@ -1202,6 +1217,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_MathHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ColorBtn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CharFilters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PropertyEditControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BasicLabelComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BasicTextComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FilteredDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FilteredDialogBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

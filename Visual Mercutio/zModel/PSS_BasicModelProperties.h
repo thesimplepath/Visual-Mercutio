@@ -65,9 +65,9 @@ class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
     public:
         /**
         * Change type
-        *@note These items may be combinated
+        *@note These items may be combined
         */
-        enum IEChangeType
+        enum class IEChangeType
         {
             IE_CT_Model_Name        = 0x0001,
             IE_CT_Model_Description = 0x0002,
@@ -125,7 +125,7 @@ class AFX_EXT_CLASS PSS_BasicModelProperties : public CODIntProperty,
         *@param pProp - the property set to merge with
         *@param changeFlags - the change flags to apply
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeType = IE_CT_All);
+        virtual void Merge(CODProperty* pProp, DWORD changeType = (DWORD)IEChangeType::IE_CT_All);
 
         /**
         * Gets the model name

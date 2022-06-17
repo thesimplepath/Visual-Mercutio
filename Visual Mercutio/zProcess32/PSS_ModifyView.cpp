@@ -135,7 +135,7 @@ END_MESSAGE_MAP()
 PSS_ModifyView::PSS_ModifyView() :
     PSS_ReadView()
 {
-    m_ViewType = PSS_View::IE_VT_FormModify;
+    m_ViewType = PSS_View::IEType::IE_VT_FormModify;
 
     m_ToolTipNoteText.LoadString(IDS_TOOLTIPNOTETEXT);
     m_ToolTipTypeObject.LoadString(IDS_TOOLTIPOBJECTTYPE);
@@ -638,7 +638,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
                 if (PSS_App::GetApp()->GetFieldRepository())
                 {
-                    PSS_ObjectDefinition* pObjectDefinition = 
+                    PSS_ObjectDefinition* pObjectDefinition =
                             PSS_App::GetApp()->GetFieldRepository()->FindField(pObject->GetObjectName());
 
                     if (pObjectDefinition && !pObjectDefinition->GetHelpUserDescription().IsEmpty())
@@ -1884,7 +1884,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             return;
 
         PSS_DocumentReadWrite* pDoc = dynamic_cast<PSS_DocumentReadWrite*>(pDocument);
-        
+
         if (!pDoc)
             return;
 

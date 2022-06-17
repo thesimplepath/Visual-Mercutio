@@ -61,7 +61,7 @@ void PSS_DecisionListPropertiesBP::Merge(CODProperty* pProp, DWORD changeFlags)
     PSS_DecisionListPropertiesBP* pProcessProps = dynamic_cast<PSS_DecisionListPropertiesBP*>(pProp);
 
     if (pProcessProps)
-        if (changeFlags & IE_CT_Change_Decision_List)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Decision_List)
             m_DecisionList = pProcessProps->GetDecisionList();
 }
 //---------------------------------------------------------------------------

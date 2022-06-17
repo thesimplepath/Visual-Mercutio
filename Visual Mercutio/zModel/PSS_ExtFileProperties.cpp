@@ -65,16 +65,16 @@ void PSS_ExtFileProperties::Merge(PSS_ExtFileProperties* pProp, DWORD changeFlag
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_File_Title)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_File_Title)
             m_FileTitle = pProp->GetFileTitle();
 
-        if (changeFlags & IE_CT_File_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_File_Name)
             m_FileName = pProp->GetFileName();
 
-        if (changeFlags & IE_CT_Insertion_Type)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Insertion_Type)
             m_InsertionType = pProp->GetInsertionType();
 
-        if (changeFlags & IE_CT_Activation_Type)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Activation_Type)
             m_ActivationType = pProp->GetActivationType();
     }
 }

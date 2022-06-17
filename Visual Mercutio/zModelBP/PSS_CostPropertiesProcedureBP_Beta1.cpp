@@ -70,13 +70,13 @@ void PSS_CostPropertiesProcedureBP_Beta1::Merge(CODProperty* pProp, DWORD change
 
     if (pOrientationProp)
     {
-        if (changeFlags & IE_CT_Change_Cost_Multiplier)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Multiplier)
             m_Multiplier = pOrientationProp->GetMultiplier();
 
-        if (changeFlags & IE_CT_Change_Cost_Processing_Time)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Processing_Time)
             m_ProcessingTime = pOrientationProp->GetProcessingTime();
 
-        if (changeFlags & IE_CT_Change_Cost_Unitary_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Unitary_Cost)
             m_UnitaryCost = pOrientationProp->GetUnitaryCost();
     }
 }

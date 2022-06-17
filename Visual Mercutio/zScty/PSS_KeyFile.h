@@ -62,9 +62,10 @@ class AFX_EXT_CLASS PSS_KeyEntity
         virtual inline void SetEntity(const CString& entity);
 
         /**
-        * Crypts the entity
+        * Encrypts the entity
+        *@note This function may also be used to decrypt an encrypted entity
         */
-        virtual void CryptEntity();
+        virtual void EncryptEntity();
 
     private:
         CString m_Entity;

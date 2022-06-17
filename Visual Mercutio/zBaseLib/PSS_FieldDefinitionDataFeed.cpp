@@ -90,9 +90,9 @@ BOOL PSS_FieldDefinitionDataFeed::ProcessLine(const CString& line)
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      tokenizer.SetSeparator(',');  break;
-        case E_SS_SemiColumn: tokenizer.SetSeparator(';');  break;
-        default:              tokenizer.SetSeparator('\t'); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     tokenizer.SetSeparator(',');  break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: tokenizer.SetSeparator(';');  break;
+        default:                                            tokenizer.SetSeparator('\t'); break;
     }
 
     // extract the key
@@ -130,9 +130,9 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      tokenizer.SetSeparator(',');  break;
-        case E_SS_SemiColumn: tokenizer.SetSeparator(';');  break;
-        default:              tokenizer.SetSeparator('\t'); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     tokenizer.SetSeparator(',');  break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: tokenizer.SetSeparator(';');  break;
+        default:                                            tokenizer.SetSeparator('\t'); break;
     }
 
     CString line;
@@ -172,7 +172,7 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
     line += "\r\n";
     tokenizer.ClearAllTokens();
 
-    // add the class name 
+    // add the class name
     tokenizer.AddToken(g_FieldClassNameKey);
     tokenizer.AddToken(pObjectDefinition->GetClassName());
     line += tokenizer.GetString();

@@ -66,9 +66,9 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
     public:
         /**
         * Change type
-        *@note These items may be combinated
+        *@note These items may be combined
         */
-        enum IEChangeType
+        enum class IEChangeType
         {
             IE_CT_Change_Unit_Name = 0x0001,
             IE_CT_Change_Unit_Cost = 0x0002,
@@ -127,7 +127,7 @@ class AFX_EXT_CLASS PSS_UnitPropertiesBP_Beta1 : public CODIntProperty,
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(CODProperty* pProp, DWORD changeFlags = (DWORD)IEChangeType::IE_CT_All);
 
         /**
         * Checks if the identifier is in the property identifier range

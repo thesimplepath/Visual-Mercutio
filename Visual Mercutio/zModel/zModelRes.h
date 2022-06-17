@@ -377,24 +377,35 @@
 #define IDC_PRESTATION_NAME                    15212
 #define IDS_CANNOTCOPYSTYLE                    15212
 #define IDC_LBL_PRESTATION_DESCRIPTION         15213
+#define IDS_MODELGENHTML_93                    15213
 #define IDC_PRESTATION_DESCRIPTION             15214
+#define IDS_MODELGENHTML_94                    15214
 #define IDC_PRESTATIONS_TREE                   15215
+#define IDS_MODELGENHTML_95                    15215
 #define IDD_RENAME_MODELPAGE_IN_TREE           15216
 #define IDC_RULES_TREE                         15216
+#define IDS_MODELGENHTML_96                    15216
 #define IDC_RULE_NAME                          15217
+#define IDS_MODELGENHTML_97                    15217
 #define IDC_RULE_DESCRIPTION                   15218
+#define IDS_MODELGENHTML_98                    15218
 #define IDD_RULE_SELECTION                     15219
+#define IDS_MODELGENHTML_100                   15219
 #define IDS_WARNING_CUT_SELECTION              15220
 #define IDD_RULES_INFO                         15220
 #define IDS_WARNING_COPY_SELECTION             15221
 #define IDS_RULE_ROOT_T                        15222
 #define IDS_ERR_MISSING_RULESDEF               15223
 #define ID_PR_PROPRULE                         15224
+#define IDS_MODELGENHTML_99                    15224
 #define ID_PR_ADDRULE                          15225
+#define IDS_MODELGENHTML_101                   15225
 #define ID_PR_RENAMERULE                       15226
 #define ID_PR_DELRULE                          15227
 #define IDS_RULES_ASSIGNED                     15228
+#define ID_TOPLOGICALSYSTEM_TEST               15228
 #define IDS_AL_RULESREASSIGN_START             15229
+#define ID_LOGICALSYSTEM_TEST                  15229
 #define IDS_AL_RULESCANNOTREASSIGN             15230
 #define IDS_AL_RULESREASSIGN_STOP              15231
 #define IDS_ERR_RULESDEFXML_DIFFMODEL          15232
@@ -405,7 +416,7 @@
 #ifdef APSTUDIO_INVOKED
     #ifndef APSTUDIO_READONLY_SYMBOLS
         #define _APS_NEXT_RESOURCE_VALUE 15222
-        #define _APS_NEXT_COMMAND_VALUE  15228
+        #define _APS_NEXT_COMMAND_VALUE  15232
         #define _APS_NEXT_CONTROL_VALUE  15219
         #define _APS_NEXT_SYMED_VALUE    15205
     #endif

@@ -110,15 +110,22 @@
 #define IDS_INSERTVALUE_INTELLI        10064
 #define IDB_PLUSMINUS                  10065
 #define IDC_PORTRAIT                   10065
+#define ID_PROPERTIES_CANCEL           10065
 #define IDD_DIALOG1                    10066
 #define IDD_WZ_DOCUMENT_PAGESETUP      10066
 #define IDC_LANDSCAPE                  10066
 #define IDB_IL_PRESTATIONS             10067
 #define IDC_CHECK4                     10068
 #define IDC_GP_ORIENTATION             10069
+#define ID_PROPERTIES_DELETE           10069
 #define IDC_GP_PAPERSIZE               10070
+#define IDR_PROPERTIES_MENU            10070
+#define IDR_PROPERTIES_POPUP           10070
+#define ID_PROPERTIES_CUT              10070
 #define IDC_GP_BKGND                   10071
+#define ID_PROPERTIES_COPY             10071
 #define IDC_LBL_FILENAME               10072
+#define ID_PROPERTIES_PASTE            10072
 #define IDC_EDIT_FILENAME              10073
 #define IDC_LBL_VISUALIZE              10074
 #define IDC_PB_VISUALIZE               10075
@@ -135,8 +142,8 @@
 // next default values for new objects
 #ifdef APSTUDIO_INVOKED
     #ifndef APSTUDIO_READONLY_SYMBOLS
-        #define _APS_NEXT_RESOURCE_VALUE 10070
-        #define _APS_NEXT_COMMAND_VALUE  10065
+        #define _APS_NEXT_RESOURCE_VALUE 10071
+        #define _APS_NEXT_COMMAND_VALUE  10073
         #define _APS_NEXT_CONTROL_VALUE  10078
         #define _APS_NEXT_SYMED_VALUE    10065
     #endif

@@ -22,8 +22,10 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_RulesInfoDlg, CDialog)
+BEGIN_MESSAGE_MAP(PSS_RulesInfoDlg, PSS_FilteredDialogBox)
     //{{AFX_MSG_MAP(PSS_RulesInfoDlg)
+    ON_EN_SETFOCUS(IDC_RULE_NAME, OnEnSetfocusRuleName)
+    ON_EN_KILLFOCUS(IDC_RULE_NAME, OnEnKillfocusRuleName)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -35,7 +37,7 @@ PSS_RulesInfoDlg::PSS_RulesInfoDlg(UINT                    titleID,
                                    const CString&          description,
                                    bool                    modifyMode,
                                    CWnd*                   pParent) :
-    CDialog(PSS_RulesInfoDlg::IDD, pParent),
+    PSS_FilteredDialogBox(PSS_RulesInfoDlg::IDD, pParent),
     m_pRule(pLogicalRule),
     m_Name(name),
     m_Description(description),
@@ -58,7 +60,7 @@ void PSS_RulesInfoDlg::DoDataExchange(CDataExchange* pDX)
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-BOOL PSS_RulesInfoDlg::OnInitDialog()
+afx_msg BOOL PSS_RulesInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
@@ -77,7 +79,17 @@ BOOL PSS_RulesInfoDlg::OnInitDialog()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_RulesInfoDlg::OnOK()
+afx_msg void PSS_RulesInfoDlg::OnEnSetfocusRuleName()
+{
+    EnableCharFilter(false);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_RulesInfoDlg::OnEnKillfocusRuleName()
+{
+    EnableCharFilter(false);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_RulesInfoDlg::OnOK()
 {
     UpdateData(TRUE);
 

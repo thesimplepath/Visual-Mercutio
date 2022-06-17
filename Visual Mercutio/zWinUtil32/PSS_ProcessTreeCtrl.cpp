@@ -123,7 +123,7 @@ void PSS_ProcessTreeCtrl::AddProcess(PSS_BaseActivity* pBaseActivity, HTREEITEM 
 
         if (pActivity->HasActivities())
         {
-            if (pActivity->GetRunMode() == PSS_BaseActivity::IE_RM_Sequence)
+            if (pActivity->GetRunMode() == PSS_BaseActivity::IERunMode::IE_RM_Sequence)
                 AddProcess(pActivity, hParentTreeItem, 0);
             else
                 AddProcess(pActivity, hParentTreeItem, 2);

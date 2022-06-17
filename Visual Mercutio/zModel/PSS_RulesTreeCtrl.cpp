@@ -38,19 +38,19 @@ const int g_RulesTreeItem     = 1;
 PSS_RulesTreeCtrl::ITreeData::ITreeData() :
     CObject(),
     m_pRule(NULL),
-    m_Type(IE_DT_Unknown)
+    m_Type(IEDataType::IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_RulesTreeCtrl::ITreeData::ITreeData(PSS_LogicalRulesEntity* pLogicalRule) :
     CObject(),
     m_pRule(pLogicalRule),
-    m_Type(IE_DT_Rule)
+    m_Type(IEDataType::IE_DT_Rule)
 {}
 //---------------------------------------------------------------------------
 PSS_RulesTreeCtrl::ITreeData::ITreeData(const CString& str) :
     CObject(),
     m_pRule(NULL),
-    m_Type(IE_DT_String),
+    m_Type(IEDataType::IE_DT_String),
     m_Str(str)
 {}
 //---------------------------------------------------------------------------
@@ -65,8 +65,6 @@ BEGIN_MESSAGE_MAP(PSS_RulesTreeCtrl, PSS_TreeCtrl)
     ON_WM_LBUTTONDBLCLK()
     ON_NOTIFY_REFLECT(TVN_ITEMEXPANDED, OnItemExpanded)
     ON_WM_CONTEXTMENU()
-    ON_COMMAND(ID_COLLAPSE_BRANCH, OnCollapseBranch)
-    ON_COMMAND(ID_EXPAND_BRANCH, OnExpandBranch)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -352,6 +350,16 @@ bool PSS_RulesTreeCtrl::CanRuleProperties()
     return (GetSelectedRuleEntity() || IsRootSelected());
 }
 //---------------------------------------------------------------------------
+void PSS_RulesTreeCtrl::OnExpandBranch()
+{
+    ExpandBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_RulesTreeCtrl::OnCollapseBranch()
+{
+    CollapseBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
 void PSS_RulesTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     PSS_LogicalRulesObserverMsg* pRuleMsg = dynamic_cast<PSS_LogicalRulesObserverMsg*>(pMsg);
@@ -461,21 +469,11 @@ void PSS_RulesTreeCtrl::OnItemExpanded(LPNMHDR pnmhdr, LRESULT* pLResult)
     *pLResult                = TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_RulesTreeCtrl::OnCollapseBranch()
-{
-    CollapseBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
-void PSS_RulesTreeCtrl::OnExpandBranch()
-{
-    ExpandBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
 CObject* PSS_RulesTreeCtrl::GetDragObject(HTREEITEM dragItem)
 {
     ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(dragItem));
 
-    if (pObj && pObj->m_Type == ITreeData::IE_DT_Rule)
+    if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Rule)
         return pObj->m_pRule;
 
     return NULL;
@@ -512,8 +510,8 @@ void PSS_RulesTreeCtrl::LoadTree()
 
     ProcessLogicalRulesGroup(m_pLogicalRuleRoot, m_hUserGroupRoot);
 
-    // expand the root
-    ExpandRoot(TRUE);
+    // collapse the root
+    ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_RulesTreeCtrl::DestroyTree()
@@ -601,7 +599,7 @@ PSS_RulesEntity* PSS_RulesTreeCtrl::GetRuleEntity(HTREEITEM hItem)
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_Rule)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Rule)
             return pObj->m_pRule;
     }
 
@@ -614,7 +612,7 @@ PSS_LogicalRulesEntity* PSS_RulesTreeCtrl::GetLogicalRule(HTREEITEM hItem)
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_Rule)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Rule)
             return pObj->m_pRule;
     }
 
@@ -647,7 +645,7 @@ PSS_RulesTreeCtrl::ITreeData* PSS_RulesTreeCtrl::FindElementFromDataSet(PSS_Logi
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_Rule && pElement->m_pRule == pLogicalRule)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_Rule && pElement->m_pRule == pLogicalRule)
             return pElement;
 
     return NULL;
@@ -658,7 +656,7 @@ PSS_RulesTreeCtrl::ITreeData* PSS_RulesTreeCtrl::FindElementFromDataSet(const CS
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_String && pElement->m_Str == str)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_String && pElement->m_Str == str)
             return pElement;
 
     return NULL;

@@ -69,10 +69,10 @@ void PSS_UnitPropertiesBP_Beta1::Merge(CODProperty* pProp, DWORD changeFlags)
 
     if (pProcessProps)
     {
-        if (changeFlags & IE_CT_Change_Unit_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Unit_Name)
             m_UnitName = pProcessProps->GetUnitName();
 
-        if (changeFlags & IE_CT_Change_Unit_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Unit_Cost)
             m_UnitCost = pProcessProps->GetUnitCost();
 
         // todo -cFeature -oJean: do implement the missing unit GUID property

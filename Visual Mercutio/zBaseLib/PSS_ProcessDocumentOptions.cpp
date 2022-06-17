@@ -12,16 +12,16 @@
 // PSS_ProcessDocumentOptions
 //---------------------------------------------------------------------------
 PSS_ProcessDocumentOptions::PSS_ProcessDocumentOptions() :
-    m_AutomaticSynchronizeFileName(E_ST_AutomaticName),
-    m_SynchronizationSeparator(E_SS_Automatic),
+    m_AutomaticSynchronizeFileName(ESynchronizationFileType::E_ST_AutomaticName),
+    m_SynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Automatic),
     m_SynchronizeTimeSequence(5),
     m_IsSynchronizeExchangeFeedFile(FALSE),
     m_SynchronizationHeader(FALSE)
 {}
 //---------------------------------------------------------------------------
 PSS_ProcessDocumentOptions::PSS_ProcessDocumentOptions(const PSS_ProcessDocumentOptions& other) :
-    m_AutomaticSynchronizeFileName(E_ST_AutomaticName),
-    m_SynchronizationSeparator(E_SS_Automatic),
+    m_AutomaticSynchronizeFileName(ESynchronizationFileType::E_ST_AutomaticName),
+    m_SynchronizationSeparator(ESynchronizationSeparatorType::E_SS_Automatic),
     m_SynchronizeTimeSequence(5),
     m_IsSynchronizeExchangeFeedFile(FALSE),
     m_SynchronizationHeader(FALSE)
@@ -82,7 +82,7 @@ CArchive& operator << (CArchive& ar, const PSS_ProcessDocumentOptions& docOption
 CString PSS_ProcessDocumentOptions::BuildSynchronizationFileName(const CString& documentFileName)
 {
     // if the document option specifies a document file name, assign it
-    if (GetAutomaticSynchronizeFileName() == E_ST_FileNameSpecified)
+    if (GetAutomaticSynchronizeFileName() == ESynchronizationFileType::E_ST_FileNameSpecified)
         return m_SynchronizeFileName;
 
     // if the file name does not exists, do nothing
@@ -101,7 +101,7 @@ CString PSS_ProcessDocumentOptions::BuildSynchronizationFileName(const CString& 
     CString fileName;
 
     // if the document option specifies a folder, use it to build the file name
-    if (GetAutomaticSynchronizeFileName() == E_ST_FolderSpecified)
+    if (GetAutomaticSynchronizeFileName() == ESynchronizationFileType::E_ST_FolderSpecified)
     {
         fileName  = m_SynchronizeFileName;
         fileName += "\\";

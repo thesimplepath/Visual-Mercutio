@@ -139,6 +139,11 @@ class AFX_EXT_CLASS PSS_InPlaceDragEdit : public PSS_DragEdit,
         virtual void SaveValue();
 
         /**
+        * Called when a value changed in a property
+        */
+        virtual void OnPropertieValueChanged();
+
+        /**
         * Called when the observer receives a message from the subject
         *@param pSubject - subject which sent the message
         *@param pMsg - the message

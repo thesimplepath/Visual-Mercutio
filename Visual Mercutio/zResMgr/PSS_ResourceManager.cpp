@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------
 PSS_ResourceInfoSet PSS_ResourceManager::m_TableResources;
 PSS_ResourceInfoSet PSS_ResourceManager::m_TableResourcesLoaded;
-ELanguage           PSS_ResourceManager::m_CurrentLanguage = E_LN_Unknown;
+ELanguage           PSS_ResourceManager::m_CurrentLanguage = ELanguage::E_LN_Unknown;
 //---------------------------------------------------------------------------
 // PSS_ModuleVersion
 //---------------------------------------------------------------------------
@@ -84,14 +84,14 @@ bool PSS_ResourceManager::LoadFromDirectory(const CString& dir)
             // get dll info
             if (moduleInfo.GetFileVersionInfo(fileArray.GetAt(i)))
             {
-                ELanguage language = E_LN_Unknown;
+                ELanguage language = ELanguage::E_LN_Unknown;
 
                 // search for language
                 switch (moduleInfo.GetLangID())
                 {
-                    case 0x040C: language = E_LN_French;  break;
-                    case 0x0409: language = E_LN_English; break;
-                    case 0x0407: language = E_LN_German;  break;
+                    case 0x040C: language = ELanguage::E_LN_French;  break;
+                    case 0x0409: language = ELanguage::E_LN_English; break;
+                    case 0x0407: language = ELanguage::E_LN_German;  break;
                 }
 
                 // add the resource dll to the table

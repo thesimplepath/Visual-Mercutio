@@ -21,10 +21,10 @@ IMPLEMENT_SERIAL(PSS_Border, CObject, g_DefVersion)
 // PSS_Border
 //---------------------------------------------------------------------------
 PSS_Border::PSS_Border() :
-    m_LeftType(E_LT_No),
-    m_TopType(E_LT_No),
-    m_RightType(E_LT_No),
-    m_BottomType(E_LT_No),
+    m_LeftType(ELineType::E_LT_No),
+    m_TopType(ELineType::E_LT_No),
+    m_RightType(ELineType::E_LT_No),
+    m_BottomType(ELineType::E_LT_No),
     m_LeftColor(defCOLOR_BLACK),
     m_TopColor(defCOLOR_BLACK),
     m_RightColor(defCOLOR_BLACK),
@@ -37,10 +37,10 @@ PSS_Border::PSS_Border() :
 {}
 //---------------------------------------------------------------------------
 PSS_Border::PSS_Border(const PSS_Border& other) :
-    m_LeftType(E_LT_No),
-    m_TopType(E_LT_No),
-    m_RightType(E_LT_No),
-    m_BottomType(E_LT_No),
+    m_LeftType(ELineType::E_LT_No),
+    m_TopType(ELineType::E_LT_No),
+    m_RightType(ELineType::E_LT_No),
+    m_BottomType(ELineType::E_LT_No),
     m_LeftColor(defCOLOR_BLACK),
     m_TopColor(defCOLOR_BLACK),
     m_RightColor(defCOLOR_BLACK),
@@ -161,7 +161,7 @@ void PSS_Border::Serialize(CArchive& ar)
         m_BottomType = ELineType(wValue);
 
         ar >> wValue;
-        m_Shadow = ELineType(wValue);
+        m_Shadow = (BOOL)ELineType(wValue);
 
         ar >> m_TopColor;
         ar >> m_BottomColor;
@@ -188,7 +188,7 @@ void PSS_Border::DrawBorderHorizontalLine(CDC* pDC, const CPoint& startPoint, co
 {
     switch (type)
     {
-        case E_LT_Dotted:
+        case ELineType::E_LT_Dotted:
             for (int i = startPoint.x; i < endPoint.x; i += 2)
             {
                 pDC->MoveTo(i,     startPoint.y);
@@ -197,7 +197,7 @@ void PSS_Border::DrawBorderHorizontalLine(CDC* pDC, const CPoint& startPoint, co
 
             break;
 
-        case E_LT_Small:
+        case ELineType::E_LT_Small:
             for (int i = startPoint.x; i < endPoint.x; i += 8)
             {
                 pDC->MoveTo(i,     startPoint.y);
@@ -206,12 +206,12 @@ void PSS_Border::DrawBorderHorizontalLine(CDC* pDC, const CPoint& startPoint, co
 
             break;
 
-        case E_LT_Solid:
+        case ELineType::E_LT_Solid:
             pDC->MoveTo(startPoint.x, startPoint.y);
             pDC->LineTo(endPoint.x,   endPoint.y);
             break;
 
-        case E_LT_Dash:
+        case ELineType::E_LT_Dash:
             for (int i = startPoint.x; i < endPoint.x; i += 4)
             {
                 pDC->MoveTo(i,     startPoint.y);
@@ -228,7 +228,7 @@ void PSS_Border::DrawBorderVerticalLine(CDC* pDC, const CPoint& startPoint, cons
 {
     switch (type)
     {
-        case E_LT_Dotted:
+        case ELineType::E_LT_Dotted:
             for (int i = startPoint.y; i < endPoint.y; i += 2)
             {
                 pDC->MoveTo(startPoint.x, i);
@@ -237,7 +237,7 @@ void PSS_Border::DrawBorderVerticalLine(CDC* pDC, const CPoint& startPoint, cons
 
             break;
 
-        case E_LT_Small:
+        case ELineType::E_LT_Small:
             for (int i = startPoint.y; i < endPoint.y; i += 8)
             {
                 pDC->MoveTo(startPoint.x, i);
@@ -246,12 +246,12 @@ void PSS_Border::DrawBorderVerticalLine(CDC* pDC, const CPoint& startPoint, cons
 
             break;
 
-        case E_LT_Solid:
+        case ELineType::E_LT_Solid:
             pDC->MoveTo(startPoint.x, startPoint.y);
             pDC->LineTo(endPoint.x,   endPoint.y);
             break;
 
-        case E_LT_Dash:
+        case ELineType::E_LT_Dash:
             for (int i = startPoint.y; i < endPoint.y; i += 4)
             {
                 pDC->MoveTo(startPoint.x, i);

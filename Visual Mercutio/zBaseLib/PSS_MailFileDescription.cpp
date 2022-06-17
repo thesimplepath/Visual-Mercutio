@@ -9,11 +9,11 @@
 #include "PSS_MailFileDescription.h"
 
 //---------------------------------------------------------------------------
-// PSS_MailFileDescription 
+// PSS_MailFileDescription
 //---------------------------------------------------------------------------
 PSS_MailFileDescription::PSS_MailFileDescription() :
     m_MapiFileDesc(NULL),
-    m_AttachmentType(PSS_File::IE_AT_InsertedFile)
+    m_AttachmentType(PSS_File::IEAttachmentType::IE_AT_InsertedFile)
 {}
 //---------------------------------------------------------------------------
 PSS_MailFileDescription::PSS_MailFileDescription(CStringArray& fileList, PSS_File::IEAttachmentType attachType) :
@@ -25,7 +25,7 @@ PSS_MailFileDescription::PSS_MailFileDescription(CStringArray& fileList, PSS_Fil
 //---------------------------------------------------------------------------
 PSS_MailFileDescription::PSS_MailFileDescription(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType) :
     m_MapiFileDesc(NULL),
-    m_AttachmentType(PSS_File::IE_AT_InsertedFile)
+    m_AttachmentType(PSS_File::IEAttachmentType::IE_AT_InsertedFile)
 {
     Fill(fileList, attachType);
 }
@@ -62,9 +62,9 @@ MapiFileDesc* PSS_MailFileDescription::GetMapiFileDesc()
 {
     if (m_MapiFileDesc)
         delete[] m_MapiFileDesc;
-      
+
     m_MapiFileDesc = new FAR MapiFileDesc[GetCount()];
-      
+
     for (register int i = 0; i < m_FileArray.GetSize(); ++i)
     {
         std::memset(lpMapiFileDesc(&m_MapiFileDesc[i]), 0, sizeof(MapiFileDesc));

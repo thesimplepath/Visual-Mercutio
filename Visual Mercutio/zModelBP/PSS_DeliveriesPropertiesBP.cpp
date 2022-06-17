@@ -72,19 +72,19 @@ void PSS_DeliveriesPropertiesBP::Merge(PSS_DeliveriesPropertiesBP* pProp, DWORD 
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Delivery_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Delivery_Name)
             m_DeliveryName = pProp->GetDeliveryName();
 
-        if (changeFlags & IE_CT_Change_Delivery_Deliverables)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Delivery_Deliverables)
             m_DeliveryDeliverables = pProp->GetDeliveryDeliverables();
 
-        if (changeFlags & IE_CT_Change_Delivery_Quantity)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Delivery_Quantity)
             m_DeliveryQuantity = pProp->GetDeliveryQuantity();
 
-        if (changeFlags & IE_CT_Change_Delivery_Percentage)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Delivery_Percentage)
             m_DeliveryPercentage = pProp->GetDeliveryPercentage();
 
-        if (changeFlags & IE_CT_Change_Delivery_Main)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Delivery_Main)
             m_DeliveryMain = pProp->GetDeliveryMain();
     }
 }

@@ -61,7 +61,7 @@ class PSS_ResourceInfo
         *@param fileName - file name, may be empty
         *@param language - language, may be unknown
         */
-        PSS_ResourceInfo(const CString& fileName = _T(""), ELanguage language = E_LN_Unknown);
+        PSS_ResourceInfo(const CString& fileName = _T(""), ELanguage language = ELanguage::E_LN_Unknown);
 
         virtual ~PSS_ResourceInfo();
 

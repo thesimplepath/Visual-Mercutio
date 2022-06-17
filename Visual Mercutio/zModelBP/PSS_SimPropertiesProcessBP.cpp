@@ -64,13 +64,13 @@ void PSS_SimPropertiesProcessBP::Merge(PSS_SimPropertiesProcessBP* pProp, DWORD 
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Sim_Process_Workload_Forecast)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Process_Workload_Forecast)
             m_ProcessWorkloadForecast = pProp->GetProcessWorkloadForecast();
 
-        if (changeFlags & IE_CT_Change_Sim_Process_Cost_Forecast)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Process_Cost_Forecast)
             m_ProcessCostForecast = pProp->GetProcessCostForecast();
 
-        if (changeFlags & IE_CT_Change_Sim_Process_Cost_HMO)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Process_Cost_HMO)
             m_ProcessCostHMO = pProp->GetProcessCostHMO();
     }
 }

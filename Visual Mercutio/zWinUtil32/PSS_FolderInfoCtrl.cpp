@@ -126,13 +126,13 @@ void PSS_FolderInfoCtrl::Refresh()
 
     // add the publish version
     InsertItem(index, m_PublishVersionTitle);
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%ld", m_pFolderStamp->GetPublishVersion());
+    ::sprintf_s(buffer, 20, "%ld", m_pFolderStamp->GetPublishVersion());
     SetItem(index, 1, LVIF_TEXT, buffer, 0, LVIF_TEXT, LVIF_TEXT, 0);
     ++index;
 
     // add the document type
     InsertItem(index, m_TypeTitle);
-    if (m_pFolderStamp->GetFileType() == PSS_Stamp::IE_FD_DocumentType)
+    if (m_pFolderStamp->GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType)
         title.LoadString(IDS_DOCUMENT);
     else
         title.LoadString(IDS_TEMPLATE);

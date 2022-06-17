@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_DocObserverMsg : public PSS_ObserverMsg
         /**
         * Message action type
         */
-        enum IEActionType
+        enum class IEActionType
         {
             IE_AT_No,
             IE_AT_OpenDocument,
@@ -79,7 +79,7 @@ class AFX_EXT_CLASS PSS_DocObserverMsg : public PSS_ObserverMsg
         *@param pModel - the model
         *@param pElement - the element
         */
-        PSS_DocObserverMsg(IEActionType              actionType = IE_AT_No,
+        PSS_DocObserverMsg(IEActionType              actionType = IEActionType::IE_AT_No,
                            PSS_ProcessGraphModelDoc* pDoc       = NULL,
                            PSS_ProcessGraphModelMdl* pModel     = NULL,
                            CODSymbolComponent*       pElement   = NULL);

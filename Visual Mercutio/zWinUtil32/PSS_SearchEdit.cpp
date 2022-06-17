@@ -38,7 +38,7 @@ PSS_SearchEditButton::PSS_SearchEditButton() :
     m_pWnd(NULL),
     m_pMenu(NULL),
     m_pEdit(NULL),
-    m_Type(IE_T_Directory),
+    m_Type(IEType::IE_T_Directory),
     m_ID(0),
     m_Menu(0),
     m_FilterCount(0),
@@ -66,7 +66,7 @@ BOOL PSS_SearchEditButton::Create(PSS_SearchEdit* pWnd,
                                   bool            noNotify,
                                   bool            resize)
 {
-    PSS_Assert(type != -1);
+    PSS_Assert((int)type != -1);
     ASSERT_VALID(pWnd);
 
     // assign values
@@ -95,7 +95,7 @@ BOOL PSS_SearchEditButton::Create(PSS_SearchEdit* pWnd,
                                   bool            noNotify,
                                   bool            resize)
 {
-    PSS_Assert(type != -1);
+    PSS_Assert((int)type != -1);
     ASSERT_VALID(pWnd);
 
     // assign values
@@ -146,9 +146,9 @@ BOOL PSS_SearchEditButton::CreateButton(CWnd* pWnd, IEType type, bool resize)
 
     switch (m_Type)
     {
-        case IE_T_Directory:
-        case IE_T_File:
-        case IE_T_Extended:
+        case IEType::IE_T_Directory:
+        case IEType::IE_T_File:
+        case IEType::IE_T_Extended:
             if (CButton::Create(_T( "..." ),
                                 style,
                                 rc,
@@ -163,7 +163,7 @@ BOOL PSS_SearchEditButton::CreateButton(CWnd* pWnd, IEType type, bool resize)
 
             break;
 
-        case IE_T_Popup:
+        case IEType::IE_T_Popup:
             if (CButton::Create(_T("..."),
                                 style | BS_ICON,
                                 rc,
@@ -202,7 +202,7 @@ void PSS_SearchEditButton::OnClicked()
 
     switch (m_Type)
     {
-        case IE_T_Directory:
+        case IEType::IE_T_Directory:
         {
             CSHFileInfo sfi;
             sfi.m_strTitle = _T(m_Title);
@@ -213,7 +213,7 @@ void PSS_SearchEditButton::OnClicked()
             break;
         }
 
-        case IE_T_File:
+        case IEType::IE_T_File:
         {
             PSS_FileDialog fileDlg(m_Title, m_Filters, m_FilterCount, m_InitialDir);
 
@@ -223,7 +223,7 @@ void PSS_SearchEditButton::OnClicked()
             break;
         }
 
-        case IE_T_Popup:
+        case IEType::IE_T_Popup:
         {
             PSS_Assert(m_Menu != -1 || m_pMenu);
             SetState(TRUE);
@@ -288,7 +288,7 @@ void PSS_SearchEditButton::OnClicked()
             break;
         }
 
-        case IE_T_Extended:
+        case IEType::IE_T_Extended:
             if (m_pEdit)
                 m_pEdit->OnExtendedCommand();
 
@@ -313,7 +313,7 @@ PSS_SearchEdit::PSS_SearchEdit() :
     PSS_DragEdit(),
     m_pMenu(NULL),
     m_pParentWnd(NULL),
-    m_Type(PSS_SearchEditButton::IE_T_Directory),
+    m_Type(PSS_SearchEditButton::IEType::IE_T_Directory),
     m_FilterCount(0),
     m_Menu(-1),
     m_DoCreateButton(FALSE),
@@ -381,8 +381,8 @@ void PSS_SearchEdit::SetSearchType(PSS_SearchEditButton::IEType type, const CStr
 
     switch (type)
     {
-        case PSS_SearchEditButton::IE_T_Directory:
-        case PSS_SearchEditButton::IE_T_File:
+        case PSS_SearchEditButton::IEType::IE_T_Directory:
+        case PSS_SearchEditButton::IEType::IE_T_File:
         {
             m_Menu  = -1;
             m_pMenu =  NULL;
@@ -399,8 +399,8 @@ void PSS_SearchEdit::SetSearchType(PSS_SearchEditButton::IEType type, UINT nID, 
 
     switch (type)
     {
-        case PSS_SearchEditButton::IE_T_Directory:
-        case PSS_SearchEditButton::IE_T_File:
+        case PSS_SearchEditButton::IEType::IE_T_Directory:
+        case PSS_SearchEditButton::IEType::IE_T_File:
         {
             m_Menu  = -1;
             m_pMenu =  NULL;
@@ -422,8 +422,8 @@ void PSS_SearchEdit::SetSearchType(PSS_SearchEditButton::IEType type,
 
     switch (type)
     {
-        case PSS_SearchEditButton::IE_T_Directory:
-        case PSS_SearchEditButton::IE_T_File:
+        case PSS_SearchEditButton::IEType::IE_T_Directory:
+        case PSS_SearchEditButton::IEType::IE_T_File:
         {
             m_Menu  = -1;
             m_pMenu =  NULL;
@@ -446,8 +446,8 @@ void PSS_SearchEdit::SetSearchType(PSS_SearchEditButton::IEType type,
 
     switch (type)
     {
-        case PSS_SearchEditButton::IE_T_Directory:
-        case PSS_SearchEditButton::IE_T_File:
+        case PSS_SearchEditButton::IEType::IE_T_Directory:
+        case PSS_SearchEditButton::IEType::IE_T_File:
         {
             m_Menu  = -1;
             m_pMenu =  NULL;

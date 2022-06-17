@@ -35,8 +35,9 @@ END_MESSAGE_MAP()
 // PSS_HoverButton
 //---------------------------------------------------------------------------
 PSS_HoverButton::PSS_HoverButton() :
+    CBitmapButton(),
     m_hWndOld(NULL),
-    m_ButtonState(E_HB_OFF),
+    m_ButtonState(EHoverButtonState::E_HB_OFF),
     m_MouseTracking(FALSE)
 {
     LoadBitmaps(IDB_RBU, IDB_RBD, IDB_RBF, IDB_RBX);
@@ -53,24 +54,25 @@ EHoverButtonState PSS_HoverButton::SetButtonState(EHoverButtonState state)
 
     switch (m_ButtonState)
     {
-        case E_HB_ON:
+        case EHoverButtonState::E_HB_ON:
             EnableWindow(TRUE);
-            SetState(E_HB_ON);
+            SetState(TRUE);
             break;
 
-        case E_HB_Greyed:
+        case EHoverButtonState::E_HB_Greyed:
             EnableWindow(FALSE);
+            SetState(TRUE);
             break;
 
-        case E_HB_Over:
+        case EHoverButtonState::E_HB_Over:
             EnableWindow(TRUE);
-            SetState(E_HB_Over);
+            SetState(TRUE);
             break;
 
         default:
             EnableWindow(TRUE);
-            SetState(E_HB_OFF);
-            m_ButtonState = E_HB_OFF;
+            SetState(FALSE);
+            m_ButtonState = EHoverButtonState::E_HB_OFF;
             break;
     }
 
@@ -174,10 +176,10 @@ void PSS_HoverButton::DrawItem(LPDRAWITEMSTRUCT pDrawItemStruct)
 
         switch (m_ButtonState)
         {
-            case E_HB_ON:     pBitmap = &m_BmpButtonDown;     break;
-            case E_HB_Over:   pBitmap = &m_BmpButtonFocussed; break;
-            case E_HB_Greyed: pBitmap = &m_BmpButtonDisabled; break;
-            default:          pBitmap = &m_BmpButtonUp;       break;
+            case EHoverButtonState::E_HB_ON:     pBitmap = &m_BmpButtonDown;     break;
+            case EHoverButtonState::E_HB_Over:   pBitmap = &m_BmpButtonFocussed; break;
+            case EHoverButtonState::E_HB_Greyed: pBitmap = &m_BmpButtonDisabled; break;
+            default:                             pBitmap = &m_BmpButtonUp;       break;
         }
 
         if (pBitmap->m_hObject)
@@ -195,7 +197,7 @@ void PSS_HoverButton::DrawItem(LPDRAWITEMSTRUCT pDrawItemStruct)
 
             CBitmap* pOld = memDC.SelectObject((CBitmap*)pBitmap);
 
-            // destructors will clean up
+            // destructor will clean up
             if (!pOld)
                 return;
 
@@ -215,12 +217,12 @@ void PSS_HoverButton::DrawItem(LPDRAWITEMSTRUCT pDrawItemStruct)
 
         switch (m_ButtonState)
         {
-            case E_HB_Over:
+            case EHoverButtonState::E_HB_Over:
                 pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
                 pDC->DrawText(title, rcText, format);
                 break;
 
-            case E_HB_Greyed:
+            case EHoverButtonState::E_HB_Greyed:
                 rcText.OffsetRect(1, 1);
                 pDC->SetTextColor(::GetSysColor(COLOR_BTNHIGHLIGHT));
                 pDC->DrawText(title, rcText, format);
@@ -249,13 +251,13 @@ void PSS_HoverButton::OnMouseMove(UINT flags, CPoint point)
 {
     CBitmapButton::OnMouseMove(flags, point);
 
-    // 1. Mouse has moved and we are not tracking this button, or 
+    // 1. Mouse has moved and we are not tracking this button, or
     // 2. mouse has moved and the cursor was not above this window
     // == Is equivalent to WM_MOUSEENTER (for which there is no message)
-    if ((!m_MouseTracking || GetCapture() != this) && (m_ButtonState == E_HB_OFF))
+    if ((!m_MouseTracking || GetCapture() != this) && (m_ButtonState == EHoverButtonState::E_HB_OFF))
         OnMouseEnter();
-    else 
-    if (m_ButtonState == E_HB_Over)
+    else
+    if (m_ButtonState == EHoverButtonState::E_HB_Over)
     {
         CRect rc;
         GetClientRect(&rc);
@@ -269,7 +271,7 @@ void PSS_HoverButton::OnMouseMove(UINT flags, CPoint point)
 void PSS_HoverButton::OnLButtonUp(UINT flags, CPoint point)
 {
     // highlight button
-    SetButtonState(E_HB_ON);
+    SetButtonState(EHoverButtonState::E_HB_ON);
 
     CBitmapButton::OnLButtonUp(flags, point);
 }
@@ -278,7 +280,7 @@ void PSS_HoverButton::OnMouseEnter(void)
 {
     // track the mouse, set button to over state
     m_MouseTracking = TRUE;
-    m_ButtonState   = E_HB_Over;
+    m_ButtonState   = EHoverButtonState::E_HB_Over;
 
     // ensure that mouse input is sent to the button
     SetCapture();
@@ -290,7 +292,7 @@ void PSS_HoverButton::OnMouseLeave(void)
 {
     // release the mouse tracking and set button to OFF state
     m_MouseTracking = FALSE;
-    m_ButtonState   = E_HB_OFF;
+    m_ButtonState   = EHoverButtonState::E_HB_OFF;
 
     // release mouse capture from the button and restore normal mouse input
     Invalidate();

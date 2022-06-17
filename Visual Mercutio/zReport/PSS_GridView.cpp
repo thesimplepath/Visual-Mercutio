@@ -33,7 +33,7 @@ CMenu PSS_GridView::m_PopupMenu;
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-GXIMPLEMENT_DYNCREATE(PSS_GridView, CGXGridView)
+IMPLEMENT_DYNCREATE(PSS_GridView, CGXGridView)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
@@ -150,7 +150,7 @@ void PSS_GridView::ExportToTextFile()
     filter += _T("*.*");
     filter += (char)'\0';
 
-    PSS_FileDialog fileDialog(title, filter, 2, _T(""));
+    PSS_FileDialog fileDialog(title, filter, 2, _T(""), _T("TXT"), FALSE);
 
     if (fileDialog.DoModal() == IDCANCEL)
         return;
@@ -374,7 +374,7 @@ void PSS_GridView::OnInitialUpdate()
         // initialize the grid data. Disable undo mechanism for the following commands
         pParam->EnableUndo(FALSE);
 
-        // floating cells mode. The other possible mode for floating cells is gxnFloatEvalOnDisplay 
+        // floating cells mode. The other possible mode for floating cells is gxnFloatEvalOnDisplay
         SetFloatCellsMode(gxnFloatDelayEval);
 
         // re-enable the undo mechanism

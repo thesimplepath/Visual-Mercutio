@@ -48,7 +48,7 @@ class PSS_GenericGridReportGenerator;
 */
 class AFX_EXT_CLASS PSS_GridReportDocument : public PSS_GridDocument, public PSS_GridReportGenerator
 {
-    GXDECLARE_DYNCREATE(PSS_GridReportDocument)
+    DECLARE_DYNCREATE(PSS_GridReportDocument)
 
     public:
         virtual ~PSS_GridReportDocument();

@@ -31,8 +31,10 @@ END_MESSAGE_MAP()
 PSS_FileDialog::PSS_FileDialog(const CString& title,
                                const CString& filters,
                                int            filterCount,
-                               const CString& initialDir) :
-    CFileDialog(TRUE),
+                               const CString& initialDir,
+                               const CString& defExtension,
+                               BOOL           openStyleBox) :
+    CFileDialog(openStyleBox, defExtension),
     m_Title(title),
     m_InitialDir(initialDir),
     m_Filters(filters),
@@ -42,8 +44,10 @@ PSS_FileDialog::PSS_FileDialog(const CString& title,
 PSS_FileDialog::PSS_FileDialog(UINT           titleID,
                                const CString& filters,
                                int            filterCount,
-                               const CString& initialDir) :
-    CFileDialog(TRUE),
+                               const CString& initialDir,
+                               const CString& defExtension,
+                               BOOL           openStyleBox) :
+    CFileDialog(openStyleBox, defExtension),
     m_InitialDir(initialDir),
     m_Filters(filters),
     m_FilterCount(filterCount)

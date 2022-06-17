@@ -49,35 +49,35 @@ END_MESSAGE_MAP()
 // PSS_WorkspaceTreeCtrl::IData
 //---------------------------------------------------------------------------
 PSS_WorkspaceTreeCtrl::IData::IData() :
-    m_Type(IE_DT_Unknown),
+    m_Type(IEType::IE_DT_Unknown),
     m_pWorkspaceEnv(NULL),
     m_pGroup(NULL),
     m_pFile(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_WorkspaceTreeCtrl::IData::IData(PSS_WorkspaceEnv* pWorkspaceEnv) :
-    m_Type(IE_DT_WorkspaceEnv),
+    m_Type(IEType::IE_DT_WorkspaceEnv),
     m_pWorkspaceEnv(pWorkspaceEnv),
     m_pGroup(NULL),
     m_pFile(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_WorkspaceTreeCtrl::IData::IData(PSS_WorkspaceGroupEntity* pGroup) :
-    m_Type(IE_DT_Group),
+    m_Type(IEType::IE_DT_Group),
     m_pWorkspaceEnv(NULL),
     m_pGroup(pGroup),
     m_pFile(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_WorkspaceTreeCtrl::IData::IData(PSS_WorkspaceFileEntity* pFile) :
-    m_Type(IE_DT_File),
+    m_Type(IEType::IE_DT_File),
     m_pWorkspaceEnv(NULL),
     m_pGroup(NULL),
     m_pFile(pFile)
 {}
 //---------------------------------------------------------------------------
 PSS_WorkspaceTreeCtrl::IData::IData(const CString& str) :
-    m_Type(IE_DT_String),
+    m_Type(IEType::IE_DT_String),
     m_pWorkspaceEnv(NULL),
     m_pGroup(NULL),
     m_pFile(NULL),
@@ -598,8 +598,8 @@ void PSS_WorkspaceTreeCtrl::LoadTree()
     m_hRootWorkspaceEnv = AddTypeItem(m_RootName, g_WorkspaceEnvTreeItem);
     ProcessWorkspaceEnv(m_pWorkspaceEnv, m_hRootWorkspaceEnv);
 
-    // expand the root
-    ExpandRoot(TRUE);
+    // collapse the root
+    ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_WorkspaceTreeCtrl::DestroyTree()
@@ -757,9 +757,9 @@ PSS_WorkspaceEntity* PSS_WorkspaceTreeCtrl::GetEntity(HTREEITEM hItem)
         if (pObj)
             switch (pObj->m_Type)
             {
-                case IData::IE_DT_WorkspaceEnv: return pObj->m_pWorkspaceEnv;
-                case IData::IE_DT_Group:        return pObj->m_pGroup;
-                case IData::IE_DT_File:         return pObj->m_pFile;
+                case IData::IEType::IE_DT_WorkspaceEnv: return pObj->m_pWorkspaceEnv;
+                case IData::IEType::IE_DT_Group:        return pObj->m_pGroup;
+                case IData::IEType::IE_DT_File:         return pObj->m_pFile;
             }
     }
 
@@ -772,7 +772,7 @@ PSS_WorkspaceGroupEntity* PSS_WorkspaceTreeCtrl::GetGroup(HTREEITEM hItem)
     {
         IData* pObj = (IData*)GetItemData(hItem);
 
-        if (pObj && pObj->m_Type == IData::IE_DT_Group)
+        if (pObj && pObj->m_Type == IData::IEType::IE_DT_Group)
             return pObj->m_pGroup;
     }
 
@@ -785,7 +785,7 @@ PSS_WorkspaceFileEntity* PSS_WorkspaceTreeCtrl::GetFile(HTREEITEM hItem)
     {
         IData* pObj = (IData*)GetItemData(hItem);
 
-        if (pObj && pObj->m_Type == IData::IE_DT_File)
+        if (pObj && pObj->m_Type == IData::IEType::IE_DT_File)
             return pObj->m_pFile;
     }
 
@@ -836,7 +836,7 @@ PSS_WorkspaceGroupEntity* PSS_WorkspaceTreeCtrl::GetFileBestGroup(const CString&
     IDataIterator i(&m_DataSet);
 
     for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Type == IData::IE_DT_Group && pElement->m_pGroup)
+        if (pElement->m_Type == IData::IEType::IE_DT_Group && pElement->m_pGroup)
             // check if the group contains the file name extension
             if (pElement->m_pGroup->ContainThisExtension(ext))
                 return pElement->m_pGroup;
@@ -849,7 +849,7 @@ PSS_WorkspaceFileEntity* PSS_WorkspaceTreeCtrl::GetFileEntity(const CString& fil
     IDataIterator i(&m_DataSet);
 
     for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Type == IData::IE_DT_File && !pElement->m_pFile->GetFileName().CompareNoCase(fileName))
+        if (pElement->m_Type == IData::IEType::IE_DT_File && !pElement->m_pFile->GetFileName().CompareNoCase(fileName))
             return pElement->m_pFile;
 
     return NULL;
@@ -870,9 +870,9 @@ PSS_WorkspaceTreeCtrl::IData* PSS_WorkspaceTreeCtrl::FindElementFromDataSet(PSS_
     IDataIterator i(&m_DataSet);
 
     for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if ((pElement->m_Type == IData::IE_DT_WorkspaceEnv && pElement->m_pWorkspaceEnv == pEntity) ||
-            (pElement->m_Type == IData::IE_DT_Group        && pElement->m_pGroup        == pEntity) ||
-            (pElement->m_Type == IData::IE_DT_File         && pElement->m_pFile         == pEntity))
+        if ((pElement->m_Type == IData::IEType::IE_DT_WorkspaceEnv && pElement->m_pWorkspaceEnv == pEntity) ||
+            (pElement->m_Type == IData::IEType::IE_DT_Group        && pElement->m_pGroup        == pEntity) ||
+            (pElement->m_Type == IData::IEType::IE_DT_File         && pElement->m_pFile         == pEntity))
             return pElement;
 
     return NULL;
@@ -883,7 +883,7 @@ PSS_WorkspaceTreeCtrl::IData* PSS_WorkspaceTreeCtrl::FindElementFromDataSet(PSS_
     IDataIterator i(&m_DataSet);
 
     for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Type == IData::IE_DT_WorkspaceEnv && pElement->m_pWorkspaceEnv == pEntity)
+        if (pElement->m_Type == IData::IEType::IE_DT_WorkspaceEnv && pElement->m_pWorkspaceEnv == pEntity)
             return pElement;
 
     return NULL;
@@ -894,7 +894,7 @@ PSS_WorkspaceTreeCtrl::IData* PSS_WorkspaceTreeCtrl::FindElementFromDataSet(PSS_
     IDataIterator i(&m_DataSet);
 
     for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Type == IData::IE_DT_Group && pElement->m_pGroup == pEntity)
+        if (pElement->m_Type == IData::IEType::IE_DT_Group && pElement->m_pGroup == pEntity)
             return pElement;
 
     return NULL;
@@ -905,7 +905,7 @@ PSS_WorkspaceTreeCtrl::IData* PSS_WorkspaceTreeCtrl::FindElementFromDataSet(PSS_
     IDataIterator i(&m_DataSet);
 
     for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Type == IData::IE_DT_File && pElement->m_pFile == pEntity)
+        if (pElement->m_Type == IData::IEType::IE_DT_File && pElement->m_pFile == pEntity)
             return pElement;
 
     return NULL;
@@ -916,7 +916,7 @@ PSS_WorkspaceTreeCtrl::IData* PSS_WorkspaceTreeCtrl::FindElementFromDataSet(cons
     IDataIterator i(&m_DataSet);
 
     for (IData* pElement = i.GetFirst(); pElement; pElement = i.GetNext())
-        if (pElement->m_Type == IData::IE_DT_String && pElement->m_Str == entity)
+        if (pElement->m_Type == IData::IEType::IE_DT_String && pElement->m_Str == entity)
             return pElement;
 
     return NULL;
@@ -959,7 +959,7 @@ bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceGroupEntity* p
     IDataIterator it(&m_DataSet);
 
     for (IData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == IData::IE_DT_Group && pElement->m_pGroup == pEntity)
+        if (pElement->m_Type == IData::IEType::IE_DT_Group && pElement->m_pGroup == pEntity)
         {
             delete pElement;
             it.Remove();
@@ -974,7 +974,7 @@ bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceFileEntity* pE
     IDataIterator it(&m_DataSet);
 
     for (IData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == IData::IE_DT_File && pElement->m_pFile == pEntity)
+        if (pElement->m_Type == IData::IEType::IE_DT_File && pElement->m_pFile == pEntity)
         {
             delete pElement;
             it.Remove();
@@ -989,7 +989,7 @@ bool PSS_WorkspaceTreeCtrl::DeleteElementFromDataSet(const CString& entity)
     IDataIterator it(&m_DataSet);
 
     for (IData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == IData::IE_DT_String && pElement->m_Str == entity)
+        if (pElement->m_Type == IData::IEType::IE_DT_String && pElement->m_Str == entity)
         {
             delete pElement;
             it.Remove();

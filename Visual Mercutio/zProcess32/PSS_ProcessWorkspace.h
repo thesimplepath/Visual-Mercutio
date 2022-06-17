@@ -375,6 +375,16 @@ class PSS_ProcessWorkspace : public SECControlBar,
         virtual inline void HideRulesTab();
 
         /**
+        * Called when active tab branch should be expanded
+        */
+        virtual void OnExpandBranch();
+
+        /**
+        * Called when active tab branch should be collapsed
+        */
+        virtual void OnCollapseBranch();
+
+        /**
         * Called when the observer receives a message from the subject
         *@param pSubject - subject which sent the message
         *@param pMsg - the message

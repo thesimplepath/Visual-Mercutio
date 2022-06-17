@@ -25,6 +25,9 @@
     #include <afxole.h>
 #endif
 
+// processsoft
+#include "PSS_PropertyEditControl.h"
+
 // forward class declarations
 class PSS_DragEdit;
 
@@ -125,7 +128,7 @@ class AFX_EXT_CLASS PSS_EditDataSource : public COleDataSource
 * Drag edit base
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-#define PSS_DragEditBase CEdit
+#define PSS_DragEditBase PSS_PropertyEditControl
 
 /**
 * Drag edit
@@ -138,10 +141,10 @@ class AFX_EXT_CLASS PSS_DragEdit : public PSS_DragEditBase
         * Drag enable type
         *@note These items may be cobmbinated
         */
-        enum IEEnableType
+        enum class IEEnableType
         {
-            IE_ET_DRAG = 0x1,
-            IE_ET_DROP = 0x2
+            IE_ET_Drag = 0x1,
+            IE_ET_Drop = 0x2
         };
 
         PSS_DragEdit();
@@ -152,7 +155,7 @@ class AFX_EXT_CLASS PSS_DragEdit : public PSS_DragEditBase
         *@param flags - flags
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Init(int flags = (IE_ET_DRAG | IE_ET_DROP));
+        virtual BOOL Init(int flags = ((int)IEEnableType::IE_ET_Drag | (int)IEEnableType::IE_ET_Drop));
 
         /**
         * Checks if edit is in dragging
@@ -360,12 +363,12 @@ CPoint PSS_DragEdit::GetPosFromLinePos(int line, int pos) const
 //---------------------------------------------------------------------------
 BOOL PSS_DragEdit::EnableDrag() const
 {
-    return (m_EnableFlags & IE_ET_DRAG);
+    return (m_EnableFlags & (int)IEEnableType::IE_ET_Drag);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DragEdit::EnableDrop() const
 {
-    return (m_EnableFlags & IE_ET_DROP);
+    return (m_EnableFlags & (int)IEEnableType::IE_ET_Drop);
 }
 //---------------------------------------------------------------------------
 void PSS_DragEdit::CharToLinePos(int ch, int* pLine, int* pPos) const

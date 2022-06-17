@@ -27,8 +27,8 @@ IMPLEMENT_SERIAL(PSS_PLFNSquare, PSS_PlanFinObject, g_DefVersion)
 PSS_PLFNSquare::PSS_PLFNSquare() :
     PSS_PlanFinObject(),
     m_pObject(NULL),
-    m_SquareType(E_SQ_Normal),
-    m_ParsingMode(E_PM_Normal),
+    m_SquareType(ESquareType::E_SQ_Normal),
+    m_ParsingMode(EParsingModeType::E_PM_Normal),
     m_SquareSize(CSize(15, 15)),
     m_SquareMaxLength(-1),
     m_CharPerSquare(1),
@@ -38,8 +38,8 @@ PSS_PLFNSquare::PSS_PLFNSquare() :
 PSS_PLFNSquare::PSS_PLFNSquare(const CSize& squareSize, int maxLength) :
     PSS_PlanFinObject(),
     m_pObject(NULL),
-    m_SquareType(E_SQ_Normal),
-    m_ParsingMode(E_PM_Normal),
+    m_SquareType(ESquareType::E_SQ_Normal),
+    m_ParsingMode(EParsingModeType::E_PM_Normal),
     m_SquareSize(squareSize),
     m_SquareMaxLength(maxLength),
     m_CharPerSquare(1),
@@ -49,8 +49,8 @@ PSS_PLFNSquare::PSS_PLFNSquare(const CSize& squareSize, int maxLength) :
 PSS_PLFNSquare::PSS_PLFNSquare(const PSS_PLFNSquare& other) :
     PSS_PlanFinObject(),
     m_pObject(NULL),
-    m_SquareType(E_SQ_Normal),
-    m_ParsingMode(E_PM_Normal),
+    m_SquareType(ESquareType::E_SQ_Normal),
+    m_ParsingMode(EParsingModeType::E_PM_Normal),
     m_SquareSize(CSize(15, 15)),
     m_SquareMaxLength(-1),
     m_CharPerSquare(1),
@@ -85,8 +85,8 @@ const PSS_PLFNSquare& PSS_PLFNSquare::operator = (const PSS_PLFNSquare* pOther)
     if (!pOther)
     {
         m_pObject         = NULL;
-        m_SquareType      = E_SQ_Normal;
-        m_ParsingMode     = E_PM_Normal;
+        m_SquareType      = ESquareType::E_SQ_Normal;
+        m_ParsingMode     = EParsingModeType::E_PM_Normal;
         m_SquareSize      = CSize(15, 15);
         m_SquareMaxLength = -1;
         m_CharPerSquare   = 1;

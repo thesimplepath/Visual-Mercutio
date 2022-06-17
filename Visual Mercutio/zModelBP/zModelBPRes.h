@@ -24,6 +24,7 @@
 #define ID_DEL_CURRENTCOMBINATION                    17003
 #define IDD_EQUALIZE_QUANTITY                        17003
 #define IDC_REMAIN_DELIV                             17003
+#define IDS_EL_CHECK_RULE                            17003
 #define IDC_MAR_ACT_LOCK                             17004
 #define IDC_COMB_DELIV                               17005
 #define IDC_APR_ACT_LOCK                             17006
@@ -505,7 +506,6 @@
 #define IDS_RISK_CALCULATE_START                     17409
 #define IDS_RISK_CALCULATE_END                       17410
 #define IDS_RISK_CALCULATE_END_INFOS                 17411
-#define IDS_RULE_IS_NOT_SYNC                         17412
 
 // next default values for new objects
 #ifdef APSTUDIO_INVOKED

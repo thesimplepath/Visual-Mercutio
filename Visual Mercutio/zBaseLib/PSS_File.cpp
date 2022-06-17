@@ -25,7 +25,7 @@ IMPLEMENT_SERIAL(PSS_File, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 PSS_File::PSS_File() :
     CObject(),
-    m_AttachmentType(IE_AT_InsertedFile)
+    m_AttachmentType(IEAttachmentType::IE_AT_InsertedFile)
 {
     std::memset(&m_Drive,          0x0, _MAX_DRIVE);
     std::memset(&m_Dir,            0x0, _MAX_DIR);
@@ -47,7 +47,7 @@ PSS_File::PSS_File(const CString& fileName, IEAttachmentType attachment) :
 //---------------------------------------------------------------------------
 PSS_File::PSS_File(const PSS_File& other) :
     CObject(),
-    m_AttachmentType(IE_AT_InsertedFile)
+    m_AttachmentType(IEAttachmentType::IE_AT_InsertedFile)
 {
     *this = other;
 }

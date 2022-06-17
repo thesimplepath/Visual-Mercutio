@@ -1639,22 +1639,22 @@ void PSS_ProcessGraphModelMdl::SetNotation(EModelNotation value)
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::IsModelInABCNotation() const
 {
-    return (m_Notation == E_MN_ABC);
+    return (m_Notation == EModelNotation::E_MN_ABC);
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::IsModelInUMLNotation() const
 {
-    return (m_Notation == E_MN_UML);
+    return (m_Notation == EModelNotation::E_MN_UML);
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::IsModelInBerylNotation() const
 {
-    return (m_Notation == E_MN_Beryl);
+    return (m_Notation == EModelNotation::E_MN_Beryl);
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::IsModelNotationUnknow() const
 {
-    return (m_Notation == E_MN_Unknown);
+    return (m_Notation == EModelNotation::E_MN_Unknown);
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelMdl::IsInCutOperation()

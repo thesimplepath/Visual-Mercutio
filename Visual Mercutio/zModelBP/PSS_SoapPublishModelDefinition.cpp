@@ -276,7 +276,7 @@ bool PSS_SoapPublishModelDefinition::OnFinish()
             }
         }
     }
- 
+
     // send published attributes to the soap server
     return m_PubMdl.Send();
 }
@@ -580,7 +580,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(PSS_DeliverableLink
             if (pLink->GetSymbolName() == pSymbol->GetSymbolName())
             {
                 lateral          = true;
-                lateralDirection = 3;    
+                lateralDirection = 3;
                 break;
             }
         }
@@ -639,12 +639,12 @@ void PSS_SoapPublishModelDefinition::Publish(int ref, PSS_Property* pProp)
     // search for the property value type
     switch (pProp->GetValueType())
     {
-        case PSS_Property::IE_VT_Double:   s.Format(_T("%g"), pProp->GetValueDouble());                  break;
-        case PSS_Property::IE_VT_Float:    s.Format(_T("%f"), pProp->GetValueFloat());                   break;
-        case PSS_Property::IE_VT_Date:     s = pProp->GetValueDate().GetStandardFormattedDate();         break;
-        case PSS_Property::IE_VT_TimeSpan: s = pProp->GetValueTimeSpan().GetStandardFormattedTimeSpan(); break;
-        case PSS_Property::IE_VT_Duration: s.Format(_T("%f"), double(pProp->GetValueDuration()));        break;
-        default:                           s = pProp->GetValueString();                                  break;
+        case PSS_Property::IEValueType::IE_VT_Double:   s.Format(_T("%g"), pProp->GetValueDouble());                  break;
+        case PSS_Property::IEValueType::IE_VT_Float:    s.Format(_T("%f"), pProp->GetValueFloat());                   break;
+        case PSS_Property::IEValueType::IE_VT_Date:     s = pProp->GetValueDate().GetStandardFormattedDate();         break;
+        case PSS_Property::IEValueType::IE_VT_TimeSpan: s = pProp->GetValueTimeSpan().GetStandardFormattedTimeSpan(); break;
+        case PSS_Property::IEValueType::IE_VT_Duration: s.Format(_T("%f"), double(pProp->GetValueDuration()));        break;
+        default:                                        s = pProp->GetValueString();                                  break;
     }
 
     // log property content
@@ -661,7 +661,7 @@ void PSS_SoapPublishModelDefinition::Publish(int ref, PSS_Property* pProp)
     }
 
     // publish property
-    m_PubMdl.Add(PSS_SoapData_SymbolAttributes(ref,                          // object ref ID (either a proc or deliv)
+    m_PubMdl.Add(PSS_SoapData_SymbolAttributes(ref,                          // object ref ID (either a proc or deliverable)
                                                m_CounterRow,                 // row number
                                                key,                          // ref on attribute definition table
                                                PSS_String16(s),              // value

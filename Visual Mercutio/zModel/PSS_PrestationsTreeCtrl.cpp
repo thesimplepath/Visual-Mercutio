@@ -38,19 +38,19 @@ const int g_PrestationsTreeItem     = 1;
 PSS_PrestationsTreeCtrl::ITreeData::ITreeData() :
     CObject(),
     m_pPrestation(NULL),
-    m_Type(IE_DT_Unknown)
+    m_Type(IEDataType::IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_PrestationsTreeCtrl::ITreeData::ITreeData(PSS_LogicalPrestationsEntity* pLogicalPrestation) :
     CObject(),
     m_pPrestation(pLogicalPrestation),
-    m_Type(IE_DT_Prestation)
+    m_Type(IEDataType::IE_DT_Prestation)
 {}
 //---------------------------------------------------------------------------
 PSS_PrestationsTreeCtrl::ITreeData::ITreeData(const CString& str) :
     CObject(),
     m_pPrestation(NULL),
-    m_Type(IE_DT_String),
+    m_Type(IEDataType::IE_DT_String),
     m_Str(str)
 {}
 //---------------------------------------------------------------------------
@@ -65,8 +65,6 @@ BEGIN_MESSAGE_MAP(PSS_PrestationsTreeCtrl, PSS_TreeCtrl)
     ON_WM_LBUTTONDBLCLK()
     ON_NOTIFY_REFLECT(TVN_ITEMEXPANDED, OnItemExpanded)
     ON_WM_CONTEXTMENU()
-    ON_COMMAND(ID_COLLAPSE_BRANCH, OnCollapseBranch)
-    ON_COMMAND(ID_EXPAND_BRANCH, OnExpandBranch)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -353,6 +351,16 @@ bool PSS_PrestationsTreeCtrl::CanPrestationProperties()
     return (GetSelectedPrestationEntity() || IsRootSelected());
 }
 //---------------------------------------------------------------------------
+void PSS_PrestationsTreeCtrl::OnExpandBranch()
+{
+    ExpandBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
+void PSS_PrestationsTreeCtrl::OnCollapseBranch()
+{
+    CollapseBranch(GetSelectedItem(), TRUE);
+}
+//---------------------------------------------------------------------------
 void PSS_PrestationsTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     PSS_LogicalPrestationsObserverMsg* pPrestationMsg = dynamic_cast<PSS_LogicalPrestationsObserverMsg*>(pMsg);
@@ -417,7 +425,7 @@ void PSS_PrestationsTreeCtrl::ShowContextMenu(CWnd* pWnd, const CPoint& point)
 
     CPoint pt(point);
     ScreenToClient(&pt);
- 
+
     // test the hit
     UINT      flags;
     HTREEITEM hItem = HitTest(pt, &flags);
@@ -463,21 +471,11 @@ void PSS_PrestationsTreeCtrl::OnItemExpanded(LPNMHDR pnmhdr, LRESULT* pLResult)
     *pLResult                = TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_PrestationsTreeCtrl::OnCollapseBranch()
-{
-    CollapseBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
-void PSS_PrestationsTreeCtrl::OnExpandBranch()
-{
-    ExpandBranch(GetSelectedItem(), TRUE);
-}
-//---------------------------------------------------------------------------
 CObject* PSS_PrestationsTreeCtrl::GetDragObject(HTREEITEM dragItem)
 {
     ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(dragItem));
 
-    if (pObj && pObj->m_Type == ITreeData::IE_DT_Prestation)
+    if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Prestation)
         return pObj->m_pPrestation;
 
     return NULL;
@@ -514,8 +512,8 @@ void PSS_PrestationsTreeCtrl::LoadTree()
 
     ProcessLogicalPrestationsGroup(m_pLogicalPrestationRoot, m_hUserGroupRoot);
 
-    // expand the root
-    ExpandRoot(TRUE);
+    // collapse the root
+    ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_PrestationsTreeCtrl::DestroyTree()
@@ -605,7 +603,7 @@ PSS_PrestationsEntity* PSS_PrestationsTreeCtrl::GetPrestationEntity(HTREEITEM hI
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_Prestation)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Prestation)
             return pObj->m_pPrestation;
     }
 
@@ -618,7 +616,7 @@ PSS_LogicalPrestationsEntity* PSS_PrestationsTreeCtrl::GetLogicalPrestation(HTRE
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj && pObj->m_Type == ITreeData::IE_DT_Prestation)
+        if (pObj && pObj->m_Type == ITreeData::IEDataType::IE_DT_Prestation)
             return pObj->m_pPrestation;
     }
 
@@ -651,7 +649,7 @@ PSS_PrestationsTreeCtrl::ITreeData* PSS_PrestationsTreeCtrl::FindElementFromData
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_Prestation && pElement->m_pPrestation == pLogicalPrestation)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_Prestation && pElement->m_pPrestation == pLogicalPrestation)
             return pElement;
 
     return NULL;
@@ -662,7 +660,7 @@ PSS_PrestationsTreeCtrl::ITreeData* PSS_PrestationsTreeCtrl::FindElementFromData
     ITreeDataIterator it(&m_DataSet);
 
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
-        if (pElement->m_Type == ITreeData::IE_DT_String && pElement->m_Str == str)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_String && pElement->m_Str == str)
             return pElement;
 
     return NULL;

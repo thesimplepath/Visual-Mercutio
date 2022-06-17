@@ -561,7 +561,7 @@ class AFX_EXT_CLASS PSS_ProcessGraphModelController : public CODController,
         */
         virtual bool OnToolTip(CString&                  toolTipText,
                                const CPoint&             point,
-                               PSS_Symbol::IEToolTipMode mode = PSS_Symbol::IE_TT_Normal);
+                               PSS_Symbol::IEToolTipMode mode = PSS_Symbol::IEToolTipMode::IE_TT_Normal);
 
     protected:
         static CODSymbolComponent* m_pFormatPainterSymbol;

@@ -21,8 +21,10 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_LogicalSystemInfoDlg, CDialog)
+BEGIN_MESSAGE_MAP(PSS_LogicalSystemInfoDlg, PSS_FilteredDialogBox)
     //{{AFX_MSG_MAP(PSS_LogicalSystemInfoDlg)
+    ON_EN_SETFOCUS(IDC_LOGICALSYSTEM_NAME, OnEnSetfocusLogicalsystemName)
+    ON_EN_KILLFOCUS(IDC_LOGICALSYSTEM_NAME, OnEnKillfocusLogicalsystemName)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -34,7 +36,7 @@ PSS_LogicalSystemInfoDlg::PSS_LogicalSystemInfoDlg(UINT                     titl
                                                    const CString&           description,
                                                    bool                     modifyMode,
                                                    CWnd*                    pParent) :
-    CDialog(PSS_LogicalSystemInfoDlg::IDD, pParent),
+    PSS_FilteredDialogBox(PSS_LogicalSystemInfoDlg::IDD, pParent),
     m_pLogicalSystem(pLogicalSystem),
     m_Name(name),
     m_Description(description),
@@ -57,7 +59,7 @@ void PSS_LogicalSystemInfoDlg::DoDataExchange(CDataExchange* pDX)
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-BOOL PSS_LogicalSystemInfoDlg::OnInitDialog()
+afx_msg BOOL PSS_LogicalSystemInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
@@ -65,16 +67,24 @@ BOOL PSS_LogicalSystemInfoDlg::OnInitDialog()
         SetWindowText(m_Title);
 
     if (m_ModifyMode)
-    {
         if (GetDlgItem(IDC_LOGICALSYSTEM_NAME))
             GetDlgItem(IDC_LOGICALSYSTEM_NAME)->EnableWindow(FALSE);
-    }
 
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_LogicalSystemInfoDlg::OnOK()
+afx_msg void PSS_LogicalSystemInfoDlg::OnEnSetfocusLogicalsystemName()
+{
+    EnableCharFilter(true);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_LogicalSystemInfoDlg::OnEnKillfocusLogicalsystemName()
+{
+    EnableCharFilter(false);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_LogicalSystemInfoDlg::OnOK()
 {
     UpdateData(TRUE);
 

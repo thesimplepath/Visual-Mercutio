@@ -9,10 +9,12 @@
 #include "PSS_ProcessGraphModelController.h"
 
 // processsoft
-#include "zBaseLib\PSS_MsgBox.h"
+#include "zBaseLib\PSS_BasicLabelComponent.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
+#include "zBaseLib\PSS_CharFilters.h"
 #include "zBaseLib\PSS_FileDialog.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zProperty\PSS_PropertyObserverMsg.h"
 #include "zProperty\PSS_DynamicProperties.h"
 #include "zProperty\PSS_DynamicPropertiesManager.h"
@@ -25,6 +27,7 @@
 #include "PSS_ModelObserverMsg.h"
 #include "PSS_SymbolObserverMsg.h"
 #include "PSS_SymbolLogObserverMsg.h"
+#include "PSS_SymbolEdit.h"
 #include "PSS_LinkSymbol.h"
 #include "PSS_TextZone.h"
 #include "PSS_ProcessGraphPage.h"
@@ -684,6 +687,25 @@ void PSS_ProcessGraphModelController::EditName(CODComponent* pCompToEdit)
         // already editing?
         if (pTextComp && !pTextComp->IsEditing())
         {
+            PSS_SymbolEdit* pSymEdit = dynamic_cast<PSS_SymbolEdit*>(pTextComp);
+
+            if (pSymEdit)
+            {
+                // filter chars during user input
+                pSymEdit->EnableCharFilter(true);
+
+                // prevent empty names
+                pSymEdit->SetAllowEmptyText(false);
+            }
+            else
+            {
+                PSS_BasicLabelComponent* pBasicLabelComp = dynamic_cast<PSS_BasicLabelComponent*>(pTextComp);
+
+                // prevent empty names
+                if (pBasicLabelComp)
+                    pBasicLabelComp->SetAllowEmptyText(false);
+            }
+
             CODEditProperties* pEditProps = static_cast<CODEditProperties*>(pTextComp->GetProperty(OD_PROP_EDIT));
             ASSERT_VALID(pEditProps);
 
@@ -1902,7 +1924,7 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
     if (pSymbol)
     {
         PSS_PropertyObserverMsg msg   (pSymbol);
-        PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pSymbol);
+        PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementSelected, pSymbol);
 
         // notify direct observers
         NotifyAllObservers(&msg);
@@ -1923,7 +1945,7 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
     if (pLinkSymbol)
     {
         PSS_PropertyObserverMsg msg   (pLinkSymbol);
-        PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, pLinkSymbol);
+        PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementSelected, pLinkSymbol);
 
         // notify direct observers
         NotifyAllObservers(&msg);
@@ -1940,7 +1962,7 @@ void PSS_ProcessGraphModelController::NotifySymbolSelected(CODComponent* pComp)
     }
 
     PSS_PropertyObserverMsg msg   (NULL);
-    PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IE_AT_ElementSelected, NULL);
+    PSS_SymbolObserverMsg   symMsg(PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementSelected, NULL);
 
     // Notify direct observers
     NotifyAllObservers(&msg);
@@ -2084,75 +2106,185 @@ BOOL PSS_ProcessGraphModelController::StartTextEdit(UINT flags, CPoint point)
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::EndTextEdit(UINT nFlags, CPoint point)
 {
-    bool isNameValid = true;
-
+    // label exists?
     if (m_pTextEdit)
     {
-        const CString value = m_pTextEdit->GetEditText();
-
         // get the label or edit text owner
         CODComponent* pOwner = NULL;
 
-        // check label component, because it derives from text component
+        // get editor owner. Check label component first, because it also inherits from CODTextComponent
         if (ISA(m_pTextEdit, CODLabelComponent))
             pOwner = static_cast<CODLabelComponent*>(m_pTextEdit)->GetOwner();
         else
         if (ISA(m_pTextEdit, CODTextComponent))
             pOwner = static_cast<CODTextComponent*>(m_pTextEdit)->GetParent();
 
-        PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pOwner);
-        PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pOwner);
-
-        if (pSymbol || pLinkSymbol)
-        {
+        // found an editor?
+        if (pOwner)
+            // is text being editing?
             if (m_IsEditingSymbolName)
             {
-                if (value.IsEmpty())
+                // get the new value
+                const CString newValue = PSS_CharFilters::FilterText(m_pTextEdit->GetEditText());
+
+                // is a symbol or a link?
+                if (ISA(pOwner, PSS_Symbol))
                 {
-                    PSS_MsgBox mBox;
-                    mBox.Show(IDS_SYMBOLNAME_EMPTY, MB_OK);
-                    isNameValid = false;
-                }
+                    PSS_Symbol* pSymbol = static_cast<PSS_Symbol*>(pOwner);
 
-                PSS_ProcessGraphModelMdl* pModel = GetModel();
-                PSS_ProcessGraphModelMdl* pRoot  = pModel ? pModel->GetRoot() : NULL;
-
-                if (pRoot)
-                    if (pSymbol && pSymbol->GetSymbolName() != value)
+                    if (pSymbol)
                     {
-                        // check if new name is valid
-                        if (pSymbol->IsNewNameValid(value))
-                            pSymbol->SetSymbolName(value);
+                        // get previous name
+                        const CString oldName = pSymbol->GetSymbolName();
+
+                        // is new name valid?
+                        if (!pSymbol->IsNewNameValid(newValue))
+                        {
+                            // revert to previous name
+                            m_pTextEdit->SetEditText(oldName);
+                            pSymbol->SetSymbolName(oldName);
+                        }
                         else
-                            isNameValid = false;
+                        {
+                            // set the new name
+                            m_pTextEdit->SetEditText(newValue);
+                            pSymbol->SetSymbolName(newValue);
+                        }
+
+                        pSymbol->RedrawSymbol();
                     }
-                    else
-                    if (pLinkSymbol && pLinkSymbol->GetSymbolName() != value)
-                        // check if new name is valid
-                        if (pLinkSymbol->IsNewNameValid(value))
-                            pLinkSymbol->SetSymbolName(value);
+                }
+                else
+                if (ISA(pOwner, PSS_LinkSymbol))
+                {
+                    PSS_LinkSymbol* pLink = static_cast<PSS_LinkSymbol*>(pOwner);
+
+                    if (pLink)
+                    {
+                        // get previous name
+                        const CString oldName = pLink->GetSymbolName();
+
+                        // is new name valid?
+                        if (!pLink->IsNewNameValid(newValue))
+                        {
+                            // revert to previous name
+                            m_pTextEdit->SetEditText(oldName);
+                            pLink->SetSymbolName(oldName);
+                        }
                         else
-                            isNameValid = false;
+                        {
+                            // set the new name
+                            m_pTextEdit->SetEditText(newValue);
+                            pLink->SetSymbolName(newValue);
+                        }
+                    }
+                }
             }
             else
             if (m_IsEditingSymbolComment)
-                if (pSymbol)
-                    pSymbol->SetSymbolComment(value);
-                else
-                    pLinkSymbol->SetSymbolComment(value);
-
-            // if the name is valid and the edition control will be left, close the editor
-            if (isNameValid)
             {
-                m_IsEditingSymbolName    = false;
-                m_IsEditingSymbolComment = false;
+                // get the new value
+                const CString newValue = PSS_CharFilters::FilterText(m_pTextEdit->GetEditText());
+
+                // is a symbol or a link?
+                if (ISA(pOwner, PSS_Symbol))
+                {
+                    PSS_Symbol* pSymbol = static_cast<PSS_Symbol*>(pOwner);
+
+                    if (pSymbol)
+                    {
+                        // set new description
+                        m_pTextEdit->SetEditText(newValue);
+                        pSymbol->SetSymbolComment(newValue);
+                    }
+                }
+                else
+                if (ISA(pOwner, PSS_LinkSymbol))
+                {
+                    PSS_LinkSymbol* pLink = static_cast<PSS_LinkSymbol*>(pOwner);
+
+                    if (pLink)
+                    {
+                        // set new description
+                        m_pTextEdit->SetEditText(newValue);
+                        pLink->SetSymbolComment(newValue);
+                    }
+                }
             }
-        }
+            else
+            if (ISA(m_pTextEdit, PSS_SymbolEdit))
+            {
+                // are empty names allowed?
+                if (!static_cast<PSS_SymbolEdit*>(m_pTextEdit)->GetAllowEmptyText())
+                    // is a symbol or a link?
+                    if (ISA(pOwner, PSS_Symbol))
+                    {
+                        PSS_Symbol* pSymbol = static_cast<PSS_Symbol*>(pOwner);
+
+                        if (pSymbol)
+                        {
+                            const CString oldName = pSymbol->GetSymbolName();
+
+                            // revert to previous name
+                            m_pTextEdit->SetEditText(oldName);
+                            pSymbol->SetSymbolName(oldName);
+                            pSymbol->RedrawSymbol();
+                        }
+                    }
+                    else
+                    if (ISA(pOwner, PSS_LinkSymbol))
+                    {
+                        PSS_LinkSymbol* pLink = static_cast<PSS_LinkSymbol*>(pOwner);
+
+                        if (pLink)
+                        {
+                            const CString oldName = pLink->GetSymbolName();
+
+                            // revert to previous name
+                            m_pTextEdit->SetEditText(oldName);
+                            pLink->SetSymbolName(oldName);
+                        }
+                    }
+            }
+            else
+            if (ISA(m_pTextEdit, PSS_BasicLabelComponent))
+                // are empty names allowed?
+                if (!static_cast<PSS_BasicLabelComponent*>(m_pTextEdit)->GetAllowEmptyText())
+                    // is a symbol or a link?
+                    if (ISA(pOwner, PSS_Symbol))
+                    {
+                        PSS_Symbol* pSymbol = static_cast<PSS_Symbol*>(pOwner);
+
+                        if (pSymbol)
+                        {
+                            const CString oldName = pSymbol->GetSymbolName();
+
+                            // revert to previous name
+                            m_pTextEdit->SetEditText(oldName);
+                            pSymbol->SetSymbolName(oldName);
+                            pSymbol->RedrawSymbol();
+                        }
+                    }
+                    else
+                    if (ISA(pOwner, PSS_LinkSymbol))
+                    {
+                        PSS_LinkSymbol* pLink = static_cast<PSS_LinkSymbol*>(pOwner);
+
+                        if (pLink)
+                        {
+                            const CString oldName = pLink->GetSymbolName();
+
+                            // revert to previous name
+                            m_pTextEdit->SetEditText(oldName);
+                            pLink->SetSymbolName(oldName);
+                        }
+                    }
     }
 
-    // call the base class if the new name is valid
-    if (isNameValid)
-        CODController::EndTextEdit(nFlags, point);
+    m_IsEditingSymbolName    = false;
+    m_IsEditingSymbolComment = false;
+
+    CODController::EndTextEdit(nFlags, point);
 }
 //---------------------------------------------------------------------------
 void PSS_ProcessGraphModelController::InsertSymbol(UINT flags, CPoint point)
@@ -2248,7 +2380,7 @@ void PSS_ProcessGraphModelController::OnSymbolAdded(CODComponentSet* pCompSet)
         if (pSymbol || pLinkSymbol)
         {
             // build the message
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_AddElement,
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_AddElement,
                                       NULL,
                                       GetModel(),
                                       static_cast<CODSymbolComponent*>(pComp));
@@ -2471,7 +2603,11 @@ void PSS_ProcessGraphModelController::RemoveReferenceSymbol(CODComponentSet* pCo
             // build the message
             if (pMainWnd)
             {
-                PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_RemoveElement, NULL, pModel, static_cast<CODSymbolComponent*>(pComp));
+                PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_RemoveElement,
+                                          NULL,
+                                          pModel,
+                                          static_cast<CODSymbolComponent*>(pComp));
+
                 pMainWnd->SendMessageToDescendants(UM_ELEMENTREMOVEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
             }
         }
@@ -3457,7 +3593,7 @@ void PSS_ProcessGraphModelController::OnEditPaste()
         }
 
         CODModel* pCanvasModel = GetCanvasModel();
-        
+
         if (!pCanvasModel)
             THROW("The canvas model could not be found");
 
@@ -3825,7 +3961,14 @@ void PSS_ProcessGraphModelController::OnFindSymbol()
     CWaitCursor waitCursor;
 
     PSS_Properties::IPropertySet propSet;
-    PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
+
+    PSS_ProcessGraphModelMdl* pAllModels = pModel->GetRoot();
+
+    // get all attributes if possible, otherwise limit to the current page
+    if (pAllModels)
+        PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pAllModels, propSet);
+    else
+        PSS_DynamicAttributesManipulator::ExtractUniqueAttributes(pModel, propSet);
 
     PSS_PropertyAttributes propAttributes;
     PSS_FindSymbolExtDlg findSymbolDlg(&propAttributes, &propSet);
@@ -4144,7 +4287,7 @@ void PSS_ProcessGraphModelController::OnOdMeasurements()
 
     if (!pRuler)
         return;
-        
+
     // set the modification flag
     pDocument->SetModifiedFlag(TRUE);
 
@@ -4854,13 +4997,13 @@ void PSS_ProcessGraphModelController::OnDynamicAttributesDuplicate()
 
                     switch (pSrcProperty->GetValueType())
                     {
-                        case PSS_Property::IE_VT_Date:     pDestProperty->SetValueDate(pProp->GetValueDate());         break;
-                        case PSS_Property::IE_VT_Double:   pDestProperty->SetValueDouble(pProp->GetValueDouble());     break;
-                        case PSS_Property::IE_VT_Duration: pDestProperty->SetValueDuration(pProp->GetValueDuration()); break;
-                        case PSS_Property::IE_VT_Float:    pDestProperty->SetValueFloat(pProp->GetValueFloat());       break;
-                        case PSS_Property::IE_VT_String:   pDestProperty->SetValueString(pProp->GetValueString());     break;
-                        case PSS_Property::IE_VT_TimeSpan: pDestProperty->SetValueTimeSpan(pProp->GetValueTimeSpan()); break;
-                        case PSS_Property::IE_VT_Unknown:                                                              break;
+                        case PSS_Property::IEValueType::IE_VT_Date:     pDestProperty->SetValueDate    (pProp->GetValueDate());     break;
+                        case PSS_Property::IEValueType::IE_VT_Double:   pDestProperty->SetValueDouble  (pProp->GetValueDouble());   break;
+                        case PSS_Property::IEValueType::IE_VT_Duration: pDestProperty->SetValueDuration(pProp->GetValueDuration()); break;
+                        case PSS_Property::IEValueType::IE_VT_Float:    pDestProperty->SetValueFloat   (pProp->GetValueFloat());    break;
+                        case PSS_Property::IEValueType::IE_VT_String:   pDestProperty->SetValueString  (pProp->GetValueString());   break;
+                        case PSS_Property::IEValueType::IE_VT_TimeSpan: pDestProperty->SetValueTimeSpan(pProp->GetValueTimeSpan()); break;
+                        case PSS_Property::IEValueType::IE_VT_Unknown:                                                              break;
                     }
                 }
         }

@@ -40,7 +40,7 @@ class AFX_EXT_CLASS PSS_Stamp
         /**
         * Document file type
         */
-        enum IEDocumentFileType
+        enum class IEDocumentFileType
         {
             IE_FT_FormDocument,
             IE_FT_ProcessDocument,
@@ -50,7 +50,7 @@ class AFX_EXT_CLASS PSS_Stamp
         /**
         * File type definition
         */
-        enum IEFileTypeDefinition
+        enum class IEFileTypeDefinition
         {
             IE_FD_DocumentType,
             IE_FD_TemplateType,
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_Stamp
         /**
         * Document data type
         */
-        enum IEDocumentDataType
+        enum class IEDocumentDataType
         {
             IE_DT_Form,
             IE_DT_Binary,

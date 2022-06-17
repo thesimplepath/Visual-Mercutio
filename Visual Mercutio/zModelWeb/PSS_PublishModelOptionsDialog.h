@@ -61,7 +61,7 @@ class PSS_PublishModelOptionsDialog : public PSS_WizardDialog
                                       BOOL      publishConceptorDeliverablesIsChecked = FALSE,
                                       BOOL      publishProcessIsChecked               = TRUE,
                                       BOOL      publishRuleBookIsChecked              = FALSE,
-                                      ELanguage initialLanguage                       = E_LN_Unknown,
+                                      ELanguage initialLanguage                       = ELanguage::E_LN_Unknown,
                                       CWnd*     pParent                               = NULL);
 
         /**

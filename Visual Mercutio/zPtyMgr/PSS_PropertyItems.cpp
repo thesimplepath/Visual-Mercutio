@@ -126,13 +126,13 @@ void PSS_ExtendedPropertyItem::CreateInPlaceControl(CWnd*             pWndParent
     std::unique_ptr<PSS_InPlaceExtendedEdit> pControl(new PSS_InPlaceExtendedEdit(IsReadOnly()));
 
     // for processing extended command
-    pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
+    pControl->SetSearchType(PSS_SearchEditButton::IEType::IE_T_Extended);
 
     switch (m_Type)
     {
-        case IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
-        case IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
-        case IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
+        case IENumberType::IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
+        case IENumberType::IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
+        case IENumberType::IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
     }
 
     pWndInPlaceControl = pControl.release();
@@ -170,9 +170,9 @@ void PSS_IntelliEditPropertyItem::CreateInPlaceControl(CWnd*             pWndPar
 
     switch (m_Type)
     {
-        case IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
-        case IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
-        case IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
+        case IENumberType::IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
+        case IENumberType::IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
+        case IENumberType::IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
     }
 
     // Initialize the control array of values
@@ -209,13 +209,13 @@ void PSS_MultiLineEditPropertyItem::CreateInPlaceControl(CWnd*             pWndP
 {
     DestroyInPlaceControl(pWndInPlaceControl);
 
-    std::unique_ptr<PSS_InPlaceMultiLineEdit> pControl(new PSS_InPlaceMultiLineEdit(IsReadOnly()));
+    std::unique_ptr<PSS_InPlaceMultiLineEdit> pControl(new PSS_InPlaceMultiLineEdit(IsReadOnly(), m_FilterChars));
 
     switch (m_Type)
     {
-        case IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
-        case IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
-        case IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
+        case IENumberType::IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
+        case IENumberType::IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
+        case IENumberType::IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
     }
 
     // initialize the control
@@ -225,6 +225,11 @@ void PSS_MultiLineEditPropertyItem::CreateInPlaceControl(CWnd*             pWndP
         pControl->Initialize();
 
     pWndInPlaceControl = pControl.release();
+}
+//---------------------------------------------------------------------------
+void PSS_MultiLineEditPropertyItem::EnableCharFilter(bool value)
+{
+    m_FilterChars = value;
 }
 //---------------------------------------------------------------------------
 // Dynamic creation
@@ -253,12 +258,12 @@ void PSS_DatePropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
     std::unique_ptr<PSS_InPlaceDateEdit> pControl(new PSS_InPlaceDateEdit(IsReadOnly()));
 
     // for processing extended command
-    pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
+    pControl->SetSearchType(PSS_SearchEditButton::IEType::IE_T_Extended);
 
     switch (m_Type)
     {
-        case IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,  pWndParent, rect); break;
-        case IE_NT_Date:   pControl->InitializeInPlaceEditCtrl(this, m_DateValue, pWndParent, rect); break;
+        case IENumberType::IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,  pWndParent, rect); break;
+        case IENumberType::IE_NT_Date:   pControl->InitializeInPlaceEditCtrl(this, m_DateValue, pWndParent, rect); break;
     }
 
     pWndInPlaceControl = pControl.release();
@@ -290,12 +295,12 @@ void PSS_TimePropertyItem::CreateInPlaceControl(CWnd*           pWndParent,
     std::unique_ptr<PSS_InPlaceTimeEdit> pControl(new PSS_InPlaceTimeEdit(IsReadOnly()));
 
     // for processing extended command
-    pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
+    pControl->SetSearchType(PSS_SearchEditButton::IEType::IE_T_Extended);
 
     switch (m_Type)
     {
-        case IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,  pWndParent, rect); break;
-        case IE_NT_Time:   pControl->InitializeInPlaceEditCtrl(this, m_TimeValue, pWndParent, rect); break;
+        case IENumberType::IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,  pWndParent, rect); break;
+        case IENumberType::IE_NT_Time:   pControl->InitializeInPlaceEditCtrl(this, m_TimeValue, pWndParent, rect); break;
     }
 
     pWndInPlaceControl = pControl.release();
@@ -327,12 +332,12 @@ void PSS_DurationPropertyItem::CreateInPlaceControl(CWnd*             pWndParent
     std::unique_ptr<PSS_InPlaceDurationEdit> pControl(new PSS_InPlaceDurationEdit(IsReadOnly()));
 
     // for processing extended command
-    pControl->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
+    pControl->SetSearchType(PSS_SearchEditButton::IEType::IE_T_Extended);
 
     switch (m_Type)
     {
-        case IE_NT_String:   pControl->InitializeInPlaceEditCtrl(this, m_StrValue,      pWndParent, rect); break;
-        case IE_NT_Duration: pControl->InitializeInPlaceEditCtrl(this, m_DurationValue, pWndParent, rect); break;
+        case IENumberType::IE_NT_String:   pControl->InitializeInPlaceEditCtrl(this, m_StrValue,      pWndParent, rect); break;
+        case IENumberType::IE_NT_Duration: pControl->InitializeInPlaceEditCtrl(this, m_DurationValue, pWndParent, rect); break;
     }
 
     pWndInPlaceControl = pControl.release();
@@ -365,16 +370,16 @@ void PSS_MenuFileDirPropertyItem::CreateInPlaceControl(CWnd*             pWndPar
 
     switch (m_ControlType)
     {
-        case IE_IT_Menu:      pControl->SetSearchType(PSS_SearchEditButton::IE_T_Popup, m_pMenu, true, true); break;
-        case IE_IT_File:      pControl->SetSearchType(PSS_SearchEditButton::IE_T_File);                       break;
-        case IE_IT_Directory: pControl->SetSearchType(PSS_SearchEditButton::IE_T_Directory);                  break;
+        case IEItemType::IE_IT_Menu:      pControl->SetSearchType(PSS_SearchEditButton::IEType::IE_T_Popup, m_pMenu, true, true); break;
+        case IEItemType::IE_IT_File:      pControl->SetSearchType(PSS_SearchEditButton::IEType::IE_T_File);                       break;
+        case IEItemType::IE_IT_Directory: pControl->SetSearchType(PSS_SearchEditButton::IEType::IE_T_Directory);                  break;
     }
 
     switch (m_Type)
     {
-        case IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
-        case IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
-        case IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
+        case IENumberType::IE_NT_String: pControl->InitializeInPlaceEditCtrl(this, m_StrValue,    pWndParent, rect); break;
+        case IENumberType::IE_NT_Double: pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect); break;
+        case IENumberType::IE_NT_Float:  pControl->InitializeInPlaceEditCtrl(this, m_FloatValue,  pWndParent, rect); break;
     }
 
     pWndInPlaceControl = pControl.release();
@@ -405,7 +410,7 @@ void PSS_NumberPropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
 
     switch (m_Type)
     {
-        case IE_NT_Float:
+        case IENumberType::IE_NT_Float:
         {
             std::unique_ptr<PSS_InPlacePropItemNumberEdit> pControl(new PSS_InPlacePropItemNumberEdit(m_FloatValue, IsReadOnly()));
             pControl->InitializeInPlaceEditCtrl(this, m_FloatValue, pWndParent, rect);
@@ -413,7 +418,7 @@ void PSS_NumberPropertyItem::CreateInPlaceControl(CWnd*             pWndParent,
             return;
         }
 
-        case IE_NT_Double:
+        case IENumberType::IE_NT_Double:
         {
             std::unique_ptr<PSS_InPlacePropItemNumberEdit> pControl(new PSS_InPlacePropItemNumberEdit(m_DoubleValue, IsReadOnly()));
             pControl->InitializeInPlaceEditCtrl(this, m_DoubleValue, pWndParent, rect);

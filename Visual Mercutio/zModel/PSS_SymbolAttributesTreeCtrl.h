@@ -96,7 +96,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
                 /**
                 * Data type
                 */
-                enum IEDataType
+                enum class IEDataType
                 {
                     IE_DT_Category,
                     IE_DT_Item,
@@ -120,7 +120,7 @@ class AFX_EXT_CLASS PSS_SymbolAttributesTreeCtrl : public PSS_TreeCtrl,
                 *@param pPropAttribute - the property attribuze
                 */
                 ITreeData(PSS_PropertyAttributes::IAttribute* pPropAttribute);
-        
+
                 virtual ~ITreeData();
         };
 

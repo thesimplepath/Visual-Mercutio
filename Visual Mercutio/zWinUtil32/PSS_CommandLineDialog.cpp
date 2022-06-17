@@ -52,9 +52,9 @@ PSS_CommandLineDialog::PSS_CommandLineDialog(const CString& jobName,
     m_WindowMode(windowMode),
     m_JobNameHasChanged(false)
 {
-    m_StartupDirectory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, "");
-    m_Application.SetSearchType(PSS_SearchEditButton::IE_T_File);
-    m_Arguments.SetSearchType(PSS_SearchEditButton::IE_T_Popup, IDR_ARGUMENTS);
+    m_StartupDirectory.SetSearchType(PSS_SearchEditButton::IEType::IE_T_Directory, "");
+    m_Application.SetSearchType(PSS_SearchEditButton::IEType::IE_T_File);
+    m_Arguments.SetSearchType(PSS_SearchEditButton::IEType::IE_T_Popup, IDR_ARGUMENTS);
 }
 //---------------------------------------------------------------------------
 void PSS_CommandLineDialog::DoDataExchange(CDataExchange* pDX)

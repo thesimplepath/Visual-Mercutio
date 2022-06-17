@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         /**
         * Automation move status
         */
-        enum IEAutomationMoveStatus
+        enum class IEAutomationMoveStatus
         {
             IE_AS_Error,
             IE_AS_IsWaitingForLinks,

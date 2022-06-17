@@ -284,8 +284,8 @@ static UINT BASED_CODE g_AddSymbolsButtons[] =
 /// default menu bar layout
 static UINT g_MenuButtons[] =
 {
-    ID_MENUBAR_FILE_MAINFRAME,    // "File" submenu for mainframe view
-    ID_MENUBAR_FILE_MODEL,        // "File" submenu for model view
+    ID_MENUBAR_FILE_MAINFRAME,    // "File" sub-menu for mainframe view
+    ID_MENUBAR_FILE_MODEL,        // "File" sub-menu for model view
     ID_MENUBAR_EDIT,
     ID_MENUBAR_DISPLAY,
     ID_MENUBAR_DRAWING,
@@ -999,7 +999,7 @@ BOOL PSS_MainFrame::CreateToolBars()
                                TRUE);
 
    // register BP toolbar
-    PSS_FloatingToolBar::RegisterToolBar(M_ModelisationToolbarName, AFX_IDW_TOOLBAR + 23, this, E_MN_Beryl);
+    PSS_FloatingToolBar::RegisterToolBar(M_ModelisationToolbarName, AFX_IDW_TOOLBAR + 23, this, EModelNotation::E_MN_Beryl);
 
     title.LoadString(IDS_TB_BPMODELGENERATIONBUTTONS);
 
@@ -1013,7 +1013,7 @@ BOOL PSS_MainFrame::CreateToolBars()
                                TRUE,
                                TRUE);
 
-    PSS_FloatingToolBar::RegisterToolBar(M_ModelGenerationToolbarName, AFX_IDW_TOOLBAR + 24, this, E_MN_Beryl);
+    PSS_FloatingToolBar::RegisterToolBar(M_ModelGenerationToolbarName, AFX_IDW_TOOLBAR + 24, this, EModelNotation::E_MN_Beryl);
 
     // enable the tooltips
     pMgr->EnableToolTips(TRUE);

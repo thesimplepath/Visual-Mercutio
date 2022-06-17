@@ -63,10 +63,10 @@ void PSS_BasicModelProperties::Merge(CODProperty* pProp, DWORD changeType)
 
     if (pOrientationProp)
     {
-        if (changeType & IE_CT_Model_Name)
+        if (changeType & (DWORD)IEChangeType::IE_CT_Model_Name)
             m_ModelName = pOrientationProp->GetModelName();
 
-        if (changeType & IE_CT_Model_Description)
+        if (changeType & (DWORD)IEChangeType::IE_CT_Model_Description)
             m_ModelDescription = pOrientationProp->GetModelDescription();
     }
 }

@@ -20,6 +20,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib\PSS_BasicTextComponent.h"
+
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_SymbolEdit
     #define PSS_SymbolEdit ZBSymbolEdit
@@ -39,13 +42,25 @@
 * Symbol edit
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SymbolEdit : public CODTextComponent
+class AFX_EXT_CLASS PSS_SymbolEdit : public PSS_BasicTextComponent
 {
     DECLARE_SERIAL(PSS_SymbolEdit)
 
     public:
         PSS_SymbolEdit();
         virtual ~PSS_SymbolEdit();
+
+        /**
+        * Gets if empty text is allowed after edition
+        *@return true if empty text is allowed, otherwise false
+        */
+        virtual bool GetAllowEmptyText() const;
+
+        /**
+        * Sets if empty text is allowed after edition
+        *@param value - if true, empty text is allowed
+        */
+        virtual void SetAllowEmptyText(bool value);
 
         /**
         * Gets the property value
@@ -60,7 +75,7 @@ class AFX_EXT_CLASS PSS_SymbolEdit : public CODTextComponent
         virtual BOOL GetValue(const int propId, CString& value) const;
 
         /**
-        * Sets the property value 
+        * Sets the property value
         *@param propID - the property identifier
         *@param value/pValue - the value
         *@return TRUE on success, otherwise FALSE
@@ -73,6 +88,7 @@ class AFX_EXT_CLASS PSS_SymbolEdit : public CODTextComponent
 
     private:
         BOOL m_AutoSizeProp;
+        bool m_AllowEmptyText;
 };
 
 #endif

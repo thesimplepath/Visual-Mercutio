@@ -68,7 +68,7 @@ BOOL PSS_InPlaceDateEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_String;
 
     // set the current selection to all
     SetSelAll();
@@ -95,7 +95,7 @@ BOOL PSS_InPlaceDateEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Date;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_Date;
 
     // set the current selection to all
     SetSelAll();
@@ -146,12 +146,12 @@ void PSS_InPlaceDateEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case PSS_InPlaceEdit::IE_T_String:
+        case PSS_InPlaceEdit::IEType::IE_T_String:
             // set back the initial value
             SetEditText(m_StrInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Date:
+        case PSS_InPlaceEdit::IEType::IE_T_Date:
             // set back the initial duration value
             SetEditText(m_InitialDateValue);
             break;
@@ -181,11 +181,11 @@ void PSS_InPlaceDateEdit::SaveValue()
 
                 switch (GetEditType())
                 {
-                    case PSS_InPlaceEdit::IE_T_String:
+                    case PSS_InPlaceEdit::IEType::IE_T_String:
                         // do nothing for string
                         break;
 
-                    case PSS_InPlaceEdit::IE_T_Date:
+                    case PSS_InPlaceEdit::IEType::IE_T_Date:
                     {
                         // check the conversion
                         PSS_Date value;
@@ -224,6 +224,13 @@ void PSS_InPlaceDateEdit::SaveValue()
 
     // set the focus to the control
     SetFocus();
+}
+//---------------------------------------------------------------------------
+void PSS_InPlaceDateEdit::OnPropertieValueChanged()
+{
+    SetHasChanged(true);
+
+    PSS_PropertyEditControl::OnPropertieValueChanged();
 }
 //---------------------------------------------------------------------------
 void PSS_InPlaceDateEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)

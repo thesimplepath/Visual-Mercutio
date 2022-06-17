@@ -95,7 +95,7 @@ void PSS_ActivityEventOverviewCtrl::Initialize()
 
     for (int mainIndex = 0; mainIndex < userArraySize; ++mainIndex)
     {
-        std::unique_ptr<IElementType> pElement(new IElementType(m_UserArray[mainIndex], IElementType::IE_AT_User));
+        std::unique_ptr<IElementType> pElement(new IElementType(m_UserArray[mainIndex], IElementType::IEActivityType::IE_AT_User));
         hRootItem = AddUserItem(pElement.get(), 0);
         pElement.release();
 
@@ -115,7 +115,7 @@ void PSS_ActivityEventOverviewCtrl::Initialize()
                     continue;
 
                 // is the same process?
-                if (pEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo &&
+                if (pEvent->GetActivityEventType() == PSS_ActivityEvent::IEType::IE_AT_ToDo &&
                         !pEvent->GetProcessName().CompareNoCase(m_ProcessArray[processIndex]))
                     // is the same user and folder?
                     if (pEvent->IsInUserQueue() && !pEvent->GetUserQueue().CompareNoCase(m_UserArray[mainIndex]))
@@ -123,7 +123,7 @@ void PSS_ActivityEventOverviewCtrl::Initialize()
                         if (!hRootProcessItem)
                         {
                             std::unique_ptr<IElementType> pElement
-                                    (new IElementType(m_ProcessArray[processIndex], IElementType::IE_AT_Process));
+                                    (new IElementType(m_ProcessArray[processIndex], IElementType::IEActivityType::IE_AT_Process));
                             hRootProcessItem = AddProcessItem(pElement.get(), hRootItem, 1);
                             pElement.release();
                         }
@@ -131,7 +131,7 @@ void PSS_ActivityEventOverviewCtrl::Initialize()
                         // is the folder not already in?
                         if (!FindItem(pEvent->GetFolderName(), hRootProcessItem))
                         {
-                            std::unique_ptr<IElementType> pElement(new IElementType(pEvent, IElementType::IE_AT_Activity));
+                            std::unique_ptr<IElementType> pElement(new IElementType(pEvent, IElementType::IEActivityType::IE_AT_Activity));
                             AddSubItem(pElement.get(), hRootProcessItem, 2);
                             pElement.release();
                         }
@@ -155,7 +155,7 @@ PSS_ActivityEvent* PSS_ActivityEventOverviewCtrl::GetSelectedActivityItem()
     {
         IElementType* pObj = (IElementType*)GetItemData(hSelected);
 
-        if (pObj && pObj->m_Type == IElementType::IE_AT_Activity)
+        if (pObj && pObj->m_Type == IElementType::IEActivityType::IE_AT_Activity)
             return pObj->m_pData;
     }
 
@@ -170,7 +170,7 @@ CString PSS_ActivityEventOverviewCtrl::GetSelectedUser()
     {
         IElementType* pObj = (IElementType*)GetItemData(hSelected);
 
-        if (pObj && pObj->m_Type == IElementType::IE_AT_User)
+        if (pObj && pObj->m_Type == IElementType::IEActivityType::IE_AT_User)
             return GetItemText(hSelected);
 
         hSelected = GetParentItem(hSelected);
@@ -187,7 +187,7 @@ CString PSS_ActivityEventOverviewCtrl::GetSelectedProcess()
     {
         IElementType* pObj = (IElementType*)GetItemData(hSelected);
 
-        if (pObj && pObj->m_Type == IElementType::IE_AT_Process)
+        if (pObj && pObj->m_Type == IElementType::IEActivityType::IE_AT_Process)
             return GetItemText(hSelected);
 
         hSelected = GetParentItem(hSelected);
@@ -263,7 +263,7 @@ void PSS_ActivityEventOverviewCtrl::OnDestroy()
 //---------------------------------------------------------------------------
 HTREEITEM PSS_ActivityEventOverviewCtrl::AddUserItem(IElementType* pElement, int iconIndex)
 {
-    if (!pElement || pElement->m_Type != IElementType::IE_AT_User)
+    if (!pElement || pElement->m_Type != IElementType::IEActivityType::IE_AT_User)
         return NULL;
 
     TV_INSERTSTRUCT curTreeItem;
@@ -280,7 +280,7 @@ HTREEITEM PSS_ActivityEventOverviewCtrl::AddUserItem(IElementType* pElement, int
 //---------------------------------------------------------------------------
 HTREEITEM PSS_ActivityEventOverviewCtrl::AddProcessItem(IElementType* pElement, HTREEITEM hParentTreeItem, int iconIndex)
 {
-    if (!pElement || pElement->m_Type != IElementType::IE_AT_Process)
+    if (!pElement || pElement->m_Type != IElementType::IEActivityType::IE_AT_Process)
         return NULL;
 
     TV_INSERTSTRUCT curTreeItem;
@@ -297,7 +297,7 @@ HTREEITEM PSS_ActivityEventOverviewCtrl::AddProcessItem(IElementType* pElement, 
 //---------------------------------------------------------------------------
 HTREEITEM PSS_ActivityEventOverviewCtrl::AddSubItem(IElementType* pElement, HTREEITEM hParentTreeItem, int iconIndex)
 {
-    if (!pElement || pElement->m_Type != IElementType::IE_AT_Activity)
+    if (!pElement || pElement->m_Type != IElementType::IEActivityType::IE_AT_Activity)
         return NULL;
 
     if (!pElement->m_pData)
@@ -325,7 +325,7 @@ CString PSS_ActivityEventOverviewCtrl::FormatActivityText(PSS_ActivityEvent* pDa
 
     char buffer[100];
     ::sprintf_s(buffer,
-                ::_tcslen(buffer),
+                100,
                 "%s: %s - %s: %s",
                 (const char*)processNameLabel,
                 (const char*)pData->GetProcessName(),
@@ -382,7 +382,7 @@ void PSS_ActivityEventOverviewCtrl::BuildUserArray()
             continue;
 
         // is a todo activity?
-        if (pEvent->GetActivityEventType() != PSS_ActivityEvent::IE_AT_ToDo)
+        if (pEvent->GetActivityEventType() != PSS_ActivityEvent::IEType::IE_AT_ToDo)
             continue;
 
         if (!pEvent->IsInUserQueue())
@@ -409,7 +409,7 @@ void PSS_ActivityEventOverviewCtrl::BuildProcessArray()
             continue;
 
         // is a todo activity?
-        if (pEvent->GetActivityEventType() != PSS_ActivityEvent::IE_AT_ToDo)
+        if (pEvent->GetActivityEventType() != PSS_ActivityEvent::IEType::IE_AT_ToDo)
             continue;
 
         const CString processName = pEvent->GetProcessName();

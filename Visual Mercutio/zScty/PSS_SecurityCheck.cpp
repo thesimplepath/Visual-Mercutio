@@ -123,8 +123,8 @@ const CString PSS_SecurityCheck::FindOldVersion(const CString& exeFileName)
             try
             {
                 pBuffer = new char[18];
-                
-                if (!_itoa_s(drive, pBuffer, _tcslen(pBuffer), 10))
+
+                if (!_itoa_s(drive, pBuffer, 18, 10))
                     driveLetter = pBuffer;
             }
             catch (...)
@@ -165,7 +165,7 @@ const CString PSS_SecurityCheck::FindOldVersion(const CString& exeFileName)
         // iterate through possible drives
         for (int drive = 0; drive < 26; ++drive)
             if (GetDriveType(drive) == DRIVE_FIXED)
-            {                  
+            {
                 fileName = FindFile(exeFileName, drive);
 
                 if (!fileName.IsEmpty())
@@ -242,7 +242,7 @@ const CString& PSS_SecurityCheck::FindFile(const CString& fileName, int drive)
     {
         pBuffer = new char[18];
 
-        if (!_itoa_s(drive, pBuffer, _tcslen(pBuffer), 10))
+        if (!_itoa_s(drive, pBuffer, 18, 10))
             driveLetter = pBuffer;
     }
     catch (...)
@@ -330,7 +330,7 @@ BOOL PSS_SecurityCheck::FindFileInCurrentDir()
                     FindFileInCurrentDir();
                     ::chdir("..");
                 }
- 
+
             // search for additional subdirectories
             while (!::_dos_findnext(&fileInfo))
                 if ((fileInfo.attrib & 0x10) != 0x00)

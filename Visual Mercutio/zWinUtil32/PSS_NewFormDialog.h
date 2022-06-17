@@ -120,7 +120,7 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public PSS_WizardDialog
         /**
         * Dialog form type enumeration
         */
-        enum IEDialogFormType
+        enum class IEDialogFormType
         {
             IE_T_StartForm,
             IE_T_AttachForm,
@@ -131,7 +131,7 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public PSS_WizardDialog
         /**
         * Dialog form extension type enumeration
         */
-        enum IEDialogFormExtensionType
+        enum class IEDialogFormExtensionType
         {
             IE_ET_Form,
             IE_ET_ProcessForm,

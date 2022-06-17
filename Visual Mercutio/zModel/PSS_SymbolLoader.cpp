@@ -32,9 +32,9 @@ int PSS_SymbolLoader::LoadSymbol(const CString& location, PSS_SymbolEntity::IEnt
 {
     switch (connType)
     {
-        case IE_CT_FileConnection: return PSS_FileSymbolLoader::LoadSymbol(location, compSet);
-        case IE_CT_FTPConnection:  return PSS_FTPSymbolLoader::LoadSymbol (location, compSet);
-        case IE_CT_HTTPConnection: return PSS_HTTPSymbolLoader::LoadSymbol(location, compSet);
+        case IEConnectionType::IE_CT_FileConnection: return PSS_FileSymbolLoader::LoadSymbol(location, compSet);
+        case IEConnectionType::IE_CT_FTPConnection:  return PSS_FTPSymbolLoader::LoadSymbol (location, compSet);
+        case IEConnectionType::IE_CT_HTTPConnection: return PSS_HTTPSymbolLoader::LoadSymbol(location, compSet);
     }
 
     return 0;
@@ -47,9 +47,9 @@ int PSS_SymbolLoader::LoadSymbols(const CString&                location,
 {
     switch (connType)
     {
-        case IE_CT_FileConnection: return PSS_FileSymbolLoader::LoadSymbols(location, compSet, loadSubFolders);
-        case IE_CT_FTPConnection:  return PSS_FTPSymbolLoader::LoadSymbols (location, compSet, loadSubFolders);
-        case IE_CT_HTTPConnection: return PSS_HTTPSymbolLoader::LoadSymbols(location, compSet, loadSubFolders);
+        case IEConnectionType::IE_CT_FileConnection: return PSS_FileSymbolLoader::LoadSymbols(location, compSet, loadSubFolders);
+        case IEConnectionType::IE_CT_FTPConnection:  return PSS_FTPSymbolLoader::LoadSymbols (location, compSet, loadSubFolders);
+        case IEConnectionType::IE_CT_HTTPConnection: return PSS_HTTPSymbolLoader::LoadSymbols(location, compSet, loadSubFolders);
     }
     return 0;
 }

@@ -691,7 +691,7 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
         /**
         * Incon display type
         */
-        enum IEIconDisplayType
+        enum class IEIconDisplayType
         {
             IE_DT_NoIcon,
             IE_DT_AssociationIcon,
@@ -881,7 +881,7 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
         * Sets the icon display type
         *@param type - icon display type
         */
-        virtual inline void SetIconDisplayType(IEIconDisplayType type = IE_DT_NoIcon);
+        virtual inline void SetIconDisplayType(IEIconDisplayType type = IEIconDisplayType::IE_DT_NoIcon);
 
         /**
         * Gets the associations

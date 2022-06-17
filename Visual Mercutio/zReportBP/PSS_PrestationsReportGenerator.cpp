@@ -235,15 +235,15 @@ void PSS_PrestationsReportGenerator::IPrestationsData::Associate(PSS_ProcessSymb
                 {
                     switch (pProp->GetValueType())
                     {
-                        case PSS_Property::IE_VT_Double: pData->SetPercentage(       pProp->GetValueDouble()); break;
-                        case PSS_Property::IE_VT_Float:  pData->SetPercentage(double(pProp->GetValueFloat())); break;
+                        case PSS_Property::IEValueType::IE_VT_Double: pData->SetPercentage(       pProp->GetValueDouble()); break;
+                        case PSS_Property::IEValueType::IE_VT_Float:  pData->SetPercentage(double(pProp->GetValueFloat())); break;
                     }
 
                     isGoodPrestationName = FALSE;
                 }
             }
 
-            // get the data to associate. The workload and cost are multiplicated by the prestation process activity rate
+            // get the data to associate. The workload and cost are multiplied by the prestation process activity rate
             pData->SetName    (pProcess->GetSymbolName());
             pData->SetWorkload(pProcess->GetProcessWorkloadForecast() * pData->GetPercentage());
             pData->SetCost    (pProcess->GetProcessCostForecast()     * pData->GetPercentage());

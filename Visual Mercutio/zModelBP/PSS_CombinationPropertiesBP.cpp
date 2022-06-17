@@ -69,16 +69,16 @@ void PSS_CombinationPropertiesBP::Merge(PSS_CombinationPropertiesBP* pProp, DWOR
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Combination_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Combination_Name)
             m_CombinationName = pProp->GetCombinationName();
 
-        if (changeFlags & IE_CT_Change_Combination_Deliverables)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Combination_Deliverables)
             m_CombinationDeliverables = pProp->GetCombinationDeliverables();
 
-        if (changeFlags & IE_CT_Change_Combination_Activation_Perc)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Combination_Activation_Perc)
             m_CombinationActivationPerc = pProp->GetCombinationActivationPerc();
 
-        if (changeFlags & IE_CT_Change_Combination_Master)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Combination_Master)
             m_CombinationMaster = pProp->GetCombinationMaster();
     }
 }

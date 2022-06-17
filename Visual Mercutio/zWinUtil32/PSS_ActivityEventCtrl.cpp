@@ -84,7 +84,7 @@ PSS_ActivityEvent& operator >> (PSS_ActivityEvent& activityEvent, PSS_ActivityEv
         const int index      = eventCtrl.GetItemCount();
               int imageIndex = 13;
 
-        if (activityEvent.GetActivityEventType() != PSS_ActivityEvent::IE_AT_Message)
+        if (activityEvent.GetActivityEventType() != PSS_ActivityEvent::IEType::IE_AT_Message)
             if (activityEvent.GetActivityStatus() == g_ActivityStatusProcessPaused)
                 imageIndex = 12;
             else

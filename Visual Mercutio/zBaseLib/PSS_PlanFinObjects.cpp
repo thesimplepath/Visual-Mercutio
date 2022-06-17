@@ -561,19 +561,19 @@ CStringArray& PSS_PLFNTime::GetFormatChoice() const
     // read the number and format it. Create a copy of the current object and modify the format
     PSS_PLFNTime tmpTime = *this;
 
-    tmpTime.SetFormatType(E_FT_Standard);
+    tmpTime.SetFormatType(EFormatType::E_FT_Standard);
     tmpTime.FormatObject(&tmpTime.m_Time);
     m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
-    tmpTime.SetFormatType(E_FT_Date);
+    tmpTime.SetFormatType(EFormatType::E_FT_Date);
     tmpTime.FormatObject(&tmpTime.m_Time);
     m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
-    tmpTime.SetFormatType(E_FT_Date1);
+    tmpTime.SetFormatType(EFormatType::E_FT_Date1);
     tmpTime.FormatObject(&tmpTime.m_Time);
     m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
-    tmpTime.SetFormatType(E_FT_Date2);
+    tmpTime.SetFormatType(EFormatType::E_FT_Date2);
     tmpTime.FormatObject(&tmpTime.m_Time);
     m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
@@ -597,10 +597,10 @@ void PSS_PLFNTime::SetFormatWithChoice(const CString& value)
     if (index < formatChoiceCount)
         switch (index)
         {
-            case 0: m_FormatType = E_FT_Standard; break;
-            case 1: m_FormatType = E_FT_Date;     break;
-            case 2: m_FormatType = E_FT_Date1;    break;
-            case 3: m_FormatType = E_FT_Date2;    break;
+            case 0: m_FormatType = EFormatType::E_FT_Standard; break;
+            case 1: m_FormatType = EFormatType::E_FT_Date;     break;
+            case 2: m_FormatType = EFormatType::E_FT_Date1;    break;
+            case 3: m_FormatType = EFormatType::E_FT_Date2;    break;
         }
 }
 //---------------------------------------------------------------------------
@@ -697,7 +697,7 @@ IMPLEMENT_SERIAL(PSS_PLFNLong, PSS_PLFNAscii, g_DefVersion)
 PSS_PLFNLong::PSS_PLFNLong() :
     PSS_PLFNAscii(),
     m_Long(0.0),
-    m_IconDisplayType(IE_DT_NoIcon),
+    m_IconDisplayType(IEIconDisplayType::IE_DT_NoIcon),
     m_Rounded(0.0),
     m_IsCalculatedField(FALSE),
     m_KeepTheValue(FALSE),
@@ -707,7 +707,7 @@ PSS_PLFNLong::PSS_PLFNLong() :
 PSS_PLFNLong::PSS_PLFNLong(const PSS_PLFNLong& other) :
     PSS_PLFNAscii(),
     m_Long(0.0),
-    m_IconDisplayType(IE_DT_NoIcon),
+    m_IconDisplayType(IEIconDisplayType::IE_DT_NoIcon),
     m_Rounded(0.0),
     m_IsCalculatedField(FALSE),
     m_KeepTheValue(FALSE),
@@ -727,7 +727,7 @@ const PSS_PLFNLong& PSS_PLFNLong::operator = (const PSS_PLFNLong* pOther)
     {
         // set default values
         m_Long              = 0.0;
-        m_IconDisplayType   = IE_DT_NoIcon;
+        m_IconDisplayType   = IEIconDisplayType::IE_DT_NoIcon;
         m_Rounded           = 0.0;
         m_IsCalculatedField = FALSE;
         m_KeepTheValue      = FALSE;
@@ -839,7 +839,7 @@ BOOL PSS_PLFNLong::ConvertFormattedObject(const CString& value, BOOL locateForma
         m_Long  = std::atof((const char*)value) / 100;
 
         if (locateFormat)
-            SetFormatType(E_FT_Percentage);
+            SetFormatType(EFormatType::E_FT_Percentage);
 
         // check if it's necessary to empty the object when zeros
         if (emptyWhenZero && !m_Long)
@@ -892,15 +892,15 @@ BOOL PSS_PLFNLong::ConvertFormattedObject(const CString& value, BOOL locateForma
             if (std::strchr((const char*)value, ',') || std::strchr((const char*)value, '.'))
             {
                 if (b2Dash)
-                    SetFormatType(E_FT_Amount2DashTrail);
+                    SetFormatType(EFormatType::E_FT_Amount2DashTrail);
                 else
                 if (b1Dash)
-                    SetFormatType(E_FT_Amount1DashTrail);
+                    SetFormatType(EFormatType::E_FT_Amount1DashTrail);
                 else
-                    SetFormatType(E_FT_Amount2);
+                    SetFormatType(EFormatType::E_FT_Amount2);
             }
             else
-                SetFormatType(E_FT_Amount);
+                SetFormatType(EFormatType::E_FT_Amount);
     }
     else
     {
@@ -909,7 +909,7 @@ BOOL PSS_PLFNLong::ConvertFormattedObject(const CString& value, BOOL locateForma
 
         std::strcpy(temp, (const char*)value);
 
-        // if dahs or double-dash, remove it before converting to number
+        // if dash or double-dash, remove it before converting to number
         if (b2Dash)
             // set artificial end of buffer
             temp[i - 2] = 0x00;
@@ -922,12 +922,12 @@ BOOL PSS_PLFNLong::ConvertFormattedObject(const CString& value, BOOL locateForma
 
         if (locateFormat && (std::strchr((const char*)value, ',') || std::strchr((const char*)value, '.')))
             if (b2Dash)
-                SetFormatType(E_FT_Amount2Dash);
+                SetFormatType(EFormatType::E_FT_Amount2Dash);
             else
             if (b1Dash)
-                SetFormatType(E_FT_Amount1Dash);
+                SetFormatType(EFormatType::E_FT_Amount1Dash);
             else
-                SetFormatType(E_FT_Amount1);
+                SetFormatType(EFormatType::E_FT_Amount1);
     }
 
     // check if it's necessary to empty the object when zeros
@@ -955,42 +955,42 @@ CStringArray& PSS_PLFNLong::GetFormatChoice()
         tmpLong.SetValue(1035.25);
     }
 
-    tmpLong.SetFormatType(E_FT_Standard);
+    tmpLong.SetFormatType(EFormatType::E_FT_Standard);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
-    tmpLong.SetFormatType(E_FT_Amount);
+    tmpLong.SetFormatType(EFormatType::E_FT_Amount);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
-    tmpLong.SetFormatType(E_FT_Amount1);
+    tmpLong.SetFormatType(EFormatType::E_FT_Amount1);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
-    tmpLong.SetFormatType(E_FT_Amount2);
+    tmpLong.SetFormatType(EFormatType::E_FT_Amount2);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
-    tmpLong.SetFormatType(E_FT_Amount1Dash);
+    tmpLong.SetFormatType(EFormatType::E_FT_Amount1Dash);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
-    tmpLong.SetFormatType(E_FT_Amount2Dash);
+    tmpLong.SetFormatType(EFormatType::E_FT_Amount2Dash);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
-    tmpLong.SetFormatType(E_FT_Amount1DashTrail);
+    tmpLong.SetFormatType(EFormatType::E_FT_Amount1DashTrail);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
-    tmpLong.SetFormatType(E_FT_Amount2DashTrail);
+    tmpLong.SetFormatType(EFormatType::E_FT_Amount2DashTrail);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     if (wasEmpty)
         tmpLong.SetValue(0.5845);
 
-    tmpLong.SetFormatType(E_FT_Percentage);
+    tmpLong.SetFormatType(EFormatType::E_FT_Percentage);
     tmpLong.FormatObject(tmpLong.m_Long);
     m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
@@ -1014,15 +1014,15 @@ void PSS_PLFNLong::SetFormatWithChoice(const CString& value)
     if (index < m_FormatChoice.GetSize())
         switch (index)
         {
-            case 0: m_FormatType = E_FT_Standard;         break;
-            case 1: m_FormatType = E_FT_Amount;           break;
-            case 2: m_FormatType = E_FT_Amount1;          break;
-            case 3: m_FormatType = E_FT_Amount2;          break;
-            case 4: m_FormatType = E_FT_Amount1Dash;      break;
-            case 5: m_FormatType = E_FT_Amount2Dash;      break;
-            case 6: m_FormatType = E_FT_Amount1DashTrail; break;
-            case 7: m_FormatType = E_FT_Amount2DashTrail; break;
-            case 8: m_FormatType = E_FT_Percentage;       break;
+            case 0: m_FormatType = EFormatType::E_FT_Standard;         break;
+            case 1: m_FormatType = EFormatType::E_FT_Amount;           break;
+            case 2: m_FormatType = EFormatType::E_FT_Amount1;          break;
+            case 3: m_FormatType = EFormatType::E_FT_Amount2;          break;
+            case 4: m_FormatType = EFormatType::E_FT_Amount1Dash;      break;
+            case 5: m_FormatType = EFormatType::E_FT_Amount2Dash;      break;
+            case 6: m_FormatType = EFormatType::E_FT_Amount1DashTrail; break;
+            case 7: m_FormatType = EFormatType::E_FT_Amount2DashTrail; break;
+            case 8: m_FormatType = EFormatType::E_FT_Percentage;       break;
         }
 }
 //---------------------------------------------------------------------------
@@ -1077,7 +1077,7 @@ void PSS_PLFNLong::DrawCalculatedSymbol(CDC* pDC)
     }
     else
     {
-        if (m_IconDisplayType == IE_DT_AssociationIcon)
+        if (m_IconDisplayType == IEIconDisplayType::IE_DT_AssociationIcon)
         {
             PSS_PlanFinObject::DrawBoundRect(pDC);
 

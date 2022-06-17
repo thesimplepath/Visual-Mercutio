@@ -25,7 +25,7 @@ IMPLEMENT_SERIAL(PSS_PLFNAscii, PSS_PlanFinObject, g_DefVersion)
 //---------------------------------------------------------------------------
 PSS_PLFNAscii::PSS_PLFNAscii() :
     PSS_PlanFinObject(),
-    m_StrikeStyle(IE_SS_NormalStrike),
+    m_StrikeStyle(IEStrikeStyles::IE_SS_NormalStrike),
     m_Justify(g_NoAlignement),
     m_IsStriked(FALSE),
     m_KeepHistory(FALSE)
@@ -33,7 +33,7 @@ PSS_PLFNAscii::PSS_PLFNAscii() :
 //---------------------------------------------------------------------------
 PSS_PLFNAscii::PSS_PLFNAscii(const PSS_PLFNAscii& other) :
     PSS_PlanFinObject(),
-    m_StrikeStyle(IE_SS_NormalStrike),
+    m_StrikeStyle(IEStrikeStyles::IE_SS_NormalStrike),
     m_Justify(g_NoAlignement),
     m_IsStriked(FALSE),
     m_KeepHistory(FALSE)
@@ -63,7 +63,7 @@ const PSS_PLFNAscii& PSS_PLFNAscii::operator = (const PSS_PLFNAscii* pOther)
     if (!pOther)
     {
         // reset to default values
-        m_StrikeStyle = IE_SS_NormalStrike;
+        m_StrikeStyle = IEStrikeStyles::IE_SS_NormalStrike;
         m_Justify     = g_NoAlignement;
         m_IsStriked   = FALSE;
         m_KeepHistory = FALSE;

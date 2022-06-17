@@ -270,7 +270,7 @@ bool PSS_PackageSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, P
         toolTipText += linkToFile;
     }
 
-    if (mode == PSS_Symbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IEToolTipMode::IE_TT_Design)
     {
         // todo -cFeature -oJean: need to implement the result of the control checking
     }

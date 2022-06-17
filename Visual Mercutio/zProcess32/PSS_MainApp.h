@@ -754,7 +754,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
         *@param data - the help data
         *@param cmd - the help command
         */
-        virtual void WinHelp(DWORD data, UINT cmd = HELP_CONTEXT);
+        //virtual void WinHelp(DWORD data, UINT cmd = HELP_CONTEXT);
 
         /**
         * Shows the warning on command

@@ -63,10 +63,10 @@ PSS_ActivityEvent* PSS_UserQueueManager::DispatchToUserQueue(const CString& file
         return NULL;
 
     // in case of log, do nothing
-    if (pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_LogEvent)
+    if (pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IEType::IE_AT_LogEvent)
         return pActivityEvent;
 
-    if (pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_DeleteToDoEvent)
+    if (pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IEType::IE_AT_DeleteToDoEvent)
     {
         ProceedDeleteMessage(*pActivityEvent);
         return pActivityEvent;
@@ -75,7 +75,7 @@ PSS_ActivityEvent* PSS_UserQueueManager::DispatchToUserQueue(const CString& file
     // create a new event and and place it to the receiver queue
     ForwardToUserQueue(*pActivityEvent);
 
-    if (pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo)
+    if (pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IEType::IE_AT_ToDo)
         // remove the old event from the sender queue, if exists
         RemoveAssociatedEventFromUserQueue(*pActivityEvent);
 
@@ -165,14 +165,15 @@ BOOL PSS_UserQueueManager::RemoveAssociatedEventFromUserQueue(const PSS_Activity
     while (!token.IsEmpty())
     {
         const CString fileName = BuildUserActivityEventFileName(activityEvent.GetFileName() +
-                                                                activityEvent.GetFileExtension(PSS_ActivityEvent::IE_AT_ToDo), token);
+                                                                activityEvent.GetFileExtension((int)PSS_ActivityEvent::IEType::IE_AT_ToDo),
+                                                                token);
 
         // import file first
         PSS_ActivityEvent* pActivityEvent = static_cast<PSS_ActivityEvent*>(m_ActivityEventFile.ImportActivityFromFile(fileName));
 
         // if it's a todo activity, therefore remove the associated message
-        if (pActivityEvent                                                          &&
-            pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IE_AT_ToDo &&
+        if (pActivityEvent                                                                  &&
+            pActivityEvent->GetActivityEventType() == PSS_ActivityEvent::IEType::IE_AT_ToDo &&
             token != pActivityEvent->GetSender())
         {
             TRACE("REMOVE ASSIOCIATED EVENT\n");
@@ -222,7 +223,8 @@ BOOL PSS_UserQueueManager::ProceedDeleteMessage(const PSS_ActivityEvent& activit
     while (!token.IsEmpty())
     {
         const CString fileName = BuildUserActivityEventFileName(activityEvent.GetFileName() +
-                                                                activityEvent.GetFileExtension(PSS_ActivityEvent::IE_AT_ToDo), token);
+                                                                activityEvent.GetFileExtension((int)PSS_ActivityEvent::IEType::IE_AT_ToDo),
+                                                                token);
         RemoveEventFileName(fileName);
         token = tokenizer.GetNextToken();
     }

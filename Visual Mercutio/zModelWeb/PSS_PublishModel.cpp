@@ -43,7 +43,7 @@ PSS_PublishModel::PSS_PublishModel(PSS_PropertyAttributes*       pAttributes,
                                    const CString&                iniFile) :
     m_pPropAttributes(pAttributes),
     m_pPropSet(pSet),
-    m_Language(E_LN_Unknown),
+    m_Language(ELanguage::E_LN_Unknown),
     m_IniFile(iniFile),
     m_VisualizeResult(false),
     m_PublishConceptor(false),
@@ -230,7 +230,7 @@ bool PSS_PublishModel::SaveStateToIniFile()
     systemOption.WriteOption(g_PublishModelHTMLPublishProcess,               m_PublishProcess);
     systemOption.WriteOption(g_PublishModelHTMLPublishRuleBook,              m_PublishRuleBook);
     systemOption.WriteOption(g_PublishModelHTMLVisualizeEntityName,          m_VisualizeResult);
-    systemOption.WriteOption(g_PublishModelHTMLLastLanguageEntityName,       m_Language);
+    systemOption.WriteOption(g_PublishModelHTMLLastLanguageEntityName,       (int)m_Language);
     systemOption.WriteOption(g_PublishModelHTMLAddressEntityName,            m_Directory);
     systemOption.WriteOption(g_PublishModelHTMLLogoFileNameEntityName,       m_ImageFileName);
     systemOption.WriteOption(g_PublishModelHTMLLogoRefHTMLEntityName,        m_HyperLink);

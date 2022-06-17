@@ -196,6 +196,7 @@ class AFX_EXT_CLASS PSS_InPlaceListBox : public CWnd,
                 /// Generated message map functions
                 //{{AFX_MSG(IEdit)
                 afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+                afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
                 //}}AFX_MSG
                 DECLARE_MESSAGE_MAP()
 

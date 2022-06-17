@@ -49,14 +49,14 @@ class AFX_EXT_CLASS PSS_MailFileDescription
         *@param fileList - file list
         *@param attachType - attachment type
         */
-        PSS_MailFileDescription(CStringArray& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        PSS_MailFileDescription(CStringArray& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Constructor
         *@param fileList - file list
         *@param attachType - attachment type
         */
-        PSS_MailFileDescription(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        PSS_MailFileDescription(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         virtual ~PSS_MailFileDescription();
 
@@ -65,14 +65,14 @@ class AFX_EXT_CLASS PSS_MailFileDescription
         *@param fileList - file list
         *@param attachType - attachment type
         */
-        virtual void Fill(CStringArray& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual void Fill(CStringArray& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Fills from a file list
         *@param fileList - file list
         *@param attachType - attachment type
         */
-        virtual void Fill(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual void Fill(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Adds an attachment file
@@ -80,7 +80,7 @@ class AFX_EXT_CLASS PSS_MailFileDescription
         *@param attachType - attachment type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL AddFile(const CString& file, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual inline BOOL AddFile(const CString& file, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Adds an attachment file
@@ -88,7 +88,7 @@ class AFX_EXT_CLASS PSS_MailFileDescription
         *@param attachType - attachment type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL AddFile(PSS_File& file, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual BOOL AddFile(PSS_File& file, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Gets the attachment count

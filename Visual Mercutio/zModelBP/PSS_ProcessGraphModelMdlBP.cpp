@@ -52,7 +52,7 @@ PSS_ProcessGraphModelMdlBP::PSS_ProcessGraphModelMdlBP(const CString& name, PSS_
     m_pDistributionAttributes(NULL)
 {
     // set the default notation
-    m_Notation = E_MN_Beryl;
+    m_Notation = EModelNotation::E_MN_Beryl;
 }
 //---------------------------------------------------------------------------
 PSS_ProcessGraphModelMdlBP::~PSS_ProcessGraphModelMdlBP()
@@ -268,7 +268,7 @@ void PSS_ProcessGraphModelMdlBP::NotifyDeletePage(PSS_ProcessGraphPage* pPage)
     {
         CODComponent* pComp   = pSet->GetAt(i);
         PSS_Symbol*   pSymbol = dynamic_cast<PSS_Symbol*>(pComp);
-        
+
         if (!pSymbol)
             continue;
 

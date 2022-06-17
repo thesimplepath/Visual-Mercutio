@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_View : public PSS_DropScrollView
         /**
         * View type
         */
-        enum IEType
+        enum class IEType
         {
             IE_VT_Unknown,
             IE_VT_FormRead,

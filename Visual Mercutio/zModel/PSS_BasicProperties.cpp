@@ -73,16 +73,16 @@ void PSS_BasicProperties::Merge(CODProperty* pProp, DWORD changeFlags)
 
     if (pBasicProps)
     {
-        if (changeFlags & IE_CT_Symbol_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Symbol_Name)
             m_SymbolName = pBasicProps->GetSymbolName();
 
-        if (changeFlags & IE_CT_Symbol_Description)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Symbol_Description)
             m_SymbolDescription = pBasicProps->GetSymbolDescription();
 
-        if (changeFlags & IE_CT_Symbol_Number)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Symbol_Number)
             m_SymbolNumber = pBasicProps->GetSymbolNumber();
 
-        if (changeFlags & IE_CT_Symbol_Risk_Level)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Symbol_Risk_Level)
             m_SymbolRiskLevel = pBasicProps->GetSymbolRiskLevel();
     }
 }

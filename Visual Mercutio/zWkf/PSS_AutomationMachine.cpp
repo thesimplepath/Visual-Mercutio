@@ -148,7 +148,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomationMachine::RequestMove
                                                                                         PSS_Log*           pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
-    return IE_AS_Error;
+    return IEAutomationMoveStatus::IE_AS_Error;
 }
 //---------------------------------------------------------------------------
 bool PSS_AutomationMachine::OnStart(PSS_Log* pLog)

@@ -225,18 +225,25 @@ class PSS_CheckSymbolConsistency : public PSS_BasicSymbolVisitor
         bool CheckUniqueRef(PSS_BasicSymbol* pSymbol);
 
         /**
+        * Checks if the rules exist in the referential
+        *@param pSymbol - symbol owning the rules
+        *@return true if the rules exist, otherwise false
+        */
+        bool RulesExist(PSS_Symbol* pSymbol);
+
+        /**
+        * Checks if the rules exist in the referential
+        *@param pSymbol - symbol owning the rules
+        *@return true if the rules exist, otherwise false
+        */
+        bool RulesExist(PSS_LinkSymbol* pSymbol);
+
+        /**
         * Checks if a reference exists
         *@param ref - the reference to check
         *@return true if the reference exists, otherwise false
         */
         bool RefExist(int ref);
-
-        /**
-        * Deletes the corrupted symbols
-        *@param pSymbol - the root symbol to search from
-        *@param pStartRootModel - the start root model to search from
-        */
-        void DeleteCorruptedSymbol(PSS_Symbol* pSymbol, PSS_ProcessGraphModelMdlBP* pStartRootModel = NULL);
 };
 
 //---------------------------------------------------------------------------

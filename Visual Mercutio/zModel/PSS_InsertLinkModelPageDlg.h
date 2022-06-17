@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 //processsoft
-#include "zBaseLib\PSS_Dialog.h"
+#include "zBaseLib\PSS_FilteredDialog.h"
 #include "PSS_ObjectCollections.h"
 #include "PSS_ProcessModelTree.h"
 
@@ -50,7 +50,7 @@ class PSS_ProcessGraphModelMdl;
 * Insert link model page dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_InsertLinkModelPageDlg : public PSS_Dialog
+class AFX_EXT_CLASS PSS_InsertLinkModelPageDlg : public PSS_FilteredDialog
 {
     public:
         /**
@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_InsertLinkModelPageDlg : public PSS_Dialog
         *@param pParent - the parent window, can be NULL
         */
         PSS_InsertLinkModelPageDlg(PSS_ProcessGraphModelMdl* pModel,
-                                   const CString&            newPageName    = "",
+                                   const CString&            newPageName    = _T(""),
                                    CStringArray*             pPageNameArray = NULL,
                                    PSS_RuntimeClassSet*      pSet           = NULL,
                                    CWnd*                     pParent        = NULL);

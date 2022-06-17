@@ -26,8 +26,8 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 // PSS_ModelWorkflowOptionsWizard::IData
 //---------------------------------------------------------------------------
 PSS_ModelWorkflowOptionsWizard::IData::IData() :
-    m_Language(E_LN_Unknown),
-    m_Notation(E_MN_Unknown),
+    m_Language(ELanguage::E_LN_Unknown),
+    m_Notation((int)EModelNotation::E_MN_Unknown),
     m_HourPerDay(0),
     m_DayPerWeek(0),
     m_DayPerMonth(0),
@@ -65,10 +65,10 @@ int PSS_ModelWorkflowOptionsWizard::DoModal()
 
         switch (m_pDoc->GetNotation())
         {
-            case E_MN_Beryl: m_Data.m_Notation = 0; break;
-            case E_MN_ABC:   m_Data.m_Notation = 1; break;
-            case E_MN_UML:   m_Data.m_Notation = 2; break;
-            default:         m_Data.m_Notation = 3; break;
+            case EModelNotation::E_MN_Beryl: m_Data.m_Notation = 0; break;
+            case EModelNotation::E_MN_ABC:   m_Data.m_Notation = 1; break;
+            case EModelNotation::E_MN_UML:   m_Data.m_Notation = 2; break;
+            default:                         m_Data.m_Notation = 3; break;
         }
 
         m_Data.m_IntegrateCostSimulation = m_pDoc->GetIntegrateCostSimulation();
@@ -94,7 +94,7 @@ int PSS_ModelWorkflowOptionsWizard::DoModal()
         m_Data.m_CurrencySymbol          = PSS_Global::GetLocaleCurrency();
 
         // set the French language as default
-        m_Data.m_Language = E_LN_French;
+        m_Data.m_Language = ELanguage::E_LN_French;
     }
 
     // the notation can't be modified in modification mode
@@ -126,10 +126,10 @@ int PSS_ModelWorkflowOptionsWizard::DoModal()
 
     switch (m_Data.m_Notation)
     {
-        case 0:  m_pDoc->SetNotation(E_MN_Beryl);   break;
-        case 1:  m_pDoc->SetNotation(E_MN_ABC);     break;
-        case 2:  m_pDoc->SetNotation(E_MN_UML);     break;
-        default: m_pDoc->SetNotation(E_MN_Unknown); break;
+        case 0:  m_pDoc->SetNotation(EModelNotation::E_MN_Beryl);   break;
+        case 1:  m_pDoc->SetNotation(EModelNotation::E_MN_ABC);     break;
+        case 2:  m_pDoc->SetNotation(EModelNotation::E_MN_UML);     break;
+        default: m_pDoc->SetNotation(EModelNotation::E_MN_Unknown); break;
     }
 
     m_pDoc->SetIntegrateCostSimulation(m_Data.m_IntegrateCostSimulation);
@@ -163,7 +163,7 @@ PSS_ModelWorkflowNotationOptionsDlg::PSS_ModelWorkflowNotationOptionsDlg(PSS_Mod
                      IDS_WZ_MODELNOTATION_S,
                      IDS_WZ_MODELNOTATION_T),
     m_Data(data),
-    m_Notation(E_MN_Unknown)
+    m_Notation((int)EModelNotation::E_MN_Unknown)
 {
     m_Notation = m_Data.m_Notation;
 }

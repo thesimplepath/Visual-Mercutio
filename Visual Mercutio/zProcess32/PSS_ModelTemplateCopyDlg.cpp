@@ -59,7 +59,7 @@ PSS_ModelTemplateCopyDlg::PSS_ModelTemplateCopyDlg(const CString&   fileExtensio
         #endif
     }
 
-    m_ModelDirectory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, IDS_CHOOSEDIRECTORY, m_Directory);
+    m_ModelDirectory.SetSearchType(PSS_SearchEditButton::IEType::IE_T_Directory, IDS_CHOOSEDIRECTORY, m_Directory);
 
     // if the directory is empty, use the current one
     if (m_Directory.IsEmpty())

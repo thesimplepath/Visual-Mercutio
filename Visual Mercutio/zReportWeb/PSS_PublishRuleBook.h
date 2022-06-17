@@ -68,6 +68,9 @@ class AFX_EXT_CLASS PSS_PublishRuleBook
         int                            m_Lvl1Counter;
         int                            m_Lvl2Counter;
         int                            m_Lvl3Counter;
+        int                            m_Lvl4Counter;
+        int                            m_Lvl5Counter;
+        int                            m_Lvl6Counter;
 
         /**
         * Creates the file system
@@ -116,11 +119,32 @@ class AFX_EXT_CLASS PSS_PublishRuleBook
         void GenerateHTMLTable2(const CString& ruleName, const CString& ruleDesc);
 
         /**
-        * Generates the thrid html table
+        * Generates the third html table
         *@param ruleName - the rule name
         *@param ruleDesc - the rule description
         */
         void GenerateHTMLTable3(const CString& ruleName, const CString& ruleDesc);
+
+        /**
+        * Generates the fourth html table
+        *@param ruleName - the rule name
+        *@param ruleDesc - the rule description
+        */
+        void GenerateHTMLTable4(const CString& ruleName, const CString& ruleDesc);
+
+        /**
+        * Generates the fifth html table
+        *@param ruleName - the rule name
+        *@param ruleDesc - the rule description
+        */
+        void GenerateHTMLTable5(const CString& ruleName, const CString& ruleDesc);
+
+        /**
+        * Generates the sixth html table
+        *@param ruleName - the rule name
+        *@param ruleDesc - the rule description
+        */
+        void GenerateHTMLTable6(const CString& ruleName, const CString& ruleDesc);
 
         /**
         * Generates a file name for the report page
@@ -128,6 +152,14 @@ class AFX_EXT_CLASS PSS_PublishRuleBook
         *@return the newly generated file name
         */
         CString GenerateFileName(const CString& dir);
+
+        /**
+        * Checks if a rule is still in use
+        *@param ruleName - the rule name to check
+        *@param pStartRootModel - the start root model to start from
+        *@return TRUE if the rule is still in use, otherwise FALSE
+        */
+        BOOL IsRuleInUse(const CString& ruleName, ZDProcessGraphModelMdlBP* pStartRootModel = NULL);
 
         /**
         * Writes a line in the report

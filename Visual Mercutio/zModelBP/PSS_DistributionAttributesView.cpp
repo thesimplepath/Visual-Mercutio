@@ -242,7 +242,7 @@ void PSS_DistributionAttributesView::OnUpdate(PSS_Subject* pSubject, PSS_Observe
 
     if (pSymbolObserverMsg)
     {
-        if (pSymbolObserverMsg->GetActionType() == PSS_SymbolObserverMsg::IE_AT_ElementSelected)
+        if (pSymbolObserverMsg->GetActionType() == PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementSelected)
             m_pSymbol = pSymbolObserverMsg->GetElement();
 
         return;
@@ -390,7 +390,7 @@ void PSS_DistributionAttributesView::OnAddDistributionAttrib()
                                                 &propSet,
                                                 m_pCurrentDoc->GetMainUserGroup(),
                                                 unitGUID);
- 
+
     if (dlg.DoModal() == IDOK)
     {
         // allocate a new attribute

@@ -55,7 +55,7 @@ class AFX_EXT_CLASS PSS_Global
         /**
         * Application type
         */
-        enum IEApplicationType
+        enum class IEApplicationType
         {
             IE_AT_Undef,
             IE_AT_Reader,
@@ -70,7 +70,7 @@ class AFX_EXT_CLASS PSS_Global
         /**
         * Reference insertion type
         */
-        enum IEReferenceInsertionType
+        enum class IEReferenceInsertionType
         {
             IE_RI_External = 0,
             IE_RI_Internal = 1
@@ -79,7 +79,7 @@ class AFX_EXT_CLASS PSS_Global
         /**
         * Reference activation type
         */
-        enum IEReferenceActivationType
+        enum class IEReferenceActivationType
         {
             IE_RA_InAndAfterSymbol  = 0,
             IE_RA_InSymbol          = 1,
@@ -1128,7 +1128,7 @@ CStringArray* PSS_Global::GetArrayActivationType()
 //---------------------------------------------------------------------------
 WORD PSS_Global::GetPrimaryLanguageIDFromLCID(LCID lcid)
 {
-    // get the lang id 
+    // get the lang id
     const WORD langID = LANGIDFROMLCID(lcid);
 
     // return the primary language id
@@ -1137,7 +1137,7 @@ WORD PSS_Global::GetPrimaryLanguageIDFromLCID(LCID lcid)
 //---------------------------------------------------------------------------
 WORD PSS_Global::GetSubLanguageIDFromLCID(LCID lcid)
 {
-    // get the lang id 
+    // get the lang id
     const WORD langID = LANGIDFROMLCID(lcid);
 
     // return the sub language id

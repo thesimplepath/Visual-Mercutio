@@ -44,7 +44,7 @@ class AFX_EXT_CLASS PSS_VisualTool
         /**
         * Tooltypes
         */
-        enum IEToolType
+        enum class IEToolType
         {
             IE_TT_VToolSelect,
             IE_TT_VToolEdit,
@@ -72,7 +72,7 @@ class AFX_EXT_CLASS PSS_VisualTool
         /**
         * Visual tool modes
         */
-        enum IEVisualToolModes
+        enum class IEVisualToolModes
         {
             IE_TM_Normal,
             IE_TM_NoCreate,

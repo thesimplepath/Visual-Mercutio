@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------
 PSS_ServerEvent::PSS_ServerEvent() :
     PSS_Event(),
-    m_EventResult(IE_ER_NF)
+    m_EventResult(IEResult::IE_ER_NF)
 {}
 //---------------------------------------------------------------------------
 PSS_ServerEvent::PSS_ServerEvent(const COleDateTime& time, const CString& fileName, IEResult eventResultValue) :
@@ -55,11 +55,11 @@ CString PSS_ServerEvent::GetEventResultStr() const
 
     switch (GetEventResult())
     {
-        case IE_ER_Imported:   id = IDS_EVENTIMPORTED;   break;
-        case IE_ER_Rejected:   id = IDS_EVENTREJECTED;   break;
-        case IE_ER_LogAdded:   id = IDS_EVENTLOGADDED;   break;
-        case IE_ER_LogProblem: id = IDS_EVENTLOGPROBLEM; break;
-        default:               id = IDS_EVENTUNDEFINED;  break;
+        case IEResult::IE_ER_Imported:   id = IDS_EVENTIMPORTED;   break;
+        case IEResult::IE_ER_Rejected:   id = IDS_EVENTREJECTED;   break;
+        case IEResult::IE_ER_LogAdded:   id = IDS_EVENTLOGADDED;   break;
+        case IEResult::IE_ER_LogProblem: id = IDS_EVENTLOGPROBLEM; break;
+        default:                         id = IDS_EVENTUNDEFINED;  break;
     }
 
     CString text;

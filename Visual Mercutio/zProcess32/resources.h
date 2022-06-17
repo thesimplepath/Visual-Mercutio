@@ -664,6 +664,8 @@
 #define IDS_PRS_MOVEPRESTATION                           17327
 #define IDS_LGS_MOVESYSTEM                               17328
 #define IDS_PRESTATIONSREPORT_FILENAME                   17329
+#define IDS_FAILOPEN_RISKIMPACTFILE                      19025
+#define IDS_FAILOPEN_RISKPROBABILITYFILE                 19026
 #define IDI_IL_INPUTATTRIBUTEVIEW                        27363
 #define IDI_IL_DISTRIBATTRIBUTEVIEW                      27364
 #define IDS_FILE_READONLY                                30000

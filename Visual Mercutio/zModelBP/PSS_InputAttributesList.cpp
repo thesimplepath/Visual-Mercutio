@@ -163,12 +163,12 @@ int PSS_InputAttributesList::Refresh()
         {
             switch (pProp->GetType())
             {
-                case PSS_Property::IE_T_EditString:    index = 0; break;
-                case PSS_Property::IE_T_EditMultiline: index = 1; break;
-                case PSS_Property::IE_T_EditNumber:    index = 2; break;
-                case PSS_Property::IE_T_EditDate:      index = 3; break;
-                case PSS_Property::IE_T_EditTime:      index = 4; break;
-                case PSS_Property::IE_T_EditDuration:  index = 5; break;
+                case PSS_Property::IEType::IE_T_EditString:    index = 0; break;
+                case PSS_Property::IEType::IE_T_EditMultiline: index = 1; break;
+                case PSS_Property::IEType::IE_T_EditNumber:    index = 2; break;
+                case PSS_Property::IEType::IE_T_EditDate:      index = 3; break;
+                case PSS_Property::IEType::IE_T_EditTime:      index = 4; break;
+                case PSS_Property::IEType::IE_T_EditDuration:  index = 5; break;
                 default:                                          break;
             }
 
@@ -229,7 +229,7 @@ void PSS_InputAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* p
 
     if (pObserverMsg)
     {
-        if (pObserverMsg->GetActionType() == PSS_SymbolObserverMsg::IE_AT_ElementSelected)
+        if (pObserverMsg->GetActionType() == PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementSelected)
         {
             m_pComp = pObserverMsg->GetElement();
 

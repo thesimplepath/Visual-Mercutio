@@ -32,7 +32,7 @@ const int g_ModelPageTreeItem     = 2;
 // PSS_ModelTree::IData
 //---------------------------------------------------------------------------
 PSS_ModelTree::IData::IData() :
-    m_Type(IE_DT_Unknown),
+    m_Type(IEType::IE_DT_Unknown),
     m_pSymbol(NULL),
     m_pLinkSymbol(NULL),
     m_pGraphPage(NULL),
@@ -41,7 +41,7 @@ PSS_ModelTree::IData::IData() :
 {}
 //---------------------------------------------------------------------------
 PSS_ModelTree::IData::IData(PSS_Symbol* pSymbol) :
-    m_Type(IE_DT_Symbol),
+    m_Type(IEType::IE_DT_Symbol),
     m_pSymbol(pSymbol),
     m_pLinkSymbol(NULL),
     m_pGraphPage(NULL),
@@ -50,7 +50,7 @@ PSS_ModelTree::IData::IData(PSS_Symbol* pSymbol) :
 {}
 //---------------------------------------------------------------------------
 PSS_ModelTree::IData::IData(PSS_LinkSymbol* pLinkSymbol) :
-    m_Type(IE_DT_LinkSymbol),
+    m_Type(IEType::IE_DT_LinkSymbol),
     m_pSymbol(NULL),
     m_pLinkSymbol(pLinkSymbol),
     m_pGraphPage(NULL),
@@ -59,7 +59,7 @@ PSS_ModelTree::IData::IData(PSS_LinkSymbol* pLinkSymbol) :
 {}
 //---------------------------------------------------------------------------
 PSS_ModelTree::IData::IData(PSS_ProcessGraphPage* pGraphPage) :
-    m_Type(IE_DT_GraphPage),
+    m_Type(IEType::IE_DT_GraphPage),
     m_pSymbol(NULL),
     m_pLinkSymbol(NULL),
     m_pGraphPage(pGraphPage),
@@ -68,7 +68,7 @@ PSS_ModelTree::IData::IData(PSS_ProcessGraphPage* pGraphPage) :
 {}
 //---------------------------------------------------------------------------
 PSS_ModelTree::IData::IData(PSS_ProcessGraphModelMdl* pModel) :
-    m_Type(IE_DT_Model),
+    m_Type(IEType::IE_DT_Model),
     m_pSymbol(NULL),
     m_pLinkSymbol(NULL),
     m_pGraphPage(NULL),
@@ -77,7 +77,7 @@ PSS_ModelTree::IData::IData(PSS_ProcessGraphModelMdl* pModel) :
 {}
 //---------------------------------------------------------------------------
 PSS_ModelTree::IData::IData(const CString& str) :
-    m_Type(IE_DT_String),
+    m_Type(IEType::IE_DT_String),
     m_pSymbol(NULL),
     m_pLinkSymbol(NULL),
     m_pGraphPage(NULL),
@@ -150,6 +150,9 @@ void PSS_ModelTree::Initialize(PSS_TreeCtrl*        pTreeCtrl,
 
     pTreeCtrl->EnsureVisible(pTreeCtrl->GetRootItem());
     pTreeCtrl->SelectItem(pTreeCtrl->GetRootItem());
+
+    // collapse the tree by default
+    pTreeCtrl->CollapseRoot(TRUE);
 }
 //---------------------------------------------------------------------------
 void PSS_ModelTree::SetRootName(const CString& rootName)
@@ -204,8 +207,8 @@ CODSymbolComponent* PSS_ModelTree::GetSymbol(HTREEITEM hItem)
 
         switch (pObj->m_Type)
         {
-            case IData::IE_DT_Symbol:     return pObj->m_pSymbol;
-            case IData::IE_DT_LinkSymbol: return pObj->m_pLinkSymbol;
+            case IData::IEType::IE_DT_Symbol:     return pObj->m_pSymbol;
+            case IData::IEType::IE_DT_LinkSymbol: return pObj->m_pLinkSymbol;
         }
     }
 
@@ -221,7 +224,7 @@ PSS_ProcessGraphModelMdl* PSS_ModelTree::GetModel(HTREEITEM hItem)
         if (!pObj)
             return NULL;
 
-        if (pObj->m_Type == IData::IE_DT_Model)
+        if (pObj->m_Type == IData::IEType::IE_DT_Model)
             return pObj->m_pModel;
     }
 
@@ -237,7 +240,7 @@ PSS_ProcessGraphPage* PSS_ModelTree::GetPage(HTREEITEM hItem)
         if (!pObj)
             return NULL;
 
-        if (pObj->m_Type == IData::IE_DT_GraphPage)
+        if (pObj->m_Type == IData::IEType::IE_DT_GraphPage)
             return pObj->m_pGraphPage;
     }
 
@@ -550,7 +553,7 @@ void PSS_ModelTree::DoSelectSymbol()
     // send the message
     if (pComp && (ISA(pComp, PSS_Symbol) || ISA(pComp, PSS_LinkSymbol)))
     {
-        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_SelectElement, NULL, NULL, pComp);
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IEActionType::IE_AT_SelectElement, NULL, NULL, pComp);
         pWnd->SendMessageToDescendants(UM_ENSUREVISIBLE_SYMBOL, 0, LPARAM(&mdlMsg));
         return;
     }
@@ -560,7 +563,7 @@ void PSS_ModelTree::DoSelectSymbol()
     // send the message
     if (pPage)
     {
-        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, NULL, pPage);
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IEActionType::IE_AT_BrowseElement, NULL, NULL, pPage);
         pWnd->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
     }
 }
@@ -577,7 +580,7 @@ void PSS_ModelTree::OnDoubleClick()
     if (!pWnd)
         return;
 
-    PSS_ModelObserverMsg::IEActionType actionType = PSS_ModelObserverMsg::IE_AT_None;
+    PSS_ModelObserverMsg::IEActionType actionType = PSS_ModelObserverMsg::IEActionType::IE_AT_None;
     UINT                               message    = 0;
 
     PSS_Symbol* pSymbol = dynamic_cast<PSS_Symbol*>(GetSelectedSymbol());
@@ -586,12 +589,12 @@ void PSS_ModelTree::OnDoubleClick()
     {
         if (pSymbol->GetChildModel())
         {
-            actionType = PSS_ModelObserverMsg::IE_AT_BrowseElement;
+            actionType = PSS_ModelObserverMsg::IEActionType::IE_AT_BrowseElement;
             message    = UM_BROWSE_SYMBOL;
         }
         else
         {
-            actionType = PSS_ModelObserverMsg::IE_AT_EnsureElementVisible;
+            actionType = PSS_ModelObserverMsg::IEActionType::IE_AT_EnsureElementVisible;
             message    = UM_ENSUREVISIBLE_SYMBOL;
         }
 
@@ -606,7 +609,7 @@ void PSS_ModelTree::OnDoubleClick()
     // send the message
     if (pPage)
     {
-        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, NULL, pPage);
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IEActionType::IE_AT_BrowseElement, NULL, NULL, pPage);
         pWnd->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
         return;
     }
@@ -614,7 +617,7 @@ void PSS_ModelTree::OnDoubleClick()
     // send the message
     if (IsRootSelected() && m_pModelSet && m_pModelSet->GetModelAt(0))
     {
-        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IE_AT_BrowseElement, NULL, m_pModelSet->GetModelAt(0));
+        PSS_ModelObserverMsg mdlMsg(PSS_ModelObserverMsg::IEActionType::IE_AT_BrowseElement, NULL, m_pModelSet->GetModelAt(0));
         pWnd->SendMessageToDescendants(UM_OPEN_MODELPAGE, 0, LPARAM(&mdlMsg));
     }
 }
@@ -646,7 +649,8 @@ void PSS_ModelTree::ProcessRootModel(PSS_ProcessGraphModelMdl* pModel, HTREEITEM
 
     ProcessModelByPageSet(pModel, hRootModel);
 
-    m_pTreeCtrl->ExpandRoot(TRUE);
+    // collapse the tree by default
+    m_pTreeCtrl->ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_ModelTree::ProcessModelByPageSet(PSS_ProcessGraphModelMdl* pModel, HTREEITEM hParentTreeItem)
@@ -883,8 +887,8 @@ void PSS_ModelTree::CreateTree()
 
     ProcessModelSet(m_pModelSet, m_hRootDocument);
 
-    // expand the root
-    m_pTreeCtrl->ExpandRoot(TRUE);
+    // collapse the tree by default
+    m_pTreeCtrl->ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_ModelTree::InitializeTree()
@@ -985,7 +989,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(CODSymbolComponent* pElement)
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
         switch (pData->m_Type)
         {
-            case IData::IE_DT_Symbol:
+            case IData::IEType::IE_DT_Symbol:
                 if (pData->m_pSymbol == pElement)
                 {
                     delete pData;
@@ -995,7 +999,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(CODSymbolComponent* pElement)
 
                 continue;
 
-            case IData::IE_DT_LinkSymbol:
+            case IData::IEType::IE_DT_LinkSymbol:
                 if (pData->m_pLinkSymbol == pElement)
                 {
                     delete pData;
@@ -1014,7 +1018,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(PSS_Symbol* pElement)
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_Symbol && pData->m_pSymbol == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_Symbol && pData->m_pSymbol == pElement)
         {
             delete pData;
             it.Remove();
@@ -1029,7 +1033,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(PSS_LinkSymbol* pElement)
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_LinkSymbol && pData->m_pLinkSymbol == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_LinkSymbol && pData->m_pLinkSymbol == pElement)
         {
             delete pData;
             it.Remove();
@@ -1044,7 +1048,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(PSS_ProcessGraphPage* pElement)
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_GraphPage && pData->m_pGraphPage == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_GraphPage && pData->m_pGraphPage == pElement)
         {
             delete pData;
             it.Remove();
@@ -1059,7 +1063,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(PSS_ProcessGraphModelMdl* pElement)
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_Model && pData->m_pModel == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_Model && pData->m_pModel == pElement)
         {
             delete pData;
             it.Remove();
@@ -1074,7 +1078,7 @@ bool PSS_ModelTree::DeleteElementFromDataSet(const CString& element)
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_String && pData->m_Str == element)
+        if (pData->m_Type == IData::IEType::IE_DT_String && pData->m_Str == element)
         {
             delete pData;
             it.Remove();
@@ -1091,13 +1095,13 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(CODSymbolComponent* 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
         switch (pData->m_Type)
         {
-            case IData::IE_DT_Symbol:
+            case IData::IEType::IE_DT_Symbol:
                 if (pData->m_pSymbol == pElement)
                     return pData;
 
                 continue;
 
-            case IData::IE_DT_LinkSymbol:
+            case IData::IEType::IE_DT_LinkSymbol:
                 if (pData->m_pLinkSymbol == pElement)
                     return pData;
 
@@ -1112,7 +1116,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_Symbol* pElement
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_Symbol && pData->m_pSymbol == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_Symbol && pData->m_pSymbol == pElement)
             return pData;
 
     return NULL;
@@ -1123,7 +1127,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_LinkSymbol* pEle
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_LinkSymbol && pData->m_pLinkSymbol == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_LinkSymbol && pData->m_pLinkSymbol == pElement)
             return pData;
 
     return NULL;
@@ -1134,7 +1138,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_ProcessGraphPage
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_GraphPage && pData->m_pGraphPage == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_GraphPage && pData->m_pGraphPage == pElement)
             return pData;
 
     return NULL;
@@ -1145,7 +1149,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(PSS_ProcessGraphMode
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_Model && pData->m_pModel == pElement)
+        if (pData->m_Type == IData::IEType::IE_DT_Model && pData->m_pModel == pElement)
             return pData;
 
     return NULL;
@@ -1156,7 +1160,7 @@ PSS_ModelTree::IData* PSS_ModelTree::FindElementFromDataSet(const CString& eleme
     IDataIterator it(&m_DataSet);
 
     for (IData* pData = it.GetFirst(); pData; pData = it.GetNext())
-        if (pData->m_Type == IData::IE_DT_String && pData->m_Str == element)
+        if (pData->m_Type == IData::IEType::IE_DT_String && pData->m_Str == element)
             return pData;
 
     return NULL;

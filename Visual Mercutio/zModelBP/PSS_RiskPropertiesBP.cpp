@@ -84,31 +84,31 @@ void PSS_RiskPropertiesBP::Merge(PSS_RiskPropertiesBP* pProp, DWORD changeFlags)
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Risk_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_Name)
             m_RiskName = pProp->GetRiskName();
 
-        if (changeFlags & IE_CT_Change_Risk_Desc)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_Desc)
             m_RiskDesc = pProp->GetRiskDesc();
 
-        if (changeFlags & IE_CT_Change_Risk_Type)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_Type)
             m_RiskType = pProp->GetRiskType();
 
-        if (changeFlags & IE_CT_Change_Risk_Impact)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_Impact)
             m_RiskImpact = pProp->GetRiskImpact();
 
-        if (changeFlags & IE_CT_Change_Risk_Probability)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_Probability)
             m_RiskProbability = pProp->GetRiskProbability();
 
-        if (changeFlags & IE_CT_Change_Risk_Severity)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_Severity)
             m_RiskSeverity = pProp->GetRiskSeverity();
 
-        if (changeFlags & IE_CT_Change_Risk_UE)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_UE)
             m_RiskUE = pProp->GetRiskUE();
 
-        if (changeFlags & IE_CT_Change_Risk_POA)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_POA)
             m_RiskPOA = pProp->GetRiskPOA();
 
-        if (changeFlags & IE_CT_Change_Risk_Action)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Risk_Action)
             m_RiskAction = pProp->GetRiskAction();
     }
 }

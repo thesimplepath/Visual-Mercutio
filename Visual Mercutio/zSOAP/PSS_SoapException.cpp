@@ -58,13 +58,13 @@ void PSS_SoapException::Dump()
 
     OutputDebugString(_T("zSoapException caught:\n"));
 
-    ::sprintf_s(tmpStr, ::_tcslen(tmpStr), _T("Ex %3d : \"%s\"\n"), m_Code, m_Message.GetBuffer(0));
+    ::sprintf_s(tmpStr, 256, _T("Ex %3d : \"%s\"\n"), m_Code, m_Message.GetBuffer(0));
     OutputDebugString(tmpStr);
 
-    ::sprintf_s(tmpStr, ::_tcslen(tmpStr), _T("       : (%s)\n"), m_Info.GetBuffer(0));
+    ::sprintf_s(tmpStr, 256, _T("       : (%s)\n"), m_Info.GetBuffer(0));
     OutputDebugString(tmpStr);
 
-    ::sprintf_s(tmpStr, ::_tcslen(tmpStr), _T("File   : %s (%d)\n"), m_FileName.GetBuffer(0), m_FileLine);
+    ::sprintf_s(tmpStr, 256, _T("File   : %s (%d)\n"), m_FileName.GetBuffer(0), m_FileLine);
     OutputDebugString(tmpStr);
 }
 //---------------------------------------------------------------------------

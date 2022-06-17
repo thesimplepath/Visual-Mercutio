@@ -39,7 +39,7 @@ PSS_StringFormat::PSS_StringFormat(IEFormatType   formatType,
 //---------------------------------------------------------------------------
 PSS_StringFormat::PSS_StringFormat(const CString& customFormat, LCID lcid) :
     CObject(),
-    m_FormatType(IE_FT_Custom),
+    m_FormatType(IEFormatType::IE_FT_Custom),
     m_CustomFormat(customFormat),
     m_LCID(lcid),
     m_DecimalPlace(-1),
@@ -51,7 +51,7 @@ PSS_StringFormat::PSS_StringFormat(const CString& customFormat, LCID lcid) :
 //---------------------------------------------------------------------------
 PSS_StringFormat::PSS_StringFormat(const PSS_StringFormat& other) :
     CObject(),
-    m_FormatType(IE_FT_General),
+    m_FormatType(IEFormatType::IE_FT_General),
     m_LCID(0),
     m_DecimalPlace(-1),
     m_UseSeparator(false)

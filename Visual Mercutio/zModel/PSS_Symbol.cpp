@@ -260,12 +260,12 @@ BOOL PSS_Symbol::SetSymbolName(const CString& value)
             if (pRootModel)
                 pRootModel->OnSymbolNameChanged(*this, oldName);
 
-            // the symbol has changed, notify all refences
-            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_NameHasChanged, this);
+            // the symbol has changed, notify all references
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IEActionType::IE_AT_NameHasChanged, this);
             NotifyAllObservers(&msg);
 
             // build the message
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement,
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_ChangedElement,
                                       NULL,
                                       dynamic_cast<PSS_ProcessGraphModelMdl*>(GetOwnerModel()),
                                       this);
@@ -312,8 +312,8 @@ BOOL PSS_Symbol::SetSymbolComment(const CString& value)
             basicProps.SetSymbolDescription(value);
             SetProperty(&basicProps);
 
-            // the symbol has changed, notify all refences
-            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged, this);
+            // the symbol has changed, notify all references
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IEActionType::IE_AT_DescriptionHasChanged, this);
             NotifyAllObservers(&msg);
 
             // redraw the symbol
@@ -360,8 +360,8 @@ BOOL PSS_Symbol::SetSymbolReferenceNumber(int value)
             basicProps.SetSymbolNumber(value);
             SetProperty(&basicProps);
 
-            // the symbol has changed, notify all refences
-            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_ElementHasChanged, this);
+            // the symbol has changed, notify all references
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementHasChanged, this);
             NotifyAllObservers(&msg);
 
             // Redraw the symbol
@@ -388,8 +388,8 @@ BOOL PSS_Symbol::SetSymbolReferenceNumberStr(const CString& value)
             basicProps.SetSymbolNumber(value);
             SetProperty(&basicProps);
 
-            // the symbol has changed, notify all refences
-            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_ElementHasChanged, this);
+            // the symbol has changed, notify all references
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementHasChanged, this);
             NotifyAllObservers(&msg);
 
             // redraw the symbol
@@ -552,36 +552,34 @@ void PSS_Symbol::EditSymbolName()
 //---------------------------------------------------------------------------
 bool PSS_Symbol::IsNewNameValid(const CString& value) const
 {
-    // is new name empty or contains invalid chars?
+    // is new name empty?
     if (value.IsEmpty())
-    {
-        PSS_MsgBox mBox;
-        mBox.Show(IDS_SYMBOLNAME_EMPTY, MB_OK);
         return false;
-    }
-    else
-    if (value.FindOneOf(_T(";:\\/")) != -1)
-    {
-        PSS_MsgBox mBox;
-        mBox.Show(IDS_SYMBOLNAME_INVALIDCHAR, MB_OK);
-        return false;
-    }
-    else
-    {
-        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
-        if (pModel)
-        {
-            PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
+    bool result = false;
 
-            // new name isn't the same as the current one and is already allocated?
-            if (value != GetSymbolName() && pRoot && pRoot->SymbolNameAlreadyAllocated(value))
-            {
-                PSS_MsgBox mBox;
-                mBox.Show(IDS_SYMBOLNAME_ALREADYEXIST, MB_OK);
-                return false;
-            }
-        }
+    ZDProcessGraphModelMdl* pLocalModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetParent());
+
+    // is name already attributed to another symbol?
+    if (pLocalModel)
+    {
+        ZDProcessGraphModelMdl* pRootModel = pLocalModel->GetRoot();
+
+        if (pRootModel)
+            result = pRootModel->SymbolNameAlreadyAllocated(value);
+    }
+
+    // name is already attributed?
+    if (result)
+    {
+        // get the symbol name
+        const CString symbolName = const_cast<PSS_Symbol*>(this)->GetSymbolName();
+
+        // if the name was already be attributed to another symbol, check if the old name
+        // is identical to the new one. If it's the case, the user just entered the same name,
+        // and there is nothing else to do
+        if (value != symbolName)
+            return false;
     }
 
     return true;
@@ -874,8 +872,12 @@ bool PSS_Symbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool nume
                                  M_Symbol_Name_ID,
                                  IDS_Z_SYMBOL_NAME_DESC,
                                  numericValue ? name : pBasicProps->GetSymbolName(),
-                                 !IsLocal() || SymbolNameTextEditReadOnly() ? PSS_Property::IE_T_EditMultilineReadOnly :
-                                                                              PSS_Property::IE_T_EditMultiline));
+                                 !IsLocal() || SymbolNameTextEditReadOnly() ? PSS_Property::IEType::IE_T_EditMultilineReadOnly :
+                                                                              PSS_Property::IEType::IE_T_EditMultiline));
+
+    // allow the characters to be filtered on this property
+    pProp->EnableCharFilter(true);
+
     propSet.Add(pProp.get());
     pProp.release();
 
@@ -886,8 +888,8 @@ bool PSS_Symbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool nume
                                  M_Symbol_Description_ID,
                                  IDS_Z_SYMBOL_DESCRIPTION_DESC,
                                  pBasicProps->GetSymbolDescription(),
-                                 !IsLocal() || CommentTextEditReadOnly() ? PSS_Property::IE_T_EditMultilineReadOnly :
-                                                                           PSS_Property::IE_T_EditMultiline));
+                                 !IsLocal() || CommentTextEditReadOnly() ? PSS_Property::IEType::IE_T_EditMultilineReadOnly :
+                                                                           PSS_Property::IEType::IE_T_EditMultiline));
     propSet.Add(pProp.get());
     pProp.release();
 
@@ -899,7 +901,7 @@ bool PSS_Symbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool nume
                                      M_Symbol_Number_ID,
                                      IDS_Z_SYMBOL_NUMBER_DESC,
                                      double(pBasicProps->GetSymbolNumber()),
-                                     IsLocal() ? PSS_Property::IE_T_EditNumber : PSS_Property::IE_T_EditNumberReadOnly));
+                                     IsLocal() ? PSS_Property::IEType::IE_T_EditNumber : PSS_Property::IEType::IE_T_EditNumberReadOnly));
     else
         pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_BASIC_TITLE,
                                      ZS_BP_PROP_BASIC,
@@ -907,7 +909,7 @@ bool PSS_Symbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool nume
                                      M_Symbol_Number_ID,
                                      IDS_Z_SYMBOL_NUMBER_DESC,
                                      pBasicProps->GetSymbolNumberStr(),
-                                     IsLocal() ? PSS_Property::IE_T_EditString : PSS_Property::IE_T_EditStringReadOnly));
+                                     IsLocal() ? PSS_Property::IEType::IE_T_EditString : PSS_Property::IEType::IE_T_EditStringReadOnly));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -921,7 +923,7 @@ bool PSS_Symbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool nume
                                      M_Symbol_Risk_Level_ID,
                                      IDS_Z_SYMBOL_RISK_LEVEL_DESC,
                                      pBasicProps->GetSymbolRiskLevel(),
-                                     PSS_Property::IE_T_EditStringReadOnly));
+                                     PSS_Property::IEType::IE_T_EditStringReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -1326,7 +1328,7 @@ std::size_t PSS_Symbol::GetEnteringSymbols_Up(CODNodeArray& nodes)
     // the edge array contains only the up edges, for each edge, get the symbol attached on the destination
     for (int edgeIndex = 0; edgeIndex < edgeSize; ++edgeIndex)
     {
-        // Get the link 
+        // Get the link
         IODEdge*          pIEdge       = edges.GetAt(edgeIndex);
         CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
@@ -1418,7 +1420,7 @@ std::size_t PSS_Symbol::GetFollowingSymbols_Left(CODNodeArray& nodes)
         if (!pLinkIndexed)
             continue;
 
-        // Now retreive the target component
+        // now retrieve the target component
         CODComponent* pComp = pLinkIndexed->GetTargetComponent();
 
         // if a target component is attached to, add it to the array
@@ -1771,10 +1773,10 @@ void PSS_Symbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
         if (pSymbol)
             switch (pObserverMsg->GetActionType())
             {
-                case PSS_SymbolObserverMsg::IE_AT_ElementHasChanged:
-                case PSS_SymbolObserverMsg::IE_AT_None:                  CopySymbolDefinitionFrom((PSS_Symbol&)*pSymbol); break;
-                case PSS_SymbolObserverMsg::IE_AT_NameHasChanged:        SetSymbolName(pSymbol->GetSymbolName());         break;
-                case PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged: SetSymbolComment(pSymbol->GetSymbolComment());   break;
+                case PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementHasChanged:
+                case PSS_SymbolObserverMsg::IEActionType::IE_AT_None:                  CopySymbolDefinitionFrom((PSS_Symbol&)*pSymbol); break;
+                case PSS_SymbolObserverMsg::IEActionType::IE_AT_NameHasChanged:        SetSymbolName(pSymbol->GetSymbolName());         break;
+                case PSS_SymbolObserverMsg::IEActionType::IE_AT_DescriptionHasChanged: SetSymbolComment(pSymbol->GetSymbolComment());   break;
             }
 
         // finalize the symbol element positions

@@ -73,6 +73,9 @@ class AFX_EXT_CLASS PSS_PublishRuleBookDetails
         int                            m_Lvl1Counter;
         int                            m_Lvl2Counter;
         int                            m_Lvl3Counter;
+        int                            m_Lvl4Counter;
+        int                            m_Lvl5Counter;
+        int                            m_Lvl6Counter;
 
         /**
         * Creates the file system

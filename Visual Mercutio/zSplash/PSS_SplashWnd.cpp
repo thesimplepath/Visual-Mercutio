@@ -63,12 +63,12 @@ bool PSS_SplashWnd::CreateSplashWindow(bool includeProgress, CWnd* pParent)
     if (m_IncludeProgress)
         height += 32;
 
-    const DWORD dwStyle   = WS_POPUP | WS_BORDER;
+    const DWORD dwStyle   = WS_POPUP | WS_VISIBLE | WS_BORDER;
     const DWORD dwExStyle = WS_EX_TOPMOST;
 
     if (!CWnd::CreateEx(dwExStyle,
                         windowClass,
-                        "zSplashWindow",
+                        _T("zSplashWindow"),
                         dwStyle,
                         0,
                         0,
@@ -189,7 +189,7 @@ void PSS_SplashWnd::OnPaint()
 {
     // get device context for painting
     CPaintDC dc(this);
-    
+
     if (m_Bitmap.IsValid())
         m_Bitmap.DrawBitmap(&dc);
 
@@ -202,7 +202,7 @@ void PSS_SplashWnd::OnPaint()
 
         CFont* pOldFont = dc.SelectObject(&m_Font);
         dc.TextOut(m_TextRect.left, m_TextRect.bottom, m_Text);
-        
+
         dc.SelectObject(pOldFont);
     }
 

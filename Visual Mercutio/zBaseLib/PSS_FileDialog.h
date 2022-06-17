@@ -42,11 +42,15 @@ class AFX_EXT_CLASS PSS_FileDialog : public CFileDialog
         *@param filters - file extension filters
         *@param filterCount - filter count
         *@param initialDir - initial dir
+        *@param defExtension - default extension
+        *@param openStyleBox - if TRUE, the style box will be opened
         */
-        PSS_FileDialog(const CString& title       = _T(""),
-                       const CString& filters     = _T(""),
-                       int            filterCount = 0,
-                       const CString& initialDir  = _T(""));
+        PSS_FileDialog(const CString& title        = _T(""),
+                       const CString& filters      = _T(""),
+                       int            filterCount  = 0,
+                       const CString& initialDir   = _T(""),
+                       const CString& defExtension = _T(""),
+                       BOOL           openStyleBox = TRUE);
 
         /**
         * Constructor
@@ -54,11 +58,15 @@ class AFX_EXT_CLASS PSS_FileDialog : public CFileDialog
         *@param filters - file extension filters
         *@param filterCount - filter count
         *@param initialDir - initial dir
+        *@param defExtension - default extension
+        *@param openStyleBox - if TRUE, the style box will be opened
         */
         PSS_FileDialog(UINT           titleID,
-                       const CString& filters     = _T(""),
-                       int            filterCount = 0,
-                       const CString& initialDir  = _T(""));
+                       const CString& filters      = _T(""),
+                       int            filterCount  = 0,
+                       const CString& initialDir   = _T(""),
+                       const CString& defExtension = _T(""),
+                       BOOL           openStyleBox = TRUE);
 
         virtual ~PSS_FileDialog();
 

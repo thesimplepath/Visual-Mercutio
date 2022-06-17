@@ -12,6 +12,7 @@
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
+#include "zBaseLib\PSS_CharFilters.h"
 #include "zProperty\PSS_PropertyItem.h"
 #include "PSS_PropertyListCtrl.h"
 
@@ -39,9 +40,10 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_InPlaceMultiLineEdit
 //---------------------------------------------------------------------------
-PSS_InPlaceMultiLineEdit::PSS_InPlaceMultiLineEdit(bool isReadOnly) :
+PSS_InPlaceMultiLineEdit::PSS_InPlaceMultiLineEdit(bool isReadOnly, bool enableCharFilter) :
     PSS_InPlaceEdit(CString(_T("")), isReadOnly),
-    PSS_MultiLineEdit()
+    PSS_MultiLineEdit(),
+    m_FilterChars(enableCharFilter)
 {}
 //---------------------------------------------------------------------------
 PSS_InPlaceMultiLineEdit::PSS_InPlaceMultiLineEdit(const PSS_InPlaceMultiLineEdit& other)
@@ -73,7 +75,7 @@ BOOL PSS_InPlaceMultiLineEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem
     SetHasChanged(false);
 
     // set the type
-    m_Type = PSS_InPlaceEdit::IE_T_String;
+    m_Type = PSS_InPlaceEdit::IEType::IE_T_String;
 
     // set the current selection to all
     SetSelAll();
@@ -103,7 +105,7 @@ BOOL PSS_InPlaceMultiLineEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem
     SetHasChanged(false);
 
     // set the type
-    m_Type = PSS_InPlaceEdit::IE_T_Float;
+    m_Type = PSS_InPlaceEdit::IEType::IE_T_Float;
 
     // set the current selection to all
     SetSelAll();
@@ -133,7 +135,7 @@ BOOL PSS_InPlaceMultiLineEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem
     SetHasChanged(false);
 
     // set the type
-    m_Type = PSS_InPlaceEdit::IE_T_Double;
+    m_Type = PSS_InPlaceEdit::IEType::IE_T_Double;
 
     // set the current selection to all
     SetSelAll();
@@ -195,17 +197,17 @@ void PSS_InPlaceMultiLineEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case PSS_InPlaceEdit::IE_T_String:
+        case PSS_InPlaceEdit::IEType::IE_T_String:
             // set back the initial value
             SetEditText(m_StrInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Double:
+        case PSS_InPlaceEdit::IEType::IE_T_Double:
             // set back the initial double value
             SetEditText(m_DoubleInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Float:
+        case PSS_InPlaceEdit::IEType::IE_T_Float:
             // set back the initial float value
             SetEditText(m_FloatInitialValue);
             break;
@@ -235,11 +237,11 @@ void PSS_InPlaceMultiLineEdit::SaveValue()
 
                 switch (GetEditType())
                 {
-                    case PSS_InPlaceEdit::IE_T_String:
+                    case PSS_InPlaceEdit::IEType::IE_T_String:
                         // do nothing for string
                         break;
 
-                    case PSS_InPlaceEdit::IE_T_Double:
+                    case PSS_InPlaceEdit::IEType::IE_T_Double:
                     {
                         double value;
 
@@ -254,7 +256,7 @@ void PSS_InPlaceMultiLineEdit::SaveValue()
                         break;
                     }
 
-                    case PSS_InPlaceEdit::IE_T_Float:
+                    case PSS_InPlaceEdit::IEType::IE_T_Float:
                     {
                         float value;
 
@@ -294,6 +296,13 @@ void PSS_InPlaceMultiLineEdit::SaveValue()
 
     // set the focus to properties control
     SetFocus();
+}
+//---------------------------------------------------------------------------
+void PSS_InPlaceMultiLineEdit::OnPropertieValueChanged()
+{
+    SetHasChanged(true);
+
+    PSS_PropertyEditControl::OnPropertieValueChanged();
 }
 //---------------------------------------------------------------------------
 void PSS_InPlaceMultiLineEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
@@ -342,53 +351,69 @@ BOOL PSS_InPlaceMultiLineEdit::PreTranslateMessage(MSG* pMsg)
     if (!pMsg)
         return PSS_MultiLineEdit::PreTranslateMessage(pMsg);
 
-    if (pMsg->message == WM_KEYDOWN)
-        switch (pMsg->wParam)
-        {
-            case VK_DELETE:
-                SetHasChanged(true);
+    switch (pMsg->message)
+    {
+        case WM_CHAR:
+            if (!m_FilterChars)
                 break;
 
-            case VK_ESCAPE:
+            // is char allowed?
+            if (PSS_CharFilters::DoEscape(pMsg->wParam))
+                // eat it
+                return 1;
+
+            break;
+
+        case WM_KEYDOWN:
+            switch (pMsg->wParam)
             {
-                ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
+                case VK_DELETE:
+                    SetHasChanged(true);
+                    break;
 
-                // cancel the edit
-                CancelEdit();
-
-                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
-
-                // notify the observers
-                if (pParent)
+                case VK_ESCAPE:
                 {
-                    pParent->PostMessage(WM_KEYPRESSED_EDIT, pMsg->wParam);
-                    return TRUE;
+                    ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
+
+                    // cancel the edit
+                    CancelEdit();
+
+                    PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
+
+                    // notify the observers
+                    if (pParent)
+                    {
+                        pParent->PostMessage(WM_KEYPRESSED_EDIT, pMsg->wParam);
+                        return TRUE;
+                    }
+
+                    break;
                 }
 
-                break;
-            }
-
-            case VK_RETURN:
-            case VK_TAB:
-            {
-                ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
-
-                PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
-
-                // notify the observers
-                if (pParent)
+                case VK_RETURN:
+                case VK_TAB:
                 {
-                    pParent->PostMessage(WM_KEYPRESSED_EDIT,
-                                         (::GetKeyState(VK_SHIFT) & 0x80000000) ? (VK_SHIFT | pMsg->wParam) : pMsg->wParam);
-                    return TRUE;
+                    ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
+
+                    PSS_PropertyListCtrl* pParent = dynamic_cast<PSS_PropertyListCtrl*>(GetParent());
+
+                    // notify the observers
+                    if (pParent)
+                    {
+                        pParent->PostMessage(WM_KEYPRESSED_EDIT,
+                                             (::GetKeyState(VK_SHIFT) & 0x80000000) ? (VK_SHIFT | pMsg->wParam) : pMsg->wParam);
+                        return TRUE;
+                    }
+
+                    break;
                 }
 
-                break;
+                default:
+                    break;
             }
 
-            default:
-                break;
-        }
+            break;
+    }
 
     return PSS_MultiLineEdit::PreTranslateMessage(pMsg);
 }

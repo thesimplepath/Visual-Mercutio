@@ -21,8 +21,10 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_UserGroupInfoDlg, CDialog)
+BEGIN_MESSAGE_MAP(PSS_UserGroupInfoDlg, PSS_FilteredDialogBox)
     //{{AFX_MSG_MAP(PSS_UserGroupInfoDlg)
+    ON_EN_SETFOCUS(IDC_UGP_NAME, OnEnSetfocusUgpName)
+    ON_EN_KILLFOCUS(IDC_UGP_NAME, OnEnKillfocusUgpName)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -36,7 +38,7 @@ PSS_UserGroupInfoDlg::PSS_UserGroupInfoDlg(UINT                 titleID,
                                            bool                 isRole,
                                            bool                 modifyMode,
                                            CWnd*                pParent) :
-    CDialog(PSS_UserGroupInfoDlg::IDD, pParent),
+    PSS_FilteredDialogBox(PSS_UserGroupInfoDlg::IDD, pParent),
     m_pGroup(pGroup),
     m_Name(name),
     m_Description(description),
@@ -47,7 +49,7 @@ PSS_UserGroupInfoDlg::PSS_UserGroupInfoDlg(UINT                 titleID,
     if (m_IsRole)
         m_CostStr = _T("");
     else
-        m_CostStr.Format("%3.2f", cost);
+        m_CostStr.Format(_T("%3.2f"), cost);
 
     if (titleID != -1)
         m_Title.LoadString(titleID);
@@ -64,7 +66,7 @@ void PSS_UserGroupInfoDlg::DoDataExchange(CDataExchange* pDX)
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-BOOL PSS_UserGroupInfoDlg::OnInitDialog()
+afx_msg BOOL PSS_UserGroupInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
@@ -80,6 +82,7 @@ BOOL PSS_UserGroupInfoDlg::OnInitDialog()
         if (GetDlgItem(IDC_UGP_COST))
             GetDlgItem(IDC_UGP_COST)->EnableWindow(FALSE);
     }
+
     if (m_ModifyMode)
         if (GetDlgItem(IDC_UGP_NAME))
             GetDlgItem(IDC_UGP_NAME)->EnableWindow(FALSE);
@@ -88,7 +91,17 @@ BOOL PSS_UserGroupInfoDlg::OnInitDialog()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_UserGroupInfoDlg::OnOK()
+afx_msg void PSS_UserGroupInfoDlg::OnEnSetfocusUgpName()
+{
+    EnableCharFilter(true);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_UserGroupInfoDlg::OnEnKillfocusUgpName()
+{
+    EnableCharFilter(false);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_UserGroupInfoDlg::OnOK()
 {
     UpdateData(TRUE);
 

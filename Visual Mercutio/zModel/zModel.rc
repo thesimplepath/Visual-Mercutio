@@ -786,15 +786,15 @@ BEGIN
     BEGIN
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Process"
     BEGIN
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Procedure"
     BEGIN
@@ -816,15 +816,15 @@ BEGIN
     BEGIN
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Page"
     BEGIN
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Comment"
     BEGIN
@@ -848,8 +848,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Process"
     BEGIN
@@ -865,8 +865,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Procedure"
     BEGIN
@@ -938,8 +938,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Page"
     BEGIN
@@ -955,8 +955,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Comment"
     BEGIN
@@ -1000,8 +1000,8 @@ BEGIN
         MENUITEM "Renommer le système logique", ID_LS_RENAMELOGICALSYSTEM
         MENUITEM "Propriétés",                  ID_LS_PROPLOGICALSYSTEM
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Logical System"
     BEGIN
@@ -1010,8 +1010,8 @@ BEGIN
         MENUITEM "Renommer le système logique", ID_LS_RENAMELOGICALSYSTEM
         MENUITEM "Propriétés",                  ID_LS_PROPLOGICALSYSTEM
         MENUITEM SEPARATOR
-        MENUITEM "Tout Etendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout Refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
 END
 
@@ -1028,8 +1028,8 @@ BEGIN
         MENUITEM "Ajouter une équipe",          ID_UGP_ADDROLE
         MENUITEM "Propriétés",                  ID_UGP_PROPERTIES
         MENUITEM SEPARATOR
-        MENUITEM "Etendre",                     ID_EXPAND_BRANCH
-        MENUITEM "Refermer",                    ID_COLLAPSE_BRANCH
+        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
+        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
     END
     POPUP "Group"
     BEGIN
@@ -1072,8 +1072,8 @@ BEGIN
         MENUITEM "Renommer une prestation",     ID_PR_RENAMEPRESTATION
         MENUITEM "Propriétés",                  ID_PR_PROPPRESTATION
         MENUITEM SEPARATOR
-        MENUITEM "Tout étendre",                ID_EXPAND_BRANCH
-        MENUITEM "Tout refermer",               ID_COLLAPSE_BRANCH
+        MENUITEM "Etendre",                     ID_EXPAND_BRANCH
+        MENUITEM "Refermer",                    ID_COLLAPSE_BRANCH
     END
 END
 
@@ -1099,8 +1099,8 @@ BEGIN
         MENUITEM "Renommer une règle",          15226
         MENUITEM "Propriétés",                  15224
         MENUITEM SEPARATOR
-        MENUITEM "Tout étendre",                9202
-        MENUITEM "Tout refermer",               9201
+        MENUITEM "Etendre",                     9202
+        MENUITEM "Refermer",                    9201
     END
 END
 
@@ -1201,7 +1201,7 @@ BEGIN
                             "Vous permet de modifier la définition du processus"
     IDS_WIZARDPROCESSMODIFY_S "Définition"
     IDS_WIZARDACTIVITYPRE_WT "Pré-Traitement"
-    IDS_WIZARDACTIVITYPRE_T "Insérer un paquet.\nInsérer un paquet"
+    IDS_WIZARDACTIVITYPRE_T "<!--This file has been generated by ProcessSoft Visual Mercutio-->\n<!--ProcessSoft Copyright 2001-2022-->\n\n<html>\n<head>\n<title>%s</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n<meta name=""description"" content=""Conceptor file"">\n<!-- ProcessSoft Conceptor 1.0 target.  Created %s -->\n\n"
     IDS_WIZARDACTIVITYPOST_WT "Post-Traitement"
     IDS_WIZARDACTIVITYPOST_T 
                             "Veuillez spécifier quelles sont les traitements à la fin de l'activité"
@@ -1305,7 +1305,7 @@ BEGIN
     IDS_SYMBOLNAME_ALREADYEXIST 
                             "Le nom que vous avez entré existe déjà. Veuillez choisir un autre nom. Le système va remettre le nom initial."
     IDS_SYMBOLNAME_EMPTY    "Vous ne pouvez pas avoir un nom vide. Veuillez spécifier un nom."
-    IDS_MODELGENHTML_1      "<!--This file has been generated by ProcessSoft Visual Mercutio-->\n<!--ProcessSoft Copyright 2001-2021-->\n\n<html>\n<head>\n<title>%s</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n<meta name=""description"" content=""Conceptor file"">\n<!-- ProcessSoft Conceptor 1.0  target.  Created %s -->\n\n"
+    IDS_MODELGENHTML_1      "<!--This file has been generated by ProcessSoft Visual Mercutio-->\n<!--ProcessSoft Copyright 2001-2022-->\n\n<html>\n<head>\n<title>%s</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n<meta name=""description"" content=""Conceptor file"">\n<!-- ProcessSoft Conceptor target.  Created %s -->\n\n"
     IDS_MODELGENHTML_2      "<!--HOTSPOT TABLE-->\n<img name=""%s"" src=""%s"" border=""0"" usemap=""#m_process""><map name=""m_process"">\n"
     IDS_MODELGENHTML_3      "<area shape=""rect"" coords=""%d,%d,%d,%d"" href=""%s"" >"
     IDS_MODELGENHTML_4      "</map>\n<!--END HOTSPOT TABLE-->\n"
@@ -1324,7 +1324,7 @@ BEGIN
     IDS_SYMBOLNAME_INVALIDCHAR 
                             "Le nom que vous avez entré contient des caractères invalides tels que ; : / \\\nVeuillez choisir un autre nom. Le système va remettre le nom initial."
     IDS_MODELGENHTML_13     "<td><font face=""Verdana"" size=""4""><a href=""%s""><img src=""%s"" border=""0""></a><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif""> \n      </font></font></td> </tr>"
-    IDS_MODELGENHTML_14     "  <tr bgcolor=""#CCCCCC""> \n    <td>\n      <div align=""right""><font face=""Verdana"" size=""4""><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif"" color=""#FFFFFF""><b>Généré \n        par ProcessSoft Conceptor - Copyright 2001-2021</b></font></font> </div>\n    </td>\n  </tr>\n </table>"
+    IDS_MODELGENHTML_14     "  <tr bgcolor=""#CCCCCC""> \n    <td>\n      <div align=""right""><font face=""Verdana"" size=""4""><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif"" color=""#FFFFFF""><b>Généré \n        par ProcessSoft Conceptor - Copyright 2001-2009</b></font></font> </div>\n    </td>\n  </tr>\n </table>"
     IDS_LOGICALSYSTEM_ROOT_T "/"
     IDS_SYMBOLNOTFOUND_USESEARCH 
                             "Le symbole ne peut pas être trouvé. Veuillez utiliser la commande Rechercher pour essayer de le localiser."
@@ -1433,7 +1433,7 @@ BEGIN
     IDS_MODELGENHTML_74     "<area onmouseover=""popupDisplay(event, ajpopup%d)"" onmouseout=""popupHide(event, ajpopup%d)"" href=""%s"" target=""%s"" SHAPE=""rect"" COORDS=""%d,%d,%d,%d"">\n"
     IDS_MODELGENHTML_79     "<script>\n"
     IDS_MODELGENHTML_86     "popup%dIsVisible = false;\n"
-    IDS_MODELGENHTML_87     "function UpdatePopups()\n{\n\t"
+    IDS_MODELGENHTML_87     "function UpdatePopups(event)\n{\n\t"
     IDS_MODELGENHTML_75     "<tr> \n    <td width=""28%"">&nbsp;</td>\n    <td width=""72%"">&nbsp;</td>\n  </tr>\n"
     IDS_MODELGENHTML_82     "if (popup%dIsVisible == true)\n\t{\n\t\tpopupHide(event, ajpopup%d);\n\t\tpopup%dIsVisible = false;\n\t}\n\t"
 END
@@ -1444,21 +1444,28 @@ BEGIN
     IDS_MODELGENHTML_77     "<font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif""><img src=""%s"" width=""1"" height=""1""></font></td>\n  </tr>"
     IDS_MODELGENHTML_78     "\n<HTML>\n<HEAD>\n  <META NAME=""PSS"" CONTENT=""noindex"">\n  <META content=""text/html;charset=iso-8859-1"" http-equiv=""Content-Type"">\n  <TITLE>Main Content</TITLE>\n</HEAD>\n\n<FRAMESET name=""_pssMain"" cols=""216,*"" border=""1"" frameborder=""1"" FRAMESPACING=""6"" TOPMARGIN=""0"" LEFTMARGIN=""0"" MARGINHEIGHT=""0"" MARGINWIDTH=""0"">\n  <FRAME name=""_pssLeftFrame"" src=""%s"" TOPMARGIN=""0"" LEFTMARGIN=""0"" MARGINHEIGHT=""0"" MARGINWIDTH=""0"" FRAMEBORDER=""1"" BORDER=""1""></FRAME>\n  <FRAME name=""_pssRightFrame"" src=""%s"" FRAMEBORDER=""no"" BORDER=""0"" BORDERCOLOR=""#CCCCCC""></FRAME>\n</FRAMESET>\n    \n\n</HTML>"
     IDS_MODELGENHTML_83     "\n}\n"
-    IDS_MODELGENHTML_84     "function loadProp%d(event)\n{\n\tif(event.shiftKey != 1)\n\t{\n\t\t"
-    IDS_MODELGENHTML_88     "top._pssMain._pssLeftFrame.document.location = ""%s"";\n\t}\n}\n"
-    IDS_MODELGENHTML_89     "function loadPopup%d()\n{\n\tif (popup%dIsVisible == false)\n\t{\n\t\tpopupDisplay(event, ajpopup%d);\n\t\tpopup%dIsVisible = true;\n\t}\n}\n"
+    IDS_MODELGENHTML_84     "function loadProp%d(event,a,b,c,d)\n{\n\tif(event.shiftKey != 1)\n\t{\n\t\t"
+    IDS_MODELGENHTML_88     "top._pssMain._pssLeftFrame.document.location = ""%s"";\n\t}\n"
+    IDS_MODELGENHTML_89     "function loadPopup%d(event)\n{\n\tif (popup%dIsVisible == false)\n\t{\n\t\tjg.clear();\n\t\tpopupDisplay(event, ajpopup%d);\n\t\tpopup%dIsVisible = true;\n\t}\n}\n"
     IDS_MODELGENHTML_90     "</script>"
-    IDS_MODELGENHTML_91     "<area onmouseover=""loadProp%d(event)"" onmouseout=""UpdatePopups()"" onclick=""loadPopup%d()"" target=""%s"" SHAPE=""rect"" COORDS=""%d,%d,%d,%d"">\n"
+    IDS_MODELGENHTML_91     "<area onmouseover=""loadProp%d(event,%d,%d,%d,%d)"" onmouseout=""UpdatePopups(event)"" onclick=""loadPopup%d(event)"" target=""%s"" SHAPE=""rect"" COORDS=""%d,%d,%d,%d"">\n"
     IDS_MODELGENHTML_92     "<a href=""%s"">%s</a>"
     IDS_WARN_IMGFILECORRUPTED 
                             "Le fichier %s  ne peut pas être ouvert. Ce fichier a peut-être été supprimé, endommagé ou déplaçé. Désirez-vous rechercher un nouveau fichier ?"
     IDS_FILE_READONLY_DONOTSAVE 
                             "Ce modèle a été verouillé par un autre utilisateur. Par conséquent, il n'est pas possible d'écraser le fichier contenant ce modèle. Vous pouvez toutefois sauvegarder votre travail en spécifiant un nom de fichier différent."
     IDS_CANNOTCOPYSTYLE     "Une erreur est survenue lors de la copie de style entre les deux symboles sélectionnés. Il est probable que le(s) symbole(s) source ou/et destination provienne(nt) d'une version trop ancienne pour permettre la compatibilité des styles."
+    IDS_MODELGENHTML_93     "jg.clear()"
+    IDS_MODELGENHTML_94     "\tmyDrawRect(a,b,c,d);\n}\n"
+    IDS_MODELGENHTML_95     "function myDrawRect(a,b,c,d)\n{\n\tjg.clear()\n\tjg.setColor(""#00ff00"");\n\tjg.setStroke(4);\n\tjg.drawRect(a,b,(c-a),(d-b));\n\tjg.paint();\n}\n"
 END
 
 STRINGTABLE 
 BEGIN
+    IDS_MODELGENHTML_96     "\n<div id=""myCanvas"" style=""position:relative;height:2px;width:100%;""></div>\n"
+    IDS_MODELGENHTML_97     "<script type=""text/javascript"">\nvar jg = new jsGraphics(""myCanvas"");\n</script> \n"
+    IDS_MODELGENHTML_98     "<script language=JavaScript>\n<!--\n var m=new dTree('m',1);\n"
+    IDS_MODELGENHTML_100    "<script language=JavaScript>\n<!--\n var m=new dTree('m',2);\n"
     IDS_WARNING_CUT_SELECTION 
                             "La sélection contient un ou plusieurs objets qui ne peuvent pas être coupés, et qui ont été ignorés. Il s'agit d'objets de type page, porte, paquet ou d'une copie d'un objet existant."
     IDS_WARNING_COPY_SELECTION 
@@ -1466,6 +1473,8 @@ BEGIN
     IDS_RULE_ROOT_T         "/"
     IDS_ERR_MISSING_RULESDEF 
                             "Le fichier de la définition des Règles (RulesDef.xml) est manquant. Le modèle ne peut pas pointer sur un fichier de définition des Règles. Veuillez sortir de l'application et re-ouvrir votre fichier."
+    IDS_MODELGENHTML_99     "m.config.target = ""_pssRightFrame"";\ndocument.write(m);\n"
+    IDS_MODELGENHTML_101    "<script language=JavaScript>\n<!--\n var m=new dTree('m',3);\n"
     IDS_RULES_ASSIGNED      "Le fichier de définition des Règles a été assigné à ce modèle."
     IDS_AL_RULESREASSIGN_START 
                             "Démarrage de la procédure de réassignement des règles pour tous les symboles du modèle."

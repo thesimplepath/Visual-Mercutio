@@ -28,19 +28,19 @@ const int g_AttributeTreeItem = 1;
 PSS_SymbolAttributesTreeCtrl::ITreeData::ITreeData() :
     CObject(),
     m_pPropAttribute(NULL),
-    m_Type(IE_DT_Unknown)
+    m_Type(IEDataType::IE_DT_Unknown)
 {}
 //---------------------------------------------------------------------------
 PSS_SymbolAttributesTreeCtrl::ITreeData::ITreeData(int category, int item) :
     CObject(),
     m_pPropAttribute(new PSS_PropertyAttributes::IAttribute(category, item)),
-    m_Type(item == -1 ? IE_DT_Category : IE_DT_Item)
+    m_Type(item == -1 ? IEDataType::IE_DT_Category : IEDataType::IE_DT_Item)
 {}
 //---------------------------------------------------------------------------
 PSS_SymbolAttributesTreeCtrl::ITreeData::ITreeData(PSS_PropertyAttributes::IAttribute* pPropAttribute) :
     CObject(),
     m_pPropAttribute(NULL),
-    m_Type(IE_DT_Item)
+    m_Type(IEDataType::IE_DT_Item)
 {
     if (pPropAttribute)
         m_pPropAttribute = pPropAttribute->Clone();
@@ -108,10 +108,10 @@ bool PSS_SymbolAttributesTreeCtrl::FillMatchingCheckedItems()
 
     ITreeDataIterator it(&m_DataSet);
 
-    // iterate the internal element set and check if items are checked. If yes, add them to the property attributes 
+    // iterate the internal element set and check if items are checked. If yes, add them to the property attributes
     for (ITreeData* pElement = it.GetFirst(); pElement; pElement = it.GetNext())
     {
-        if (pElement->m_Type == ITreeData::IE_DT_Item && pElement->m_pPropAttribute)
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_Item && pElement->m_pPropAttribute)
         {
             // find the right item
             HTREEITEM hTreeItem = FindItemData(pElement, HTREEITEM(NULL));
@@ -165,9 +165,9 @@ void PSS_SymbolAttributesTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
     {
         ITreeData* pObj = reinterpret_cast<ITreeData*>(GetItemData(hItem));
 
-        if (pObj->m_Type == ITreeData::IE_DT_Category && pObj->m_pPropAttribute)
+        if (pObj->m_Type == ITreeData::IEDataType::IE_DT_Category && pObj->m_pPropAttribute)
         {
-            // populate the checked flag to all childrens
+            // populate the checked flag to all children
             const BOOL checked = GetCheck(hItem);
 
             if (ItemHasChildren(hItem))
@@ -285,8 +285,8 @@ void PSS_SymbolAttributesTreeCtrl::LoadTree()
         hCurrent = CTreeCtrl::GetNextItem(hCurrent, TVGN_NEXT);
     }
 
-    // expand the root
-    ExpandRoot(TRUE);
+    // collapse the root
+    ExpandRoot(FALSE);
 }
 //---------------------------------------------------------------------------
 void PSS_SymbolAttributesTreeCtrl::DestroyTree()
@@ -396,13 +396,13 @@ PSS_SymbolAttributesTreeCtrl::ITreeData* PSS_SymbolAttributesTreeCtrl::FindEleme
         // search for category only
         if (item == -1)
         {
-            if (pElement->m_Type == ITreeData::IE_DT_Category &&
-                pElement->m_pPropAttribute                    &&
+            if (pElement->m_Type == ITreeData::IEDataType::IE_DT_Category &&
+                pElement->m_pPropAttribute                                &&
                 pElement->m_pPropAttribute->GetCategoryID() == category)
                 return pElement;
         }
         else
-        if (pElement->m_Type == ITreeData::IE_DT_Item               &&
+        if (pElement->m_Type == ITreeData::IEDataType::IE_DT_Item   &&
             pElement->m_pPropAttribute                              &&
             pElement->m_pPropAttribute->GetCategoryID() == category &&
             pElement->m_pPropAttribute->GetItemID()     == item)

@@ -48,7 +48,7 @@ using namespace sfl;
 */
 class AFX_EXT_CLASS PSS_GridDocument : public CGXDocument
 {
-    GXDECLARE_DYNCREATE(PSS_GridDocument)
+    DECLARE_DYNCREATE(PSS_GridDocument)
 
     public:
         /**

@@ -65,7 +65,7 @@ char         PSS_PlanFinObject::m_FormatBuffer[300] = _T("");
 PSS_PlanFinObject::PSS_PlanFinObject() :
     PSS_FormulaObjectParser(),
     m_pNotes(NULL),
-    m_FormatType(E_FT_Standard),
+    m_FormatType(EFormatType::E_FT_Standard),
     m_ObjectRect(0, 0, 0, 0),
     m_IsEmpty(TRUE),
     m_pColumn(NULL),
@@ -73,7 +73,7 @@ PSS_PlanFinObject::PSS_PlanFinObject() :
     m_pBorder(NULL),
     m_hFont(-1),
     m_hStyle(g_NormalStyle),
-    m_EmptyStyle(E_LT_Automatic),
+    m_EmptyStyle(ELineType::E_LT_Automatic),
     m_Color(-1),
     m_FillColor(-1),
     m_LineNumber(0),
@@ -93,7 +93,7 @@ PSS_PlanFinObject::PSS_PlanFinObject() :
 PSS_PlanFinObject::PSS_PlanFinObject(const PSS_PlanFinObject& other) :
     PSS_FormulaObjectParser(),
     m_pNotes(NULL),
-    m_FormatType(E_FT_Standard),
+    m_FormatType(EFormatType::E_FT_Standard),
     m_ObjectRect(0, 0, 0, 0),
     m_IsEmpty(TRUE),
     m_pColumn(NULL),
@@ -101,7 +101,7 @@ PSS_PlanFinObject::PSS_PlanFinObject(const PSS_PlanFinObject& other) :
     m_pBorder(NULL),
     m_hFont(-1),
     m_hStyle(g_NormalStyle),
-    m_EmptyStyle(E_LT_Automatic),
+    m_EmptyStyle(ELineType::E_LT_Automatic),
     m_Color(-1),
     m_FillColor(-1),
     m_LineNumber(0),
@@ -185,7 +185,7 @@ const PSS_PlanFinObject& PSS_PlanFinObject::operator = (const PSS_PlanFinObject*
     if (!pOther)
     {
         m_pNotes         =  NULL;
-        m_FormatType     =  E_FT_Standard;
+        m_FormatType     =  EFormatType::E_FT_Standard;
         m_ObjectRect     =  PSS_Rect(0, 0, 0, 0);
         m_IsEmpty        =  TRUE;
         m_pColumn        =  NULL;
@@ -193,7 +193,7 @@ const PSS_PlanFinObject& PSS_PlanFinObject::operator = (const PSS_PlanFinObject*
         m_pBorder        =  NULL;
         m_hFont          = -1;
         m_hStyle         =  g_NormalStyle;
-        m_EmptyStyle     =  E_LT_Automatic;
+        m_EmptyStyle     =  ELineType::E_LT_Automatic;
         m_Color          = -1;
         m_FillColor      = -1;
         m_LineNumber     =  0;
@@ -329,7 +329,7 @@ void PSS_PlanFinObject::FormatObject(CTime* pTime)
 
     switch (GetFormatType())
     {
-        case E_FT_Date:
+        case EFormatType::E_FT_Date:
             std::sprintf(m_FormatBuffer,
                          _T("%d %s, %04d"),
                          pTime->GetDay(),
@@ -338,7 +338,7 @@ void PSS_PlanFinObject::FormatObject(CTime* pTime)
 
             break;
 
-        case E_FT_Date1:
+        case EFormatType::E_FT_Date1:
             std::sprintf(m_FormatBuffer,
                          _T("%s, %d %s %04d"),
                          g_Days[pTime->GetDayOfWeek() - 1],
@@ -348,7 +348,7 @@ void PSS_PlanFinObject::FormatObject(CTime* pTime)
 
             break;
 
-        case E_FT_Date2:
+        case EFormatType::E_FT_Date2:
             std::sprintf(m_FormatBuffer,
                          _T("%d.%d.%04d %dh%d"),
                          pTime->GetDay(),
@@ -378,7 +378,7 @@ void PSS_PlanFinObject::FormatObject(COleDateTime* pDateTime)
 
     switch (GetFormatType())
     {
-        case E_FT_Date:
+        case EFormatType::E_FT_Date:
             std::sprintf(m_FormatBuffer,
                          _T("%d %s, %04d"),
                          pDateTime->GetDay(),
@@ -387,7 +387,7 @@ void PSS_PlanFinObject::FormatObject(COleDateTime* pDateTime)
 
             break;
 
-        case E_FT_Date1:
+        case EFormatType::E_FT_Date1:
             std::sprintf(m_FormatBuffer,
                          _T("%s, %d %s %04d"),
                          g_Days[pDateTime->GetDayOfWeek() - 1],
@@ -397,7 +397,7 @@ void PSS_PlanFinObject::FormatObject(COleDateTime* pDateTime)
 
             break;
 
-        case E_FT_Date2:
+        case EFormatType::E_FT_Date2:
             std::sprintf(m_FormatBuffer,
                          _T("%d.%d.%04d %dh%d"),
                          pDateTime->GetDay(),
@@ -421,11 +421,11 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
 {
     switch (GetFormatType())
     {
-        case E_FT_Percentage:
+        case EFormatType::E_FT_Percentage:
             std::sprintf(m_FormatBuffer, _T("%3.3lg%c"), value * 100.0, _T('%'));
             break;
 
-        case E_FT_Amount:
+        case EFormatType::E_FT_Amount:
         {
             // use lf to remove the exponent notation and .0 to remove the decimals
             char  temp[100];
@@ -448,7 +448,7 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
 
             for (; *pP; ++i, ++count, ++pP)
             {
-                // add the ' char every 3 digits, calculate if third digit by substracting i from the length
+                // add the ' char every 3 digits, calculate if third digit by subtracting i from the length
                 if (count && ((len - count) % 3) == 0)
                 {
                     m_FormatBuffer[i] = _T('\'');
@@ -462,7 +462,7 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
             break;
         }
 
-        case E_FT_Amount2:
+        case EFormatType::E_FT_Amount2:
         {
             // use lf to remove the exponent notation
             char  temp[100];
@@ -486,7 +486,7 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
             // until the end of the string or when encounter the decimal point
             for (; *pP && (*pP != _T('.')); ++i, ++count, ++pP)
             {
-                // add the ' char every 3 digits, calculate if third digit by substracting i from the length
+                // add the ' char every 3 digits, calculate if third digit by subtracting i from the length
                 if (count && ((len - count) % 3) == 0)
                 {
                     m_FormatBuffer[i] = _T('\'');
@@ -507,28 +507,28 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
             break;
         }
 
-        case E_FT_Standard:
+        case EFormatType::E_FT_Standard:
             // default case, just copy the source. Use lf to remove the exponent notation
             // and .0 to remove the decimals
             std::sprintf(m_FormatBuffer, _T("%.0lf"), value);
             break;
 
-        case E_FT_Amount1:
+        case EFormatType::E_FT_Amount1:
             // use lf to remove the exponent notation and .0 to remove the decimals
             std::sprintf(m_FormatBuffer, _T("%.2lf"), value);
             break;
 
-        case E_FT_Amount1Dash:
+        case EFormatType::E_FT_Amount1Dash:
             // use lf to remove the exponent notation and .0 to remove the decimals + add .-
             std::sprintf(m_FormatBuffer, _T("%.0lf.-"), value);
             break;
 
-        case E_FT_Amount2Dash:
+        case EFormatType::E_FT_Amount2Dash:
             // use lf to remove the exponent notation and .0 to remove the decimals + add .--
             std::sprintf(m_FormatBuffer, _T("%.0lf.--"), value);
             break;
 
-        case E_FT_Amount1DashTrail:
+        case EFormatType::E_FT_Amount1DashTrail:
         {
             // use lf to remove the exponent notation and .0 to remove the decimals
             char  temp[100];
@@ -551,7 +551,7 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
 
             for (; *pP; ++i, ++count, ++pP)
             {
-                // add the ' char every 3 digits, calculate if third digit by substracting i from the length
+                // add the ' char every 3 digits, calculate if third digit by subtracting i from the length
                 if (count && ((len - count) % 3) == 0)
                 {
                     m_FormatBuffer[i] = _T('\'');
@@ -568,7 +568,7 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
             break;
         }
 
-        case E_FT_Amount2DashTrail:
+        case EFormatType::E_FT_Amount2DashTrail:
         {
             // use lf to remove the exponent notation and .0 to remove the decimals
             char  temp[100];
@@ -591,7 +591,7 @@ void PSS_PlanFinObject::FormatObject(DOUBLE value)
 
             for (; *pP; ++i, ++count, ++pP)
             {
-                // add the ' char every 3 digits, calculate if third digit by substracting i from the length
+                // add the ' char every 3 digits, calculate if third digit by subtracting i from the length
                 if (count && ((len - count) % 3) == 0)
                 {
                     m_FormatBuffer[i] = _T('\'');
@@ -670,7 +670,7 @@ void PSS_PlanFinObject::DrawEmpty(CDC* pDC, PSS_View* pView)
 
     switch (pView->GetDocument()->GetDocOptions().GetEmptyStyle())
     {
-        case E_LT_Dotted:
+        case ELineType::E_LT_Dotted:
             for (int i = m_ObjectRect.left; i < m_ObjectRect.right; i += 2)
             {
                 pDC->MoveTo(i,     m_ObjectRect.bottom - 2);
@@ -679,7 +679,7 @@ void PSS_PlanFinObject::DrawEmpty(CDC* pDC, PSS_View* pView)
 
             break;
 
-        case E_LT_Small:
+        case ELineType::E_LT_Small:
             for (int i = m_ObjectRect.left; i < m_ObjectRect.right; i += 8)
             {
                 pDC->MoveTo(i,     m_ObjectRect.bottom - 2);
@@ -688,13 +688,13 @@ void PSS_PlanFinObject::DrawEmpty(CDC* pDC, PSS_View* pView)
 
             break;
 
-        case E_LT_Solid:
+        case ELineType::E_LT_Solid:
             pDC->MoveTo(m_ObjectRect.left,  m_ObjectRect.bottom - 2);
             pDC->LineTo(m_ObjectRect.right, m_ObjectRect.bottom - 2);
 
             break;
 
-        case E_LT_Dash:
+        case ELineType::E_LT_Dash:
             for (int i = m_ObjectRect.left; i < m_ObjectRect.right; i += 4)
             {
                 pDC->MoveTo(i,     m_ObjectRect.bottom - 2);
@@ -1218,7 +1218,10 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
         ar << WORD(m_DefaultValue);
 
         // check if template
-        if (pDoc && pDoc->GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_TemplateType && !GetDefaultValue() && !GetIsStatic())
+        if (pDoc                                                                                          &&
+            pDoc->GetDocumentStamp().GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_TemplateType &&
+            !GetDefaultValue()                                                                            &&
+            !GetIsStatic())
             m_IsEmpty = TRUE;
 
         ar << WORD(m_IsEmpty);

@@ -441,10 +441,10 @@ CString PSS_Export::BuildLine(const CString& key, const CString& value)
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      lineBuffer.Format(_T("%s,%s\r\n"),         (const char*)key, (const char*)value); break;
-        case E_SS_SemiColumn: lineBuffer.Format(_T("%s;%s\r\n"),         (const char*)key, (const char*)value); break;
-        case E_SS_Quote:      lineBuffer.Format(_T("\"%s\" \"%s\"\r\n"), (const char*)key, (const char*)value); break;
-        default:              lineBuffer.Format(_T("%s\t%s\r\n"),        (const char*)key, (const char*)value); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     lineBuffer.Format(_T("%s,%s\r\n"),         (const char*)key, (const char*)value); break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: lineBuffer.Format(_T("%s;%s\r\n"),         (const char*)key, (const char*)value); break;
+        case ESynchronizationSeparatorType::E_SS_Quote:     lineBuffer.Format(_T("\"%s\" \"%s\"\r\n"), (const char*)key, (const char*)value); break;
+        default:                                            lineBuffer.Format(_T("%s\t%s\r\n"),        (const char*)key, (const char*)value); break;
     }
 
     return lineBuffer;

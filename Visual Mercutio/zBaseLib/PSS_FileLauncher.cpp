@@ -197,11 +197,11 @@ CString PSS_FileLauncher::GetModeVerbString() const
 {
     switch (m_Mode)
     {
-        case IE_FM_Edit:       return "edit";
-        case IE_FM_Explore:    return "explore";
-        case IE_FM_Open:       return "open";
-        case IE_FM_Print:      return "print";
-        case IE_FM_Properties: return "properties";
+        case IEMode::IE_FM_Edit:       return "edit";
+        case IEMode::IE_FM_Explore:    return "explore";
+        case IEMode::IE_FM_Open:       return "open";
+        case IEMode::IE_FM_Print:      return "print";
+        case IEMode::IE_FM_Properties: return "properties";
     }
 
     return "";

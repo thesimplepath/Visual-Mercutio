@@ -47,7 +47,7 @@ class AFX_EXT_CLASS PSS_Process : public PSS_BaseActivity
     public:
         typedef PSS_BaseActivity inherited;
 
-        enum IEStatus
+        enum class IEStatus
         {
             IE_PS_Started,
             IE_PS_InProcess,
@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_Process : public PSS_BaseActivity
         *@param processStatus - process status
         *@param connectedUser - connected user
         */
-        PSS_Process(IEStatus processStatus = IE_PS_NotStarted, const CString& connectedUser = "");
+        PSS_Process(IEStatus processStatus = IEStatus::IE_PS_NotStarted, const CString& connectedUser = "");
 
         virtual ~PSS_Process();
 

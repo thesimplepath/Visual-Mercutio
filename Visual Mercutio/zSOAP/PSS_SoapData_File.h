@@ -41,7 +41,7 @@ class AFX_EXT_CLASS PSS_SoapData_File
         /**
         * Directory mode
         */
-        enum IEDirectoryMode
+        enum class IEDirectoryMode
         {
             IE_DM_PublicFolder,
             IE_DM_PrivateFolder

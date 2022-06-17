@@ -99,6 +99,16 @@ class PSS_UserGroupView : public CWnd, public PSS_Subject, public PSS_Observer
         virtual void OnRefresh();
 
         /**
+        * Called when a branch should be expanded
+        */
+        virtual void OnExpandBranch();
+
+        /**
+        * Called when a branch should be collapsed
+        */
+        virtual void OnCollapseBranch();
+
+        /**
         * Called when a group is added to the view
         */
         virtual void OnAddGroup();

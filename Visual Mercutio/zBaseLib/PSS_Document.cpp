@@ -1781,7 +1781,7 @@ BOOL PSS_Document::InsertDocumentAfter(const CString& fileName,
         return FALSE;
 
     // set the document type, only if the document is correct
-    pNewDocument->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
+    pNewDocument->GetStamp().SetFileType(PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType);
 
     // check if all fonts still available
     CheckDocumentFontAndStyle();
@@ -1844,10 +1844,10 @@ BOOL PSS_Document::InsertExternalDocumentAfter(const CString& fileName,
     std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
 
     // set the type for Document
-    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType);
 
     // set the right type for the document
-    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IE_DT_ExternalForm);
+    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IEDocumentDataType::IE_DT_ExternalForm);
     pNewDocData->GetStamp().SetTemplate(fileName);
 
     int newIndex = 0;
@@ -1900,7 +1900,7 @@ BOOL PSS_Document::InsertBinaryDocumentAfter(const CString& fileName,
     std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
 
     // set the type for Document
-    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType);
 
     // set the document name
     pNewDocData->GetStamp().SetTitle(infoName);
@@ -1974,7 +1974,7 @@ BOOL PSS_Document::InsertExternalBinaryDocumentAfter(const CString& fileName,
     std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
 
     // set the type for Document
-    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType);
 
     // set the document name
     pNewDocData->GetStamp().SetTitle(infoName);
@@ -1983,7 +1983,7 @@ BOOL PSS_Document::InsertExternalBinaryDocumentAfter(const CString& fileName,
     pNewDocData->GetStamp().SetDescription(infoDescription);
 
     // set the right type for the document
-    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IE_DT_ExternalBinary);
+    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IEDocumentDataType::IE_DT_ExternalBinary);
     pNewDocData->GetStamp().SetTemplate(fileName);
 
     int newIndex = 0;
@@ -2031,13 +2031,13 @@ BOOL PSS_Document::InsertURLAfter(const CString& url, int indexAfter)
     std::unique_ptr<PSS_DocumentData> pNewDocData(new PSS_DocumentData());
 
     // set the type for Document
-    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType);
 
     // set the document name
     pNewDocData->GetStamp().SetTitle(url);
 
     // set the right type for the document
-    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IE_DT_URL);
+    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IEDocumentDataType::IE_DT_URL);
     pNewDocData->GetStamp().SetTemplate(url);
 
     int newIndex = 0;

@@ -493,19 +493,25 @@ bool PSS_ProcessGraphModelView::SelectExportModelToImageFile()
     filters += _T("*.jpg");
     filters += (char)'\0';
 
+    // disable GIF support because not well supported by the publication process
+    /*
     // set the "*.gif" files filter
     VERIFY(filterName.LoadString(IDS_EXPORTFILE_FILTERGIF));
     filters += filterName;
     filters += (char)'\0';
     filters += _T("*.gif");
     filters += (char)'\0';
+    */
 
+    // disable PCX support because not well supported by the publication process
+    /*
     // append the "*.pcx" files filter
     VERIFY(filterName.LoadString(IDS_EXPORTFILE_FILTERPCX));
     filters += filterName;
     filters += (char)'\0';
     filters += _T("*.pcx");
     filters += (char)'\0';
+    */
 
     // append the "*.dib" files filter
     VERIFY(filterName.LoadString(IDS_EXPORTFILE_FILTERDIB));
@@ -528,10 +534,24 @@ bool PSS_ProcessGraphModelView::SelectExportModelToImageFile()
     filters += _T("*.tif");
     filters += (char)'\0';
 
-    PSS_FileDialog fileDialog(title, filters, 6, _T(""));
+    // select jpeg extension by default ans allow "save as..." (parameter nb. 6)
+    PSS_FileDialog fileDialog(title, filters, 6, _T(""), _T("JPG"), FALSE);
 
     if (fileDialog.DoModal() == IDCANCEL)
         return false;
+
+    const CString fileName = fileDialog.GetFileName();
+
+    // check if file exists, creates it if not
+    if (!PSS_File::Exist(fileName))
+    {
+        CFile imageFile;
+
+        if (!imageFile.Open(fileName, CFile::modeCreate | CFile::modeWrite))
+            return false;
+
+        imageFile.Close();
+    }
 
     CClientDC attribDC(this);
 
@@ -820,7 +840,7 @@ afx_msg LRESULT PSS_ProcessGraphModelView::OnEnsureVisibleSymbol(WPARAM wParam, 
                 if (pModelCtrl->EnsureSymbolVisible(pElement))
                 {
                     // process the selection if necessary
-                    if (pModelMsg->GetActionType() == PSS_ModelObserverMsg::IE_AT_SelectElement)
+                    if (pModelMsg->GetActionType() == PSS_ModelObserverMsg::IEActionType::IE_AT_SelectElement)
                         pModelCtrl->SelectComponent(*pElement);
 
                     return 1;
@@ -875,9 +895,9 @@ BOOL PSS_ProcessGraphModelView::OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESU
 
         if (pModelCtrl && pModelCtrl->OnToolTip(m_StrToolTip,
                                                 cursorPos,
-                                                PSS_Global::GetType() == PSS_Global::IE_AT_Process ?
-                                                        PSS_Symbol::IE_TT_Design :
-                                                        PSS_Symbol::IE_TT_Normal))
+                                                PSS_Global::GetType() == PSS_Global::IEApplicationType::IE_AT_Process ?
+                                                        PSS_Symbol::IEToolTipMode::IE_TT_Design :
+                                                        PSS_Symbol::IEToolTipMode::IE_TT_Normal))
         {
             pTTT->hinst    = NULL;
             pTTT->lpszText = m_StrToolTip.GetBuffer(m_StrToolTip.GetLength() + 1);

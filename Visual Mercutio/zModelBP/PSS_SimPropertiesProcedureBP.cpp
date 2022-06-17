@@ -77,22 +77,22 @@ void PSS_SimPropertiesProcedureBP::Merge(PSS_SimPropertiesProcedureBP* pProp, DW
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Sim_Procedure_Activation)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Procedure_Activation)
             m_ProcedureActivation = pProp->GetProcedureActivation();
 
-        if (changeFlags & IE_CT_Change_Sim_Procedure_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Procedure_Cost)
             m_ProcedureCost = pProp->GetProcedureCost();
 
-        if (changeFlags & IE_CT_Change_Sim_Procedure_Workload_Forecast)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Procedure_Workload_Forecast)
             m_ProcedureWorkloadForecast = pProp->GetProcedureWorkloadForecast();
 
-        if (changeFlags & IE_CT_Change_Sim_Procedure_Cost_Forecast)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Procedure_Cost_Forecast)
             m_ProcedureCostForecast = pProp->GetProcedureCostForecast();
 
-        if (changeFlags & IE_CT_Change_Sim_Procedure_Workload_Per_Activ_Forecast)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Procedure_Workload_Per_Activ_Forecast)
             m_ProcedureWorkloadPerActivity = pProp->GetProcedureWorkloadPerActivity();
 
-        if (changeFlags & IE_CT_Change_Sim_Procedure_Cost_Per_Activ_Forecast)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Procedure_Cost_Per_Activ_Forecast)
             m_ProcedureCostPerActivity = pProp->GetProcedureCostPerActivity();
     }
 }

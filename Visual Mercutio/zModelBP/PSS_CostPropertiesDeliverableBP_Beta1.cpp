@@ -74,16 +74,16 @@ void PSS_CostPropertiesDeliverableBP_Beta1::Merge(CODProperty* pProp, DWORD chan
 
     if (pOrientationProp)
     {
-        if (changeFlags & IE_CT_Change_Cost_Processing_Time)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Processing_Time)
             m_ProcessingTime = pOrientationProp->GetProcessingTime();
 
-        if (changeFlags & IE_CT_Change_Cost_In_Workload_Percent)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_In_Workload_Percent)
             m_InWorkloadPercent = pOrientationProp->GetInWorkloadPercent();
 
-        if (changeFlags & IE_CT_Change_Cost_Out_Workload_Percent)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Out_Workload_Percent)
             m_OutWorkloadPercent = pOrientationProp->GetOutWorkloadPercent();
 
-        if (changeFlags & IE_CT_Change_Cost_Unitary_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Unitary_Cost)
             m_UnitaryCost = pOrientationProp->GetUnitaryCost();
     }
 }
@@ -284,7 +284,7 @@ void PSS_CostPropertiesDeliverableBP_Beta1::Serialize(CArchive& ar)
 bool PSS_CostPropertiesDeliverableBP_Beta1::RegisterProperties()
 {
     static bool propsRegistered = false;
-    
+
     if (!propsRegistered)
     {
         bool success = RegisterProperty(M_Cost_Deliv_Processing_Time_Beta1_ID,
@@ -297,7 +297,7 @@ bool PSS_CostPropertiesDeliverableBP_Beta1::RegisterProperties()
 
         if (success)
             success = RegisterProperty(M_Cost_Deliv_In_Workload_Percent_Beta1_ID,
-                                       IDS_Z_COST_IN_WORKLOAD_PERCENT_NAME, 
+                                       IDS_Z_COST_IN_WORKLOAD_PERCENT_NAME,
                                        IDS_Z_COST_IN_WORKLOAD_PERCENT_DESC,
                                        _PropertyAccessor(&PSS_CostPropertiesDeliverableBP_Beta1::GetInWorkloadPercent,
                                                          &PSS_CostPropertiesDeliverableBP_Beta1::SetInWorkloadPercent),
@@ -306,7 +306,7 @@ bool PSS_CostPropertiesDeliverableBP_Beta1::RegisterProperties()
 
         if (success)
             success = RegisterProperty(M_Cost_Deliv_Out_Workload_Percent_Beta1_ID,
-                                       IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME, 
+                                       IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME,
                                        IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
                                        _PropertyAccessor(&PSS_CostPropertiesDeliverableBP_Beta1::GetOutWorkloadPercent,
                                                          &PSS_CostPropertiesDeliverableBP_Beta1::SetOutWorkloadPercent),
@@ -315,7 +315,7 @@ bool PSS_CostPropertiesDeliverableBP_Beta1::RegisterProperties()
 
         if (success)
             success = RegisterProperty(M_Cost_Deliv_Unitary_Cost_Beta1_ID,
-                                       IDS_Z_COST_UNITARY_COST_NAME, 
+                                       IDS_Z_COST_UNITARY_COST_NAME,
                                        IDS_Z_COST_UNITARY_COST_DESC,
                                        _PropertyAccessor(&PSS_CostPropertiesDeliverableBP_Beta1::GetUnitaryCost,
                                                          &PSS_CostPropertiesDeliverableBP_Beta1::SetUnitaryCost),

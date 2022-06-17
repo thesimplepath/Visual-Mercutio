@@ -8,9 +8,13 @@
 #include "stdafx.h"
 #include "PSS_LinkSymbol.h"
 
+// stingray studio
+#include <Views\OdLineOrientation.h>
+
 // processsoft
 #include "zBaseLib\PSS_DrawFunctions.h"
 #include "zBaseLib\PSS_BaseDocument.h"
+#include "zBaseLib\PSS_BasicLabelComponent.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zProperty\PSS_DynamicProperties.h"
 #include "PSS_ODSymbolManipulator.h"
@@ -272,6 +276,35 @@ PSS_SymbolEdit* PSS_LinkSymbol::CreateAndReplaceEditText(const CString& editName
     return PSS_ODSymbolManipulator::CreateAndReplaceEditText(this, editName, pParent);
 }
 //---------------------------------------------------------------------------
+CODLabelComponent* PSS_LinkSymbol::CreateLabel(const LPCTSTR          pText,
+                                               const OD_CONTROL_POINT ctlPoint,
+                                               CDC*                   pDC)
+{
+    // override the basic CODLabelComponent class by an instance of the PSS_BasicLabelComponent one,
+    // to allow the char to be filtered while editing
+    std::unique_ptr<PSS_BasicLabelComponent> pLabelComp(new PSS_BasicLabelComponent(ctlPoint));
+    pLabelComp->SetText(pText);
+
+    PSS_BasicLabelComponent* pLabel = NULL;
+
+    if (pLabelComp->Create(pDC))
+    {
+        AddLabel(pLabelComp.get());
+        pLabel = pLabelComp.release();
+
+        pLabel->SetOrientationFlag(TRUE);
+        pLabel->SetOrientation(ctlPoint);
+    }
+
+    if (pLabel)
+    {
+        CODLineOrientation propLineOrientation;
+        pLabelComp->AddProperty(propLineOrientation);
+    }
+
+    return pLabel;
+}
+//---------------------------------------------------------------------------
 bool PSS_LinkSymbol::CanEditNonDynamicName() const
 {
     return false;
@@ -312,8 +345,8 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
             if (pRootModel)
                 pRootModel->OnSymbolNameChanged(*this, oldName);
 
-            // the symbol has changed, notify all refences
-            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_NameHasChanged, this);
+            // the symbol has changed, notify all references
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IEActionType::IE_AT_NameHasChanged, this);
             NotifyAllObservers(&msg);
 
             CWnd* pWnd = ::AfxGetMainWnd();
@@ -321,7 +354,7 @@ BOOL PSS_LinkSymbol::SetSymbolName(const CString& value)
             // build and send the message
             if (pWnd)
             {
-                PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, pRootModel, this);
+                PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_ChangedElement, NULL, pRootModel, this);
                 pWnd->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, LPARAM(&docMsg));
             }
 
@@ -362,8 +395,8 @@ BOOL PSS_LinkSymbol::SetSymbolComment(const CString& value)
             basicProps.SetSymbolDescription(value);
             SetProperty(&basicProps);
 
-            // the symbol has changed, notify all refences
-            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged, this);
+            // the symbol has changed, notify all references
+            PSS_SymbolObserverMsg msg(PSS_SymbolObserverMsg::IEActionType::IE_AT_DescriptionHasChanged, this);
             NotifyAllObservers(&msg);
 
             // redraw the symbol
@@ -589,36 +622,34 @@ void PSS_LinkSymbol::EditSymbolName()
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::IsNewNameValid(const CString& value) const
 {
-    // is new name empty or contains invalid chars?
+    // is new name empty?
     if (value.IsEmpty())
-    {
-        PSS_MsgBox mBox;
-        mBox.Show(IDS_SYMBOLNAME_EMPTY, MB_OK);
         return false;
-    }
-    else
-    if (value.FindOneOf(_T(";:\\/")) != -1)
-    {
-        PSS_MsgBox mBox;
-        mBox.Show(IDS_SYMBOLNAME_INVALIDCHAR, MB_OK);
-        return false;
-    }
-    else
-    {
-        PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetParent());
 
-        if (pModel)
-        {
-            PSS_ProcessGraphModelMdl* pRoot = pModel->GetRoot();
+    bool result = false;
 
-            // new name isn't the same as the current one and is already allocated?
-            if (value != GetSymbolName() && pRoot && pRoot->SymbolNameAlreadyAllocated(value))
-            {
-                PSS_MsgBox mBox;
-                mBox.Show(IDS_SYMBOLNAME_ALREADYEXIST, MB_OK);
-                return false;
-            }
-        }
+    ZDProcessGraphModelMdl* pLocalModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetParent());
+
+    // is name already attributed to another symbol?
+    if (pLocalModel)
+    {
+        ZDProcessGraphModelMdl* pRootModel = pLocalModel->GetRoot();
+
+        if (pRootModel)
+            result = pRootModel->SymbolNameAlreadyAllocated(value);
+    }
+
+    // name is already attributed?
+    if (result)
+    {
+        // get the symbol name
+        const CString symbolName = const_cast<PSS_LinkSymbol*>(this)->GetSymbolName();
+
+        // if the name was already be attributed to another symbol, check if the old name
+        // is identical to the new one. If it's the case, the user just entered the same name,
+        // and there is nothing else to do
+        if (value != symbolName)
+            return false;
     }
 
     return true;
@@ -630,7 +661,7 @@ void PSS_LinkSymbol::CopySymbolDefinitionFrom(const CODSymbolComponent& src)
 
     if (pSymbol)
     {
-        // don't use direct assignement, if symbols are referenced, not notification will be done
+        // don't use direct assignment, if symbols are referenced, not notification will be done
         SetSymbolName   (pSymbol->GetSymbolName());
         SetSymbolComment(pSymbol->GetSymbolComment());
         SetAbsolutePath (pSymbol->GetAbsolutePath());
@@ -1080,7 +1111,11 @@ bool PSS_LinkSymbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool 
                                  IDS_Z_SYMBOL_NAME_DESC,
                                  numericValue ? name : pBasicProps->GetSymbolName(),
                                  !IsLocal() || SymbolNameTextEditReadOnly() ?
-                                         PSS_Property::IE_T_EditMultilineReadOnly : PSS_Property::IE_T_EditMultiline));
+                                         PSS_Property::IEType::IE_T_EditMultilineReadOnly : PSS_Property::IEType::IE_T_EditMultiline));
+
+    // allow the characters to be filtered on this property
+    pProp->EnableCharFilter(true);
+
     propSet.Add(pProp.get());
     pProp.release();
 
@@ -1092,7 +1127,7 @@ bool PSS_LinkSymbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool 
                                  IDS_Z_SYMBOL_DESCRIPTION_DESC,
                                  pBasicProps->GetSymbolDescription(),
                                  !IsLocal() || CommentTextEditReadOnly() ?
-                                         PSS_Property::IE_T_EditMultilineReadOnly : PSS_Property::IE_T_EditMultiline));
+                                         PSS_Property::IEType::IE_T_EditMultilineReadOnly : PSS_Property::IEType::IE_T_EditMultiline));
     propSet.Add(pProp.get());
     pProp.release();
 
@@ -1104,7 +1139,7 @@ bool PSS_LinkSymbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool 
                                      M_Symbol_Number_ID,
                                      IDS_Z_SYMBOL_NUMBER_DESC,
                                      double(pBasicProps->GetSymbolNumber()),
-                                     IsLocal() ? PSS_Property::IE_T_EditNumber : PSS_Property::IE_T_EditNumberReadOnly));
+                                     IsLocal() ? PSS_Property::IEType::IE_T_EditNumber : PSS_Property::IEType::IE_T_EditNumberReadOnly));
     else
         pProp.reset(new PSS_Property(IDS_ZS_BP_PROP_BASIC_TITLE,
                                      ZS_BP_PROP_BASIC,
@@ -1112,7 +1147,7 @@ bool PSS_LinkSymbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool 
                                      M_Symbol_Number_ID,
                                      IDS_Z_SYMBOL_NUMBER_DESC,
                                      pBasicProps->GetSymbolNumberStr(),
-                                     IsLocal() ? PSS_Property::IE_T_EditString : PSS_Property::IE_T_EditStringReadOnly));
+                                     IsLocal() ? PSS_Property::IEType::IE_T_EditString : PSS_Property::IEType::IE_T_EditStringReadOnly));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -1124,7 +1159,7 @@ bool PSS_LinkSymbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool 
                                  M_Symbol_Risk_Level_ID,
                                  IDS_Z_SYMBOL_RISK_LEVEL_DESC,
                                  pBasicProps->GetSymbolRiskLevel(),
-                                 PSS_Property::IE_T_EditStringReadOnly));
+                                 PSS_Property::IEType::IE_T_EditStringReadOnly));
     propSet.Add(pProp.get());
     pProp.release();
 
@@ -1594,16 +1629,16 @@ void PSS_LinkSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     {
         switch (pObserverMsg->GetActionType())
         {
-            case PSS_SymbolObserverMsg::IE_AT_ElementHasChanged:
-            case PSS_SymbolObserverMsg::IE_AT_None:
+            case PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementHasChanged:
+            case PSS_SymbolObserverMsg::IEActionType::IE_AT_None:
                 CopySymbolDefinitionFrom((PSS_LinkSymbol&)*pSubject);
                 break;
 
-            case PSS_SymbolObserverMsg::IE_AT_NameHasChanged:
+            case PSS_SymbolObserverMsg::IEActionType::IE_AT_NameHasChanged:
                 SetSymbolName(dynamic_cast<PSS_LinkSymbol*>(pSubject)->GetSymbolName());
                 break;
 
-            case PSS_SymbolObserverMsg::IE_AT_DescriptionHasChanged:
+            case PSS_SymbolObserverMsg::IEActionType::IE_AT_DescriptionHasChanged:
                 SetSymbolComment(dynamic_cast<PSS_LinkSymbol*>(pSubject)->GetSymbolComment());
                 break;
         }
@@ -1761,6 +1796,6 @@ bool PSS_LinkSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_To
 //---------------------------------------------------------------------------
 CODLabelComponent* PSS_LinkSymbol::CreateSymbolLabel()
 {
-    return CreateLabel(_T("Test"));
+    return CODLinkComponent::CreateLabel(_T("Test"));
 }
 //---------------------------------------------------------------------------

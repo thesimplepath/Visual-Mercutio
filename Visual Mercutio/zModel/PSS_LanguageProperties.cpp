@@ -29,7 +29,7 @@ IMPLEMENT_SERIAL(PSS_LanguageProperties, CODIntProperty, g_DefVersion)
 PSS_LanguageProperties::PSS_LanguageProperties(int id) :
     CODIntProperty(id),
     sfl::CPropertyContainer< IODPropertyContainer, CODPropertyAccessor<PSS_LanguageProperties> >(),
-    m_Language(E_LN_French)
+    m_Language(ELanguage::E_LN_French)
 {
     VERIFY(RegisterProperties());
 }
@@ -37,7 +37,7 @@ PSS_LanguageProperties::PSS_LanguageProperties(int id) :
 PSS_LanguageProperties::PSS_LanguageProperties(const PSS_LanguageProperties& other) :
     CODIntProperty(other.GetId()),
     sfl::CPropertyContainer< IODPropertyContainer, CODPropertyAccessor<PSS_LanguageProperties> >(),
-    m_Language(E_LN_French)
+    m_Language(ELanguage::E_LN_French)
 {
     *this = other;
 
@@ -63,7 +63,7 @@ void PSS_LanguageProperties::Merge(CODProperty* pProp, DWORD changeFlags)
     PSS_LanguageProperties* pLanguageProp = static_cast<PSS_LanguageProperties*>(pProp);
 
     if (pLanguageProp)
-        if (changeFlags & IE_CT_Language)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Language)
             m_Language = pLanguageProp->GetLanguage();
 }
 //---------------------------------------------------------------------------
@@ -92,7 +92,7 @@ BOOL PSS_LanguageProperties::GetValue(const int propId, int& value) const
 {
     switch (propId)
     {
-        case M_Language_ID: value = m_Language; break;
+        case M_Language_ID: value = (int)m_Language; break;
         default:            return FALSE;
     }
 

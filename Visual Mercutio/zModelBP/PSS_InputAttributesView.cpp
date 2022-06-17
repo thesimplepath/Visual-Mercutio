@@ -283,7 +283,7 @@ void PSS_InputAttributesView::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* p
 
     if (pSymbolObserver)
     {
-        if (pSymbolObserver->GetActionType() == PSS_SymbolObserverMsg::IE_AT_ElementSelected)
+        if (pSymbolObserver->GetActionType() == PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementSelected)
         {
             PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pSymbolObserver->GetElement());
             PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pSymbolObserver->GetElement());

@@ -37,7 +37,7 @@
 class PSS_DatabaseManipulator
 {
     public:
-        enum IEType
+        enum class IEType
         {
             IE_DT_MSAccess,
             IE_DT_dBaseIII,
@@ -68,7 +68,7 @@ class PSS_DatabaseManipulator
         *@param name - database name
         *@param type - database type
         */
-        PSS_DatabaseManipulator(const CString& name = "", IEType type = IE_DT_MSAccess);
+        PSS_DatabaseManipulator(const CString& name = "", IEType type = IEType::IE_DT_MSAccess);
 
         virtual ~PSS_DatabaseManipulator();
 

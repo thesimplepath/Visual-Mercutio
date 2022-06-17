@@ -81,12 +81,12 @@ bool PSS_DynamicProperties::SaveProperties(PSS_Properties::IPropertySet& propSet
                 pPropSrc->GetItemID()     == pPropDst->GetItemID())
                 switch (pPropSrc->GetValueType())
                 {
-                    case PSS_Property::IE_VT_String:   pPropDst->SetValueString (pPropSrc->GetValueString());    break;
-                    case PSS_Property::IE_VT_Double:   pPropDst->SetValueDouble  (pPropSrc->GetValueDouble());   break;
-                    case PSS_Property::IE_VT_Float:    pPropDst->SetValueFloat   (pPropSrc->GetValueFloat());    break;
-                    case PSS_Property::IE_VT_Date:     pPropDst->SetValueDate    (pPropSrc->GetValueDate());     break;
-                    case PSS_Property::IE_VT_TimeSpan: pPropDst->SetValueTimeSpan(pPropSrc->GetValueTimeSpan()); break;
-                    case PSS_Property::IE_VT_Duration: pPropDst->SetValueDuration(pPropSrc->GetValueDuration()); break;
+                    case PSS_Property::IEValueType::IE_VT_String:   pPropDst->SetValueString (pPropSrc->GetValueString());    break;
+                    case PSS_Property::IEValueType::IE_VT_Double:   pPropDst->SetValueDouble  (pPropSrc->GetValueDouble());   break;
+                    case PSS_Property::IEValueType::IE_VT_Float:    pPropDst->SetValueFloat   (pPropSrc->GetValueFloat());    break;
+                    case PSS_Property::IEValueType::IE_VT_Date:     pPropDst->SetValueDate    (pPropSrc->GetValueDate());     break;
+                    case PSS_Property::IEValueType::IE_VT_TimeSpan: pPropDst->SetValueTimeSpan(pPropSrc->GetValueTimeSpan()); break;
+                    case PSS_Property::IEValueType::IE_VT_Duration: pPropDst->SetValueDuration(pPropSrc->GetValueDuration()); break;
                 }
     }
 

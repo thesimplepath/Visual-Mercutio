@@ -214,158 +214,158 @@ void PSS_AnnualNumberPropertiesBP::Merge(PSS_AnnualNumberPropertiesBP* pProp, DW
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Number_Year)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_Year)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberYear(pProp->GetNumberYear());
                 SetLockNumberYear(pProp->GetLockNumberYear());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberYear(pProp->GetLockNumberYear());
             else
                 SetNumberYear(pProp->GetNumberYear());
 
-        if (changeFlags & IE_CT_Change_Number_January)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_January)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberJanuary(pProp->GetNumberJanuary());
                 SetLockNumberJanuary(pProp->GetLockNumberJanuary());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberJanuary(pProp->GetLockNumberJanuary());
             else
                 SetNumberJanuary(pProp->GetNumberJanuary());
 
-        if (changeFlags & IE_CT_Change_Number_February)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_February)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberFebruary(pProp->GetNumberFebruary());
                 SetLockNumberFebruary(pProp->GetLockNumberFebruary());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberFebruary(pProp->GetLockNumberFebruary());
             else
                 SetNumberFebruary(pProp->GetNumberFebruary());
 
-        if (changeFlags & IE_CT_Change_Number_March)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_March)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberMarch(pProp->GetNumberMarch());
                 SetLockNumberMarch(pProp->GetLockNumberMarch());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberMarch(pProp->GetLockNumberMarch());
             else
                 SetNumberMarch(pProp->GetNumberMarch());
 
-        if (changeFlags & IE_CT_Change_Number_April)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_April)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberApril(pProp->GetNumberApril());
                 SetLockNumberApril(pProp->GetLockNumberApril());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberApril(pProp->GetLockNumberApril());
             else
                 SetNumberApril(pProp->GetNumberApril());
 
-        if (changeFlags & IE_CT_Change_Number_May)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_May)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberMay(pProp->GetNumberMay());
                 SetLockNumberMay(pProp->GetLockNumberMay());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberMay(pProp->GetLockNumberMay());
             else
                 SetNumberMay(pProp->GetNumberMay());
 
-        if (changeFlags & IE_CT_Change_Number_June)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_June)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberJune(pProp->GetNumberJune());
                 SetLockNumberJune(pProp->GetLockNumberJune());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberJune(pProp->GetLockNumberJune());
             else
                 SetNumberJune(pProp->GetNumberJune());
 
-        if (changeFlags & IE_CT_Change_Number_July)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_July)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberJuly(pProp->GetNumberJuly());
                 SetLockNumberJuly(pProp->GetLockNumberJuly());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberJuly(pProp->GetLockNumberJuly());
             else
                 SetNumberJuly(pProp->GetNumberJuly());
 
-        if (changeFlags & IE_CT_Change_Number_August)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_August)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberAugust(pProp->GetNumberAugust());
                 SetLockNumberAugust(pProp->GetLockNumberAugust());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberAugust(pProp->GetLockNumberAugust());
             else
                 SetNumberAugust(pProp->GetNumberAugust());
 
-        if (changeFlags & IE_CT_Change_Number_September)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_September)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberSeptember(pProp->GetNumberSeptember());
                 SetLockNumberSeptember(pProp->GetLockNumberSeptember());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberSeptember(pProp->GetLockNumberSeptember());
             else
                 SetNumberSeptember(pProp->GetNumberSeptember());
 
-        if (changeFlags & IE_CT_Change_Number_October)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_October)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberOctober(pProp->GetNumberOctober());
                 SetLockNumberOctober(pProp->GetLockNumberOctober());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberOctober(pProp->GetLockNumberOctober());
             else
                 SetNumberOctober(pProp->GetNumberOctober());
 
-        if (changeFlags & IE_CT_Change_Number_November)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_November)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberNovember(pProp->GetNumberNovember());
                 SetLockNumberNovember(pProp->GetLockNumberNovember());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberNovember(pProp->GetLockNumberNovember());
             else
                 SetNumberNovember(pProp->GetNumberNovember());
 
-        if (changeFlags & IE_CT_Change_Number_December)
-            if (changeFlags & IE_CT_All)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Number_December)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_All)
             {
                 SetNumberDecember(pProp->GetNumberDecember());
                 SetLockNumberDecember(pProp->GetLockNumberDecember());
             }
             else
-            if (changeFlags & IE_CT_Change_Locked_Month)
+            if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Locked_Month)
                 SetLockNumberDecember(pProp->GetLockNumberDecember());
             else
                 SetNumberDecember(pProp->GetNumberDecember());

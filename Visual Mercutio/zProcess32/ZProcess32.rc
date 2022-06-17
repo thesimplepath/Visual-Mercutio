@@ -1396,37 +1396,35 @@ IDB_RULES_FLATTOOLBAR   BITMAP                  "res\\RulesFlatToolbar.bmp"
 
 IDR_MAINFRAME ACCELERATORS
 BEGIN
-    "A",            ID_SELECT_ALL,          VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CLEAR,          VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_COMMENT,        VIRTKEY, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
     "D",            ID_EDIT_DUPLICATE,      VIRTKEY, CONTROL, NOINVERT
-    "F",            ID_FIND_SYMBOL,         VIRTKEY, CONTROL, NOINVERT
-    "G",            ID_GROUP_FIELDS,        VIRTKEY, CONTROL, NOINVERT
+    VK_F2,          ID_EDIT_NAME,           VIRTKEY, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEWMODEL,       VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPENMODEL,      VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
-    "U",            ID_UNGROUP_FIELDS,      VIRTKEY, CONTROL, NOINVERT
-    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
-    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_EDIT_CLEAR,          VIRTKEY, NOINVERT
-    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
-    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
-    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
-    VK_F2,          ID_EDIT_NAME,           VIRTKEY, NOINVERT
-    VK_F3,          ID_EDIT_COMMENT,        VIRTKEY, NOINVERT
-    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    "F",            ID_FIND_SYMBOL,         VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GROUP_FIELDS,        VIRTKEY, CONTROL, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
-    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
-    VK_F9,          ID_PAGE_RECALCULATE,    VIRTKEY, NOINVERT
-    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
-    VK_LEFT,        ID_PAGE_PREV,           VIRTKEY, CONTROL, NOINVERT
     VK_RETURN,      ID_OD_PROPERTIES,       VIRTKEY, CONTROL, NOINVERT
+    VK_RIGHT,       ID_PAGE_NEXT,           VIRTKEY, CONTROL, NOINVERT
+    VK_LEFT,        ID_PAGE_PREV,           VIRTKEY, CONTROL, NOINVERT
+    VK_F9,          ID_PAGE_RECALCULATE,    VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    "A",            ID_SELECT_ALL,          VIRTKEY, CONTROL, NOINVERT
+    "U",            ID_UNGROUP_FIELDS,      VIRTKEY, CONTROL, NOINVERT
     VK_RETURN,      ID_WKF_ACTIVITY_PROPERTY, VIRTKEY, CONTROL, NOINVERT
     VK_RETURN,      ID_WKF_PROCESS_PROPERTY, VIRTKEY, ALT, NOINVERT
-    VK_RIGHT,       ID_PAGE_NEXT,           VIRTKEY, CONTROL, NOINVERT
-    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
-    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
 END
 
 IDR_MODEL ACCELERATORS
@@ -1444,8 +1442,6 @@ BEGIN
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CLEAR,          VIRTKEY, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
-    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
-    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
     VK_F2,          ID_EDIT_NAME,           VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_COMMENT,        VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
@@ -2632,7 +2628,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Modèles récents"
         BEGIN
-            MENUITEM "Modèles Récents",             ID_FILE_MRU_MODEL1
+            MENUITEM "Modèles Récents",             ID_FILE_MRU_MODEL1, GRAYED
         END
         MENUITEM SEPARATOR
         MENUITEM "&Sortie",                     ID_APP_EXIT
@@ -2756,7 +2752,7 @@ BEGIN
         POPUP "&Ordre"
         BEGIN
             MENUITEM "Placer tout de&vant",         ID_OD_FRONT
-            MENUITEM "&Placer tout derrière",       ID_OD_BACK
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
             MENUITEM "Remonter devant",             ID_OD_FORWARD
             MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
         END
@@ -3670,7 +3666,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDR_MAINFRAME           "ProcessSoft Visual Mercutio 2021 SP1 Release 1"
+    IDR_MAINFRAME           "ProcessSoft Visual Mercutio 2022 SP1 Release 1"
     IDS_APPWKS_PRESTATIONS  "Prestations"
     IDR_MDIPAGE             "\nPLF\nFormulaires\nFormulaires (*.plf)\n.plf\nPLF.Document\nFormulaires PLF\n0\n7"
     IDS_PRS_ADDPRESTATION   "Ajouter une prestation enfant dans la sélection"
@@ -3696,7 +3692,7 @@ BEGIN
     IDS_DIRECTORY_MISSING   "Un emplacement est requis."
     IDS_FAILOPEN_PRESTATIONSFILEFILE
                             "Un problème s'est produit lors de l'ouverture des définitions des prestations."
-    IDS_BUILDNUMBER         "Build 202101"
+    IDS_BUILDNUMBER         "Build 202201"
     IDR_HISTORYFILEFIELD    "\nPLH\nPLH Document \nDocument PLH (*.plh)\n.plh\nPLH.Document\nPLH\n0\n26"
     IDS_MERCUTIOREP_SELECTPROCESS
                             "Veuillez sélectionner le processus pour le rapport Mercutio"
@@ -3713,8 +3709,8 @@ END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_APP_TITLE       "ProcessSoft Conceptor 2021  - Sesterces 2021 - Messenger 2021"
-    AFX_IDS_IDLEMESSAGE     "Pour obtenir de l'Aide, appuyer sur F1"
+    AFX_IDS_APP_TITLE       "ProcessSoft Conceptor 2022  - Sesterces 2022 - Messenger 2022"
+    AFX_IDS_IDLEMESSAGE     "Bienvenue dans Visual Mercutio 2022 SP1 Release 1"
     AFX_IDS_HELPMODEMESSAGE "Selectionner un objet pour lequel vous voulez de l'Aide"
 END
 
@@ -3744,7 +3740,7 @@ BEGIN
     ID_FILE_PAGE_SETUP      "Changer les options d'impression"
     ID_FILE_PRINT_SETUP     "Mise en page.\nMise en page"
     ID_FILE_PRINT           "Imprimer le modèle.\nImprimer"
-    ID_FILE_PRINT_PREVIEW   "Aperçu du modèle avant l'impression définitive.\nAperçu avant impression"
+    ID_FILE_PRINT_PREVIEW   "Aperçu du modèle avant l'impression définitive."
 END
 
 STRINGTABLE
@@ -3799,7 +3795,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNITEXIST_REPLACE   "Une librairie du même nom existe déjà. Voulez-vous la remplacer?"
-    IDV_VERSION_NUMBER      "2.1 Build 202101"
+    IDV_VERSION_NUMBER      "1.0 Build 202201"
     IDS_VERSION_NUMBER      "Version"
 END
 
@@ -3849,7 +3845,7 @@ BEGIN
     ID_VIEW_WORKSPACE       "Espace de travail.\nEspace de travail"
     ID_FILE_OPTIONS         "Changer les options de base du modèle."
     ID_HELP_SUPPORT         "Afficher les informations concernant le support."
-    ID_SELECT_SERVER        "Vous permet de changer de référentiel local.\nRéférentiel local"
+    ID_SELECT_SERVER        "Vous permet de changer de référentiel local."
     ID_FILE_PROPERTY        "Afficher les propriétés du fichier"
     ID_FILE_PROCESSOPTIONS  "Modifier les options du processus"
     ID_FILE_OPENMODEL_FORM  "Ouvrir une forme modèle existante.\nOuvrir une forme modèle"
@@ -4030,8 +4026,8 @@ END
 STRINGTABLE
 BEGIN
     ID_VIEW_POINTER         "Afficher le pointeur de champs."
-    ID_VIEW_ZOOMIN          "Zoomer le document (Agrandir).\nZoom agrandir"
-    ID_VIEW_ZOOMOUT         "Zoomer le document (Diminuer).\nZoom diminuer"
+    ID_VIEW_ZOOMIN          "Zoomer le document (Agrandir)."
+    ID_VIEW_ZOOMOUT         "Zoomer le document (Diminuer)."
     ID_VIEW_BACKFULLSCREEN  "Revenir à l'écran de base."
     IDC_ZOOM                "Changer le ratio visuel du plan financier."
     IDC_SCHEMA              "Changer le schéma de calcul."
@@ -4773,14 +4769,10 @@ END
 STRINGTABLE
 BEGIN
     ID_CALCULATE_RISKS      "Calculer les risques.\nCalculer les risques."
-END
-
-STRINGTABLE
-BEGIN
     IDS_FAILOPEN_RISKIMPACTFILE
-                            "Un problème s'est produit lors de l'ouverture du fichier contenant les impacts."
+                            "Un problème s'est produit lors de l'ouverture du fichier contenant les impacts des risques."
     IDS_FAILOPEN_RISKPROBABILITYFILE
-                            "Un problème s'est produit lors de l'ouverture du fichier contenant les probabilités."
+                            "Un problème s'est produit lors de l'ouverture du fichier contenant les probabilités des risques."
 END
 
 #endif    // French (France) resources

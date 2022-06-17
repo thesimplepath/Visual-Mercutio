@@ -99,10 +99,8 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 {
     LV_DISPINFO* pDispInfo = (LV_DISPINFO*)pNMHDR;
 
-    TCHAR value[MAX_PATH];
-    value[0] = '\0';
-
-    CDaoRecordset* pRecordset = GetRecordset();
+    TCHAR          value[MAX_PATH] = {0};
+    CDaoRecordset* pRecordset      = GetRecordset();
 
     if (!pRecordset)
         return;
@@ -184,7 +182,7 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
                 COleDateTime t(variant->date);
 
                 // day of week, month, day, year
-                CString s = t.Format("%B %d, %Y");
+                CString s = t.Format(_T("%B %d, %Y"));
                 ::strcpy_s(value, ::_tcslen(value), s.GetBuffer(s.GetLength()));
                 s.ReleaseBuffer();
                 break;
@@ -240,7 +238,7 @@ void PSS_DatabaseListCtrl::BuildColumns()
         m_pImageList = new CImageList();
         m_pImageList->Create(IDB_DATABASEIMAGELIST, 16, 1, RGB(0, 0, 0));
 
-        // set extended stlye
+        // set extended style
         SetImageList(m_pImageList, LVSIL_SMALL);
 
         const DWORD exStyle = LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_HEADERDRAGDROP | LVS_EX_TRACKSELECT;
@@ -266,7 +264,7 @@ void PSS_DatabaseListCtrl::BuildColumns()
 
                 // get field name
                 pBuffer = new TCHAR[len + 1];
-                ::strcpy_s(pBuffer, ::_tcslen(pBuffer), temp.GetBuffer(len));
+                ::strcpy_s(pBuffer, (len + 1) * sizeof(TCHAR), temp.GetBuffer(len));
                 temp.ReleaseBuffer();
                 lvColumn.pszText = pBuffer;
 
@@ -314,7 +312,7 @@ BOOL PSS_DatabaseListCtrl::OpenDatabase()
     }
 
     m_pRecordset               = new CDaoRecordset(m_pDataBase);
-    const CString sqlStatement = "SELECT * FROM " + m_TableName;
+    const CString sqlStatement = _T("SELECT * FROM ") + m_TableName;
 
     try
     {

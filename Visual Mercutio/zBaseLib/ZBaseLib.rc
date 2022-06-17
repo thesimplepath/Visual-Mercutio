@@ -587,6 +587,20 @@ BEGIN
     END
 END
 
+IDR_PROPERTIES_POPUP MENU 
+BEGIN
+    POPUP "Properties"
+    BEGIN
+        MENUITEM "Annuler",                     ID_PROPERTIES_CANCEL
+        MENUITEM SEPARATOR
+        MENUITEM "Couper",                      ID_PROPERTIES_CUT
+        MENUITEM "Copier",                      ID_PROPERTIES_COPY
+        MENUITEM "Coller",                      ID_PROPERTIES_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Supprimer",                   ID_PROPERTIES_DELETE
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -20,6 +20,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib/PSS_FilteredDialogBox.h"
+
 // resources
 #include "zModelRes.h"
 
@@ -45,7 +48,7 @@ class PSS_UserGroupEntity;
 * User group info dialog
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_UserGroupInfoDlg : public CDialog
+class PSS_UserGroupInfoDlg : public PSS_FilteredDialogBox
 {
     public:
         /**
@@ -61,8 +64,8 @@ class PSS_UserGroupInfoDlg : public CDialog
         */
         PSS_UserGroupInfoDlg(UINT                 titleID     = -1,
                              PSS_UserGroupEntity* pGroup      = NULL,
-                             const CString&       name        = "",
-                             const CString&       description = "",
+                             const CString&       name        = _T(""),
+                             const CString&       description = _T(""),
                              const float          cost        = 0,
                              bool                 isRole      = false,
                              bool                 modifyMode  = false,
@@ -94,8 +97,10 @@ class PSS_UserGroupInfoDlg : public CDialog
 
         /// Generated message map functions
         //{{AFX_MSG(PSS_UserGroupInfoDlg)
-        virtual BOOL OnInitDialog();
-        virtual void OnOK();
+        afx_msg virtual BOOL OnInitDialog();
+        afx_msg virtual void OnEnSetfocusUgpName();
+        afx_msg virtual void OnEnKillfocusUgpName();
+        afx_msg virtual void OnOK();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 

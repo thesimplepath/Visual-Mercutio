@@ -97,7 +97,7 @@ PSS_Mail                      PSS_Global::m_Mail;
 PSS_Global::IFullMonthSet     PSS_Global::m_FullMonthSet;
 PSS_Global::IShortMonthSet    PSS_Global::m_ShortMonthSet;
 PSS_Global::IDaySet           PSS_Global::m_DaySet;
-PSS_Global::IEApplicationType PSS_Global::m_AppType = PSS_Global::IE_AT_Undef;
+PSS_Global::IEApplicationType PSS_Global::m_AppType = PSS_Global::IEApplicationType::IE_AT_Undef;
 CStringArray                  PSS_Global::m_ArrayYesNo;
 CStringArray                  PSS_Global::m_WindowMode;
 CStringArray                  PSS_Global::m_PriorityJob;
@@ -415,9 +415,9 @@ int PSS_Global::GetJobPriority(const CString& priority)
 //---------------------------------------------------------------------------
 CString PSS_Global::GetInsertionTypeString(int type)
 {
-    switch (type)
+    switch ((IEReferenceInsertionType)type)
     {
-        case IE_RI_Internal:
+        case IEReferenceInsertionType::IE_RI_Internal:
             if (m_InsertionTypeArray.GetSize() > 1)
                 return m_InsertionTypeArray.GetAt(1);
 
@@ -441,31 +441,31 @@ int PSS_Global::GetInsertionType(const CString& type)
         if (m_InsertionTypeArray.GetAt(i) == type)
             switch (i)
             {
-                case 1:  return IE_RI_Internal;
-                default: return IE_RI_External;
+                case 1:  return (int)IEReferenceInsertionType::IE_RI_Internal;
+                default: return (int)IEReferenceInsertionType::IE_RI_External;
             }
 
     // not found, anyway, return external mode
-    return IE_RI_External;
+    return (int)IEReferenceInsertionType::IE_RI_External;
 }
 //---------------------------------------------------------------------------
 CString PSS_Global::GetActivationTypeString(int type)
 {
-    switch (type)
+    switch ((IEReferenceActivationType)type)
     {
-        case IE_RA_InSymbol:
+        case IEReferenceActivationType::IE_RA_InSymbol:
             if (m_ActivationTypeArray.GetSize() > 1)
                 return m_ActivationTypeArray.GetAt(1);
 
             break;
 
-        case IE_RA_InAndBeforeSymbol:
+        case IEReferenceActivationType::IE_RA_InAndBeforeSymbol:
             if (m_ActivationTypeArray.GetSize() > 2)
                 return m_ActivationTypeArray.GetAt(2);
 
             break;
 
-        case IE_RA_Always:
+        case IEReferenceActivationType::IE_RA_Always:
             if (m_ActivationTypeArray.GetSize() > 3)
                 return m_ActivationTypeArray.GetAt(3);
 
@@ -489,14 +489,14 @@ int PSS_Global::GetActivationType(const CString& type)
         if (m_ActivationTypeArray.GetAt(i) == type)
             switch (i)
             {
-                case 1:  return IE_RA_InSymbol;
-                case 2:  return IE_RA_InAndBeforeSymbol;
-                case 3:  return IE_RA_Always;
-                default: return IE_RA_InAndAfterSymbol;
+                case 1:  return (int)IEReferenceActivationType::IE_RA_InSymbol;
+                case 2:  return (int)IEReferenceActivationType::IE_RA_InAndBeforeSymbol;
+                case 3:  return (int)IEReferenceActivationType::IE_RA_Always;
+                default: return (int)IEReferenceActivationType::IE_RA_InAndAfterSymbol;
             }
 
     // not found, anyway, return in and after symbol mode
-    return IE_RA_InAndAfterSymbol;
+    return (int)IEReferenceActivationType::IE_RA_InAndAfterSymbol;
 }
 //---------------------------------------------------------------------------
 const CString PSS_Global::GetFullMonth(std::size_t monthIndex, LCID lcid)

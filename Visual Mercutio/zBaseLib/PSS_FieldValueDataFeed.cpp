@@ -80,9 +80,9 @@ CString PSS_FieldValueDataFeed::GetExportedLine(CObject* pObj) const
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      tokenizer.SetSeparator(',');  break;
-        case E_SS_SemiColumn: tokenizer.SetSeparator(';');  break;
-        default:              tokenizer.SetSeparator('\t'); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     tokenizer.SetSeparator(',');  break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: tokenizer.SetSeparator(';');  break;
+        default:                                            tokenizer.SetSeparator('\t'); break;
     }
 
     const std::size_t objectCount = pObjectHistory->GetCount();

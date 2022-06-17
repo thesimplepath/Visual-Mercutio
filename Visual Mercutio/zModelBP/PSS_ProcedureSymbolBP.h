@@ -198,6 +198,20 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         virtual bool CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props);
 
         /**
+        * Gets the symbol rule set
+        *@return the symbol rule set
+        */
+        virtual inline const PSS_ProcRules& GetRuleSet() const;
+
+        /**
+        * Gets the rule name by GUID
+        *@param pRule - the rule for which the name should be get
+        *@param ruleGUID - the rule GUID matching with the name to get
+        *@return the rule name matching with the GUID
+        */
+        virtual CString GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID) const;
+
+        /**
         * Processes the extended input for the property value
         *@param[in, out] prop - property
         *@param[in, out] value - property value
@@ -670,10 +684,11 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         virtual BOOL ContainsRule(const CString& ruleName) const;
 
         /**
-        * Checks the rules which are no longer synchronized with the referential
-        *@param ruleList - the rules to check
+        * Gets the rule GUID
+        *@param index - the rule index for which the GUID should be get
+        *@return the rule GUID, empty string if not found or on error
         */
-        virtual void CheckRulesSync(CStringArray& rulesList);
+        virtual CString GetRuleGUID(std::size_t index) const;
 
         /**
         * Removes all the rules
@@ -1126,7 +1141,7 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         */
         virtual bool OnToolTip(CString&                   toolTipText,
                                const CPoint&              point,
-                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
+                               PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IEToolTipMode::IE_TT_Normal);
 
     protected:
         /**
@@ -1231,14 +1246,6 @@ class AFX_EXT_CLASS PSS_ProcedureSymbolBP : public PSS_Symbol
         PSS_ProcRisk                  m_Risks;
         CRect                         m_CommentRect;
         CStringArray                  m_UnitDoubleValidationTypeArray;
-
-        /**
-        * Gets the rule name by GUID
-        *@param pRule - the rule for which the name should be get
-        *@param ruleGUID - the rule GUID matching with the name to get
-        *@return the rule name matching with the GUID
-        */
-        CString GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID);
 };
 
 //---------------------------------------------------------------------------
@@ -1262,6 +1269,11 @@ BOOL PSS_ProcedureSymbolBP::IsProcedure() const
 bool PSS_ProcedureSymbolBP::CanContainChildModel() const
 {
     return false;
+}
+//---------------------------------------------------------------------------
+const PSS_ProcRules& PSS_ProcedureSymbolBP::GetRuleSet() const
+{
+    return m_Rules;
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcedureSymbolBP::IncludeDescriptionArea() const

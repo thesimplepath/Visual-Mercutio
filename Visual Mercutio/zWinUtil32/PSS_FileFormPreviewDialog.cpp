@@ -332,7 +332,7 @@ BOOL PSS_FileFormPreviewDialog::OnInitDialog()
 
     if (!m_pView->Create(NULL, NULL, AFX_WS_DEFAULT_VIEW, viewRect, m_pFrameWindow, AFX_IDW_PANE_FIRST, &m_Context))
     {
-        AfxMessageBox("Could Not Create View");
+        AfxMessageBox(_T("Could Not Create View"));
         return FALSE;
     }
 

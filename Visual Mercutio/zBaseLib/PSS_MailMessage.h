@@ -142,7 +142,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         *@param attachType - attachment type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL AddFile(const CString& fileName, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual inline BOOL AddFile(const CString& fileName, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Adds an attachment file
@@ -150,21 +150,21 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         *@param attachType - attachment type
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL AddFile(PSS_File& file, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual inline BOOL AddFile(PSS_File& file, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Fills attachment files from a list
         *@param fileList - file list
         *@param attachType - attachment type
         */
-        virtual inline void FillFile(CStringArray& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual inline void FillFile(CStringArray& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Fills attachment files from a list
         *@param fileList - file list
         *@param attachType - attachment type
         */
-        virtual inline void FillFile(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IE_AT_InsertedFile);
+        virtual inline void FillFile(PSS_FileManager& fileList, PSS_File::IEAttachmentType attachType = PSS_File::IEAttachmentType::IE_AT_InsertedFile);
 
         /**
         * Gets the attached file count
@@ -383,7 +383,7 @@ PSS_File::IEAttachmentType PSS_MailMessage::GetAttachmentType() const
     if (m_pMailFileList)
         return m_pMailFileList->GetAttachmentType();
 
-    return PSS_File::IE_AT_Undefined;
+    return PSS_File::IEAttachmentType::IE_AT_Undefined;
 }
 //---------------------------------------------------------------------------
 const CString PSS_MailMessage::GetSubject() const

@@ -27,7 +27,7 @@ IMPLEMENT_DYNAMIC(PSS_ActivityEvent, PSS_Event)
 //---------------------------------------------------------------------------
 PSS_ActivityEvent::PSS_ActivityEvent() :
     PSS_Event(COleDateTime::GetCurrentTime(), g_Evt_Activity),
-    m_ActivityEventType(IE_AT_InvalidEvent),
+    m_ActivityEventType(IEType::IE_AT_InvalidEvent),
     m_IsInBackup(FALSE)
 {}
 //---------------------------------------------------------------------------
@@ -114,13 +114,13 @@ CString PSS_ActivityEvent::GetActivityEventTypeString() const
 {
     switch (GetActivityEventType())
     {
-        case IE_AT_ToDo:                        return "TD";
-        case IE_AT_Message:                     return "MS";
-        case IE_AT_DeleteToDoEvent:             return "DT";
-        case IE_AT_LogEvent:                    return "LG";
-        case IE_AT_DeleteFileEvent:             return "DF";
-        case IE_AT_FindProcessStateEvent:       return "FP";
-        case IE_AT_FindProcessesInitiatedEvent: return "FI";
+        case IEType::IE_AT_ToDo:                        return "TD";
+        case IEType::IE_AT_Message:                     return "MS";
+        case IEType::IE_AT_DeleteToDoEvent:             return "DT";
+        case IEType::IE_AT_LogEvent:                    return "LG";
+        case IEType::IE_AT_DeleteFileEvent:             return "DF";
+        case IEType::IE_AT_FindProcessStateEvent:       return "FP";
+        case IEType::IE_AT_FindProcessesInitiatedEvent: return "FI";
     }
 
     return "XX";
@@ -129,40 +129,40 @@ CString PSS_ActivityEvent::GetActivityEventTypeString() const
 void PSS_ActivityEvent::SetActivityEventType(const CString& value)
 {
     if (value == "TD")
-        SetActivityEventType(IE_AT_ToDo);
+        SetActivityEventType(IEType::IE_AT_ToDo);
     else
     if (value == "MS")
-        SetActivityEventType(IE_AT_Message);
+        SetActivityEventType(IEType::IE_AT_Message);
     else
     if (value == "DT")
-        SetActivityEventType(IE_AT_DeleteToDoEvent);
+        SetActivityEventType(IEType::IE_AT_DeleteToDoEvent);
     else
     if (value == "LG")
-        SetActivityEventType(IE_AT_LogEvent);
+        SetActivityEventType(IEType::IE_AT_LogEvent);
     else
     if (value == "DF")
-        SetActivityEventType(IE_AT_DeleteFileEvent);
+        SetActivityEventType(IEType::IE_AT_DeleteFileEvent);
     else
     if (value == "FP")
-        SetActivityEventType(IE_AT_FindProcessStateEvent);
+        SetActivityEventType(IEType::IE_AT_FindProcessStateEvent);
     else
     if (value == "FI")
-        SetActivityEventType(IE_AT_FindProcessesInitiatedEvent);
+        SetActivityEventType(IEType::IE_AT_FindProcessesInitiatedEvent);
     else
-        SetActivityEventType(IE_AT_InvalidEvent);
+        SetActivityEventType(IEType::IE_AT_InvalidEvent);
 }
 //---------------------------------------------------------------------------
 CString PSS_ActivityEvent::GetFileExtension(int eventType) const
 {
     switch (eventType == -1 ? GetActivityEventType() : IEType(eventType))
     {
-        case IE_AT_ToDo:                        return g_EventExtension;
-        case IE_AT_Message:                     return g_EventMessageExtension;
-        case IE_AT_DeleteToDoEvent:
-        case IE_AT_LogEvent:
-        case IE_AT_DeleteFileEvent:
-        case IE_AT_FindProcessStateEvent:
-        case IE_AT_FindProcessesInitiatedEvent: return g_EventTemporalExtension;
+        case IEType::IE_AT_ToDo:                        return g_EventExtension;
+        case IEType::IE_AT_Message:                     return g_EventMessageExtension;
+        case IEType::IE_AT_DeleteToDoEvent:
+        case IEType::IE_AT_LogEvent:
+        case IEType::IE_AT_DeleteFileEvent:
+        case IEType::IE_AT_FindProcessStateEvent:
+        case IEType::IE_AT_FindProcessesInitiatedEvent: return g_EventTemporalExtension;
     }
 
     return ".err";

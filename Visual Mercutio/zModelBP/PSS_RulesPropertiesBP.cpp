@@ -64,13 +64,13 @@ void PSS_RulesPropertiesBP::Merge(PSS_RulesPropertiesBP* pProp, DWORD changeFlag
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Rule_Name)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Rule_Name)
             m_RuleName = pProp->GetRuleName();
 
-        if (changeFlags & IE_CT_Change_Rule_Description)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Rule_Description)
             m_RuleDescription = pProp->GetRuleDescription();
 
-        if (changeFlags & IE_CT_Change_Rule_GUID)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Rule_GUID)
             m_RuleGUID = pProp->GetRuleGUID();
     }
 }

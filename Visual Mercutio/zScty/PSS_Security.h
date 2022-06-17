@@ -100,9 +100,10 @@ class AFX_EXT_CLASS PSS_SecurityEntity
         virtual CString GenerateVersion(int version);
 
         /**
-        * Crypts the entity
+        * Encrypts the entity
+        *@note This function may also be used to decrypt an encrypted entity
         */
-        virtual void CryptEntity();
+        virtual void EncryptEntity();
 
         /**
         * Gets the entity content

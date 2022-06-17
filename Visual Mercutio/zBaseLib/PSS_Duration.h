@@ -49,7 +49,7 @@ class AFX_EXT_CLASS PSS_Duration
         /**
         * Duration status
         */
-        enum IEStatus
+        enum class IEStatus
         {
             IE_S_Valid   = 0,
             IE_S_Invalid = 1, // invalid date (out of range, etc...)
@@ -246,7 +246,7 @@ class AFX_EXT_CLASS PSS_Duration
         *@return the number of days per week
         */
         virtual inline int GetDayPerWeek() const;
- 
+
         /**
         * Sets the number of days per week
         *@param status - the number of days per week
@@ -382,7 +382,7 @@ class AFX_EXT_CLASS PSS_Duration
 
         /**
         * Gets a half second
-        *@return the halp second
+        *@return the half second
         */
         inline double GetHalfSecond() const;
 
@@ -422,7 +422,7 @@ CArchive& AFXAPI operator >> (CArchive& ar, PSS_Duration& duration);
 // PSS_Duration
 //---------------------------------------------------------------------------
 PSS_Duration::PSS_Duration(int hourPerDay, int dayPerWeek, int dayPerMonth, int dayPerYear) :
-    m_Status(IE_S_Valid),
+    m_Status(IEStatus::IE_S_Valid),
     m_Span(0.0),
     m_HourPerDay(hourPerDay),
     m_DayPerWeek(dayPerWeek),
@@ -431,7 +431,7 @@ PSS_Duration::PSS_Duration(int hourPerDay, int dayPerWeek, int dayPerMonth, int 
 {}
 //---------------------------------------------------------------------------
 PSS_Duration::PSS_Duration(double value, int hourPerDay, int dayPerWeek, int dayPerMonth, int dayPerYear) :
-    m_Status(IE_S_Valid),
+    m_Status(IEStatus::IE_S_Valid),
     m_Span(value),
     m_HourPerDay(hourPerDay),
     m_DayPerWeek(dayPerWeek),
@@ -447,7 +447,7 @@ PSS_Duration::PSS_Duration(long days,
                            int  dayPerWeek,
                            int  dayPerMonth,
                            int  dayPerYear) :
-    m_Status(IE_S_Valid),
+    m_Status(IEStatus::IE_S_Valid),
     m_Span(0.0),
     m_HourPerDay(hourPerDay),
     m_DayPerWeek(dayPerWeek),
@@ -458,7 +458,7 @@ PSS_Duration::PSS_Duration(long days,
 }
 //---------------------------------------------------------------------------
 PSS_Duration::PSS_Duration(const PSS_Duration& other) :
-    m_Status(IE_S_Valid),
+    m_Status(IEStatus::IE_S_Valid),
     m_Span(0.0),
     m_HourPerDay(8),
     m_DayPerWeek(5),
@@ -483,25 +483,25 @@ BOOL PSS_Duration::operator != (const PSS_Duration& other) const
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator < (const PSS_Duration& other) const
 {
-    PSS_Assert(m_Status == IE_S_Valid && other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid && other.m_Status == IEStatus::IE_S_Valid);
     return (m_Span < other.m_Span);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator > (const PSS_Duration& other) const
 {
-    PSS_Assert(m_Status == IE_S_Valid && other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid && other.m_Status == IEStatus::IE_S_Valid);
     return (m_Span > other.m_Span);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator <= (const PSS_Duration& other) const
 {
-    PSS_Assert(m_Status == IE_S_Valid && other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid && other.m_Status == IEStatus::IE_S_Valid);
     return (m_Span <= other.m_Span);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Duration::operator >= (const PSS_Duration& other) const
 {
-    PSS_Assert(m_Status == IE_S_Valid &&  other.m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid &&  other.m_Status == IEStatus::IE_S_Valid);
     return (m_Span >= other.m_Span);
 }
 //---------------------------------------------------------------------------
@@ -589,31 +589,31 @@ void PSS_Duration::SetDayPerYear(int value)
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalDays() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
     return m_Span;
 }
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalHours() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
     return long(m_Span * double(m_HourPerDay) + GetHalfSecond());
 }
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalMinutes() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
     return long(m_Span * double(m_HourPerDay) * 60.0 + GetHalfSecond());
 }
 //---------------------------------------------------------------------------
 double PSS_Duration::GetTotalSeconds() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
     return long(m_Span * double(m_HourPerDay) * 60.0 * 60.0 + GetHalfSecond());
 }
 //---------------------------------------------------------------------------
 long PSS_Duration::GetDays() const
 {
-    PSS_Assert(m_Status == IE_S_Valid);
+    PSS_Assert(m_Status == IEStatus::IE_S_Valid);
     return long(m_Span);
 }
 //---------------------------------------------------------------------------
@@ -655,7 +655,7 @@ void PSS_Duration::SetDuration(long days, int hours, int mins, int secs)
             (double(mins)  / (double(m_HourPerDay) * 60.0)) +
             (double(secs)  / (double(m_HourPerDay) * 60.0 * 60.0));
 
-    SetStatus(IE_S_Valid);
+    SetStatus(IEStatus::IE_S_Valid);
 }
 //---------------------------------------------------------------------------
 double PSS_Duration::GetHalfSecond() const
@@ -666,7 +666,7 @@ double PSS_Duration::GetHalfSecond() const
 void PSS_Duration::CheckRange()
 {
     if (m_Span < -M_Max_Days_In_SpanDuration || m_Span > M_Max_Days_In_SpanDuration)
-        SetStatus(IE_S_Invalid);
+        SetStatus(IEStatus::IE_S_Invalid);
 }
 //---------------------------------------------------------------------------
 

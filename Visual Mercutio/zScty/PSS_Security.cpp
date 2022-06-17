@@ -25,10 +25,10 @@ const int     g_PosDateLast     = 8;
 const int     g_PosCounterStart = 11;
 const int     g_PosCounterLast  = 17;
 const int     g_PosVersion      = 18;
-const CString g_LastDate        = "LastDate";
-const CString g_LastCounter     = "LastCounter";
-const CString g_InitialValue    = "@@Initial$$Value";
-const CString g_CheckString     = "VERS";
+const CString g_LastDate        = _T("LastDate");
+const CString g_LastCounter     = _T("LastCounter");
+const CString g_InitialValue    = _T("@@Initial$$Value");
+const CString g_CheckString     = _T("VERS");
 //---------------------------------------------------------------------------
 // PSS_SecurityEntity
 //---------------------------------------------------------------------------
@@ -48,10 +48,10 @@ PSS_SecurityEntity::~PSS_SecurityEntity()
 CString PSS_SecurityEntity::GenerateRandomEntity()
 {
     char buffer[20];
-    ::sprintf_s(buffer, _tcslen(buffer), "%04d%04d%04d", std::rand(), std::rand(), std::rand());
+    ::sprintf_s(buffer, 20, "%04d%04d%04d", std::rand(), std::rand(), std::rand());
     m_Entity = buffer;
 
-    CryptEntity();
+    EncryptEntity();
 
     return m_Entity;
 }
@@ -59,7 +59,7 @@ CString PSS_SecurityEntity::GenerateRandomEntity()
 int PSS_SecurityEntity::GetCounter()
 {
     // decrypt the entity
-    CryptEntity();
+    EncryptEntity();
 
     const CString temp = m_Entity.Right(8);
 
@@ -72,22 +72,22 @@ int PSS_SecurityEntity::GetCounter()
 CString PSS_SecurityEntity::GenerateCounter(int counter)
 {
     char buffer[20];
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, 20, "%04.04d", std::rand());
 
     // bug with the format length, cut it artificially
     buffer[4] = 0x00;
     m_Entity = buffer;
 
     // add the counter
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", counter);
+    ::sprintf_s(buffer, 20, "%04.04d", counter);
     buffer[4] = 0x00;
     m_Entity += buffer;
 
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, 20, "%04.04d", std::rand());
     buffer[4] = 0x00;
     m_Entity += buffer;
 
-    CryptEntity();
+    EncryptEntity();
 
     return m_Entity;
 }
@@ -95,7 +95,7 @@ CString PSS_SecurityEntity::GenerateCounter(int counter)
 CTime PSS_SecurityEntity::GetDate()
 {
     // decrypt the entity
-    CryptEntity();
+    EncryptEntity();
 
     // extract the day
     const CString day = m_Entity.Right(2);
@@ -116,16 +116,16 @@ CTime PSS_SecurityEntity::GetDate()
 CString PSS_SecurityEntity::GenerateDate(const CTime& date)
 {
     char buffer[20];
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, 20, "%04.04d", std::rand());
 
     // bug with the format length, cut it artificially
     buffer[4] = 0x00;
     m_Entity  = buffer;
 
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%04d%02d%02d", date.GetYear(), date.GetMonth(), date.GetDay());
+    ::sprintf_s(buffer, 20, "%04d%02d%02d", date.GetYear(), date.GetMonth(), date.GetDay());
     m_Entity += buffer;
 
-    CryptEntity();
+    EncryptEntity();
 
     return m_Entity;
 }
@@ -133,7 +133,7 @@ CString PSS_SecurityEntity::GenerateDate(const CTime& date)
 int PSS_SecurityEntity::GetVersion()
 {
     // decrypt the entity
-    CryptEntity();
+    EncryptEntity();
 
     const CString temp  = m_Entity.Right(8);
     const CString check = m_Entity.Right(4);
@@ -150,26 +150,26 @@ int PSS_SecurityEntity::GetVersion()
 CString PSS_SecurityEntity::GenerateVersion(int version)
 {
     char buffer[20];
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", std::rand());
+    ::sprintf_s(buffer, 20, "%04.04d", std::rand());
 
     // bug with the format length, cut it artificially
     buffer[4] = 0x00;
     m_Entity  = buffer;
 
     // Add the version
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%04.04d", version);
+    ::sprintf_s(buffer, 20, "%04.04d", version);
     buffer[4]  = 0x00;
     m_Entity  += buffer;
 
     // add a stamp to differentiate new version
     m_Entity += g_CheckString;
 
-    CryptEntity();
+    EncryptEntity();
 
     return m_Entity;
 }
 //---------------------------------------------------------------------------
-void PSS_SecurityEntity::CryptEntity()
+void PSS_SecurityEntity::EncryptEntity()
 {
     char* pKey = m_Entity.GetBuffer(30);
 
@@ -197,7 +197,7 @@ PSS_Security::~PSS_Security()
 //---------------------------------------------------------------------------
 int PSS_Security::GetCurrentVersion() const
 {
-    return g_CurrentVersion; 
+    return g_CurrentVersion;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Security::SetLastUseDate(const CTime& date)

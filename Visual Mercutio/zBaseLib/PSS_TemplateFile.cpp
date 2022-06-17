@@ -70,7 +70,7 @@ BOOL PSS_TemplateFile::Create(const CString& fileName)
     if (!m_Stamp.ReadFromFile(m_FileName))
         return FALSE;
 
-    return m_Persistent = (m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == PSS_Stamp::IE_FD_TemplateType);
+    return m_Persistent = (m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_TemplateType);
 }
 //---------------------------------------------------------------------------
 PSS_TemplateFile* PSS_TemplateFile::Clone()

@@ -30,7 +30,7 @@ static PSS_GenericGridReportGenerator* g_pGenerator = NULL;
 //---------------------------------------------------------------------------
 // Dynamic creation
 //---------------------------------------------------------------------------
-GXIMPLEMENT_DYNCREATE(PSS_GridReportDocument, PSS_GridDocument)
+IMPLEMENT_DYNCREATE(PSS_GridReportDocument, PSS_GridDocument)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------

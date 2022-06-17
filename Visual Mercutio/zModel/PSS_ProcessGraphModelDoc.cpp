@@ -507,7 +507,7 @@ bool PSS_ProcessGraphModelDoc::InsertUnit(const CString& fileName)
     // build the message
     if (pMainWnd)
     {
-        PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, NULL, pUnit);
+        PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IEActionType::IE_AT_OpenUnit, NULL, pUnit);
         pMainWnd->SendMessageToDescendants(UM_ADDUNITMODEL, 0, LPARAM(&unitMsg));
     }
 
@@ -602,7 +602,7 @@ void PSS_ProcessGraphModelDoc::SetNewModel(PSS_ProcessGraphModelMdl* pModel)
         // build the message
         if (pWnd)
         {
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_OpenDocument, this);
             pWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
         }
     }
@@ -864,7 +864,7 @@ void PSS_ProcessGraphModelDoc::Serialize(CArchive& ar)
         // store the adequate user def GUID
         ar << m_UserDefGUID;
 
-        // store the system user def GUID 
+        // store the system user def GUID
         ar << m_SystemDefGUID;
 
         if (pBaseDoc && pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 24)
@@ -1197,16 +1197,16 @@ BOOL PSS_ProcessGraphModelDoc::OnNewDocument()
         if (!IsUnit() && HasUnit())
         {
             // build the message
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_OpenDocument, this);
             pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
 
             // build the message even if the unit manager is NULL
-            PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
+            PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IEActionType::IE_AT_OpenUnit, m_pUnitManager);
             pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
         }
 
         // build the message even if the unit manager is NULL
-        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_OpenDocument, this);
         pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
     }
 
@@ -1245,16 +1245,16 @@ BOOL PSS_ProcessGraphModelDoc::OnOpenDocument(LPCTSTR pPathName)
         if (!IsUnit() && HasUnit())
         {
             // build the message
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_OpenDocument, this);
             pMainWnd->SendMessageToDescendants(UM_INITIALIZEDOCUMENTMODEL, 0, LPARAM(&docMsg));
 
             // build the message even if the unit manager is NULL
-            PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IE_AT_OpenUnit, m_pUnitManager);
+            PSS_UnitObserverMsg unitMsg(PSS_UnitObserverMsg::IEActionType::IE_AT_OpenUnit, m_pUnitManager);
             pMainWnd->SendMessageToDescendants(UM_INITIALIZEUNITMODEL, 0, LPARAM(&unitMsg));
         }
 
         // build the message even if the unit manager is NULL
-        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_OpenDocument, this);
+        PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_OpenDocument, this);
         pMainWnd->SendMessage(UM_DOCUMENTLOADED, 0, LPARAM(&docMsg));
     }
 

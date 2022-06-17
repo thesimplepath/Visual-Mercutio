@@ -177,7 +177,7 @@ int PSS_FileWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
                        IDC_FILEWND_FLATTOOLBAR);
 
     // define the edit as search for file
-    m_FileName.SetSearchType(PSS_SearchEditButton::IE_T_File, _T(""));
+    m_FileName.SetSearchType(PSS_SearchEditButton::IEType::IE_T_File, _T(""));
 
     // create the edit
     m_FileName.Create (WS_CHILD | WS_VISIBLE | WS_BORDER,
@@ -190,7 +190,7 @@ int PSS_FileWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
                          CRect(0, 0, 0, 0),
                          this,
                          IDC_FILEWND_FILETREE);
-    
+
     // attach window as an observer for messages
     m_FlatToolBar.AttachObserver(this);
 

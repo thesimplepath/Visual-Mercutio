@@ -76,19 +76,19 @@ void PSS_CostPropertiesProcedureBP::Merge(PSS_CostPropertiesProcedureBP* pProp, 
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Cost_Multiplier)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Multiplier)
             m_Multiplier = pProp->GetMultiplier();
 
-        if (changeFlags & IE_CT_Change_Cost_Processing_Time)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Processing_Time)
             m_ProcessingTime = pProp->GetProcessingTime();
 
-        if (changeFlags & IE_CT_Change_Cost_Unitary_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Unitary_Cost)
             m_UnitaryCost = pProp->GetUnitaryCost();
 
-        if (changeFlags & IE_CT_Change_Cost_Processing_Duration)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Processing_Duration)
             m_ProcessingDuration = pProp->GetProcessingDuration();
 
-        if (changeFlags & IE_CT_Change_Cost_Processing_Duration_Max)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Cost_Processing_Duration_Max)
             m_ProcessingDurationMax = pProp->GetProcessingDurationMax();
     }
 }

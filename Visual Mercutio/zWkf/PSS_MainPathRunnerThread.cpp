@@ -122,23 +122,23 @@ void PSS_MainPathRunnerThread::DoWork()
     {
         // call the callback function
         if (!m_pPathMachine->OnBeforeRequestMoveForward(pStateMachine->GetCurrentStateObject(),
-                                                        pStateMachine, 
+                                                        pStateMachine,
                                                         m_pLog))
             return;
-        
+
         PSS_SymbolSet     symbolSet;
         PSS_StateLinksSet stateLinkSet;
 
         switch (m_pPathMachine->RequestMoveForward(pStateMachine->GetCurrentStateObject(),
-                                                   pStateMachine, 
+                                                   pStateMachine,
                                                    symbolSet,
-                                                   stateLinkSet, 
+                                                   stateLinkSet,
                                                    m_pLog))
         {
-            case PSS_PathMachine::IE_PS_IsWaitingForLinks:
+            case PSS_PathMachine::IEPathMoveStatus::IE_PS_IsWaitingForLinks:
                 // call the callback for waiting for other links object
                 m_pPathMachine->OnObjectIsWaitingForOtherLinks(pStateMachine->GetCurrentStateObject(),
-                                                               pStateMachine, 
+                                                               pStateMachine,
                                                                m_pLog);
 
                 // increment the waiting counter
@@ -157,10 +157,10 @@ void PSS_MainPathRunnerThread::DoWork()
 
                 break;
 
-            case PSS_PathMachine::IE_PS_IsPaused:
+            case PSS_PathMachine::IEPathMoveStatus::IE_PS_IsPaused:
                 // call the callback for in paused object
                 m_pPathMachine->OnObjectIsPaused(pStateMachine->GetCurrentStateObject(),
-                                                 pStateMachine, 
+                                                 pStateMachine,
                                                  m_pLog);
 
                 // increment the pause counter
@@ -178,7 +178,7 @@ void PSS_MainPathRunnerThread::DoWork()
 
                 break;
 
-            case PSS_PathMachine::IE_PS_IsFinished:
+            case PSS_PathMachine::IEPathMoveStatus::IE_PS_IsFinished:
                 // call the callback function
                 if (!m_pPathMachine->OnBeforeMoveForward(pStateMachine->GetCurrentStateObject(),
                                                          pStateMachine,
@@ -200,7 +200,7 @@ void PSS_MainPathRunnerThread::DoWork()
 
                 break;
 
-            case PSS_PathMachine::IE_PS_CanMoveForward:
+            case PSS_PathMachine::IEPathMoveStatus::IE_PS_CanMoveForward:
                 // call the callback function
                 if (!m_pPathMachine->OnBeforeMoveForward(pStateMachine->GetCurrentStateObject(),
                                                          pStateMachine,
@@ -217,7 +217,7 @@ void PSS_MainPathRunnerThread::DoWork()
 
                     // call the callback function
                     if (!m_pPathMachine->OnAfterMoveForward(pOriginalStateMachine->GetCurrentStateObject(),
-                                                            pOriginalStateMachine, 
+                                                            pOriginalStateMachine,
                                                             m_pLog))
                         return;
 

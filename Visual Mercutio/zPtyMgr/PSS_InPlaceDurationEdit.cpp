@@ -69,7 +69,7 @@ BOOL PSS_InPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_String;
 
     // set the current selection to all
     SetSelAll();
@@ -96,7 +96,7 @@ BOOL PSS_InPlaceDurationEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem*   pIte
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Duration;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_Duration;
 
     // set the current selection to all
     SetSelAll();
@@ -146,12 +146,12 @@ void PSS_InPlaceDurationEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case PSS_InPlaceEdit::IE_T_String:
+        case PSS_InPlaceEdit::IEType::IE_T_String:
             // set back the initial value
             SetEditText(m_StrInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Duration:
+        case PSS_InPlaceEdit::IEType::IE_T_Duration:
             // set back the initial duration value
             SetEditText(m_InitialDurationValue);
             break;
@@ -181,11 +181,11 @@ void PSS_InPlaceDurationEdit::SaveValue()
 
                 switch (GetEditType())
                 {
-                    case PSS_InPlaceEdit::IE_T_String:
+                    case PSS_InPlaceEdit::IEType::IE_T_String:
                         // do nothing for string
                         break;
 
-                    case PSS_InPlaceEdit::IE_T_Duration:
+                    case PSS_InPlaceEdit::IEType::IE_T_Duration:
                     {
                         // check the conversion
                         PSS_Duration value;
@@ -226,6 +226,13 @@ void PSS_InPlaceDurationEdit::SaveValue()
     SetFocus();
 }
 //---------------------------------------------------------------------------
+void PSS_InPlaceDurationEdit::OnPropertieValueChanged()
+{
+    SetHasChanged(true);
+
+    PSS_PropertyEditControl::OnPropertieValueChanged();
+}
+//---------------------------------------------------------------------------
 void PSS_InPlaceDurationEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {}
 //---------------------------------------------------------------------------
@@ -260,7 +267,7 @@ void PSS_InPlaceDurationEdit::OnExtendedCommand()
 
                 // set the new duration
                 value.SetDuration(dlg.GetDays(), dlg.GetHours(), dlg.GetMinutes(), dlg.GetSeconds());
- 
+
                 // format the value using the specified string format
                 proposedValue = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)value, pItem->GetStringFormat());
                 SetEditText(proposedValue);

@@ -209,7 +209,7 @@ CView* PSS_BaseMDIPage::SwitchBottomView(CView* pView)
     // Dettach existing view
     pDoc->RemoveView(pOldActiveView);
 
-    // set flag back to default 
+    // set flag back to default
     pDoc->m_bAutoDelete = TRUE;
 
     // set the child window ID of the active view to the ID of the corresponding
@@ -353,7 +353,7 @@ void PSS_BaseMDIPage::OnUpdateViewFullScreen(CCmdUI* pCmdUI)
 
     PSS_BaseMainFrame* pMainFrame = dynamic_cast<PSS_BaseMainFrame*>(GetMDIFrame());
 
-    pCmdUI->SetCheck(pMainFrame && pMainFrame->IsFullScreen());
+    pCmdUI->SetCheck(pMainFrame && (bool)pMainFrame->IsFullScreen());
 }
 //---------------------------------------------------------------------------
 afx_msg void PSS_BaseMDIPage::OnZoomChange()

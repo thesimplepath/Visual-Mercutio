@@ -46,10 +46,11 @@ CString PSS_UserExport::GetExportedLine(CObject* pObj)
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:     tokenizer.SetSeparator(',');  break;
-        case E_SS_SemiColumn:tokenizer.SetSeparator(';');  break;
-        default:             tokenizer.SetSeparator('\t'); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     tokenizer.SetSeparator(',');  break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: tokenizer.SetSeparator(';');  break;
+        default:                                            tokenizer.SetSeparator('\t'); break;
     }
+
     // add the user name
     tokenizer.AddToken(pUser->GetUserName());
 
@@ -66,12 +67,12 @@ CString PSS_UserExport::GetExportedLine(CObject* pObj)
     tokenizer.AddToken(pUser->GetDepartement());
 
     // add the admin flag
-    tokenizer.AddToken(pUser->IsAdministrator() ? "1" : "0");
+    tokenizer.AddToken(pUser->IsAdministrator() ? _T("1") : _T("0"));
 
     // add the display username
     tokenizer.AddToken(pUser->GetDisplayName());
 
-    tokenizer.AddToken("\r\n");
+    tokenizer.AddToken(_T("\r\n"));
 
     return tokenizer.GetString();
 }
@@ -83,9 +84,9 @@ BOOL PSS_UserExport::ProcessLine(const CString& line)
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      tokenizer.SetSeparator(',');  break;
-        case E_SS_SemiColumn: tokenizer.SetSeparator(';');  break;
-        default:              tokenizer.SetSeparator('\t'); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     tokenizer.SetSeparator(',');  break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: tokenizer.SetSeparator(';');  break;
+        default:                                            tokenizer.SetSeparator('\t'); break;
     }
 
     // extract the user
@@ -109,7 +110,7 @@ BOOL PSS_UserExport::ProcessLine(const CString& line)
 
     // extract the admin flag
     const CString adminString     = tokenizer.GetNextToken();
-    const BOOL    isAdministrator = (adminString == "1");
+    const BOOL    isAdministrator = (adminString == _T("1"));
 
     // extract the display name
     const CString displayName = tokenizer.GetNextToken();
@@ -127,33 +128,33 @@ CString PSS_UserExport::GetHeaderLine()
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      tokenizer.SetSeparator(',');  break;
-        case E_SS_SemiColumn: tokenizer.SetSeparator(';');  break;
-        default:              tokenizer.SetSeparator('\t'); break;
+        case ESynchronizationSeparatorType::E_SS_Comma:     tokenizer.SetSeparator(',');  break;
+        case ESynchronizationSeparatorType::E_SS_Semicolon: tokenizer.SetSeparator(';');  break;
+        default:                                            tokenizer.SetSeparator('\t'); break;
     }
 
     // add the user name
-    tokenizer.AddToken("UserName");
+    tokenizer.AddToken(_T("UserName"));
 
     // add the description
-    tokenizer.AddToken("UserDescription");
+    tokenizer.AddToken(_T("UserDescription"));
 
     // add the email address
-    tokenizer.AddToken("EMailAddress");
+    tokenizer.AddToken(_T("EMailAddress"));
 
     // add the responsible name
-    tokenizer.AddToken("ResponsibleUser");
+    tokenizer.AddToken(_T("ResponsibleUser"));
 
     // add the departement
-    tokenizer.AddToken("Departement");
+    tokenizer.AddToken(_T("Departement"));
 
     // add the admin flag
-    tokenizer.AddToken("Administrator");
+    tokenizer.AddToken(_T("Administrator"));
 
-    // add the fullname
-    tokenizer.AddToken("DisplayName");
+    // add the full name
+    tokenizer.AddToken(_T("DisplayName"));
 
-    tokenizer.AddToken("\r\n");
+    tokenizer.AddToken(_T("\r\n"));
 
     return tokenizer.GetString();
 }

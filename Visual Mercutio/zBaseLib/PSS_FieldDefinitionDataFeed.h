@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
                                     PSS_FieldRepository*          pFieldRepository  = NULL,
                                     PSS_FieldObjectDefinition*    pObjectDefinition = NULL,
                                     BOOL                          generateHeader    = FALSE,
-                                    ESynchronizationSeparatorType separatorType     = E_SS_Automatic,
+                                    ESynchronizationSeparatorType separatorType     = ESynchronizationSeparatorType::E_SS_Automatic,
                                     const CString&                schema            = g_OriginalSchema,
                                     int                           propagationMode   = g_LocatePageOnly,
                                     BOOL                          emptyWhenZero     = FALSE,
@@ -73,7 +73,7 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
         PSS_FieldDefinitionDataFeed(const CString&                fileName,
                                     PSS_FieldRepository*          pFieldRepository,
                                     BOOL                          generateHeader  = FALSE,
-                                    ESynchronizationSeparatorType separatorType   = E_SS_Automatic,
+                                    ESynchronizationSeparatorType separatorType   = ESynchronizationSeparatorType::E_SS_Automatic,
                                     const CString&                schema          = g_OriginalSchema,
                                     int                           propagationMode = g_LocatePageOnly,
                                     BOOL                          emptyWhenZero   = FALSE,
@@ -94,14 +94,14 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
         *@param pStatusBar - status bar
         */
         virtual inline void Create(const CString&                fileName,
-                                   PSS_FieldRepository*          pFieldRepository = NULL,
+                                   PSS_FieldRepository*          pFieldRepository  = NULL,
                                    PSS_FieldObjectDefinition*    pObjectDefinition = NULL,
-                                   BOOL                          generateHeader = FALSE,
-                                   ESynchronizationSeparatorType separatorType = E_SS_Automatic,
-                                   const CString&                schema = g_OriginalSchema,
-                                   int                           propagationMode = g_LocatePageOnly,
-                                   BOOL                          emptyWhenZero = FALSE,
-                                   PSS_StatusBar*                pStatusBar = NULL);
+                                   BOOL                          generateHeader    = FALSE,
+                                   ESynchronizationSeparatorType separatorType     = ESynchronizationSeparatorType::E_SS_Automatic,
+                                   const CString&                schema            = g_OriginalSchema,
+                                   int                           propagationMode   = g_LocatePageOnly,
+                                   BOOL                          emptyWhenZero     = FALSE,
+                                   PSS_StatusBar*                pStatusBar        = NULL);
 
         /**
         * Creates the class content
@@ -117,7 +117,7 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
         virtual inline void Create(const CString&                fileName,
                                    PSS_FieldRepository*          pFieldRepository = NULL,
                                    BOOL                          generateHeader   = FALSE,
-                                   ESynchronizationSeparatorType separatorType    = E_SS_Automatic,
+                                   ESynchronizationSeparatorType separatorType    = ESynchronizationSeparatorType::E_SS_Automatic,
                                    const CString&                schema           = g_OriginalSchema,
                                    int                           propagationMode  = g_LocatePageOnly,
                                    BOOL                          emptyWhenZero    = FALSE,

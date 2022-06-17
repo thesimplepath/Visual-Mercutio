@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_PathMachine
         /**
         * Path move status
         */
-        enum IEPathMoveStatus
+        enum class IEPathMoveStatus
         {
             IE_PS_Error,
             IE_PS_IsWaitingForLinks,

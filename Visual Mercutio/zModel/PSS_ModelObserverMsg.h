@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_ModelObserverMsg : public PSS_ObserverMsg
         /**
         * Action type
         */
-        enum IEActionType
+        enum class IEActionType
         {
             IE_AT_None,
             IE_AT_RedrawElement,
@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_ModelObserverMsg : public PSS_ObserverMsg
         *@param pModel - the model
         *@param pElement - the element
         */
-        PSS_ModelObserverMsg(IEActionType              actionType = IE_AT_None,
+        PSS_ModelObserverMsg(IEActionType              actionType = IEActionType::IE_AT_None,
                              PSS_ProcessGraphModelDoc* pDoc       = NULL,
                              PSS_ProcessGraphModelMdl* pModel     = NULL,
                              CODComponent*             pElement   = NULL);

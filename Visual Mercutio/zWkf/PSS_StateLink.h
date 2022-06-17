@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         /**
         * Link directions
         */
-        enum IELinkDirection
+        enum class IELinkDirection
         {
             IE_LD_EnteringUp,
             IE_LD_EnteringLeft,
@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_StateLink : public CObject
         *@param pModel - model
         */
         PSS_StateLink(PSS_LinkSymbol*           pLinkSymbol = NULL,
-                      IELinkDirection           direction   = IE_LD_EnteringUp,
+                      IELinkDirection           direction   = IELinkDirection::IE_LD_EnteringUp,
                       PSS_ProcessGraphModelMdl* pModel      = NULL);
 
         /**

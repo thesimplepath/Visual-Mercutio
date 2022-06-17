@@ -60,9 +60,9 @@ class AFX_EXT_CLASS PSS_RuleListPropertiesBP : public CODIntProperty,
     public:
         /**
         * Change type
-        *@note These items may be combinated
+        *@note These items may be combined
         */
-        enum IEChangeType
+        enum class IEChangeType
         {
             IE_CT_Change_Rule_List = 0x0001,
             IE_CT_All              = OD_CHANGE_ALL
@@ -119,7 +119,7 @@ class AFX_EXT_CLASS PSS_RuleListPropertiesBP : public CODIntProperty,
         *@param pProp - other property set to merge with
         *@param changeFlags - the change flags
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(CODProperty* pProp, DWORD changeFlags = (DWORD)IEChangeType::IE_CT_All);
 
         /**
         * Checks if the identifier is in the property identifier range

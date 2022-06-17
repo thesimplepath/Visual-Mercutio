@@ -24,8 +24,10 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PrestationsInfoDlg, CDialog)
+BEGIN_MESSAGE_MAP(PSS_PrestationsInfoDlg, PSS_FilteredDialogBox)
     //{{AFX_MSG_MAP(PSS_PrestationsInfoDlg)
+    ON_EN_KILLFOCUS(IDC_PRESTATION_NAME, OnEnKillfocusPrestationName)
+    ON_EN_SETFOCUS(IDC_PRESTATION_NAME, OnEnSetfocusPrestationName)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -37,7 +39,7 @@ PSS_PrestationsInfoDlg::PSS_PrestationsInfoDlg(UINT                          tit
                                                const CString&                description,
                                                bool                          modifyMode,
                                                CWnd*                         pParent) :
-    CDialog(PSS_PrestationsInfoDlg::IDD, pParent),
+    PSS_FilteredDialogBox(PSS_PrestationsInfoDlg::IDD, pParent),
     m_pPrestation(pLogicalPrestation),
     m_Name(name),
     m_Description(description),
@@ -60,7 +62,7 @@ void PSS_PrestationsInfoDlg::DoDataExchange(CDataExchange* pDX)
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-BOOL PSS_PrestationsInfoDlg::OnInitDialog()
+afx_msg BOOL PSS_PrestationsInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
@@ -75,7 +77,17 @@ BOOL PSS_PrestationsInfoDlg::OnInitDialog()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_PrestationsInfoDlg::OnOK()
+afx_msg void PSS_PrestationsInfoDlg::OnEnSetfocusPrestationName()
+{
+    EnableCharFilter(true);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_PrestationsInfoDlg::OnEnKillfocusPrestationName()
+{
+    EnableCharFilter(false);
+}
+//---------------------------------------------------------------------------
+afx_msg void PSS_PrestationsInfoDlg::OnOK()
 {
     UpdateData(TRUE);
 

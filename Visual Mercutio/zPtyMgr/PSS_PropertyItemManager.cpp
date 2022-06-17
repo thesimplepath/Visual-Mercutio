@@ -816,16 +816,16 @@ bool PSS_PropertyItemManager::UpdateControlData()
         // check the show type
         switch (m_ShowType)
         {
-            case IE_ST_AllProperties:
+            case IEPropertyShowType::IE_ST_AllProperties:
                 break;
 
-            case IE_ST_StaticProperties:
+            case IEPropertyShowType::IE_ST_StaticProperties:
                 if (pProp->IsDynamic())
                     continue;
 
                 break;
 
-            case IE_ST_DynamicProperties:
+            case IEPropertyShowType::IE_ST_DynamicProperties:
                 if (!pProp->IsDynamic())
                     continue;
 
@@ -864,6 +864,15 @@ bool PSS_PropertyItemManager::UpdateControlData()
             pTab->AddPropertyItem(pPropertyItem);
         }
 
+        // enable char filtering
+        if (pPropertyItem && pProp->GetCharFilterState())
+        {
+            PSS_MultiLineEditPropertyItem* pMultilineEdit = dynamic_cast<PSS_MultiLineEditPropertyItem*>(pPropertyItem);
+
+            if (pMultilineEdit)
+                pMultilineEdit->EnableCharFilter(true);
+        }
+
         // set the appropriate initial data to the property item
         SetDataToPropertyItem(pPropertyItem, *pProp);
 
@@ -895,113 +904,113 @@ PSS_PropertyItem* PSS_PropertyItemManager::CreatePropertyItem(PSS_Property& prop
 
     switch (prop.GetType())
     {
-        case PSS_Property::IE_T_EditString:
+        case PSS_Property::IEType::IE_T_EditString:
             pItem.reset(new PSS_StringPropertyItem());
             break;
 
-        case PSS_Property::IE_T_EditStringReadOnly:
+        case PSS_Property::IEType::IE_T_EditStringReadOnly:
             // read-only and cannot be edited
             pItem.reset(new PSS_StringPropertyItem(NULL, true, false));
             break;
 
-        case PSS_Property::IE_T_ComboString:
+        case PSS_Property::IEType::IE_T_ComboString:
             pItem.reset(new PSS_ListPropertyItem());
             break;
 
-        case PSS_Property::IE_T_ComboStringReadOnly:
+        case PSS_Property::IEType::IE_T_ComboStringReadOnly:
             // read-only
             pItem.reset(new PSS_ListPropertyItem(NULL, true));
             break;
 
-        case PSS_Property::IE_T_EditNumber:
-            if (prop.GetValueType() == PSS_Property::IE_VT_Double)
+        case PSS_Property::IEType::IE_T_EditNumber:
+            if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Double)
                 pItem.reset(new PSS_NumberPropertyItem(prop.GetValueDouble()));
             else
-            if (prop.GetValueType() == PSS_Property::IE_VT_Float)
+            if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Float)
                 pItem.reset(new PSS_NumberPropertyItem(prop.GetValueFloat()));
 
             break;
 
-        case PSS_Property::IE_T_EditNumberReadOnly:
-            if (prop.GetValueType() == PSS_Property::IE_VT_Double)
+        case PSS_Property::IEType::IE_T_EditNumberReadOnly:
+            if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Double)
                 // read-only and cannot be edited
                 pItem.reset(new PSS_NumberPropertyItem(prop.GetValueDouble(), true, false));
             else
-            if (prop.GetValueType() == PSS_Property::IE_VT_Float)
+            if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Float)
                 // read-only and cannot be edited
                 pItem.reset(new PSS_NumberPropertyItem(prop.GetValueFloat(), true, false));
 
             break;
 
-        case PSS_Property::IE_T_EditMenu:
+        case PSS_Property::IEType::IE_T_EditMenu:
             pItem.reset(new PSS_MenuFileDirPropertyItem(prop.GetMenu()));
             break;
 
-        case PSS_Property::IE_T_EditMenuReadOnly:
+        case PSS_Property::IEType::IE_T_EditMenuReadOnly:
             // read-only
             pItem.reset(new PSS_MenuFileDirPropertyItem(prop.GetMenu(), true));
             break;
 
-        case PSS_Property::IE_T_EditFile:
+        case PSS_Property::IEType::IE_T_EditFile:
             // as file is true
             pItem.reset(new PSS_MenuFileDirPropertyItem(LPCTSTR(NULL), true));
             break;
 
-        case PSS_Property::IE_T_EditDirectory:
+        case PSS_Property::IEType::IE_T_EditDirectory:
             // as file is false
             pItem.reset(new PSS_MenuFileDirPropertyItem(LPCTSTR(NULL), true));
             break;
 
-        case PSS_Property::IE_T_EditExtended:
+        case PSS_Property::IEType::IE_T_EditExtended:
             pItem.reset(new PSS_ExtendedPropertyItem());
             break;
 
-        case PSS_Property::IE_T_EditExtendedReadOnly:
+        case PSS_Property::IEType::IE_T_EditExtendedReadOnly:
             // read-only
             pItem.reset(new PSS_ExtendedPropertyItem(NULL, true));
             break;
 
-        case PSS_Property::IE_T_EditDuration:
+        case PSS_Property::IEType::IE_T_EditDuration:
             pItem.reset(new PSS_DurationPropertyItem());
             break;
 
-        case PSS_Property::IE_T_EditDurationReadOnly:
+        case PSS_Property::IEType::IE_T_EditDurationReadOnly:
             // read-only and cannot be edited
             pItem.reset(new PSS_DurationPropertyItem(NULL, true, false));
             break;
 
-        case PSS_Property::IE_T_EditDate:
+        case PSS_Property::IEType::IE_T_EditDate:
             pItem.reset(new PSS_DatePropertyItem());
             break;
 
-        case PSS_Property::IE_T_EditDateReadOnly:
+        case PSS_Property::IEType::IE_T_EditDateReadOnly:
             // read-only and cannot be edited
             pItem.reset(new PSS_DatePropertyItem(NULL, true, false));
             break;
 
-        case PSS_Property::IE_T_EditTime:
+        case PSS_Property::IEType::IE_T_EditTime:
             pItem.reset(new PSS_TimePropertyItem());
             break;
 
-        case PSS_Property::IE_T_EditTimeReadOnly:
+        case PSS_Property::IEType::IE_T_EditTimeReadOnly:
             // read-only and cannot be edited
             pItem.reset(new PSS_TimePropertyItem(NULL, true, false));
             break;
 
-        case PSS_Property::IE_T_EditIntelli:
+        case PSS_Property::IEType::IE_T_EditIntelli:
             pItem.reset(new PSS_IntelliEditPropertyItem());
             break;
 
-        case PSS_Property::IE_T_EditIntelliReadOnly:
+        case PSS_Property::IEType::IE_T_EditIntelliReadOnly:
             // read-only and cannot be edited
             pItem.reset(new PSS_IntelliEditPropertyItem(NULL, true, false));
             break;
 
-        case PSS_Property::IE_T_EditMultiline:
+        case PSS_Property::IEType::IE_T_EditMultiline:
             pItem.reset(new PSS_MultiLineEditPropertyItem());
             break;
 
-        case PSS_Property::IE_T_EditMultilineReadOnly:
+        case PSS_Property::IEType::IE_T_EditMultilineReadOnly:
             // read-only and cannot be edited
             pItem.reset(new PSS_MultiLineEditPropertyItem(NULL, true, false));
             break;
@@ -1024,8 +1033,8 @@ void PSS_PropertyItemManager::SetDataToPropertyItem(PSS_PropertyItem* pPropertyI
 {
     switch (prop.GetType())
     {
-        case PSS_Property::IE_T_EditString:
-        case PSS_Property::IE_T_EditStringReadOnly:
+        case PSS_Property::IEType::IE_T_EditString:
+        case PSS_Property::IEType::IE_T_EditStringReadOnly:
         {
             PSS_StringPropertyItem* pStringPropItem = dynamic_cast<PSS_StringPropertyItem*>(pPropertyItem);
 
@@ -1035,8 +1044,8 @@ void PSS_PropertyItemManager::SetDataToPropertyItem(PSS_PropertyItem* pPropertyI
             break;
         }
 
-        case PSS_Property::IE_T_ComboString:
-        case PSS_Property::IE_T_ComboStringReadOnly:
+        case PSS_Property::IEType::IE_T_ComboString:
+        case PSS_Property::IEType::IE_T_ComboStringReadOnly:
         {
             PSS_ListPropertyItem* pListPropItem = dynamic_cast<PSS_ListPropertyItem*>(pPropertyItem);
 
@@ -1053,102 +1062,102 @@ void PSS_PropertyItemManager::SetDataToPropertyItem(PSS_PropertyItem* pPropertyI
             break;
         }
 
-        case PSS_Property::IE_T_EditNumber:
-        case PSS_Property::IE_T_EditNumberReadOnly:
+        case PSS_Property::IEType::IE_T_EditNumber:
+        case PSS_Property::IEType::IE_T_EditNumberReadOnly:
         {
             PSS_NumberPropertyItem* pNumberPropItem = dynamic_cast<PSS_NumberPropertyItem*>(pPropertyItem);
 
             if (pNumberPropItem)
-                if (prop.GetValueType() == PSS_Property::IE_VT_Double)
+                if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Double)
                     pNumberPropItem->SetData(prop.GetValueDouble());
                 else
-                if (prop.GetValueType() == PSS_Property::IE_VT_Float)
+                if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Float)
                     pNumberPropItem->SetData(prop.GetValueFloat());
 
             break;
         }
 
-        case PSS_Property::IE_T_EditExtended:
-        case PSS_Property::IE_T_EditExtendedReadOnly:
+        case PSS_Property::IEType::IE_T_EditExtended:
+        case PSS_Property::IEType::IE_T_EditExtendedReadOnly:
         {
             PSS_ExtendedPropertyItem* pExtendedPropItem = dynamic_cast<PSS_ExtendedPropertyItem*>(pPropertyItem);
 
             if (pExtendedPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: pExtendedPropItem->SetData(prop.GetValueString()); break;
-                    case PSS_Property::IE_VT_Double: pExtendedPropItem->SetData(prop.GetValueDouble()); break;
-                    case PSS_Property::IE_VT_Float:  pExtendedPropItem->SetData(prop.GetValueFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: pExtendedPropItem->SetData(prop.GetValueString()); break;
+                    case PSS_Property::IEValueType::IE_VT_Double: pExtendedPropItem->SetData(prop.GetValueDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  pExtendedPropItem->SetData(prop.GetValueFloat());  break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditDuration:
-        case PSS_Property::IE_T_EditDurationReadOnly:
+        case PSS_Property::IEType::IE_T_EditDuration:
+        case PSS_Property::IEType::IE_T_EditDurationReadOnly:
         {
             PSS_DurationPropertyItem* pDurationPropItem = dynamic_cast<PSS_DurationPropertyItem*>(pPropertyItem);
 
             if (pDurationPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String:   pDurationPropItem->SetData(               prop.GetValueString());   break;
-                    case PSS_Property::IE_VT_Duration: pDurationPropItem->SetData((PSS_Duration&)prop.GetValueDuration()); break;
+                    case PSS_Property::IEValueType::IE_VT_String:   pDurationPropItem->SetData(               prop.GetValueString());   break;
+                    case PSS_Property::IEValueType::IE_VT_Duration: pDurationPropItem->SetData((PSS_Duration&)prop.GetValueDuration()); break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditDate:
-        case PSS_Property::IE_T_EditDateReadOnly:
+        case PSS_Property::IEType::IE_T_EditDate:
+        case PSS_Property::IEType::IE_T_EditDateReadOnly:
         {
             PSS_DatePropertyItem* pDatePropItem = dynamic_cast<PSS_DatePropertyItem*>(pPropertyItem);
 
             if (pDatePropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: pDatePropItem->SetData(           prop.GetValueString()); break;
-                    case PSS_Property::IE_VT_Date:   pDatePropItem->SetData((PSS_Date&)prop.GetValueDate());   break;
+                    case PSS_Property::IEValueType::IE_VT_String: pDatePropItem->SetData(           prop.GetValueString()); break;
+                    case PSS_Property::IEValueType::IE_VT_Date:   pDatePropItem->SetData((PSS_Date&)prop.GetValueDate());   break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditTime:
-        case PSS_Property::IE_T_EditTimeReadOnly:
+        case PSS_Property::IEType::IE_T_EditTime:
+        case PSS_Property::IEType::IE_T_EditTimeReadOnly:
         {
             PSS_TimePropertyItem* pTimePropItem = dynamic_cast<PSS_TimePropertyItem*>(pPropertyItem);
 
             if (pTimePropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String:   pTimePropItem->SetData(               prop.GetValueString());   break;
-                    case PSS_Property::IE_VT_TimeSpan: pTimePropItem->SetData((PSS_TimeSpan&)prop.GetValueTimeSpan()); break;
+                    case PSS_Property::IEValueType::IE_VT_String:   pTimePropItem->SetData(               prop.GetValueString());   break;
+                    case PSS_Property::IEValueType::IE_VT_TimeSpan: pTimePropItem->SetData((PSS_TimeSpan&)prop.GetValueTimeSpan()); break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditMenu:
-        case PSS_Property::IE_T_EditMenuReadOnly:
-        case PSS_Property::IE_T_EditFile:
-        case PSS_Property::IE_T_EditDirectory:
+        case PSS_Property::IEType::IE_T_EditMenu:
+        case PSS_Property::IEType::IE_T_EditMenuReadOnly:
+        case PSS_Property::IEType::IE_T_EditFile:
+        case PSS_Property::IEType::IE_T_EditDirectory:
         {
             PSS_MenuFileDirPropertyItem* pMenuFileDirPropItem = dynamic_cast<PSS_MenuFileDirPropertyItem*>(pPropertyItem);
 
             if (pMenuFileDirPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: pMenuFileDirPropItem->SetData(prop.GetValueString()); break;
-                    case PSS_Property::IE_VT_Double: pMenuFileDirPropItem->SetData(prop.GetValueDouble()); break;
-                    case PSS_Property::IE_VT_Float:  pMenuFileDirPropItem->SetData(prop.GetValueFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: pMenuFileDirPropItem->SetData(prop.GetValueString()); break;
+                    case PSS_Property::IEValueType::IE_VT_Double: pMenuFileDirPropItem->SetData(prop.GetValueDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  pMenuFileDirPropItem->SetData(prop.GetValueFloat());  break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditIntelli:
-        case PSS_Property::IE_T_EditIntelliReadOnly:
+        case PSS_Property::IEType::IE_T_EditIntelli:
+        case PSS_Property::IEType::IE_T_EditIntelliReadOnly:
         {
             PSS_IntelliEditPropertyItem* pIntelliEditPropItem = dynamic_cast<PSS_IntelliEditPropertyItem*>(pPropertyItem);
 
@@ -1156,9 +1165,9 @@ void PSS_PropertyItemManager::SetDataToPropertyItem(PSS_PropertyItem* pPropertyI
             {
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: pIntelliEditPropItem->SetData(      prop.GetValueString()); break;
-                    case PSS_Property::IE_VT_Double: pIntelliEditPropItem->SetData((char)prop.GetValueDouble()); break;
-                    case PSS_Property::IE_VT_Float:  pIntelliEditPropItem->SetData((char)prop.GetValueFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: pIntelliEditPropItem->SetData(      prop.GetValueString()); break;
+                    case PSS_Property::IEValueType::IE_VT_Double: pIntelliEditPropItem->SetData((char)prop.GetValueDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  pIntelliEditPropItem->SetData((char)prop.GetValueFloat());  break;
                 }
 
                 // if contains a value array
@@ -1170,17 +1179,17 @@ void PSS_PropertyItemManager::SetDataToPropertyItem(PSS_PropertyItem* pPropertyI
             break;
         }
 
-        case PSS_Property::IE_T_EditMultiline:
-        case PSS_Property::IE_T_EditMultilineReadOnly:
+        case PSS_Property::IEType::IE_T_EditMultiline:
+        case PSS_Property::IEType::IE_T_EditMultilineReadOnly:
         {
             PSS_MultiLineEditPropertyItem* pMultilineEditPropItem = dynamic_cast<PSS_MultiLineEditPropertyItem*>(pPropertyItem);
 
             if (pMultilineEditPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: pMultilineEditPropItem->SetData(      prop.GetValueString()); break;
-                    case PSS_Property::IE_VT_Double: pMultilineEditPropItem->SetData((char)prop.GetValueDouble()); break;
-                    case PSS_Property::IE_VT_Float:  pMultilineEditPropItem->SetData((char)prop.GetValueFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: pMultilineEditPropItem->SetData(      prop.GetValueString()); break;
+                    case PSS_Property::IEValueType::IE_VT_Double: pMultilineEditPropItem->SetData((char)prop.GetValueDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  pMultilineEditPropItem->SetData((char)prop.GetValueFloat());  break;
                 }
 
             break;
@@ -1197,8 +1206,8 @@ void PSS_PropertyItemManager::SetItemDataToProperty(PSS_PropertyItem* pPropertyI
     // assign the values
     switch (prop.GetType())
     {
-        case PSS_Property::IE_T_EditString:
-        case PSS_Property::IE_T_EditStringReadOnly:
+        case PSS_Property::IEType::IE_T_EditString:
+        case PSS_Property::IEType::IE_T_EditStringReadOnly:
         {
             PSS_StringPropertyItem* pStringPropItem = dynamic_cast<PSS_StringPropertyItem*>(pPropertyItem);
 
@@ -1208,8 +1217,8 @@ void PSS_PropertyItemManager::SetItemDataToProperty(PSS_PropertyItem* pPropertyI
             break;
         }
 
-        case PSS_Property::IE_T_ComboString:
-        case PSS_Property::IE_T_ComboStringReadOnly:
+        case PSS_Property::IEType::IE_T_ComboString:
+        case PSS_Property::IEType::IE_T_ComboStringReadOnly:
         {
             PSS_ListPropertyItem* pListPropItem = dynamic_cast<PSS_ListPropertyItem*>(pPropertyItem);
 
@@ -1219,127 +1228,127 @@ void PSS_PropertyItemManager::SetItemDataToProperty(PSS_PropertyItem* pPropertyI
             break;
         }
 
-        case PSS_Property::IE_T_EditNumber:
-        case PSS_Property::IE_T_EditNumberReadOnly:
+        case PSS_Property::IEType::IE_T_EditNumber:
+        case PSS_Property::IEType::IE_T_EditNumberReadOnly:
         {
             PSS_NumberPropertyItem* pNumberPropItem = dynamic_cast<PSS_NumberPropertyItem*>(pPropertyItem);
 
             if (pNumberPropItem)
-                if (prop.GetValueType() == PSS_Property::IE_VT_Double)
+                if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Double)
                     prop.SetValueDouble(pNumberPropItem->GetDataDouble());
                 else
-                if (prop.GetValueType() == PSS_Property::IE_VT_Float)
+                if (prop.GetValueType() == PSS_Property::IEValueType::IE_VT_Float)
                     prop.SetValueFloat(pNumberPropItem->GetDataFloat());
 
             break;
         }
 
-        case PSS_Property::IE_T_EditExtended:
-        case PSS_Property::IE_T_EditExtendedReadOnly:
+        case PSS_Property::IEType::IE_T_EditExtended:
+        case PSS_Property::IEType::IE_T_EditExtendedReadOnly:
         {
             PSS_ExtendedPropertyItem* pExtendedPropItem = dynamic_cast<PSS_ExtendedPropertyItem*>(pPropertyItem);
 
             if (pExtendedPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: prop.SetValueString(pExtendedPropItem->GetData());       break;
-                    case PSS_Property::IE_VT_Double: prop.SetValueDouble(pExtendedPropItem->GetDataDouble()); break;
-                    case PSS_Property::IE_VT_Float:  prop.SetValueFloat (pExtendedPropItem->GetDataFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: prop.SetValueString(pExtendedPropItem->GetData());       break;
+                    case PSS_Property::IEValueType::IE_VT_Double: prop.SetValueDouble(pExtendedPropItem->GetDataDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  prop.SetValueFloat (pExtendedPropItem->GetDataFloat());  break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditDuration:
-        case PSS_Property::IE_T_EditDurationReadOnly:
+        case PSS_Property::IEType::IE_T_EditDuration:
+        case PSS_Property::IEType::IE_T_EditDurationReadOnly:
         {
             PSS_DurationPropertyItem* pDurationPropItem = dynamic_cast<PSS_DurationPropertyItem*>(pPropertyItem);
 
             if (pDurationPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String:   prop.SetValueString  (pDurationPropItem->GetData());         break;
-                    case PSS_Property::IE_VT_Duration: prop.SetValueDuration(pDurationPropItem->GetDataDuration()); break;
+                    case PSS_Property::IEValueType::IE_VT_String:   prop.SetValueString  (pDurationPropItem->GetData());         break;
+                    case PSS_Property::IEValueType::IE_VT_Duration: prop.SetValueDuration(pDurationPropItem->GetDataDuration()); break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditDate:
-        case PSS_Property::IE_T_EditDateReadOnly:
+        case PSS_Property::IEType::IE_T_EditDate:
+        case PSS_Property::IEType::IE_T_EditDateReadOnly:
         {
             PSS_DatePropertyItem* pDatePropItem = dynamic_cast<PSS_DatePropertyItem*>(pPropertyItem);
 
             if (pDatePropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: prop.SetValueString(pDatePropItem->GetData());     break;
-                    case PSS_Property::IE_VT_Date:   prop.SetValueDate  (pDatePropItem->GetDataDate()); break;
+                    case PSS_Property::IEValueType::IE_VT_String: prop.SetValueString(pDatePropItem->GetData());     break;
+                    case PSS_Property::IEValueType::IE_VT_Date:   prop.SetValueDate  (pDatePropItem->GetDataDate()); break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditTime:
-        case PSS_Property::IE_T_EditTimeReadOnly:
+        case PSS_Property::IEType::IE_T_EditTime:
+        case PSS_Property::IEType::IE_T_EditTimeReadOnly:
         {
             PSS_TimePropertyItem* pTimePropItem = dynamic_cast<PSS_TimePropertyItem*>(pPropertyItem);
 
             if (pTimePropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String:   prop.SetValueString  (pTimePropItem->GetData());     break;
-                    case PSS_Property::IE_VT_TimeSpan: prop.SetValueTimeSpan(pTimePropItem->GetDataTime()); break;
+                    case PSS_Property::IEValueType::IE_VT_String:   prop.SetValueString  (pTimePropItem->GetData());     break;
+                    case PSS_Property::IEValueType::IE_VT_TimeSpan: prop.SetValueTimeSpan(pTimePropItem->GetDataTime()); break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditMenu:
-        case PSS_Property::IE_T_EditMenuReadOnly:
-        case PSS_Property::IE_T_EditFile:
-        case PSS_Property::IE_T_EditDirectory:
+        case PSS_Property::IEType::IE_T_EditMenu:
+        case PSS_Property::IEType::IE_T_EditMenuReadOnly:
+        case PSS_Property::IEType::IE_T_EditFile:
+        case PSS_Property::IEType::IE_T_EditDirectory:
         {
             PSS_MenuFileDirPropertyItem* pMenuFileDirProp = dynamic_cast<PSS_MenuFileDirPropertyItem*>(pPropertyItem);
 
             if (pMenuFileDirProp)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: prop.SetValueString(pMenuFileDirProp->GetData());       break;
-                    case PSS_Property::IE_VT_Double: prop.SetValueDouble(pMenuFileDirProp->GetDataDouble()); break;
-                    case PSS_Property::IE_VT_Float:  prop.SetValueFloat (pMenuFileDirProp->GetDataFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: prop.SetValueString(pMenuFileDirProp->GetData());       break;
+                    case PSS_Property::IEValueType::IE_VT_Double: prop.SetValueDouble(pMenuFileDirProp->GetDataDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  prop.SetValueFloat (pMenuFileDirProp->GetDataFloat());  break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditIntelli:
-        case PSS_Property::IE_T_EditIntelliReadOnly:
+        case PSS_Property::IEType::IE_T_EditIntelli:
+        case PSS_Property::IEType::IE_T_EditIntelliReadOnly:
         {
             PSS_IntelliEditPropertyItem* pIntelliEditPropItem = dynamic_cast<PSS_IntelliEditPropertyItem*>(pPropertyItem);
 
             if (pIntelliEditPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: prop.SetValueString(pIntelliEditPropItem->GetData());       break;
-                    case PSS_Property::IE_VT_Double: prop.SetValueDouble(pIntelliEditPropItem->GetDataDouble()); break;
-                    case PSS_Property::IE_VT_Float:  prop.SetValueFloat (pIntelliEditPropItem->GetDataFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: prop.SetValueString(pIntelliEditPropItem->GetData());       break;
+                    case PSS_Property::IEValueType::IE_VT_Double: prop.SetValueDouble(pIntelliEditPropItem->GetDataDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  prop.SetValueFloat (pIntelliEditPropItem->GetDataFloat());  break;
                 }
 
             break;
         }
 
-        case PSS_Property::IE_T_EditMultiline:
-        case PSS_Property::IE_T_EditMultilineReadOnly:
+        case PSS_Property::IEType::IE_T_EditMultiline:
+        case PSS_Property::IEType::IE_T_EditMultilineReadOnly:
         {
             PSS_MultiLineEditPropertyItem* pMultilineEditPropItem = dynamic_cast<PSS_MultiLineEditPropertyItem*>(pPropertyItem);
 
             if (pMultilineEditPropItem)
                 switch (prop.GetValueType())
                 {
-                    case PSS_Property::IE_VT_String: prop.SetValueString(pMultilineEditPropItem->GetData());       break;
-                    case PSS_Property::IE_VT_Double: prop.SetValueDouble(pMultilineEditPropItem->GetDataDouble()); break;
-                    case PSS_Property::IE_VT_Float:  prop.SetValueFloat (pMultilineEditPropItem->GetDataFloat());  break;
+                    case PSS_Property::IEValueType::IE_VT_String: prop.SetValueString(pMultilineEditPropItem->GetData());       break;
+                    case PSS_Property::IEValueType::IE_VT_Double: prop.SetValueDouble(pMultilineEditPropItem->GetDataDouble()); break;
+                    case PSS_Property::IEValueType::IE_VT_Float:  prop.SetValueFloat (pMultilineEditPropItem->GetDataFloat());  break;
                 }
 
             break;

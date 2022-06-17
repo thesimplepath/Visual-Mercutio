@@ -91,7 +91,7 @@ PSS_ProcessGraphModelMdl::PSS_ProcessGraphModelMdl(const CString& name, PSS_Proc
     CODModel(),
     m_pCtlr(NULL),
     m_pPageSet(NULL),
-    m_Notation(E_MN_Unknown),
+    m_Notation(EModelNotation::E_MN_Unknown),
     m_MainUserGroupIsValid(false),
     m_MainLogicalSystemIsValid(false),
     m_MainLogicalPrestationsIsValid(false),
@@ -411,7 +411,7 @@ const ELanguage PSS_ProcessGraphModelMdl::GetLanguage()
 
     // still not exists? Return unknown as error
     if (!pProps)
-        return E_LN_Unknown;
+        return ELanguage::E_LN_Unknown;
 
     return pProps->GetLanguage();
 }
@@ -1122,7 +1122,7 @@ bool PSS_ProcessGraphModelMdl::FillProperties(PSS_Properties::IPropertySet& prop
                                  M_Model_Name_ID,
                                  IDS_Z_MODEL_NAME_DESC,
                                  pBasicProps->GetModelName(),
-                                 PSS_Property::IE_T_EditStringReadOnly));
+                                 PSS_Property::IEType::IE_T_EditStringReadOnly));
     props.Add(pProp.get());
     pProp.release();
 
@@ -2223,7 +2223,7 @@ void PSS_ProcessGraphModelMdl::SetModelName(const CString& value)
         // build the message
         if (pMainWnd)
         {
-            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IE_AT_ChangedElement, NULL, this);
+            PSS_DocObserverMsg docMsg(PSS_DocObserverMsg::IEActionType::IE_AT_ChangedElement, NULL, this);
             pMainWnd->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, (LPARAM)&docMsg);
         }
     }
@@ -2297,7 +2297,7 @@ void PSS_ProcessGraphModelMdl::Serialize(CArchive& ar)
             ar << m_BgFileName;
 
             if (pDocument->GetDocumentStamp().GetInternalVersion() >= 23)
-                ar << int(m_IsLogo);
+                ar << m_IsLogo;
 
             // clear the background
             ClearBackgroundComponent(true);
@@ -2307,11 +2307,7 @@ void PSS_ProcessGraphModelMdl::Serialize(CArchive& ar)
             ar >> m_BgFileName;
 
             if (pDocument->GetDocumentStamp().GetInternalVersion() >= 23)
-            {
-                int value;
-                ar >> value;
-                m_IsLogo = BOOL(value);
-            }
+                ar >> m_IsLogo;
         }
     }
 
@@ -2962,7 +2958,7 @@ CODComponentSet* PSS_ProcessGraphModelMdl::FindSymbolPvt(const CString& name,
         if (pSymbol)
         {
             // if the symbol names match
-            if ((caseSensitive && pSymbol->GetSymbolName() == name) || 
+            if ((caseSensitive && pSymbol->GetSymbolName() == name) ||
                (!caseSensitive && !name.CompareNoCase(pSymbol->GetSymbolName())))
                 // if no path required or the path is equal, and if only local and is local, add the element to the set
                 if ((path.IsEmpty() || (!path.IsEmpty() && pSymbol->GetAbsolutePath() == path)) &&
@@ -3345,7 +3341,7 @@ void PSS_ProcessGraphModelMdl::SetBackgroundComponentToModel(CODComponent& bgCom
         // get the diagram bounding rect
         const CRect rect = GetBounds();
 
-        // stretch the image   
+        // stretch the image
         pBgComp->MoveTo(rect);
     }
 

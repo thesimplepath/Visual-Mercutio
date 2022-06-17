@@ -72,10 +72,10 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@param direction - link direction
         *@param pModel - model
         */
-        PSS_StateObject(PSS_Symbol*                    pSymbol = NULL,
+        PSS_StateObject(PSS_Symbol*                    pSymbol     = NULL,
                         PSS_LinkSymbol*                pLinkSymbol = NULL,
-                        PSS_StateLink::IELinkDirection direction = PSS_StateLink::IE_LD_EnteringUp,
-                        PSS_ProcessGraphModelMdl*      pModel = NULL);
+                        PSS_StateLink::IELinkDirection direction   = PSS_StateLink::IELinkDirection::IE_LD_EnteringUp,
+                        PSS_ProcessGraphModelMdl*      pModel      = NULL);
 
         /**
         * Constructor
@@ -180,7 +180,7 @@ class AFX_EXT_CLASS PSS_StateObject : public CObject
         *@return true on success, otherwise false
         */
         virtual bool RemoveLink(PSS_LinkSymbol* pLinkSymbol);
- 
+
         /**
         * Removes a link by reference
         *@param refNb - link reference number to remove

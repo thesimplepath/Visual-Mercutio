@@ -205,7 +205,7 @@ void PSS_DistributionAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_Observe
 
     if (pObserverMsg)
     {
-        if (pObserverMsg->GetActionType() == PSS_SymbolObserverMsg::IE_AT_ElementSelected)
+        if (pObserverMsg->GetActionType() == PSS_SymbolObserverMsg::IEActionType::IE_AT_ElementSelected)
         {
             m_pComp = pObserverMsg->GetElement();
 

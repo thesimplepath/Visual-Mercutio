@@ -97,7 +97,7 @@ class AFX_EXT_CLASS PSS_GridCtrl : public CListCtrl
                 *@return TRUE if the point hit the rectangle, otherwise FALSE
                 */
                 virtual BOOL HitTest(const CPoint& pt) const;
-        
+
             private:
                 CDC*  m_pDC;
                 POINT m_LeftTop;
@@ -116,7 +116,7 @@ class AFX_EXT_CLASS PSS_GridCtrl : public CListCtrl
                 /**
                 * Control type enumeration
                 */
-                enum IEControlType
+                enum class IEControlType
                 {
                     IE_CT_Edit,
                     IE_CT_ComboBox,
@@ -1024,7 +1024,7 @@ class AFX_EXT_CLASS PSS_GridCtrl : public CListCtrl
         * Compares children items for sorting
         *@param pItem1 - first item to compare
         *@param pItem2 - second item to compare
-        *@return 
+        *@return
         */
         static int CompareChildren(const void* pItem1, const void* pItem2);
 
@@ -1130,7 +1130,7 @@ BOOL PSS_GridCtrl::IItemInfo::GetControlType(int nCol, IEControlType& controlTyp
 {
     if (!m_ControlTypes.Lookup(nCol, controlType))
     {
-        controlType = IE_CT_Edit;
+        controlType = IEControlType::IE_CT_Edit;
         return 0;
     }
 

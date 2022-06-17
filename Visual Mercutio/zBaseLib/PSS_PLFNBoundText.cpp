@@ -142,7 +142,7 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, PSS_View* pView)
 
     switch (pView->GetDocument()->GetDocOptions().GetEmptyStyle())
     {
-        case E_LT_Dotted:
+        case ELineType::E_LT_Dotted:
         {
             register int y = 0;
 
@@ -169,7 +169,7 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, PSS_View* pView)
             break;
         }
 
-        case E_LT_Small:
+        case ELineType::E_LT_Small:
         {
             register int y = 0;
 
@@ -196,7 +196,7 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, PSS_View* pView)
             break;
         }
 
-        case E_LT_Solid:
+        case ELineType::E_LT_Solid:
         {
             register int y = 0;
 
@@ -219,7 +219,7 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, PSS_View* pView)
             break;
         }
 
-        case E_LT_Dash:
+        case ELineType::E_LT_Dash:
         {
             register int y = 0;
 

@@ -89,9 +89,11 @@ PSS_WatchDirectory::PSS_WatchDirectory() :
     m_EventKill(NULL),
     m_pThread(NULL),
     m_Mutex(FALSE, NULL),
-    m_WatchingStatus(IE_WS_Stopped),
+    m_WatchingStatus(IEWatchingStatus::IE_WS_Stopped),
     m_Directory(""),
-    m_WatchingMode(IE_WM_FileNameChange | IE_WM_LastWritesChange | IE_WM_SizesChange),
+    m_WatchingMode((UINT)IEWatchingMode::IE_WM_FileNameChange   |
+                   (UINT)IEWatchingMode::IE_WM_LastWritesChange |
+                   (UINT)IEWatchingMode::IE_WM_SizesChange),
     m_NotifyFilter(0),
     m_WatchSubTree(FALSE),
     m_FileHaveBeenAdded(FALSE),
@@ -107,7 +109,7 @@ PSS_WatchDirectory::PSS_WatchDirectory(const CString& directory, UINT mode, BOOL
     m_EventKill(NULL),
     m_pThread(NULL),
     m_Mutex(FALSE, NULL),
-    m_WatchingStatus(IE_WS_Stopped),
+    m_WatchingStatus(IEWatchingStatus::IE_WS_Stopped),
     m_Directory(directory),
     m_WatchingMode(mode),
     m_NotifyFilter(0),
@@ -123,7 +125,7 @@ PSS_WatchDirectory::PSS_WatchDirectory(const CString& directory, UINT mode, BOOL
 //---------------------------------------------------------------------------
 PSS_WatchDirectory::~PSS_WatchDirectory()
 {
-    SetWatchingStatus(IE_WS_Stopped);
+    SetWatchingStatus(IEWatchingStatus::IE_WS_Stopped);
     SetEvent(m_EventKill);
     CloseHandle(m_EventKill);
 
@@ -136,7 +138,7 @@ BOOL PSS_WatchDirectory::Create(const CString& directory, UINT mode, BOOL subTre
 {
     m_ChangeHandle[0] = INVALID_HANDLE_VALUE;
     m_Directory       = directory;
-    m_WatchingStatus  = IE_WS_Stopped;
+    m_WatchingStatus  = IEWatchingStatus::IE_WS_Stopped;
     m_WatchingMode    = mode;
     m_WatchSubTree    = subTree;
 
@@ -170,7 +172,7 @@ BOOL PSS_WatchDirectory::StartWatching(BOOL mustNotifyClient)
     if (m_pThread)
         m_pThread->ResumeThread();
 
-    SetWatchingStatus(IE_WS_Started);
+    SetWatchingStatus(IEWatchingStatus::IE_WS_Started);
 
     // when the service starts, refresh the list and notify the client
     if (RefreshFileList() > 0)
@@ -182,25 +184,25 @@ BOOL PSS_WatchDirectory::StartWatching(BOOL mustNotifyClient)
 //---------------------------------------------------------------------------
 BOOL PSS_WatchDirectory::PauseWatching()
 {
-    if (GetWatchingStatus() != IE_WS_Started)
+    if (GetWatchingStatus() != IEWatchingStatus::IE_WS_Started)
         return FALSE;
 
     if (m_pThread)
         m_pThread->SuspendThread();
 
-    SetWatchingStatus(IE_WS_Paused);
+    SetWatchingStatus(IEWatchingStatus::IE_WS_Paused);
     return TRUE;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_WatchDirectory::ResumeWatching()
 {
-    if (GetWatchingStatus() != IE_WS_Paused)
+    if (GetWatchingStatus() != IEWatchingStatus::IE_WS_Paused)
         return FALSE;
 
     if (m_pThread)
         m_pThread->ResumeThread();
 
-    SetWatchingStatus(IE_WS_Started);
+    SetWatchingStatus(IEWatchingStatus::IE_WS_Started);
 
     if (RefreshFileList() > 0)
         NotifyClient();
@@ -210,10 +212,10 @@ BOOL PSS_WatchDirectory::ResumeWatching()
 //---------------------------------------------------------------------------
 BOOL PSS_WatchDirectory::StopWatching()
 {
-    if (GetWatchingStatus() != IE_WS_Started)
+    if (GetWatchingStatus() != IEWatchingStatus::IE_WS_Started)
         return FALSE;
 
-    SetWatchingStatus(IE_WS_Stopped);
+    SetWatchingStatus(IEWatchingStatus::IE_WS_Stopped);
 
     // set thread priority to close it
     m_pThread->SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
@@ -389,22 +391,22 @@ void PSS_WatchDirectory::SetNotifyFilter()
     // initialize notify filter
     m_NotifyFilter = 0;
 
-    if (m_WatchingMode & IE_WM_FileNameChange)
+    if (m_WatchingMode & (UINT)IEWatchingMode::IE_WM_FileNameChange)
         m_NotifyFilter |= FILE_NOTIFY_CHANGE_FILE_NAME;
 
-    if (m_WatchingMode & IE_WM_DirectoryNameChange)
+    if (m_WatchingMode & (UINT)IEWatchingMode::IE_WM_DirectoryNameChange)
         m_NotifyFilter |= FILE_NOTIFY_CHANGE_DIR_NAME;
 
-    if (m_WatchingMode & IE_WM_AttributesChange)
+    if (m_WatchingMode & (UINT)IEWatchingMode::IE_WM_AttributesChange)
         m_NotifyFilter |= FILE_NOTIFY_CHANGE_ATTRIBUTES;
 
-    if (m_WatchingMode & IE_WM_SizesChange)
+    if (m_WatchingMode & (UINT)IEWatchingMode::IE_WM_SizesChange)
         m_NotifyFilter |= FILE_NOTIFY_CHANGE_SIZE;
 
-    if (m_WatchingMode & IE_WM_LastWritesChange)
+    if (m_WatchingMode & (UINT)IEWatchingMode::IE_WM_LastWritesChange)
         m_NotifyFilter |= FILE_NOTIFY_CHANGE_LAST_WRITE;
 
-    if (m_WatchingMode & IE_WM_SecurityChange)
+    if (m_WatchingMode & (UINT)IEWatchingMode::IE_WM_SecurityChange)
         m_NotifyFilter |= FILE_NOTIFY_CHANGE_SECURITY;
 }
 //---------------------------------------------------------------------------

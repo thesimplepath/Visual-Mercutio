@@ -64,9 +64,9 @@ class AFX_EXT_CLASS PSS_LanguageProperties : public CODIntProperty,
     public:
         /**
         * Change type
-        *@note These items may be combinated
+        *@note These items may be combined
         */
-        enum IEChangeType
+        enum class IEChangeType
         {
             IE_CT_Language = 0x0001,
             IE_CT_All      = OD_CHANGE_ALL
@@ -123,7 +123,7 @@ class AFX_EXT_CLASS PSS_LanguageProperties : public CODIntProperty,
         *@param pProp - the property set to merge with
         *@param changeFlags - the change flags to apply
         */
-        virtual void Merge(CODProperty* pProp, DWORD changeFlags = IE_CT_All);
+        virtual void Merge(CODProperty* pProp, DWORD changeFlags = (DWORD)IEChangeType::IE_CT_All);
 
         /**
         * Gets the language

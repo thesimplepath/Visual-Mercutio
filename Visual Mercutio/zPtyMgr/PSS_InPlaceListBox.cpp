@@ -30,6 +30,7 @@
 BEGIN_MESSAGE_MAP(PSS_InPlaceListBox::IEdit, CEdit)
     //{{AFX_MSG_MAP(PSS_InPlaceListBox::IEdit)
     ON_WM_ERASEBKGND()
+    ON_WM_RBUTTONUP()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -83,6 +84,11 @@ BOOL PSS_InPlaceListBox::IEdit::PreTranslateMessage(MSG* pMsg)
 BOOL PSS_InPlaceListBox::IEdit::OnEraseBkgnd(CDC* pDC)
 {
     return TRUE;
+}
+//---------------------------------------------------------------------------
+void PSS_InPlaceListBox::IEdit::OnRButtonUp(UINT nFlags, CPoint point)
+{
+    // do nothing, so the CWnd popup is blocked and never shown
 }
 //---------------------------------------------------------------------------
 // Message map

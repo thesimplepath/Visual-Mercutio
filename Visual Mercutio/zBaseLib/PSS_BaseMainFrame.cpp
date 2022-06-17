@@ -30,7 +30,7 @@
 // Note: the toolbar buttons sends a wmSECToolBarWndNotify registered
 // message for button notifications. Unfortunately, this value is a
 // const int which can not be mapped properly across the Dll boundary.
-// If using a static library, wmSECToolBarWndNotify can be safely used 
+// If using a static library, wmSECToolBarWndNotify can be safely used
 // in the ON_REGISTERED_MESSAGE macro below, but if using OT as a DLL,
 // you must issue the following call to get the appropriate value.
 // Since this mechanism is safe for static libraries as well, using
@@ -125,6 +125,7 @@ BEGIN_MESSAGE_MAP(PSS_BaseMainFrame, SECMDIFrameWnd)
     ON_COMMAND(ID_VIEW_POINTER, OnViewPointer)
     ON_UPDATE_COMMAND_UI(ID_VIEW_POINTER, OnUpdateViewPointer)
     ON_MESSAGE(FSM_SETMODE, OnFSModeChange)
+    /*
     ON_COMMAND(ID_HELP_INDEX, CMDIFrameWnd::OnHelpIndex)
     ON_UPDATE_COMMAND_UI(ID_HELP_INDEX, OnUpdateHelpIndex)
     ON_COMMAND(ID_HELP_USING, CMDIFrameWnd::OnHelpUsing)
@@ -132,6 +133,7 @@ BEGIN_MESSAGE_MAP(PSS_BaseMainFrame, SECMDIFrameWnd)
     ON_COMMAND(ID_HELP, CMDIFrameWnd::OnHelpIndex)
     ON_COMMAND(ID_CONTEXT_HELP, CMDIFrameWnd::OnContextHelp)
     ON_COMMAND(ID_DEFAULT_HELP, CMDIFrameWnd::OnHelpIndex)
+    */
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
@@ -312,7 +314,7 @@ int PSS_BaseMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     // call this to position the default toolbars as configured by
     // the DefineDefaultToolBar commands above. Don't do this
     // if you are going immediately use LoadBarState/LoadState below,
-    // as these functions will call it anyways on nonexistant state info
+    // as these functions will call it anyways on nonexistent state info
     SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
     PSS_Assert(pToolBarManager);
 
@@ -327,7 +329,7 @@ int PSS_BaseMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     OnReloadBarState();
 
     // set by default the edition tool
-    PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IE_TT_VToolEdit;
+    PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IEToolType::IE_TT_VToolEdit;
 
     return 0;
 }
@@ -358,6 +360,7 @@ void PSS_BaseMainFrame::OnUpdateViewPointer(CCmdUI* pCmdUI)
     pCmdUI->SetCheck(PointerWindowIsVisible());
 }
 //---------------------------------------------------------------------------
+/*
 void PSS_BaseMainFrame::OnUpdateHelpIndex(CCmdUI* pCmdUI)
 {
     if (!pCmdUI)
@@ -365,7 +368,9 @@ void PSS_BaseMainFrame::OnUpdateHelpIndex(CCmdUI* pCmdUI)
 
     pCmdUI->Enable(FALSE);
 }
+*/
 //---------------------------------------------------------------------------
+/*
 void PSS_BaseMainFrame::OnUpdateHelpUsing(CCmdUI* pCmdUI)
 {
     if (!pCmdUI)
@@ -373,6 +378,7 @@ void PSS_BaseMainFrame::OnUpdateHelpUsing(CCmdUI* pCmdUI)
 
     pCmdUI->Enable(FALSE);
 }
+*/
 //---------------------------------------------------------------------------
 void PSS_BaseMainFrame::OnClose()
 {

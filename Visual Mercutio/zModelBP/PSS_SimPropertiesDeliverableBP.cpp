@@ -58,10 +58,10 @@ void PSS_SimPropertiesDeliverableBP::Merge(PSS_SimPropertiesDeliverableBP* pProp
 {
     if (pProp)
     {
-        if (changeFlags & IE_CT_Change_Sim_Deliv_Cost)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Deliv_Cost)
             m_Cost = pProp->GetCost();
 
-        if (changeFlags & IE_CT_Change_Sim_Deliv_Workload_Forecast)
+        if (changeFlags & (DWORD)IEChangeType::IE_CT_Change_Sim_Deliv_Workload_Forecast)
             m_WorkloadForecast = pProp->GetWorkloadForecast();
     }
 }

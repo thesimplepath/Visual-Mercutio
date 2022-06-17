@@ -47,7 +47,7 @@ class AFX_EXT_CLASS PSS_PLFNBitmap : public PSS_PlanFinObject
         /**
         * Strike styles
         */
-        enum IEDisplayStyles
+        enum class IEDisplayStyles
         {
             IE_DS_InitialSize,
             IE_DS_FitToRect,

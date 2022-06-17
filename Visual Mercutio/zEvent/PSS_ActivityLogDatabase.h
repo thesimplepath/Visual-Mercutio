@@ -8,6 +8,8 @@
 #ifndef ActLogDB_h
 #define ActLogDB_h 1
 
+#pragma warning(disable: 4101)
+
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API

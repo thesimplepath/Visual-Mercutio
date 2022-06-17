@@ -139,8 +139,8 @@ void PSS_ReferenceFileDialog::OnAddurl()
 void PSS_ReferenceFileDialog::OnScriptor()
 {
     PSS_NewFormDialog newFormDialog(&PSS_Global::GetTemplateManager(),
-                                    PSS_NewFormDialog::IE_T_SelectForm,
-                                    PSS_NewFormDialog::IE_ET_Form);
+                                    PSS_NewFormDialog::IEDialogFormType::IE_T_SelectForm,
+                                    PSS_NewFormDialog::IEDialogFormExtensionType::IE_ET_Form);
 
     if (newFormDialog.DoModal() != IDOK)
         return;

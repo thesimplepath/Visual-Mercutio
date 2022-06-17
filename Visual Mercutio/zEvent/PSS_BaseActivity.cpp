@@ -31,8 +31,8 @@ IMPLEMENT_SERIAL(PSS_BaseActivity, CObject, g_DefVersion)
 PSS_BaseActivity::PSS_BaseActivity(const CString& name, const CString& description, IEStatus status) :
     CObject(),
     m_ActivityStatus(status),
-    m_VisibilityType(IE_VT_Visible),
-    m_RunMode(IE_RM_Sequence),
+    m_VisibilityType(IEVisibilityType::IE_VT_Visible),
+    m_RunMode(IERunMode::IE_RM_Sequence),
     m_pParent(NULL),
     m_pCurrentActivity(NULL),
     m_pPreviousActivity(NULL),
@@ -41,8 +41,8 @@ PSS_BaseActivity::PSS_BaseActivity(const CString& name, const CString& descripti
     m_Description(description),
     m_ActivityType(0),
     m_DurationDays(2),
-    m_IsVisible(E_TS_Undefined),
-    m_TimeType(IE_TT_TimeDays),
+    m_IsVisible(EThreeState::E_TS_Undefined),
+    m_TimeType(IETimeoutType::IE_TT_TimeDays),
     m_DaysForBackupResources(1),
     m_RemindDays(1),
     m_UseBackupResources(FALSE),
@@ -97,9 +97,9 @@ PSS_BaseActivity* PSS_BaseActivity::GetFirstValidActivity() const
     if (!pFirstActivity)
         return NULL;
 
-    if (pFirstActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)) || 
-       (pFirstActivity->HasActivities() && pFirstActivity->GetRunMode() == IE_RM_Select))
-        if (pFirstActivity->DoConsiderAsVisible() != E_TS_False)
+    if (pFirstActivity->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
+       (pFirstActivity->HasActivities() && pFirstActivity->GetRunMode() == IERunMode::IE_RM_Select))
+        if (pFirstActivity->DoConsiderAsVisible() != EThreeState::E_TS_False)
             return pFirstActivity;
 
     return pFirstActivity->GetNextValidActivity();
@@ -112,7 +112,7 @@ PSS_BaseActivity* PSS_BaseActivity::GetFirstValidBaseActivity() const
     if (!pFirstActivity)
         return NULL;
 
-    if (pFirstActivity->DoConsiderAsVisible() != E_TS_False)
+    if (pFirstActivity->DoConsiderAsVisible() != EThreeState::E_TS_False)
         return pFirstActivity;
 
     return pFirstActivity->GetNextValidActivity();
@@ -124,8 +124,8 @@ PSS_BaseActivity* PSS_BaseActivity::GetPreviousValidActivity() const
     {
         // if the previous activity is a valid activity, return it
         if (GetPreviousBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
-           (GetPreviousBaseActivity()->HasActivities() && GetPreviousBaseActivity()->GetRunMode() == IE_RM_Select))
-            if (GetPreviousBaseActivity()->DoConsiderAsVisible() != E_TS_False)
+           (GetPreviousBaseActivity()->HasActivities() && GetPreviousBaseActivity()->GetRunMode() == IERunMode::IE_RM_Select))
+            if (GetPreviousBaseActivity()->DoConsiderAsVisible() != EThreeState::E_TS_False)
                 return GetPreviousBaseActivity();
 
         // continue to search in previous base activities
@@ -140,7 +140,7 @@ PSS_BaseActivity* PSS_BaseActivity::GetPreviousValidBaseActivity() const
     if (GetPreviousBaseActivity())
     {
         // if the previous activity is a valid activity, return it
-        if (GetPreviousBaseActivity()->DoConsiderAsVisible() != E_TS_False)
+        if (GetPreviousBaseActivity()->DoConsiderAsVisible() != EThreeState::E_TS_False)
             return GetPreviousBaseActivity();
 
         // continue to search in previous base activities
@@ -156,8 +156,8 @@ PSS_BaseActivity* PSS_BaseActivity::GetNextValidActivity() const
     {
         // if the next activity is a valid activity, return it
         if (GetNextBaseActivity()->IsKindOf(RUNTIME_CLASS(PSS_Activity)) ||
-           (GetNextBaseActivity()->HasActivities() && GetNextBaseActivity()->GetRunMode() == IE_RM_Select))
-            if (GetNextBaseActivity()->DoConsiderAsVisible() != E_TS_False)
+           (GetNextBaseActivity()->HasActivities() && GetNextBaseActivity()->GetRunMode() == IERunMode::IE_RM_Select))
+            if (GetNextBaseActivity()->DoConsiderAsVisible() != EThreeState::E_TS_False)
                 return GetNextBaseActivity();
 
         // continue to search in next base activities
@@ -172,7 +172,7 @@ PSS_BaseActivity* PSS_BaseActivity::GetNextValidBaseActivity() const
     if (GetNextBaseActivity())
     {
         // if the next activity is a valid activity, return it
-        if (GetNextBaseActivity()->DoConsiderAsVisible() != E_TS_False)
+        if (GetNextBaseActivity()->DoConsiderAsVisible() != EThreeState::E_TS_False)
             return GetNextBaseActivity();
 
         // continue to search in next base activities
@@ -280,7 +280,7 @@ BOOL PSS_BaseActivity::ActivityFillPersonArray(const PSS_UserManager& userManage
 BOOL PSS_BaseActivity::ActivityAddUsers(const CString& delimiterString)
 {
     // set the user mode
-    SetUserType(PSS_ActivityResources::IE_UT_Users);
+    SetUserType(PSS_ActivityResources::IEUserType::IE_UT_Users);
     return GetCurrentResources().AddUsers(delimiterString);
 }
 //---------------------------------------------------------------------------
@@ -352,19 +352,19 @@ void PSS_BaseActivity::SetDurationDays(WORD value)
 //---------------------------------------------------------------------------
 CString PSS_BaseActivity::GetStatusKeyString(PSS_BaseActivity* pActivity)
 {
-    if (ActivityIsAttribution() && GetActivityStatus() != IE_AS_SentForAcceptation)
+    if (ActivityIsAttribution() && GetActivityStatus() != IEStatus::IE_AS_SentForAcceptation)
         return g_ActivityStatusAttribution;
 
     switch (GetActivityStatus())
     {
-        case IE_AS_Completed:          return g_ActivityStatusCompleted;
-        case IE_AS_Rejected:           return g_ActivityStatusRejected;
-        case IE_AS_Sent:               return g_ActivityStatusSent;
-        case IE_AS_SentForAcceptation: return g_ActivityStatusRequestAcceptation;
-        case IE_AS_NotStarted:         return g_ActivityStatusNotStarted;
-        case IE_AS_Suspended:          return g_ActivityStatusProcessPaused;
-        case IE_AS_Aborted:            return g_ActivityStatusProcessAborted;
-        case IE_AS_Started:            return g_ActivityStatusStarted;
+        case IEStatus::IE_AS_Completed:          return g_ActivityStatusCompleted;
+        case IEStatus::IE_AS_Rejected:           return g_ActivityStatusRejected;
+        case IEStatus::IE_AS_Sent:               return g_ActivityStatusSent;
+        case IEStatus::IE_AS_SentForAcceptation: return g_ActivityStatusRequestAcceptation;
+        case IEStatus::IE_AS_NotStarted:         return g_ActivityStatusNotStarted;
+        case IEStatus::IE_AS_Suspended:          return g_ActivityStatusProcessPaused;
+        case IEStatus::IE_AS_Aborted:            return g_ActivityStatusProcessAborted;
+        case IEStatus::IE_AS_Started:            return g_ActivityStatusStarted;
     }
 
     return _T("");
@@ -373,28 +373,28 @@ CString PSS_BaseActivity::GetStatusKeyString(PSS_BaseActivity* pActivity)
 void PSS_BaseActivity::SetStatusFromKeyString(const CString& key)
 {
     if (key == g_ActivityStatusCompleted)
-        SetActivityStatus(IE_AS_Completed);
+        SetActivityStatus(IEStatus::IE_AS_Completed);
     else
     if (key == g_ActivityStatusRejected)
-        SetActivityStatus(IE_AS_Rejected);
+        SetActivityStatus(IEStatus::IE_AS_Rejected);
     else
     if (key == g_ActivityStatusSent)
-        SetActivityStatus(IE_AS_Sent);
+        SetActivityStatus(IEStatus::IE_AS_Sent);
     else
     if (key == g_ActivityStatusRequestAcceptation)
-        SetActivityStatus(IE_AS_SentForAcceptation);
+        SetActivityStatus(IEStatus::IE_AS_SentForAcceptation);
     else
     if (key == g_ActivityStatusNotStarted)
-        SetActivityStatus(IE_AS_NotStarted);
+        SetActivityStatus(IEStatus::IE_AS_NotStarted);
     else
     if (key == g_ActivityStatusProcessPaused)
-        SetActivityStatus(IE_AS_Suspended);
+        SetActivityStatus(IEStatus::IE_AS_Suspended);
     else
     if (key == g_ActivityStatusProcessAborted)
-        SetActivityStatus(IE_AS_Aborted);
+        SetActivityStatus(IEStatus::IE_AS_Aborted);
     else
     if (key == g_ActivityStatusStarted)
-        SetActivityStatus(IE_AS_Started);
+        SetActivityStatus(IEStatus::IE_AS_Started);
 }
 //---------------------------------------------------------------------------
 CString PSS_BaseActivity::GetStatusString(const CString& key)
@@ -441,58 +441,58 @@ void PSS_BaseActivity::FillActivityInformationWhenStart()
     SetInitiator(GetConnectedUser());
     SetStartDate(PSS_Date::GetToday());
 
-    // set the forecasted start date to be able to calculate the forecasted end date
+    // set the forecast start date to be able to calculate the forecast end date
     SetForecastedStartDate(PSS_Date::GetToday());
 
-    // calculate the forecasted end date
+    // calculate the forecast end date
     CalculateForecastedEndDate();
-    SetActivityStatus(IE_AS_Started);
+    SetActivityStatus(IEStatus::IE_AS_Started);
 }
 //---------------------------------------------------------------------------
 void PSS_BaseActivity::FillActivityInformationWhenEnd()
 {
     SetEndDate(PSS_Date::GetToday());
-    SetActivityStatus(IE_AS_Completed);
+    SetActivityStatus(IEStatus::IE_AS_Completed);
 }
 //---------------------------------------------------------------------------
 void PSS_BaseActivity::FillActivityInformationWhenRefused()
 {
     SetLastUpdateDate(PSS_Date::GetToday());
-    SetActivityStatus(IE_AS_Rejected);
+    SetActivityStatus(IEStatus::IE_AS_Rejected);
 }
 //---------------------------------------------------------------------------
 void PSS_BaseActivity::FillActivityInformationWhenSentForAccept()
 {
-    if (GetActivityStatus() == IE_AS_NotStarted)
+    if (GetActivityStatus() == IEStatus::IE_AS_NotStarted)
     {
         SetForecastedStartDate(PSS_Date::GetToday());
 
-        // calculate the forecasted end date
+        // calculate the forecast end date
         CalculateForecastedEndDate();
     }
 
     SetLastUpdateDate(PSS_Date::GetToday());
-    SetActivityStatus(IE_AS_SentForAcceptation);
+    SetActivityStatus(IEStatus::IE_AS_SentForAcceptation);
 }
 //---------------------------------------------------------------------------
 void PSS_BaseActivity::FillActivityInformationWhenSent()
 {
-    if (GetActivityStatus() == IE_AS_NotStarted)
+    if (GetActivityStatus() == IEStatus::IE_AS_NotStarted)
     {
         SetForecastedStartDate(PSS_Date::GetToday());
 
-        // calculate the forecasted end date
+        // calculate the forecast end date
         CalculateForecastedEndDate();
     }
 
     SetLastUpdateDate(PSS_Date::GetToday());
-    SetActivityStatus(IE_AS_Sent);
+    SetActivityStatus(IEStatus::IE_AS_Sent);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsShared() const
 {
-    // if no activites or in selection mode, check the number of resources
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
+    // if no activities or in selection mode, check the number of resources
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
         return (GetCurrentResources().GetUserCount() > 1);
 
     // if has activities, check the current one
@@ -504,8 +504,8 @@ BOOL PSS_BaseActivity::ActivityIsShared() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::MustSwitchToBackupResourceActivity() const
 {
-    // if no activites or in selection mode, check the number of resources
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
+    // if no activities or in selection mode, check the number of resources
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
     {
         if (GetUseBackupResources() && GetForecastedEndDate() > 0)
             return (COleDateTime::GetCurrentTime() >= (GetForecastedEndDate() + COleDateTimeSpan(GetDaysForBackupResources())));
@@ -522,8 +522,8 @@ BOOL PSS_BaseActivity::MustSwitchToBackupResourceActivity() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::MustRemindEndActivity() const
 {
-    // if no activites or in selection mode, check the number of resources
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
+    // if no activities or in selection mode, check the number of resources
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
     {
         if (GetForecastedEndDate() > 0)
             return (COleDateTime::GetCurrentTime() >= (GetForecastedEndDate() - COleDateTimeSpan(GetRemindDays())));
@@ -557,15 +557,15 @@ CString PSS_BaseActivity::GetActivityStatusString() const
 
     switch (GetActivityStatus())
     {
-        case IE_AS_Started:            status.LoadString(IDS_ACTIVITY_STARTED);        break;
-        case IE_AS_Completed:          status.LoadString(IDS_ACTIVITY_COMPLETED);      break;
-        case IE_AS_Rejected:           status.LoadString(IDS_ACTIVITY_REJECTED);       break;
-        case IE_AS_Sent:               status.LoadString(IDS_ACTIVITY_NEXTPERSON);     break;
-        case IE_AS_SentForAcceptation: status.LoadString(IDS_ACTIVITY_FORACCEPTATION); break;
-        case IE_AS_NotStarted:         status.LoadString(IDS_ACTIVITY_NOTSTARTED);     break;
-        case IE_AS_Suspended:          status.LoadString(IDS_PROCESS_SUSPENDED);       break;
-        case IE_AS_Aborted:            status.LoadString(IDS_PROCESS_ABORTED);         break;
-        default:                       status.LoadString(IDS_ACTIVITY_UNKNOWNSTATE);
+        case IEStatus::IE_AS_Started:            status.LoadString(IDS_ACTIVITY_STARTED);        break;
+        case IEStatus::IE_AS_Completed:          status.LoadString(IDS_ACTIVITY_COMPLETED);      break;
+        case IEStatus::IE_AS_Rejected:           status.LoadString(IDS_ACTIVITY_REJECTED);       break;
+        case IEStatus::IE_AS_Sent:               status.LoadString(IDS_ACTIVITY_NEXTPERSON);     break;
+        case IEStatus::IE_AS_SentForAcceptation: status.LoadString(IDS_ACTIVITY_FORACCEPTATION); break;
+        case IEStatus::IE_AS_NotStarted:         status.LoadString(IDS_ACTIVITY_NOTSTARTED);     break;
+        case IEStatus::IE_AS_Suspended:          status.LoadString(IDS_PROCESS_SUSPENDED);       break;
+        case IEStatus::IE_AS_Aborted:            status.LoadString(IDS_PROCESS_ABORTED);         break;
+        default:                                 status.LoadString(IDS_ACTIVITY_UNKNOWNSTATE);
     }
 
     return status;
@@ -573,10 +573,10 @@ CString PSS_BaseActivity::GetActivityStatusString() const
 //---------------------------------------------------------------------------
 void PSS_BaseActivity::SetDefaultProperty()
 {
-    m_VisibilityType         = IE_VT_Visible;
+    m_VisibilityType         = IEVisibilityType::IE_VT_Visible;
     m_DurationDays           = 2;
-    m_IsVisible              = E_TS_True;
-    m_TimeType               = IE_TT_TimeDays;
+    m_IsVisible              = EThreeState::E_TS_True;
+    m_TimeType               = IETimeoutType::IE_TT_TimeDays;
     m_DaysForBackupResources = 2;
     m_RemindDays             = 1;
     m_UseBackupResources     = FALSE;
@@ -1128,7 +1128,7 @@ PSS_BaseActivity* PSS_BaseActivity::RecalculateProcessAllLinks(PSS_BaseActivity*
         PSS_BaseActivity* pReturnActivity = NULL;
         PSS_BaseActivity* pLastOfChild    = NULL;
 
-        if (GetRunMode() == IE_RM_Sequence || !IsActivitySelectionDone())
+        if (GetRunMode() == IERunMode::IE_RM_Sequence || !IsActivitySelectionDone())
         {
             // assigns the next pointer of the process to the first activity
             AssignNextActivity(GetActivityAt(0));

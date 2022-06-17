@@ -28,6 +28,7 @@
 #include "zModel\PSS_LogicalSystemEntity.h"
 #include "zModel\PSS_LogicalPrestationsEntity.h"
 #include "zModel\PSS_LogicalRulesEntity.h"
+#include "zModelBP\PSS_RiskPropertiesBP.h"
 #include "zWeb\PSS_HtmlFile.h"
 
 // resources
@@ -58,6 +59,33 @@ const CString g_TreeJSFile                  = _T("tree.js");
 const CString g_AJLibJSFile                 = _T("ajlib.js");
 const CString g_AJPopupJSFile               = _T("ajpopup.js");
 const CString g_AJPopupCSSFile              = _T("ajpopup.css");
+const CString g_WzJSGraphicsFile            = _T("wz_jsgraphics.js");
+const CString g_DTreeJSFile                 = _T("dtree.js");
+const CString g_DTreeCSSFile                = _T("dtree.css");
+const CString g_DBaseImageFile              = _T("d_base.gif");
+const CString g_DCdImageFile                = _T("d_cd.gif");
+const CString g_DEmptyImageFile             = _T("d_empty.gif");
+const CString g_DFolderImageFile            = _T("d_folder.gif");
+const CString g_DFolderopenImageFile        = _T("d_folderopen.gif");
+const CString g_DGlobeImageFile             = _T("d_globe.gif");
+const CString g_DImgfolderImageFile         = _T("d_imgfolder.gif");
+const CString g_DJoinImageFile              = _T("d_join.gif");
+const CString g_DJoinbottomImageFile        = _T("d_joinbottom.gif");
+const CString g_DLineImageFile              = _T("d_line.gif");
+const CString g_DMinusImageFile             = _T("d_minus.gif");
+const CString g_DMinusbottomImageFile       = _T("d_minusbottom.gif");
+const CString g_DMusicfolderImageFile       = _T("d_musicfolder.gif");
+const CString g_DNolines_minusImageFile     = _T("d_nolines_minus.gif");
+const CString g_DNolines_plusImageFile      = _T("d_nolines_plus.gif");
+const CString g_DPageImageFile              = _T("d_page.gif");
+const CString g_DPlusImageFile              = _T("d_plus.gif");
+const CString g_DPlusbottomImageFile        = _T("d_plusbottom.gif");
+const CString g_DQuestionImageFile          = _T("d_question.gif");
+const CString g_DTrashImageFile             = _T("d_trash.gif");
+const CString g_DUserdeptImageFile          = _T("userdept.bmp");
+const CString g_DIlLogicImageFile           = _T("il_logic.ico");
+const CString g_DIco00017ImageFile          = _T("ico00017.bmp");
+const CString g_DIco00018ImageFile          = _T("ico00018.bmp");
 const CString g_White                       = _T("White");
 const CString g_PSSRightTarget              = _T("_pssRightFrame");
 const CString g_PSSLeftTarget               = _T("_pssLeftFrame");
@@ -101,13 +129,13 @@ bool PSS_ModelGenerateImageFiles::OnStart()
     if (!PSS_Directory::Exist(m_ImageDirectory))
         return false;
 
-    // create the image directory
+    // create the include directory
     m_IncludeDirectory = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\includes");
     PSS_Directory::CreateDirectory(m_IncludeDirectory);
 
     if (!PSS_Directory::Exist(m_IncludeDirectory))
         return false;
-    
+
     // get the web directory
     const CString webDir = PSS_Global::GetApplicationDirectory() + _T("\\Web");
 
@@ -135,11 +163,38 @@ bool PSS_ModelGenerateImageFiles::OnStart()
         PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_UsersImageFile);
         PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_LogicalSystemImageFile);
         PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_LogicalPrestationsImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DBaseImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DCdImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DEmptyImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DFolderImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DFolderopenImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DGlobeImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DImgfolderImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DJoinImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DJoinbottomImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DLineImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DMinusImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DMinusbottomImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DMusicfolderImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DNolines_minusImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DNolines_plusImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DPageImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DPlusImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DPlusbottomImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DQuestionImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DTrashImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DUserdeptImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DIlLogicImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DIco00017ImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_DIco00018ImageFile);
         PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_TreeCSSFile);
         PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_TreeJSFile);
         PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJLibJSFile);
         PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJPopupJSFile);
         PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJPopupCSSFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_WzJSGraphicsFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_DTreeJSFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_DTreeCSSFile);
     }
 
     if (!GenerateIndexPage(m_pModel))
@@ -251,7 +306,7 @@ bool PSS_ModelGenerateImageFiles::GenerateModel(PSS_ProcessGraphModelMdl* pModel
     if (!pVp)
         return false;
 
-    // get the model image file name 
+    // get the model image file name
     const CString imageFileName = BuildModelImageFileName(pModel);
 
     // refresh Setup Copyfile Window
@@ -447,8 +502,23 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         htmlFile << str;
 
         // build the ajPopup javascript file name
-        CString ajPopupJSFileName = m_IncludeDirectory + _T("\\") + g_AJPopupJSFile;
+        const CString ajPopupJSFileName = m_IncludeDirectory + _T("\\") + g_AJPopupJSFile;
         str.Format(IDS_MODELGENHTML_52, (const char*)BuildFileNameAndPath(ajPopupJSFileName, htmlFileName));
+        htmlFile << str;
+
+        // build the graphics wizard javascript file name
+        const CString wzJSGraphicsFilename = m_IncludeDirectory + _T("\\") + g_WzJSGraphicsFile;
+        str.Format(IDS_MODELGENHTML_52, (const char*)BuildFileNameAndPath(wzJSGraphicsFilename, htmlFileName));
+        htmlFile << str;
+
+        // build the dTree javascript file name
+        const CString dTreeJSFilename = m_IncludeDirectory + _T("\\") + g_DTreeJSFile;
+        str.Format(IDS_MODELGENHTML_52, (const char*)BuildFileNameAndPath(dTreeJSFilename, htmlFileName));
+        htmlFile << str;
+
+        // build the dTree CSS file name
+        const CString dTreeCSSFilename = m_IncludeDirectory + _T("\\") + g_DTreeCSSFile;
+        str.Format(IDS_MODELGENHTML_52, (const char*)BuildFileNameAndPath(dTreeCSSFilename, htmlFileName));
         htmlFile << str;
 
         // write the JavaScript header
@@ -536,6 +606,10 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                                                              htmlFileName));
                 htmlFile << str;
 
+                // graphic rect highlight
+                str.LoadString(IDS_MODELGENHTML_94);
+                htmlFile << str;
+
                 str.Format(IDS_MODELGENHTML_89,
                            objectCounter,
                            objectCounter,
@@ -546,6 +620,10 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 ++objectCounter;
             }
         }
+
+        // draw the rect
+        str.LoadString(IDS_MODELGENHTML_95);
+        htmlFile << str;
 
         // write the JavaScript footer
         str.LoadString(IDS_MODELGENHTML_90);
@@ -629,7 +707,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
             PSS_Symbol*     pSymbol     =                  dynamic_cast<PSS_Symbol*>(pComp);
             PSS_LinkSymbol* pLinkSymbol = pSymbol ? NULL : dynamic_cast<PSS_LinkSymbol*>(pComp);
 
-            // for all symbols, create a popup 
+            // for all symbols, create a popup
             if (pSymbol || pLinkSymbol)
             {
                 PSS_BasicSymbol* pBasicSym = dynamic_cast<PSS_BasicSymbol*>(pComp);
@@ -769,7 +847,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                     PSS_ProcessGraphModelMdl* pSubModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(pSymbol->GetChildModel());
                     PSS_Assert(pSubModel);
 
-                    // retreive the html FileName for the reference
+                    // retrieve the html FileName for the reference
                     CString symbolChildModelHtmlFileName = BuildModelHTMLFileName(pSubModel);
                     dummy.Format(IDS_GOINSYMBOL_HTML, (const char*)pBasicSym->GetSymbolName());
 
@@ -790,7 +868,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                         if (pPage)
                             for (pPage = it.GetNext(); pPage; pPage = it.GetNext())
                             {
-                                // retreive the html file name for the reference
+                                // retrieve the html file name for the reference
                                 symbolChildModelHtmlFileName = BuildModelHTMLFileName(pPage->GetModel());
                                 dummy.Format(IDS_GOINSYMBOL_HTML, (const char*)pPage->GetPageName());
 
@@ -831,13 +909,21 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
         str.LoadString(IDS_MODELGENHTML_54);
         htmlFile << str;
 
+        // canvas to position the graphic overlay
+        str.LoadString(IDS_MODELGENHTML_96);
+        htmlFile << str;
+
+        // graphic variable
+        str.LoadString(IDS_MODELGENHTML_97);
+        htmlFile << str;
+
         // write the hotspot table header
         str.Format(IDS_MODELGENHTML_2,
                    (const char*)pModel->GetAbsolutePath(),
                    (const char*)BuildFileNameAndPath(imageFileName, htmlFileName));
         htmlFile << str;
 
-        // write all hot spots. Run throught the model elements and write the hotspot entities
+        // write all hot spots. Run through the model elements and write the hotspot entities
         CString symbolHtmlFileName;
         CRect   symbolCoordinates;
 
@@ -860,7 +946,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                 // if no sub-model, just the area for the popup
                 CODModel* pOwnerModel = dynamic_cast<PSS_BasicSymbol*>(pComp)->GetOwnerModel();
 
-                // and then, retreive the symbol position
+                // and then, retrieve the symbol position
                 if (pSymbol)
                     symbolCoordinates = pComp->GetBaseRgn().GetBounds();
                 else
@@ -871,6 +957,10 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
 
                 str.Format(IDS_MODELGENHTML_91,
                            objectCounter,
+                           symbolCoordinates.left,
+                           symbolCoordinates.top,
+                           symbolCoordinates.right,
+                           symbolCoordinates.bottom,
                            objectCounter,
                            (const char*)g_PSSLeftTarget,
                            symbolCoordinates.left,
@@ -1691,19 +1781,8 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupPage(PSS_ProcessGraphModelMdl
                    (const char*)BuildFileNameAndPath(jsHtmlFileName,  m_RootHtmlFileName));
         htmlFile << str;
 
-        str.LoadString(IDS_MODELGENHTML_26);
-        htmlFile << str;
-
-        // add the style to the menu
-        const CString plusHtmlFileName  = m_ImageDirectory + _T("\\") + g_PlusImageFile;
-        const CString minusHtmlFileName = m_ImageDirectory + _T("\\") + g_MinusImageFile;
-        const CString userHtmlFileName  = m_ImageDirectory + _T("\\") + g_UsersImageFile;
-
-        str.Format(IDS_MODELGENHTML_64,
-                   (const char*)BuildFileNameAndPath(userHtmlFileName,  m_RootHtmlFileName),
-                   (const char*)BuildFileNameAndPath(minusHtmlFileName, m_RootHtmlFileName),
-                   (const char*)BuildFileNameAndPath(plusHtmlFileName,  m_RootHtmlFileName),
-                   (const char*)g_PSSRightTarget);
+        // create the tree
+        str.LoadString(IDS_MODELGENHTML_98);
         htmlFile << str;
 
         if (!GenerateUnitObjects(pModel->GetMainUserGroup(), &htmlFile))
@@ -1712,18 +1791,12 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupPage(PSS_ProcessGraphModelMdl
             return false;
         }
 
+        // create the tree structure
+        str.LoadString(IDS_MODELGENHTML_99);
+        htmlFile << str;
+
         // body and end of html
         str.Format(IDS_MODELGENHTML_27, (const char*)g_White);
-        htmlFile << str;
-
-        str.LoadString(IDS_MODELGENHTML_53);
-        htmlFile << str;
-
-        // generate the tree control
-        str.LoadString(IDS_MODELGENHTML_67);
-        htmlFile << str;
-
-        str.LoadString(IDS_MODELGENHTML_54);
         htmlFile << str;
 
         str.LoadString(IDS_MODELGENHTML_65);
@@ -1766,8 +1839,8 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(PSS_ProcessGraphMode
             return false;
 
         // get the style and the javascript file names
-        const CString cssHtmlFileName = m_IncludeDirectory + _T("\\") + g_TreeCSSFile;
-        const CString jsHtmlFileName  = m_IncludeDirectory + _T("\\") + g_TreeJSFile;
+        const CString cssHtmlFileName = m_IncludeDirectory + _T("\\") + g_DTreeCSSFile;
+        const CString jsHtmlFileName  = m_IncludeDirectory + _T("\\") + g_DTreeJSFile;
 
         CString str;
 
@@ -1777,18 +1850,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(PSS_ProcessGraphMode
                    (const char*)BuildFileNameAndPath(jsHtmlFileName, m_RootHtmlFileName));
         htmlFile << str;
 
-        str.LoadString(IDS_MODELGENHTML_26);
-        htmlFile << str;
-
-        const CString plusHtmlFileName   = m_ImageDirectory + _T("\\") + g_PlusImageFile;
-        const CString minusHtmlFileName  = m_ImageDirectory + _T("\\") + g_MinusImageFile;
-        const CString systemHtmlFileName = m_ImageDirectory + _T("\\") + g_LogicalSystemImageFile;
-
-        str.Format(IDS_MODELGENHTML_64,
-                   (const char*)BuildFileNameAndPath(systemHtmlFileName, m_RootHtmlFileName),
-                   (const char*)BuildFileNameAndPath(minusHtmlFileName,  m_RootHtmlFileName),
-                   (const char*)BuildFileNameAndPath(plusHtmlFileName,   m_RootHtmlFileName),
-                   (const char*)g_PSSRightTarget);
+        str.LoadString(IDS_MODELGENHTML_100);
         htmlFile << str;
 
         if (!GenerateLogicalSystemObjects(pModel->GetMainLogicalSystem(), &htmlFile))
@@ -1797,18 +1859,12 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemPage(PSS_ProcessGraphMode
             return false;
         }
 
+        // create tree structure
+        str.LoadString(IDS_MODELGENHTML_99);
+        htmlFile << str;
+
         // body and end of html
         str.Format(IDS_MODELGENHTML_27, (const char*)g_White);
-        htmlFile << str;
-
-        str.LoadString(IDS_MODELGENHTML_53);
-        htmlFile << str;
-
-        // generate the tree control
-        str.LoadString(IDS_MODELGENHTML_67);
-        htmlFile << str;
-
-        str.LoadString(IDS_MODELGENHTML_54);
         htmlFile << str;
 
         str.LoadString(IDS_MODELGENHTML_65);
@@ -1850,9 +1906,9 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(PSS_ProcessGrap
         if (!htmlFile.OpenFileCreate())
             return false;
 
-        // retreive the style and the javascript FileNames
-        const CString cssHtmlFileName = m_IncludeDirectory + _T("\\") + g_TreeCSSFile;
-        const CString jsHtmlFileName  = m_IncludeDirectory + _T("\\") + g_TreeJSFile;
+        // retrieve the style and the javascript FileNames
+        const CString cssHtmlFileName = m_IncludeDirectory + _T("\\") + g_DTreeCSSFile;
+        const CString jsHtmlFileName  = m_IncludeDirectory + _T("\\") + g_DTreeJSFile;
 
         CString str;
 
@@ -1862,18 +1918,7 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(PSS_ProcessGrap
                    (const char*)BuildFileNameAndPath(jsHtmlFileName,  m_RootHtmlFileName));
         htmlFile << str;
 
-        str.LoadString(IDS_MODELGENHTML_26);
-        htmlFile << str;
-
-        const CString plusHtmlFileName        = m_ImageDirectory + _T("\\") + g_PlusImageFile;
-        const CString minusHtmlFileName       = m_ImageDirectory + _T("\\") + g_MinusImageFile;
-        const CString prestationsHtmlFileName = m_ImageDirectory + _T("\\") + g_LogicalPrestationsImageFile;
-
-        str.Format(IDS_MODELGENHTML_64,
-                   (const char*)BuildFileNameAndPath(prestationsHtmlFileName, m_RootHtmlFileName),
-                   (const char*)BuildFileNameAndPath(minusHtmlFileName,       m_RootHtmlFileName),
-                   (const char*)BuildFileNameAndPath(plusHtmlFileName,        m_RootHtmlFileName),
-                   (const char*)g_PSSRightTarget);
+        str.LoadString(IDS_MODELGENHTML_101);
         htmlFile << str;
 
         if (!GenerateLogicalPrestationsObjects(pModel->GetMainLogicalPrestations(), &htmlFile))
@@ -1882,18 +1927,12 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsPage(PSS_ProcessGrap
             return false;
         }
 
+        // create tree structure
+        str.LoadString(IDS_MODELGENHTML_99);
+        htmlFile << str;
+
         // body and end of html
         str.Format(IDS_MODELGENHTML_27, (const char*)g_White);
-        htmlFile << str;
-
-        str.LoadString(IDS_MODELGENHTML_53);
-        htmlFile << str;
-
-        // generate the tree control
-        str.LoadString(IDS_MODELGENHTML_67);
-        htmlFile << str;
-
-        str.LoadString(IDS_MODELGENHTML_54);
         htmlFile << str;
 
         str.LoadString(IDS_MODELGENHTML_65);
@@ -1919,6 +1958,9 @@ bool PSS_ModelGenerateImageFiles::GenerateUnitGroupObjects(PSS_UserGroupEntity* 
                                                            PSS_HtmlFile*        pHtmlFile,
                                                            std::size_t          parentID)
 {
+    if (!parentID)
+        parentID = -1;
+
     ++m_IndexItem;
 
     const std::size_t currentItem = m_IndexItem;
@@ -2116,6 +2158,9 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalSystemObjects(PSS_LogicalSystem
     if (!pSystemEntity || !pHtmlFile)
         return false;
 
+    if (!parentID)
+        parentID = -1;
+
     ++m_IndexItem;
 
     const std::size_t currentItem = m_IndexItem;
@@ -2279,6 +2324,9 @@ bool PSS_ModelGenerateImageFiles::GenerateLogicalPrestationsObjects(PSS_LogicalP
     if (!pPrestationsEntity || !pHtmlFile)
         return false;
 
+    if (!parentID)
+        parentID = -1;
+
     ++m_IndexItem;
 
     const std::size_t currentItem = m_IndexItem;
@@ -2431,7 +2479,7 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pProperti
     if (!pPropertiesObject)
         return false;
 
-    // refresh Setup Copyfile Window
+    // refresh Setup Copy File Window
     m_FileGenerateWindow.SetDestination(htmlFileName);
     m_FileGenerateWindow.UpdateWindow();
 
@@ -2469,10 +2517,39 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pProperti
 
         PSS_Properties::IPropertyIterator it(&propSet);
         CString                           previousCategory;
+        CUIntArray                        excludedRiskArray;
 
         // iterate through the property set
         for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
+            // is inside the risk category range?
+            if ((pProp->GetCategoryID() >= ZS_BP_PROP_RISK) && (pProp->GetCategoryID() <= ZS_BP_PROP_RISK + 40))
+                // found the risk severity property?
+                if (pProp->GetItemID() == M_Risk_Severity_ID)
+                {
+                    const double severityValue = pProp->GetValueDouble();
+
+                    // check the value, cannot be published if empty
+                    if (severityValue == 0.0)
+                        excludedRiskArray.Add(pProp->GetCategoryID());
+                }
+
+        // iterate through the property set again
+        for (PSS_Property* pProp = it.GetFirst(); pProp; pProp = it.GetNext())
         {
+            bool doSkip = false;
+
+            // is excluded?
+            if (!excludedRiskArray.IsEmpty())
+                for (int i = 0; i < excludedRiskArray.GetSize(); ++i)
+                    if (excludedRiskArray.GetAt(i) == pProp->GetCategoryID())
+                    {
+                        doSkip = true;
+                        break;
+                    }
+
+            if (doSkip)
+                continue;
+
             if (!pProp->GetEnabled())
                 continue;
 
@@ -2480,6 +2557,11 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pProperti
             if (m_pPropAttributes)
                 // check if defined
                 if (!m_pPropAttributes->FindAttribute(pProp->GetCategoryID(), pProp->GetItemID()))
+                    continue;
+
+            // don't publish if risk severity is empty
+            if (pProp->GetCategoryID() == ZS_BP_PROP_RISK)
+                if (pProp->GetItemID() == M_Risk_Severity_ID)
                     continue;
 
             // flag for closing properly the html
@@ -2514,13 +2596,13 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(PSS_Properties* pProperti
             // get the formatted value
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_Double:   value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
-                case PSS_Property::IE_VT_Float:    value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
-                case PSS_Property::IE_VT_Date:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
-                case PSS_Property::IE_VT_TimeSpan: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
-                case PSS_Property::IE_VT_Duration: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
-                case PSS_Property::IE_VT_String:   value = pProp->GetValueString();                                                                                     break;
-                default:                                                                                                                                                break;
+                case PSS_Property::IEValueType::IE_VT_Double:   value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
+                case PSS_Property::IEValueType::IE_VT_Float:    value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
+                case PSS_Property::IEValueType::IE_VT_Date:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
+                case PSS_Property::IEValueType::IE_VT_TimeSpan: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
+                case PSS_Property::IEValueType::IE_VT_Duration: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
+                case PSS_Property::IEValueType::IE_VT_String:   value = pProp->GetValueString();                                                                                     break;
+                default:                                                                                                                                                             break;
             }
 
             // remove empty spaces from properties
@@ -2648,7 +2730,7 @@ CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalPrestations(PSS_Pre
         entityString += pPrestationsEntity->GetEntityName();
         entityString += _T("_");
 
-        // retreive the parent
+        // retrieve the parent
         pPrestationsEntity = pPrestationsEntity->GetParent();
     }
     while (pPrestationsEntity);

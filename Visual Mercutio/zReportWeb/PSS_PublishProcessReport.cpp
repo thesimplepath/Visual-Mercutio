@@ -1557,12 +1557,12 @@ void PSS_PublishProcessReport::GenerateSection(PSS_Properties::IPropertySet& pro
         // get the formatted value
         switch (pProp->GetValueType())
         {
-            case PSS_Property::IE_VT_Double:   value = PSS_StringFormatter::GetFormattedBuffer(               pProp->GetValueDouble(),   pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Float:    value = PSS_StringFormatter::GetFormattedBuffer(               pProp->GetValueFloat(),    pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Date:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)    pProp->GetValueDate(),     pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_TimeSpan: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_Duration: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
-            case PSS_Property::IE_VT_String:   value = pProp->GetValueString();                                                                                     break;
+            case PSS_Property::IEValueType::IE_VT_Double:   value = PSS_StringFormatter::GetFormattedBuffer(               pProp->GetValueDouble(),   pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Float:    value = PSS_StringFormatter::GetFormattedBuffer(               pProp->GetValueFloat(),    pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Date:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)    pProp->GetValueDate(),     pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_TimeSpan: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_Duration: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
+            case PSS_Property::IEValueType::IE_VT_String:   value = pProp->GetValueString();                                                                                     break;
             default:                                                                                                                                                break;
         }
 
@@ -1574,8 +1574,6 @@ void PSS_PublishProcessReport::GenerateSection(PSS_Properties::IPropertySet& pro
             // generate a new risk section
             if (pProp->GetCategoryID() != riskID)
             {
-                riskContainer.RemoveAll();
-
                 riskID = pProp->GetCategoryID();
                 riskContainer.Add(pProp->GetCategory());
             }
@@ -1610,7 +1608,9 @@ void PSS_PublishProcessReport::GenerateSection(PSS_Properties::IPropertySet& pro
                 GenerateHTMLSectionTitle(riskContainer.GetAt(0));
 
                 for (int i = 1; i < riskContainer.GetCount(); i += 2)
-                    GenerateHTMLSectionLine(_T(""), riskContainer.GetAt(i), riskContainer.GetAt(i + 1));
+                    // out of bounds? NOTE may happen if table is wrongly odd because the description is missing
+                    if (i <= riskContainer.GetCount() - 2)
+                        GenerateHTMLSectionLine(_T(""), riskContainer.GetAt(i), riskContainer.GetAt(i + 1));
             }
 
         // reset all values for the next publication

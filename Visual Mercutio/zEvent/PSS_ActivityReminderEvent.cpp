@@ -77,7 +77,7 @@ const PSS_ActivityReminderEvent& PSS_ActivityReminderEvent::operator = (const PS
 CString PSS_ActivityReminderEvent::GetRemainingDaysString() const
 {
     char buffer[10];
-    ::sprintf_s(buffer, ::_tcslen(buffer), "%d", m_RemainingDays);
+    ::sprintf_s(buffer, 10, "%d", m_RemainingDays);
     return buffer;
 }
 //---------------------------------------------------------------------------

@@ -683,7 +683,7 @@ void PSS_DocumentData::ChangeCalculatedFieldInAssociation(PSS_FormulaAssociation
                 pValue->SetCalculatedField();
 
                 // set association icon.
-                pValue->SetIconDisplayType(PSS_PLFNLong::IE_DT_AssociationIcon);
+                pValue->SetIconDisplayType(PSS_PLFNLong::IEIconDisplayType::IE_DT_AssociationIcon);
             }
         }
     }
@@ -786,7 +786,7 @@ BOOL PSS_DocumentData::ChangeObjectType(PSS_PlanFinObject* pObj,
                     (PSS_PlanFinObject&)*pNewObjTemp = (PSS_PlanFinObject*)pObjTemp;
 
                     // Initialize certain parameters
-                    pNewObjTemp->SetFormatType(E_FT_Standard);
+                    pNewObjTemp->SetFormatType(EFormatType::E_FT_Standard);
 
                     // if this object was stored in the formula object list, change it
                     CheckFormulaObject(pObjTemp, pNewObjTemp);
@@ -813,7 +813,7 @@ BOOL PSS_DocumentData::ChangeObjectType(PSS_PlanFinObject* pObj,
     (PSS_PlanFinObject&)*pNewObj = (PSS_PlanFinObject*)pObj;
 
     // initialize some parameters
-    pNewObj->SetFormatType(E_FT_Standard);
+    pNewObj->SetFormatType(EFormatType::E_FT_Standard);
 
     // if this object was stored in the formula object list, change it
     CheckFormulaObject(pObj, pNewObj);
@@ -1411,7 +1411,7 @@ BOOL PSS_DocumentData::CreateBufferFromFile(const CString& fileName)
     if (!m_pFileBuffer)
         return FALSE;
 
-    m_Stamp.SetDocumentDataType(PSS_Stamp::IE_DT_Binary);
+    m_Stamp.SetDocumentDataType(PSS_Stamp::IEDocumentDataType::IE_DT_Binary);
     m_Stamp.SetTemplate(fileName);
 
     return m_pFileBuffer->CreateBufferFromFile(fileName);
@@ -1663,7 +1663,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
 
     SetCurrentSchema(schemaName);
 
-    if (m_Stamp.GetInternalVersion() >= 14 && m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary)
+    if (m_Stamp.GetInternalVersion() >= 14 && m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_Binary)
         ar >> m_pFileBuffer;
     else
     {
@@ -1676,7 +1676,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
             m_StyleManager.Serialize(ar);
         }
 
-        if (m_Stamp.GetDocumentDataType() != PSS_Stamp::IE_DT_Binary)
+        if (m_Stamp.GetDocumentDataType() != PSS_Stamp::IEDocumentDataType::IE_DT_Binary)
         {
             TRY
             {
@@ -1767,7 +1767,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
 void PSS_DocumentData::SerializeStampWrite(CArchive& ar, PSS_Stamp& stamp)
 {
     // set the document type
-    stamp.SetDocumentFileType(PSS_Stamp::IE_FT_FormDocument);
+    stamp.SetDocumentFileType(PSS_Stamp::IEDocumentFileType::IE_FT_FormDocument);
     stamp.SetInternalVersion(g_VersionFile);
 
     const WORD archiveStamp = 0xFFFF;
@@ -1785,7 +1785,7 @@ void PSS_DocumentData::SerializeWrite(CArchive& ar)
     // save the current schema
     ar << GetCurrentSchema();
 
-    if (m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary)
+    if (m_Stamp.GetDocumentDataType() == PSS_Stamp::IEDocumentDataType::IE_DT_Binary)
         // the file buffer pointer
         ar << m_pFileBuffer;
     else

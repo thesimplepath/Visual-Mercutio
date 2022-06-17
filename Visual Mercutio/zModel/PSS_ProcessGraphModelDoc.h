@@ -922,7 +922,7 @@ PSS_PageUnits& PSS_ProcessGraphModelDoc::GetPageUnits()
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::IsUnit()
 {
-    return (GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_LibraryType);
+    return (GetDocumentStamp().GetFileType() == PSS_Stamp::IEFileTypeDefinition::IE_FD_LibraryType);
 }
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelDoc::HasUnit() const
@@ -935,7 +935,7 @@ EModelNotation PSS_ProcessGraphModelDoc::GetNotation() const
     const PSS_ProcessGraphModelMdl* pModel = GetModel();
 
     if (!pModel)
-        return E_MN_Unknown;
+        return EModelNotation::E_MN_Unknown;
 
     return pModel->GetNotation();
 }
@@ -1129,7 +1129,7 @@ const ELanguage PSS_ProcessGraphModelDoc::GetLanguage() const
     PSS_ProcessGraphModelMdl* pModel = const_cast<PSS_ProcessGraphModelMdl*>(GetModel());
 
     if (!pModel)
-        return E_LN_Unknown;
+        return ELanguage::E_LN_Unknown;
 
     return pModel->GetLanguage();
 }

@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PSS_WatchDirectory : public CObject
         /**
         * Watching status
         */
-        enum IEWatchingStatus
+        enum class IEWatchingStatus
         {
             IE_WS_Stopped,
             IE_WS_Started,
@@ -51,9 +51,9 @@ class AFX_EXT_CLASS PSS_WatchDirectory : public CObject
 
         /**
         * Watching mode
-        *@note These values may be combinated
+        *@note These values may be combined
         */
-        enum IEWatchingMode
+        enum class IEWatchingMode
         {
             IE_WM_FileNameChange      = 0x0001,
             IE_WM_DirectoryNameChange = 0x0002,
@@ -72,7 +72,9 @@ class AFX_EXT_CLASS PSS_WatchDirectory : public CObject
         *@param subTree - if TRUE, the sub-trees will also be watched
         */
         PSS_WatchDirectory(const CString& directory,
-                           UINT           mode    = IE_WM_FileNameChange | IE_WM_LastWritesChange | IE_WM_SizesChange,
+                           UINT           mode    = (UINT)IEWatchingMode::IE_WM_FileNameChange   |
+                                                    (UINT)IEWatchingMode::IE_WM_LastWritesChange |
+                                                    (UINT)IEWatchingMode::IE_WM_SizesChange,
                            BOOL           subTree = FALSE);
 
         virtual ~PSS_WatchDirectory();
@@ -84,7 +86,9 @@ class AFX_EXT_CLASS PSS_WatchDirectory : public CObject
         *@param subTree - if TRUE, the sub-trees will also be watched
         */
         virtual BOOL Create(const CString& directory,
-                            UINT           mode    = IE_WM_FileNameChange | IE_WM_LastWritesChange | IE_WM_SizesChange,
+                            UINT           mode    = (UINT)IEWatchingMode::IE_WM_FileNameChange   |
+                                                     (UINT)IEWatchingMode::IE_WM_LastWritesChange |
+                                                     (UINT)IEWatchingMode::IE_WM_SizesChange,
                             BOOL           subTree = FALSE);
 
         /**
@@ -93,7 +97,7 @@ class AFX_EXT_CLASS PSS_WatchDirectory : public CObject
         virtual void NotifyClient();
 
         /**
-        * Called every time a file has been added 
+        * Called every time a file has been added
         */
         virtual void NotifyClientOnAdd();
 

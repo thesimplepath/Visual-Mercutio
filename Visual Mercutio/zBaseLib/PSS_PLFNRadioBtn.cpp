@@ -75,7 +75,7 @@ void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, PSS_View* pView)
 
         switch (GetCheckType())
         {
-            case E_CB_Rounded:
+            case ECheckButtonType::E_CB_Rounded:
             {
                 pDC->Ellipse(rectControl.left, rectControl.top, rectControl.left + GetSize(), rectControl.top + GetSize());
 
@@ -96,7 +96,7 @@ void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, PSS_View* pView)
                 break;
             }
 
-            case E_CB_Squared:
+            case ECheckButtonType::E_CB_Squared:
             {
                 // draw the square
                 pDC->MoveTo(rectControl.left,             rectControl.top);

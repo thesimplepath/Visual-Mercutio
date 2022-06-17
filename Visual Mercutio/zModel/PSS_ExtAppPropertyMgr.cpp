@@ -109,7 +109,7 @@ bool PSS_ExtAppPropertyMgr::AcceptDropItem(CObject* pObj, const CPoint& point)
         // check the file type
         return (ext == _T(".exe") || ext == _T(".com") || ext == _T(".bat"));
     }
- 
+
     return false;
 }
 //---------------------------------------------------------------------------
@@ -256,9 +256,9 @@ bool PSS_ExtAppPropertyMgr::FillProperties(PSS_Properties::IPropertySet& propSet
                                   groupValue ? M_Command_Title_ID : (M_Command_Title_ID + (i * 40)),
                                   propDesc,
                                   commandTitle,
-                                  PSS_Property::IE_T_EditMenu,
+                                  PSS_Property::IEType::IE_T_EditMenu,
                                   systemIsEnabled,
-                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                  PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                   NULL,
                                   &g_ExtAppsMenu));
 
@@ -328,7 +328,7 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet
                                        groupValue ? M_Command_Line_ID : (M_Command_Line_ID + (i * 40)),
                                        propDesc,
                                        commandLine,
-                                       PSS_Property::IE_T_EditExtended,
+                                       PSS_Property::IEType::IE_T_EditExtended,
                                        systemIsEnabled));
 
         propSet.Add(pExtApp.get());
@@ -343,7 +343,7 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet
                                        groupValue ? M_Command_Param_ID : (M_Command_Param_ID + (i * 40)),
                                        propDesc,
                                        GetCommandParameters(i),
-                                       PSS_Property::IE_T_EditExtended,
+                                       PSS_Property::IEType::IE_T_EditExtended,
                                        systemIsEnabled));
 
         propSet.Add(pExtApp.get());
@@ -358,7 +358,7 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet
                                        groupValue ? M_Command_StartupDir_ID : (M_Command_StartupDir_ID + (i * 40)),
                                        propDesc,
                                        GetCommandStartupDirectory(i),
-                                       PSS_Property::IE_T_EditDirectory,
+                                       PSS_Property::IEType::IE_T_EditDirectory,
                                        systemIsEnabled));
 
         propSet.Add(pExtApp.get());
@@ -374,7 +374,7 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet
                                            groupValue ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
                                            propDesc,
                                            double(GetPriorityLevel(i)),
-                                           PSS_Property::IE_T_EditNumber,
+                                           PSS_Property::IEType::IE_T_EditNumber,
                                            systemIsEnabled));
         else
             pExtApp.reset(new PSS_Property(finalPropTitle,
@@ -383,9 +383,9 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet
                                            groupValue ? M_Priority_Level_ID : (M_Priority_Level_ID + (i * 40)),
                                            propDesc,
                                            PSS_Global::GetJobPriorityString(GetPriorityLevel(i)),
-                                           PSS_Property::IE_T_ComboStringReadOnly,
+                                           PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                            systemIsEnabled,
-                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                           PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                            PSS_Global::GetArrayJobPriority()));
 
         propSet.Add(pExtApp.get());
@@ -401,7 +401,7 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet
                                            groupValue ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
                                            propDesc,
                                            double(GetWindowStartMode(i)),
-                                           PSS_Property::IE_T_EditNumber,
+                                           PSS_Property::IEType::IE_T_EditNumber,
                                            systemIsEnabled));
         else
             pExtApp.reset(new PSS_Property(finalPropTitle,
@@ -410,9 +410,9 @@ bool PSS_ExtAppPropertyMgr::FillPropertiesMessenger(PSS_Properties::IPropertySet
                                            groupValue ? M_Window_StartMode_ID : (M_Window_StartMode_ID + (i * 40)),
                                            propDesc,
                                            PSS_Global::GetWindowModeString(GetWindowStartMode(i)),
-                                           PSS_Property::IE_T_ComboStringReadOnly,
+                                           PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                            systemIsEnabled,
-                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                           PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                            PSS_Global::GetArrayWindowMode()));
 
         propSet.Add(pExtApp.get());

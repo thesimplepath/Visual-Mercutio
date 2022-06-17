@@ -39,8 +39,8 @@ PSS_TipOfDayDlg::PSS_TipOfDayDlg(UINT resID, CWnd* pParent) :
     m_pBrowser(NULL)
 {
     CString strTemp;
-    strTemp.Format("%d", resID);
-    
+    strTemp.Format(_T("%d"), resID);
+
     m_strURL = PSS_WebBrowser::BuildResourceToURL(strTemp);
 }
 //---------------------------------------------------------------------------

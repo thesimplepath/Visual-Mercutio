@@ -494,6 +494,18 @@ void PSS_UserGroupView::OnRefresh()
         m_Ctrl.Refresh();
 }
 //---------------------------------------------------------------------------
+void PSS_UserGroupView::OnExpandBranch()
+{
+    if (::IsWindow(m_Ctrl.GetSafeHwnd()))
+        m_Ctrl.OnExpandBranch();
+}
+//---------------------------------------------------------------------------
+void PSS_UserGroupView::OnCollapseBranch()
+{
+    if (::IsWindow(m_Ctrl.GetSafeHwnd()))
+        m_Ctrl.OnCollapseBranch();
+}
+//---------------------------------------------------------------------------
 void PSS_UserGroupView::OnAddGroup()
 {
     // add a new group

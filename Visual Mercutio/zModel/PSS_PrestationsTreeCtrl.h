@@ -176,6 +176,16 @@ class AFX_EXT_CLASS PSS_PrestationsTreeCtrl : public PSS_TreeCtrl,
         virtual bool CanPrestationProperties();
 
         /**
+        * Called when the branch should be expanded
+        */
+        virtual void OnExpandBranch();
+
+        /**
+        * Called when the branch should be collapsed
+        */
+        virtual void OnCollapseBranch();
+
+        /**
         * Called when the controller receives a message
         *@param pSubject - the subject which sent the message
         *@param pMsg - the received message
@@ -208,7 +218,7 @@ class AFX_EXT_CLASS PSS_PrestationsTreeCtrl : public PSS_TreeCtrl,
                 /**
                 * Data type
                 */
-                enum IEDataType
+                enum class IEDataType
                 {
                     IE_DT_Prestation,
                     IE_DT_String,
@@ -247,8 +257,6 @@ class AFX_EXT_CLASS PSS_PrestationsTreeCtrl : public PSS_TreeCtrl,
         afx_msg void OnLButtonDblClk(UINT nFlags, CPoint pt);
         afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
         afx_msg void OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult);
-        afx_msg void OnCollapseBranch();
-        afx_msg void OnExpandBranch();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 

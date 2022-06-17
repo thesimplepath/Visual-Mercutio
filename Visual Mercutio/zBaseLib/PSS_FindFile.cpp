@@ -126,7 +126,7 @@ int PSS_FindFile::GetMainSubDir(CStringArray& dirArray)
     dirArray.RemoveAll();
 
     struct ::_finddata_t fileInfo;
-    long                 hFile;
+           std::intptr_t hFile;
 
     // search for a subdir. If found, change to it and call SearchDir() recursively
     if ((hFile = ::_findfirst("*.*", &fileInfo)) != -1L)
@@ -199,7 +199,7 @@ int PSS_FindFile::FindFileInDrive(const CString& fileName, int drive)
 void PSS_FindFile::FindFileInCurrentDir()
 {
     struct ::_finddata_t fileInfo;
-    long                 hFile;
+           std::intptr_t hFile;
 
     // find the first file in the current directory
     if ((hFile = ::_findfirst(m_FileNameToSearch, &fileInfo)) != -1L)
@@ -220,9 +220,9 @@ void PSS_FindFile::FindFileInCurrentDir()
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_FindFile::FirstSubDir(struct _finddata_t* pFileInfo)
+BOOL PSS_FindFile::FirstSubDir(struct ::_finddata_t* pFileInfo)
 {
-    long hFile;
+    std::intptr_t hFile;
 
     // search for a subdir. If found, change to it and call SearchDir() recursively
     if ((hFile = ::_findfirst("*.*", pFileInfo)) != -1L)
@@ -242,7 +242,7 @@ BOOL PSS_FindFile::FirstSubDir(struct _finddata_t* pFileInfo)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_FindFile::NextSubDir(long hFile, struct ::_finddata_t* pFileInfo)
+BOOL PSS_FindFile::NextSubDir(std::intptr_t hFile, struct ::_finddata_t* pFileInfo)
 {
     if (!::_findnext(hFile, pFileInfo))
         do
@@ -264,18 +264,18 @@ BOOL PSS_FindFile::NextSubDir(long hFile, struct ::_finddata_t* pFileInfo)
 BOOL PSS_FindFile::FindFileInSubDir()
 {
     struct ::_finddata_t fileInfo;
-    long                 hFile;
+           std::intptr_t hFile;
 
     // search for a subdir. If found, change to it and call SearchDir() recursively
-    if ((hFile = _findfirst("*.*", &fileInfo)) != -1L)
+    if ((hFile = ::_findfirst("*.*", &fileInfo)) != -1L)
     {
         if ((fileInfo.attrib & 0x10) != 0x00)
             if (std::strcmp(fileInfo.name, ".") && std::strcmp(fileInfo.name, ".."))
                 TRY
                 {
-                    chdir(fileInfo.name);
+                    ::chdir(fileInfo.name);
                     FindFileInCurrentDir();
-                    chdir("..");
+                    ::chdir("..");
                 }
                 CATCH (CMemoryException, e)
                 {
@@ -289,9 +289,9 @@ BOOL PSS_FindFile::FindFileInSubDir()
                 if (std::strcmp(fileInfo.name, ".") && std::strcmp(fileInfo.name, ".."))
                     TRY
                     {
-                        chdir(fileInfo.name);
+                        ::chdir(fileInfo.name);
                         FindFileInCurrentDir();
-                        chdir("..");
+                        ::chdir("..");
                     }
                     CATCH (CMemoryException, e)
                     {

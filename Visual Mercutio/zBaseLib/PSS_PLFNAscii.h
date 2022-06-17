@@ -46,7 +46,7 @@ class AFX_EXT_CLASS PSS_PLFNAscii : public PSS_PlanFinObject
         /**
         * Strike styles
         */
-        enum IEStrikeStyles
+        enum class IEStrikeStyles
         {
             IE_SS_NormalStrike,
             IE_SS_UpDownStrike,

@@ -82,6 +82,16 @@ class PSS_RulesView : public CWnd,
         virtual void OnRefresh();
 
         /**
+        * Called when a branch should be expanded
+        */
+        virtual void OnExpandBranch();
+
+        /**
+        * Called when a branch should be collapsed
+        */
+        virtual void OnCollapseBranch();
+
+        /**
         * Called when a rule is added to the view
         */
         virtual void OnAddRule();

@@ -89,7 +89,7 @@ PSS_PreConditionFormProcDialog::PSS_PreConditionFormProcDialog(const CString& ac
     filter += (char)'\0';
 
     // defines the edit as search for file
-    m_FileName.SetSearchType(PSS_SearchEditButton::IE_T_File, title, _T(""), filter, 2);
+    m_FileName.SetSearchType(PSS_SearchEditButton::IEType::IE_T_File, title, _T(""), filter, 2);
 }
 //---------------------------------------------------------------------------
 void PSS_PreConditionFormProcDialog::DoDataExchange(CDataExchange* pDX)

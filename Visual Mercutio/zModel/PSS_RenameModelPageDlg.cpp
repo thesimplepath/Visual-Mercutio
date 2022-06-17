@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_RenameModelPageDlg, PSS_Dialog)
+BEGIN_MESSAGE_MAP(PSS_RenameModelPageDlg, PSS_FilteredDialog)
     //{{AFX_MSG_MAP(PSS_RenameModelPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     //}}AFX_MSG_MAP
@@ -36,7 +36,7 @@ PSS_RenameModelPageDlg::PSS_RenameModelPageDlg(PSS_ProcessGraphModelMdl* pModel,
                                                PSS_ProcessGraphPage*     pPageToRename,
                                                PSS_RuntimeClassSet*      pSet,
                                                CWnd*                     pParent) :
-    PSS_Dialog(PSS_RenameModelPageDlg::IDD, TRUE, pParent),
+    PSS_FilteredDialog(PSS_RenameModelPageDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
     m_pSelectedPage(NULL),
     m_pPageToRename(pPageToRename),

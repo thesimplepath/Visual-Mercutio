@@ -133,7 +133,7 @@ PSS_FileFormView::PSS_FileFormView() :
     CFormView(PSS_FileFormView::IDD)
 {
     // defines the edit as search for file
-    m_FileName.SetSearchType(PSS_SearchEditButton::IE_T_File, "");
+    m_FileName.SetSearchType(PSS_SearchEditButton::IEType::IE_T_File, "");
 }
 //---------------------------------------------------------------------------
 PSS_FileFormView::~PSS_FileFormView()

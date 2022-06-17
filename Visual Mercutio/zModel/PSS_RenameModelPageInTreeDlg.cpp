@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_RenameModelPageInTreeDlg, PSS_Dialog)
+BEGIN_MESSAGE_MAP(PSS_RenameModelPageInTreeDlg, PSS_FilteredDialog)
     //{{AFX_MSG_MAP(PSS_RenameModelPageInTreeDlg)
     //}}AFX_MSG_MAP
     ON_EN_CHANGE(IDC_PAGENAME, OnChangePageName)
@@ -31,7 +31,7 @@ END_MESSAGE_MAP()
 PSS_RenameModelPageInTreeDlg::PSS_RenameModelPageInTreeDlg(const CString& proposedName,
                                                            CStringArray*  pPageNameArray,
                                                            CWnd*          pParent) :
-    PSS_Dialog(PSS_RenameModelPageInTreeDlg::IDD, TRUE, pParent),
+    PSS_FilteredDialog(PSS_RenameModelPageInTreeDlg::IDD, TRUE, pParent),
     m_pPageNameArray(pPageNameArray),
     m_PageName(proposedName)
 {}
@@ -46,7 +46,8 @@ void PSS_RenameModelPageInTreeDlg::DoDataExchange(CDataExchange* pDX)
     //{{AFX_DATA_MAP(PSS_RenameModelPageInTreeDlg)
     //}}AFX_DATA_MAP
 }
-BOOL PSS_RenameModelPageInTreeDlg::OnInitDialog()
+//---------------------------------------------------------------------------
+afx_msg BOOL PSS_RenameModelPageInTreeDlg::OnInitDialog()
 {
     PSS_Dialog::OnInitDialog();
 
@@ -57,13 +58,13 @@ BOOL PSS_RenameModelPageInTreeDlg::OnInitDialog()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_RenameModelPageInTreeDlg::OnChangePageName()
+afx_msg void PSS_RenameModelPageInTreeDlg::OnChangePageName()
 {
     if (GetDlgItem(IDC_PAGENAME))
         GetDlgItem(IDC_PAGENAME)->GetWindowText(m_PageName);
 }
 //---------------------------------------------------------------------------
-void PSS_RenameModelPageInTreeDlg::OnOK()
+afx_msg void PSS_RenameModelPageInTreeDlg::OnOK()
 {
     // the page name cannot be empty
     if (m_PageName.IsEmpty())

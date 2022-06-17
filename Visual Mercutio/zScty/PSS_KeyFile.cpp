@@ -24,8 +24,8 @@ CString PSS_KeyEntity::GenerateRandomEntity()
 {
     char buffer[60];
     ::sprintf_s(buffer,
-                ::_tcslen(buffer),
-                "%04d-%04d-%04d-%04d-%04d",
+                60,
+                _T("%04d-%04d-%04d-%04d-%04d"),
                 std::rand(),
                 std::rand(),
                 std::rand(),
@@ -41,7 +41,7 @@ bool PSS_KeyEntity::IsEqual(const PSS_KeyEntity& entity) const
     return false;
 }
 //---------------------------------------------------------------------------
-void PSS_KeyEntity::CryptEntity()
+void PSS_KeyEntity::EncryptEntity()
 {
     char* pKey = m_Entity.GetBuffer(60);
 
@@ -58,13 +58,13 @@ PSS_KeyFile::PSS_KeyFile() :
 {}
 //---------------------------------------------------------------------------
 PSS_KeyFile::PSS_KeyFile(const CString& fileName) :
-    m_FileName(fileName), 
+    m_FileName(fileName),
     m_Count(0)
 {}
 //---------------------------------------------------------------------------
 PSS_KeyFile::PSS_KeyFile(const CString& fileName, const CString& clearFileName, int count) :
-    m_FileName(fileName), 
-    m_ClearFileName(clearFileName), 
+    m_FileName(fileName),
+    m_ClearFileName(clearFileName),
     m_Count(count)
 {}
 //---------------------------------------------------------------------------
@@ -81,7 +81,7 @@ BOOL PSS_KeyFile::GenerateFile()
         return FALSE;
 
     for(int i = 0; i < m_Count; ++i)
-        m_KeyEntityTable[i].CryptEntity();
+        m_KeyEntityTable[i].EncryptEntity();
 
     return WriteEntityTable(GetFileName());
 }
@@ -93,7 +93,7 @@ BOOL PSS_KeyFile::IsKeyValid(const CString& key)
 
     for (int i = 0; i < m_Count; ++i)
     {
-        m_KeyEntityTable[i].CryptEntity();
+        m_KeyEntityTable[i].EncryptEntity();
 
         if (m_KeyEntityTable[i].GetEntity() == key)
             return TRUE;
@@ -112,7 +112,7 @@ BOOL PSS_KeyFile::WriteEntityTable(const CString& fileName)
     TRY
     {
         for (int i = 0; i < m_Count; ++i)
-            m_SecurityFile.WriteString(m_KeyEntityTable[i].GetEntity() + "\n");
+            m_SecurityFile.WriteString(m_KeyEntityTable[i].GetEntity() + _T("\n"));
     }
     CATCH (CFileException, e)
     {
@@ -175,7 +175,7 @@ BOOL PSS_KeyFile::LoadSecurityTable(const CString& fileName)
         error = TRUE;
     }
     END_CATCH
-    
+
     return !error;
 }
 //---------------------------------------------------------------------------

@@ -39,7 +39,7 @@ PSS_ReadView::PSS_ReadView() :
     PSS_View(),
     m_SavePageForPrinting(0)
 {
-    m_ViewType = IE_VT_FormRead;
+    m_ViewType = IEType::IE_VT_FormRead;
 }
 //---------------------------------------------------------------------------
 PSS_ReadView::PSS_ReadView(const PSS_ReadView& other)

@@ -253,20 +253,20 @@ class AFX_EXT_CLASS PSS_Network
 //---------------------------------------------------------------------------
 WORD PSS_Network::GetNetworkErrorNo() const
 {
-    INT error;
+    INT error = -1;
 
     #ifndef _WIN32
-        // Calling WNetGetError at this point I am assuming that
-        // a network error has indeed occured.
+        // calling WNetGetError at this point I am assuming that
+        // a network error has indeed occurred
         WNetGetError(&error);
     #else
         DWORD errorCode;
         char  errorBuf[200];
         char  nameBuf[200];
-        ::WNetGetLastError(&errorCode, errorBuf, sizeof(errorBuf), nameBuf, sizeof(nameBuf));
 
-        // backward compatibility
-        error = errorCode;
+        if (::WNetGetLastError(&errorCode, errorBuf, sizeof(errorBuf), nameBuf, sizeof(nameBuf)) == NO_ERROR)
+            // backward compatibility
+            error = errorCode;
     #endif
 
     return error;

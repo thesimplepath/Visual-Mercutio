@@ -331,6 +331,18 @@ void PSS_LogicalSystemView::OnRefresh()
         m_Ctrl.Refresh();
 }
 //---------------------------------------------------------------------------
+void PSS_LogicalSystemView::OnExpandBranch()
+{
+    if (::IsWindow(m_Ctrl.GetSafeHwnd()))
+        m_Ctrl.OnExpandBranch();
+}
+//---------------------------------------------------------------------------
+void PSS_LogicalSystemView::OnCollapseBranch()
+{
+    if (::IsWindow(m_Ctrl.GetSafeHwnd()))
+        m_Ctrl.OnCollapseBranch();
+}
+//---------------------------------------------------------------------------
 void PSS_LogicalSystemView::OnAddSystem()
 {
     // add a new system

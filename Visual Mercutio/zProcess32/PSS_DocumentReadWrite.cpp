@@ -101,7 +101,7 @@ BOOL PSS_DocumentReadWrite::CopyPage(PSS_DocumentReadWrite* pTargetDoc,
     if (sourceDocIndex == -1)
     {
         PSS_DocumentData* pSrcDocData = GetActiveDocumentData();
-        
+
         if (!pSrcDocData)
             return FALSE;
 
@@ -470,7 +470,7 @@ void PSS_DocumentReadWrite::OnFormulaScenarioAssociate()
 
         CWnd* pWnd = ::AfxGetMainWnd();
 
-        // deselect all objects
+        // unselect all objects
         if (pWnd)
             pWnd->SendMessageToDescendants(ID_FIELD_DESELECTALLOBJECT);
     #endif
@@ -833,8 +833,8 @@ BOOL PSS_DocumentReadWrite::OnNewDocument()
 {
     PSS_Global::SetCurrentDocumentForSerialization(this);
     PSS_NewFormDialog newFormDialog(&PSS_Global::GetTemplateManager(),
-                                    PSS_NewFormDialog::IE_T_StartForm,
-                                    PSS_NewFormDialog::IE_ET_Form);
+                                    PSS_NewFormDialog::IEDialogFormType::IE_T_StartForm,
+                                    PSS_NewFormDialog::IEDialogFormExtensionType::IE_ET_Form);
 
     if (newFormDialog.DoModal() == IDCANCEL)
         return FALSE;
@@ -843,7 +843,7 @@ BOOL PSS_DocumentReadWrite::OnNewDocument()
         return FALSE;
 
     // set the document type
-    GetDocumentStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
+    GetDocumentStamp().SetFileType(PSS_Stamp::IEFileTypeDefinition::IE_FD_DocumentType);
     AssignPredefinedField();
 
     // empty the path name

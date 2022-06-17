@@ -31,7 +31,7 @@ PSS_ProcessHistoryDatabase::~PSS_ProcessHistoryDatabase()
 {
     switch (m_Type)
     {
-        case IE_DT_DAO:
+        case IEType::IE_DT_DAO:
             if (m_pProcessHistoDAO)
             {
                 m_pProcessHistoDAO->Close();
@@ -40,7 +40,7 @@ PSS_ProcessHistoryDatabase::~PSS_ProcessHistoryDatabase()
 
             break;
 
-        case IE_DT_ODBC:
+        case IEType::IE_DT_ODBC:
             // not yet implemented
             break;
     }
@@ -66,11 +66,11 @@ BOOL PSS_ProcessHistoryDatabase::Initialize()
 
     switch (m_Type)
     {
-        case IE_DT_DAO:
+        case IEType::IE_DT_DAO:
             m_pProcessHistoDAO = new PSS_ProcessHistoryDAODatabase(m_FileName);
             break;
 
-        case IE_DT_ODBC:
+        case IEType::IE_DT_ODBC:
             // not yet implemented
             THROW("NOT IMPLEMENTED");
     }
@@ -82,13 +82,13 @@ BOOL PSS_ProcessHistoryDatabase::AppendEventToHistoric(const PSS_ActivityEvent& 
 {
     switch (m_Type)
     {
-        case IE_DT_DAO:
+        case IEType::IE_DT_DAO:
             if (m_pProcessHistoDAO)
                 return m_pProcessHistoDAO->AppendEventToHistoric(activityEvent);
 
             break;
 
-        case IE_DT_ODBC:
+        case IEType::IE_DT_ODBC:
             // not yet implemented
             THROW("NOT IMPLEMENTED");
     }
@@ -100,13 +100,13 @@ BOOL PSS_ProcessHistoryDatabase::Close()
 {
     switch (m_Type)
     {
-        case IE_DT_DAO:
+        case IEType::IE_DT_DAO:
             if (m_pProcessHistoDAO)
                 return m_pProcessHistoDAO->Close();
 
             break;
 
-        case IE_DT_ODBC:
+        case IEType::IE_DT_ODBC:
             // not yet implemented
             THROW("NOT IMPLEMENTED");
     }

@@ -55,9 +55,9 @@ class AFX_EXT_CLASS PSS_StringFormatter
         *@param lcid - language identifier
         *@return the formatted buffer, empty string on error
         */
-        static CString GetFormattedBuffer(int          value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
-        static CString GetFormattedBuffer(unsigned int value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
-        static CString GetFormattedBuffer(short        value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(int          value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_General, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(unsigned int value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_General, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(short        value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_General, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
 
         /**
         * Gets the formatted buffer
@@ -69,9 +69,9 @@ class AFX_EXT_CLASS PSS_StringFormatter
         *@param lcid - language identifier
         *@return the formatted buffer, empty string on error
         */
-        static CString GetFormattedBuffer(float  value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, std::size_t decimalPlace = 0, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
-        static CString GetFormattedBuffer(long   value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, std::size_t decimalPlace = 0, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
-        static CString GetFormattedBuffer(double value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, std::size_t decimalPlace = 0, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(float  value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_General, std::size_t decimalPlace = 0, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(long   value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_General, std::size_t decimalPlace = 0, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(double value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_General, std::size_t decimalPlace = 0, bool useSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID());
 
         /**
         * Gets the formatted buffer
@@ -80,9 +80,9 @@ class AFX_EXT_CLASS PSS_StringFormatter
         *@param lcid - language identifier
         *@return the formatted buffer, empty string on error
         */
-        static CString GetFormattedBuffer(PSS_Date&     value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_Date,     LCID lcid = ::GetUserDefaultLCID());
-        static CString GetFormattedBuffer(PSS_TimeSpan& value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_Time,     LCID lcid = ::GetUserDefaultLCID());
-        static CString GetFormattedBuffer(PSS_Duration& value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_Duration, LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(PSS_Date&     value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_Date,     LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(PSS_TimeSpan& value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_Time,     LCID lcid = ::GetUserDefaultLCID());
+        static CString GetFormattedBuffer(PSS_Duration& value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IEFormatType::IE_FT_Duration, LCID lcid = ::GetUserDefaultLCID());
 
         /**
         * Gets the formatted buffer

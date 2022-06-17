@@ -36,7 +36,7 @@ class AFX_EXT_CLASS PSS_DIBitmap
         /**
         * Bitmap type
         */
-        enum IEType
+        enum class IEType
         {
             IE_BT_BMP,
             IE_BT_GIF,

@@ -45,7 +45,7 @@ class AFX_EXT_CLASS PSS_SymbolObserverMsg : public PSS_ObserverMsg
         /**
         * Action type
         */
-        enum IEActionType
+        enum class IEActionType
         {
             IE_AT_None,
             IE_AT_ElementHasChanged,
@@ -59,14 +59,14 @@ class AFX_EXT_CLASS PSS_SymbolObserverMsg : public PSS_ObserverMsg
         *@param actionType - the action type
         *@param pElement - the element
         */
-        PSS_SymbolObserverMsg(IEActionType actionType = IE_AT_None, CODComponent* pElement = NULL);
+        PSS_SymbolObserverMsg(IEActionType actionType = IEActionType::IE_AT_None, CODComponent* pElement = NULL);
 
         /**
         * Constructor
         *@param symbolRef - the symbol reference number
         *@param actionType - the action type
         */
-        PSS_SymbolObserverMsg(int symbolRef, IEActionType actionType = IE_AT_None);
+        PSS_SymbolObserverMsg(int symbolRef, IEActionType actionType = IEActionType::IE_AT_None);
 
         virtual ~PSS_SymbolObserverMsg();
 

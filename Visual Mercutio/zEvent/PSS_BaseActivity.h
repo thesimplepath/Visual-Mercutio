@@ -92,7 +92,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         /**
         * Activity run mode
         */
-        enum IERunMode
+        enum class IERunMode
         {
             IE_RM_Sequence,
             IE_RM_Select,
@@ -102,7 +102,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         /**
         * Activity visibility type
         */
-        enum IEVisibilityType
+        enum class IEVisibilityType
         {
             IE_VT_Visible,
             IE_VT_Invisible,
@@ -112,7 +112,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         /**
         * Activity timeout type
         */
-        enum IETimeoutType
+        enum class IETimeoutType
         {
             IE_TT_TimeDays,
             IE_TT_AttributionOfTimeout
@@ -121,7 +121,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         /**
         * Activity type
         */
-        enum IEType
+        enum class IEType
         {
             IE_AT_InputInformation = 0x0001,
             IE_AT_Acceptation      = 0x0002,
@@ -136,7 +136,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         /**
         * Activity status
         */
-        enum IEStatus
+        enum class IEStatus
         {
             IE_AS_Started,
             IE_AS_Sent,
@@ -156,7 +156,7 @@ class AFX_EXT_CLASS PSS_BaseActivity : public CObject
         *@param description - activity description
         *@param status - activity status
         */
-        PSS_BaseActivity(const CString& name = "", const CString& description = "", IEStatus status = IE_AS_NotStarted);
+        PSS_BaseActivity(const CString& name = "", const CString& description = "", IEStatus status = IEStatus::IE_AS_NotStarted);
 
         virtual ~PSS_BaseActivity();
 
@@ -1411,9 +1411,9 @@ void PSS_BaseActivity::SetAttributedByActivity(const CString& value)
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsAttribution() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_Attribution);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_Attribution);
 
     // check the current activity
     if (!GetCurrentActivity())
@@ -1424,9 +1424,9 @@ BOOL PSS_BaseActivity::ActivityIsAttribution() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsAcceptation() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_Acceptation);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_Acceptation);
 
     if (!GetCurrentActivity())
         return FALSE;
@@ -1436,9 +1436,9 @@ BOOL PSS_BaseActivity::ActivityIsAcceptation() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsInput() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_InputInformation);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_InputInformation);
 
     if (!GetCurrentActivity())
         return FALSE;
@@ -1448,9 +1448,9 @@ BOOL PSS_BaseActivity::ActivityIsInput() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsSendMail() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_SendMail);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_SendMail);
 
     if (!GetCurrentActivity())
         return FALSE;
@@ -1460,9 +1460,9 @@ BOOL PSS_BaseActivity::ActivityIsSendMail() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsStartProcess() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_StartProcess);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_StartProcess);
 
     if (!GetCurrentActivity())
         return FALSE;
@@ -1472,9 +1472,9 @@ BOOL PSS_BaseActivity::ActivityIsStartProcess() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsCommandLine() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_CommandLine);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_CommandLine);
 
     if (!GetCurrentActivity())
         return FALSE;
@@ -1484,9 +1484,9 @@ BOOL PSS_BaseActivity::ActivityIsCommandLine() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsScanning() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_Scanning);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_Scanning);
 
     if (!GetCurrentActivity())
         return FALSE;
@@ -1496,9 +1496,9 @@ BOOL PSS_BaseActivity::ActivityIsScanning() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::ActivityIsArchiving() const
 {
-    // if no activites or in selection mode
-    if (!HasActivities() || GetRunMode() == IE_RM_Select)
-        return (m_ActivityType & IE_AT_Archiving);
+    // if no activities or in selection mode
+    if (!HasActivities() || GetRunMode() == IERunMode::IE_RM_Select)
+        return (m_ActivityType & (DWORD)IEType::IE_AT_Archiving);
 
     if (!GetCurrentActivity())
         return FALSE;
@@ -1528,15 +1528,15 @@ BOOL PSS_BaseActivity::IsTimeAttributionDone() const
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::IsVisibilityAttributionDone() const
 {
-    return (GetIsVisible() != E_TS_Undefined);
+    return (GetIsVisible() != EThreeState::E_TS_Undefined);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::IsAttributedActivity() const
 {
-    return (m_MainResources.GetUserType()   == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
-            m_BackupResources.GetUserType() == PSS_ActivityResources::IE_UT_AttributionOfUsers ||
-            GetTimeType()                   == IE_TT_AttributionOfTimeout                      ||
-            GetVisibilityType()             == IE_VT_AttributionOfVisibility);
+    return (m_MainResources.GetUserType()   == PSS_ActivityResources::IEUserType::IE_UT_AttributionOfUsers ||
+            m_BackupResources.GetUserType() == PSS_ActivityResources::IEUserType::IE_UT_AttributionOfUsers ||
+            GetTimeType()                   == PSS_BaseActivity::IETimeoutType::IE_TT_AttributionOfTimeout ||
+            GetVisibilityType()             == PSS_BaseActivity::IEVisibilityType::IE_VT_AttributionOfVisibility);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::IsInBackupProcess() const
@@ -1581,18 +1581,18 @@ const PSS_ActivityResources& PSS_BaseActivity::GetCurrentResources() const
 //---------------------------------------------------------------------------
 EThreeState PSS_BaseActivity::DoConsiderAsVisible() const
 {
-    if (GetIsVisible() == E_TS_Undefined)
-        return E_TS_Undefined;
+    if (GetIsVisible() == EThreeState::E_TS_Undefined)
+        return EThreeState::E_TS_Undefined;
 
-    if ((GetVisibilityType() == IE_VT_AttributionOfVisibility && GetIsVisible() == E_TS_True) ||
-         GetVisibilityType() == IE_VT_Visible)
-        return E_TS_True;
+    if ((GetVisibilityType() == IEVisibilityType::IE_VT_AttributionOfVisibility && GetIsVisible() == EThreeState::E_TS_True) ||
+         GetVisibilityType() == IEVisibilityType::IE_VT_Visible)
+        return EThreeState::E_TS_True;
 
-    if ((GetVisibilityType() == IE_VT_AttributionOfVisibility && GetIsVisible() == E_TS_False) ||
-         GetVisibilityType() == IE_VT_Invisible)
-        return E_TS_False;
+    if ((GetVisibilityType() == IEVisibilityType::IE_VT_AttributionOfVisibility && GetIsVisible() == EThreeState::E_TS_False) ||
+         GetVisibilityType() == IEVisibilityType::IE_VT_Invisible)
+        return EThreeState::E_TS_False;
 
-    return E_TS_Undefined;
+    return EThreeState::E_TS_Undefined;
 }
 //---------------------------------------------------------------------------
 void PSS_BaseActivity::SetVisibility(const EThreeState value)
@@ -1782,7 +1782,7 @@ CStringArray& PSS_BaseActivity::GetSelectedActivityArray()
 //---------------------------------------------------------------------------
 BOOL PSS_BaseActivity::IsActivitySelectionDone() const
 {
-    if (m_RunMode == IE_RM_Sequence)
+    if (m_RunMode == IERunMode::IE_RM_Sequence)
         return FALSE;
 
     return m_SelectedActivityArray.GetSize() > 0;

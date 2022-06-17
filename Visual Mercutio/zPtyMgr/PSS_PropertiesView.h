@@ -144,7 +144,7 @@ class AFX_EXT_CLASS PSS_PropertiesView : public CWnd,
         /**
         * Properties view enumeration
         */
-        enum IEPropertiesView
+        enum class IEPropertiesView
         {
             IE_PV_AllTypes    = 0,
             IE_PV_StaticType  = 1,
@@ -163,7 +163,7 @@ class AFX_EXT_CLASS PSS_PropertiesView : public CWnd,
         * Switches to a view
         *@param view - the view to switch to
         */
-        virtual void SwitchToView(IEPropertiesView view = IE_PV_AllTypes);
+        virtual void SwitchToView(IEPropertiesView view = IEPropertiesView::IE_PV_AllTypes);
 
         /**
         * Refreshes the current view

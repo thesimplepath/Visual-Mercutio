@@ -51,7 +51,7 @@ int PSS_ActivityAttributionInputWizard::Execute()
             return IDCANCEL;
 
     // if backup attribution and activity stills visible or undefined
-    if (m_BackupUserAttribution && m_pActivity->GetIsVisible() != E_TS_False)
+    if (m_BackupUserAttribution && m_pActivity->GetIsVisible() != EThreeState::E_TS_False)
         if (!ProcessBackupUser())
             return IDCANCEL;
 

@@ -124,6 +124,11 @@ class AFX_EXT_CLASS PSS_InPlaceSearchEdit : public PSS_SearchEdit,
         virtual void SaveValue();
 
         /**
+        * Called when a value changed in a property
+        */
+        virtual void OnPropertieValueChanged();
+
+        /**
         * Called when the observer receives a message from the subject
         *@param pSubject - subject which sent the message
         *@param pMsg - the message

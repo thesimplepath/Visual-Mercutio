@@ -202,7 +202,7 @@ PSS_PropertiesView::PSS_PropertiesView() :
     CWnd(),
     PSS_Subject(),
     PSS_Observer(),
-    m_CurrentView(IE_PV_AllTypes)
+    m_CurrentView(IEPropertiesView::IE_PV_AllTypes)
 {}
 //---------------------------------------------------------------------------
 PSS_PropertiesView::~PSS_PropertiesView()
@@ -297,9 +297,9 @@ void PSS_PropertiesView::SwitchToView(IEPropertiesView view)
     // switch to view
     switch (view)
     {
-        case IE_PV_AllTypes:    ShowAllTypes();    break;
-        case IE_PV_StaticType:  ShowStaticType();  break;
-        case IE_PV_DynamicType: ShowDynamicType(); break;
+        case IEPropertiesView::IE_PV_AllTypes:    ShowAllTypes();    break;
+        case IEPropertiesView::IE_PV_StaticType:  ShowStaticType();  break;
+        case IEPropertiesView::IE_PV_DynamicType: ShowDynamicType(); break;
     }
 
     // reload the control data
@@ -322,34 +322,34 @@ void PSS_PropertiesView::RefreshCurrentView()
 void PSS_PropertiesView::ShowAllTypes()
 {
     if (::IsWindow(m_ListCtrl.GetSafeHwnd()))
-        m_ListCtrl.SetShowType(PSS_PropertyItemManager::IE_ST_AllProperties);
+        m_ListCtrl.SetShowType(PSS_PropertyItemManager::IEPropertyShowType::IE_ST_AllProperties);
 }
 //---------------------------------------------------------------------------
 void PSS_PropertiesView::ShowStaticType()
 {
     if (::IsWindow(m_ListCtrl.GetSafeHwnd()))
-        m_ListCtrl.SetShowType(PSS_PropertyItemManager::IE_ST_StaticProperties);
+        m_ListCtrl.SetShowType(PSS_PropertyItemManager::IEPropertyShowType::IE_ST_StaticProperties);
 }
 //---------------------------------------------------------------------------
 void PSS_PropertiesView::ShowDynamicType()
 {
     if (::IsWindow(m_ListCtrl.GetSafeHwnd()))
-        m_ListCtrl.SetShowType(PSS_PropertyItemManager::IE_ST_DynamicProperties);
+        m_ListCtrl.SetShowType(PSS_PropertyItemManager::IEPropertyShowType::IE_ST_DynamicProperties);
 }
 //---------------------------------------------------------------------------
 void PSS_PropertiesView::OnShowAllTypes()
 {
-    SwitchToView(IE_PV_AllTypes);
+    SwitchToView(IEPropertiesView::IE_PV_AllTypes);
 }
 //---------------------------------------------------------------------------
 void PSS_PropertiesView::OnShowStaticType()
 {
-    SwitchToView(IE_PV_StaticType);
+    SwitchToView(IEPropertiesView::IE_PV_StaticType);
 }
 //---------------------------------------------------------------------------
 void PSS_PropertiesView::OnShowDynamicType()
 {
-    SwitchToView(IE_PV_DynamicType);
+    SwitchToView(IEPropertiesView::IE_PV_DynamicType);
 }
 //---------------------------------------------------------------------------
 void PSS_PropertiesView::OnRefresh()

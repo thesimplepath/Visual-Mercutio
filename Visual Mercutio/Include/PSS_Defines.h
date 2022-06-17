@@ -25,7 +25,7 @@
 /**
 * Button type enumeration
 */
-enum ECheckButtonType
+enum class ECheckButtonType
 {
     E_CB_Rounded,
     E_CB_Squared
@@ -34,7 +34,7 @@ enum ECheckButtonType
 /**
 * Class type enumeration
 */
-enum EClassType
+enum class EClassType
 {
     E_CT_Rect,
     E_CT_Line,
@@ -60,7 +60,7 @@ enum EClassType
 /**
 * Format type enumeration
 */
-enum EFormatType
+enum class EFormatType
 {
     E_FT_Percentage       = '%',
     E_FT_Date             = 'd',
@@ -83,7 +83,7 @@ enum EFormatType
 /**
 * Line type enumeration
 */
-enum ELineType
+enum class ELineType
 {
     E_LT_Automatic,
     E_LT_No,
@@ -96,7 +96,7 @@ enum ELineType
 /**
 * Square type enumeration
 */
-enum ESquareType
+enum class ESquareType
 {
     E_SQ_Normal,
     E_SQ_TopOnly,
@@ -106,7 +106,7 @@ enum ESquareType
 /**
 * Parsing mode type enumeration
 */
-enum EParsingModeType
+enum class EParsingModeType
 {
     E_PM_Normal,
     E_PM_ReplaceDelimiter
@@ -115,7 +115,7 @@ enum EParsingModeType
 /**
 * Special help type enumeration
 */
-enum ESpecialHelpType
+enum class ESpecialHelpType
 {
     E_SH_Designer,
     E_SH_Writer
@@ -124,7 +124,7 @@ enum ESpecialHelpType
 /**
 * Option type enumeration
 */
-enum EOptionType
+enum class EOptionType
 {
     E_OT_Application,
     E_OT_Yes,
@@ -134,7 +134,7 @@ enum EOptionType
 /**
 * Synchronization file type enumeration
 */
-enum ESynchronizationFileType
+enum class ESynchronizationFileType
 {
     E_ST_AutomaticName,
     E_ST_FileNameSpecified,
@@ -144,19 +144,19 @@ enum ESynchronizationFileType
 /**
 * Synchronization separator type enumeration
 */
-enum ESynchronizationSeparatorType
+enum class ESynchronizationSeparatorType
 {
     E_SS_Automatic,
     E_SS_Tab,
     E_SS_Comma,
-    E_SS_SemiColumn,
+    E_SS_Semicolon,
     E_SS_Quote
 };
 
 /**
 * Three state type enumeration
 */
-enum EThreeState
+enum class EThreeState
 {
     E_TS_False,
     E_TS_True,
@@ -166,7 +166,7 @@ enum EThreeState
 /**
 * Install Component type enumeration
 */
-enum EInstallComponentType
+enum class EInstallComponentType
 {
     E_IC_WindowsDirectory,
     E_IC_SystemDirectory,
@@ -177,7 +177,7 @@ enum EInstallComponentType
 /**
 * Model notations enumeration
 */
-enum EModelNotation
+enum class EModelNotation
 {
     E_MN_ABC,
     E_MN_UML,

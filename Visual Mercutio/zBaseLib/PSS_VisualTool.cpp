@@ -16,8 +16,8 @@
 //---------------------------------------------------------------------------
 // Global variables
 //---------------------------------------------------------------------------
-PSS_VisualTool::IEToolType        PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IE_TT_VToolEdit;
-PSS_VisualTool::IEVisualToolModes PSS_VisualTool::m_ToolMode        = PSS_VisualTool::IE_TM_Normal;
+PSS_VisualTool::IEToolType        PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IEToolType::IE_TT_VToolEdit;
+PSS_VisualTool::IEVisualToolModes PSS_VisualTool::m_ToolMode        = PSS_VisualTool::IEVisualToolModes::IE_TM_Normal;
 CPtrList                          PSS_VisualTool::m_ToolsList;
 CRect                             PSS_VisualTool::m_Rect;
 CPoint                            PSS_VisualTool::m_DownPoint;
@@ -70,7 +70,7 @@ void PSS_VisualTool::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& poin
 //---------------------------------------------------------------------------
 void PSS_VisualTool::OnCancel()
 {
-    m_CurrentToolType = IE_TT_VToolEdit;
+    m_CurrentToolType = IEToolType::IE_TT_VToolEdit;
 }
 //---------------------------------------------------------------------------
 PSS_VisualTool* PSS_VisualTool::FindTool(IEToolType objectToolType)
@@ -91,14 +91,14 @@ PSS_VisualTool* PSS_VisualTool::FindTool(IEToolType objectToolType)
 // PSS_VisualToolEdit
 //---------------------------------------------------------------------------
 PSS_VisualToolEdit::PSS_VisualToolEdit() :
-    PSS_VisualTool(IE_TT_VToolEdit)
+    PSS_VisualTool(IEToolType::IE_TT_VToolEdit)
 {
     HINSTANCE hInst = ::AfxFindResourceHandle(MAKEINTRESOURCE(IDC_EDITABLE), RT_GROUP_CURSOR);
     m_hCurEdit      = ::LoadCursor(hInst, MAKEINTRESOURCE(IDC_EDITABLE));
 }
 //---------------------------------------------------------------------------
 PSS_VisualToolEdit::PSS_VisualToolEdit(const PSS_VisualToolEdit& other) :
-    PSS_VisualTool(IE_TT_VToolEdit)
+    PSS_VisualTool(IEToolType::IE_TT_VToolEdit)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
@@ -140,7 +140,7 @@ void PSS_VisualToolEdit::OnLButtonDown(PSS_View* pView, UINT flags, const CPoint
         {
             switch (pView->GetViewType())
             {
-                case PSS_View::IE_VT_FormModify:
+                case PSS_View::IEType::IE_VT_FormModify:
                     // is the cursor on the object?
                     if (!pObj->IsReadOnlyAtRuntime())
                         if (!pObj->IsObjectSelected() && !pObj->GetIsStatic())
@@ -152,7 +152,7 @@ void PSS_VisualToolEdit::OnLButtonDown(PSS_View* pView, UINT flags, const CPoint
 
                     break;
 
-                case PSS_View::IE_VT_FormDesign:
+                case PSS_View::IEType::IE_VT_FormDesign:
                     // is the cursor on the object?
                     if (!pObj->IsObjectSelected())
                     {
@@ -207,7 +207,7 @@ void PSS_VisualToolEdit::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& 
     }
 
     // reader view cannot change anything
-    if (pView->GetViewType() != PSS_View::IE_VT_FormRead)
+    if (pView->GetViewType() != PSS_View::IEType::IE_VT_FormRead)
     {
         BOOL releaseCapture = FALSE;
 
@@ -221,7 +221,7 @@ void PSS_VisualToolEdit::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& 
             // get the current page
             const int page = pDoc->GetCurrentPage();
 
-            // search wich element is selected
+            // search which element is selected
             if ((pObj = pDoc->GetHead()) != NULL)
                 do
                 {
@@ -230,7 +230,7 @@ void PSS_VisualToolEdit::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& 
                     {
                         switch (pView->GetViewType())
                         {
-                            case PSS_View::IE_VT_FormModify:
+                            case PSS_View::IEType::IE_VT_FormModify:
                                 // If the cursor is on the object
                                 if (!pObj->IsReadOnlyAtRuntime())
                                 {
@@ -251,7 +251,7 @@ void PSS_VisualToolEdit::OnMouseMove(PSS_View* pView, UINT flags, const CPoint& 
 
                                 break;
 
-                            case PSS_View::IE_VT_FormDesign:
+                            case PSS_View::IEType::IE_VT_FormDesign:
                                 // If the cursor is on the object
                                 if (!pObj->IsObjectSelected())
                                 {
@@ -297,7 +297,7 @@ PSS_VisualToolObjectCreator::PSS_VisualToolObjectCreator(IEToolType objectToolTy
 }
 //---------------------------------------------------------------------------
 PSS_VisualToolObjectCreator::PSS_VisualToolObjectCreator(const PSS_VisualToolObjectCreator& other) :
-    PSS_VisualTool(IE_TT_VToolEdit)
+    PSS_VisualTool(IEToolType::IE_TT_VToolEdit)
 {
     THROW("Copy constructor isn't allowed for this class");
 }

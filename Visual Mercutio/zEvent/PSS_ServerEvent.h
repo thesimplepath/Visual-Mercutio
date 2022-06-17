@@ -43,7 +43,7 @@ class AFX_EXT_CLASS PSS_ServerEvent : public PSS_Event
         /**
         * Event result
         */
-        enum IEResult
+        enum class IEResult
         {
             IE_ER_NF,
             IE_ER_Imported,

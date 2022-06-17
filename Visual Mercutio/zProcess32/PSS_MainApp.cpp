@@ -1,15 +1,15 @@
-// **************************************************************************************************************
-// *                                                Classe ZAMainApp                                            *
-// **************************************************************************************************************
-// * Cette classe est la classe de base de l'application. Elle prend en charge les opérations basiques sur les    *
-// * fichiers, la gestion de base des documents, des serveurs, de la base de registre, etc...                    *
-// **************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_MainApp ---------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the basic main application interface              *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include <StdAfx.h>
 #include "PSS_MainApp.h"
 
-// this was previoulsy required because Visual Mercutio was a commercial product before being open source, but now...
-// uncomment the libe below to re-enable the product key protection
+// this was previously required because Visual Mercutio was a commercial product before being open source, but now...
+// uncomment the line below to re-enable the product key protection
 //#define EVALUATION_VERSION
 
 // uncomment the line below to remove the splash screen on opening
@@ -39,8 +39,8 @@
 #include "zBaseLib\PSS_RegisterSetup.h"
 #include "zWinUtil32\PSS_SelectServerWizard.h"
 #ifdef EVALUATION_VERSION
-    #include "zScty\security.h"
-    #include "zScty\secuchk.h"
+    #include "zScty\PSS_Security.h"
+    #include "zScty\PSS_SecurityCheck.h"
 #endif
 #include "zSplash\PSS_SplashController.h"
 #include "PSS_RegistryDefs.h"
@@ -311,6 +311,16 @@ BOOL PSS_MainApp::InitInstance()
         }
     #endif
 
+    #ifndef NO_SPLASH
+        BYTE pKeyState[256];
+        ::GetKeyboardState((LPBYTE)&pKeyState);
+
+        // if the Shift key is pressed, the splash screen isn't visible, so hide it
+        if (pKeyState[VK_SHIFT] & 0x80)
+            if (m_SplashID)
+                splash.Hide();
+    #endif
+
     // initialize the application
     if (!InitApp())
     {
@@ -577,6 +587,12 @@ BOOL PSS_MainApp::InitInstance()
 
         if (stop)
         {
+            #ifndef NO_SPLASH
+                // hide the splash
+                if (m_SplashID)
+                    splash.Hide();
+            #endif
+
             securityCheck.ShowStopWnd();
 
             // todo -cCheck -oJean: security was disabled for test purpose
@@ -605,7 +621,7 @@ BOOL PSS_MainApp::InitInstance()
         PSS_MessageDlg messageDlg;
         messageDlg.ShowMessage(IDS_ONFIRSTUSE_SUCCESS, IDS_ONFIRSTUSE_SUCCESS_TITLE);
 
-        // save all newly modifed parameters
+        // save all newly modified parameters
         GetApplicationOptions().SaveOption();
         SaveApplicationOptions();
     }
@@ -1055,6 +1071,7 @@ void PSS_MainApp::GetDocumentArrayName(CStringArray& fileArray)
     #endif
 }
 //---------------------------------------------------------------------------
+/*
 void PSS_MainApp::WinHelp(DWORD data, UINT cmd)
 {
     if (m_HelpFile.IsEmpty())
@@ -1082,6 +1099,7 @@ void PSS_MainApp::WinHelp(DWORD data, UINT cmd)
             break;
     }
 }
+*/
 //---------------------------------------------------------------------------
 void PSS_MainApp::ShowWarningOnCommand()
 {
@@ -1090,7 +1108,7 @@ void PSS_MainApp::ShowWarningOnCommand()
 
         if (!pWnd)
             return;
-    
+
         CString title;
         title.LoadString(IDS_WARNINGEVALVER);
 
@@ -1288,16 +1306,16 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
         CString defaultIconCommandLine = pathName;
 
         // check if the template must be registered
-        if (pEntry->GetTemplateString(mustBeRegistered, IClassInfo::IE_SI_TemplateMustBeRegisteredPosition) &&
+        if (pEntry->GetTemplateString(mustBeRegistered, (int)IClassInfo::IEStringIndex::IE_SI_TemplateMustBeRegisteredPosition) &&
             !mustBeRegistered.IsEmpty())
             // if equal to zero, do not register
             if (!std::atoi(mustBeRegistered))
                 continue;
 
-        if (pEntry->GetTemplateString(fileTypeId, IClassInfo::IE_SI_RegFileTypeId) && !fileTypeId.IsEmpty())
+        if (pEntry->GetTemplateString(fileTypeId, (int)IClassInfo::IEStringIndex::IE_SI_RegFileTypeId) && !fileTypeId.IsEmpty())
         {
             if (compat)
-                if (pEntry->GetTemplateString(iconIndex, IClassInfo::IE_SI_DefaultIconPosition) && !iconIndex.IsEmpty())
+                if (pEntry->GetTemplateString(iconIndex, (int)IClassInfo::IEStringIndex::IE_SI_DefaultIconPosition) && !iconIndex.IsEmpty())
                 {
                     const int index = std::atoi(iconIndex);
                     HICON     hIcon = ::ExtractIcon(hInstance, pathName, index);
@@ -1316,7 +1334,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
                 }
 
             // enough info to register it?
-            if (!pEntry->GetTemplateString(fileTypeName, IClassInfo::IE_SI_RegFileTypeName))
+            if (!pEntry->GetTemplateString(fileTypeName, (int)IClassInfo::IEStringIndex::IE_SI_RegFileTypeName))
                 // use id name
                 fileTypeName = fileTypeId;
 
@@ -1337,7 +1355,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
             }
 
             // if MDI application
-            if (!pEntry->GetTemplateString(tempStr, IClassInfo::IE_SI_WindowTitle) || tempStr.IsEmpty())
+            if (!pEntry->GetTemplateString(tempStr, (int)IClassInfo::IEStringIndex::IE_SI_WindowTitle) || tempStr.IsEmpty())
             {
                 // path\shell\open\ddeexec = [open("%1")]
                 tempStr.Format(g_AfxShellOpenFmt, LPCTSTR(fileTypeId), LPCTSTR(g_AfxDDEExec));
@@ -1404,7 +1422,7 @@ void PSS_MainApp::RegisterAdditionalTemplateShellFileTypes(BOOL compat)
                     continue;
             }
 
-            pEntry->GetTemplateString(filterExt, IClassInfo::IE_SI_FilterExt);
+            pEntry->GetTemplateString(filterExt, (int)IClassInfo::IEStringIndex::IE_SI_FilterExt);
 
             if (!filterExt.IsEmpty())
             {
@@ -1463,7 +1481,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
 
         // check if the template must be registered
         if (pTemplate->GetDocString(mustBeRegistered,
-                                    CDocTemplate::DocStringIndex(IClassInfo::IE_SI_TemplateMustBeRegisteredPosition)) &&
+                                    CDocTemplate::DocStringIndex(IClassInfo::IEStringIndex::IE_SI_TemplateMustBeRegisteredPosition)) &&
             !mustBeRegistered.IsEmpty())
             // if equal to zero, do not register
             if (!std::atoi(mustBeRegistered))
@@ -1474,7 +1492,7 @@ void PSS_MainApp::RegisterShellFileTypes(BOOL compat)
             if (compat)
             {
                 if (pTemplate->GetDocString(iconIndex,
-                                            CDocTemplate::DocStringIndex(IClassInfo::IE_SI_DefaultIconPosition)) &&
+                                            CDocTemplate::DocStringIndex(IClassInfo::IEStringIndex::IE_SI_DefaultIconPosition)) &&
                     !iconIndex.IsEmpty())
                 {
                     const int index = std::atoi(iconIndex);

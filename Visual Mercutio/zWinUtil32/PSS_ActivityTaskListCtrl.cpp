@@ -264,28 +264,28 @@ void PSS_ActivityTaskListCtrl::InsertActivity(PSS_BaseActivity& activity, bool i
         const int index = GetItemCount();
               int imageIndex = 11;
 
-        if (isCurrentActivity || activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Started)
+        if (isCurrentActivity || activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_Started)
             imageIndex = 14;
         else
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Sent)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_Sent)
             imageIndex = 0;
         else
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_SentForAcceptation)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_SentForAcceptation)
             imageIndex = 8;
         else
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Completed)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_Completed)
             imageIndex = 15;
         else
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Rejected)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_Rejected)
             imageIndex = 6;
         else
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Suspended)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_Suspended)
             imageIndex = 12;
         else
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_Aborted)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_Aborted)
             imageIndex = 4;
         else
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted)
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_NotStarted)
             imageIndex = 16;
 
         // add the action icon
@@ -303,18 +303,18 @@ void PSS_ActivityTaskListCtrl::InsertActivity(PSS_BaseActivity& activity, bool i
         CString text;
 
         // the creation date
-        text = (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted ? " - " : ((PSS_Date&)activity.GetStartDate()).GetStandardFormattedDate());
+        text = (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_NotStarted ? " - " : ((PSS_Date&)activity.GetStartDate()).GetStandardFormattedDate());
         SetItem(index, 4, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // the due date
-        text = (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted ? " - " : ((PSS_Date&)activity.GetForecastedEndDate()).GetStandardFormattedDate());
+        text = (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_NotStarted ? " - " : ((PSS_Date&)activity.GetForecastedEndDate()).GetStandardFormattedDate());
         SetItem(index, 5, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         char buffer[50];
 
         // the remaining days
-        if (activity.GetActivityStatus() == PSS_BaseActivity::IE_AS_NotStarted)
-            ::strcpy_s(buffer, ::_tcslen(buffer), " - ");
+        if (activity.GetActivityStatus() == PSS_BaseActivity::IEStatus::IE_AS_NotStarted)
+            ::strcpy_s(buffer, 50, " - ");
         else
         {
             PSS_Date dateEnd = activity.GetForecastedEndDate();
@@ -326,9 +326,9 @@ void PSS_ActivityTaskListCtrl::InsertActivity(PSS_BaseActivity& activity, bool i
             COleDateTimeSpan dateTimeSpan(dateEnd - dateToday);
 
             if (dateTimeSpan.GetStatus() == COleDateTimeSpan::valid)
-                ::sprintf_s(buffer, ::_tcslen(buffer), "%d", int(dateTimeSpan.GetTotalDays()));
+                ::sprintf_s(buffer, 50, "%d", int(dateTimeSpan.GetTotalDays()));
             else
-                ::strcpy_s(buffer, ::_tcslen(buffer), "-");
+                ::strcpy_s(buffer, 50, "-");
         }
 
         SetItem(index, 6, LVIF_TEXT, buffer, 0, LVIF_TEXT, LVIF_TEXT, 0);

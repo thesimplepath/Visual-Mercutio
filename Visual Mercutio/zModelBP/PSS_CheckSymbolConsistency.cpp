@@ -719,32 +719,8 @@ bool PSS_CheckSymbolConsistency::CheckProcedureSymbol(PSS_ProcedureSymbolBP* pSy
         }
     }
 
-    CStringArray rulesList;
-    pSymbol->CheckRulesSync(rulesList);
-
-    // check if the rules contained in the symbol are synchronized with the referential
-    if (!rulesList.IsEmpty())
-    {
-        const std::size_t ruleCount = rulesList.GetCount();
-
-        for (std::size_t i = 0; i < ruleCount; ++i)
-        {
-            if (m_pLog)
-            {
-                CString ruleWarning;
-                ruleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
-                ruleWarning += _T(" ") + rulesList.GetAt(i);
-
-                PSS_GenericSymbolErrorLine e(ruleWarning,
-                                             pSymbol->GetSymbolName(),
-                                             pSymbol->GetAbsolutePath());
-                m_pLog->AddLine(e);
-            }
-
-            // increment the warning counter
-            ++m_WarningCounter;
-        }
-    }
+    // check the rules
+    RulesExist(pSymbol);
 
     return true;
 }
@@ -844,32 +820,8 @@ bool PSS_CheckSymbolConsistency::CheckProcessSymbol(PSS_ProcessSymbolBP* pSymbol
         ++m_ErrorCounter;
     }
 
-    CStringArray rulesList;
-    pSymbol->CheckRulesSync(rulesList);
-
-    // check if the rules are synchronized with the referential
-    if (!rulesList.IsEmpty())
-    {
-        const std::size_t ruleCount = rulesList.GetCount();
-
-        for (std::size_t i = 0; i < ruleCount; ++i)
-        {
-            if (m_pLog)
-            {
-                CString ruleWarning;
-                ruleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
-                ruleWarning += _T(" ") + rulesList.GetAt(i);
-
-                PSS_GenericSymbolErrorLine e(ruleWarning,
-                                             pSymbol->GetSymbolName(),
-                                             pSymbol->GetAbsolutePath());
-                m_pLog->AddLine(e);
-            }
-
-            // increment the warning counter
-            ++m_WarningCounter;
-        }
-    }
+    // check the rules
+    RulesExist(pSymbol);
 
     return true;
 }
@@ -943,32 +895,8 @@ bool PSS_CheckSymbolConsistency::CheckStartSymbol(PSS_StartSymbolBP* pSymbol)
         ++m_ErrorCounter;
     }
 
-    CStringArray rulesList;
-    pSymbol->CheckRulesSync(rulesList);
-
-    // check if the rules are synchronized with the referential
-    if (!rulesList.IsEmpty())
-    {
-        const std::size_t ruleCount = rulesList.GetCount();
-
-        for (std::size_t i = 0; i < ruleCount; ++i)
-        {
-            if (m_pLog)
-            {
-                CString ruleWarning;
-                ruleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
-                ruleWarning += _T(" ") + rulesList.GetAt(i);
-
-                PSS_GenericSymbolErrorLine e(ruleWarning,
-                                             pSymbol->GetSymbolName(),
-                                             pSymbol->GetAbsolutePath());
-                m_pLog->AddLine(e);
-            }
-
-            // increment the warning counter
-            ++m_WarningCounter;
-        }
-    }
+    // check the rules
+    RulesExist(pSymbol);
 
     return true;
 }
@@ -1042,32 +970,8 @@ bool PSS_CheckSymbolConsistency::CheckStopSymbol(PSS_StopSymbolBP* pSymbol)
         ++m_ErrorCounter;
     }
 
-    CStringArray rulesList;
-    pSymbol->CheckRulesSync(rulesList);
-
-    // check if the rules are synchronized with the referential
-    if (!rulesList.IsEmpty())
-    {
-        const std::size_t ruleCount = rulesList.GetCount();
-
-        for (std::size_t i = 0; i < ruleCount; ++i)
-        {
-            if (m_pLog)
-            {
-                CString ruleWarning;
-                ruleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
-                ruleWarning += _T(" ") + rulesList.GetAt(i);
-
-                PSS_GenericSymbolErrorLine e(ruleWarning,
-                                             pSymbol->GetSymbolName(),
-                                             pSymbol->GetAbsolutePath());
-                m_pLog->AddLine(e);
-            }
-
-            // increment the warning counter
-            ++m_WarningCounter;
-        }
-    }
+    // check the rules
+    RulesExist(pSymbol);
 
     return true;
 }
@@ -1140,33 +1044,8 @@ bool PSS_CheckSymbolConsistency::CheckDeliverableLinkSymbol(PSS_DeliverableLinkS
         }
     }
 
-    CStringArray rulesList;
-    pSymbol->CheckRulesSync(rulesList);
-
-    // check if the rules are synchronized with the referential
-    if (!rulesList.IsEmpty())
-    {
-        const std::size_t ruleCount = rulesList.GetCount();
-
-        for (std::size_t i = 0; i < ruleCount; ++i)
-        {
-            if (m_pLog)
-            {
-                CString ruleWarning;
-                ruleWarning.LoadString(IDS_RULE_IS_NOT_SYNC);
-                ruleWarning += _T(" ") + rulesList.GetAt(i);
-
-                PSS_GenericSymbolErrorLine e(ruleWarning,
-                                             pSymbol->GetSymbolName(),
-                                             pSymbol->GetAbsolutePath());
-
-                m_pLog->AddLine(e);
-            }
-
-            // increment the warning counter
-            ++m_WarningCounter;
-        }
-    }
+    // check the rules
+    RulesExist(pSymbol);
 
     return true;
 }
@@ -1247,6 +1126,222 @@ bool PSS_CheckSymbolConsistency::CheckUniqueRef(PSS_BasicSymbol* pSymbol)
     }
 
     return true;
+}
+//---------------------------------------------------------------------------
+bool PSS_CheckSymbolConsistency::RulesExist(PSS_Symbol* pSymbol)
+{
+    bool success = true;
+
+    if (!pSymbol)
+        return success;
+
+    PSS_ProcessGraphModelMdlBP* pModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(pSymbol->GetOwnerModel());
+
+    if (!pModel)
+        return success;
+
+    PSS_LogicalRulesEntity* pMainRule = pModel->GetMainLogicalRules();
+
+    // search for symbol type
+    if (ISA(pSymbol, PSS_ProcedureSymbolBP))
+    {
+              PSS_ProcedureSymbolBP* pProcedureSymbol = static_cast<PSS_ProcedureSymbolBP*>(pSymbol);
+        const PSS_ProcRules&         rules            = pProcedureSymbol->GetRuleSet();
+        const std::size_t            ruleCount        = rules.GetRulesCount();
+
+        for (std::size_t i = 0; i < ruleCount; ++i)
+        {
+            const CString ruleGUID = pProcedureSymbol->GetRuleGUID(i);
+            const CString safeName = pProcedureSymbol->GetRuleNameByGUID(pMainRule, ruleGUID);
+
+            // is rule valid?
+            if (safeName.IsEmpty())
+            {
+                // log a warning
+                if (m_pLog)
+                {
+                    CString msg;
+                    msg.Format(IDS_EL_CHECK_RULE, i + 1, rules.GetRuleName(i));
+
+                    PSS_GenericSymbolErrorLine e(msg,
+                                                 pProcedureSymbol->GetSymbolName(),
+                                                 pProcedureSymbol->GetAbsolutePath(),
+                                                -1,
+                                                 0);
+                    m_pLog->AddLine(e);
+                }
+
+                // increment warning counter
+                ++m_WarningCounter;
+
+                success = false;
+            }
+        }
+    }
+    else
+    if (ISA(pSymbol, PSS_StartSymbolBP))
+    {
+              PSS_StartSymbolBP* pStartSymbol = static_cast<PSS_StartSymbolBP*>(pSymbol);
+        const PSS_ProcRules&     rules        = pStartSymbol->GetRuleSet();
+        const std::size_t        ruleCount    = rules.GetRulesCount();
+
+        for (std::size_t i = 0; i < ruleCount; ++i)
+        {
+            const CString ruleGUID = pStartSymbol->GetRuleGUID(i);
+            const CString safeName = pStartSymbol->GetRuleNameByGUID(pMainRule, ruleGUID);
+
+            // is rule valid?
+            if (safeName.IsEmpty())
+            {
+                // log a warning
+                if (m_pLog)
+                {
+                    CString msg;
+                    msg.Format(IDS_EL_CHECK_RULE, i + 1, rules.GetRuleName(i));
+
+                    PSS_GenericSymbolErrorLine e(msg,
+                                                 pStartSymbol->GetSymbolName(),
+                                                 pStartSymbol->GetAbsolutePath(),
+                                                -1,
+                                                 0);
+                    m_pLog->AddLine(e);
+                }
+
+                // increment warning counter
+                ++m_WarningCounter;
+
+                success = false;
+            }
+        }
+    }
+    else
+    if (ISA(pSymbol, PSS_StopSymbolBP))
+    {
+              PSS_StopSymbolBP* pStopSymbol = static_cast<PSS_StopSymbolBP*>(pSymbol);
+        const PSS_ProcRules&    rules       = pStopSymbol->GetRuleSet();
+        const std::size_t       ruleCount   = rules.GetRulesCount();
+
+        for (std::size_t i = 0; i < ruleCount; ++i)
+        {
+            const CString ruleGUID = pStopSymbol->GetRuleGUID(i);
+            const CString safeName = pStopSymbol->GetRuleNameByGUID(pMainRule, ruleGUID);
+
+            // is rule valid?
+            if (safeName.IsEmpty())
+            {
+                // log a warning
+                if (m_pLog)
+                {
+                    CString msg;
+                    msg.Format(IDS_EL_CHECK_RULE, i + 1, rules.GetRuleName(i));
+
+                    PSS_GenericSymbolErrorLine e(msg,
+                                                 pStopSymbol->GetSymbolName(),
+                                                 pStopSymbol->GetAbsolutePath(),
+                                                -1,
+                                                 0);
+                    m_pLog->AddLine(e);
+                }
+
+                // increment warning counter
+                ++m_WarningCounter;
+
+                success = false;
+            }
+        }
+    }
+    else
+    if (ISA(pSymbol, PSS_ProcessSymbolBP))
+    {
+              PSS_ProcessSymbolBP* pProcessSymbol = static_cast<PSS_ProcessSymbolBP*>(pSymbol);
+        const PSS_ProcRules&       rules          = pProcessSymbol->GetRuleSet();
+        const std::size_t          ruleCount      = rules.GetRulesCount();
+
+        for (std::size_t i = 0; i < ruleCount; ++i)
+        {
+            const CString ruleGUID = pProcessSymbol->GetRuleGUID(i);
+            const CString safeName = pProcessSymbol->GetRuleNameByGUID(pMainRule, ruleGUID);
+
+            // is rule valid?
+            if (safeName.IsEmpty())
+            {
+                // log a warning
+                if (m_pLog)
+                {
+                    CString msg;
+                    msg.Format(IDS_EL_CHECK_RULE, i + 1, rules.GetRuleName(i));
+
+                    PSS_GenericSymbolErrorLine e(msg,
+                                                 pProcessSymbol->GetSymbolName(),
+                                                 pProcessSymbol->GetAbsolutePath(),
+                                                -1,
+                                                 0);
+                    m_pLog->AddLine(e);
+                }
+
+                // increment warning counter
+                ++m_WarningCounter;
+
+                success = false;
+            }
+        }
+    }
+
+    return success;
+}
+//---------------------------------------------------------------------------
+bool PSS_CheckSymbolConsistency::RulesExist(PSS_LinkSymbol* pSymbol)
+{
+    bool success = true;
+
+    if (!pSymbol)
+        return success;
+
+    PSS_ProcessGraphModelMdlBP* pModel = reinterpret_cast<ZDProcessGraphModelMdlBP*>(pSymbol->GetOwnerModel());
+
+    if (!pModel)
+        return success;
+
+    PSS_LogicalRulesEntity* pMainRule = pModel->GetMainLogicalRules();
+
+    // search for symbol type
+    if (ISA(pSymbol, PSS_DeliverableLinkSymbolBP))
+    {
+        PSS_DeliverableLinkSymbolBP* pDeliverableLinkSymbol = static_cast<PSS_DeliverableLinkSymbolBP*>(pSymbol);
+        const PSS_ProcRules&         rules                  = pDeliverableLinkSymbol->GetRuleSet();
+        const std::size_t            ruleCount              = rules.GetRulesCount();
+
+        for (std::size_t i = 0; i < ruleCount; i++)
+        {
+            const CString ruleGUID = pDeliverableLinkSymbol->GetRuleGUID(i);
+            const CString safeName = pDeliverableLinkSymbol->GetRuleNameByGUID(pMainRule, ruleGUID);
+
+            // is rule valid?
+            if (safeName.IsEmpty())
+            {
+                // log a warning
+                if (m_pLog)
+                {
+                    CString msg;
+                    msg.Format(IDS_EL_CHECK_RULE, i + 1, rules.GetRuleName(i));
+
+                    PSS_GenericSymbolErrorLine e(msg,
+                                                 pDeliverableLinkSymbol->GetSymbolName(),
+                                                 pDeliverableLinkSymbol->GetAbsolutePath(),
+                                                -1,
+                                                 0);
+                    m_pLog->AddLine(e);
+                }
+
+                // increment warning counter
+                ++m_WarningCounter;
+
+                success = false;
+            }
+        }
+    }
+
+    return success;
 }
 //---------------------------------------------------------------------------
 bool PSS_CheckSymbolConsistency::RefExist(int ref)

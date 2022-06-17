@@ -73,7 +73,7 @@ BOOL PSS_InPlaceSearchEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // sets the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_String;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_String;
 
     // set the current selection to all
     SetSelAll();
@@ -100,7 +100,7 @@ BOOL PSS_InPlaceSearchEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Float;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_Float;
 
     // set the current selection to all
     SetSelAll();
@@ -127,7 +127,7 @@ BOOL PSS_InPlaceSearchEdit::InitializeInPlaceEditCtrl(PSS_PropertyItem* pItem,
     SetHasChanged(false);
 
     // set the type
-    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IE_T_Double;
+    PSS_InPlaceEdit::m_Type = PSS_InPlaceEdit::IEType::IE_T_Double;
 
     // set the current selection to all
     SetSelAll();
@@ -189,17 +189,17 @@ void PSS_InPlaceSearchEdit::CancelEdit()
 {
     switch (GetEditType())
     {
-        case PSS_InPlaceEdit::IE_T_String:
+        case PSS_InPlaceEdit::IEType::IE_T_String:
             // set back the initial value
             SetEditText(m_StrInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Double:
+        case PSS_InPlaceEdit::IEType::IE_T_Double:
             // set back the initial double value
             SetEditText(m_DoubleInitialValue);
             break;
 
-        case PSS_InPlaceEdit::IE_T_Float:
+        case PSS_InPlaceEdit::IEType::IE_T_Float:
             // set back the initial float value
             SetEditText(m_FloatInitialValue);
             break;
@@ -229,11 +229,11 @@ void PSS_InPlaceSearchEdit::SaveValue()
 
                 switch (GetEditType())
                 {
-                    case PSS_InPlaceEdit::IE_T_String:
+                    case PSS_InPlaceEdit::IEType::IE_T_String:
                         // do nothing for string
                         break;
 
-                    case PSS_InPlaceEdit::IE_T_Double:
+                    case PSS_InPlaceEdit::IEType::IE_T_Double:
                     {
                         double value;
 
@@ -248,7 +248,7 @@ void PSS_InPlaceSearchEdit::SaveValue()
                         break;
                     }
 
-                    case PSS_InPlaceEdit::IE_T_Float:
+                    case PSS_InPlaceEdit::IEType::IE_T_Float:
                     {
                         float value;
 
@@ -288,6 +288,13 @@ void PSS_InPlaceSearchEdit::SaveValue()
 
     // set the focus to properties control
     SetFocus();
+}
+//---------------------------------------------------------------------------
+void PSS_InPlaceSearchEdit::OnPropertieValueChanged()
+{
+    SetHasChanged(true);
+
+    PSS_PropertyEditControl::OnPropertieValueChanged();
 }
 //---------------------------------------------------------------------------
 void PSS_InPlaceSearchEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)

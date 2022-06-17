@@ -196,25 +196,50 @@ BOOL PSS_ProcessGraphModelViewport::AssignNewController(PSS_ProcessGraphModelCon
 //---------------------------------------------------------------------------
 bool PSS_ProcessGraphModelViewport::ExportModelToImageFile(const CString& fileName, CDC& dc)
 {
-    SECImage* pImage = CreateImageObjectFromFileExtension(fileName);
+    PSS_File file(fileName);
 
-    if (pImage)
+    // is a jpeg image?
+    if (file.GetFileExt().CompareNoCase(_T(".jpg")) == 0)
     {
-        DrawImage(pImage, &dc);
+        std::unique_ptr<SECJpeg> pJpeg(new SECJpeg());
 
-        BOOL result;
+        // define the image quality (in percent, 100% = max, 75% default value)
+        pJpeg->m_nQuality = 100;
+
+        DrawImage(pJpeg.get(), &dc);
+
+        bool result;
+
+        TRY
+        {
+            result = pJpeg->SaveImage(fileName);
+        }
+        CATCH (CFileException, e)
+        {
+            result = false;
+        }
+        END_CATCH
+
+        return result;
+    }
+    else
+    {
+        std::unique_ptr<SECImage> pImage(CreateImageObjectFromFileExtension(fileName));
+
+        DrawImage(pImage.get(), &dc);
+
+        bool result;
 
         TRY
         {
             result = pImage->SaveImage(fileName);
         }
-        CATCH (CFileException, e)
+        CATCH(CFileException, e)
         {
-            result = FALSE;
+            result = false;
         }
         END_CATCH
 
-        delete pImage;
         return result;
     }
 

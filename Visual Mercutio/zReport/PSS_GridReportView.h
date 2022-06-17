@@ -42,7 +42,7 @@ class PSS_GridReportDocument;
 */
 class AFX_EXT_CLASS PSS_GridReportView : public PSS_GridView
 {
-    GXDECLARE_DYNCREATE(PSS_GridReportView)
+    DECLARE_DYNCREATE(PSS_GridReportView)
 
     public:
         virtual ~PSS_GridReportView();

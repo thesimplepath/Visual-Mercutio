@@ -40,7 +40,7 @@ class AFX_EXT_CLASS PSS_LanguageComboBox : public CCJFlatComboBox
         * Constructor
         *@param initialLanguage - initial language to select, may be unknown
         */
-        PSS_LanguageComboBox(ELanguage initialLanguage = E_LN_Unknown);
+        PSS_LanguageComboBox(ELanguage initialLanguage = ELanguage::E_LN_Unknown);
 
         virtual ~PSS_LanguageComboBox();
 
@@ -106,7 +106,7 @@ ELanguage PSS_LanguageComboBox::GetLanguage() const
 //---------------------------------------------------------------------------
 void PSS_LanguageComboBox::SelectLanguage(ELanguage newLanguage)
 {
-    SetCurSel(newLanguage);
+    SetCurSel((std::size_t)newLanguage);
 }
 //---------------------------------------------------------------------------
 

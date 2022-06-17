@@ -27,7 +27,7 @@ const PSS_UserLoader& PSS_UserLoader::operator = (const PSS_UserLoader& other)
 BOOL PSS_UserLoader::LoadAllUsers()
 {
     PSS_Assert(m_pUserManager);
-    m_UserImport.Create(m_FileName, m_pUserManager, FALSE, E_SS_Tab);
+    m_UserImport.Create(m_FileName, m_pUserManager, FALSE, ESynchronizationSeparatorType::E_SS_Tab);
 
     return m_UserImport.Import();
 }

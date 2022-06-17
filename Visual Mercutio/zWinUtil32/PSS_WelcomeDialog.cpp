@@ -61,7 +61,7 @@ BOOL PSS_WelcomeDialog::OnInitDialog()
     m_HyperLink.SetURL(_T("http://www.processsoft.com"));
 
     // return TRUE unless the focus is set to a control
-    return FALSE;
+    return TRUE;
 }
 //---------------------------------------------------------------------------
 void PSS_WelcomeDialog::OnWelcomeLastFile()

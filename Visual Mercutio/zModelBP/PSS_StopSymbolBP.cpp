@@ -299,9 +299,9 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                          M_Rule_Name_ID + (i * g_MaxRulesSize),
                                          ruleDesc,
                                          m_Rules.GetRuleName(i),
-                                         PSS_Property::IE_T_EditMenu,
+                                         PSS_Property::IEType::IE_T_EditMenu,
                                          true,
-                                         PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                         PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                          NULL,
                                          &g_RulesMenu));
 
@@ -337,9 +337,9 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_Name_ID : (M_Risk_Name_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskName(i),
-                                     PSS_Property::IE_T_EditMenu,
+                                     PSS_Property::IEType::IE_T_EditMenu,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      NULL,
                                      &g_RiskMenu));
 
@@ -356,7 +356,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_Desc_ID : (M_Risk_Desc_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskDesc(i),
-                                     PSS_Property::IE_T_EditExtended));
+                                     PSS_Property::IEType::IE_T_EditExtended));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -374,7 +374,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_Type_ID : (M_Risk_Type_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskType(i).IsEmpty() ? noRiskType : GetRiskType(i),
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -407,7 +407,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_Impact_ID : (M_Risk_Impact_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      riskImpact,
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -432,7 +432,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_Probability_ID : (M_Risk_Probability_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      riskProbability,
-                                     PSS_Property::IE_T_EditExtendedReadOnly));
+                                     PSS_Property::IEType::IE_T_EditExtendedReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -447,7 +447,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_Severity_ID : (M_Risk_Severity_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      double(GetRiskSeverity(i)),
-                                     PSS_Property::IE_T_EditNumberReadOnly));
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -462,9 +462,9 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_UE_ID : (M_Risk_UE_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskUE(i),
-                                     PSS_Property::IE_T_EditNumber,
+                                     PSS_Property::IEType::IE_T_EditNumber,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -479,9 +479,9 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_POA_ID : (M_Risk_POA_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskPOA(i),
-                                     PSS_Property::IE_T_EditNumber,
+                                     PSS_Property::IEType::IE_T_EditNumber,
                                      true,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol)));
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_Currency, true, 2, currencySymbol)));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -496,9 +496,9 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      groupValues ? M_Risk_Action_ID : (M_Risk_Action_ID + (i * g_MaxRisksSize)),
                                      riskDesc,
                                      GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
-                                     PSS_Property::IE_T_ComboStringReadOnly,
+                                     PSS_Property::IEType::IE_T_ComboStringReadOnly,
                                      TRUE,
-                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                     PSS_StringFormat(PSS_StringFormat::IEFormatType::IE_FT_General),
                                      PSS_Global::GetArrayYesNo()));
 
         propSet.Add(pProp.get());
@@ -519,7 +519,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                  M_Unit_GUID_ID,
                                  IDS_Z_UNIT_GUID_DESC,
                                  GetUnitGUID(),
-                                 PSS_Property::IE_T_EditExtendedReadOnly,
+                                 PSS_Property::IEType::IE_T_EditExtendedReadOnly,
                                  false));
 
     propSet.Add(pProp.get());
@@ -535,7 +535,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                  M_Unit_Name_ID,
                                  IDS_Z_UNIT_NAME_DESC,
                                  unitName,
-                                 groupEnabled ? PSS_Property::IE_T_EditExtendedReadOnly : PSS_Property::IE_T_EditStringReadOnly));
+                                 groupEnabled ? PSS_Property::IEType::IE_T_EditExtendedReadOnly : PSS_Property::IEType::IE_T_EditStringReadOnly));
 
     propSet.Add(pProp.get());
     pProp.release();
@@ -551,7 +551,7 @@ bool PSS_StopSymbolBP::FillProperties(PSS_Properties::IPropertySet& propSet, boo
                                      M_Unit_Cost_ID,
                                      IDS_Z_UNIT_COST_DESC,
                                      unitCost,
-                                     PSS_Property::IE_T_EditNumberReadOnly));
+                                     PSS_Property::IEType::IE_T_EditNumberReadOnly));
 
         propSet.Add(pProp.get());
         pProp.release();
@@ -601,9 +601,9 @@ bool PSS_StopSymbolBP::SaveProperties(PSS_Properties::IPropertySet& propSet)
         if (categoryID == ZS_BP_PROP_UNIT)
             switch (pProp->GetValueType())
             {
-                case PSS_Property::IE_VT_Double: m_UnitProp.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble())); break;
-                case PSS_Property::IE_VT_Float:  m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());         break;
-                case PSS_Property::IE_VT_String: m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueString());        break;
+                case PSS_Property::IEValueType::IE_VT_Double: m_UnitProp.SetValue(pProp->GetItemID(), float(pProp->GetValueDouble())); break;
+                case PSS_Property::IEValueType::IE_VT_Float:  m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());         break;
+                case PSS_Property::IEValueType::IE_VT_String: m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueString());        break;
             }
     }
 
@@ -662,6 +662,35 @@ bool PSS_StopSymbolBP::SaveProperty(PSS_Property& prop)
 bool PSS_StopSymbolBP::CheckPropertyValue(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props)
 {
     return PSS_Symbol::CheckPropertyValue(prop, value, props);
+}
+//---------------------------------------------------------------------------
+CString PSS_StopSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
+{
+    if (!pRule)
+        return _T("");
+
+    if (pRule->GetGUID() == ruleGUID)
+        return pRule->GetEntityName();
+
+    if (pRule->ContainEntity())
+    {
+        const std::size_t count = pRule->GetEntityCount();
+
+        for (std::size_t i = 0; i < count; ++i)
+        {
+            PSS_LogicalRulesEntity* pRuleEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pRule->GetEntityAt(i));
+
+            if (!pRuleEntity)
+                continue;
+
+            const CString name = GetRuleNameByGUID(pRuleEntity, ruleGUID);
+
+            if (!name.IsEmpty())
+                return name;
+        }
+    }
+
+    return _T("");
 }
 //---------------------------------------------------------------------------
 bool PSS_StopSymbolBP::ProcessExtendedInput(PSS_Property& prop, CString& value, PSS_Properties::IPropertySet& props, bool& refresh)
@@ -811,35 +840,12 @@ BOOL PSS_StopSymbolBP::ContainsRule(const CString& ruleName) const
     return FALSE;
 }
 //---------------------------------------------------------------------------
-void PSS_StopSymbolBP::CheckRulesSync(CStringArray& rulesList)
+CString PSS_StopSymbolBP::GetRuleGUID(std::size_t index) const
 {
-    CODModel* pModel = GetRootModel();
+    if (index < m_Rules.GetRulesCount())
+        return m_Rules.GetRuleGUID(index);
 
-    if (!pModel)
-        return;
-
-    const int ruleCount = m_Rules.GetRulesCount();
-
-    if (ruleCount > 0)
-    {
-        PSS_ProcessGraphModelMdlBP* pOwnerModel = dynamic_cast<PSS_ProcessGraphModelMdlBP*>(GetOwnerModel());
-
-        if (!pOwnerModel)
-            return;
-
-        PSS_LogicalRulesEntity* pMainRule = pOwnerModel->GetMainLogicalRules();
-
-        if (!pMainRule)
-            return;
-
-        for (int i = 0; i < ruleCount; ++i)
-        {
-            const CString safeName = GetRuleNameByGUID(pMainRule, m_Rules.GetRuleGUID(i));
-
-            if (safeName.IsEmpty())
-                rulesList.Add(m_Rules.GetRuleName(i));
-        }
-    }
+    return _T("");
 }
 //---------------------------------------------------------------------------
 CString PSS_StopSymbolBP::GetRiskType(std::size_t index) const
@@ -1014,7 +1020,7 @@ bool PSS_StopSymbolBP::OnToolTip(CString& toolTipText, const CPoint& point, PSS_
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (mode == PSS_Symbol::IE_TT_Design)
+    if (mode == PSS_Symbol::IEToolTipMode::IE_TT_Design)
     {
         // todo -cFeature -oJean: need to implement the result of the control checking
     }
@@ -1053,34 +1059,5 @@ void PSS_StopSymbolBP::OnDelCurrentRisk(PSS_Property& prop, CString& value, PSS_
         refresh = true;
         SetModifiedFlag(TRUE);
     }
-}
-//---------------------------------------------------------------------------
-CString PSS_StopSymbolBP::GetRuleNameByGUID(PSS_LogicalRulesEntity* pRule, const CString& ruleGUID)
-{
-    if (!pRule)
-        return _T("");
-
-    if (pRule->GetGUID() == ruleGUID)
-        return pRule->GetEntityName();
-
-    if (pRule->ContainEntity())
-    {
-        const int count = pRule->GetEntityCount();
-
-        for (int i = 0; i < count; ++i)
-        {
-            PSS_LogicalRulesEntity* pRuleEntity = dynamic_cast<PSS_LogicalRulesEntity*>(pRule->GetEntityAt(i));
-
-            if (!pRuleEntity)
-                continue;
-
-            const CString name = GetRuleNameByGUID(pRuleEntity, ruleGUID);
-
-            if (!name.IsEmpty())
-                return name;
-        }
-    }
-
-    return _T("");
 }
 //---------------------------------------------------------------------------

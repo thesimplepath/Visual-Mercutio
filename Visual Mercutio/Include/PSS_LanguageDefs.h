@@ -11,7 +11,7 @@
 /**
 * Language enumaration
 */
-enum ELanguage
+enum class ELanguage
 {
     E_LN_Unknown = -1,
     E_LN_English =  0,

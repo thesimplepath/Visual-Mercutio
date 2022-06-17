@@ -240,7 +240,7 @@ class AFX_EXT_CLASS PSS_WorkspaceTreeCtrl : public PSS_TreeCtrl,
                 /**
                 * Data type
                 */
-                enum IEType
+                enum class IEType
                 {
                     IE_DT_WorkspaceEnv,
                     IE_DT_Group,

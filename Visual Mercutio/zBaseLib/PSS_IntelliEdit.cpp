@@ -513,7 +513,6 @@ BOOL PSS_IntelliEdit::PreTranslateMessage(MSG* pMsg)
                             SetWindowText(text);
 
                         SetSel(text.GetLength(), text.GetLength());
-                        return TRUE;
                     }
                     else
                     if (IsHistoryFloatingListVisible())
@@ -534,10 +533,9 @@ BOOL PSS_IntelliEdit::PreTranslateMessage(MSG* pMsg)
                             SetWindowText(text);
 
                         SetSel(text.GetLength(), text.GetLength());
-                        return TRUE;
                     }
 
-                    break;
+                    return TRUE;
 
                 default:
                     break;

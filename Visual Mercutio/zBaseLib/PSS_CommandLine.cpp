@@ -72,7 +72,7 @@ void PSS_CommandLine::Initialize(const CString& commandLine,
 //---------------------------------------------------------------------------
 BOOL PSS_CommandLine::Launch()
 {
-    PSS_FileLauncher fileLauncher(m_CommandLine, PSS_FileLauncher::IE_FM_Open, m_Arguments, m_StartupDir);
+    PSS_FileLauncher fileLauncher(m_CommandLine, PSS_FileLauncher::IEMode::IE_FM_Open, m_Arguments, m_StartupDir);
     return fileLauncher.Launch();
 }
 //---------------------------------------------------------------------------
