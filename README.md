@@ -6,7 +6,7 @@ This repository contains the full source code of the process management solution
 **Visual Mercutio** source code and all its relative tools and services are provided under the terms of the MIT License. Please find the complete product documentation in the Documents directory.
 
 ## Prerequisites
-To compile the **Visual Mercutio** source code, Visual Studio 2017 needs to be installed, along with the MFC library. A newer version of Visual Studio may theorically be used but I never tested it.
+To compile the **Visual Mercutio** source code, Visual Studio 2019 needs to be installed, along with the MFC library. A newer version of Visual Studio may theorically be used but I never tested it.
 
 Also several third party libraries are required:
 - **CJ60Lib**. The CodeJockeys library is an extended component set for MFC applications. This library is no longer developed, but you can find the source code in the Third Party directory.
@@ -16,16 +16,14 @@ Also several third party libraries are required:
 - Additionaly you may need the following DLLs: ddao35.dll, msvcp71.dll, msvcr71.dll and vc6-re200l.dll
 
 ## Compilation
-Install **Visual Studio 2017** with the **MFC** library (should be selected explicitly in the installation options). You can download a copy from here: https://visualstudio.microsoft.com/vs/older-downloads/
-
-**NOTE** currently Visual Mercutio cannot be compiled with Visual Studio 2019, due to issues with the DAO API. No porting is planned for the moment.
+Install **Visual Studio 2019** with the **MFC** library (should be selected explicitly in the installation options). You can download a copy from here: https://visualstudio.microsoft.com/vs/older-downloads/
 
 Here are the steps to compile:
 1. Build the CJ60Lib library, and copy the compiled DLL to the \Visual Mercutio\exe\ directory (for the Debug version), and the \Visual Mercutio\exeR\ directory (for the Release version), respectively
 2. Build the easysoap++ library, and copy the compiled DLL to the \Visual Mercutio\exe\ directory (for the Debug version), and the \Visual Mercutio\exeR\ directory (for the Release version), respectively
 3. Build the expat library, and copy the compiled DLL to the \Visual Mercutio\exe\ directory (for the Debug version), and the \Visual Mercutio\exeR\ directory (for the Release version), respectively
 4. Build the Stingray Studio library, and copy the following compiled DLLs: RWUXThemeS.dll, sfl204as.dll, og904as.dll, OT804as.dll and OV804as.dll, to the \Visual Mercutio\exe\ directory (for the Debug version), and the \Visual Mercutio\exeR\ directory (for the Release version), respectively
-5. Open the VisualMercutio.sln solution in Visual Studio 2017, right click on zProcess32 project and select Rebuild
+5. Open the VisualMercutio.sln solution in Visual Studio 2019, right click on zProcess32 project and select Rebuild
 
 ## Monitor
 The Monitor server is a set of several services which allows to publish data exported from the Visual Mercutio application into a database, which may be accessed from a network. The services composing the Monitor server are:
