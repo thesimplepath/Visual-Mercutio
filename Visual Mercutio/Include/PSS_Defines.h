@@ -204,7 +204,7 @@ const UINT g_DefVersion = 1;
 // Version 26 for Conceptor Release 2007 - SP1 Prima
 // Version 27 for Conceptor Release 2007 - SP1
 // ...
-// Version 35 for Conceptor Release 2021 - SP1
+// Version 35 for Conceptor Release 2022 - SP1
 const long g_VersionFile = 35;
 
 // default object list

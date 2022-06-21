@@ -28,7 +28,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 //
 
 IDD_INSERT_MODELPAGE DIALOG  0, 0, 344, 322
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Insérer une nouvelle page"
 FONT 8, "MS Sans Serif"
@@ -44,7 +44,7 @@ BEGIN
 END
 
 IDD_INSERTORLINK_MODELPAGE DIALOG  0, 0, 377, 327
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Insérer ou lier une page"
 FONT 8, "MS Sans Serif"
@@ -61,7 +61,7 @@ BEGIN
     GROUPBOX        "",IDC_STATIC,189,41,176,259
     LTEXT           "Veuillez choisir dans la liste la page existante que vous désirez lier.",
                     IDC_STATIC,194,52,144,20
-    CONTROL         "Tree1",IDC_EXISTINGPAGES,"SysTreeView32",WS_BORDER | 
+    CONTROL         "Tree1",IDC_EXISTINGPAGES,"SysTreeView32",WS_BORDER |
                     WS_TABSTOP,194,73,163,220
     LTEXT           "Sous le processus:",IDC_STATIC,12,68,65,9
     CONTROL         "Tree1",IDC_EXISTINGPROCESS,"SysTreeView32",
@@ -69,16 +69,16 @@ BEGIN
 END
 
 IDD_DELETE_MODELPAGE DIALOG  0, 0, 373, 263
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Supprimer une page existante"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Tree1",IDC_EXISTINGPROCESS,"SysTreeView32",WS_BORDER | 
+    CONTROL         "Tree1",IDC_EXISTINGPROCESS,"SysTreeView32",WS_BORDER |
                     WS_TABSTOP,12,69,350,163
     DEFPUSHBUTTON   "Supprimer",IDOK,316,242,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,263,242,50,14
-    EDITTEXT        IDC_PAGENAME,36,29,326,14,ES_AUTOHSCROLL | ES_READONLY | 
+    EDITTEXT        IDC_PAGENAME,36,29,326,14,ES_AUTOHSCROLL | ES_READONLY |
                     NOT WS_BORDER
     ICON            IDI_DELETE_PAGE,IDC_STATIC,12,24,21,20
     GROUPBOX        "",IDC_STATIC,7,7,359,231
@@ -86,7 +86,7 @@ BEGIN
 END
 
 IDD_RENAME_MODELPAGE DIALOGEX 0, 0, 344, 322
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Renommer une page"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
@@ -96,7 +96,7 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,235,301,50,14
     ICON            IDI_RENAME_PAGE,IDC_STATIC,12,24,21,20
     GROUPBOX        "",IDC_STATIC,7,7,330,292
-    CONTROL         "Tree1",IDC_EXISTINGPROCESS,"SysTreeView32",WS_BORDER | 
+    CONTROL         "Tree1",IDC_EXISTINGPROCESS,"SysTreeView32",WS_BORDER |
                     WS_TABSTOP,12,63,322,232
     LTEXT           "Nouveau nom :",IDC_STATIC,12,7,52,8
     LTEXT           "Sélection de la page à renommer :",IDC_STATIC,12,52,109,
@@ -110,20 +110,20 @@ FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,271,303,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,217,303,50,14
-    CONTROL         "Tree1",IDC_SYMBOLTREE,"SysTreeView32",TVS_HASBUTTONS | 
-                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+    CONTROL         "Tree1",IDC_SYMBOLTREE,"SysTreeView32",TVS_HASBUTTONS |
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,315,293,
                     WS_EX_CLIENTEDGE
-    EDITTEXT        IDC_SYMBOLPATH,35,309,198,12,ES_AUTOHSCROLL | 
+    EDITTEXT        IDC_SYMBOLPATH,35,309,198,12,ES_AUTOHSCROLL |
                     ES_READONLY | NOT WS_VISIBLE | NOT WS_BORDER
-    EDITTEXT        IDC_SYMBOLNAME,35,296,196,12,ES_AUTOHSCROLL | 
+    EDITTEXT        IDC_SYMBOLNAME,35,296,196,12,ES_AUTOHSCROLL |
                     ES_READONLY | NOT WS_VISIBLE | NOT WS_BORDER
     LTEXT           "Nom:",IDC_STATIC,7,298,33,8,NOT WS_VISIBLE
     LTEXT           "Chemin:",IDC_STATIC,7,310,33,8,NOT WS_VISIBLE
 END
 
 IDD_FIND_SYMBOL DIALOG  0, 0, 343, 194
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Chercher un composant"
 FONT 8, "MS Sans Serif"
@@ -133,8 +133,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,98,9
     CONTROL         "Respecter la casse",IDC_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,111,60,84,9
-    CONTROL         "List1",IDC_FINDRESULT_LIST,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SHAREIMAGELISTS | 
+    CONTROL         "List1",IDC_FINDRESULT_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SHAREIMAGELISTS |
                     WS_BORDER | WS_TABSTOP,3,87,333,102
     DEFPUSHBUTTON   "Rechercher",IDC_FIND,286,5,50,14
     PUSHBUTTON      "Atteindre",IDC_BROWSE,286,69,50,13
@@ -147,22 +147,22 @@ BEGIN
 END
 
 IDD_SELECTSYMBOL_GRAPH DIALOGEX 0, 0, 349, 316
-STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
 CAPTION "Sélectionner un symbole"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,292,295,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,239,295,50,14
-    CONTROL         "Custom2",IDC_DIAGRAM,"_ZVGraphModelWnd",WS_BORDER | 
+    CONTROL         "Custom2",IDC_DIAGRAM,"_ZVGraphModelWnd",WS_BORDER |
                     WS_TABSTOP,7,21,335,271
-    EDITTEXT        IDC_SYMBOLPATH,7,297,161,12,ES_AUTOHSCROLL | ES_READONLY | 
+    EDITTEXT        IDC_SYMBOLPATH,7,297,161,12,ES_AUTOHSCROLL | ES_READONLY |
                     NOT WS_BORDER
     LTEXT           "Static",IDC_FLAT_TB_SELECTSYMBOL,7,1,335,14
 END
 
 IDD_USERGROUP_SELECTION DIALOGEX 0, 0, 293, 317
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Sélection d'un groupe ou d'une équipe"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
@@ -170,13 +170,13 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,236,296,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,184,296,50,14
     CONTROL         "Tree1",IDC_USERGROUP_TREE,"SysTreeView32",
-                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | 
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,23,279,270
     LTEXT           "Groupes et équipes existants:",IDC_STATIC,7,7,95,9
 END
 
 IDD_USERGROUP_SEL_ADDREMOVE DIALOG  0, 0, 336, 305
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Sélection des groupes et des équipes"
 FONT 8, "MS Sans Serif"
@@ -184,24 +184,24 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,279,284,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,173,284,50,14
     CONTROL         "Tree1",IDC_USERGROUP_TREE,"SysTreeView32",
-                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | 
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,23,163,257
     PUSHBUTTON      ">>",IDC_ADD_USERGROUP,173,86,29,14
     PUSHBUTTON      "<<",IDC_REMOVE_USERGROUP,173,103,29,14
-    LISTBOX         IDC_LIST1,204,23,125,257,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         IDC_LIST1,204,23,125,257,LBS_SORT | LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "Groupes et équipes existants:",IDC_STATIC,7,7,84,9
     LTEXT           "Sélection:",IDC_STATIC,184,7,84,9
 END
 
 IDD_UGP_INFO DIALOGEX 0, 0, 315, 125
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Nouveau"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     EDITTEXT        IDC_UGP_NAME,7,21,248,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_UGP_DESCRIPTION,7,49,301,39,ES_MULTILINE | 
+    EDITTEXT        IDC_UGP_DESCRIPTION,7,49,301,39,ES_MULTILINE |
                     ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
     EDITTEXT        IDC_UGP_COST,7,106,301,12,ES_AUTOHSCROLL
     DEFPUSHBUTTON   "OK",IDOK,258,7,50,14
@@ -212,14 +212,14 @@ BEGIN
 END
 
 IDD_SYMBOLATTRIBUTE_SELECTION DIALOG  0, 0, 246, 319
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Sélectionnez la liste des attributs"
 FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "Tree1",IDC_ATTRIBUTE_TREE,"SysTreeView32",
-                    TVS_HASBUTTONS | TVS_HASLINES | TVS_DISABLEDRAGDROP | 
-                    TVS_SHOWSELALWAYS | TVS_CHECKBOXES | WS_BORDER | 
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_DISABLEDRAGDROP |
+                    TVS_SHOWSELALWAYS | TVS_CHECKBOXES | WS_BORDER |
                     WS_TABSTOP,12,75,220,208
     DEFPUSHBUTTON   "Appliquer",IDOK,186,304,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,53,304,50,14
@@ -236,7 +236,7 @@ BEGIN
 END
 
 IDD_LOGICALSYSTEM_SELECTION DIALOG  0, 0, 306, 297
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Sélection d'un système logique"
 FONT 8, "MS Sans Serif"
@@ -244,19 +244,19 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,249,276,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,197,276,50,14
     CONTROL         "Tree1",IDC_LOGICALSYSTEM_TREE,"SysTreeView32",
-                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | 
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,23,292,250
     LTEXT           "Systèmes existants:",IDC_STATIC,7,7,84,9
 END
 
 IDD_LOGICALSYSTEM_INFO DIALOG  0, 0, 295, 95
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Nouveau"
 FONT 8, "MS Sans Serif"
 BEGIN
     EDITTEXT        IDC_LOGICALSYSTEM_NAME,7,21,226,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_LOGICALSYSTEM_DESCRIPTION,7,49,281,39,ES_MULTILINE | 
+    EDITTEXT        IDC_LOGICALSYSTEM_DESCRIPTION,7,49,281,39,ES_MULTILINE |
                     ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
     DEFPUSHBUTTON   "OK",IDOK,238,7,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,238,24,50,14
@@ -265,13 +265,13 @@ BEGIN
 END
 
 IDD_WZ_DYNAMICATTR_S1 DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Création d'attributs dynamiques"
 FONT 8, "MS Sans Serif"
 BEGIN
     EDITTEXT        IDC_CATEGORYNAME,13,62,230,13,ES_AUTOHSCROLL
-    LISTBOX         IDC_CATEGORY_LIST,13,79,134,97,LBS_SORT | 
+    LISTBOX         IDC_CATEGORY_LIST,13,79,134,97,LBS_SORT |
                     LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "OK",IDOK,144,184,50,14,NOT WS_VISIBLE
     DEFPUSHBUTTON   "Suivant >>",IDNEXT,80,184,50,14
@@ -284,17 +284,17 @@ BEGIN
 END
 
 IDD_WZ_DYNAMICATTR_S2 DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Création d'attributs dynamiques"
 FONT 8, "MS Sans Serif"
 BEGIN
     EDITTEXT        IDC_ATTRIB_NAME,63,41,225,12,ES_AUTOHSCROLL
-    COMBOBOX        IDC_ATTRIB_TYPE,63,66,225,92,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_ATTRIB_TYPE,63,66,225,92,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_ATTRIB_VISIBILITY,63,92,225,83,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_ATTRIB_VISIBILITY,63,92,225,83,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    EDITTEXT        IDC_ATTR_DESCRIPTION,63,117,225,56,ES_MULTILINE | 
+    EDITTEXT        IDC_ATTR_DESCRIPTION,63,117,225,56,ES_MULTILINE |
                     ES_AUTOVSCROLL
     DEFPUSHBUTTON   "Créer",IDOK,144,184,50,14
     PUSHBUTTON      "Suivant >>",IDNEXT,80,184,50,14,WS_DISABLED
@@ -308,7 +308,7 @@ BEGIN
 END
 
 IDD_FIND_SYMBOL_EXT DIALOG  0, 0, 343, 265
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Chercher un composant"
 FONT 8, "MS Sans Serif"
@@ -325,22 +325,22 @@ BEGIN
     CONTROL         "Recherche Partielle",IDC_PARTIAL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,205,50,76,9
     CONTROL         "Tree1",IDC_ATTRIBUTE_TREE,"SysTreeView32",
-                    TVS_HASBUTTONS | TVS_HASLINES | TVS_DISABLEDRAGDROP | 
-                    TVS_SHOWSELALWAYS | TVS_CHECKBOXES | WS_BORDER | 
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_DISABLEDRAGDROP |
+                    TVS_SHOWSELALWAYS | TVS_CHECKBOXES | WS_BORDER |
                     WS_TABSTOP,7,84,329,176
 END
 
 IDD_WZ_DYNAMICATTR_S3 DIALOGEX 0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Duplication d'attributs dynamiques"
 FONT 8, "MS Sans Serif", 400, 0, 0x0
 BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
     PUSHBUTTON      "OK",IDOK,81,184,50,14
-    EDITTEXT        IDC_ATTRIB_CATEGORY_NAME,71,61,217,13,ES_AUTOHSCROLL | 
+    EDITTEXT        IDC_ATTRIB_CATEGORY_NAME,71,61,217,13,ES_AUTOHSCROLL |
                     ES_READONLY
-    LISTBOX         IDC_ATTRIB_CATEGORY_LIST,13,81,134,80,LBS_SORT | 
+    LISTBOX         IDC_ATTRIB_CATEGORY_LIST,13,81,134,80,LBS_SORT |
                     LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Catégorie source :",IDC_LBL_CATEGORY,6,64,64,8
     LTEXT           "Veuillez sélectionner une catégorie existante dans la liste. Cette catégorie sera ensuite copiée dans une nouvelle catégorie. Le paramètre entré dans le champ ""Nom de la copie"" sera utilisé pour nommer le nouveau groupe.",
@@ -352,13 +352,13 @@ BEGIN
 END
 
 IDD_PRESTATIONS_INFO DIALOGEX 0, 0, 295, 95
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Nouveau"
 FONT 8, "MS Sans Serif", 400, 0, 0x0
 BEGIN
     EDITTEXT        IDC_PRESTATION_NAME,7,21,226,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_PRESTATION_DESCRIPTION,7,49,281,39,ES_MULTILINE | 
+    EDITTEXT        IDC_PRESTATION_DESCRIPTION,7,49,281,39,ES_MULTILINE |
                     ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
     DEFPUSHBUTTON   "OK",IDOK,238,7,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,238,24,50,14
@@ -367,7 +367,7 @@ BEGIN
 END
 
 IDD_RENAME_MODELPAGE_IN_TREE DIALOGEX 0, 0, 298, 73
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Renommer une page"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
@@ -380,41 +380,41 @@ BEGIN
 END
 
 IDD_PRESTATION_SELECTION DIALOGEX 0, 0, 293, 318
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,236,296,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,184,296,50,14
-    CONTROL         "",IDC_PRESTATIONS_TREE,"SysTreeView32",TVS_HASBUTTONS | 
-                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | 
+    CONTROL         "",IDC_PRESTATIONS_TREE,"SysTreeView32",TVS_HASBUTTONS |
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS |
                     WS_BORDER | WS_TABSTOP,7,23,279,270
     LTEXT           "Prestations existantes :",IDC_STATIC,7,7,77,9
 END
 
 IDD_RULE_SELECTION DIALOGEX 0, 0, 293, 318
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,236,296,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,184,296,50,14
-    CONTROL         "",IDC_RULES_TREE,"SysTreeView32",TVS_HASBUTTONS | 
-                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | 
+    CONTROL         "",IDC_RULES_TREE,"SysTreeView32",TVS_HASBUTTONS |
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS |
                     WS_BORDER | WS_TABSTOP,7,23,279,270
     LTEXT           "Règles existantes :",IDC_STATIC,7,7,77,9
 END
 
 IDD_RULES_INFO DIALOGEX 0, 0, 295, 94
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Nouveau"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_RULE_NAME,7,21,226,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_RULE_DESCRIPTION,7,49,281,39,ES_MULTILINE | 
+    EDITTEXT        IDC_RULE_DESCRIPTION,7,49,281,39,ES_MULTILINE |
                     ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
     DEFPUSHBUTTON   "OK",IDOK,238,7,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,238,24,50,14
@@ -445,26 +445,26 @@ IDI_MODELPAGE           ICON                    "res\\ico27363.ico"
 IDD_PROPPAGE_ACTIVITY_COMMANDLINE DLGINIT
 BEGIN
     IDC_PRIORITY, 0x403, 8, 0
-0x6f4e, 0x6d72, 0x6c61, 0x0065, 
+0x6f4e, 0x6d72, 0x6c61, 0x0065,
     IDC_PRIORITY, 0x403, 6, 0
-0x6148, 0x7475, 0x0065, 
+0x6148, 0x7475, 0x0065,
     IDC_PRIORITY, 0x403, 5, 0
-0x6449, 0x656c, "\000" 
+0x6449, 0x656c, "\000"
     IDC_PRIORITY, 0x403, 11, 0
-0x6554, 0x706d, 0x2073, 0xe972, 0x6c65, "\000" 
+0x6554, 0x706d, 0x2073, 0xe972, 0x6c65, "\000"
     0
 END
 
 IDD_WIZARDACTIVITY_COMMANDLINE DLGINIT
 BEGIN
     IDC_PRIORITY, 0x403, 8, 0
-0x6f4e, 0x6d72, 0x6c61, 0x0065, 
+0x6f4e, 0x6d72, 0x6c61, 0x0065,
     IDC_PRIORITY, 0x403, 6, 0
-0x6148, 0x7475, 0x0065, 
+0x6148, 0x7475, 0x0065,
     IDC_PRIORITY, 0x403, 5, 0
-0x6449, 0x656c, "\000" 
+0x6449, 0x656c, "\000"
     IDC_PRIORITY, 0x403, 11, 0
-0x6554, 0x706d, 0x2073, 0xe972, 0x6c65, "\000" 
+0x6554, 0x706d, 0x2073, 0xe972, 0x6c65, "\000"
     0
 END
 
@@ -475,7 +475,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_INSERT_MODELPAGE, DIALOG
     BEGIN
@@ -710,19 +710,19 @@ END
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "zModelRes.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#include ""afxres.h""\r\n"
     "#include ""zFormsRes\\zFormsRes.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -760,27 +760,27 @@ IDR_DYNATTRIB_TOOLBAR   BITMAP                  "res\\simulati.bmp"
 // Menu
 //
 
-IDR_EXTFILES_MENU MENU 
+IDR_EXTFILES_MENU MENU
 BEGIN
     POPUP "ExtFiles"
     BEGIN
         MENUITEM "Ajouter un formulaire, fichier ou URL", ID_ADD_NEWEXTFILE
-        MENUITEM "Supprimer le formulaire, fichier ou URL sélectionnée", 
+        MENUITEM "Supprimer le formulaire, fichier ou URL sélectionnée",
                                                 ID_DEL_CURRENTEXTFILE
     END
 END
 
-IDR_EXTAPPS_MENU MENU 
+IDR_EXTAPPS_MENU MENU
 BEGIN
     POPUP "ExtApps"
     BEGIN
         MENUITEM "Ajouter une application",     ID_ADD_NEWEXTAPP
-        MENUITEM "Supprimer l'application sélectionnée", 
+        MENUITEM "Supprimer l'application sélectionnée",
                                                 ID_DEL_CURRENTEXTAPP
     END
 END
 
-IDR_BASICSYMBOL_POPUP MENU 
+IDR_BASICSYMBOL_POPUP MENU
 BEGIN
     POPUP "PageModel"
     BEGIN
@@ -836,7 +836,7 @@ BEGIN
     END
 END
 
-IDR_BASICSYMBOL_REF_POPUP MENU 
+IDR_BASICSYMBOL_REF_POPUP MENU
 BEGIN
     POPUP "PageModel"
     BEGIN
@@ -860,7 +860,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -877,7 +877,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -891,7 +891,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -905,7 +905,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -919,7 +919,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -933,7 +933,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -950,7 +950,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -967,7 +967,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
@@ -981,14 +981,14 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter",
                                                 ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
 END
 
-IDR_LOGICAL_SUBMENUS MENU 
+IDR_LOGICAL_SUBMENUS MENU
 BEGIN
     POPUP "Root"
     BEGIN
@@ -1015,7 +1015,7 @@ BEGIN
     END
 END
 
-IDR_USERGROUP_SUBMENUS MENU 
+IDR_USERGROUP_SUBMENUS MENU
 BEGIN
     POPUP "GroupFile"
     BEGIN
@@ -1050,7 +1050,7 @@ BEGIN
     END
 END
 
-IDR_PRESTATIONS_SUBMENUS MENU 
+IDR_PRESTATIONS_SUBMENUS MENU
 BEGIN
     POPUP "Root"
     BEGIN
@@ -1077,7 +1077,7 @@ BEGIN
     END
 END
 
-IDR_RULES_SUBMENUS MENU 
+IDR_RULES_SUBMENUS MENU
 BEGIN
     POPUP "Root"
     BEGIN
@@ -1148,7 +1148,7 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MODELGENHTML_24     "    <td width=""100%"">"
     IDS_MODELGENHTML_25     "<a href=""%s"">%s</a></td>\n  </tr>"
@@ -1157,9 +1157,9 @@ BEGIN
     IDS_WZ_DYNATTRS3_ST_S   "Indiquez le nom du nouveau groupe après la copie."
     IDS_MODELGENHTML_23     "<html>\n<head>\n<link href=""%s"" rel=""styleSheet"" type=""text/css""> \n<script language=javaScript src=""%s""></script>\n"
     IDS_MODELGENHTML_26     "<script language=JavaScript>\n<!--\n var m=new oMenu;\n"
-    IDS_AL_UNITCANNOTREASSIGN 
+    IDS_AL_UNITCANNOTREASSIGN
                             "Du fait que le modèle n'est pas en ligne avec le fichier de définition des Groupes, aucun contrôle automatique ne peut être effectué sur les Groupes."
-    IDS_AL_SYSTEMCANNOTREASSIGN 
+    IDS_AL_SYSTEMCANNOTREASSIGN
                             "Du fait que le modèle n'est pas en ligne avec le fichier de définition des Systèmes, aucun contrôle automatique ne peut être effectué sur les Systèmes."
     IDS_MODELGENHTML_27     "//-->\n</script>\n</head>\n\n<body bgcolor=%s>\n"
     IDS_WZ_DYNATTRS3_ST_T   "Nom de la copie"
@@ -1170,46 +1170,46 @@ BEGIN
     IDS_PROPCATEGORYNAME_MISSING "Veuillez spécifier un nom de catégorie."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_SELECTUNITIMPORT_TITLE "Veuillez sélectionner la librairie a importer"
     IDS_SYMBOLNAME_COLUMN   "Nom"
     IDS_SYMBOLPATH_COLUMN   "Chemin"
-    IDS_SWITCHACTIVITYTOATTRIBUTION 
+    IDS_SWITCHACTIVITYTOATTRIBUTION
                             "L'activité que vous avez sélectionné n'est pas définie comme étant une activité d'attribution. Voulez-vous changer l'activité sélectionnée pour qu'elle le devienne?"
     IDS_WIZARDACTIVITYSTART_WT "Définition"
-    IDS_WIZARDACTIVITYSTART_T 
+    IDS_WIZARDACTIVITYSTART_T
                             "Vous permet de définir le type d'activité et les rejets."
     IDS_WIZARDACTIVITYATTRIBUTION_WT "Attribution"
-    IDS_WIZARDACTIVITYATTRIBUTION_T 
+    IDS_WIZARDACTIVITYATTRIBUTION_T
                             "Du fait que cette activité contient des actions qui seront attribuées lors de l'exécution. Veuillez spécifier par quelle activité cela sera-t-il fait."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WIZARDACTIVITYRESS_WT "Ressources"
-    IDS_WIZARDACTIVITYRESS_T 
+    IDS_WIZARDACTIVITYRESS_T
                             "Définir la ou les ressources en charge de l'activité"
     IDS_WIZARDACTIVITYVISIBLE_WT "Visibilité"
     IDS_WIZARDACTIVITYVISIBLE_T "Une activité peut être visible ou invisible"
     IDS_WIZARDPROCESSCREATION_WT "Création"
     IDS_WIZARDPROCESSCREATION_T "Vous permet de définir un nom de processus"
-    IDS_CANNOTRENAME_ROOTMODEL_USE_SA 
+    IDS_CANNOTRENAME_ROOTMODEL_USE_SA
                             "Le modèle principal ne peut pas être renommé en utilisant les propriétés. Pour renomer le modèle, vous devez sauvegarder le fichier sous le nom du modèle que vous désirez, car le nom du modèle principal vient du nom du fichier."
     IDS_WIZARDPROCESSMODIFY_WT "Modification"
-    IDS_WIZARDPROCESSMODIFY_T 
+    IDS_WIZARDPROCESSMODIFY_T
                             "Vous permet de modifier la définition du processus"
     IDS_WIZARDPROCESSMODIFY_S "Définition"
     IDS_WIZARDACTIVITYPRE_WT "Pré-Traitement"
     IDS_WIZARDACTIVITYPRE_T "<!--This file has been generated by ProcessSoft Visual Mercutio-->\n<!--ProcessSoft Copyright 2001-2022-->\n\n<html>\n<head>\n<title>%s</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n<meta name=""description"" content=""Conceptor file"">\n<!-- ProcessSoft Conceptor 1.0 target.  Created %s -->\n\n"
     IDS_WIZARDACTIVITYPOST_WT "Post-Traitement"
-    IDS_WIZARDACTIVITYPOST_T 
+    IDS_WIZARDACTIVITYPOST_T
                             "Veuillez spécifier quelles sont les traitements à la fin de l'activité"
     IDS_SYMBOLCOMMENT_COLUMN "Description"
     IDS_SYMBOLLOCAL_COLUMN  "Local"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WIZARDACTIVITYBCK_WT "Backup"
     IDS_WIZARDACTIVITYBCK_T "Lorsqu'une activité n'est pas accomplie par les ressources de bases, celle-ci est redirigée vers des ressources de remplacement."
@@ -1218,7 +1218,7 @@ BEGIN
     IDS_WIZARDACTIVITYATT_WT "Activité d'attribution"
     IDS_WIZARDACTIVITYATT_T "Manque les activités qui sont attribuées par celle-ci"
     IDS_WIZARDACTIVITYFORM_WT "Formulaires"
-    IDS_WIZARDACTIVITYFORM_T 
+    IDS_WIZARDACTIVITYFORM_T
                             "Manipuler les formulaires qui font partie de cette activité"
     IDS_WIZARDACTIVITYMAIL_WT "Message"
     IDS_WIZARDACTIVITYMAIL_T "Envoyer un message"
@@ -1227,45 +1227,45 @@ BEGIN
     IDS_WIZARDACTIVITYRESC_WT "Restriction"
     IDS_WIZARDACTIVITYRESC_T "Restreindre l'accès de cette activité"
     IDS_WIZARDACTIVITYTIME_WT "Temps"
-    IDS_WIZARDACTIVITYTIME_T 
+    IDS_WIZARDACTIVITYTIME_T
                             "Définir un temps maximum pour l'exécution de cette activité"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_SELECTUNIT_FILEDLGTITLE "Sélectionner une librairie"
-    IDS_NEWMODELPAGE_ALREADYEXIST 
+    IDS_NEWMODELPAGE_ALREADYEXIST
                             "Le nom de la page mentionné existe déjà. Veuillez choisir un autre nom."
     IDS_NEWMODELPAGE_EMPTY  "Vous devez spécifier un nom de page."
-    IDS_CANNOTRENAME_MODEL_REN_DS 
+    IDS_CANNOTRENAME_MODEL_REN_DS
                             "Le modèle ne peut pas être renommé directement. Pour renommer le modèle, vous devez changer le nom du processus qui contient ce modèle."
-    IDS_REFERENCENUMBER_ALREADYEXIST 
+    IDS_REFERENCENUMBER_ALREADYEXIST
                             "Le numéro de référence que vous avez entré existe déjà. Le système va remettre le numéro de référence initial."
     IDS_USERGROUP_ROOT_T    "/"
     IDS_CANNOTDELETE_ROOTPAGE "La page principale ne peut pas être détruite."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_ADD_NEWEXTFILE       "Ajouter un formulaire, fichier ou URL.\nAjouter formulaire, fichier ou URL"
     ID_DEL_CURRENTEXTFILE   "Supprimer le formulaire, fichier ou URL sélectionnée.\nSupprimer formulaire, fichier ou URL sélectionnée"
     ID_ADD_NEWEXTAPP        "Ajouter une application.\nAjouter une application"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_DEL_CURRENTEXTAPP    "Supprimer l'application sélectionnée.\nSupprimer l'application sélectionnée"
     ID_SYM_SHOWNAMEAREA     "Afficher/Cacher la zone du nom.\nAfficher/Cacher zone du nom"
-    ID_SYM_SHOWDESCRIPTIONAREA 
+    ID_SYM_SHOWDESCRIPTIONAREA
                             "Afficher/Cacher la zone de description.\nAfficher/Cacher zone de description"
-    ID_SYM_SHOWATTRIBUTEAREA 
+    ID_SYM_SHOWATTRIBUTEAREA
                             "Afficher/Cacher la zone des attributs.\nAfficher/Cacher zone des attributs"
-    ID_SYM_SHOWLABELATTRIBUTES 
+    ID_SYM_SHOWLABELATTRIBUTES
                             "Afficher/Cacher les labels des attributs.\nAfficher/Cacher les labels des attributs"
     ID_SYM_SELECTATTRIBUTES "Sélectionner les attributs à afficher.\nSélectionner les attributs à afficher"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_PLAY_SIMULATION      "Jouer la simulation.\nJouer la simulation"
     ID_PAUSE_SIMULATION     "Mettre en pause la simulation.\nMettre en pause la simulation"
@@ -1276,17 +1276,17 @@ BEGIN
     ID_DYNATTR_DISPLAY      "Afficher les attributs du modèle.\nAfficher les attributs du modèle"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MSG_SAVEMODEL_END   "Fin de sauvegarde du modèle: %s, fichier: %s"
     IDS_MSG_SAVEMODEL_START "Sauvegarde du modèle: %s, fichier: %s"
-    IDS_AL_SYSTEMREASSIGN_START 
+    IDS_AL_SYSTEMREASSIGN_START
                             "Démarrage de la procédure de réassignement des systèmes pour tous les symboles du modèle."
-    IDS_AL_SYSTEMREASSIGN_STOP 
+    IDS_AL_SYSTEMREASSIGN_STOP
                             "Fin de la procédure de réassignement des systèmes."
-    IDS_AL_UNITREASSIGN_START 
+    IDS_AL_UNITREASSIGN_START
                             "Démarrage de la procédure de réassignement des groupes pour tous les symboles du modèle."
-    IDS_AL_UNITREASSIGN_STOP 
+    IDS_AL_UNITREASSIGN_STOP
                             "Fin de la procédure de réassignement des groupes."
     IDS_TB_SIMULATIONBUTTONS "Simulation"
     IDS_TB_ATTRIBUTESBUTTONS "Attributs dynamiques"
@@ -1296,13 +1296,13 @@ BEGIN
     IDS_MODELGENHTML_21     "<tr> \n    <td width=""28%"">&nbsp;</td>\n    <td width=""72%"">&nbsp;</td>\n  </tr>\n</table>\n<p>&nbsp;</p>\n</body>\n</html>"
     IDS_MODELGENHTML_22     "</td>\n    <td width=""33%"">&nbsp;</td>\n  </tr>\n  <tr>\n    <td width=""28%"">&nbsp;</td>\n    <td width=""39%"">&nbsp;</td>\n    <td width=""33%"">&nbsp;</td>\n  </tr>\n</table>"
     IDS_AL_FINDMATCH        "->"
-    IDS_CANNOTDROP_USERGROUPNOTINLINE 
+    IDS_CANNOTDROP_USERGROUPNOTINLINE
                             "Le modèle n'est pas en ligne avec le fichier de définition des Groupes. Vous ne pouvez pas changer les groupes."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_SYMBOLNAME_ALREADYEXIST 
+    IDS_SYMBOLNAME_ALREADYEXIST
                             "Le nom que vous avez entré existe déjà. Veuillez choisir un autre nom. Le système va remettre le nom initial."
     IDS_SYMBOLNAME_EMPTY    "Vous ne pouvez pas avoir un nom vide. Veuillez spécifier un nom."
     IDS_MODELGENHTML_1      "<!--This file has been generated by ProcessSoft Visual Mercutio-->\n<!--ProcessSoft Copyright 2001-2022-->\n\n<html>\n<head>\n<title>%s</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n<meta name=""description"" content=""Conceptor file"">\n<!-- ProcessSoft Conceptor target.  Created %s -->\n\n"
@@ -1319,50 +1319,50 @@ BEGIN
     IDS_MODELGENHTML_12     "<table width=""100%"" border=""0"" cellspacing=0 cellpadding=0>\n  <tr bgcolor=""#CCCCCC"">   \n\t"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_SYMBOLNAME_INVALIDCHAR 
+    IDS_SYMBOLNAME_INVALIDCHAR
                             "Le nom que vous avez entré contient des caractères invalides tels que ; : / \\\nVeuillez choisir un autre nom. Le système va remettre le nom initial."
     IDS_MODELGENHTML_13     "<td><font face=""Verdana"" size=""4""><a href=""%s""><img src=""%s"" border=""0""></a><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif""> \n      </font></font></td> </tr>"
-    IDS_MODELGENHTML_14     "  <tr bgcolor=""#CCCCCC""> \n    <td>\n      <div align=""right""><font face=""Verdana"" size=""4""><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif"" color=""#FFFFFF""><b>Généré \n        par ProcessSoft Conceptor - Copyright 2001-2009</b></font></font> </div>\n    </td>\n  </tr>\n </table>"
+    IDS_MODELGENHTML_14     "  <tr bgcolor=""#CCCCCC""> \n    <td>\n      <div align=""right""><font face=""Verdana"" size=""4""><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif"" color=""#FFFFFF""><b>Généré \n        par ProcessSoft Conceptor - Copyright 2001-2022</b></font></font> </div>\n    </td>\n  </tr>\n </table>"
     IDS_LOGICALSYSTEM_ROOT_T "/"
-    IDS_SYMBOLNOTFOUND_USESEARCH 
+    IDS_SYMBOLNOTFOUND_USESEARCH
                             "Le symbole ne peut pas être trouvé. Veuillez utiliser la commande Rechercher pour essayer de le localiser."
     IDS_MODELGENHTML_15     "<td align=""right""><font face=""Verdana""><a href=""%s"" target=""_blank""><img src=""%s"" border=""0""></a><font size=""1""></a></font></font></td>"
     IDS_MODELGENHTML_16     "<img src=""%s"">"
-    IDS_ERR_MISSING_USERGROUP 
+    IDS_ERR_MISSING_USERGROUP
                             "Le fichier de la définition des Groupes (UserDef.xml) est manquant. Le modèle ne peut pas pointer sur un fichier de définition des Groupes. Veuillez sortir de l'application et re-ouvrir votre fichier."
     IDS_USERGROUP_ASSIGNED  "Le fichier de définition des Groupes a été assigné à ce modèle."
-    IDS_ERR_MISSING_SYSTEMDEF 
+    IDS_ERR_MISSING_SYSTEMDEF
                             "Le fichier de la définition des Systèmes (SystemDef.xml) est manquant. Le modèle ne peut pas pointer sur un fichier de définition des Systèmes. Veuillez sortir de l'application et re-ouvrir votre fichier."
-    IDS_SYSTEMDEFXML_ASSIGNED 
+    IDS_SYSTEMDEFXML_ASSIGNED
                             "Le fichier de définition des Systèmes a été assigné à ce modèle."
-    IDS_ERR_USERGROUP_DIFFMODEL 
+    IDS_ERR_USERGROUP_DIFFMODEL
                             "Ce modèle utilise un fichier de définition des Groupes qui n'est pas celui utilisé actuellement par l'application. Aucune modifications ne sera possible sur les objets qui sont liés a des Groupes. Pour réassigner au modèle le fichier de définition des Groupes utilisé actuellement, veuillez utiliser la commande Réassigner le fichiers des Groupes."
-    IDS_ERR_SYSTEMDEFXML_DIFFMODEL 
+    IDS_ERR_SYSTEMDEFXML_DIFFMODEL
                             "Ce modèle utilise un fichier de définition des Systèmes qui n'est pas celui utilisé actuellement par l'application. Aucune modification ne sera possible sur les objets qui sont liés à des Systèmes. Pour réassigner au modèle le fichier de définition des Systèmes utilisé actuellement, veuillez utiliser la commande Réassigner le fichier des Systèmes."
-    IDS_CANNOTDROP_SYSTEMDEFNOTINLINE 
+    IDS_CANNOTDROP_SYSTEMDEFNOTINLINE
                             "Le modèle n'est pas en ligne avec le fichier de définition des Système Logiques. Vous ne pouvez pas changer le système."
     IDS_MSG_OPENMODEL_END   "Fin d'ouverture du modèle: %s, fichier: %s"
     IDS_MSG_OPENMODEL_START "Ouverture du fichier: %s"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_PROPCATEGORYNAME_EXIST 
+    IDS_PROPCATEGORYNAME_EXIST
                             "Le nom de catégorie que vous avez spécifié ne peut être utilisé pour des catégories dynamiques. Il est réservé."
     IDS_PROPTYPE_LIST       "Texte;Texte multi-ligne;Nombre;Date;Temps;Durée;"
     IDS_PROPVISIBILITY_LIST "Local;Symboles de même type;Tous"
     IDS_PROPATTRIBNAME_MISSING "Veuillez spécifier un nom d'attribut."
-    IDS_PROPATTRIBNAME_EXIST 
+    IDS_PROPATTRIBNAME_EXIST
                             "L'attribut que vous avez spécifié, existe déjà pour cette catégorie."
-    IDS_PROP_INITIALIZATIONPRB 
+    IDS_PROP_INITIALIZATIONPRB
                             "Un problème d'initialisation est survenu. Vous ne pouvez pas créer d'attributs dynamiques. Veuillez sauvegarder le fichier et réessayer."
-    IDS_COPYNAMEORCATEGORY_IS_MISSING 
+    IDS_COPYNAMEORCATEGORY_IS_MISSING
                             "Vous devez spécifier un nom et une catégorie source pour la catégorie à copier."
     IDS_MODELGENHTML_30     "m.add(%d,%d,""%s"",""%s"");\n"
     IDS_MODELGENHTML_31     "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"">\n<html>\n<head>\n<title>%s</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</head>\n\n<body>\n"
-    IDS_CANNOTDROP_PRESTATIONSNOTINLINE 
+    IDS_CANNOTDROP_PRESTATIONSNOTINLINE
                             "Le modèle n'est pas en ligne avec le fichier de définition des Prestations. Vous ne pouvez pas changer les prestations."
     IDS_MODELGENHTML_33     "  <tr> \n    <td>&nbsp;</td>\n    <td><a href=""%s""><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif"">%s</font></a></td>\n    <td><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif"">%s</font></td>\n  </tr>\n"
     IDS_MODELGENHTML_34     "</table>\n</body>\n</html>\n"
@@ -1372,7 +1372,7 @@ BEGIN
     IDS_MODELGENHTML_36     "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr> \n    <td width=""13%"">"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MODELGENHTML_37     "<font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">%s</font></td>\n    "
     IDS_MODELGENHTML_38     "<td width=""35%"">"
@@ -1392,7 +1392,7 @@ BEGIN
     IDS_MODELGENHTML_51     "</head>\n<body bgcolor=""#ffffff"" onLoad=""loadEmptyPropPage()"">"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MODELGENHTML_52     "<script language=""JavaScript1.2"" src=""%s"">\n</script>\n"
     IDS_MODELGENHTML_53     "<script language=""JavaScript1.2"">"
@@ -1406,17 +1406,17 @@ BEGIN
     IDS_MODELGENHTML_61     "ajpopup%d.createPopup();\n"
     IDS_MODELGENHTML_62     "<area onmouseover=""popupDisplay(event, ajpopup%d)"" onmouseout=""popupHide(event, ajpopup%d)"" SHAPE=""rect"" COORDS=""%d,%d,%d,%d"">\n"
     IDS_MODELGENHTML_63     "<area onmouseover=""popupDisplay(event, ajpopup%d)"" onmouseout=""popupHide(event, ajpopup%d)"" href=""%s"" SHAPE=""rect"" COORDS=""%d,%d,%d,%d"">\n"
-    IDS_ERR_MISSING_PRESTATIONSDEF 
+    IDS_ERR_MISSING_PRESTATIONSDEF
                             "Le fichier de la définition des Prestations (PrestationsDef.xml) est manquant. Le modèle ne peut pas pointer sur un fichier de définition des Prestations. Veuillez sortir de l'application et re-ouvrir votre fichier."
-    IDS_PRESTATIONS_ASSIGNED 
+    IDS_PRESTATIONS_ASSIGNED
                             "Le fichier de définition des Prestations a été assigné à ce modèle."
-    IDS_AL_PRESTATIONSREASSIGN_START 
+    IDS_AL_PRESTATIONSREASSIGN_START
                             "Démarrage de la procédure de réassignement des prestations pour tous les symboles du modèle."
-    IDS_AL_PRESTATIONSCANNOTREASSIGN 
+    IDS_AL_PRESTATIONSCANNOTREASSIGN
                             "Du fait que le modèle n'est pas en ligne avec le fichier de définition des Prestations, aucun contrôle automatique ne peut être effectué sur les Prestations."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MODELGENHTML_64     "m.setIconDocument(""%s"");\n m.setIconCollapse(""%s"");\n m.setIconExpand(""%s"");\nm.setTarget(""%s"");\n "
     IDS_MODELGENHTML_65     "</body>\n</html>"
@@ -1424,9 +1424,9 @@ BEGIN
     IDS_MODELGENHTML_67     "m.gen(true);\n"
     IDS_MODELGENHTML_68     "\n<body bgcolor=%s>\n"
     IDS_MODELGENHTML_69     "\n<HTML>\n<HEAD>\n  <META NAME=""PSS"" CONTENT=""noindex"">\n  <META content=""text/html;charset=iso-8859-1"" http-equiv=""Content-Type"">\n  <TITLE>Main Content</TITLE>\n</HEAD>\n\n<FRAMESET name=""_pssMain"" cols=""216,*"" border=""1"" frameborder=""1"" FRAMESPACING=""6"" TOPMARGIN=""0"" LEFTMARGIN=""0"" MARGINHEIGHT=""0"" MARGINWIDTH=""0"">\n  <FRAME name=""_pssLeftFrame"" src=""%s"" TOPMARGIN=""0"" LEFTMARGIN=""0"" MARGINHEIGHT=""0"" MARGINWIDTH=""0"" FRAMEBORDER=""1"" BORDER=""1""></FRAME>\n  <FRAME name=""_pssRightFrame"" src=""%s"" FRAMEBORDER=""no"" BORDER=""0"" BORDERCOLOR=""#CCCCCC""></FRAME>\n</FRAMESET>\n    \n\n</HTML>"
-    IDS_AL_PRESTATIONSREASSIGN_STOP 
+    IDS_AL_PRESTATIONSREASSIGN_STOP
                             "Fin de la procédure de réassignement des Prestations."
-    IDS_ERR_PRESTATIONSDEFXML_DIFFMODEL 
+    IDS_ERR_PRESTATIONSDEFXML_DIFFMODEL
                             "Ce modèle utilise un fichier de définition des Prestations qui n'est pas celui utilisé actuellement par l'application. Aucune modifications ne sera possible sur les objets qui sont liés a des Prestations. Pour réassigner au modèle le fichier de définition des Prestations utilisé actuellement, veuillez utiliser la commande Réassigner le fichiers des Prestations."
     IDS_PRESTATION_ROOT_T   "/"
     IDS_MODELGENHTML_73     "<script>\nfunction loadEmptyPropPage()\n{\n\ttop._pssMain._pssLeftFrame.document.location = ""%s"";\n}\n</script>"
@@ -1438,7 +1438,7 @@ BEGIN
     IDS_MODELGENHTML_82     "if (popup%dIsVisible == true)\n\t{\n\t\tpopupHide(event, ajpopup%d);\n\t\tpopup%dIsVisible = false;\n\t}\n\t"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MODELGENHTML_76     "</td>\n    <td width=""52%""><font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">Mod&egrave;le:"
     IDS_MODELGENHTML_77     "<font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif""><img src=""%s"" width=""1"" height=""1""></font></td>\n  </tr>"
@@ -1450,9 +1450,9 @@ BEGIN
     IDS_MODELGENHTML_90     "</script>"
     IDS_MODELGENHTML_91     "<area onmouseover=""loadProp%d(event,%d,%d,%d,%d)"" onmouseout=""UpdatePopups(event)"" onclick=""loadPopup%d(event)"" target=""%s"" SHAPE=""rect"" COORDS=""%d,%d,%d,%d"">\n"
     IDS_MODELGENHTML_92     "<a href=""%s"">%s</a>"
-    IDS_WARN_IMGFILECORRUPTED 
+    IDS_WARN_IMGFILECORRUPTED
                             "Le fichier %s  ne peut pas être ouvert. Ce fichier a peut-être été supprimé, endommagé ou déplaçé. Désirez-vous rechercher un nouveau fichier ?"
-    IDS_FILE_READONLY_DONOTSAVE 
+    IDS_FILE_READONLY_DONOTSAVE
                             "Ce modèle a été verouillé par un autre utilisateur. Par conséquent, il n'est pas possible d'écraser le fichier contenant ce modèle. Vous pouvez toutefois sauvegarder votre travail en spécifiant un nom de fichier différent."
     IDS_CANNOTCOPYSTYLE     "Une erreur est survenue lors de la copie de style entre les deux symboles sélectionnés. Il est probable que le(s) symbole(s) source ou/et destination provienne(nt) d'une version trop ancienne pour permettre la compatibilité des styles."
     IDS_MODELGENHTML_93     "jg.clear()"
@@ -1460,35 +1460,35 @@ BEGIN
     IDS_MODELGENHTML_95     "function myDrawRect(a,b,c,d)\n{\n\tjg.clear()\n\tjg.setColor(""#00ff00"");\n\tjg.setStroke(4);\n\tjg.drawRect(a,b,(c-a),(d-b));\n\tjg.paint();\n}\n"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MODELGENHTML_96     "\n<div id=""myCanvas"" style=""position:relative;height:2px;width:100%;""></div>\n"
     IDS_MODELGENHTML_97     "<script type=""text/javascript"">\nvar jg = new jsGraphics(""myCanvas"");\n</script> \n"
     IDS_MODELGENHTML_98     "<script language=JavaScript>\n<!--\n var m=new dTree('m',1);\n"
     IDS_MODELGENHTML_100    "<script language=JavaScript>\n<!--\n var m=new dTree('m',2);\n"
-    IDS_WARNING_CUT_SELECTION 
+    IDS_WARNING_CUT_SELECTION
                             "La sélection contient un ou plusieurs objets qui ne peuvent pas être coupés, et qui ont été ignorés. Il s'agit d'objets de type page, porte, paquet ou d'une copie d'un objet existant."
-    IDS_WARNING_COPY_SELECTION 
+    IDS_WARNING_COPY_SELECTION
                             "La sélection contient un ou plusieurs objets qui ne peuvent pas être copiés, et qui ont été ignorés. Il s'agit d'objets de type page, porte, paquet ou d'une copie d'un objet existant."
     IDS_RULE_ROOT_T         "/"
-    IDS_ERR_MISSING_RULESDEF 
+    IDS_ERR_MISSING_RULESDEF
                             "Le fichier de la définition des Règles (RulesDef.xml) est manquant. Le modèle ne peut pas pointer sur un fichier de définition des Règles. Veuillez sortir de l'application et re-ouvrir votre fichier."
     IDS_MODELGENHTML_99     "m.config.target = ""_pssRightFrame"";\ndocument.write(m);\n"
     IDS_MODELGENHTML_101    "<script language=JavaScript>\n<!--\n var m=new dTree('m',3);\n"
     IDS_RULES_ASSIGNED      "Le fichier de définition des Règles a été assigné à ce modèle."
-    IDS_AL_RULESREASSIGN_START 
+    IDS_AL_RULESREASSIGN_START
                             "Démarrage de la procédure de réassignement des règles pour tous les symboles du modèle."
-    IDS_AL_RULESCANNOTREASSIGN 
+    IDS_AL_RULESCANNOTREASSIGN
                             "Du fait que le modèle n'est pas en ligne avec le fichier de définition des Règles, aucun contrôle automatique ne peut être effectué sur les Règles."
-    IDS_AL_RULESREASSIGN_STOP 
+    IDS_AL_RULESREASSIGN_STOP
                             "Fin de la procédure de réassignement des Règles."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_ERR_RULESDEFXML_DIFFMODEL 
+    IDS_ERR_RULESDEFXML_DIFFMODEL
                             "Ce modèle utilise un fichier de définition des Règles qui n'est pas celui utilisé actuellement par l'application. Aucune modifications ne sera possible sur les objets qui sont liés a des Règles. Pour réassigner au modèle le fichier de définition des Règles utilisé actuellement, veuillez utiliser la commande Réassigner le fichiers des Règles."
-    IDS_CANNOTDROP_RULENOTINLINE 
+    IDS_CANNOTDROP_RULENOTINLINE
                             "Le modèle n'est pas en ligne avec le fichier de définition des Règles. Vous ne pouvez pas changer les Règles."
 END
 
