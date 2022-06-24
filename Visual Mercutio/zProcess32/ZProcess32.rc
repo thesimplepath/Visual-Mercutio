@@ -1766,7 +1766,7 @@ IDR_ABOUT_CONCEPTOR_02  HTML                    "res\\about_conceptor_02.htm"
 
 CONCEPTOR.JPG           HTML                    "res\\conceptor.jpg"
 
-PROCESSOFT.JPG          HTML                    "res\\processsoft.jpg"
+THESIMPLEPATH.JPG       HTML                    "res\\thesimplepath.jpg"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -3223,13 +3223,13 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "CompanyName", "ProcessSoft"
+            VALUE "CompanyName", "The Simple Path"
             VALUE "FileDescription", "Conceptor un outil de la suite MercutioTM"
             VALUE "FileVersion", "2, 0, 0, 1"
             VALUE "InternalName", "zProcess32"
-            VALUE "LegalCopyright", "Copyright © ProcessSoft"
+            VALUE "LegalCopyright", "MIT License"
             VALUE "OriginalFilename", "zProcess32.exe"
-            VALUE "ProductName", "ProcessSoft - Conceptor"
+            VALUE "ProductName", "Visual Mercutio - Conceptor"
             VALUE "ProductVersion", "2, 0, 0, 1"
             VALUE "SpecialBuild", "1028"
         END
@@ -3666,7 +3666,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDR_MAINFRAME           "ProcessSoft Visual Mercutio 2022 SP1 Release 1"
+    IDR_MAINFRAME           "Visual Mercutio 2022 SP1 Release 1"
     IDS_APPWKS_PRESTATIONS  "Prestations"
     IDR_MDIPAGE             "\nPLF\nFormulaires\nFormulaires (*.plf)\n.plf\nPLF.Document\nFormulaires PLF\n0\n7"
     IDS_PRS_ADDPRESTATION   "Ajouter une prestation enfant dans la sélection"
@@ -3709,7 +3709,7 @@ END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_APP_TITLE       "ProcessSoft Conceptor 2022  - Sesterces 2022 - Messenger 2022"
+    AFX_IDS_APP_TITLE       "Conceptor 2022 - Sesterces 2022 - Messenger 2022"
     AFX_IDS_IDLEMESSAGE     "Bienvenue dans Visual Mercutio 2022 SP1 Release 1"
     AFX_IDS_HELPMODEMESSAGE "Selectionner un objet pour lequel vous voulez de l'Aide"
 END
@@ -4446,8 +4446,8 @@ BEGIN
                             "Le mode flux d'activité est obligatoire pour pouvoir ajouter des resources ou des formes formulaires. Veuillez déclencher le mode flux d'activité depuis le menu Modèle."
     IDS_CONFIRMCLEARWORKFLOW
                             "Cette commande va enlever le lien avec le fichier utilisé dans la génération du workflow. Veuillez confirmer la suppression de ce lien."
-    IDR_MODEL               "\nMLF\nModèle\nModèle (*.mlf)\n.mlf\nMLF.Document\nModèle ProcessSoft Conceptor\n1\n8"
-    IDR_MERCUTIOREPORT      "\nRLF\nRapport\nRapports (*.rlf)\n.rlf\nRLF.Document\nRapport ProcessSoft Conceptor\n1\n12"
+    IDR_MODEL               "\nMLF\nModèle\nModèle (*.mlf)\n.mlf\nMLF.Document\nModèle Conceptor\n1\n8"
+    IDR_MERCUTIOREPORT      "\nRLF\nRapport\nRapports (*.rlf)\n.rlf\nRLF.Document\nRapport Conceptor\n1\n12"
 END
 
 STRINGTABLE

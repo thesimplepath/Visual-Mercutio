@@ -525,7 +525,6 @@
     <Image Include="res\process.bmp" />
     <Image Include="res\PROCESS.ICO" />
     <Image Include="res\process2.bmp" />
-    <Image Include="res\processsoft.jpg" />
     <Image Include="res\prop_fla.bmp" />
     <Image Include="res\QuestionMark.gif" />
     <Image Include="res\RARROW.BMP" />
@@ -542,6 +541,7 @@
     <Image Include="res\suspenda.ico" />
     <Image Include="res\symbol1.bmp" />
     <Image Include="res\template.bmp" />
+    <Image Include="res\thesimplepath.jpg" />
     <Image Include="res\tips.gif" />
     <Image Include="res\TIPS.ICO" />
     <Image Include="res\Toolbar.bmp" />

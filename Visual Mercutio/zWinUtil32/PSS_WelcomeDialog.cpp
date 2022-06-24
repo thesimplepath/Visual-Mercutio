@@ -58,7 +58,7 @@ BOOL PSS_WelcomeDialog::OnInitDialog()
 {
     PSS_Dialog::OnInitDialog();
 
-    m_HyperLink.SetURL(_T("http://www.processsoft.com"));
+    m_HyperLink.SetURL(_T("https://thesimplepath.ch/"));
 
     // return TRUE unless the focus is set to a control
     return TRUE;

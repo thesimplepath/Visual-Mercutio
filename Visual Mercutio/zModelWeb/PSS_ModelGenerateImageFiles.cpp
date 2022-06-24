@@ -44,7 +44,7 @@
 //---------------------------------------------------------------------------
 // Constants
 //---------------------------------------------------------------------------
-const CString g_LogoImageFile               = _T("processsoft.jpg");
+const CString g_LogoImageFile               = _T("thesimplepath.jpg");
 const CString g_HomeImageFile               = _T("home.jpg");
 const CString g_ParentImageFile             = _T("parent.gif");
 const CString g_PrinterImageFile            = _T("printer.jpg");
@@ -1692,7 +1692,7 @@ bool PSS_ModelGenerateImageFiles::GenerateBannerPage(PSS_ProcessGraphModelMdl* p
         CString logoImage  = m_ImageDirectory + _T("\\");
                 logoImage += m_InternalLogoFileName.IsEmpty() ? g_LogoImageFile : m_InternalLogoFileName;
 
-        const CString ref = m_pInfo->GetHyperLink().IsEmpty() ? _T("http://www.processsoft.com") : m_pInfo->GetHyperLink();
+        const CString ref = m_pInfo->GetHyperLink().IsEmpty() ? _T("https://thesimplepath.ch/") : m_pInfo->GetHyperLink();
 
         str.Format(IDS_MODELGENHTML_13,
                    (const char*)ref,

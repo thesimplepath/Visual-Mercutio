@@ -728,9 +728,6 @@
     <Image Include="res\process2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\processsoft.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\prop_fla.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -822,6 +819,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\WZBITMAP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\thesimplepath.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
