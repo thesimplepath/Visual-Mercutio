@@ -1,0 +1,658 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="subject" content="Apache SOAP and SMTP">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Setting up Apache Tomcat and SOAP for SSL communication</title>
+<!-- saved from url=(0022)http://internet.e-mail -->
+<style type="text/css">
+
+	<!--
+
+	H1 { font-family : Arial, Helvetica; font-size : 14pt }
+
+	H2 { font-family : Arial, Helvetica; font-style: italic; font-size : 12pt }
+
+	H3 { font-family : Arial, Helvetica; font-size : 10pt }
+
+	CODE {  font-family : Courier New, Courier; font-size : 9pt; color : #0000ff }
+
+	PRE {  font-family : Courier New, Courier; font-size : 9pt; color : #0000ff }
+
+	-->
+
+	</style>
+</head>
+<body link="#0000FF" vlink="#800080">
+
+<h1>
+Setting up Apache Tomcat and a Simple Apache SOAP Client for SSL Communication.</h1>
+
+<h3>
+By <a href="mailto:glynnp@tcd.ie">Peter Glynn</a> and <a href="mailto:EB92401@jp.ibm.com">Darrell
+Drake</a>, with minor updates by <a href="mailto:j_chawke@hotmail.com">Jonathan
+Chawke</a>, April 2001.</h3>
+
+<h2>
+Introduction</h2>
+This document gives steps involved in setting up Apache Tomcat and a simple
+Apache SOAP client for <a href="http://developer.netscape.com/docs/manuals/security/sslin/contents.htm">SSL</a>
+communication.
+<br>The aim of this document is to allow a person with minimum Java security
+to be able to set up SSL connection in a Apache SOAP/Tomcat Application.
+The steps you will carry out are:
+<ol TYPE="1">
+<li>
+Install the Java Secure Socket Extensions (JSSE) package (available from
+Sun).</li>
+
+<li>
+Generate Client and Server Certificates for SSL communication.</li>
+
+<ol TYPE="a">
+<li>
+Generate a Server Key and Certificate</li>
+
+<li>
+Export the Server Certificate</li>
+
+<li>
+Generate a Client Key and Certificate</li>
+
+<li>
+Export the Client Certificate</li>
+
+<li>
+Import the Certificates into the Keystores</li>
+</ol>
+
+<li>
+Set up Tomcat for SSL Communication</li>
+
+<li>
+Modify the SOAP Client to use SSL</li>
+</ol>
+Also included in this document is:
+<ul>
+<li>
+A short tutorial on creating X.509 Certificate Chains</li>
+
+<li>
+A section on troubleshooting SOAP and SSL installations</li>
+</ul>
+
+<h2>
+Assumptions</h2>
+It is assumed that you have installed <a href="http://xml.apache.org/soap">Apache
+SOAP</a> and <a href="http://jakarta.apache.org/tomcat/">Apache Tomcat</a>,
+and that the sample SOAP applications are working.
+<h2>
+Tools needed for Installation</h2>
+
+<ul>
+<li>
+Apache SOAP – download at <a href="http://xml.apache.org/dist/soap/">http://xml.apache.org/dist/soap/</a></li>
+
+<li>
+Java (tm) Secure Socket Extension (JSSE) 1.0.2 (jsse1.0.2) – download at
+<a href="http://java.sun.com/products/jsse/">http://java.sun.com/products/jsse/</a>
+(free registration required)</li>
+</ul>
+
+<h2>
+Step 1: Install JSSE</h2>
+
+<ul>
+<li>
+Before you do anything, <b>read</b> the installation instructions for JSSE!
+(they are available online at: <a href="http://java.sun.com/products/jsse/install.html">http://java.sun.com/products/jsse/install.html</a>).</li>
+
+<li>
+Add the JSSE jars to your classpath. This should hopefully add it to the
+classpath of your Tomcat server. If not, add it to the classpath of the
+Tomcat server or just copy the JSSE jar files to the lib directory of Tomcat
+(e.g. <tt>C:\jakarta-tomcat-3.2.1\lib</tt>). This will automatically load
+on start-up of Tomcat.</li>
+
+<br>The JSSE 1.0.2 jars that you need in your classpath are:
+<ul>
+<li>
+<tt>jsse.jar</tt></li>
+
+<li>
+<tt>jcert.jar</tt></li>
+
+<li>
+<tt>jnet.jar</tt></li>
+</ul>
+</ul>
+
+<h2>
+Step 2: Generate Client and Server Certificates</h2>
+It is necessary to generate a Certificate for the client and the server.
+These Certificates are then imported into a keystore, to which the client
+and server connect.
+<br>The keystore acts as a database for security certificates.
+<br>You are going to use the <tt>keytool</tt> utility in the JDK to do
+these tasks (see <a href="http://java.sun.com/products/jdk/1.2/docs/tooldocs/solaris/keytool.html">Sun's
+documentation</a> for more information on this tool).
+<h3>
+Step 2a: Generate a Server Key and Certificate</h3>
+Launch <tt>keytool</tt> from a shell (or command prompt) to generate your
+public and private key.
+<br>Note that the Certificate and keystore files will be generated in the
+directory you run <tt>keytool</tt> from.
+<p>Use <tt>keytool</tt> as follows:
+<br><tt>keytool -genkey -alias tomcat-sv -dname "CN=[Common Name],OU=[Organisation
+Unit], O=[Organisation Name], L=[Locality], S=[State Name], C=[Two-Letter
+Country Code]" -keyalg RSA -keypass [private key password] -storepass [keystore
+password] -keystore [keystore file name]</tt>
+<p>For example, to generate a keystore (in file <tt>server.keystore</tt>)
+for server <tt>soapsvr.test.tcd.ie</tt> using password <tt>changeit</tt>
+(for both the keystore and the certificate) in the Computer Engineering
+group at Trinity College Dublin, Ireland, one would type the following:
+<tt>keytool -genkey -alias tomcat-sv -dname "CN=soapsvr.test.tcd.ie, OU=ComputerEngineering,
+O=Trinity College Dublin, L=Dublin, S=Dublin, C=IE" -keyalg RSA -keypass
+changeit -storepass changeit -keystore server.keystore</tt>
+<p>Note that
+<ul>
+<li>
+The RSA algorithm is used to generate certificates.</li>
+
+<li>
+Ensure that the 'CN' field that you specify when you create the server
+certificate matches the name of the machine on which you're running tomcat,
+or your browser will complain about certificate name mis-matches (not a
+problem on a test server, a big problem on a production server!).</li>
+</ul>
+
+<h3>
+Step 2b: Export the Server Certificate</h3>
+>From command prompt run this command to export your certificate from the
+keystore into an external file (we do this so we can import the certificate
+into the client's keystore as a trusted certificate).
+<pre>
+keytool -export -alias tomcat-sv -storepass changeit -file server.cer -keystore server.keystore&nbsp;
+
+</pre>
+If everything works, you should now have a file called <tt>server.cer</tt>
+which contains your server's certificate.
+<h3>
+Step 2c: Generate a Client Key and Certificate</h3>
+This step is very similar to the generation of the server key and certificate
+- it uses the same <tt>keytool</tt> tool with different parameters.
+<br>Note that the keystore file name has changed (it is now <tt>client.keystore</tt>).
+Use <tt>keytool</tt> as follows:
+<p><tt>keytool -genkey -alias tomcat-cl -dname "CN=Client,OU=TRL, O=IBM,
+L=Yamato-shi, S=Kanagawa-ken, C=JP" -keyalg RSA -keypass changeit -storepass
+changeit -keystore client.keystore</tt>
+<h3>
+Step 2d: Export the Client Certificate</h3>
+This step is very similar to the export of the server certificate - it
+uses the same <tt>keytool</tt> tool with different parameters:
+<pre>
+keytool -export -alias tomcat-cl -storepass changeit -file client.cer -keystore client.keystore&nbsp;
+
+</pre>
+If everything works, you should now have a file called <tt>client.cer</tt>
+which contains your client's certificate.
+<h3>
+Step 2e: Import the Certificates into the Keystores</h3>
+We want the client certificate to be added to the server's keystore, and
+the server's certificate to be added to the client's keystore.
+<br>Doing this will mean that the client and server trust one another.
+<br>Import the server certificate into the client's keystore:
+<br><tt>keytool -import -v -trustcacerts -alias tomcat -file server.cer
+-keystore client.keystore -keypass changeit -storepass changeit</tt>
+<br>Import the client certificate into the server's keystore: <tt>keytool
+-import -v -trustcacerts -alias tomcat -file client.cer -keystore server.keystore
+-keypass changeit -storepass changeit</tt>
+<h2>
+Step 3: Set up Tomcat for SSL Communication</h2>
+
+<h3>
+Step 3a: Modify your Tomcat Configuration File</h3>
+You need to amend server.xml (located in the <tt>conf</tt> directory of
+Apache Tomcat). Add the following lines to the xml file:
+<pre>
+&lt;Connector className ="org.apache.tomcat.service.PoolTcpConnector">&nbsp;
+
+&lt;Parameter name="handler" value ="org.apache.tomcat.service.http.HttpConnectionHandler"/>&nbsp;
+
+&lt;Parameter name="port" value="8443"/>&nbsp;
+
+&lt;Parameter name="socketFactory" value="org.apache.tomcat.net.SSLSocketFactory" />&nbsp;
+
+<b>&lt;Parameter name="keystore" value="c:\apache\soap-2_2\bin\server.keystore" />&nbsp;
+
+</b>&lt;Parameter name="keypass" value="changeit"/>&nbsp;
+
+&lt;Parameter name="clientAuth" value="true"/>&nbsp;
+
+&lt;/Connector>&nbsp;
+
+</pre>
+Note that the value used for the <tt>keystore</tt> parameter (shown in
+bold above) may be different on your machine; it should contain the full
+path and filename of the server keystore file (<tt>server.keystore</tt>)
+generated in Step 2a above. Note also that the port number we chose to
+use for SSL in the above configuration is 8443. The port normally used
+for HTTPS is 443, but for testing we are using 8443.
+<h3>
+Step 3a: Test your HTTPS server</h3>
+At this point, you should restart your Tomcat server. It will probably
+take a bit longer to start up. You can now use a web browser to test that
+it is working.
+<br>Test the SSL installation by opening your browser and typing in the
+following URL:
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://servername:8443/index.html</pre>
+Note that <tt>servername</tt> should be replaced with the name of the server
+on which you are running Tomcat. If SSL is working then you should see
+the default home page for your Tomcat installation.
+<br>Your browser may generate a warning about un-trusted certificates or
+unrecognised authorities (just click OK).
+<h2>
+Step 4: Modify the SOAP Client to use SSL</h2>
+
+<h3>
+Step 4a: Java SSL Client</h3>
+You need to set up properties before you call the URL in the SOAP client.
+Here is an example SOAP client that calls a SOAP service using HTTPS on
+a Tomcat server:
+<pre>
+// classes for ssl
+
+import javax.net.ssl.SSLSocketFactory;
+
+import java.security.Security;
+
+
+
+...
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // setup some ssl-specific stuff
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // specify the location of where to find key material for the default TrustManager (this overrides jssecacerts and cacerts)
+
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("javax.net.ssl.trustStore","C:\\jdk1.3\\bin\\client.keystore");
+
+</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // use Sun's reference implementation of a URL handler for the "https" URL protocol type.&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("java.protocol.handler.pkgs","com.sun.net.ssl.internal.www.protocol");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // dynamically register sun's ssl provider
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // note that the url is using https protocol and not http
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; URL urls = new URL( "https://localhost:8443/soap/servlet/rpcrouter");
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // prepare and then execute a SOAP method
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // output some basic information
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nUsing " + urls.getProtocol() + " to connect to " + urls.getHost() + " on port #" + urls.getPort());
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // prepare the service invocation as usual
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Call call = new Call();&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String urn = "urn:demo:checkflight";&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; call.setTargetObjectURI( urn );&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; call.setMethodName( "getFlightInfo" );
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set up any parameters as usual
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Invoke the call
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Response resp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resp = call.invoke(urls, "");
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (SOAPException e)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.err.println("Caught SOAPException (" + e.getFaultCode() + "): " + e.getMessage());
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</pre>
+Once again the bold directory path is a pointer to the client keystore.
+This may have to be changed depending on where you generated it. Also note
+that the url is <b>https</b> and not http. It's an easy mistake to make!
+<h3>
+Step 4b: Java SSL Client with Proxy [Optional]</h3>
+If your client needs to use a proxy server in order to access the SOAP
+service, then add the following lines to your code:
+<pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("https.proxyHost", "proxy");&nbsp; // set name of proxy server that supports ssl&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("https.proxyPort", "8080");&nbsp;&nbsp; // set port number for proxy server that supports ssl
+
+</pre>
+Use the following for Proxy without SSL:
+<pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("proxySet", "true"); // enable proxying
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("proxyHost", "proxy");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set name of proxy server
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("proxyPort", "8080");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set port number for proxy server
+
+</pre>
+If you are using Socks proxy then set these (system) properties:
+<pre>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("socksProxyHost", "hostname");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set name of socks server&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.setProperty("socksProxyPort", "1080");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set port number for socks server
+
+</pre>
+
+<h2>
+Creating X.509 Certificate Chains</h2>
+By Darrell Drake
+<h3>
+Overview</h3>
+This instruction set covers creating mutual trust between two entities
+using a certificate chains (my certificate with an attached lineage of
+public certificates), which is more practical in a production environment
+than the minimal security approach. In this case a principal is trusted
+if any of the certificates in its chain are trusted. Additional tool needed:
+IBM KeyMan, which can read and issue certificates from keystores in the
+JKS and PKCS12 formats. Other formats (e.g. IBM CMS Key Database) don't
+work well, at least in my experience.
+<h3>
+Downloading KeyMan</h3>
+KeyMan can be downloaded from: <a href="http://www.alphaworks.ibm.com/tech/keyman">http://www.alphaworks.ibm.com/tech/keyman</a>.
+<h3>
+Creating a new Keystore and Keypair using KeyMan</h3>
+
+<ul>
+<li>
+From the initial window, click on the "create new" icon on the left</li>
+
+<br>OR
+<br>from an already-open KeyMan window, under the File menu choose New.
+<li>
+Specify the type of keystore (pkcs 7, 12 and JKS are options)</li>
+
+<li>
+Immediately the template is created</li>
+
+<li>
+Under the Actions menu choose generate key</li>
+
+<li>
+Select the desired key algorithm and length, click OK</li>
+
+<li>
+WAIT</li>
+</ul>
+
+<h3>
+Opening an existing keystore file</h3>
+
+<ul>
+<li>
+From the initial window, click on the "open" icon on the right</li>
+
+<br>OR
+<br>from an already-open KeyMan window, under the File menu choose Open
+<li>
+Select "local resource", click next</li>
+
+<li>
+Enter or browse for the filename, click next</li>
+
+<li>
+If applicable, enter the password protecting the file</li>
+</ul>
+
+<h3>
+Generating a self-signed certificate using KeyMan (for new serverkeystore)</h3>
+
+<ul>
+<li>
+Make sure the new key pair (and just the key pair) is selected</li>
+
+<li>
+Under the Actions menu, choose Create Certificate</li>
+
+<li>
+Choose Self-Signed Certificate, click next</li>
+
+<li>
+Fill in the principal information as requested, click next</li>
+
+<li>
+Select the period of validity for the new certificate, click next</li>
+</ul>
+
+<h3>
+Requesting a client certificate using keytool</h3>
+<tt>-- using keytool (after creating keyEntry "alias")</tt>
+<br><tt>keytool -certreq {-alias alias} {-sigalg sigalg} {-file certreq_file}
+[-keypass keypass] {-storetype storetype} {-keystore keystore} [-storepass
+storepass] {-v} {-Jjavaoption}</tt>
+<p>&nbsp;If you leave the <tt>"-file certreq_file"</tt> part out, the pkcs10
+request will be printed to your standard output, which you can highlight
+and copy to the system clipboard, transfer to a file or directly into KeyMan
+(see next step "issuing certificate"). The principal information in the
+request will be what you entered when using the "-genkey" command earlier.
+<h3>
+Requesting a client certificate using KeyMan (after creating a key pair)</h3>
+
+<ul>
+<li>
+Make sure the new key pair (and just the key pair) is selected</li>
+
+<li>
+Under the Actions menu, choose Request Certificate</li>
+
+<li>
+Choose "Generate a PKCS#10 Request", click next</li>
+
+<br>OR
+<br>If you want to get a commercial certificate for your server, choose
+"Go online to a CA" (I don't know the remaining steps for doing that)
+<li>
+Fill in the principal information as requested, click next</li>
+
+<li>
+Enter the filename where you want to save the request,</li>
+
+<br>OR
+<br>Choose to copy the request to the system clipboard, click next
+<li>
+The request is now stored in the location that you specified.</li>
+</ul>
+
+<h3>
+Issuing a client certificate using KeyMan</h3>
+(aka acting as your own CA, signing a PKCS#10 certificate request)
+<ul>
+<li>
+Open the keystore that contains your server's private certificate</li>
+
+<li>
+Under the Actions menu, choose Create Certificate</li>
+
+<li>
+Choose Sign a PKCS#10 request, click next</li>
+
+<li>
+Enter or browse for the filename containing the request,</li>
+
+<br>OR
+<br>Choose to load the request from the system clipboard (if you stored
+it there), click next
+<li>
+Review the principal info (recommended: verify it offline in production
+scenario)</li>
+
+<li>
+Select the period of validity for the new certificate, click next</li>
+
+<li>
+Enter the [path-qualified] filename where you will store the new certificate,
+click next</li>
+
+<li>
+NOT RECOMMENDED: saving the certificate to the clipboard (created a single
+cert entry on the client side instead of chain in my experience).</li>
+</ul>
+
+<h3>
+Importing your new certificate from the CA's Using Keytool</h3>
+(after importing server's cert as trusted CA cert)
+<br><tt>keytool -import {-alias alias} {-file cert_file} [-keypass keypass]
+{-storetype storetype} {-keystore keystore} [-storepass storepass] {-v}
+{-Jjavaoption}</tt>
+<br>It should simply say "certificate was added to keystore" and finish
+with no dialog. ["alias" is your original keyEntry; the default self-signed
+certificate should now be overwritten with the CA-signed certificate]
+<h3>
+Importing your new certificate from the CA's Using KeyMan</h3>
+
+<ul>
+<li>
+Under the File menu, choose Import</li>
+
+<li>
+Select "local resource", click next</li>
+
+<li>
+Enter or browse for the filename ("cert_file"), click next</li>
+
+<li>
+You should get a popup dialog saying "Private Certificate Received", click
+OK</li>
+</ul>
+
+<h3>
+Saving the new or changed keystore file using KeyMan</h3>
+
+<ul>
+<li>
+Under the File menu choose Save</li>
+
+<li>
+Enter the [path-qualified] filename (leave the default file format if PKCS12),
+click ok</li>
+
+<li>
+Enter the password if prompted</li>
+</ul>
+NOTE: If the server gets a certificate chain from a higher CA entity, the
+client could import that higher entity's certificate as a trusted CA certificate
+(it may already have that certificate by default), and it would thus trust
+the server certificate.
+<h2>
+Troubleshooting</h2>
+One extremely useful tip for troubleshooting SSL is to use the built-in
+SSL debugging features:
+<br><tt>java -djavax.net.debug=help YourClassname</tt>
+<br>(this will give you a help message for SSL debugging features)
+<h3>
+Unknown Protocol Error</h3>
+Problem: <tt>Exception in thread "main" java.net.MalformedURLException:
+unknown protocol: https</tt>
+<br>Solution: Ensure that the ssl-specific initialisation code happens
+before you create a <tt>java.net.URL</tt> object.
+<h3>
+Unrecognized SSL handshake</h3>
+Problem: <tt>ContextManager: IOException reading request, ignored - javax.net.ssl.SSLException:
+Unrecognized SSL handshake.</tt>
+<br>Solution: The most likely problem is either:
+<br>(a) your url is <tt>http://</tt> instead of <tt>https://</tt>
+<br>or
+<br>(b) your client and server are using different versions of soap.jar
+(possibly 2.0/2.1).
+<h3>
+Bad Certificate Error</h3>
+Redo Steps 2, 3 and 4.
+<h3>
+Socket Write Error</h3>
+Problem: <tt>java.lang.reflect.InvocationTargetException: java.net.SocketException:
+Connection aborted by peer: socket write error</tt>
+<br>Solution: This problem occurs because (for some reason) the server
+cannot authenticate the client. Change the following line in server.xml:
+<pre>&lt;Parameter name="clientAuth" value="false"/></pre>
+
+<h3>
+Keytool Error</h3>
+Problem: <tt>keytool error: java.io.IOException: Keystore was tampered
+with, or password was incorrect</tt>
+<br>Solution: Try deleting the keystore file and re-creating it (see the
+instructions at the beginning of this page).
+<h2>
+Further Information</h2>
+
+<h3>
+SOAP</h3>
+
+<ul>
+<li>
+The SOAP Protocol: <a href="http://www.w3.org/TR/SOAP/">http://www.w3.org/TR/SOAP/</a>.</li>
+
+<li>
+Apache SOAP: <a href="http://xml.apache.org/soap/">http://xml.apache.org/soap/</a>.</li>
+</ul>
+
+<h3>
+SSL</h3>
+
+<ul>
+<li>
+Sun JSSE FAQ: <a href="http://java.sun.com/products/jsse/FAQ.html">http://java.sun.com/products/jsse/FAQ.html</a></li>
+
+<li>
+"Modifying your Java Client to use Secure Sockets Layer": <a href="http://as400bks.rochester.ibm.com/html/as400/v4r5/ic2924/index.htm?info/java/rzaha/sslcex02.htm">http://as400bks.rochester.ibm.com/html/as400/v4r5/ic2924/index.htm?info/java/rzaha/sslcex02.htm</a></li>
+
+<li>
+Notes on SSL error codes: <a href="http://www.mozilla.org/projects/security/pki/nss/ref/ssl/sslerr.html">http://www.mozilla.org/projects/security/pki/nss/ref/ssl/sslerr.html</a></li>
+
+<li>
+Cryptographic Downloads (includes OpenSSL): <a href="http://www2.psy.uq.edu.au/~ftp/Crypto/">http://www2.psy.uq.edu.au/~ftp/Crypto/</a></li>
+</ul>
+
+</body>
+</html>

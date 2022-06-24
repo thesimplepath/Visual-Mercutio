@@ -1,0 +1,248 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Troubleshooting</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2 align="center">Troubleshooting</h2>
+
+<p>If you came here then something has gone wrong. Let's see
+whether we can help you find what's causing the problem and fix
+it. Yes, the stuff does work and yes the samples do work .. at
+least for us :-). Now let's try to make them work for you.</p>
+
+<p>The table below has a list of common problems and possible
+solutions. Do you see your problem listed?</p>
+
+<table border="1" width="100%">
+    <tr>
+        <th width="40%">Problem</th>
+        <th width="60%">Comments</th>
+    </tr>
+    <tr>
+        <td width="40%">org.w3c.dom.Node: method getNamespaceURI()Ljava/lang/String;
+        not found</td>
+        <td width="60%">Classpath is not set correctly: you still
+        have some old parser or some other JAR file that has the
+        org.w3c.dom.* classes <em>ahead</em> of a non-namespace
+        aware parser. Please follow the installation instructions
+        carefully again and verify you did everything right. If
+        you start the server on a command line, type &quot;<strong>javap
+        org.w3c.dom.Node</strong>&quot; and see whether you see<blockquote>
+            <p><em>public abstract java.lang.String
+            getNamespaceURI();</em></p>
+        </blockquote>
+        <p>in the output. If not, you still have a problem. Even
+        if you do, you still have to make sure that your server
+        configuration does not introduce some other parser ahead
+        of the user classpath at startup time. (The default setup
+        in Tomcat does this, for example.)</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="40%">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError:
+        javax/activation/DataSource</td>
+        <td width="60%">Classpath is not set correctly: add <strong>activation.jar</strong>
+        from <a
+        href="http://java.sun.com/products/javabeans/glasgow/jaf.html"
+        target="_top">Java Activation Framework</a> to your
+        classpath.</td>
+    </tr>
+    <tr>
+        <td width="40%">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError:
+        javax/mail/MessagingException</td>
+        <td width="60%">Classpath is not set correctly: add <strong>mail.jar</strong>
+        from <a
+        href="http://java.sun.com/products/javamail/index.html"
+        target="_top">JavaMail</a> to your classpath.</td>
+    </tr>
+    <tr>
+        <td width="40%">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError:
+        javax/xml/parsers/DocumentBuilderFactory</td>
+        <td width="60%">Class is not set correctly: add a <a
+        href="http://java.sun.com/xml/xml_jaxp.html"
+        target="_top">JAXP</a> compatible, namespace-aware XML
+        parser such as <a href="http://xml.apache.org/xerces-j">Apache
+        Xerces</a> to your classpath.</td>
+    </tr>
+    <tr>
+        <td width="40%">Exception in thread &quot;main&quot; [SOAPException:
+        faultCode=SOAP-ENV:Client; msg=Error opening socket:
+        connect (code=10061); targetException=java.lang.IllegalArgumentException:
+        Error opening socket: connect (code=10061)]</td>
+        <td width="60%">The router URL you are using is incorrect
+        or you have not started the server. Basically the problem
+        is there's nothing listening at the host/port combination
+        you are connecting to. Try pointing a Web browser to the
+        router URL- you should see what's indicated in the <a
+        href="install/index.html#test-install">installation tests</a>.</td>
+    </tr>
+    <tr>
+        <td width="40%">Exception in thread &quot;main&quot; [SOAPException:
+        faultCode=SOAP-ENV:Protocol; msg=Unsupported response
+        content type &quot;text/html&quot;, must be: &quot;text/xml&quot;.
+        Response was: ...</td>
+        <td width="60%">The router URL you are using is incorrect.
+        Basically the problem is that the server is not sending
+        back text/xml as SOAP expects and is sending something
+        else. Try pointing a Web browser to the router URL- you
+        should see what's indicated in the <a
+        href="install/index.html#test-install">installation tests</a>.
+        </td>
+    </tr>
+    <tr>
+        <td width="40%">service 'XYZ' unknown</td>
+        <td width="60%">The service is not deployed - <a
+        href="../guide/manage.html">list deployed services</a>
+        and see whether the service XYZ is deployed.</td>
+    </tr>
+    <tr>
+        <td width="40%">Unable to resolve target object: XYZ</td>
+        <td width="60%">The service implementation class could
+        not be loaded or a new instance of it could not be
+        created. Basically the problem is that there is a
+        classpath or other problem that prevents the server side
+        from properly locating the object to deliver calls to.
+        The detailed problem may be indicated within the
+        &lt;stackTrace&gt; element found inside the
+        &lt;detail&gt; element of the &lt;SOAP:Fault&gt; that was
+        returned with the SOAP response envelope.</td>
+    </tr>
+    <tr>
+        <td width="40%">Unable to load BSF: script services not
+        available without BSF: com.ibm.bsf.BSFManager</td>
+        <td width="60%"><a href="../install/index.html">BSF is
+        not properly installed</a> and available to the server.
+        As a result, the service you are talking to (which was
+        presumably implemented using a scripting language) is not
+        available. The &lt;SOAP:Fault&gt; element may contain
+        more detailed information.</td>
+    </tr>
+    <tr>
+        <td width="40%">BSF Error: unable to load language: ... </td>
+        <td width="60%">The service you are talking to is
+        implemented by a scripting language that BSF was unable
+        to load. Verify that BSF is properly set up and that the
+        needed jar/zip files for the scripting language you are
+        using are on the server's classpath as appropriate. The
+        &lt;SOAP:Fault&gt; element may contain more detailed
+        information.</td>
+    </tr>
+    <tr>
+        <td width="40%">Method 'XYZ' is not supported.</td>
+        <td width="60%">The service does not support the invoked
+        method. If your service implementation class has the
+        method, then it may be that your deployment descriptor
+        doesn't publish that method. Check your <a
+        href="../guide/deploy.html">deployment descriptor</a>.
+        The &lt;SOAP:Fault&gt; element may contain more detailed
+        information.</td>
+    </tr>
+    <tr>
+        <td width="40%">Exception from service object: ...</td>
+        <td width="60%">The service implementation object threw
+        an exception while processing the service request. The
+        &lt;SOAP:Fault&gt; element may contain more detailed
+        information.</td>
+    </tr>
+    <tr>
+        <td width="40%">Exception while handling service request:
+        ...</td>
+        <td width="60%">Some exception occurred while invoking
+        the service implementation object. The &lt;SOAP:Fault&gt;
+        element may contain more detailed information.</td>
+    </tr>
+    <tr>
+        <td width="40%">Deployment error in SOAP service 'XYZ':
+        ...</td>
+        <td width="60%">The indicated error (could not be
+        resolved, could not be resolved as a serializer or could
+        not be resolved as a deserializer) is present in the
+        deployment of the service. Basically, the service is not
+        properly deployed. If you didn't deploy the service,
+        inform the service provider of the problem. If its your
+        service, then check that all classes referred to from the
+        deployment descriptor are available to the server runtime
+        to load. In addition, whatever classes listed as
+        serializers / deserializers in the deployment descriptor
+        must in fact <a href="../guide/serializer.html">implement
+        the appropriate interfaces to be legitimate</a>.</td>
+    </tr>
+    <tr>
+        <td width="40%">No Deserializer found to deserialize a
+        'XYZ' using encoding style 'FOO'</td>
+        <td width="60%">The Apache SOAP code received a SOAP
+        envelope (as a request if its on the server side or in a
+        response if its on the client) containing an XML element
+        of schema type XYZ and encoded using encoding style FOO.
+        The exception occurred because the runtime was unable to
+        find a deserializer to deserialize such types encoded in
+        that style. The solution is to <a
+        href="../guide/deploy.html#typemapping">add another type
+        mapping to the deployment descriptor</a> (if the problem
+        occurred on the server side) or <a
+        href="../guide/rpcclient.html">add another mapping to the
+        client code</a> (if the problem occurred on the client
+        side).</td>
+    </tr>
+    <tr>
+        <td width="40%">No Serializer found to serialize a 'XYZ'
+        using encoding style 'FOO'</td>
+        <td width="60%">While trying to generate a SOAP envelope
+        (as a request if on the client side or in a response if
+        its on the server), Apache SOAP was asked to generate the
+        XML representation of the XYZ Java type using the
+        encoding style FOO. The exception occurred because the
+        runtime was unable to find a serializer to serialize such
+        types in the requested style. The solution is to <a
+        href="../guide/deploy.html#typemapping">add another type
+        mapping to the deployment descriptor</a> (if the problem
+        occurred on the server side) or <a
+        href="../guide/rpcclient.html">add another mapping to the
+        client code</a> (if the problem occurred on the client
+        side).</td>
+    </tr>
+    <tr>
+        <td width="40%">Class samples.addressbook.XMLParserLiaison
+        not found.</td>
+        <td width="60%">Apache SOAP v2.1 replaced the old
+        XMLParserLiaison infrastructure with <a
+        href="http://www.javasoft.com/products/jaxp"
+        target="_top">JAXP</a>. The <a
+        href="../guide/migration.html">migration section</a> in
+        the user's guide tells you how to proceed.</td>
+    </tr>
+</table>
+
+<h3>Is it in the FAQ?</h3>
+
+<p>If you are down here then you're probably still looking. We
+feel for you. Let's go to the next level: is your problem listed
+in one of the FAQs? Please look at <a
+href="http://xml.apache.org/soap/faq">http://xml.apache.org/soap/faq</a>.</p>
+
+<h3>Have others had this problem?</h3>
+
+<p>Oh oh, life's not good today. OK, last resort- please <a
+href="http://xml.apache.org/soap/mail.html" target="_top">join
+the soap-user@xml.apache.org mailing list</a> and ask there. Odds
+are that your problem has been run into before and someone there
+will know what to do.</p>
+
+<h3>Is it a bug?</h3>
+
+<p>If you believe that you have found a bug in the code, please
+visit <a href="http://xml.apache.org/soap">http://xml.apache.org/soap</a>
+and file a bug report using Bugzilla. Before filing a report
+please, please search and see whether it has already been
+reported by someone else.</p>
+
+<p>Thanks for your patience. Please accept our deepest sympathies
+for the pain you are in. We feel your pain.</p>
+</body>
+</html>

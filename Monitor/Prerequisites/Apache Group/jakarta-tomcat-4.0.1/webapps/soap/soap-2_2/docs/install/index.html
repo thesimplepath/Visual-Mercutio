@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Apache SOAP Installation Instructions</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2 align="center">Installation Instructions for Apache SOAP v2.2</h2>
+
+<p>The Apache-SOAP distribution can be installed for use as a
+client or as a server. This document provides installation
+instructions for both cases and also has a trouble shooting
+section to help sort out common installation related problems.</p>
+
+<p><strong>Important note for users upgrading from older versions
+of Apache SOAP: </strong>If you are upgrading from an older
+version of Apache SOAP then you must be sure to remove any cached
+class files, DeployedServices.ds files etc. or you will get a
+variety of strange errors. If you deployed Apache SOAP using a
+Web app, then any old expanded WARs must also be removed.
+Services deployed into the old version cannot be automatically
+transferred to the new version - you must manually re-deploy them
+to the new version. That is, the old DeployedServices.ds file
+cannot be read by this new version. We apologize in advanced for
+the pain this will cause some of our users. If you are in fact
+upgrading from an older version of Apache SOAP and get any funny,
+unusual looking exceptions or behavior, then most likely the
+problem is some unexpected interaction with code from the older
+version. Please clean up and try again or try installing in a
+virgin environment.</p>
+
+<h3>Unpack the Distribution</h3>
+
+<p>We assume that you have downloaded the binary distribution of
+Apache-SOAP and have extracted the archive into the directory <tt>/foo</tt>.
+Thus the files from the distribution are in the directory <tt>/foo/soap-2_2/</tt>.</p>
+
+<p>Note that if you are on a Win32 machine then you should
+replace &quot;/&quot; with &quot;\&quot; as you follow these
+instructions.</p>
+
+<h3>Client-Side Instructions</h3>
+
+<p>Your classpath must contain <strong>/foo/soap-2_2/soap.jar</strong>
+and the following:</p>
+
+<ul>
+    <li><strong>mail.jar</strong> from <a
+        href="http://java.sun.com/products/javamail/">JavaMail</a></li>
+    <li><strong>activation.jar </strong>from <a
+        href="http://java.sun.com/products/beans/glasgow/jaf.html">JavaBeans
+        Activation Framework</a></li>
+    <li>a <a href="http://java.sun.com/xml/xml_jaxp.html"
+        target="_top">JAXP</a> compatible, namespace-aware XML
+        parser such as <a href="http://xml.apache.org/xerces-j">Apache
+        Xerces</a> (v1.1.2 or later). If you have other non-namespace
+        aware XML parsers on your classpath then the namespace-aware
+        parser must be at the front of your classpath. Apache
+        SOAP will not work otherwise.</li>
+</ul>
+
+<p>Additionally, to run the samples that came with the
+distribution, add <strong>/foo/soap-2_2</strong> to your
+classpath.</p>
+
+<h3>Server-Side Instructions</h3>
+
+<p>You need to ensure that the server classpath contains all of
+the above components. In addition, to implement services in
+scripting languages (such as the calculator sample), add <strong>bsf.jar</strong>
+from <a
+href="http://oss.software.ibm.com/developerworks/projects/bsf">BSF</a>
+and <strong>js.jar</strong> from <a
+href="http://www.mozilla.org/rhino/">Rhino</a> to your classpath.</p>
+
+<p>To install the server-side of Apache-SOAP, you need a Web
+application server that supports servlets and JSPs (if you want
+to run the admin client as well). </p>
+
+<p><strong>Installing the router servlets and admin client:</strong>
+The instructions for how to install varies from one app server to
+another. Here are instructions for the following servers:</p>
+
+<ul>
+    <li><a href="tomcat.html">Apache Tomcat v3.2</a></li>
+    <li><a href="weblogic51.html">BEA WebLogic Application Server
+        v5.1</a></li>
+    <li><a href="weblogic60.html">BEA WebLogic Application Server
+        v6.0</a></li>
+    <li><a href="websphere.html">IBM WebSphere v3.5</a></li>
+    <li><a href="iPlanet.html">iPlanet Application Server 6.0</a></li>
+    <li><a href="JRun.html">JRun 3.0</a></li>
+</ul>
+
+<p>Didn't find yours listed? See whether the instructions for
+Tomcat (for example) gives you enough hints on how to do it. If
+not, first check the FAQ (<a
+href="http://xml.apache.org/soap/faq" target="_top">http://xml.apache.org/soap/faq</a>)
+and if that fails try asking on the Apache-SOAP user's list; more
+than likely someone else has done it already. You can subscribe
+to the list here: <a href="http://xml.apache.org/soap/mail.html"
+target="_top">http://xml.apache.org/soap/mail.html</a>.</p>
+
+<h3><a name="test-install">Testing Your Server-Side Installation</a></h3>
+
+<p>Point your browser to:</p>
+
+<blockquote>
+    <p><code>http://localhost:port/soap/servlet/rpcrouter</code> </p>
+</blockquote>
+
+<p>and</p>
+
+<blockquote>
+    <p><code>http://localhost:port/soap/servlet/messagerouter</code>
+    </p>
+</blockquote>
+
+<p>where <code>port</code> is <code>8080</code>, or <code>4040</code>,
+or whatever port your particular HTTP server is listening on. The
+browser should display the following:</p>
+
+<blockquote>
+    <h4>SOAP (RPC|Message) Router</h4>
+    <p><code>Sorry, I don't speak via HTTP GET- you have to use
+    HTTP POST to talk to me. </code></p>
+</blockquote>
+
+<p>If you don't see this message, your server is not configured
+correctly. If you do, you now know your router URLs: they are the
+URLs you pointed your browser to.</p>
+
+<p>To test whether you have proper server and client-side stuff
+set up, follow the client-side instructions to put the right
+things on your classpath and type the following:</p>
+
+<blockquote>
+    <p><code>java org.apache.soap.server.ServiceManagerClient </code><code><em>rpc-router-url</em></code><code>
+    list</code> </p>
+</blockquote>
+
+<p>where the first argument above is the RPC router URL you
+determined earlier (the one with &quot;rpcrouter&quot; at the end).
+[NOTE: The above command line is one long line; your browser may
+show it on two lines but do NOT put it on two lines!]</p>
+
+<p>If this succeeds you will see it return with no output or with
+a list of URIs. Either case is successful - it indicates what
+services are already deployed on your server. If you get anything
+else then its time to <a href="../trouble/index.html">troubleshoot</a>.
+</p>
+
+<h3>SSL Instructions</h3>
+
+<p><strong>Getting SSL support up and running:</strong> The
+instructions for how to get SSL support running vary from server
+to server: Here are instructions for the following servers:</p>
+
+<ul>
+    <li><a href="FAQ_Tomcat_SOAP_SSL.html">Apache Tomcat v3.2</a></li>
+</ul>
+
+<p>&nbsp;</p>
+</body>
+</html>

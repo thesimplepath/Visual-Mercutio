@@ -1,0 +1,21 @@
+A {
+	font : normal bold x-small sans-serif;
+	color : Black;
+	text-decoration : none;	
+}
+
+A:HOVER {
+	font : normal bold x-small sans-serif;
+	color : lightgrey;
+	text-decoration : none;
+}
+
+Body {
+	background-color: white;
+	font : normal  x-small sans-serif;
+	color : Black;
+}
+
+TABLE {
+	background : Silver;
+}

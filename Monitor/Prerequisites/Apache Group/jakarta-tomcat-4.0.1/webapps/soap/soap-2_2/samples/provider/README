@@ -1,0 +1,49 @@
+
+Service:
+-------
+
+To install this service on an Apache-SOAP listener, you need to deploy this 
+service by filling in the deployment template using the info in the deployment
+descriptor in this directory or by using the service manager client at:
+
+  http://host:port/soap-servlet/admin  (ie. http://localhost:8080/soap/admin)
+
+To deploy using the deployment descriptor in this directory use the java
+program:
+
+  java org.apache.soap.server.ServiceManagerClient routerURL deploy dd.xml
+where routerURL is the URL of the SOAP RPC router and dd.xml is the name of 
+the deployment descriptor file.  For example:
+
+  java org.apache.soap.server.ServiceManagerClient \
+    http://localhost:8080/soap/servlet/rpcrouter deploy DeploymentDescriptor.xml
+
+
+Client:
+------
+
+There is a client that uses HTTP as the transport.  Run the following
+command to see some output from the TemplateProvider on the server machine:
+
+  java samples.provider.testprovider routerURL
+
+For example:
+  java samples.provider.testprovider http://localhost:8080/soap/servlet/rpcrouter
+
+
+Explanation:
+-----------
+
+Prints some debug information on the SOAP server to show it worked.
+Should look something like:
+
+=============================================
+In TemplateProvider.locate()
+URI: urn:testprovider
+DD.ServiceClass: org.apache.soap.providers.TemplateProvider
+DD.ProviderClass: samples.provider.provider
+Call.MethodName: hello
+Options:
+Key: classpath  Value: c:\classes
+=============================================
+In TemplateProvider.invoke()

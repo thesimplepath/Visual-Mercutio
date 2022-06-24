@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:testprovider">
+  <isd:provider type="org.apache.soap.providers.StatelessEJBProvider"
+                scope="Application"
+                methods="create">
+    <isd:java class="samples/HelloService"/>
+    <isd:option key="FullHomeInterfaceName" value="samples.HelloServiceHome" />
+    <isd:option key="ContextProviderURL" value="iiop://localhost:900" />
+    <isd:option key="FullContextFactoryName" value="com.ibm.ejs.ns.jndi.CNInitialContextFactory" />
+  </isd:provider>
+	<isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+</isd:service>
+
+

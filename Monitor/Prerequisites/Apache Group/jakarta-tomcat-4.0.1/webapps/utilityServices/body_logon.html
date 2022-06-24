@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V5.0.1 for Windows">
+<TITLE>Logon</TITLE>
+<BASE target="_parent">
+<LINK REL=STYLESHEET TYPE="text/css" HREF="style/style.css">
+<STYLE></STYLE>
+<script language="JavaScript">
+  <!--
+  function chkForm() {
+   for(i=0; i<document.LogonData.elements.length; ++i)
+    if(document.LogonData.elements[i].value == "") {
+     alert("Form incomplete! Please insert missing data!");
+     document.LogonData.elements[i].focus();
+     return false;
+    }
+   return true;
+  }
+
+  function focusUserid ()  {
+   document.LogonData.userid.focus();
+  }
+  //-->
+</script>
+</HEAD>
+<BODY ONLOAD="focusUserid()" TOPMARGIN=35 LEFTMARGIN=40 MARGINWIDTH=2 MARGINHEIGHT=2>
+<form name="LogonData" method="POST" action="Logon" onsubmit="return chkForm()">
+<table border="0" cellspacing="0" cellpadding="0" width="500">
+ 
+    <TR>
+  <TD colspan=3 ALIGN=CENTER><H3><U>Logon</U></H3></TD>
+ </TR>
+    <tr>
+        <td width="150">&nbsp;</td>
+        <td width="150"></td>
+        <td width="200"></td>
+    </tr>
+    <tr>
+        <TH colspan="3" align="LEFT" height="65">
+      <p><B>If you are a registered user,
+      you may provide your userid and password
+      in
+            order to logon to the contracting,
+      accounting and billing demo.</B></p>
+      </TH></tr>
+    <tr>
+        <TD height="18"></TD>
+        <TD height="18"></TD>
+        <TD height="18"></TD>
+    </tr>
+    <tr>
+      <TD height="105"></TD>
+      <TD align="LEFT" height="105">
+      <TABLE border="1" bgcolor="#DDDDDD">
+        
+          <tr>
+            <td><b>Userid:</b></td>
+            <td><input type="TEXT" name="userid" size="20" maxlength="20"></td>
+          </tr>
+          <tr>
+            <td><b>Password:</b></td>
+            <td><input type="PASSWORD" name="passwd" size="20" maxlength="20"></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center"><input type="SUBMIT" name="LogonButton" value="Logon" id="FormsButton1"></td>
+          </tr>
+        
+      </TABLE>
+      </TD>
+      <TD height="105"></TD>
+    </tr>
+    <tr>
+        <TD height="15"></TD>
+        <TD height="15"></TD>
+        <TD height="15"></TD>
+    </tr>
+    <tr>
+        <TD colspan="3" height="60">
+            <b>If you have not yet registered, follow the <A href="customer_data.html"><u>New User</u></A> link in order to
+            register and authorize a userid.</b></TD>
+    </tr>
+</TABLE>
+</form>
+</BODY>
+</HTML>

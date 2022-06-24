@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0037)http://www.almaer.com/weblogic60.html -->
+<HTML><HEAD><TITLE>Apache SOAP Installation Instructions - BEA Weblogic 6.0</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="Dion Almaer" name=author>
+<META content="MSHTML 5.50.4613.1700" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<H1 align=center>Apache-SOAP Version 2.2: Installing the Server-Side Under BEA 
+WebLogic Application Server 6.0</H1>
+<P>Installing SOAP with BEA WebLogic is very straight foreward. <BR>The steps 
+are: <BR>
+<UL>
+  <LI>Install the soap web app 
+  <LI>Put the soap.jar into the web app's classpath 
+  <LI>Access the soap web app 
+  <LI>Optionally: switch out for a new xerces parser 
+  <LI>Optionally: configure the soap.xml </LI></UL><BR>
+<H2>Install the soap web app</H2>Copy the /path-to-apache-soap/webapps/soap to 
+your applications directory For example: To install into the "mydomain" plug the 
+directory into: <BR>c:/bea/wlserver6.0/mydomain/application/soap <BR>
+<H2>Put the soap.jar into the web app's classpath</H2>1. Make a directory 
+c:/bea/wlserver6.0/mydomain/application/soap/WEB-INF/lib <BR>2. Copy soap.jar to 
+that lib directory <BR>
+<H2>Access the soap web app</H2>
+<P>You should be able to deploy services by pointing a browser to</P>
+<BLOCKQUOTE><PRE><A href="http://hostname:port/soap">http://hostname:port/soap</A></PRE></BLOCKQUOTE>
+<P>where hostname is the host on which WebLogic is running and port is the port. 
+See the User's Guide for details on the administration tool. The SOAP end-point 
+for invoking services on this server is:</P>
+<BLOCKQUOTE><PRE><A href="http://hostname:port/soap/servlet/rpcrouter">http://hostname:port/soap/servlet/rpcrouter</A></PRE></BLOCKQUOTE><BR>
+<H2><I>Optionally</I> switch out for a new xerces parser</H2>WebLogic 6.0 
+bundles the xerces parser already. If you want to use your own xerces.jar you 
+will have to edit your start script, and make sure that the CLASSPATH has 
+xerces.jar at the beginnning, so those classes get loaded before the ones in the 
+weblogic.jar. <BR>
+<H2><I>Optionally</I> configure the soap.xml</H2><I>NOTE: For some reason I had 
+to configure this, else I got an error writing to the .ds file</I> <BR><BR>1. 
+Configure the web application to point to a soap.xml config file. <BR>Edit the 
+web.xml file and add another initialization parameter. (e.g. 
+c:\bea\wlserver6.0\config\mydomain\applications\soap\WEB-INF\web.xml) <PRE>    &lt;init-param&gt;
+      &lt;param-name&gt;ConfigFile&lt;/param-name&gt;
+      &lt;param-value&gt;c:\BEA\wlserver6.0\config\mydomain\applications\soap\soap.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+</PRE>2. Configure the soap.xml (e.g. 
+c:\BEA\wlserver6.0\config\mydomain\applications\soap\soap.xml) <PRE>	&lt;!-- Sample Apache SOAP Server Configuration File --&gt;
+	&lt;soapServer&gt;
+	  &lt;!-- This section defines the same thing you get if you don't --&gt;
+	  &lt;!-- specify anything at all - aka the default                --&gt;
+	  &lt;configManager value="org.apache.soap.server.DefaultConfigManager" &gt;
+		&lt;option name="filename" value="c:\BEA\wlserver6.0\config\mydomain\applications\soap\DeployedServices.ds" /&gt;
+	  &lt;/configManager&gt;
+	&lt;/soapServer&gt;
+</PRE>
+<P>Happy SOAP-ing!</P></BODY></HTML>

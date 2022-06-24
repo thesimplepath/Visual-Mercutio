@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.attachment.com/AttachmentService-interface" xmlns:types="http://www.attachment.com/types" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AttachmentService-interface" targetNamespace="http://www.attachment.com/AttachmentService-interface">
+
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.attachment.com/types">
+      <complexType xmlns="http://www.w3.org/2001/XMLSchema" name="ArrayOfString">
+        <complexContent xmlns="http://www.w3.org/2001/XMLSchema">
+          <restriction xmlns="http://www.w3.org/2001/XMLSchema" base="soapenc:Array">
+            <attribute xmlns="http://www.w3.org/2001/XMLSchema" ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+      <complexType xmlns="http://www.w3.org/2001/XMLSchema" name="ArrayOfBinary">
+        <complexContent xmlns="http://www.w3.org/2001/XMLSchema">
+          <restriction xmlns="http://www.w3.org/2001/XMLSchema" base="soapenc:Array">
+            <attribute xmlns="http://www.w3.org/2001/XMLSchema" ref="soapenc:arrayType" wsdl:arrayType="xsd:byte[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+      <complexType xmlns="http://www.w3.org/2001/XMLSchema" name="fileListType">
+        <sequence xmlns="http://www.w3.org/2001/XMLSchema">
+          <element xmlns="http://www.w3.org/2001/XMLSchema" maxOccurs="unbounded" minOccurs="1" name="file" type="xsd:string"/>
+        </sequence>
+      </complexType>
+
+      <complexType xmlns="http://www.w3.org/2001/XMLSchema" name="titleAndFileList">
+        <sequence xmlns="http://www.w3.org/2001/XMLSchema">
+          <element xmlns="http://www.w3.org/2001/XMLSchema" name="listTitle" type="xsd:string"/>
+          <element xmlns="http://www.w3.org/2001/XMLSchema" name="fileList" type="types:fileListType"/>
+        </sequence>
+      </complexType>
+
+      <element xmlns="http://www.w3.org/2001/XMLSchema" name="listAttachments" type="types:titleAndFileList"/>
+
+      <element xmlns="http://www.w3.org/2001/XMLSchema" name="parameters" type="types:titleAndFileList"/>
+
+      <complexType xmlns="http://www.w3.org/2001/XMLSchema" name="contentType">
+        <simpleContent xmlns="http://www.w3.org/2001/XMLSchema">
+          <extension xmlns="http://www.w3.org/2001/XMLSchema" base="xsd:string">
+            <attribute xmlns="http://www.w3.org/2001/XMLSchema" name="part" type="xsd:string"/>
+            <attribute xmlns="http://www.w3.org/2001/XMLSchema" name="type" type="xsd:string"/>
+          </extension>
+        </simpleContent>
+      </complexType>
+
+      <element xmlns="http://www.w3.org/2001/XMLSchema" name="attachments">
+        <complexType xmlns="http://www.w3.org/2001/XMLSchema">
+          <sequence xmlns="http://www.w3.org/2001/XMLSchema">
+            <element xmlns="http://www.w3.org/2001/XMLSchema" name="content" type="types:contentType"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+
+  <message xmlns="http://schemas.xmlsoap.org/wsdl/" name="RPCRequest">
+    <part name="listTitle" type="xsd:string"/>
+    <part name="fileList" type="types:ArrayOfString"/>
+    <part name="classFile" type="types:ArrayOfBinary"/>
+    <part name="imageFile" type="types:ArrayOfBinary"/>
+    <part name="htmlFile" type="xsd:string"/>
+  </message>
+
+  <message xmlns="http://schemas.xmlsoap.org/wsdl/" name="RPCResponse">
+    <part name="list" type="xsd:string"/>
+  </message>
+
+  <message xmlns="http://schemas.xmlsoap.org/wsdl/" name="MessageRequest">
+    <part element="types:listAttachments" name="listRequest"/>
+    <part name="classFile" type="xsd:ArrayOfBinary"/>
+    <part name="imageFile" type="xsd:ArrayOfBinary"/>
+    <part name="htmlFile" type="xsd:string"/>
+  </message>
+
+  <message xmlns="http://schemas.xmlsoap.org/wsdl/" name="MessageResponse">
+    <part element="types:parameters" name="parameters"/>
+    <part element="types:attachments" name="attachments"/>
+    <part name="classFile" type="xsd:ArrayOfBinary"/>
+    <part name="imageFile" type="xsd:ArrayOfBinary"/>
+    <part name="htmlFile" type="xsd:string"/>
+  </message>
+
+  <portType xmlns="http://schemas.xmlsoap.org/wsdl/" name="RPCAttachmentService">
+    <operation name="listAttachments">
+      <input message="tns:RPCRequest"/>
+      <output message="tns:RPCResponse"/>
+    </operation>
+  </portType>
+
+  <portType xmlns="http://schemas.xmlsoap.org/wsdl/" name="MessageAttachmentService">
+    <operation name="listAttachments">
+      <input message="tns:MessageRequest"/>
+      <output message="tns:MessageResponse"/>
+    </operation>
+  </portType>
+
+  <binding xmlns="http://schemas.xmlsoap.org/wsdl/" name="RPCAttachmentServiceBinding" type="tns:RPCAttachmentService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="listAttachmentsRPC">
+      <soap:operation soapAction="http://www.attachment.com/ListAttachments"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/attachment-service" parts="listTitle fileList" use="encoded"/>
+
+          </mime:part>
+          <mime:part>
+            <mime:content part="classFile" type="application/octet-stream"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="imageFile" type="image/jpeg"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="htmlFile" type="text/html"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/attachment-service" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+
+  <binding xmlns="http://schemas.xmlsoap.org/wsdl/" name="MessageAttachmentServiceBinding" type="tns:MessageAttachmentService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="listAttachmentsMessage">
+      <soap:operation soapAction="http://www.attachment.com/ListAttachments"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body namespace="http://tempuri.org/attachment-service" parts="listTitle fileList" use="literal"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="classFile" type="application/octet-stream"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="imageFile" type="image/jpeg"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="htmlFile" type="text/html"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body namespace="http://tempuri.org/attachment-service" parts="parameters attachments" use="literal"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="classFile" type="application/octet-stream"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="imageFile" type="image/jpeg"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="htmlFile" type="text/html"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </output>
+    </operation>
+  </binding>
+</definitions>

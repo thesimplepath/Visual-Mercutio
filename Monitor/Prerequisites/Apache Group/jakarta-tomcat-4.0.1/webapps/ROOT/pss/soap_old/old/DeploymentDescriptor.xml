@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment" id="urn:emessenger">
+<isd:provider type="java" scope="Application" methods="pubInit pubModel pubProc pubDeliv pubPdattr">
+<isd:java class="PssPublisherWSDL" static="false"/>
+</isd:provider>
+<isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+<isd:mappings>
+<isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+       xmlns:x="urn:xml-soap-emessenger" qname="x:pmodel" javaType="pmodel"
+       java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+       xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+<isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+       xmlns:x="urn:xml-soap-emessenger" qname="x:pproc" javaType="pproc"
+       java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+       xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+<isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+       xmlns:x="urn:xml-soap-emessenger" qname="x:pdeliv" javaType="pdeliv"
+       java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+       xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+<isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+       xmlns:x="urn:xml-soap-emessenger" qname="x:ppdattr" javaType="ppdattr"
+       java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+       xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+</isd:mappings>
+</isd:service>

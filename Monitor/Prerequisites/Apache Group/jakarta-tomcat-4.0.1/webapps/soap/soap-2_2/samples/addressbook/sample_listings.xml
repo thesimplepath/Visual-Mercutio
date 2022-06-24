@@ -1,0 +1,32 @@
+<AddressBook>
+  <Listing>
+    <Name>Mary Smith</Name>
+    <Address>
+      <StreetNum>888</StreetNum>
+      <StreetName>Broadway</StreetName>
+      <City>Somewhere</City>
+      <State>FL</State>
+      <Zip>87654</Zip>
+      <PhoneNumber>
+        <AreaCode>222</AreaCode>
+        <Exchange>333</Exchange>
+        <Number>4444</Number>
+      </PhoneNumber>
+    </Address>
+  </Listing>
+  <Listing>
+    <Name>Dave Davis</Name>
+    <Address>
+      <StreetNum>919</StreetNum>
+      <StreetName>Baker Lane</StreetName>
+      <City>Sunnytown</City>
+      <State>UT</State>
+      <Zip>43434</Zip>
+      <PhoneNumber>
+        <AreaCode>789</AreaCode>
+        <Exchange>654</Exchange>
+        <Number>3210</Number>
+      </PhoneNumber>
+    </Address>
+  </Listing>
+</AddressBook>

@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Introduction to Apache SOAP</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2 align="center">Introduction</h2>
+
+<p>Thank you for downloading Apache SOAP!</p>
+
+<p>Apache SOAP is an open-source implementation of the <a
+href="http://www.w3.org/TR/SOAP">SOAP v1.1</a> and <a
+href="http://www.w3.org/TR/SOAP-attachments">SOAP Messages with
+Attachments</a> specifications in Java. Apache SOAP is developed
+by the <a href="http://xml.apache.org/soap">Apache SOAP</a>
+community.</p>
+
+<p>Apache SOAP can be used as a client library to invoke SOAP
+services available elsewhere or as a server-side tool to
+implement SOAP accessible services. As a client library it
+provides an <a href="guide/rpcclient.html">API for invoking SOAP
+RPC services</a> as well as an <a href="guide/msgclient.html">API
+for sending and receiving SOAP messages</a>. As a mechanism to
+write new <a href="guide/rpc.html">RPC accessible services</a> or
+<a href="guide/message.html">message accessible services</a>, it
+expects to be hosted by a servlet container (such as <a
+href="http://jakarta.apache.org" target="_top">Apache Tomcat</a>,
+for example). While the codebase can be extended to support non-HTTP
+transports, the provided code only has limited support for non-HTTP
+transports (specifically, only for SMTP).</p>
+
+<p>If you are new to SOAP and would like to learn more about SOAP
+and Web services in general, there are many wonderful resources
+available on the Web. Given below is a woefully incomplete list (in
+no particular order) of great starting places:</p>
+
+<ul>
+    <li><a href="http://www.xmethods.net">http://www.xmethods.net</a></li>
+    <li><a href="http://www.webservices.org">http://www.webservices.org</a></li>
+    <li><a href="http://www.ibm.com/developerworks/webservices/">http://www.ibm.com/developerworks/webservices/</a></li>
+    <li><a href="http://msdn.microsoft.com/soap">http://msdn.microsoft.com/soap</a></li>
+    <li><a href="http://www.develop.com/soap">http://www.develop.com/soap</a></li>
+</ul>
+
+<p>For a list of Frequently Asked Questions (and answers to them)
+please visit <a href="http://xml.apache.org/soap/faq">http://xml.apache.org/soap/faq</a>.</p>
+
+<h3>Requirements &amp; Limitations</h3>
+
+<p>Apache SOAP has the following requirements:</p>
+
+<ul>
+    <li>Java 1.1 or higher, and a servlet engine supporting
+        version 2.1 or higher of the <a
+        href="http://java.sun.com/products/servlet/">Java Servlet
+        API</a></li>
+    <li>A JAXP compatible, namespace aware XML parser</li>
+    <li><a href="http://java.sun.com/products/javamail/">JavaMail</a>
+        (mail.jar) and the <a
+        href="http://java.sun.com/products/beans/glasgow/jaf.html">JavaBeans
+        Activation Framework</a> (activation.jar)</li>
+    <li>XMI encoding requires use of Java 1.2.2 and <a
+        href="http://www.alphaworks.ibm.com/tech/xml4j">XML4J 2.0.15</a>.
+        Your classpath must have xerces.jar first and then xml4j.jar
+        next <strong>in that order</strong>.</li>
+    <li>Implementing services in scripting languages requires the
+        use of <a
+        href="http://oss.software.ibm.com/developerworks/projects/bsf/">Bean
+        Scripting Framework</a>. </li>
+    <li>SSL (HTTPS) support requires Java 1.2.1 or later and the <a
+        href="http://java.sun.com/products/jsse/">Java Secure
+        Socket Extension</a>.</li>
+    <li>The SMTP transport requires the <a
+        href="http://oss.software.ibm.com/developerworks/opensource/smtp/">SMTP</a>
+        and <a
+        href="http://oss.software.ibm.com/developerworks/opensource/pop3/">POP3</a>
+        Bean Suites.</li>
+</ul>
+
+<p>The following features of the SOAP v1.1 specification are <strong>not</strong>
+currently supported:</p>
+
+<ul>
+    <li>encodingStyle attribute must have only one encoding style
+        given (see section 4.1.1 of the spec)</li>
+    <li>mustUnderstand attribute support - only supports checking
+        for and rejecting requests that require mustUnderstand
+        checking</li>
+    <li>root attribute</li>
+    <li>actor attribute and SOAP intermediaries</li>
+    <li>does not use multi-ref accessors during serialization</li>
+</ul>
+
+<p>The following limitations on SOAP Messages with Attachments
+currently exist:</p>
+
+<ul>
+    <li>The document base URI is not picked up from the
+        multipart's Content-Location header.</li>
+    <li>Support for relative URIs in Content-Location headers is
+        limited to concatenating the document base URI to the
+        relative URI.</li>
+    <li>The provided SMTP transport does not support multipart
+        messages.</li>
+    <li>Server-side RPC methods have no way to add attachments to
+        the response other than via the return object. Messaging
+        methods can do this already. </li>
+</ul>
+</body>
+</html>

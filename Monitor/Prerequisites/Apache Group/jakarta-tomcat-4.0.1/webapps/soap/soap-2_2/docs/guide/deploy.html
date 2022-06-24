@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>The Apache SOAP Deployment Descriptor</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Deployment Descriptors</H2>
+<P>Apache SOAP utilizes XML documents called
+&quot;deployment descriptors&quot; to provide
+information to the SOAP runtime about the
+services that should be made available to
+clients. They can provide a wide array of
+information such as the URN for the service
+(which is used to route the request when
+it comes in), method and class details if
+the service is being provided by a Java class,
+or the name of a script if the service is
+implemented in any of the BSF supported scripting
+languages. The exact contents of the deployment
+descriptor depend upon the type of artifact
+which is being exposed via SOAP. Below you
+will find details about the different types
+of deployment descriptors which may be used
+in this release.</P>
+<HR>
+<H3>Standard Java Class Deployment Descriptor</H3>
+<P>A deployment descriptor which exposes a service
+which is implemented via a standard Java
+class (including a normal Java Bean) looks
+like the following:</P>
+<PRE>&lt;isd:service xmlns:isd=&quot;http://xml.apache.org/xml-soap/deployment&quot;
+             id=&quot;urn:<I><STRONG>service-urn</STRONG></I>&quot; [type=&quot;message&quot;] [checkMustUnderstands=&quot;true|false&quot;]&gt;<BR>  &lt;isd:provider type=&quot;java&quot;<BR>                scope=&quot;Request | Session | Application&quot;<BR>                methods=&quot;<I><STRONG>exposed-methods</STRONG></I>&quot;&gt;<BR>    &lt;isd:java class=&quot;<I><STRONG>implementing-class</STRONG></I>&quot; [static=&quot;true|false&quot;]/&gt;<BR>  &lt;/isd:provider&gt;<BR>  &lt;isd:faultListener&gt;org.apache.soap.server.DOMFaultListener&lt;/isd:faultListener&gt;
+&lt;/isd:service&gt;</PRE>
+<P>Where <I><STRONG>service-urn</STRONG></I> is the URN that you want to give to a service,
+<I><STRONG>exposed-methods</STRONG></I> is a space separated list of methods which
+you wish to expose, and <I><STRONG>implementing-class</STRONG></I> is fully qualified class name (i.e. packagename.classname)
+that provides the methods which are being
+exposed. On the &lt;service&gt; element,
+there is an optional attribute called <I>type</I> which may be set to the value &quot;message&quot;
+if the service is document-oriented instead
+of being an RPC invoked service, and an optional
+attribute called <I>checkMustUnderstands</I> which may be set to either &quot;true&quot;
+or &quot;false&quot; depending upon whether
+or not you want the server to throw a Fault
+if there were SOAP headers in the request
+which were marked as MustUnderstand. On the
+&lt;java&gt; element, there is an optional
+attribute called <I>static</I>, which may be set to either &quot;true&quot;
+or &quot;false&quot;, depending upon whether
+or not the methods which are being exposed
+are static or not. The &lt;provider&gt; element
+also takes a <I>scope</I> attribute which indicates the lifetime of
+the instantiation of the implementing class.
+&quot;Request&quot; indicates that the object
+will be removed after this request has completed,
+&quot;Session&quot; indicates that the object
+will last for the current lifetime of the
+HTTP session, and Application indicates that
+the object will last until the servlet which
+is servicing the requests is terminated.</P>
+<H3>EJB Deployment Descriptor</H3>
+<P>A deployment descriptor which exposes a service
+which is implemented via an Enterprise Java
+Bean looks like the following:</P>
+<PRE>&lt;isd:service xmlns:isd=&quot;http://xml.apache.org/xml-soap/deployment&quot;<BR>             id=&quot;urn:<I><STRONG>service-urn</STRONG></I>&quot;&gt;<BR>  &lt;isd:provider type=&quot;<I><STRONG>provider-class</STRONG></I>&quot;<BR>                scope=&quot;Application&quot;<BR>                methods=&quot;<I><STRONG>exposed-methods</STRONG></I>&quot;&gt;<BR>    &lt;isd:option key=&quot;JNDIName&quot; value=&quot;<I><B>jndi-name</B></I>&quot;/&gt;<BR>    &lt;isd:option key=&quot;FullHomeInterfaceName&quot; value=&quot;<I><STRONG>home-name</STRONG></I>&quot; /&gt;<BR>    &lt;isd:option key=&quot;ContextProviderURL&quot; value=&quot;<I><B>context-provider</B></I>&quot; /&gt;<BR>    &lt;isd:option key=&quot;FullContextFactoryName&quot; value=&quot;<B><I>factory-name</I></B>&quot; /&gt;<BR>  &lt;/isd:provider&gt;<BR>  &lt;isd:faultListener&gt;org.apache.soap.server.DOMFaultListener&lt;/isd:faultListener&gt;<BR>&lt;/isd:service&gt;</PRE>
+<P>Where <I><STRONG>service-urn</STRONG></I> and <I><STRONG>exposed-methods</STRONG></I> have the same meaning as in the standard
+Java class deployment descriptor, <I><STRONG>provider-class</STRONG></I> is either org.apache.soap.providers.StatelessEJBProvider,
+org.apache.soap.providers.StatefulEJBProvider,
+or org.apache.soap.providers.EntityEJBProvider,
+depending on whether or not the implementation
+is a stateless session bean, a stateful session
+bean, or an entity bean, respectively, <I><STRONG>jndi-name</STRONG></I> is the registered JNDI name of the EJB,
+<I><STRONG>home-name</STRONG></I> is the fully qualified class name of the
+EJB's home, <B><I>context-provider</I></B> is the URL associated with the JNDI context
+provider, and <B><I>factory-name</I></B> is the name of the JNDI context factory.
+For backwards compatibility, the <I><B>jndi-name</B></I> may also be specified in the <I>class</I> attribute of the &lt;java&gt; element. </P>
+<H3>BSF Script Deployment Descriptor</H3>
+<P>A deployment descriptor which exposes a service
+which is implemented via a BSF Script looks
+like the following:</P>
+<PRE>&lt;isd:service xmlns:isd=&quot;http://xml.apache.org/xml-soap/deployment&quot;<BR>             id=&quot;urn:<I><STRONG>service-urn</STRONG></I>&quot;&gt;<BR>  &lt;isd:provider type=&quot;script&quot;<BR>                scope=&quot;Request | Session | Application&quot; <BR>                methods=&quot;<I><STRONG>exposed-methods</STRONG></I>&quot;&gt;<BR>    &lt;isd:script language=&quot;<I><STRONG>language-name</STRONG></I>&quot; [source=&quot;<I><STRONG>source-filename</STRONG></I>&quot;]&gt;<BR>      [<I><STRONG>script-body</STRONG></I>]<BR>    &lt;/isd:script&gt;<BR>  &lt;/isd:provider&gt;<BR>  &lt;isd:faultListener&gt;org.apache.soap.server.DOMFaultListener&lt;/isd:faultListener&gt;<BR>&lt;/isd:service&gt;</PRE>
+<P>Where <I><STRONG>service-urn</STRONG></I>, <I><STRONG>exposed-methods</STRONG></I>, and <I>scope</I> have the same meaning as in the standard
+Java class deployment descriptor, and <I><STRONG>language-name</STRONG></I> is the name of the BSF-supported language
+that the script was written in. The deployment
+descriptor must also have either a <I>source</I> attribute on the &lt;script&gt; element,
+or contain a <I><STRONG>script-body</STRONG></I>, which<STRONG> </STRONG>has<STRONG> </STRONG>the actual script which will be used to provide
+the service. If the deployment descriptor
+has the <I>source</I> attribute, then <I><STRONG>source-filename</STRONG></I> refers to the file which contains the service
+implementation.</P>
+<HR>
+<H3>Specifying Fault Listeners</H3>
+<P>In all of the examples above, a single fault
+listener, org.apache.soap.server.DOMFaultListener,
+has been registered. In reality, any class
+which implements the interface specified
+by org.apache.soap.server.SOAPFaultListener
+may be registered via the &lt;faultListener&gt;
+element. Multiple fault listeners may be
+specified by simply adding additional &lt;faultListener&gt;
+elements. For more information about Apache
+SOAP fault listeners, look <A href="errors.html">here</A>.</P>
+<H3><A name="typemapping">Specifying Type Mappings in a Deployment
+Descriptor</A></H3>
+<P>Type mapping information for RPC services
+may also be specified in the deployment descriptors.
+Mappings are specified through the use of
+a &lt;mappings&gt; element which may optionally
+appear as a child of the &lt;service&gt;
+element. Mappings specified in this manner
+are only available to the service described
+by the deployment descriptor in which they
+appear. A deployment descriptor with type
+mappings looks like the following:</P>
+<PRE>&lt;isd:service xmlns:isd=&quot;http://xml.apache.org/xml-soap/deployment&quot; id=&quot;...&quot;&gt;
+  &lt;isd:provider .../&gt;
+  &lt;isd:faultListener .../&gt;
+  &lt;isd:mappings [defaultRegistryClass=&quot;<B><I>registry-class</I></B>&quot;]&gt;
+    &lt;isd:map encodingStyle=&quot;<B><I>encoding-uri</I></B>&quot; xmlns:x=&quot;<B><I>qname-namespace</I></B>&quot; qname=&quot;x:<B><I>qname-element</I></B>&quot;
+             javaType=&quot;<B><I>java-type</I></B>&quot; java2XMLClassName=&quot;<B><I>serializer</I></B>&quot; xml2JavaClassName=&quot;<B><I>deserializer</I></B>&quot;/&gt;
+    ...
+  &lt;/isd:mappings&gt;</PRE>
+<P>Where <B><I>encoding-uri</I></B> is the URI for the encoding method (i.e.
+http://schemas.xmlsoap.org/soap/encoding
+for the standard SOAP encoding,) <B><I>qname-namespace</I></B> is the namespace for the XML element, <B><I>qname-element</I></B> is the name of the XML element, <B><I>java-type</I></B> is the fully qualified Java class that you
+are providing the mapping for (i.e. samples.Date,)
+<B><I>serializer</I></B> is the fully qualified Java class that implements
+org.apache.soap.util.xml.Serializer, and
+<B><I>deserializer</I></B> is the fully qualified Java class that implements
+org.apache.soap.util.xml.Deserializer. On
+the &lt;mappings&gt; element is an optional
+attribute called <I>defaultRegistryClass</I>, whose value (indicated by <B><I>registry-class</I></B>)is the fully qualified Java class (which
+is a subclass of org.apache.soap.encoding.SOAPMappingRegistry)
+that you wish to use as the default type
+mapping registry. For more information about
+the Apache SOAP type mapping support, look
+<A href="serializer.html">here</A>.</P>
+<P>Last updated 5/20/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</BODY>
+</HTML>

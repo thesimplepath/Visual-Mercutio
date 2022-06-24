@@ -1,0 +1,87 @@
+BODY {
+	FONT-SIZE: 11px; 
+	MARGIN: 0px 0px 0 px 0px; 
+	COLOR: #000000; 
+	FONT-FAMILY: tahoma,sans-serif; 
+	BACKGROUND-COLOR: #ffffff
+}
+
+A {
+	COLOR: #336699
+}
+
+A:hover {
+	COLOR: #00319c; TEXT-DECORATION: underline
+}
+
+TABLE {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-SIZE: 11px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; FONT-FAMILY: tahoma,sans-serif
+}
+
+TABLE.Mtable TD {
+	BORDER-BOTTOM: #003366 1px solid
+}
+
+.Bg {
+	BACKGROUND-COLOR: #336699
+}
+
+.BgL {
+	BACKGROUND-COLOR: #93BEE2
+}
+
+.TitleLineBg {
+	FONT-WEIGHT: bold; FONT-SIZE: 13pt; COLOR: #ffffff; FONT-FAMILY: Verdana
+}
+.TitleLine2Bg {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-FAMILY: Verdana
+}
+
+.TitleLine {
+	FONT-WEIGHT: bold; FONT-SIZE: 13pt; COLOR: #336699; FONT-FAMILY: Verdana
+}
+.TitleLine2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #336699; FONT-FAMILY: Verdana
+}
+
+INPUT {
+	FONT-SIZE: 11px; FONT-FAMILY: tahoma,sans-serif
+}
+
+.sbttn {
+	BORDER-RIGHT: #104a7b 1px solid; 
+	BORDER-TOP: #afc4d5 1px solid; 
+	FONT-SIZE: 11px; 
+	BACKGROUND: #93BEE2; 
+	BORDER-LEFT: #336699 1px solid; 
+	CURSOR: hand; 
+	COLOR: #000000; 
+	BORDER-BOTTOM: #336699 1px solid; 
+	FONT-FAMILY: tahoma,sans-serif; 
+	HEIGHT: 19px; 
+	TEXT-DECORATION: none
+}
+
+.menu {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: tahoma,sans-serif; TEXT-DECORATION: none
+}
+
+.menu2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #336699; FONT-FAMILY: tahoma,sans-serif; TEXT-DECORATION: none
+}
+
+.swnub {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #ffffff; FONT-FAMILY: tahoma,sans-serif; TEXT-DECORATION: none
+}
+
+.swnu {
+	FONT-SIZE: 11px; COLOR: #ffffff; FONT-FAMILY: tahoma,sans-serif; TEXT-DECORATION: none
+}
+
+.swb {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #ffffff; FONT-FAMILY: tahoma,sans-serif
+}
+
+.sbbd {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #ffffff; FONT-FAMILY: tahoma,sans-serif
+}

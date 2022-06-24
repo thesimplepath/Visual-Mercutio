@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://tempuri.org/xsd/AddressBook"
+        xmlns:AddressBook="http://tempuri.org/xsd/AddressBook">
+
+    <annotation>
+        <documentation>This schema defines the input structure for the AddressBook service</documentation>
+    </annotation>
+
+    <complexType name="AddressType">
+        <sequence minOccurs="1" maxOccurs="1">
+            <element name="streetName" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="city" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="state" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="zip" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="phoneNumber" type="AddressBook:phoneNumberType" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <element name="address" type="AddressBook:AddressType" minOccurs="1" maxOccurs="1"/>
+
+    <complexType name="phoneNumberType">
+        <sequence minOccurs="1" maxOccurs="1">
+            <element name="areaCode" type="decimal" minOccurs="1" maxOccurs="1"/>
+            <element name="exchange" type="decimal" minOccurs="1" maxOccurs="1"/>
+            <element name="number" type="decimal" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <element name="phoneNumber" type="AddressBook:phoneNumberType" minOccurs="1" maxOccurs="1"/>
+
+    <complexType name="ListingType">
+        <sequence minOccurs="1" maxOccurs="1">
+            <element name="name" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="address" type="AddressBook:AddressType" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <element name="listing" type="AddressBook:ListingType" minOccurs="1" maxOccurs="1"/>
+
+</schema>

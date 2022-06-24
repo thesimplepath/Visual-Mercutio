@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/wsdl/2001/12/PaymentService/" xmlns:typens="http://tempuri.org/xsd/2001/12/Payment/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PaymentService" targetNamespace="http://tempuri.org/wsdl/2001/12/PaymentService/">
+
+  <documentation>
+    Standard web service interface description for a payment service.
+		<pre>
+    @version 1.0
+    @author Janet Farrell
+    @author Michael Haeberlen
+    @author Dietmar Kuebler
+		</pre>
+  </documentation>
+
+  <types>
+    <documentation>
+		  Data type definitions for the payment service.
+    </documentation>
+		
+    <xsd:schema targetNamespace="http://tempuri.org/xsd/2001/12/Payment/">
+      <xsd:complexType name="propertyEntry">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="value" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="ArrayOfProperties">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute ref="soapenc:arrayType" wsdl:arrayType="propertyEntryModel[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="paymentModel">
+        <xsd:sequence>
+          <xsd:element name="paymentkey" type="xsd:string"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="currency" type="xsd:string"/>
+          <xsd:element name="paymentclass" type="xsd:string"/>
+          <xsd:element name="attributes" type="typens:ArrayOfProperties"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="ArrayOfPaymentModels">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute ref="soapenc:arrayType" wsdl:arrayType="paymentModel[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+
+  <message name="PaymentModel">
+    <documentation>
+	    Message which contains the payment model.
+    </documentation>
+		
+    <part name="PaymentModel" type="typens:PaymentModel">
+      <documentation>
+ 	    This contains the details for a payment model.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="PaymentModels">
+    <documentation>
+	    Message which contains a list of payment models.
+    </documentation>
+		
+    <part name="PaymentModels" type="typens:ArrayOfPaymentModels">
+      <documentation>
+ 	    This contains an array of payment models.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="PaymentKey">
+    <documentation>
+	    Message which contains the payment key.
+    </documentation>
+		
+    <part name="PaymentKey" type="xsd:string">
+      <documentation>
+ 	    This payment key is a unique string that identifies a payment model.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="Response">
+    <documentation>
+	    Standard response message.
+    </documentation>
+		
+    <part name="StatusCode" type="xsd:string">
+      <documentation>
+	    The status code indicates the success or failure of an operation.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="GetPaymentModels">
+    <documentation>
+            This is an empty message which is used when requesting a list of all payment models.
+    </documentation>
+  </message>
+
+
+
+  <portType name="PaymentService">
+    <documentation>
+	    Standard operation definitions for a payment service.
+    </documentation>
+		
+    <operation name="createPaymentModel">
+      <documentation>
+	    Create a payment model and return a unique key value that identifies it.
+      </documentation>
+		
+      <input message="tns:PaymentModel">
+        <documentation>
+ 	    The payment model to be stored.  A unique identifier will be assigned
+            to this payment model.
+        </documentation>
+      </input>
+      <output message="tns:PaymentKey">
+        <documentation>
+ 	    The unique identifier for the payment model that was stored.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="deletePaymentModel">
+      <documentation>
+	    Delete a payment model using the specified payment key.
+      </documentation>
+		
+      <input message="tns:PaymentKey">
+        <documentation>
+ 	    The payment key for the payment model to be deleted.
+        </documentation>
+      </input>
+      <output message="tns:Response">
+        <documentation>
+ 	    The response will indicate whether the payment model was deleted.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="getPaymentModel">
+      <documentation>
+	    Get a payment model using the specified payment key.
+      </documentation>
+		
+      <input message="tns:PaymentKey">
+        <documentation>
+ 	    The payment key for the payment model we want.
+        </documentation>
+      </input>
+      <output message="tns:PaymentModel">
+        <documentation>
+ 	    The payment model associated with the specified payment key.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="getPaymentModels">
+      <documentation>
+	    Get a list of all payment models.
+      </documentation>
+			
+      <input message="tns:GetPaymentModels">
+        <documentation>
+ 	    No input is required for this operation.
+        </documentation>
+      </input>
+      <output message="tns:PaymentModels">
+        <documentation>
+ 	    The list of all available payment models.
+        </documentation>
+      </output>
+    </operation>
+  </portType>
+
+
+  <binding name="PaymentServiceBinding" type="tns:PaymentService">
+    <documentation>
+	    SOAP binding definitions for a payment service.
+    </documentation>
+		
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="createPaymentModel">
+      <documentation>
+	    Create a payment model using the specified payment key.
+      </documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/PaymentService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="deletePaymentModel">
+      <documentation>
+	    Delete a payment model using the specified payment key.
+      </documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/PaymentService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getPaymentModel">
+      <documentation>
+	    Get a payment model using the specified payment key.
+      </documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/PaymentService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getPaymentModels">
+      <documentation>
+	    Get a list of all payment models.
+      </documentation>
+			
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/PaymentService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/PaymentService/" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+
+</definitions>

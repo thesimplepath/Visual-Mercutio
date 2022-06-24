@@ -1,0 +1,16 @@
+>Boucles laterales multiples:
+-> ajouter un champs qui contient le delivid actuel dans la table " pdelivlateralstate "
+   puis ajouter ce champs dans la primary key....
+   Modifier en consequence toutes les pages qui y font references, ainsi que les beans....
+
+-> deplus, checker qu'on ne peut demarrer plus d'un livrable lateral par procedure cible dans les boucles laterales
+
+-> Verifier les brisures de boucle laterale en changant le status de la boucle laterale à 'interrompu' (plus tard, ceci n'est pas une priorité)
+
+
+
+>Checkbox envoyée à la fin...(terminer, signature)
+
+
+
+>Win95

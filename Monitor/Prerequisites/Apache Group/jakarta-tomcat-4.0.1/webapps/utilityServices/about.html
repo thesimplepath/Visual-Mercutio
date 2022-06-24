@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Home</TITLE>
+<LINK REL=STYLESHEET TYPE="text/css" HREF="style/style.css">
+</HEAD>
+<BODY TOPMARGIN=35 LEFTMARGIN=40 MARGINWIDTH=2 MARGINHEIGHT=2>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=500>
+    <TR>
+  <TD ALIGN=CENTER><H3><U>Utility Services Overview</U></H3></TD>
+ </TR>
+  <tr>
+   <td>
+ <P>In order to illustrate the Utility Services
+working together, and to provide the basis
+for future utility services that might be
+shipped in the Toolkit, we have provided
+the Utility Services Demo, which applies
+all of the utility services we are shipping
+and enables them to be used with a real business
+service (the Stock Quote Service example
+shipped with the Toolkit). </P>
+<P>The Utility Services demo combines all of
+the Utility Web Services shipped with the
+Web Services Toolkit. In the demo, a user
+first uses the Utility Services Portal to
+registers his or her service requestor as
+a potential client for the business service.
+The user uses the Utility Services Portal
+to register the service requestor with the
+Identity Service and to fill in details of
+a usage contract with the Contract Service.
+At runtime, you may use the Utility Services
+Portal to kickoff the demo. The Service Requestor
+sends a SOAP request to the Business Service
+(which in the demo can be a stockquote service
+or an address-book service). As the AXIS
+servlet in the Web Application Server hosting
+the business service processes the incoming
+SOAP request, it kicks off several AXIS handlers
+that invoke the Utility Services provided
+for the request. This is done without the
+knowledge of either the Service Requestor
+or the Business Service, based upon the information
+provided by the user at registration time.</P>
+<P>To process the request, first an Identity
+Handler uses the Identity Service to validate
+the Service Requestor and get its unique
+identity key, which is stored in the SOAP
+message context. Then the Contract Handler
+invokes the Contract Service to check the
+Usage Contract for the Service Requestor
+and retrieve information on the type of metering
+desired, which is passed along in the message
+to the Metering Request Handler. The message
+is then passed to the Business Service for
+processing; the Business Service may optionally
+use the Common Data Service to create, update
+and query data as part of the business process
+being executed. On the output side, the response
+from the Business Service is first processed
+by the Metering Response Handler, which sends
+an appropriate metering event or events to
+the Metering Service. The response message
+is then given to the AXIS Servlet to be returned
+to the Service Requestor.</P>
+<P>The Utility Services Portal may also be used
+to invoke the Accounting Service to generate
+a usage report for a Service Requestor. As
+was described above, the Accounting Service
+uses information from the Metering Service
+and the Contract Service to generate this
+report. In the demo, message flow can be
+followed from the Utility Services Portal.
+The Business Service publishes incoming and
+outgoing messages to the Notification Service.
+The Message Subscriber Service is subscribed
+to the Notification Service to receive these
+messages, and shows them via the Utility
+Services Portal.</P>
+</td>
+ </TR>
+</table>
+</BODY>
+</HTML>

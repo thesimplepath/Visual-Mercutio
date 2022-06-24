@@ -1,0 +1,49 @@
+
+Service:
+-------
+To install this service on an Apache-SOAP listener, you need to make
+the samples.addressbook package available on the Apache-SOAP listener's
+classpath. Then deploy this service by filling in the deployment
+template using the info in the deployment descriptor in this
+directory or by using the service manager client:
+  java org.apache.soap.server.ServiceManagerClient routerURL deploy dd.xml
+where routerURL is the URL of the SOAP RPC router and dd.xml is the
+name of the deployment descriptor file.  For example:
+  java org.apache.soap.server.ServiceManagerClient  \
+    http://localhost:8080/soap/servlet/rpcrouter deploy DeploymentDescriptor.xml
+
+
+Client:
+------
+
+There are two clients- one that uses HTTP and one that uses SMTP
+as the transport. Run the following client to see the HTTP usage:
+
+  java samples.stockquote.GetQuote
+
+Run the following client to see the SMTP usage:
+
+  java samples.stockquote.GetQuoteSMTP
+
+
+Additional Client Classpath Requirements:
+----------------------------------------
+
+  ../..
+
+
+Explanation:
+-----------
+
+Retrieves a 20-min delayed quote for a ticker symbol.
+
+
+Sample Usage:
+------------
+
+java samples.stockquote.GetQuote \
+  http://localhost:2020/soap/servlet/rpcrouter IBM
+
+java samples.stockquote.GetQuoteSMTP \
+  mailto:soaprouter@quoteserver.com smtpserver.myplace.com \
+  me@myplace.com popserver.myplace.com me my-password IBM

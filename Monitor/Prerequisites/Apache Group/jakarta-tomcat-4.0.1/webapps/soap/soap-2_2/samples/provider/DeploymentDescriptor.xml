@@ -1,0 +1,9 @@
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:testprovider">
+  <isd:provider type="org.apache.soap.providers.TemplateProvider"
+                scope="Application"
+                methods="dummyMethod">
+    <isd:option key="classpath" value="c:\classes" />
+  </isd:provider>
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+</isd:service>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Fault Handling</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Fault Handling</H2>
+<P>Occasionally something will go wrong on the
+server side, whether it is due to an errant
+service implementation, a bad client request,
+or perhaps just normal operating difficulties.
+The SOAP specification provides for the communication
+of these errors through the transmittal of
+a SOAP Fault body element within a SOAP Envelope.
+The Apache SOAP server will attempt to capture
+an error state and then construct a SOAP
+Fault message containing a base set of information
+about the error which occurred. However,
+sometimes it is useful to augment the fault
+information for a particular service or to
+perform one or more additional tasks when
+an error state arises. To allow for this
+type of flexibility, the Apache SOAP server
+provides a pluggable fault handling mechanism
+into which one or more fault listeners may
+be registered to process faults. (The pluggable
+fault handling mechanism in Apache SOAP works
+on on the event/listener model.)</P>
+<P>Apache SOAP provides two basic fault handlers:
+</P>
+<UL>
+  <LI>org.apache.soap.server.DOMFaultListener
+  <LI>org.apache.soap.server.ExceptionFaultListner
+</UL>
+<P>Both of these augment the SOAP Fault message
+with additional information about the fault;
+the first by adding a DOM element representing
+the root exception which occurred, and the
+second by wrappering the root exception in
+a Parameter. Most people will probably find
+the first to be more useful.</P>
+<H3>Registering Fault Handlers</H3>
+<P>Fault handlers are registered by including
+one or more &lt;faultListener&gt; elements
+within the deployment descriptor of a service.
+For more information about adding fault handlers
+to the deployment descriptor, look <A href="deploy.html">here</A>.</P>
+<H3>Creating New Fault Handlers</H3>
+<P>Creating a new fault handler is simply a
+matter of creating a Java class which implements
+the org.apache.soap.server.SOAPFaultListener
+interface. The single method which you need
+to implement, fault, takes in a SOAPFaultEvent.
+The SOAPFaultEvent wraps the SOAP Fault and
+SOAP Exception objects which were created
+due to the error. Once you've created the
+fault handler, you'll need to register it
+as indicated above.</P>
+<P>Last updated 5/20/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+</HTML>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Managing Services</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+
+<h2 align="center">Managing Services</h2>
+
+<p>Apache-SOAP provides an administration tool
+to manage services.
+There are two clients to service manager:
+an HTML one used via a
+browser and a command-line tool. </p>
+
+<p><I>NOTE: If you had previously deployed services
+to an older version of Apache-SOAP,
+then this version may not recognize those
+services because the class that was being
+serialized to represent services has changed
+since then.</I></p>
+
+<h3>Running the Server Side Admin Tool to Manage Services</h3>
+
+<p>With the Apache-SOAP Administration Tools it is possible to
+use a Web browser to deploy and un-deploy services and to review
+the list and the definitions of the services deployed on a given
+SOAP server. </p>
+
+<p>Point your browse to <a href="http://hostname:port/soap">http://hostname:port/soap/admin</a>
+(see above) and you will get the &quot;Apache-SOAP Admin&quot;
+screen with three options:</p>
+
+<ul>
+    <li><b>Deploy </b>to deploy a new service. </li>
+    <li><b>Un-deploy </b>to remove a deployed service. </li>
+    <li><b>List </b>shows the list of services currently deployed
+        in the server.</li>
+</ul>
+
+<p>The usage of these functions is immediate once one understands
+the nature of the information required for deploying a service.
+In the next section we describe this information.<b> </b></p>
+
+<p><b>Service Deployment Information</b></p>
+
+<p>We review here the information that defines a deployed service.
+This information must be provided when using the Deploy function,
+and can be browsed using the List function. We refer to this
+information as &quot;properties&quot; of the service. </p>
+
+<ul>
+    <li><b>ID.</b> An URN uniquely identifies the service to
+        clients. It must be unique among the deployed services,
+        and be encoded as a URI. We commonly use the format: urn:UniqueServiceID
+        . It corresponds to the target object ID, in the
+        terminology of the SOAP specification. </li>
+    <li><b>Scope. </b>Defines the lifetime of the object serving
+        the invocation request. This corresponds scope attribute
+        of the &lt;jsp:useBean&gt; tag in the JavaServer Pages.
+        It may thus have the following possible values: <ul>
+            <li><b>page:</b> the object is available until the
+                target JSP page (in this case the rpcrouter.jsp)
+                sends a response back or the request is forwarded
+                to another page (if you are using the standard
+                deployment mechanism this is unlikely to happen).
+            </li>
+            <li><b>request: </b>the object is available for the
+                complete duration of the request, regardless of
+                forwarding. </li>
+            <li><b>session: </b>the object is available for the
+                complete duration of the session. </li>
+            <li><b>application: </b>any page within the
+                application may access the object. In particular,
+                successive service invocations belonging to
+                different sessions will share the same instance
+                of the object. It is important to observe that
+                the value of this attribute can have important
+                security implications. The page and request
+                scopes assure the isolation of successive calls.
+                On the other extreme, application scope implies
+                that all service objects are shared among
+                different users of the SOAP server. A document
+                describing usage scenarios for different scopes
+                will be forthcoming. </li>
+        </ul>
+    </li>
+    <li><b>Method list. </b>Defines the names of the method that
+        can be invoked on this service object.</li>
+    <li><b>Provider type.</b><strong> </strong>Indicates whether the service is implemented
+  using Java, a scripting language, or a user-defined
+  provider. If you are using a user-defined
+  provider, then you also need to specify the
+  fully qualified class name of the provider,
+  as well as any options (key/value pairs)
+  that you wish to pass to it.</li>
+    <li><b>For Java services, Provider class.</b> Fully specified
+        class name of the target object servicing the request. </li>
+    <li><b>For Java services, Use static class. </b>If set to<b> </b>&quot;Yes&quot;
+        the class method that is made available is a static
+        method, and thus no object will be instantiated. When
+        static invocation is used, the &quot;scope&quot; property
+        is not applicable. </li>
+    <li><strong>For script services, Script language.</strong>
+        Indicates the scripting language used to implement the
+        service.</li>
+    <li><strong>For script services, Script filename.</strong>
+        Name of file containing the script, or</li>
+    <li><strong>For script services, Script.</strong> The actual
+        script to run.</li>
+    <li><b>Type mappings. </b>In order to control the
+        serialization and deserialization of specific Java types
+        to and from XML in a particular encoding style, it may be
+        necessary to provide serialization and deserialization
+        classes that know how to perform the correct conversions
+        for those types. The Apache-SOAP server already includes
+        serialization classes for most basic types in the SOAP
+        encoding style, as well as a Bean encoding class that can
+        provide a generic serialization of a bean in terms of its
+        properties. It also includes XMI serializer/deserializer
+        classes to support the XMI encoding style. Since
+        different types may require additional support for
+        correct serialization, the Apache-SOAP maintains a
+        registry of Serializers and Deserializers. The registry
+        is accessible to service administrators through the
+        Apache-SOAP administration tool, as well as through a
+        program API. In order to register a (de)serializer class,
+        the class must implement the Serializer or Deserializer
+        interfaces, see JavaDocs for org.apache.soap.util.xml.Serializer
+        and com.org.apache.soap.util.Deserializer .</li>
+    
+    <li><b>Default Mapping Registry.</b> Fully-qualified classname of a customized registry that will manage the serializer/deserializers for the service.  Must be a subclass of org.apache.soap.encoding.SOAPMappingRegistry. In the XML deployment descriptor, this can be specified in a "defaultRegistryClass" attribute of the "isd:mappings" element</li>
+</ul>
+
+<h3>Using the Command Line Tool to Manage Services</h3>
+
+<p>The command line tool is run by typing java org.apache.soap.server.ServiceManagerClient.
+Running this yields:</p>
+<PRE>% java org.apache.soap.server.ServiceManagerClient
+Usage: java org.apache.soap.server.ServiceManagerClient [-auth username:password] url operation arguments
+where
+        username and password is the HTTP Basic authentication info
+        url is the Apache SOAP router's URL whose services are managed
+        operation and arguments are:
+                deploy deployment-descriptor-file.xml
+                list
+                query service-name
+                undeploy service-name
+</PRE>
+<p>To deploy a service, for example, type:</p>
+
+<blockquote>
+    <pre>% java org.apache.soap.server.ServiceManagerClient <a
+href="http://hostname:port/soap/servlet/rpcrouter">http://hostname:port/soap/servlet/rpcrouter</a> <strong>deploy</strong> foo.xml</pre>
+</blockquote>
+
+<p>where foo.xml is the deployment descriptor and the URL is
+appropriate for your installation.</p>
+<P>Last updated 5/19/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+</html>

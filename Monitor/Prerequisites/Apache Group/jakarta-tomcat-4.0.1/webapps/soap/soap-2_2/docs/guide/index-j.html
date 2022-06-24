@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-2022-jp">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.3 for Windows">
+<title>XML-SOAP v1.2 Release Notes</title>
+<STYLE type="text/css">
+<!--
+.SCREEN{
+  font-weight : bold;
+  
+  color : #ffffff;
+}
+-->
+</STYLE>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<P>
+<i>
+訳：日本アイ・ビー・エム(株) ソフトウェア事業部 米持 幸寿
+
+<blockquote>
+<font color="blue">
+このドキュメントは、Apache SOAP 2.0レベルのものを日本語訳したもので、
+最新版のものとは異なる可能性があります。また、ウェブ上で見る場合、一部
+のリンクが切れている可能性があります。Apache SOAPのディレクトリの該当
+ファイルと置き換えることで、オリジナルのページにリンクさせることができ
+ます。
+</font>
+</blockquote>
+</i>
+</P>
+
+<h1 align="center">Apache-SOAP Version 2.0: ユーザーズ・ガイド</h1>
+
+<p align="center">2000年8月</p>
+
+<h2 align="left">内容</h2>
+
+<ul>
+    <li><p align="left"><a href="#Features of Apache-SOAP"><font
+        size="4"><strong>Apache-SOAP&nbsp;の機能</strong></font></a></p>
+    </li>
+    <li><p align="left"><a
+        href="#Using Apache-SOAP for Remote Procedure Calls"><font
+        size="4"><strong>Apache-SOAP で RPC（Remote Procedure Calls）を行う</strong></font></a></p>
+    </li>
+    <li><p align="left"><a href="#RPC over SMTP"><font size="4"><strong>SMTPを使ったRPC</strong></font></a></p>
+    </li>
+    <li><p align="left"><a href="#Managing Services"><font
+        size="4"><strong>サービスの管理</strong></font></a></p>
+    </li>
+    <li><p align="left"><a href="#Tool for Debugging SOAP"><font
+        size="4"><strong>SOAPをデバッグするためのツール</strong></font></a></p>
+    </li>
+    <li><p align="left"><a href="#Implementation Restrictions"><font
+        size="4"><strong>この実装の制限</strong></font></a></p>
+    </li>
+    <li><p align="left"><a href="#Dependencies"><font size="4"><strong>前提条件等</strong></font></a></p>
+    </li>
+</ul>
+
+<h2><a name="Features of Apache-SOAP">Apache-SOAP&nbsp;の機能</a></h2>
+
+<ul>
+    <li>SOAP v1.1 仕様のほとんどをサポート<BR>
+  　</li>
+    <li>SOAPサービスを利用可能にする配置、管理、実行などのサーバー・サイドのインフラを提供<BR>
+  　</li>
+    <li>SOAPサービスを呼び出すためのクライアント・サイドAPIを提供<BR>
+  　</li>
+    <li>「<A href="http://xml.apache.org/LICENSE">Apacheソフトウェア・ライセンス</A>」に基づき、すべてのソースコードを提供<BR>
+  　</li>
+    <li>三つのエンコーディング・スタイルをサポート：
+  <UL>
+    <li><B>XMI&nbsp;エンコーディング：</B><BR>
+    任意のオブジェクトの直列化(Marshall)と非直列化をサポートします。（Java&nbsp;1.2.2&nbsp;を使っている場合のみ利用可能）<BR>
+    　</li>
+    <LI><B>SOAPエンコーディング：</B><BR>
+    プリミティブ型、String、任意のJavabBeans（リフレクションを使います）、VectorやEnumeration、そして１次元のこれらの型の配列をエンコード／デコードするためのビルトインサポートが提供されています。これ以外の型に関しては、ユーザーがエンコーダーとデコーダーを自作し、Apache-SOAPランタイムに登録することも可能です。<BR>　
+    <LI><B>リテラルXMLエンコーディング：</B><BR>
+    DOMツリーのリテラルXMLシリアライゼーションを組み込むことによってXMLエレメント（DOM
+    の org.w3c.dom.Element オブジェクト）をパラメーターとして送信することができます。これを行うために特別なコーディングは必要ありません。これのサンプルとしては、addressbookデモをご覧ください。<BR>　
+  </UL>
+  </li>
+  <li>メッセージングとRPCを行うために二種類のトランスポートをサポート：HTTP、SMTP<BR>
+  　</li>
+    <li>スクリプト言語によるサービスの実装をサポート</li>
+</ul>
+
+<h2><a name="Using Apache-SOAP for Remote Procedure Calls">Apache-SOAP で Remote Procedure Calls&nbsp;を行う</a></h2>
+
+<p>パッケージ「org.apache.soap.rpc」が、SOAPを使ったRPCの実行をサポートします。Apache-SOAP
+モデルは次のようなものです。</p>
+<P>メソッド呼び出しの要素 （訳注：SOAP-ENV:Body直下の子供要素のこと）のURI&nbsp;が、リモート側のオブジェクトID&nbsp;として使われます。クライアント側のAPI&nbsp;はメソッド名、オブジェクトID、パラメーターを持った「Call」オブジェクト（org.apache.soap.rpc.Call）を持っています。Javaデータ・タイプとXML間の直列化／非直列化は</P>
+<UL>
+  <LI>タイプ・マッピング・レジストリ（org.apache.soap.encoding.SOAPMappingRegistry）
+  <LI>シリアライゼーション（org.apache.soap.util.xml.Serializer）
+  <LI>デ・シリアライゼーション（org.apache.soap.util.xml.Deserialization）
+</UL>
+<P>などのインターフェイスによってサポートされます。それぞれに直列化機能／非直列化機能を実装する必要があります。<BR>
+ビルトインのエンコーダー／デコーダーは、SOAPマッピング・レジストリにあらかじめ登録されているこれらのインターフェイスの簡単な実装です。</P>
+<p>Callオブジェクトが準備されれば、それの「invoke(URL,String)」メソッドが呼び出せるようになります。このとき、実行するためのSOAPエンドポイントとしてURLが、２番目の引数がSOAPActionヘッダーの値として使われます。<BR>
+このメソッドは実際のレスポンス（あれば）か、エラーのときは
+fault を含んだ Responseオブジェクト（org.apache.soap.rpc.Response）を戻り値として返します。</p>
+
+<p>RPCがHTTP経由で行われるときは、サーバーサイドのRPCルーター（webappディレクトリーのrpcrouter.jsp）が「POST済みエンベロープ」を受取り、非直列化してCallオブジェクトを構築します。そして、サービス・マネージャー（rg.apache.soap.server.ServiceManager）
+の中から該当のオブジェクトIDを探すことでターゲットになるオブジェクトを見つけ、メソッド名を検査した後、目的のオブジェクト上のメソッドを呼び出すために
+invoke(Object) を呼び出します。戻り値はResultオブジェクト（org.apache.soap.rpc.Result）であり、直列化されてHTTPレスポンスにて返信されます。</p>
+
+<p>RPCがSMTPで行われるときは、実行待ちになっているメールボックスやサイトに送られます。このようなメール・メッセージを受け取り、HTTP-SOAPエンド・ポイントにポストし、結果を受け取って、もとの送信者にメールで転送するようなPOP3−HTTP−SMTPブリッジを提供しています。受け側ではPOP3サーバーを監視し、メッセージを受取り、内容を取り出して非直列化してからレスポンスを呼び出し元へ返します。</p>
+
+<h2><a name="RPC over SMTP">RPC over SMTP</a></h2>
+
+<p>Apache-SOAPで　RPC over SMTP を行うには、いくつかの電子メールのインフラが必要です。具体的には、SMTPサーバーとPOP3サーバーとサーバー・サイドHTTPルーターと同じように使えるような電子メールアドレスです。すべてのSOAP
+RPC呼び出しは、それを処理し、送信元に結果を送り返すような特定のアドレスに送信されることになります。サーバー側のインフラが重複するのを避けるために、POP3を通してSOAPルーターの電子メールアドレスにメールが送信され、SOAPエンベロープが現存するHTTP
+SOAP環境にポストされ、SMTP経由で電子メールを送信元に返信するような、SMTPのサーバー側の実装がされています。</p>
+
+<p>クライアント側では、アプリケーションはSOAPルーター電子メール・アドレスに対してSOAPリクエストをSMTP経由で送信します。このとき、レスポンスが返送されるべきアドレスを含めます。そして、レスポンスが来たかどうかを調べるためにPOP3サーバーを監視します。メールが来ると、エンベロープがパースされ、レスポンスが取り出されます。私たちは、<A href="http://www.alphaworks.ibm.com/aw.nsf/frame?ReadForm&amp;/ab.nsf/techmain/AD8820E9114E5B4488256723000AC87A">alphaWorks　の POP3 bean</A> を使っています。これは、電子メールの選択ダウンロードをサポートしていません。結果的に、現在の実装では「次のメッセージ」がリクエストに対してのレスポンスを含んだメッセージとなるようにクライアント・リプライ・アドレスに到着することを信頼することにしています。そのため、現在の実装では同時に同じリプライ・アドレスに対して複数のRPCコールを発信するようなことは許されません。</p>
+
+<p><B>注意：</B>　RPC over SMTP を行うには、あなたの所持している電子メールアドレスを絶対に使わないようにしてください。複数のPOP3アカウントが設定できない場合には、無料のPOP3電子メールプロバイダ（<A href="http://www.mailandnews.com">www.mailandnews.com</A> など）が多数存在します。</p>
+
+<h2><a name="Managing Services">サービスの管理</a></h2>
+
+<p>Apache-SOAP は、サービスを管理するためのツールを提供しています。２つのサービス管理ツールがあります。１つはブラウザから使うことのできるHTML形式のものであり、もう１つはコマンドライン・ツールです。</p>
+
+<p>注意：Apache-SOAPサーバーに、すでにサービスがディプロイされていると、このバージョンはそれらのサービスを認識しません。なぜなら、サービスをシリアライズするためのクラスが変更されているからです。</p>
+
+<h3>サービス管理のためのサーバー側管理ツールの実行</h3>
+
+<p>Apache-SOAP管理ツールを使って、ウェブ・ブラウザからサービスをディプロイしたりアン・ディプロイしたり、SOAPサーバーにディプロイされているサービスの定義の一覧を見ることができます。</p>
+
+<p>ブラウザで http://hostname:port/soap ( ローカルなら、<A href="http://localhost/soap">http://localhost/soap</A>) を見てください。次の３つのボタンがある、「Apache-SOAP
+Admin」というページが表示されます。</p>
+
+<ul>
+    <li><b>Deploy </b>新しいサービスをディプロイするためのページです。</li>
+    <li><b>Un-deploy </b>ディプロイされているサービスを削除するためのページです。</li>
+    <li><b>List </b>サーバーにディプロイされているサービスを一覧するためのページです。</li>
+</ul>
+
+<p>これらの機能の使い方は、サービスのディプロイに必要な情報の性質を知っていればすぐわかります。これは、次の章で説明します。</p>
+
+<p><b>サービスのディプロイ情報</b></p>
+
+<p>ここで、サービスがディプロイされるときに定義される情報を振り返りましょう。これらの情報は機能をディプロイするときに提供されなければならず、「List」機能によって見ることができます。これらをサービスの「プロパティ」と呼ぶことにします。</p>
+
+<ul>
+  <LI><b>ID.</b> クライアントから見て、サービスを識別するためのURNです。ディプロイされているサービスの中でユニークである必要があり、URI
+  形式である必要があります。一般的に次の形式を使います。「urn:ユニークなサービスID」これは、SOAP仕様でいう、「target
+  object ID」と同じようなものです。（訳注：このシンタックスはURNのシンタックスに関するRFCの間違った解釈である。実際のシンタックスは
+  RFC 2141 を参照のこと。）
+  <li><b>Scope. </b>リクエストの呼び出しを処理するオブジェクトのライフタイムを定義します。これは、JavaServerPagesの&lt;jps:useBean&gt;タグのscope属性と同じようなものです。次の値を持つ可能性があります。
+  <ul>
+    <li><b>page:</b> オブジェクトは、ターゲットのJSPページ（これはrpcrouter.jspのことを言っています）がレスポンスを送り返すか、リクエストを別のページ（標準ディプロイ機構を使っているならあまり起こるべきでありません）に転送されるまでの間、有効であることを示します。.</li>
+    <LI><b>request: </b>転送に関係なく、リクエストが終了するまでの間有効です。
+    <li><b>session: </b>セッションの間有効です。</li>
+    <LI><b>application: </b>アプリケーションの任意のページがオブジェクトにアクセスできます。具体的には、一つのセッションに属する有効なサービス呼び出しは、そのオブジェクトの同じインスタンスを共有します。この属性の値が、セキュリティに密接に関係していることを知っておいてください。これはとても重要なことです。スコープの「<B>page</B>」と「<B>request</B>」は、有効な呼び出し同士の分離を保証しています。あとの二つは、SOAPサーバーの複数のユーザーがすべてのサービスオブジェクトを共有することを示しています。それぞれのスコープを使ったシナリオを説明するドキュメントがすぐに出てくることでしょう。
+  </ul>
+  </li>
+  <li><b>Method list. </b>このサービス・オブジェクト上で呼び出すことのできるメソッドの名前を指定します。</li>
+  <li><b>Provider type.</b><strong> </strong>このサービスがJavaで実装されているのか、スクリプト言語で実装されているのかを示します。</li>
+  <li><b>For Java services, Provider class.</b> リクエストを処理するターゲット・オブジェクトの完全なクラス名</li>
+  <li><b>For Java services, Use static class. </b>「Yes」にセットした場合、メソッドは static
+  メソッドとなり、オブジェクトがインスタンス化されません。static
+  呼び出しが行われる時は、scopeプロパティは意味がありません。</li>
+  <li><strong>For script services, Script language.</strong> サービスを実装しているスクリプト言語</li>
+  <li><strong>For script services, Script filename.</strong> スクリプトを含んでいるファイル名、または</li>
+  <li><strong>For script services, Script.</strong> 実際に実行されるスクリプト</li>
+  <LI><b>Type mappings. </b>特定のエンコーディング・スタイルによってJavaの型とXMLの間で直列化をするのを制御するために、それらのタイプに対して正しい変換の方法を提供する直列化と非直列化のクラスが提供される必要があります。Apache-SOAPサーバーには、Beanエンコーディング・クラスがBeanのプロパティの名前を使った普通のシリアライズを提供するのと同じような、SOAPエンコーディングのとても基本的なシリアライズ・クラスを提供しています。XMI　による直列化・非直列化をサポートするＸＭＩ　シリアライザ／デ・シリアライザも提供しています。サービス管理者は
+  ＡＰＩ でアクセスするのと同様に、Apache-SOAP管理ツールを使ってレジストリにアクセスすることができます。シリアラザ／デ・シリアライザとして登録されるクラスは、「Serializer」または「Deserializer」インターフェイスを実装している必要があります。
+  org.apache.soap.util.xml.Serializer または
+  com.org.apache.soap.util.Deserializer の&nbsp;JavaDoc&nbsp;を参照してください。
+</ul>
+<h3>サービス管理のためのコマンド・ライン・ツールを使う</h3>
+
+<p>「java org.apache.soap.server.ServiceManagerClient」とコマンドラインで入力することで実行できます。次のようなものが表示されます。</p>
+
+<blockquote>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD bgcolor="#000000">
+      <PRE class="SCREEN">% java org.apache.soap.server.ServiceManagerClient
+Usage: java org.apache.soap.server.ServiceManagerClient url operation arguments
+where
+        url is the Apache-SOAP router's URL whose services are managed
+        operation and arguments are:
+                deploy deployment-descriptor-file.xml
+                list
+                query service-name
+                undeploy service-name</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</blockquote>
+
+<p>サービスをディプロイする例：</p>
+
+<blockquote>
+    <pre>% java org.apache.soap.server.ServiceManagerClient <a
+href="http://hostname:port/soap/servlet/rpcrouter">http://hostname:port/soap/servlet/rpcrouter</a> <strong>deploy</strong> foo.xml</pre>
+</blockquote>
+
+<p>ここで、foo.xml&nbsp;はディプロイメンｔ・ディスクリプタで、URLは導入時に設定した内容にします。</p>
+
+<h2><a name="Tool for Debugging SOAP">SOAPをデバッグするためのツール</a></h2>
+<P>さらに、Apache-SOAP&nbsp;は&nbsp;SOAP&nbsp;やその他の&nbsp;TCP&nbsp;プロトコルをデバッグするために使える「TCPトンネル／モニター」を提供しています。org.apache.soap.util.net.TcpTunnelGui
+クラスを実行すると、同じマシン上でポートを開き、リモートのhost/portの組み合わせに対してトンネルとして働きます。ポートに接続が確立されると、リモートのhost/portの組み合わせに対する接続がトンネルを通して作られ、二つのウィンドウに双方のデータの行き来が表示されます。同じように、リモートの&nbsp;host/port&nbsp;に対して接続するクライアントも、ローカルの&nbsp;host/port&nbsp;に対して接続することにより、双方のデータの流れを見ることができます。これは非常に有効なツールです。是非チェックを！</P>
+<h2><a name="Implementation Restrictions">この実装の制限</a></h2>
+
+<p>次の&nbsp;SOAP&nbsp;v1.1&nbsp;仕様の機能は、現在サポートされません。</p>
+
+<ul>
+    <li>encodingStyle&nbsp;属性は、エンコーディング・スタイルを一つだけ持つことができます。（仕様の&nbsp;4.1.1
+  章をご覧ください)</li>
+    <li>mustUnderstand 属性</li>
+    <li>root 属性</li>
+    <li>actor 属性と SOAP intermediaries（仲介者）</li>
+  <LI>ID/href リンクと、複数参照のアクセサ
+  <li>string, boolean double, float, int, short,
+  byte 以外のすべての XML Schema シンプル・タイプ</li>
+</ul>
+
+<h2><a name="Dependencies">前提条件等</a></h2>
+
+<ul>
+    <li>XMI&nbsp;エンコーディングは、Java 1.2.2 と
+  XML4J 2.0.15&nbsp;が必要です。それ以外の&nbsp;Apache-SOAPは、Apache
+  Xerces 1.1.2&nbsp;が必要です。よって、クラスパスでは、先に
+  xerces.jar が、それよりあとに xml4j.jar がある必要があります。</li>
+    <li>スクリプト言語でサービスを実装するには、<a href="http://www.alphaworks.ibm.com/tech/bsf">BSF</a> を使う必要があります。BSF&nbsp;をダウンロードしたときは、たくさんあるスクリプト言語のバージョンに気をつけましょう。（BSFの新しいバージョンは次から次へと出てきます）</li>
+</ul>
+</body>
+</html>

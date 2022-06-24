@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Migrating From Apache SOAP v2.</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2 align="center">Migrating From Apache SOAP v2.1 to Apache SOAP
+v2.2</h2>
+
+<p>This document explains the changes you may have to make to
+migrate from Apache SOAP v2.1 to Apache SOAP v2.2.</p>
+
+<h3>XMLParserLiaison replaced with JAXP</h3>
+
+<p>We previously used a home grown solution for achieving XML
+parser independence. However, given the release of a Java
+standard mechanism for doing that, we have now switched over to
+using JAXP. What does this mean for you? It means that if you had
+any code that used XMLParserLiaison then you will have to change
+that code. Luckily, the changes are simple: the <a
+href="http://xml.apache.org/websrc/cvsweb.cgi/xml-soap/java/samples/messaging/SendMessage.java.diff?r1=1.2&amp;r2=1.3&amp;diff_format=h"
+target="_top">differences between v1.2 and v1.3 of the &quot;messaging&quot;
+sample</a>, shows you exactly what to do!</p>
+
+<p>Sometimes this change may show up even if you don't have any
+code that directly uses XMLParserLiaison. If you are seeing that,
+please recompile your code with the v2.2 jar in your classpath
+and the problem should go away.</p>
+
+<h3>HTTP session maintenance</h3>
+
+<p>We new support maintaining HTTP sessions. The &quot;addressbook2&quot;
+sample shows an example of how to use it. </p>
+
+<p>The session support is on by default. If you were interacting
+with any &quot;session&quot; scoped HTTP services with a certain
+behavior, you may now see a different behavior as the code now
+correctly maintains HTTP sessions. If you want to turn off HTTP
+session support, you need to create your own SOAPHTTPConnection
+object, set the sesssion maintenance property to false and set
+the transport propert of the call to that SOAPHTTPConnection:</p>
+
+<blockquote>
+    <pre>Call call = new Call ();
+SOAPHTTPConnection shc = new SOAPHTTPConnection ();
+shc.setMaintainSession (false);
+call.setSOAPTransport (shc);
+
+// now make calls with &quot;call&quot;</pre>
+</blockquote>
+
+<p>Having session support on the client side finally means that
+Apache SOAP can be used to implement stateful Web services
+without having user intervention to manage that.</p>
+
+<h3>Getting at &quot;environmental&quot; information for RPC
+style services</h3>
+
+<p>A common question with Apache SOAP v2.1 was how an RPC service
+author could access &quot;environmental&quot; information such as
+the HTTPSession object or HTTP headers. The v2.1 answer was that
+you had to <a href="provider.html">write a custom provider</a> to
+do that. As of v2.2, there's a better, simpler way.</p>
+
+<p>The RPCJavaProvider (the provider that runs all RPC style
+services) now has the following behavior: when searching for the
+method in the target class to call to process the service
+request, if a method with a matching signature is not found, then
+a second search is done. The second search looks for a method
+with an additional (first) argument of type org.apache.soap.rpc.SOAPContext
+(please see the API docs for the details of that class). If
+found, then an instance of SOAPContext is passed to the service
+handler class. </p>
+
+<p>Having access to the incoming SOAPContext gives you a lot of
+freedom: you can access the following via the &quot;getProperty&quot;
+method:</p>
+
+<ul>
+    <li>HTTPServlet object using the key org.apache.soap.Constants.BAG_HTTPSERVLET
+    </li>
+    <li>HTTPSession object using the key org.apache.soap.Constants.BAG_HTTPSESSION
+    </li>
+    <li>HTTPServletRequest object using the key org.apache.soap.Constants.BAG_HTTPSERVLETREQUEST</li>
+    <li>HTTPServletResponse object using the key org.apache.soap.Constants.BAG_HTTPSERVLETRESPONSE</li>
+</ul>
+
+<p>If the original SOAP request was in the SOAP Attachments form,
+then you can get at unreferenced MIME parts using the &quot;getBodyPart&quot;
+methods.</p>
+
+<p><strong>NOTE</strong>: <em>SOAPContext is a read-only object:
+do not use any of the set&lt;FOO&gt; methods!</em></p>
+
+<p><strong>NOTE</strong>: <em>Using this feature makes your
+service implementation class bound to Apache SOAP. Use it with
+care!</em></p>
+
+<h3>Other migration problems</h3>
+
+<p>If you are running into other migration issues please check
+the FAQs at <a href="http://xml.apache.org/soap/faq">http://xml.apache.org/soap/faq</a>.</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

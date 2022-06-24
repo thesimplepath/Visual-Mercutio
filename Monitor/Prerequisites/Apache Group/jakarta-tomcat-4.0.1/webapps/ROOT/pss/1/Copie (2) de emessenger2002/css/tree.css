@@ -1,0 +1,14 @@
+A {
+	font : normal bold x-small sans-serif;
+	color : Black;
+	text-decoration : none;	
+}
+
+A:HOVER {
+	font : normal bold x-small sans-serif;
+	color : White;
+	text-decoration : none;
+}
+
+.expanded {display : block;}
+.collapsed {display:none}

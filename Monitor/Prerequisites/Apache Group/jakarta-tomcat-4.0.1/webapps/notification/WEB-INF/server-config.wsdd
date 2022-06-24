@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <chain name="global.request">
+  <handler type="java:org.apache.axis.handlers.JWSHandler"/>
+  </chain>
+ <handler name="MsgDispatcher" type="java:org.apache.axis.providers.java.MsgProvider"/>
+ <handler name="RPCDispatcher" type="java:org.apache.axis.providers.java.RPCProvider"/>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="methodName" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="true"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  </service>
+ <service name="MessageSubscriberService" provider="java:RPC">
+  <parameter name="methodName" value="receiveMessage"/>
+  <parameter name="className" value="com.ibm.services.notification.MessageSubscriberService"/>
+  <parameter name="scope" value="Application"/>
+  </service>
+ <service name="JWSProcessor" provider="Handler">
+  <parameter name="handlerClass" value="org.apache.axis.handlers.JWSProcessor"/>
+  </service>
+ <service name="EchoService" provider="Handler">
+  <parameter name="handlerClass" value="org.apache.axis.handlers.EchoHandler"/>
+  </service>
+ <service name="NotificationService" provider="java:RPC">
+  <parameter name="methodName" value="subscribe unsubscribe publishMessage"/>
+  <parameter name="className" value="com.ibm.services.notification.NotificationService"/>
+  <parameter name="scope" value="Application"/>
+  </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+   </requestFlow>
+  </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="java:org.apache.axis.transport.local.LocalResponder"/>
+   </responseFlow>
+  </transport>
+ <typeMapping deserializer="org.apache.axis.encoding.BeanSerializer$BeanSerFactory" languageSpecificType="java:com.ibm.services.notification.SubscribeResponse" qname="ns59:StatusResponse" serializer="org.apache.axis.encoding.BeanSerializer" xmlns:ns59="http://tempuri.org/wsdl/2001/12/NotificationService"/>
+ </deployment>

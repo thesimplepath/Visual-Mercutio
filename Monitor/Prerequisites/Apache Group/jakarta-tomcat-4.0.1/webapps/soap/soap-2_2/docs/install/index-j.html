@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-2022-jp">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.3 for Windows">
+<title>Apache SOAP Installation Instructions</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<P>
+<i>
+訳：日本アイ・ビー・エム(株) ソフトウェア事業部 米持 幸寿
+
+<blockquote>
+<font color="blue">
+このドキュメントは、Apache SOAP 2.0レベルのものを日本語訳したもので、
+最新版のものとは異なる可能性があります。また、ウェブ上で見る場合、一部
+のリンクが切れている可能性があります。Apache SOAPのディレクトリの該当
+ファイルと置き換えることで、オリジナルのページにリンクさせることができ
+ます。
+</font>
+</blockquote>
+</i>
+</P>
+
+<h1 align="center">Apache-SOAP Version 2.0: 導入手順</h1>
+
+<p align="center">2000年　8月</p>
+
+<p>Apache-SOAPは、クライアント、またはサーバーとして導入することができます。この資料は、双方の導入手順を示し、導入にまつわるよくあるトラブルを解決するための「トラブルシューティング」の章を設けてあります。</p>
+
+<h2>共通の手順</h2>
+
+<p>すでにApache-SOAPのバイナリ配布ファイルがダウンロードされており、ディレクトリー/fooに解凍されているものとして話を進めます。その場合、配布ファイルから解凍されたファイルはディレクトリー
+/foo/soap-2_0/ に解凍されます。</p>
+
+<p>Win32環境で作業する場合は、&quot;/&quot;
+を &quot;\&quot; と読み替えて読み進めてください。</p>
+
+<p><strong>XML Parser</strong>: Apache-SOAP は、 <a
+href="http://xml.apache.org/xerces-j">Apache Xerces</a> (Java) version 1.1.2 またはそれ以降のバージョンを必要とします。これらのバージョンは、名前空間をサポートする
+<a
+href="http://www.w3.org/TR/DOM-Level-2/">DOM level 2</a> を提供します。もし、すでに別のXMLパーサー（または、org.w3c.dom.*インターフェイスをもっているであろうJARファイル）をお持ちなら、Xerces
+の xerces.jar ファイルをクラスパスの始めにおくことが重要です。そうしないと
+Apache-SOAP は動きません。</p>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#cccccc">特にTomcatに最初から含まれているSunのXML
+      Parser（jakarta-tomcat\lib\xml.jar）のことを言っています。Tomcatではデフォルトでクラスパスにxerces.jarよりも前にxml.jarを含めるので、実行時にエラー（古いDOMのパッケージを使うためにDOM
+      Level2のメソッドが見つからない）が発生します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>他のパーサーを使えるようにすることもできるのでしょうけれど、現在のバージョンではそれをうまいこと実現できていませんし、これ以上の説明はここではいたしません。</P>
+<p><strong>Classpath</strong>: <tt>/foo/soap-2_0/lib/soap.jar</tt> をクラスパスに追加してください。サンプルを動作させるのであれば、
+<tt>/foo/soap-2_0</tt> も必要です。</p>
+
+<h2>クライアント側の手順</h2>
+
+<p>共通の手順が終われば、準備完了です。</p>
+
+<h2>サーバー側の手順</h2>
+
+<p>Apache-SOAP をサーバー側に導入するには、サーブレットとＪＳＰをサポートするウェブ・アプリケーション・サーバーが必要です。</p>
+
+<p><strong>RPCルーターと管理クライアントの導入:</strong> それぞれのサーバー毎の導入手順です。</p>
+
+<ul>
+    <li><a href="tomcat.html">Apache Tomcat v3.1</a></li>
+    <li><a href="weblogic.html">WebLogic Application Server v5.1</a></li>
+    <li><a href="websphere-j.html">IBM WebSphere v3.5</a></li>
+    <li>JRun vx.y.z</li>
+    <li>Microsoft Internet Information Server</li>
+</ul>
+
+<p>お使いのサーバーが一覧にありませんか？例としてTomcatの手順を見てみてください。どうすればいいかわかるはずです。もし分からないようなら、
+Apache-SOAP ユーザーズリストに問い合わせてみましょう。もうすでにだれかがやってみたかもしれません。リストにはこちらから登録できます。:
+<a href="http://xml.apache.org/soap/mail.html">http://xml.apache.org/soap/mail.html</a>.</p>
+
+<h1>導入時の問題の解決方法</h1>
+
+<table border="1" width="100%">
+    <tr>
+        <th width="25%">Problem</th>
+        <th width="50%">Comments</th>
+    </tr>
+    <tr>
+        <td width="25%">「getAttributeNS is not found」<BR>
+      という例外になった</td>
+        <td width="50%">クラスパスが正しくありません。 - 古いパーサーか　org.w3c.dom.*クラス　を含んでいる別のJARファイルが
+      Xerces 1.1.2 以上の xerces.jar よりも先に参照されています。</td>
+    </tr>
+    <tr>
+        <td width="25%">x</td>
+        <td width="50%">y</td>
+    </tr>
+    <tr>
+        <td width="25%">x2</td>
+        <td width="50%">y2</td>
+    </tr>
+    <tr>
+        <td width="25%">x3</td>
+        <td width="50%">y3</td>
+    </tr>
+</table>
+</body>
+</html>

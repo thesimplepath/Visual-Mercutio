@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Using Transport Hooks</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Using Transport Hooks</H2>
+<P>Some extensions to the Apache SOAP framework
+necessitate the ability to interact with
+the SOAP envelope just after it comes off
+of the wire, or just before a response goes
+out. To facilitate this type of interaction,
+Apache SOAP provide the ability to insert
+pluggable transport extensions into the runtime.
+The current instantiation of these transport
+extensions in the Apache SOAP framework are
+known as Envelope Editors.</P>
+<H3>Using Envelope Editors on the Server</H3>
+<P>To enable the enveope editor transport extensions
+on the server, you need to set an init-parameter
+called <I>EnvelopeEditorFactory</I> in the configuration files for the RPCRouter
+and MessageRouter servlets. The value of
+this parameter should be the fully qualified
+classname of a Java class which implements
+org.apache.soap.transport.EnvelopeEditorFactory.</P>
+<H3>Using Envelope Editors on the Client</H3>
+<P>To use your envelope editor on the client
+side you need to instantiate an instance
+of your Envelope Editor, and then create
+an instance of org.apache.soap.transport.FilterTransport
+passing it the Envelope Editor object, and
+an instance of the object which represents
+whatever transport you are communicating
+over (i.e. org.apache.soap.transport.http.SOAPHTTPConnection).
+You then need to invoke org.apache.soap.rpc.Call.setSOAPTransport(...)
+or org.apache.soap.messaging.Message.setSOAPTransport(...),
+depending upon whether you are invoking an
+RPC-based service or a message-oriented service,
+respectively, passing it your FilterTransport
+instance.</P>
+<H3>Creating an Envelope Editor</H3>
+<P>To create an Envelope Editor, you must first
+create an Envelope Editor Factory by implementing
+the org.apache.soap.transport.EnvelopeEditorFactory
+interface:</P>
+<PRE>public interface EnvelopeEditorFactory
+{<BR>  public EnvelopeEditor create(Properties props) throws SOAPException;<BR>}</PRE>
+<P>The create method takes in a java.util.Properties
+object which contains properties which, in
+the case of the HTTP servlets, were passed
+in from the servlet init-parameters.</P>
+<P>To create an Envelope Editor, you need to
+implement the org.apache.soap.transport.EnvelopeEditor
+interface:</P>
+<PRE>public interface EnvelopeEditor
+{<BR>  public void editIncoming(Reader in, Writer out) throws SOAPException;<BR>  public void editOutgoing(Reader in, Writer out) throws SOAPException;<BR>}</PRE>
+<P>The two methods are the routines which are
+called when an incoming message is received
+and when an outgoing message is ready to
+be sent, respectively.</P>
+<P>The class org.apache.soap.transport.EnvelopeEditorAdapter
+contains a sample Envelope Editor.</P>
+<P>Last updated 5/23/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+
+
+</HTML>

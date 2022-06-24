@@ -1,0 +1,8 @@
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:mimetestprocessor" type="message">
+  <isd:provider type="java"
+                scope="Application"
+                methods="loopProcessor">
+    <isd:java class="samples.mime.MimeTest" static="false"/>
+  </isd:provider>
+</isd:service>

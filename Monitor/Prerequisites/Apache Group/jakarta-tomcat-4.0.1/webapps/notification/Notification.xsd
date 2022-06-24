@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://tempuri.org/xsd/2001/12/Notification"
+        xmlns:notification="http://tempuri.org/xsd/2001/12/Notification"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+  
+  <!--
+    This XML schema document contains the data definitions for an notification service.
+    
+    @version 0.5
+    @author Peter Brittenham
+    @author  Peter Niblett 
+    @author  Rob Phippen
+    @author Keith Wells
+  -->
+  
+  <!--
+    EXAMPLE OF A PUBLICATON HEADER:
+    
+    <publicationHeader>
+      <correlationID>...</correlationID>
+      <replyTo>...</replyTo>
+      <type>...</type>
+    </publicationHeader>
+  -->
+            
+  <element name="publicationHeader" type="notification:PublicationHeader"/>
+  <complexType name="PublicationHeader">
+    <all>
+      <element name="correlationID" type="xsd:string"/>
+      <element name="replyTo"       type="xsd:string"/>
+      <element name="type"          type="xsd:string"/>
+    </all>
+  </complexType>
+  
+  <!--
+    EXAMPLE OF A SEND MESSAGE HEADER:
+    
+    <messageHeader>
+      <destination>...</destination>
+      <deliveryMode>...</deliveryMode>
+      <messageID>...</messageID>
+      <timestamp>...</timestamp>
+      <replyTo>...</replyTo>
+      <type>...</type>
+      <expiration>...</expiration>
+      <priority>...</priority>
+    </messageHeader>
+  -->
+  
+  <!--
+    All of the values in this header are set by the notification service.
+  -->
+            
+  <element name="messageHeader" type="notification:MessageHeader"/>
+  <complexType name="MessageHeader">
+    <complexContent>
+      <extension base="notification:PublicationHeader">
+        <all>
+          <element name="destination"   type="xsd:string"/>
+          <element name="deliveryMode"  type="notification:DeliveryMode"/>
+          <element name="messageID"     type="xsd:string"/>
+          <element name="timestamp"     type="xsd:dateTime"/>
+          <element name="expiration"    type="xsd:dateTime"/>
+          <element name="priority"      type="notification:Priority" />
+        </all>
+      </extension>
+    </complexContent>
+  </complexType>
+  
+  <!--
+    A priority may be an integer from 0-9.
+  -->
+  <simpleType name="Priority">
+    <restriction base="xsd:integer">
+      <minInclusive value="0"/>
+      <maxInclusive value="9"/>
+    </restriction>
+  </simpleType>
+  
+  <!--
+    The deliveryMode is an enumberation of values.
+  -->
+  <simpleType name="DeliveryMode">
+    <restriction base="xsd:string">
+      <enumeration value="NON_PERSISTENT"/>
+      <enumeration value="PERSISTENT"/>
+    </restriction>
+  </simpleType>
+  
+  <!--
+    A publish topic may not contain wildcard characters.
+  -->
+  <simpleType name="PublishTopic">
+    <restriction base="xsd:string">
+      <pattern value="[^+,#]"/>
+    </restriction>
+  </simpleType>
+
+ <!--
+    A Subscribe Response.
+ -->
+  
+  <element name="statusResponse" type="notification:StatusResponse"/>
+  <complexType name="StatusResponse">
+        <sequence minOccurs="1" maxOccurs="1">
+            <element name="statusCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <element name="statusText" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+ </complexType>
+
+
+</schema>
+

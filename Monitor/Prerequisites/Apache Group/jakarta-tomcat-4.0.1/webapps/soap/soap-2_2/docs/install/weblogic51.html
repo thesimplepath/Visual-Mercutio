@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Apache SOAP Installation Instructions</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Apache-SOAP Version 2.2: Installing the Server-Side Under WebLogic 
+  Application Server 5.1</h1>
+
+<p><strong>IMPORTANT</strong>: WebLogic comes with an XML parser. So, you must 
+  edit startWeblogic.cmd or startWeblogic.sh in the weblogic root directory and 
+  put xerces.jar at the BEGINNING of WEBLOGIC_CLASSPATH environment variable.</p>
+
+<p>If you run startWeblogic.cmd, then add following at the beginning of WEBLOGIC_CLASSPATH 
+  setting at line 74:</p>
+
+<blockquote>
+  <pre>path-to-xerces\xerces.jar;path-to-apache-soap\lib\soap.jar</pre>
+</blockquote>
+
+<p>If you run startWeblogic.sh, add the following to PRE_CLASSPATH setting at 
+  line 33:</p>
+
+<blockquote>
+  <pre>path-to-xerces/xerces.jar:path-to-apache-soap/lib/soap.jar</pre>
+</blockquote>
+
+<p>The easiest way to set up for WebLogic is to:</p>
+<p>1. Copy the path-to-apache-soap/webapps/soap directory into path-to-weblogic-root/myserver/public_html 
+  directory. After copying the directory structure looks like path-to-weblogic/myserver/public_html/soap/WEB-INF 
+  etc. </p>
+<p>2. Add the following two lines to weblogic.properties file -
+weblogic.httpd.register.soap/servlet/rpcrouter=org.apache.soap.server.http.RPCRouterServlet 
+  weblogic.httpd.initArgs.soap/servlet/rpcrouter=ServicesStore=DeployedServices.ds 
+</p>
+<p>If you want to run the samples from Apache-SOAP make sure to add <path-to-apache-soap> 
+to WEBLOGIC_CLASSPATH or PRE_CLASSPATH as explained above.</p>
+
+<p>You should be able to deploy services by pointing a browser to</p>
+
+<blockquote>
+    <pre><a href="http://hostname:port/soap">http://hostname:port/soap</a></pre>
+</blockquote>
+
+<p>where hostname is the host on which WebLogic is running and port is the port. 
+  See the User's Guide for details on the administration tool. The SOAP end-point 
+  for invoking services on this server is:</p>
+
+<blockquote>
+    <pre><a href="http://hostname:port/soap/servlet/rpcrouter">http://hostname:port/soap/servlet/rpcrouter</a></pre>
+</blockquote>
+
+<p>Happy SOAP-ing!</p>
+</body>
+</html>

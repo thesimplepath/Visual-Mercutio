@@ -1,0 +1,15 @@
+This directory contains samples to interface with sample web services
+from XMethods. The services are listed and described on:
+
+        http://www.xmethods.com/
+
+
+GetTemp: Weather Service
+========
+Service description URL: http://www.xmethods.com/detail.html?id=8
+
+Usage: java samples.xmethods.GetTemp
+                [-u service-URL]
+                [-p <HTTP proxy hostname:port>
+		 -a <HTTP proxy username:password>]]
+                zipcode

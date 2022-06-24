@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC "-//Sun Microsystems, Inc.//DTD J2EE Application 1.2//EN" "http://java.sun.com/j2ee/dtds/application_1_2.dtd">
+<import>
+     <!-- enter required files for this web app -->
+     <copy name="axis.jar"       fromdir="axis/lib" todir="lib"/>
+     <copy name="clutil.jar"     fromdir="axis/lib" todir="lib"/>
+     <copy name="log4j-core.jar" fromdir="axis/lib" todir="lib"/>
+     <copy name="wsdl4j.jar"     fromdir="wsdl4j/lib" todir="lib"/>
+     <copy name="xerces.jar"     fromdir="lib"      todir="lib"/>
+     
+     <!-- Note: wstk.jar has the meter service handlers -->
+     <copy name="wstk.jar"       fromdir="lib"      todir="lib"/>
+     <copy name="logEnglish.jar" fromdir="lib"      todir="lib"/>
+     <copy name="wstkProperties.xml" fromdir="lib" todir="classes"/>
+     
+  <copy name="utilityServices.properties" fromdir="services/utilities" todir="classes"/>
+</import>
+

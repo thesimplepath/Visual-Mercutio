@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Writing Providers</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+
+<h2 align="center">Writing Providers</h2>
+<P>When creating services, it makes sense to
+take advantage of legacy programming artifacts
+in order to not have to reinvent the wheel,
+and to program in the language(s) in which
+you are most comfortable. The developers
+of Apache SOAP recognized that not all services
+were going to be methods on Java classes,
+and architected a way to allow any type of
+programming artifact to be used as a service
+implementation. To enable this, a layer of
+abstraction was created between the Apache
+SOAP server and the service implementation.
+This layer is called the Apache SOAP Pluggable
+Provider.</P>
+<P>A pluggable provider acts as the bridge between
+the SOAP engine and the service which is
+being invoked. The provider is responsible
+for:</P>
+<UL>
+  <LI>locating the service implementation
+  <LI>loading the service implementation
+  <LI>invoking the service
+  <LI>converting the result from the service implementation
+  into a SOAP envelope when necessary
+</UL>
+<P>Apache SOAP comes with six predefined providers:</P>
+<UL>
+  <LI>org.apache.soap.providers.RPCJavaProvider<BR>
+  This provider is the default for exposing
+  Java artifacts and BSF-supported scripts
+  via SOAP RPC. 
+  <LI>org.apache.soap.providers.MsgJavaProvider<BR>
+  This provider is the default for exposing
+  Java artifacts and BSF-supported scripts
+  via SOAP Messages.
+  <LI>org.apache.soap.providers.StatelessEJBProvider<BR>
+  This provider allows you to expose Stateless
+  Session Beans as services.
+  <LI>org.apache.soap.providers.StatefulEJBProvider<BR>
+  This provider allows you to expose Stateful
+  Session Beans as services.
+  <LI>org.apache.soap.providers.EntityEJBProvider<BR>
+  This provider allows you to expose Entity
+  Beans as services.
+  <LI>org.apache.soap.providers.com.RPCProvider<BR>
+  This provider allows you to expose COM objects
+  via SOAP RPC. <I>Note: This provider works only under Windows.</I> For more information about the COM provider,
+  look <A href="../../samples/com/readme.htm">here</A>.
+</UL>
+<H3>Using Pluggable Providers</H3>
+<P>Information about the provider that you wish
+your service to use is located in the deployment
+descriptor. The &lt;provider&gt; element,
+as well as its descendent elements, provide
+information to the runtime and provider about
+what they should do to make a service accessible.
+The <I>type</I> attribute on the &lt;provider&gt; element
+identifies the Java class which should act
+as the provider. If you are exposing a Java
+class (either as an RPC-based service or
+as a message-oriented service) then you should
+specify &quot;java&quot; as the value for
+this attribute, if you are exposing a BSF-supported
+script then you should specify &quot;script&quot;,
+otherwise you should specify the fully qualified
+classname of the provider.</P>
+<P>Additional information to the pluggable providers
+may be specified by adding &lt;option&gt;
+elements as descendents to the &lt;provider&gt;
+elements. For more information about specifying
+pluggable providers and their options, look
+<A href="deploy.html">here</A>.</P>
+<H3>Writing Pluggable Providers</H3>
+<P>If you need to support programming artifacts
+which are not directly supported by one of
+the included providers, or if one of the
+included providers does not quite meet your
+needs, then you will need to create your
+own pluggable provider.</P>
+<P>Providers need to implement the org.apache.soap.util.Provider
+interface, which is as follows:</P>
+
+<pre>public interface Provider {
+  public void locate( DeploymentDescriptor dd,
+                      Envelope             env,
+                      Call                 call,
+                      String               methodName,
+                      String               targetObjectURI,
+                      SOAPContext          reqContext)
+                throws SOAPException ;
+  public void invoke(SOAPContext req, SOAPContext res) throws SOAPException ;
+}
+</pre>
+    The <code>locate</code> method will be called in order to allow
+the provider a chance to verify that the
+service implementation exists and is available
+to process the request. If an error occurs,
+this method should throw a SOAPException.
+After a successful call to <code>locate</code> the SOAP engine will then execute the <code>invoke</code> method to actually call the service implementation.
+Notice that the <code>invoke</code> call does not have any information about
+the service. All of that information was
+passed into the <code>locate</code> method, so it is the responsibility of <code>locate</code> to save whatever information is needed so that
+    <code>invoke</code> can call the service.
+<p> The <code>invoke</code> method is also responsible for converting
+any response from the service implementation
+into a SOAP envelope and placing it in the
+<b>res</b> parameter (a SOAPContext).
+
+
+
+<P>If any &lt;option&gt; elements which were
+specified in the deployment descriptor for
+the service are accessible as properties
+via a Hashtable retrieved through a call
+to <B>dd</B>.getProps() in the <CODE>locate</CODE> method.</P>
+<P>Last updated 5/20/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+
+
+</HTML>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://tempuri.org/wsdl/2001/12/MeteringService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MeteringService" targetNamespace="http://tempuri.org/wsdl/2001/12/MeteringService-impl/">
+
+  <import location="http://localhost:8080/metering/MeteringService.wsdl" namespace="http://tempuri.org/wsdl/2001/12/MeteringService/"/>
+
+  <service name="MeteringService">
+    <documentation>Metering Service</documentation>
+
+    <port binding="interface:MeteringServiceBinding" name="Demo">
+      <soap:address location="http://localhost:8080/metering/services/MeterService"/>
+    </port>
+  </service>
+</definitions>

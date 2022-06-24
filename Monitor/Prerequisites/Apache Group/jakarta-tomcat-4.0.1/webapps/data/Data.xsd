@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://tempuri.org/xsd/2001/10/Data"
+           xmlns:ds="http://tempuri.org/xsd/2001/10/Data"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified">
+
+	<!--=====             Core - WS-Data             =====-->
+	<!--=====                 Data Types                =====-->
+
+  <xs:complexType name="SchemaRequestType">
+    <xs:annotation>
+      <xs:documentation>If type == describe or describe-only, all child elements are ignored.</xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="0">
+      <xs:sequence>
+        <xs:annotation>
+          <xs:documentation>Validate</xs:documentation>
+        </xs:annotation>
+        <xs:element ref="ds:schemaSpec"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:annotation>
+          <xs:documentation>Translate</xs:documentation>
+        </xs:annotation>
+        <xs:element ref="ds:schemaSpec"/>
+        <xs:element ref="ds:translationSpec"/>
+      </xs:sequence>
+    </xs:choice>
+    <xs:attribute name="type">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="describe"/>
+          <xs:enumeration value="describe-only"/>
+          <xs:enumeration value="validate"/>
+          <xs:enumeration value="translate"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="StatusCodeType" final="#all">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="success"/>
+      <xs:enumeration value="warning"/>
+      <xs:enumeration value="error"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="DSOperationType">
+    <xs:sequence>
+      <xs:element ref="ds:AbstractTarget"/>
+      <xs:element ref="ds:AbstractStatementModifier" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="operationID" type="xs:NMTOKEN" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="DSQueryOperationType">
+    <xs:annotation>
+      <xs:documentation/>
+      <xs:documentation>Basic DS Query Operation Type</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ds:DSOperationType">
+        <xs:sequence>
+          <xs:element ref="ds:AbstractTarget"/>
+          <xs:element ref="ds:schemaRequest" minOccurs="0"/>
+          <xs:element ref="ds:AbstractStatementModifier" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TargetType"/>
+
+  <xs:complexType name="SchemaSpecType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##other" processContents="lax"/>
+    </xs:sequence>
+    <xs:attribute name="location" type="xs:anyURI" use="optional"/>
+    <xs:attribute name="namespace" type="xs:anyURI" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="TranslationSpecType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##other" processContents="lax"/>
+    </xs:sequence>
+    <xs:attribute name="location" type="xs:anyURI" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="ResponseType">
+    <xs:choice>
+      <xs:sequence>
+        <xs:annotation>
+          <xs:documentation>Success</xs:documentation>
+        </xs:annotation>
+        <xs:element ref="ds:schemaSpec" minOccurs="0"/>
+        <xs:element ref="ds:result"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:annotation>
+          <xs:documentation>Warning</xs:documentation>
+        </xs:annotation>
+        <xs:element ref="ds:schemaSpec" minOccurs="0"/>
+        <xs:element ref="ds:result"/>
+        <xs:element ref="ds:error"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:annotation>
+          <xs:documentation>Failure</xs:documentation>
+        </xs:annotation>
+        <xs:element ref="ds:error"/>
+      </xs:sequence>
+    </xs:choice>
+    <xs:attribute name="status" type="ds:StatusCodeType" use="required" default="success"/>
+    <xs:attribute name="operationID" type="xs:NMTOKEN" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="ResultType" mixed="true">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##other" processContents="lax"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ErrorType">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:NMTOKEN" use="required"/>
+  </xs:complexType>
+
+	<!--=====                 Definitions                =====-->
+
+  <xs:element name="AbstractTarget" type="ds:TargetType" abstract="true" nillable="false"/>
+
+  <xs:element name="AbstractDSOperation" type="ds:DSOperationType" abstract="true" nillable="false"/>
+
+  <xs:element name="AbstractStatementModifier" abstract="true"/>
+
+  <xs:element name="schemaSpec" type="ds:SchemaSpecType"/>
+
+  <xs:element name="translationSpec" type="ds:TranslationSpecType"/>
+
+  <xs:element name="schemaRequest" type="ds:SchemaRequestType" nillable="false"/>
+
+  <xs:element name="result" type="ds:ResultType" nillable="true"/>
+
+  <xs:element name="error" type="ds:ErrorType"/>
+
+  <xs:element name="response" type="ds:ResponseType"/>
+
+	<!--=====               Operations                =====-->
+
+  <xs:element name="insert" type="ds:DSOperationType"/>
+
+  <xs:element name="update" type="ds:DSOperationType"/>
+
+  <xs:element name="update_insert" type="ds:DSOperationType"/>
+
+  <xs:element name="remove" type="ds:DSOperationType"/>
+	
+  <xs:element name="replace" type="ds:DSOperationType"/>
+
+  <xs:element name="query" type="ds:DSQueryOperationType"/>
+
+</xs:schema>

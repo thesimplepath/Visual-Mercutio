@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/StockQuoteService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="StockQuoteService" targetNamespace="http://tempuri.org/StockQuoteService">
+
+  <message name="SymbolRequest">
+    <part name="symbol" type="xsd:string"/>
+  </message>
+
+  <message name="QuoteResponse">
+    <part name="quote" type="xsd:string"/>
+  </message>
+
+  <portType name="StockQuoteService">
+    <operation name="getQuote">
+      <input message="tns:SymbolRequest"/>
+      <output message="tns:QuoteResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="StockQuoteServiceBinding" type="tns:StockQuoteService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getQuote">
+      <soap:operation soapAction="http://tempuri.org/GetQuote"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/live-stock-quotes" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/live-stock-quotes" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+</definitions>

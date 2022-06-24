@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V5.0.1 for Windows">
+<TITLE> Add an Entry</TITLE>
+<LINK REL=STYLESHEET TYPE="text/css" HREF="style/style.css">
+</HEAD>
+<BODY>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=550>
+ <TR>
+      <TD></TD>
+      <TD HEIGHT=40></TD>
+ </TR>
+ <TR>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+      <TD ALIGN=CENTER><H3><U>Address Book Service</U></H3></TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD HEIGHT=10></TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD><P><B><A href="#Add an Entry">Add an Entry</A></B></TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD><P><B><A href="#List an Entry">List an Entry</A></B></TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD><P><B><A href="#List all Entries">List all Entries</A></B></TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD><P><B><A href="#Remove an Entry">Remove an Entry</A></B></TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD><P><B><A href="#Remove all Entries">Remove all Entries</A></B></TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD HEIGHT=20></TD>
+ </TR>
+ <TR>
+      <TD></TD>
+      <TD>
+<HR>
+<A Name="Add an Entry"></A>
+<B>Add an Entry</B>
+<FORM name="addEntry" method="POST" action="AddressBookServiceServlet">
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD>Name:</TD>
+      <TD><INPUT size="30" type="text" name="nameTextField"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>Street Num:</TD>
+      <TD><INPUT size="2" type="text" name="streetNumTextField"></TD>
+      <TD>Street Name:</TD>
+      <TD><INPUT size="20" type="text" name="streetNameTextField"></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>City:</TD>
+      <TD><INPUT size="20" type="text" name="cityTextField"></TD>
+      <TD>State:</TD>
+      <TD><INPUT size="2" type="text" name="stateTextField"></TD>
+      <TD>Zip:</TD>
+      <TD><INPUT size="10" type="text" name="zipTextField"></TD>
+    </TR>
+    <TR>
+      <TD>Area Code:</TD>
+      <TD><INPUT size="2" type="text" name="areaCodeTextField"></TD>
+      <TD>Exchange:</TD>
+      <TD><INPUT size="2" type="text" name="exchangeTextField"></TD>
+      <TD>Number:</TD>
+      <TD><INPUT size="7" type="text" name="numberTextField"></TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><INPUT type="submit" name="submitButton" value="Submit"></TD>
+      <TD><INPUT type="reset" name="clearButton" value="Clear"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+ <input type=hidden name="operation" value="addEntry">
+</FORM>
+<HR>
+</TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD>
+<A Name="List an Entry"></A>
+<B>List an Entry</B>
+<FORM name="listEntry" method="POST" action="AddressBookServiceServlet">
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD>Name:</TD>
+      <TD><INPUT size="30" type="text" name="nameTextField"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><INPUT type="submit" name="submitButton" value="Submit"></TD>
+      <TD><INPUT type="reset" name="clearButton" value="Clear"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+ <input type=hidden name="operation" value="listEntry">
+</FORM>
+<HR>
+</TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD>
+<A Name="List all Entries"></A>
+<B>List all Entries</B>
+<FORM name="listAllEntries" method="POST" action="AddressBookServiceServlet">
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT type="submit" name="submitButton" value="Submit"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+ <input type=hidden name="operation" value="listAll">
+</FORM>
+<HR>
+</TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD>
+<A Name="Remove an Entry"></A>
+<B>Remove an Entry</B>
+<FORM name="removeEntry" method="POST" action="AddressBookServiceServlet">
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD>Name:</TD>
+      <TD><INPUT size="30" type="text" name="nameTextField"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><INPUT type="submit" name="submitButton" value="Submit"></TD>
+      <TD><INPUT type="reset" name="clearButton" value="Clear"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+ <input type=hidden name="operation" value="removeEntry">
+</FORM>
+<HR>
+</TD>
+ </TR>
+ <TR>
+ <TR>
+      <TD></TD>
+      <TD>
+<A Name="Remove all Entries"></A>
+<B>Remove all Entries</B>
+<FORM name="removeAllEntries" method="POST" action="AddressBookServiceServlet">
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT type="submit" name="submitButton" value="Submit"></TD>
+      <TD></TD>
+      <TD></TD>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+ <input type=hidden name="operation" value="removeAll">
+</FORM>
+<HR>
+</TD>
+ </TR>
+ <TR>
+</TABLE>
+</BODY>
+</HTML>

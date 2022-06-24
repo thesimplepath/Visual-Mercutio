@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+
+<!-- ===================================================================
+
+   Build file for Soap
+
+Notes:
+   This is a build file for use with the Jakarta Ant build tool.
+
+Prerequisites:
+
+   jakarta-ant from http://jakarta.apache.org
+   Any JAXP-compliant XML parser
+     (xml-xerces from http://xml.apache.org works just fine)
+   JavaMail from http://java.sun.com/products/javamail/
+   Java Activation Framework
+       from http://java.sun.com/products/beans/glasgow/jaf.html
+
+Optional additions:
+
+   http://www.alphaworks.ibm.com/tech/xmitoolkit
+   http://oss.software.ibm.com/developerworks/opensource/pop3/index.html
+   http://oss.software.ibm.com/developerworks/opensource/smtp/index.html
+   http://java.sun.com/products/jsse/
+   JUnit Test Framework from http://www.junit.org
+   
+Build Instructions:
+   To build, run
+
+     java org.apache.tools.ant.Main <target>
+
+   on the directory where this file is located with the target you want.
+
+Most useful targets:
+
+ - compile  -> creates the "soap.jar" package in "./build/lib"
+ - javadocs -> creates the javadocs in "./build/javadocs"
+ - dist     -> creates the complete binary distribution
+ - srcdist  -> creates the complete src distribution
+
+Authors:
+  Sam Ruby <rubys@us.ibm.com>
+  Matthew J. Duftler <duftler@us.ibm.com>
+
+
+Copyright:
+  Copyright (c) 2001 Apache Software Foundation.
+
+==================================================================== -->
+
+<project default="compile" basedir=".">
+
+  <!-- Moved out of a target so they can be referenced by peer of
+      target (such as path test-classpath).
+  -->
+  <property name="build.dir" value="./build"/>
+  <property name="build.dest" value="./build/classes"/>
+
+  <target name="init">
+    <property name="name" value="soap"/>
+    <property name="Name" value="Soap"/>
+    <property name="version" value="2.2"/>
+    <property name="year" value="2001"/>
+
+    <property name="build.compiler" value="classic"/>
+    <property name="debug" value="off"/>
+
+    <property name="src.dir" value="./src"/>
+    <property name="src.comprovider" value="${src.dir}\org\apache\soap\providers\com" />
+    <property name="docs.dir" value="./docs"/>
+    <property name="samples.dir" value="./samples"/>
+
+    <property name="packages" value="org.*"/>
+
+    <property name="build.file" value="build.xml"/>
+    <property name="build.lib" value="./build/lib"/>
+    <property name="build.samples" value="./build/samples"/>
+    <property name="build.javadocs" value="./build/javadocs"/>
+
+    <property name="webapps" value="./webapps"/>
+
+    <property name="dist.dir.name" value="soap-2_2"/>
+    <property name="dist.dir" value="./${dist.dir.name}"/>
+    <property name="dist.bin.file" value="${name}-bin-${version}"/>
+    <property name="dist.src.file" value="${name}-src-${version}"/>
+
+    <available property="com.present" file="${src.comprovider}\org_apache_soap_providers_com_RPCProvider.h" />
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the build directory                                        -->
+  <!-- =================================================================== -->
+  <target name="prepare" depends="init">
+    <mkdir dir="${build.dir}"/>
+    <available property="bsf.present" classname="com.ibm.bsf.BSFManager" />
+    <available property="xmi.present" classname="com.ibm.xmi.job.Job" />
+    <available property="pop3.present" 
+      classname="com.ibm.network.mail.pop3.event.StatusListener" />
+    <available property="smtp.present" 
+      classname="com.ibm.network.mail.smtp.protocol.CoreProtocolBean" />
+    <available property="ejb.present" classname="javax.ejb.SessionBean" />
+    <available property="ssl.present" classname="javax.net.ssl.SSLSocket" />
+    <available property="junit.present" classname="junit.framework.TestCase" />
+
+
+    <uptodate property="javac.notRequired"
+              targetfile="${build.lib}/${name}.jar">
+      <srcfiles dir="${src.dir}">
+        <patternset refid="javac.source.files"/>
+      </srcfiles>
+    </uptodate>
+
+    <uptodate property="javadoc.required"
+              targetfile="${build.lib}/${name}.jar">
+      <srcfiles dir="${build.dir}" includes="**/*.html"/>
+    </uptodate>
+
+    <antcall target="checkDependencies"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Warn the user about items not being compiled                        -->
+  <!-- =================================================================== -->
+  <target name="checkBSF" unless="bsf.present">
+    <echo message="Warning: BSF dependencies were not resolved."/>
+  </target>
+  <target name="checkXMI" unless="xmi.present">
+    <echo message="Warning: XMI dependencies were not resolved."/>
+  </target>
+  <target name="checkPOP3" unless="pop3.present">
+    <echo message="Warning: POP3 dependencies were not resolved."/>
+  </target>
+  <target name="checkSMTP" unless="smtp.present">
+    <echo message="Warning: SMTP dependencies were not resolved."/>
+  </target>
+  <target name="checkEJB" unless="ejb.present">
+    <echo message="Warning: EJB dependencies were not resolved."/>
+  </target>
+  <target name="checkSSL" unless="ssl.present">
+    <echo message="Warning: SSL dependencies were not resolved."/>
+  </target>
+  <target name="checkDependencies" unless="javac.notRequired">
+    <antcall target="checkBSF"/>
+    <antcall target="checkXMI"/>
+    <antcall target="checkPOP3"/>
+    <antcall target="checkSMTP"/>
+    <antcall target="checkEJB"/>
+    <antcall target="checkSSL"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Source files to be compiled                                         -->
+  <!-- =================================================================== -->
+  <patternset id="javac.source.files">
+    <exclude name="**/InvokeBSF.java" unless="bsf.present" />
+    <exclude name="**/XMI*.java" unless="xmi.present" />
+    <exclude name="**/*SMTP*.java" unless="smtp.present" />
+    <exclude name="**/*SMTP*.java" unless="pop3.present" />
+    <exclude name="**/POP*.java" unless="smtp.present" />
+    <exclude name="**/POP*.java" unless="pop3.present" />
+    <exclude name="**/*EJB*.java" unless="ejb.present" />
+    <exclude name="**/SSLUtils.java" unless="ssl.present" />
+  </patternset>
+
+  <patternset id="dllfiles">
+    <include name="*.dll"/>
+  </patternset>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the source directory                                       -->
+  <!-- =================================================================== -->
+  <target name="compile"
+          depends="prepare"
+          description="Compiles the source files.">
+    <mkdir dir="${build.dest}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dest}" debug="${debug}">
+      <patternset refid="javac.source.files"/>
+    </javac>
+
+    <copy todir="${build.dest}">
+      <fileset dir="${src.dir}">
+         <include name="**/*.properties" />
+      </fileset>
+    </copy>
+
+    <copy todir="${build.lib}">
+      <fileset dir="${src.comprovider}">
+        <patternset refid="dllfiles"/>
+      </fileset>
+    </copy>
+
+    <mkdir dir="${build.lib}"/>
+    <jar jarfile="${build.lib}/${name}.jar" basedir="${build.dest}" />
+
+    <uptodate property="javadoc.required"
+              targetfile="${build.lib}/${name}.jar">
+      <srcfiles dir="${build.dir}" includes="**/*.html"/>
+    </uptodate>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the samples                                                -->
+  <!-- =================================================================== -->
+  <target name="samples"
+          depends="compile"
+          description="Compiles the samples.">
+    <javac srcdir="." destdir="${build.dir}" 
+           classpath="${build.lib}/${name}.jar" debug="${debug}">
+      <include name="samples/**/*.java" />
+      <exclude name="samples/**/*SMTP*.java" unless="smtp.present" />
+    </javac>
+    <copy todir="${build.samples}">
+      <fileset dir="${samples.dir}"/>
+    </copy>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the JUnit testcases                                        -->
+  <!-- =================================================================== -->
+
+  <path id="test-classpath">
+    <!-- build.dir for test classes and build.dest for classes to test -->
+    <pathelement location="${build.dir}" />
+    <pathelement location="${build.dest}" />
+    <pathelement path="${java.class.path}" />
+  </path>
+
+  <target name="buildTest" if="junit.present"
+        depends="init, prepare, compile">
+    <echo message="junit package found ..."/>
+
+    <!-- Tests are packaged as test.*, so source dir is main dir -->
+    <javac srcdir="${basedir}"
+      destdir="${build.dir}">
+      <include name="test/**/*.java" />
+      <classpath refid="test-classpath" />
+    </javac>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Runs the JUnit testcases                                            -->
+  <!-- =================================================================== -->
+  <target name="junit" if="junit.present"
+          depends="buildTest">
+    <junit printsummary="yes" haltonfailure="yes" fork="yes">
+      <classpath refid="test-classpath" />
+      <formatter type="plain" />
+      <batchtest>
+        <fileset dir="${build.dir}">
+          <!-- Convention: each package that's being tested
+                has its own test class collecting all the tests -->
+          <include name="**/PackageTests.class" />
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the MS COM Pluggable Provider CPP code requires MS VS 6.0  -->
+  <!-- =================================================================== -->
+
+  <target name="com"  depends="compile">
+    <exec dir="${src.comprovider}" executable="nmake" failonerror="Yes">
+    <arg line= "/NOLOGO ANTBUILD=1 ANTBUILDDEBUG=right${debug} ANTBUILDTARGET=${basedir}\${build.lib} ANTBUILDCLASSPATH=${basedir}\${build.dest}"/>
+    </exec>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the API documentation                                       -->
+  <!-- =================================================================== -->
+  <target name="javadocs"
+          depends="prepare"
+          description="Generates the API documentation.">
+    <mkdir dir="${build.javadocs}"/>
+    <javadoc packagenames="${packages}"
+             sourcepath="${src.dir}"
+             destdir="${build.javadocs}"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="${Name} API"
+             doctitle="${Name}"
+             bottom="Copyright &#169; ${year} Apache XML Project. All Rights Reserved."
+    />
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the API documentation if necessary                          -->
+  <!-- =================================================================== -->
+  <target name="javadocsIfRequired" if="javadoc.required" depends="prepare">
+    <antcall target="javadocs"/>
+  </target>
+  
+  <!-- =================================================================== -->
+  <!-- Creates the binary distribution                                     -->
+  <!-- =================================================================== -->
+  <target name="dist"
+          depends="compile, junit, javadocsIfRequired, samples"
+          description="Creates the binary distribution.">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${dist.dir}/docs"/>
+    <mkdir dir="${dist.dir}/docs/apiDocs"/>
+    <mkdir dir="${dist.dir}/lib"/>
+    <mkdir dir="${dist.dir}/samples"/>
+    <mkdir dir="${dist.dir}/webapps"/>
+
+    <copy todir="${dist.dir}/docs/apiDocs">
+      <fileset dir="${build.javadocs}"/>
+    </copy>
+    <copy todir="${dist.dir}/lib">
+      <fileset dir="${build.lib}"/>
+    </copy>
+    <copy todir="${dist.dir}/samples">
+      <fileset dir="${build.samples}"/>
+    </copy>
+    <copy todir="${dist.dir}/docs">
+      <fileset dir="${docs.dir}"/>
+    </copy>
+    <copy todir="${dist.dir}/webapps">
+      <fileset dir="${webapps}"/>
+    </copy>
+
+    <antcall target="buildwar"/>
+
+    <copy file="LICENSE" tofile="${dist.dir}/LICENSE"/>
+    <copy file="README" tofile="${dist.dir}/README"/>
+
+    <!-- ================================================================= -->
+    <!-- Produces the tar/gzip file                                        -->
+    <!-- ================================================================= -->
+    <tar tarfile="${dist.bin.file}.tar"
+         basedir="."
+         includes="${dist.dir.name}/**"/>
+    <gzip src="${dist.bin.file}.tar" zipfile="${dist.bin.file}.tar.gz"/>
+    <delete file="${dist.bin.file}.tar"/>
+
+    <!-- ================================================================= -->
+    <!-- Produces the zip file                                             -->
+    <!-- ================================================================= -->
+    <zip zipfile="${dist.bin.file}.zip"
+         basedir="."
+         includes="${dist.dir.name}/**"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the source distribution                                     -->
+  <!-- =================================================================== -->
+  <target name="srcdist"
+          depends="init"
+          description="Creates the source distribution.">
+    <copy todir="${dist.dir}/src">
+      <fileset dir="${src.dir}"/>
+    </copy>
+
+    <copy file="LICENSE" tofile="${dist.dir}/LICENSE"/>
+    <copy file="${build.file}" tofile="${dist.dir}/${build.file}"/>
+
+    <!-- ================================================================= -->
+    <!-- Produces the tar/gzip file                                        -->
+    <!-- ================================================================= -->
+    <tar tarfile="${dist.src.file}.tar"
+         basedir="."
+         includes="${dist.dir.name}/**"/>
+    <gzip src="${dist.src.file}.tar" zipfile="${dist.src.file}.tar.gz"/>
+    <delete file="${dist.src.file}.tar"/>
+
+    <!-- ================================================================= -->
+    <!-- Produces the zip file                                             -->
+    <!-- ================================================================= -->
+    <zip zipfile="${dist.src.file}.zip"
+         basedir="."
+         includes="${dist.dir.name}/**"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Packages the Web Application as a Web ARchive.                      -->
+  <!-- =================================================================== -->
+  <target name="buildwar" depends="compile, samples">
+    <mkdir dir="${dist.dir}/webapps"/>
+
+    <war warfile="${dist.dir}/webapps/${name}.war"
+         webxml="${webapps}/soap/WEB-INF/web.xml">
+      <fileset dir="${webapps}/soap">
+        <include name="*.html"/>
+        <include name="admin/*.*"/>
+      </fileset>
+      <classes dir="${build.dest}"/>
+      <classes dir="${build.dir}">
+        <include name="samples/**/*.class"/>
+      </classes>
+    </war>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Cleans everything                                                   -->
+  <!-- =================================================================== -->
+  <target name="clean"
+          depends="init,clean.java,clean.com"
+          description="Cleans the build and distribution directories."/>
+  <target name="clean.java" depends="init">
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
+  </target>
+  <target name="clean.com" depends="init" if="com.present">
+    <exec dir="${src.comprovider}" executable="nmake" failonerror="Yes">
+    <arg line= " /NOLOGO ANTBUILD=1 ANTBUILDTARGET=${basedir}\${build.lib} ANTBUILDCLASSPATH=${basedir}\${build.dest} clean"/>
+    </exec>
+  </target>
+</project>

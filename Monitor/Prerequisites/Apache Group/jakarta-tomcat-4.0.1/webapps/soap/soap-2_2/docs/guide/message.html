@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Writing Message Services</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Writing Message Services</H2>
+<P>Creating message-oriented services in Apache
+SOAP is a little more complex than creating
+a simple RPC-based service, but in many cases
+a message-oriented model provides a better
+fit to the problem which you are trying to
+solve. In a message-oriented service, the
+service implementation is responsible for
+processing the contents of the SOAP Envelope.
+That is to say, that while the Apache SOAP
+API's are still available to interact with
+the SOAPEnvelope object, the service implementation
+must invoke those calls which are necessary
+to extract whatever information from the
+header and body that are needed for it to
+process the request. If the message-oriented
+service is participating in in a request-response
+protocol which uses SOAP messages in both
+directions, then it is also responsible for
+generating the appropriate response SOAPEnvelope.
+(A message-oriented service does not have
+to return a SOAPEnvelope, but instead can
+return anything that it wants.)</P>
+<P>Because message-oriented services have full
+control over the SOAP Envelopes, any XML
+document may be passed as part of the envelope
+body. When the service receives the SOAP
+Envelope, it is free to extract the body,
+and do with it as it pleases.</P>
+<P>Unlike RPC-service implementations, message-oriented
+service implementations must all conform
+to a single interface:</P>
+<PRE>void <B><I>name</I></B>(SOAPEnvelope <B><I>request-envelope</I></B>, SOAPContext <B><I>request-context</I></B>, SOAPContext <B><I>response-context</I></B>)</PRE>
+<P>where <B><I>name</I></B> is the name of the method/function, <B><I>request-envelope</I></B> is the SOAPEnvelope containing the incoming
+message, <B><I>request-context</I></B> is the SOAPContext for the incoming message,
+and <B><I>response-context</I></B> is the SOAPContext which may be used for
+a response if one is needed.</P>
+<P>If the communications transport which you
+are using supports two-way interaction, such
+as HTTP, then you can use the response context
+to send a response back to the client. If
+you want to send a SOAP Envelope back to
+the client, you can use the org.apache.soap.Envelope's
+marshall(...) method to marshall your envelope
+to a java.io.StringWriter, and then invoke
+the response context's setRootPart(...) method,
+passing the StringWriter as the first argument.
+If you want to send back any other data types,
+then you may need to invoke other methods
+in the response context.</P>
+<P>As with RPC-based service implementations,
+in a Java based message-oriented service
+implementation you may throw a SOAPException
+to indicate that some error has occurred
+when processing the request. Throwing a SOAPException(FAULT_CODE_CLIENT,
+...) will allow your service implementation
+to indicate that the failure was due to a
+client error, whereas throwing a SOAPException(FAULT_CODE_SERVER,
+...) will indicate that your service implementation
+was at fault. (If you throw any other type
+of exception, the server will catch it, and
+will pass it on as a SOAPException(FAULT_CODE_SERVER,
+...)) If your transport supports two-way
+interaction, such as HTTP, then a SOAP Envelope
+containing a SOAP Fault will automatically
+be returned to the client. See the SOAP v1.1
+specification for more information on SOAP
+Faults.</P>
+<P>Last updated 5/20/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+
+
+</HTML>

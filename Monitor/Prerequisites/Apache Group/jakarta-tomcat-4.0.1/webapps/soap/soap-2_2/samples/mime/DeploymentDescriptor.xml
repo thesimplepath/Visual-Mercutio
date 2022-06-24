@@ -1,0 +1,8 @@
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:mimetest">
+  <isd:provider type="java"
+                scope="Request"
+                methods="sendFile loopFile getFileVector loopFileVector getFileArray loopFileArray listAttachments">
+    <isd:java class="samples.mime.MimeTest" static="false"/>
+  </isd:provider>
+</isd:service>

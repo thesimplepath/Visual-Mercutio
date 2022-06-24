@@ -17,5 +17,7 @@ In order to compile and install the Monitor server applications and services, yo
 - **.NET Framework 4.7 or higher**. Just check your installed version and update it from the Microsoft website if required at https://dotnet.microsoft.com/download/dotnet-framework
 - **Eclipse**. You can optionnally download this development platform at https://www.eclipse.org/
 
+**NOTE** the prerequisites folder contains a frozen snapshot of the working directory used for the development. This is because some data were customized and may be required to install the Monitor server on a new computer.
+
 ## Compilation
 Please read the Monitor.chm document available in the Documentation directory.

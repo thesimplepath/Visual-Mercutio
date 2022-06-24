@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/wsdl/AddressBookService/" xmlns:types="http://tempuri.org/xsd/AddressBook" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AddressBookService" targetNamespace="http://tempuri.org/wsdl/AddressBookService/">
+
+  <import location="AddressBook.xsd" namespace="http://tempuri.org/xsd/AddressBook"/>
+
+<message name="InaddEntryRequest">
+  <part name="meth1_inType1" type="xsd:string"/>
+  <part name="meth1_inType2" type="types:AddressType"/>
+</message>
+
+<message name="InlistEntryRequest">
+  <part name="meth2_inType1" type="xsd:string"/>
+</message>
+
+<message name="OutlistEntryResponse">
+  <part name="meth2_outType" type="types:AddressType"/>
+</message>
+
+<message name="InlistAllRequest"/>
+
+<message name="OutlistAllResponse">
+  <part name="meth3_outType" type="types:ArrayOfListings"/>
+</message>
+
+<message name="InremoveAllRequest"/>
+
+<message name="InremoveEntryRequest">
+  <part name="meth1_inType1" type="xsd:string"/>
+</message>
+
+<message name="OutgenericResponse">
+  <part name="meth4_outType" type="xsd:string"/>
+</message>
+
+<portType name="AddressBookServicePortType">
+  <operation name="addEntry">
+    <input message="tns:InaddEntryRequest"/>
+    <output message="tns:OutgenericResponse"/>
+  </operation>
+
+  <operation name="listEntry">
+    <input message="tns:InlistEntryRequest"/>
+    <output message="tns:OutlistEntryResponse"/>
+  </operation>
+
+  <operation name="listAll">
+    <input message="tns:InlistAllRequest"/>
+    <output message="tns:OutlistAllResponse"/>
+  </operation>
+
+  <operation name="removeEntry">
+    <input message="tns:InremoveEntryRequest"/>
+    <output message="tns:OutgenericResponse"/>
+  </operation>
+
+  <operation name="removeAll">
+    <input message="tns:InremoveAllRequest"/>
+    <output message="tns:OutgenericResponse"/>
+  </operation>
+
+</portType>
+
+<binding name="AddressBookServiceBinding" type="tns:AddressBookServicePortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+  <operation name="addEntry">
+    <soap:operation soapAction="http://tempuri.org/wsdl/AddressBookService/#addEntry"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </output>
+  </operation>
+
+  <operation name="listEntry">
+    <soap:operation soapAction="http://tempuri.org/wsdl/AddressBookService/#listEntry"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </output>
+  </operation>
+
+  <operation name="listAll">
+    <soap:operation soapAction="http://tempuri.org/wsdl/AddressBookService/#listAll"/>
+    <input>
+      <soap:body encodingStyle="http://xml.apache.org/xml-soap/encoding" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://xml.apache.org/xml-soap/encoding" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </output>
+  </operation>
+
+  <operation name="removeEntry">
+    <soap:operation soapAction="http://tempuri.org/wsdl/AddressBookService/#removeEntry"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </output>
+  </operation>
+
+  <operation name="removeAll">
+    <soap:operation soapAction="http://tempuri.org/wsdl/AddressBookService/#removeAll"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/AddressBookService/" use="encoded"/>
+    </output>
+  </operation>
+
+</binding>
+</definitions>

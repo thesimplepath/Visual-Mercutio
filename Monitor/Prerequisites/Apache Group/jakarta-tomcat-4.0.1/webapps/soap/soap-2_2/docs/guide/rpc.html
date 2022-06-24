@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Writing RPC Services</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Writing RPC Services</H2>
+<P>Writing an RPC-based SOAP service is a very
+trivial undertaking, and really only involves
+the following two basic steps:<BR>
+</P>
+<OL>
+  <LI><B>Create a code artifact which is supported
+  by one of the Apache SOAP providers</B>; either a standard Java class (including
+  Java Beans,) an EJB, or a BSF supported script.
+  The code artifact does not have to know anything
+  about Apache SOAP, as you will simply be
+  exposing either a method or a script function
+  that exists within the artifact. For example,
+  if you create a Java class that has a method
+  called add(), then you could expose that
+  method as a SOAP service. Multiple methods
+  may be exposed for a single service, as is
+  described in the next section.<BR>
+  <I>Note that parameters to your method/function
+  must be serializable by SOAP, and so must
+  exist within the SOAP mapping registry.</I><I> For information on creating type mappings,
+  look <A href="serializer.html">here</A>.</I><BR>
+  <BR>
+  
+  <LI><B>Create an Apache SOAP deployment descriptor
+  for your service.</B> The deployment descriptor provides the implementation
+  with the information necessary to handle
+  requests for an offered service. For a Java
+  service implementation, this will include
+  such information as the name of the class
+  which is providing the implementation, as
+  well as the name of the methods which are
+  to be exposed. More information about the
+  deployment descriptors may be found <A href="deploy.html">here</A>.<BR>
+  
+</OL>
+<P>In a Java based service implementation, you
+may throw a SOAPException to indicate that
+some error has occurred when processing the
+request. Throwing a SOAPException(FAULT_CODE_CLIENT,
+...) will allow your service implementation
+to indicate that the failure was due to a
+client error, whereas throwing a SOAPException(FAULT_CODE_SERVER,
+...) will indicate that your service implementation
+was at fault. (If you throw any other type
+of exception, the server will catch it, and
+will pass it on as a SOAPException(FAULT_CODE_SERVER,
+...)) See the SOAP v1.1 specification for
+more information on SOAP Faults.</P>
+<P>Last updated 5/18/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+
+
+</HTML>

@@ -1,0 +1,15 @@
+<!--Apache SOAP specific deployment descriptor (ie loads this service into Apache SOAP.-->
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment" id="urn:sum-COM">
+  <isd:provider type="org.apache.soap.providers.com.RPCProvider"
+      scope="Application" methods="sum get_total set_total">
+    <isd:java class="required not needed for COMProvider"/>
+    <isd:option key="progid" value="APACHESUM.totals" />
+    <!-- <isd:option key="threadmodel" value="SINGLEAPARTMENTTHREADED" />
+    <isd:option key="threadmodel" value="APARTMENTTHREADED" />
+    <isd:option key="threadmodel" value="MULTITHREADED" />
+    -->
+  </isd:provider>
+<isd:faultListener>
+org.apache.soap.server.DOMFaultListener
+</isd:faultListener>
+</isd:service>

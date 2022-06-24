@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:notification="http://tempuri.org/xsd/2001/12/Notification/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/wsdl/2001/12/MessageSubscriberService/e" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MessageSubscriberService" targetNamespace="http://tempuri.org/wsdl/2001/12/MessageSubscriberService/">
+
+  <documentation>
+    The Message Subscriber Service is used with the Notification Service.  When subscribing
+		to a message, a reference to the subscriber service must be sent to the notification service.
+
+    <pre>								
+    @version 1.0
+    @author  Peter Brittenham
+    @author  Peter Niblett 
+    @author  Rob Phippen
+    @author  Keith Wells
+		</pre>
+  </documentation>
+
+  <import location="Notification.xsd" namespace="http://tempuri.org/xsd/2001/12/Notification/">
+    <documentation>
+      This import element references the XML schema document that contains the definition for the 
+      notification header.
+      
+      NOTE: This might be replaced by a standard message header format that is used by any
+            Web service that required a message header.
+    </documentation>
+  </import>
+
+  <message name="ReceiveMessage">
+    <documentation>
+      This message contains the topic string and a text message that contains
+      the content for the message.
+    </documentation>
+     <part name="publishTopic" type="notification:PublishTopic">
+       <documentation>
+          The topic that was published by the Notification Service
+          because a service had subscribed using a topic specification.
+       </documentation>
+    </part>
+    <part name="textMessage" type="xsd:string">
+       <documentation>
+          The message content that was published.
+       </documentation>
+    </part>
+  </message>
+
+  <message name="MessageHeader">
+    <documentation>
+      The message header is sent with each message and will be sent in a SOAP header.
+    </documentation>
+    
+    <part element="notification:messageHeader" name="MessageHeader">
+      <documentation>
+         The message header content and contains JMS related fields:
+         <TABLE cellpadding="4" width="600">
+         <TBODY>
+           <TR>
+           <TD align="center" bgcolor="#009999">
+                <B>Parameter</B>
+              </TD>
+           <TD align="center" bgcolor="#009999">
+                <B>Description</B>
+              </TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>Destination</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Location where message is being sent.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>DeliveryMode</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Will be NON_PERSISTENT for WSTK 3.0.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>MessageID</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Unique identifier for each message.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>Timestamp</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Time that a message was handed off to send.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>ReplyTo</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Destination where a reply should be sent.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>Type</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Message type indicator supplied by sender.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>Expiration</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Time when subscriber should not receive the message.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>Priority</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Message priority (0-9).</TD>
+           </TR>
+         </TBODY>
+        </TABLE>
+         <pre>
+            &lt;messageHeader&gt;
+              &lt;destination&gt;...&lt;/destination&gt;
+              &lt;deliveryMode&gt;...&lt;/deliveryMode&gt;
+              &lt;messageID&gt;...&lt;/messageID&gt;
+              &lt;timestamp&gt;...&lt;/timestamp&gt;
+              &lt;replyTo&gt;...&lt;/replyTo&gt;
+              &lt;type&gt;...&lt;/type&gt;
+              &lt;expiration&gt;...&lt;/expiration&gt;
+              &lt;priority&gt;...&lt;/priority&gt;
+            &lt;/messageHeader&gt;
+         </pre>
+      </documentation>
+    </part>
+  </message>
+
+  <portType name="MessageSubscriberService">
+	  <documentation>
+		  Standard operation definitions for a message subscriber service.
+	  </documentation>
+		
+    <operation name="receiveMessage">
+      <documentation>
+        This operation is used to receive a message that the service had
+        subscribed to using a topic specification.  This operation does
+        not require a response.
+      </documentation>
+      
+      <input message="tns:ReceiveMessage">
+         <documentation>
+           The input for this operation is the published topic and the message that
+           was sent by the Notification Service.
+        </documentation>
+      </input>
+    </operation>
+  </portType>
+
+  <binding name="MessageSubscriberServiceBinding" type="tns:MessageSubscriberService">
+	  <documentation>
+		  SOAP binding definition for a message subscriber service.
+	  </documentation>
+		
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		
+    <operation name="receiveMessage">
+      <documentation>
+        Receive a topic and message published through the Notification Service.
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/MessageSubscriberService"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/MessageSubscriberService" use="encoded"/>
+        <soap:header message="tns:MessageHeader" namespace="http://tempuri.org/MessageSubscriberService" part="MessageHeader" use="literal"/>
+      </input>
+    </operation>
+  </binding>
+</definitions>

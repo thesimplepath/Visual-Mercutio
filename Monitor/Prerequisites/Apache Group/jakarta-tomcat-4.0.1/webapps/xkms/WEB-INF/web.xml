@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"  "http://java.sun.com/j2ee/dtds/web-app_2.2.dtd">
+  <web-app>
+  <display-name>XKMS</display-name>
+
+  <servlet>
+    <servlet-name>Axis</servlet-name>
+    <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Axis</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+
+  <mime-mapping>
+    <extension>wsdl</extension>
+    <mime-type>text/xml</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>xsd</extension>
+    <mime-type>text/xml</mime-type>
+  </mime-mapping>
+</web-app>

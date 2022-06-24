@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:impl="http://DefaultNamespace-impl" xmlns:intf="http://DefaultNamespace" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <types>
+  <schema targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="pfile">
+    <sequence>
+     <element name="doc" nillable="true" type="xsd:string"/>
+     <element name="crc" type="xsd:int"/>
+     <element name="len" type="xsd:int"/>
+     <element name="fname" nillable="true" type="xsd:string"/>
+     <element name="folder" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="el0" nillable="true" type="intf:pfile"/>
+  </schema>
+ </types>
+
+   <wsdl:message name="pubGetFileResponse">
+
+      <wsdl:part name="pubGetFileResult" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="pubGetFileRequest">
+
+      <wsdl:part name="arg0" type="xsd:int"/>
+
+      <wsdl:part name="arg1" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="pubFileResponse">
+
+      <wsdl:part name="pubFileResult" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="pubHasChangedResponse">
+
+      <wsdl:part name="pubHasChangedResult" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="pubFileRequest">
+
+      <wsdl:part name="arg0" type="intf:pfile"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="pubHasChangedRequest">
+
+      <wsdl:part name="arg0" type="xsd:int"/>
+
+      <wsdl:part name="arg1" type="xsd:string"/>
+
+      <wsdl:part name="arg2" type="xsd:int"/>
+
+      <wsdl:part name="arg3" type="xsd:int"/>
+
+      <wsdl:part name="arg4" type="xsd:int"/>
+
+      <wsdl:part name="arg5" type="xsd:int"/>
+
+      <wsdl:part name="arg6" type="xsd:int"/>
+
+      <wsdl:part name="arg7" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PssFileSysPortType">
+
+      <wsdl:operation name="pubFile">
+
+         <wsdl:input message="intf:pubFileRequest"/>
+
+         <wsdl:output message="intf:pubFileResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pubHasChanged">
+
+         <wsdl:input message="intf:pubHasChangedRequest"/>
+
+         <wsdl:output message="intf:pubHasChangedResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pubGetFile">
+
+         <wsdl:input message="intf:pubGetFileRequest"/>
+
+         <wsdl:output message="intf:pubGetFileResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PssFileSysSoapBinding" type="intf:PssFileSysPortType">
+
+      <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="pubFile">
+
+         <soap:operation soapAction="" style="rpc"/>
+
+         <wsdl:input>
+
+            <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output>
+
+            <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pubHasChanged">
+
+         <soap:operation soapAction="" style="rpc"/>
+
+         <wsdl:input>
+
+            <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output>
+
+            <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pubGetFile">
+
+         <soap:operation soapAction="" style="rpc"/>
+
+         <wsdl:input>
+
+            <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output>
+
+            <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PssFileSys">
+
+      <wsdl:port binding="intf:PssFileSysSoapBinding" name="PssFileSysPort">
+
+         <soap:address/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

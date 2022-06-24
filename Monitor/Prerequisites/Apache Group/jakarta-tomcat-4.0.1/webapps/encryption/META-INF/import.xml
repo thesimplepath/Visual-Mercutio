@@ -1,0 +1,22 @@
+<import>
+  <copy name="axis.jar" fromdir="axis/lib" todir="lib"/>
+  <copy name="clutil.jar" fromdir="axis/lib" todir="lib"/>
+  <copy name="log4j-core.jar" fromdir="axis/lib" todir="lib"/>
+  <copy name="wsdl4j.jar" fromdir="wsdl4j/lib" todir="lib"/>
+  <copy name="wstkProperties.xml" fromdir="lib" todir="classes"/>
+  <copy name="xerces.jar" fromdir="lib" todir="lib"/>
+
+  <copy name="wstk.jar" fromdir="lib" todir="lib"/>
+  <copy name="ibmjsse.jar" fromdir="lib" todir="lib"/>
+  <copy name="ibmpkcs.jar" fromdir="lib" todir="lib"/>
+  <copy name="javapki.jar" fromdir="lib" todir="lib"/>
+  <copy name="javapkisamples.jar" fromdir="lib" todir="lib"/>
+  <copy name="ldapjdk.jar" fromdir="lib" todir="lib"/>
+  <copy name="soapenc.jar" fromdir="lib" todir="lib"/>
+  <copy name="sse.jar" fromdir="lib" todir="lib"/>
+  <copy name="xalan.jar" fromdir="lib" todir="lib"/>
+  <copy name="xenc.jar" fromdir="lib" todir="lib"/>
+  <copy name="xss4j.jar" fromdir="lib" todir="lib"/>
+
+  <copy name="server-config.wsdd" fromdir="axis" todir="."/>
+</import>

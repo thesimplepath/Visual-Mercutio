@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">BidBuy Interoperability Sample</H2>
+<P align="center">Apache SOAP specific code authored by: Matthew
+J. Duftler &lt;<A href="mailto:duftler@us.ibm.com">duftler@us.ibm.com</A>&gt;</P>
+<P>This directory contains code which implements
+a scenario developed for the SOAP interoperability
+face-to-face summarized <A href="http://www.apache.org/~dug/interop_f2f_04_19_01.html">here</A>. This README only describes how to run the
+sample, and doesn't attempt to repeat any
+of the information contained within that
+summary or in its associated links. You can
+also look at sample <A href="registry.wsdl">Registry</A> and <A href="bidbuy.wsdl">BidBuy</A> service WSDL files.<BR>
+<I>
+Note: This sample was completed long after
+the interop session had occurred, and efforts
+have been made to increase compatibility
+significantly.</I></P>
+<H3>Acknowledgements</H3>
+<P>Thanks go out to Doug Davis and the rest
+of the Axis development team for use of their
+BidBuy Client GUI as well as for detailed
+help on developing the sample.</P>
+<H3>Client-Side</H3>
+<P>The client portion of this scenario utilizes
+a GUI created by the developers who are working
+on the <A href="http://xml.apache.org/axis">Axis</A> project. The GUI, whose fully-qualified
+class name is samples.bidbuy.client.rfq,
+delegates all of its actions to an implementation
+of a samples.bidbuy.client.vInterface. For
+Apache SOAP, this interface is implemented
+in the samples.bidbuy.client.ApacheSoapV2
+class.</P>
+<P>To run the client, make sure that you classpath
+contains soap.jar and the directory which
+contains the samples directory, then enter:</P>
+<PRE>java samples.bidbuy.client.rfq</PRE>
+<P>Note: There is a file called reg.lst, located
+in the samples/bidbuy/client/registry directory,
+which contains information about all known
+registries of BidBuy services. The client
+will look in the start-up directory for this
+file, and if it can't find it, you will have
+to manually add the registries via the GUI.</P>
+<H3>Server-Side</H3>
+<P>The server portion of this scenario consists
+of 2 services: one that implements the RequestForQuote
+services, and another that implements the
+Buy and SimpleBuy services.</P>
+<P>To deploy the first service, change to the
+samples/bidbuy/server/registry directory
+and enter:</P>
+<PRE>java.org.apache.soap.server.ServiceManagerClient http://<B><I>soap-server</I></B>:<B><I>soap-port</I></B>/soap/servlet/rpcrouter deploy DeploymentDescriptor.xml</PRE>
+<P>where <B><I>soap-server</I></B> and <B><I>soap-port</I></B> are the hostname and port of the machine
+where the rpcrouter servlet is deployed.
+Alternatively, you could run deploy.bat from
+that directory, but it assumes localhost:8080.</P>
+<P>To deploy the second service, change to the
+samples/bidbuy/server/bid directory and enter:</P>
+<PRE>java org.apache.soap.server.ServiceManagerClient http://<B><I>soap-server</I></B>:<B><I>soap-port</I></B>/soap/servlet/rpcrouter deploy DeploymentDescriptor.xml</PRE>
+<P>where <B><I>soap-server</I></B> and <B><I>soap-port</I></B> are the hostname and port of the machine
+where the rpcrouter servlet is deployed.
+Again, you could alternatively run deploy.bat
+from that directory, but it assumes localhost:8080.</P>
+<H3>Trying it Out</H3>
+<P>You can use the client and the server to
+talk to one another on the same machine,
+you can use the client to talk to other servers,
+or you can have other clients talk to your
+server. (There is nothing that binds the
+client and the server together, the are just
+bundled that way for convenience.)<BR>
+<I>
+Note: The servers listed in reg.lst are scattered
+all over the Internet, so you will need external
+access to be able to use them.</I></P>
+<P>To try out the sample, start up the client
+as indicated above and select a Registration
+Server from the list at the top of the GUI,
+or enter a new one. (Even if there is a name
+in the box at the top, you will need to pick
+one from the list.) The client will then
+talk to the selected registry and after a
+couple of seconds will retrieve the list
+of registered BidBuy services. Place a checkmark
+next to one or more of the services that
+you wish to talk to, and click on the <I>Request RFQs</I> button. Assuming that everything is working
+correctly, you should get numbers appearing
+in the Quote column of the services which
+you selected after a second or two. You can
+then select one of the services that you
+received a quote from and issue a <I>Simple Buy</I> or <I>PO Buy</I> request to it using the bottom portion of
+the interface.</P>
+<P>If you want to add or remove BidBuy services
+from the list on your client, you can use
+the <I>Add Bid Server</I> and <I>Remove Server</I> buttons, respectively.</P>
+<P><B>WARNING: The <I>Register Server</I> and <I>Unregister Server</I> buttons will modify the actual registries,
+so unless you are putting up a server for
+other people to test against, or unless you
+are acting against your own registry, DO
+NOT USE THEM!</B></P>
+<P>Last updated 5/24/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</BODY>
+</HTML>

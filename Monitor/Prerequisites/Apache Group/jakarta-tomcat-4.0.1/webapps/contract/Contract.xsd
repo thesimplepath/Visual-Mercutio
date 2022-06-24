@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://tempuri.org/xsd/2001/12/Contract/"
+  xmlns:contract="http://tempuri.org/xsd/2001/12/Contract/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+  
+  <!--
+    EXAMPLES OF CONTRACTS WHICH ARE USED WITHIN A CONTRACT LIST:
+    
+  <providercontract contractkey="10f5311c-010f-45bd-911c-26ee25a208f1"
+                    identitykey="0007a191-2709-48cb-b26d-043d210d1ef6"
+                    paymentkey="CCpayment"
+                    start="2001-01-01 00:00:00.0"
+                    end="2002-12-31 23:59:59.999999999"
+                    identitysig=""
+                    identitycert=""
+                    providersig=""
+                    providercert=""
+                    uuid="http://tempuri.org/live-stock-quotes"
+                    description="Basic Stock Quote Service">
+    <ratingkey key="rating1" />
+  </providercontract>
+  
+  <usagecontract    contractkey="18d437ae-0109-4e57-9e88-170b0f3f2568"
+                    identitykey="2b8b2539-3f19-4ff5-896c-3b3a0cb91f8b"
+                    paymentkey="CCpayment"
+                    start="2001-01-01 00:00:00.0"
+                    end="2002-12-31 23:59:59.999999999"
+                    identitysig=""
+                    identitycert=""
+                    providersig=""
+                    providercert=""
+                    providercontractkey="10f5311c-010f-45bd-911c-26ee25a208f1"
+                    ratingkey="rating1">
+  </usagecontract>
+  -->
+  
+  <complexType name="RatingKey">
+    <attribute name="key" type="xsd:string"/>
+  </complexType>
+  
+  <complexType name="Contract" abstract="true">
+    <attribute name="contractkey"  type="xsd:string"/>
+    <attribute name="identitykey"  type="xsd:string"/>
+    <attribute name="paymentkey"   type="xsd:string"/>
+    <attribute name="start"        type="xsd:string"/>
+    <attribute name="end"          type="xsd:string"/>
+    <attribute name="identitysig"  type="xsd:string"/>
+    <attribute name="identitycert" type="xsd:string"/>
+    <attribute name="providersig"  type="xsd:string"/>
+    <attribute name="providercert" type="xsd:string"/>
+  </complexType>
+  
+  <element name="providercontract" type="contract:ProviderContract"/>
+  <complexType name="ProviderContract">
+    <complexContent>
+      <extension base="contract:Contract">
+        <sequence>
+          <element   name="ratingkey"   type="contract:RatingKey"/>
+        </sequence>
+        <attribute name="uuid"        type="xsd:string"/>
+        <attribute name="description" type="xsd:string"/>
+      </extension>
+    </complexContent>
+  </complexType>
+  
+  <element name="usagecontract" type="contract:UsageContract"/>
+  <complexType name="UsageContract">
+    <complexContent>
+      <extension base="contract:Contract">
+        <attribute name="providercontractkey" type="xsd:string"/>
+        <attribute name="ratingkey"           type="xsd:string"/>
+      </extension>
+    </complexContent>
+  </complexType>
+          
+</schema>

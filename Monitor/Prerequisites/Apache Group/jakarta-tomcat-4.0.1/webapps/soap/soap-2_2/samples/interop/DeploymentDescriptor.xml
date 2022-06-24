@@ -1,0 +1,43 @@
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="http://soapinterop.org/">
+  <isd:provider type="java"
+                scope="Application"
+                methods="nop echoInteger echoString echoFloat echoStruct echoIntegerArray echoFloatArray echoStringArray echoStructArray">
+    <isd:java class="samples.interop.EchoTestService" static="false"/>
+  </isd:provider>
+
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+
+  <isd:mappings>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputInteger"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.IntDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputFloat"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.FloatDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputString"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputStruct"
+             xml2JavaClassName="samples.interop.DataSerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputIntegerArray"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.ArraySerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputFloatArray"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.ArraySerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputStringArray"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.ArraySerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:inputStructArray"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.ArraySerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="http://soapinterop.org/xsd" qname="x:SOAPStruct"
+             javaType="samples.interop.Data"
+             java2XMLClassName="samples.interop.DataSerializer"
+             xml2JavaClassName="samples.interop.DataSerializer"/>
+  </isd:mappings>    
+</isd:service>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://tempuri.org/xsd/2001/10/Data/XPath"
+           xmlns:ds="http://tempuri.org/xsd/2001/10/Data"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:xpath="http://tempuri.org/xsd/2001/10/Data/XPath"
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified">
+
+	<!--=====              XPath - WS-Data          =====-->
+
+  <xs:import namespace="http://tempuri.org/xsd/2001/10/Data" 
+             schemaLocation="DataService.xsd"/>
+
+	<!--=====                 Data Types                =====-->
+
+  <xs:attributeGroup name="OccursGroup">
+    <xs:attribute name="minOccurs" use="optional" default="0">
+      <xs:simpleType>
+        <xs:restriction base="xs:nonNegativeInteger">
+          <xs:enumeration value="0"/>
+          <xs:enumeration value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="maxOccurs" type="xpath:MaxOccursType" use="optional" default="1"/>
+  </xs:attributeGroup>
+
+  <xs:simpleType name="MaxOccursType" final="#all">
+    <xs:union memberTypes="xs:nonNegativeInteger">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="unbounded"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+
+  <xs:element name="documentTarget" substitutionGroup="ds:AbstractTarget">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ds:TargetType">
+          <xs:attribute name="location" type="xs:anyURI" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+	<!--=====                 Operations                =====-->
+
+  <xs:element name="rename" type="ds:DSOperationType" substitutionGroup="ds:AbstractDSOperation"/>
+
+  <xs:element name="move" type="ds:DSOperationType" substitutionGroup="ds:AbstractDSOperation"/>
+
+	<!--=====                  Modifiers                 =====-->
+
+  <xs:element name="into" substitutionGroup="ds:AbstractStatementModifier">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:normalizedString">
+          <xs:attributeGroup ref="xpath:OccursGroup"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="before" substitutionGroup="ds:AbstractStatementModifier">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:normalizedString">
+          <xs:attributeGroup ref="xpath:OccursGroup"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="after" substitutionGroup="ds:AbstractStatementModifier">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:normalizedString">
+          <xs:attributeGroup ref="xpath:OccursGroup"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="what" substitutionGroup="ds:AbstractStatementModifier">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:normalizedString">
+          <xs:attributeGroup ref="xpath:OccursGroup"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="with" substitutionGroup="ds:AbstractStatementModifier">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:any namespace="##other" processContents="lax"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

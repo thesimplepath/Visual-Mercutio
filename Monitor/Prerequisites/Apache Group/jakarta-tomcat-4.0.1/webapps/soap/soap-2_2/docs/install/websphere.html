@@ -1,0 +1,124 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>WebSphere SOAP Installation Instructions</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Apache-SOAP Version 2.2: Installing the Server-Side
+Under IBM WebSphere Advanced Edition</h1>
+
+<p>These instructions assume:</p>
+<ul>
+<li>WinNT 4.0 (similar for other platforms)</li>
+<li>WebSphere Advanced Edition 3.5 with fix pack 2</li>
+</ul>
+
+<p><strong>IMPORTANT</strong>: WebSphere comes with an XML parser 
+(WebSphere\AppServer\lib\xml4j.jar)
+which uses DOM level 1 interfaces. Even if you put the Xerces 1.1.2's (or later)
+xerces.jar in your classpath, the wrong interfaces are found by
+any Java code running in WebSphere because 
+WebSphere puts the user's classpath at the end. So,
+you must edit WebSphere\AppServer\bin\admin.config file and 
+put xerces.jar at the BEGINNING of the 
+<code>com.ibm.ejs.sm.adminserver.classpath=</code> variable
+</p>
+
+<p>To set up a SOAP server:</p
+<ol>
+   <li>From the WebSphere menu off of the NT Start menu:
+   <ol>
+      <li>Launch "Start Admin Server" and wait until it completes.</li>
+      <li>Launch "Administrator's Console".</li>
+   </ol>
+   </li>
+
+   <li>From the Administrator's Console:
+   <ol> 
+      <li>Console/Tasks/Create Application Server</li>
+      <ol> 
+         <li>Select Web Applications:  You do not need Enterprise Beans for SOAP.  Next</li>
+         <li>Application Server Properties: set the 
+            Application Server Name to "SOAP" (or another name of your choice).  Next</li>
+         <li>Application Server Start Option: "Do not start the server automatically after creating it".
+             Next</li>
+         <li>Node Selection: select your node.  Next</li>
+         <li>Select Virtual Host: select "default_host".  Next</li>
+         <li>Servlet Engine Properties: take the defaults.  Next</li>
+         <li>Web Application Properties: Set the Web Application Web Path to "/soap".
+             You can use any web path you like, including the WebSphere default of 
+             "/webapp/SoapWebApp", but using "/soap" keeps the URLs simple and is used 
+             in these instructions.  Next</li>
+         <li>Specify System Servlets: Enable JSP 1.0 or 1.1.</li>
+         <li>Finish to create the SOAP Application Server.</li>
+      </ol>
+      </li>
+      <li>In the tree view, open the SoapWebApp, and select the Advanced tab:
+      <ol> 
+         <li>Change Document Root to "C:\install-dir\soap-2_2\webapps\soap".</li>
+         <li>Set the classpath to
+         <ul>
+            <li><code>C:\XML\apache\soap-2_2\lib\soap.jar</code></li>
+            <li><code>C:\XML\apache\soap-2_2</code></li>
+            <li><code>C:\tools\BSF\lib\bsf.jar</code></li>
+            <li><code>C:\tools\BSF\lib\bsfengines.jar</code></li>
+            <li><code>C:\Tools\Rhino\js.jar</code></li>
+            <li><code>C:\Tools\Rhino\jstools.jar</code></li>
+            <li><code>your SOAP server classes, if any</code></li>
+         </ul>
+      </ol>
+      </li>
+      <li>Console/Tasks/Add a Servlet</li>
+      <ol> 
+         <li>Servlet: "No".  Do not start the server automatically after creating it.  Next</li>
+         <li>Servlet: Select the "SOAPWebApp" web app to contain the servlet.  Next</li>
+         <li>Servlet: Select "create user-defined servlet".  Next</li>
+         <li>Servlet: 
+         <ol>
+            <li>Set the servlet name to "rpcrouter"</li> 
+            <li>Set the servlet class name to "org.apache.soap.server.http.RPCRouterServlet".</li> 
+            <li>Add "default_host/soap/servlet/rpcrouter" to the servlet web path list.
+                Note that you only need to type "servlet/rpcrouter" on the dialog that pops up.</li>
+         </ol>
+         Next</li>
+         <li>Servlet: Take the defaults.</li>
+         <li>Finish</li>
+      </ol>
+      </li>
+
+      <li>Start the "SOAP" Server</li>
+   </ol>
+   </li>
+
+</ol>
+
+<p>You can list and deploy SOAP services by pointing a browser to</p>
+
+<blockquote>
+    <pre><a href="http://localhost:80/soap/admin">http://hostname:port/soap/admin</a></pre>
+</blockquote>
+
+<p>Alternatively, you can deploy services by setting up your classpath and using</p>
+
+<blockquote>
+<pre>
+java org.apache.soap.server.ServiceManagerClient 
+     http://hostname:port/soap/servlet/rpcrouter 
+     deploy &lt;DeploymentDescriptor.xml&gt;
+</pre>
+</blockquote>
+
+<p>See the User's Guide for details on the aministration tool. 
+The SOAP end-point for invoking services on this server is:</p>
+
+<blockquote>
+    <pre><a href="http://localhost/soap/servlet/rpcrouter">http://hostname:port/soap/servlet/rpcrouter</a></pre>
+</blockquote>
+
+<p>Happy SOAP-ing!</p>
+</body>
+</html>

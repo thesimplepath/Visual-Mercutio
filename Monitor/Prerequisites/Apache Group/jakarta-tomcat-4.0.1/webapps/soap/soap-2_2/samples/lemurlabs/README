@@ -1,0 +1,18 @@
+This directory contains samples to interface with sample web services
+from lemurlabs. The services are listed and described on:
+
+        http://www.lemurlabs.com/projects/soap/
+
+
+Fortune: get a fortune cookie
+========
+Service description URL: http://www.lemurlabs.com/projects/soap/fortune/
+
+Usage: java samples.lemurlabs.Fortune
+                [-u service-URL]
+                [-p <HTTP proxy hostname:port>]
+                [-l | dictionary]
+-l lists available dictionaries.
+Specifying a dictionary will fetch a random cookie from that dictionary.
+Not specifying a dictionary will fetch a random cookie from a random
+dictionary.

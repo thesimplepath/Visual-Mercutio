@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://www.getquote.com/StockQuoteService-interface" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="StockQuoteService" targetNamespace="http://www.getquote.com/StockQuoteService">
+
+  <import location="http://localhost:8080/stockquote/sqs-interface.wsdl" namespace="http://www.getquote.com/StockQuoteService-interface"/>
+
+  <service name="StockQuoteService">
+    <documentation>Stock Quote Service</documentation>
+
+    <port binding="interface:StockQuoteServiceBinding" name="Demo">
+      <soap:address location="http://localhost:8080/stockquote/services/StockQuoteService"/>
+    </port>
+  </service>
+</definitions>

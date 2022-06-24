@@ -1,0 +1,14 @@
+<import>
+  <copy name="axis.jar" fromdir="axis/lib" todir="lib"/>
+  <copy name="log4j-core.jar" fromdir="axis/lib" todir="lib"/>
+
+  <copy name="CmpCrmf.jar" fromdir="lib" todir="lib"/>
+  <copy name="ibmjsse.jar" fromdir="lib" todir="lib"/>
+  <copy name="javapki.jar" fromdir="lib" todir="lib"/>
+  <copy name="logEnglish.jar" fromdir="lib" todir="lib"/>
+  <copy name="xalan.jar" fromdir="lib" todir="lib"/>
+  <copy name="xerces.jar" fromdir="lib" todir="lib"/>
+  <copy name="xss4j.jar" fromdir="lib" todir="lib"/>
+
+  <copy name="server-config.wsdd" fromdir="axis" todir="."/>
+</import>

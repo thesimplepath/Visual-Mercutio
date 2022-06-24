@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:identity="http://tempuri.org/xsd/2001/12/Identity/" xmlns:identity-service="http://tempuri.org/xsd/2001/12/IdentityService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/wsdl/2001/12/IdentityService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IdentityService" targetNamespace="http://tempuri.org/wsdl/2001/12/IdentityService/">
+
+  <documentation>
+		The Identity Service provides access to identity information for a user.  Basic 
+		user identity information is collected and supplied by this service, including name, 
+		address, userid, password, etc.  This information may expand to include more information
+		in the future. The service requestor may save, delete and get identity information using 
+		the Identity Service. The identity key provided by the Identity Service is used by the 
+		Contract Service to determine what users have valid contracts with a service provider.
+
+		<pre>
+    @version 1.0
+    @author Peter Brittenham
+    @author Alfredo da Silva
+    @author David Melgar
+		</pre>
+  </documentation>
+
+  <import location="IdentityService.xsd" namespace="http://tempuri.org/xsd/2001/12/IdentityService/">
+    <documentation>
+      This import element references the XML schema document that contains the definition for the 
+      XML-based identity service APIs.  This XML schema document only contains the API definitions.
+      The data definitions are in the Identity.xsd file.
+    </documentation>
+  </import>
+
+  <import location="Identity.xsd" namespace="http://tempuri.org/xsd/2001/12/Identity/">
+    <documentation>
+      This import element references the XML schema document that contains the definition for the identity data entities.
+    </documentation>
+  </import>
+
+  <message name="voidResponse">
+    <documentation>
+    Generic message used to represent messages without any return type.
+    </documentation>
+  </message>
+
+  <message name="deleteIdentity">
+    <documentation>
+      A delete identity request consists of an identity key.
+    </documentation>
+    <part name="deleteIdentity" type="identity-service:deleteIdentityType">
+      <documentation>
+        Complex type. Defined in IdentityService.xsd.
+        Contains an identityKey of type string.
+      </documentation>
+    </part>
+  </message>
+    
+  <message name="changeIdentity">
+    <documentation>
+      A change identity request consists of an identity model.
+    </documentation>
+    <part name="changeIdentity" type="identity-service:changeIdentityType">
+      <documentation>
+        Complex type. Defined in Identity.xsd. Represents information about
+        a user identity. Including items such as: <ul>
+        <li>identityKey</li>
+        <li>userid</li>
+        <li>password</li>
+        <li>name</li>
+        <li>company</li>
+        <li>address</li>
+        <li>zipcode</li>
+        <li>place</li>
+        <li>state</li>
+        <li>country</li>
+        <li>email</li>
+        <li>curr</li>
+        <li>dn Distinguished name</li>
+        <li>ca Certificate authority</li>
+        </ul>
+      </documentation>
+    </part>
+  </message>
+
+  <message name="createIdentity">
+    <documentation>
+      A create identity request consists of an identity model.
+    </documentation>
+    <part name="createIdentity" type="identity-service:createIdentityType">
+      <documentation>
+        Complex type. Defined in Identity.xsd. Represents information about
+        a user identity. Including items such as: <ul>
+        <li>identityKey</li>
+        <li>userid</li>
+        <li>password</li>
+        <li>name</li>
+        <li>company</li>
+        <li>address</li>
+        <li>zipcode</li>
+        <li>place</li>
+        <li>state</li>
+        <li>country</li>
+        <li>email</li>
+        <li>curr</li>
+        <li>dn Distinguished name</li>
+        <li>ca Certificate authority</li>
+        </ul>
+      </documentation>
+    </part>
+  </message>
+    
+  <message name="identityKey">
+    <documentation>
+      A single identity key. 
+    </documentation>
+    <part name="identityKey" type="xsd:string">
+      <documentation>
+        Represents an identityKey.
+      </documentation>
+    </part> 
+  </message>
+
+  <message name="getIdentityDetails">
+    <documentation>
+      A get identity details request consists of an identity key.
+    </documentation>
+    <part name="getIdentityDetails" type="identity-service:getIdentityDetailsType">
+      <documentation>
+        Complex type. Defined in IdentityService.xsd. Contains userid
+        and password of the requested identity key. String.
+      </documentation>
+    </part>
+  </message>
+    
+  <message name="identityModel">
+    <documentation>
+      A single identity Model. 
+    </documentation>
+    <part name="identityModel" type="identity:identityModelType">
+      <documentation>
+        Complex type. Defined in IdentityService.xsd.
+        Contains an identityKey of type string.
+      </documentation>
+    </part>    
+  </message>
+
+  <message name="getIdentityKey">
+    <documentation>
+      A get identity key for userid and password request consists of an userid and a password.
+    </documentation>
+    <part name="userid" type="xsd:string">
+      <documentation>
+        Userid of the requested identity key.
+      </documentation>
+    </part>
+    <part name="password" type="xsd:string">
+      <documentation>
+        Password of the requested identity key.
+      </documentation>
+    </part>    
+  </message>
+
+  <message name="getIdentityKeyForUseridAndPassword">
+    <documentation>
+      A get identity key for userid and password request consists of an userid and a password.
+    </documentation>
+    <part name="userid" type="xsd:string">
+      <documentation>
+        Userid of the requested identity key.
+      </documentation>
+    </part>
+    <part name="password" type="xsd:string">
+      <documentation>
+        Password of the requested identity key.
+      </documentation>
+    </part> 
+  </message>
+    
+  <message name="getIdentitykeyForDNAndCA">
+    <documentation>
+      A get identity key for distinguished name and certification authority request consists of an distinguishedName and a certificationAuthority.
+    </documentation>
+    <part name="getIdentitykeyForDNAndCA" type="identity-service:getIdentitykeyForDNAndCAType">
+      <documentation>
+        Complex type. Defined in IdentityService.xsd. Contains a distinguishedName
+        and certificatAuthority. Both are strings.
+      </documentation>
+    </part>
+  </message>
+    
+  <message name="voidRequest">
+    <documentation>
+    Generic message used to represent messages without any input parameters.
+    </documentation>
+  </message>
+
+  <message name="arrayOfString">
+    <documentation>
+      An array of string objects.
+    </documentation>
+    <part name="arrayOfString" type="identity:arrayOfString">
+      <documentation>
+        Complex type. Defined in Identity.xsd. Represents an array of strings.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="arrayOfIdentityModel">
+    <documentation>
+      An array of IdentityModel objects.
+    </documentation>
+    <part name="arrayOfIdentityModel" type="identity:arrayOfIdentityModel">
+      <documentation>
+        Complex type. Defined in Identity.xsd. Represents an array of identity models.
+        An identity model represents information about a user identity.
+        Including items such as: <ul>
+        <li>identityKey</li>
+        <li>userid</li>
+        <li>password</li>
+        <li>name</li>
+        <li>company</li>
+        <li>address</li>
+        <li>zipcode</li>
+        <li>place</li>
+        <li>state</li>
+        <li>country</li>
+        <li>email</li>
+        <li>curr</li>
+        <li>dn Distinguished name</li>
+        <li>ca Certificate authority</li>
+        </ul>
+
+      </documentation>
+    </part>
+  </message>
+
+					
+  <portType name="IdentityService">
+    <documentation>
+      The standard operation definitions for an identity service.
+    </documentation>
+
+    <operation name="deleteIdentity">
+      <documentation>
+        The deleteIdentity operation will remove the identify associated
+        with the specified identity key.
+      </documentation>
+      <input message="tns:deleteIdentity"/>
+      <output message="tns:voidResponse"/>
+    </operation>
+
+    <operation name="changeIdentity">
+      <documentation>
+        The changeIdentity operation will change the current identify. 
+      </documentation>
+      <input message="tns:changeIdentity"/>
+      <output message="tns:voidResponse"/>
+    </operation>
+
+    <operation name="createIdentity">
+      <documentation>
+        The createIdentity operation will create a new identify. 
+      </documentation>
+      <input message="tns:createIdentity"/>
+      <output message="tns:identityKey"/>
+    </operation>
+
+    <operation name="getIdentityDetails">
+      <documentation>
+        The getIdentityDetails operation will return details about a particular
+identity.
+      </documentation>
+      <input message="tns:getIdentityDetails"/>
+      <output message="tns:identityModel"/>
+    </operation>
+
+    <operation name="getIdentityKeyForUseridAndPassword">
+      <documentation>
+        The getIdentityKeyForUseridAndPassword operation will return an identity key.
+      </documentation>
+      <input message="tns:getIdentityKeyForUseridAndPassword"/>
+      <output message="tns:identityKey"/>
+    </operation>
+
+    <operation name="getIdentityKey">
+      <documentation>
+        The getIdentityKey operation will return an identity key.
+      </documentation>
+      <input message="tns:getIdentityKey"/>
+      <output message="tns:identityKey"/>
+    </operation>
+
+    <operation name="getIdentitykeyForDNAndCA">
+      <documentation>
+        The getIdentitykeyForDNAndCA operation will return an identity key.
+      </documentation>
+      <input message="tns:getIdentitykeyForDNAndCA"/>
+      <output message="tns:identityKey"/>
+    </operation>
+
+    <operation name="getIdentityList">
+      <documentation>
+        The getIdentityList operation will return an array of identity keys.
+      </documentation>
+      <input message="tns:voidRequest"/>
+      <output message="tns:arrayOfString"/>
+    </operation>
+
+    <operation name="getIdentityListDetailed">
+      <documentation>
+        The getIdentityListDetailed operation will return an array of identity models.
+      </documentation>
+      <input message="tns:voidRequest"/>
+      <output message="tns:arrayOfIdentityModel"/>
+    </operation>
+
+  </portType>
+
+  <binding name="IdentityServiceBinding" type="tns:IdentityService">
+    <documentation>
+      The SOAP binding definitions for an identity service.
+    </documentation>
+
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		
+    <operation name="deleteIdentity">
+      <documentation>
+         Delete an identity.
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="changeIdentity">
+      <documentation>
+         Change/replace an identity.
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="createIdentity">
+      <documentation>
+         Create an identity.
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getIdentityDetails">
+      <documentation>
+         Get detailed information about an identity.
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getIdentityKey">
+      <documentation>
+         Get the key for an identity given the userid and password. 
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getIdentityKeyForUseridAndPassword">
+      <documentation>
+         Get the key for an identity given the userid and password. 
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getIdentitykeyForDNAndCA">
+      <documentation>
+         Get the key for an identity given the distinguished name and certificate
+         authority. 
+      </documentation>    
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getIdentityList">
+      <documentation>
+         Get a list of all the available identities.
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+    
+    <operation name="getIdentityListDetailed">
+      <documentation>
+         Get a list of all the available identity models.
+      </documentation>
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/" use="encoded"/>
+      </output>
+    </operation>
+
+  </binding>
+</definitions>

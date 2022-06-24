@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE weblogic-ejb-jar PUBLIC '-//BEA Systems, Inc.//DTD WebLogic 5.1.0 EJB//EN' 'http://www.bea.com/servers/wls510/dtd/weblogic-ejb-jar.dtd'>
+
+<weblogic-ejb-jar>
+    <weblogic-enterprise-bean>
+      <ejb-name>helloServiceSession</ejb-name>
+      <caching-descriptor>
+        <max-beans-in-free-pool>100</max-beans-in-free-pool>
+      </caching-descriptor>
+      <jndi-name>samples.HelloService</jndi-name>
+    </weblogic-enterprise-bean>
+  </weblogic-ejb-jar>

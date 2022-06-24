@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://tempuri.org/xsd/2001/12/MeteringService-types/"
+        xmlns:metering="http://tempuri.org/xsd/2001/12/MeteringService-types/"
+        xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+      <complexType name="metereventext">
+       <sequence>
+        <element name="type"                  type="xsd:int"/>
+        <element name="evttime"               type="xsd:string"/>
+        <element name="providerContractkey"   type="xsd:string"/>
+        <element name="requesterIdentitykey"  type="xsd:string"/>
+        <element name="sessionkey"            type="xsd:string"/>
+        <element name="recordedTime"          type="xsd:string"/>
+        <element name="dataTimestamp"         type="xsd:string"/>
+        <element name="dataInteger"           type="xsd:int"/>
+       </sequence>
+      </complexType>
+
+      <complexType name="ArrayOfMeterEventsExt">
+        <complexContent mixed="false">
+          <restriction base="soapenc:Array">
+            <attribute n1:arrayType="meterevtext[]" ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" />
+          </restriction>
+        </complexContent>
+      </complexType>
+
+      <complexType name="reportConditions">
+       <sequence>
+        <element name="column"    type="xsd:string"/>
+        <element name="operator"  type="xsd:string"/>
+        <element name="value"     type="xsd:string"/>
+       </sequence>
+      </complexType>
+
+      <complexType name="ArrayOfReportConditions">
+        <complexContent mixed="false">
+          <restriction base="soapenc:Array">
+            <attribute n1:arrayType="reportConditions[]" ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" />
+          </restriction>
+        </complexContent>
+      </complexType>
+
+</schema>

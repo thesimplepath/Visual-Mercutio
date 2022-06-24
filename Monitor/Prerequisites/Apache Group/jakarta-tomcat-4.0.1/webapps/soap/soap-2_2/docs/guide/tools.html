@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Tools</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+
+<h2 align="center">Tools</h2>
+<P>As we all know, there are times when things
+never seem to work correctly. While we can't
+eliminate all problems, we can help you to
+determine their cause; at least for problems
+with Apache SOAP.</P>
+<P>In order to debug problems with Apache SOAP,
+it's often useful to see the SOAP messages
+which are travelling back and forth between
+the client and the server. To make that task
+a little easier, we have included a TCP tunnel/monitor
+tool to help debug SOAP (as well as other
+TCP-based protocols.) The GUI-based tool
+will open a port on the machine upon which
+it was started, and will tunnel traffic to
+a remote host/port combination. Inside the
+tool's GUI, you will see two windows which
+show data originating from the client and
+from the server. </P>
+<P>To start the tool up, execute:</P>
+<PRE>java org.apache.soap.util.net.TcpTunnelGui <B><I>listenport</I></B> <B><I>tunnelhost</I></B> <B><I>tunnelport</I></B></PRE>
+<P>where <B><I>listenport</I></B> is the port that you want the tool to listen
+on (i.e. the port which you will send your
+SOAP messages to), <B><I>tunnelhost</I></B> is the hostname of the SOAP server, and
+<B><I>tunnelport</I></B> is the port that the SOAP server is running
+on.</P>
+<P>Last updated 5/20/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+</html>

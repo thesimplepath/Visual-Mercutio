@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://tempuri.org/wsdl/2001/12/NotificationService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NotificationService" targetNamespace="http://tempuri.org/wsdl/2001/12/NotificationService-impl/">
+
+  <import location="http://localhost:8080/notification/NotificationService.wsdl" namespace="http://tempuri.org/wsdl/2001/12/NotificationService/"/>
+
+  <service name="NotificationService">
+    <documentation>Notification Service</documentation>
+
+    <port binding="interface:NotificationServiceBinding" name="Demo">
+      <soap:address location="http://localhost:8080/notification/services/NotificationService"/>
+    </port>
+  </service>
+</definitions>

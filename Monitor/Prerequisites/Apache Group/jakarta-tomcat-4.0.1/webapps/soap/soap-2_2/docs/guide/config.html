@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Configuring the Apache SOAP Server</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+
+<h2 align="center">Configuring the Apache SOAP Server</h2>
+
+<h3> Configuration File </h3>
+<P>Configuration information may be passed to
+the Apache SOAP server via an XML-based configuration
+file. By default, the server will look in
+the current working directory for a file
+called &quot;soap.xml.&quot; If a different
+file is to be used, the default path and
+name can be overridden by specifying a parameter
+that the transport listener (i.e. RPCRouterServlet)
+passes along to the SOAP server during startup.
+(All transport listeners should call the
+org.apache.soap.server.ServiceManager's static
+method setConfigFileName(...) before invoking
+the SOAP server.)<BR>
+</P>
+<P>For HTTP transport listeners, this option
+can be set in the configuration file for
+the rpcrouter servlet by adding an init-parameter
+called <I>ConfigFile</I> to the servlet's deployment properties file.
+A servlet deployment properties file with
+this modification would look like the following:<BR>
+</P>
+<pre>      &lt;servlet&gt;
+        &lt;servlet-name&gt;rpcrouter&lt;/servlet-name&gt;
+        &lt;display-name&gt;Apache-SOAP RPC Router&lt;/display-name&gt;
+        &lt;description&gt;no description&lt;/description&gt;
+        &lt;servlet-class&gt;
+            org.apache.soap.server.http.RPCRouterServlet
+        &lt;/servlet-class&gt;
+        &lt;init-param&gt;
+          &lt;param-name&gt;faultListener&lt;/param-name&gt;
+          &lt;param-value&gt;org.apache.soap.server.DOMFaultListener&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+          &lt;param-name&gt;ConfigFile&lt;/param-name&gt;
+          &lt;param-value&gt;<B><I>config-file</I></B>&lt;/param-value&gt;
+        &lt;/init-param&gt;
+      &lt;/servlet&gt;</pre>
+<P>where <B><I>config-file</I></B> is the path (either fully qualified or relative)
+and filename of the SOAP configuration file.<BR>
+</P>
+<p><A name="configfile"></A>There is only one setting currently allowed
+in the SOAP server configuration file: information
+about the <a href="#pcm">pluggable configuration manager</a>. A SOAP server configuration file which
+sets information about the provider would
+look like the following:<pre>      &lt;!-- Sample Apache SOAP Server Configuration File --&gt;
+      &lt;soapServer&gt;
+        &lt;!-- This section defines the same thing you get if you don't --&gt;
+        &lt;!-- specify anything at all - aka the default                --&gt;
+        &lt;configManager value=&quot;<B><I>config-manager</I></B>&quot; &gt;
+          [&lt;option name=&quot;<B><I>option-name</I></B>&quot; value=&quot;<B><I>option-value</I></B>&quot;/&gt;]*
+        &lt;/configManager&gt;
+      &lt;/soapServer&gt;</pre>
+<P>where <B><I>config-manager</I></B> is the fully qualified class name of the
+configuration manager which should be used
+by the SOAP server. Additional information
+may be passed to the configuration manager
+through the use of &lt;option&gt; elements,
+with <B><I>option-name</I></B> and<B><I> option-value</I></B> acting as key/value pairs.</P>
+<HR>
+<h3><A name="pcm"/>Pluggable Configuration Manager</A></h3>
+<P>The SOAP configuration manager is responsible
+for saving the current list of deployed services
+to persistent storage, so that when the SOAP
+server is stopped and restarted, the services
+will not need to be redeployed.<BR>
+<BR>
+If no configuration manager is specified
+in the server configuration file, or if the
+specified configuration manager cannot be
+loaded, then the org.apache.soap.server.DefaultConfigManager
+is used. The DefaultConfigManger saves the
+list of deployed services to a file called
+DeployedServices.ds in the current working
+directory (or in the file specified by the
+&lt;option&gt; element in the server configuration
+file,) each time that a service is deployed
+or undeployed. Upon initialization, the DefaultConfigManager
+will attempt to read from this file to restore
+its state information.</P>
+<P>If you want to override the path and/or filename
+of the deployed services storage file for
+the DefaultConfigManager, then your SOAP
+server configuration file would look like
+the following:</P>
+<PRE> &lt;!-- Apache SOAP Server Configuration File --&gt;
+ &lt;soapServer&gt;
+   &lt;configManager value=&quot;org.apache.soap.server.DefaultConfigManager&quot;&gt;
+     &lt;option name=&quot;filename&quot; value=&quot;<B><I>config-file</I></B>&quot;/&gt;
+   &lt;/configManager&gt;
+ &lt;/soapServer&gt;</PRE>
+<P>where <B><I>config-file</I></B> is the path (either fully qualified or relative)
+and filename of the deployed services storage
+file.</P>
+<H4>Creating a Configuration Manager</H4>
+<P>If you find that the DefaultConfigurationManager
+is not meeting your needs, then you should
+create your own and use that one instead.
+All configuration managers must implement
+the org.apache.soap.util.ConfigManager interface,
+which is as follows:</P>
+<PRE>public interface ConfigManager
+{
+  public void      setContext(ServletContext context);
+  public void      setOptions( Hashtable options ) throws SOAPException ;
+  public void      init() throws SOAPException ;
+  public void      deploy( DeploymentDescriptor dd ) throws SOAPException ;
+  public String[]  list() throws SOAPException ;
+
+  public DeploymentDescriptor undeploy( String id ) throws SOAPException ;
+  public DeploymentDescriptor query(String id) throws SOAPException ;
+}</PRE>
+<p>
+    <b>The methods:</b>
+    <blockquote><p>
+    <code><b>void setOptions(Hashtable options) throws SOAPException</b></code><br>
+This method will be called with a Hashtable
+of name/value pairs that were specified via
+the &lt;option&gt; elements in the configuration
+file. In the event of an error a SOAPException
+should be thrown.</blockquote><p>
+
+    <blockquote><p>
+    <code><b>void init() throws SOAPException</b></code><br>
+This method will be called after the ConfigManager
+object is created, allowing any initialization
+to be done. For example, reading the DeployedServices.ds
+file. In the event of an error a SOAPException
+should be thrown.</blockquote><p>
+
+    <blockquote><p>
+    <code><b>void deploy(DeploymentDescriptor dd) throws SOAPException</b></code><br>
+    This method will be called when a service is deployed (or redeployed).
+    The service should be added to whatever internal data structure is used
+    to store the list of services and that list should be persisted so
+    that if the server is stopped the list can be reloaded upon startup.
+    In the event of an error a SOAPException should be thrown.
+    </blockquote><blockquote><p>
+    <code><b>String[] list() throws SOAPException</b></code><br>
+    This method should return an array of String objects, one for each 
+    deployed service.  In the event of an error a SOAPException should be
+    thrown.
+    </blockquote><p>
+
+    <blockquote><p>
+    <code><b>DeploymentDescriptor undeploy(String id) throws SOAPException</b></code><br>
+    This method will be called when a service is undeployed.  The should should
+    be removed from whatever internal data structure is used to store the list
+    and that list should be persisted so that if the server is stopped the 
+    list can be reloaded upon startup.  In the event of an error a 
+    SOAPException should be thrown.
+    </blockquote><p>
+
+    <blockquote><p>
+    <code><b>DeploymentDescriptor query(String id)throws SOAPException</b></code><br>
+    This method should return a DeploymentDescriptor object representing the
+    metadata about a service.  In the event of an error a SOAPException 
+    should be thrown.
+    </blockquote><p>As is noted in the section <A href="#configfile">above</A>, your configuration manager can be passed
+parameters via &lt;option&gt; elements in
+the SOAP server configuration file.
+<P>Last updated 5/20/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+
+
+</HTML>

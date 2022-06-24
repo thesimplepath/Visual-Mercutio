@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Apache SOAP &amp; Tomcat Installation Instructions</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Apache-SOAP Version 2.2: Installing the Server Side
+Under Apache Tomcat v3.2</h1>
+
+<h2>Getting Tomcat ready:</h2>
+
+<p><strong>IMPORTANT</strong>: Tomcat comes with an XML parser (lib/xml.jar)
+which has the DOM level 1 interfaces. Even if you put Xerces 1.1.2's
+xerces.jar in your classpath, the wrong interfaces are found by
+any Java code running in Tomcat because the shell script / batch
+file that runs Tomcat puts the user's classpath at the end. So,
+you must edit tomcat.sh or tomcat.bat in the bin/ directory and
+put xerces.jar at the BEGINNING of the classpath the script
+builds. </p>
+
+<p>If you run startup.bat, then line 105 (or there abouts) of <b>tomcat.bat</b>
+should look like this (line 69 for Tomcat 3.2.1) :</p>
+
+<blockquote>
+    <code>set CP=path-to-xerces\xerces.jar;%CLASSPATH%;%CP%</code>
+</blockquote>
+
+<p>If you run startup.sh, add the following line to  <b>tomcat.sh</b> after
+line 113 (or there abouts), so long as it's before the export line:</p>
+
+<blockquote>
+    <code>CLASSPATH=path-to-xerces/xerces.jar:${CLASSPATH}</code>
+</blockquote>
+
+<h2>Deploying Apache-SOAP on Tomcat:</h2>
+
+<p>There are two different ways to actually deploy Apache SOAP on Tomcat:</p>
+
+<h3>Method 1: Deploying the web archive.</h3>
+
+<p>The Apache SOAP distribution includes a web archive at <code>/soap-2_2/webapps/soap.war</code>.
+Simply drop this web archive into Tomcat's webapps directory (i.e. <code>%tomcat_home%/webapps</code>).
+If you deploy Apache SOAP into Tomcat in this manner, you will not need to have anything from the
+<code>/soap-2_2</code> directory on your server's classpath (the relevant items are included in the web
+archive). Note: If you copy the web archive into the webapps directory while Tomcat is running, Tomcat
+will need to be restarted before the Apache SOAP web application can be accessed.</p>
+
+<p>Keep in mind that if you want to replace the deployed Apache SOAP web application with a
+later version that you will probably have to shut the server down, remove the expanded
+<code>%tomcat_home%/webapps/soap</code> directory, and replace the
+<code>%tomcat_home%/webapps/soap.war</code> file with the newer one.</p>
+
+<h3>Method 2: Creating a new &lt;Context&gt; in Tomcat's server.xml file.</h3>
+
+<p>Simply add a new <code>&lt;Context&gt;</code> element into
+<code>%tomcat_home%/conf/server.xml</code>:</p>
+
+<code>&lt;Context path=&quot;/soap&quot; docBase=&quot;path-to-apache-soap/webapps/soap&quot;
+         debug=&quot;1&quot; reloadable=&quot;true&quot;&gt;
+&lt;/Context&gt;</code>
+
+<p>Now, make sure you have the jar files from the lib directory
+of this distribution on your classpath and start up tomcat. Also,
+you will want to have on the classpath any of your code that you
+want to deploy as services (e.g. <code>/soap-2_2</code> if you want to deploy
+any of the included samples).</p>
+
+<h2>Accessing the Apache SOAP context:</h2>
+
+<p>You should be able to deploy services by pointing a browser to</p>
+
+<blockquote>
+    <code><a href="http://hostname:port/soap">http://hostname:port/soap</a></code>
+</blockquote>
+
+<p>where hostname is the host on which Tomcat is running and port
+is the port. See the User's Guide for details on the
+administration tool. The SOAP end-point for invoking services on
+this server is:</p>
+
+<blockquote>
+    <code><a href="http://hostname:port/soap/servlet/rpcrouter">http://hostname:port/soap/servlet/rpcrouter</a></code>
+</blockquote>
+
+<p>Happy SOAP-ing!</p>
+</body>
+</html>

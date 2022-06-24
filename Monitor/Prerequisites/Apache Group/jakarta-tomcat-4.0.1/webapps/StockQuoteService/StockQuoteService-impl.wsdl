@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://tempuri.org/StockQuoteService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="StockQuoteService" targetNamespace="http://tempuri.org/StockQuoteService-impl">
+
+  <import location="http://localhost:8080/StockQuoteService/StockQuoteService.wsdl" namespace="http://tempuri.org/StockQuoteService"/>
+
+  <service name="StockQuoteService">
+    <documentation>Stock Quote Service</documentation>
+
+    <port binding="interface:StockQuoteServiceBinding" name="Demo">
+      <soap:address location="http://localhost:8080/StockQuoteService/services/StockQuoteService"/>
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Writing Message Clients</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Writing Message Clients</H2>
+<P>Writing clients to access SOAP message-oriented
+services requires that you interact with
+a lower-level set of Apache SOAP APIs than
+you would otherwise have to if you were writing
+a SOAP RPC-based client. However, message-oriented
+services provide you with a finer grain of
+control over what is actually being transmitted
+over SOAP. (In fact, the RPC mechanism is
+built on type of this message-oriented layer.)</P>
+<P>The basic steps for creating a client which
+interacts with a SOAP message-oriented service
+are as follows:</P>
+<OL>
+  <LI><B>Obtain the interface description of the SOAP
+  service, so that you know what the format
+  of the SOAP message should be (i.e. what
+  headers it should have, what the body should
+  look like, etc.) as well as the type of
+  message
+  exchange which will take place.</B><BR>
+  You can either look at a WSDL file (or
+  at
+  some other interface definition format)
+  for
+  the service, or directly at its implementation.
+  Unlike SOAP RPC, there is no predefined
+  message
+  exchange pattern defined, so a message-oriented
+  service may return a SOAP envelope, may
+  return
+  another type of data, or may return nothing
+  at all.<BR>
+  <BR>
+  
+  <LI><B>Construct an org.apache.soap.Envelope which
+  contains the information that the SOAP
+  service
+  requires.</B><BR>
+  At the very least, you will need to add
+  an
+  org.apache.soap.Body object to the envelope.
+  You can optionally add headers as well.<BR>
+  <I>
+  Note: When the message is received on the
+  server, it will be routed to the proper
+  service
+  by looking at the XML Namespace associated
+  with the first child element in the body,
+  and then to the correct method/function
+  within
+  that service via the name of the element
+  itself.</I><BR>
+  <BR>
+  
+  <LI><B>Create an org.apache.soap.messaging.Message
+  object.</B><BR>
+  If you need to <A href="attachments.html">add MIME attachments</A> to your message, then you can use addBodyPart(...)
+  method to do so. If you need to send your
+  message over a transport other than HTTP,
+  then you will need to invoke the setSOAPTransport(...)
+  method.<BR>
+  <BR>
+  <LI><B>Invoke the send(...) method on the Message
+  object, providing the URL of the endpoint
+  which is providing the service (i.e. http://localhost/soap/servlet/messagerouter),
+  the actionURI, and your envelope.</B><BR>
+  <BR>
+  
+  <LI><B>If your service is returning data, and assuming
+  that the transport supports two-way interaction,
+  then you need to retrieve the SOAPTransport
+  object from the Message object (assuming
+  that you don't already have a handle to it)
+  by using the getSOAPTransport() method. You
+  can then invoke the receive() method on the
+  SOAPTransport object to retrieve the returned
+  data.</B><BR>
+  If the service is returning a SOAP Envelope,
+  then you can parse the XML and pass the root
+  element to org.apache.soap.Envelope's unmarshall(..)
+  method to allow it to reconstruct a SOAP
+  Envelope object for you. If an error has
+  occurred on the server during the processing
+  of the request, the server will automatically
+  send back a SOAP Envelope with a SOAP Fault
+  in the body describing what went wrong.
+  
+</OL>
+<P>Last updated 5/20/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</BODY>
+</HTML>

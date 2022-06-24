@@ -1,0 +1,170 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Writing RPC Clients</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2 align="center">Writing RPC Clients</h2>
+
+<p>Writing clients to access SOAP RPC-based services is fairly
+straightforward. Apache SOAP provides a client-side API to assist
+in the construction of the SOAP request, and then to assist in
+interpreting the response. Conceptually, RPC-based service are
+relatively easy to understand, because the concepts involved are
+those which may be found in any procedural based language. To
+invoke a procedure, you need the name of the procedure and the
+parameters to pass to it. When the invocation completes, you need
+to extract any response information from the return value and/or
+output parameters.</p>
+
+<p>The basic steps for creating a client which interacts with a
+SOAP RPC-based service are as follows:</p>
+
+<ol>
+    <li><b>Obtain the interface description of the SOAP service,
+        so that you know what the signatures of the methods that
+        you wish to invoke are.</b><br>
+        You can either look at a WSDL file (or at some other
+        interface definition format) for the service, or directly
+        at its implementation.<br>
+        <br>
+        </li>
+    <li><b>Make sure that there are serializers registered for
+        all parameters which you will be sending, and
+        deserializers for all information which you will be
+        receiving back.</b><br>
+        Parameters must be serialized into/deserialized from XML
+        before they can be transmitted/received, and so Apache
+        SOAP provides a number of pre-defined serializers/deserializers
+        which are available. If you need to transmit or receive a
+        type which has not been registered, then you will need to
+        <a href="serializer.html">write and register your own
+        serializer/deserializer</a>.<br>
+        <br>
+        </li>
+    <li><b>Create the org.apache.soap.rpc.RPCMessage.Call object.</b><br>
+        The Apache SOAP Call object is the main interface to the
+        underlying SOAP RPC code<br>
+        .<br>
+        </li>
+    <li><b>Set the target URI into the Call object using the
+        setTargetObjectURI(...) method.</b><br>
+        Pass in the URN that the service used to identify itself
+        in its <a href="deploy.html">deployment descriptor</a>.<br>
+        <br>
+        </li>
+    <li><b>Set the method name that you wish to invoke into the
+        Call object using the setMethodName(...) method.</b><br>
+        This must be one of the methods exposed by the service
+        which is identified by the URN given in the previous step.<br>
+        <br>
+        </li>
+    <li><b>Create any Parameter objects necessary for the RPC
+        call and set them into the Call object using the
+        setParams(...) method.</b><br>
+        Make sure that you have the same number of parameters
+        with the same types as the service is expecting. Also
+        make sure that there are registered serializers/deserializers
+        for the objects which you will be transmitting/receiving.
+        (See step 2.)<br>
+        <br>
+        </li>
+    <li><b>Execute the Call object's invoke(...) method and
+        capture the Response object which is returned from invoke(...).</b><br>
+        The invoke(...) method takes in two parameters, the first
+        is a URL which identifies the endpoint at which the
+        service resides (i.e. http://localhost/soap/servlet/rpcrouter)
+        and the second is the value to be placed into the
+        SOAPAction header. Remember that the RPC call is
+        synchronous, and so may take a while to complete.<br>
+        <br>
+        </li>
+    <li><b>Check the Response object to see if a fault was
+        generated using the generatedFault() method.</b><br>
+        <br>
+        </li>
+    <li><b>If a fault was returned, retrieve it using the
+        getFault(...) method, otherwise extract any result or
+        returned parameters using the getReturnValue() and
+        getParams() methods respectively.</b><br>
+        While most of the providers will only return a result, if
+        you have created your own provider (or obtained one from
+        somewhere else,) it may also return output parameters.<br>
+        </li>
+</ol>
+
+<p>Because SOAP is a supposed to be a standard, you should be
+able to use the clients that you create with the Apache SOAP API
+to access services running on a different implementations, and
+vice versa.<a name="RPC over SMTP"></a></p>
+
+<h3>Special Note: Interacting with Stateful Services</h3>
+
+<p>Services may be stateful - that is, once an interaction is
+started with a service, a series of calls to it may interdepend
+on each other. Apache SOAP supports authoring stateful services (via
+<a href="deploy.html">deploying with a lifecycle of session</a>)
+as well as calling stateful services. The currently, session
+support is only available for HTTP.</p>
+
+<p>HTTP session maintenance is on by default. What that means is
+that if a service you are talking to via HTTP sets the
+appropriate HTTP cookies to maintain the session, those will be
+copied and stored in the call object used to invoke the service.
+If another call is made using the same call object, then that
+cookie will be sent back to the server, thus maintaining the
+session. Thus, all you have to do is ensure that a single
+instance of a call object is used across all the calls that you
+wish to make over the same HTTP session.</p>
+
+<p>The &quot;addressbook2&quot; sample shows an example of this
+in action.</p>
+
+<h3>Special Note: Using RPC over SMTP</h3>
+
+<p>To do RPC over SMTP in Apache-SOAP a certain amount of email
+infrastructure needs to be available. Namely, you need an SMTP
+server, a POP3 server and an email address that you can use to be
+the equivalent of the server-side HTTP router. That is, all SOAP
+RPC calls are sent to a specific address which then processes the
+request somehow and send the result to the sender. To avoid
+duplicating the server-side infrastructure, we have implemented
+the SMTP server-side as a bridge that receives mail sent to the
+SOAP router email address via POP3, posts the SOAP envelope to an
+existing HTTP SOAP infrastructure and sends the response back to
+the sender of the email request via SMTP.</p>
+
+<p>On the client side, the application sends the SOAP request via
+SMTP to the SOAP router email address indicating the address that
+the response should be sent to. Then, it starts polling a POP3
+server to see whether the response has arrived. When it does, the
+envelope is parsed and the response is extracted. We are using a <a
+href="http://www.alphaworks.ibm.com/aw.nsf/frame?ReadForm&amp;/ab.nsf/techmain/AD8820E9114E5B4488256723000AC87A">POP3
+bean from alphaWorks</a> for the POP3 stuff and that bean does
+not support selective downloading of email. As a result, the
+current implementation relies on the &quot;next message&quot;
+arriving to the client's reply address to be the message
+containing the response to the request. The implication is that
+current implementation does not allow you to make multiple RPC
+calls using the same reply address at the same time.</p>
+
+<p><strong>NOTE</strong>: We <em>strongly</em> recommend against
+using your own email address for testing RPC over SMTP. There are
+many free POP3 email providers on the Web (such as <a
+href="http://www.mailandnews.com">www.mailandnews.com</a>, for
+example) if you are unable to set up multiple POP3 accounts
+yourself.</p>
+
+<p>For more information on using Apache SOAP and SMTP please see <a
+href="http://xml.apache.org/soap/faq/faq_chawke_smtp.html">Jonathan
+Chawke's FAQ</a>.</p>
+
+<p>Last updated 5/19/2001 by Bill Nagy &lt;<a
+href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</a>&gt;.</p>
+</body>
+</html>

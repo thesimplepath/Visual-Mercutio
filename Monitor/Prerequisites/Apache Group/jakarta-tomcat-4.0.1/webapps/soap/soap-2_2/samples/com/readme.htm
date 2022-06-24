@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V5.0.1 for Windows">
+<title>IBM Web Services Toolkit - COM Pluggable Provider</title>
+<LINK rel="stylesheet" href="../../doc/ait.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#800080" alink="#FF00FF">
+<center>
+<h1>COM Pluggable Provider<a NAME="Top"></a></h1>
+</center>
+<hr>
+<H2><A name="Overview">Overview</A></H2>
+
+<p>Apache COM Pluggable
+Provider is a demonstration of
+accessing Window's component object model
+(COM) through SOAP services on Windows 2000
+or Windows NT&reg; servers.&nbsp; The COM
+Pluggable provider is an Apache SOAP pluggable
+provider that takes in coming requests to
+the SOAP server and delegates them to a COM
+object.&nbsp; 
+
+<HR> 
+<h2>Installation</h2>
+<h3>Enabling the COM Pluggable provider</h3>
+<ol>
+<li>Install your webserver and include the SOAP jar file in the classpath <Br/>
+</li>
+<li>
+If the Web application server is started from the command line update the PATH environment variable
+to include the full path of the Apache soap lib directory  where <b>Comprovider.dll</b> is located.
+Or, you can update PATH environment variable for all programs on the system by going into
+the system's Control Panel-&gt;System-&gt;Advanced-&gt;System variables and update the path.
+<i>This provides the Web Application Server and the COM Pluggable provider access
+to the COMProvider.dll file located in the lib directory. 
+</i>
+</li>
+</ol>
+<h3>Configuring the COM Pluggable Provider</h3>
+<p>The COM pluggable provider is configured by Apache SOAP
+deployment descriptors.<span style="mso-spacerun: yes">&nbsp; </span>The
+following is an example of the deployment descriptor provided with the adder
+demo in the Apache install directory <b>java\samples\com\server\adder.xml</b>:</p>
+<table border=1 cellspacing=0 cellpadding=0 bgcolor="#cccccc">
+ <tr>
+      <td valign=top style='border:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>&nbsp;1.&nbsp;&nbsp;&nbsp;&lt;!--Apache SOAP
+      specific deployment descriptor (ie loads
+      this service into Apache SOAP.--&gt;<br>
+      &nbsp;2.&nbsp;&nbsp;&nbsp;&lt;isd:service
+      xmlns:isd=http://xml.apache.org/xml-soap/deployment<br>
+      &nbsp;3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isd:serviceid=&quot;urn:adder-COM&quot;&gt;<br>
+      &nbsp;4.&nbsp;&nbsp;&nbsp;&lt;isd:provider
+      type=&quot;org.apache.soap.providers.com.RPCProvider&quot;<br>
+      &nbsp;5.&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      scope=&quot;Application&quot;<br>
+      &nbsp;6.&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      methods=&quot;add&quot;&gt;<br>
+      &nbsp;7.&nbsp;&nbsp;&nbsp; &lt;isd:java class=&quot;required
+      not needed for COMProvider&quot;/&gt;<br>
+      &nbsp;8.&nbsp;&nbsp;&nbsp; &lt;isd:option
+      key=&quot;progid&quot; value=&quot;Apacheadder.adder&quot;
+      /&gt;<br>
+      &nbsp;9.&nbsp;&nbsp;&nbsp; &lt;isd:option
+      key=&quot;threadmodel&quot; value=&quot;MULTITHREADED&quot;
+      /&gt;<br>
+      10.&nbsp;&nbsp;&nbsp; &lt;/isd:provider&gt;<br>
+      11.&nbsp;&nbsp;&nbsp; &lt;isd:faultListener&gt;org.apache.soap.server.DOMFaultListener&lt;/isd:faultListener&gt;<br>
+      12.&nbsp;&nbsp;&nbsp; &lt;/isd:service&gt;<br>
+      
+    </tr>
+</table><P></P>
+
+The following is a description of the lines in the above deployment descriptor that are relevant to deploying COM services:
+<!-- <in 30> -->
+<ul compact="compact">
+<li>In line 3 the value of the <b>isd:serviceid</b> attribute is the urn that the client requesting the SOAP service will use
+to identify the object associated with this deployment.  It
+can be anything as long as it is unique in this SOAP server (i.e. it is not used in any other deployment descriptor).
+<li>Line 4 should always be the same for all services that are to use the COM pluggable provider support. This Java class file is located it soap.jar file.
+<li>In line 6 the <b>methods</b> attributes values are the names of the methods the client can invoke on object associated
+with this deployment .  This is a list of valid methods each seperated by a <b>space</b>.  To access COM object properties this should be the property name
+with either "<b>set_</b>" or "<b>get_</b>" prefixed on the property name. With regard to this prefix, case is significant to
+identify it as accessing a property as opposed to a method.  For most COM object, methods or properties names are not case significant.
+<li>In line 8 the value of the <b>value</b> attribute is the ProgId or CLSID of the COM object that is to service SOAP deployment.
+If this is a CLSID it should be enclosed in braces("<b>{</b>&lt;<i>CLSID</i>&gt;<b>}</b>)".
+<li>In line 9 the COM threading model is specified which can be
+   <b>MULTITHREADED</b>, <b>APARTMENTTHREADED</b>, <b>SINGLEAPARTMENTTHREADED</b>.
+   If not specified is set to MULTITHREADED.
+</ul>
+</IN>
+<p>Once the deployment descriptor is written it can be used to
+configure the Apache SOAP server as follows:<br>
+<table border=1 cellspacing=0 cellpadding=0 bgcolor="#cccccc">
+<tr>
+<td>
+<code>java&nbsp;&nbsp;org.apache.soap.server.ServiceManagerClient&nbsp;&nbsp;
+http://&lt;<i>hostname</i>&gt;:&lt;<i>port</i>&gt;/soap/servlet/rpcrouter&nbsp;&nbsp;deploy&nbsp;&nbsp;&lt;<i>Full path of the deployment descriptor file</i>&gt;
+</code>
+</td>
+<tr>
+</table>
+<h2>Demo</h2>
+<h3>Overview</h3>
+<p>Two COM implemented SOAP services are provided. They are located in <b>java\samples\com</b>.
+In this directory there are two subdirectories: client and server. With the following files:
+</p>
+<h3>Files</h3>
+<table border=1 cellspacing=0 cellpadding=0 frame=below rules=none >
+ <tr>
+<td valign=top>client\Addit.class</td>
+<td>The Java class file requesting the adder SOAP service.</td>
+</tr>
+ <tr>
+<td valign=top>client\Addit.java</td>
+<td>The Java source code for the above file.</td>
+</tr>
+ <tr>
+<td valign=top>client\Sum.class</td>
+<td>The Java class file requesting the totals SOAP service.</td>
+</tr>
+ <tr>
+<td valign=top>client\Sum.java</td>
+<td>The Java source code for the above file.</td>
+</tr>
+ <tr>
+<td valign=top>server\adder.cls</td>
+<td>The Visual Basic&reg; class source code for the adder service.  It can be viewed with a text editor, but should be updated only by Microsoft Visual Basic&reg;.</td>
+</tr>
+ <tr>
+<td valign=top>server\adder.xml</td>
+<td>Apache SOAP Deployment descriptor for the adder service.</td>
+</tr>
+ <tr>
+<td valign=top>server\rundemo.bat</td>
+<td>A batch file making it easier to set up the server side of the demo.</td>
+</tr>
+ <tr>
+<td valign=top>server\APACHEADDER.dll</td>
+<td>The COM object implementing the adder service.</td>
+</tr>
+ <tr>
+<td valign=top>server\APACHEADDER.vbp</td>
+<td>The Visual Basic&reg; project file for the adder service. Double clicking on this will bring up Microsoft Visual Basic&reg; if installed to work on the adder service.</td>
+</tr>
+ <tr>
+<td valign=top>server\APACHEADDER.vbw</td>
+<td>The Visual Basic&reg; workspace file for the adder service.</td>
+</tr>
+ <tr>
+<td valign=top>server\APACHESUM.dll</td>
+<td>The COM object implementing the totals service.</td>
+</tr>
+ <tr>
+<td valign=top>server\APACHESUM.vbp</td>
+<td>The Visual Basic&reg; project file for the totals service. Double clicking on this will bring up Microsoft Visual Basic&reg; if installed to work on the totals service.</td>
+</tr>
+ <tr>
+<td valign=top>server\APACHESUM.vbw</td>
+<td>The Visual Basic&reg; workspace file for the totals service.</td>
+</tr>
+ <tr>
+<td valign=top>server\totals.cls</td>
+<td>The Visual Basic&reg; class source code for the totals service.  It can be viewed with a text editor, but should be updated only by Microsoft Visual Basic&reg;.</td>
+</tr>
+ <tr>
+<td valign=top>server\sum.xml</td>
+<td>Apache SOAP Deployment descriptor for the totals service.</td>
+</tr>
+</table>
+<br>
+<i><b>NOTE:</b>&nbsp;&nbsp;For COM objects developed by Visual Basic&reg; the ProgId is the project name and the class name separated by a period.</i>
+<h3>Running</h3>
+<ul>
+<li>Start the Web application server you previously configured. Remember the path must include Comprovider.dll</li>
+<li>Create a new command line window.</li> 
+<li>Go to the server directory and run:&nbsp;&nbsp;&nbsp;<code><b>rundemo deploy</b></code><br>  
+  <i>This will issue for you the deploy commands for the deployment descriptors of the demo.
+  Note it does one other thing:  COM needs to know where the implementation of
+  your objects are and this is the reason behind the lines REGSVR32 /s  &lt;com object's dll&gt; name.  This only needs to happen once unless you move or rename the dll.
+You should be now able to issue SOAP requests to the two SOAP services just deployed.</i>
+<li>Change to the comprovider client directory.
+<li>Run for example:&nbsp;&nbsp;&nbsp;<CODE><b>java samples.com.client.Addit 3 4</b></CODE><br>
+<i> It takes any two integers as arguments and sends it over to the server to be added and returns the result.</i>
+<li>For the second SOAP service run:&nbsp;&nbsp;&nbsp;<code><b>java samples.com.client.Sum 4</b></code><br>
+ <i>This will send the integer over to be added to a total that's kept in a file.  You can continue to issue this request to add to the total.</i>
+<li>To set it to a specific value, run:&nbsp;&nbsp;&nbsp;<code><b>java samples.com.client.Sum -set 9</b></code><br>
+<i>To set it to 9 for example.</i>
+<li>To stop the services go back to the server directory and run:&nbsp;&nbsp;&nbsp;<code><b>rundemo undeploy</b></code>.
+</ul>
+
+<h2>Limitations</h2>
+The following limitations are known at this time:
+<ul>
+<li>Only primitive types are supported as arguments and return types with the exception of <b>Currency</b> and <b>Date</b> primitives. 
+<li>There is no framework provided to support statefull COM objects.
+<li>Only returned objects and <b>IN</b> parameters are supported.
+</ul>
+<hr>
+Visual Basic&reg; is a Trademark of Microsoft
+Corporation.<br>
+Windows NT&reg; is a Registered Trademark
+of Microsoft Corporation.<br>
+Microsoft&reg; and Windows&reg; are registered
+trademarks of Microsoft Corporation.<br>
+</BODY>
+
+</HTML>
+

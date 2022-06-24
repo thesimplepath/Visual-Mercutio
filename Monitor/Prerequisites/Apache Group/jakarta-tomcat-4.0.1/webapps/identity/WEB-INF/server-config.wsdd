@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler"/>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <handler name="RPCDispatcher" type="java:org.apache.axis.providers.java.RPCProvider"/>
+ <handler name="MsgDispatcher" type="java:org.apache.axis.providers.java.MsgProvider"/>
+ <handler name="notification" type="java:com.ibm.wstk.axis.handlers.NotificationHandler">
+  <parameter name="wsdlURL" value="/notification/NotificationService-impl.wsdl"/>
+  <parameter name="namespace" value="http://tempuri.org/wsdl/2001/12/NotificationService-impl/"/>
+  <parameter name="serviceName" value="NotificationService"/>
+  <parameter name="portName" value="Demo"/>
+ </handler>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="methodName" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="true"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+ </service>
+ <service name="IdentityService" provider="java:RPC">
+  <requestFlow>
+   <handler type="notification"/>
+  </requestFlow>
+  <responseFlow>
+   <handler type="notification"/>
+  </responseFlow>
+  <parameter name="methodName" value="*"/>
+  <parameter name="className" value="com.ibm.services.identity.IdentityService"/>
+ </service>
+ <service name="JWSProcessor" provider="Handler">
+  <parameter name="handlerClass" value="org.apache.axis.handlers.JWSProcessor"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+ </transport>
+ <beanMapping languageSpecificType="java:com.ibm.services.identity.models.IdentityModel" qname="ns1:identityModel" xmlns:ns1="http://tempuri.org/xsd/2001/12/Identity/"/>
+</deployment>

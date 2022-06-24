@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://www.attachment.com/AttachmentService-interface" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AttachmentService" targetNamespace="http://www.attachment.com/AttachmentService">
+
+  <import location="http://localhost:8080/attachments/attachments-interface.wsdl" namespace="http://www.attachment.com/AttachmentService-interface"/>
+
+  <service name="AttachmentService">
+    <documentation>Attachment Service</documentation>
+
+    <port binding="interface:RPCAttachmentServiceBinding" name="RPC">
+      <soap:address location="http://localhost:8080/attachments/services/AttachmentServiceRPC"/>
+    </port>
+
+    <port binding="interface:MessageAttachmentServiceBinding" name="Message">
+      <soap:address location="http://localhost:8080/attachments/services/AttachmentServiceMessage"/>
+    </port>
+  </service>
+</definitions>

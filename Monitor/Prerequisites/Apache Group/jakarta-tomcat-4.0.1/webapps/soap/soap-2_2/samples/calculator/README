@@ -1,0 +1,50 @@
+
+Service:
+-------
+To install this service on an Apache-SOAP listener, you need to make
+the samples.calculator package available on the Apache-SOAP listener's
+classpath. Then deploy this service by filling in the deployment
+template using the info in the deployment descriptor in this
+directory or by using the service manager client:
+  java org.apache.soap.server.ServiceManagerClient routerURL deploy dd.xml
+where routerURL is the URL of the SOAP RPC router and dd.xml is the
+name of the deployment descriptor file.
+  java org.apache.soap.server.ServiceManagerClient \
+    http://localhost:8080/soap/servlet/rpcrouter deploy DeploymentDescriptor.xml
+
+
+Client:
+------
+
+java samples.calculator.Calculator routerURL
+
+
+Additional Server Classpath Requirements:
+----------------------------------------
+
+  bsf.jar from the Bean Scripting Framework:
+    http://oss.software.ibm.com/developerworks/opensource/bsf/
+  js.jar from Rhino - JavaScript for Java:
+    http://www.mozilla.org/rhino/
+
+Additional Client Classpath Requirements:
+----------------------------------------
+
+  ../..
+
+
+Explanation:
+-----------
+
+This is a simple calculator client that talks to a Calculator service
+implemented in JavaScript. Enter a number by clicking the buttons, 
+click the operation, enter another number and click the next
+operation to apply the first. Now enter another number etc. ..
+
+
+
+Sample Usage:
+------------
+
+java samples.calculator.Calculator \
+  http://localhost:2020/soap/servlet/rpcrouter

@@ -1,0 +1,76 @@
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="http://www.soapinterop.org/Bid">
+  <isd:provider type="java"
+                scope="Application"
+                methods="RequestForQuote SimpleBuy Buy Ping">
+    <isd:java class="samples.bidbuy.server.bid.BidService" static="false"/>
+  </isd:provider>
+
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+
+  <isd:mappings>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="http://www.soapinterop.org/Bid" qname="x:PurchaseOrder"
+             javaType="samples.bidbuy.shared.PurchaseOrder"
+             xml2JavaClassName="samples.bidbuy.shared.PurchaseOrderSerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="http://www.soapinterop.org/Bid" qname="x:Address"
+             javaType="samples.bidbuy.shared.Address"
+             xml2JavaClassName="samples.bidbuy.shared.AddressSerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="http://www.soapinterop.org/Bid" qname="x:LineItem"
+             javaType="samples.bidbuy.shared.LineItem"
+             xml2JavaClassName="samples.bidbuy.shared.LineItemSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:Address"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:ProductName"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:Quantity"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.IntDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:PO"
+     xml2JavaClassName="samples.bidbuy.shared.PurchaseOrderSerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:poID"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:createDate"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.DateSerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:shipTo"
+     xml2JavaClassName="samples.bidbuy.shared.AddressSerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:billTo"
+     xml2JavaClassName="samples.bidbuy.shared.AddressSerializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:items"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.ArraySerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:name"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:address"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:city"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:state"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:zipCode"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.StringDeserializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:quantity"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.IntDeserializer"/>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="" qname="x:price"
+     xml2JavaClassName="org.apache.soap.encoding.soapenc.DecimalDeserializer"/>
+  </isd:mappings>    
+</isd:service>

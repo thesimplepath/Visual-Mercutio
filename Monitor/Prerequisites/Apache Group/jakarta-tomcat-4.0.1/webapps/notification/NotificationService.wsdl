@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:notification="http://tempuri.org/xsd/2001/12/Notification/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/wsdl/2001/12/NotificationService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NotificationService" targetNamespace="http://tempuri.org/wsdl/2001/12/NotificationService/">
+
+  <documentation>
+    The Notification Service is used to subscribe to messages that are published through this
+		service.  
+		<pre>
+      - The current definition for this services will use an RPC style interface.  
+      - When publishing a message a specific topic must be specified.  
+      - When subscribing to a message wildcard characters can be used in the topic.
+      - The content type for a message can only be a text string.  No other content
+        types are supported.
+      - Messages with attachments are not supported in this release.
+      - The subscribe and unsubscribe operations will return a response which 
+        will indicate if it succeeded. 
+      - The timestamp is put into the header by the notification service.
+     
+    @version 1.0
+    @author  Peter Brittenham
+    @author  Peter Niblett 
+    @author  Rob Phippen
+    @author  Keith Wells
+		</pre>
+  </documentation>
+
+  <import location="Notification.xsd" namespace="http://tempuri.org/xsd/2001/12/Notification/">
+    <documentation>
+      This import element references the XML schema document that contains the definition for the 
+      publication header.
+      <p>
+      NOTE: This might be replaced by a standard message header format that is used by any
+            Web service that required a message header.
+      </p>
+    </documentation>
+  </import>
+
+  <message name="PublishMessage">
+    <documentation>
+      This message contains the topic string and a text message that contains
+      the content for the message.
+    </documentation>
+    
+    <part name="publishTopic" type="notification:PublishTopic">
+      <documentation>
+          The topic to be published by the Notification Service
+          because a service had subscribed using a topic specification.
+       </documentation>
+    </part>
+    <part name="textMessage" type="xsd:string">
+      <documentation>
+          The message content to be published.
+       </documentation>
+    </part>
+  </message>
+
+  <message name="PublishMessageExt">
+    <documentation>
+      This message contains the topic string and a text message that contains
+      the content for the message.
+    </documentation>
+    <part name="publishTopic" type="notification:PublishTopic">
+       <documentation>
+          The topic to be published by the Notification Service
+          because a service had subscribed using a topic specification.
+       </documentation>
+    </part>
+    <part name="textMessage" type="xsd:string">
+       <documentation>
+          The message content to be published.
+       </documentation>
+    </part>
+    <part name="deliveryMode" type="notification:DeliveryMode">
+       <documentation>
+          Will be NON_PERSISTENT for WSTK 3.0.
+       </documentation>
+    </part>
+    <part name="priority" type="notification:Priority">
+       <documentation>
+          Message priority (0-9).
+       </documentation>
+    </part>
+    <part name="timeToLive" type="xsd:unsignedLong">
+       <documentation>
+          Time when subscriber should not receive the message.
+       </documentation>
+    </part>
+  </message>
+
+  <message name="PublishMessageHeader">
+    <documentation>
+      The message header is sent with each publish message and will be sent in a SOAP header.
+    </documentation>
+    <part element="notification:publishHeader" name="PublishHeader">
+       <documentation>
+          Time when subscriber should not receive the message.
+         <TABLE cellpadding="4" width="600">
+         <TBODY>
+           <TR>
+           <TD align="center" bgcolor="#009999">
+                <B>Parameter</B>
+              </TD>
+           <TD align="center" bgcolor="#009999">
+                <B>Description</B>
+              </TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>CorrelationID</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">A String set by the publisher that may used to identify each message.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>ReplyTo</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Destination where a reply should be sent.</TD>
+           </TR>
+           <TR>
+           <TD bgcolor="#cccccc">
+                <CODE>Type</CODE>
+              </TD>
+           <TD bgcolor="#cccccc">Message type indicator supplied by the publisher.</TD>
+           </TR>
+        </TBODY>
+        </TABLE>
+       </documentation>
+    </part>
+  </message>
+
+  <message name="SubscribeRequest">
+    <documentation>
+      When subscribing to a service, the notification service will need to know the topic,
+      the URL that references the Web service that is the message subscriber, the name of
+      the port within the WSDL document that contains the endpoint for the service, and the
+      name of the service within the WSDL document.
+    </documentation>
+  
+    <part name="topic" type="xsd:string">
+      <documentation>
+        The topic to subscribe to or unsubscribe from.
+      </documentation>
+    </part>
+    <part name="WSDLURL" type="xsd:anyURI">
+      <documentation>
+        The URL for the WSDL document that contains a definition of the subscriber service.
+      </documentation>
+    </part>
+    <part name="serviceQName" type="xsd:QName">
+      <documentation>
+        The service name in the WSDL document that contains the location of the 
+        subscriber service.
+      </documentation>
+    </part>
+    <part name="portQName" type="xsd:QName">
+      <documentation>
+        The port name that is within the service and contains the location of the 
+        subscriber service.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="SubscribeWithFilterRequest">
+    <documentation>
+      When subscribing to a service, the notification service will need to know the topic,
+      the URL that references the Web service that is the message subscriber, the name of
+      the port within the WSDL document that contains the endpoint for the service and the
+      name of the service within the WSDL document. This message also allows a filter to be 
+      specified.
+    </documentation>
+    
+    <part name="topic" type="xsd:string">
+      <documentation>
+        The topic to subscribe to or unsubscribe from.
+      </documentation>
+    </part>
+    <part name="WSDLURL" type="xsd:anyURI">
+      <documentation>
+        The URL for the WSDL document that contains a definition of the subscriber service.
+      </documentation>
+    </part>
+    <part name="serviceQName" type="xsd:QName">
+      <documentation>
+        The service name in the WSDL document that contains the location of the 
+        subscriber service.
+      </documentation>
+    </part>
+    <part name="portQName" type="xsd:QName">
+      <documentation>
+        The port name that is within the service and contains the location of the 
+        subscriber service.
+      </documentation>
+    </part>
+    <part name="filter" type="xsd:string">
+      <documentation>
+        A String that filters out messages with properties that match this string.  The messages
+        that match the filter are not sent to the subscriber.
+      </documentation>
+    </part>
+  </message>
+  
+  <message name="SubscribeResponse">
+    <documentation>
+      This message contains the response to either a subsribe or unsubscribe request.
+    </documentation>
+    <part name="StatusResponse" type="notification:StatusResponse">
+      <documentation>
+        The response contains a statusCode string and a statusText string.
+      </documentation>
+    </part>
+  </message>
+  
+  <portType name="NotificationService">
+    <documentation>
+      Standard operation definitions for a notification service.
+    </documentation>
+    
+    <operation name="publishMessage">
+      <documentation>
+        Publish a message with a specific topic.
+      </documentation>
+    
+      <input message="tns:PublishMessage">
+        <documentation>
+           The input for this operation is the topic and message to be published.
+        </documentation>
+      </input>
+    </operation>
+
+    <operation name="publishMessageExt">
+      <documentation>
+        Publish a message with a specific topic.
+      </documentation>
+    
+      <input message="tns:PublishMessageExt">
+         <documentation>
+           The input for this operation is the topic, message to be published along with 
+           deliveryMode, priority and timeToLive.
+        </documentation>
+      </input>
+    </operation>
+
+    <operation name="subscribe">
+      <documentation>
+        Subscribe to messages by specifying a topic and the location of the receiving service.
+      </documentation>
+    
+      <input message="tns:SubscribeRequest">
+        <documentation>
+           The input for this operation is the topic, the URL that references the
+           Web service that is the message subscriber, the name of the port within
+           the WSDL document that contains the endpoint for the service, and the
+           name of the service within the WSDL document.
+        </documentation>
+      </input>
+      <output message="tns:SubscribeResponse">
+        <documentation>
+           The response to either a subsribe request.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="subscribeWithFilter">
+       <documentation>
+         This is a place holder for future work.
+       </documentation>
+			 
+      <input message="tns:SubscribeRequestWithFilter">
+        <documentation>
+           The input for this operation is the topic, the URL that references the
+           Web service that is the message subscriber, the name of the port within
+           the WSDL document that contains the endpoint for the service, and the
+           name of the service within the WSDL document.  This message also allows
+           a filter to be specified.
+        </documentation>
+      </input>
+      <output message="tns:SubscribeResponse">
+        <documentation>
+           The response to a subscribe request.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="unsubscribe">
+      <documentation>
+        Unsubscribe from messages that were previously subscribed to.
+      </documentation>
+    
+      <input message="tns:SubscribeRequest">
+        <documentation>
+           The input for this operation is the topic, the URL that references the
+           Web service that is the message subscriber, the name of the port within
+           the WSDL document that contains the endpoint for the service, and the
+           name of the service within the WSDL document.
+        </documentation>
+      </input>
+      <output message="tns:SubscribeResponse">
+        <documentation>
+           The response to an unsubscribe request.
+        </documentation>
+      </output>
+    </operation>
+  </portType>
+
+  <binding name="NotificationServiceBinding" type="tns:NotificationService">
+    <documentation>
+      SOAP binding definitions for a notification service.
+    </documentation>
+    
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    
+		<operation name="publishMessage">
+      <soap:operation soapAction="http://tempuri.org/NotificationService"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+        <soap:header message="tns:PublishMessageHeader" namespace="http://tempuri.org/NotificationService" part="PublishHeader" use="literal"/>
+      </input>
+    </operation>
+    
+    <operation name="publishMessageExt">
+      <documentation>
+         This is a place holder for future work.
+      </documentation>
+
+      <soap:operation soapAction="http://tempuri.org/NotificationService"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+        <soap:header message="tns:PublishMessageHeader" namespace="http://tempuri.org/NotificationService" part="PublishHeader" use="literal"/>
+      </input>
+    </operation>
+
+    <operation name="subscribe">
+      <soap:operation soapAction="http://tempuri.org/NotificationService"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="subscribeWithFilter">
+      <documentation>
+         This is a place holder for future work.
+      </documentation>
+
+      <soap:operation soapAction="http://tempuri.org/NotificationService"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+      </output>
+    </operation>
+
+
+    <operation name="unsubscribe">
+      <soap:operation soapAction="http://tempuri.org/NotificationService"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/NotificationService" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+</definitions>

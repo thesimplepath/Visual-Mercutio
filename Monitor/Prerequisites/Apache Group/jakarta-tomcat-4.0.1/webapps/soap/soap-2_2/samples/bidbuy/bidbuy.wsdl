@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s0="http://www.soapinterop.org/Bid" targetNamespace="http://www.soapinterop.org/Bid" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema targetNamespace="http://www.soapinterop.org/Bid">
+      <s:complexType name="PurchaseOrder">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="poID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="createDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="shipTo" type="s0:Address" />
+          <s:element minOccurs="1" maxOccurs="1" name="billTo" type="s0:Address" />
+          <s:element minOccurs="1" maxOccurs="1" name="items" type="s0:ArrayOfLineItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="address" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="zipCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LineItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="price" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLineItem">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute n1:arrayType="s0:LineItem[]" ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="double" type="s:double" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </types>
+  <message name="RequestForQuoteSoapIn">
+    <part name="ProductName" type="s:string" />
+    <part name="Quantity" type="s:int" />
+  </message>
+  <message name="RequestForQuoteSoapOut">
+    <part name="RequestForQuoteResult" type="s:double" />
+  </message>
+  <message name="SimpleBuySoapIn">
+    <part name="Address" type="s:string" />
+    <part name="ProductName" type="s:string" />
+    <part name="Quantity" type="s:int" />
+  </message>
+  <message name="SimpleBuySoapOut">
+    <part name="SimpleBuyResult" type="s:string" />
+  </message>
+  <message name="BuySoapIn">
+    <part name="PO" type="s0:PurchaseOrder" />
+  </message>
+  <message name="BuySoapOut">
+    <part name="BuyResult" type="s:string" />
+  </message>
+  <message name="PingSoapIn" />
+  <message name="PingSoapOut" />
+  <message name="RequestForQuoteHttpGetIn">
+    <part name="ProductName" type="s:string" />
+    <part name="Quantity" type="s:string" />
+  </message>
+  <message name="RequestForQuoteHttpGetOut">
+    <part name="Body" element="s0:double" />
+  </message>
+  <message name="SimpleBuyHttpGetIn">
+    <part name="Address" type="s:string" />
+    <part name="ProductName" type="s:string" />
+    <part name="Quantity" type="s:string" />
+  </message>
+  <message name="SimpleBuyHttpGetOut">
+    <part name="Body" element="s0:string" />
+  </message>
+  <message name="PingHttpGetIn" />
+  <message name="PingHttpGetOut" />
+  <message name="RequestForQuoteHttpPostIn">
+    <part name="ProductName" type="s:string" />
+    <part name="Quantity" type="s:string" />
+  </message>
+  <message name="RequestForQuoteHttpPostOut">
+    <part name="Body" element="s0:double" />
+  </message>
+  <message name="SimpleBuyHttpPostIn">
+    <part name="Address" type="s:string" />
+    <part name="ProductName" type="s:string" />
+    <part name="Quantity" type="s:string" />
+  </message>
+  <message name="SimpleBuyHttpPostOut">
+    <part name="Body" element="s0:string" />
+  </message>
+  <message name="PingHttpPostIn" />
+  <message name="PingHttpPostOut" />
+  <portType name="BidBuySoap">
+    <operation name="RequestForQuote">
+      <input message="s0:RequestForQuoteSoapIn" />
+      <output message="s0:RequestForQuoteSoapOut" />
+    </operation>
+    <operation name="SimpleBuy">
+      <input message="s0:SimpleBuySoapIn" />
+      <output message="s0:SimpleBuySoapOut" />
+    </operation>
+    <operation name="Buy">
+      <input message="s0:BuySoapIn" />
+      <output message="s0:BuySoapOut" />
+    </operation>
+    <operation name="Ping">
+      <input message="s0:PingSoapIn" />
+      <output message="s0:PingSoapOut" />
+    </operation>
+  </portType>
+  <portType name="BidBuyHttpGet">
+    <operation name="RequestForQuote">
+      <input message="s0:RequestForQuoteHttpGetIn" />
+      <output message="s0:RequestForQuoteHttpGetOut" />
+    </operation>
+    <operation name="SimpleBuy">
+      <input message="s0:SimpleBuyHttpGetIn" />
+      <output message="s0:SimpleBuyHttpGetOut" />
+    </operation>
+    <operation name="Ping">
+      <input message="s0:PingHttpGetIn" />
+      <output message="s0:PingHttpGetOut" />
+    </operation>
+  </portType>
+  <portType name="BidBuyHttpPost">
+    <operation name="RequestForQuote">
+      <input message="s0:RequestForQuoteHttpPostIn" />
+      <output message="s0:RequestForQuoteHttpPostOut" />
+    </operation>
+    <operation name="SimpleBuy">
+      <input message="s0:SimpleBuyHttpPostIn" />
+      <output message="s0:SimpleBuyHttpPostOut" />
+    </operation>
+    <operation name="Ping">
+      <input message="s0:PingHttpPostIn" />
+      <output message="s0:PingHttpPostOut" />
+    </operation>
+  </portType>
+  <binding name="BidBuySoap" type="s0:BidBuySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="RequestForQuote">
+      <soap:operation soapAction="http://www.soapinterop.org/RequestForQuote" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="SimpleBuy">
+      <soap:operation soapAction="http://www.soapinterop.org/SimpleBuy" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Buy">
+      <soap:operation soapAction="http://www.soapinterop.org/Buy" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Ping">
+      <soap:operation soapAction="http://www.soapinterop.org/Ping" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Bid" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="BidBuyHttpGet" type="s0:BidBuyHttpGet">
+    <http:binding verb="GET" />
+    <operation name="RequestForQuote">
+      <http:operation location="/RequestForQuote" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="SimpleBuy">
+      <http:operation location="/SimpleBuy" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="Ping">
+      <http:operation location="/Ping" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output />
+    </operation>
+  </binding>
+  <binding name="BidBuyHttpPost" type="s0:BidBuyHttpPost">
+    <http:binding verb="POST" />
+    <operation name="RequestForQuote">
+      <http:operation location="/RequestForQuote" />
+      <input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="SimpleBuy">
+      <http:operation location="/SimpleBuy" />
+      <input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="Ping">
+      <http:operation location="/Ping" />
+      <input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </input>
+      <output />
+    </operation>
+  </binding>
+</definitions>

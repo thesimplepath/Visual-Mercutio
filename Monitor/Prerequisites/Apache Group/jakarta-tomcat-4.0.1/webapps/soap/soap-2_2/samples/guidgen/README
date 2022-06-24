@@ -1,0 +1,40 @@
+
+This is a simple example showing how to use Apache SOAP as a client
+to a service implemented using Microsoft SOAP. 
+
+The service is described here:
+	http://www.itfinity.net/soap/guid/details.html
+
+In order to make it work, you have to tell Apache SOAP how to
+deserialize the response by telling it the types to map the
+results to. In this case, the response only contains the element
+<Result>...</Result> and the content of that element should 
+be treated as a string. The Apache SOAP client-code is informed
+of this by the following lines of code in the client:
+
+    // define deserializers for the return things (without xsi:type)
+    SOAPMappingRegistry smr = new SOAPMappingRegistry ();
+    StringDeserializer sd = new StringDeserializer ();
+    smr.mapTypes (Constants.NS_URI_SOAP_ENC,
+                  new QName ("", "Result"), null, null, sd);
+
+And then by using this SOAPMappingRegistry in the call:
+    Call call = new Call ();
+    call.setSOAPMappingRegistry (smr);
+
+
+The smr.mapTypes line tells Apache SOAP that if it sees an 
+unqualified element in the response encoded in SOAP encoding
+of a call named "Result" to deserialize it using a StringDeserializer,
+which returns a String object. 
+
+The sample client is hardcoded to talk to the actual service
+URL, however, it takes an optional URL as argument which would
+override the hardcoded URL. This allows you to route the call/response
+via the the tunnel to see what's going on.
+
+Additionally, you can route the call through an HTTP proxy server by
+specifying the following arguments on the command line:
+  -p myproxy.mycompany.com:8080
+where "myproxy.mycompany.com" is the hostname or dotted-decimal IP address
+of your proxy server, and 8080 the port number.

@@ -1,0 +1,8 @@
+<!-- the handler of this message throws an exception -->
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+<s:Body>
+<bustedRequest xmlns="urn:po-processor">
+  <stuff/>
+</bustedRequest>
+</s:Body>
+</s:Envelope>

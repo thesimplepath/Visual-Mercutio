@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://tempuri.org/wsdl/2001/10/DataService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataService" targetNamespace="http://tempuri.org/wsdl/2001/10/DataService-impl/">
+
+  <import location="http://localhost:8080/common/wsdl/utilities/data/webapp/DataService.wsdl" namespace="http://tempuri.org/wsdl/2001/10/DataService/"/>
+
+  <service name="DataService">
+    <documentation>DS XPath Service</documentation>
+    <port binding="interface:DataServiceBinding" name="DataServicePort">
+      <soap:address location="http://localhost:8080/data/services/DataService"/>
+    </port>
+  </service>
+</definitions>

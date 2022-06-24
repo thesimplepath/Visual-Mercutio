@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.WebServiceExample.com/WebServiceExample-interface" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WebServiceExample-interface" targetNamespace="http://www.WebServiceExample.com/WebServiceExample-interface">
+
+  <message name="InMessageRequest">
+    <part name="inMsgText" type="xsd:string"/>
+  </message>
+
+  <message name="OutMessageResponse">
+    <part name="outMsgText" type="xsd:string"/>
+  </message>
+
+  <portType name="WebServiceExample">
+    <operation name="echoMessage">
+      <input message="tns:InMessageRequest"/>
+      <output message="tns:OutMessageResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="WebServiceExampleBinding" type="tns:WebServiceExample">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="echoMessage">
+      <soap:operation soapAction="http://www.WebServiceExample.com/EchoMessage"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/web-service-example" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/web-service-example" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+</definitions>

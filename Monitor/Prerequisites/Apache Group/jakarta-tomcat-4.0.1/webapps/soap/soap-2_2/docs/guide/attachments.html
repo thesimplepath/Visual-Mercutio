@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Using Attachments</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Using Attachments</H2>
+<P>Even though SOAP is an XML-based protocol,
+it's not always convenient to force all data
+which is passed as part of a SOAP message
+to be encoded in a way which can be embedded
+inside of an XML document. Sometimes it would
+be nicer just to allow data, such as JPEG
+images, WAV files, etc., to be passed along
+with the SOAP message, instead of inside
+of it. To address this issue, the <A href="http://www.w3.org/TR/SOAP-attachments">SOAP Messages with Attachments</A> specification was created. The SOAP Messages
+with Attachments specification allows for
+the embedding of a SOAP message inside of
+a MIME document, in a manner in which does
+not alter the processing rules of the message.
+The specification also describes how one
+refers to the attachments from inside the
+body of the SOAP message. Apache SOAP contains
+an implementation of this specification.</P>
+<H3>Using Attachments on the Client</H3>
+<P>If you are interacting with an RPC-based
+service, you may not need to do anything
+special to transmit an attachment. Pre-defined
+serializers/deserializers exist for interacting
+with javax.activation.DataSource objects
+and javax.activation.DataHandler objects.
+If your objects can be passed through one
+of these mechanisms, then the RPC-code will
+handle creating and/or removing the attachment
+for you.</P>
+<P>If you are using a message-oriented service,
+or need finer-grain control over the attachments,
+then you can use methods in the org.apache.soap.messaging.Message,
+org.apache.soap.rpc.Call, or org.apache.soap.rpc.Response
+classes. The addBodyPart(...) methods will
+allow you to add a javax.mail.internet.MimeBodyPart
+object to your messages, while the findBodyPart(...)
+and getBodyPart(...) methods will allow you
+to retrieve them via the Content-URI and
+location within the message, respectively.</P>
+<H3>Using Attachments on the Server</H3>
+<P>As in the client case, if you are implementing
+an RPC-based service you may be able to take
+advantage of the built-in serializers/deserializers
+for the DataSource and DataHandler objects.</P>
+<P>If you are implementing a message-oriented
+service, or need finer-grain control over
+the attachments, then you can use methods
+on the org.apache.soap.rpc.SOAPContext class
+to add or retrieve MimeBodyParts.</P>
+<H3>Referencing Attachments from within a SOAP
+Message</H3>
+<P>To make attachments really useful, you need
+to be able to refer to them from within the
+contents of a SOAP message body. To refer
+to an attachment from within a message, you
+simply add an element like the following:</P>
+<PRE>&lt;<B><I>elemName</I></B> href=&quot;cid:<B><I>cid-uri</I></B>&quot;&gt;</PRE>
+<P>where <B><I>elemName</I></B> is the name of some element within the message,
+and <B><I>cid-uri</I></B> is the URL-encoded name of the Content-ID
+for the attachment which you are referring
+to, or alternatively, an absolute or relative
+URI referring to the Content-Location of
+the attachment. (The Content-ID is set as
+part of the javax.mail.internet.MimeBodyPart.)</P>
+<P>Last updated 5/23/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+
+
+</HTML>

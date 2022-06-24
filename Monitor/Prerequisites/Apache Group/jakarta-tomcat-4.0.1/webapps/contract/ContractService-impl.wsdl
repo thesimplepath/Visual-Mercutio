@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://tempuri.org/wsdl/2001/12/ContractService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContractService" targetNamespace="http://tempuri.org/wsdl/2001/12/ContractService-impl/">
+
+  <import location="http://localhost:8080/contract/ContractService.wsdl" namespace="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+
+  <service name="ContractService">
+    <documentation>Contract Service</documentation>
+
+    <port binding="interface:ContractServiceBinding" name="Demo">
+      <soap:address location="http://localhost:8080/contract/services/ContractService"/>
+    </port>
+  </service>
+</definitions>

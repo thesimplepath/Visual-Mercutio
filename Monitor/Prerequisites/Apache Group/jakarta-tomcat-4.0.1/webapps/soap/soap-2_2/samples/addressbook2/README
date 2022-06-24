@@ -1,0 +1,24 @@
+
+This example illustrates how to use the support for maintaining
+HTTP sessions across a series of calls. To get session support,
+you need to create a SOAPHTTPConnection object, turn on the
+"maintainSession" property and then tell the Call object to
+use that object as the transport. The code is basically:
+
+	Call call = new Call ();
+	SOAPHTTPConnection shc = new SOAPHTTPConnection ();
+	shc.setMaintainSession (true);
+	call.setSOAPTransport (shc);
+
+Once the above is done, you can use the "call" object to
+make multiple calls and if the server you're talking to wishes
+to maintain an HTTP session, then it will be maintained.
+
+The AddressBookProxy class shows an example of using this using
+the standard address book service (see ../addressbook) redeployed
+with scope=session. So first deploy the service using the deployment
+descriptor found in this directory and then run the class
+samples.addressbook2.Main:
+	Usage: java samples.addressbook2.Main [Service-URL]
+
+Sanjiva Weerawarana <sanjiva@watson.ibm.com>.

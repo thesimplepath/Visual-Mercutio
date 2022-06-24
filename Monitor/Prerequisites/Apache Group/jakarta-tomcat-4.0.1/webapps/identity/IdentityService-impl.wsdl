@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://tempuri.org/wsdl/2001/12/IdentityService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IdentityService" targetNamespace="http://tempuri.org/wsdl/2001/12/IdentityService-impl/">
+
+  <documentation>
+    Standard web service implementation description for a identity service.
+    
+    @version 0.1
+    @author Peter Brittenham
+    @author David Melgar
+    @author Alfredo da Silva
+  </documentation>
+
+  <import location="http://localhost:8080/identity/IdentityService.wsdl" namespace="http://tempuri.org/wsdl/2001/12/IdentityService/"/>
+
+  <service name="IdentityService">
+    <documentation>Identity Service</documentation>
+
+    <port binding="interface:IdentityServiceBinding" name="Demo">
+      <soap:address location="http://localhost:8080/identity/services/IdentityService"/>
+    </port>
+  </service>
+</definitions>

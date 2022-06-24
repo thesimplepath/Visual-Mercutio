@@ -1,0 +1,10 @@
+<import>
+  <copy name="axis.jar" fromdir="axis/lib" todir="lib"/>
+  <copy name="clutil.jar" fromdir="axis/lib" todir="lib"/>
+  <copy name="log4j-core.jar" fromdir="axis/lib" todir="lib"/>
+  <copy name="wsdl4j.jar" fromdir="wsdl4j/lib" todir="lib"/>
+  <copy name="wstkProperties.xml" fromdir="lib" todir="classes"/>
+  <copy name="xerces.jar" fromdir="lib" todir="lib"/>
+
+  <copy name="server-config.wsdd" fromdir="axis" todir="."/>
+</import>

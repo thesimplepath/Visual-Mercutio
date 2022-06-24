@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://www.WebServiceExample.com/WebServiceExample-interface" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WebServiceExample" targetNamespace="http://www.WebServiceExample.com/WebServiceExample">
+
+  <import location="http://localhost:8080/webservice/WebServiceExample-interface.wsdl" namespace="http://www.WebServiceExample.com/WebServiceExample-interface"/>
+
+  <service name="WebServiceExample">
+    <documentation>Web Service Example</documentation>
+    <port binding="interface:WebServiceExampleBinding" name="Demo">
+      <soap:address location="http://localhost:8080/webservice/services/WebServiceExample"/>
+    </port>
+  </service>
+</definitions>

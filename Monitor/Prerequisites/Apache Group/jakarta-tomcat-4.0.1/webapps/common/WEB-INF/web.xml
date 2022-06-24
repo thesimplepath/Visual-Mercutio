@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"  "http://java.sun.com/j2ee/dtds/web-app_2.2.dtd">
+  <web-app>
+  <display-name>common serlvets</display-name>
+
+  <servlet>
+    <servlet-name>WSILServlet</servlet-name>
+    <servlet-class>com.ibm.wsil.servlet.WSILServlet</servlet-class>
+
+    <init-param>
+       <param-name>docSource</param-name>
+       <param-value>c:\wstk-3.0/services</param-value>
+    </init-param>
+    <init-param>
+       <param-name>businessKey</param-name>
+       <param-value>84F3ED80-B992-11D5-8192-BD0E201B24BB</param-value>
+    </init-param>
+    <init-param>
+       <param-name>linkReferencedNamespace</param-name>
+       <param-value>http://schemas.xmlsoap.org/ws/2001/10/inspection</param-value>
+    </init-param>
+    <init-param>
+       <param-name>linkLocation</param-name>
+       <param-value/>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WSILServlet</servlet-name>
+    <url-pattern>/wsil/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>WSILServlet</servlet-name>
+    <url-pattern>/wsdl/*</url-pattern>
+  </servlet-mapping>
+
+  <mime-mapping>
+    <extension>wsdl</extension>
+    <mime-type>text/xml</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>xsd</extension>
+    <mime-type>text/xml</mime-type>
+  </mime-mapping>
+</web-app>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://www.addressbookservice.com/AddressBook-interface" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.addressbookservice.com/AddressBook" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AddressBook_Service" targetNamespace="http://www.addressbookservice.com/AddressBook">
+
+<import location="http://localhost:8080/addressbook/AddressBook-interface.wsdl" namespace="http://www.addressbookservice.com/AddressBook-interface">
+</import>
+
+<service name="AddressBook_Service">
+  <documentation>Address Book Example</documentation>
+  <port binding="interface:AddressBook_ServiceBinding" name="Demo">
+    <soap:address location="http://localhost:8080/addressbook/services/AddressBookService"/>
+  </port>
+
+</service>
+
+</definitions>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:core="http://tempuri.org/xsd/2001/10/Data" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/wsdl/2001/10/DataService/" name="DataService" targetNamespace="http://tempuri.org/wsdl/2001/10/DataService/">
+
+  <wsdl:documentation>
+    Core operation definitions for the Data Service.
+    <pre> 
+    @version 1.0
+    @author  James Snell
+		</pre>
+  </wsdl:documentation>
+
+	<!-- IMPORTS -->
+  <wsdl:import location="http://localhost:8080/data/Data.xsd" namespace="http://tempuri.org/xsd/2001/10/Data">
+    <wsdl:documentation>
+      Imports the Common Data Services Schema that defines the core XML data types and elements.
+    </wsdl:documentation>
+  </wsdl:import>
+	
+	<!-- MESSAGES -->
+  <wsdl:message name="Insert">
+    <wsdl:documentation>
+      This message contains the details of an insert operation.
+    </wsdl:documentation>
+    <wsdl:part element="core:insert" name="Insert"/>
+  </wsdl:message>
+	
+  <wsdl:message name="Update">
+    <wsdl:documentation>
+      This message contains the details of an update operation.
+    </wsdl:documentation>
+    <wsdl:part element="core:update" name="Insert"/>
+  </wsdl:message>
+	
+  <wsdl:message name="Update-Insert">
+    <wsdl:documentation>
+      This message contains the details of an update and insert operation.
+    </wsdl:documentation>
+    <wsdl:part element="core:update_insert" name="Insert"/>
+  </wsdl:message>
+	
+  <wsdl:message name="Remove">
+    <wsdl:documentation>
+      This message contains the details of a remove operation.
+    </wsdl:documentation>
+    <wsdl:part element="core:remove" name="Insert"/>
+  </wsdl:message>
+	
+  <wsdl:message name="Replace">
+    <wsdl:documentation>
+      This message contains the details of a replace operation.
+    </wsdl:documentation>
+    <wsdl:part element="core:replace" name="Insert"/>
+  </wsdl:message>
+	
+  <wsdl:message name="Query">
+    <wsdl:documentation>
+      This message contains the details of a query operation.
+    </wsdl:documentation>
+    <wsdl:part element="core:query" name="Insert"/>
+  </wsdl:message>
+	
+  <wsdl:message name="Response">
+    <wsdl:documentation>
+      This message contains the response details for any of the core operations or faults
+    </wsdl:documentation>
+    <wsdl:part element="core:response" name="Response"/>
+  </wsdl:message>
+	
+	<!-- PORT TYPES -->
+  <wsdl:portType name="DataServicePortType">
+    <wsdl:documentation>
+      The standard CDS Interface
+    </wsdl:documentation>
+    <wsdl:operation name="Insert">
+    <wsdl:documentation>
+      The operation used to write data to the datastore
+    </wsdl:documentation>
+      <wsdl:input message="tns:Insert"/>
+      <wsdl:output message="tns:Response"/>
+      <wsdl:fault message="tns:Response"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="Update">
+    <wsdl:documentation>
+      The operation used to update data in the datastore
+    </wsdl:documentation>
+      <wsdl:input message="tns:Update"/>
+      <wsdl:output message="tns:Response"/>
+      <wsdl:fault message="tns:Response"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="Update-Insert">
+    <wsdl:documentation>
+      The operation used to update or write to the datastore.  If
+      the data is not found to update, it will be inserted
+    </wsdl:documentation>
+      <wsdl:input message="tns:Update-Insert"/>
+      <wsdl:output message="tns:Response"/>
+      <wsdl:fault message="tns:Response"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="Remove">
+    <wsdl:documentation>
+      The operation used to remove data from the datastore
+    </wsdl:documentation>
+      <wsdl:input message="tns:Remove"/>
+      <wsdl:output message="tns:Response"/>
+      <wsdl:fault message="tns:Response"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="Replace">
+    <wsdl:documentation>
+      The operation used to replace data in the datastore
+    </wsdl:documentation>
+      <wsdl:input message="tns:Replace"/>
+      <wsdl:output message="tns:Response"/>
+      <wsdl:fault message="tns:Response"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="Query">
+    <wsdl:documentation>
+      The operation used to query data within the datastore
+    </wsdl:documentation>
+      <wsdl:input message="tns:Query"/>
+      <wsdl:output message="tns:Response"/>
+      <wsdl:fault message="tns:Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+	
+<!-- BINDINGS -->
+  <wsdl:binding name="DataServiceBinding" type="tns:DataServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Insert">
+      <soap:operation soapAction="http://tempuri.org/xsd/2001/10/Data/#Insert"/>
+      <wsdl:input message="tns:Insert">
+        <soap:body namespace="http://tempuri.org/wsdl/2001/10/DataService/#Insert" use="literal"/>
+      </wsdl:input>
+      <wsdl:output message="tns:Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault message="tns:Response" name="error">
+        <soap:fault name="error" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://tempuri.org/xsd/2001/10/Data/#Update"/>
+      <wsdl:input message="tns:Update">
+        <soap:body namespace="http://tempuri.org/wsdl/2001/10/DataService/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output message="tns:Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault message="tns:Response" name="error">
+        <soap:fault name="error" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="Update-Insert">
+      <soap:operation soapAction="http://tempuri.org/xsd/2001/10/Data/#Update-Insert"/>
+      <wsdl:input message="tns:Update-Insert">
+        <soap:body namespace="http://tempuri.org/wsdl/2001/10/DataService/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output message="tns:Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault message="tns:Response" name="error">
+        <soap:fault name="error" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="Remove">
+      <soap:operation soapAction="http://tempuri.org/xsd/2001/10/Data/#Remove"/>
+      <wsdl:input message="tns:Remove">
+        <soap:body namespace="http://tempuri.org/wsdl/2001/10/DataService/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output message="tns:Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault message="tns:Response" name="error">
+        <soap:fault name="error" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="Replace">
+      <soap:operation soapAction="http://tempuri.org/xsd/2001/10/Data/#Replace"/>
+      <wsdl:input message="tns:Replace">
+        <soap:body namespace="http://tempuri.org/wsdl/2001/10/DataService/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output message="tns:Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault message="tns:Response" name="error">
+        <soap:fault name="error" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="Query">
+      <soap:operation soapAction="http://tempuri.org/xsd/2001/10/Data/#Query"/>
+      <wsdl:input message="tns:Query">
+        <soap:body namespace="http://tempuri.org/wsdl/2001/10/DataService/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output message="tns:Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault message="tns:Response" name="error">
+        <soap:fault name="error" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+</wsdl:definitions>

@@ -1,0 +1,8 @@
+<!-- this is a buggy message .. the method name is unknown -->
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+<s:Body>
+<XXX xmlns="urn:po-processor">
+  <stuff/>
+</XXX>
+</s:Body>
+</s:Envelope>

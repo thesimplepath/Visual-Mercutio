@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+<title>ProcessSoft Mercutio Messenger</title>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<Script language=JavaScript>
+<!--
+var _top_loaded=false;
+
+function waitTopLoaded()
+{
+	if (_top_loaded==false)
+	{
+		setTimeout("waitTopLoaded()",  100);
+	}
+}
+
+function showTabText(no,l1,l2)
+{
+  l1=escape(escape(l1));
+  l2=escape(escape(l2));
+  currentTab=no;
+  waitTopLoaded();
+  top.menu.window.document.location="ztop.jsp?TAB="+no+"&L1="+l1+"&L2="+l2;  
+}
+
+var currentTab=0;
+function showText(l1,l2)
+{
+  l1=escape(escape(l1));
+  l2=escape(escape(l2));
+  waitTopLoaded();
+  top.menu.window.document.location="ztop.jsp?TAB="+currentTab+"&L1="+l1+"&L2="+l2;  
+}
+
+function selectStart(procid)
+{
+  top.doc.window.document.location="../../newproc1.jsp?PROCID="+procid;
+  return false;
+}
+
+//-->
+</script>
+</head>
+<frameset rows="160,*,0" framespacing="0" frameborder="0" bordercolor="#FFFFFF">
+ <frame src="ztop.jsp?TAB=0&L1=&L2=" name="menu" id="nav" scrolling="No">
+ <frame src="zacceuil.jsp" name="doc" id="doc" scrolling="Auto">
+ <frame src="blank.htm" name="hide" id="hide" scrolling="No">
+</frameset>
+
+</html>

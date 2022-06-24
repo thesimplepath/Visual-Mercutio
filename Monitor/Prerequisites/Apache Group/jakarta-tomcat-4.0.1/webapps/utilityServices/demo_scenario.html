@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder V6.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Home</TITLE>
+<LINK REL=STYLESHEET TYPE="text/css" HREF="style/style.css">
+</HEAD>
+<BODY TOPMARGIN=35 LEFTMARGIN=10 MARGINWIDTH=2 MARGINHEIGHT=2>
+<TABLE border="0" cellspacing="0" cellpadding="0">
+ 
+    <TR>
+      <TD align="CENTER" width="333"><H3><U>Utility Services Demos</U></H3></TD>
+    </TR>
+    <TR>
+      <TD height="63" width="333"><b>To learn more about utility services, follow
+      the steps defined for the demos listed below.
+      These demos should be run in the order that
+      they are listed.</b><BR>
+      <BR>
+      <B>While running these demos, the interactions with the utility services are
+      displayed in the event viewer window.</B></TD>
+    </TR>
+    <tr>
+      <TD height="590" width="333"><BR>
+      <B><U>Use the Basic Stock Quote Service:</U><BR>
+      <BR>
+      </B>This demo will allow a service requestor to use the pre-defined provider
+      and usage contracts for the Basic Stock Quote Service.
+      <OL>
+        <LI>Select <B>Logon</B> from the menu.
+        <LI>Logon as the demo service requestor by entering
+        <B>demo</B> for both the userid and password.
+        <LI>Select <B>Use Application Services</B> from the menu. This will display a list
+        of services for which the service requestor
+        has usage contracts. By default, there is
+        only one usage contract defined. When additional
+        usage contracts are defined and activated,
+        other services will be displayed in this
+        list.
+        <LI>Select <B>Basic Stock Quote Service</B>. This will start the user interface for
+        the stock quote service.
+        <LI>Enter an stock quote symbol and then press
+        the <B>Get Quote</B> button. (If you don't have network access,
+        use <B>XXX</B> for the symbol.)
+        <LI>After the stock quote is displayed, you can request another stock quote
+        by entering a different symbol. As you use this service, meter events are
+        recorded so that the service provider can generate billing information.<BR>
+        <BR>
+        <B>NOTE:</B> If you are not using a socks client, refer
+        to the configuration information for the
+        toolkit for instructions on how to specify
+        a proxy or socks server.
+      </OL>
+      <B><BR>
+      <U>Create Provider Contract for Address Book
+      Service:</U><BR>
+      </B><BR>
+      This demo will show how a service provider
+      can create a provider contract for the Address
+      Book service. After the provider contract
+      is created and activated, service requestors
+      can create usage contracts for this service.<BR>
+      <OL>
+        <LI>Select <B>Home</B> to return to the main menu.
+        <LI>Select <B>Logon</B> from the menu.
+        <LI>Logon as a service provider for the Address
+        Book service by entering <B>addressbook </B>for the userid and <B>provider</B> for the password.
+        <LI>Select <B>Provider</B> from the menu. This will display the <B>Provider Contract</B> page and provide access to the service provider
+        functions.
+        <LI>Select <B>Create</B> from the <B>Provider</B> sub-menu. This will display the <B>Create Provider Contract</B> page.
+        <LI>Enter <B>Address Book Service</B> for the contract title.
+        <LI>In the service name field enter <B>http://tempuri.org/wsdl/AddressBookService/. </B>This is the service name that is used to
+        uniquely identify this service when it is
+        deployed.
+        <LI>Select one of the payment models.
+        <LI>Select one or more of the rating models.
+        (In this release there is only one
+        rating
+        model.)
+        <LI>Press the <B>Submit Contract</B> button to submit the request to create the
+        provider contract.
+        <LI>Press <B>OK</B> to create the new provider contract. After
+        the provider contract is created, the <B>Provider Contract</B> page will be displayed. The new provider contract should be displayed
+        at the bottom of the page. 
+        <LI>Select <B>Activate</B> from the <B>Provider</B> sub-menu. This will display a list of contracts that can be activated.
+        <LI>Select the <B>Address Book Service</B>, set the start and end date for the contract,
+        and then press the <B>Activate Contract</B> button. To allow the service to be used immediately, set the start date
+        to today's date.<BR>
+        <BR>
+        When the <B>Provider Contract</B> page is displayed, it will list the <B>Address Book Service</B> as an active contract. It is now available for service requestors to use
+        to create usage contracts.
+      </OL><BR>
+      <U><B>Create Usage Contract for Address Book Service:<BR>
+      </B></U><BR>
+      This demo will show how to create a usage
+      contract for the Adddress Book service, and
+      how to use the service after the usage contract
+      is activated.
+      <OL>
+        <LI>Select <B>Home</B> to return to the main menu.
+        <LI>Select <B>Logon</B> from the menu.
+        <LI>Logon as a service provider for the Address
+        Book service by entering <B>demo </B>for the userid and <B>demo</B> for the password.
+        <LI>Select <B>Requestor</B> from the menu. This will display the <B>Request (Usage) Contract</B> page. The stock quote service should be the only service listed at the
+        bottom of the page with an active usage contract.
+        <LI>Select <B>Create</B> from the <B>Requestor</B> sub-menu. This will display the <B>Create Usage Contract [1]</B> page.
+        <LI>Select the <B>Address Book Service</B> and then press the <B>Continue...</B> button. This will display the <B>Create Usage Contract [2]</B> page, which will contain the contract details.
+        <LI>Select <B>Submit Contract</B> to submit the request to create the usage
+        contract.
+        <LI>Press <B>OK</B> to create the new usage contract. After
+        the usage contract is created, the <B>Requestor (Usage) Contract</B> page will be displayed. The new usage contract should be displayed at
+        the bottom of the page. 
+        <LI>Select <B>Activate</B> from the <B>Requestor</B> sub-menu. This will display the <B>Activate Usage Contract</B> page.
+        <LI>Make sure that the <B>Address Book Service</B> is selected, select the start and end dates
+        that you would like to use this service,
+        and then press the <B>Activate Contract</B> button. To start using the service immediately, set the start date to
+        today's date.<BR>
+        <BR>
+        When the <B>Requestor (Usage) Contract</B> page is displayed, it will list the <B>Address Book Service</B> as an active contract. It is now available to use.
+        <LI>Select <B>Use Application Services</B> from the menu. This will display the list
+        of services for which you have a usage contract.
+        <LI>Select the <B>Address Book Service</B>. This will display a page that will allow you to use the operations supported
+        by this service. As you use this service, meter events are recorded so
+        that the service provider can generate billing information.
+      </OL><BR>
+      <B><U>Display the Accounting Information:</U></B><BR>
+      <BR>
+      This demo will show how a service provider
+      can display usage information for a service.
+      This information is gathered each time a
+      service is used by a service requestor.<BR>
+      <OL>
+        <LI>Select <B>Home</B> to return to the main menu.
+        <LI>Select <B>Logon</B> from the menu.
+        <LI>Logon as a service provider for either the
+        Stock Quote service or the Address Book service.
+        For the Stock Quote service the userid is
+        <B>stockquote</B> and the password is <B>provider</B>. The userid for the Address Book service
+        is <B>addressbook </B>and the password is <B>provider</B>.
+        <LI>Select <B>Accounting</B> from the menu. This will display the <B>Accounting [1]</B> page.
+        <LI>Select the service that you want accounting
+        information for and then press the
+        <B>Continue</B> button. This will display the <B>Accounting [2]</B> page, which contains a list of usage contracts for the service.
+        <LI>Select one of the usage contracts and then
+        press the <B>Continue</B> button. This will display the <B>Accounting [3]</B> page, which contains the accounting information for the selected usage
+        contract. This data will be updated each time a service requestor uses
+        the service.
+        <LI>Press the <B>Return</B> button at the bottom of the page to return
+        to the previous page which contained the
+        list of usage contracts.
+        <LI>You can either select another usage contract
+        and view its accouting information,
+        or you
+        can press the <B>Canel</B> button to return to the list of provider
+        contracts.
+        <LI>From the list of provider contracts page,
+        you can either select another provider
+        contract
+        to process, or you can press the
+        <B>Cancel</B> button to return to the main menu.
+      </OL><BR>
+      </TD>
+    </tr>
+  </TABLE>
+</BODY>
+</HTML>

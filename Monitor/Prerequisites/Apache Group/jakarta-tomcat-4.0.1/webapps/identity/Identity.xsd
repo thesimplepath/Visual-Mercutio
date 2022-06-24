@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://tempuri.org/xsd/2001/12/Identity/"
+  xmlns:identity="http://tempuri.org/xsd/2001/12/Identity/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+  
+  <!--
+    This XML schema document contains the data definitions for the IdentityModel type.
+    
+    @version 0.1
+    @author Peter Brittenham
+    @author David Melgar
+    @author Alfredo da Silva
+  -->
+  
+  <annotation>
+    <documentation>This XML schema document contains the data definitions for the IdentityModel type.</documentation>
+  </annotation>
+
+  <complexType name="identityModelType">
+    <sequence>
+      <element name="identitykey" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="userid" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="passwd" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="name" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="company" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="address1" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="address2" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="address3" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="zipcode" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="place" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="state" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="country" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="email" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="curr" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="dn" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="ca" type="string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+  </complexType>
+
+  <element name="identityModel" type="identity:identityModelType" minOccurs="1" maxOccurs="1"/>
+
+  <complexType name="arrayOfString">
+    <complexContent mixed="false">
+      <restriction base="soapenc:Array">
+        <attribute n1:arrayType="xsd:string[]" ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/"/>
+      </restriction>
+    </complexContent>
+  </complexType>
+
+  <complexType name="arrayOfIdentityModels">
+    <complexContent mixed="false">
+      <restriction base="soapenc:Array">
+        <attribute n1:arrayType="identityModelType[]" ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" />
+      </restriction>
+    </complexContent>
+  </complexType>
+
+</schema>

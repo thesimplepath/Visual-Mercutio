@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/wsdl/2001/12/MeteringService/" xmlns:typens="http://tempuri.org/xsd/2001/12/MeteringService-types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MeteringService" targetNamespace="http://tempuri.org/wsdl/2001/12/MeteringService/">
+
+  <documentation>
+    The Metering Service receives meter events from clients and provides meter events
+		upon request. The Accounting Service gets metering information from the Metering Service
+		and contract information from the Contract Service, and uses this to produce a usage
+		report for a particular client (service requestor).
+    <pre>
+    @version 1.0
+    @author Janet Farrell
+    @author Michael Haeberlen
+    @author Dietmar Kuebler
+    </pre>
+  </documentation>
+
+  <import location="http://localhost:8080/metering/MeteringService.xsd" namespace="http://tempuri.org/xsd/2001/12/MeteringService-types/">
+  </import>
+
+  <message name="RecordMeterEventRequest">
+    <documentation>
+		  Message used to record a single meter event.
+    </documentation>
+		
+    <part name="meterEventExt" type="typens:MeterEventExt">
+      <documentation>
+         	  The meter event to be recorded.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="RecordMeterEventBatchRequest">
+    <documentation>
+		  Message used to record a batch of meter events.
+    </documentation>
+		
+    <part name="meterEventExtList" type="typens:ArrayOfMeterEventsExt">
+      <documentation>
+         	  An array of meter events to be recorded.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="GetMeterEventsRequest">
+    <documentation>
+		  Message used to retrieve meter events based on a set of report conditions.
+    </documentation>
+		
+    <part name="reportConditions" type="typens:ArrayOfReportConditions">
+      <documentation>
+         	  An array of report conditions.  Only meter events that match all the
+                  report conditions are returned.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="GetMeterEventsResponse">
+    <documentation>
+		  Message that contains a list of meter events which match a
+                  set of report conditions.
+    </documentation>
+		
+    <part name="meterEventList" type="typens:ArrayOfMeterEvents">
+      <documentation>
+         	  An array of meter events which match a specified set of report conditions.
+      </documentation>
+    </part>
+  </message>
+
+															
+  <portType name="MeteringService">
+    <documentation>
+		  Standard operation definitions for the metering service.
+    </documentation>
+		
+    <operation name="recordMeterEvent">
+      <documentation>
+        Record a single meter event.
+      </documentation>
+		
+      <input message="tns:RecordMeterEventRequest">
+        <documentation>
+          The input for this operation is a single meter event.
+        </documentation>
+      </input>
+    </operation>
+
+    <operation name="recordMeterEventBatch">
+      <documentation>
+        Record a batch of meter events.
+      </documentation>
+			
+      <input message="tns:RecordMeterEventBatchRequest">
+        <documentation>
+          The input for this operation is a list of meter events.
+        </documentation>
+      </input>
+    </operation>
+
+    <operation name="getMeterEvents">
+      <documentation>
+        Get a list of meter events for a specified set of report conditions.
+      </documentation>
+
+      <input message="tns:GetMeterEventsRequest">
+        <documentation>
+          The input for this operation is a list of report conditions.
+        </documentation>
+      </input>
+      <output message="tns:GetMeterEventsResponse">
+        <documentation>
+          The output for this operation is a list of meter events that match the
+          report condition criteria.
+        </documentation>
+      </output>
+    </operation>
+  </portType>
+
+
+  <binding name="MeteringServiceBinding" type="tns:MeteringService">
+    <documentation>
+		  SOAP binding definition for the metering service.
+    </documentation>
+		
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="recordMeterEvent">
+      <documentation>
+        Record a single meter event.
+      </documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/MeteringService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/MeteringService/" use="encoded"/>
+      </input>
+    </operation>
+
+    <operation name="recordMeterEventBatch">
+      <documentation>
+        Record a batch of meter events.
+      </documentation>
+			
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/MeteringService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/MeteringService/" use="encoded"/>
+      </input>
+    </operation>
+
+    <operation name="getMeterEvents">
+      <documentation>
+        Get a list of meter events for a specified set of report conditions.
+      </documentation>
+
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/MeteringService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/MeteringService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/MeteringService/" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+
+</definitions>

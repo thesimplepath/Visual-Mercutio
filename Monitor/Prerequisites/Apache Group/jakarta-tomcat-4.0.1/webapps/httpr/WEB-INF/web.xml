@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"  "http://java.sun.com/j2ee/dtds/web-app_2.2.dtd">
+  <web-app>
+  <display-name>HTTPR</display-name>
+  
+<!--   
+  note: when editing this file for parameters for a specific StateManager,
+    you should change its parameters twice
+    (1) in the stanza specific to that state manager
+    (2) in the general stanza (in case it gets changed to use this StateManager)
+-->        
+
+  <!-- Axis stuff -->
+  <servlet>
+    <servlet-name>Axis</servlet-name>
+    <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+  </servlet>
+
+
+<!-- general version =============================== -->
+  <servlet>
+    <servlet-name>HttprServer</servlet-name>
+    <display-name>Httpr Server</display-name>
+    <servlet-class>com.ibm.httpr.axis.HttprServerAxis</servlet-class>
+    
+    <init-param>
+      <param-name>stateFile</param-name>
+      <param-value>stateFile.ser</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>db2Ini</param-name>
+      <param-value>DB2StateManager.ini</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>runHttprListener</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    
+  </servlet>
+  
+<!-- File version =============================== -->
+  <servlet>
+    <servlet-name>HttprServerFile</servlet-name>
+    <display-name>Httpr Server (File version)</display-name>
+    <servlet-class>com.ibm.httpr.axis.HttprServerAxis</servlet-class>
+    
+    <init-param>
+      <param-name>stateFile</param-name>
+      <param-value>stateFile.ser</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>runHttprListener</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>factory</param-name>
+      <param-value>com.ibm.httpr.file.FileStateManagerFactory</param-value>
+    </init-param>
+  </servlet>
+  
+<!-- noFile version =============================== -->
+  <servlet>
+    <servlet-name>HttprServerNoFile</servlet-name>
+    <display-name>Httpr Server (NoFile version)</display-name>
+    <servlet-class>com.ibm.httpr.axis.HttprServerAxis</servlet-class>
+    
+    <init-param>
+      <param-name>runHttprListener</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>factory</param-name>
+      <param-value>com.ibm.httpr.file.NoFileStateManagerFactory</param-value>
+    </init-param>
+  </servlet>
+  
+<!-- JMS version  =============================== -->
+  <servlet>
+    <servlet-name>HttprServerJMS</servlet-name>
+    <display-name>Httpr Server (JMS version)</display-name>
+    <servlet-class>com.ibm.httpr.axis.HttprServerAxis</servlet-class>
+    <init-param>
+      <param-name>runHttprListener</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>factory</param-name>
+      <param-value>com.ibm.httpr.jms.JMSHStateManagerFactory</param-value> 
+    </init-param>
+  </servlet>
+
+<!-- DB2 version =============================== -->
+  <servlet>
+    <servlet-name>HttprServerDB2</servlet-name>
+    <display-name>Httpr Server (DB2 version)</display-name>
+    <servlet-class>com.ibm.httpr.axis.HttprServerAxis</servlet-class>
+    
+    <init-param>
+      <param-name>db2Ini</param-name>
+      <param-value>DB2StateManager.ini</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>runHttprListener</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>factory</param-name>
+      <param-value>com.ibm.httpr.db2persist.DB2StateManagerFactory</param-value>
+    </init-param>
+  </servlet>
+  
+<!-- servlet mappings for all =============================== -->
+  <servlet-mapping>
+    <servlet-name>HttprServer</servlet-name>
+    <url-pattern>/servlet/HttprServer/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HttprServerJMS</servlet-name>
+    <url-pattern>/servlet/HttprServerJMS/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HttprServerFile</servlet-name>
+    <url-pattern>/servlet/HttprServerFile/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HttprServerNoFile</servlet-name>
+    <url-pattern>/servlet/HttprServerNoFile/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HttprServerDB2</servlet-name>
+    <url-pattern>/servlet/HttprServerDB2/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Axis</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+
+  <mime-mapping>
+    <extension>wsdl</extension>
+    <mime-type>text/xml</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>xsd</extension>
+    <mime-type>text/xml</mime-type>
+  </mime-mapping>
+
+
+</web-app>

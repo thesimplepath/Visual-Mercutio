@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Apache SOAP Installation Instructions for JRun 3.0</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Apache-SOAP Version 2.2: Installing the Server-Side Under JRun 3.0</h1>
+
+<p><strong>IMPORTANT</strong>: JRun comes with an XML parser, which will by default hide Xerces and therefore cause problems with your SOAP installation.  Please follow step 1 below!</p>
+
+<ol>
+
+<li>Open up JRun's global.properties file (in <code>path-to-JRun/lib</code>)
+and add the Xerces .jar file to the beginning of the jrun.classpath line.
+Mine looks like this:
+<br>
+<blockquote><code>jrun.classpath=E:/xerces-1_2_3/xerces.jar;{jrun.rootdir}/lib/ext;{jrun.rootdir}/lib/jrun.jar;{jrun.rootdir}/lib/install.jar</code></blockquote>
+<li>Go into the JMC, and select the "Web Applications" section of your server
+(I use the JRun Default Server).  Click on "deploy an application".<br>
+<br>
+<li>Select the Apache-SOAP /webapps/soap directory (under java/ in the source distribution, or off the root directory of the binary dist.) in the "Servlet War File
+or Directory" box.<br>
+<br>
+<li>Name the application (I call it "xml-soap"), and pick a base URL (I use
+"/soap")<br>
+<br>
+<li>Select a deploy directory (I use the default, which is JRun's default
+server directory, plus the name of the app, so for me it ends up being <code>C:/JRun/servers/default/xml-soap</code><br>
+<br>
+<li>Click "deploy"<br><i>(at this point you should get a message telling you the app has been successfully deployed)</i>
+<br>
+<br>
+<li>Go to the "java settings" area of your default server, and add the
+Apache-SOAP jar file and base directory to the classpath.  For the source distribution, these would be <code>SOAPROOT/java/build/lib/soap.jar</code> and <code>SOAPROOT/java/build</code>.  For the binary distribution, they would be <code>SOAPROOT/lib/soap.jar</code> and <code>SOAPROOT</code>.  Mine looks like this (source dist, living at D:/xml-soap):<br>
+<pre>{jrun.rootdir}/servers/lib
+{jrun.server.rootdir}/lib
+D:/xml-soap/java/build/lib/soap.jar
+D:/xml-soap/java/build</pre>
+<li>Restart the server.  <b>NOTE: You must shut down and restart BOTH the admin
+server and the default server for the change you made to the
+global.properties file to take.  That only needs to be done once.</b><br>
+<br>
+<li>Try it out - access <a href="http://localhost/soap/servlet/rpcrouter">http://localhost/soap/servlet/rpcrouter</a> and see
+if you get the "I can't do GET" message.</ol>
+
+If the above worked, you know the servlet was succesfully installed.  You should now be able to deploy services by pointing your browser at:
+
+<blockquote><a href="http://localhost/soap/index.html">http://localhost/soap/index.html</a></blockquote>
+
+<p>Happy SOAP-ing!</p>
+</body>
+</html>

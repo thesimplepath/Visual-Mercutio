@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Customer Data</TITLE>
+<BASE TARGET="_parent">
+<LINK REL=STYLESHEET TYPE="text/css" HREF="style/style.css">
+<STYLE></STYLE>
+<script language="JavaScript">
+  <!--
+  function chkForm() {
+   if(document.UserData.company.value == ""  ||
+      document.UserData.name.value == ""     ||
+      document.UserData.address1.value == "" ||
+      document.UserData.zipcode.value == ""  ||
+      document.UserData.place.value == ""    ||
+      document.UserData.email.value == ""    ||
+      document.UserData.userid.value == ""   ||
+      document.UserData.passwd.value == "") {
+     alert("Form incomplete! Please insert missing data!");
+     return false;
+    }
+    if(document.UserData.email.value.indexOf('@') == -1) {
+     alert("E-mail address not valid!");
+     document.UserData.email.focus();
+     return false;
+    }
+    if(document.UserData.dn.value.indexOf("CN=") != 0) {
+     alert("Distinguished name must be LDAP compatible!\n(CN=...)");
+     document.UserData.dn.focus();
+     return false;
+    }
+  }
+  //-->
+</script>
+</HEAD>
+<BODY TOPMARGIN=35 LEFTMARGIN=40 MARGINWIDTH=2 MARGINHEIGHT=2>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=500>
+ <TR>
+  <TD HEIGHT=30 WIDTH=100%></TD>
+ </TR>
+ <TR>
+  <TD ALIGN=CENTER><H3><U>New User Registration</U></H3></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=20></TD>
+ </TR>
+ <TR>
+  <TD><B>
+  Fill in this form in order to register as a new user of the IBM Web Enabling Services.
+  Your personal data will be used to authorize your User-Id and Password. After registration
+  and authorization, you will be enabled to select existing service contracts as well as to provide
+  your own service contracts.</b>
+  <P><b>If you have already registered before, move on to the <A HREF="./logon.html">Registered User</A>
+  page for logon.</B>
+  </TD>
+ </TR>
+</TABLE>
+<P><HR>
+<P><B>(Fields marked with <font color="#FF0000">*</font> are required data fields!)</B>
+<FORM NAME="UserData" METHOD="POST" ACTION="Registration" onSubmit="return chkForm()">
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=500>
+ <TR>
+  <TD WIDTH=5%></TD><TD WIDTH=5%><TD WIDTH=40%></TD><TD WIDTH=50%></TD>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>Company:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="company" SIZE=30 MAXLENGTH=100></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>Your Name:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="name" SIZE=30 MAXLENGTH=100></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>1.Address Field:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="address1" SIZE=30 MAXLENGTH=100></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD></TD><TD><B>2.Address Field:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="address2" SIZE=30 MAXLENGTH=100></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD></TD><TD><B>3.Address Field:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="address3" SIZE=30 MAXLENGTH=100></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>Zip-Code:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="zipcode" SIZE=10 MAXLENGTH=20></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>City:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="place" SIZE=30 MAXLENGTH=50></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD></TD><TD><B>State:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="state" SIZE=20 MAXLENGTH=100></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>Country:</B></TD>
+  <TD><SELECT NAME="country" SIZE=1><option>Canada
+                                    <option>France
+                                    <option>Germany
+                                    <option>Italy
+                                    <option>Spain
+                                    <option>United Kingdom
+                                    <option selected>United States
+                                    <option>other Country
+                                    </SELECT>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>e-mail:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="email" SIZE=30 MAXLENGTH=50></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD></TD><TD><B>Distinguished Name:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="dn" VALUE="CN=" SIZE=30 MAXLENGTH=50></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD></TD><TD><B>Certification Agency:</B></TD>
+  <TD><SELECT NAME="ca" SIZE=1><option selected>[self signed]
+                               <option>IBM CA
+                               <option>other Agency
+     </SELECT>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD><TD></TD><TD></TD>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>User-ID:</B></TD>
+  <TD><INPUT TYPE=TEXT NAME="userid" SIZE=20 MAXLENGTH=20></TD>
+ </TR>
+ <TR>
+  <TD HEIGHT=30></TD>
+  <TD><font color="#FF0000">*</font></TD><TD><B>Password:</B></TD>
+  <TD><INPUT TYPE=PASSWORD NAME="passwd" SIZE=20 MAXLENGTH=20></TD>
+ </TR>
+</TABLE>
+<TABLE WIDTH=500 BORDER=0 CELLSPACING=0 CELLPADDING=0 NOF=TE>
+ <TR>
+  <TD ALIGN="CENTER" HEIGHT=50><INPUT TYPE=SUBMIT NAME="SubmitButton" VALUE="Submit"></TD>
+ </TR>
+</TABLE>
+</FORM>
+</b>
+</BODY>
+</HTML>

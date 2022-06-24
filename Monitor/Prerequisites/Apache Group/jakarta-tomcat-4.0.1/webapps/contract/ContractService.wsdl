@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:contract="http://tempuri.org/xsd/2001/12/Contract/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/wsdl/2001/12/ContractService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContractService-interface" targetNamespace="http://tempuri.org/wsdl/2001/12/ContractService/">
+  
+  <documentation>
+    The Contract Service provides information about the type of contract between a web service 
+		(a service provider) and a client (or service requestor).  This includes information such as 
+		how the service is to be metered for that client (by time, by number of uses, etc.) 
+		and how much the service should cost for that client. For each service requestor/service 
+		combination, the Contract Service defines the payment model and rating model to be used, 
+		the effective dates for the contract, and may optionally store the digital signatures of 
+		both parties to the contract. 
+    <pre>  
+    @version 1.0
+    @author Peter Brittenham
+    @author Michael Haeberlen
+    @author Dietmar Kuebler
+    @author Martin Smolny
+		</pre>
+  </documentation>
+
+  <import location="Contract.xsd" namespace="http://tempuri.org/xsd/2001/12/Contract/"/>
+
+  <message name="CheckUsageContractRequest">
+	  <documentation>
+		  This message is used to check for valid usage contract based on identity
+			and provider contract key. 
+		</documentation>
+		
+    <part name="IdentityKey" type="xsd:string">
+	    <documentation>
+			  The identity key is the unique identifier for the service requestor.
+	    </documentation>
+	  </part>
+    <part name="ProviderContractKey" type="xsd:string">
+	    <documentation>
+			  The provider contract key is the unique identifier for the web service.
+	    </documentation>
+	  </part>
+  </message>
+  
+	<message name="Response">
+	  <documentation>
+		  Standard response message.
+		</documentation>
+		
+    <part name="StatusCode" type="xsd:string">         
+	    <documentation>
+			  The status code indicates the success or failure of an operation.
+	    </documentation>
+	  </part>
+  </message>
+  
+  <message name="ProviderContract">
+	  <documentation>
+		   A provider contract is sent or received using this message.. 
+		</documentation>
+		
+    <part name="ProviderContract" type="contract:ProviderContract">
+	    <documentation>
+			  This part contains the details for the provider contract.  The provider contract
+				structure is defined in the Contract.xsd file.
+	    </documentation>
+	  </part>
+  </message>
+  
+	<message name="UsageContract">
+	  <documentation>
+		   A usage contract is sent or received using this message.. 
+		</documentation>
+		
+    <part name="UsageContract" type="contract:UsageContract">
+	    <documentation>
+			  This part contains the details for the usage contract.  The usage contract
+				structure is defined in the Contract.xsd file.
+	    </documentation>
+	  </part>
+  </message>
+	
+  <message name="ContractKey">
+	  <documentation>
+		  This message is used to send or receive a contract key. 
+		</documentation>
+		
+    <part name="ContractKey" type="xsd:string">
+	    <documentation>
+			  The contract key is the unique idenitifier for a usage contract or provider contract.
+	    </documentation>
+	  </part>
+  </message>
+  
+	<message name="ProviderContractListRequest">
+	  <documentation>
+		  This is an empty message which is used when requesting a provider contract list. 
+		</documentation>
+  </message>
+
+  <message name="ProviderContractList">
+	  <documentation>
+		  The provider contract list contains an array of provider contracts, which contains
+			the detailed definition for the contract.
+		</documentation>
+		
+    <part name="ProviderContractList" type="contract:ArrayOfProviderContracts">
+	    <documentation>
+			  This part contains an array of provider contracts.  The array definition and the 
+				provider contract definition are located in the Contract.xsd file.
+	    </documentation>
+	  </part>
+  </message>
+
+  <message name="IdentityKey">
+	  <documentation>
+		  This message is used to send or receive a identity key. 
+		</documentation>
+		
+    <part name="IdentityKey" type="xsd:string">
+	    <documentation>
+			  The identity key is the unique identifier for the service requestor or service provider.
+	    </documentation>
+	  </part>
+  </message>
+  
+	<message name="PaymentKey">
+	  <documentation>
+		  A payment key is sent or received using this message. 
+		</documentation>
+		
+    <part name="PaymentKey" type="xsd:string">
+	    <documentation>
+			  The payment key is the unique identifier for the ????.			
+	    </documentation>
+	  </part>
+  </message>
+  
+	<message name="ContractCount">
+	  <documentation>
+		  This message contains a contract count value. 
+		</documentation>
+		
+    <part name="ContractCount" type="xsd:int">
+	    <documentation>
+			  The contract count indicates the number of contracts that meet a specified criteria.
+	    </documentation>
+	  </part>
+  </message>
+  
+	<message name="ServiceID">
+	  <documentation>
+		  This message is used to send or receive a service ID for a contracted service. 
+		</documentation>
+		
+    <part name="ServiceID" type="xsd:string">
+	    <documentation>
+			  A service ID is the unique identifier for a web service.
+	    </documentation>
+	  </part>
+  </message>
+
+  <message name="ContractKeyList">
+	  <documentation>
+		  This message contains a list of contract keys. 
+		</documentation>
+		
+    <part name="ContractKeyList" type="contract:ArrayOfContractKeys">
+	    <documentation>
+			  This part contains an array of contract keys.  The array definition is
+				located in the Contract.xsd file.
+	    </documentation>
+	  </part>
+  </message>
+
+  <message name="ChangeUsageContractDate">
+	  <documentation>
+		  This message is used to change date in usage contract.  The start and end date are 
+			timestamps that require the following format: yyyy-mm-dd hh:mm:ss.fffffffff 
+		</documentation>
+		
+    <part name="UsageContract" type="contract:UsageContract">
+	    <documentation>
+			  This part contains the details for the usage contract.  The usage contract
+				structure is defined in the Contract.xsd file.
+	    </documentation>
+	  </part>
+    <part name="StartDate" type="xsd:string">
+	    <documentation>
+			  The new start date for the usage contract.  This date must be in the following 
+				format: yyyy-mm-dd hh:mm:ss.fffffffff
+	    </documentation>
+	  </part>
+    <part name="EndDate" type="xsd:string">
+	    <documentation>
+			  The new end date for the usage contract.  This date must be in the following 
+				format: yyyy-mm-dd hh:mm:ss.fffffffff
+	    </documentation>
+	  </part>
+  </message>
+
+  <message name="ChangeProviderContractDate">
+	  <documentation>
+		  This message is used to change date in provider contract.  The start and end date are 
+			timestamps that require the following format: yyyy-mm-dd hh:mm:ss.fffffffff 
+		</documentation>
+		
+    <part name="ProviderContract" type="contract:ProviderContract">
+	    <documentation>
+			  This part contains the details for the provider contract.  The provider contract
+				structure is defined in the Contract.xsd file.
+	    </documentation>
+	  </part>
+    <part name="StartDate" type="xsd:string">
+	    <documentation>
+			  The new start date for the provider contract.  This date must be in the following 
+				format: yyyy-mm-dd hh:mm:ss.fffffffff
+	    </documentation>
+	  </part>
+    <part name="EndDate" type="xsd:string">
+	    <documentation>
+			  The new end date for the provider contract.  This date must be in the following 
+				format: yyyy-mm-dd hh:mm:ss.fffffffff
+	    </documentation>
+	  </part>
+  </message>
+
+												
+  <portType name="ContractService">
+		<documentation>
+		  Standard operation definitions for a contract service.
+		</documentation>
+			
+    <operation name="checkUsageContractValidForIdentity">
+		  <documentation>
+			  Check for a usage contract that would be valid for a specified identity.
+			</documentation>
+      
+			<input message="tns:CheckUsageContractRequest">
+        <documentation>
+		      The input for this operation is the identity key for the service requestor and
+					the provider contract key.
+        </documentation>
+			</input>
+      <output message="tns:Response">
+        <documentation>
+		      The response indicates whether the specified identity has a valid usage contract.
+        </documentation>
+			</output>
+    </operation>
+    
+    <operation name="createProviderContract">             
+		  <documentation>
+			  Create a provider contract and return the new contract key.
+			</documentation>
+      
+			<input message="tns:ProviderContract">
+        <documentation>
+		      This operation requires the completed provider contract as input.
+        </documentation>
+			</input>
+      <output message="tns:ContractKey">
+        <documentation>
+		      After the provider contract is created, the contract key for the provider
+					contract is returned.
+        </documentation>
+			</output>
+    </operation>
+                                                        
+    <operation name="createUsageContract">                
+		  <documentation>
+			  Create a usage contract and return the new contract key.
+			</documentation>
+      
+			<input message="tns:UsageContract">
+        <documentation>
+		      The input for this operation is a completed usage contract.
+        </documentation>
+			</input>
+      <output message="tns:ContractKey">
+        <documentation>
+		      After the usage contract is created, the contract key for the usage
+					contract is returned.
+        </documentation>
+			</output>
+    </operation>
+    
+    <operation name="deleteContract">
+		  <documentation>
+			  Delete the specified contract.
+			</documentation>
+      
+			<input message="tns:ContractKey">
+        <documentation>
+		      The contract key for the usage or provider contract which will be deleted.
+        </documentation>
+			</input>
+      <output message="tns:Response">
+        <documentation>
+		      The response will indicate whether the contract was deleted.
+        </documentation>
+			</output>
+    </operation>
+    
+    <operation name="getProviderContract">      
+		  <documentation>
+			  Get a provider contract for the specified contract key.
+			</documentation>
+      
+			<input message="tns:ContractKey">
+        <documentation>
+		      The contract key for the provider contract.
+        </documentation>
+			</input>
+      <output message="tns:ProviderContract">
+        <documentation>
+		      The complete provider contract.
+        </documentation>
+			</output>
+    </operation>
+    
+    <operation name="getUsageContract">      
+		  <documentation>
+			  Get a usage contract for the specified contract key.
+			</documentation>
+      
+			<input message="tns:ContractKey">
+        <documentation>
+		      The contract key for the provider contract.
+        </documentation>
+			</input>
+      <output message="tns:UsageContract">
+        <documentation>
+		      The complete usage contract.
+        </documentation>
+			</output>
+    </operation>
+       
+		<operation name="getProviderContractList">       
+		  <documentation>
+			  Get a list of all provider contracts.
+			</documentation>
+			      
+      <input message="tns:ProviderContractListRequest">
+        <documentation>
+		      Not input is required for this operation.
+        </documentation>
+			</input>
+      <output message="tns:ProviderContractList">
+        <documentation>
+		      An array of provider contracts for a particular service.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="getContractKeyListForIdentity">       
+		  <documentation>
+			  Get contract key list for a specified identity.
+			</documentation>
+			      
+      <input message="tns:IdentityKey">
+        <documentation>
+		      The identity key that will be used to search for contracts.
+        </documentation>
+			</input>
+      <output message="tns:ContractKeyList">
+        <documentation>
+		      The list of contract keys that are associated with the specified identity.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="getProviderContractKey">       
+		  <documentation>
+			  Get provider contract key for a service ID.
+			</documentation>
+			      
+      <input message="tns:ServiceID">
+        <documentation>
+		      The service ID which is used to uniquely identify a web service.
+        </documentation>
+			</input>
+      <output message="tns:ContractKey">
+        <documentation>
+		      The provider contract key for the service.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="getProviderContractKeyListForIdentity"> 
+		  <documentation>
+			  Get the list of provider contract keys for a specified identity.
+			</documentation>
+			      
+      <input message="tns:IdentityKey">
+        <documentation>
+		      The identity key for the service provider which has provider contracts.
+        </documentation>
+			</input>
+      <output message="tns:ContractKeyList">
+        <documentation>
+		      The list of provider contract keys.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="getContractsCountForPaymentkey"> 
+		  <documentation>
+			  Get the list of provider contracts for a specified identity.
+			</documentation>
+			      
+      <input message="tns:PaymentKey">
+        <documentation>
+		      The payment key which defines the valid type of payment for a contracted service.
+        </documentation>
+			</input>
+      <output message="tns:ContractCount">
+        <documentation>
+		      The number of contracts that have the specified payment key.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="changeProviderContractDate"> 
+		  <documentation>
+			  Change provider contract valid date.
+			</documentation>
+			      
+      <input message="tns:ChangeProviderContractDate">
+        <documentation>
+		      The input for this operation includes the usage contract, and the new start and end
+					date for the contract. 
+        </documentation>
+			</input>
+      <output message="tns:Response">
+        <documentation>
+		      The response indicates whether the provider contract was changed.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="changeUsageContractDate"> 
+		  <documentation>
+			  Change usage contract valid date.
+			</documentation>
+			      
+      <input message="tns:ChangeUsageContractDate">
+        <documentation>
+		      The input for this operation includes the usage contract, and the new start and end
+					date for the contract. 
+        </documentation>
+			</input>
+      <output message="tns:Response">
+        <documentation>
+		      The response indicates whether the provider contract was changed.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="getUsageContractListForIdentity"> 
+		  <documentation>
+			  Get usage contract list for identity.
+			</documentation>
+			      
+      <input message="tns:IdentityKey">
+        <documentation>
+		      The identity key for the service requestor who has usage contracts.
+        </documentation>
+			</input>
+      <output message="tns:ArrayOfUsageContracts">
+        <documentation>
+		      The response for this operation is an array of usage contracts that
+					are associated with the specified identity.
+        </documentation>
+			</output>
+    </operation>    
+    
+		<operation name="getContractKeyListForProviderContract"> 
+		  <documentation>
+			  Get usage contract key list for the specified provider contract key.
+			</documentation>
+			      
+      <input message="tns:ContractKey">
+        <documentation>
+		      The provider contract key.
+        </documentation>
+			</input>
+      <output message="tns:ContractKeyList">
+        <documentation>
+		      The list of usage contract keys that are associated with the specified provider
+					contract key.
+        </documentation>
+			</output>
+    </operation>    
+  </portType>
+	
+
+  <binding name="ContractServiceBinding" type="tns:ContractService">
+		<documentation>
+		  SOAP binding definitions for a contract service.
+		</documentation>
+			
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    
+		<operation name="checkUsageContractValidForIdentity">
+		  <documentation>
+			  Check for a usage contract that would be valid for a specified identity.
+			</documentation>
+      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>
+    
+    <operation name="createProviderContract">
+		  <documentation>
+			  Create a provider contract and return the new contract key.
+			</documentation>
+      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="createUsageContract">
+		  <documentation>
+			  Create a usage contract and return the new contract key.
+			</documentation>
+      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="deleteContract">
+		  <documentation>
+			  Delete the specified contract.
+			</documentation>
+      
+			<soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getProviderContract">
+		  <documentation>
+			  Get a provider contract for the specified contract key.
+			</documentation>
+      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getUsageContract">
+		  <documentation>
+			  Get a usage contract for the specified contract key.
+			</documentation>
+      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getProviderContractList">
+		  <documentation>
+			  Get provider contract list for a service ID.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getContractKeyListForIdentity">
+		  <documentation>
+			  Get contract key list for a specified identity.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getProviderContractKey">
+		  <documentation>
+			  Get provider contract key for a service ID.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+		<operation name="getProviderContractKeyListForIdentity">
+		  <documentation>
+			  Get the list of provider contract keys for a specified identity.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getContractsCountForPaymentkey">
+		  <documentation>
+			  Get the list of provider contracts for a specified identity.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="changeProviderContractDate">
+		  <documentation>
+			  Change provider contract valid date.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="changeUsageContractDate">
+		  <documentation>
+			  Change usage contract valid date.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getUsageContractListForIdentity">
+		  <documentation>
+			  Get usage contract list for identity.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+    
+    <operation name="getContractKeyListForProviderContract">
+		  <documentation>
+			  Get contract list for identity.
+			</documentation>
+			      
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/ContractService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/ContractService/" use="encoded"/>
+      </output>
+    </operation>    
+  </binding>
+</definitions>

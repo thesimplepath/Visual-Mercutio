@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-2022-jp">
+<META name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.3 for Windows">
+<title>WebSphere SOAP Installation Instructions</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<P>
+<i>
+訳：日本アイ・ビー・エム(株) ソフトウェア事業部 米持 幸寿
+
+<blockquote>
+<font color="blue">
+このドキュメントは、Apache SOAP 2.0レベルのものを日本語訳したもので、
+最新版のものとは異なる可能性があります。また、ウェブ上で見る場合、一部
+のリンクが切れている可能性があります。Apache SOAPのディレクトリの該当
+ファイルと置き換えることで、オリジナルのページにリンクさせることができ
+ます。
+</font>
+</blockquote>
+</i>
+</P>
+
+<h1 align="center">Apache-SOAP Version 2.0: <BR>
+IBM WebSphere Advanced Edition への導入手順</h1>
+
+<p>以下の手順は次の環境に導入することを前提にしています。:</p>
+<ul>
+<li>WinNT 4.0 (他のプラットフォームでもだいたい同じです)</li>
+<li>WebSphere Advanced Edition 3.5 with fix pack
+  2 (SOAP 2.0 には、Servlet API　2.2　が必要です)</li>
+</ul>
+
+<p><strong>重要</strong>：<BR>
+WebSphere には、DOM level1 インターフェイスを使う
+XML parser (WebSphere\AppServer\lib\xml4j.jar)
+が付いてきます。ユーザーのクラスパスに Xerces
+1.1.2（またはそれ以降）の xerces.jar ファイルを追加すると、WebSphere
+の中で動くコードは間違ったインターフェイスを見つけてしまします。これは、WebSphere
+がユーザーのクラスパスを最後に追加するためです。そこで、WebSphere\AppServer\bin\admin.config　ファイルを編集して、xerces.jar
+ファイルが <CODE>com.ibm.ejs.sm.adminserver.classpath=</CODE> の値の先頭に来るようにします。</p>
+<H2>SOAP サーバーのセットアップ:</H2>
+<UL>
+  <li>NTスタートメニューの「WebSphere」メニューから:
+  <ol>
+    <li>「Start Admin Server」 を実行して終わるまで待ちます。</li>
+    <li>「管理コンソール」を起動します。</li>
+  </ol>
+  　<BR>
+  </li>
+  <LI>管理コンソールから:
+  <ol>
+    <LI>コンソール/タスク/アプリケーション・サーバーの作成
+    <ol>
+      <li>「Web アプリケーション」を選択：「次へ」</li>
+      <li>アプリケーション・サーバーのプロパティー：アプリケーション・サーバー名を「SOAP（別の名前でも構いません）」としてください。「次へ」</li>
+      <li>アプリケーション・サーバー開始オプション：「サーバーを作成した後に自動的に開始しない」を選択して「次へ」</li>
+      <li>ノードの選択：ご自分のノードを選択して「次へ」</li>
+      <li>仮想ホストの選択：「default_host」を選択して「次へ」</li>
+      <li>サーブレット・エンジンのプロパティー：ディフォルトのままで「次へ」</li>
+      <LI>ウェブ・アプリケーションのプロパティー：
+      Webアプリケーション・パスを「/soap」に設定します。/webapp/SoapWebApp
+      のままでも構いませんが「/soap」のほうが短くて済みますし、この手順の中でもこれを使います。ここで、「/soap」にしなかった場合、あとのＵＲＬに影響しますので、「/soap」にしておくことをお薦めします。「次へ」
+      <li>システム・サーブレットの指定：「JSP 1.0」か「JSP
+      1.1 を使用可能にする」</li>
+      <li>「終了」を押すと SOAP アプリケーション・サーバーが作成されます。</li>
+    </ol>
+  </OL>
+  　<BR>
+  <LI>ツリー表示から「SoapWebApp」を選択し、「拡張」タブを選択します。
+  <ol>
+    <li>文書ルートを &quot;C:\install-dir\soap-2_0\webapps\soap&quot;
+    に変更します。</li>
+    <li>クラスパスを以下のように設定します。
+    <ul>
+      <li><code>C:\install-dir\soap-2_0\lib\soap.jar</code></li>
+      <li><code>C:\install-dir\soap-2_0</code></li>
+      <li>必要に応じてあなたのSOAPサーバークラス</li>
+    </ul>
+  </ol>
+  　<BR>
+  <li>コンソール/タスク/サーブレットの追加
+  <ol>
+    <li>サーブレット： 「いいえ」を選択して「次へ」</li>
+    <li>サーブレット： サーブレットを配置するサーバーとして「SOAPWebApp」を選択して「次へ」</li>
+    <li>サーブレット： 「ユーザー定義サーブレット」を選択して「次へ」</li>
+    <li>サーブレット：
+    <ol>
+      <li>サーブレット名を「rpcrouter」と指定</li>
+      <li>クラス名を「org.apache.soap.server.http.RPCRouterServlet」と指定</li>
+      <LI>「default_host/soap/servlet/rpcrouter」をサーブレットWebパスリストに追加。ダイアログ・ポップアップには「servlet/rpcrouter」とだけ入力します。
+    </ol>
+    「次へ」</li>
+    <li>サーブレット： ディフォルトで結構です。</li>
+    <li>「終了」</li>
+  </ol>
+  　<BR>
+  </li>
+  <LI>同様の手順で「messagerouter」サーブレットも作成します
+  <UL>
+    <LI>サーブレット名「messagerouter」
+    <LI>クラス名「org.apache.soap.server.http.MessageRouterServlet」
+    <LI>パスリストに「default_host/soap/servlet/messagerouter」を追加
+  </UL>
+  　<BR>
+  <li>SOAPサーバーを起動します。</li>
+</UL>
+<p>SOAPサービスを一覧表示したり配置するページを次のURLで表示できます。</p>
+
+<blockquote>http://ホスト名：ポート番号/soap/admin
+<pre>もし、ローカルサーバーがディフォルト設定になっていれば、次のURLでアクセスできます。
+<a href="http://localhost:80/soap/admin">http://localhost/soap/admin</a></pre>
+</blockquote>
+
+<p>別の方法として、次のコマンドをクラスパスを正しく設定して実行すれば配置ができます。</p>
+
+<blockquote>
+<pre>
+java org.apache.soap.server.ServiceManagerClient 
+     http://hostname:port/soap/servlet/rpcrouter 
+     deploy &lt;DeploymentDescriptor.xml&gt;
+</pre>
+</blockquote>
+
+<p>管理ツールに関してはさらに詳しい説明が「User's
+Guide」にあります。サーバーのサービスを受けるためのエンドポイントは</p>
+
+<blockquote>
+    <pre><a href="http://localhost/soap/servlet/rpcrouter">http://hostname:port/soap/servlet/rpcrouter</a></pre>
+</blockquote>
+<P>です。</P>
+<p>では、SOAPをお楽しみください！</p>
+</body>
+</html>

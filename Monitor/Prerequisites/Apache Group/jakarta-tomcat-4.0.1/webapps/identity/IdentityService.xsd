@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://tempuri.org/xsd/2001/12/IdentityService/"
+  xmlns:identity-service="http://tempuri.org/xsd/2001/12/IdentityService/"
+  xmlns:identity="http://tempuri.org/xsd/2001/12/Identity/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+	
+  <import namespace="http://tempuri.org/xsd/2001/12/Identity/" schemaLocation="Identity.xsd"/>
+  
+  <!--
+    This XML schema document contains the identity service API definitions.
+    The identity data entities are defined in the Idenity.xsd file.
+    
+    @version 0.1
+    @author Peter Brittenham
+    @author David Melgar
+    @author Alfredo da Silva
+  -->
+  
+  <complexType name="deleteIdentityType">
+    <sequence>
+      <element name="identityKey" type="xsd:string"/>
+    </sequence>
+  </complexType>
+
+  <element name="deleteIdentity" type="identity-service:deleteIdentityType"/>
+
+  <complexType name="changeIdentityType">
+    <sequence>
+      <element name="identityModel" type="identity:identityModelType"/>
+    </sequence>
+  </complexType>
+
+  <element name="changeIdentity" type="identity-service:changeIdentityType"/>
+
+  <complexType name="createIdentityType">
+    <sequence>
+      <element name="identityModel" type="identity:identityModelType"/>
+    </sequence>
+  </complexType>
+
+  <element name="createIdentity" type="identity-service:createIdentityType"/>
+
+  <complexType name="getIdentityDetailsType">
+    <sequence>
+      <element name="identityKey" type="xsd:string"/>
+    </sequence>
+  </complexType>
+
+  <element name="getIdentityDetails" type="identity-service:getIdentityDetailsType"/>
+
+  <complexType name="getIdentityKeyForUseridAndPasswordType">
+    <sequence>
+      <element name="userid" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+    </sequence>
+  </complexType>
+
+  <element name="getIdentityKeyForUseridAndPassword" type="identity-service:getIdentityKeyForUseridAndPasswordType"/>
+
+  <complexType name="getIdentitykeyForDNAndCAType">
+    <sequence>
+      <element name="distinguishedName" type="xsd:string"/>
+      <element name="certificationAuthority" type="xsd:string"/>
+    </sequence>
+  </complexType>
+
+  <element name="getIdentitykeyForDNAndCAType" type="identity-service:getIdentitykeyForDNAndCAType"/>
+
+</schema>

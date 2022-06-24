@@ -1,0 +1,47 @@
+
+Service:
+-------
+To install this service on an Apache-SOAP listener, you need to make
+the samples.addressbook package available on the Apache-SOAP listener's
+classpath. Then deploy this service by filling in the deployment
+template using the info in the deployment descriptor in this
+directory or by using the service manager client:
+  java org.apache.soap.server.ServiceManagerClient routerURL deploy dd.xml
+where routerURL is the URL of the SOAP RPC router and dd.xml is the
+name of the deployment descriptor file.  For example:
+  java org.apache.soap.server.ServiceManagerClient  \
+    http://localhost:8080/soap/servlet/rpcrouter deploy DeploymentDescriptor.xml
+
+
+Client:
+------
+
+There are 4 sample clients:
+
+  java samples.addressbook.GetAddress
+  java samples.addressbook.GetAllListings
+  java samples.addressbook.PutAddress
+  java samples.addressbook.PutListings
+
+  Run any of them with no args to see the usage.
+
+
+Additional Client Classpath Requirements:
+----------------------------------------
+
+  ../..
+
+
+Explanation:
+-----------
+
+This is a simple service that allows a client to query and populate an
+address book residing on a server. The address book is pre-populated
+with two names: John B. Good, and Bob Q. Public.
+
+
+Sample Usage:
+------------
+
+java samples.addressbook.GetAddress \
+  http://localhost:2020/soap/servlet/rpcrouter "John B. Good"

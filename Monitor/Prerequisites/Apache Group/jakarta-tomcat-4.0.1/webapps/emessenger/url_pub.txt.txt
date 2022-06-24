@@ -1,0 +1,70 @@
+acces HTML
+http://127.0.0.1:8080/emessenger
+
+publication
+http://127.0.0.1:8080/soap/servlet/rpcrouter
+
+login:  admin
+passwd: toto
+
+login:  admin
+passwd: fja1234
+
+pour accéder au serveur de démo:
+http://80.13.69.6:8080/mercutio
+http://80.13.69.6:9090/fja
+
+pour publier vos modèles sur le serveur de démo:
+http://80.13.69.6:8080/soap/servlet/rpcrouter
+http://80.13.69.6:9090/soap/servlet/rpcrouter
+
+\mysql\bin\mysql
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 67 to server version: 3.23.47-nt
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> use mercutio2;
+Database changed
+mysql> delete from psystem;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+
+
+wusage:
+admin/toto
+
+
+Install package:
+- Conceptor/Sesterces 2002
+  admin1234
+
+- Scriptor
+  power1234
+
+- ScriptoDesigner
+  lune1234
+
+crazy hyacinth meridian
+
+INFOMANIAK
+admin.processsoft.com
+webmaster@processsoft.com
+metrobus
+
+Une partition FTP dédiée a été crée afin de faciliter les échanges entre les partenaires du projet Messenger
+ 
+Serveur : www.processsoft.com
+Port : 21
+Nom : messenger
+Mot de passe : benedicte
+Répertoire : /Messenger/
+
+Serveur : www.processsoft.com
+Port : 21
+Nom : crm
+Mot de passe : françoise
+Répertoire : /crm/
+

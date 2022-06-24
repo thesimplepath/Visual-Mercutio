@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:interface="http://tempuri.org/wsdl/2001/12/AccountingService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AccountingService-impl" targetNamespace="http://tempuri.org/wsdl/2001/12/AccountingService-impl/">
+
+  <import location="http://localhost:8080/accounting/AccountingService.wsdl" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/"/>
+
+  <service name="AccountingService">
+    <documentation>Accounting Service</documentation>
+
+    <port binding="interface:AccountingServiceBinding" name="Demo">
+      <soap:address location="http://localhost:8080/accounting/services/AccountingService"/>
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Installing Apache SOAP on iPlanet</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<META content="MSHTML 5.50.4613.1700" name=GENERATOR>
+<META content="Christopher P Kampemeier" name=Author></HEAD>
+<BODY bgColor=#ffffff>
+<H1><B><FONT size=+3>Installing Apache SOAP on iPlanet Application 
+Server</FONT></B></H1><I>Updated May 24, 2001</I> 
+<P>This document describes how to install Apache SOAP 2.2 on iPlanet Application 
+Server 6.0 and how to exercise the Apache SOAP samples. 
+<BLOCKQUOTE>
+  <P><A href="#install-apache-soap">Installing Apache SOAP</A> 
+  <P><A href="#cfg-client">Configuring the Client Environment</A> 
+</P></BLOCKQUOTE>
+<BLOCKQUOTE>
+  <P><A href="#register-samples">Registering and Exercising the Apache SOAP 
+  Samples</A> </P>
+  <P><A href="#next-steps">Next Steps</A></P>
+  <P><A href="#db-file">Changing Location of the Deployed Services Configuration 
+  File </A></P></BLOCKQUOTE>
+<H1><A name=install-apache-soap></A><B>Installing Apache SOAP</B> </H1>
+<OL>
+  <LI>Deploy the Apache SOAP Web Application 
+  <LI>Add Supporting Libraries to Server Classpath 
+  <LI>Test the Apache SOAP Installation<BR></LI></OL>
+<H2><B>1. &nbsp;Deploy the Apache SOAP Web Application</B></H2>
+<OL>
+  <LI>Start the iPlanet Application Server Deployment Tool. 
+  <LI>Open the <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>soap.war</FONT> file from the expanded Apache SOAP distribution. This 
+  file is located under <FONT face="Courier New, Courier, mono" size=2><I><FONT 
+  color=#000099>soapinstalldir</FONT></I><FONT 
+  color=#000099>/webapps/soap.war</FONT></FONT>. When asked to add iPlanet 
+  deployment descriptor, click on OK. If informed that a number of class 
+  references cannot be resolved, ignore the warning as supporting libraries will 
+  be added to the server's classpath in the next section. 
+  <LI>Add the <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>soap.jar</FONT> file to the <FONT face="Courier New, Courier, mono" 
+  color=#000099 size=2>WEB-INF/lib/ </FONT>area of the WAR file. Alternatively, 
+  you can add the <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>soap.jar</FONT> file to the start of the application server's 
+  classpath. See the next section on adding supporting libraries to the 
+  application server classpath. 
+  <LI>Save the modified <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>soap.war</FONT> file. 
+  <LI>Deploy the <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>soap.war</FONT> module to the application server. </LI></OL>
+<P>Upon deployment, the SOAP web application is installed in the<FONT 
+face="Courier New, Courier, mono" size=2> <I><FONT 
+color=#000099>installdir</FONT></I><FONT 
+color=#000099>/APPS/modules/soap/</FONT></FONT> directory of the application 
+server. If you browse the <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>WEB-INF/classes/</FONT> directory of the deployed web application, you'll 
+note that the Java classes for Apache SOAP sample services are included in the 
+web application.</P>
+<H2>3. Add Supporting Libraries to Server Classpath</H2>
+<P>Download a copy of a JAXP compatible, namespace-aware XML parser such as 
+Xerces. Version 1.4 or later of the <A 
+href="http://xml.apache.org/xerces-j/">Xerces Java Parser</A> has been shown to 
+work properly with Apache SOAP 2.2.</P>
+<P>To avoid conflicts with the XML parser bundled with the application server, 
+you must ensure that the JAXP compatible parser library appears at the start of 
+the application server's classpath.</P>
+<P><FONT color=#000000>If you plan on exercising the Apache SOAP samples that 
+rely on server side scripting languages such as JavaScript, then download the 
+Bean Scripting Framework and Rhino JavaScript libraries and add the <FONT 
+face="Courier New, Courier, mono" color=#000099 size=2>bsf.jar</FONT> and <FONT 
+face="Courier New, Courier, mono" color=#000099 size=2>js.jar</FONT> files to 
+the front of the application server's classpath. </FONT>Refer to the <A 
+href="http://xml.apache.org/soap/docs/index.html">Apache SOAP installation 
+instructions</A> for pointers to these supporting JAR files.</P>
+<P>Since<FONT face="Courier New, Courier, mono" color=#000099 size=2> 
+mail.jar</FONT> and <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>activation.jar </FONT>are already present in the server classpath, you do 
+not need to perform any special setup to enable Apache SOAP to access these 
+libraries.</P>
+<H3>Classpath Settings on Windows</H3>
+<P>On Windows the application server uses the CLASSPATH setting defined in the 
+application server's registry. (Setting the Windows system environment variable 
+CLASSPATH will not affect the setting used by the application server). To modify 
+the registry: </P>
+<OL>
+  <LI>Execute <FONT face="Courier New, Courier, mono"><FONT color=#000099 
+  size=2>kregedit</FONT></FONT>, the application server's registry editor. 
+  <LI>Navigate to <FONT face="Courier New, Courier, mono"><FONT color=#000099 
+  size=2><I>SOFTWARE\iPlanet\Application Server\6.0</I></FONT></FONT> 
+  <LI>Select <FONT face="Courier New, Courier, mono"><FONT 
+  size=-1><I>Java\ClassPath</I></FONT></FONT> and the select 
+  <I>Edit-&gt;Modify</I> to change the value. 
+  <LI>Add the Rhino<FONT face="Courier New, Courier, mono" color=#000099 size=2> 
+  js.jar</FONT> (optional), <FONT face="Courier New, Courier, mono" 
+  color=#000099 size=2>bsf.jar</FONT> (optional) and Xerces JAR files to front 
+  of the classpath: 
+  <BLOCKQUOTE>
+    <P><FONT face="Courier New, Courier, mono"><FONT 
+    face="Courier New, Courier, mono"><FONT face="Courier New, Courier, mono" 
+    color=#000099 
+    size=2>d:\rhino\js.jar;d:\bsf-2_2\lib\bsf.jar;d:\xerces-1_4_0\xerces.jar;</FONT></FONT><FONT 
+    color=#000099 size=-1>...</FONT></FONT></P></BLOCKQUOTE>
+  <LI>Restart the application server to reload the registry settings. </LI></OL>
+<H3>Classpath Settings on UNIX (iPlanet Application Server 6.0 SP2)</H3>
+<P>Modify the <FONT face="Courier New, Courier, mono"><FONT size=-1><I><FONT 
+color=#000099 size=2>installdir</FONT></I><FONT color=#000099 
+size=2>/ias/bin/kjs</FONT></FONT></FONT> script to include the supporting JAR 
+files.&nbsp; The kjs script starts the JVM that houses the application server's 
+web and EJB containers. </P>
+<P><FONT face="Courier New, Courier, mono"><FONT size=-1><I><FONT color=#000099 
+size=2>installdir</FONT></I><FONT color=#000099 
+size=2>/ias/bin/kjs</FONT></FONT></FONT><FONT face="Courier New, Courier, mono" 
+color=#000099 size=2>:</FONT> 
+<BLOCKQUOTE>
+  <P><FONT face="Courier New, Courier, mono" color=#000099 size=2>...</FONT> 
+  <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2><BR><B>SOAP_CLASSES=/opt/rhino/js.jar:/opt/bsf-2_2/lib/bsf.jar:/opt/xerces-1_4_0/xerces.jar</B><BR>CLASSPATH=<B>$SOAP_CLASSES:</B>$THIRD_PARTY_JDBC_CLASSPATH:$GX_ROOTDIR/classes/java/jdbc20.jar:</FONT> 
+  <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2><BR>$GX_ROOTDIR/classes/java/javax.jar:...</FONT></P></BLOCKQUOTE>
+<P>Restart the application server to pick up the classpath changes.</P>
+<H3>Classpath Settings on UNIX (iPlanet Application Server 6.0 SP3)</H3>
+<P>In iPlanet Application Server 6.0 SP3 the classpath setting used by the kjs 
+shell script is housed in a common environment setting shell script. Make 
+changes to the kjs CLASSPATH variable in the</P>
+<P><FONT face="Courier New, Courier, mono"><FONT size=-1><I><FONT color=#000099 
+size=2>installdir</FONT></I><FONT color=#000099 
+size=2>/ias/iasenv.ksh</FONT></FONT></FONT><FONT 
+face="Courier New, Courier, mono" color=#000099 size=2>: </FONT></P>
+<BLOCKQUOTE>
+  <P><FONT face="Courier New, Courier, mono" color=#000099 size=2>...</FONT> 
+  <FONT face="Courier New, Courier, mono" color=#000099 size=2><BR># Union of 
+  all 
+  CLASSPATHS<BR><B>SOAP_CLASSES=/opt/rhino/js.jar:/opt/bsf-2_2/lib/bsf.jar:/opt/xerces-1_4_0/xerces.jar 
+  </B><BR>export 
+  CLASSPATH=<B>$SOAP_CLASSES</B>:${TOMCAT_DIR}/jasper.jar:...</FONT></P></BLOCKQUOTE>
+<P>Restart the application server to pick up the classpath changes.</P>
+<H2><B>4. Test the Apache SOAP Installation</B></H2>
+<P>Access the following URL to start the administrative interface: </P>
+<BLOCKQUOTE>
+  <P><A href="/NASApp/soap/admin/index.html"><FONT 
+  face="Courier New, Courier, mono" size=2>http://&lt;web server 
+  host&gt;/NASApp/soap/admin/index.html</FONT></A></P></BLOCKQUOTE>
+<P>Access the RPC Router and Message Router Servlets by accessing the following 
+URLs:</P>
+<BLOCKQUOTE>
+  <P><A href="/NASApp/soap/servlet/rpcrouter"><FONT 
+  face="Courier New, Courier, mono" size=2>http://&lt;web server 
+  host&gt;/NASApp/soap/servlet/rpcrouter</FONT></A></P>
+  <P><A href="/NASApp/soap/servlet/messagerouter"><FONT 
+  face="Courier New, Courier, mono" size=2>http://&lt;web server 
+  host&gt;/NASApp/soap/servlet/messagerouter</FONT></A> </P></BLOCKQUOTE>
+<P>If your Apache SOAP installation is correct, the browser will display:</P>
+<BLOCKQUOTE>
+  <P><FONT face="Courier New, Courier, mono" color=#000099 size=2>SOAP 
+  (RPC|Message) Router<BR>Sorry, I don't speak via HTTP GET- you have to use 
+  HTTP POST to talk to me. </FONT></P></BLOCKQUOTE>
+<P>Now that you've performed a basic test of the environment, you are ready to 
+configure your client environment and exercise sample applications.</P>
+<P>Since the application server's web container does not by default load<FONT 
+face="Courier New, Courier, mono" color=#000099 size=2> index.html</FONT> files, 
+you must include the index.html file names in the URLs. Otherwise, you will 
+encounter a GX Error in the browser when attempting to access a URL such as 
+<FONT face="Courier New, Courier, mono" color=#000099 
+size=2>NASApp/soap/admin/</FONT>.</P>
+<H1><A name=cfg-client></A>Configuring the Client Environment</H1>
+<P>To register SOAP services and to run Java-based client applications, you must 
+add several JAR files to your client's classpath:</P>
+<TABLE cellPadding=3 width="71%" border=1>
+  <TBODY>
+  <TR>
+    <TD width="22%">JAR</TD>
+    <TD width="39%">Description</TD>
+    <TD width="39%">Location</TD></TR>
+  <TR>
+    <TD width="22%"><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2>mail.jar</FONT></TD>
+    <TD width="39%">JavaMail API</TD>
+    <TD width="39%"><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2><I>installdir</I>/ias/classes/java/</FONT></TD></TR>
+  <TR>
+    <TD width="22%"><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2>activation.jar</FONT></TD>
+    <TD width="39%">JavaBeans Activation Framework</TD>
+    <TD width="39%"><I><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2>installdir</FONT></I><FONT face="Courier New, Courier, mono" 
+      color=#000099 size=2>/ias/classes/java/</FONT></TD></TR>
+  <TR>
+    <TD width="22%"><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2>soap.jar</FONT></TD>
+    <TD width="39%">Apache SOAP infrastructure</TD>
+    <TD width="39%"><I><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2>soapinstalldir</FONT></I><FONT face="Courier New, Courier, mono" 
+      color=#000099 size=2>/lib/soap.jar</FONT></TD></TR>
+  <TR>
+    <TD width="22%"><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2>xerces.jar</FONT> (or equivalent)</TD>
+    <TD width="39%">A JAXP compatible, namespace-aware XML parser such as 
+      Xerces.</TD>
+    <TD width="39%"><I><FONT face="Courier New, Courier, mono" color=#000099 
+      size=2>xercesinstalldir</FONT></I><FONT face="Courier New, Courier, mono" 
+      color=#000099 size=2>/xerces.jar</FONT></TD></TR></TBODY></TABLE>
+<P>To register and run the Apache SOAP 2.2 samples, you also need to add the 
+location of the samples directory to your client classpath. </P>
+<P>On Windows, the client classpath setting might resemble the following:</P>
+<BLOCKQUOTE>
+  <P><FONT face="Courier New, Courier, mono" color=#000099 size=2>set 
+  IAS_HOME=d:\iplanet\ias6\ias<BR>set 
+  CLASSPATH=%IAS_HOME%\classes\java\mail.jar;%IAS_HOME%\classes\java\activation.jar;<BR>c:\xerces-1_4_0\xerces.jar;c:\soap-2_2\lib\soap.jar;c:\soap-2_2;%CLASSPATH% 
+  </FONT></P></BLOCKQUOTE>
+<P>On UNIX, the client classpath setting might resemble the following:</P>
+<BLOCKQUOTE>
+  <P><FONT color=#000099>export <FONT face="Courier New, Courier, mono" 
+  size=2>IAS_HOME=/usr/iplanet/ias6/ias</FONT><BR><FONT 
+  face="Courier New, Courier, mono" size=2>export 
+  CLASSPATH=$IAS_HOME/classes/java/mail.jar:$IAS_HOME/classes/java/activation.jar:<BR>/opt/xerces-1_4_0/xerces.jar:/opt/soap-2_2/lib/soap.jar:/opt/soap-2_2:$CLASSPATH</FONT></FONT></P></BLOCKQUOTE>
+<H1><A name=register-samples></A><B>Registering and Exercising the Apache SOAP 
+Samples</B> </H1>
+<P>Each sample bundled with Apache SOAP 2.2 includes a script to register and 
+exercise the samples. Since the supporting Java classes for the Apache SOAP 
+sample services have already been deployed as part of the SOAP web application, 
+you do not need to move these classes to the application server. The sample 
+scripts will only register the already deployed SOAP services with the Apache 
+SOAP runtime.</P>
+<P>1. Edit testit Scripts to Reflect RPC Router URL<BR>2. Run testit 
+Scripts<BR>3. Troubleshooting<BR></P>
+<H2>1. Edit testit Scripts to Reflect RPC Router URL</H2>
+<P>Go to the<FONT face="Courier New, Courier, mono" size=2> <I><FONT 
+color=#000099>soapinstalldir</FONT></I><FONT 
+color=#000099>/samples/addressbook/</FONT></FONT> directory and edit either the 
+testit.cmd or testit.sh script depending on your OS platform. You will need to 
+perform a replace all on the URL of the rpcrouter servlet to match your 
+application server deployment.</P>
+<P>For example, throughout the testit script, the string:</P>
+<BLOCKQUOTE>
+  <P><FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>http://localhost:8080/soap/servlet/rpcrouter </FONT></P></BLOCKQUOTE>
+<P>will need to be changed to:</P>
+<BLOCKQUOTE>
+  <P><FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>http://&lt;hostname&gt;:&lt;port&gt;/NASApp/soap/servlet/rpcrouter</FONT></P></BLOCKQUOTE>
+<H2>2. Run the testit Script</H2>
+<P>Doublecheck to ensure that your client's classpath is set appropriately. Then 
+execute the testit script. For example, when running the addressbook sample, you 
+should see the following output in the client window:</P>
+<BLOCKQUOTE><PRE><FONT color=#000099>D:\soap-2_2\samples\addressbook&gt;testit<BR>This test assumes a server URL of http://127.0.0.1/NASApp/soap/servlet/rpcrouter</FONT></PRE><PRE><FONT color=#000099>Deploying the addressbook service...
+     .
+     Verify that it's there
+     Deployed Services:
+     urn:AddressFetcher
+     .
+     Getting info for "Mr Good"</FONT></PRE><PRE><FONT color=#000099>123 Main Street
+     Anytown, NY 12345
+     (123) 456-7890
+     .
+     Adding "John Doe"
+     John Doe has been added.
+     .
+     Query "Mr Doe" to make sure it was added</FONT></PRE><PRE><FONT color=#000099>123 Main Street
+     AnyTown, SS 12345
+     (800) 555-1212
+...
+  &lt;Listing&gt;<BR>    &lt;Name&gt;Mary Smith&lt;/Name&gt;<BR>    &lt;Address&gt;<BR>      &lt;StreetNum&gt;888&lt;/StreetNum&gt;<BR>      &lt;StreetName&gt;Broadway&lt;/StreetName&gt;<BR>      &lt;City&gt;Somewhere&lt;/City&gt;<BR>      &lt;State&gt;FL&lt;/State&gt;<BR>      &lt;Zip&gt;87654&lt;/Zip&gt;<BR>      &lt;PhoneNumber&gt;<BR>        &lt;AreaCode&gt;222&lt;/AreaCode&gt;<BR>        &lt;Exchange&gt;333&lt;/Exchange&gt;<BR>        &lt;Number&gt;4444&lt;/Number&gt;<BR>      &lt;/PhoneNumber&gt;<BR>    &lt;/Address&gt;<BR>  &lt;/Listing&gt;<BR>&lt;/AddressBook&gt;<BR>.<BR>Undeploy it now<BR>.<BR>Verify that it's gone<BR>Deployed Services: </FONT></PRE></BLOCKQUOTE>
+<P>If you successfully ran the address sample, then proceed to the <A 
+href="#next-steps">Next Steps</A>.<BR></P>
+<H2>3. Troubleshooting</H2>
+<P>If you encounter the following messages when running a sample, the most 
+likely cause is not having the JAXP compatible parser library at the front of 
+the server's classpath:</P>
+<BLOCKQUOTE><PRE><FONT color=#000099>D:\soap-2_2\samples\addressbook&gt;testit
+This test assumes a server URL of http://127.0.0.1/NASApp/soap/servlet/rpcr
+
+Deploying the addressbook service...
+Ouch, the call failed:
+  <B>Fault Code   = SOAP-ENV:Server.Exception:
+  Fault String = java.lang.NoSuchMethodError
+</B>... </FONT></PRE></BLOCKQUOTE>
+<P>This error occurs because the XML parser bundled with the application server 
+does not contain a class required by Apache SOAP. Once you place a JAXP 
+compatible parser at the front of the server's classpath, you will solve this 
+problem.</P>
+<P>If you encounter errors when running the Calculator sample, ensure that 
+you've added both the <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>bsf.jar</FONT> and<FONT face="Courier New, Courier, mono" color=#000099 
+size=2> js.jar</FONT> libraries to the start of the application server's 
+classpath.<BR></P>
+<H1><A name=next-steps></A>Next Steps</H1>
+<P>Try the remaining samples. Review the readme file for each sample to 
+understand the intent of the sample.</P>
+<P>Experiment by modifying the <FONT face="Courier New, Courier, mono" 
+color=#000099 size=2>testit</FONT> scripts to leave services registered. Restart 
+the application server to observe that registration of services is persistent 
+across server restarts. </P>
+<P>Access the Apache SOAP administrative interface to list the registered 
+services:</P>
+<BLOCKQUOTE>
+  <P><A href="/NASApp/soap/admin/index.html"><FONT 
+  face="Courier New, Courier, mono" size=2>http://&lt;web server 
+  host&gt;/NASApp/soap/admin/index.html</FONT></A></P></BLOCKQUOTE>
+<P>Select the <I>List</I> option to list the deployed services. Drill down into 
+each service to see the detailed configuration of the service. Since the 
+Calculator service is based on JavaScript, you will see the script code for this 
+service as you list it in the administrative interface.</P>
+<H1><A name=db-file></A>Changing the Location of the Deployed Services 
+Configuration File </H1>
+<P>The Apache SOAP infrastructure relies on a file named <FONT 
+face="Courier New, Courier, mono" color=#000099 
+size=2>DeployedServices.ds</FONT> to retain the configuration of deployed SOAP 
+services. This file enables the Apache SOAP infrastructure to reload service 
+configuration data as the application server is restarted. When Apache SOAP is 
+deployed to iPlanet Application Server, the default location for this file 
+is:</P>
+<BLOCKQUOTE>
+  <P><FONT face="Courier New, Courier, mono" size=2><I><FONT 
+  color=#000099>installdir</FONT></I><FONT 
+  color=#000099>/ias/DeployedServices.ds</FONT></FONT></P></BLOCKQUOTE>
+<P>You can override this default location by creating a <FONT 
+face="Courier New, Courier, mono" color=#000099 size=2>soap.xml</FONT> file 
+containing the path and file name of a services configuration file. The Apache 
+SOAP web application's deployment descriptor also needs to be modified to refer 
+to the location of the soap.xml configuration file.</P>
+<P>If you've already deployed SOAP services using the default services 
+configuration file, copy the content of the <FONT 
+face="Courier New, Courier, mono" color=#000099 
+size=2>DeployedServices.ds</FONT> file to the new location of the services 
+configuration file. (You may change the name of the file as desired).</P>
+<P>To change the default location of the services configuration file, you must 
+follow these steps:</P>
+<P>1. Create a <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>soap.xml</FONT> file containing a pointer to the new location of the 
+services configuration file.<BR>2. Open <FONT face="Courier New, Courier, mono" 
+color=#000099 size=2>soap.war</FONT> in Deployment Tool<BR>3. Add initialization 
+parameters to the rpcrouter and messagrouter servlets. These parameters point to 
+the location of a new <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>soap.xml</FONT> file.<BR>4. Copy old <FONT 
+face="Courier New, Courier, mono" color=#000099 
+size=2>DeployedServices.ds</FONT> file to new location. (optional)<BR>5. Redploy 
+the <FONT face="Courier New, Courier, mono" color=#000099 size=2>soap.war</FONT> 
+module.<BR>6. Restart the application server.</P>
+<H2>Creating the soap.xml File</H2>
+<P>By default, the <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>soap.xml</FONT> file does not exist in a simple installation of Apache 
+SOAP. If you want to change the location of the services configuration file, you 
+must create a <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>soap.xml</FONT> file that refers to the new services configuration file. 
+(In the next section, you will modify the web application to point to the 
+location of the <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>soap.xml</FONT> file).</P>
+<P>For the purposes of specifying the location of a service configuration file, 
+the <FONT face="Courier New, Courier, mono" color=#000099 size=2>soap.xml</FONT> 
+file takes the following form:</P>
+<BLOCKQUOTE><PRE><FONT color=#000099>&lt;soapServer&gt;<BR>  &lt;configManager value="org.apache.soap.server.DefaultConfigManager" &gt;<BR>	&lt;option name="filename" value="d:\soap-2_2\DeployedServices.ds" /&gt;<BR>  &lt;/configManager&gt;<BR>&lt;/soapServer&gt;</FONT></PRE></BLOCKQUOTE>
+<H2>Adding ConfigFile Servlet Initialization Parameter</H2>
+<P>In the <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>web.xml</FONT> file, the initialization parameters in the web application 
+deployment descriptor takes the following form:</P>
+<BLOCKQUOTE><PRE><FONT color=#000099>&lt;servlet&gt;<BR>  &lt;servlet-name&gt;messagerouter&lt;/servlet-name&gt;<BR>  &lt;display-name&gt;Apache-SOAP Message Router&lt;/display-name&gt;<BR>  &lt;servlet-class&gt;org.apache.soap.server.http.MessageRouterServlet&lt;/servlet-class&gt;<BR>  &lt;init-param&gt;<BR>    &lt;param-name&gt;faultListener&lt;/param-name&gt;<BR>    &lt;param-value&gt;org.apache.soap.server.DOMFaultListener&lt;/param-value&gt;<BR>  &lt;/init-param&gt;
+  <B>&lt;init-param&gt;<BR>    &lt;param-name&gt;ConfigFile&lt;/param-name&gt;<BR>    &lt;param-value&gt;d:\soap-2_2\soap.xml&lt;/param-value&gt;<BR>  &lt;/init-param&gt;</B><BR>&lt;/servlet&gt;</FONT></PRE></BLOCKQUOTE>
+<P>The new<FONT size=2> <FONT face="Courier New, Courier, mono" 
+color=#000099>&lt;init-param&gt;</FONT></FONT> must be added to the <FONT 
+face="Courier New, Courier, mono" color=#000099 size=2>&lt;servlet&gt;</FONT> 
+section for both the <FONT face="Courier New, Courier, mono" color=#000099 
+size=2>messagerouter</FONT> and <FONT face="Courier New, Courier, mono" 
+color=#000099 size=2>rpcrouter</FONT> servlets.</P>
+<P>To make this change via the Deployment Tool, follow these steps:</P>
+<OL>
+  <LI>Start the Deployment Tool and open the <FONT 
+  face="Courier New, Courier, mono" color=#000099 size=2>soap.war</FONT> file 
+  that you modified earlier. 
+  <LI>Click on the WAR module and click on <I>Componenet View</I>. 
+  <LI>Select the <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>messagerouter</FONT> servlet, right click, and select <I>Edit 
+  Descriptor</I>. 
+  <LI>Under the <I>Init Param</I> tab, add a new parameter matching the 
+  description above. 
+  <LI>Repeat for the <FONT face="Courier New, Courier, mono" color=#000099 
+  size=2>rpcrouter</FONT> servlet. 
+  <LI>Close the descriptor windows and save the WAR file. 
+  <LI>Redeploy the WAR file and restart the application server. </LI></OL>
+<P>Now comment out the undeploy steps in several of the sample <FONT 
+face="Courier New, Courier, mono" color=#000099 size=2>testit</FONT> scripts for 
+the sample applications. Then rerun these scripts. Restart the application 
+server and use the Apache SOAP administrative interface to ensure that the 
+service configuration was persisted to the new configuration file. Open the 
+services configuration file in an editor to double check that the services are 
+being registered in the new file.</P>
+<HR width="100%" SIZE=1>
+</BODY></HTML>

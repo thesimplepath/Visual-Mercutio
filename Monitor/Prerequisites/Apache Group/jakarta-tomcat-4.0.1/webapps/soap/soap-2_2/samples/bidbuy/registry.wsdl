@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s0="http://www.soapinterop.org/Registry" targetNamespace="http://www.soapinterop.org/Registry" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema targetNamespace="http://www.soapinterop.org/Registry">
+      <s:complexType name="Service">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="serviceName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="serviceUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="serviceType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="serviceWsdl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfService">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute n1:arrayType="s0:Service[]" ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </types>
+  <message name="LookupSoapIn">
+    <part name="ServiceType" type="s:string" />
+  </message>
+  <message name="LookupSoapOut">
+    <part name="LookupResult" type="s0:ArrayOfService" />
+  </message>
+  <message name="LookupAsStringSoapIn">
+    <part name="ServiceType" type="s:string" />
+  </message>
+  <message name="LookupAsStringSoapOut">
+    <part name="LookupAsStringResult" type="s:string" />
+  </message>
+  <message name="RegisterSoapIn">
+    <part name="ServiceName" type="s:string" />
+    <part name="ServiceUrl" type="s:string" />
+    <part name="ServiceType" type="s:string" />
+    <part name="ServiceWsdl" type="s:string" />
+  </message>
+  <message name="RegisterSoapOut" />
+  <message name="UnregisterSoapIn">
+    <part name="ServiceName" type="s:string" />
+  </message>
+  <message name="UnregisterSoapOut" />
+  <portType name="RegistryServiceSoap">
+    <operation name="Lookup">
+      <input message="s0:LookupSoapIn" />
+      <output message="s0:LookupSoapOut" />
+    </operation>
+    <operation name="LookupAsString">
+      <input message="s0:LookupAsStringSoapIn" />
+      <output message="s0:LookupAsStringSoapOut" />
+    </operation>
+    <operation name="Register">
+      <input message="s0:RegisterSoapIn" />
+      <output message="s0:RegisterSoapOut" />
+    </operation>
+    <operation name="Unregister">
+      <input message="s0:UnregisterSoapIn" />
+      <output message="s0:UnregisterSoapOut" />
+    </operation>
+  </portType>
+  <binding name="RegistryServiceSoap" type="s0:RegistryServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="Lookup">
+      <soap:operation soapAction="http://www.soapinterop.org/Lookup" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="LookupAsString">
+      <soap:operation soapAction="http://www.soapinterop.org/LookupAsString" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Register">
+      <soap:operation soapAction="http://www.soapinterop.org/Register" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Unregister">
+      <soap:operation soapAction="http://www.soapinterop.org/Unregister" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://www.soapinterop.org/Registry" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+</definitions>

@@ -1,0 +1,25 @@
+              Java(TM) 2 Runtime Environment, Standard Edition
+                             Version 1.3.1
+
+				CHANGES
+------------------------------------------------------------------------
+
+The Java 2 Runtime Environment v1.3.1 is a maintenance release 
+containing fixes for bugs found in version 1.3.0 of the Java 2 Runtime 
+Environment.  For more information, see:
+
+   * On-line release notes.
+     http://java.sun.com/j2se/1.3/relnotes.html
+
+   * Summary of New Features - Features added since version 1.2 
+     of the Java 2 Runtime Environment.
+     http://java.sun.com/j2se/1.3/docs/relnotes/features.html
+
+   * Guide to Features - Complete list of all features.
+     http://java.sun.com/j2se/1.3/docs/index.html#guide
+
+
+-----------------------------------------------------------------------
+Copyright (c) 2001 Sun Microsystems(tm), Inc.
+901 San Antonio Road, Palo Alto, CA 94303-4900
+All rights reserved.

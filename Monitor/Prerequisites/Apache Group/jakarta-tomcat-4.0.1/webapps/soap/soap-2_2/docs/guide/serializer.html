@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><HEAD>
+<META name="GENERATOR" content="IBM WebSphere Homepage Builder V4.0.0 for Linux">
+<TITLE>Creating Type Mappings</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+<H2 align="center">Creating Type Mappings</H2>
+<P>Apache SOAP uses type mappings to determine
+how Java datatypes should be marshalled to/unmarshalled
+from XML so that they can be transmitted
+on/received from the wire. The type mappings
+are stored in a type mapping registry, with
+the default registry being org.apache.soap.encoding.SOAPMappingRegistry.<BR>
+<BR>
+Each type mapping carries several pieces
+of information: a URI describing the encoding
+style (i.e. http://schemas.xmlsoap.org/soap/encoding/,)
+a qualified name (QName) for the XML element
+(i.e. http://www.w3.org/2001/XMLSchema:int,)
+the Java class to be encoded from/decoded
+to, the name of the Java class to act as
+the serializer, and the name of the Java
+class to act as the deserializer. The Java
+classes acting as serializers/deserializers
+must implement org.apache.soap.util.xml.Serializer
+and org.apache.soap.util.xml.Deserializer,
+respectively.</P>
+<P>To make life a little easier, a set of type
+mappings has been predefined and registered
+into the SOAPMappingRegistry for the SOAP
+encoding style. These include mappings for
+the following Java types:</P>
+<UL>
+  <LI>all Java primitive types, such as int, float,
+  boolean, byte, etc. and their corresponding
+  wrapper classes (i.e. java.lang.Integer,
+  java.lang.Boolean, etc.)
+  <LI>Java arrays
+  <LI>java.lang.String
+  <LI>java.util.Date
+  <LI>java.util.GregorianCalendar
+  <LI>java.util.Vector
+  <LI>java.util.Hashtable
+  <LI>java.util.Map (under Java editions in which
+  this is supported)
+  <LI>java.math.BigDecimal
+  <LI>javax.mail.internet.MimeBodyPart
+  <LI>java.io.InputStream
+  <LI>javax.activation.DataSource
+  <LI>javax.activation.DataHandler
+  <LI>org.apache.soap.util.xml.QName
+  <LI>org.apache.soap.rpc.Parameter
+  <LI>java.lang.Object (a deserializer for null
+  objects only)
+</UL>
+<P>The SOAPMappingRegistry also provides a type
+mapping to encode org.apache.soap.rpc.Parameters
+in the literal XML encoding style, and a
+set of mappings to encode types supported
+by the <A href="http://www.alphaworks.ibm.com/tech/xmiframework">IBM XMI Framework</A> in the XMI encoding style.</P>
+<P>If you want to pass your own objects as parameters
+to SOAP RPC services, then you will need
+to register new type mappings (and possibly
+create your own serializers/deserializers.)
+<I>Remember that you will need to register the
+new type mappings on both the server and
+the client sides.</I></P>
+<H3>Registering Type Mappings on the Server</H3>
+<P>There are two main ways to register type
+mapping information into an Apache SOAP server:</P>
+<OL>
+  <LI>Registering them via the deployment descriptor.
+  <LI>Overriding the default mapping registry with
+  a registry that has your new type mappings
+  pre-registered.
+  </OL>
+<P>The first way is probably the easiest to
+implement and manage, but it does require
+that you replicate the mapping information
+in each deployment descriptor that needs
+it. For more information on registering type
+mapping information via a deployment descriptor,
+look <A href="deploy.html#typemapping">here</A>.</P>
+<P>The second mechanism requires a little more
+work, but allows you to limit the amount
+of additional information that you need to
+put into each deployment descriptor. In addition,
+the same mapping registry may be used on
+the client side, and thus may cut down on
+the amount of additional code that must be
+written for the client. The new registry
+must be a subclass of the SOAPMappingRegistry.
+For information about overriding the default
+mapping registry, look <A href="deploy.html#typemapping">here</A>.</P>
+<H3>Registering Type Mappings on the Client</H3>
+<P>As is the case with the server, on the client
+there are also two main ways to register
+type mapping information:</P>
+<OL>
+  <LI>Create an instance of the SOAPMappingRegistry
+  and use the mapTypes(...) method to add
+  new
+  mappings.
+  <LI>Create an instance of a subclass of the SOAPMappingRegistry
+  that already has your mappings pre-registered.
+</OL>
+<P>The first way is probably the easiest to
+do, but if you have to use the same type
+mappings in multiple different clients or
+if you are also implementing the server-side
+as well, then the second method may save
+you a little bit of coding.</P>
+<H3>The Bean Serializer/Deserializer</H3>
+<P>In many cases, even if there is not a default
+type mapping for the object that you are
+trying to transmit, you still may not need
+to create a new serializer/deserializer.
+Apache SOAP comes with a Java Bean Serializer/Deserializer
+that may suit your needs. The org.apache.soap.encoding.soapenc.BeanSerializer
+can be used to serialize and deserialize
+JavaBeans using the SOAP encoding style.
+The public properties of the bean will become
+named accessors (elements) in the XML form.
+To use the BeanSerializer, simply pass &quot;org.apache.soap.encoding.soapenc.BeanSerializer&quot;
+as the last two parameters when you are registering
+the type mapping for your object.<BR>
+<I><BR>
+Note: The object that you are serializing
+with the BeanSerializer <B>MUST</B> be a <A href="http://java.sun.com/products/javabeans/docs/index.html">JavaBean</A> for this serializer to work:</I></P>
+<UL>
+  <LI><I>It <B>MUST</B> have a no-args constructor</I>
+  <LI><I>It <B>MUST</B> expose all interesting state through properties</I>
+  <LI><I>It <B>MUST</B> not matter what order the accessors for
+  the properties (i.e. the setX/getX methods)
+  are in</I>
+  <LI><I>etc.</I>
+</UL>
+<P><I> This is <B>NOT</B> a general/all-purpose serializer. It <B>WILL NOT</B> work if the object which you are serializing/deserializing
+does not conform to the <A href="http://java.sun.com/products/javabeans/docs/spec.html">JavaBeans definition</A>. It is <B>NOT</B> a bug if you cannot serialize/deserialize
+your non-Bean, Java class with this, any
+more than it is a bug that you can't serialize
+a java.awt.Panel with the java.util.Date
+serializer.</I> </P>
+<H3>Creating New Serializers and Deserializers</H3>
+<P>If you need to create a new serializer/deserializer,
+then looking at the source code for the predefined
+ones will probably provide you with the best
+guidance. Remember that they will need to
+implement org.apache.soap.util.xml.Serializer
+and org.apache.soap.util.xml.Deserializer
+respectively. You can implement them both
+in the same class, or use two different classes,
+it really makes no difference.</P>
+<P>Last updated 5/21/2001 by Bill Nagy &lt;<A href="mailto:nagy@watson.ibm.com">nagy@watson.ibm.com</A>&gt;.</P>
+</body>
+</HTML>

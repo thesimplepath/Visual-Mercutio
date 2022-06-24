@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Web Services Toolkit Configuration File -->
+<!-- Web service settings -->
+<wstk>
+  <!-- WSTK_HOME -->
+  <wstk.home>c:\wstk-3.0</wstk.home>
+
+  <!-- Selected Server -->
+  <selected-server>tomcat</selected-server>
+
+  <tomcat.hostname>localhost</tomcat.hostname>
+  <tomcat.port>8080</tomcat.port>
+  <tomcat.location>C:\Program Files\Apache Group\jakarta-tomcat-4.0.1\</tomcat.location>
+
+  <webspheremicro.hostname>localhost</webspheremicro.hostname>
+  <webspheremicro.port>80</webspheremicro.port>
+  <webspheremicro.location/>
+
+  <websphere.hostname/>
+  <websphere.port>80</websphere.port>
+  <websphere.location/>
+
+  <!-- SOAP server settings -->
+  <soap.router.urn>/soap/servlet/rpcrouter</soap.router.urn>
+
+  <!-- WSDL service port name -->
+  <wsdl.service.port.name>Demo</wsdl.service.port.name>
+
+  <!--WSIL settings -->
+  <wsil.hostname>localhost</wsil.hostname>
+  <wsil.port>8080</wsil.port>
+
+  <!--  UDDI settings   -->
+  <!-- The uddi.registry.name can conatain one of the following values: -->
+  <!-- uddi.registry.name=ibmtest -->
+  <!-- uddi.registry.name=ibmpublic -->
+  <!-- uddi.registry.name=otheruddi -->
+  <!-- udi.registry.name=mstest -->
+  <!-- uddi.registry.name=mspublic -->
+
+  <!-- to select which UDDI repository you want the demos to access-->
+  <!-- modify the uddi.registry.name tag to reflect one of the values above -->
+  <!-- Default UDDI registry name -->
+  <uddi.registry.name>ibmtest</uddi.registry.name>
+
+   <!--IBM Test Area -->
+   <uddi.inquiry.ibmtest>http://www-3.ibm.com/services/uddi/testregistry/inquiryapi</uddi.inquiry.ibmtest>
+   <uddi.publish.ibmtest>https://www-3.ibm.com/services/uddi/testregistry/protect/publishapi</uddi.publish.ibmtest>
+   <uddi.userid.ibmtest>xx</uddi.userid.ibmtest>
+   <uddi.cred.ibmtest>xx</uddi.cred.ibmtest>
+
+   <!-- IBM Public Registry -->
+   <uddi.inquiry.ibmpublic>http://www-3.ibm.com/services/uddi/inquiryapi</uddi.inquiry.ibmpublic>
+   <uddi.publish.ibmpublic>https://www-3.ibm.com/services/uddi/protect/publishapi</uddi.publish.ibmpublic>
+   <uddi.userid.ibmpublic/>
+   <uddi.cred.ibmpublic/>
+
+   <!-- WSTK Local UDDI Registry - other uddi registries -->
+   <uddi.inquiry.otheruddi>http://localhost:80/services/uddi/inquiryapi</uddi.inquiry.otheruddi>
+   <uddi.publish.otheruddi>http://localhost:80/services/uddi/publishapi</uddi.publish.otheruddi>
+   <uddi.userid.otheruddi>wstkDemo</uddi.userid.otheruddi>
+   <uddi.cred.otheruddi>wstkPwd</uddi.cred.otheruddi>
+
+   <!-- Microsoft Test Registry -->
+   <uddi.inquiry.mstest>http://test.uddi.microsoft.com/inquire</uddi.inquiry.mstest>
+   <uddi.publish.mstest>https://test.uddi.microsoft.com/publish</uddi.publish.mstest>
+   <uddi.userid.mstest/>
+   <uddi.cred.mstest/>
+
+   <!-- Microsoft Public Registry -->
+   <uddi.inquiry.mspublic>http://uddi.microsoft.com/inquire</uddi.inquiry.mspublic>
+   <uddi.publish.mspublic>https://uddi.microsoft.com/publish</uddi.publish.mspublic>
+   <uddi.userid.mspublic/>
+   <uddi.cred.mspublic/>
+
+   <!-- WSTK settings -->
+   <wstk.debug>false</wstk.debug>
+
+   <!-- WSTK JLOG settings -->
+   <!--The slash in below element values indicates not to append the package name.  These files are found by the CLASSPATH
+      (e.q. this is NOT a path) for more details see JDK documentation for Class.getResourceAsStream -->
+   <!-- <wstk.log>/wstklog_console.properties</wstk.log> --> <!-- Uncomment to write to the console -->
+   <!-- <wstk.log>/wstklog_file.properties</wstk.log> --> <!-- UnComment to write by default to "wstk.log" file -->
+
+   <!-- For trace sample code see wstkConstants.java file search for LOG: -->
+</wstk>

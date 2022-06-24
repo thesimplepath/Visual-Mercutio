@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/wsdl/2001/12/AccountingService/" xmlns:typens="http://tempuri.org/xsd/2001/12/Accounting/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AccountingService" targetNamespace="http://tempuri.org/wsdl/2001/12/AccountingService/">
+
+  <documentation>
+		The Accounting Service is used to calculate billing data according to rating models,
+		using usage contracts and corresponding meter events as input. A rating model
+		describes the pricing scheme for the service, and can be implemented according to a
+		service providers' specific requirements and plugged into the accounting service.
+    <pre>
+    @version 1.0
+    @author Janet Farrell
+    @author Michael Haeberlen
+    @author Dietmar Kuebler
+    </pre>
+  </documentation>
+
+  <types>
+    <documentation>
+ 	    Data type definitions for the accounting service.
+    </documentation>
+		
+    <xsd:schema targetNamespace="http://tempuri.org/xsd/2001/12/Accounting/">
+      <xsd:complexType name="propertyEntry">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="value" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="ArrayOfProperties">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute ref="soapenc:arrayType" wsdl:arrayType="propertyEntry[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="ratingModel">
+        <xsd:sequence>
+          <xsd:element name="ratingkey" type="xsd:string"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="currency" type="xsd:string"/>
+          <xsd:element name="ratingclass" type="xsd:string"/>
+          <xsd:element name="attributes" type="typens:ArrayOfProperties"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="ArrayOfRatingModels">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute ref="soapenc:arrayType" wsdl:arrayType="ratingModel[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="meterEvent">
+        <xsd:element name="type" type="xsd:int"/>
+        <xsd:element name="evttime" type="xsd:string"/>
+        <xsd:element name="providerContractkey" type="xsd:string"/>
+        <xsd:element name="requesterIdentitykey" type="xsd:string"/>
+        <xsd:element name="sessionkey" type="xsd:string"/>
+        <xsd:element name="recordedTime" type="xsd:string"/>
+        <xsd:element name="dataTimestamp" type="xsd:string"/>
+        <xsd:element name="dataInteger" type="xsd:int"/>
+      </xsd:complexType>
+
+      <xsd:complexType name="ArrayOfMeterEvents">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute ref="soapenc:arrayType" wsdl:arrayType="meterEvent[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+
+  <message name="RatingModel">
+    <documentation>
+ 	    Message which contains a rating model.
+    </documentation>
+		
+    <part name="ratingModel" type="typens:ratingModel">
+      <documentation>
+ 	    This contains the details for a rating model.  A rating model describes the
+            pricing details for a service.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="RatingModels">
+    <documentation>
+ 	    Message which contains a list of rating models.
+    </documentation>
+		
+    <part name="ratingModels" type="typens:ArrayOfRatingModels">
+      <documentation>
+ 	    This is an array of rating models.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="RatingKey">
+    <documentation>
+ 	    Message that contains a rating key.
+    </documentation>
+		
+    <part name="ratingKey" type="xsd:string">
+      <documentation>
+ 	    The rating key is the unique identifier for a rating model.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="Response">
+    <documentation>
+	    Standard response message.
+    </documentation>
+		
+    <part name="StatusCode" type="xsd:string">
+      <documentation>
+	    The status code indicates the success or failure of an operation.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="RatingModelsRequest">
+    <documentation>
+            This is an empty message which is used when requesting a list of rating models.
+    </documentation>
+  </message>
+
+  <message name="ReportRequest">
+    <documentation>
+ 	    Message which contains a request to generate an accounting report
+ 	    based on the usage of a given service over a specified time span.
+    </documentation>
+		
+    <part name="contractKey" type="xsd:string">
+      <documentation>
+ 	    The contract key for the usage contract we are interested in.
+      </documentation>
+    </part>
+    <part name="dateFrom" type="xsd:string">
+      <documentation>
+ 	    The starting time for the timespan we are interested in.
+      </documentation>
+    </part>
+    <part name="dateTo" type="xsd:string">
+      <documentation>
+ 	    The ending time for the timespan we are interested in.
+      </documentation>
+    </part>
+  </message>
+
+  <message name="ReportResponse">
+    <documentation>
+ 	    Message which contains a accounting report response.
+    </documentation>
+		
+    <part name="meterEvents" type="typens:ArrayOfMeterEvents">
+      <documentation>
+ 	    This is an array of meter events for a specific usage contract which
+            fall within the specified start and end time.
+      </documentation>
+    </part>
+    <part name="properties" type="typens:ArrayOfProperties">
+      <documentation>
+ 	    A map of properties associated with the rating model for the usage contract.
+ 	    These properties define the pricing scheme.
+      </documentation>
+    </part>
+  </message>
+
+																					
+  <portType name="AccountingService">
+    <documentation>
+      	  This is the standard operation definitions for the acccounting service.
+    </documentation>
+		
+    <operation name="createRatingModel">
+      <documentation>
+      	  Create a rating model and return a unique key value that identifies it.
+      </documentation>
+		
+      <input message="tns:RatingModel">
+        <documentation>
+ 	      The rating model to be stored.  A unique identifier will be assigned
+              to this rating model.
+        </documentation>
+      </input>
+      <output message="tns:RatingKey">
+        <documentation>
+ 	      The unique identifier for the rating model that was stored.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="deleteRatingModel">
+      <documentation>
+       	  Delete a rating model.
+      </documentation>
+		
+      <input message="tns:RatingKey">
+        <documentation>
+ 	      The rating key for the rating model to be deleted.
+        </documentation>
+      </input>
+      <output message="tns:Response">
+        <documentation>
+ 	      The response will indicate whether the rating model was deleted.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="getRatingModel">
+      <documentation>
+       	  Get the rating model associated with a specified rating key.
+      </documentation>
+		
+      <input message="tns:RatingKey">
+        <documentation>
+ 	      The rating key for the rating model we want.
+        </documentation>
+      </input>
+      <output message="tns:RatingModel">
+        <documentation>
+ 	      The rating model associated with the specified rating key.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="getRatingModels">
+      <documentation>
+      	  Get a list of all rating models.
+      </documentation>
+
+      <input message="tns:RatingModelsRequest">		
+        <documentation>
+ 	      No input is required for this operation.
+        </documentation>
+      </input>
+      <output message="tns:RatingModels">
+        <documentation>
+ 	      The list of all available rating models.
+        </documentation>
+      </output>
+    </operation>
+
+    <operation name="generateReport">
+      <documentation>
+      	  Generate a report for a given usage contract.
+      </documentation>
+		
+      <input message="tns:ReportRequest">
+        <documentation>
+ 	      The report request.
+        </documentation>
+      </input>
+      <output message="tns:ReportResponse">
+        <documentation>
+ 	      The report response.
+        </documentation>
+      </output>
+    </operation>
+  </portType>
+
+
+  <binding name="AccountingServiceBinding" type="tns:AccountingService">
+    <documentation>
+       	  SOAP binding definitions for the acccounting service.
+    </documentation>
+		
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <operation name="createRatingModel">
+        <documentation>
+	     Create a rating model and return a unique key value that identifies it.
+	</documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/AccountingService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="deleteRatingModel">
+  	<documentation>
+	    Delete a rating model.
+	</documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/AccountingService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getRatingModel">
+  	<documentation>
+       	    Get the rating model associated with a specified rating key.
+	</documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/AccountingService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="getRatingModels">
+  	<documentation>
+	    Get a list of all rating models.
+	</documentation>
+
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/AccountingService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </output>
+    </operation>
+
+    <operation name="generateReport">
+  	<documentation>
+	     Generate a report for a given usage contract.
+	</documentation>
+		
+      <soap:operation soapAction="http://tempuri.org/wsdl/2001/12/AccountingService/"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/wsdl/2001/12/AccountingService/" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+
+</definitions>

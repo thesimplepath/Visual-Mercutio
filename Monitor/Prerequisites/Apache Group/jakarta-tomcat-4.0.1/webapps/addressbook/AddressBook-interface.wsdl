@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapType="http://xml.apache.org/xml-soap" xmlns:tns="http://www.addressbookservice.com/AddressBook-interface" xmlns:types="http://www.addressbookservice.com/AddressBook-types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AddressBook_Service-interface" targetNamespace="http://www.addressbookservice.com/AddressBook-interface">
+
+<import location="http://localhost:8080/addressbook/AddressBook.xsd" namespace="http://www.addressbookservice.com/AddressBook-types">
+</import>
+
+<message name="InaddEntryRequest">
+  <part name="meth1_inType1" type="xsd:string"/>
+  <part name="meth1_inType2" type="types:AddressType"/>
+</message>
+
+<message name="voidResponse"/>
+
+<message name="IngetAddressFromNameRequest">
+  <part name="meth2_inType1" type="xsd:string"/>
+</message>
+
+<message name="OutgetAddressFromNameResponse">
+  <part name="meth2_outType" type="types:AddressType"/>
+</message>
+
+<message name="IngetAllListingsRequest"/>
+
+<message name="OutgetAllListingsResponse">
+  <part name="meth3_outType" type="soapType:Element"/>
+</message>
+
+<message name="InputListingsRequest">
+  <part name="meth4_inType1" type="types:Element"/>
+</message>
+
+<message name="OutputListingsResponse">
+  <part name="meth4_outType" type="xsd:int"/>
+</message>
+
+<message name="InremoveEntryRequest">
+  <part name="meth1_inType1" type="xsd:string"/>
+</message>
+
+<message name="OutremoveEntryResponse">
+  <part name="meth2_outType" type="xsd:string"/>
+</message>
+
+<portType name="AddressBook_Service">
+  <operation name="addEntry">
+    <input message="tns:InaddEntryRequest"/>
+    <output message="tns:voidResponse"/>
+  </operation>
+
+  <operation name="getAddressFromName">
+    <input message="tns:IngetAddressFromNameRequest"/>
+    <output message="tns:OutgetAddressFromNameResponse"/>
+  </operation>
+
+  <operation name="getAllListings">
+    <input message="tns:IngetAllListingsRequest"/>
+    <output message="tns:OutgetAllListingsResponse"/>
+  </operation>
+
+  <operation name="putListings">
+    <input message="tns:InputListingsRequest"/>
+    <output message="tns:OutputListingsResponse"/>
+  </operation>
+
+  <operation name="removeEntry">
+    <input message="tns:InremoveEntryRequest"/>
+    <output message="tns:OutremoveEntryResponse"/>
+  </operation>
+
+  <operation name="removeAll">
+    <input message="tns:voidResponse"/>
+    <output message="tns:voidResponse"/>
+  </operation>
+
+</portType>
+
+<binding name="AddressBook_ServiceBinding" type="tns:AddressBook_Service">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="addEntry">
+    <soap:operation soapAction="http://tempuri.org/AddressFetcher"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </output>
+  </operation>
+  <operation name="getAddressFromName">
+    <soap:operation soapAction="http://tempuri.org/AddressFetcher"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </output>
+  </operation>
+  <operation name="getAllListings">
+    <soap:operation soapAction="http://tempuri.org/AddressFetcher"/>
+    <input>
+      <soap:body encodingStyle="http://xml.apache.org/xml-soap/literalxml" namespace="http://tempuri.org/AddressFetcher" use="literal"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://xml.apache.org/xml-soap/literalxml" namespace="http://tempuri.org/AddressFetcher" use="literal"/>
+    </output>
+  </operation>
+  <operation name="putListings">
+    <soap:operation soapAction="http://tempuri.org/AddressFetcher"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </output>
+  </operation>
+  <operation name="removeEntry">
+    <soap:operation soapAction="http://tempuri.org/AddressFetcher"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </output>
+  </operation>
+  <operation name="removeAll">
+    <soap:operation soapAction="http://tempuri.org/AddressFetcher"/>
+    <input>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </input>
+    <output>
+      <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://tempuri.org/AddressFetcher" use="encoded"/>
+    </output>
+  </operation>
+</binding>
+</definitions>
