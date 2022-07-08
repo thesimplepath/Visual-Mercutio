@@ -13,8 +13,10 @@
 #endif
 
 // processsoft
-#include "Resources.h"
 #include "zWinUtil32\PSS_SearchEdit.h"
+
+// resources
+#include "resource.h"
 
 /**
 * Unit info

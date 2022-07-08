@@ -16,7 +16,7 @@
 #include "zWinUtil32\PSS_WelcomeDialog.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 /**
 * Welcome process dialog box

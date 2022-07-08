@@ -11,7 +11,9 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\PSS_ToolbarObserverMsg.h"
-#include "Resources.h"
+
+// resources
+#include "resource.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW

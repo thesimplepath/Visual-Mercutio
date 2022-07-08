@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Directory.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW

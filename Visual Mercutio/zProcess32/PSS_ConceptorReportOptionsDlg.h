@@ -16,7 +16,7 @@
 #include "zBaseLib\PSS_WizardDialog.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 /**
 * Conceptor report option dialog box

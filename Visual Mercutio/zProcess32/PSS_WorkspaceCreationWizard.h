@@ -23,7 +23,7 @@
 #include "zWinUtil32\PSS_WorkspaceTemplateListCtrl.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 // forward class declaration
 class PSS_WorkspaceWizardTemplateManager;
@@ -37,7 +37,7 @@ class PSS_WorkspaceCreationWizard
     public:
         /**
         * Constructor
-        *@param pWorkspaceTemplateManager - the workspace temlate manager
+        *@param pWorkspaceTemplateManager - the workspace template manager
         *@param initialDirectory - the initial directory
         *@param workspaceExtension - the workspace extension
         *@param modify - if TRUE, the modification are allowed on the wizard

@@ -90,7 +90,7 @@
 #endif
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -1220,7 +1220,7 @@ void PSS_App::OnNewWorkspace()
                 // todo -cFeature -oJean: show error
             }
 
-            // only for sesterce project
+            // only for Sesterce project
             if (workspaceCreation.GetWorkspaceName() == _T("Projet Sesterce"))
             {
                 // todo -cFeature -oJean: show error

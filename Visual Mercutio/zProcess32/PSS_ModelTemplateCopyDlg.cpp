@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_File.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

@@ -14,7 +14,7 @@
 #include "zWinUtil32\PSS_LanguageComboBox.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
  // class name mapping
 #ifndef PSS_ProcessGraphModelDoc

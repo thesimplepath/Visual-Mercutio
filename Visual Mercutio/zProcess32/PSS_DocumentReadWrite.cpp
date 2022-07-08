@@ -34,7 +34,7 @@
 #include "PSS_App.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

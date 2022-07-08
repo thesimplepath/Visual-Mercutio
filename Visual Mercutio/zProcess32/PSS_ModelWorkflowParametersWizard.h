@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_WizardDialog.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 // class name mapping
 #ifndef PSS_ProcessGraphModelDoc

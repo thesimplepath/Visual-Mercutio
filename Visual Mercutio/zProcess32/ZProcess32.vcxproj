@@ -90,6 +90,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <UACUIAccess>false</UACUIAccess>
       <EnableUAC>true</EnableUAC>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -131,6 +132,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <UACUIAccess>false</UACUIAccess>
       <EnableUAC>true</EnableUAC>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -316,7 +318,7 @@
     <ClInclude Include="PSS_ModelWorkflowParametersWizard.h" />
     <ClInclude Include="PSS_PointerDlg.h" />
     <ClInclude Include="PSS_ProcessNameDialog.h" />
-    <ClInclude Include="resources.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_ModifyView.h" />
     <ClInclude Include="PSS_WelcomeProcessDlg.h" />

@@ -13,7 +13,7 @@
 #endif
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 /**
 * Process name dialog

@@ -681,8 +681,8 @@
 #define IDS_FAILSAVE_RULESFILE                           30010
 #define IDS_FAILOPEN_RULESFILE                           30011
 #define IDS_FAILOPEN_RISKTYPEFILE                        30012
-#define IDS_FAILOPEN_RISKIMPACTFILE                      61216
-#define IDS_FAILOPEN_RISKPROBABILITYFILE                 61217
+//#define IDS_FAILOPEN_RISKIMPACTFILE                      61216
+//#define IDS_FAILOPEN_RISKPROBABILITYFILE                 61217
 
 // next default values for new objects
 #ifdef APSTUDIO_INVOKED

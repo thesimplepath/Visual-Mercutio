@@ -16,6 +16,7 @@
 #include "zModel\PSS_ProcessGraphModelDoc.h"
 #include "zModel\PSS_DocObserverMsg.h"
 #include "zModelBP\PSS_ProcessGraphModelControllerBP.h"
+#include "PSS_RegistryDefs.h"
 #include "PSS_ProcessModelDocument.h"
 #include "PSS_App.h"
 
@@ -25,8 +26,7 @@
 #endif
 #include "zModel\zModelRes.h"
 #include "zModelBP\zModelBPRes.h"
-#include "Resources.h"
-#include "PSS_RegistryDefs.h"
+#include "resource.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

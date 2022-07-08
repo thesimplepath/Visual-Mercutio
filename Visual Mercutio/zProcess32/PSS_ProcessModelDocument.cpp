@@ -9,7 +9,7 @@
 #include "PSS_ProcessModelDocument.h"
 
 // resources
-#include "Resources.h"
+#include "resource.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
