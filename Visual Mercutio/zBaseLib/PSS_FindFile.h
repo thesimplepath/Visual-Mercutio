@@ -81,7 +81,7 @@ class PSS_FindFile
         BOOL          m_TranslateMessage;
 
         /**
-        * Processes the search in main subdir and its subdirs
+        * Processes the search in main sub-dir and its children sub-dir
         *@return always 0 for now
         */
         int ProcessMainSubDir();

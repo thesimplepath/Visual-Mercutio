@@ -81,9 +81,6 @@ bool PSS_SplashContainer::ShowModal() const
     else
         pSplash.reset(new PSS_SplashDialog(m_BitmapFileName, m_Info, m_pParentWnd));
 
-    if (!pSplash.get())
-        return false;
-
     pSplash->DoModal();
 
     return true;

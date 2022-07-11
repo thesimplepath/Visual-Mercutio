@@ -56,7 +56,7 @@ void PSS_HistoricValueManager::AddHistoryValue(const CString& fieldName, const C
         pHistoricValue = pNewHistoricValue.release();
     }
 
-    // add the new historic value to the field        
+    // add the new historic value to the field
     pHistoricValue->AddHistoricValue(value);
 }
 //---------------------------------------------------------------------------

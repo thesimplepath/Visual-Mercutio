@@ -541,6 +541,7 @@ PSS_FormulaSchema* PSS_FormulaSchema::Clone() const
             std::unique_ptr<PSS_Formula> pNewFormula(new PSS_Formula());
             *pNewFormula = *pObj;
             pNewFormulaSchema->m_Formulas.AddTail(pNewFormula.get());
+            pNewFormula.release();
         }
     }
 

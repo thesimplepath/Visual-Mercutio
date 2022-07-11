@@ -780,7 +780,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(PSS_ProcessGraphModelMdl* pMode
                         PSS_UserGroupEntity* pUserGroupEntity =
                                 dynamic_cast<PSS_UserGroupEntity*>(pMainUserGroupEntity->FindGroupByGUID(pBasicSym->GetUnitGUID(),
                                                                                                          true));
-                        PSS_Assert(pUserGroupEntity);
+                        //PSS_Assert(pUserGroupEntity);
 
                         if (pUserGroupEntity)
                         {

@@ -51,7 +51,7 @@ class AFX_EXT_CLASS PSS_Application
         /**
         * Releases the application instance
         */
-        // todo FIXME -cImprovement -oJean: a unique_ptr may be used to avoid worrying about the singleton destruction
+        // todo -cImprovement -oJean: an unique_ptr may be used to avoid worrying about the singleton destruction
         static void Release();
 
         /**

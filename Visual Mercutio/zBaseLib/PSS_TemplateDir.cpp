@@ -9,7 +9,7 @@
 #include "PSS_TemplateDir.h"
 
 // windows
-#include <direct.h> 
+#include <direct.h>
 #include <dos.h>
 
 #ifdef _DEBUG
@@ -130,7 +130,7 @@ BOOL PSS_TemplateDir::Create(const CString& directory, const CString& title)
                 // build the complete file
                 completeFile = directory + "\\" + fileInfo.name;
 
-                std::unique_ptr<ZDTemplateFile> pFile(new ZDTemplateFile(completeFile));
+                std::unique_ptr<PSS_TemplateFile> pFile(new PSS_TemplateFile(completeFile));
 
                 if (!pFile->IsPersistent())
                     continue;

@@ -374,7 +374,7 @@ bool PSS_DeliverableLinkSymbolBP::FillProperties(PSS_Properties::IPropertySet& p
 
             pProp->EnableDragNDrop();
             propSet.Add(pProp.get());
-            pProp.reset();
+            pProp.release();
         }
     }
 

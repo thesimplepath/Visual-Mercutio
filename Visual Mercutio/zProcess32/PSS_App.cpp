@@ -3288,26 +3288,23 @@ void PSS_App::OnExportModelToHTMLFile()
 {
     std::unique_ptr<PSS_PublishReportInfo> pReportInfo(new PSS_PublishReportInfo());
 
-    if (pReportInfo)
-    {
-        PSS_ProcessGraphModelDoc* pBaseDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
+    PSS_ProcessGraphModelDoc* pBaseDoc = dynamic_cast<PSS_ProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-        if (!pBaseDoc)
-            return;
+    if (!pBaseDoc)
+        return;
 
-        PSS_PublishModelToHTML::ExportModelToHTMLFile(pBaseDoc,
-                                                      pBaseDoc->GetFirstModelView(),
-                                                      pReportInfo.get(),
-                                                      m_pszProfileName);
+    PSS_PublishModelToHTML::ExportModelToHTMLFile(pBaseDoc,
+                                                    pBaseDoc->GetFirstModelView(),
+                                                    pReportInfo.get(),
+                                                    m_pszProfileName);
 
-        PSS_PublishReportToHTML::ExportReportToHTMLFile(pBaseDoc, pReportInfo.get());
+    PSS_PublishReportToHTML::ExportReportToHTMLFile(pBaseDoc, pReportInfo.get());
 
-        if (pReportInfo->m_DoLaunchBrowser)
-            PSS_PublishModelToHTML::LaunchBrowser(pReportInfo->m_IndexName);
+    if (pReportInfo->m_DoLaunchBrowser)
+        PSS_PublishModelToHTML::LaunchBrowser(pReportInfo->m_IndexName);
 
-        // restore the original language
-        PSS_ResourceManager::ChangeLanguage(pBaseDoc->GetLanguage());
-    }
+    // restore the original language
+    PSS_ResourceManager::ChangeLanguage(pBaseDoc->GetLanguage());
 }
 //---------------------------------------------------------------------------
 void PSS_App::OnUpdateExportModelToHTMLFile(CCmdUI* pCmdUI)
@@ -4097,7 +4094,7 @@ void PSS_App::OnAfterOpenDocument(CDocument* pDoc, const CString& fileName)
             }
 
             default:
-                // the user wan't open the model in read-only mode
+                // the user want open the model in read-only mode
                 pProcessGraphMdlDoc->SetReadOnly(TRUE);
                 pDoc->OnCloseDocument();
                 return;

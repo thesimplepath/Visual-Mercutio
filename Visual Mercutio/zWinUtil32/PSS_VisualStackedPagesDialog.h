@@ -13,7 +13,7 @@
  * C. Add a pointer variable of type ZVisualStackedPageInfo to dialog. It   *
  *    holds a pointer to currently active page. Initialize it to NULL       *
  * D. Add implementation of CreatePage() abstract function. It should       *
- *    perform "new ZVisualStackedPage derived class"                        *
+ *    perform "new PSS_VisualStackedPageDialog derived class"               *
  * E. Create pages (child dialogs with border and disable set to off).      *
  *    Modify base class from CDialog to ZVisualStackedPage                  *
  * F. In ZVisualStackedDialog::OnInitDialog() use AddPage() to add a page   *

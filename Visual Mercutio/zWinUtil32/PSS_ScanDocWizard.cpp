@@ -72,12 +72,9 @@ PSS_ScanDocWizard::IDocument* PSS_ScanDocWizard::GetDocumentAt(std::size_t index
 void PSS_ScanDocWizard::AddDocument(const CString& fileName, const CString& name, const CString& description)
 {
     std::unique_ptr<IDocument> pDoc(new IDocument(fileName, name, description));
-    
-    if (pDoc.get())
-    {
-        m_DocArray.Add(pDoc.get());
-        pDoc.release();
-    }
+
+    m_DocArray.Add(pDoc.get());
+    pDoc.release();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ScanDocWizard::ProcessSelection()
@@ -92,7 +89,7 @@ BOOL PSS_ScanDocWizard::ProcessSelection()
     while (true)
     {
         PSS_ScanContinueSelectDialog scanContinueSelectDialog(firstTime);
-        
+
         const UINT retValue = scanContinueSelectDialog.DoModal();
 
         if (retValue == IDCANCEL)

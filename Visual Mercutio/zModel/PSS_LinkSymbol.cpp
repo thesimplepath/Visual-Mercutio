@@ -282,27 +282,22 @@ CODLabelComponent* PSS_LinkSymbol::CreateLabel(const LPCTSTR          pText,
 {
     // override the basic CODLabelComponent class by an instance of the PSS_BasicLabelComponent one,
     // to allow the char to be filtered while editing
-    std::unique_ptr<PSS_BasicLabelComponent> pLabelComp(new PSS_BasicLabelComponent(ctlPoint));
-    pLabelComp->SetText(pText);
+    std::unique_ptr<PSS_BasicLabelComponent> pLabel(new PSS_BasicLabelComponent(ctlPoint));
+    pLabel->SetText(pText);
 
-    PSS_BasicLabelComponent* pLabel = NULL;
+    if (!pLabel->Create(pDC))
+        return NULL;
 
-    if (pLabelComp->Create(pDC))
-    {
-        AddLabel(pLabelComp.get());
-        pLabel = pLabelComp.release();
+    pLabel->SetOrientationFlag(TRUE);
+    pLabel->SetOrientation(ctlPoint);
 
-        pLabel->SetOrientationFlag(TRUE);
-        pLabel->SetOrientation(ctlPoint);
-    }
+    CODLineOrientation propLineOrientation;
+    pLabel->AddProperty(propLineOrientation);
 
-    if (pLabel)
-    {
-        CODLineOrientation propLineOrientation;
-        pLabelComp->AddProperty(propLineOrientation);
-    }
+    if (!AddLabel(pLabel.get()))
+        return NULL;
 
-    return pLabel;
+    return pLabel.release();
 }
 //---------------------------------------------------------------------------
 bool PSS_LinkSymbol::CanEditNonDynamicName() const
@@ -930,7 +925,7 @@ void PSS_LinkSymbol::AdjustLinePath()
         // get the destination container
         std::unique_ptr<CODComponentPosition> pDestPosContainer(pDestComp->GetPosition());
 
-        if (!pDestPosContainer->GetBounds())
+        if (!pDestPosContainer.get())
             return;
 
         // get the destination container bounding rectangle
@@ -1174,7 +1169,7 @@ bool PSS_LinkSymbol::FillProperties(PSS_Properties::IPropertySet& propSet, bool 
         if (!PSS_ExtFilePropertyMgr::FillProperties(propSet, numericValue, groupValue))
             return false;
 
-        // segregation conceptor
+        // segregation Conceptor
         PSS_ProcessGraphModelMdl* pModel = dynamic_cast<PSS_ProcessGraphModelMdl*>(GetRootModel());
 
         // is messenger activated?

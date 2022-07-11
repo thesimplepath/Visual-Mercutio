@@ -310,7 +310,7 @@ PSS_GridCtrl::IItem* PSS_GridCtrl::InsertRootItem(IItemInfo* pInfo)
     IItemInfo* pItemInfo = GetData(pRoot.get());
     CString    strItem   = pItemInfo->GetItemText();
 
-    LV_ITEM lvItem;
+    LV_ITEM lvItem  = {0};
     lvItem.mask     = LVIF_TEXT | LVIF_INDENT | LVIF_PARAM;
     lvItem.pszText  = strItem.GetBuffer(1);
     lvItem.iItem    = GetItemCount();
@@ -642,7 +642,7 @@ PSS_GridCtrl::IItem* PSS_GridCtrl::InsertItem(IItem* pParent, IItemInfo* pInfo, 
         CString   str   = GetData(pItem.get())->GetItemText();
 
         // insert item
-        LV_ITEM lvItem;
+        LV_ITEM lvItem  = {0};
         lvItem.mask     = LVIF_TEXT | LVIF_INDENT | LVIF_PARAM;
         lvItem.pszText  = str.GetBuffer(1);
         lvItem.iItem    = index;
@@ -702,7 +702,7 @@ int PSS_GridCtrl::Expand(IItem* pItem, int index)
 {
     if (ItemHasChildren(pItem) && IsCollapsed(pItem))
     {
-        LV_ITEM lvItem;
+        LV_ITEM lvItem  = {0};
         lvItem.mask     = LVIF_INDENT;
         lvItem.iItem    = index;
         lvItem.iSubItem = 0;
@@ -720,7 +720,7 @@ int PSS_GridCtrl::Expand(IItem* pItem, int index)
             IItem*  pNextNode = (IItem*)pItem->m_ListChild.GetNext(pPos);
             CString str       = GetData(pNextNode)->GetItemText();
 
-            LV_ITEM lvItem;
+            LV_ITEM lvItem  = {0};
             lvItem.mask     = LVIF_TEXT | LVIF_INDENT | LVIF_PARAM;
             lvItem.pszText  = str.GetBuffer(1);
             lvItem.iItem    = index + 1;
@@ -898,7 +898,7 @@ void PSS_GridCtrl::DeleteItemEx(IItem* pSelItem, int item)
 
     try
     {
-        // delete cur item in listview
+        // delete cur item in list view
         DeleteItem(item);
 
         // delete/hide all item children
@@ -1016,7 +1016,7 @@ void PSS_GridCtrl::SortEx(BOOL sortChildren)
             IItemInfo* pItemInfo = GetData(pParent);
             CString    str       = pItemInfo->GetItemText();
 
-            LV_ITEM lvItem;
+            LV_ITEM lvItem  = {0};
             lvItem.mask     = LVIF_TEXT | LVIF_INDENT | LVIF_PARAM;
             lvItem.pszText  = str.GetBuffer(1);
             lvItem.iItem    = index;
@@ -1245,7 +1245,7 @@ CImageList* PSS_GridCtrl::CreateDragImageEx(int index)
     std::unique_ptr<CImageList> pList(new CImageList());
 
     // get image index
-    LV_ITEM lvItem;
+    LV_ITEM lvItem  = {0};
     lvItem.mask     = LVIF_IMAGE;
     lvItem.iItem    = index;
     lvItem.iSubItem = 0;
@@ -1424,7 +1424,7 @@ BOOL PSS_GridCtrl::PreTranslateMessage(MSG* pMsg)
                             // call the derived class to notify the start edit
                             OnBeginLabelEdit(item, subItem);
 
-                            // all nodes in col 0 are edit controls, they may be modifed
+                            // all nodes in col 0 are edit controls, they may be modified
                             if (!subItem)
                             {
                                 CRect rcItem;
@@ -1473,8 +1473,8 @@ void PSS_GridCtrl::OnDblclk(NMHDR* pNMHDR, LRESULT* pResult)
 
     NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
 
-    LVHITTESTINFO hitTest;
-    hitTest.pt = pNMListView->ptAction;
+    LVHITTESTINFO hitTest = {0};
+    hitTest.pt            = pNMListView->ptAction;
     SubItemHitTest(&hitTest);
 
     if (OnItemLButtonDown(hitTest))
@@ -1585,8 +1585,8 @@ void PSS_GridCtrl::OnLButtonDown(UINT nFlags, CPoint point)
     if (GetFocus() != this)
         SetFocus();
 
-    LVHITTESTINFO hitTest;
-    hitTest.pt = point;
+    LVHITTESTINFO hitTest = {0};
+    hitTest.pt            = point;
     SubItemHitTest(&hitTest);
 
     if (!OnItemLButtonDown(hitTest))
@@ -2025,11 +2025,11 @@ void PSS_GridCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
         if (!m_hImageList)
             m_hImageList = (HIMAGELIST)::SendMessage(m_hWnd, LVM_GETIMAGELIST, WPARAM(int(LVSIL_SMALL)), 0L);
 
-        static _TCHAR buffer[MAX_PATH];
-        const int     item = lpDrawItemStruct->itemID;
+        static _TCHAR buffer[MAX_PATH] = {0};
+        const int     item             = lpDrawItemStruct->itemID;
         CRect         itemRect(lpDrawItemStruct->rcItem);
 
-        LV_ITEM lvi;
+        LV_ITEM lvi    = {0};
         lvi.mask       = LVIF_TEXT | LVIF_IMAGE | LVIF_STATE | LVIF_INDENT | LVIF_PARAM;
         lvi.iItem      = item;
         lvi.iSubItem   = 0;
@@ -2070,7 +2070,7 @@ void PSS_GridCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
         if (image != -1)
             if (lvi.iImage != image)
             {
-                LV_ITEM lvItem;
+                LV_ITEM lvItem  = {0};
                 lvItem.mask     = LVIF_IMAGE;
                 lvItem.iImage   = image;
                 lvItem.iItem    = item;
@@ -2206,8 +2206,8 @@ void PSS_GridCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 
         pDC->DrawText(pText, -1, labelRect, DT_LEFT | DT_SINGLELINE | DT_NOPREFIX | DT_VCENTER | DT_EXTERNALLEADING);
 
-        LV_COLUMN lvc;
-        lvc.mask = LVCF_FMT | LVCF_WIDTH;
+        LV_COLUMN lvc = {0};
+        lvc.mask      = LVCF_FMT | LVCF_WIDTH;
 
         // draw sub-items
         for (int column = 1; GetColumn(column, &lvc); ++column)
@@ -2528,8 +2528,8 @@ CEdit* PSS_GridCtrl::EditLabelEx(int item, int col)
         rect.right = clientRect.right;
 
     // get column alignment
-    LV_COLUMN lvcol;
-    lvcol.mask = LVCF_FMT;
+    LV_COLUMN lvcol = {0};
+    lvcol.mask      = LVCF_FMT;
     GetColumn(col, &lvcol);
 
     DWORD style;

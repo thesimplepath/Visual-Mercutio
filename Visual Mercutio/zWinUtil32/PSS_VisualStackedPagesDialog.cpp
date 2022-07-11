@@ -100,7 +100,7 @@ PSS_VisualStackedPageInfo* PSS_VisualStackedPagesDialog::AddPage(LPCTSTR pTitle,
                                                                  UINT    dlgID,
                                                                  long    helpID,
                                                                  DWORD   data1,
-                                                                 DWORD   data2) 
+                                                                 DWORD   data2)
 {
     std::unique_ptr<PSS_VisualStackedPageInfo> pPage(new PSS_VisualStackedPageInfo());
     pPage->m_Title    = pTitle;
@@ -149,11 +149,11 @@ void PSS_VisualStackedPagesDialog::DelPage(PSS_VisualStackedPageInfo* pPage)
 
     POSITION pPos = m_List.GetHeadPosition();
 
-    while (pPos) 
+    while (pPos)
     {
         PSS_VisualStackedPageInfo* pPtr = (PSS_VisualStackedPageInfo*)m_List.GetAt(pPos);
 
-        if (pPtr == pPage) 
+        if (pPtr == pPage)
         {
             m_List.RemoveAt(pPos);
             delete pPtr;
